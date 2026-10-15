@@ -64,8 +64,8 @@ _Inspection queries that read a series' own buffer whose records are ordered alo
 |  void | [**appended**](#function-appended) (int count) <br>_Updates cached statistics after one record was appended, giving_ _count_ _records._ |
 |  void | [**collect**](#function-collect) (const [**InspectionSource**](structQAccelPlot_1_1InspectionSource.md) & source, InspectionAxis order, const [**InspectionBounds**](structQAccelPlot_1_1InspectionBounds.md) & bounds, int offset, int limit, QList&lt; int &gt; & indices) <br> |
 |  [**InspectionHit**](structQAccelPlot_1_1InspectionHit.md) | [**nearest**](#function-nearest) (const [**InspectionSource**](structQAccelPlot_1_1InspectionSource.md) & source, const [**InspectionMetric**](structQAccelPlot_1_1InspectionMetric.md) & metric, InspectionAxis order, const QPointF & position, double radius) <br> |
-|  [**InspectionHit**](structQAccelPlot_1_1InspectionHit.md) | [**nearestAlong**](#function-nearestalong) (const [**InspectionSource**](structQAccelPlot_1_1InspectionSource.md) & source, const [**InspectionMetric**](structQAccelPlot_1_1InspectionMetric.md) & metric, InspectionAxis order, double pixel, double radius) const<br>_Returns the valid sample nearest to_ _pixel_ _along the ordered axis._ |
-|  [**InspectionNeighbors**](structQAccelPlot_1_1InspectionNeighbors.md) | [**neighbors**](#function-neighbors) (const [**InspectionSource**](structQAccelPlot_1_1InspectionSource.md) & source, InspectionAxis order, double value) const<br>_Returns the valid samples on either side of_ _value_ _on the ordered axis._ |
+|  [**InspectionHit**](structQAccelPlot_1_1InspectionHit.md) | [**nearestAlong**](#function-nearestalong) (const [**InspectionSource**](structQAccelPlot_1_1InspectionSource.md) & source, const [**InspectionMetric**](structQAccelPlot_1_1InspectionMetric.md) & metric, InspectionAxis order, double pixel, double radius) const<br>_Returns the valid data point nearest to_ _pixel_ _along the ordered axis._ |
+|  [**InspectionNeighbors**](structQAccelPlot_1_1InspectionNeighbors.md) | [**neighbors**](#function-neighbors) (const [**InspectionSource**](structQAccelPlot_1_1InspectionSource.md) & source, InspectionAxis order, double value) const<br>_Returns the valid data points on either side of_ _value_ _on the ordered axis._ |
 |  void | [**reset**](#function-reset) () <br>_Discards cached statistics after the records were replaced or their validity changed._  |
 |  std::size\_t | [**storageBytes**](#function-storagebytes) () const<br>_Returns the bytes held by cached statistics._  |
 |  [**SummaryAccumulator**](structQAccelPlot_1_1SummaryAccumulator.md) | [**summarize**](#function-summarize) (const [**InspectionSource**](structQAccelPlot_1_1InspectionSource.md) & source, InspectionAxis order, const [**InspectionBounds**](structQAccelPlot_1_1InspectionBounds.md) & bounds) <br> |
@@ -175,7 +175,7 @@ InspectionHit QAccelPlot::SourceInspection::nearest (
 
 ### function nearestAlong {#function-nearestalong}
 
-_Returns the valid sample nearest to_ _pixel_ _along the ordered axis._
+_Returns the valid data point nearest to_ _pixel_ _along the ordered axis._
 ```C++
 InspectionHit QAccelPlot::SourceInspection::nearestAlong (
     const InspectionSource & source,
@@ -196,7 +196,7 @@ InspectionHit QAccelPlot::SourceInspection::nearestAlong (
 
 ### function neighbors {#function-neighbors}
 
-_Returns the valid samples on either side of_ _value_ _on the ordered axis._
+_Returns the valid data points on either side of_ _value_ _on the ordered axis._
 ```C++
 InspectionNeighbors QAccelPlot::SourceInspection::neighbors (
     const InspectionSource & source,

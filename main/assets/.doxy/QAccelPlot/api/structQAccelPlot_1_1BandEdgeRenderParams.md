@@ -45,11 +45,11 @@ _Inputs for_ [_**BandEdgeRenderer::paint()**_](classQAccelPlot_1_1BandEdgeRender
 
 | Type | Name |
 | ---: | :--- |
-|  bool | [**dataChanged**](#variable-datachanged)  <br>_Whether the samples changed since the last paint._  |
+|  bool | [**dataChanged**](#variable-datachanged)  <br>_Whether the data points changed since the last paint._  |
+|  [**DataPointStore::View**](structQAccelPlot_1_1DataPointStore_1_1View.md) | [**dataPoints**](#variable-datapoints)  <br>_The band's_ `(x, low, high)` _data points, used for dash lengths._ |
 |  std::shared\_ptr&lt; [**DataTexture**](classQAccelPlot_1_1DataTexture.md) &gt; | [**dataTexture**](#variable-datatexture)  <br>_The band's data texture; the edge line never uploads data itself._  |
-|  int | [**reservedSampleCount**](#variable-reservedsamplecount)  <br>_Samples the vertex buffer holds room for, at least_ `samples.count` _, so appends rarely resize it._ |
-|  [**BandSamples**](structQAccelPlot_1_1BandSamples.md) | [**samples**](#variable-samples)  <br>_CPU copy of the band samples, used for dash lengths._  |
-|  [**LineStroke::Uniforms**](structQAccelPlot_1_1LineStroke_1_1Uniforms.md) | [**uniforms**](#variable-uniforms)  <br>_Line uniforms;_ `uniforms.pointCount` _equals_`samples.count` _._ |
+|  int | [**reservedCount**](#variable-reservedcount)  <br>_Data points the vertex buffer holds room for, at least_ `dataPoints.count` _, so appends rarely resize it._ |
+|  [**LineStroke::Uniforms**](structQAccelPlot_1_1LineStroke_1_1Uniforms.md) | [**uniforms**](#variable-uniforms)  <br>_Line uniforms;_ `uniforms.pointCount` _equals_`dataPoints.count` _._ |
 |  [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**xAxis**](#variable-xaxis)  <br>_Horizontal axis._  |
 |  [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**yAxis**](#variable-yaxis)  <br>_Vertical axis._  |
 
@@ -104,9 +104,24 @@ _Inputs for_ [_**BandEdgeRenderer::paint()**_](classQAccelPlot_1_1BandEdgeRender
 
 ### variable dataChanged {#variable-datachanged}
 
-_Whether the samples changed since the last paint._ 
+_Whether the data points changed since the last paint._ 
 ```C++
 bool QAccelPlot::BandEdgeRenderParams::dataChanged;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable dataPoints {#variable-datapoints}
+
+_The band's_ `(x, low, high)` _data points, used for dash lengths._
+```C++
+DataPointStore::View QAccelPlot::BandEdgeRenderParams::dataPoints;
 ```
 
 
@@ -132,26 +147,11 @@ std::shared_ptr<DataTexture> QAccelPlot::BandEdgeRenderParams::dataTexture;
 
 
 
-### variable reservedSampleCount {#variable-reservedsamplecount}
+### variable reservedCount {#variable-reservedcount}
 
-_Samples the vertex buffer holds room for, at least_ `samples.count` _, so appends rarely resize it._
+_Data points the vertex buffer holds room for, at least_ `dataPoints.count` _, so appends rarely resize it._
 ```C++
-int QAccelPlot::BandEdgeRenderParams::reservedSampleCount;
-```
-
-
-
-
-<hr>
-
-
-
-
-### variable samples {#variable-samples}
-
-_CPU copy of the band samples, used for dash lengths._ 
-```C++
-BandSamples QAccelPlot::BandEdgeRenderParams::samples;
+int QAccelPlot::BandEdgeRenderParams::reservedCount;
 ```
 
 
@@ -164,7 +164,7 @@ BandSamples QAccelPlot::BandEdgeRenderParams::samples;
 
 ### variable uniforms {#variable-uniforms}
 
-_Line uniforms;_ `uniforms.pointCount` _equals_`samples.count` _._
+_Line uniforms;_ `uniforms.pointCount` _equals_`dataPoints.count` _._
 ```C++
 LineStroke::Uniforms QAccelPlot::BandEdgeRenderParams::uniforms;
 ```

@@ -46,8 +46,8 @@
 | ---: | :--- |
 |  QVector2D | [**domainMax**](#variable-domainmax)  <br> |
 |  QVector2D | [**domainMin**](#variable-domainmin)  <br> |
-|  int | [**drawnSampleCount**](#variable-drawnsamplecount)  <br> |
-|  int | [**reservedSampleCount**](#variable-reservedsamplecount)  <br> |
+|  int | [**drawnCount**](#variable-drawncount)  <br> |
+|  int | [**reservedCount**](#variable-reservedcount)  <br> |
 |  QVector2D | [**viewportSize**](#variable-viewportsize)  <br> |
 
 
@@ -127,10 +127,10 @@ QVector2D QAccelPlot::BandSeries::RenderView::domainMin;
 
 
 
-### variable drawnSampleCount {#variable-drawnsamplecount}
+### variable drawnCount {#variable-drawncount}
 
 ```C++
-int QAccelPlot::BandSeries::RenderView::drawnSampleCount;
+int QAccelPlot::BandSeries::RenderView::drawnCount;
 ```
 
 
@@ -141,10 +141,10 @@ int QAccelPlot::BandSeries::RenderView::drawnSampleCount;
 
 
 
-### variable reservedSampleCount {#variable-reservedsamplecount}
+### variable reservedCount {#variable-reservedcount}
 
 ```C++
-int QAccelPlot::BandSeries::RenderView::reservedSampleCount;
+int QAccelPlot::BandSeries::RenderView::reservedCount;
 ```
 
 

@@ -44,7 +44,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| class | [**BandEdgeMaterial**](classQAccelPlot_1_1BandEdgeMaterial.md) <br>_Line material for the lower or upper edge line of a band, reading_ `(x, low, high)` _samples._ |
+| class | [**BandEdgeMaterial**](classQAccelPlot_1_1BandEdgeMaterial.md) <br>_Line material for the lower or upper edge line of a band, reading_ `(x, low, high)` _data points._ |
 
 
 

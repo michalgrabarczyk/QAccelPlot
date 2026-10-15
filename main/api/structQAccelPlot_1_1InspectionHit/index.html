@@ -1373,7 +1373,7 @@
 
 <h1 id="struct-qaccelplotinspectionhit">Struct QAccelPlot::InspectionHit<a class="headerlink" href="#struct-qaccelplotinspectionhit" title="Permanent link">&para;</a></h1>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="./"><strong>InspectionHit</strong></a></p>
-<p><em>Nearest-sample result: source index and pixel distance, or index -1.</em> </p>
+<p><em>Nearest-data-point result: source index and pixel distance, or index -1.</em> </p>
 <ul>
 <li><code>#include &lt;InspectionTypes.hpp&gt;</code></li>
 </ul>
@@ -1407,7 +1407,7 @@
 <tbody>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-consider"><strong>consider</strong></a> (int candidate, double candidateDistance) noexcept<br><em>Keeps the closer candidate; equal distances resolve to the highest index, the sample drawn last.</em></td>
+<td style="text-align: left;"><a href="#function-consider"><strong>consider</strong></a> (int candidate, double candidateDistance) noexcept<br><em>Keeps the closer candidate; equal distances resolve to the highest index, the data point drawn last.</em></td>
 </tr>
 </tbody>
 </table>
@@ -1423,7 +1423,7 @@
 <hr>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-consider">function consider<a class="headerlink" href="#function-consider" title="Permanent link">&para;</a></h3>
-<p><em>Keeps the closer candidate; equal distances resolve to the highest index, the sample drawn last.</em> 
+<p><em>Keeps the closer candidate; equal distances resolve to the highest index, the data point drawn last.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionHit</span><span class="o">::</span><span class="n">consider</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">candidate</span><span class="p">,</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">candidateDistance</span>

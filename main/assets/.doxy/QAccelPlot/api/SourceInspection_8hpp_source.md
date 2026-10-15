@@ -53,7 +53,7 @@ private:
 
     void syncBlocks(int count);
     const Block& block(const InspectionSource& source, int index);
-    // Tells how the samples of a whole block inside the ordered-axis range relate to the bounds of the other axis.
+    // Tells how the data points of a whole block inside the ordered-axis range relate to the bounds of the other axis.
     Coverage coverage(const InspectionSource& source, InspectionAxis order, const InspectionBounds& bounds, int first, int end);
     bool visitBlock(
         const InspectionSource& source, const InspectionMetric& metric, InspectionAxis order, const QPointF& position, int index, InspectionHit& best);

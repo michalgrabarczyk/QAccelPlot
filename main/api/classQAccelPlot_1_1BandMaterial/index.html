@@ -1399,10 +1399,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#variable-samplecount" class="md-nav__link">
+  <a href="#variable-datapointcount" class="md-nav__link">
     <span class="md-ellipsis">
       
-        variable sampleCount
+        variable dataPointCount
       
     </span>
   </a>
@@ -1539,7 +1539,7 @@
 
 <h1 id="class-qaccelplotbandmaterial">Class QAccelPlot::BandMaterial<a class="headerlink" href="#class-qaccelplotbandmaterial" title="Permanent link">&para;</a></h1>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="./"><strong>BandMaterial</strong></a></p>
-<p><em>QSGMaterial that fills a band between the low and high values of</em> <code>(x, low, high)</code> <em>samples.</em><a href="#detailed-description">More...</a></p>
+<p><em>QSGMaterial that fills a band between the low and high values of</em> <code>(x, low, high)</code> <em>data points.</em><a href="#detailed-description">More...</a></p>
 <ul>
 <li><code>#include &lt;BandMaterial.hpp&gt;</code></li>
 </ul>
@@ -1566,7 +1566,7 @@
 <tbody>
 <tr>
 <td style="text-align: right;">struct</td>
-<td style="text-align: left;"><a href="../structQAccelPlot_1_1BandMaterial_1_1Vertex/"><strong>Vertex</strong></a> <br><a href="../structQAccelPlot_1_1BandMaterial_1_1Vertex/"><em><strong>Vertex</strong></em></a> <em>layout of the band triangle strip: two vertices per sample.</em></td>
+<td style="text-align: left;"><a href="../structQAccelPlot_1_1BandMaterial_1_1Vertex/"><strong>Vertex</strong></a> <br><a href="../structQAccelPlot_1_1BandMaterial_1_1Vertex/"><em><strong>Vertex</strong></em></a> <em>layout of the band triangle strip: two vertices per data point.</em></td>
 </tr>
 </tbody>
 </table>
@@ -1581,7 +1581,7 @@
 <tbody>
 <tr>
 <td style="text-align: right;">float</td>
-<td style="text-align: left;"><a href="#variable-samplecount"><strong>sampleCount</strong></a>   = <code>{0.0f}</code><br><em>Number of samples in the data texture (used to clamp neighbor lookups).</em></td>
+<td style="text-align: left;"><a href="#variable-datapointcount"><strong>dataPointCount</strong></a>   = <code>{0.0f}</code><br><em>Number of data points in the data texture (used to clamp neighbor lookups).</em></td>
 </tr>
 </tbody>
 </table>
@@ -1755,11 +1755,11 @@
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
-<p>The data texture holds three floats per sample. Vertices carry only a sample index and an edge selector, so panning and zooming change uniforms only. </p>
+<p>The data texture holds three floats per data point. Vertices carry only a data point index and an edge selector, so panning and zooming change uniforms only. </p>
 <h2 id="public-attributes-documentation">Public Attributes Documentation<a class="headerlink" href="#public-attributes-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="variable-samplecount">variable sampleCount<a class="headerlink" href="#variable-samplecount" title="Permanent link">&para;</a></h3>
-<p><em>Number of samples in the data texture (used to clamp neighbor lookups).</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandMaterial</span><span class="o">::</span><span class="n">sampleCount</span><span class="p">;</span>
+<h3 id="variable-datapointcount">variable dataPointCount<a class="headerlink" href="#variable-datapointcount" title="Permanent link">&para;</a></h3>
+<p><em>Number of data points in the data texture (used to clamp neighbor lookups).</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandMaterial</span><span class="o">::</span><span class="n">dataPointCount</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>

@@ -15,7 +15,7 @@
 
 
 
-_QSGMaterial that fills a band between the low and high values of_ `(x, low, high)` _samples._[More...](#detailed-description)
+_QSGMaterial that fills a band between the low and high values of_ `(x, low, high)` _data points._[More...](#detailed-description)
 
 * `#include <BandMaterial.hpp>`
 
@@ -54,7 +54,7 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-| struct | [**Vertex**](structQAccelPlot_1_1BandMaterial_1_1Vertex.md) <br>[_**Vertex**_](structQAccelPlot_1_1BandMaterial_1_1Vertex.md) _layout of the band triangle strip: two vertices per sample._ |
+| struct | [**Vertex**](structQAccelPlot_1_1BandMaterial_1_1Vertex.md) <br>[_**Vertex**_](structQAccelPlot_1_1BandMaterial_1_1Vertex.md) _layout of the band triangle strip: two vertices per data point._ |
 
 
 
@@ -69,7 +69,7 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-|  float | [**sampleCount**](#variable-samplecount)   = `{0.0f}`<br>_Number of samples in the data texture (used to clamp neighbor lookups)._  |
+|  float | [**dataPointCount**](#variable-datapointcount)   = `{0.0f}`<br>_Number of data points in the data texture (used to clamp neighbor lookups)._  |
 
 
 ## Public Attributes inherited from QAccelPlot::DataTextureMaterial
@@ -219,7 +219,7 @@ See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 ## Detailed Description
 
 
-The data texture holds three floats per sample. Vertices carry only a sample index and an edge selector, so panning and zooming change uniforms only. 
+The data texture holds three floats per data point. Vertices carry only a data point index and an edge selector, so panning and zooming change uniforms only. 
 
 
     
@@ -229,11 +229,11 @@ The data texture holds three floats per sample. Vertices carry only a sample ind
 
 
 
-### variable sampleCount {#variable-samplecount}
+### variable dataPointCount {#variable-datapointcount}
 
-_Number of samples in the data texture (used to clamp neighbor lookups)._ 
+_Number of data points in the data texture (used to clamp neighbor lookups)._ 
 ```C++
-float QAccelPlot::BandMaterial::sampleCount;
+float QAccelPlot::BandMaterial::dataPointCount;
 ```
 
 

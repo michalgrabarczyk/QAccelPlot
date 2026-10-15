@@ -15,7 +15,7 @@
 
 
 
-_Sample-weighted Y statistics over the valid samples inside a region._ 
+_Data-point-weighted Y statistics over the valid data points inside a region._ 
 
 * `#include <InspectionResult.hpp>`
 
@@ -58,7 +58,7 @@ _Sample-weighted Y statistics over the valid samples inside a region._
 
 | Type | Name |
 | ---: | :--- |
-| property int | [**count**](structQAccelPlot_1_1InspectionSummary.md#property-count)  <br>_Number of matching samples._  |
+| property int | [**count**](structQAccelPlot_1_1InspectionSummary.md#property-count)  <br>_Number of matching data points._  |
 | property quint64 | [**dataRevision**](structQAccelPlot_1_1InspectionSummary.md#property-datarevision)  <br>_Data revision the query ran against._  |
 | property qreal | [**maximum**](structQAccelPlot_1_1InspectionSummary.md#property-maximum)  <br>_Largest Y; NaN for an empty region._  |
 | property int | [**maximumIndex**](structQAccelPlot_1_1InspectionSummary.md#property-maximumindex)  <br>_Source index of the largest Y, highest index on ties._  |
@@ -134,14 +134,14 @@ InspectionStatus QAccelPlot::InspectionSummary::status;
 
 ### property count {#property-count}
 
-_Number of matching samples._ 
+_Number of matching data points._ 
 ```C++
 int QAccelPlot::InspectionSummary::count;
 ```
 
 
 
-Matching samples. 
+Matching data points. 
 
 
         

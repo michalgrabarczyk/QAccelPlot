@@ -15,7 +15,7 @@
 
 
 
-_Data queries for one series: nearest samples, brackets, region statistics, and index pages._ [More...](#detailed-description)
+_Data queries for one series: nearest data points, brackets, region statistics, and index pages._ [More...](#detailed-description)
 
 * `#include <SeriesInspection.hpp>`
 
@@ -65,8 +65,8 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 | property int | [**maximumPageSize**](classQAccelPlot_1_1SeriesInspection.md#property-maximumpagesize-12)  <br>_Largest page returned by_ `indices()` _._ |
-| property QML\_ANONYMOUSQAccelPlot::InspectionNS::Status | [**status**](classQAccelPlot_1_1SeriesInspection.md#property-status-12)  <br>_Readiness for sample queries:_ `Ready` _,_`Idle` _,_`Preparing` _,_`Unsupported` _, or_`Unavailable` _._ |
-| property bool | [**supported**](classQAccelPlot_1_1SeriesInspection.md#property-supported-12)  <br>_Whether the series has XY records that sample queries can search._  |
+| property QML\_ANONYMOUSQAccelPlot::InspectionNS::Status | [**status**](classQAccelPlot_1_1SeriesInspection.md#property-status-12)  <br>_Readiness for data point queries:_ `Ready` _,_`Idle` _,_`Preparing` _,_`Unsupported` _, or_`Unavailable` _._ |
+| property bool | [**supported**](classQAccelPlot_1_1SeriesInspection.md#property-supported-12)  <br>_Whether the series has XY records that data point queries can search._  |
 
 
 
@@ -84,22 +84,22 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-|  Q\_INVOKABLE::QAccelPlot::InspectionBracket | [**bracketByX**](#function-bracketbyx) (qreal pixelX) <br>_Returns the valid samples on either side of_ _pixelX_ _and the point between them._ |
-|  Q\_INVOKABLE::QAccelPlot::InspectionBracket | [**bracketByY**](#function-bracketbyy) (qreal pixelY) <br>_Returns the valid samples whose Y is on either side of_ _pixelY_ _and the point between them._ |
+|  Q\_INVOKABLE::QAccelPlot::InspectionBracket | [**bracketByX**](#function-bracketbyx) (qreal pixelX) <br>_Returns the valid data points on either side of_ _pixelX_ _and the point between them._ |
+|  Q\_INVOKABLE::QAccelPlot::InspectionBracket | [**bracketByY**](#function-bracketbyy) (qreal pixelY) <br>_Returns the valid data points whose Y is on either side of_ _pixelY_ _and the point between them._ |
+|  Q\_INVOKABLE::QAccelPlot::InspectionDataPoint | [**dataPointAt**](#function-datapointat) (int index) const<br>_Returns the record at_ _index_ _;_`NoMatch` _with its raw coordinates when the record is invalid._ |
 |  Q\_INVOKABLE quint64 | [**indexBytes**](#function-indexbytes) () const<br>_Returns the bytes held by query caches and indexes, excluding the series' own data._  |
 |  Q\_INVOKABLE::QAccelPlot::InspectionPage | [**indices**](#function-indices) (qreal xMin, qreal xMax, qreal yMin, qreal yMax, int offset=0, int limit=4096, quint64 expectedRevision=0) <br>_Returns up to_ _limit_ _source indices inside the region, skipping the first__offset_ _matches._ |
 |  int | [**maximumPageSize**](#function-maximumpagesize-22) () const<br>_Returns the largest page returned by_ `indices()` _._ |
-|  Q\_INVOKABLE::QAccelPlot::InspectionSample | [**nearest**](#function-nearest) (const QPointF & position, qreal radius=10) <br>_Returns the valid sample nearest to_ _position_ _within__radius_ _pixels on screen._ |
-|  Q\_INVOKABLE::QAccelPlot::InspectionSample | [**nearestByX**](#function-nearestbyx) (qreal pixelX, qreal radius=std::numeric\_limits&lt; qreal &gt;::infinity()) <br>_Returns the valid sample nearest to_ _pixelX_ _horizontally, within__radius_ _pixels._ |
-|  Q\_INVOKABLE::QAccelPlot::InspectionSample | [**nearestByY**](#function-nearestbyy) (qreal pixelY, qreal radius=std::numeric\_limits&lt; qreal &gt;::infinity()) <br>_Returns the valid sample nearest to_ _pixelY_ _vertically, within__radius_ _pixels._ |
+|  Q\_INVOKABLE::QAccelPlot::InspectionDataPoint | [**nearest**](#function-nearest) (const QPointF & position, qreal radius=10) <br>_Returns the valid data point nearest to_ _position_ _within__radius_ _pixels on screen._ |
+|  Q\_INVOKABLE::QAccelPlot::InspectionDataPoint | [**nearestByX**](#function-nearestbyx) (qreal pixelX, qreal radius=std::numeric\_limits&lt; qreal &gt;::infinity()) <br>_Returns the valid data point nearest to_ _pixelX_ _horizontally, within__radius_ _pixels._ |
+|  Q\_INVOKABLE::QAccelPlot::InspectionDataPoint | [**nearestByY**](#function-nearestbyy) (qreal pixelY, qreal radius=std::numeric\_limits&lt; qreal &gt;::infinity()) <br>_Returns the valid data point nearest to_ _pixelY_ _vertically, within__radius_ _pixels._ |
 |  Q\_INVOKABLE void | [**prepare**](#function-prepare) () <br>_Starts building a query index when the series needs one; otherwise does nothing._  |
 |  Q\_INVOKABLE::QAccelPlot::InspectionRecord | [**recordAt**](#function-recordat) (int index) const<br>_Returns the native record at_ _index_ _of a bar, rectangle, or band series._ |
 |  Q\_INVOKABLE::QAccelPlot::InspectionRecord | [**recordAtPosition**](#function-recordatposition) (const QPointF & position) const<br>_Returns the native record drawn at the series-local_ _position_ _._ |
-|  Q\_INVOKABLE::QAccelPlot::InspectionSample | [**sampleAt**](#function-sampleat) (int index) const<br>_Returns the record at_ _index_ _;_`NoMatch` _with its raw coordinates when the record is invalid._ |
-|  [**InspectionStatus**](namespaceQAccelPlot_1_1InspectionNS.md#enum-status) | [**status**](#function-status-22) () const<br>_Returns the readiness for sample queries._  |
-|  Q\_INVOKABLE::QAccelPlot::InspectionSummary | [**summarize**](#function-summarize) (qreal xMin, qreal xMax, qreal yMin, qreal yMax) <br>_Returns Y statistics of the valid samples inside the region._  |
-|  Q\_INVOKABLE::QAccelPlot::InspectionSummary | [**summarizeRange**](#function-summarizerange) (qreal xMin, qreal xMax) <br>_Returns Y statistics of the valid samples whose X lies in the interval._  |
-|  bool | [**supported**](#function-supported-22) () const<br>_Returns whether the series has XY records that sample queries can search._  |
+|  [**InspectionStatus**](namespaceQAccelPlot_1_1InspectionNS.md#enum-status) | [**status**](#function-status-22) () const<br>_Returns the readiness for data point queries._  |
+|  Q\_INVOKABLE::QAccelPlot::InspectionSummary | [**summarize**](#function-summarize) (qreal xMin, qreal xMax, qreal yMin, qreal yMax) <br>_Returns Y statistics of the valid data points inside the region._  |
+|  Q\_INVOKABLE::QAccelPlot::InspectionSummary | [**summarizeRange**](#function-summarizerange) (qreal xMin, qreal xMax) <br>_Returns Y statistics of the valid data points whose X lies in the interval._  |
+|  bool | [**supported**](#function-supported-22) () const<br>_Returns whether the series has XY records that data point queries can search._  |
 |   | [**~SeriesInspection**](#function-seriesinspection) () override<br> |
 
 
@@ -135,10 +135,10 @@ flowchart TB
 Available as `PlotSeries::inspection`. Call it on the series' thread. Pixel arguments are series-local logical pixels; regions are inclusive data-space limits, where an infinite limit leaves that side unbounded and reversed limits are swapped.
 
 
-Queries cover every stored sample, also outside the viewport, and match samples rather than the line segments between them. Invalid samples never match, and equal distances resolve to the highest index. Statistics are sample-weighted and use the original Y values.
+Queries cover every stored data point, also outside the viewport, and match data points rather than the line segments between them. Invalid data points never match, and equal distances resolve to the highest index. Statistics are data-point-weighted and use the original Y values.
 
 
-`LineCurve` and `PointCloud` answer every query. Series whose X or Y values are finite and non-decreasing are searched in place, need no preparation, and stay queryable while records are appended; queries along one axis, such as `nearestByX()`, need that order along their own axis. Other series of up to 20,000 records are scanned per query. Larger ones are indexed on a worker thread first; until then queries return `Inspection.Preparing`. Requesting an index copies the series' buffer once on the calling thread, the index takes about 40 MB per million valid samples, and any data change discards it. Other series types expose native records through `recordAt()` and `recordAtPosition()` only.
+`LineCurve` and `PointCloud` answer every query. Series whose X or Y values are finite and non-decreasing are searched in place, need no preparation, and stay queryable while records are appended; queries along one axis, such as `nearestByX()`, need that order along their own axis. Other series of up to 20,000 records are scanned per query. Larger ones are indexed on a worker thread first; until then queries return `Inspection.Preparing`. Requesting an index copies the series' buffer once on the calling thread, the index takes about 40 MB per million valid data points, and any data change discards it. Other series types expose native records through `recordAt()` and `recordAtPosition()` only.
 
 
 
@@ -171,7 +171,7 @@ int QAccelPlot::SeriesInspection::maximumPageSize;
 
 ### property status {#property-status-12}
 
-_Readiness for sample queries:_ `Ready` _,_`Idle` _,_`Preparing` _,_`Unsupported` _, or_`Unavailable` _._
+_Readiness for data point queries:_ `Ready` _,_`Idle` _,_`Preparing` _,_`Unsupported` _, or_`Unavailable` _._
 ```C++
 QML_ANONYMOUSQAccelPlot::InspectionNS::Status QAccelPlot::SeriesInspection::status;
 ```
@@ -186,7 +186,7 @@ QML_ANONYMOUSQAccelPlot::InspectionNS::Status QAccelPlot::SeriesInspection::stat
 
 ### property supported {#property-supported-12}
 
-_Whether the series has XY records that sample queries can search._ 
+_Whether the series has XY records that data point queries can search._ 
 ```C++
 bool QAccelPlot::SeriesInspection::supported;
 ```
@@ -220,7 +220,7 @@ void QAccelPlot::SeriesInspection::statusChanged;
 
 ### function bracketByX {#function-bracketbyx}
 
-_Returns the valid samples on either side of_ _pixelX_ _and the point between them._
+_Returns the valid data points on either side of_ _pixelX_ _and the point between them._
 ```C++
 Q_INVOKABLE::QAccelPlot::InspectionBracket QAccelPlot::SeriesInspection::bracketByX (
     qreal pixelX
@@ -237,11 +237,28 @@ Q_INVOKABLE::QAccelPlot::InspectionBracket QAccelPlot::SeriesInspection::bracket
 
 ### function bracketByY {#function-bracketbyy}
 
-_Returns the valid samples whose Y is on either side of_ _pixelY_ _and the point between them._
+_Returns the valid data points whose Y is on either side of_ _pixelY_ _and the point between them._
 ```C++
 Q_INVOKABLE::QAccelPlot::InspectionBracket QAccelPlot::SeriesInspection::bracketByY (
     qreal pixelY
 ) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function dataPointAt {#function-datapointat}
+
+_Returns the record at_ _index_ _;_`NoMatch` _with its raw coordinates when the record is invalid._
+```C++
+Q_INVOKABLE::QAccelPlot::InspectionDataPoint QAccelPlot::SeriesInspection::dataPointAt (
+    int index
+) const
 ```
 
 
@@ -311,9 +328,9 @@ int QAccelPlot::SeriesInspection::maximumPageSize () const
 
 ### function nearest {#function-nearest}
 
-_Returns the valid sample nearest to_ _position_ _within__radius_ _pixels on screen._
+_Returns the valid data point nearest to_ _position_ _within__radius_ _pixels on screen._
 ```C++
-Q_INVOKABLE::QAccelPlot::InspectionSample QAccelPlot::SeriesInspection::nearest (
+Q_INVOKABLE::QAccelPlot::InspectionDataPoint QAccelPlot::SeriesInspection::nearest (
     const QPointF & position,
     qreal radius=10
 ) 
@@ -329,9 +346,9 @@ Q_INVOKABLE::QAccelPlot::InspectionSample QAccelPlot::SeriesInspection::nearest 
 
 ### function nearestByX {#function-nearestbyx}
 
-_Returns the valid sample nearest to_ _pixelX_ _horizontally, within__radius_ _pixels._
+_Returns the valid data point nearest to_ _pixelX_ _horizontally, within__radius_ _pixels._
 ```C++
-Q_INVOKABLE::QAccelPlot::InspectionSample QAccelPlot::SeriesInspection::nearestByX (
+Q_INVOKABLE::QAccelPlot::InspectionDataPoint QAccelPlot::SeriesInspection::nearestByX (
     qreal pixelX,
     qreal radius=std::numeric_limits< qreal >::infinity()
 ) 
@@ -347,9 +364,9 @@ Q_INVOKABLE::QAccelPlot::InspectionSample QAccelPlot::SeriesInspection::nearestB
 
 ### function nearestByY {#function-nearestbyy}
 
-_Returns the valid sample nearest to_ _pixelY_ _vertically, within__radius_ _pixels._
+_Returns the valid data point nearest to_ _pixelY_ _vertically, within__radius_ _pixels._
 ```C++
-Q_INVOKABLE::QAccelPlot::InspectionSample QAccelPlot::SeriesInspection::nearestByY (
+Q_INVOKABLE::QAccelPlot::InspectionDataPoint QAccelPlot::SeriesInspection::nearestByY (
     qreal pixelY,
     qreal radius=std::numeric_limits< qreal >::infinity()
 ) 
@@ -412,26 +429,9 @@ Q_INVOKABLE::QAccelPlot::InspectionRecord QAccelPlot::SeriesInspection::recordAt
 
 
 
-### function sampleAt {#function-sampleat}
-
-_Returns the record at_ _index_ _;_`NoMatch` _with its raw coordinates when the record is invalid._
-```C++
-Q_INVOKABLE::QAccelPlot::InspectionSample QAccelPlot::SeriesInspection::sampleAt (
-    int index
-) const
-```
-
-
-
-
-<hr>
-
-
-
-
 ### function status {#function-status-22}
 
-_Returns the readiness for sample queries._ 
+_Returns the readiness for data point queries._ 
 ```C++
 InspectionStatus QAccelPlot::SeriesInspection::status () const
 ```
@@ -446,7 +446,7 @@ InspectionStatus QAccelPlot::SeriesInspection::status () const
 
 ### function summarize {#function-summarize}
 
-_Returns Y statistics of the valid samples inside the region._ 
+_Returns Y statistics of the valid data points inside the region._ 
 ```C++
 Q_INVOKABLE::QAccelPlot::InspectionSummary QAccelPlot::SeriesInspection::summarize (
     qreal xMin,
@@ -466,7 +466,7 @@ Q_INVOKABLE::QAccelPlot::InspectionSummary QAccelPlot::SeriesInspection::summari
 
 ### function summarizeRange {#function-summarizerange}
 
-_Returns Y statistics of the valid samples whose X lies in the interval._ 
+_Returns Y statistics of the valid data points whose X lies in the interval._ 
 ```C++
 Q_INVOKABLE::QAccelPlot::InspectionSummary QAccelPlot::SeriesInspection::summarizeRange (
     qreal xMin,
@@ -484,7 +484,7 @@ Q_INVOKABLE::QAccelPlot::InspectionSummary QAccelPlot::SeriesInspection::summari
 
 ### function supported {#function-supported-22}
 
-_Returns whether the series has XY records that sample queries can search._ 
+_Returns whether the series has XY records that data point queries can search._ 
 ```C++
 bool QAccelPlot::SeriesInspection::supported () const
 ```

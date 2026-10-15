@@ -45,8 +45,8 @@
 
 | Type | Name |
 | ---: | :--- |
-| class | [**BandMaterial**](classQAccelPlot_1_1BandMaterial.md) <br>_QSGMaterial that fills a band between the low and high values of_ `(x, low, high)` _samples._ |
-| struct | [**Vertex**](structQAccelPlot_1_1BandMaterial_1_1Vertex.md) <br>[_**Vertex**_](structQAccelPlot_1_1BandMaterial_1_1Vertex.md) _layout of the band triangle strip: two vertices per sample._ |
+| class | [**BandMaterial**](classQAccelPlot_1_1BandMaterial.md) <br>_QSGMaterial that fills a band between the low and high values of_ `(x, low, high)` _data points._ |
+| struct | [**Vertex**](structQAccelPlot_1_1BandMaterial_1_1Vertex.md) <br>[_**Vertex**_](structQAccelPlot_1_1BandMaterial_1_1Vertex.md) _layout of the band triangle strip: two vertices per data point._ |
 
 
 

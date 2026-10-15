@@ -40,7 +40,7 @@ _Namespace exposing the_ `NanGapMode` _enum to QML._
 
 | Type | Name |
 | ---: | :--- |
-| enum  | [**Mode**](#enum-mode)  <br>_Rendering strategies for invalid samples: NaN, ±Inf, or a non-positive value on a log-scale axis._  |
+| enum  | [**Mode**](#enum-mode)  <br>_Rendering strategies for invalid data points: NaN, ±Inf, or a non-positive value on a log-scale axis._  |
 
 
 
@@ -97,7 +97,7 @@ _Namespace exposing the_ `NanGapMode` _enum to QML._
 
 ### enum Mode {#enum-mode}
 
-_Rendering strategies for invalid samples: NaN, ±Inf, or a non-positive value on a log-scale axis._ 
+_Rendering strategies for invalid data points: NaN, ±Inf, or a non-positive value on a log-scale axis._ 
 ```C++
 enum QAccelPlot::NanGapModeNS::Mode {
     Break,

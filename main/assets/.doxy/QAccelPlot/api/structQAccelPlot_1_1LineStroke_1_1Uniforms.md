@@ -54,7 +54,7 @@
 |  qreal | [**lineWidth**](#variable-linewidth)  <br>_Line width in pixels._  |
 |  bool | [**logScaleX**](#variable-logscalex)  <br>_Whether the X axis uses log scale._  |
 |  bool | [**logScaleY**](#variable-logscaley)  <br>_Whether the Y axis uses log scale._  |
-|  int | [**pointCount**](#variable-pointcount)  <br>_Number of samples in the data texture._  |
+|  int | [**pointCount**](#variable-pointcount)  <br>_Number of data points in the data texture._  |
 |  QVector2D | [**viewportSize**](#variable-viewportsize)  <br>_Viewport size in pixels._  |
 
 
@@ -243,7 +243,7 @@ bool QAccelPlot::LineStroke::Uniforms::logScaleY;
 
 ### variable pointCount {#variable-pointcount}
 
-_Number of samples in the data texture._ 
+_Number of data points in the data texture._ 
 ```C++
 int QAccelPlot::LineStroke::Uniforms::pointCount;
 ```

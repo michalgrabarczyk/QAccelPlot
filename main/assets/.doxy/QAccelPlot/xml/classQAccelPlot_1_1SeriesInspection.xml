@@ -13,7 +13,7 @@
         <qualifiedname>QAccelPlot::SeriesInspection::status</qualifiedname>
         <read>status</read>
         <briefdescription>
-<para>Readiness for sample queries: <computeroutput>Ready</computeroutput>, <computeroutput>Idle</computeroutput>, <computeroutput>Preparing</computeroutput>, <computeroutput>Unsupported</computeroutput>, or <computeroutput>Unavailable</computeroutput>. </para>
+<para>Readiness for data point queries: <computeroutput>Ready</computeroutput>, <computeroutput>Idle</computeroutput>, <computeroutput>Preparing</computeroutput>, <computeroutput>Unsupported</computeroutput>, or <computeroutput>Unavailable</computeroutput>. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -29,7 +29,7 @@
         <qualifiedname>QAccelPlot::SeriesInspection::supported</qualifiedname>
         <read>supported</read>
         <briefdescription>
-<para>Whether the series has XY records that sample queries can search. </para>
+<para>Whether the series has XY records that data point queries can search. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -125,7 +125,7 @@
         <name>status</name>
         <qualifiedname>QAccelPlot::SeriesInspection::status</qualifiedname>
         <briefdescription>
-<para>Returns the readiness for sample queries. </para>
+<para>Returns the readiness for data point queries. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -140,7 +140,7 @@
         <name>supported</name>
         <qualifiedname>QAccelPlot::SeriesInspection::supported</qualifiedname>
         <briefdescription>
-<para>Returns whether the series has XY records that sample queries can search. </para>
+<para>Returns whether the series has XY records that data point queries can search. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -193,12 +193,12 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="69" column="22"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a5016b262e467ac289902ac30729c710d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>Q_INVOKABLE::QAccelPlot::InspectionSample</type>
-        <definition>Q_INVOKABLE::QAccelPlot::InspectionSample QAccelPlot::SeriesInspection::sampleAt</definition>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1aab609b651416815938b9dfc9be7cf018" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE::QAccelPlot::InspectionDataPoint</type>
+        <definition>Q_INVOKABLE::QAccelPlot::InspectionDataPoint QAccelPlot::SeriesInspection::dataPointAt</definition>
         <argsstring>(int index) const</argsstring>
-        <name>sampleAt</name>
-        <qualifiedname>QAccelPlot::SeriesInspection::sampleAt</qualifiedname>
+        <name>dataPointAt</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::dataPointAt</qualifiedname>
         <param>
           <type>int</type>
           <declname>index</declname>
@@ -210,11 +210,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="72" column="48"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="72" column="51"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1ae8fef95365df8dfc2bdb835dcdca8e9d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>Q_INVOKABLE::QAccelPlot::InspectionSample</type>
-        <definition>Q_INVOKABLE::QAccelPlot::InspectionSample QAccelPlot::SeriesInspection::nearest</definition>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a1ba378b414db643689ba806fea85f0d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE::QAccelPlot::InspectionDataPoint</type>
+        <definition>Q_INVOKABLE::QAccelPlot::InspectionDataPoint QAccelPlot::SeriesInspection::nearest</definition>
         <argsstring>(const QPointF &amp;position, qreal radius=10)</argsstring>
         <name>nearest</name>
         <qualifiedname>QAccelPlot::SeriesInspection::nearest</qualifiedname>
@@ -228,17 +228,17 @@
           <defval>10</defval>
         </param>
         <briefdescription>
-<para>Returns the valid sample nearest to <emphasis>position</emphasis> within <emphasis>radius</emphasis> pixels on screen. </para>
+<para>Returns the valid data point nearest to <emphasis>position</emphasis> within <emphasis>radius</emphasis> pixels on screen. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="74" column="48"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="74" column="51"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a2afac8ef920fe3b2ab0b0ff71a78febe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>Q_INVOKABLE::QAccelPlot::InspectionSample</type>
-        <definition>Q_INVOKABLE::QAccelPlot::InspectionSample QAccelPlot::SeriesInspection::nearestByX</definition>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1afeb4023f26f2aab1014602190fdbfa75" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE::QAccelPlot::InspectionDataPoint</type>
+        <definition>Q_INVOKABLE::QAccelPlot::InspectionDataPoint QAccelPlot::SeriesInspection::nearestByX</definition>
         <argsstring>(qreal pixelX, qreal radius=std::numeric_limits&lt; qreal &gt;::infinity())</argsstring>
         <name>nearestByX</name>
         <qualifiedname>QAccelPlot::SeriesInspection::nearestByX</qualifiedname>
@@ -252,17 +252,17 @@
           <defval>std::numeric_limits&lt; qreal &gt;::infinity()</defval>
         </param>
         <briefdescription>
-<para>Returns the valid sample nearest to <emphasis>pixelX</emphasis> horizontally, within <emphasis>radius</emphasis> pixels. </para>
+<para>Returns the valid data point nearest to <emphasis>pixelX</emphasis> horizontally, within <emphasis>radius</emphasis> pixels. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="76" column="48"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="76" column="51"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a294f6e782374b0dd63def5a2e861756b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>Q_INVOKABLE::QAccelPlot::InspectionSample</type>
-        <definition>Q_INVOKABLE::QAccelPlot::InspectionSample QAccelPlot::SeriesInspection::nearestByY</definition>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1aeb00771afe212d67708cd33ffaf4c60f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE::QAccelPlot::InspectionDataPoint</type>
+        <definition>Q_INVOKABLE::QAccelPlot::InspectionDataPoint QAccelPlot::SeriesInspection::nearestByY</definition>
         <argsstring>(qreal pixelY, qreal radius=std::numeric_limits&lt; qreal &gt;::infinity())</argsstring>
         <name>nearestByY</name>
         <qualifiedname>QAccelPlot::SeriesInspection::nearestByY</qualifiedname>
@@ -276,13 +276,13 @@
           <defval>std::numeric_limits&lt; qreal &gt;::infinity()</defval>
         </param>
         <briefdescription>
-<para>Returns the valid sample nearest to <emphasis>pixelY</emphasis> vertically, within <emphasis>radius</emphasis> pixels. </para>
+<para>Returns the valid data point nearest to <emphasis>pixelY</emphasis> vertically, within <emphasis>radius</emphasis> pixels. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="78" column="48"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="78" column="51"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a9f93471b27990ff1d42fe2e04b3a0d13" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE::QAccelPlot::InspectionBracket</type>
@@ -295,7 +295,7 @@
           <declname>pixelX</declname>
         </param>
         <briefdescription>
-<para>Returns the valid samples on either side of <emphasis>pixelX</emphasis> and the point between them. </para>
+<para>Returns the valid data points on either side of <emphasis>pixelX</emphasis> and the point between them. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -314,7 +314,7 @@
           <declname>pixelY</declname>
         </param>
         <briefdescription>
-<para>Returns the valid samples whose Y is on either side of <emphasis>pixelY</emphasis> and the point between them. </para>
+<para>Returns the valid data points whose Y is on either side of <emphasis>pixelY</emphasis> and the point between them. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -345,7 +345,7 @@
           <declname>yMax</declname>
         </param>
         <briefdescription>
-<para>Returns Y statistics of the valid samples inside the region. </para>
+<para>Returns Y statistics of the valid data points inside the region. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -368,7 +368,7 @@
           <declname>xMax</declname>
         </param>
         <briefdescription>
-<para>Returns Y statistics of the valid samples whose X lies in the interval. </para>
+<para>Returns Y statistics of the valid data points whose X lies in the interval. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -566,9 +566,9 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="113" column="19"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a8d304677e5a4188f096e75a594998335" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="structQAccelPlot_1_1InspectionSample" kindref="compound">InspectionSample</ref></type>
-        <definition>InspectionSample QAccelPlot::SeriesInspection::nearestAlong</definition>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a307fcc4f31d40433a8ae8f4dbd0962ac" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1InspectionDataPoint" kindref="compound">InspectionDataPoint</ref></type>
+        <definition>InspectionDataPoint QAccelPlot::SeriesInspection::nearestAlong</definition>
         <argsstring>(InspectionAxis axis, qreal pixel, qreal radius)</argsstring>
         <name>nearestAlong</name>
         <qualifiedname>QAccelPlot::SeriesInspection::nearestAlong</qualifiedname>
@@ -590,7 +590,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="114" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="114" column="25"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1ac46cd1c251b53b13c3d0a50c09d38a60" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structQAccelPlot_1_1InspectionBracket" kindref="compound">InspectionBracket</ref></type>
@@ -614,12 +614,12 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="115" column="23"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a1af98eae210155d23bcf64ccb21eda73" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="structQAccelPlot_1_1InspectionSample" kindref="compound">InspectionSample</ref></type>
-        <definition>InspectionSample QAccelPlot::SeriesInspection::makeSample</definition>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1ac1fbea1a601259062944d5b60918796d" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1InspectionDataPoint" kindref="compound">InspectionDataPoint</ref></type>
+        <definition>InspectionDataPoint QAccelPlot::SeriesInspection::makeDataPoint</definition>
         <argsstring>(const InspectionSource &amp;source, int index, qreal distance) const</argsstring>
-        <name>makeSample</name>
-        <qualifiedname>QAccelPlot::SeriesInspection::makeSample</qualifiedname>
+        <name>makeDataPoint</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::makeDataPoint</qualifiedname>
         <param>
           <type>const <ref refid="structQAccelPlot_1_1InspectionSource" kindref="compound">InspectionSource</ref> &amp;</type>
           <declname>source</declname>
@@ -638,12 +638,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="116" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="116" column="25"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a7f85c4283e3e8236d3643099c1433992" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="structQAccelPlot_1_1InspectionSample" kindref="compound">InspectionSample</ref></type>
-        <definition>InspectionSample QAccelPlot::SeriesInspection::interpolate</definition>
-        <argsstring>(const InspectionMetric &amp;metric, InspectionAxis axis, const InspectionSample &amp;left, const InspectionSample &amp;right, qreal pixel) const</argsstring>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1ab5da40ab1af5e2b3d6ee1a1ec4de9213" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1InspectionDataPoint" kindref="compound">InspectionDataPoint</ref></type>
+        <definition>InspectionDataPoint QAccelPlot::SeriesInspection::interpolate</definition>
+        <argsstring>(const InspectionMetric &amp;metric, InspectionAxis axis, const InspectionDataPoint &amp;left, const InspectionDataPoint &amp;right, qreal pixel) const</argsstring>
         <name>interpolate</name>
         <qualifiedname>QAccelPlot::SeriesInspection::interpolate</qualifiedname>
         <param>
@@ -655,11 +655,11 @@
           <declname>axis</declname>
         </param>
         <param>
-          <type>const <ref refid="structQAccelPlot_1_1InspectionSample" kindref="compound">InspectionSample</ref> &amp;</type>
+          <type>const <ref refid="structQAccelPlot_1_1InspectionDataPoint" kindref="compound">InspectionDataPoint</ref> &amp;</type>
           <declname>left</declname>
         </param>
         <param>
-          <type>const <ref refid="structQAccelPlot_1_1InspectionSample" kindref="compound">InspectionSample</ref> &amp;</type>
+          <type>const <ref refid="structQAccelPlot_1_1InspectionDataPoint" kindref="compound">InspectionDataPoint</ref> &amp;</type>
           <declname>right</declname>
         </param>
         <param>
@@ -672,16 +672,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="118" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="118" column="25"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
-<para>Data queries for one series: nearest samples, brackets, region statistics, and index pages. </para>
+<para>Data queries for one series: nearest data points, brackets, region statistics, and index pages. </para>
     </briefdescription>
     <detaileddescription>
 <para>Available as <computeroutput><ref refid="classQAccelPlot_1_1PlotSeries_1a2a23af3683416afeea98697c66616cea" kindref="member">PlotSeries::inspection</ref></computeroutput>. Call it on the series&apos; thread. Pixel arguments are series-local logical pixels; regions are inclusive data-space limits, where an infinite limit leaves that side unbounded and reversed limits are swapped.</para>
-<para>Queries cover every stored sample, also outside the viewport, and match samples rather than the line segments between them. Invalid samples never match, and equal distances resolve to the highest index. Statistics are sample-weighted and use the original Y values.</para>
-<para><computeroutput><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref></computeroutput> and <computeroutput><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref></computeroutput> answer every query. Series whose X or Y values are finite and non-decreasing are searched in place, need no preparation, and stay queryable while records are appended; queries along one axis, such as <computeroutput><ref refid="classQAccelPlot_1_1SeriesInspection_1a2afac8ef920fe3b2ab0b0ff71a78febe" kindref="member">nearestByX()</ref></computeroutput>, need that order along their own axis. Other series of up to 20,000 records are scanned per query. Larger ones are indexed on a worker thread first; until then queries return <computeroutput>Inspection.Preparing</computeroutput>. Requesting an index copies the series&apos; buffer once on the calling thread, the index takes about 40 MB per million valid samples, and any data change discards it. Other series types expose native records through <computeroutput><ref refid="classQAccelPlot_1_1SeriesInspection_1a6faa4c57048b0385b7d4c9e94398ebd4" kindref="member">recordAt()</ref></computeroutput> and <computeroutput><ref refid="classQAccelPlot_1_1SeriesInspection_1a10c601af40720ff7e8b2da7e9952c8da" kindref="member">recordAtPosition()</ref></computeroutput> only.</para>
+<para>Queries cover every stored data point, also outside the viewport, and match data points rather than the line segments between them. Invalid data points never match, and equal distances resolve to the highest index. Statistics are data-point-weighted and use the original Y values.</para>
+<para><computeroutput><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref></computeroutput> and <computeroutput><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref></computeroutput> answer every query. Series whose X or Y values are finite and non-decreasing are searched in place, need no preparation, and stay queryable while records are appended; queries along one axis, such as <computeroutput><ref refid="classQAccelPlot_1_1SeriesInspection_1afeb4023f26f2aab1014602190fdbfa75" kindref="member">nearestByX()</ref></computeroutput>, need that order along their own axis. Other series of up to 20,000 records are scanned per query. Larger ones are indexed on a worker thread first; until then queries return <computeroutput>Inspection.Preparing</computeroutput>. Requesting an index copies the series&apos; buffer once on the calling thread, the index takes about 40 MB per million valid data points, and any data change discards it. Other series types expose native records through <computeroutput><ref refid="classQAccelPlot_1_1SeriesInspection_1a6faa4c57048b0385b7d4c9e94398ebd4" kindref="member">recordAt()</ref></computeroutput> and <computeroutput><ref refid="classQAccelPlot_1_1SeriesInspection_1a10c601af40720ff7e8b2da7e9952c8da" kindref="member">recordAtPosition()</ref></computeroutput> only.</para>
 <para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1PlotInspector" kindref="compound">PlotInspector</ref>, <ref refid="classQAccelPlot_1_1SelectionTool" kindref="compound">SelectionTool</ref> </para>
 </simplesect>
 </para>
@@ -715,22 +715,22 @@
       <member refid="classQAccelPlot_1_1SeriesInspection_1a9f93471b27990ff1d42fe2e04b3a0d13" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>bracketByX</name></member>
       <member refid="classQAccelPlot_1_1SeriesInspection_1aff3d4ab2fc1115df3328438800c2579e" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>bracketByY</name></member>
       <member refid="classQAccelPlot_1_1SeriesInspection_1a27755e38188fca8332fd52ad1d2dc3d6" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>d_</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1aab609b651416815938b9dfc9be7cf018" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>dataPointAt</name></member>
       <member refid="classQAccelPlot_1_1SeriesInspection_1a3627b72b648d5c43484aa353f4baf175" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>indexBytes</name></member>
       <member refid="classQAccelPlot_1_1SeriesInspection_1abe2a3b291d365904f0b9122c4dd5e513" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>indices</name></member>
-      <member refid="classQAccelPlot_1_1SeriesInspection_1a7f85c4283e3e8236d3643099c1433992" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>interpolate</name></member>
-      <member refid="classQAccelPlot_1_1SeriesInspection_1a1af98eae210155d23bcf64ccb21eda73" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>makeSample</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1ab5da40ab1af5e2b3d6ee1a1ec4de9213" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>interpolate</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1ac1fbea1a601259062944d5b60918796d" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>makeDataPoint</name></member>
       <member refid="classQAccelPlot_1_1SeriesInspection_1a646347feccfa19ab97ac49f4257f4575" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>maximumPageSize</name></member>
       <member refid="classQAccelPlot_1_1SeriesInspection_1a6884b6ff01c4dbf666ec479d2a94cc64" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>maximumPageSize</name></member>
       <member refid="classQAccelPlot_1_1SeriesInspection_1a08f48877b1b4757776dae82d4581f702" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>metric</name></member>
-      <member refid="classQAccelPlot_1_1SeriesInspection_1ae8fef95365df8dfc2bdb835dcdca8e9d" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>nearest</name></member>
-      <member refid="classQAccelPlot_1_1SeriesInspection_1a8d304677e5a4188f096e75a594998335" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>nearestAlong</name></member>
-      <member refid="classQAccelPlot_1_1SeriesInspection_1a2afac8ef920fe3b2ab0b0ff71a78febe" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>nearestByX</name></member>
-      <member refid="classQAccelPlot_1_1SeriesInspection_1a294f6e782374b0dd63def5a2e861756b" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>nearestByY</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1a1ba378b414db643689ba806fea85f0d4" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>nearest</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1a307fcc4f31d40433a8ae8f4dbd0962ac" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>nearestAlong</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1afeb4023f26f2aab1014602190fdbfa75" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>nearestByX</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1aeb00771afe212d67708cd33ffaf4c60f" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>nearestByY</name></member>
       <member refid="classQAccelPlot_1_1SeriesInspection_1aa9a8749c8792deb1a5bb343ba9166177" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>PlotSeries</name></member>
       <member refid="classQAccelPlot_1_1SeriesInspection_1af733a754d185f80c5943eaf9b44c835d" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>prepare</name></member>
       <member refid="classQAccelPlot_1_1SeriesInspection_1a6faa4c57048b0385b7d4c9e94398ebd4" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>recordAt</name></member>
       <member refid="classQAccelPlot_1_1SeriesInspection_1a10c601af40720ff7e8b2da7e9952c8da" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>recordAtPosition</name></member>
-      <member refid="classQAccelPlot_1_1SeriesInspection_1a5016b262e467ac289902ac30729c710d" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>sampleAt</name></member>
       <member refid="classQAccelPlot_1_1SeriesInspection_1a3502d0225565f7ff1e2e4bae79a4b8d3" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>series_</name></member>
       <member refid="classQAccelPlot_1_1SeriesInspection_1a40c2b0b41083e0abbe1e66a62b932125" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>SeriesInspection</name></member>
       <member refid="classQAccelPlot_1_1SeriesInspection_1a3ed993068ca01fc4db632c02a812e47c" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>sourceChanged</name></member>

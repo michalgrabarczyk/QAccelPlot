@@ -19,6 +19,7 @@
 
 * `#include "QAccelPlot/axis/Axis.hpp"`
 * `#include "QAccelPlot/inspection/SeriesInspection.hpp"`
+* `#include "QAccelPlot/series/DataPointStore.hpp"`
 * `#include <QPointer>`
 * `#include <QQuickItem>`
 * `#include <QRectF>`
@@ -26,6 +27,7 @@
 * `#include <QtQml/qqmlregistration.h>`
 * `#include <limits>`
 * `#include <optional>`
+* `#include <string>`
 * `#include <vector>`
 
 

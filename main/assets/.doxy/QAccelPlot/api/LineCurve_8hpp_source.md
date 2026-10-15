@@ -35,6 +35,7 @@
 #include <QQuickItem>
 
 #include <memory>
+#include <optional>
 #include <utility>
 #include <vector>
 
@@ -95,16 +96,11 @@ public:
     Q_INVOKABLE void appendData(qreal x, qreal y);
     Q_INVOKABLE void setData(const QList<QPointF>& data);
     void setData(const std::vector<double>& xs, const std::vector<double>& ys);
-    void setData(const double* xyInterleaved, int pointCount) override;
-    void setData(std::vector<double>&& xyInterleaved, int pointCount) override;
-    void setDataF(const float* xyInterleaved, int pointCount) override;
-    void setDataF(std::vector<float>&& data, int pointCount) override;
+    using PlotSeries::postData;
     using PlotSeries::setData;
     using PlotSeries::setDataF;
     void setDataFWithCache(std::vector<float>&& data, int pointCount, std::vector<char>&& vertexCache);
     void setDataFWithCache(const float* xyInterleaved, int pointCount, std::vector<char>&& vertexCache);
-    void postData(std::vector<double>&& xyInterleaved, int pointCount) override;
-    void postData(std::vector<float>&& xyInterleaved, int pointCount) override;
     Q_INVOKABLE void clearData() override;
 
 protected:
@@ -115,9 +111,9 @@ protected:
     void hoverEnterEvent(QHoverEvent* event) override;
     void hoverLeaveEvent(QHoverEvent* event) override;
     bool contains(const QPointF& point) const override;
+    void applyDataPoints(DataPointInput&& input) override;
     void onAxisScaleChanged() override;
-    DataRanges computeDataRanges() const override;
-    void onAxisRangeChanged() override;
+    void onDataPointsChanged(DataChange change, int previousCount) override;
 
 signals:
     void colorChanged();
@@ -146,25 +142,15 @@ private:
     GradientFillPayload resolveGradientFillPayload() const;
     std::pair<qreal, qreal> gradientDataRange(Qt::Orientation direction) const;
 
-    enum class DataType { Float, Double };
-
-    bool logScaleX() const;
-    bool logScaleY() const;
     void applyNewData(std::vector<float>&& newData, int newPointCount);
     void applyNewData(std::vector<double>&& newData, int newPointCount);
-    bool validateRawDataArguments(const void* xyInterleaved, int pointCount) const;
-    bool validateVectorDataArguments(const std::vector<float>& data, int pointCount) const;
-    bool validateVectorDataArguments(const std::vector<double>& data, int pointCount) const;
-    void copyRawData(const float* xyInterleaved, int pointCount);
-    void promoteFloatDataToDouble();
-    void rebuildDoubleRenderData(bool logScaleX, bool logScaleY);
+    // Replaces the points with float data copied from \a xyInterleaved, without a transition.
+    void applyFloatArray(const float* xyInterleaved, int pointCount);
     const std::vector<float>& renderData() const;
     CurveDataView sourceDataView() const;
-    // Number of samples in renderData() / sourceDataView(); smaller than pointCount_
-    // when NanGapMode::Connect has removed invalid samples.
+    // Number of data points in renderData() / sourceDataView(); smaller than the point count
+    // when NanGapMode::Connect has removed invalid data points.
     int renderPointCount() const;
-    void rebuildGapConnectData();
-    void releaseGapConnectData();
     void refreshVertexCacheForDataChange();
     void installVertexCache(std::vector<char>&& vertexCache);
     std::size_t expectedVertexCacheSize() const;
@@ -177,29 +163,23 @@ private:
     void cancelRunningTransition();
     // Shows the target data of a transition that stopped before its end.
     void finishTransition();
+    // Starts a transition from the points drawn now to the stored points, the new data.
+    void startTransition(std::vector<double>&& from, int fromCount);
     // Effects refresh on the GUI thread once per frame, from QQuickWindow::afterAnimating.
     void connectAnimationTicks(QQuickWindow* window);
     void refreshEffects();
     void advanceTransition();
-    void applyTransitionData();
 
     QColor color_{ColorPalette::dark().seriesPrimary};
     qreal lineWidth_{1.0};
     bool hovered_{false};
     qreal hoverRadius_{10.0};
-    DataType dataType_{DataType::Double};
-    std::vector<double> data_;      // precise interleaved x,y pairs used by setData()
-    std::vector<float> dataF_;      // interleaved x,y pairs used by the *F APIs
-    std::vector<float> renderData_; // origin-relative GPU data derived from data_
-    qreal renderOriginX_{0.0};
-    qreal renderOriginY_{0.0};
-    bool renderLogScaleX_{false};
-    bool renderLogScaleY_{false};
-    bool renderOriginXSettled_{false};
-    bool renderOriginYSettled_{false};
-    int pointCount_{0};
-    // While its run is pending, data_ holds an animation frame and the run holds the data set by the caller.
+    // While its run is pending, the frames are the store's drawn points; the stored points are its target.
     std::unique_ptr<TransitionRunner> transition_;
+    // The previous transition frame, reused for the next one.
+    std::vector<double> frameBuffer_;
+    // A vertex cache passed with the data, installed once the data points changed.
+    std::optional<std::vector<char>> pendingVertexCache_;
     QPointer<QQuickWindow> animationTickWindow_;
     QPointer<LineStyle> lineStyle_{new SolidLine{this}};
     bool antialiasingEnabled_{true};
@@ -207,20 +187,18 @@ private:
     bool styleChanged_{false};
     LineCurveGaps* gaps_{new LineCurveGaps{this}};
     SeriesMarker* marker_{new SeriesMarker{MarkerShape::None, 4.0, SeriesMarker::NoneShape::Accepted, this}};
-    // NanGapMode::Connect copies with invalid samples removed. Only populated when
-    // Connect mode is on and the data contains invalid samples.
-    bool gapConnectCompacted_{false};
-    int gapConnectPointCount_{0};
-    std::vector<double> gapConnectData_;      // valid double samples (double data only)
-    std::vector<float> gapConnectRenderData_; // valid GPU samples; also the source view for float data
     QList<LineCurveEffect*> effects_;
     LineCurveLineRenderer lineRenderer_;
     LineCurvePointRenderer pointRenderer_;
 
-    // True when vertex buffer needs to be rebuilt (data, style or point-count changed).
-    // Does NOT include axis-range, color, lineWidth, or markerSize changes — those
-    // only require a material-uniform update, which happens every frame in paint().
+    // True when vertex buffer needs to be rebuilt (style or point-count changed). A change of the
+    // render data is told by its revision. Does NOT include axis-range, color, lineWidth, or
+    // markerSize changes — those only require a material-uniform update, which happens every frame in paint().
     bool dataChanged_{true};
+    // Render revision of the points last uploaded to the GPU.
+    std::uint64_t uploadedRevision_{0};
+    // Render revision of the points the vertex cache was built from.
+    std::uint64_t vertexCacheRevision_{0};
     // Whether the last frame held more records than the GPU buffers do; warns on each crossing.
     bool overCapacity_{false};
 

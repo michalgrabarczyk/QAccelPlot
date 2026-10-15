@@ -33,6 +33,7 @@
 * `#include <QQmlListProperty>`
 * `#include <QQuickItem>`
 * `#include <memory>`
+* `#include <optional>`
 * `#include <utility>`
 * `#include <vector>`
 

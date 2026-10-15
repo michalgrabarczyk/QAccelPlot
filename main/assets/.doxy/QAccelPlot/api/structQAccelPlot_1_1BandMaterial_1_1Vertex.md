@@ -15,7 +15,7 @@
 
 
 
-[_**Vertex**_](structQAccelPlot_1_1BandMaterial_1_1Vertex.md) _layout of the band triangle strip: two vertices per sample._
+[_**Vertex**_](structQAccelPlot_1_1BandMaterial_1_1Vertex.md) _layout of the band triangle strip: two vertices per data point._
 
 * `#include <BandMaterial.hpp>`
 
@@ -46,7 +46,7 @@
 | Type | Name |
 | ---: | :--- |
 |  float | [**edge**](#variable-edge)  <br>_0 for the lower edge, 1 for the upper edge._  |
-|  float | [**id**](#variable-id)  <br>_Sample index in the data texture._  |
+|  float | [**id**](#variable-id)  <br>_Data point index in the data texture._  |
 
 
 
@@ -114,7 +114,7 @@ float QAccelPlot::BandMaterial::Vertex::edge;
 
 ### variable id {#variable-id}
 
-_Sample index in the data texture._ 
+_Data point index in the data texture._ 
 ```C++
 float QAccelPlot::BandMaterial::Vertex::id;
 ```

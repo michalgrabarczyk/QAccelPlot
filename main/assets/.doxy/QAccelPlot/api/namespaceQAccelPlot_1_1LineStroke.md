@@ -66,10 +66,10 @@ _Building blocks for the line ribbon drawn by the line shaders, shared by the li
 | Type | Name |
 | ---: | :--- |
 |  void | [**applyUniforms**](#function-applyuniforms) ([**LineMaterial**](classQAccelPlot_1_1LineMaterial.md) & material, const [**Uniforms**](structQAccelPlot_1_1LineStroke_1_1Uniforms.md) & uniforms) <br>_Copies_ _uniforms_ _into__material_ _._ |
-|  std::vector&lt; float &gt; | [**arcLengths**](#function-arclengths) (const int pointCount, const PixelAt & pixelAt) <br>_Returns the cumulative pixel length at each of_ _pointCount_ _samples, for dash patterns._ |
+|  std::vector&lt; float &gt; | [**arcLengths**](#function-arclengths) (const int pointCount, const PixelAt & pixelAt) <br>_Returns the cumulative pixel length at each of_ _pointCount_ _data points, for dash patterns._ |
 |  QSGGeometryNode \* | [**createNode**](#function-createnode) (int vertexCount, QSGMaterial \* material) <br>_Returns a triangle-strip node with_ _vertexCount_ _line vertices that owns__material_ _._ |
 |  const QSGGeometry::AttributeSet & | [**vertexAttributes**](#function-vertexattributes) () <br>_Returns the vertex attribute set matching_ `LineVertex` _._ |
-|  void | [**writeVertices**](#function-writevertices) ([**LineVertex**](structQAccelPlot_1_1LineVertex.md) \* vertices, int pointCount, const QColor & color, const std::vector&lt; float &gt; & arcLengths) <br>_Writes two ribbon vertices per sample for_ _pointCount_ _samples into__vertices_ _._ |
+|  void | [**writeVertices**](#function-writevertices) ([**LineVertex**](structQAccelPlot_1_1LineVertex.md) \* vertices, int pointCount, const QColor & color, const std::vector&lt; float &gt; & arcLengths) <br>_Writes two ribbon vertices per data point for_ _pointCount_ _data points into__vertices_ _._ |
 
 
 
@@ -124,7 +124,7 @@ void QAccelPlot::LineStroke::applyUniforms (
 
 ### function arcLengths {#function-arclengths}
 
-_Returns the cumulative pixel length at each of_ _pointCount_ _samples, for dash patterns._
+_Returns the cumulative pixel length at each of_ _pointCount_ _data points, for dash patterns._
 ```C++
 template<typename PixelAt>
 std::vector< float > QAccelPlot::LineStroke::arcLengths (
@@ -135,7 +135,7 @@ std::vector< float > QAccelPlot::LineStroke::arcLengths (
 
 
 
-_pixelAt_ returns the pixel position of a sample, or `std::nullopt` for an invalid sample. Segments touching an invalid sample add no length, so the dash phase continues across a gap. 
+_pixelAt_ returns the pixel position of a data point, or `std::nullopt` for an invalid data point. Segments touching an invalid data point add no length, so the dash phase continues across a gap. 
 
 
         
@@ -180,7 +180,7 @@ const QSGGeometry::AttributeSet & QAccelPlot::LineStroke::vertexAttributes ()
 
 ### function writeVertices {#function-writevertices}
 
-_Writes two ribbon vertices per sample for_ _pointCount_ _samples into__vertices_ _._
+_Writes two ribbon vertices per data point for_ _pointCount_ _data points into__vertices_ _._
 ```C++
 void QAccelPlot::LineStroke::writeVertices (
     LineVertex * vertices,
@@ -192,7 +192,7 @@ void QAccelPlot::LineStroke::writeVertices (
 
 
 
-_arcLengths_ holds cumulative lengths of the leading samples, or is empty for solid lines. Samples past its end, such as vertices reserved for appended data, repeat its last length. 
+_arcLengths_ holds cumulative lengths of the leading data points, or is empty for solid lines. Data points past its end, such as vertices reserved for appended data, repeat its last length. 
 
 
         

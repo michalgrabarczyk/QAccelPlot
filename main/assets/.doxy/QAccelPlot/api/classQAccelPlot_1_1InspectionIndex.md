@@ -15,7 +15,7 @@
 
 
 
-_Immutable k-d tree over the valid samples of a series, with their order along each axis._ 
+_Immutable k-d tree over the valid data points of a series, with their order along each axis._ 
 
 * `#include <InspectionIndex.hpp>`
 
@@ -69,8 +69,8 @@ _Immutable k-d tree over the valid samples of a series, with their order along e
 |  bool | [**build**](#function-build) (std::vector&lt; [**Point**](structQAccelPlot_1_1InspectionIndex_1_1Point.md) &gt; && points, bool logX, bool logY, const std::atomic\_bool & cancelled) <br>_Builds the tree from_ _points_ _; returns false when__cancelled_ _was set meanwhile._ |
 |  void | [**collect**](#function-collect) (const [**InspectionBounds**](structQAccelPlot_1_1InspectionBounds.md) & bounds, int offset, int limit, QList&lt; int &gt; & indices) const<br> |
 |  [**InspectionHit**](structQAccelPlot_1_1InspectionHit.md) | [**nearest**](#function-nearest) (const [**InspectionMetric**](structQAccelPlot_1_1InspectionMetric.md) & metric, const QPointF & position, double radius) const<br> |
-|  [**InspectionHit**](structQAccelPlot_1_1InspectionHit.md) | [**nearestAlong**](#function-nearestalong) (const [**InspectionMetric**](structQAccelPlot_1_1InspectionMetric.md) & metric, InspectionAxis axis, double pixel, double radius) const<br>_Returns the sample nearest to_ _pixel_ _along__axis_ _._ |
-|  [**InspectionNeighbors**](structQAccelPlot_1_1InspectionNeighbors.md) | [**neighbors**](#function-neighbors) (InspectionAxis axis, double value) const<br>_Returns the samples on either side of_ _value_ _on__axis_ _._ |
+|  [**InspectionHit**](structQAccelPlot_1_1InspectionHit.md) | [**nearestAlong**](#function-nearestalong) (const [**InspectionMetric**](structQAccelPlot_1_1InspectionMetric.md) & metric, InspectionAxis axis, double pixel, double radius) const<br>_Returns the data point nearest to_ _pixel_ _along__axis_ _._ |
+|  [**InspectionNeighbors**](structQAccelPlot_1_1InspectionNeighbors.md) | [**neighbors**](#function-neighbors) (InspectionAxis axis, double value) const<br>_Returns the data points on either side of_ _value_ _on__axis_ _._ |
 |  std::size\_t | [**storageBytes**](#function-storagebytes) () const<br> |
 |  [**SummaryAccumulator**](structQAccelPlot_1_1SummaryAccumulator.md) | [**summarize**](#function-summarize) (const [**InspectionBounds**](structQAccelPlot_1_1InspectionBounds.md) & bounds) const<br> |
 
@@ -166,7 +166,7 @@ InspectionHit QAccelPlot::InspectionIndex::nearest (
 
 ### function nearestAlong {#function-nearestalong}
 
-_Returns the sample nearest to_ _pixel_ _along__axis_ _._
+_Returns the data point nearest to_ _pixel_ _along__axis_ _._
 ```C++
 InspectionHit QAccelPlot::InspectionIndex::nearestAlong (
     const InspectionMetric & metric,
@@ -186,7 +186,7 @@ InspectionHit QAccelPlot::InspectionIndex::nearestAlong (
 
 ### function neighbors {#function-neighbors}
 
-_Returns the samples on either side of_ _value_ _on__axis_ _._
+_Returns the data points on either side of_ _value_ _on__axis_ _._
 ```C++
 InspectionNeighbors QAccelPlot::InspectionIndex::neighbors (
     InspectionAxis axis,

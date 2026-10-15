@@ -65,7 +65,7 @@ _One page of source indices inside a region._
 | property int | [**offset**](structQAccelPlot_1_1InspectionPage.md#property-offset)  <br>_Number of matches skipped before this page._  |
 | property bool | [**sourceOrder**](structQAccelPlot_1_1InspectionPage.md#property-sourceorder)  <br>_True when pages are in ascending source order; false for index traversal order._  |
 | property QML\_ANONYMOUSQAccelPlot::InspectionNS::Status | [**status**](structQAccelPlot_1_1InspectionPage.md#property-status-12)  <br>_Query outcome;_ `Ready` _also for an empty page of a matching region._ |
-| property int | [**total**](structQAccelPlot_1_1InspectionPage.md#property-total)  <br>_Number of matching samples in the whole region._  |
+| property int | [**total**](structQAccelPlot_1_1InspectionPage.md#property-total)  <br>_Number of matching data points in the whole region._  |
 | property bool | [**valid**](structQAccelPlot_1_1InspectionPage.md#property-valid-12)  <br>_True when status is_ `Ready` _._ |
 
 
@@ -262,7 +262,7 @@ QML_ANONYMOUSQAccelPlot::InspectionNS::Status QAccelPlot::InspectionPage::status
 
 ### property total {#property-total}
 
-_Number of matching samples in the whole region._ 
+_Number of matching data points in the whole region._ 
 ```C++
 int QAccelPlot::InspectionPage::total;
 ```

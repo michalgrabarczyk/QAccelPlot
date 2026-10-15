@@ -91,6 +91,7 @@ Here is a list of all files with brief descriptions:
                 * **file** [**BandEdges.hpp**](BandEdges_8hpp.md)     
                 * **file** [**BandSeries.hpp**](BandSeries_8hpp.md)     
                 * **file** [**BarSeries.hpp**](BarSeries_8hpp.md)     
+                * **file** [**DataPointStore.hpp**](DataPointStore_8hpp.md)     
                 * **file** [**LineCurve.hpp**](LineCurve_8hpp.md)     
                 * **file** [**LineCurveGapFilter.hpp**](LineCurveGapFilter_8hpp.md)     
                 * **file** [**LineCurveGaps.hpp**](LineCurveGaps_8hpp.md)     

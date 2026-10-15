@@ -75,7 +75,7 @@ _Read-only view over the XY records a series exposes to inspection queries._ [Mo
 | ---: | :--- |
 |  double | [**coordinate**](#function-coordinate) (InspectionAxis axis, int index) noexcept const<br>_Returns the coordinate of record_ _index_ _along__axis_ _._ |
 |  bool | [**supported**](#function-supported) () noexcept const<br> |
-|  bool | [**valid**](#function-valid) (int index) noexcept const<br>_Applies the invalid-sample contract shared with rendering._  |
+|  bool | [**valid**](#function-valid) (int index) noexcept const<br>_Applies the invalid-data-point contract shared with rendering._  |
 |  double | [**value**](#function-value) (int index) noexcept const<br> |
 |  double | [**x**](#function-x) (int index) noexcept const<br> |
 |  double | [**y**](#function-y) (int index) noexcept const<br> |
@@ -276,7 +276,7 @@ bool QAccelPlot::InspectionSource::supported () noexcept const
 
 ### function valid {#function-valid}
 
-_Applies the invalid-sample contract shared with rendering._ 
+_Applies the invalid-data-point contract shared with rendering._ 
 ```C++
 bool QAccelPlot::InspectionSource::valid (
     int index

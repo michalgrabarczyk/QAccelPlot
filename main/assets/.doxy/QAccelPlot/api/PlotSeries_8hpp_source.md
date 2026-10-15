@@ -19,6 +19,7 @@
 
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/inspection/SeriesInspection.hpp"
+#include "QAccelPlot/series/DataPointStore.hpp"
 
 #include <QPointer>
 #include <QQuickItem>
@@ -32,6 +33,7 @@
 
 #include <limits>
 #include <optional>
+#include <string>
 #include <vector>
 
 namespace QAccelPlot {
@@ -112,17 +114,17 @@ public:
     LegendSymbol legendSymbol() const;
     void setLegendSymbol(LegendSymbol symbol);
 
-    virtual void setData(const double* data, int count) = 0;
-    virtual void setData(std::vector<double>&& data, int count) = 0;
-    virtual void setDataF(const float* data, int count) = 0;
-    virtual void setDataF(std::vector<float>&& data, int count) = 0;
+    void setData(const double* data, int count);
+    void setData(std::vector<double>&& data, int count);
+    void setDataF(const float* data, int count);
+    void setDataF(std::vector<float>&& data, int count);
     void setData(const double* data, int count, const DataBounds& bounds);
     void setData(std::vector<double>&& data, int count, const DataBounds& bounds);
     void setDataF(const float* data, int count, const DataBounds& bounds);
     void setDataF(std::vector<float>&& data, int count, const DataBounds& bounds);
-    virtual void postData(std::vector<double>&& data, int count) = 0;
-    virtual void postData(std::vector<float>&& data, int count) = 0;
-    virtual void clearData() = 0;
+    void postData(std::vector<double>&& data, int count);
+    void postData(std::vector<float>&& data, int count);
+    virtual void clearData();
 
     std::optional<DataExtent> xDataRange() const;
     std::optional<DataExtent> yDataRange() const;
@@ -136,10 +138,45 @@ signals:
     void legendSymbolChanged();
 
 protected:
+    struct DataPointWording {
+        std::string countName;  
+        std::string plural;     
+        std::string doubleUnit; 
+        std::string floatUnit;  
+    };
+
+    PlotSeries(DataPointStore::Layout layout, DataPointWording wording, QQuickItem* parent);
+
+    struct DataPointInput {
+        std::vector<double> doubles;        
+        std::vector<float> floats;          
+        const double* doubleArray{nullptr}; 
+        const float* floatArray{nullptr};   
+        int count{0};                       
+        int stride{0};                      
+        bool precise{true};                 
+
+        std::vector<double> toDoubles() &&;
+    };
+
+    virtual void applyDataPoints(DataPointInput&& input);
+    void storeDataPoints(DataPointInput&& input);
+    virtual int dataPointValueCount() const;
+
     enum class DataChange {
         Replaced, 
         Appended, 
     };
+
+    DataPointStore& dataPoints();
+    const DataPointStore& dataPoints() const;
+    bool logScaleX() const;
+    bool logScaleY() const;
+    bool validateRawDataArguments(const void* data, int count) const;
+    bool validateDataSize(std::size_t valueCount, int count, bool floatData, int valuesPerDataPoint = 0) const;
+    void appendDataPoint(const double* coordinates);
+    void notifyDataPointsChanged(DataChange change, int previousCount);
+    virtual void onDataPointsChanged(DataChange change, int previousCount);
 
     void inspectionDataChanged(DataChange change = DataChange::Replaced);
     void invalidateInspection();
@@ -165,6 +202,10 @@ protected:
 private:
     friend class SeriesInspection;
 
+    void handleAxisScaleChanged();
+    void handleAxisRangeChanged();
+    // Returns whether the scale of a dimension changed.
+    bool syncDataPointDimensions();
     void ensureDataRanges() const;
     void reportDataRangesChanged() const;
     void deliverTopmostHover(QHoverEvent* event);
@@ -186,6 +227,8 @@ private:
     mutable bool dataRangesStale_{false};
     // Bounds given with the data update in progress; they replace its scan.
     std::optional<DataBounds> updateBounds_;
+    DataPointStore dataPoints_;
+    DataPointWording wording_;
 };
 
 } // namespace QAccelPlot

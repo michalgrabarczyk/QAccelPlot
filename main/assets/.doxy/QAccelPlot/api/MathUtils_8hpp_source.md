@@ -75,7 +75,7 @@ inline constexpr double kNearlyEqualEpsilon = QACCELPLOT_NEARLY_EQUAL_EPSILON;
     return renderOriginTooFar(origin, viewportMin, viewportMax) ? viewportMin + (viewportMax - viewportMin) * 0.5 : origin;
 }
 
-// Returns true if a single sample coordinate can be plotted.
+// Returns true if a single coordinate of a data point can be plotted.
 //
 // A coordinate is invalid when it is non-finite (NaN or +/-Inf) or, on a
 // logarithmic dimension, when it is not strictly positive. Invalid coordinates
@@ -84,7 +84,7 @@ inline constexpr double kNearlyEqualEpsilon = QACCELPLOT_NEARLY_EQUAL_EPSILON;
 // Implemented with plain comparisons (false for NaN and +/-Inf) rather than
 // std::isfinite(), which some standard libraries do not inline. This check runs
 // per coordinate on multi-million-point buffers.
-[[nodiscard]] inline bool isValidSample(double value, bool logScale) noexcept
+[[nodiscard]] inline bool isValidCoordinate(double value, bool logScale) noexcept
 {
     return value >= std::numeric_limits<double>::lowest() && value <= std::numeric_limits<double>::max() && (!logScale || value > 0.0);
 }

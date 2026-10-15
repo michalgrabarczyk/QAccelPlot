@@ -1548,10 +1548,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#property-snaptosample-12" class="md-nav__link">
+  <a href="#property-snaptodatapoint-12" class="md-nav__link">
     <span class="md-ellipsis">
       
-        property snapToSample
+        property snapToDataPoint
       
     </span>
   </a>
@@ -1741,10 +1741,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#signal-snaptosamplechanged" class="md-nav__link">
+  <a href="#signal-snaptodatapointchanged" class="md-nav__link">
     <span class="md-ellipsis">
       
-        signal snapToSampleChanged
+        signal snapToDataPointChanged
       
     </span>
   </a>
@@ -2110,10 +2110,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#function-setsnaptosample" class="md-nav__link">
+  <a href="#function-setsnaptodatapoint" class="md-nav__link">
     <span class="md-ellipsis">
       
-        function setSnapToSample
+        function setSnapToDataPoint
       
     </span>
   </a>
@@ -2143,10 +2143,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#function-snaptosample-22" class="md-nav__link">
+  <a href="#function-snaptodatapoint-22" class="md-nav__link">
     <span class="md-ellipsis">
       
-        function snapToSample
+        function snapToDataPoint
       
     </span>
   </a>
@@ -2310,7 +2310,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">property bool</td>
-<td style="text-align: left;"><a href="./#property-interpolate-12"><strong>interpolate</strong></a>  <br><em>In</em> <code>NearestX</code> <em>and</em><code>NearestY</code> <em>mode, reports the point on the line between two consecutive samples instead of the nearer one. Default: false.</em></td>
+<td style="text-align: left;"><a href="./#property-interpolate-12"><strong>interpolate</strong></a>  <br><em>In</em> <code>NearestX</code> <em>and</em><code>NearestY</code> <em>mode, reports the point on the line between two consecutive data points instead of the nearer one. Default: false.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property <a href="./#enum-mode"><strong>Mode</strong></a></td>
@@ -2330,15 +2330,15 @@
 </tr>
 <tr>
 <td style="text-align: right;">property qreal</td>
-<td style="text-align: left;"><a href="./#property-radius-12"><strong>radius</strong></a>  <br><em>Pick distance in logical pixels. In</em> <code>NearestX</code> <em>and</em><code>NearestY</code> <em>mode it only limits matches beyond a series' extreme samples. Default: 16.</em></td>
+<td style="text-align: left;"><a href="./#property-radius-12"><strong>radius</strong></a>  <br><em>Pick distance in logical pixels. In</em> <code>NearestX</code> <em>and</em><code>NearestY</code> <em>mode it only limits matches beyond a series' extreme data points. Default: 16.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property bool</td>
-<td style="text-align: left;"><a href="./#property-snaptosample-12"><strong>snapToSample</strong></a>  <br><em>Moves the crosshair to the closest matching sample. Default: false.</em></td>
+<td style="text-align: left;"><a href="./#property-snaptodatapoint-12"><strong>snapToDataPoint</strong></a>  <br><em>Moves the crosshair to the closest matching data point. Default: false.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property bool</td>
-<td style="text-align: left;"><a href="./#property-summaries-12"><strong>summaries</strong></a>  <br><em>Adds Y statistics of the samples around the cursor to every row. Default: false.</em></td>
+<td style="text-align: left;"><a href="./#property-summaries-12"><strong>summaries</strong></a>  <br><em>Adds Y statistics of the data points around the cursor to every row. Default: false.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property qreal</td>
@@ -2346,7 +2346,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">property int</td>
-<td style="text-align: left;"><a href="./#property-validcount-12"><strong>validCount</strong></a>  <br><em>Number of rows with a matching sample.</em></td>
+<td style="text-align: left;"><a href="./#property-validcount-12"><strong>validCount</strong></a>  <br><em>Number of rows with a matching data point.</em></td>
 </tr>
 </tbody>
 </table>
@@ -2409,7 +2409,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">signal void</td>
-<td style="text-align: left;"><a href="./#signal-snaptosamplechanged"><strong>snapToSampleChanged</strong></a>  <br><em>Emitted when the snapToSample property changes.</em></td>
+<td style="text-align: left;"><a href="./#signal-snaptodatapointchanged"><strong>snapToDataPointChanged</strong></a>  <br><em>Emitted when the snapToDataPoint property changes.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">signal void</td>
@@ -2480,7 +2480,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>
-<td style="text-align: left;"><a href="#function-interpolate-22"><strong>interpolate</strong></a> () const<br><em>Returns whether</em> <code>NearestX</code> <em>and</em><code>NearestY</code> <em>rows are interpolated between samples.</em></td>
+<td style="text-align: left;"><a href="#function-interpolate-22"><strong>interpolate</strong></a> () const<br><em>Returns whether</em> <code>NearestX</code> <em>and</em><code>NearestY</code> <em>rows are interpolated between data points.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./#enum-mode"><strong>Mode</strong></a></td>
@@ -2532,7 +2532,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setinterpolate"><strong>setInterpolate</strong></a> (bool enabled) <br><em>Enables or disables interpolation between consecutive samples.</em></td>
+<td style="text-align: left;"><a href="#function-setinterpolate"><strong>setInterpolate</strong></a> (bool enabled) <br><em>Enables or disables interpolation between consecutive data points.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -2548,7 +2548,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setsnaptosample"><strong>setSnapToSample</strong></a> (bool enabled) <br><em>Enables or disables crosshair snapping.</em></td>
+<td style="text-align: left;"><a href="#function-setsnaptodatapoint"><strong>setSnapToDataPoint</strong></a> (bool enabled) <br><em>Enables or disables crosshair snapping.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -2560,7 +2560,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>
-<td style="text-align: left;"><a href="#function-snaptosample-22"><strong>snapToSample</strong></a> () const<br><em>Returns whether the crosshair snaps to the closest matching sample.</em></td>
+<td style="text-align: left;"><a href="#function-snaptodatapoint-22"><strong>snapToDataPoint</strong></a> () const<br><em>Returns whether the crosshair snaps to the closest matching data point.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">Q_INVOKABLE void</td>
@@ -2576,7 +2576,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">int</td>
-<td style="text-align: left;"><a href="#function-validcount-22"><strong>validCount</strong></a> () const<br><em>Returns the number of rows with a matching sample.</em></td>
+<td style="text-align: left;"><a href="#function-validcount-22"><strong>validCount</strong></a> () const<br><em>Returns the number of rows with a matching data point.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
@@ -2662,7 +2662,7 @@
 <hr>
 
 <h3 id="property-interpolate-12">property interpolate<a class="headerlink" href="#property-interpolate-12" title="Permanent link">&para;</a></h3>
-<p><em>In</em> <code>NearestX</code> <em>and</em><code>NearestY</code> <em>mode, reports the point on the line between two consecutive samples instead of the nearer one. Default: false.</em>
+<p><em>In</em> <code>NearestX</code> <em>and</em><code>NearestY</code> <em>mode, reports the point on the line between two consecutive data points instead of the nearer one. Default: false.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotInspector</span><span class="o">::</span><span class="n">interpolate</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
@@ -2692,19 +2692,19 @@
 <hr>
 
 <h3 id="property-radius-12">property radius<a class="headerlink" href="#property-radius-12" title="Permanent link">&para;</a></h3>
-<p><em>Pick distance in logical pixels. In</em> <code>NearestX</code> <em>and</em><code>NearestY</code> <em>mode it only limits matches beyond a series' extreme samples. Default: 16.</em>
+<p><em>Pick distance in logical pixels. In</em> <code>NearestX</code> <em>and</em><code>NearestY</code> <em>mode it only limits matches beyond a series' extreme data points. Default: 16.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotInspector</span><span class="o">::</span><span class="n">radius</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
-<h3 id="property-snaptosample-12">property snapToSample<a class="headerlink" href="#property-snaptosample-12" title="Permanent link">&para;</a></h3>
-<p><em>Moves the crosshair to the closest matching sample. Default: false.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotInspector</span><span class="o">::</span><span class="n">snapToSample</span><span class="p">;</span>
+<h3 id="property-snaptodatapoint-12">property snapToDataPoint<a class="headerlink" href="#property-snaptodatapoint-12" title="Permanent link">&para;</a></h3>
+<p><em>Moves the crosshair to the closest matching data point. Default: false.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotInspector</span><span class="o">::</span><span class="n">snapToDataPoint</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="property-summaries-12">property summaries<a class="headerlink" href="#property-summaries-12" title="Permanent link">&para;</a></h3>
-<p><em>Adds Y statistics of the samples around the cursor to every row. Default: false.</em> 
+<p><em>Adds Y statistics of the data points around the cursor to every row. Default: false.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotInspector</span><span class="o">::</span><span class="n">summaries</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
@@ -2716,7 +2716,7 @@
 <hr>
 
 <h3 id="property-validcount-12">property validCount<a class="headerlink" href="#property-validcount-12" title="Permanent link">&para;</a></h3>
-<p><em>Number of rows with a matching sample.</em> 
+<p><em>Number of rows with a matching data point.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotInspector</span><span class="o">::</span><span class="n">validCount</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
@@ -2793,9 +2793,9 @@
 </code></pre></div></p>
 <hr>
 
-<h3 id="signal-snaptosamplechanged">signal snapToSampleChanged<a class="headerlink" href="#signal-snaptosamplechanged" title="Permanent link">&para;</a></h3>
-<p><em>Emitted when the snapToSample property changes.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotInspector</span><span class="o">::</span><span class="n">snapToSampleChanged</span><span class="p">;</span>
+<h3 id="signal-snaptodatapointchanged">signal snapToDataPointChanged<a class="headerlink" href="#signal-snaptodatapointchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the snapToDataPoint property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotInspector</span><span class="o">::</span><span class="n">snapToDataPointChanged</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
@@ -2886,7 +2886,7 @@
 <hr>
 
 <h3 id="function-interpolate-22">function interpolate<a class="headerlink" href="#function-interpolate-22" title="Permanent link">&para;</a></h3>
-<p><em>Returns whether</em> <code>NearestX</code> <em>and</em><code>NearestY</code> <em>rows are interpolated between samples.</em>
+<p><em>Returns whether</em> <code>NearestX</code> <em>and</em><code>NearestY</code> <em>rows are interpolated between data points.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotInspector</span><span class="o">::</span><span class="n">interpolate</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
@@ -2976,7 +2976,7 @@
 <hr>
 
 <h3 id="function-setinterpolate">function setInterpolate<a class="headerlink" href="#function-setinterpolate" title="Permanent link">&para;</a></h3>
-<p><em>Enables or disables interpolation between consecutive samples.</em> 
+<p><em>Enables or disables interpolation between consecutive data points.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotInspector</span><span class="o">::</span><span class="n">setInterpolate</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">enabled</span>
 <a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a><span class="p">)</span><span class="w"> </span>
@@ -3007,9 +3007,9 @@
 </code></pre></div></p>
 <hr>
 
-<h3 id="function-setsnaptosample">function setSnapToSample<a class="headerlink" href="#function-setsnaptosample" title="Permanent link">&para;</a></h3>
+<h3 id="function-setsnaptodatapoint">function setSnapToDataPoint<a class="headerlink" href="#function-setsnaptodatapoint" title="Permanent link">&para;</a></h3>
 <p><em>Enables or disables crosshair snapping.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotInspector</span><span class="o">::</span><span class="n">setSnapToSample</span><span class="w"> </span><span class="p">(</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotInspector</span><span class="o">::</span><span class="n">setSnapToDataPoint</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-65-2" name="__codelineno-65-2" href="#__codelineno-65-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">enabled</span>
 <a id="__codelineno-65-3" name="__codelineno-65-3" href="#__codelineno-65-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
@@ -3031,9 +3031,9 @@
 </code></pre></div></p>
 <hr>
 
-<h3 id="function-snaptosample-22">function snapToSample<a class="headerlink" href="#function-snaptosample-22" title="Permanent link">&para;</a></h3>
-<p><em>Returns whether the crosshair snaps to the closest matching sample.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotInspector</span><span class="o">::</span><span class="n">snapToSample</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<h3 id="function-snaptodatapoint-22">function snapToDataPoint<a class="headerlink" href="#function-snaptodatapoint-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns whether the crosshair snaps to the closest matching data point.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotInspector</span><span class="o">::</span><span class="n">snapToDataPoint</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
@@ -3058,7 +3058,7 @@
 <hr>
 
 <h3 id="function-validcount-22">function validCount<a class="headerlink" href="#function-validcount-22" title="Permanent link">&para;</a></h3>
-<p><em>Returns the number of rows with a matching sample.</em> 
+<p><em>Returns the number of rows with a matching data point.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotInspector</span><span class="o">::</span><span class="n">validCount</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>

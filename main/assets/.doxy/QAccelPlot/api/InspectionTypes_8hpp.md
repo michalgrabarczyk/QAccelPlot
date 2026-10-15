@@ -47,11 +47,11 @@
 | Type | Name |
 | ---: | :--- |
 | struct | [**InspectionBounds**](structQAccelPlot_1_1InspectionBounds.md) <br>_Inclusive data-space region; infinite limits leave a dimension unbounded._  |
-| struct | [**InspectionHit**](structQAccelPlot_1_1InspectionHit.md) <br>_Nearest-sample result: source index and pixel distance, or index -1._  |
+| struct | [**InspectionHit**](structQAccelPlot_1_1InspectionHit.md) <br>_Nearest-data-point result: source index and pixel distance, or index -1._  |
 | struct | [**InspectionMetric**](structQAccelPlot_1_1InspectionMetric.md) <br>_Pixel mapping of a series' plot area, used to measure on-screen distances._  |
-| struct | [**InspectionNeighbors**](structQAccelPlot_1_1InspectionNeighbors.md) <br>_Source indices of the valid samples on either side of an X value, or -1._  |
+| struct | [**InspectionNeighbors**](structQAccelPlot_1_1InspectionNeighbors.md) <br>_Source indices of the valid data points on either side of an X value, or -1._  |
 | struct | [**InspectionSource**](structQAccelPlot_1_1InspectionSource.md) <br>_Read-only view over the XY records a series exposes to inspection queries._  |
-| struct | [**SummaryAccumulator**](structQAccelPlot_1_1SummaryAccumulator.md) <br>_Running sample-weighted Y statistics that can be merged across disjoint sample sets._  |
+| struct | [**SummaryAccumulator**](structQAccelPlot_1_1SummaryAccumulator.md) <br>_Running data-point-weighted Y statistics that can be merged across disjoint data point sets._  |
 
 
 

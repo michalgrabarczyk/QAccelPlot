@@ -45,16 +45,16 @@ _Inspection result of one series, as shown by one row of an_ `InspectionRowModel
 
 | Type | Name |
 | ---: | :--- |
+|  [**InspectionDataPoint**](structQAccelPlot_1_1InspectionDataPoint.md) | [**dataPoint**](#variable-datapoint)  <br>_Data point at the cursor; invalid for selection rows._  |
 |  bool | [**hasSummary**](#variable-hassummary)   = `{false}`<br>_Whether_ `summary` _was requested._ |
 |  QString | [**maximumText**](#variable-maximumtext)  <br>_Summary maximum formatted by the series' Y axis._  |
 |  QString | [**meanText**](#variable-meantext)  <br>_Summary mean formatted by the series' Y axis._  |
 |  QString | [**minimumText**](#variable-minimumtext)  <br>_Summary minimum formatted by the series' Y axis._  |
-|  QPointF | [**pixelPosition**](#variable-pixelposition)  <br>_Sample position in plot-local logical pixels._  |
-|  [**InspectionSample**](structQAccelPlot_1_1InspectionSample.md) | [**sample**](#variable-sample)  <br>_Sample at the cursor; invalid for selection rows._  |
+|  QPointF | [**pixelPosition**](#variable-pixelposition)  <br>_Data point position in plot-local logical pixels._  |
 |  QPointer&lt; [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) &gt; | [**series**](#variable-series)  <br>_Series the row describes._  |
 |  [**InspectionSummary**](structQAccelPlot_1_1InspectionSummary.md) | [**summary**](#variable-summary)  <br>_Region statistics._  |
-|  QString | [**xText**](#variable-xtext)  <br>_Sample X formatted by the series' X axis._  |
-|  QString | [**yText**](#variable-ytext)  <br>_Sample Y formatted by the series' Y axis._  |
+|  QString | [**xText**](#variable-xtext)  <br>_Data point X formatted by the series' X axis._  |
+|  QString | [**yText**](#variable-ytext)  <br>_Data point Y formatted by the series' Y axis._  |
 
 
 
@@ -101,6 +101,21 @@ _Inspection result of one series, as shown by one row of an_ `InspectionRowModel
 
 ## Public Attributes Documentation
 
+
+
+
+
+### variable dataPoint {#variable-datapoint}
+
+_Data point at the cursor; invalid for selection rows._ 
+```C++
+InspectionDataPoint QAccelPlot::InspectionRow::dataPoint;
+```
+
+
+
+
+<hr>
 
 
 
@@ -167,24 +182,9 @@ QString QAccelPlot::InspectionRow::minimumText;
 
 ### variable pixelPosition {#variable-pixelposition}
 
-_Sample position in plot-local logical pixels._ 
+_Data point position in plot-local logical pixels._ 
 ```C++
 QPointF QAccelPlot::InspectionRow::pixelPosition;
-```
-
-
-
-
-<hr>
-
-
-
-
-### variable sample {#variable-sample}
-
-_Sample at the cursor; invalid for selection rows._ 
-```C++
-InspectionSample QAccelPlot::InspectionRow::sample;
 ```
 
 
@@ -227,7 +227,7 @@ InspectionSummary QAccelPlot::InspectionRow::summary;
 
 ### variable xText {#variable-xtext}
 
-_Sample X formatted by the series' X axis._ 
+_Data point X formatted by the series' X axis._ 
 ```C++
 QString QAccelPlot::InspectionRow::xText;
 ```
@@ -242,7 +242,7 @@ QString QAccelPlot::InspectionRow::xText;
 
 ### variable yText {#variable-ytext}
 
-_Sample Y formatted by the series' Y axis._ 
+_Data point Y formatted by the series' Y axis._ 
 ```C++
 QString QAccelPlot::InspectionRow::yText;
 ```

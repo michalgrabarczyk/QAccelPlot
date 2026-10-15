@@ -47,7 +47,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| class | [**InspectionIndex**](classQAccelPlot_1_1InspectionIndex.md) <br>_Immutable k-d tree over the valid samples of a series, with their order along each axis._  |
+| class | [**InspectionIndex**](classQAccelPlot_1_1InspectionIndex.md) <br>_Immutable k-d tree over the valid data points of a series, with their order along each axis._  |
 | struct | [**Point**](structQAccelPlot_1_1InspectionIndex_1_1Point.md) <br> |
 
 

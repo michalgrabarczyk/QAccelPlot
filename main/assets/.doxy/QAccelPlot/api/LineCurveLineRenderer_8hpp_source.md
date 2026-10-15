@@ -77,7 +77,7 @@ public:
     QSGNode* paint(QSGNode* oldNode, const LineCurveRenderParams& params) const;
 
 private:
-    // Gradient fill samples, cached across frames because they depend only on the data.
+    // Gradient fill data points, cached across frames because they depend only on the data.
     struct FillSampleCache {
         const void* data{nullptr};
         int pointCount{-1};

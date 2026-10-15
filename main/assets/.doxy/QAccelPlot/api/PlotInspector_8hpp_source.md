@@ -38,7 +38,7 @@ class PlotInspector : public QObject {
     Q_PROPERTY(bool enabled READ enabled WRITE setEnabled NOTIFY enabledChanged)
     Q_PROPERTY(Mode mode READ mode WRITE setMode NOTIFY modeChanged)
     Q_PROPERTY(qreal radius READ radius WRITE setRadius NOTIFY radiusChanged)
-    Q_PROPERTY(bool snapToSample READ snapToSample WRITE setSnapToSample NOTIFY snapToSampleChanged)
+    Q_PROPERTY(bool snapToDataPoint READ snapToDataPoint WRITE setSnapToDataPoint NOTIFY snapToDataPointChanged)
     Q_PROPERTY(bool interpolate READ interpolate WRITE setInterpolate NOTIFY interpolateChanged)
     Q_PROPERTY(bool summaries READ summaries WRITE setSummaries NOTIFY summariesChanged)
     Q_PROPERTY(qreal summaryRadius READ summaryRadius WRITE setSummaryRadius NOTIFY summaryRadiusChanged)
@@ -76,8 +76,8 @@ public:
     void setMode(Mode mode);
     qreal radius() const;
     void setRadius(qreal radius);
-    bool snapToSample() const;
-    void setSnapToSample(bool enabled);
+    bool snapToDataPoint() const;
+    void setSnapToDataPoint(bool enabled);
     bool interpolate() const;
     void setInterpolate(bool enabled);
     bool summaries() const;
@@ -109,7 +109,7 @@ signals:
     void enabledChanged();
     void modeChanged();
     void radiusChanged();
-    void snapToSampleChanged();
+    void snapToDataPointChanged();
     void interpolateChanged();
     void summariesChanged();
     void summaryRadiusChanged();
@@ -140,8 +140,8 @@ private:
     // Fills state with the results at cursor. Returns false when user code run by a label formatter invalidated them.
     bool inspect(const QPointF& cursor, State& state) const;
     QList<Query> queryRows(const QPointF& cursor) const;
-    // Between two samples a series always matches; the radius only limits how far past its ends it still does.
-    InspectionSample sampleAlong(SeriesInspection& inspection, Mode mode, const QPointF& local) const;
+    // Between two data points a series always matches; the radius only limits how far past its ends it still does.
+    InspectionDataPoint dataPointAlong(SeriesInspection& inspection, Mode mode, const QPointF& local) const;
     InspectionSummary summarize(PlotSeries& series, const QPointF& local, Mode mode) const;
     void formatRows(QList<Query>& queries) const;
     bool current(const QList<Query>& queries) const;
@@ -152,7 +152,7 @@ private:
     bool enabled_{true};
     Mode mode_{NearestX};
     qreal radius_{16};
-    bool snapToSample_{false};
+    bool snapToDataPoint_{false};
     bool interpolate_{false};
     bool summaries_{false};
     qreal summaryRadius_{0.5};

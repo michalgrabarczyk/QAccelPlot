@@ -15,7 +15,7 @@
 
 
 
-_Nearest-sample result: source index and pixel distance, or index -1._ 
+_Nearest-data-point result: source index and pixel distance, or index -1._ 
 
 * `#include <InspectionTypes.hpp>`
 
@@ -67,7 +67,7 @@ _Nearest-sample result: source index and pixel distance, or index -1._
 
 | Type | Name |
 | ---: | :--- |
-|  void | [**consider**](#function-consider) (int candidate, double candidateDistance) noexcept<br>_Keeps the closer candidate; equal distances resolve to the highest index, the sample drawn last._  |
+|  void | [**consider**](#function-consider) (int candidate, double candidateDistance) noexcept<br>_Keeps the closer candidate; equal distances resolve to the highest index, the data point drawn last._  |
 
 
 
@@ -134,7 +134,7 @@ int QAccelPlot::InspectionHit::index;
 
 ### function consider {#function-consider}
 
-_Keeps the closer candidate; equal distances resolve to the highest index, the sample drawn last._ 
+_Keeps the closer candidate; equal distances resolve to the highest index, the data point drawn last._ 
 ```C++
 void QAccelPlot::InspectionHit::consider (
     int candidate,

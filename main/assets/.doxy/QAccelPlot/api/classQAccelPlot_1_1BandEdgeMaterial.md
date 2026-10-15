@@ -15,7 +15,7 @@
 
 
 
-_Line material for the lower or upper edge line of a band, reading_ `(x, low, high)` _samples._[More...](#detailed-description)
+_Line material for the lower or upper edge line of a band, reading_ `(x, low, high)` _data points._[More...](#detailed-description)
 
 * `#include <BandEdgeMaterial.hpp>`
 
@@ -60,7 +60,7 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-| enum  | [**Edge**](#enum-edge)  <br>_Which value of each sample the edge line draws._  |
+| enum  | [**Edge**](#enum-edge)  <br>_Which value of each data point the edge line draws._  |
 
 
 
@@ -294,7 +294,7 @@ See [QAccelPlot::LineMaterial](classQAccelPlot_1_1LineMaterial.md)
 ## Detailed Description
 
 
-Uses the line uniforms and fragment stage; only the vertex stage reads three floats per sample. 
+Uses the line uniforms and fragment stage; only the vertex stage reads three floats per data point. 
 
 
     
@@ -306,7 +306,7 @@ Uses the line uniforms and fragment stage; only the vertex stage reads three flo
 
 ### enum Edge {#enum-edge}
 
-_Which value of each sample the edge line draws._ 
+_Which value of each data point the edge line draws._ 
 ```C++
 enum QAccelPlot::BandEdgeMaterial::Edge {
     Lower,

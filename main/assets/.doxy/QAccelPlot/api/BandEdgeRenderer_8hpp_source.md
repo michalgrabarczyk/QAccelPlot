@@ -19,6 +19,7 @@
 
 #include "QAccelPlot/materials/BandEdgeMaterial.hpp"
 #include "QAccelPlot/renderers/LineStroke.hpp"
+#include "QAccelPlot/series/DataPointStore.hpp"
 
 #include <QSGGeometryNode>
 #include <QVector2D>
@@ -32,26 +33,14 @@ namespace QAccelPlot {
 class Axis;
 class DataTexture;
 
-struct BandSamples {
-    const float* floatData{nullptr};   
-    const double* doubleData{nullptr}; 
-    int count{0};                      
-
-    qreal value(const int index, const int component) const
-    {
-        const auto offset = static_cast<std::size_t>(index) * 3 + static_cast<std::size_t>(component);
-        return doubleData ? static_cast<qreal>(doubleData[offset]) : static_cast<qreal>(floatData[offset]);
-    }
-};
-
 struct BandEdgeRenderParams {
     std::shared_ptr<DataTexture> dataTexture; 
-    BandSamples samples;                      
+    DataPointStore::View dataPoints;          
     LineStroke::Uniforms uniforms;            
     Axis* xAxis;                              
     Axis* yAxis;                              
     bool dataChanged;                         
-    int reservedSampleCount;
+    int reservedCount;
 };
 
 class BandEdgeRenderer {

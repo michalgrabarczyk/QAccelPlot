@@ -65,10 +65,10 @@
           <declname>arcLengths</declname>
         </param>
         <briefdescription>
-<para>Writes two ribbon vertices per sample for <emphasis>pointCount</emphasis> samples into <emphasis>vertices</emphasis>. </para>
+<para>Writes two ribbon vertices per data point for <emphasis>pointCount</emphasis> data points into <emphasis>vertices</emphasis>. </para>
         </briefdescription>
         <detaileddescription>
-<para><emphasis>arcLengths</emphasis> holds cumulative lengths of the leading samples, or is empty for solid lines. Samples past its end, such as vertices reserved for appended data, repeat its last length. </para>
+<para><emphasis>arcLengths</emphasis> holds cumulative lengths of the leading data points, or is empty for solid lines. Data points past its end, such as vertices reserved for appended data, repeat its last length. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
@@ -117,10 +117,10 @@
           <declname>pixelAt</declname>
         </param>
         <briefdescription>
-<para>Returns the cumulative pixel length at each of <emphasis>pointCount</emphasis> samples, for dash patterns. </para>
+<para>Returns the cumulative pixel length at each of <emphasis>pointCount</emphasis> data points, for dash patterns. </para>
         </briefdescription>
         <detaileddescription>
-<para><emphasis>pixelAt</emphasis> returns the pixel position of a sample, or <computeroutput>std::nullopt</computeroutput> for an invalid sample. Segments touching an invalid sample add no length, so the dash phase continues across a gap. </para>
+<para><emphasis>pixelAt</emphasis> returns the pixel position of a data point, or <computeroutput>std::nullopt</computeroutput> for an invalid data point. Segments touching an invalid data point add no length, so the dash phase continues across a gap. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>

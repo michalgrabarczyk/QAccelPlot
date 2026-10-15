@@ -94,26 +94,15 @@ public:
 
     Q_INVOKABLE void setData(const QVariantList& bars);
 
-    void setData(const double* data, int barCount) override;
-
-    void setData(std::vector<double>&& data, int barCount) override;
-
     void setData(std::vector<double>&& data, std::vector<int>&& categories, int barCount);
-
-    void setDataF(const float* data, int barCount) override;
-
-    void setDataF(std::vector<float>&& data, int barCount) override;
 
     void setDataF(std::vector<float>&& data, std::vector<int>&& categories, int barCount);
 
+    using PlotSeries::postData;
     using PlotSeries::setData;
     using PlotSeries::setDataF;
 
-    void postData(std::vector<double>&& data, int barCount) override;
-
     void postData(std::vector<double>&& data, std::vector<int>&& categories, int barCount);
-
-    void postData(std::vector<float>&& data, int barCount) override;
 
     void postData(std::vector<float>&& data, std::vector<int>&& categories, int barCount);
 
@@ -150,9 +139,11 @@ protected:
     void hoverEnterEvent(QHoverEvent* event) override;
     void hoverMoveEvent(QHoverEvent* event) override;
     void hoverLeaveEvent(QHoverEvent* event) override;
+    void applyDataPoints(DataPointInput&& input) override;
+    int dataPointValueCount() const override;
     void onAxisScaleChanged() override;
-    void onAxisRangeChanged() override;
     DataRanges computeDataRanges() const override;
+    void onDataPointsChanged(DataChange change, int previousCount) override;
 
 private:
     // A set of bars: count bars of stride values each, with one category per bar or none.
@@ -163,8 +154,9 @@ private:
         int stride{2};
     };
 
-    bool validateRawDataArguments(const void* data, int barCount) const;
     bool validateDataArguments(std::size_t valueCount, std::size_t categoryCount, int barCount, int barValueCount = 2) const;
+    // Switches between (position, value) and (from, to, value) bars; dropping the bars when it changes.
+    void setRanged(bool ranged);
     void applyData(std::vector<double>&& data, std::vector<int>&& categories, int barCount);
     void applyRangedData(std::vector<double>&& data, std::vector<int>&& categories, int barCount);
     // Replaces the bars, animating from the drawn ones when \a animate is set.
@@ -173,11 +165,10 @@ private:
     // Replaces the bars with float data, without a transition.
     void applyFloatBars(std::vector<float>&& data, std::vector<int>&& categories, int barCount);
     void setDataFFromArray(const float* data, int barCount);
-    // Stores the categories and the count of new bars without notifying. Returns the previous count.
-    int storeBars(std::vector<int>&& categories, int barCount);
-    void notifyDataChanged(int previousCount);
-    // True while transitionBars_ is drawn instead of the data.
+    // True while transition bars are drawn instead of the data.
     bool animating() const;
+    // Returns the stored bars as doubles.
+    std::vector<double> storedBars() const;
     // Returns the bars drawn now: the transition bars, or the data.
     Bars drawnBars() const;
     int drawnBarCount() const;
@@ -193,10 +184,6 @@ private:
     // Invalidates what depends on the bar geometry after a barWidth, barOffset, baselineValue, or orientation change.
     void onGeometryChanged();
     bool isHorizontal() const;
-    // True when the double setData() overloads supplied the data; false for the setDataF() overloads.
-    bool hasPreciseData() const;
-    // True when renderData_ is rebuilt from doubles: the data, or the transition bars.
-    bool rendersDoubles() const;
     // Number of values per bar: (position, value), or (from, to, value) for ranged bars.
     int valuesPerBar() const;
     // Returns value \a offset of bar \a index, counted within the bar.
@@ -217,9 +204,6 @@ private:
     void ensureSpatialGrid() const;
     // Builds the vertices of the first \a barCount of the drawn bars.
     void buildVertexCache(int barCount);
-    // Rebuilds renderData_ (origin-relative float coordinates) from the double-precision data_ or
-    // transition bars, so the GPU upload stays accurate for large positions without double-precision textures.
-    void rebuildRenderData(bool logScalePosition, bool logScaleValue);
 
     Qt::Orientation orientation_{Qt::Vertical};
     qreal barWidth_{0.8};
@@ -232,25 +216,19 @@ private:
     QColor hoverColor_;
     int hoveredIndex_{-1};
     std::unique_ptr<TransitionRunner> transition_;
-    // Bars drawn instead of the data while a transition runs, in the layout of the data: the new
-    // bars, then the removed ones that shrink away. Empty otherwise.
-    Bars transitionBars_;
-    // Data: valuesPerBar() doubles per bar, full precision. Empty when setDataF() supplied the data.
-    std::vector<double> data_;
-    // True when each bar is (from, to, value) instead of (position, value).
-    bool ranged_{false};
-    // One category per bar, or empty when no bar has one.
-    std::vector<int> categories_;
-    // Uploaded to the GPU: an origin-relative float mirror of data_, or the setDataF() data itself.
-    std::vector<float> renderData_;
-    qreal renderOriginPosition_{0.0};
-    qreal renderOriginValue_{0.0};
-    int barCount_{0};
-    bool dataChanged_{false};
+    // Categories of the bars drawn while a transition runs: the new bars, then the removed ones
+    // that shrink away. Empty when no bar has one.
+    std::vector<int> transitionCategories_;
+    // The previous transition frame, reused for the next one.
+    std::vector<double> frameBuffer_;
+    // Render revision of the bars last uploaded to the GPU.
+    std::uint64_t uploadedRevision_{0};
     // Whether the last frame held more records than the GPU buffers do; warns on each crossing.
     bool overCapacity_{false};
     // Vertex colors are category colors when categories are set; otherwise \c color is a uniform.
     RectVertexCache vertexCache_;
+    // Whether the vertex cache holds category colors.
+    bool vertexCacheHasCategories_{false};
     // Built on the first hit test after a data or geometry change, so streaming without hover skips it.
     mutable std::vector<double> hitRects_;
     mutable SpatialGrid spatialGrid_;

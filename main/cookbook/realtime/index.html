@@ -1463,7 +1463,7 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 <p>Pass each new buffer to <a href="../../api/classQAccelPlot_1_1LineCurve/#function-setdataf-26"><code>setDataF()</code></a>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">curve</span><span class="o">-&gt;</span><span class="n">setDataF</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">points</span><span class="p">),</span><span class="w"> </span><span class="n">pointCount</span><span class="p">);</span>
 </code></pre></div>
-<p>A rescale fits the samples of the current frame. To fit the nominal window
+<p>A rescale fits the data points of the current frame. To fit the nominal window
 instead, pass its bounds with the data. This also skips the
 <a href="../../performance/#data-ranges-are-computed-on-demand">range scan</a>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">bounds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">DataBounds</span><span class="p">{</span><span class="mf">-20.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">-2.5</span><span class="p">,</span><span class="w"> </span><span class="mf">2.5</span><span class="p">};</span>
@@ -1490,7 +1490,7 @@ including each <a href="../../api/classQAccelPlot_1_1LineCurve/#function-appendd
 <li>When the last series on the axis is cleared, the viewport is kept.</li>
 </ul>
 <h2 id="show-dropouts-as-gaps">Show dropouts as gaps<a class="headerlink" href="#show-dropouts-as-gaps" title="Permanent link">&para;</a></h2>
-<p>Write <code>NaN</code> for lost or invalid samples instead of repeating or dropping them.
+<p>Write <code>NaN</code> for lost or invalid data points instead of repeating or dropping them.
 The curve breaks there, and the gap is excluded from auto-ranging and hover:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">packet</span><span class="p">.</span><span class="n">valid</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">packet</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;::</span><span class="n">quiet_NaN</span><span class="p">();</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">points</span><span class="p">[</span><span class="n">index</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">timestamp</span><span class="p">;</span>
@@ -1498,7 +1498,7 @@ The curve breaks there, and the gap is excluded from auto-ranging and hover:</p>
 </code></pre></div>
 <p>To draw across dropouts instead, set
 <code>gaps.nanMode: QAccelPlot.NanGapMode.Connect</code>. See
-<a href="../../concepts/#invalid-samples-and-gaps">Invalid samples and gaps</a>.</p>
+<a href="../../concepts/#invalid-data-points-and-gaps">Invalid data points and gaps</a>.</p>
 <p>Complete sources:</p>
 <ul>
 <li><a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/realtime"><code>examples/data/realtime</code></a></li>

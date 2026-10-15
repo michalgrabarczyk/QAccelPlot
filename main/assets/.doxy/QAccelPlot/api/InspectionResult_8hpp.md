@@ -50,11 +50,11 @@
 
 | Type | Name |
 | ---: | :--- |
-| struct | [**InspectionBracket**](structQAccelPlot_1_1InspectionBracket.md) <br>_The valid samples on either side of a position on one axis._  |
+| struct | [**InspectionBracket**](structQAccelPlot_1_1InspectionBracket.md) <br>_The valid data points on either side of a position on one axis._  |
+| struct | [**InspectionDataPoint**](structQAccelPlot_1_1InspectionDataPoint.md) <br>_One XY source data point returned by an inspection query._  |
 | struct | [**InspectionPage**](structQAccelPlot_1_1InspectionPage.md) <br>_One page of source indices inside a region._  |
 | struct | [**InspectionRecord**](structQAccelPlot_1_1InspectionRecord.md) <br>_A native record of a series that is not a plain XY series, such as a bar, rectangle, or band._  |
-| struct | [**InspectionSample**](structQAccelPlot_1_1InspectionSample.md) <br>_One XY source sample returned by an inspection query._  |
-| struct | [**InspectionSummary**](structQAccelPlot_1_1InspectionSummary.md) <br>_Sample-weighted Y statistics over the valid samples inside a region._  |
+| struct | [**InspectionSummary**](structQAccelPlot_1_1InspectionSummary.md) <br>_Data-point-weighted Y statistics over the valid data points inside a region._  |
 
 
 

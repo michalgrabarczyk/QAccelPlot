@@ -79,16 +79,16 @@ flowchart TB
 | property QList&lt; [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) \* &gt; | [**excludedSeries**](classQAccelPlot_1_1PlotInspector.md#property-excludedseries-12)  <br>_Series never inspected, even when listed in_ `includedSeries` _._ |
 | property bool | [**followPointer**](classQAccelPlot_1_1PlotInspector.md#property-followpointer-12)  <br>_Whether the cursor follows the plot's pointer. When false it stays at_ `cursorX` _and_`cursorY` _. Default: true._ |
 | property QList&lt; [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) \* &gt; | [**includedSeries**](classQAccelPlot_1_1PlotInspector.md#property-includedseries-12)  <br>_Series to inspect; an empty list inspects every series of the plot._  |
-| property bool | [**interpolate**](classQAccelPlot_1_1PlotInspector.md#property-interpolate-12)  <br>_In_ `NearestX` _and_`NearestY` _mode, reports the point on the line between two consecutive samples instead of the nearer one. Default: false._ |
+| property bool | [**interpolate**](classQAccelPlot_1_1PlotInspector.md#property-interpolate-12)  <br>_In_ `NearestX` _and_`NearestY` _mode, reports the point on the line between two consecutive data points instead of the nearer one. Default: false._ |
 | property [**Mode**](classQAccelPlot_1_1PlotInspector.md#enum-mode) | [**mode**](classQAccelPlot_1_1PlotInspector.md#property-mode-12)  <br>`NearestX` _and_`NearestY` _report each series at the cursor's X or Y;_`NearestXY` _picks by on-screen distance. Default: NearestX._ |
 | property [**QAccelPlot::InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md) \* | [**model**](classQAccelPlot_1_1PlotInspector.md#property-model-12)  <br>_Read-only constant: one row per inspected series._  |
 | property [**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) \* | [**plot**](classQAccelPlot_1_1PlotInspector.md#property-plot-12)  <br>_Plot whose series are inspected._  |
 | property QPointF | [**position**](classQAccelPlot_1_1PlotInspector.md#property-position-12)  <br>_Crosshair position in plot-local logical pixels; a coordinate the cursor lacks is NaN._  |
-| property qreal | [**radius**](classQAccelPlot_1_1PlotInspector.md#property-radius-12)  <br>_Pick distance in logical pixels. In_ `NearestX` _and_`NearestY` _mode it only limits matches beyond a series' extreme samples. Default: 16._ |
-| property bool | [**snapToSample**](classQAccelPlot_1_1PlotInspector.md#property-snaptosample-12)  <br>_Moves the crosshair to the closest matching sample. Default: false._  |
-| property bool | [**summaries**](classQAccelPlot_1_1PlotInspector.md#property-summaries-12)  <br>_Adds Y statistics of the samples around the cursor to every row. Default: false._  |
+| property qreal | [**radius**](classQAccelPlot_1_1PlotInspector.md#property-radius-12)  <br>_Pick distance in logical pixels. In_ `NearestX` _and_`NearestY` _mode it only limits matches beyond a series' extreme data points. Default: 16._ |
+| property bool | [**snapToDataPoint**](classQAccelPlot_1_1PlotInspector.md#property-snaptodatapoint-12)  <br>_Moves the crosshair to the closest matching data point. Default: false._  |
+| property bool | [**summaries**](classQAccelPlot_1_1PlotInspector.md#property-summaries-12)  <br>_Adds Y statistics of the data points around the cursor to every row. Default: false._  |
 | property qreal | [**summaryRadius**](classQAccelPlot_1_1PlotInspector.md#property-summaryradius-12)  <br>_Half-width of the summary neighborhood in logical pixels. Default: 0.5._  |
-| property int | [**validCount**](classQAccelPlot_1_1PlotInspector.md#property-validcount-12)  <br>_Number of rows with a matching sample._  |
+| property int | [**validCount**](classQAccelPlot_1_1PlotInspector.md#property-validcount-12)  <br>_Number of rows with a matching data point._  |
 
 
 
@@ -109,7 +109,7 @@ flowchart TB
 | signal void | [**positionChanged**](classQAccelPlot_1_1PlotInspector.md#signal-positionchanged)  <br>_Emitted when the position property changes._  |
 | signal void | [**radiusChanged**](classQAccelPlot_1_1PlotInspector.md#signal-radiuschanged)  <br>_Emitted when the radius property changes._  |
 | signal void | [**refreshed**](classQAccelPlot_1_1PlotInspector.md#signal-refreshed)  <br>_Emitted after every refresh that published results._  |
-| signal void | [**snapToSampleChanged**](classQAccelPlot_1_1PlotInspector.md#signal-snaptosamplechanged)  <br>_Emitted when the snapToSample property changes._  |
+| signal void | [**snapToDataPointChanged**](classQAccelPlot_1_1PlotInspector.md#signal-snaptodatapointchanged)  <br>_Emitted when the snapToDataPoint property changes._  |
 | signal void | [**summariesChanged**](classQAccelPlot_1_1PlotInspector.md#signal-summarieschanged)  <br>_Emitted when the summaries property changes._  |
 | signal void | [**summaryRadiusChanged**](classQAccelPlot_1_1PlotInspector.md#signal-summaryradiuschanged)  <br>_Emitted when the summaryRadius property changes._  |
 | signal void | [**validCountChanged**](classQAccelPlot_1_1PlotInspector.md#signal-validcountchanged)  <br>_Emitted when the validCount property changes._  |
@@ -132,7 +132,7 @@ flowchart TB
 |  QList&lt; [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) \* &gt; | [**excludedSeries**](#function-excludedseries-22) () const<br>_Returns the series never inspected, without destroyed entries._  |
 |  bool | [**followPointer**](#function-followpointer-22) () const<br>_Returns whether the cursor follows the plot's pointer._  |
 |  QList&lt; [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) \* &gt; | [**includedSeries**](#function-includedseries-22) () const<br>_Returns the series to inspect, without destroyed entries._  |
-|  bool | [**interpolate**](#function-interpolate-22) () const<br>_Returns whether_ `NearestX` _and_`NearestY` _rows are interpolated between samples._ |
+|  bool | [**interpolate**](#function-interpolate-22) () const<br>_Returns whether_ `NearestX` _and_`NearestY` _rows are interpolated between data points._ |
 |  [**Mode**](classQAccelPlot_1_1PlotInspector.md#enum-mode) | [**mode**](#function-mode-22) () const<br>_Returns the matching mode._  |
 |  [**InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md) \* | [**model**](#function-model-22) () const<br>_Returns the row model._  |
 |  [**::QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) \* | [**plot**](#function-plot-22) () const<br>_Returns the inspected plot._  |
@@ -145,18 +145,18 @@ flowchart TB
 |  void | [**setExcludedSeries**](#function-setexcludedseries) (const QList&lt; [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) \* &gt; & series) <br>_Sets the series never inspected._  |
 |  void | [**setFollowPointer**](#function-setfollowpointer) (bool follow) <br>_Switches between following the pointer and a cursor set from code._  |
 |  void | [**setIncludedSeries**](#function-setincludedseries) (const QList&lt; [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) \* &gt; & series) <br>_Sets the series to inspect._  |
-|  void | [**setInterpolate**](#function-setinterpolate) (bool enabled) <br>_Enables or disables interpolation between consecutive samples._  |
+|  void | [**setInterpolate**](#function-setinterpolate) (bool enabled) <br>_Enables or disables interpolation between consecutive data points._  |
 |  void | [**setMode**](#function-setmode) ([**Mode**](classQAccelPlot_1_1PlotInspector.md#enum-mode) mode) <br>_Sets the matching mode._  |
 |  void | [**setPlot**](#function-setplot) ([**::QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) \* plot) <br>_Sets the inspected plot._  |
 |  void | [**setRadius**](#function-setradius) (qreal radius) <br>_Sets the pick distance; negative and NaN values are ignored._  |
-|  void | [**setSnapToSample**](#function-setsnaptosample) (bool enabled) <br>_Enables or disables crosshair snapping._  |
+|  void | [**setSnapToDataPoint**](#function-setsnaptodatapoint) (bool enabled) <br>_Enables or disables crosshair snapping._  |
 |  void | [**setSummaries**](#function-setsummaries) (bool enabled) <br>_Enables or disables neighborhood statistics._  |
 |  void | [**setSummaryRadius**](#function-setsummaryradius) (qreal radius) <br>_Sets the summary half-width; negative and nonfinite values are ignored._  |
-|  bool | [**snapToSample**](#function-snaptosample-22) () const<br>_Returns whether the crosshair snaps to the closest matching sample._  |
+|  bool | [**snapToDataPoint**](#function-snaptodatapoint-22) () const<br>_Returns whether the crosshair snaps to the closest matching data point._  |
 |  Q\_INVOKABLE void | [**stepCursor**](#function-stepcursor) (int steps) <br>_Moves the cursor_ _steps_ _source records along the first matching series and stops following the pointer._ |
 |  bool | [**summaries**](#function-summaries-22) () const<br>_Returns whether rows include neighborhood statistics._  |
 |  qreal | [**summaryRadius**](#function-summaryradius-22) () const<br>_Returns the summary half-width in logical pixels._  |
-|  int | [**validCount**](#function-validcount-22) () const<br>_Returns the number of rows with a matching sample._  |
+|  int | [**validCount**](#function-validcount-22) () const<br>_Returns the number of rows with a matching data point._  |
 |   | [**~PlotInspector**](#function-plotinspector) () override<br>_Destroys the inspector and the objects declared inside it._  |
 
 
@@ -389,7 +389,7 @@ QList<PlotSeries*> QAccelPlot::PlotInspector::includedSeries;
 
 ### property interpolate {#property-interpolate-12}
 
-_In_ `NearestX` _and_`NearestY` _mode, reports the point on the line between two consecutive samples instead of the nearer one. Default: false._
+_In_ `NearestX` _and_`NearestY` _mode, reports the point on the line between two consecutive data points instead of the nearer one. Default: false._
 ```C++
 bool QAccelPlot::PlotInspector::interpolate;
 ```
@@ -464,7 +464,7 @@ QPointF QAccelPlot::PlotInspector::position;
 
 ### property radius {#property-radius-12}
 
-_Pick distance in logical pixels. In_ `NearestX` _and_`NearestY` _mode it only limits matches beyond a series' extreme samples. Default: 16._
+_Pick distance in logical pixels. In_ `NearestX` _and_`NearestY` _mode it only limits matches beyond a series' extreme data points. Default: 16._
 ```C++
 qreal QAccelPlot::PlotInspector::radius;
 ```
@@ -477,11 +477,11 @@ qreal QAccelPlot::PlotInspector::radius;
 
 
 
-### property snapToSample {#property-snaptosample-12}
+### property snapToDataPoint {#property-snaptodatapoint-12}
 
-_Moves the crosshair to the closest matching sample. Default: false._ 
+_Moves the crosshair to the closest matching data point. Default: false._ 
 ```C++
-bool QAccelPlot::PlotInspector::snapToSample;
+bool QAccelPlot::PlotInspector::snapToDataPoint;
 ```
 
 
@@ -494,7 +494,7 @@ bool QAccelPlot::PlotInspector::snapToSample;
 
 ### property summaries {#property-summaries-12}
 
-_Adds Y statistics of the samples around the cursor to every row. Default: false._ 
+_Adds Y statistics of the data points around the cursor to every row. Default: false._ 
 ```C++
 bool QAccelPlot::PlotInspector::summaries;
 ```
@@ -524,7 +524,7 @@ qreal QAccelPlot::PlotInspector::summaryRadius;
 
 ### property validCount {#property-validcount-12}
 
-_Number of rows with a matching sample._ 
+_Number of rows with a matching data point._ 
 ```C++
 int QAccelPlot::PlotInspector::validCount;
 ```
@@ -719,11 +719,11 @@ void QAccelPlot::PlotInspector::refreshed;
 
 
 
-### signal snapToSampleChanged {#signal-snaptosamplechanged}
+### signal snapToDataPointChanged {#signal-snaptodatapointchanged}
 
-_Emitted when the snapToSample property changes._ 
+_Emitted when the snapToDataPoint property changes._ 
 ```C++
-void QAccelPlot::PlotInspector::snapToSampleChanged;
+void QAccelPlot::PlotInspector::snapToDataPointChanged;
 ```
 
 
@@ -950,7 +950,7 @@ QList< PlotSeries * > QAccelPlot::PlotInspector::includedSeries () const
 
 ### function interpolate {#function-interpolate-22}
 
-_Returns whether_ `NearestX` _and_`NearestY` _rows are interpolated between samples._
+_Returns whether_ `NearestX` _and_`NearestY` _rows are interpolated between data points._
 ```C++
 bool QAccelPlot::PlotInspector::interpolate () const
 ```
@@ -1157,7 +1157,7 @@ void QAccelPlot::PlotInspector::setIncludedSeries (
 
 ### function setInterpolate {#function-setinterpolate}
 
-_Enables or disables interpolation between consecutive samples._ 
+_Enables or disables interpolation between consecutive data points._ 
 ```C++
 void QAccelPlot::PlotInspector::setInterpolate (
     bool enabled
@@ -1223,11 +1223,11 @@ void QAccelPlot::PlotInspector::setRadius (
 
 
 
-### function setSnapToSample {#function-setsnaptosample}
+### function setSnapToDataPoint {#function-setsnaptodatapoint}
 
 _Enables or disables crosshair snapping._ 
 ```C++
-void QAccelPlot::PlotInspector::setSnapToSample (
+void QAccelPlot::PlotInspector::setSnapToDataPoint (
     bool enabled
 ) 
 ```
@@ -1274,11 +1274,11 @@ void QAccelPlot::PlotInspector::setSummaryRadius (
 
 
 
-### function snapToSample {#function-snaptosample-22}
+### function snapToDataPoint {#function-snaptodatapoint-22}
 
-_Returns whether the crosshair snaps to the closest matching sample._ 
+_Returns whether the crosshair snaps to the closest matching data point._ 
 ```C++
-bool QAccelPlot::PlotInspector::snapToSample () const
+bool QAccelPlot::PlotInspector::snapToDataPoint () const
 ```
 
 
@@ -1338,7 +1338,7 @@ qreal QAccelPlot::PlotInspector::summaryRadius () const
 
 ### function validCount {#function-validcount-22}
 
-_Returns the number of rows with a matching sample._ 
+_Returns the number of rows with a matching data point._ 
 ```C++
 int QAccelPlot::PlotInspector::validCount () const
 ```

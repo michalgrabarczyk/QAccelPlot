@@ -14,7 +14,6 @@
     <innerclass refid="structQAccelPlot_1_1BandEdgeRenderParams" prot="public">QAccelPlot::BandEdgeRenderParams</innerclass>
     <innerclass refid="classQAccelPlot_1_1BandEdges" prot="public">QAccelPlot::BandEdges</innerclass>
     <innerclass refid="classQAccelPlot_1_1BandMaterial" prot="public">QAccelPlot::BandMaterial</innerclass>
-    <innerclass refid="structQAccelPlot_1_1BandSamples" prot="public">QAccelPlot::BandSamples</innerclass>
     <innerclass refid="classQAccelPlot_1_1BandSeries" prot="public">QAccelPlot::BandSeries</innerclass>
     <innerclass refid="classQAccelPlot_1_1BarMaterial" prot="public">QAccelPlot::BarMaterial</innerclass>
     <innerclass refid="classQAccelPlot_1_1BarSeries" prot="public">QAccelPlot::BarSeries</innerclass>
@@ -28,6 +27,8 @@
     <innerclass refid="classQAccelPlot_1_1DashLine" prot="public">QAccelPlot::DashLine</innerclass>
     <innerclass refid="structQAccelPlot_1_1DashParameters" prot="public">QAccelPlot::DashParameters</innerclass>
     <innerclass refid="classQAccelPlot_1_1DataAnchor" prot="public">QAccelPlot::DataAnchor</innerclass>
+    <innerclass refid="structQAccelPlot_1_1DataPointRun" prot="public">QAccelPlot::DataPointRun</innerclass>
+    <innerclass refid="classQAccelPlot_1_1DataPointStore" prot="public">QAccelPlot::DataPointStore</innerclass>
     <innerclass refid="classQAccelPlot_1_1DataTexture" prot="public">QAccelPlot::DataTexture</innerclass>
     <innerclass refid="classQAccelPlot_1_1DataTextureMaterial" prot="public">QAccelPlot::DataTextureMaterial</innerclass>
     <innerclass refid="classQAccelPlot_1_1DataTransition" prot="public">QAccelPlot::DataTransition</innerclass>
@@ -49,6 +50,7 @@
     <innerclass refid="structQAccelPlot_1_1InspectionBounds" prot="public">QAccelPlot::InspectionBounds</innerclass>
     <innerclass refid="structQAccelPlot_1_1InspectionBracket" prot="public">QAccelPlot::InspectionBracket</innerclass>
     <innerclass refid="classQAccelPlot_1_1InspectionCache" prot="public">QAccelPlot::InspectionCache</innerclass>
+    <innerclass refid="structQAccelPlot_1_1InspectionDataPoint" prot="public">QAccelPlot::InspectionDataPoint</innerclass>
     <innerclass refid="structQAccelPlot_1_1InspectionHit" prot="public">QAccelPlot::InspectionHit</innerclass>
     <innerclass refid="classQAccelPlot_1_1InspectionIndex" prot="public">QAccelPlot::InspectionIndex</innerclass>
     <innerclass refid="structQAccelPlot_1_1InspectionMetric" prot="public">QAccelPlot::InspectionMetric</innerclass>
@@ -57,7 +59,6 @@
     <innerclass refid="structQAccelPlot_1_1InspectionRecord" prot="public">QAccelPlot::InspectionRecord</innerclass>
     <innerclass refid="structQAccelPlot_1_1InspectionRow" prot="public">QAccelPlot::InspectionRow</innerclass>
     <innerclass refid="classQAccelPlot_1_1InspectionRowModel" prot="public">QAccelPlot::InspectionRowModel</innerclass>
-    <innerclass refid="structQAccelPlot_1_1InspectionSample" prot="public">QAccelPlot::InspectionSample</innerclass>
     <innerclass refid="structQAccelPlot_1_1InspectionSource" prot="public">QAccelPlot::InspectionSource</innerclass>
     <innerclass refid="structQAccelPlot_1_1InspectionSummary" prot="public">QAccelPlot::InspectionSummary</innerclass>
     <innerclass refid="classQAccelPlot_1_1LineCurve" prot="public">QAccelPlot::LineCurve</innerclass>
@@ -93,7 +94,6 @@
     <innerclass refid="classQAccelPlot_1_1RectangleZoomOverlay" prot="public">QAccelPlot::RectangleZoomOverlay</innerclass>
     <innerclass refid="classQAccelPlot_1_1RectMaterial" prot="public">QAccelPlot::RectMaterial</innerclass>
     <innerclass refid="classQAccelPlot_1_1RectVertexCache" prot="public">QAccelPlot::RectVertexCache</innerclass>
-    <innerclass refid="structQAccelPlot_1_1SampleRun" prot="public">QAccelPlot::SampleRun</innerclass>
     <innerclass refid="classQAccelPlot_1_1SelectionRectangle" prot="public">QAccelPlot::SelectionRectangle</innerclass>
     <innerclass refid="classQAccelPlot_1_1SelectionTool" prot="public">QAccelPlot::SelectionTool</innerclass>
     <innerclass refid="classQAccelPlot_1_1SeriesInspection" prot="public">QAccelPlot::SeriesInspection</innerclass>
@@ -483,12 +483,12 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/MathUtils.hpp" line="63" column="16" bodyfile="QAccelPlot/src/QAccelPlot/MathUtils.hpp" bodystart="63" bodyend="66"/>
       </memberdef>
-      <memberdef kind="function" id="MathUtils_8hpp_1a6ea9aea4687bdc54130be63eb72fec23" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="MathUtils_8hpp_1a68c9b795539efc827a6a56ee9abc8045" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type>bool</type>
-        <definition>bool QAccelPlot::isValidSample</definition>
+        <definition>bool QAccelPlot::isValidCoordinate</definition>
         <argsstring>(double value, bool logScale) noexcept</argsstring>
-        <name>isValidSample</name>
-        <qualifiedname>QAccelPlot::isValidSample</qualifiedname>
+        <name>isValidCoordinate</name>
+        <qualifiedname>QAccelPlot::isValidCoordinate</qualifiedname>
         <param>
           <type>double</type>
           <declname>value</declname>
@@ -516,7 +516,7 @@
           <declname>chunk</declname>
         </param>
         <briefdescription>
-<para>Returns <computeroutput>true</computeroutput> when <emphasis>chunk</emphasis> contains no valid sample and can be skipped by hit tests. </para>
+<para>Returns <computeroutput>true</computeroutput> when <emphasis>chunk</emphasis> contains no valid data point and can be skipped by hit tests. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>

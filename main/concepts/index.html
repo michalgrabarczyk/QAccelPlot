@@ -451,10 +451,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#invalid-samples-and-gaps" class="md-nav__link">
+  <a href="#invalid-data-points-and-gaps" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Invalid samples and gaps
+        Invalid data points and gaps
       
     </span>
   </a>
@@ -1418,10 +1418,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#invalid-samples-and-gaps" class="md-nav__link">
+  <a href="#invalid-data-points-and-gaps" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Invalid samples and gaps
+        Invalid data points and gaps
       
     </span>
   </a>
@@ -1550,18 +1550,18 @@ rectangle index.</p>
 <code>barOffset</code>, and <code>baselineValue</code> shape the bars in the shader, and
 <code>orientation</code> selects vertical or horizontal bars. Ranged bars carry their
 own extent as (from, to, value), e.g. the bins of a histogram.</p>
-<h2 id="invalid-samples-and-gaps">Invalid samples and gaps<a class="headerlink" href="#invalid-samples-and-gaps" title="Permanent link">&para;</a></h2>
-<p><code>LineCurve</code> applies one invalid-sample contract to rendering, gradient fills,
+<h2 id="invalid-data-points-and-gaps">Invalid data points and gaps<a class="headerlink" href="#invalid-data-points-and-gaps" title="Permanent link">&para;</a></h2>
+<p><code>LineCurve</code> applies one invalid-data-point contract to rendering, gradient fills,
 dash patterns, transitions, auto-ranging, and hover hit testing. For the other
-series, see <a href="../cookbook/bands/#invalid-samples">bands</a>,
+series, see <a href="../cookbook/bands/#invalid-data-points">bands</a>,
 <a href="../cookbook/point-clouds/#invalid-points">point clouds</a>, and
 <a href="../cookbook/bar-charts/#invalid-bars">bars</a>.</p>
-<p>A sample is <strong>invalid</strong> when its X or Y coordinate is <code>NaN</code> or <code>±Inf</code>, or when a
+<p>A data point is <strong>invalid</strong> when its X or Y coordinate is <code>NaN</code> or <code>±Inf</code>, or when a
 coordinate is zero or negative on a logarithmic axis. Mark missing data by
-inserting a sample with a <code>NaN</code> coordinate. JavaScript <code>null</code> and <code>undefined</code>
+inserting a data point with a <code>NaN</code> coordinate. JavaScript <code>null</code> and <code>undefined</code>
 are not gap markers.</p>
 <p>Gap rendering is configured through the curve's <a href="../api/classQAccelPlot_1_1LineCurve/"><code>gaps</code></a> grouped
-property. <code>gaps.nanMode</code> selects how the line and fill treat invalid samples:</p>
+property. <code>gaps.nanMode</code> selects how the line and fill treat invalid data points:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">LineCurve</span> <span class="p">{</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">gaps.nanMode:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">NanGapMode</span><span class="p">.</span><span class="nx">Connect</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">}</span>
@@ -1576,27 +1576,27 @@ property. <code>gaps.nanMode</code> selects how the line and fill treat invalid 
 <tbody>
 <tr>
 <td><code>NanGapMode.Break</code> (default)</td>
-<td>No segment or fill is drawn to or from an invalid sample. Valid neighbors end squarely, and a valid sample isolated between two invalid samples draws no line.</td>
+<td>No segment or fill is drawn to or from an invalid data point. Valid neighbors end squarely, and a valid data point isolated between two invalid data points draws no line.</td>
 </tr>
 <tr>
 <td><code>NanGapMode.Connect</code></td>
-<td>Invalid samples are skipped and the line, fill, and hit test join the nearest valid samples.</td>
+<td>Invalid data points are skipped and the line, fill, and hit test join the nearest valid data points.</td>
 </tr>
 </tbody>
 </table>
-<p>Despite its name, <code>nanMode</code> applies to every invalid sample, including <code>±Inf</code>
+<p>Despite its name, <code>nanMode</code> applies to every invalid data point, including <code>±Inf</code>
 and non-positive log-axis values.</p>
 <p>In both modes:</p>
 <ul>
-<li><strong>Markers</strong> are never drawn for invalid samples.</li>
-<li><strong>Auto-ranging</strong> judges each coordinate on its own. A sample with a valid X
+<li><strong>Markers</strong> are never drawn for invalid data points.</li>
+<li><strong>Auto-ranging</strong> judges each coordinate on its own. A data point with a valid X
   and an invalid Y still extends the X range, so a dropout keeps its timestamp.
   If a dimension has no valid coordinate, the series clears that range.</li>
 <li><strong>Dash patterns</strong> continue across a gap; the gap contributes no dash length.</li>
-<li><strong><code>MorphTransition</code></strong> shows a sample that becomes invalid as a gap
-  immediately, and a sample that becomes valid jumps to its target instead of
+<li><strong><code>MorphTransition</code></strong> shows a data point that becomes invalid as a gap
+  immediately, and a data point that becomes valid jumps to its target instead of
   animating from <code>NaN</code>.</li>
-<li><strong>Hover</strong> never reports a hit on an invalid sample or across a break.</li>
+<li><strong>Hover</strong> never reports a hit on an invalid data point or across a break.</li>
 </ul>
 <h2 id="composition-and-overlays">Composition and overlays<a class="headerlink" href="#composition-and-overlays" title="Permanent link">&para;</a></h2>
 <p>Ordinary QML items can be placed above the grid and series. <code>DataAnchor</code> maps

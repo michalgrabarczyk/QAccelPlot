@@ -49,7 +49,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| class | [**SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) <br>_Data queries for one series: nearest samples, brackets, region statistics, and index pages._  |
+| class | [**SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) <br>_Data queries for one series: nearest data points, brackets, region statistics, and index pages._  |
 
 
 

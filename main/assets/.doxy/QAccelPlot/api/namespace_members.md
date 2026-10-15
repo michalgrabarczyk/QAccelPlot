@@ -13,8 +13,6 @@
 ## c
 
 * **collect** ([**QAccelPlot::InspectionScan**](namespaceQAccelPlot_1_1InspectionScan.md))
-* **compactValidPoints** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
-* **countInvalidPoints** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
 * **createNode** ([**QAccelPlot::LineStroke**](namespaceQAccelPlot_1_1LineStroke.md))
 
 
@@ -52,7 +50,7 @@
 * **InspectionStatus** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **isValidPoint** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
 * **isEmptyChunk** ([**QAccelPlot**](namespaceQAccelPlot.md))
-* **isValidSample** ([**QAccelPlot**](namespaceQAccelPlot.md))
+* **isValidCoordinate** ([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
 ## k

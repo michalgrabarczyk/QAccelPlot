@@ -97,17 +97,12 @@ public:
     Q_INVOKABLE QPointF pointAt(int index) const;
     Q_INVOKABLE qreal valueAt(int index) const;
 
-    void setData(const double* xyInterleaved, int pointCount) override;
-    void setData(std::vector<double>&& xyInterleaved, int pointCount) override;
     void setData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
-    void setDataF(const float* xyInterleaved, int pointCount) override;
-    void setDataF(std::vector<float>&& xyInterleaved, int pointCount) override;
     void setDataF(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
+    using PlotSeries::postData;
     using PlotSeries::setData;
     using PlotSeries::setDataF;
-    void postData(std::vector<double>&& xyInterleaved, int pointCount) override;
     void postData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
-    void postData(std::vector<float>&& xyInterleaved, int pointCount) override;
     void postData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
     Q_INVOKABLE void clearData() override;
 
@@ -133,9 +128,9 @@ protected:
     void hoverLeaveEvent(QHoverEvent* event) override;
 
 protected:
+    void applyDataPoints(DataPointInput&& input) override;
     void onAxisScaleChanged() override;
-    DataRanges computeDataRanges() const override;
-    void onAxisRangeChanged() override;
+    void onDataPointsChanged(DataChange change, int previousCount) override;
 
 private:
     Q_SLOT void onColormapUpdated();
@@ -146,19 +141,15 @@ private:
         int stride{2};
     };
 
-    bool validateDataArguments(std::size_t xyFloatCount, std::size_t valueCount, int pointCount) const;
-    bool validateRawDataArguments(const void* xyInterleaved, int pointCount) const;
+    bool validateValues(std::size_t valueCount, int pointCount) const;
     void applyData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
     void applyFloatData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
-    void storeInterleaved(std::vector<float>&& xyInterleaved, const std::vector<float>& values, int pointCount);
-    void storeValues(const std::vector<float>& values);
-    void finishDataChange(int previousCount, bool hadValues, bool positionsChanged);
+    void applyDoubleData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
+    void finishValueChange(int previousCount);
     void updateValueRange();
-    void reconnectAxisSignals();
     void reconnectColormapSignals();
     void refreshColorStops();
     void setHoveredIndex(int index);
-    int stride() const;
     int hoverPointCount() const;
     void invalidateSpatialIndex();
     bool spatialIndexReady(PointSpatialIndex::Mapping mapping) const;
@@ -174,15 +165,8 @@ private:
     };
 
     int nearestPoint(const HoverQuery& query) const;
-    void applyDoubleData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
     void animateValues(std::vector<float>&& values);
-    void rebuildRenderData();
-    void updateRenderOrigin(const std::vector<double>& points, std::size_t pointStride);
-    bool hasPreciseData() const;
-    void promotePositionsToDoubles();
-    float storedValue(std::size_t index) const;
     std::vector<double> interleavedData() const;
-    bool animating() const;
     Points drawnPoints() const;
     void startTransition(Points&& drawn);
     void advanceTransition();
@@ -198,36 +182,15 @@ private:
     qreal hoverRadius_{6.0};
     int hoveredIndex_{-1};
     std::unique_ptr<TransitionRunner> transition_;
-    // Points drawn instead of the data while a transition runs: stride() doubles for each point
-    // of the data. Empty otherwise.
-    std::vector<double> transitionPoints_;
+    // The previous transition frame, reused for the next one.
+    std::vector<double> frameBuffer_;
 
-    // Precise interleaved (x, y) pairs, populated by the double setData() overloads and by every
-    // data update while a transition is enabled. Empty when the float *F APIs supplied the data,
-    // which is already single precision.
-    std::vector<double> dataD_;
-    // Per-point values kept alongside dataD_, so the upload buffer can be rebuilt when an
-    // axis switches scale without the caller resupplying them.
-    std::vector<float> valuesF_;
-    // Origin subtracted from dataD_ when building data_, so the float upload keeps its
-    // resolution near the data. Zero for a dimension that is unshifted or logarithmic.
-    qreal renderOriginX_{0.0};
-    qreal renderOriginY_{0.0};
-    bool renderLogScaleX_{false};
-    bool renderLogScaleY_{false};
-
-    // The points as drawn: (x, y) per point, or (x, y, value) when hasValues_ is true. This buffer
-    // is uploaded to the GPU, and hover hit tests search it.
-    // It holds the float data itself, or dataD_ relative to the render origin, or, during an
-    // animation, the transition points relative to the render origin.
-    std::vector<float> data_;
-    int pointCount_{0};
-    bool hasValues_{false};
+    // hasValues() as countChanged() last reported it.
+    bool reportedHasValues_{false};
     qreal dataValueMin_{0.0};
     qreal dataValueMax_{1.0};
-
-    // True when the data texture must be re-uploaded on the next paint.
-    bool dataChanged_{true};
+    // Render revision of the data points last uploaded to the GPU.
+    std::uint64_t uploadedRevision_{0};
     // Whether the last frame held more records than the GPU buffers do; warns on each crossing.
     bool overCapacity_{false};
 
@@ -237,13 +200,14 @@ private:
 
     mutable PointSpatialIndex spatialIndex_;
     mutable bool spatialIndexValid_{false};
+    // Render revision of the data points the spatial index holds.
+    mutable std::uint64_t indexedRevision_{0};
     std::unique_ptr<Internal::HoverIndexBudget> spatialIndexBudget_;
     // The last hover query and its answer. Qt tests contains() several times per hover event
     // before the handler asks again, each time at the same position.
     mutable std::optional<HoverQuery> lastHoverQuery_;
     mutable int lastHoverIndex_{-1};
 
-    QList<QMetaObject::Connection> axisConnections_;
     QList<QMetaObject::Connection> gradientConnections_;
 };
 

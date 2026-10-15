@@ -1466,10 +1466,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#function-isvalidsample" class="md-nav__link">
+  <a href="#function-isvalidcoordinate" class="md-nav__link">
     <span class="md-ellipsis">
       
-        function isValidSample
+        function isValidCoordinate
       
     </span>
   </a>
@@ -1619,7 +1619,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">namespace</td>
-<td style="text-align: left;"><a href="../namespaceQAccelPlot_1_1LineCurveGapFilter/"><strong>LineCurveGapFilter</strong></a> <br><em>Stateless helpers implementing the invalid-sample contract shared by</em> <a href="../classQAccelPlot_1_1LineCurve/"><em><strong>LineCurve</strong></em></a> <em>subsystems.</em></td>
+<td style="text-align: left;"><a href="../namespaceQAccelPlot_1_1LineCurveGapFilter/"><strong>LineCurveGapFilter</strong></a> <br><em>Stateless helpers implementing the invalid-data-point contract shared by</em> <a href="../classQAccelPlot_1_1LineCurve/"><em><strong>LineCurve</strong></em></a> <em>subsystems.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">namespace</td>
@@ -1670,7 +1670,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1BandEdgeMaterial/"><strong>BandEdgeMaterial</strong></a> <br><em>Line material for the lower or upper edge line of a band, reading</em> <code>(x, low, high)</code> <em>samples.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1BandEdgeMaterial/"><strong>BandEdgeMaterial</strong></a> <br><em>Line material for the lower or upper edge line of a band, reading</em> <code>(x, low, high)</code> <em>data points.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">struct</td>
@@ -1686,11 +1686,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1BandMaterial/"><strong>BandMaterial</strong></a> <br><em>QSGMaterial that fills a band between the low and high values of</em> <code>(x, low, high)</code> <em>samples.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">struct</td>
-<td style="text-align: left;"><a href="../structQAccelPlot_1_1BandSamples/"><strong>BandSamples</strong></a> <br><em>Read-only view over interleaved</em> <code>(x, low, high)</code> <em>band samples in float or double precision.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1BandMaterial/"><strong>BandMaterial</strong></a> <br><em>QSGMaterial that fills a band between the low and high values of</em> <code>(x, low, high)</code> <em>data points.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
@@ -1745,6 +1741,14 @@
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1DataAnchor/"><strong>DataAnchor</strong></a> <br><em>A QQuickItem that tracks a data-coordinate rectangle in pixel space.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../structQAccelPlot_1_1DataPointRun/"><strong>DataPointRun</strong></a> <br><em>Contiguous range of valid curve data points, used to break fills and hit tests at gaps.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">class</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataPointStore/"><strong>DataPointStore</strong></a> <br><em>Holds the data points of one series and derives everything that depends only on them.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">class</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTexture/"><strong>DataTexture</strong></a> <br><em>Series data uploaded to the GPU as an RGBA8888 texture, one float per texel.</em></td>
 </tr>
@@ -1766,7 +1770,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">struct</td>
-<td style="text-align: left;"><a href="../structQAccelPlot_1_1FillSamples/"><strong>FillSamples</strong></a> <br><em>Samples of a gradient fill: one group per valid-sample run, broken at gaps.</em></td>
+<td style="text-align: left;"><a href="../structQAccelPlot_1_1FillSamples/"><strong>FillSamples</strong></a> <br><em>Data points of a gradient fill: one group per run of valid data points, broken at gaps.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">struct</td>
@@ -1822,7 +1826,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">struct</td>
-<td style="text-align: left;"><a href="../structQAccelPlot_1_1InspectionBracket/"><strong>InspectionBracket</strong></a> <br><em>The valid samples on either side of a position on one axis.</em></td>
+<td style="text-align: left;"><a href="../structQAccelPlot_1_1InspectionBracket/"><strong>InspectionBracket</strong></a> <br><em>The valid data points on either side of a position on one axis.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
@@ -1830,11 +1834,15 @@
 </tr>
 <tr>
 <td style="text-align: right;">struct</td>
-<td style="text-align: left;"><a href="../structQAccelPlot_1_1InspectionHit/"><strong>InspectionHit</strong></a> <br><em>Nearest-sample result: source index and pixel distance, or index -1.</em></td>
+<td style="text-align: left;"><a href="../structQAccelPlot_1_1InspectionDataPoint/"><strong>InspectionDataPoint</strong></a> <br><em>One XY source data point returned by an inspection query.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../structQAccelPlot_1_1InspectionHit/"><strong>InspectionHit</strong></a> <br><em>Nearest-data-point result: source index and pixel distance, or index -1.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1InspectionIndex/"><strong>InspectionIndex</strong></a> <br><em>Immutable k-d tree over the valid samples of a series, with their order along each axis.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1InspectionIndex/"><strong>InspectionIndex</strong></a> <br><em>Immutable k-d tree over the valid data points of a series, with their order along each axis.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">struct</td>
@@ -1842,7 +1850,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">struct</td>
-<td style="text-align: left;"><a href="../structQAccelPlot_1_1InspectionNeighbors/"><strong>InspectionNeighbors</strong></a> <br><em>Source indices of the valid samples on either side of an X value, or -1.</em></td>
+<td style="text-align: left;"><a href="../structQAccelPlot_1_1InspectionNeighbors/"><strong>InspectionNeighbors</strong></a> <br><em>Source indices of the valid data points on either side of an X value, or -1.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">struct</td>
@@ -1862,15 +1870,11 @@
 </tr>
 <tr>
 <td style="text-align: right;">struct</td>
-<td style="text-align: left;"><a href="../structQAccelPlot_1_1InspectionSample/"><strong>InspectionSample</strong></a> <br><em>One XY source sample returned by an inspection query.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">struct</td>
 <td style="text-align: left;"><a href="../structQAccelPlot_1_1InspectionSource/"><strong>InspectionSource</strong></a> <br><em>Read-only view over the XY records a series exposes to inspection queries.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">struct</td>
-<td style="text-align: left;"><a href="../structQAccelPlot_1_1InspectionSummary/"><strong>InspectionSummary</strong></a> <br><em>Sample-weighted Y statistics over the valid samples inside a region.</em></td>
+<td style="text-align: left;"><a href="../structQAccelPlot_1_1InspectionSummary/"><strong>InspectionSummary</strong></a> <br><em>Data-point-weighted Y statistics over the valid data points inside a region.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
@@ -2005,10 +2009,6 @@
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1RectangleZoomOverlay/"><strong>RectangleZoomOverlay</strong></a> <br></td>
 </tr>
 <tr>
-<td style="text-align: right;">struct</td>
-<td style="text-align: left;"><a href="../structQAccelPlot_1_1SampleRun/"><strong>SampleRun</strong></a> <br><em>Contiguous range of valid curve samples, used to break fills and hit tests at gaps.</em></td>
-</tr>
-<tr>
 <td style="text-align: right;">class</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1SelectionRectangle/"><strong>SelectionRectangle</strong></a> <br><em>Draws the gesture or the selected region of a</em> <a href="../classQAccelPlot_1_1SelectionTool/"><em><strong>SelectionTool</strong></em></a> <em>, clipped to the plot area.</em></td>
 </tr>
@@ -2018,7 +2018,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1SeriesInspection/"><strong>SeriesInspection</strong></a> <br><em>Data queries for one series: nearest samples, brackets, region statistics, and index pages.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1SeriesInspection/"><strong>SeriesInspection</strong></a> <br><em>Data queries for one series: nearest data points, brackets, region statistics, and index pages.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
@@ -2038,7 +2038,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">struct</td>
-<td style="text-align: left;"><a href="../structQAccelPlot_1_1SummaryAccumulator/"><strong>SummaryAccumulator</strong></a> <br><em>Running sample-weighted Y statistics that can be merged across disjoint sample sets.</em></td>
+<td style="text-align: left;"><a href="../structQAccelPlot_1_1SummaryAccumulator/"><strong>SummaryAccumulator</strong></a> <br><em>Running data-point-weighted Y statistics that can be merged across disjoint data point sets.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
@@ -2119,11 +2119,11 @@
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>
-<td style="text-align: left;"><a href="#function-isemptychunk"><strong>isEmptyChunk</strong></a> (const <a href="../structQAccelPlot_1_1CurveChunk/"><strong>CurveChunk</strong></a> &amp; chunk) <br><em>Returns</em> <code>true</code> <em>when__chunk</em> <em>contains no valid sample and can be skipped by hit tests.</em></td>
+<td style="text-align: left;"><a href="#function-isemptychunk"><strong>isEmptyChunk</strong></a> (const <a href="../structQAccelPlot_1_1CurveChunk/"><strong>CurveChunk</strong></a> &amp; chunk) <br><em>Returns</em> <code>true</code> <em>when__chunk</em> <em>contains no valid data point and can be skipped by hit tests.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>
-<td style="text-align: left;"><a href="#function-isvalidsample"><strong>isValidSample</strong></a> (double value, bool logScale) noexcept<br></td>
+<td style="text-align: left;"><a href="#function-isvalidcoordinate"><strong>isValidCoordinate</strong></a> (double value, bool logScale) noexcept<br></td>
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>
@@ -2211,15 +2211,15 @@
 <hr>
 
 <h3 id="function-isemptychunk">function isEmptyChunk<a class="headerlink" href="#function-isemptychunk" title="Permanent link">&para;</a></h3>
-<p><em>Returns</em> <code>true</code> <em>when__chunk</em> <em>contains no valid sample and can be skipped by hit tests.</em>
+<p><em>Returns</em> <code>true</code> <em>when__chunk</em> <em>contains no valid data point and can be skipped by hit tests.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">isEmptyChunk</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">CurveChunk</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">chunk</span>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
-<h3 id="function-isvalidsample">function isValidSample<a class="headerlink" href="#function-isvalidsample" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">isValidSample</span><span class="w"> </span><span class="p">(</span>
+<h3 id="function-isvalidcoordinate">function isValidCoordinate<a class="headerlink" href="#function-isvalidcoordinate" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">isValidCoordinate</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">value</span><span class="p">,</span>
 <a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">logScale</span>
 <a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>

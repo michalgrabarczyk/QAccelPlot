@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Draw confidence intervals, forecast ranges, and min/max or mean ± σ envelopes in QAccelPlot with BandSeries: fills between a low and a high value, edge lines, hover, and streaming millions of samples.">
+        <meta name="description" content="Draw confidence intervals, forecast ranges, and min/max or mean ± σ envelopes in QAccelPlot with BandSeries: fills between a low and a high value, edge lines, hover, and streaming millions of data points.">
       
       
       
@@ -64,7 +64,7 @@
     
     
 
-<meta property="og:description" content="Draw confidence intervals, forecast ranges, and min/max or mean ± σ envelopes in QAccelPlot with BandSeries: fills between a low and a high value, edge lines, hover, and streaming millions of samples.">
+<meta property="og:description" content="Draw confidence intervals, forecast ranges, and min/max or mean ± σ envelopes in QAccelPlot with BandSeries: fills between a low and a high value, edge lines, hover, and streaming millions of data points.">
 
 <script type="application/ld+json">
 {
@@ -935,10 +935,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#invalid-samples" class="md-nav__link">
+  <a href="#invalid-data-points" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Invalid samples
+        Invalid data points
       
     </span>
   </a>
@@ -1420,10 +1420,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#invalid-samples" class="md-nav__link">
+  <a href="#invalid-data-points" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Invalid samples
+        Invalid data points
       
     </span>
   </a>
@@ -1481,7 +1481,7 @@ min/max or mean ± σ envelopes. Draw the center line with a separate
 <code>LineCurve</code>.</p>
 <p>Panning and zooming a band costs nothing on the CPU, whatever its size. Dashed
 edge lines are the exception: zooming recomputes their dash positions in one
-pass over the samples.</p>
+pass over the data points.</p>
 <h2 id="draw-a-band-around-a-line">Draw a band around a line<a class="headerlink" href="#draw-a-band-around-a-line" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Plot</span> <span class="p">{</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="kd">id: plot</span>
@@ -1507,7 +1507,7 @@ pass over the samples.</p>
 </code></pre></div>
 <p>Declare the band before the line so the line is drawn on top. Nested intervals
 are separate bands, widest first.</p>
-<p>At each sample the band spans from the smaller to the larger of <code>low</code> and
+<p>At each data point the band spans from the smaller to the larger of <code>low</code> and
 <code>high</code>, so swapped values still fill correctly.</p>
 <p>The default legend shows a <code>Fill</code> swatch in the band's <code>color</code>.</p>
 <h2 id="edge-lines">Edge lines<a class="headerlink" href="#edge-lines" title="Permanent link">&para;</a></h2>
@@ -1545,14 +1545,14 @@ are separate bands, widest first.</p>
 </tbody>
 </table>
 <h2 id="feed-data-from-c">Feed data from C++<a class="headerlink" href="#feed-data-from-c" title="Permanent link">&para;</a></h2>
-<p>Samples are interleaved <code>(x, low, high)</code> triples. The data API matches
-<code>LineCurve</code> with three values per sample:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">samples</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">{};</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">samples</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="n">count</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+<p>Data points are interleaved <code>(x, low, high)</code> triples. The data API matches
+<code>LineCurve</code> with three values per data point:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">dataPoints</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">{};</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">dataPoints</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="n">count</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">count</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="n">samples</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">samples</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="p">{</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">mean</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">mean</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma</span><span class="p">[</span><span class="n">i</span><span class="p">]});</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="n">dataPoints</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">dataPoints</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="p">{</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">mean</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">mean</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma</span><span class="p">[</span><span class="n">i</span><span class="p">]});</span>
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">}</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">band</span><span class="o">-&gt;</span><span class="n">setData</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">samples</span><span class="p">),</span><span class="w"> </span><span class="n">count</span><span class="p">);</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">band</span><span class="o">-&gt;</span><span class="n">setData</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">dataPoints</span><span class="p">),</span><span class="w"> </span><span class="n">count</span><span class="p">);</span>
 </code></pre></div>
 <p>For float buffers, worker-thread handoff, and data bounds, see
 <a href="../../performance/#select-the-data-path">Select the data path</a>.</p>
@@ -1561,10 +1561,10 @@ are separate bands, widest first.</p>
   viewport, so epoch timestamps stay precise. <code>setDataF()</code> stores floats.</li>
 <li><code>postData()</code> hands a buffer over from any thread without copying it.</li>
 <li><code>setData(xs, lows, highs)</code> takes three separate arrays, from QML or C++.</li>
-<li><code>appendData(x, low, high)</code> adds one sample.</li>
+<li><code>appendData(x, low, high)</code> adds one data point.</li>
 </ul>
-<h2 id="invalid-samples">Invalid samples<a class="headerlink" href="#invalid-samples" title="Permanent link">&para;</a></h2>
-<p>A sample is invalid when <code>x</code>, <code>low</code>, or <code>high</code> is <code>NaN</code> or <code>±Inf</code>, or is not
+<h2 id="invalid-data-points">Invalid data points<a class="headerlink" href="#invalid-data-points" title="Permanent link">&para;</a></h2>
+<p>A data point is invalid when <code>x</code>, <code>low</code>, or <code>high</code> is <code>NaN</code> or <code>±Inf</code>, or is not
 strictly positive on a logarithmic axis. The fill and the edge lines leave a
 gap there. Auto-ranging skips invalid values one by one.</p>
 <h2 id="hover">Hover<a class="headerlink" href="#hover" title="Permanent link">&para;</a></h2>
@@ -1578,8 +1578,8 @@ a band to leave hover to the band:</p>
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="p">}</span>
 </code></pre></div>
 <h2 id="limits">Limits<a class="headerlink" href="#limits" title="Permanent link">&para;</a></h2>
-<p>At most 16,777,216 (2^24) samples are drawn, fewer on GPUs whose maximum
-texture size is below 6144. Samples beyond the limit are not drawn, and a
+<p>At most 16,777,216 (2^24) data points are drawn, fewer on GPUs whose maximum
+texture size is below 6144. Data points beyond the limit are not drawn, and a
 warning is logged once.</p>
 <p>Complete source: <a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/bands"><code>examples/plot_types/bands</code></a></p>
 

@@ -1289,6 +1289,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#variable-datapoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable dataPoint
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#variable-hassummary" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1337,17 +1348,6 @@
     <span class="md-ellipsis">
       
         variable pixelPosition
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#variable-sample" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        variable sample
       
     </span>
   </a>
@@ -1436,6 +1436,10 @@
 </thead>
 <tbody>
 <tr>
+<td style="text-align: right;"><a href="../structQAccelPlot_1_1InspectionDataPoint/"><strong>InspectionDataPoint</strong></a></td>
+<td style="text-align: left;"><a href="#variable-datapoint"><strong>dataPoint</strong></a>  <br><em>Data point at the cursor; invalid for selection rows.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">bool</td>
 <td style="text-align: left;"><a href="#variable-hassummary"><strong>hasSummary</strong></a>   = <code>{false}</code><br><em>Whether</em> <code>summary</code> <em>was requested.</em></td>
 </tr>
@@ -1453,11 +1457,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">QPointF</td>
-<td style="text-align: left;"><a href="#variable-pixelposition"><strong>pixelPosition</strong></a>  <br><em>Sample position in plot-local logical pixels.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;"><a href="../structQAccelPlot_1_1InspectionSample/"><strong>InspectionSample</strong></a></td>
-<td style="text-align: left;"><a href="#variable-sample"><strong>sample</strong></a>  <br><em>Sample at the cursor; invalid for selection rows.</em></td>
+<td style="text-align: left;"><a href="#variable-pixelposition"><strong>pixelPosition</strong></a>  <br><em>Data point position in plot-local logical pixels.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">QPointer&lt; <a href="../classQAccelPlot_1_1PlotSeries/"><strong>PlotSeries</strong></a> &gt;</td>
@@ -1469,48 +1469,48 @@
 </tr>
 <tr>
 <td style="text-align: right;">QString</td>
-<td style="text-align: left;"><a href="#variable-xtext"><strong>xText</strong></a>  <br><em>Sample X formatted by the series' X axis.</em></td>
+<td style="text-align: left;"><a href="#variable-xtext"><strong>xText</strong></a>  <br><em>Data point X formatted by the series' X axis.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">QString</td>
-<td style="text-align: left;"><a href="#variable-ytext"><strong>yText</strong></a>  <br><em>Sample Y formatted by the series' Y axis.</em></td>
+<td style="text-align: left;"><a href="#variable-ytext"><strong>yText</strong></a>  <br><em>Data point Y formatted by the series' Y axis.</em></td>
 </tr>
 </tbody>
 </table>
 <h2 id="public-attributes-documentation">Public Attributes Documentation<a class="headerlink" href="#public-attributes-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="variable-datapoint">variable dataPoint<a class="headerlink" href="#variable-datapoint" title="Permanent link">&para;</a></h3>
+<p><em>Data point at the cursor; invalid for selection rows.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">InspectionDataPoint</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionRow</span><span class="o">::</span><span class="n">dataPoint</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="variable-hassummary">variable hasSummary<a class="headerlink" href="#variable-hassummary" title="Permanent link">&para;</a></h3>
 <p><em>Whether</em> <code>summary</code> <em>was requested.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionRow</span><span class="o">::</span><span class="n">hasSummary</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionRow</span><span class="o">::</span><span class="n">hasSummary</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-maximumtext">variable maximumText<a class="headerlink" href="#variable-maximumtext" title="Permanent link">&para;</a></h3>
 <p><em>Summary maximum formatted by the series' Y axis.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">QString</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionRow</span><span class="o">::</span><span class="n">maximumText</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">QString</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionRow</span><span class="o">::</span><span class="n">maximumText</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-meantext">variable meanText<a class="headerlink" href="#variable-meantext" title="Permanent link">&para;</a></h3>
 <p><em>Summary mean formatted by the series' Y axis.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">QString</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionRow</span><span class="o">::</span><span class="n">meanText</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">QString</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionRow</span><span class="o">::</span><span class="n">meanText</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-minimumtext">variable minimumText<a class="headerlink" href="#variable-minimumtext" title="Permanent link">&para;</a></h3>
 <p><em>Summary minimum formatted by the series' Y axis.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">QString</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionRow</span><span class="o">::</span><span class="n">minimumText</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">QString</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionRow</span><span class="o">::</span><span class="n">minimumText</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-pixelposition">variable pixelPosition<a class="headerlink" href="#variable-pixelposition" title="Permanent link">&para;</a></h3>
-<p><em>Sample position in plot-local logical pixels.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">QPointF</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionRow</span><span class="o">::</span><span class="n">pixelPosition</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="variable-sample">variable sample<a class="headerlink" href="#variable-sample" title="Permanent link">&para;</a></h3>
-<p><em>Sample at the cursor; invalid for selection rows.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">InspectionSample</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionRow</span><span class="o">::</span><span class="n">sample</span><span class="p">;</span>
+<p><em>Data point position in plot-local logical pixels.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">QPointF</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionRow</span><span class="o">::</span><span class="n">pixelPosition</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
@@ -1527,13 +1527,13 @@
 <hr>
 
 <h3 id="variable-xtext">variable xText<a class="headerlink" href="#variable-xtext" title="Permanent link">&para;</a></h3>
-<p><em>Sample X formatted by the series' X axis.</em> 
+<p><em>Data point X formatted by the series' X axis.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">QString</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionRow</span><span class="o">::</span><span class="n">xText</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-ytext">variable yText<a class="headerlink" href="#variable-ytext" title="Permanent link">&para;</a></h3>
-<p><em>Sample Y formatted by the series' Y axis.</em> 
+<p><em>Data point Y formatted by the series' Y axis.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">QString</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionRow</span><span class="o">::</span><span class="n">yText</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>

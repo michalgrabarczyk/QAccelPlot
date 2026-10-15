@@ -1433,6 +1433,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#function-datapointat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function dataPointAt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-indexbytes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1532,17 +1543,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#function-sampleat" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        function sampleAt
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#function-status-22" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1621,7 +1621,7 @@
 
 <h1 id="class-qaccelplotseriesinspection">Class QAccelPlot::SeriesInspection<a class="headerlink" href="#class-qaccelplotseriesinspection" title="Permanent link">&para;</a></h1>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="./"><strong>SeriesInspection</strong></a></p>
-<p><em>Data queries for one series: nearest samples, brackets, region statistics, and index pages.</em> <a href="#detailed-description">More...</a></p>
+<p><em>Data queries for one series: nearest data points, brackets, region statistics, and index pages.</em> <a href="#detailed-description">More...</a></p>
 <ul>
 <li><code>#include &lt;SeriesInspection.hpp&gt;</code></li>
 </ul>
@@ -1648,11 +1648,11 @@
 </tr>
 <tr>
 <td style="text-align: right;">property QML_ANONYMOUSQAccelPlot::InspectionNS::Status</td>
-<td style="text-align: left;"><a href="./#property-status-12"><strong>status</strong></a>  <br><em>Readiness for sample queries:</em> <code>Ready</code> <em>,</em><code>Idle</code> <em>,</em><code>Preparing</code> <em>,</em><code>Unsupported</code> <em>, or</em><code>Unavailable</code> <em>.</em></td>
+<td style="text-align: left;"><a href="./#property-status-12"><strong>status</strong></a>  <br><em>Readiness for data point queries:</em> <code>Ready</code> <em>,</em><code>Idle</code> <em>,</em><code>Preparing</code> <em>,</em><code>Unsupported</code> <em>, or</em><code>Unavailable</code> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property bool</td>
-<td style="text-align: left;"><a href="./#property-supported-12"><strong>supported</strong></a>  <br><em>Whether the series has XY records that sample queries can search.</em></td>
+<td style="text-align: left;"><a href="./#property-supported-12"><strong>supported</strong></a>  <br><em>Whether the series has XY records that data point queries can search.</em></td>
 </tr>
 </tbody>
 </table>
@@ -1682,11 +1682,15 @@
 <tbody>
 <tr>
 <td style="text-align: right;">Q_INVOKABLE::QAccelPlot::InspectionBracket</td>
-<td style="text-align: left;"><a href="#function-bracketbyx"><strong>bracketByX</strong></a> (qreal pixelX) <br><em>Returns the valid samples on either side of</em> <em>pixelX</em> <em>and the point between them.</em></td>
+<td style="text-align: left;"><a href="#function-bracketbyx"><strong>bracketByX</strong></a> (qreal pixelX) <br><em>Returns the valid data points on either side of</em> <em>pixelX</em> <em>and the point between them.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">Q_INVOKABLE::QAccelPlot::InspectionBracket</td>
-<td style="text-align: left;"><a href="#function-bracketbyy"><strong>bracketByY</strong></a> (qreal pixelY) <br><em>Returns the valid samples whose Y is on either side of</em> <em>pixelY</em> <em>and the point between them.</em></td>
+<td style="text-align: left;"><a href="#function-bracketbyy"><strong>bracketByY</strong></a> (qreal pixelY) <br><em>Returns the valid data points whose Y is on either side of</em> <em>pixelY</em> <em>and the point between them.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">Q_INVOKABLE::QAccelPlot::InspectionDataPoint</td>
+<td style="text-align: left;"><a href="#function-datapointat"><strong>dataPointAt</strong></a> (int index) const<br><em>Returns the record at</em> <em>index</em> <em>;</em><code>NoMatch</code> <em>with its raw coordinates when the record is invalid.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">Q_INVOKABLE quint64</td>
@@ -1701,16 +1705,16 @@
 <td style="text-align: left;"><a href="#function-maximumpagesize-22"><strong>maximumPageSize</strong></a> () const<br><em>Returns the largest page returned by</em> <code>indices()</code> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">Q_INVOKABLE::QAccelPlot::InspectionSample</td>
-<td style="text-align: left;"><a href="#function-nearest"><strong>nearest</strong></a> (const QPointF &amp; position, qreal radius=10) <br><em>Returns the valid sample nearest to</em> <em>position</em> <em>within__radius</em> <em>pixels on screen.</em></td>
+<td style="text-align: right;">Q_INVOKABLE::QAccelPlot::InspectionDataPoint</td>
+<td style="text-align: left;"><a href="#function-nearest"><strong>nearest</strong></a> (const QPointF &amp; position, qreal radius=10) <br><em>Returns the valid data point nearest to</em> <em>position</em> <em>within__radius</em> <em>pixels on screen.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">Q_INVOKABLE::QAccelPlot::InspectionSample</td>
-<td style="text-align: left;"><a href="#function-nearestbyx"><strong>nearestByX</strong></a> (qreal pixelX, qreal radius=std::numeric_limits&lt; qreal &gt;::infinity()) <br><em>Returns the valid sample nearest to</em> <em>pixelX</em> <em>horizontally, within__radius</em> <em>pixels.</em></td>
+<td style="text-align: right;">Q_INVOKABLE::QAccelPlot::InspectionDataPoint</td>
+<td style="text-align: left;"><a href="#function-nearestbyx"><strong>nearestByX</strong></a> (qreal pixelX, qreal radius=std::numeric_limits&lt; qreal &gt;::infinity()) <br><em>Returns the valid data point nearest to</em> <em>pixelX</em> <em>horizontally, within__radius</em> <em>pixels.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">Q_INVOKABLE::QAccelPlot::InspectionSample</td>
-<td style="text-align: left;"><a href="#function-nearestbyy"><strong>nearestByY</strong></a> (qreal pixelY, qreal radius=std::numeric_limits&lt; qreal &gt;::infinity()) <br><em>Returns the valid sample nearest to</em> <em>pixelY</em> <em>vertically, within__radius</em> <em>pixels.</em></td>
+<td style="text-align: right;">Q_INVOKABLE::QAccelPlot::InspectionDataPoint</td>
+<td style="text-align: left;"><a href="#function-nearestbyy"><strong>nearestByY</strong></a> (qreal pixelY, qreal radius=std::numeric_limits&lt; qreal &gt;::infinity()) <br><em>Returns the valid data point nearest to</em> <em>pixelY</em> <em>vertically, within__radius</em> <em>pixels.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">Q_INVOKABLE void</td>
@@ -1725,24 +1729,20 @@
 <td style="text-align: left;"><a href="#function-recordatposition"><strong>recordAtPosition</strong></a> (const QPointF &amp; position) const<br><em>Returns the native record drawn at the series-local</em> <em>position</em> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">Q_INVOKABLE::QAccelPlot::InspectionSample</td>
-<td style="text-align: left;"><a href="#function-sampleat"><strong>sampleAt</strong></a> (int index) const<br><em>Returns the record at</em> <em>index</em> <em>;</em><code>NoMatch</code> <em>with its raw coordinates when the record is invalid.</em></td>
-</tr>
-<tr>
 <td style="text-align: right;"><a href="../namespaceQAccelPlot_1_1InspectionNS/#enum-status"><strong>InspectionStatus</strong></a></td>
-<td style="text-align: left;"><a href="#function-status-22"><strong>status</strong></a> () const<br><em>Returns the readiness for sample queries.</em></td>
+<td style="text-align: left;"><a href="#function-status-22"><strong>status</strong></a> () const<br><em>Returns the readiness for data point queries.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">Q_INVOKABLE::QAccelPlot::InspectionSummary</td>
-<td style="text-align: left;"><a href="#function-summarize"><strong>summarize</strong></a> (qreal xMin, qreal xMax, qreal yMin, qreal yMax) <br><em>Returns Y statistics of the valid samples inside the region.</em></td>
+<td style="text-align: left;"><a href="#function-summarize"><strong>summarize</strong></a> (qreal xMin, qreal xMax, qreal yMin, qreal yMax) <br><em>Returns Y statistics of the valid data points inside the region.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">Q_INVOKABLE::QAccelPlot::InspectionSummary</td>
-<td style="text-align: left;"><a href="#function-summarizerange"><strong>summarizeRange</strong></a> (qreal xMin, qreal xMax) <br><em>Returns Y statistics of the valid samples whose X lies in the interval.</em></td>
+<td style="text-align: left;"><a href="#function-summarizerange"><strong>summarizeRange</strong></a> (qreal xMin, qreal xMax) <br><em>Returns Y statistics of the valid data points whose X lies in the interval.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>
-<td style="text-align: left;"><a href="#function-supported-22"><strong>supported</strong></a> () const<br><em>Returns whether the series has XY records that sample queries can search.</em></td>
+<td style="text-align: left;"><a href="#function-supported-22"><strong>supported</strong></a> () const<br><em>Returns whether the series has XY records that data point queries can search.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
@@ -1752,8 +1752,8 @@
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
 <p>Available as <code>PlotSeries::inspection</code>. Call it on the series' thread. Pixel arguments are series-local logical pixels; regions are inclusive data-space limits, where an infinite limit leaves that side unbounded and reversed limits are swapped.</p>
-<p>Queries cover every stored sample, also outside the viewport, and match samples rather than the line segments between them. Invalid samples never match, and equal distances resolve to the highest index. Statistics are sample-weighted and use the original Y values.</p>
-<p><code>LineCurve</code> and <code>PointCloud</code> answer every query. Series whose X or Y values are finite and non-decreasing are searched in place, need no preparation, and stay queryable while records are appended; queries along one axis, such as <code>nearestByX()</code>, need that order along their own axis. Other series of up to 20,000 records are scanned per query. Larger ones are indexed on a worker thread first; until then queries return <code>Inspection.Preparing</code>. Requesting an index copies the series' buffer once on the calling thread, the index takes about 40 MB per million valid samples, and any data change discards it. Other series types expose native records through <code>recordAt()</code> and <code>recordAtPosition()</code> only.</p>
+<p>Queries cover every stored data point, also outside the viewport, and match data points rather than the line segments between them. Invalid data points never match, and equal distances resolve to the highest index. Statistics are data-point-weighted and use the original Y values.</p>
+<p><code>LineCurve</code> and <code>PointCloud</code> answer every query. Series whose X or Y values are finite and non-decreasing are searched in place, need no preparation, and stay queryable while records are appended; queries along one axis, such as <code>nearestByX()</code>, need that order along their own axis. Other series of up to 20,000 records are scanned per query. Larger ones are indexed on a worker thread first; until then queries return <code>Inspection.Preparing</code>. Requesting an index copies the series' buffer once on the calling thread, the index takes about 40 MB per million valid data points, and any data change discards it. Other series types expose native records through <code>recordAt()</code> and <code>recordAtPosition()</code> only.</p>
 <p><strong>See also:</strong> <a href="../classQAccelPlot_1_1PlotInspector/"><strong>PlotInspector</strong></a>, <a href="../classQAccelPlot_1_1SelectionTool/"><strong>SelectionTool</strong></a> </p>
 <h2 id="public-properties-documentation">Public Properties Documentation<a class="headerlink" href="#public-properties-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="property-maximumpagesize-12">property maximumPageSize<a class="headerlink" href="#property-maximumpagesize-12" title="Permanent link">&para;</a></h3>
@@ -1763,13 +1763,13 @@
 <hr>
 
 <h3 id="property-status-12">property status<a class="headerlink" href="#property-status-12" title="Permanent link">&para;</a></h3>
-<p><em>Readiness for sample queries:</em> <code>Ready</code> <em>,</em><code>Idle</code> <em>,</em><code>Preparing</code> <em>,</em><code>Unsupported</code> <em>, or</em><code>Unavailable</code> <em>.</em>
+<p><em>Readiness for data point queries:</em> <code>Ready</code> <em>,</em><code>Idle</code> <em>,</em><code>Preparing</code> <em>,</em><code>Unsupported</code> <em>, or</em><code>Unavailable</code> <em>.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">QML_ANONYMOUSQAccelPlot</span><span class="o">::</span><span class="n">InspectionNS</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SeriesInspection</span><span class="o">::</span><span class="n">status</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="property-supported-12">property supported<a class="headerlink" href="#property-supported-12" title="Permanent link">&para;</a></h3>
-<p><em>Whether the series has XY records that sample queries can search.</em> 
+<p><em>Whether the series has XY records that data point queries can search.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SeriesInspection</span><span class="o">::</span><span class="n">supported</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
@@ -1781,7 +1781,7 @@
 <hr>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-bracketbyx">function bracketByX<a class="headerlink" href="#function-bracketbyx" title="Permanent link">&para;</a></h3>
-<p><em>Returns the valid samples on either side of</em> <em>pixelX</em> <em>and the point between them.</em>
+<p><em>Returns the valid data points on either side of</em> <em>pixelX</em> <em>and the point between them.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">Q_INVOKABLE</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionBracket</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SeriesInspection</span><span class="o">::</span><span class="n">bracketByX</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">pixelX</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">)</span><span class="w"> </span>
@@ -1789,105 +1789,105 @@
 <hr>
 
 <h3 id="function-bracketbyy">function bracketByY<a class="headerlink" href="#function-bracketbyy" title="Permanent link">&para;</a></h3>
-<p><em>Returns the valid samples whose Y is on either side of</em> <em>pixelY</em> <em>and the point between them.</em>
+<p><em>Returns the valid data points whose Y is on either side of</em> <em>pixelY</em> <em>and the point between them.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">Q_INVOKABLE</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionBracket</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SeriesInspection</span><span class="o">::</span><span class="n">bracketByY</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">pixelY</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
+<h3 id="function-datapointat">function dataPointAt<a class="headerlink" href="#function-datapointat" title="Permanent link">&para;</a></h3>
+<p><em>Returns the record at</em> <em>index</em> <em>;</em><code>NoMatch</code> <em>with its raw coordinates when the record is invalid.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">Q_INVOKABLE</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionDataPoint</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SeriesInspection</span><span class="o">::</span><span class="n">dataPointAt</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="function-indexbytes">function indexBytes<a class="headerlink" href="#function-indexbytes" title="Permanent link">&para;</a></h3>
 <p><em>Returns the bytes held by query caches and indexes, excluding the series' own data.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="n">quint64</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SeriesInspection</span><span class="o">::</span><span class="n">indexBytes</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="n">quint64</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SeriesInspection</span><span class="o">::</span><span class="n">indexBytes</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-indices">function indices<a class="headerlink" href="#function-indices" title="Permanent link">&para;</a></h3>
 <p><em>Returns up to</em> <em>limit</em> <em>source indices inside the region, skipping the first__offset</em> <em>matches.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">Q_INVOKABLE</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionPage</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SeriesInspection</span><span class="o">::</span><span class="n">indices</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">xMin</span><span class="p">,</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">xMax</span><span class="p">,</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">yMin</span><span class="p">,</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">yMax</span><span class="p">,</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">limit</span><span class="o">=</span><span class="mi">4096</span><span class="p">,</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span><span class="n">quint64</span><span class="w"> </span><span class="n">expectedRevision</span><span class="o">=</span><span class="mi">0</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">Q_INVOKABLE</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionPage</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SeriesInspection</span><span class="o">::</span><span class="n">indices</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">xMin</span><span class="p">,</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">xMax</span><span class="p">,</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">yMin</span><span class="p">,</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">yMax</span><span class="p">,</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">limit</span><span class="o">=</span><span class="mi">4096</span><span class="p">,</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="n">quint64</span><span class="w"> </span><span class="n">expectedRevision</span><span class="o">=</span><span class="mi">0</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <p>A nonzero <em>expectedRevision</em> that differs from the series' <code>dataRevision</code> returns <code>Stale</code>, so pages of one traversal never mix indices of different data. </p>
 <hr>
 
 <h3 id="function-maximumpagesize-22">function maximumPageSize<a class="headerlink" href="#function-maximumpagesize-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the largest page returned by</em> <code>indices()</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SeriesInspection</span><span class="o">::</span><span class="n">maximumPageSize</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SeriesInspection</span><span class="o">::</span><span class="n">maximumPageSize</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-nearest">function nearest<a class="headerlink" href="#function-nearest" title="Permanent link">&para;</a></h3>
-<p><em>Returns the valid sample nearest to</em> <em>position</em> <em>within__radius</em> <em>pixels on screen.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">Q_INVOKABLE</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionSample</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SeriesInspection</span><span class="o">::</span><span class="n">nearest</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">position</span><span class="p">,</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">radius</span><span class="o">=</span><span class="mi">10</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-nearestbyx">function nearestByX<a class="headerlink" href="#function-nearestbyx" title="Permanent link">&para;</a></h3>
-<p><em>Returns the valid sample nearest to</em> <em>pixelX</em> <em>horizontally, within__radius</em> <em>pixels.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">Q_INVOKABLE</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionSample</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SeriesInspection</span><span class="o">::</span><span class="n">nearestByX</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">pixelX</span><span class="p">,</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">radius</span><span class="o">=</span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="o">&gt;::</span><span class="n">infinity</span><span class="p">()</span>
+<p><em>Returns the valid data point nearest to</em> <em>position</em> <em>within__radius</em> <em>pixels on screen.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">Q_INVOKABLE</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionDataPoint</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SeriesInspection</span><span class="o">::</span><span class="n">nearest</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">position</span><span class="p">,</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">radius</span><span class="o">=</span><span class="mi">10</span>
 <a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
-<h3 id="function-nearestbyy">function nearestByY<a class="headerlink" href="#function-nearestbyy" title="Permanent link">&para;</a></h3>
-<p><em>Returns the valid sample nearest to</em> <em>pixelY</em> <em>vertically, within__radius</em> <em>pixels.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">Q_INVOKABLE</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionSample</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SeriesInspection</span><span class="o">::</span><span class="n">nearestByY</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">pixelY</span><span class="p">,</span>
+<h3 id="function-nearestbyx">function nearestByX<a class="headerlink" href="#function-nearestbyx" title="Permanent link">&para;</a></h3>
+<p><em>Returns the valid data point nearest to</em> <em>pixelX</em> <em>horizontally, within__radius</em> <em>pixels.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">Q_INVOKABLE</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionDataPoint</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SeriesInspection</span><span class="o">::</span><span class="n">nearestByX</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">pixelX</span><span class="p">,</span>
 <a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">radius</span><span class="o">=</span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="o">&gt;::</span><span class="n">infinity</span><span class="p">()</span>
 <a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
+<h3 id="function-nearestbyy">function nearestByY<a class="headerlink" href="#function-nearestbyy" title="Permanent link">&para;</a></h3>
+<p><em>Returns the valid data point nearest to</em> <em>pixelY</em> <em>vertically, within__radius</em> <em>pixels.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">Q_INVOKABLE</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionDataPoint</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SeriesInspection</span><span class="o">::</span><span class="n">nearestByY</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">pixelY</span><span class="p">,</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">radius</span><span class="o">=</span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="o">&gt;::</span><span class="n">infinity</span><span class="p">()</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="function-prepare">function prepare<a class="headerlink" href="#function-prepare" title="Permanent link">&para;</a></h3>
 <p><em>Starts building a query index when the series needs one; otherwise does nothing.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SeriesInspection</span><span class="o">::</span><span class="n">prepare</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SeriesInspection</span><span class="o">::</span><span class="n">prepare</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-recordat">function recordAt<a class="headerlink" href="#function-recordat" title="Permanent link">&para;</a></h3>
 <p><em>Returns the native record at</em> <em>index</em> <em>of a bar, rectangle, or band series.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">Q_INVOKABLE</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionRecord</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SeriesInspection</span><span class="o">::</span><span class="n">recordAt</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">Q_INVOKABLE</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionRecord</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SeriesInspection</span><span class="o">::</span><span class="n">recordAt</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-recordatposition">function recordAtPosition<a class="headerlink" href="#function-recordatposition" title="Permanent link">&para;</a></h3>
 <p><em>Returns the native record drawn at the series-local</em> <em>position</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">Q_INVOKABLE</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionRecord</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SeriesInspection</span><span class="o">::</span><span class="n">recordAtPosition</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">position</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-sampleat">function sampleAt<a class="headerlink" href="#function-sampleat" title="Permanent link">&para;</a></h3>
-<p><em>Returns the record at</em> <em>index</em> <em>;</em><code>NoMatch</code> <em>with its raw coordinates when the record is invalid.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">Q_INVOKABLE</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionSample</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SeriesInspection</span><span class="o">::</span><span class="n">sampleAt</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">Q_INVOKABLE</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionRecord</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SeriesInspection</span><span class="o">::</span><span class="n">recordAtPosition</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">position</span>
 <a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-status-22">function status<a class="headerlink" href="#function-status-22" title="Permanent link">&para;</a></h3>
-<p><em>Returns the readiness for sample queries.</em> 
+<p><em>Returns the readiness for data point queries.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">InspectionStatus</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SeriesInspection</span><span class="o">::</span><span class="n">status</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-summarize">function summarize<a class="headerlink" href="#function-summarize" title="Permanent link">&para;</a></h3>
-<p><em>Returns Y statistics of the valid samples inside the region.</em> 
+<p><em>Returns Y statistics of the valid data points inside the region.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">Q_INVOKABLE</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionSummary</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SeriesInspection</span><span class="o">::</span><span class="n">summarize</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">xMin</span><span class="p">,</span>
 <a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">xMax</span><span class="p">,</span>
@@ -1898,7 +1898,7 @@
 <hr>
 
 <h3 id="function-summarizerange">function summarizeRange<a class="headerlink" href="#function-summarizerange" title="Permanent link">&para;</a></h3>
-<p><em>Returns Y statistics of the valid samples whose X lies in the interval.</em> 
+<p><em>Returns Y statistics of the valid data points whose X lies in the interval.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">Q_INVOKABLE</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionSummary</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SeriesInspection</span><span class="o">::</span><span class="n">summarizeRange</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">xMin</span><span class="p">,</span>
 <a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">xMax</span>
@@ -1907,7 +1907,7 @@
 <hr>
 
 <h3 id="function-supported-22">function supported<a class="headerlink" href="#function-supported-22" title="Permanent link">&para;</a></h3>
-<p><em>Returns whether the series has XY records that sample queries can search.</em> 
+<p><em>Returns whether the series has XY records that data point queries can search.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SeriesInspection</span><span class="o">::</span><span class="n">supported</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>

@@ -174,29 +174,25 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  [**SeriesMarker**](classQAccelPlot_1_1SeriesMarker.md) \* | [**marker**](#function-marker-22) () const<br>_Returns the grouped marker settings. The object is owned by the cloud._  |
 |  Q\_INVOKABLE QPointF | [**pointAt**](#function-pointat) (int index) const<br>_Returns point_ _index_ _, or a NaN point when__index_ _is out of range._ |
 |  int | [**pointIndexAt**](#function-pointindexat) (const QPointF & position) const<br>_Returns the index of the valid point within_ `hoverRadius` _of item position__position_ _, or -1._ |
-| virtual void | [**postData**](#function-postdata-14) (std::vector&lt; double &gt; && xyInterleaved, int pointCount) override<br>_Thread-safe: queues_ `setData` _(__xyInterleaved_ _,__pointCount_ _) to the item's thread._ |
-|  void | [**postData**](#function-postdata-24) (std::vector&lt; double &gt; && xyInterleaved, std::vector&lt; float &gt; && values, int pointCount) <br>_Thread-safe: queues_ `setData` _(__xyInterleaved_ _,__values_ _,__pointCount_ _) to the item's thread._ |
-| virtual void | [**postData**](#function-postdata-34) (std::vector&lt; float &gt; && xyInterleaved, int pointCount) override<br>_Thread-safe: queues_ `setDataF` _(__xyInterleaved_ _,__pointCount_ _) to the item's thread._ |
-|  void | [**postData**](#function-postdata-44) (std::vector&lt; float &gt; && xyInterleaved, std::vector&lt; float &gt; && values, int pointCount) <br>_Thread-safe: queues_ `setDataF` _(__xyInterleaved_ _,__values_ _,__pointCount_ _) to the item's thread._ |
+|  void | [**postData**](#function-postdata-14) (std::vector&lt; double &gt; && xyInterleaved, std::vector&lt; float &gt; && values, int pointCount) <br>_Thread-safe: queues_ `setData` _(__xyInterleaved_ _,__values_ _,__pointCount_ _) to the item's thread._ |
+|  void | [**postData**](#function-postdata-24) (std::vector&lt; float &gt; && xyInterleaved, std::vector&lt; float &gt; && values, int pointCount) <br>_Thread-safe: queues_ `setDataF` _(__xyInterleaved_ _,__values_ _,__pointCount_ _) to the item's thread._ |
+|  void | [**postData**](#function-postdata-34) (std::vector&lt; double &gt; && data, int count) <br>_Queues a moved double buffer for assignment on the series' thread._  |
+|  void | [**postData**](#function-postdata-44) (std::vector&lt; float &gt; && data, int count) <br>_Queues a moved float buffer for assignment on the series' thread._  |
 |  void | [**setAntialiasingEnabled**](#function-setantialiasingenabled) (bool enabled) <br>_Sets anti-aliasing to_ _enabled_ _._ |
 |  void | [**setAntialiasingFeather**](#function-setantialiasingfeather) (qreal feather) <br>_Sets the anti-aliasing feather width to_ _feather_ _pixels._ |
 |  void | [**setColor**](#function-setcolor) (const QColor & color) <br>_Sets the uniform marker color to_ _color_ _._ |
 |  void | [**setColormap**](#function-setcolormap) ([**Colormap**](classQAccelPlot_1_1Colormap.md) \* colormap) <br>_Sets the colormap to_ _colormap_ _. Pass_`nullptr` _to color every point with_`color` _._ |
-|  Q\_INVOKABLE void | [**setData**](#function-setdata-18) (const QList&lt; QPointF &gt; & points) <br>_Replaces all points with_ _points_ _and clears per-point values._ |
-| virtual void | [**setData**](#function-setdata-28) (const double \* xyInterleaved, int pointCount) override<br>_Copies_ _pointCount_ _interleaved double XY pairs and clears values._ |
-| virtual void | [**setData**](#function-setdata-38) (std::vector&lt; double &gt; && xyInterleaved, int pointCount) override<br>_Moves_ _pointCount_ _interleaved XY pairs of doubles into the cloud and clears values._ |
-|  void | [**setData**](#function-setdata-48) (std::vector&lt; double &gt; && xyInterleaved, std::vector&lt; float &gt; && values, int pointCount) <br>_Sets double-precision positions and per-point_ _values_ _(empty, or exactly__pointCount_ _floats)._ |
-| virtual void | [**setData**](#function-setdata-58) (const double \* data, int count) <br>_Replaces the series data with_ _count_ _records copied from an interleaved double array. Each concrete series defines its record layout (XY pairs or rectangle edges)._ |
-| virtual void | [**setData**](#function-setdata-68) (std::vector&lt; double &gt; && data, int count) <br>_Replaces the series data by moving an interleaved double buffer._  |
-|  void | [**setData**](#function-setdata-78) (const double \* data, int count, const [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) & bounds) <br>_Like_ `setData` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._ |
-|  void | [**setData**](#function-setdata-88) (std::vector&lt; double &gt; && data, int count, const [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) & bounds) <br>_Like_ `setData` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._ |
-| virtual void | [**setDataF**](#function-setdataf-17) (const float \* xyInterleaved, int pointCount) override<br>_Copies_ _pointCount_ _interleaved XY pairs from__xyInterleaved_ _and clears values._ |
-| virtual void | [**setDataF**](#function-setdataf-27) (std::vector&lt; float &gt; && xyInterleaved, int pointCount) override<br>_Moves_ _xyInterleaved_ _(__pointCount_ _XY pairs) into the cloud and clears values. No copy is made._ |
-|  void | [**setDataF**](#function-setdataf-37) (std::vector&lt; float &gt; && xyInterleaved, std::vector&lt; float &gt; && values, int pointCount) <br>_Sets positions and per-point_ _values_ _(empty, or exactly__pointCount_ _floats)._ |
-| virtual void | [**setDataF**](#function-setdataf-47) (const float \* data, int count) <br>_Replaces the series data with_ _count_ _records copied from an interleaved float array._ |
-| virtual void | [**setDataF**](#function-setdataf-57) (std::vector&lt; float &gt; && data, int count) <br>_Replaces the series data by moving an interleaved float buffer._  |
-|  void | [**setDataF**](#function-setdataf-67) (const float \* data, int count, const [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) & bounds) <br>_Like_ `setDataF` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._ |
-|  void | [**setDataF**](#function-setdataf-77) (std::vector&lt; float &gt; && data, int count, const [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) & bounds) <br>_Like_ `setDataF` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._ |
+|  Q\_INVOKABLE void | [**setData**](#function-setdata-16) (const QList&lt; QPointF &gt; & points) <br>_Replaces all points with_ _points_ _and clears per-point values._ |
+|  void | [**setData**](#function-setdata-26) (std::vector&lt; double &gt; && xyInterleaved, std::vector&lt; float &gt; && values, int pointCount) <br>_Sets double-precision positions and per-point_ _values_ _(empty, or exactly__pointCount_ _floats)._ |
+|  void | [**setData**](#function-setdata-36) (const double \* data, int count) <br>_Replaces the series data with_ _count_ _data points copied from an interleaved double array._ |
+|  void | [**setData**](#function-setdata-46) (std::vector&lt; double &gt; && data, int count) <br>_Replaces the series data by moving an interleaved double buffer._  |
+|  void | [**setData**](#function-setdata-56) (const double \* data, int count, const [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) & bounds) <br>_Like_ `setData` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._ |
+|  void | [**setData**](#function-setdata-66) (std::vector&lt; double &gt; && data, int count, const [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) & bounds) <br>_Like_ `setData` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._ |
+|  void | [**setDataF**](#function-setdataf-15) (std::vector&lt; float &gt; && xyInterleaved, std::vector&lt; float &gt; && values, int pointCount) <br>_Sets positions and per-point_ _values_ _(empty, or exactly__pointCount_ _floats)._ |
+|  void | [**setDataF**](#function-setdataf-25) (const float \* data, int count) <br>_Replaces the series data with_ _count_ _data points copied from an interleaved float array._ |
+|  void | [**setDataF**](#function-setdataf-35) (std::vector&lt; float &gt; && data, int count) <br>_Replaces the series data by moving an interleaved float buffer._  |
+|  void | [**setDataF**](#function-setdataf-45) (const float \* data, int count, const [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) & bounds) <br>_Like_ `setDataF` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._ |
+|  void | [**setDataF**](#function-setdataf-55) (std::vector&lt; float &gt; && data, int count, const [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) & bounds) <br>_Like_ `setDataF` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._ |
 |  void | [**setHoverRadius**](#function-sethoverradius) (qreal radius) <br>_Sets the hover pick radius to_ _radius_ _pixels. Negative values are clamped to 0._ |
 |  void | [**setTransition**](#function-settransition) ([**DataTransition**](classQAccelPlot_1_1DataTransition.md) \* transition) <br>_Sets the data transition to_ _transition_ _._ |
 |  Q\_INVOKABLE void | [**setValues**](#function-setvalues) (const QList&lt; qreal &gt; & values) <br>_Sets one value per point. An empty list clears values; any other size must equal_ `count` _._ |
@@ -211,21 +207,21 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 | Type | Name |
 | ---: | :--- |
-|   | [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md#function-plotseries) (QQuickItem \* parent=nullptr) <br> |
-| virtual void | [**clearData**](classQAccelPlot_1_1PlotSeries.md#function-cleardata) () = 0<br>_Removes all records from the series._  |
+|   | [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md#function-plotseries-12) (QQuickItem \* parent=nullptr) <br> |
+| virtual void | [**clearData**](classQAccelPlot_1_1PlotSeries.md#function-cleardata) () <br>_Removes all data points from the series._  |
 |  quint64 | [**dataRevision**](classQAccelPlot_1_1PlotSeries.md#function-datarevision-22) () const<br>_Returns the current data revision._  |
 |  [**SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) \* | [**inspection**](classQAccelPlot_1_1PlotSeries.md#function-inspection-22) () const<br>_Returns the data queries for this series; created on first use and owned by the series._  |
 |  [**LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol) | [**legendSymbol**](classQAccelPlot_1_1PlotSeries.md#function-legendsymbol-22) () const<br> |
 |  QString | [**name**](classQAccelPlot_1_1PlotSeries.md#function-name-22) () const<br> |
 |  QRectF | [**plotRect**](classQAccelPlot_1_1PlotSeries.md#function-plotrect-22) () const<br> |
-| virtual void | [**postData**](classQAccelPlot_1_1PlotSeries.md#function-postdata-12) (std::vector&lt; double &gt; && data, int count) = 0<br>_Queues a moved double buffer for assignment on the series' thread._  |
-| virtual void | [**postData**](classQAccelPlot_1_1PlotSeries.md#function-postdata-22) (std::vector&lt; float &gt; && data, int count) = 0<br>_Queues a moved float buffer for assignment on the series' thread._  |
-| virtual void | [**setData**](classQAccelPlot_1_1PlotSeries.md#function-setdata-14) (const double \* data, int count) = 0<br>_Replaces the series data with_ _count_ _records copied from an interleaved double array. Each concrete series defines its record layout (XY pairs or rectangle edges)._ |
-| virtual void | [**setData**](classQAccelPlot_1_1PlotSeries.md#function-setdata-24) (std::vector&lt; double &gt; && data, int count) = 0<br>_Replaces the series data by moving an interleaved double buffer._  |
+|  void | [**postData**](classQAccelPlot_1_1PlotSeries.md#function-postdata-12) (std::vector&lt; double &gt; && data, int count) <br>_Queues a moved double buffer for assignment on the series' thread._  |
+|  void | [**postData**](classQAccelPlot_1_1PlotSeries.md#function-postdata-22) (std::vector&lt; float &gt; && data, int count) <br>_Queues a moved float buffer for assignment on the series' thread._  |
+|  void | [**setData**](classQAccelPlot_1_1PlotSeries.md#function-setdata-14) (const double \* data, int count) <br>_Replaces the series data with_ _count_ _data points copied from an interleaved double array._ |
+|  void | [**setData**](classQAccelPlot_1_1PlotSeries.md#function-setdata-24) (std::vector&lt; double &gt; && data, int count) <br>_Replaces the series data by moving an interleaved double buffer._  |
 |  void | [**setData**](classQAccelPlot_1_1PlotSeries.md#function-setdata-34) (const double \* data, int count, const [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) & bounds) <br>_Like_ `setData` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._ |
 |  void | [**setData**](classQAccelPlot_1_1PlotSeries.md#function-setdata-44) (std::vector&lt; double &gt; && data, int count, const [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) & bounds) <br>_Like_ `setData` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._ |
-| virtual void | [**setDataF**](classQAccelPlot_1_1PlotSeries.md#function-setdataf-14) (const float \* data, int count) = 0<br>_Replaces the series data with_ _count_ _records copied from an interleaved float array._ |
-| virtual void | [**setDataF**](classQAccelPlot_1_1PlotSeries.md#function-setdataf-24) (std::vector&lt; float &gt; && data, int count) = 0<br>_Replaces the series data by moving an interleaved float buffer._  |
+|  void | [**setDataF**](classQAccelPlot_1_1PlotSeries.md#function-setdataf-14) (const float \* data, int count) <br>_Replaces the series data with_ _count_ _data points copied from an interleaved float array._ |
+|  void | [**setDataF**](classQAccelPlot_1_1PlotSeries.md#function-setdataf-24) (std::vector&lt; float &gt; && data, int count) <br>_Replaces the series data by moving an interleaved float buffer._  |
 |  void | [**setDataF**](classQAccelPlot_1_1PlotSeries.md#function-setdataf-34) (const float \* data, int count, const [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) & bounds) <br>_Like_ `setDataF` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._ |
 |  void | [**setDataF**](classQAccelPlot_1_1PlotSeries.md#function-setdataf-44) (std::vector&lt; float &gt; && data, int count, const [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) & bounds) <br>_Like_ `setDataF` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._ |
 |  void | [**setLegendSymbol**](classQAccelPlot_1_1PlotSeries.md#function-setlegendsymbol) ([**LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol) symbol) <br> |
@@ -295,9 +291,9 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 | Type | Name |
 | ---: | :--- |
-| virtual [**DataRanges**](structQAccelPlot_1_1PlotSeries_1_1DataRanges.md) | [**computeDataRanges**](#function-computedataranges) () override const<br>_Scans the records for their extents. The default implementation has none._  |
-| virtual void | [**onAxisRangeChanged**](#function-onaxisrangechanged) () override<br>_Moves the render origin to the new viewport when the float upload buffer would lose precision there._  |
-| virtual void | [**onAxisScaleChanged**](#function-onaxisscalechanged) () override<br>_Rebuilds the origin-relative upload buffer, because log dimensions are not shifted._  |
+| virtual void | [**applyDataPoints**](#function-applydatapoints) ([**DataPointInput**](structQAccelPlot_1_1PlotSeries_1_1DataPointInput.md) && input) override<br>_Applies new points without values, animating to them when a transition is enabled._  |
+| virtual void | [**onAxisScaleChanged**](#function-onaxisscalechanged) () override<br>_Rebuilds the hover index, because log dimensions map points differently._  |
+| virtual void | [**onDataPointsChanged**](#function-ondatapointschanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change, int previousCount) override<br>_Refreshes the hover index, the value range, and the count after the points changed._  |
 
 
 ## Protected Functions inherited from QAccelPlot::PlotSeries
@@ -306,7 +302,13 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 | Type | Name |
 | ---: | :--- |
-| virtual [**DataRanges**](structQAccelPlot_1_1PlotSeries_1_1DataRanges.md) | [**computeDataRanges**](classQAccelPlot_1_1PlotSeries.md#function-computedataranges) () const<br>_Scans the records for their extents. The default implementation has none._  |
+|   | [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md#function-plotseries-22) ([**DataPointStore::Layout**](structQAccelPlot_1_1DataPointStore_1_1Layout.md) layout, [**DataPointWording**](structQAccelPlot_1_1PlotSeries_1_1DataPointWording.md) wording, QQuickItem \* parent) <br>_Creates a series whose data points have_ _layout_ _;__wording_ _names them in warnings._ |
+|  void | [**appendDataPoint**](classQAccelPlot_1_1PlotSeries.md#function-appenddatapoint) (const double \* coordinates) <br>_Appends one double data point and widens the data ranges by its valid coordinates._  |
+| virtual void | [**applyDataPoints**](classQAccelPlot_1_1PlotSeries.md#function-applydatapoints) ([**DataPointInput**](structQAccelPlot_1_1PlotSeries_1_1DataPointInput.md) && input) <br>_Applies data points passed to_ `setData()` _or_`setDataF()` _._ |
+| virtual [**DataRanges**](structQAccelPlot_1_1PlotSeries_1_1DataRanges.md) | [**computeDataRanges**](classQAccelPlot_1_1PlotSeries.md#function-computedataranges) () const<br>_Scans the records for their extents. The default implementation scans the data points._  |
+| virtual int | [**dataPointValueCount**](classQAccelPlot_1_1PlotSeries.md#function-datapointvaluecount) () const<br>_Returns the number of values per data point that_ `setData()` _and_`setDataF()` _take._ |
+|  [**DataPointStore**](classQAccelPlot_1_1DataPointStore.md) & | [**dataPoints**](classQAccelPlot_1_1PlotSeries.md#function-datapoints-12) () <br>_Returns the data points of the series._  |
+|  const [**DataPointStore**](classQAccelPlot_1_1DataPointStore.md) & | [**dataPoints**](classQAccelPlot_1_1PlotSeries.md#function-datapoints-22) () const<br>_Returns the data points of the series._  |
 |  bool | [**event**](classQAccelPlot_1_1PlotSeries.md#function-event) (QEvent \* event) override<br>_Withholds hover events from a series beneath another series under the cursor._  |
 |  void | [**extendXDataRange**](classQAccelPlot_1_1PlotSeries.md#function-extendxdatarange) (qreal x) <br>_Widens the X extent to include_ _x_ _and notifies the bound axes._ |
 |  void | [**extendYDataRange**](classQAccelPlot_1_1PlotSeries.md#function-extendydatarange) (qreal y) <br>_Widens the Y extent to include_ _y_ _. A non-finite__y_ _leaves the extent unchanged._ |
@@ -314,12 +316,19 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  void | [**inspectionDataChanged**](classQAccelPlot_1_1PlotSeries.md#function-inspectiondatachanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change=DataChange::Replaced) <br>_Advances the data revision and refreshes the data queries. Call after every accepted record change._  |
 | virtual [**InspectionRecord**](structQAccelPlot_1_1InspectionRecord.md) | [**inspectionRecord**](classQAccelPlot_1_1PlotSeries.md#function-inspectionrecord) (int index) const<br>_Returns the native record at_ _index_ _for series that are not plain XY series. Default: unsupported._ |
 | virtual [**InspectionRecord**](structQAccelPlot_1_1InspectionRecord.md) | [**inspectionRecordAt**](classQAccelPlot_1_1PlotSeries.md#function-inspectionrecordat) (const QPointF & position) const<br>_Returns the native record drawn at the series-local_ _position_ _. Default: unsupported._ |
-| virtual [**InspectionSource**](structQAccelPlot_1_1InspectionSource.md) | [**inspectionSource**](classQAccelPlot_1_1PlotSeries.md#function-inspectionsource) () const<br>_Returns a view of the XY records that sample queries search. The default has none._  |
+| virtual [**InspectionSource**](structQAccelPlot_1_1InspectionSource.md) | [**inspectionSource**](classQAccelPlot_1_1PlotSeries.md#function-inspectionsource) () const<br>_Returns a view of the XY records that data point queries search. The default has none._  |
 |  void | [**invalidateDataRanges**](classQAccelPlot_1_1PlotSeries.md#function-invalidatedataranges) () <br>_Discards the cached extents and notifies the bound axes._  |
 |  void | [**invalidateInspection**](classQAccelPlot_1_1PlotSeries.md#function-invalidateinspection) () <br>_Refreshes the data queries after record validity changed without a data change, such as an axis scale switch._  |
+|  bool | [**logScaleX**](classQAccelPlot_1_1PlotSeries.md#function-logscalex) () const<br>_Returns whether the horizontal axis is logarithmic; false without an axis._  |
+|  bool | [**logScaleY**](classQAccelPlot_1_1PlotSeries.md#function-logscaley) () const<br>_Returns whether the vertical axis is logarithmic; false without an axis._  |
+|  void | [**notifyDataPointsChanged**](classQAccelPlot_1_1PlotSeries.md#function-notifydatapointschanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change, int previousCount) <br>_Finishes a change of the data points: data ranges,_ `onDataPointsChanged()` _, data queries, and a repaint._ |
 | virtual void | [**onAxisRangeChanged**](classQAccelPlot_1_1PlotSeries.md#function-onaxisrangechanged) () <br>_Called when the viewport of a bound axis changes. The default implementation schedules a repaint._  |
 | virtual void | [**onAxisScaleChanged**](classQAccelPlot_1_1PlotSeries.md#function-onaxisscalechanged) () <br>_Called when a bound axis switches between linear and logarithmic scale, or a different axis is bound._  |
+| virtual void | [**onDataPointsChanged**](classQAccelPlot_1_1PlotSeries.md#function-ondatapointschanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change, int previousCount) <br>_Called after the data points changed, before the data queries are refreshed. The default does nothing._  |
 |  QRectF | [**resolvePlotRect**](classQAccelPlot_1_1PlotSeries.md#function-resolveplotrect) () const<br>_Returns the plot area to render into:_ `plotRect` _when set, otherwise the item's current size._ |
+|  void | [**storeDataPoints**](classQAccelPlot_1_1PlotSeries.md#function-storedatapoints) ([**DataPointInput**](structQAccelPlot_1_1PlotSeries_1_1DataPointInput.md) && input) <br>_Stores_ _input_ _as the data points and finishes the change._ |
+|  bool | [**validateDataSize**](classQAccelPlot_1_1PlotSeries.md#function-validatedatasize) (std::size\_t valueCount, int count, bool floatData, int valuesPerDataPoint=0) const<br>_Returns whether_ _valueCount_ _values hold__count_ _data points; warns otherwise._ |
+|  bool | [**validateRawDataArguments**](classQAccelPlot_1_1PlotSeries.md#function-validaterawdataarguments) (const void \* data, int count) const<br>_Returns whether_ _data_ _and__count_ _are valid arguments for copying data points; warns otherwise._ |
 
 
 
@@ -947,26 +956,6 @@ int QAccelPlot::PointCloud::pointIndexAt (
 
 ### function postData {#function-postdata-14}
 
-_Thread-safe: queues_ `setData` _(__xyInterleaved_ _,__pointCount_ _) to the item's thread._
-```C++
-virtual void QAccelPlot::PointCloud::postData (
-    std::vector< double > && xyInterleaved,
-    int pointCount
-) override
-```
-
-
-
-Implements [*QAccelPlot::PlotSeries::postData*](classQAccelPlot_1_1PlotSeries.md#function-postdata-12)
-
-
-<hr>
-
-
-
-
-### function postData {#function-postdata-24}
-
 _Thread-safe: queues_ `setData` _(__xyInterleaved_ _,__values_ _,__pointCount_ _) to the item's thread._
 ```C++
 void QAccelPlot::PointCloud::postData (
@@ -984,19 +973,36 @@ void QAccelPlot::PointCloud::postData (
 
 
 
-### function postData {#function-postdata-34}
+### function postData {#function-postdata-24}
 
-_Thread-safe: queues_ `setDataF` _(__xyInterleaved_ _,__pointCount_ _) to the item's thread._
+_Thread-safe: queues_ `setDataF` _(__xyInterleaved_ _,__values_ _,__pointCount_ _) to the item's thread._
 ```C++
-virtual void QAccelPlot::PointCloud::postData (
+void QAccelPlot::PointCloud::postData (
     std::vector< float > && xyInterleaved,
+    std::vector< float > && values,
     int pointCount
-) override
+) 
 ```
 
 
 
-Implements [*QAccelPlot::PlotSeries::postData*](classQAccelPlot_1_1PlotSeries.md#function-postdata-22)
+
+<hr>
+
+
+
+
+### function postData {#function-postdata-34}
+
+_Queues a moved double buffer for assignment on the series' thread._ 
+```C++
+void QAccelPlot::PointCloud::postData (
+    std::vector< double > && data,
+    int count
+) 
+```
+
+
 
 
 <hr>
@@ -1006,12 +1012,11 @@ Implements [*QAccelPlot::PlotSeries::postData*](classQAccelPlot_1_1PlotSeries.md
 
 ### function postData {#function-postdata-44}
 
-_Thread-safe: queues_ `setDataF` _(__xyInterleaved_ _,__values_ _,__pointCount_ _) to the item's thread._
+_Queues a moved float buffer for assignment on the series' thread._ 
 ```C++
 void QAccelPlot::PointCloud::postData (
-    std::vector< float > && xyInterleaved,
-    std::vector< float > && values,
-    int pointCount
+    std::vector< float > && data,
+    int count
 ) 
 ```
 
@@ -1091,7 +1096,7 @@ void QAccelPlot::PointCloud::setColormap (
 
 
 
-### function setData {#function-setdata-18}
+### function setData {#function-setdata-16}
 
 _Replaces all points with_ _points_ _and clears per-point values._
 ```C++
@@ -1108,51 +1113,7 @@ Q_INVOKABLE void QAccelPlot::PointCloud::setData (
 
 
 
-### function setData {#function-setdata-28}
-
-_Copies_ _pointCount_ _interleaved double XY pairs and clears values._
-```C++
-virtual void QAccelPlot::PointCloud::setData (
-    const double * xyInterleaved,
-    int pointCount
-) override
-```
-
-
-
-Implements [*QAccelPlot::PlotSeries::setData*](classQAccelPlot_1_1PlotSeries.md#function-setdata-14)
-
-
-<hr>
-
-
-
-
-### function setData {#function-setdata-38}
-
-_Moves_ _pointCount_ _interleaved XY pairs of doubles into the cloud and clears values._
-```C++
-virtual void QAccelPlot::PointCloud::setData (
-    std::vector< double > && xyInterleaved,
-    int pointCount
-) override
-```
-
-
-
-The GPU renders in single precision, so positions are uploaded relative to an origin taken from the first finite point. Coordinates far from zero, such as epoch timestamps, therefore keep their resolution. Logarithmic dimensions are never origin-shifted. 
-
-
-        
-Implements [*QAccelPlot::PlotSeries::setData*](classQAccelPlot_1_1PlotSeries.md#function-setdata-24)
-
-
-<hr>
-
-
-
-
-### function setData {#function-setdata-48}
+### function setData {#function-setdata-26}
 
 _Sets double-precision positions and per-point_ _values_ _(empty, or exactly__pointCount_ _floats)._
 ```C++
@@ -1171,11 +1132,11 @@ void QAccelPlot::PointCloud::setData (
 
 
 
-### function setData {#function-setdata-58}
+### function setData {#function-setdata-36}
 
-_Replaces the series data with_ _count_ _records copied from an interleaved double array. Each concrete series defines its record layout (XY pairs or rectangle edges)._
+_Replaces the series data with_ _count_ _data points copied from an interleaved double array._
 ```C++
-virtual void QAccelPlot::PointCloud::setData (
+void QAccelPlot::PointCloud::setData (
     const double * data,
     int count
 ) 
@@ -1183,19 +1144,21 @@ virtual void QAccelPlot::PointCloud::setData (
 
 
 
-Implements [*QAccelPlot::PlotSeries::setData*](classQAccelPlot_1_1PlotSeries.md#function-setdata-14)
+See the class description for the data point layout of each series. 
 
+
+        
 
 <hr>
 
 
 
 
-### function setData {#function-setdata-68}
+### function setData {#function-setdata-46}
 
 _Replaces the series data by moving an interleaved double buffer._ 
 ```C++
-virtual void QAccelPlot::PointCloud::setData (
+void QAccelPlot::PointCloud::setData (
     std::vector< double > && data,
     int count
 ) 
@@ -1203,15 +1166,13 @@ virtual void QAccelPlot::PointCloud::setData (
 
 
 
-Implements [*QAccelPlot::PlotSeries::setData*](classQAccelPlot_1_1PlotSeries.md#function-setdata-24)
-
 
 <hr>
 
 
 
 
-### function setData {#function-setdata-78}
+### function setData {#function-setdata-56}
 
 _Like_ `setData` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._
 ```C++
@@ -1230,7 +1191,7 @@ void QAccelPlot::PointCloud::setData (
 
 
 
-### function setData {#function-setdata-88}
+### function setData {#function-setdata-66}
 
 _Like_ `setData` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._
 ```C++
@@ -1249,47 +1210,7 @@ void QAccelPlot::PointCloud::setData (
 
 
 
-### function setDataF {#function-setdataf-17}
-
-_Copies_ _pointCount_ _interleaved XY pairs from__xyInterleaved_ _and clears values._
-```C++
-virtual void QAccelPlot::PointCloud::setDataF (
-    const float * xyInterleaved,
-    int pointCount
-) override
-```
-
-
-
-Implements [*QAccelPlot::PlotSeries::setDataF*](classQAccelPlot_1_1PlotSeries.md#function-setdataf-14)
-
-
-<hr>
-
-
-
-
-### function setDataF {#function-setdataf-27}
-
-_Moves_ _xyInterleaved_ _(__pointCount_ _XY pairs) into the cloud and clears values. No copy is made._
-```C++
-virtual void QAccelPlot::PointCloud::setDataF (
-    std::vector< float > && xyInterleaved,
-    int pointCount
-) override
-```
-
-
-
-Implements [*QAccelPlot::PlotSeries::setDataF*](classQAccelPlot_1_1PlotSeries.md#function-setdataf-24)
-
-
-<hr>
-
-
-
-
-### function setDataF {#function-setdataf-37}
+### function setDataF {#function-setdataf-15}
 
 _Sets positions and per-point_ _values_ _(empty, or exactly__pointCount_ _floats)._
 ```C++
@@ -1308,11 +1229,11 @@ void QAccelPlot::PointCloud::setDataF (
 
 
 
-### function setDataF {#function-setdataf-47}
+### function setDataF {#function-setdataf-25}
 
-_Replaces the series data with_ _count_ _records copied from an interleaved float array._
+_Replaces the series data with_ _count_ _data points copied from an interleaved float array._
 ```C++
-virtual void QAccelPlot::PointCloud::setDataF (
+void QAccelPlot::PointCloud::setDataF (
     const float * data,
     int count
 ) 
@@ -1320,19 +1241,17 @@ virtual void QAccelPlot::PointCloud::setDataF (
 
 
 
-Implements [*QAccelPlot::PlotSeries::setDataF*](classQAccelPlot_1_1PlotSeries.md#function-setdataf-14)
-
 
 <hr>
 
 
 
 
-### function setDataF {#function-setdataf-57}
+### function setDataF {#function-setdataf-35}
 
 _Replaces the series data by moving an interleaved float buffer._ 
 ```C++
-virtual void QAccelPlot::PointCloud::setDataF (
+void QAccelPlot::PointCloud::setDataF (
     std::vector< float > && data,
     int count
 ) 
@@ -1340,15 +1259,13 @@ virtual void QAccelPlot::PointCloud::setDataF (
 
 
 
-Implements [*QAccelPlot::PlotSeries::setDataF*](classQAccelPlot_1_1PlotSeries.md#function-setdataf-24)
-
 
 <hr>
 
 
 
 
-### function setDataF {#function-setdataf-67}
+### function setDataF {#function-setdataf-45}
 
 _Like_ `setDataF` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._
 ```C++
@@ -1367,7 +1284,7 @@ void QAccelPlot::PointCloud::setDataF (
 
 
 
-### function setDataF {#function-setdataf-77}
+### function setDataF {#function-setdataf-55}
 
 _Like_ `setDataF` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._
 ```C++
@@ -1486,37 +1403,18 @@ QAccelPlot::PointCloud::~PointCloud () override
 
 
 
-### function computeDataRanges {#function-computedataranges}
+### function applyDataPoints {#function-applydatapoints}
 
-_Scans the records for their extents. The default implementation has none._ 
+_Applies new points without values, animating to them when a transition is enabled._ 
 ```C++
-virtual DataRanges QAccelPlot::PointCloud::computeDataRanges () override const
+virtual void QAccelPlot::PointCloud::applyDataPoints (
+    DataPointInput && input
+) override
 ```
 
 
 
-Called when a data range is read after `invalidateDataRanges()`, so a series that nothing asks for its range never scans. 
-
-
-        
-Implements [*QAccelPlot::PlotSeries::computeDataRanges*](classQAccelPlot_1_1PlotSeries.md#function-computedataranges)
-
-
-<hr>
-
-
-
-
-### function onAxisRangeChanged {#function-onaxisrangechanged}
-
-_Moves the render origin to the new viewport when the float upload buffer would lose precision there._ 
-```C++
-virtual void QAccelPlot::PointCloud::onAxisRangeChanged () override
-```
-
-
-
-Implements [*QAccelPlot::PlotSeries::onAxisRangeChanged*](classQAccelPlot_1_1PlotSeries.md#function-onaxisrangechanged)
+Implements [*QAccelPlot::PlotSeries::applyDataPoints*](classQAccelPlot_1_1PlotSeries.md#function-applydatapoints)
 
 
 <hr>
@@ -1526,7 +1424,7 @@ Implements [*QAccelPlot::PlotSeries::onAxisRangeChanged*](classQAccelPlot_1_1Plo
 
 ### function onAxisScaleChanged {#function-onaxisscalechanged}
 
-_Rebuilds the origin-relative upload buffer, because log dimensions are not shifted._ 
+_Rebuilds the hover index, because log dimensions map points differently._ 
 ```C++
 virtual void QAccelPlot::PointCloud::onAxisScaleChanged () override
 ```
@@ -1534,6 +1432,26 @@ virtual void QAccelPlot::PointCloud::onAxisScaleChanged () override
 
 
 Implements [*QAccelPlot::PlotSeries::onAxisScaleChanged*](classQAccelPlot_1_1PlotSeries.md#function-onaxisscalechanged)
+
+
+<hr>
+
+
+
+
+### function onDataPointsChanged {#function-ondatapointschanged}
+
+_Refreshes the hover index, the value range, and the count after the points changed._ 
+```C++
+virtual void QAccelPlot::PointCloud::onDataPointsChanged (
+    DataChange change,
+    int previousCount
+) override
+```
+
+
+
+Implements [*QAccelPlot::PlotSeries::onDataPointsChanged*](classQAccelPlot_1_1PlotSeries.md#function-ondatapointschanged)
 
 
 <hr>

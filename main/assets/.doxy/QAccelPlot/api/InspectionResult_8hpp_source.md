@@ -51,7 +51,7 @@ Q_ENUM_NS(Status)
 
 using InspectionStatus = InspectionNS::Status;
 
-struct InspectionSample {
+struct InspectionDataPoint {
     Q_GADGET
     QML_ANONYMOUS
     Q_PROPERTY(::QAccelPlot::InspectionNS::Status status MEMBER status CONSTANT)
@@ -114,18 +114,18 @@ struct InspectionBracket {
     Q_PROPERTY(::QAccelPlot::InspectionNS::Status status MEMBER status CONSTANT)
     Q_PROPERTY(bool valid READ valid CONSTANT)
     Q_PROPERTY(quint64 dataRevision MEMBER dataRevision CONSTANT)
-    Q_PROPERTY(::QAccelPlot::InspectionSample left MEMBER left CONSTANT)
-    Q_PROPERTY(::QAccelPlot::InspectionSample right MEMBER right CONSTANT)
+    Q_PROPERTY(::QAccelPlot::InspectionDataPoint left MEMBER left CONSTANT)
+    Q_PROPERTY(::QAccelPlot::InspectionDataPoint right MEMBER right CONSTANT)
     Q_PROPERTY(bool adjacent MEMBER adjacent CONSTANT)
-    Q_PROPERTY(::QAccelPlot::InspectionSample interpolated MEMBER interpolated CONSTANT)
+    Q_PROPERTY(::QAccelPlot::InspectionDataPoint interpolated MEMBER interpolated CONSTANT)
 
 public:
     InspectionStatus status{InspectionStatus::NoMatch}; 
     quint64 dataRevision{0};                            
-    InspectionSample left;                              
-    InspectionSample right;                             
+    InspectionDataPoint left;                           
+    InspectionDataPoint right;                          
     bool adjacent{false};                               
-    InspectionSample interpolated;                      
+    InspectionDataPoint interpolated;                   
 
     bool valid() const;
 };

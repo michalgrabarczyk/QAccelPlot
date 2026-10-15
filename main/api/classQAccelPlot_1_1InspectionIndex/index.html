@@ -1400,7 +1400,7 @@
 
 <h1 id="class-qaccelplotinspectionindex">Class QAccelPlot::InspectionIndex<a class="headerlink" href="#class-qaccelplotinspectionindex" title="Permanent link">&para;</a></h1>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="./"><strong>InspectionIndex</strong></a></p>
-<p><em>Immutable k-d tree over the valid samples of a series, with their order along each axis.</em> </p>
+<p><em>Immutable k-d tree over the valid data points of a series, with their order along each axis.</em> </p>
 <ul>
 <li><code>#include &lt;InspectionIndex.hpp&gt;</code></li>
 </ul>
@@ -1442,11 +1442,11 @@
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../structQAccelPlot_1_1InspectionHit/"><strong>InspectionHit</strong></a></td>
-<td style="text-align: left;"><a href="#function-nearestalong"><strong>nearestAlong</strong></a> (const <a href="../structQAccelPlot_1_1InspectionMetric/"><strong>InspectionMetric</strong></a> &amp; metric, InspectionAxis axis, double pixel, double radius) const<br><em>Returns the sample nearest to</em> <em>pixel</em> <em>along__axis</em> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-nearestalong"><strong>nearestAlong</strong></a> (const <a href="../structQAccelPlot_1_1InspectionMetric/"><strong>InspectionMetric</strong></a> &amp; metric, InspectionAxis axis, double pixel, double radius) const<br><em>Returns the data point nearest to</em> <em>pixel</em> <em>along__axis</em> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../structQAccelPlot_1_1InspectionNeighbors/"><strong>InspectionNeighbors</strong></a></td>
-<td style="text-align: left;"><a href="#function-neighbors"><strong>neighbors</strong></a> (InspectionAxis axis, double value) const<br><em>Returns the samples on either side of</em> <em>value</em> <em>on__axis</em> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-neighbors"><strong>neighbors</strong></a> (InspectionAxis axis, double value) const<br><em>Returns the data points on either side of</em> <em>value</em> <em>on__axis</em> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">std::size_t</td>
@@ -1490,7 +1490,7 @@
 <hr>
 
 <h3 id="function-nearestalong">function nearestAlong<a class="headerlink" href="#function-nearestalong" title="Permanent link">&para;</a></h3>
-<p><em>Returns the sample nearest to</em> <em>pixel</em> <em>along__axis</em> <em>.</em>
+<p><em>Returns the data point nearest to</em> <em>pixel</em> <em>along__axis</em> <em>.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">InspectionHit</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionIndex</span><span class="o">::</span><span class="n">nearestAlong</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">InspectionMetric</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">metric</span><span class="p">,</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="n">InspectionAxis</span><span class="w"> </span><span class="n">axis</span><span class="p">,</span>
@@ -1501,7 +1501,7 @@
 <hr>
 
 <h3 id="function-neighbors">function neighbors<a class="headerlink" href="#function-neighbors" title="Permanent link">&para;</a></h3>
-<p><em>Returns the samples on either side of</em> <em>value</em> <em>on__axis</em> <em>.</em>
+<p><em>Returns the data points on either side of</em> <em>value</em> <em>on__axis</em> <em>.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">InspectionNeighbors</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionIndex</span><span class="o">::</span><span class="n">neighbors</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="n">InspectionAxis</span><span class="w"> </span><span class="n">axis</span><span class="p">,</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">value</span>

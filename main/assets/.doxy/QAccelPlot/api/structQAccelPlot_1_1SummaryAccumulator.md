@@ -15,7 +15,7 @@
 
 
 
-_Running sample-weighted Y statistics that can be merged across disjoint sample sets._ 
+_Running data-point-weighted Y statistics that can be merged across disjoint data point sets._ 
 
 * `#include <InspectionTypes.hpp>`
 

@@ -15,7 +15,7 @@
 
 
 
-_Samples of a gradient fill: one group per valid-sample run, broken at gaps._ 
+_Data points of a gradient fill: one group per run of valid data points, broken at gaps._ 
 
 * `#include <LineCurveLineRenderer.hpp>`
 

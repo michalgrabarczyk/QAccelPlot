@@ -26,16 +26,16 @@
 namespace QAccelPlot {
 
 struct InspectionRow {
-    QPointer<PlotSeries> series; 
-    InspectionSample sample;     
-    QPointF pixelPosition;       
-    QString xText;               
-    QString yText;               
-    bool hasSummary{false};      
-    InspectionSummary summary;   
-    QString minimumText;         
-    QString maximumText;         
-    QString meanText;            
+    QPointer<PlotSeries> series;   
+    InspectionDataPoint dataPoint; 
+    QPointF pixelPosition;         
+    QString xText;                 
+    QString yText;                 
+    bool hasSummary{false};        
+    InspectionSummary summary;     
+    QString minimumText;           
+    QString maximumText;           
+    QString meanText;              
 };
 
 class InspectionRowModel : public QAbstractListModel {
@@ -49,11 +49,11 @@ public:
         SeriesNameRole,
         SeriesColorRole,
         ValidRole,
-        SampleStatusRole,
-        SampleIndexRole,
-        SampleXRole,
-        SampleYRole,
-        SampleValueRole,
+        DataPointStatusRole,
+        DataPointIndexRole,
+        DataPointXRole,
+        DataPointYRole,
+        DataPointValueRole,
         XTextRole,
         YTextRole,
         PixelPositionRole,

@@ -24,7 +24,7 @@
           </detaileddescription>
         </enumvalue>
         <briefdescription>
-<para>Which value of each sample the edge line draws. </para>
+<para>Which value of each data point the edge line draws. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -119,10 +119,10 @@
       </memberdef>
     </sectiondef>
     <briefdescription>
-<para>Line material for the lower or upper edge line of a band, reading <computeroutput>(x, low, high)</computeroutput> samples. </para>
+<para>Line material for the lower or upper edge line of a band, reading <computeroutput>(x, low, high)</computeroutput> data points. </para>
     </briefdescription>
     <detaileddescription>
-<para>Uses the line uniforms and fragment stage; only the vertex stage reads three floats per sample. </para>
+<para>Uses the line uniforms and fragment stage; only the vertex stage reads three floats per data point. </para>
     </detaileddescription>
     <inheritancegraph>
       <node id="1">

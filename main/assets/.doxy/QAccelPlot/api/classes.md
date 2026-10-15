@@ -5,6 +5,8 @@
 ## a
 
 * [**ArcLengthScale**](structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale.md)
+* [**AttributeView**](structQAccelPlot_1_1DataPointStore_1_1AttributeView.md)
+([**QAccelPlot::DataPointStore**](classQAccelPlot_1_1DataPointStore.md))
 * [**Axis**](classQAccelPlot_1_1Axis.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**AxisMapping**](structQAccelPlot_1_1AxisMapping.md)
@@ -33,8 +35,6 @@
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**BandMaterial**](classQAccelPlot_1_1BandMaterial.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
-* [**BandSamples**](structQAccelPlot_1_1BandSamples.md)
-([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**BandSeries**](classQAccelPlot_1_1BandSeries.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**BarMaterial**](classQAccelPlot_1_1BarMaterial.md)
@@ -55,6 +55,7 @@
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**Colors**](classQAccelPlot_1_1Colors.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**Compacted**](structQAccelPlot_1_1DataPointStore_1_1Compacted.md)
 * [**CurveChunk**](structQAccelPlot_1_1CurveChunk.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**CurveDataView**](structQAccelPlot_1_1CurveDataView.md)
@@ -75,6 +76,14 @@
 ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
 * [**DataExtent**](structQAccelPlot_1_1PlotSeries_1_1DataExtent.md)
 ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
+* [**DataPointInput**](structQAccelPlot_1_1PlotSeries_1_1DataPointInput.md)
+([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
+* [**DataPointRun**](structQAccelPlot_1_1DataPointRun.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**DataPointStore**](classQAccelPlot_1_1DataPointStore.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**DataPointWording**](structQAccelPlot_1_1PlotSeries_1_1DataPointWording.md)
+([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
 * [**DataRange**](structQAccelPlot_1_1Axis_1_1DataRange.md)
 * [**DataRanges**](structQAccelPlot_1_1PlotSeries_1_1DataRanges.md)
 ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
@@ -89,8 +98,18 @@
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**DateTimeTickLabelFormatter**](classQAccelPlot_1_1DateTimeTickLabelFormatter.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**DimensionState**](structQAccelPlot_1_1DataPointStore_1_1DimensionState.md)
+([**QAccelPlot::DataPointStore**](classQAccelPlot_1_1DataPointStore.md))
 * [**DrawTransition**](classQAccelPlot_1_1DrawTransition.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
+
+
+## e
+
+* [**Extent**](structQAccelPlot_1_1DataPointStore_1_1Extent.md)
+([**QAccelPlot::DataPointStore**](classQAccelPlot_1_1DataPointStore.md))
+* [**Extents**](structQAccelPlot_1_1DataPointStore_1_1Extents.md)
+([**QAccelPlot::DataPointStore**](classQAccelPlot_1_1DataPointStore.md))
 
 
 ## f
@@ -148,6 +167,8 @@
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**InspectionCache**](classQAccelPlot_1_1InspectionCache.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**InspectionDataPoint**](structQAccelPlot_1_1InspectionDataPoint.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**InspectionHit**](structQAccelPlot_1_1InspectionHit.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**InspectionIndex**](classQAccelPlot_1_1InspectionIndex.md)
@@ -164,8 +185,6 @@
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
-* [**InspectionSample**](structQAccelPlot_1_1InspectionSample.md)
-([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**InspectionSource**](structQAccelPlot_1_1InspectionSource.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**InspectionSummary**](structQAccelPlot_1_1InspectionSummary.md)
@@ -180,6 +199,8 @@
 
 ## l
 
+* [**Layout**](structQAccelPlot_1_1DataPointStore_1_1Layout.md)
+([**QAccelPlot::DataPointStore**](classQAccelPlot_1_1DataPointStore.md))
 * [**Layout**](structQAccelPlot_1_1ColorBar_1_1Layout.md)
 * [**LineCurve**](classQAccelPlot_1_1LineCurve.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
@@ -222,6 +243,7 @@
 
 ## o
 
+* [**Origin**](structQAccelPlot_1_1DataPointStore_1_1Origin.md)
 * [**OutlinedRectangle**](classQAccelPlot_1_1OutlinedRectangle.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**OverlayChildren**](classQAccelPlot_1_1OverlayChildren.md)
@@ -291,8 +313,6 @@
 
 ## s
 
-* [**SampleRun**](structQAccelPlot_1_1SampleRun.md)
-([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**SelectionRectangle**](classQAccelPlot_1_1SelectionRectangle.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**SelectionTool**](classQAccelPlot_1_1SelectionTool.md)
@@ -335,5 +355,9 @@
 * [**Vertex**](structQAccelPlot_1_1BandMaterial_1_1Vertex.md)
 ([**QAccelPlot::BandMaterial**](classQAccelPlot_1_1BandMaterial.md))
 * [**Vertex**](structQAccelPlot_1_1RectVertexCache_1_1Vertex.md)
+* [**View**](structQAccelPlot_1_1DataPointStore_1_1View.md)
+([**QAccelPlot::DataPointStore**](classQAccelPlot_1_1DataPointStore.md))
+* [**Viewport**](structQAccelPlot_1_1DataPointStore_1_1Viewport.md)
+([**QAccelPlot::DataPointStore**](classQAccelPlot_1_1DataPointStore.md))
 
 

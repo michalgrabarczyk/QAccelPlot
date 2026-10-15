@@ -15,7 +15,7 @@
 
 
 
-_Source indices of the valid samples on either side of an X value, or -1._ 
+_Source indices of the valid data points on either side of an X value, or -1._ 
 
 * `#include <InspectionTypes.hpp>`
 

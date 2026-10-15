@@ -83,26 +83,17 @@ public:
 
     Q_INVOKABLE void setData(const QVariantList& rects);
 
-    void setData(const double* data, int rectCount) override;
-
-    void setData(std::vector<double>&& data, int rectCount) override;
-
-    void setData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
-
-    void setDataF(const float* data, int rectCount) override;
-
-    void setDataF(std::vector<float>&& data, int rectCount) override;
-
-    void setDataF(std::vector<float>&& data, std::vector<int>&& categories, int rectCount);
-
+    // The PlotSeries overloads take interleaved (x1, y1, x2, y2) rectangles, as doubles or floats,
+    // and clear the categories.
+    using PlotSeries::postData;
     using PlotSeries::setData;
     using PlotSeries::setDataF;
 
-    void postData(std::vector<double>&& data, int rectCount) override;
+    void setData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
+
+    void setDataF(std::vector<float>&& data, std::vector<int>&& categories, int rectCount);
 
     void postData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
-
-    void postData(std::vector<float>&& data, int rectCount) override;
 
     void postData(std::vector<float>&& data, std::vector<int>&& categories, int rectCount);
 
@@ -132,18 +123,12 @@ protected:
     void hoverMoveEvent(QHoverEvent* event) override;
     void hoverLeaveEvent(QHoverEvent* event) override;
     void onAxisScaleChanged() override;
-    void onAxisRangeChanged() override;
-    DataRanges computeDataRanges() const override;
+    void onDataPointsChanged(DataChange change, int previousCount) override;
 
 private:
-    bool validateRawDataArguments(const void* data, int rectCount) const;
-    bool validateDataArguments(std::size_t valueCount, std::size_t categoryCount, int rectCount) const;
+    bool validateCategories(std::size_t categoryCount, int rectCount) const;
     void applyData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
     void applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, int rectCount);
-    void setDataFFromArray(const float* data, int rectCount);
-    void finishDataChange(std::vector<int>&& categories, int rectCount);
-    // True when the double setData() overloads supplied the data; false for the setDataF() overloads.
-    bool hasPreciseData() const;
     // Returns edge \a component (0 = x1, 1 = y1, 2 = x2, 3 = y2) of rectangle \a index.
     double coordinate(int index, int component) const;
     bool hasCategories() const;
@@ -176,10 +161,6 @@ private:
     int topmostRectangleAt(const QPointF& position) const;
     // Builds the vertices of the first \a rectCount rectangles.
     void buildVertexCache(int rectCount);
-    // Rebuilds renderData_ (origin-relative float coordinates) from the double-precision
-    // data_, so the GPU upload stays accurate for large coordinates
-    // (e.g. modern Unix-epoch timestamps) without needing double-precision textures.
-    void rebuildRenderData(bool logScaleX, bool logScaleY);
 
     QColor color_;
     QList<QColor> categoryColors_;
@@ -188,20 +169,14 @@ private:
     qreal minimumWidth_{1.0};
     qreal minimumHeight_{1.0};
     int hoveredIndex_{-1};
-    // Data: 4 doubles per rect (x1, y1, x2, y2), full precision. Empty when setDataF() supplied the data.
-    std::vector<double> data_;
-    // One category per rect, or empty when no rectangle has one.
-    std::vector<int> categories_;
-    // Uploaded to the GPU: an origin-relative float mirror of data_, or the setDataF() data itself.
-    std::vector<float> renderData_;
-    qreal renderOriginX_{0.0};
-    qreal renderOriginY_{0.0};
-    int rectCount_{0};
-    bool dataChanged_{false};
+    // Render revision of the rectangles last uploaded to the GPU.
+    std::uint64_t uploadedRevision_{0};
     // Whether the last frame held more records than the GPU buffers do; warns on each crossing.
     bool overCapacity_{false};
     // Vertex colors are category colors when categories are set; otherwise \c color is a uniform.
     RectVertexCache vertexCache_;
+    // Whether the vertex cache holds category colors.
+    bool vertexCacheHasCategories_{false};
     // Built once scanning the same data has cost as much as the build, so streaming skips it.
     mutable SpatialGrid spatialGrid_;
     mutable bool spatialGridValid_{false};

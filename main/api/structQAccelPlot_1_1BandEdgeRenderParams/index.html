@@ -1300,6 +1300,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#variable-datapoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable dataPoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#variable-datatexture" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1311,21 +1322,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#variable-reservedsamplecount" class="md-nav__link">
+  <a href="#variable-reservedcount" class="md-nav__link">
     <span class="md-ellipsis">
       
-        variable reservedSampleCount
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#variable-samples" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        variable samples
+        variable reservedCount
       
     </span>
   </a>
@@ -1404,7 +1404,11 @@
 <tbody>
 <tr>
 <td style="text-align: right;">bool</td>
-<td style="text-align: left;"><a href="#variable-datachanged"><strong>dataChanged</strong></a>  <br><em>Whether the samples changed since the last paint.</em></td>
+<td style="text-align: left;"><a href="#variable-datachanged"><strong>dataChanged</strong></a>  <br><em>Whether the data points changed since the last paint.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../structQAccelPlot_1_1DataPointStore_1_1View/"><strong>DataPointStore::View</strong></a></td>
+<td style="text-align: left;"><a href="#variable-datapoints"><strong>dataPoints</strong></a>  <br><em>The band's</em> <code>(x, low, high)</code> <em>data points, used for dash lengths.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">std::shared_ptr&lt; <a href="../classQAccelPlot_1_1DataTexture/"><strong>DataTexture</strong></a> &gt;</td>
@@ -1412,15 +1416,11 @@
 </tr>
 <tr>
 <td style="text-align: right;">int</td>
-<td style="text-align: left;"><a href="#variable-reservedsamplecount"><strong>reservedSampleCount</strong></a>  <br><em>Samples the vertex buffer holds room for, at least</em> <code>samples.count</code> <em>, so appends rarely resize it.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;"><a href="../structQAccelPlot_1_1BandSamples/"><strong>BandSamples</strong></a></td>
-<td style="text-align: left;"><a href="#variable-samples"><strong>samples</strong></a>  <br><em>CPU copy of the band samples, used for dash lengths.</em></td>
+<td style="text-align: left;"><a href="#variable-reservedcount"><strong>reservedCount</strong></a>  <br><em>Data points the vertex buffer holds room for, at least</em> <code>dataPoints.count</code> <em>, so appends rarely resize it.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../structQAccelPlot_1_1LineStroke_1_1Uniforms/"><strong>LineStroke::Uniforms</strong></a></td>
-<td style="text-align: left;"><a href="#variable-uniforms"><strong>uniforms</strong></a>  <br><em>Line uniforms;</em> <code>uniforms.pointCount</code> <em>equals</em><code>samples.count</code> <em>.</em></td>
+<td style="text-align: left;"><a href="#variable-uniforms"><strong>uniforms</strong></a>  <br><em>Line uniforms;</em> <code>uniforms.pointCount</code> <em>equals</em><code>dataPoints.count</code> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> *</td>
@@ -1434,31 +1434,31 @@
 </table>
 <h2 id="public-attributes-documentation">Public Attributes Documentation<a class="headerlink" href="#public-attributes-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="variable-datachanged">variable dataChanged<a class="headerlink" href="#variable-datachanged" title="Permanent link">&para;</a></h3>
-<p><em>Whether the samples changed since the last paint.</em> 
+<p><em>Whether the data points changed since the last paint.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandEdgeRenderParams</span><span class="o">::</span><span class="n">dataChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="variable-datapoints">variable dataPoints<a class="headerlink" href="#variable-datapoints" title="Permanent link">&para;</a></h3>
+<p><em>The band's</em> <code>(x, low, high)</code> <em>data points, used for dash lengths.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">DataPointStore</span><span class="o">::</span><span class="n">View</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandEdgeRenderParams</span><span class="o">::</span><span class="n">dataPoints</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-datatexture">variable dataTexture<a class="headerlink" href="#variable-datatexture" title="Permanent link">&para;</a></h3>
 <p><em>The band's data texture; the edge line never uploads data itself.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">DataTexture</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandEdgeRenderParams</span><span class="o">::</span><span class="n">dataTexture</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">DataTexture</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandEdgeRenderParams</span><span class="o">::</span><span class="n">dataTexture</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
-<h3 id="variable-reservedsamplecount">variable reservedSampleCount<a class="headerlink" href="#variable-reservedsamplecount" title="Permanent link">&para;</a></h3>
-<p><em>Samples the vertex buffer holds room for, at least</em> <code>samples.count</code> <em>, so appends rarely resize it.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandEdgeRenderParams</span><span class="o">::</span><span class="n">reservedSampleCount</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="variable-samples">variable samples<a class="headerlink" href="#variable-samples" title="Permanent link">&para;</a></h3>
-<p><em>CPU copy of the band samples, used for dash lengths.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">BandSamples</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandEdgeRenderParams</span><span class="o">::</span><span class="n">samples</span><span class="p">;</span>
+<h3 id="variable-reservedcount">variable reservedCount<a class="headerlink" href="#variable-reservedcount" title="Permanent link">&para;</a></h3>
+<p><em>Data points the vertex buffer holds room for, at least</em> <code>dataPoints.count</code> <em>, so appends rarely resize it.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandEdgeRenderParams</span><span class="o">::</span><span class="n">reservedCount</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-uniforms">variable uniforms<a class="headerlink" href="#variable-uniforms" title="Permanent link">&para;</a></h3>
-<p><em>Line uniforms;</em> <code>uniforms.pointCount</code> <em>equals</em><code>samples.count</code> <em>.</em>
+<p><em>Line uniforms;</em> <code>uniforms.pointCount</code> <em>equals</em><code>dataPoints.count</code> <em>.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">LineStroke</span><span class="o">::</span><span class="n">Uniforms</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandEdgeRenderParams</span><span class="o">::</span><span class="n">uniforms</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>

@@ -19,6 +19,7 @@
 
 * `#include "QAccelPlot/materials/BandEdgeMaterial.hpp"`
 * `#include "QAccelPlot/renderers/LineStroke.hpp"`
+* `#include "QAccelPlot/series/DataPointStore.hpp"`
 * `#include <QSGGeometryNode>`
 * `#include <QVector2D>`
 * `#include <memory>`
@@ -52,7 +53,6 @@
 | ---: | :--- |
 | struct | [**BandEdgeRenderParams**](structQAccelPlot_1_1BandEdgeRenderParams.md) <br>_Inputs for_ [_**BandEdgeRenderer::paint()**_](classQAccelPlot_1_1BandEdgeRenderer.md#function-paint) _, assembled while the GUI thread is blocked._ |
 | class | [**BandEdgeRenderer**](classQAccelPlot_1_1BandEdgeRenderer.md) <br>_Internal renderer for the lower or upper edge line of a_ `BandSeries` _._ |
-| struct | [**BandSamples**](structQAccelPlot_1_1BandSamples.md) <br>_Read-only view over interleaved_ `(x, low, high)` _band samples in float or double precision._ |
 
 
 

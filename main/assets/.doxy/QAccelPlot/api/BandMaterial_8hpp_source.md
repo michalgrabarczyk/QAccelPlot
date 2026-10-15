@@ -37,7 +37,7 @@ public:
 
     static const QSGGeometry::AttributeSet& vertexAttributes();
 
-    float sampleCount{0.0f}; 
+    float dataPointCount{0.0f}; 
 
 protected:
     int compareExtra(const QSGMaterial* other) const override;

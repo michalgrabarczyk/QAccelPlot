@@ -1422,7 +1422,7 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 <li><a href="classQAccelPlot_1_1PlotMouseEvent/"><code>PlotMouseEvent</code></a> — mouse
   positions in plot and data coordinates.</li>
 <li><a href="classQAccelPlot_1_1SeriesInspection/"><code>SeriesInspection</code></a> — per-series
-  data queries: nearest samples, brackets, region statistics, and index pages.</li>
+  data queries: nearest data points, brackets, region statistics, and index pages.</li>
 <li><a href="classQAccelPlot_1_1PlotInspector/"><code>PlotInspector</code></a> — cursor state and
   one model row per series for crosshairs and tooltips.</li>
 <li><a href="classQAccelPlot_1_1SelectionTool/"><code>SelectionTool</code></a> — data-space box
@@ -1437,8 +1437,8 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 <li><a href="classQAccelPlot_1_1LineCurve/#function-postdata-22"><code>postData()</code></a> —
   completed buffers from a worker thread.</li>
 <li><code>PlotSeries::DataBounds</code> — passed with the data when its extents are already known.</li>
-<li><code>NaN</code> marks a missing sample; <code>gaps.nanMode</code> breaks or connects the curve.
-  See <a href="../concepts/#invalid-samples-and-gaps">Invalid samples and gaps</a>.</li>
+<li><code>NaN</code> marks a missing data point; <code>gaps.nanMode</code> breaks or connects the curve.
+  See <a href="../concepts/#invalid-data-points-and-gaps">Invalid data points and gaps</a>.</li>
 </ul>
 <p>See <a href="../performance/#select-the-data-path">Select the data path</a>.</p>
 

@@ -12,7 +12,7 @@
         <enumvalue id="classQAccelPlot_1_1PlotInspector_1abce6e3e87608cfa715f2e3700a3e55b1a95e01bf4eb76a2ccd2efe7f5991f87ff" prot="public">
           <name>NearestX</name>
           <briefdescription>
-<para>The sample at the cursor&apos;s X, for comparing series at one position. </para>
+<para>The data point at the cursor&apos;s X, for comparing series at one position. </para>
           </briefdescription>
           <detaileddescription>
           </detaileddescription>
@@ -20,7 +20,7 @@
         <enumvalue id="classQAccelPlot_1_1PlotInspector_1abce6e3e87608cfa715f2e3700a3e55b1a8e8b7f724902497bebce58bd81ff67f7" prot="public">
           <name>NearestY</name>
           <briefdescription>
-<para>The sample at the cursor&apos;s Y, for series whose independent variable is Y. </para>
+<para>The data point at the cursor&apos;s Y, for series whose independent variable is Y. </para>
           </briefdescription>
           <detaileddescription>
           </detaileddescription>
@@ -28,7 +28,7 @@
         <enumvalue id="classQAccelPlot_1_1PlotInspector_1abce6e3e87608cfa715f2e3700a3e55b1a2232f70425314505cf4a4e232b99d278" prot="public">
           <name>NearestXY</name>
           <briefdescription>
-<para>The sample closest to the cursor on screen. </para>
+<para>The data point closest to the cursor on screen. </para>
           </briefdescription>
           <detaileddescription>
           </detaileddescription>
@@ -121,7 +121,7 @@
         <read>radius</read>
         <write>setRadius</write>
         <briefdescription>
-<para>Pick distance in logical pixels. In <computeroutput>NearestX</computeroutput> and <computeroutput>NearestY</computeroutput> mode it only limits matches beyond a series&apos; extreme samples. Default: 16. </para>
+<para>Pick distance in logical pixels. In <computeroutput>NearestX</computeroutput> and <computeroutput>NearestY</computeroutput> mode it only limits matches beyond a series&apos; extreme data points. Default: 16. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -129,16 +129,16 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="48" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="48" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="classQAccelPlot_1_1PlotInspector_1a5c0e1e4c2adce65e553bf3d3438adb39" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotInspector_1a2e3102841ad0abd85a87db1bce91bf67" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>bool</type>
-        <definition>bool QAccelPlot::PlotInspector::snapToSample</definition>
+        <definition>bool QAccelPlot::PlotInspector::snapToDataPoint</definition>
         <argsstring></argsstring>
-        <name>snapToSample</name>
-        <qualifiedname>QAccelPlot::PlotInspector::snapToSample</qualifiedname>
-        <read>snapToSample</read>
-        <write>setSnapToSample</write>
+        <name>snapToDataPoint</name>
+        <qualifiedname>QAccelPlot::PlotInspector::snapToDataPoint</qualifiedname>
+        <read>snapToDataPoint</read>
+        <write>setSnapToDataPoint</write>
         <briefdescription>
-<para>Moves the crosshair to the closest matching sample. Default: false. </para>
+<para>Moves the crosshair to the closest matching data point. Default: false. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -155,7 +155,7 @@
         <read>interpolate</read>
         <write>setInterpolate</write>
         <briefdescription>
-<para>In <computeroutput>NearestX</computeroutput> and <computeroutput>NearestY</computeroutput> mode, reports the point on the line between two consecutive samples instead of the nearer one. Default: false. </para>
+<para>In <computeroutput>NearestX</computeroutput> and <computeroutput>NearestY</computeroutput> mode, reports the point on the line between two consecutive data points instead of the nearer one. Default: false. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -172,7 +172,7 @@
         <read>summaries</read>
         <write>setSummaries</write>
         <briefdescription>
-<para>Adds Y statistics of the samples around the cursor to every row. Default: false. </para>
+<para>Adds Y statistics of the data points around the cursor to every row. Default: false. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -371,7 +371,7 @@
         <qualifiedname>QAccelPlot::PlotInspector::validCount</qualifiedname>
         <read>validCount</read>
         <briefdescription>
-<para>Number of rows with a matching sample. </para>
+<para>Number of rows with a matching data point. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -440,12 +440,12 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="232" column="11" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="232" bodyend="232"/>
       </memberdef>
-      <memberdef kind="variable" id="classQAccelPlot_1_1PlotInspector_1a27e001b3ab51136ee0649f710d8725aa" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotInspector_1a81e9a616d1deda4f0778b790d4277286" prot="private" static="no" mutable="no">
         <type>bool</type>
-        <definition>bool QAccelPlot::PlotInspector::snapToSample_</definition>
+        <definition>bool QAccelPlot::PlotInspector::snapToDataPoint_</definition>
         <argsstring></argsstring>
-        <name>snapToSample_</name>
-        <qualifiedname>QAccelPlot::PlotInspector::snapToSample_</qualifiedname>
+        <name>snapToDataPoint_</name>
+        <qualifiedname>QAccelPlot::PlotInspector::snapToDataPoint_</qualifiedname>
         <initializer>{false}</initializer>
         <briefdescription>
         </briefdescription>
@@ -931,14 +931,14 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="114" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a95484ce41d754411d04ed3e765125d97" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1ac959f83d703f97a9079ed77b57c80bce" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
-        <definition>bool QAccelPlot::PlotInspector::snapToSample</definition>
+        <definition>bool QAccelPlot::PlotInspector::snapToDataPoint</definition>
         <argsstring>() const</argsstring>
-        <name>snapToSample</name>
-        <qualifiedname>QAccelPlot::PlotInspector::snapToSample</qualifiedname>
+        <name>snapToDataPoint</name>
+        <qualifiedname>QAccelPlot::PlotInspector::snapToDataPoint</qualifiedname>
         <briefdescription>
-<para>Returns whether the crosshair snaps to the closest matching sample. </para>
+<para>Returns whether the crosshair snaps to the closest matching data point. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -946,12 +946,12 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="116" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a6b28deebd06e4bd46f3961e13a6de095" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a6f723368bf3e9a71da3af47bfa6c5679" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
-        <definition>void QAccelPlot::PlotInspector::setSnapToSample</definition>
+        <definition>void QAccelPlot::PlotInspector::setSnapToDataPoint</definition>
         <argsstring>(bool enabled)</argsstring>
-        <name>setSnapToSample</name>
-        <qualifiedname>QAccelPlot::PlotInspector::setSnapToSample</qualifiedname>
+        <name>setSnapToDataPoint</name>
+        <qualifiedname>QAccelPlot::PlotInspector::setSnapToDataPoint</qualifiedname>
         <param>
           <type>bool</type>
           <declname>enabled</declname>
@@ -972,7 +972,7 @@
         <name>interpolate</name>
         <qualifiedname>QAccelPlot::PlotInspector::interpolate</qualifiedname>
         <briefdescription>
-<para>Returns whether <computeroutput>NearestX</computeroutput> and <computeroutput>NearestY</computeroutput> rows are interpolated between samples. </para>
+<para>Returns whether <computeroutput>NearestX</computeroutput> and <computeroutput>NearestY</computeroutput> rows are interpolated between data points. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -991,7 +991,7 @@
           <declname>enabled</declname>
         </param>
         <briefdescription>
-<para>Enables or disables interpolation between consecutive samples. </para>
+<para>Enables or disables interpolation between consecutive data points. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -1319,7 +1319,7 @@
         <name>validCount</name>
         <qualifiedname>QAccelPlot::PlotInspector::validCount</qualifiedname>
         <briefdescription>
-<para>Returns the number of rows with a matching sample. </para>
+<para>Returns the number of rows with a matching data point. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -1423,14 +1423,14 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="177" column="10"/>
       </memberdef>
-      <memberdef kind="signal" id="classQAccelPlot_1_1PlotInspector_1a9277d72aa7eec2ebe1437ed45bd6b89f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="signal" id="classQAccelPlot_1_1PlotInspector_1a07737757362b279a81c6513347beb9c9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
-        <definition>void QAccelPlot::PlotInspector::snapToSampleChanged</definition>
+        <definition>void QAccelPlot::PlotInspector::snapToDataPointChanged</definition>
         <argsstring>()</argsstring>
-        <name>snapToSampleChanged</name>
-        <qualifiedname>QAccelPlot::PlotInspector::snapToSampleChanged</qualifiedname>
+        <name>snapToDataPointChanged</name>
+        <qualifiedname>QAccelPlot::PlotInspector::snapToDataPointChanged</qualifiedname>
         <briefdescription>
-<para>Emitted when the snapToSample property changes. </para>
+<para>Emitted when the snapToDataPoint property changes. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -1769,12 +1769,12 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="220" column="11"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a5a870ad77693e0319a661c04f8c0c2f0" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="structQAccelPlot_1_1InspectionSample" kindref="compound">InspectionSample</ref></type>
-        <definition>InspectionSample QAccelPlot::PlotInspector::sampleAlong</definition>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a893dba7abe50f2e1bf0bbab561477569" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1InspectionDataPoint" kindref="compound">InspectionDataPoint</ref></type>
+        <definition>InspectionDataPoint QAccelPlot::PlotInspector::dataPointAlong</definition>
         <argsstring>(SeriesInspection &amp;inspection, Mode mode, const QPointF &amp;local) const</argsstring>
-        <name>sampleAlong</name>
-        <qualifiedname>QAccelPlot::PlotInspector::sampleAlong</qualifiedname>
+        <name>dataPointAlong</name>
+        <qualifiedname>QAccelPlot::PlotInspector::dataPointAlong</qualifiedname>
         <param>
           <type><ref refid="classQAccelPlot_1_1SeriesInspection" kindref="compound">SeriesInspection</ref> &amp;</type>
           <declname>inspection</declname>
@@ -1793,7 +1793,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="222" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="222" column="25"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1abe7cf1db3852689333ad40dcade82770" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structQAccelPlot_1_1InspectionSummary" kindref="compound">InspectionSummary</ref></type>
@@ -1956,6 +1956,7 @@
       <member refid="classQAccelPlot_1_1PlotInspector_1a29c11b60ed7f43dd3e44a6b6218d6771" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>cursorYText_</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1a4041c62417d75270e7a056a68c9dabdf" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>data</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1a5ca7d78b9df1c21c87d30eca5ea889df" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>data</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a893dba7abe50f2e1bf0bbab561477569" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>dataPointAlong</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1a3345ef3db8fbe96f1766f6144e3793ab" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>effectiveMode</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1a7a052b00d2b71ba116449a0ce5439939" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>enabled</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1a2cb2e67f1fc2757831ab4c99a07229a2" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>enabled</name></member>
@@ -1982,9 +1983,9 @@
       <member refid="classQAccelPlot_1_1PlotInspector_1a95791d7353ce63248f7c05fdce826428" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>interpolate</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1a31c00d4b90aced462b1cf5eb6aab6081" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>interpolate_</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1af401a66a06653f673d3a7545a6101688" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>interpolateChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1abce6e3e87608cfa715f2e3700a3e55b1" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>Mode</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1a74ca2c67ffef70e7e74ae70f8e26cdb2" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>mode</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1aba29c4a796361cfbe320bad840da89f2" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>mode</name></member>
-      <member refid="classQAccelPlot_1_1PlotInspector_1abce6e3e87608cfa715f2e3700a3e55b1" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>Mode</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1a5032c0547a13598fcbd5c50d78e79494" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>mode_</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1a62a946de0085495ff93d94f889157ed5" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>modeChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1a0bfc971d317ca5e10284c4345b03d147" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>model</name></member>
@@ -2015,7 +2016,6 @@
       <member refid="classQAccelPlot_1_1PlotInspector_1a9c1a14497e3c9016e8df7af507bdac42" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>refresh</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1ad64afbb550411f0271b415bf9dddf3b2" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>refreshed</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1abb84ece9732c5d490258ada5f2f4278c" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>refreshing_</name></member>
-      <member refid="classQAccelPlot_1_1PlotInspector_1a5a870ad77693e0319a661c04f8c0c2f0" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>sampleAlong</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1aff93b94cdf0623675a0bd9982d814718" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>schedule</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1ae05453859326132780df51c446c3211b" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>setCursorX</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1aa9aae460acf9e08c3ebb09e56818e06f" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>setCursorY</name></member>
@@ -2027,14 +2027,14 @@
       <member refid="classQAccelPlot_1_1PlotInspector_1ac0e37a9f3b1e17844f46857a25e77848" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>setMode</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1a72cc790c9430a46f1dba380f132f6415" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>setPlot</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1aab2c72559b550c3720f3c0b9dafb6a60" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>setRadius</name></member>
-      <member refid="classQAccelPlot_1_1PlotInspector_1a6b28deebd06e4bd46f3961e13a6de095" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>setSnapToSample</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a6f723368bf3e9a71da3af47bfa6c5679" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>setSnapToDataPoint</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1a1720d10a8019f11768413d3268dc2945" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>setSummaries</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1a5ce97d829210269172bc07425edea257" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>setSummaryRadius</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1aaa0c564f6de501a2528e2d3da1ff80e1" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>snappedPosition</name></member>
-      <member refid="classQAccelPlot_1_1PlotInspector_1a5c0e1e4c2adce65e553bf3d3438adb39" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>snapToSample</name></member>
-      <member refid="classQAccelPlot_1_1PlotInspector_1a95484ce41d754411d04ed3e765125d97" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>snapToSample</name></member>
-      <member refid="classQAccelPlot_1_1PlotInspector_1a27e001b3ab51136ee0649f710d8725aa" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>snapToSample_</name></member>
-      <member refid="classQAccelPlot_1_1PlotInspector_1a9277d72aa7eec2ebe1437ed45bd6b89f" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>snapToSampleChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a2e3102841ad0abd85a87db1bce91bf67" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>snapToDataPoint</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1ac959f83d703f97a9079ed77b57c80bce" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>snapToDataPoint</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a81e9a616d1deda4f0778b790d4277286" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>snapToDataPoint_</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a07737757362b279a81c6513347beb9c9" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>snapToDataPointChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1ae6f8f9189e91d700735ef04a354991d1" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>stepCursor</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1a3abf27e0bb329a867d50af1e34dc2a58" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>summaries</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1a31b1e85907399db61e37255cc3c03866" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>summaries</name></member>

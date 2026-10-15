@@ -143,7 +143,7 @@ See [QAccelPlot::DataTransition](classQAccelPlot_1_1DataTransition.md)
 
 | Type | Name |
 | ---: | :--- |
-|  double | [**interpolateCoordinate**](#function-interpolatecoordinate) (double from, double to, double easedProgress) <br>_Returns the coordinate between_ _from_ _and__to_ _at__easedProgress_ _, honoring the invalid-sample contract._ |
+|  double | [**interpolateCoordinate**](#function-interpolatecoordinate) (double from, double to, double easedProgress) <br>_Returns the coordinate between_ _from_ _and__to_ _at__easedProgress_ _, honoring the invalid-data-point contract._ |
 
 
 
@@ -248,7 +248,7 @@ explicit QAccelPlot::MorphTransition::MorphTransition (
 
 ### function interpolateCoordinate {#function-interpolatecoordinate}
 
-_Returns the coordinate between_ _from_ _and__to_ _at__easedProgress_ _, honoring the invalid-sample contract._
+_Returns the coordinate between_ _from_ _and__to_ _at__easedProgress_ _, honoring the invalid-data-point contract._
 ```C++
 static double QAccelPlot::MorphTransition::interpolateCoordinate (
     double from,

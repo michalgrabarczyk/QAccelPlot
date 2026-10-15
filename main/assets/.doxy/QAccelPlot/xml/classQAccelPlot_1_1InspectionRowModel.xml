@@ -38,36 +38,36 @@
           <detaileddescription>
           </detaileddescription>
         </enumvalue>
-        <enumvalue id="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3ae30002a7909cc40c33319c569dce3340" prot="public">
-          <name>SampleStatusRole</name>
+        <enumvalue id="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3ab462ce886dbc519adeecf8e66ec6f48c" prot="public">
+          <name>DataPointStatusRole</name>
           <briefdescription>
           </briefdescription>
           <detaileddescription>
           </detaileddescription>
         </enumvalue>
-        <enumvalue id="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3a149f4f5d3761b0414aa86c5e29bba719" prot="public">
-          <name>SampleIndexRole</name>
+        <enumvalue id="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3a642d564b9fda6a086c8005c183e60362" prot="public">
+          <name>DataPointIndexRole</name>
           <briefdescription>
           </briefdescription>
           <detaileddescription>
           </detaileddescription>
         </enumvalue>
-        <enumvalue id="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3a4ad1a35c41e0523b07bbf8d378ff630f" prot="public">
-          <name>SampleXRole</name>
+        <enumvalue id="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3a0a6a8f463fabdf9e7686c2eb3c271d32" prot="public">
+          <name>DataPointXRole</name>
           <briefdescription>
           </briefdescription>
           <detaileddescription>
           </detaileddescription>
         </enumvalue>
-        <enumvalue id="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3a50828283225c8421a015686e833ffdab" prot="public">
-          <name>SampleYRole</name>
+        <enumvalue id="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3a5c6c0e150668547ee9587b425a11c800" prot="public">
+          <name>DataPointYRole</name>
           <briefdescription>
           </briefdescription>
           <detaileddescription>
           </detaileddescription>
         </enumvalue>
-        <enumvalue id="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3ac1cce74bbcf9653a9347ba3aa04883a4" prot="public">
-          <name>SampleValueRole</name>
+        <enumvalue id="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3aba5ac0557591c6fd2cbbaf3cd98daaf0" prot="public">
+          <name>DataPointValueRole</name>
           <briefdescription>
           </briefdescription>
           <detaileddescription>
@@ -495,7 +495,7 @@
     </briefdescription>
     <detaileddescription>
 <para>Provided by <computeroutput><ref refid="classQAccelPlot_1_1PlotInspector_1a0bfc971d317ca5e10284c4345b03d147" kindref="member">PlotInspector::model</ref></computeroutput> and <computeroutput><ref refid="classQAccelPlot_1_1SelectionTool_1a5137b8c4cf816f58dd7582b83c5217f0" kindref="member">SelectionTool::model</ref></computeroutput>. Rows are added and removed only when the set of inspected series changes; cursor movement updates rows in place, so delegates are reused.</para>
-<para>Roles: <computeroutput>series</computeroutput>, <computeroutput>seriesName</computeroutput>, <computeroutput>seriesColor</computeroutput>, <computeroutput>valid</computeroutput>, <computeroutput>sampleStatus</computeroutput>, <computeroutput>sampleIndex</computeroutput>, <computeroutput>sampleX</computeroutput>, <computeroutput>sampleY</computeroutput>, <computeroutput>sampleValue</computeroutput>, <computeroutput>xText</computeroutput>, <computeroutput>yText</computeroutput>, <computeroutput>pixelPosition</computeroutput>, <computeroutput>distance</computeroutput>, <computeroutput>interpolated</computeroutput>, <computeroutput>hasSummary</computeroutput>, <computeroutput>summaryStatus</computeroutput>, <computeroutput>summaryCount</computeroutput>, <computeroutput>minimum</computeroutput>, <computeroutput>maximum</computeroutput>, <computeroutput>mean</computeroutput>, <computeroutput>standardDeviation</computeroutput>, <computeroutput>minimumIndex</computeroutput>, <computeroutput>maximumIndex</computeroutput>, <computeroutput>minimumText</computeroutput>, <computeroutput>maximumText</computeroutput>, and <computeroutput>meanText</computeroutput>. </para>
+<para>Roles: <computeroutput>series</computeroutput>, <computeroutput>seriesName</computeroutput>, <computeroutput>seriesColor</computeroutput>, <computeroutput>valid</computeroutput>, <computeroutput>dataPointStatus</computeroutput>, <computeroutput>dataPointIndex</computeroutput>, <computeroutput>dataPointX</computeroutput>, <computeroutput>dataPointY</computeroutput>, <computeroutput>dataPointValue</computeroutput>, <computeroutput>xText</computeroutput>, <computeroutput>yText</computeroutput>, <computeroutput>pixelPosition</computeroutput>, <computeroutput>distance</computeroutput>, <computeroutput>interpolated</computeroutput>, <computeroutput>hasSummary</computeroutput>, <computeroutput>summaryStatus</computeroutput>, <computeroutput>summaryCount</computeroutput>, <computeroutput>minimum</computeroutput>, <computeroutput>maximum</computeroutput>, <computeroutput>mean</computeroutput>, <computeroutput>standardDeviation</computeroutput>, <computeroutput>minimumIndex</computeroutput>, <computeroutput>maximumIndex</computeroutput>, <computeroutput>minimumText</computeroutput>, <computeroutput>maximumText</computeroutput>, and <computeroutput>meanText</computeroutput>. </para>
     </detaileddescription>
     <inheritancegraph>
       <node id="2">
@@ -525,6 +525,11 @@
       <member refid="classQAccelPlot_1_1InspectionRowModel_1af0a49ecb9f978fbd958ba0177ae546c8" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>count</name></member>
       <member refid="classQAccelPlot_1_1InspectionRowModel_1a957849e38e908122190114f9d7dccc72" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>countChanged</name></member>
       <member refid="classQAccelPlot_1_1InspectionRowModel_1adf2fc7400cfca6e04065cc84bb375cec" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>data</name></member>
+      <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3a642d564b9fda6a086c8005c183e60362" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>DataPointIndexRole</name></member>
+      <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3ab462ce886dbc519adeecf8e66ec6f48c" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>DataPointStatusRole</name></member>
+      <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3aba5ac0557591c6fd2cbbaf3cd98daaf0" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>DataPointValueRole</name></member>
+      <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3a0a6a8f463fabdf9e7686c2eb3c271d32" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>DataPointXRole</name></member>
+      <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3a5c6c0e150668547ee9587b425a11c800" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>DataPointYRole</name></member>
       <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3a294d55edb524e5625a9d8a4dd692d14f" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>DistanceRole</name></member>
       <member refid="classQAccelPlot_1_1InspectionRowModel_1a3b0d1e854adab3eaaa21cb16868d0231" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>get</name></member>
       <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3ae4ca03e035cdf4b96650a32479f3ca38" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>HasSummaryRole</name></member>
@@ -546,11 +551,6 @@
       <member refid="classQAccelPlot_1_1InspectionRowModel_1a737e929a49b65a6c43f417bea2b5b32c" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>rows</name></member>
       <member refid="classQAccelPlot_1_1InspectionRowModel_1af7cdb9aa192bb3b135b7dc927958542f" prot="private" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>rows_</name></member>
       <member refid="classQAccelPlot_1_1InspectionRowModel_1a9864c1c284b34ff7b475c162ba9e8ce3" prot="private" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>sameSeries</name></member>
-      <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3a149f4f5d3761b0414aa86c5e29bba719" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>SampleIndexRole</name></member>
-      <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3ae30002a7909cc40c33319c569dce3340" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>SampleStatusRole</name></member>
-      <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3ac1cce74bbcf9653a9347ba3aa04883a4" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>SampleValueRole</name></member>
-      <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3a4ad1a35c41e0523b07bbf8d378ff630f" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>SampleXRole</name></member>
-      <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3a50828283225c8421a015686e833ffdab" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>SampleYRole</name></member>
       <member refid="classQAccelPlot_1_1InspectionRowModel_1a1282f3d856079f47a1ead7e455a366d4" prot="private" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>seriesAppearanceChanged</name></member>
       <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3ad843dfc3484ae17af10639af1c82339e" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>SeriesColorRole</name></member>
       <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3a14bb975b57411a4348cd2105ebfade28" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>SeriesNameRole</name></member>

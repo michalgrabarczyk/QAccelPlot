@@ -1744,8 +1744,8 @@
 <li>Data inspection via <code>PlotInspector</code> and <code>SelectionTool</code>: a crosshair,
   per-series markers, and a tooltip at the cursor, region selection with
   statistics, theme colors, and a Data inspection example.</li>
-<li>Sample queries on every series via <code>PlotSeries.inspection</code>: the nearest sample,
-  its neighbors, statistics of a region, and the indices inside it.</li>
+<li>Data point queries on every series via <code>PlotSeries.inspection</code>: the nearest
+  data point, its neighbors, statistics of a region, and the indices inside it.</li>
 <li><code>PlotView.overlay</code> for items drawn above the series, and the pointer position
   via <code>pointerPosition</code> and <code>pointerInside</code>.</li>
 <li><code>Axis.formatValue()</code>, which formats a value at the precision of the current
@@ -1782,6 +1782,8 @@
 </ul>
 <h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
 <ul>
+<li><code>PlotSeries::setData()</code>, <code>setDataF()</code>, and <code>postData()</code> are no longer virtual:
+  C++ subclasses pass their data point layout to the <code>PlotSeries</code> constructor.</li>
 <li>Renamed the C++ and QML <code>RectangleList</code> type to <code>RectangleSeries</code>. Include
   <code>&lt;QAccelPlot/series/RectangleSeries.hpp&gt;</code> in C++ code.</li>
 <li><code>GradientStroke::payload()</code> and <code>GradientFill::payload()</code> return a reference to
@@ -1855,7 +1857,7 @@
   longer crashes.</li>
 <li><code>GradientFill</code> on dense data reaches the curve's peaks and troughs.</li>
 <li>Gradient effects with a <code>DataRange</code> bound use the curve's own data extent, not the whole axis range.</li>
-<li><code>LineCurve</code> and <code>PointCloud</code> keep double precision when the viewport is far from the first sample, e.g. at the end of a long timestamp series.</li>
+<li><code>LineCurve</code> and <code>PointCloud</code> keep double precision when the viewport is far from the first data point, e.g. at the end of a long timestamp series.</li>
 <li>Hovering a <code>PointCloud</code> whose points lie on a long horizontal line no longer
   tests every point.</li>
 <li><code>PointCloud</code> no longer hovers points beyond the GPU texture capacity, which are not drawn.</li>

@@ -10,7 +10,7 @@
 
 ## d
 
-* **DataType** ([**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md), [**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
+* **Dimension** ([**QAccelPlot::DataPointStore**](classQAccelPlot_1_1DataPointStore.md))
 * **DataChange** ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
 * **DragMode** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 
@@ -45,6 +45,7 @@
 
 ## r
 
+* **RangeRule** ([**QAccelPlot::DataPointStore**](classQAccelPlot_1_1DataPointStore.md))
 * **Role** ([**QAccelPlot::InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md))
 
 

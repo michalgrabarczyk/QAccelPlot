@@ -1502,17 +1502,17 @@
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../namespaceQAccelPlot_1_1NanGapModeNS/#enum-mode"><strong>NanGapMode</strong></a></td>
-<td style="text-align: left;"><a href="#function-nanmode-22"><strong>nanMode</strong></a> () const<br><em>Returns how invalid samples are rendered.</em></td>
+<td style="text-align: left;"><a href="#function-nanmode-22"><strong>nanMode</strong></a> () const<br><em>Returns how invalid data points are rendered.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setnanmode"><strong>setNanMode</strong></a> (<a href="../namespaceQAccelPlot_1_1NanGapModeNS/#enum-mode"><strong>NanGapMode</strong></a> mode) <br><em>Sets how invalid samples are rendered to</em> <em>mode</em> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-setnanmode"><strong>setNanMode</strong></a> (<a href="../namespaceQAccelPlot_1_1NanGapModeNS/#enum-mode"><strong>NanGapMode</strong></a> mode) <br><em>Sets how invalid data points are rendered to</em> <em>mode</em> <em>.</em></td>
 </tr>
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
 <p>Accessible via the <code>LineCurve::gaps</code> CONSTANT grouped property, for example <code>gaps.nanMode: QAccelPlot.NanGapMode.Connect</code>.</p>
-<p>A sample is invalid when its X or Y coordinate is NaN or ±Inf, or is not strictly positive on a log-scale axis. Invalid samples are never drawn as markers, never hit-tested, and are excluded from auto-ranging coordinate by coordinate, regardless of <code>nanMode</code>.</p>
+<p>A data point is invalid when its X or Y coordinate is NaN or ±Inf, or is not strictly positive on a log-scale axis. Invalid data points are never drawn as markers, never hit-tested, and are excluded from auto-ranging coordinate by coordinate, regardless of <code>nanMode</code>.</p>
 <p><strong>See also:</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>LineCurve</strong></a> </p>
 <h2 id="public-properties-documentation">Public Properties Documentation<a class="headerlink" href="#public-properties-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="property-nanmode-12">property nanMode<a class="headerlink" href="#property-nanmode-12" title="Permanent link">&para;</a></h3>
@@ -1536,13 +1536,13 @@
 <hr>
 
 <h3 id="function-nanmode-22">function nanMode<a class="headerlink" href="#function-nanmode-22" title="Permanent link">&para;</a></h3>
-<p><em>Returns how invalid samples are rendered.</em> 
+<p><em>Returns how invalid data points are rendered.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">NanGapMode</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurveGaps</span><span class="o">::</span><span class="n">nanMode</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setnanmode">function setNanMode<a class="headerlink" href="#function-setnanmode" title="Permanent link">&para;</a></h3>
-<p><em>Sets how invalid samples are rendered to</em> <em>mode</em> <em>.</em>
+<p><em>Sets how invalid data points are rendered to</em> <em>mode</em> <em>.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurveGaps</span><span class="o">::</span><span class="n">setNanMode</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="n">NanGapMode</span><span class="w"> </span><span class="n">mode</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">)</span><span class="w"> </span>
