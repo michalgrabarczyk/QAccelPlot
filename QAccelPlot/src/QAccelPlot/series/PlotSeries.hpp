@@ -9,6 +9,7 @@
 
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/inspection/SeriesInspection.hpp"
+#include "QAccelPlot/series/DataPointStore.hpp"
 
 #include <QPointer>
 #include <QQuickItem>
@@ -22,6 +23,7 @@
 
 #include <limits>
 #include <optional>
+#include <string>
 #include <vector>
 
 namespace QAccelPlot {
@@ -29,8 +31,9 @@ namespace QAccelPlot {
 /// \brief Common QML item contract for data series hosted by \c PlotView.
 ///
 /// PlotSeries owns the integration shared by every plot type: axis bindings,
-/// plot-area layout, data-range reporting, legend metadata, and a common C++ data-setting API.
-/// Concrete series define their record layout, rendering, and hit testing.
+/// plot-area layout, data-range reporting, legend metadata, and a common C++ data-setting API
+/// backed by the series' data points. Concrete series define their data point layout, rendering,
+/// and hit testing.
 ///
 /// \sa LineCurve, PointCloud, RectangleSeries, QAccelPlot
 class PlotSeries : public QQuickItem {
@@ -129,15 +132,15 @@ public:
     LegendSymbol legendSymbol() const;
     void setLegendSymbol(LegendSymbol symbol);
 
-    /// \brief Replaces the series data with \a count records copied from an interleaved double array.
-    /// Each concrete series defines its record layout (XY pairs or rectangle edges).
-    virtual void setData(const double* data, int count) = 0;
+    /// \brief Replaces the series data with \a count data points copied from an interleaved double array.
+    /// Each concrete series defines its data point layout (XY pairs or rectangle edges).
+    virtual void setData(const double* data, int count);
     /// \brief Replaces the series data by moving an interleaved double buffer.
-    virtual void setData(std::vector<double>&& data, int count) = 0;
-    /// \brief Replaces the series data with \a count records copied from an interleaved float array.
-    virtual void setDataF(const float* data, int count) = 0;
+    virtual void setData(std::vector<double>&& data, int count);
+    /// \brief Replaces the series data with \a count data points copied from an interleaved float array.
+    virtual void setDataF(const float* data, int count);
     /// \brief Replaces the series data by moving an interleaved float buffer.
-    virtual void setDataF(std::vector<float>&& data, int count) = 0;
+    virtual void setDataF(std::vector<float>&& data, int count);
     /// \brief Like \c setData(\a data, \a count), with the data extents given as \a bounds instead of scanned for.
     void setData(const double* data, int count, const DataBounds& bounds);
     /// \brief Like \c setData(\a data, \a count), with the data extents given as \a bounds instead of scanned for.
@@ -147,11 +150,11 @@ public:
     /// \brief Like \c setDataF(\a data, \a count), with the data extents given as \a bounds instead of scanned for.
     void setDataF(std::vector<float>&& data, int count, const DataBounds& bounds);
     /// \brief Queues a moved double buffer for assignment on the series' thread.
-    virtual void postData(std::vector<double>&& data, int count) = 0;
+    virtual void postData(std::vector<double>&& data, int count);
     /// \brief Queues a moved float buffer for assignment on the series' thread.
-    virtual void postData(std::vector<float>&& data, int count) = 0;
-    /// \brief Removes all records from the series.
-    virtual void clearData() = 0;
+    virtual void postData(std::vector<float>&& data, int count);
+    /// \brief Removes all data points from the series.
+    virtual void clearData();
 
     /// \brief Returns the extent this series reports to its horizontal axis, or \c std::nullopt when it has none.
     ///
@@ -170,11 +173,41 @@ signals:
     void legendSymbolChanged();
 
 protected:
+    /// \brief Words used in the warnings about rejected data arguments.
+    struct DataPointWording {
+        std::string countName;  ///< \brief Name of the count argument, such as "data point" in "data point count".
+        std::string plural;     ///< \brief Plural of a data point, such as "points".
+        std::string doubleUnit; ///< \brief Plural of one value of double data, such as "doubles".
+        std::string floatUnit;  ///< \brief Plural of one value of float data, such as "floats".
+    };
+
+    /// \brief Creates a series whose data points have \a layout; \a wording names them in warnings.
+    PlotSeries(DataPointStore::Layout layout, DataPointWording wording, QQuickItem* parent);
+
     /// \brief How the records changed in a data update.
     enum class DataChange {
         Replaced, ///< \brief Any record may have changed.
         Appended, ///< \brief One record was added at the end; all others are unchanged.
     };
+
+    /// \brief Returns the data points of the series.
+    DataPointStore& dataPoints();
+    /// \brief Returns the data points of the series.
+    const DataPointStore& dataPoints() const;
+    /// \brief Returns whether the horizontal axis is logarithmic; false without an axis.
+    bool logScaleX() const;
+    /// \brief Returns whether the vertical axis is logarithmic; false without an axis.
+    bool logScaleY() const;
+    /// \brief Returns whether \a data and \a count are valid arguments for copying data points; warns otherwise.
+    bool validateRawDataArguments(const void* data, int count) const;
+    /// \brief Returns whether \a valueCount values hold \a count data points; warns otherwise.
+    bool validateDataSize(std::size_t valueCount, int count, bool floatData) const;
+    /// \brief Appends one double data point and widens the data ranges by its valid coordinates.
+    void appendDataPoint(const double* coordinates);
+    /// \brief Finishes a change of the data points: data ranges, \c onDataPointsChanged(), data queries, and a repaint.
+    void notifyDataPointsChanged(DataChange change, int previousCount);
+    /// \brief Called after the data points changed, before the data queries are refreshed. The default does nothing.
+    virtual void onDataPointsChanged(DataChange change, int previousCount);
 
     /// \brief Advances the data revision and refreshes the data queries. Call after every accepted record change.
     void inspectionDataChanged(DataChange change = DataChange::Replaced);
@@ -197,7 +230,7 @@ protected:
         std::optional<DataExtent> y; ///< \brief Extent reported to the vertical axis.
     };
 
-    /// \brief Scans the records for their extents. The default implementation has none.
+    /// \brief Scans the records for their extents. The default implementation scans the data points.
     ///
     /// Called when a data range is read after \c invalidateDataRanges(), so a series that nothing asks
     /// for its range never scans.
@@ -215,8 +248,8 @@ protected:
     void extendYDataRange(qreal y);
     /// \brief Called when a bound axis switches between linear and logarithmic scale, or a different axis is bound.
     ///
-    /// Log scale changes which samples are valid, so series that apply the invalid-sample contract
-    /// override this to refresh ranges and cached geometry. The default implementation does nothing.
+    /// Log scale changes which samples are valid. The data ranges of a changed scale are already invalidated; series
+    /// override this to refresh cached geometry. The default implementation does nothing.
     virtual void onAxisScaleChanged();
     /// \brief Called when the viewport of a bound axis changes. The default implementation schedules a repaint.
     virtual void onAxisRangeChanged();
@@ -234,6 +267,10 @@ protected:
 private:
     friend class SeriesInspection;
 
+    void handleAxisScaleChanged();
+    void handleAxisRangeChanged();
+    // Returns whether the scale of a dimension changed.
+    bool syncDataPointDimensions();
     void ensureDataRanges() const;
     void reportDataRangesChanged() const;
     void deliverTopmostHover(QHoverEvent* event);
@@ -255,6 +292,8 @@ private:
     mutable bool dataRangesStale_{false};
     // Bounds given with the data update in progress; they replace its scan.
     std::optional<DataBounds> updateBounds_;
+    DataPointStore dataPoints_;
+    DataPointWording wording_;
 };
 
 } // namespace QAccelPlot

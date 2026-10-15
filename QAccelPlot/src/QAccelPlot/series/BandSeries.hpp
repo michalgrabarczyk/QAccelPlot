@@ -90,20 +90,9 @@ public:
     Q_INVOKABLE void setData(const QList<qreal>& xs, const QList<qreal>& lows, const QList<qreal>& highs);
     /// \brief Replaces the samples with \a xs, \a lows, and \a highs. If the sizes differ, the shortest length is used.
     void setData(const std::vector<double>& xs, const std::vector<double>& lows, const std::vector<double>& highs);
-    /// \brief Copies \a sampleCount interleaved <tt>(x, low, high)</tt> double triples, retaining full precision.
-    void setData(const double* data, int sampleCount) override;
-    /// \brief Moves \a data (\a sampleCount × 3 doubles: x, low, high) into the series. No copy is made.
-    void setData(std::vector<double>&& data, int sampleCount) override;
-    /// \brief High-performance C++ overload: copies \a sampleCount × 3 floats (x, low, high) from \a data.
-    void setDataF(const float* data, int sampleCount) override;
-    /// \brief High-performance C++ overload: moves \a data (\a sampleCount × 3 floats) into the series.
-    void setDataF(std::vector<float>&& data, int sampleCount) override;
+    // The PlotSeries overloads take interleaved (x, low, high) triples, as doubles or floats.
     using PlotSeries::setData;
     using PlotSeries::setDataF;
-    /// \brief Thread-safe: queues \c setData(\a data, \a sampleCount) to the item's thread. No copy is made.
-    void postData(std::vector<double>&& data, int sampleCount) override;
-    /// \brief Thread-safe: queues \c setDataF(\a data, \a sampleCount) to the item's thread. No copy is made.
-    void postData(std::vector<float>&& data, int sampleCount) override;
     /// \brief Removes all samples.
     Q_INVOKABLE void clearData() override;
 
@@ -137,11 +126,12 @@ protected:
     void hoverMoveEvent(QHoverEvent* event) override;
     void hoverLeaveEvent(QHoverEvent* event) override;
     /// \endcond
-    /// \brief Refreshes ranges and uploaded coordinates when a bound axis changes between linear and log scale.
+    /// \brief Re-tests the hover position when a bound axis changes between linear and log scale.
     void onAxisScaleChanged() override;
-    DataRanges computeDataRanges() const override;
-    /// \brief Moves the render origin to the new viewport when the float render data would lose precision there.
+    /// \brief Re-tests the hover position when the viewport moves under the cursor.
     void onAxisRangeChanged() override;
+    /// \brief Refreshes the X order, the hover state, and the count after the samples changed.
+    void onDataPointsChanged(DataChange change, int previousCount) override;
 
 private:
     // The drawn band at one X: the smaller and larger interpolated value.
@@ -161,23 +151,11 @@ private:
         int reservedSampleCount;
     };
 
-    bool validateRawDataArguments(const void* data, int sampleCount) const;
-    bool validateVectorArguments(std::size_t valueCount, int sampleCount) const;
-    void copyData(const double* data, int sampleCount);
-    void copyFloatData(const float* data, int sampleCount);
     // Applies (x, low, high) triples built from separate lists.
     void applyInterleavedData(std::vector<double>&& data);
-    void applyData(std::vector<double>&& data, int sampleCount);
-    void applyFloatData(std::vector<float>&& data, int sampleCount);
-    void finishDataChange(int sampleCount);
-    void promoteFloatDataToDouble();
-    // True when the double setData() overloads supplied the data; false for the setDataF() overloads.
-    bool hasPreciseData() const;
     // Returns value \a component (0 = x, 1 = low, 2 = high) of sample \a index.
     double value(int index, int component) const;
     bool sampleValid(int index) const;
-    bool logScaleX() const;
-    bool logScaleY() const;
     void updateXAscending();
     std::optional<Span> spanAt(qreal x) const;
     bool edgesVisible() const;
@@ -187,36 +165,18 @@ private:
     void refreshHovered();
     // Follows edits of the current edge line style, such as a new dash pattern.
     void onEdgeLineStyleChanged();
-    // Rebuilds renderData_ (origin-relative floats) from data_ for the current axes.
-    void rebuildRenderData();
-    RenderView renderView() const;
-    void updateFillNode(QSGGeometryNode* node, const RenderView& view);
-    QSGGeometryNode* paintEdge(
-        QSGGeometryNode* oldNode, const BandEdgeRenderer& renderer, const RenderView& view, const std::shared_ptr<DataTexture>& dataTexture) const;
-
-    // Which setter family supplied the data: setData() keeps doubles, setDataF() keeps floats.
-    enum class DataType { Double, Float };
+    RenderView renderView();
+    void updateFillNode(QSGGeometryNode* node, const RenderView& view, bool dataChanged);
+    QSGGeometryNode* paintEdge(QSGGeometryNode* oldNode, const BandEdgeRenderer& renderer, const RenderView& view,
+        const std::shared_ptr<DataTexture>& dataTexture, bool dataChanged) const;
 
     QColor color_;
     BandEdges* edges_{new BandEdges{this}};
     bool hovered_{false};
     // Cursor position while hover events arrive, in item coordinates.
     std::optional<QPointF> hoverPosition_;
-    DataType dataType_{DataType::Double};
-    // Data: 3 doubles per sample (x, low, high), full precision. Empty for DataType::Float.
-    std::vector<double> data_;
-    // Uploaded to the GPU: an origin-relative float mirror of data_, or the setDataF() data itself.
-    std::vector<float> renderData_;
-    qreal renderOriginX_{0.0};
-    qreal renderOriginY_{0.0};
-    // True when renderData_ matches data_, the origin, and the axis scales it was built for.
-    bool renderDataValid_{false};
-    bool renderLogScaleX_{false};
-    bool renderLogScaleY_{false};
-    // False while no finite value fixed the origin, so appended samples must rebuild renderData_.
-    bool renderOriginSettled_{false};
-    int sampleCount_{0};
-    bool dataChanged_{true};
+    // Render revision of the data points last uploaded to the GPU.
+    std::uint64_t uploadedRevision_{0};
     // Whether the last frame held more records than the GPU buffers do; warns on each crossing.
     bool overCapacity_{false};
     bool xAscending_{true};
