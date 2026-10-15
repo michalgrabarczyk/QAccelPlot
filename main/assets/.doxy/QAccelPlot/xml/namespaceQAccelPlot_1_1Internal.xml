@@ -320,6 +320,70 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="27" column="5" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="27" declcolumn="5"/>
       </memberdef>
+      <memberdef kind="function" id="SeriesSupport_8hpp_1a1115a2b55eeca9e9b1f936432726572f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::recordCapacity</definition>
+        <argsstring>(QQuickWindow *window, int floatsPerRecord, int vertexBytesPerRecord)</argsstring>
+        <name>recordCapacity</name>
+        <qualifiedname>QAccelPlot::Internal::recordCapacity</qualifiedname>
+        <param>
+          <type>QQuickWindow *</type>
+          <declname>window</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>floatsPerRecord</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>vertexBytesPerRecord</declname>
+        </param>
+        <briefdescription>
+<para>Returns how many records a series draws that reads them from the data texture by a float vertex id. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A record takes <emphasis>floatsPerRecord</emphasis> floats of the data texture and <emphasis>vertexBytesPerRecord</emphasis> bytes of vertices. The count is limited by the texture size of <emphasis>window&apos;s</emphasis> GPU, by the 2^24 ids a float holds exactly, and by <computeroutput>QSGGeometry</computeroutput>, which sizes its vertex buffer in <computeroutput>int</computeroutput> bytes. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="34" column="5" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="34" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="SeriesSupport_8hpp_1af24418972a266f8d8d474a792a036ce6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::warnIfOutgrowsCapacity</definition>
+        <argsstring>(bool wasOverCapacity, int recordCount, int capacity, const char *seriesType, const char *records)</argsstring>
+        <name>warnIfOutgrowsCapacity</name>
+        <qualifiedname>QAccelPlot::Internal::warnIfOutgrowsCapacity</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>wasOverCapacity</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>recordCount</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>capacity</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>seriesType</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>records</declname>
+        </param>
+        <briefdescription>
+<para>Returns whether <emphasis>recordCount</emphasis> exceeds <emphasis>capacity</emphasis>, and warns when it newly does. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Pass the previous result as <emphasis>wasOverCapacity</emphasis>. A series that stays over capacity, for example while streaming, warns once; one whose data fits again and then outgrows the capacity warns again. <emphasis>seriesType</emphasis> and <emphasis>records</emphasis> name the series and its records in the warning. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="41" column="6" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="41" declcolumn="6"/>
+      </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>

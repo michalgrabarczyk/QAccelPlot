@@ -151,7 +151,8 @@ private:
     // Tests rectangle \a index against item position \a position in pixels, widened like the shader draws it.
     bool containsInPixels(int index, const QPointF& position) const;
     void setHoveredIndex(int index);
-    void updateMaterial(RectMaterial& material) const;
+    // Sets the uniforms for drawing the first \a drawnCount rectangles.
+    void updateMaterial(RectMaterial& material, int drawnCount) const;
     // Returns true when the spatial grid answers the next query, building it once scanning has cost as much.
     bool spatialGridReady() const;
 
@@ -173,7 +174,8 @@ private:
 
     HitTestInputs hitTestInputs(const QPointF& position) const;
     int topmostRectangleAt(const QPointF& position) const;
-    void buildVertexCache();
+    // Builds the vertices of the first \a rectCount rectangles.
+    void buildVertexCache(int rectCount);
     // Rebuilds renderData_ (origin-relative float coordinates) from the double-precision
     // data_, so the GPU upload stays accurate for large coordinates
     // (e.g. modern Unix-epoch timestamps) without needing double-precision textures.
@@ -196,6 +198,8 @@ private:
     qreal renderOriginY_{0.0};
     int rectCount_{0};
     bool dataChanged_{false};
+    // Whether the last frame held more records than the GPU buffers do; warns on each crossing.
+    bool overCapacity_{false};
     // Vertex colors are category colors when categories are set; otherwise \c color is a uniform.
     RectVertexCache vertexCache_;
     // Built once scanning the same data has cost as much as the build, so streaming skips it.

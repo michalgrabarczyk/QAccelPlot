@@ -555,6 +555,7 @@
 
 * **keyPressEvent** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
 * **key** ([**QAccelPlot::InspectionIndex**](classQAccelPlot_1_1InspectionIndex.md))
+* **kBytesPerRect** ([**QAccelPlot::RectVertexCache**](classQAccelPlot_1_1RectVertexCache.md))
 * **kVerticesPerRect** ([**QAccelPlot::RectVertexCache**](classQAccelPlot_1_1RectVertexCache.md))
 
 
@@ -725,6 +726,7 @@
 * **onAxisRangeChanged** ([**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md), [**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md), [**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md), [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md), [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md))
 * **onAxisScaleChanged** ([**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md), [**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md), [**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md), [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md), [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md))
 * **onEdgeLineStyleChanged** ([**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md))
+* **overCapacity\_** ([**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md), [**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md), [**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md), [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md))
 * **onGeometryChanged** ([**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md))
 * **onStopChanged** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **onStopDestroyed** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))

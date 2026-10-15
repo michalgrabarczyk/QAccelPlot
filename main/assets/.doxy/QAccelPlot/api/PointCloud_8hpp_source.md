@@ -228,6 +228,8 @@ private:
 
     // True when the data texture must be re-uploaded on the next paint.
     bool dataChanged_{true};
+    // Whether the last frame held more records than the GPU buffers do; warns on each crossing.
+    bool overCapacity_{false};
 
     // Points the GPU data texture holds, recorded during the last sync. Points beyond it are
     // neither drawn nor hovered.

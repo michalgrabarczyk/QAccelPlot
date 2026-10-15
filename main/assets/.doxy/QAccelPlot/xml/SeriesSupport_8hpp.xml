@@ -42,7 +42,11 @@
 <codeline lineno="21"><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>maxTextureSize(QQuickWindow*<sp/>window);</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot::Internal</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>recordCapacity(QQuickWindow*<sp/>window,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>floatsPerRecord,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>vertexBytesPerRecord);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>warnIfOutgrowsCapacity(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>wasOverCapacity,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>recordCount,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>capacity,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>seriesType,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>records);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot::Internal</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp"/>
   </compounddef>

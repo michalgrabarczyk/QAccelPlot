@@ -52,6 +52,7 @@ _Vertices of a series that draws each rectangle as a quad positioned from a data
 
 | Type | Name |
 | ---: | :--- |
+|  constexpr int | [**kBytesPerRect**](#variable-kbytesperrect)   = `{72}`<br>_Size of the vertices of one rectangle in bytes._  |
 |  constexpr int | [**kVerticesPerRect**](#variable-kverticesperrect)   = `{6}`<br>_Number of vertices per rectangle._  |
 
 
@@ -130,6 +131,21 @@ using QAccelPlot::RectVertexCache::ColorFunction =  std::function<QColor(int ind
 <hr>
 ## Public Static Attributes Documentation
 
+
+
+
+
+### variable kBytesPerRect {#variable-kbytesperrect}
+
+_Size of the vertices of one rectangle in bytes._ 
+```C++
+constexpr int QAccelPlot::RectVertexCache::kBytesPerRect;
+```
+
+
+
+
+<hr>
 
 
 

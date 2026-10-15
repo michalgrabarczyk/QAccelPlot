@@ -78,8 +78,10 @@
 |  bool | [**hoverEnabled**](#function-hoverenabled) () <br>_Returns whether series accept hover events:_ `false` _only when_`QACCELPLOT_HOVER_ENABLED` _is 0._ |
 |  int | [**maxTextureSize**](#function-maxtexturesize) (QQuickWindow \* window) <br>_Returns the largest texture width and height, in pixels, that_ _window's_ _GPU supports._ |
 |  [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) | [**pannedRange**](#function-pannedrange) (const [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) & range, qreal fraction, bool logarithmic) <br>_Returns_ _range_ _shifted by__fraction_ _of its extent; a positive__fraction_ _raises both bounds._ |
+|  int | [**recordCapacity**](#function-recordcapacity) (QQuickWindow \* window, int floatsPerRecord, int vertexBytesPerRecord) <br>_Returns how many records a series draws that reads them from the data texture by a float vertex id._  |
 |  bool | [**supportsCustomShaderRendering**](#function-supportscustomshaderrendering) (const QQuickWindow \* window) <br>_Returns_ `true` _when__window_ _renders through a hardware scene graph backend that runs custom shaders._ |
 |  void | [**uploadDataTexture**](#function-uploaddatatexture) (std::unique\_ptr&lt; QSGTexture &gt; & texture, QQuickWindow \* window, const QImage & image) <br>_Uploads an image to the live-data texture using the configured Qt API path._  |
+|  bool | [**warnIfOutgrowsCapacity**](#function-warnifoutgrowscapacity) (bool wasOverCapacity, int recordCount, int capacity, const char \* seriesType, const char \* records) <br>_Returns whether_ _recordCount_ _exceeds__capacity_ _, and warns when it newly does._ |
 |  qreal | [**wheelZoomFactor**](#function-wheelzoomfactor) (qreal zoomScaleFactor, bool zoomingIn, qreal steps=1.0) <br>_Returns the extent multiplier for mouse-wheel zoom with a_ _zoomScaleFactor_ _in (0, 1)._ |
 |  std::pair&lt; qreal, qreal &gt; | [**widenedSpan**](#function-widenedspan) (qreal a, qreal b, qreal minimumSize) <br>_Returns the pixel span between edges_ _a_ _and__b_ _, widened around its center to at least__minimumSize_ _._ |
 |  void | [**writeRectUniforms**](#function-writerectuniforms) ([**RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md) & ubo, const QSGMaterialShader::RenderState & state, const [**RectMaterial**](classQAccelPlot_1_1RectMaterial.md) & material) <br>_Fills_ _ubo_ _from__material_ _and the matrix and opacity of the render__state_ _._ |
@@ -256,6 +258,29 @@ With _logarithmic_ set, the shift is applied in `log10` space, so both bounds ar
 
 
 
+### function recordCapacity {#function-recordcapacity}
+
+_Returns how many records a series draws that reads them from the data texture by a float vertex id._ 
+```C++
+int QAccelPlot::Internal::recordCapacity (
+    QQuickWindow * window,
+    int floatsPerRecord,
+    int vertexBytesPerRecord
+) 
+```
+
+
+
+A record takes _floatsPerRecord_ floats of the data texture and _vertexBytesPerRecord_ bytes of vertices. The count is limited by the texture size of _window's_ GPU, by the 2^24 ids a float holds exactly, and by `QSGGeometry`, which sizes its vertex buffer in `int` bytes. 
+
+
+        
+
+<hr>
+
+
+
+
 ### function supportsCustomShaderRendering {#function-supportscustomshaderrendering}
 
 _Returns_ `true` _when__window_ _renders through a hardware scene graph backend that runs custom shaders._
@@ -286,6 +311,31 @@ void QAccelPlot::Internal::uploadDataTexture (
 
 
 
+
+<hr>
+
+
+
+
+### function warnIfOutgrowsCapacity {#function-warnifoutgrowscapacity}
+
+_Returns whether_ _recordCount_ _exceeds__capacity_ _, and warns when it newly does._
+```C++
+bool QAccelPlot::Internal::warnIfOutgrowsCapacity (
+    bool wasOverCapacity,
+    int recordCount,
+    int capacity,
+    const char * seriesType,
+    const char * records
+) 
+```
+
+
+
+Pass the previous result as _wasOverCapacity_. A series that stays over capacity, for example while streaming, warns once; one whose data fits again and then outgrows the capacity warns again. _seriesType_ and _records_ name the series and its records in the warning. 
+
+
+        
 
 <hr>
 

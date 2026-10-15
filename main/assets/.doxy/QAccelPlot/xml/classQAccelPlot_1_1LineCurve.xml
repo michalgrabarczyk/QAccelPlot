@@ -673,6 +673,21 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="304" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="304" bodyend="304"/>
       </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1LineCurve_1a3e4e01d60e1c3e440c322cfe18a3eacb" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::LineCurve::overCapacity_</definition>
+        <argsstring></argsstring>
+        <name>overCapacity_</name>
+        <qualifiedname>QAccelPlot::LineCurve::overCapacity_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="306" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="306" bodyend="306"/>
+      </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1LineCurve_1a2dd218212bf318d888cf41ec49bb46ee" prot="private" static="no" mutable="no">
         <type><ref refid="classQAccelPlot_1_1LineCurveVertexCache" kindref="compound">LineCurveVertexCache</ref></type>
         <definition>LineCurveVertexCache QAccelPlot::LineCurve::vertexCache_</definition>
@@ -685,7 +700,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="308" column="26" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="308" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="310" column="26" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="310" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1LineCurve_1a116e085b17dc4314f7faa1a04eb27d2a" prot="private" static="no" mutable="yes">
         <type>std::vector&lt; <ref refid="structQAccelPlot_1_1CurveChunk" kindref="compound">CurveChunk</ref> &gt;</type>
@@ -699,7 +714,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="314" column="25" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="314" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="316" column="25" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="316" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1LineCurve_1a24c236eba2c692749c4aa43d99afd742" prot="private" static="no" mutable="yes">
         <type>bool</type>
@@ -714,7 +729,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="315" column="18" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="315" bodyend="315"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="317" column="18" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="317" bodyend="317"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -2448,7 +2463,7 @@
         <label>QQuickItem</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="65" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="65" bodyend="316"/>
+    <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="65" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="65" bodyend="318"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1LineCurve_1a5ee58218fb7c9241824f5cb4da023cbc" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>advanceTransition</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1a8e430803797ca65db407a90e40837211" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>animationTickWindow_</name></member>
@@ -2526,9 +2541,9 @@
       <member refid="classQAccelPlot_1_1PlotSeries_1a6d479055f9c3acfd2be5befa8cf6d1a8" prot="protected" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>invalidateDataRanges</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a5d56c6f054d6dba8b905f0cb49e188d7" prot="protected" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>invalidateInspection</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1a0273989b02da49bd0e3e725c6105c4c4" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>invalidateVertices</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>LegendSymbol</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1ada3d9fd14934647c0f31870184f5eff5" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>legendSymbol</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a37f1fe5cb9f339d593147cd47b75d180" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>legendSymbol</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>LegendSymbol</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a2b88cb6eac8d12cf02b6daf37460150e" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>legendSymbolChanged</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1af8b02c2b82f56224992bb90ac7a6f3f6" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>LineCurve</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1acf924165805a2eedb08666d81d9eb034" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>lineRenderer_</name></member>
@@ -2556,6 +2571,7 @@
       <member refid="classQAccelPlot_1_1LineCurve_1a48bdf57083a9e8fd213c85cd4d2f36bb" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>onMarkerShapeChanged</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1a87b6fb68dac4d84bc3cb5f0fdf7ce57b" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>onNanGapModeChanged</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1a67e91391ff98db2ebf6a455d922f3a4c" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>onTransitionDestroyed</name></member>
+      <member refid="classQAccelPlot_1_1LineCurve_1a3e4e01d60e1c3e440c322cfe18a3eacb" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>overCapacity_</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1aef0398b7a4f807870dd88a326c0e7d0d" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>plotRect</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1abf3aa64b08afe4f5d2a1728d035665b2" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>plotRect</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a9d58451724a7e0b06d7f04aeba101856" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>plotRectChanged</name></member>

@@ -300,24 +300,26 @@
 <codeline lineno="347"><highlight class="normal"></highlight></codeline>
 <codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>True<sp/>when<sp/>the<sp/>data<sp/>texture<sp/>must<sp/>be<sp/>re-uploaded<sp/>on<sp/>the<sp/>next<sp/>paint.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>dataChanged_{</highlight><highlight class="keyword">true</highlight><highlight class="normal">};</highlight></codeline>
-<codeline lineno="350"><highlight class="normal"></highlight></codeline>
-<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Points<sp/>the<sp/>GPU<sp/>data<sp/>texture<sp/>holds,<sp/>recorded<sp/>during<sp/>the<sp/>last<sp/>sync.<sp/>Points<sp/>beyond<sp/>it<sp/>are</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>neither<sp/>drawn<sp/>nor<sp/>hovered.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>renderCapacity_{std::numeric_limits&lt;int&gt;::max()};</highlight></codeline>
-<codeline lineno="354"><highlight class="normal"></highlight></codeline>
-<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PointSpatialIndex" kindref="compound">PointSpatialIndex</ref><sp/>spatialIndex_;</highlight></codeline>
-<codeline lineno="356"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>spatialIndexValid_{</highlight><highlight class="keyword">false</highlight><highlight class="normal">};</highlight></codeline>
-<codeline lineno="357"><highlight class="normal"><sp/><sp/><sp/><sp/>std::unique_ptr&lt;Internal::HoverIndexBudget&gt;<sp/>spatialIndexBudget_;</highlight></codeline>
-<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>last<sp/>hover<sp/>query<sp/>and<sp/>its<sp/>answer.<sp/>Qt<sp/>tests<sp/>contains()<sp/>several<sp/>times<sp/>per<sp/>hover<sp/>event</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>before<sp/>the<sp/>handler<sp/>asks<sp/>again,<sp/>each<sp/>time<sp/>at<sp/>the<sp/>same<sp/>position.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="360"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/>std::optional&lt;HoverQuery&gt;<sp/>lastHoverQuery_;</highlight></codeline>
-<codeline lineno="361"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>lastHoverIndex_{-1};</highlight></codeline>
-<codeline lineno="362"><highlight class="normal"></highlight></codeline>
-<codeline lineno="363"><highlight class="normal"><sp/><sp/><sp/><sp/>QList&lt;QMetaObject::Connection&gt;<sp/>axisConnections_;</highlight></codeline>
-<codeline lineno="364"><highlight class="normal"><sp/><sp/><sp/><sp/>QList&lt;QMetaObject::Connection&gt;<sp/>gradientConnections_;</highlight></codeline>
-<codeline lineno="365"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="366"><highlight class="normal"></highlight></codeline>
-<codeline lineno="367"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Whether<sp/>the<sp/>last<sp/>frame<sp/>held<sp/>more<sp/>records<sp/>than<sp/>the<sp/>GPU<sp/>buffers<sp/>do;<sp/>warns<sp/>on<sp/>each<sp/>crossing.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>overCapacity_{</highlight><highlight class="keyword">false</highlight><highlight class="normal">};</highlight></codeline>
+<codeline lineno="352"><highlight class="normal"></highlight></codeline>
+<codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Points<sp/>the<sp/>GPU<sp/>data<sp/>texture<sp/>holds,<sp/>recorded<sp/>during<sp/>the<sp/>last<sp/>sync.<sp/>Points<sp/>beyond<sp/>it<sp/>are</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>neither<sp/>drawn<sp/>nor<sp/>hovered.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>renderCapacity_{std::numeric_limits&lt;int&gt;::max()};</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"></highlight></codeline>
+<codeline lineno="357"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PointSpatialIndex" kindref="compound">PointSpatialIndex</ref><sp/>spatialIndex_;</highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>spatialIndexValid_{</highlight><highlight class="keyword">false</highlight><highlight class="normal">};</highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/>std::unique_ptr&lt;Internal::HoverIndexBudget&gt;<sp/>spatialIndexBudget_;</highlight></codeline>
+<codeline lineno="360"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>last<sp/>hover<sp/>query<sp/>and<sp/>its<sp/>answer.<sp/>Qt<sp/>tests<sp/>contains()<sp/>several<sp/>times<sp/>per<sp/>hover<sp/>event</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="361"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>before<sp/>the<sp/>handler<sp/>asks<sp/>again,<sp/>each<sp/>time<sp/>at<sp/>the<sp/>same<sp/>position.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="362"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/>std::optional&lt;HoverQuery&gt;<sp/>lastHoverQuery_;</highlight></codeline>
+<codeline lineno="363"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>lastHoverIndex_{-1};</highlight></codeline>
+<codeline lineno="364"><highlight class="normal"></highlight></codeline>
+<codeline lineno="365"><highlight class="normal"><sp/><sp/><sp/><sp/>QList&lt;QMetaObject::Connection&gt;<sp/>axisConnections_;</highlight></codeline>
+<codeline lineno="366"><highlight class="normal"><sp/><sp/><sp/><sp/>QList&lt;QMetaObject::Connection&gt;<sp/>gradientConnections_;</highlight></codeline>
+<codeline lineno="367"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="368"><highlight class="normal"></highlight></codeline>
+<codeline lineno="369"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp"/>
   </compounddef>

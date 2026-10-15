@@ -251,6 +251,7 @@
 
 ## k
 
+* **kBytesPerRect** ([**QAccelPlot::RectVertexCache**](classQAccelPlot_1_1RectVertexCache.md))
 * **kVerticesPerRect** ([**QAccelPlot::RectVertexCache**](classQAccelPlot_1_1RectVertexCache.md))
 
 
@@ -354,6 +355,7 @@
 * **orientation\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **origin** ([**QAccelPlot::AxisMapping**](structQAccelPlot_1_1AxisMapping.md))
 * **orientation** ([**QAccelPlot::AxisTickPainter::Params**](structQAccelPlot_1_1AxisTickPainter_1_1Params.md))
+* **overCapacity\_** ([**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md), [**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md), [**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md), [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md))
 * **offset** ([**QAccelPlot::DashParameters**](structQAccelPlot_1_1DashParameters.md))
 * **opacity\_** ([**QAccelPlot::GradientFill**](classQAccelPlot_1_1GradientFill.md))
 * **opacity** ([**QAccelPlot::GradientFillMaterial**](classQAccelPlot_1_1GradientFillMaterial.md), [**QAccelPlot::GradientFillPayload**](structQAccelPlot_1_1GradientFillPayload.md), [**QAccelPlot::Internal::RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md))

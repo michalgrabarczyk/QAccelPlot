@@ -31,6 +31,7 @@ public:
     using ColorFunction = std::function<QColor(int index)>;
 
     static constexpr int kVerticesPerRect{6};
+    static constexpr int kBytesPerRect{72};
 
     void rebuild(int rectCount, const ColorFunction& colorAt);
 

@@ -38,6 +38,22 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/RectVertexCache.hpp" line="30" column="26" bodyfile="QAccelPlot/src/QAccelPlot/series/RectVertexCache.hpp" bodystart="30" bodyend="30"/>
       </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1RectVertexCache_1a01d8ec06dbc0714ca16736dae6ea25f8" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int QAccelPlot::RectVertexCache::kBytesPerRect</definition>
+        <argsstring></argsstring>
+        <name>kBytesPerRect</name>
+        <qualifiedname>QAccelPlot::RectVertexCache::kBytesPerRect</qualifiedname>
+        <initializer>{72}</initializer>
+        <briefdescription>
+<para>Size of the vertices of one rectangle in bytes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectVertexCache.hpp" line="32" column="26" bodyfile="QAccelPlot/src/QAccelPlot/series/RectVertexCache.hpp" bodystart="32" bodyend="32"/>
+      </memberdef>
     </sectiondef>
     <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classQAccelPlot_1_1RectVertexCache_1a1e5e546cc89053dbc9e62449b26af94c" prot="private" static="no" mutable="no">
@@ -52,7 +68,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectVertexCache.hpp" line="59" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/RectVertexCache.hpp" bodystart="59" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectVertexCache.hpp" line="61" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/RectVertexCache.hpp" bodystart="61" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1RectVertexCache_1afef2696381a3113cd97c63d95803d532" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -67,7 +83,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectVertexCache.hpp" line="60" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/RectVertexCache.hpp" bodystart="60" bodyend="60"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectVertexCache.hpp" line="62" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/RectVertexCache.hpp" bodystart="62" bodyend="62"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -93,7 +109,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectVertexCache.hpp" line="36" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectVertexCache.hpp" line="38" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectVertexCache_1a4d596dc0582830e64c62e55d67cc61a9" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>void</type>
@@ -108,7 +124,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectVertexCache.hpp" line="39" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectVertexCache.hpp" line="41" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectVertexCache_1ac9717e82830e3415b2d938b2ce8aeda4" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>bool</type>
@@ -123,7 +139,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectVertexCache.hpp" line="42" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectVertexCache.hpp" line="44" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectVertexCache_1a842852ecc0e3b719daf45f5a062128fb" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>int</type>
@@ -138,7 +154,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectVertexCache.hpp" line="45" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectVertexCache.hpp" line="47" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectVertexCache_1a2c6f2537f724e4a595e6cd38c440acc7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -158,7 +174,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectVertexCache.hpp" line="50" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectVertexCache.hpp" line="52" column="10"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -167,11 +183,12 @@
     <detaileddescription>
 <para>Each rectangle has 6 vertices (two triangles) in the <computeroutput><ref refid="classQAccelPlot_1_1DataTextureMaterial_1ac078fe555ea028d1a7aa0d2b3d5d4a25" kindref="member">DataTextureMaterial::attributeSet()</ref></computeroutput> layout: rectangle index, quad corner (0–5), and color. The vertices hold no coordinates, so only a rectangle count or color change requires a rebuild. </para>
     </detaileddescription>
-    <location file="QAccelPlot/src/QAccelPlot/series/RectVertexCache.hpp" line="24" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/RectVertexCache.hpp" bodystart="24" bodyend="61"/>
+    <location file="QAccelPlot/src/QAccelPlot/series/RectVertexCache.hpp" line="24" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/RectVertexCache.hpp" bodystart="24" bodyend="63"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1RectVertexCache_1a8d546cf185675bca84e5f9b211281fac" prot="public" virt="non-virtual"><scope>QAccelPlot::RectVertexCache</scope><name>ColorFunction</name></member>
       <member refid="classQAccelPlot_1_1RectVertexCache_1a2c6f2537f724e4a595e6cd38c440acc7" prot="public" virt="non-virtual"><scope>QAccelPlot::RectVertexCache</scope><name>copyTo</name></member>
       <member refid="classQAccelPlot_1_1RectVertexCache_1a4d596dc0582830e64c62e55d67cc61a9" prot="public" virt="non-virtual"><scope>QAccelPlot::RectVertexCache</scope><name>invalidate</name></member>
+      <member refid="classQAccelPlot_1_1RectVertexCache_1a01d8ec06dbc0714ca16736dae6ea25f8" prot="public" virt="non-virtual"><scope>QAccelPlot::RectVertexCache</scope><name>kBytesPerRect</name></member>
       <member refid="classQAccelPlot_1_1RectVertexCache_1a0cd4556b9e641bbf961dadf69b917956" prot="public" virt="non-virtual"><scope>QAccelPlot::RectVertexCache</scope><name>kVerticesPerRect</name></member>
       <member refid="classQAccelPlot_1_1RectVertexCache_1a03ca37af27c1e19d93a50697a87ed3ac" prot="public" virt="non-virtual"><scope>QAccelPlot::RectVertexCache</scope><name>rebuild</name></member>
       <member refid="classQAccelPlot_1_1RectVertexCache_1ac9717e82830e3415b2d938b2ce8aeda4" prot="public" virt="non-virtual"><scope>QAccelPlot::RectVertexCache</scope><name>valid</name></member>

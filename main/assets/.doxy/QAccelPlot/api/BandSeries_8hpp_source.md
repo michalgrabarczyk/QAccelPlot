@@ -166,6 +166,8 @@ private:
     bool renderOriginSettled_{false};
     int sampleCount_{0};
     bool dataChanged_{true};
+    // Whether the last frame held more records than the GPU buffers do; warns on each crossing.
+    bool overCapacity_{false};
     bool xAscending_{true};
     QMetaObject::Connection edgeStyleConnection_;
     BandEdgeRenderer lowerEdgeRenderer_{BandEdgeMaterial::Edge::Lower};

@@ -220,13 +220,15 @@
 <codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>renderOriginSettled_{</highlight><highlight class="keyword">false</highlight><highlight class="normal">};</highlight></codeline>
 <codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sampleCount_{0};</highlight></codeline>
 <codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>dataChanged_{</highlight><highlight class="keyword">true</highlight><highlight class="normal">};</highlight></codeline>
-<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>xAscending_{</highlight><highlight class="keyword">true</highlight><highlight class="normal">};</highlight></codeline>
-<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/>QMetaObject::Connection<sp/>edgeStyleConnection_;</highlight></codeline>
-<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1BandEdgeRenderer" kindref="compound">BandEdgeRenderer</ref><sp/>lowerEdgeRenderer_{BandEdgeMaterial::Edge::Lower};</highlight></codeline>
-<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1BandEdgeRenderer" kindref="compound">BandEdgeRenderer</ref><sp/>upperEdgeRenderer_{BandEdgeMaterial::Edge::Upper};</highlight></codeline>
-<codeline lineno="224"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="225"><highlight class="normal"></highlight></codeline>
-<codeline lineno="226"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Whether<sp/>the<sp/>last<sp/>frame<sp/>held<sp/>more<sp/>records<sp/>than<sp/>the<sp/>GPU<sp/>buffers<sp/>do;<sp/>warns<sp/>on<sp/>each<sp/>crossing.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>overCapacity_{</highlight><highlight class="keyword">false</highlight><highlight class="normal">};</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>xAscending_{</highlight><highlight class="keyword">true</highlight><highlight class="normal">};</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/>QMetaObject::Connection<sp/>edgeStyleConnection_;</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1BandEdgeRenderer" kindref="compound">BandEdgeRenderer</ref><sp/>lowerEdgeRenderer_{BandEdgeMaterial::Edge::Lower};</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1BandEdgeRenderer" kindref="compound">BandEdgeRenderer</ref><sp/>upperEdgeRenderer_{BandEdgeMaterial::Edge::Upper};</highlight></codeline>
+<codeline lineno="226"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"></highlight></codeline>
+<codeline lineno="228"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp"/>
   </compounddef>
