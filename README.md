@@ -145,7 +145,7 @@ Explore runnable applications in the [`examples/`](examples/) directory:
   of the library sources.
 - **[Performance benchmarks](.github/workflows/benchmark.yml)**: data-ingestion
   and rendering regressions.
-- **[Build and test](.github/workflows/build-and-test.yml)**: unit tests and
+- **[Test](.github/workflows/build-and-test.yml)**: unit tests and
   a screenshot of every example on Qt 6.2, 6.8, and 6.11 with OpenGL,
   OpenGL ES, Vulkan, Direct3D 11/12, and Metal.
 
