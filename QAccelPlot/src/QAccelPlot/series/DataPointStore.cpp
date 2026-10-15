@@ -78,7 +78,11 @@ void scanUnchecked(const T* data, const int stride, const int first, const int l
 double DataPointStore::View::value(const int index, const int column) const noexcept
 {
     const auto offset = static_cast<std::size_t>(index) * static_cast<std::size_t>(stride) + static_cast<std::size_t>(column);
-    return precise ? precise[offset] : static_cast<double>(floats[offset]);
+    if (precise) {
+        return precise[offset];
+    }
+    // An empty vector may have no buffer, so a view of no data points can have neither pointer.
+    return floats ? static_cast<double>(floats[offset]) : std::numeric_limits<double>::quiet_NaN();
 }
 
 DataPointStore::DataPointStore(Layout layout)

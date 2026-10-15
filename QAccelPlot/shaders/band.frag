@@ -13,7 +13,7 @@ layout(location = 1) in float v_validWeight;
 layout(location = 0) out vec4 fragColor;
 
 void main() {
-    // Gap discard: the fragment belongs to a triangle reaching an invalid sample.
+    // Gap discard: the fragment belongs to a triangle reaching an invalid data point.
     if (v_validWeight < 0.0) {
         discard;
     }

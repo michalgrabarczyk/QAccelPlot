@@ -258,7 +258,7 @@ InspectionDataPoint SeriesInspection::dataPointAt(const int index) const
     } else if (index < 0 || index >= source.count) {
         result.status = InspectionStatus::InvalidArgument;
     } else {
-        result = makeSample(source, index, std::numeric_limits<qreal>::quiet_NaN());
+        result = makeDataPoint(source, index, std::numeric_limits<qreal>::quiet_NaN());
         if (!source.valid(index)) {
             result.status = InspectionStatus::NoMatch;
         }
@@ -285,7 +285,7 @@ InspectionDataPoint SeriesInspection::nearest(const QPointF& position, const qre
         return result;
     }
     const auto hit = d_->nearest(source, *mapping, position, radius);
-    return makeSample(source, hit.index, hit.distance);
+    return makeDataPoint(source, hit.index, hit.distance);
 }
 
 InspectionDataPoint SeriesInspection::nearestByX(const qreal pixelX, const qreal radius)
@@ -455,7 +455,7 @@ InspectionDataPoint SeriesInspection::nearestAlong(const InspectionAxis axis, co
         return result;
     }
     const auto hit = d_->nearestAlong(source, *mapping, axis, pixel, radius);
-    return makeSample(source, hit.index, hit.distance);
+    return makeDataPoint(source, hit.index, hit.distance);
 }
 
 InspectionBracket SeriesInspection::bracketAlong(const InspectionAxis axis, const qreal pixel)
@@ -474,8 +474,8 @@ InspectionBracket SeriesInspection::bracketAlong(const InspectionAxis axis, cons
     }
     const auto found = d_->neighbors(source, axis, mapping->coord(axis, pixel));
     const auto distanceTo = [&](const int index) { return index < 0 ? 0.0 : std::abs(mapping->pixel(axis, source.coordinate(axis, index)) - pixel); };
-    result.left = makeSample(source, found.left, distanceTo(found.left));
-    result.right = makeSample(source, found.right, distanceTo(found.right));
+    result.left = makeDataPoint(source, found.left, distanceTo(found.left));
+    result.right = makeDataPoint(source, found.right, distanceTo(found.right));
     result.status = found.left >= 0 || found.right >= 0 ? InspectionStatus::Ready : InspectionStatus::NoMatch;
     result.adjacent = found.left >= 0 && found.right == found.left + 1;
     result.interpolated.dataRevision = result.dataRevision;
@@ -485,7 +485,7 @@ InspectionBracket SeriesInspection::bracketAlong(const InspectionAxis axis, cons
     return result;
 }
 
-InspectionDataPoint SeriesInspection::makeSample(const InspectionSource& source, const int index, const qreal distance) const
+InspectionDataPoint SeriesInspection::makeDataPoint(const InspectionSource& source, const int index, const qreal distance) const
 {
     auto result = InspectionDataPoint{};
     result.dataRevision = series_.dataRevision();

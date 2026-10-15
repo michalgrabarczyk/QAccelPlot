@@ -113,7 +113,7 @@ private:
     std::optional<InspectionMetric> metric() const;
     InspectionDataPoint nearestAlong(InspectionAxis axis, qreal pixel, qreal radius);
     InspectionBracket bracketAlong(InspectionAxis axis, qreal pixel);
-    InspectionDataPoint makeSample(const InspectionSource& source, int index, qreal distance) const;
+    InspectionDataPoint makeDataPoint(const InspectionSource& source, int index, qreal distance) const;
     // Interpolates along the straight on-screen segment, which also follows logarithmic axes.
     InspectionDataPoint interpolate(
         const InspectionMetric& metric, InspectionAxis axis, const InspectionDataPoint& left, const InspectionDataPoint& right, qreal pixel) const;

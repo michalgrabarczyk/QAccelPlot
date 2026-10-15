@@ -8,7 +8,7 @@
 #version 440
 #extension GL_GOOGLE_include_directive : require
 
-// The lower edge line of a BandSeries: the smaller of low and high at each (x, low, high) sample.
+// The lower edge line of a BandSeries: the smaller of low and high at each (x, low, high) data point.
 #define LINE_SAMPLE_STRIDE 3
 #define LINE_Y_BITS(base) bandEdgeBits(base)
 #define BAND_EDGE_UPPER 0

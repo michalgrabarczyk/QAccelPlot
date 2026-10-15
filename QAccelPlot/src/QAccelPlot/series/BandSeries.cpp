@@ -52,9 +52,9 @@ qreal fromAxisSpace(const qreal value, const bool logScale)
     return logScale ? std::pow(10.0, value) : value;
 }
 
-template <typename T> bool isAscending(const T* data, const int sampleCount)
+template <typename T> bool isAscending(const T* data, const int dataPointCount)
 {
-    for (auto i = std::size_t{0}; i < static_cast<std::size_t>(sampleCount); ++i) {
+    for (auto i = std::size_t{0}; i < static_cast<std::size_t>(dataPointCount); ++i) {
         const auto x = data[i * kStride];
         if (std::isnan(x) || (i > 0 && x < data[(i - 1) * kStride])) {
             return false;
@@ -76,9 +76,9 @@ template <typename List> std::vector<double> interleave(const List& xs, const Li
     return data;
 }
 
-// Number of samples the GPU draws: float vertex ids are exact up to 2^24, and the data texture
+// Number of data points the GPU draws: float vertex ids are exact up to 2^24, and the data texture
 // holds a limited number of (x, low, high) triples.
-int sampleCapacity(QQuickWindow* window)
+int dataPointCapacity(QQuickWindow* window)
 {
     constexpr auto kMaxExactVertexId = qint64{1} << 24;
     return static_cast<int>(std::min(Internal::dataTextureItemCapacity(Internal::maxTextureSize(window), kStride), kMaxExactVertexId));
@@ -86,15 +86,15 @@ int sampleCapacity(QQuickWindow* window)
 
 // Data points the vertex buffers hold room for: the next power of two, so appending one data point at a
 // time rebuilds the vertices only when the count crosses one. Vertex ids stay exact floats.
-int reservedSampleCount(const int drawnSampleCount)
+int reservedDataPointCount(const int drawnCount)
 {
     constexpr auto kMinReserved = 256;
     constexpr auto kMaxExactVertexId = 1 << 24;
     auto reserved = kMinReserved;
-    while (reserved < drawnSampleCount && reserved < kMaxExactVertexId) {
+    while (reserved < drawnCount && reserved < kMaxExactVertexId) {
         reserved *= 2;
     }
-    return std::max(reserved, drawnSampleCount);
+    return std::max(reserved, drawnCount);
 }
 
 QSGGeometryNode* createFillNode()
@@ -159,10 +159,10 @@ bool BandSeries::hovered() const
 
 void BandSeries::appendData(const qreal x, const qreal low, const qreal high)
 {
-    const auto sampleCount = dataPoints().count();
-    xAscending_ = xAscending_ && !std::isnan(x) && (sampleCount == 0 || x >= value(sampleCount - 1, 0));
-    const auto sample = std::array<double, kStride>{x, low, high};
-    appendDataPoint(sample.data());
+    const auto dataPointCount = dataPoints().count();
+    xAscending_ = xAscending_ && !std::isnan(x) && (dataPointCount == 0 || x >= value(dataPointCount - 1, 0));
+    const auto dataPoint = std::array<double, kStride>{x, low, high};
+    appendDataPoint(dataPoint.data());
 }
 
 void BandSeries::setData(const QList<qreal>& xs, const QList<qreal>& lows, const QList<qreal>& highs)
@@ -213,7 +213,7 @@ InspectionRecord BandSeries::inspectionRecord(const int index) const
     }
     result.index = index;
     result.fields = {{QStringLiteral("x"), value(index, 0)}, {QStringLiteral("low"), value(index, 1)}, {QStringLiteral("high"), value(index, 2)}};
-    result.status = sampleValid(index) ? InspectionStatus::Ready : InspectionStatus::NoMatch;
+    result.status = dataPointValid(index) ? InspectionStatus::Ready : InspectionStatus::NoMatch;
     return result;
 }
 
@@ -243,7 +243,7 @@ QSGNode* BandSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* /*up
         delete oldNode;
         return nullptr;
     }
-    const auto capacity = sampleCapacity(window());
+    const auto capacity = dataPointCapacity(window());
     overCapacity_ = Internal::warnIfOutgrowsCapacity(overCapacity_, dataPoints().count(), capacity, "BandSeries", "data points");
     if (dataPoints().count() < 2 || !xAxis() || !yAxis() || resolvePlotRect().isEmpty()) {
         delete oldNode;
@@ -257,7 +257,7 @@ QSGNode* BandSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* /*up
         root->appendChildNode(createFillNode());
     }
     const auto view = renderView();
-    if (view.drawnSampleCount < 2) {
+    if (view.drawnCount < 2) {
         delete root;
         return nullptr;
     }
@@ -331,8 +331,8 @@ void BandSeries::onDataPointsChanged(const DataChange change, const int previous
 
 void BandSeries::applyInterleavedData(std::vector<double>&& data)
 {
-    const auto sampleCount = static_cast<int>(data.size() / kStride);
-    setData(std::move(data), sampleCount);
+    const auto dataPointCount = static_cast<int>(data.size() / kStride);
+    setData(std::move(data), dataPointCount);
 }
 
 double BandSeries::value(const int index, const int component) const
@@ -340,7 +340,7 @@ double BandSeries::value(const int index, const int component) const
     return dataPoints().value(index, component);
 }
 
-bool BandSeries::sampleValid(const int index) const
+bool BandSeries::dataPointValid(const int index) const
 {
     return isValidCoordinate(value(index, 0), logScaleX()) && isValidCoordinate(value(index, kLowComponent), logScaleY())
         && isValidCoordinate(value(index, kHighComponent), logScaleY());
@@ -348,8 +348,8 @@ bool BandSeries::sampleValid(const int index) const
 
 void BandSeries::updateXAscending()
 {
-    const auto samples = dataPoints().view();
-    xAscending_ = samples.precise ? isAscending(samples.precise, samples.count) : isAscending(samples.floats, samples.count);
+    const auto points = dataPoints().view();
+    xAscending_ = points.precise ? isAscending(points.precise, points.count) : isAscending(points.floats, points.count);
 }
 
 std::optional<BandSeries::Span> BandSeries::spanAt(const qreal x) const
@@ -361,8 +361,8 @@ std::optional<BandSeries::Span> BandSeries::spanAt(const qreal x) const
     }
     // First data point whose X is not below x.
     auto first = int{0};
-    const auto sampleCount = dataPoints().count();
-    auto last = sampleCount;
+    const auto dataPointCount = dataPoints().count();
+    auto last = dataPointCount;
     while (first < last) {
         const auto middle = first + (last - first) / 2;
         if (value(middle, 0) < x) {
@@ -376,18 +376,18 @@ std::optional<BandSeries::Span> BandSeries::spanAt(const qreal x) const
         const auto high = value(index, kHighComponent);
         return Span{std::min(low, high), std::max(low, high)};
     };
-    if (first < sampleCount && value(first, 0) == x) {
+    if (first < dataPointCount && value(first, 0) == x) {
         // Data points sharing this X draw a vertical step; the band there covers all of them.
         auto span = std::optional<Span>{};
-        for (auto index = first; index < sampleCount && value(index, 0) == x; ++index) {
-            if (sampleValid(index)) {
-                const auto sample = bounds(index);
-                span = span ? Span{std::min(span->low, sample.low), std::max(span->high, sample.high)} : sample;
+        for (auto index = first; index < dataPointCount && value(index, 0) == x; ++index) {
+            if (dataPointValid(index)) {
+                const auto pointSpan = bounds(index);
+                span = span ? Span{std::min(span->low, pointSpan.low), std::max(span->high, pointSpan.high)} : pointSpan;
             }
         }
         return span;
     }
-    if (first == 0 || first == sampleCount || !sampleValid(first - 1) || !sampleValid(first)) {
+    if (first == 0 || first == dataPointCount || !dataPointValid(first - 1) || !dataPointValid(first)) {
         return std::nullopt;
     }
     // Interpolate in axis space, as the shader draws straight edges between the mapped data points.
@@ -444,29 +444,29 @@ void BandSeries::onEdgeLineStyleChanged()
 BandSeries::RenderView BandSeries::renderView()
 {
     const auto rect = resolvePlotRect();
-    const auto sampleCount = dataPoints().count();
-    const auto capacity = sampleCapacity(window());
+    const auto dataPointCount = dataPoints().count();
+    const auto capacity = dataPointCapacity(window());
     const auto originX = dataPoints().renderOrigin(DataPointStore::Dimension::X);
     const auto originY = dataPoints().renderOrigin(DataPointStore::Dimension::Y);
     return RenderView{
         QVector2D(static_cast<float>(xAxis()->viewportMin() - originX), static_cast<float>(yAxis()->viewportMin() - originY)),
         QVector2D(static_cast<float>(xAxis()->viewportMax() - originX), static_cast<float>(yAxis()->viewportMax() - originY)),
         QVector2D(static_cast<float>(rect.width()), static_cast<float>(rect.height())),
-        std::min(sampleCount, capacity),
-        reservedSampleCount(std::min(sampleCount, capacity)),
+        std::min(dataPointCount, capacity),
+        reservedDataPointCount(std::min(dataPointCount, capacity)),
     };
 }
 
 void BandSeries::updateFillNode(QSGGeometryNode* node, const RenderView& view, const bool dataChanged)
 {
     auto* geometry = node->geometry();
-    const auto vertexCount = view.reservedSampleCount * 2;
+    const auto vertexCount = view.reservedCount * 2;
     // Vertices hold only data point indices and edge selectors, so only a change of the reserved room
     // rebuilds them. band.vert hides the vertices past the drawn data points.
     if (geometry->vertexCount() != vertexCount) {
         geometry->allocate(vertexCount);
         auto* vertices = static_cast<BandMaterial::Vertex*>(geometry->vertexData());
-        for (auto i = int{0}; i < view.reservedSampleCount; ++i) {
+        for (auto i = int{0}; i < view.reservedCount; ++i) {
             vertices[i * 2] = {static_cast<float>(i), 0.0f};
             vertices[i * 2 + 1] = {static_cast<float>(i), 1.0f};
         }
@@ -474,8 +474,8 @@ void BandSeries::updateFillNode(QSGGeometryNode* node, const RenderView& view, c
     }
 
     auto* material = static_cast<BandMaterial*>(node->material());
-    if (dataChanged || material->sampleCount != static_cast<float>(view.drawnSampleCount) || !material->sampledTexture()) {
-        material->uploadTexture(window(), dataPoints().renderData().data(), view.drawnSampleCount * kStride);
+    if (dataChanged || material->dataPointCount != static_cast<float>(view.drawnCount) || !material->sampledTexture()) {
+        material->uploadTexture(window(), dataPoints().renderData().data(), view.drawnCount * kStride);
     }
     material->color = color_;
     material->domainMin = view.domainMin;
@@ -483,20 +483,20 @@ void BandSeries::updateFillNode(QSGGeometryNode* node, const RenderView& view, c
     material->viewportSize = view.viewportSize;
     material->logScaleX = logScaleX() ? 1.0f : 0.0f;
     material->logScaleY = logScaleY() ? 1.0f : 0.0f;
-    material->sampleCount = static_cast<float>(view.drawnSampleCount);
+    material->dataPointCount = static_cast<float>(view.drawnCount);
     node->markDirty(QSGNode::DirtyMaterial);
 }
 
 QSGGeometryNode* BandSeries::paintEdge(QSGGeometryNode* oldNode, const BandEdgeRenderer& renderer, const RenderView& view,
     const std::shared_ptr<DataTexture>& dataTexture, const bool dataChanged) const
 {
-    const auto count = view.drawnSampleCount;
-    auto samples = dataPoints().view();
-    samples.count = count;
+    const auto count = view.drawnCount;
+    auto points = dataPoints().view();
+    points.count = count;
     const auto* style = edges_->lineStyle();
     const auto uniforms = LineStroke::Uniforms{edgeColor(), edges_->width(), view.domainMin, view.domainMax, view.viewportSize, logScaleX(), logScaleY(), count,
         true, 1.0, style ? style->dashParameters() : DashParameters{}};
-    return renderer.paint(oldNode, BandEdgeRenderParams{dataTexture, samples, uniforms, xAxis(), yAxis(), dataChanged, view.reservedSampleCount});
+    return renderer.paint(oldNode, BandEdgeRenderParams{dataTexture, points, uniforms, xAxis(), yAxis(), dataChanged, view.reservedCount});
 }
 
 } // namespace QAccelPlot

@@ -19,6 +19,11 @@
 #include <thread>
 #include <vector>
 
+// An application subclass, which the data warnings name after its library class.
+class AppCurve : public QAccelPlot::LineCurve {
+    Q_OBJECT
+};
+
 namespace QAccelPlot {
 
 namespace {
@@ -68,6 +73,7 @@ private slots:
     void postedDataIsAppliedFromWorkerThread();
     void dataBoundsReplaceTheRangeScan_data();
     void dataBoundsReplaceTheRangeScan();
+    void warningsNameTheLibraryClassOfASubclass();
 
 private:
     void addSeriesRows();
@@ -258,6 +264,14 @@ void SeriesDataPointsTest::dataBoundsReplaceTheRangeScan()
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression(QStringLiteral("%1 received a null data pointer.*").arg(series)));
     plotSeries->setData(static_cast<const double*>(nullptr), 1, PlotSeries::DataBounds{0.0, 1.0, 0.0, 1.0});
     QVERIFY(!plotSeries->xDataRange());
+}
+
+void SeriesDataPointsTest::warningsNameTheLibraryClassOfASubclass()
+{
+    auto curve = AppCurve{};
+
+    QTest::ignoreMessage(QtWarningMsg, "LineCurve data point count cannot be negative: -1");
+    curve.setData(std::vector<double>{}, -1);
 }
 
 } // namespace QAccelPlot

@@ -24,7 +24,7 @@ struct BandUbo {
     float viewportSize[2]; // 96–103
     float logScaleX;       // 104–107
     float logScaleY;       // 108–111
-    float sampleCount;     // 112–115
+    float dataPointCount;  // 112–115
     float opacity;         // 116–119
 };
 
@@ -64,7 +64,7 @@ public:
         ubo.viewportSize[1] = mat->viewportSize.y();
         ubo.logScaleX = mat->logScaleX;
         ubo.logScaleY = mat->logScaleY;
-        ubo.sampleCount = mat->sampleCount;
+        ubo.dataPointCount = mat->dataPointCount;
         ubo.opacity = state.opacity();
         memcpy(buf->data(), &ubo, sizeof(ubo));
         return true;
@@ -105,8 +105,8 @@ const QSGGeometry::AttributeSet& BandMaterial::vertexAttributes()
 int BandMaterial::compareExtra(const QSGMaterial* other) const
 {
     const auto* m = static_cast<const BandMaterial*>(other);
-    if (sampleCount != m->sampleCount) {
-        return sampleCount < m->sampleCount ? -1 : 1;
+    if (dataPointCount != m->dataPointCount) {
+        return dataPointCount < m->dataPointCount ? -1 : 1;
     }
     return 0;
 }

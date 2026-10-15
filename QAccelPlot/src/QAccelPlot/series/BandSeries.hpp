@@ -99,7 +99,8 @@ public:
     /// \brief Returns the band at data coordinate \a x as an object with \c x, \c low, and \c high properties.
     ///
     /// \c low and \c high are interpolated between the neighboring data points as drawn, with \c low ≤ \c high.
-    /// At an X shared by several samples they cover all of them. Returns an empty object when \a x lies outside the samples, next to an invalid sample, or when
+    /// At an X shared by several data points they cover all of them. Returns an empty object when \a x lies outside the data points, next to an invalid data
+    /// point, or when
     /// the X values are not in ascending order.
     Q_INVOKABLE QVariantMap valueAt(qreal x) const;
 
@@ -146,16 +147,16 @@ private:
         QVector2D domainMin;
         QVector2D domainMax;
         QVector2D viewportSize;
-        int drawnSampleCount;
+        int drawnCount;
         // Vertex buffer room, grown in powers of two so that appends rarely rebuild the vertices.
-        int reservedSampleCount;
+        int reservedCount;
     };
 
     // Applies (x, low, high) triples built from separate lists.
     void applyInterleavedData(std::vector<double>&& data);
     // Returns value \a component (0 = x, 1 = low, 2 = high) of data point \a index.
     double value(int index, int component) const;
-    bool sampleValid(int index) const;
+    bool dataPointValid(int index) const;
     void updateXAscending();
     std::optional<Span> spanAt(qreal x) const;
     bool edgesVisible() const;

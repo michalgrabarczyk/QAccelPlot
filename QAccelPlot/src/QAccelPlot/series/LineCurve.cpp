@@ -786,7 +786,7 @@ void LineCurve::applyNewData(std::vector<double>&& newData, const int newPointCo
         from[static_cast<std::size_t>(index) * 2] = drawn.value(index, 0);
         from[static_cast<std::size_t>(index) * 2 + 1] = drawn.value(index, 1);
     }
-    dataPoints().setPrecise(std::vector<double>(newData), newPointCount);
+    dataPoints().setPrecise(std::move(newData), newPointCount);
     startTransition(std::move(from), drawn.count);
     notifyDataPointsChanged(DataChange::Replaced, previousCount);
 }

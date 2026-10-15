@@ -24,7 +24,7 @@ QSGGeometryNode* BandEdgeRenderer::paint(QSGGeometryNode* oldNode, const BandEdg
 {
     auto* node = oldNode ? oldNode : LineStroke::createNode(0, new BandEdgeMaterial(edge_));
     auto* geometry = node->geometry();
-    const auto vertexCount = params.reservedSampleCount * 2;
+    const auto vertexCount = params.reservedCount * 2;
     const auto countChanged = geometry->vertexCount() != vertexCount;
     if (countChanged) {
         geometry->allocate(vertexCount);
@@ -47,8 +47,8 @@ QSGGeometryNode* BandEdgeRenderer::paint(QSGGeometryNode* oldNode, const BandEdg
         arcLengthScale_.reset();
     }
     if (countChanged || lengthsStale) {
-        LineStroke::writeVertices(static_cast<LineVertex*>(geometry->vertexData()), params.reservedSampleCount, params.uniforms.color,
-            dashed ? arcLengths(params) : std::vector<float>{});
+        LineStroke::writeVertices(
+            static_cast<LineVertex*>(geometry->vertexData()), params.reservedCount, params.uniforms.color, dashed ? arcLengths(params) : std::vector<float>{});
         node->markDirty(QSGNode::DirtyGeometry);
     }
     node->markDirty(QSGNode::DirtyMaterial);
@@ -84,13 +84,13 @@ std::vector<float> BandEdgeRenderer::arcLengths(const BandEdgeRenderParams& para
         return {};
     }
     const auto upper = edge_ == BandEdgeMaterial::Edge::Upper;
-    const auto& samples = params.samples;
+    const auto& points = params.dataPoints;
     const auto& uniforms = params.uniforms;
     // Like band_edge.glsl: the drawn bound of each data point, invalid wherever the fill has a gap.
-    return LineStroke::arcLengths(samples.count, [&](const int i) -> std::optional<QPointF> {
-        const auto x = samples.value(i, 0);
-        const auto low = samples.value(i, 1);
-        const auto high = samples.value(i, 2);
+    return LineStroke::arcLengths(points.count, [&](const int i) -> std::optional<QPointF> {
+        const auto x = points.value(i, 0);
+        const auto low = points.value(i, 1);
+        const auto high = points.value(i, 2);
         if (!isValidCoordinate(x, uniforms.logScaleX) || !isValidCoordinate(low, uniforms.logScaleY) || !isValidCoordinate(high, uniforms.logScaleY)) {
             return std::nullopt;
         }

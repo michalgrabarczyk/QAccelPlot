@@ -36,7 +36,7 @@ public:
     /// \brief Returns the vertex attribute set matching \c Vertex: \c {float id, float edge} (8 bytes).
     static const QSGGeometry::AttributeSet& vertexAttributes();
 
-    float sampleCount{0.0f}; ///< \brief Number of data points in the data texture (used to clamp neighbor lookups).
+    float dataPointCount{0.0f}; ///< \brief Number of data points in the data texture (used to clamp neighbor lookups).
 
 protected:
     /// \brief Compares the band-specific uniforms after the base-class comparison succeeds.

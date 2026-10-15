@@ -33,12 +33,18 @@ std::optional<PlotSeries::DataExtent> toDataExtent(const std::optional<DataPoint
     return PlotSeries::DataExtent{extent->min, extent->max};
 }
 
-// The class name without the library namespace, as the data argument warnings name the series.
+// The name of the library class a series is, without the namespace, as the data argument warnings
+// name the series. QML types and C++ subclasses are named after the library class they derive from.
 const char* seriesName(const QObject& series)
 {
-    const auto* name = series.metaObject()->className();
     constexpr auto kNamespace = std::string_view{"QAccelPlot::"};
-    return std::string_view{name}.substr(0, kNamespace.size()) == kNamespace ? name + kNamespace.size() : name;
+    for (const auto* type = series.metaObject(); type; type = type->superClass()) {
+        const auto* name = type->className();
+        if (std::string_view{name}.substr(0, kNamespace.size()) == kNamespace) {
+            return name + kNamespace.size();
+        }
+    }
+    return series.metaObject()->className();
 }
 
 DataPointStore::DimensionState dimensionState(const Axis* axis)

@@ -423,7 +423,7 @@ void BandSeriesDataTest::edgeLinesReadTheBandSamples()
     auto* root = fixture.paint();
     QVERIFY(root);
     QCOMPARE(root->childCount(), 1);
-    QCOMPARE(fixture.fillMaterial()->sampleCount, 3.0f);
+    QCOMPARE(fixture.fillMaterial()->dataPointCount, 3.0f);
     // Room for 256 samples is reserved, two vertices each.
     QCOMPARE(static_cast<QSGGeometryNode*>(root->firstChild())->geometry()->vertexCount(), 512);
 
@@ -491,7 +491,7 @@ void BandSeriesDataTest::appendingKeepsTheVertexBuffers()
         fixture.band.appendData(x, 1.0, 2.0);
         fixture.paint();
     }
-    QCOMPARE(fixture.fillMaterial()->sampleCount, 256.0f);
+    QCOMPARE(fixture.fillMaterial()->dataPointCount, 256.0f);
     QCOMPARE(static_cast<BandMaterial::Vertex*>(vertexData(0))[0].edge, -1.0f);
     QCOMPARE(static_cast<LineVertex*>(vertexData(1))[0].side, -2.0f);
 

@@ -26,13 +26,13 @@ class DataTexture;
 /// \brief Inputs for BandEdgeRenderer::paint(), assembled while the GUI thread is blocked.
 struct BandEdgeRenderParams {
     std::shared_ptr<DataTexture> dataTexture; ///< \brief The band's data texture; the edge line never uploads data itself.
-    DataPointStore::View samples;             ///< \brief The band's <tt>(x, low, high)</tt> data points, used for dash lengths.
-    LineStroke::Uniforms uniforms;            ///< \brief Line uniforms; \c uniforms.pointCount equals \c samples.count.
+    DataPointStore::View dataPoints;          ///< \brief The band's <tt>(x, low, high)</tt> data points, used for dash lengths.
+    LineStroke::Uniforms uniforms;            ///< \brief Line uniforms; \c uniforms.pointCount equals \c dataPoints.count.
     Axis* xAxis;                              ///< \brief Horizontal axis.
     Axis* yAxis;                              ///< \brief Vertical axis.
     bool dataChanged;                         ///< \brief Whether the data points changed since the last paint.
-    /// \brief Data points the vertex buffer holds room for, at least \c samples.count, so appends rarely resize it.
-    int reservedSampleCount;
+    /// \brief Data points the vertex buffer holds room for, at least \c dataPoints.count, so appends rarely resize it.
+    int reservedCount;
 };
 
 /// \brief Internal renderer for the lower or upper edge line of a \c BandSeries.
