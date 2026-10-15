@@ -157,8 +157,8 @@ private:
     static void clearExtraAxes(QQmlListProperty<Axis>* list);
 
     bool tryForwardKeyEventToAxis(Axis* axis, const QPointF& mousePos, QKeyEvent* event);
-    bool tryZoomAxisAtPosition(Axis* axis, const QPointF& pos, bool zoomingIn);
-    void zoomAxisAtRatio(Axis* axis, qreal ratio, bool zoomingIn);
+    bool tryZoomAxisAtPosition(Axis* axis, const QPointF& pos, qreal wheelSteps);
+    void zoomAxisAtRatio(Axis* axis, qreal ratio, qreal wheelSteps);
     void connectAxisSignals(Axis* axis);
     void disconnectAxisSignals(Axis* axis);
     void axisDestroyed(QObject* object);

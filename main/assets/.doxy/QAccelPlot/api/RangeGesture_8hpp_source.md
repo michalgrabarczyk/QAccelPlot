@@ -30,7 +30,7 @@ struct ValueRange {
 
 [[nodiscard]] ValueRange zoomedRange(const ValueRange& range, qreal factor, qreal anchorRatio, bool logarithmic);
 
-[[nodiscard]] qreal wheelZoomFactor(qreal zoomScaleFactor, bool zoomingIn);
+[[nodiscard]] qreal wheelZoomFactor(qreal zoomScaleFactor, bool zoomingIn, qreal steps = 1.0);
 
 } // namespace QAccelPlot::Internal
 ```

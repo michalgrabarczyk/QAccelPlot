@@ -44,7 +44,7 @@
 <codeline lineno="26"><highlight class="normal"></highlight></codeline>
 <codeline lineno="33"><highlight class="normal">[[nodiscard]]<sp/><ref refid="structQAccelPlot_1_1Internal_1_1ValueRange" kindref="compound">ValueRange</ref><sp/>zoomedRange(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1ValueRange" kindref="compound">ValueRange</ref>&amp;<sp/>range,<sp/>qreal<sp/>factor,<sp/>qreal<sp/>anchorRatio,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>logarithmic);</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight></codeline>
-<codeline lineno="40"><highlight class="normal">[[nodiscard]]<sp/>qreal<sp/>wheelZoomFactor(qreal<sp/>zoomScaleFactor,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>zoomingIn);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">[[nodiscard]]<sp/>qreal<sp/>wheelZoomFactor(qreal<sp/>zoomScaleFactor,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>zoomingIn,<sp/>qreal<sp/>steps<sp/>=<sp/>1.0);</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"></highlight></codeline>
 <codeline lineno="42"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot::Internal</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>

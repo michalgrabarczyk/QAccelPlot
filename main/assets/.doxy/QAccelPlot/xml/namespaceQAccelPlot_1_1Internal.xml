@@ -85,10 +85,10 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" line="33" column="13" declfile="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" declline="33" declcolumn="13"/>
       </memberdef>
-      <memberdef kind="function" id="RangeGesture_8hpp_1a8ed54085a791bb22144445ef05224b30" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="RangeGesture_8hpp_1aa1295e38cb274d582f872c75a35b71ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
         <definition>qreal QAccelPlot::Internal::wheelZoomFactor</definition>
-        <argsstring>(qreal zoomScaleFactor, bool zoomingIn)</argsstring>
+        <argsstring>(qreal zoomScaleFactor, bool zoomingIn, qreal steps=1.0)</argsstring>
         <name>wheelZoomFactor</name>
         <qualifiedname>QAccelPlot::Internal::wheelZoomFactor</qualifiedname>
         <param>
@@ -99,11 +99,16 @@
           <type>bool</type>
           <declname>zoomingIn</declname>
         </param>
+        <param>
+          <type>qreal</type>
+          <declname>steps</declname>
+          <defval>1.0</defval>
+        </param>
         <briefdescription>
-<para>Returns the extent multiplier of one mouse-wheel step for a <emphasis>zoomScaleFactor</emphasis> in (0, 1). </para>
+<para>Returns the extent multiplier for mouse-wheel zoom with a <emphasis>zoomScaleFactor</emphasis> in (0, 1). </para>
         </briefdescription>
         <detaileddescription>
-<para>Zooming in multiplies the extent by the factor and zooming out by its reciprocal. A factor of 0 or below counts as 0.01 and a factor of 1 or above as 0.99, so a step always zooms and never collapses the range. </para>
+<para>Zooming in multiplies the extent by the factor and zooming out by its reciprocal. A factor of 0 or below counts as 0.01 and a factor of 1 or above as 0.99, so a step always zooms and never collapses the range. Fractional step counts scale partial wheel notches proportionally. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>

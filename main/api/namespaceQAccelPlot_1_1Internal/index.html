@@ -1575,7 +1575,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">qreal</td>
-<td style="text-align: left;"><a href="#function-wheelzoomfactor"><strong>wheelZoomFactor</strong></a> (qreal zoomScaleFactor, bool zoomingIn) <br><em>Returns the extent multiplier of one mouse-wheel step for a</em> <em>zoomScaleFactor</em> <em>in (0, 1).</em></td>
+<td style="text-align: left;"><a href="#function-wheelzoomfactor"><strong>wheelZoomFactor</strong></a> (qreal zoomScaleFactor, bool zoomingIn, qreal steps=1.0) <br><em>Returns the extent multiplier for mouse-wheel zoom with a</em> <em>zoomScaleFactor</em> <em>in (0, 1).</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">std::pair&lt; qreal, qreal &gt;</td>
@@ -1672,13 +1672,14 @@
 <hr>
 
 <h3 id="function-wheelzoomfactor">function wheelZoomFactor<a class="headerlink" href="#function-wheelzoomfactor" title="Permanent link">&para;</a></h3>
-<p><em>Returns the extent multiplier of one mouse-wheel step for a</em> <em>zoomScaleFactor</em> <em>in (0, 1).</em>
+<p><em>Returns the extent multiplier for mouse-wheel zoom with a</em> <em>zoomScaleFactor</em> <em>in (0, 1).</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">wheelZoomFactor</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">zoomScaleFactor</span><span class="p">,</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">zoomingIn</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="p">)</span><span class="w"> </span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">zoomingIn</span><span class="p">,</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">steps</span><span class="o">=</span><span class="mf">1.0</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
-<p>Zooming in multiplies the extent by the factor and zooming out by its reciprocal. A factor of 0 or below counts as 0.01 and a factor of 1 or above as 0.99, so a step always zooms and never collapses the range. </p>
+<p>Zooming in multiplies the extent by the factor and zooming out by its reciprocal. A factor of 0 or below counts as 0.01 and a factor of 1 or above as 0.99, so a step always zooms and never collapses the range. Fractional step counts scale partial wheel notches proportionally. </p>
 <hr>
 
 <h3 id="function-widenedspan">function widenedSpan<a class="headerlink" href="#function-widenedspan" title="Permanent link">&para;</a></h3>
