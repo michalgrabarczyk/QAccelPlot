@@ -100,6 +100,8 @@ public:
     [[nodiscard]] const Layout& layout() const noexcept;
     /// \brief Clears the store and switches to \a layout.
     void setLayout(Layout layout);
+    /// \brief Ties the coordinate columns to \a columns, one dimension per column, keeping the data points.
+    void remapColumns(std::vector<Dimension> columns);
     /// \brief Returns the number of coordinate columns per data point.
     [[nodiscard]] int columnCount() const noexcept;
 

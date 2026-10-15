@@ -99,6 +99,14 @@ void DataPointStore::setLayout(Layout layout)
     clear();
 }
 
+void DataPointStore::remapColumns(std::vector<Dimension> columns)
+{
+    Q_ASSERT(columns.size() == layout_.columns.size());
+    layout_.columns = std::move(columns);
+    compacted_.valid = false;
+    invalidateRender();
+}
+
 int DataPointStore::columnCount() const noexcept
 {
     return static_cast<int>(layout_.columns.size());

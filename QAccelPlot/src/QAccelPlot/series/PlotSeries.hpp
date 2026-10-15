@@ -201,7 +201,9 @@ protected:
     /// \brief Returns whether \a data and \a count are valid arguments for copying data points; warns otherwise.
     bool validateRawDataArguments(const void* data, int count) const;
     /// \brief Returns whether \a valueCount values hold \a count data points; warns otherwise.
-    bool validateDataSize(std::size_t valueCount, int count, bool floatData) const;
+    ///
+    /// A data point has \a valuesPerDataPoint values, or one per coordinate column when it is 0.
+    bool validateDataSize(std::size_t valueCount, int count, bool floatData, int valuesPerDataPoint = 0) const;
     /// \brief Appends one double data point and widens the data ranges by its valid coordinates.
     void appendDataPoint(const double* coordinates);
     /// \brief Finishes a change of the data points: data ranges, \c onDataPointsChanged(), data queries, and a repaint.

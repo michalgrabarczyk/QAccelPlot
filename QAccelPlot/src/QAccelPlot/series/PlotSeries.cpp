@@ -347,14 +347,15 @@ bool PlotSeries::validateRawDataArguments(const void* data, const int count) con
     return true;
 }
 
-bool PlotSeries::validateDataSize(const std::size_t valueCount, const int count, const bool floatData) const
+bool PlotSeries::validateDataSize(const std::size_t valueCount, const int count, const bool floatData, const int valuesPerDataPoint) const
 {
     const auto* series = seriesName(*this);
     if (count < 0) {
         qCWarning(lcQAccelPlot).nospace() << series << " " << wording_.countName.c_str() << " count cannot be negative: " << count;
         return false;
     }
-    const auto expectedValueCount = static_cast<std::size_t>(count) * static_cast<std::size_t>(dataPoints_.columnCount());
+    const auto stride = valuesPerDataPoint > 0 ? valuesPerDataPoint : dataPoints_.columnCount();
+    const auto expectedValueCount = static_cast<std::size_t>(count) * static_cast<std::size_t>(stride);
     if (valueCount != expectedValueCount) {
         qCWarning(lcQAccelPlot).nospace() << series << " received " << valueCount << " " << (floatData ? wording_.floatUnit : wording_.doubleUnit).c_str()
                                           << " for " << count << " " << wording_.plural.c_str() << "; expected " << expectedValueCount;
