@@ -25,8 +25,11 @@ namespace {
 
 QString workloadName(const BenchmarkScenario& scenario)
 {
-    if (scenario.name().startsWith(QStringLiteral("data_ingestion"))) {
+    if (scenario.name().startsWith(QStringLiteral("data_ingestion")) || scenario.name().startsWith(QStringLiteral("double_ingestion"))) {
         return QStringLiteral("existing_buffer_ingestion");
+    }
+    if (scenario.name().startsWith(QStringLiteral("render_origin_rebase"))) {
+        return QStringLiteral("render_data_rebase");
     }
     if (scenario.name().startsWith(QStringLiteral("vertex_cache"))) {
         return QStringLiteral("vertex_cache_build");

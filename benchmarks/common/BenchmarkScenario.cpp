@@ -70,7 +70,8 @@ BenchmarkScenario::SeriesType BenchmarkScenario::seriesType() const
 
 bool BenchmarkScenario::isCpuOnly() const
 {
-    for (const auto* prefix : {"data_ingestion", "vertex_cache", "point_cloud_ingestion", "point_cloud_hover_index"}) {
+    for (const auto* prefix :
+        {"data_ingestion", "double_ingestion", "render_origin_rebase", "vertex_cache", "point_cloud_ingestion", "point_cloud_hover_index"}) {
         if (name_.startsWith(QLatin1String(prefix))) {
             return true;
         }
@@ -115,6 +116,11 @@ std::vector<BenchmarkScenario> BenchmarkScenario::defaultScenarios()
             UpdateMode::Live, 10, 2},
         {QStringLiteral("data_ingestion_2m"), QStringLiteral("Ingestion 2M"), QStringLiteral("setDataF throughput at 2M points — CPU-only, max rate"),
             2'000'000, 1, UpdateMode::MaxRate, 5, 1},
+        {QStringLiteral("double_ingestion_2m"), QStringLiteral("Double Ingestion 2M"),
+            QStringLiteral("setData throughput with epoch-millisecond doubles at 2M points — CPU-only, max rate"), 2'000'000, 1, UpdateMode::MaxRate, 5, 1},
+        {QStringLiteral("render_origin_rebase_2m"), QStringLiteral("Render Origin Rebase 2M"),
+            QStringLiteral("Render data rebuild of 2M doubles when the viewport moves far from the render origin — CPU-only, max rate"), 2'000'000, 1,
+            UpdateMode::MaxRate, 5, 1},
         {QStringLiteral("vertex_cache_2m"), QStringLiteral("Vertex Cache 2M"), QStringLiteral("Vertex cache build cost at 2M points — CPU-only, max rate"),
             2'000'000, 1, UpdateMode::MaxRate, 5, 1},
         {QStringLiteral("point_cloud_static_1m"), QStringLiteral("Point Cloud 1M + Pan"),
