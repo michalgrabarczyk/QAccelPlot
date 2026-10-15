@@ -21,8 +21,8 @@ class Grid;
 
 /// \brief Internal QSGNode responsible for rendering the plot grid into the scene graph.
 ///
-/// Computes grid line positions from the same tick step as \c AxisTickPainter so that
-/// grid lines stay aligned with axis tick marks under all zoom levels, including log scale.
+/// Draws grid lines at the tick values from \c AxisTickPainter::computeTickValues(), the same values
+/// the axis places its tick marks at, so both stay aligned under all zoom levels, including log scale.
 class GridNode : public QSGNode {
 public:
     /// \brief Constructs an empty GridNode.

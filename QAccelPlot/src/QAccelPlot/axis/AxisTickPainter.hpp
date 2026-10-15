@@ -26,8 +26,8 @@ namespace QAccelPlot {
 ///
 /// Tick computation and painting are split: \c computeTicks() formats labels and must run on
 /// the formatter's (GUI) thread, while \c paintTicks() only draws precomputed ticks and is safe to
-/// call from \c Axis::paint() on the render thread. Also provides \c computeNiceStep(), which is shared
-/// with \c GridNode to keep grid lines aligned with tick positions.
+/// call from \c Axis::paint() on the render thread. \c computeTickValues() is the single source of tick
+/// positions, shared with \c GridNode so grid lines stay aligned with the tick marks.
 class AxisTickPainter {
 public:
     /// \brief All style inputs required for a single paint call, bundled to reduce parameter count.
@@ -59,21 +59,25 @@ public:
     /// \a ticker's formatter, which may invoke a QML/JS callback, so this must be called on the formatter's thread.
     static AxisTicks computeTicks(qreal viewportMin, qreal viewportMax, bool logScale, const AxisTicker* ticker);
 
+    /// \brief Returns the visible tick and subtick values for the \a viewportMin to \a viewportMax range, without labels.
+    ///
+    /// Does not call the label formatter, so it is safe on the render thread. Empty when \a ticker is null or has no
+    /// major ticks, and for a collapsed or nonfinite viewport.
+    static AxisTickValues computeTickValues(qreal viewportMin, qreal viewportMax, bool logScale, const AxisTicker* ticker);
+
     /// \brief Paints \a ticks and their labels onto \a painter, placing them according to \a params and \a mapToPosition.
     static void paintTicks(
         QPainter* painter, const QRectF& rect, qreal axisX, qreal axisY, const Params& params, const AxisTicks& ticks, const MapToPosition& mapToPosition);
 
     /// \brief Returns a "nice" major tick step for the given \a viewportMin, \a viewportMax range and target \a tickCount.
-    ///
-    /// Shared by both AxisTickPainter and GridNode so grid lines remain aligned with ticks.
     static qreal computeNiceStep(qreal viewportMin, qreal viewportMax, int tickCount);
 
     /// \brief Returns the size of the rectangle \c paintTicks() lays out for \a label, measured with \a metrics.
     static QSizeF tickLabelSize(const QFontMetricsF& metrics, const QString& label);
 
 private:
-    static AxisTicks computeLogScaleTicks(qreal viewportMin, qreal viewportMax, const AxisTicker& ticker);
-    static AxisTicks computeLinearTicks(qreal viewportMin, qreal viewportMax, const AxisTicker& ticker);
+    static AxisTickValues computeLogScaleTickValues(qreal viewportLow, qreal viewportHigh, const AxisTicker& ticker);
+    static AxisTickValues computeLinearTickValues(qreal viewportLow, qreal viewportHigh, const AxisTicker& ticker);
     static void paintTick(const PaintContext& ctx, const AxisTick& tick, const Params& params, const MapToPosition& mapToPosition);
     static void paintSubtick(const PaintContext& ctx, qreal value, const Params& params, const MapToPosition& mapToPosition);
     static void drawTickLabel(QPainter* painter, const QRectF& labelRect, int alignment, const QString& label, qreal rotation);

@@ -8,15 +8,11 @@
 #include "QAccelPlot/grid/GridNode.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/axis/AxisTickPainter.hpp"
-#include "QAccelPlot/axis/AxisTicker.hpp"
 #include "QAccelPlot/grid/Grid.hpp"
 
 #include <QSGFlatColorMaterial>
 #include <QSGGeometry>
 #include <QSGGeometryNode>
-
-#include <algorithm>
-#include <cmath>
 
 namespace QAccelPlot {
 
@@ -108,63 +104,16 @@ void GridNode::collectAxisGridLines(QVector<QRectF>& mainRects, QVector<QRectF>&
     if (!p.axis || (!p.gridLinesVisible && !p.subGridLinesVisible)) {
         return;
     }
-    const auto* t = p.axis->ticker();
-    if (t && t->tickCount() <= 0) {
-        return;
+    // Values only: computeTicks() formats labels, which may call into QML/JS and must not run on the render thread.
+    const auto ticks = AxisTickPainter::computeTickValues(p.axis->viewportMin(), p.axis->viewportMax(), p.axis->logScale(), p.axis->ticker());
+    if (p.gridLinesVisible) {
+        for (const auto value : ticks.majorValues) {
+            mainRects.append(p.makeRect(value, grid->lineWidth() / 2.0));
+        }
     }
-    const auto viewportLow = std::min(p.axis->viewportMin(), p.axis->viewportMax());
-    const auto viewportHigh = std::max(p.axis->viewportMin(), p.axis->viewportMax());
-    if (!std::isfinite(viewportLow) || !std::isfinite(viewportHigh) || viewportLow >= viewportHigh) {
-        return;
-    }
-    if (p.axis->logScale() && viewportLow > 0 && viewportHigh > 0) {
-        const auto logMin = static_cast<int>(std::floor(std::log10(viewportLow)));
-        const auto logMax = static_cast<int>(std::ceil(std::log10(viewportHigh)));
-        for (int e = logMin; e <= logMax; ++e) {
-            const auto val = std::pow(10.0, e);
-            if (p.gridLinesVisible && val >= viewportLow && val <= viewportHigh) {
-                mainRects.append(p.makeRect(val, grid->lineWidth() / 2.0));
-            }
-            if (p.subGridLinesVisible && e < logMax && (!t || t->subtickCount() > 0)) {
-                for (int k = 2; k <= 9; ++k) {
-                    const auto subVal = k * val;
-                    if (subVal >= viewportLow && subVal <= viewportHigh) {
-                        subRects.append(p.makeRect(subVal, grid->subGridLineWidth() / 2.0));
-                    }
-                }
-            }
-        }
-    } else {
-        const auto ticks = t ? t->tickCount() : 5;
-        if (ticks <= 0) {
-            return;
-        }
-        const auto subticks = t ? t->subtickCount() : 0;
-        static constexpr auto kRelativeTolerance = 1e-9; // avoids dropping ticks that land exactly on viewport boundary
-        const auto step = AxisTickPainter::computeNiceStep(viewportLow, viewportHigh, ticks);
-        if (!std::isfinite(step) || step <= 0) {
-            return;
-        }
-        const auto firstTick = std::ceil(viewportLow / step) * step;
-        const auto loopStart = firstTick - step;
-        auto tickIndex = 0;
-        for (auto val = loopStart; val <= viewportHigh + step * kRelativeTolerance; val = loopStart + (++tickIndex) * step) {
-            if (p.gridLinesVisible && val >= viewportLow - step * kRelativeTolerance) {
-                mainRects.append(p.makeRect(val, grid->lineWidth() / 2.0));
-            }
-            if (p.subGridLinesVisible && subticks > 0) {
-                const auto subStep = step / (subticks + 1);
-                for (int j = 1; j <= subticks; ++j) {
-                    const auto subVal = val + j * subStep;
-                    if (subVal < viewportLow - subStep * kRelativeTolerance) {
-                        continue;
-                    }
-                    if (subVal > viewportHigh + subStep * kRelativeTolerance) {
-                        break;
-                    }
-                    subRects.append(p.makeRect(subVal, grid->subGridLineWidth() / 2.0));
-                }
-            }
+    if (p.subGridLinesVisible) {
+        for (const auto value : ticks.subtickValues) {
+            subRects.append(p.makeRect(value, grid->subGridLineWidth() / 2.0));
         }
     }
 }

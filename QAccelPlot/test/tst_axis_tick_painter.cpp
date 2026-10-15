@@ -20,6 +20,7 @@
 
 #include <algorithm>
 #include <cstdlib>
+#include <limits>
 #include <utility>
 
 namespace {
@@ -199,6 +200,8 @@ private slots:
     void computeTicks_logScaleMajorTicksReceiveNonZeroStep();
     void computeTicks_logScaleLabelsUsePowersOfTen();
     void computeTicks_nullTickerIsEmpty();
+    void computeTicks_degenerateViewportIsEmpty_data();
+    void computeTicks_degenerateViewportIsEmpty();
     void axis_formatsTickLabelsOnGuiThread();
     void axis_paintsTitleOnEverySide_data();
     void axis_paintsTitleOnEverySide();
@@ -556,6 +559,33 @@ void TestAxisTickPainter::computeTicks_logScaleMajorTicksReceiveNonZeroStep()
 void TestAxisTickPainter::computeTicks_nullTickerIsEmpty()
 {
     const auto ticks = QAccelPlot::AxisTickPainter::computeTicks(0.0, 1.0, false, nullptr);
+
+    QVERIFY(ticks.majorTicks.isEmpty());
+    QVERIFY(ticks.subtickValues.isEmpty());
+}
+
+void TestAxisTickPainter::computeTicks_degenerateViewportIsEmpty_data()
+{
+    QTest::addColumn<bool>("logScale");
+    QTest::addColumn<qreal>("viewportMin");
+    QTest::addColumn<qreal>("viewportMax");
+    const auto infinity = std::numeric_limits<qreal>::infinity();
+    const auto nan = std::numeric_limits<qreal>::quiet_NaN();
+    QTest::newRow("linear-collapsed") << false << 10.0 << 10.0;
+    QTest::newRow("linear-infinite") << false << 0.0 << infinity;
+    QTest::newRow("linear-nan") << false << nan << 1.0;
+    QTest::newRow("log-collapsed") << true << 10.0 << 10.0;
+    QTest::newRow("log-infinite") << true << 1.0 << infinity;
+}
+
+void TestAxisTickPainter::computeTicks_degenerateViewportIsEmpty()
+{
+    QFETCH(bool, logScale);
+    QFETCH(qreal, viewportMin);
+    QFETCH(qreal, viewportMax);
+    auto ticker = QAccelPlot::AxisTicker{};
+
+    const auto ticks = QAccelPlot::AxisTickPainter::computeTicks(viewportMin, viewportMax, logScale, &ticker);
 
     QVERIFY(ticks.majorTicks.isEmpty());
     QVERIFY(ticks.subtickValues.isEmpty());
