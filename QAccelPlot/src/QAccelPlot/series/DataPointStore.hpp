@@ -26,9 +26,9 @@ namespace QAccelPlot {
 ///   uploaded relative to a render origin per dimension, which moves to the viewport center when the
 ///   viewport gets too far from it. Logarithmic dimensions are never shifted.
 ///
-/// Render data is rebuilt lazily, the first time it is read after something it depends on changed.
-/// The store is not thread-safe: use it from the series' thread, or from \c updatePaintNode() while
-/// that thread is blocked.
+/// Render data is rebuilt lazily, the first time it is read after something it depends on changed,
+/// so even its const readers may rebuild it. The store is not thread-safe: use it from the series'
+/// thread, or from \c updatePaintNode() while that thread is blocked.
 class DataPointStore {
 public:
     /// \brief Plot dimension a coordinate column belongs to.
@@ -158,7 +158,9 @@ public:
     /// Used by a running transition for the frame it shows. \a dataPoints holds \c columnCount()
     /// coordinates per data point, followed by \c attributeCount attributes when the stored data
     /// points have attributes. The stored data points, their extents, and \c view() are unchanged.
-    void setDrawn(std::vector<double>&& dataPoints, int count);
+    /// Returns the previous drawn buffer, so a caller drawing frame after frame reuses its allocation.
+    /// Replacing the stored data points with ones of another stride draws them again.
+    std::vector<double> setDrawn(std::vector<double>&& dataPoints, int count);
     /// \brief Draws the stored data points again.
     void clearDrawn();
     /// \brief Returns whether drawn data points replace the stored ones.
@@ -166,7 +168,7 @@ public:
     /// \brief Returns the data points that are drawn: the drawn ones, or the stored ones.
     ///
     /// With \c skipInvalid() set, invalid data points are left out.
-    [[nodiscard]] View drawnView();
+    [[nodiscard]] View drawnView() const;
 
     /// \brief Leaves invalid data points out of the render data and \c drawnView().
     ///
@@ -186,15 +188,15 @@ public:
     /// \brief Returns the float render data, rebuilding it first when stale.
     ///
     /// Each data point is its coordinates relative to \c renderOrigin(), then its attributes.
-    [[nodiscard]] const std::vector<float>& renderData();
+    [[nodiscard]] const std::vector<float>& renderData() const;
     /// \brief Returns the floats per data point in the render data.
     [[nodiscard]] int renderStride() const noexcept;
     /// \brief Returns the number of data points in the render data.
-    [[nodiscard]] int renderCount();
+    [[nodiscard]] int renderCount() const;
     /// \brief Returns the render origin of \a dimension, rebuilding the render data first when stale.
     ///
     /// It is 0 for float data and logarithmic dimensions.
-    [[nodiscard]] double renderOrigin(Dimension dimension);
+    [[nodiscard]] double renderOrigin(Dimension dimension) const;
     /// \brief Returns a number that changes whenever the render data changes.
     [[nodiscard]] std::uint64_t renderRevision() const noexcept;
 
@@ -217,15 +219,15 @@ private:
     [[nodiscard]] View sourceView() const noexcept;
     [[nodiscard]] bool usesOrigin() const noexcept;
     [[nodiscard]] bool dataPointValid(const View& view, int index) const noexcept;
-    [[nodiscard]] Origin& origin(Dimension dimension) noexcept;
+    [[nodiscard]] Origin& origin(Dimension dimension) const noexcept;
     [[nodiscard]] double originValue(Dimension dimension) const noexcept;
     void storeFloatCoordinates(std::vector<float>&& coordinates, std::vector<float>&& attributes);
     void dataPointsChanged();
     void invalidateRender();
-    void ensureCompacted();
-    void ensureRenderData();
-    void chooseOrigins(const View& source);
-    void writeRenderData(const View& source, const float* attributes, int attributeStride);
+    void ensureCompacted() const;
+    void ensureRenderData() const;
+    void chooseOrigins(const View& source) const;
+    void writeRenderData(const View& source, const float* attributes, int attributeStride) const;
 
     Layout layout_;
     int count_{0};
@@ -241,16 +243,17 @@ private:
     bool hasDrawn_{false};
 
     bool skipInvalid_{false};
-    Compacted compacted_;
+    // Lazily derived from the members above, also by const readers.
+    mutable Compacted compacted_;
 
     DimensionState x_;
     DimensionState y_;
-    Origin originX_;
-    Origin originY_;
-    bool renderLogScaleX_{false};
-    bool renderLogScaleY_{false};
-    std::vector<float> renderData_;
-    bool renderValid_{false};
+    mutable Origin originX_;
+    mutable Origin originY_;
+    mutable bool renderLogScaleX_{false};
+    mutable bool renderLogScaleY_{false};
+    mutable std::vector<float> renderData_;
+    mutable bool renderValid_{false};
     std::uint64_t renderRevision_{0};
 };
 

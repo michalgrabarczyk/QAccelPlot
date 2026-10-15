@@ -14,6 +14,7 @@
 #include <cmath>
 #include <cstring>
 #include <limits>
+#include <utility>
 
 namespace QAccelPlot {
 
@@ -364,14 +365,15 @@ DataPointStore::Extents DataPointStore::extents(const bool logScaleX, const bool
     return Extents{x.extent(), y.extent()};
 }
 
-void DataPointStore::setDrawn(std::vector<double>&& dataPoints, const int count)
+std::vector<double> DataPointStore::setDrawn(std::vector<double>&& dataPoints, const int count)
 {
     Q_ASSERT(dataPoints.size() == static_cast<std::size_t>(count) * static_cast<std::size_t>(renderStride()));
-    drawn_ = std::move(dataPoints);
+    auto previous = std::exchange(drawn_, std::move(dataPoints));
     drawnCount_ = count;
     hasDrawn_ = true;
     compacted_.valid = false;
     invalidateRender();
+    return previous;
 }
 
 void DataPointStore::clearDrawn()
@@ -391,7 +393,7 @@ bool DataPointStore::hasDrawn() const noexcept
     return hasDrawn_;
 }
 
-DataPointStore::View DataPointStore::drawnView()
+DataPointStore::View DataPointStore::drawnView() const
 {
     ensureCompacted();
     if (!compacted_.active) {
@@ -440,7 +442,7 @@ const DataPointStore::DimensionState& DataPointStore::dimensionState(const Dimen
     return dimension == Dimension::X ? x_ : y_;
 }
 
-const std::vector<float>& DataPointStore::renderData()
+const std::vector<float>& DataPointStore::renderData() const
 {
     ensureCompacted();
     if (!usesOrigin()) {
@@ -455,7 +457,7 @@ int DataPointStore::renderStride() const noexcept
     return columnCount() + (hasAttributes_ ? layout_.attributeCount : 0);
 }
 
-int DataPointStore::renderCount()
+int DataPointStore::renderCount() const
 {
     ensureCompacted();
     if (compacted_.active) {
@@ -464,7 +466,7 @@ int DataPointStore::renderCount()
     return hasDrawn_ ? drawnCount_ : count_;
 }
 
-double DataPointStore::renderOrigin(const Dimension dimension)
+double DataPointStore::renderOrigin(const Dimension dimension) const
 {
     if (!usesOrigin()) {
         return 0.0;
@@ -503,7 +505,7 @@ bool DataPointStore::dataPointValid(const View& view, const int index) const noe
     return true;
 }
 
-DataPointStore::Origin& DataPointStore::origin(const Dimension dimension) noexcept
+DataPointStore::Origin& DataPointStore::origin(const Dimension dimension) const noexcept
 {
     return dimension == Dimension::X ? originX_ : originY_;
 }
@@ -555,6 +557,11 @@ void DataPointStore::dataPointsChanged()
     if (!categories_.empty() && categories_.size() != static_cast<std::size_t>(count_)) {
         categories_.clear();
     }
+    if (hasDrawn_ && drawn_.size() != static_cast<std::size_t>(drawnCount_) * static_cast<std::size_t>(renderStride())) {
+        drawn_.clear();
+        drawnCount_ = 0;
+        hasDrawn_ = false;
+    }
     compacted_.valid = false;
     invalidateRender();
 }
@@ -565,7 +572,7 @@ void DataPointStore::invalidateRender()
     ++renderRevision_;
 }
 
-void DataPointStore::ensureCompacted()
+void DataPointStore::ensureCompacted() const
 {
     if (!skipInvalid_) {
         compacted_.active = false;
@@ -614,7 +621,7 @@ void DataPointStore::ensureCompacted()
     }
 }
 
-void DataPointStore::ensureRenderData()
+void DataPointStore::ensureRenderData() const
 {
     if (renderValid_) {
         return;
@@ -631,7 +638,7 @@ void DataPointStore::ensureRenderData()
     writeRenderData(source, storedAttributes ? attributes_.data() : nullptr, layout_.attributeCount);
 }
 
-void DataPointStore::chooseOrigins(const View& source)
+void DataPointStore::chooseOrigins(const View& source) const
 {
     renderLogScaleX_ = x_.logScale;
     renderLogScaleY_ = y_.logScale;
@@ -655,7 +662,7 @@ void DataPointStore::chooseOrigins(const View& source)
     }
 }
 
-void DataPointStore::writeRenderData(const View& source, const float* attributes, const int attributeStride)
+void DataPointStore::writeRenderData(const View& source, const float* attributes, const int attributeStride) const
 {
     const auto columns = columnCount();
     const auto stride = renderStride();
