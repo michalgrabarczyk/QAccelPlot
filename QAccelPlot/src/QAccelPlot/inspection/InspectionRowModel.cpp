@@ -8,8 +8,11 @@
 #include "QAccelPlot/inspection/InspectionRowModel.hpp"
 
 #include <QColor>
+#include <QMetaMethod>
+#include <QMetaProperty>
 
 #include <algorithm>
+#include <utility>
 
 namespace QAccelPlot {
 namespace {
@@ -158,7 +161,13 @@ void InspectionRowModel::setRows(const QList<InspectionRow>& rows)
     }
     const auto countDiffers = rows_.size() != rows.size();
     beginResetModel();
+    for (const auto& row : std::as_const(rows_)) {
+        unwatchSeries(row.series);
+    }
     rows_ = rows;
+    for (const auto& row : std::as_const(rows_)) {
+        watchSeries(row.series);
+    }
     endResetModel();
     if (countDiffers) {
         emit countChanged();
@@ -174,12 +183,45 @@ void InspectionRowModel::retainSeries(const QList<PlotSeries*>& series)
             continue;
         }
         beginRemoveRows({}, row, row);
+        unwatchSeries(current);
         rows_.removeAt(row);
         endRemoveRows();
         removed = true;
     }
     if (removed) {
         emit countChanged();
+    }
+}
+
+void InspectionRowModel::seriesAppearanceChanged()
+{
+    const auto* series = sender();
+    for (auto row = 0; row < rows_.size(); ++row) {
+        if (rows_[row].series.data() == series) {
+            emit dataChanged(index(row), index(row), {SeriesNameRole, SeriesColorRole});
+        }
+    }
+}
+
+void InspectionRowModel::watchSeries(PlotSeries* series)
+{
+    if (!series) {
+        return;
+    }
+    connect(series, &PlotSeries::nameChanged, this, &InspectionRowModel::seriesAppearanceChanged, Qt::UniqueConnection);
+    connect(series, &QObject::objectNameChanged, this, &InspectionRowModel::seriesAppearanceChanged, Qt::UniqueConnection);
+    const auto color = series->metaObject()->property(series->metaObject()->indexOfProperty("color"));
+    if (color.hasNotifySignal()) {
+        const auto slot = metaObject()->method(metaObject()->indexOfSlot("seriesAppearanceChanged()"));
+        connect(series, color.notifySignal(), this, slot, Qt::UniqueConnection);
+    }
+}
+
+void InspectionRowModel::unwatchSeries(PlotSeries* series)
+{
+    // The model receives nothing else from a series, so this removes exactly the watchSeries() connections.
+    if (series) {
+        disconnect(series, nullptr, this, nullptr);
     }
 }
 
