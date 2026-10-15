@@ -32,11 +32,11 @@ struct ValueRange {
 /// be finite, or in \c log10 space it would reach zero.
 [[nodiscard]] ValueRange zoomedRange(const ValueRange& range, qreal factor, qreal anchorRatio, bool logarithmic);
 
-/// \brief Returns the extent multiplier of one mouse-wheel step for a \a zoomScaleFactor in (0, 1).
+/// \brief Returns the extent multiplier for mouse-wheel zoom with a \a zoomScaleFactor in (0, 1).
 ///
 /// Zooming in multiplies the extent by the factor and zooming out by its reciprocal. A factor of 0
 /// or below counts as 0.01 and a factor of 1 or above as 0.99, so a step always zooms and never
-/// collapses the range.
-[[nodiscard]] qreal wheelZoomFactor(qreal zoomScaleFactor, bool zoomingIn);
+/// collapses the range. Fractional step counts scale partial wheel notches proportionally.
+[[nodiscard]] qreal wheelZoomFactor(qreal zoomScaleFactor, bool zoomingIn, qreal steps = 1.0);
 
 } // namespace QAccelPlot::Internal

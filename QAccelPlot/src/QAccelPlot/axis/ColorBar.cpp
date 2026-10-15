@@ -418,7 +418,7 @@ void ColorBar::mouseUngrabEvent()
 
 void ColorBar::wheelEvent(QWheelEvent* event)
 {
-    const auto steps = event->angleDelta().y();
+    const auto steps = event->angleDelta().y() / 120.0;
     const auto& strip = layout_.strip;
     if (!interactive_ || steps == 0 || strip.isEmpty() || !seriesColormap()) {
         QQuickPaintedItem::wheelEvent(event);
@@ -426,7 +426,7 @@ void ColorBar::wheelEvent(QWheelEvent* event)
     }
     const auto position = event->position();
     const auto anchorRatio = orientation_ == Qt::Horizontal ? (position.x() - strip.left()) / strip.width() : (strip.bottom() - position.y()) / strip.height();
-    zoomRange(Internal::wheelZoomFactor(zoomScaleFactor_, steps > 0), std::clamp(anchorRatio, 0.0, 1.0));
+    zoomRange(Internal::wheelZoomFactor(zoomScaleFactor_, steps > 0, std::abs(steps)), std::clamp(anchorRatio, 0.0, 1.0));
     event->accept();
 }
 
