@@ -1,0 +1,103 @@
+
+
+# File GradientColorTypes.hpp
+
+[**File List**](files.md) **>** [**effects**](dir_2cb1ffa6338b0172fd78b92843e0e53d.md) **>** [**GradientColorTypes.hpp**](GradientColorTypes_8hpp.md)
+
+[Go to the documentation of this file](GradientColorTypes_8hpp.md)
+
+
+```C++
+//
+// SPDX-FileCopyrightText: 2026 Michal Grabarczyk
+// SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
+//
+// This file is also available under a separate commercial license.
+// See COMMERCIAL-LICENSING.md for contact information.
+//
+#pragma once
+
+#include <QColor>
+#include <QtQml/qqmlregistration.h>
+
+#include <optional>
+#include <vector>
+
+namespace QAccelPlot {
+
+namespace GradientFillBaselineNS {
+Q_NAMESPACE
+QML_NAMED_ELEMENT(GradientFillBaseline)
+
+
+enum class Mode {
+    AxisMinimum, 
+    Value,       
+};
+Q_ENUM_NS(Mode)
+} // namespace GradientFillBaselineNS
+
+using GradientFillBaseline = GradientFillBaselineNS::Mode;
+
+namespace GradientValueSourceNS {
+Q_NAMESPACE
+QML_NAMED_ELEMENT(GradientValueSource)
+
+
+enum class Source {
+    DataRange, 
+    Fixed,     
+};
+Q_ENUM_NS(Source)
+} // namespace GradientValueSourceNS
+
+using GradientValueSource = GradientValueSourceNS::Source;
+
+struct GradientStopData {
+    float position{0.0f};          
+    QColor color{Qt::transparent}; 
+
+    friend bool operator==(const GradientStopData& lhs, const GradientStopData& rhs)
+    {
+        return lhs.position == rhs.position && lhs.color == rhs.color;
+    }
+
+    friend bool operator!=(const GradientStopData& lhs, const GradientStopData& rhs)
+    {
+        return !(lhs == rhs);
+    }
+};
+
+struct GradientColorPayload {
+    bool isValid() const
+    {
+        return enabled && stops.size() >= 2;
+    }
+
+    bool enabled{false};                       
+    Qt::Orientation direction{Qt::Horizontal}; 
+    std::vector<GradientStopData> stops;       
+    std::optional<qreal> gradientValueMin;
+    std::optional<qreal> gradientValueMax;
+};
+
+struct GradientFillPayload {
+    bool isValid() const
+    {
+        return enabled && opacity > 0.0f && stops.size() >= 2;
+    }
+
+    bool enabled{false};                       
+    Qt::Orientation direction{Qt::Horizontal}; 
+    std::vector<GradientStopData> stops;       
+    std::optional<qreal> gradientValueMin;
+    std::optional<qreal> gradientValueMax;
+    GradientFillBaseline baseline{GradientFillBaseline::AxisMinimum}; 
+    qreal baselineValue{0.0};                                         
+    float opacity{1.0f};                                              
+};
+
+} // namespace QAccelPlot
+```
+
+

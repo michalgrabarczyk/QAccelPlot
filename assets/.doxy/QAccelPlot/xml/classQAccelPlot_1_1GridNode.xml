@@ -139,7 +139,7 @@
 <para>Internal QSGNode responsible for rendering the plot grid into the scene graph. </para>
     </briefdescription>
     <detaileddescription>
-<para>Computes grid line positions from the same tick step as <computeroutput><ref refid="classQAccelPlot_1_1AxisTickPainter" kindref="compound">AxisTickPainter</ref></computeroutput> so that grid lines stay aligned with axis tick marks under all zoom levels, including log scale. </para>
+<para>Draws grid lines at the tick values from <computeroutput><ref refid="classQAccelPlot_1_1AxisTickPainter_1aa8dd989ea1edb1442179ac87ac00bb5c" kindref="member">AxisTickPainter::computeTickValues()</ref></computeroutput>, the same values the axis places its tick marks at, so both stay aligned under all zoom levels, including log scale. </para>
     </detaileddescription>
     <inheritancegraph>
       <node id="1">

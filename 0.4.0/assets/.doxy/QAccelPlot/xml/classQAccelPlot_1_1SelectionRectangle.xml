@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1SelectionRectangle" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>QAccelPlot::SelectionRectangle</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QQuickItem</basecompoundref>
+    <includes local="no">SelectionRectangle.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1SelectionRectangle_1a9fe4b5f14e33b6b2dc64f1c58832438b" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1SelectionTool" kindref="compound">SelectionTool</ref> &amp;</type>
+        <definition>SelectionTool&amp; QAccelPlot::SelectionRectangle::tool_</definition>
+        <argsstring></argsstring>
+        <name>tool_</name>
+        <qualifiedname>QAccelPlot::SelectionRectangle::tool_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/SelectionRectangle.hpp" line="29" column="19" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/SelectionRectangle.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SelectionRectangle_1af1218d71350969de000302c5be01f6da" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1OutlinedRectangle" kindref="compound">OutlinedRectangle</ref> *</type>
+        <definition>OutlinedRectangle* QAccelPlot::SelectionRectangle::rectangle_</definition>
+        <argsstring></argsstring>
+        <name>rectangle_</name>
+        <qualifiedname>QAccelPlot::SelectionRectangle::rectangle_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/SelectionRectangle.hpp" line="30" column="23" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/SelectionRectangle.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionRectangle_1a562433a254e9f60544bb1f31630a2e02" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::SelectionRectangle::SelectionRectangle</definition>
+        <argsstring>(SelectionTool &amp;tool)</argsstring>
+        <name>SelectionRectangle</name>
+        <qualifiedname>QAccelPlot::SelectionRectangle::SelectionRectangle</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1SelectionTool" kindref="compound">SelectionTool</ref> &amp;</type>
+          <declname>tool</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/SelectionRectangle.hpp" line="23" column="14"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionRectangle_1a2dd3a31822a12dbe85323f634f384fb9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionRectangle::attach</definition>
+        <argsstring>()</argsstring>
+        <name>attach</name>
+        <qualifiedname>QAccelPlot::SelectionRectangle::attach</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/SelectionRectangle.hpp" line="26" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionRectangle_1ab45291f348fe8f3487b22db4e494a2d3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionRectangle::sync</definition>
+        <argsstring>()</argsstring>
+        <name>sync</name>
+        <qualifiedname>QAccelPlot::SelectionRectangle::sync</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/SelectionRectangle.hpp" line="27" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Draws the gesture or the selected region of a <ref refid="classQAccelPlot_1_1SelectionTool" kindref="compound">SelectionTool</ref>, clipped to the plot area. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The item lives in the overlay of the tool&apos;s plot, below the overlay&apos;s other children, and is owned by the tool. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::SelectionRectangle</label>
+        <link refid="classQAccelPlot_1_1SelectionRectangle"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QQuickItem</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::SelectionRectangle</label>
+        <link refid="classQAccelPlot_1_1SelectionRectangle"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QQuickItem</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/inspection/internal/SelectionRectangle.hpp" line="21" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/SelectionRectangle.hpp" bodystart="21" bodyend="31"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1SelectionRectangle_1a2dd3a31822a12dbe85323f634f384fb9" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionRectangle</scope><name>attach</name></member>
+      <member refid="classQAccelPlot_1_1SelectionRectangle_1af1218d71350969de000302c5be01f6da" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionRectangle</scope><name>rectangle_</name></member>
+      <member refid="classQAccelPlot_1_1SelectionRectangle_1a562433a254e9f60544bb1f31630a2e02" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionRectangle</scope><name>SelectionRectangle</name></member>
+      <member refid="classQAccelPlot_1_1SelectionRectangle_1ab45291f348fe8f3487b22db4e494a2d3" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionRectangle</scope><name>sync</name></member>
+      <member refid="classQAccelPlot_1_1SelectionRectangle_1a9fe4b5f14e33b6b2dc64f1c58832438b" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionRectangle</scope><name>tool_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

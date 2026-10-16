@@ -23,11 +23,15 @@
 * `#include "QAccelPlot/series/PointSpatialIndex.hpp"`
 * `#include "QAccelPlot/series/SeriesMarker.hpp"`
 * `#include "QAccelPlot/theme/ColorPalette.hpp"`
+* `#include "QAccelPlot/transitions/DataTransition.hpp"`
 * `#include <QColor>`
 * `#include <QList>`
 * `#include <QMetaObject>`
 * `#include <QPointF>`
 * `#include <QPointer>`
+* `#include <limits>`
+* `#include <memory>`
+* `#include <optional>`
 * `#include <vector>`
 
 
@@ -49,6 +53,7 @@
 | Type | Name |
 | ---: | :--- |
 | namespace | [**QAccelPlot**](namespaceQAccelPlot.md) <br> |
+| namespace | [**Internal**](namespaceQAccelPlot_1_1Internal.md) <br> |
 
 
 ## Classes

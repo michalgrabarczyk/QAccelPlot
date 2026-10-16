@@ -13,10 +13,10 @@
         <link rel="canonical" href="https://michalgrabarczyk.github.io/QAccelPlot/cookbook/point-clouds/">
       
       
-        <link rel="prev" href="../annotations/">
+        <link rel="prev" href="../data-inspection/">
       
       
-        <link rel="next" href="../background-data/">
+        <link rel="next" href="../rectangle-zoom/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Point clouds - QAccelPlot v0.3.0 Documentation</title>
+        <title>Point clouds - QAccelPlot v0.4.0 Documentation</title>
       
     
     
@@ -81,7 +81,7 @@
     "@type": "Person",
     "name": "Michal Grabarczyk"
   },
-  "softwareVersion": "0.3.0",
+  "softwareVersion": "0.4.0",
   "operatingSystem": "Cross-platform (Windows, Linux, macOS)",
   "applicationCategory": "DeveloperApplication",
   "keywords": ["plotting", "Qt Quick", "QML", "Scene Graph", "GPU", "real-time", "data visualization", "C++"]
@@ -133,7 +133,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="QAccelPlot v0.3.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.3.0 Documentation" data-md-component="logo">
+    <a href="../.." title="QAccelPlot v0.4.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.4.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -147,7 +147,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            QAccelPlot v0.3.0 Documentation
+            QAccelPlot v0.4.0 Documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -271,13 +271,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="QAccelPlot v0.3.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.3.0 Documentation" data-md-component="logo">
+    <a href="../.." title="QAccelPlot v0.4.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.4.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    QAccelPlot v0.3.0 Documentation
+    QAccelPlot v0.4.0 Documentation
   </label>
   
     <div class="md-nav__source">
@@ -442,6 +442,16 @@
       
         
           
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -686,6 +696,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-inspection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data inspection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -793,10 +831,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#invalid-points-and-logarithmic-axes" class="md-nav__link">
+  <a href="#animate-data-changes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Invalid points and logarithmic axes
+        Animate data changes
       
     </span>
   </a>
@@ -804,10 +842,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#hover-and-tooltips" class="md-nav__link">
+  <a href="#invalid-points" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Hover and tooltips
+        Invalid points
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hover" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hover
       
     </span>
   </a>
@@ -829,6 +878,118 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rectangle-zoom/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rectangle zoom
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bar-charts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bar charts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../histograms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Histograms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1289,10 +1450,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#invalid-points-and-logarithmic-axes" class="md-nav__link">
+  <a href="#animate-data-changes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Invalid points and logarithmic axes
+        Animate data changes
       
     </span>
   </a>
@@ -1300,10 +1461,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#hover-and-tooltips" class="md-nav__link">
+  <a href="#invalid-points" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Hover and tooltips
+        Invalid points
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hover" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hover
       
     </span>
   </a>
@@ -1345,13 +1517,9 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 
 <h1 id="point-clouds">Point clouds<a class="headerlink" href="#point-clouds" title="Permanent link">&para;</a></h1>
 <p>Use <a href="../../api/classQAccelPlot_1_1PointCloud/"><code>QAccelPlot.PointCloud</code></a> for scatter data whose points are
-not connected: sensor returns, clustering results, particle positions, or
-detector events. Every point is drawn as a GPU marker, and the series scales
-to hundreds of thousands of points updated every frame.</p>
-<p>A <code>LineCurve</code> with <code>NoLine</code> and markers can draw small scatter plots, but it
-builds marker geometry on the CPU for every data change. <code>PointCloud</code> uploads
-positions as a data texture instead, so a cloud of constant size costs one
-texture upload per update.</p>
+not connected. It draws each point as a GPU marker and scales to hundreds of
+thousands of points updated every frame. A <code>LineCurve</code> with <code>NoLine</code> and
+markers suits small scatter plots only.</p>
 <h2 id="draw-a-scatter-plot">Draw a scatter plot<a class="headerlink" href="#draw-a-scatter-plot" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Plot</span> <span class="p">{</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="kd">id: plot</span>
@@ -1371,19 +1539,12 @@ texture upload per update.</p>
 <a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="p">}</span>
 <a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="p">}</span>
 </code></pre></div>
-<p>Marker settings are grouped under <code>marker</code>. <code>marker.size</code> is the marker radius
-in pixels. Point clouds accept every marker shape except <code>None</code>; see the
-<a href="../styling/#marker-shapes">shape table</a>. <code>Pixel</code> ignores <code>marker.size</code> and
-draws one pixel per point, which suits very dense clouds.</p>
-<p>Set <code>marker.filled: false</code> to draw closed shapes as outlines of
-<code>marker.strokeWidth</code> pixels. Hollow markers read well on dense clouds, where
-filled shapes merge into a solid mass. Line shapes and <code>Pixel</code> ignore both
-properties.</p>
-<p>Translucent colors, or an <code>opacity</code> below 1 on the cloud or a parent item, make
-dense regions read as density, because each overlapping marker blends
-separately. Points are drawn in data order, so put background points first
-when they should appear underneath.</p>
-<p>The default legend shows the marker shape and <code>color</code> for point clouds.</p>
+<p><code>marker</code> takes the same <code>shape</code>, <code>size</code>, <code>filled</code>, and <code>strokeWidth</code> as on a
+<code>LineCurve</code>, except the shape <code>None</code>; see
+<a href="../styling/#marker-shapes">Marker shapes</a>.</p>
+<p>Overlapping translucent markers blend separately, so dense regions read as
+density. Points are drawn in data order.</p>
+<p>The default legend shows the marker shape and <code>color</code>.</p>
 <h2 id="color-points-by-value">Color points by value<a class="headerlink" href="#color-points-by-value" title="Permanent link">&para;</a></h2>
 <p>Give each point a value and assign a <a href="../../api/classQAccelPlot_1_1Colormap/"><code>Colormap</code></a>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">PointCloud</span> <span class="p">{</span>
@@ -1392,14 +1553,10 @@ when they should appear underneath.</p>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="k">colormap:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Colormap</span> <span class="p">{</span> <span class="k">preset:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Colormap</span><span class="p">.</span><span class="nx">Viridis</span> <span class="p">}</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">}</span>
 </code></pre></div>
-<p>A colormap is a color ramp plus the rule that places a value on it. Assigning one is what turns
-on value coloring: without it, or without per-point values, every point uses <code>color</code>.</p>
-<p>The built-in ramps are <code>Viridis</code>, <code>Plasma</code>, <code>Inferno</code>, <code>Magma</code>, <code>Grayscale</code>, and <code>Rainbow</code>.
-Prefer the perceptually uniform ones over <code>Rainbow</code>, whose uneven lightness invents boundaries that
-are not in the data.</p>
-<p>Set <code>reversed: true</code> to run a ramp from its last color to its first. For example, a reversed
-<code>Inferno</code> or <code>Magma</code> fades low values into a light background.</p>
-<p>For a custom ramp, list the stops instead:</p>
+<p>Without a colormap, or without per-point values, every point uses <code>color</code>.</p>
+<p>The presets are <code>Viridis</code>, <code>Plasma</code>, <code>Inferno</code>, <code>Magma</code>, <code>Grayscale</code>, and
+<code>Rainbow</code>; <code>reversed: true</code> runs a ramp from its last color to its first. For
+a custom ramp, pass the stops of a <code>Gradient</code>, whose orientation is ignored:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nx">Gradient</span> <span class="p">{</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="kd">id: ramp</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="nx">GradientStop</span> <span class="p">{</span> <span class="k">position:</span> <span class="mf">0.0</span><span class="p">;</span> <span class="k">color:</span> <span class="s2">"#fde725"</span> <span class="p">}</span>
@@ -1410,28 +1567,22 @@ are not in the data.</p>
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="k">colormap:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Colormap</span> <span class="p">{</span> <span class="k">stops:</span> <span class="nx">ramp</span><span class="p">.</span><span class="nx">stops</span> <span class="p">}</span>
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="p">}</span>
 </code></pre></div>
-<p><code>min</code> and <code>max</code> bound the value range. Leave either unset and it is resolved from the data, so one
-colormap can be shared between series that resolve different ranges. Set <code>norm</code> to
-<code>Colormap.Log</code> when the values span decades, such as counts or intensities; values at or below
-zero are then left unmapped and drawn with <code>color</code>.</p>
-<p>A colormap has no geometry. Unlike <code>GradientFill</code> and <code>GradientStroke</code>, which paint a gradient
-across the plot and so have a <code>direction</code>, a colormap is a one-dimensional ramp indexed by each
-point's value, not by its position on screen. That is why there is no orientation here and no
-radial form: only the stop colors are taken from the <code>Gradient</code> above.</p>
+<p><code>min</code> and <code>max</code> bound the value range. An unset bound is resolved from the
+data, so series sharing one colormap can resolve different ranges.
+<code>setRange(min, max)</code> sets both with one update. Set <code>norm</code> to <code>Colormap.Log</code>
+when the values span decades; values at or below zero are then drawn with
+<code>color</code>.</p>
 <p>From QML, call <code>setValues()</code> after <code>setData()</code> with one value per point. From
 C++, pass values together with the positions:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">cloud</span><span class="o">-&gt;</span><span class="n">setDataF</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">xyInterleaved</span><span class="p">),</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">values</span><span class="p">),</span><span class="w"> </span><span class="n">pointCount</span><span class="p">);</span>
 </code></pre></div>
-<p><code>setData()</code> takes the same shape with a <code>std::vector&lt;double&gt;</code> of positions when
-the coordinates need double precision. Values stay single precision either way,
-because they only index the colormap.</p>
-<p>The resolved bounds, from <code>min</code> and <code>max</code> or from the finite values in the
-data, are exposed as <code>dataValueMin</code> and <code>dataValueMax</code>. Points with a
-non-finite value fall back to <code>color</code>.</p>
+<p><code>setData()</code> takes the same arguments with a <code>std::vector&lt;double&gt;</code> of positions.
+Values are single precision either way.</p>
+<p><code>dataValueMin</code> and <code>dataValueMax</code> expose the resolved bounds. Points with a
+non-finite value use <code>color</code>.</p>
 <h2 id="show-a-color-bar">Show a color bar<a class="headerlink" href="#show-a-color-bar" title="Permanent link">&para;</a></h2>
-<p><a href="../../api/classQAccelPlot_1_1ColorBar/"><code>QAccelPlot.ColorBar</code></a> is the key for a value-colored cloud. It
-draws the series' colormap with ticks for the resolved value range, and redraws
-when the colormap, its range, or the assigned colormap changes:</p>
+<p><a href="../../api/classQAccelPlot_1_1ColorBar/"><code>QAccelPlot.ColorBar</code></a> draws the series' colormap with ticks for
+the resolved value range:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Plot</span> <span class="p">{</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="kd">id: plot</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
@@ -1451,39 +1602,51 @@ when the colormap, its range, or the assigned colormap changes:</p>
 <a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="p">}</span>
 </code></pre></div>
 <ul>
-<li>The bar is an ordinary item. Position it with <code>x</code>, <code>y</code>, or anchors; it does
-  not reserve layout space. The default legend sits at the top right of the
-  plot area, so place the bar elsewhere or move the legend.</li>
-<li>A vertical bar, the default, has its minimum at the bottom and its ticks and
-  <code>label</code> on the right. <code>orientation: QAccelPlot.ColorBar.Horizontal</code> puts the
-  minimum on the left and the ticks and <code>label</code> below.</li>
-<li>The implicit size fits the strip, ticks, labels, and <code>label</code>, with a length
-  of 160 pixels. Set <code>height</code> on a vertical bar, or <code>width</code> on a horizontal
-  one, to change the length.</li>
-<li>Ticks follow <code>norm</code>: a <code>Log</code> colormap gets one major tick per decade.
-  <code>ticker</code> sets tick count, colors, fonts, and label formatters, as on
-  <code>Axis.ticker</code>.</li>
-<li>Nothing is drawn while the series has no colormap.</li>
+<li>The bar is an ordinary item: position it with <code>x</code>, <code>y</code>, or anchors. It does
+  not reserve layout space, and the default legend sits at the top right of
+  the plot area.</li>
+<li>The default bar is vertical, with its minimum at the bottom.
+  <code>orientation: Qt.Horizontal</code> puts the minimum on the left.</li>
+<li>Set <code>height</code> on a vertical bar, or <code>width</code> on a horizontal one, to change its
+  length. Raise <code>tickLabelWidth</code> when the labels of a vertical bar are clipped.</li>
+<li><code>ticker</code> configures the ticks, as on <code>Axis.ticker</code>.</li>
+<li><code>interactive: true</code> lets the user pan the range with a left drag, zoom it
+  with the wheel, and resolve it from the data again with a double-click. The
+  gestures set the colormap's <code>min</code> and <code>max</code>, so leave both unbound.</li>
 </ul>
 <h2 id="stream-point-data">Stream point data<a class="headerlink" href="#stream-point-data" title="Permanent link">&para;</a></h2>
-<p><code>postData()</code> is thread-safe. It moves the buffers into a queued call, so a
-worker thread can produce complete frames without copying them again:</p>
+<p>From a worker thread, hand over complete frames with <code>postData()</code>, which
+moves the buffers:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// Worker thread</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">cloud</span><span class="o">-&gt;</span><span class="n">postData</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">xy</span><span class="p">),</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">values</span><span class="p">),</span><span class="w"> </span><span class="n">pointCount</span><span class="p">);</span>
 </code></pre></div>
-<p>Post a frame only after the window has presented the previous one, for
-example by counting <code>QQuickWindow::frameSwapped</code>, so queued frames cannot pile
-up when rendering falls behind. Use <code>setDataFNoRange()</code> when the application
-manages <code>dataMin</code> and <code>dataMax</code> on the axes itself.</p>
-<h2 id="invalid-points-and-logarithmic-axes">Invalid points and logarithmic axes<a class="headerlink" href="#invalid-points-and-logarithmic-axes" title="Permanent link">&para;</a></h2>
-<p>Non-finite coordinates are kept in storage, so indices stay stable, but they
-are not drawn, not picked, and do not contribute to axis data ranges. On a
-logarithmic axis, non-positive coordinates are skipped the same way. You do not
-need to filter them before handing data to the series.</p>
-<h2 id="hover-and-tooltips">Hover and tooltips<a class="headerlink" href="#hover-and-tooltips" title="Permanent link">&para;</a></h2>
-<p><code>hoveredIndex</code> is the index of the valid point nearest to the pointer within
-<code>hoverRadius</code> pixels, or <code>-1</code>. Combine it with <code>pointAt()</code>, <code>valueAt()</code>, and a
-<code>QAccelPlot.DataAnchor</code> to show a tooltip:</p>
+<p>Post no faster than frames are presented; see
+<a href="../background-data/">Background data production</a>.</p>
+<h2 id="animate-data-changes">Animate data changes<a class="headerlink" href="#animate-data-changes" title="Permanent link">&para;</a></h2>
+<p>Assign a <code>MorphTransition</code> or a <code>DrawTransition</code> to <code>transition</code>, as for a
+<a href="../styling/#animated-data-changes"><code>LineCurve</code></a>.</p>
+<ul>
+<li><code>MorphTransition</code> moves each point to the new position of the same index.
+  Values change with it when the old and the new points both have them, so
+  the colors blend through the colormap.</li>
+<li><code>DrawTransition</code> shows the new points one after another.</li>
+<li>New points appear, and removed points disappear, at once.</li>
+<li><code>count</code>, <code>pointAt()</code>, <code>valueAt()</code>, the data and value ranges, and inspection
+  use the new data from the start of the animation. Hover picks the points as
+  drawn.</li>
+<li><code>setValues()</code> animates too. Called after <code>setData()</code>, it keeps that
+  animation, with the points in their new colors.</li>
+<li><code>clearData()</code> shows the new data at once.</li>
+<li>While a transition is enabled, the float paths store doubles.</li>
+</ul>
+<h2 id="invalid-points">Invalid points<a class="headerlink" href="#invalid-points" title="Permanent link">&para;</a></h2>
+<p>Non-finite coordinates, and non-positive ones on a logarithmic axis, are not
+drawn, not picked, and do not contribute to axis data ranges. They stay in
+storage, so indices are stable.</p>
+<h2 id="hover">Hover<a class="headerlink" href="#hover" title="Permanent link">&para;</a></h2>
+<p><code>hoveredIndex</code> is the index of the valid point nearest to the mouse pointer
+within <code>hoverRadius</code> pixels, or <code>-1</code>. Combine it with <code>pointAt()</code>, <code>valueAt()</code>,
+and a <code>QAccelPlot.DataAnchor</code> to show a tooltip:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">DataAnchor</span> <span class="p">{</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="nx">readonly</span> <span class="nx">property</span> <span class="nx">point</span> <span class="k">hovered:</span> <span class="nx">samples</span><span class="p">.</span><span class="nx">hoveredIndex</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">?</span> <span class="nx">samples</span><span class="p">.</span><span class="nx">pointAt</span><span class="p">(</span><span class="nx">samples</span><span class="p">.</span><span class="nx">hoveredIndex</span><span class="p">)</span> <span class="o">:</span> <span class="nx">Qt</span><span class="p">.</span><span class="nx">point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="k">visible:</span> <span class="nx">samples</span><span class="p">.</span><span class="nx">hoveredIndex</span> <span class="o">&gt;=</span> <span class="mi">0</span>
@@ -1498,27 +1661,20 @@ need to filter them before handing data to the series.</p>
 <a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>    <span class="nx">Text</span> <span class="p">{</span> <span class="k">text:</span> <span class="s2">"#"</span> <span class="o">+</span> <span class="nx">samples</span><span class="p">.</span><span class="nx">hoveredIndex</span> <span class="p">}</span>
 <a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="p">}</span>
 </code></pre></div>
-<p>The lookup uses a spatial index that is rebuilt on the first pointer move after
-a data change. Only positions near a point count as inside the series, so
-stacked series underneath still receive hover events elsewhere.</p>
+<p>Only positions near a point count as inside the series, so stacked series
+underneath still receive hover events elsewhere. For the lookup cost, see
+<a href="../../performance/#hover-interactions">Hover interactions</a>.</p>
 <h2 id="limits">Limits<a class="headerlink" href="#limits" title="Permanent link">&para;</a></h2>
 <ul>
-<li>The GPU renders in single precision. <code>setData()</code> accepts doubles, from QML
-  points or a <code>std::vector&lt;double&gt;</code>, and uploads positions relative to an
-  origin taken from the first finite point, so values far from zero such as
-  epoch timestamps keep their resolution. Logarithmic dimensions are never
-  shifted. The <code>setDataF()</code> family takes floats and is not origin-shifted; use
-  it when the data is already single precision.</li>
+<li><code>setData()</code> keeps doubles and uploads positions relative to an origin near
+  the data, so values far from zero such as epoch timestamps stay precise.
+  <code>setDataF()</code> stores floats.</li>
 <li>The number of drawable points is bounded by the GPU's maximum texture size:
-  about 5.5 million points with values, or 8.3 million without, on a GPU with
+  about 22 million points with values, or 33 million without, on a GPU with
   an 8192-pixel texture limit, and twice that with a 16384-pixel limit. Extra
   points are not drawn, and a warning is logged once.</li>
 </ul>
-<p>Complete source:</p>
-<ul>
-<li><a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/point_cloud"><code>examples/plot_types/point_cloud</code></a>:
-  one value-colored cloud with a color bar and a hover tooltip.</li>
-</ul>
+<p>Complete source: <a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/point_cloud"><code>examples/plot_types/point_cloud</code></a></p>
 
 
 
@@ -1557,7 +1713,7 @@ stacked series underneath still receive hover events elsewhere.</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../annotations/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Annotations and tools">
+          <a href="../data-inspection/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Data inspection">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1567,20 +1723,20 @@ stacked series underneath still receive hover events elsewhere.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Annotations and tools
+                Data inspection
               </div>
             </div>
           </a>
         
         
           
-          <a href="../background-data/" class="md-footer__link md-footer__link--next" aria-label="Next: Background data production">
+          <a href="../rectangle-zoom/" class="md-footer__link md-footer__link--next" aria-label="Next: Rectangle zoom">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Background data production
+                Rectangle zoom
               </div>
             </div>
             <div class="md-footer__button md-icon">

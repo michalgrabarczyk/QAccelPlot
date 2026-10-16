@@ -21,6 +21,7 @@
 #include "QAccelPlot/effects/GradientColorTypes.hpp"
 #include "QAccelPlot/linestyles/LineStyle.hpp"
 #include "QAccelPlot/renderers/CurveRendererParams.hpp"
+#include "QAccelPlot/renderers/LineStroke.hpp"
 #include "QAccelPlot/series/LineCurveGapFilter.hpp"
 
 #include <QColor>
@@ -62,14 +63,9 @@ struct LineCurveRenderParams {
     const LineStyle* lineStyle;                     
 };
 
-struct LineVertex {
-    float id;        
-    float side;      
-    unsigned char r; 
-    unsigned char g; 
-    unsigned char b; 
-    unsigned char a; 
-    float arcLength; 
+struct FillSamples {
+    std::vector<int> sampledCounts; 
+    std::vector<int> indices;       
 };
 
 class LineCurveLineRenderer {
@@ -81,17 +77,17 @@ public:
     QSGNode* paint(QSGNode* oldNode, const LineCurveRenderParams& params) const;
 
 private:
-    // Valid-sample runs used to break the gradient fill at gaps, cached across frames.
-    struct FillRunCache {
+    // Gradient fill data points, cached across frames because they depend only on the data.
+    struct FillSampleCache {
         const void* data{nullptr};
         int pointCount{-1};
         bool logScaleX{false};
         bool logScaleY{false};
-        std::vector<SampleRun> runs;
+        FillSamples samples;
     };
 
     void updateFillGeometry(QSGGeometryNode* fillNode, const LineCurveRenderParams& params) const;
-    const std::vector<SampleRun>& validRuns(const LineCurveRenderParams& params) const;
+    const FillSamples& fillSamples(const LineCurveRenderParams& params) const;
     void updateLineMaterial(
         LineMaterial* material, const LineCurveRenderParams& params, const QColor& effectiveColor, bool useVertexColor, const DashParameters& dashParams) const;
     std::vector<float> computeArcLengths(const LineCurveRenderParams& params, const DashParameters& dashParams) const;
@@ -99,7 +95,7 @@ private:
         const std::vector<float>& arcLengths) const;
 
     // Render-thread state touched only by paint(); workers that call buildVertexCache() never read it.
-    mutable FillRunCache fillRunCache_;
+    mutable FillSampleCache fillSampleCache_;
 };
 
 } // namespace QAccelPlot

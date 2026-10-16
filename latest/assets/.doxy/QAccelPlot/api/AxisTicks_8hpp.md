@@ -46,6 +46,7 @@
 | Type | Name |
 | ---: | :--- |
 | struct | [**AxisTick**](structQAccelPlot_1_1AxisTick.md) <br>_A single major tick: its data-space value and its formatted label._  |
+| struct | [**AxisTickValues**](structQAccelPlot_1_1AxisTickValues.md) <br>_The visible tick and subtick values for one axis viewport, without labels._  |
 | struct | [**AxisTicks**](structQAccelPlot_1_1AxisTicks.md) <br>_The visible tick and subtick values, with formatted labels, for one axis viewport._  |
 
 

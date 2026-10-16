@@ -18,7 +18,9 @@
 
 
 * `#include "QAccelPlot/PlotBorder.hpp"`
+* `#include "QAccelPlot/PlotDragRect.hpp"`
 * `#include "QAccelPlot/PlotMouseEvent.hpp"`
+* `#include "QAccelPlot/PlotRectangleZoom.hpp"`
 * `#include "QAccelPlot/axis/Axis.hpp"`
 * `#include "QAccelPlot/grid/Grid.hpp"`
 * `#include "QAccelPlot/series/PlotSeries.hpp"`

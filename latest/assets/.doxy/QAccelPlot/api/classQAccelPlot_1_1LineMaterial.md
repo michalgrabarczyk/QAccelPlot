@@ -24,7 +24,7 @@ _QSGMaterial for line rendering, extending_ [_**DataTextureMaterial**_](classQAc
 Inherits the following classes: [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 
 
-Inherited by the following classes: [QAccelPlot::GradientLineMaterial](classQAccelPlot_1_1GradientLineMaterial.md)
+Inherited by the following classes: [QAccelPlot::BandEdgeMaterial](classQAccelPlot_1_1BandEdgeMaterial.md),  [QAccelPlot::GradientLineMaterial](classQAccelPlot_1_1GradientLineMaterial.md)
 
 
 ## Inheritance diagram
@@ -39,6 +39,10 @@ flowchart TB
 
   external_base_classQAccelPlot_1_1DataTextureMaterial_1["QSGMaterial"]
   external_base_classQAccelPlot_1_1DataTextureMaterial_1 --> classQAccelPlot_1_1DataTextureMaterial
+
+  classQAccelPlot_1_1BandEdgeMaterial["QAccelPlot::BandEdgeMaterial"]
+  classQAccelPlot_1_1LineMaterial --> classQAccelPlot_1_1BandEdgeMaterial
+  click classQAccelPlot_1_1BandEdgeMaterial "../classQAccelPlot_1_1BandEdgeMaterial/" "Open QAccelPlot::BandEdgeMaterial"
 
   classQAccelPlot_1_1GradientLineMaterial["QAccelPlot::GradientLineMaterial"]
   classQAccelPlot_1_1LineMaterial --> classQAccelPlot_1_1GradientLineMaterial
@@ -86,7 +90,7 @@ See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 | Type | Name |
 | ---: | :--- |
 |  QColor | [**color**](classQAccelPlot_1_1DataTextureMaterial.md#variable-color)   = `{Qt::blue}`<br>_Line/fill color uniform._  |
-|  std::unique\_ptr&lt; QSGTexture &gt; | [**dataTexture**](classQAccelPlot_1_1DataTextureMaterial.md#variable-datatexture)  <br>_Owned data texture bound to the shader sampler._  |
+|  std::shared\_ptr&lt; [**DataTexture**](classQAccelPlot_1_1DataTexture.md) &gt; | [**dataTexture**](classQAccelPlot_1_1DataTextureMaterial.md#variable-datatexture)  <br>_Data texture sampled by the shader. Materials drawing the same samples may share one._  |
 |  QVector2D | [**domainMax**](classQAccelPlot_1_1DataTextureMaterial.md#variable-domainmax)   = `{1.0f, 1.0f}`<br>_Maximum data-space coordinate._  |
 |  QVector2D | [**domainMin**](classQAccelPlot_1_1DataTextureMaterial.md#variable-domainmin)   = `{0.0f, 0.0f}`<br>_Minimum data-space coordinate._  |
 |  float | [**logScaleX**](classQAccelPlot_1_1DataTextureMaterial.md#variable-logscalex)   = `{0.0f}`<br>_1.0 when the X axis uses log scale (float for std140 UBO compatibility)._  |
@@ -140,7 +144,8 @@ See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 | ---: | :--- |
 |   | [**DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md#function-datatexturematerial) () <br>_Constructs an empty_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _._ |
 |  int | [**compare**](classQAccelPlot_1_1DataTextureMaterial.md#function-compare) (const QSGMaterial \* other) override const<br>_Compares shared uniform fields; delegates type-specific fields to_ `compareExtra()` _._ |
-|  void | [**uploadTexture**](classQAccelPlot_1_1DataTextureMaterial.md#function-uploadtexture) (std::unique\_ptr&lt; QSGTexture &gt; & texture, QQuickWindow \* window, const float \* data, int floatCount) <br>_Uploads_ _floatCount_ _raw floats as an RGBA8888 data texture, reusing existing GPU/CPU buffers where possible._ |
+|  QSGTexture \* | [**sampledTexture**](classQAccelPlot_1_1DataTextureMaterial.md#function-sampledtexture) () const<br>_Returns the texture the shader samples, or_ `nullptr` _before_`dataTexture` _holds an upload._ |
+|  void | [**uploadTexture**](classQAccelPlot_1_1DataTextureMaterial.md#function-uploadtexture) (QQuickWindow \* window, const float \* data, int floatCount) <br>_Uploads_ _floatCount_ _raw floats from__data_ _into_`dataTexture` _, creating it when it is_`nullptr` _._ |
 |   | [**~DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md#function-datatexturematerial) () override<br> |
 
 
@@ -153,7 +158,7 @@ See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 | Type | Name |
 | ---: | :--- |
 |  const QSGGeometry::AttributeSet & | [**attributeSet**](classQAccelPlot_1_1DataTextureMaterial.md#function-attributeset) () <br>_Returns the shared vertex attribute set:_ `{float` _id, float param, uchar4 color} (12 bytes)._ |
-|  void | [**commitTexture**](classQAccelPlot_1_1DataTextureMaterial.md#function-committexture) (QSGMaterialShader::RenderState & state, int binding, QSGTexture \*\* texture, QSGTexture \* dataTexture) <br>_Commits_ _dataTexture_ _to sampler__binding_ _(call from_`updateSampledImage` _)._ |
+|  void | [**commitTexture**](classQAccelPlot_1_1DataTextureMaterial.md#function-committexture) (QSGMaterialShader::RenderState & state, int binding, QSGTexture \*\* texture, const [**DataTexture**](classQAccelPlot_1_1DataTexture.md) \* data) <br>_Commits the texture of_ _data_ _to sampler__binding_ _(call from_`updateSampledImage` _). Does nothing before an upload._ |
 |  bool | [**writeCommonUniforms**](classQAccelPlot_1_1DataTextureMaterial.md#function-writecommonuniforms) (char \* buf, int bufSize, const QMatrix4x4 & matrix, const [**DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) \* mat) <br>_Writes the shared UBO prefix (transform + color + domain + flags) into_ _buf_ _._ |
 
 
@@ -213,6 +218,11 @@ See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 | virtual int | [**compareExtra**](classQAccelPlot_1_1DataTextureMaterial.md#function-compareextra) (const QSGMaterial \* other) const<br>_Subclass hook for_ `compare()` _— called after the shared fields compare equal._ |
 
 
+## Protected Static Functions
+
+| Type | Name |
+| ---: | :--- |
+|  QSGMaterialShader \* | [**createLineShader**](#function-createlineshader) (const QString & vertexShaderFileName) <br>_Returns the line shader program with vertex stage_ _vertexShaderFileName_ _and the line fragment stage._ |
 
 
 
@@ -414,6 +424,29 @@ virtual int QAccelPlot::LineMaterial::compareExtra (
 
 Implements [*QAccelPlot::DataTextureMaterial::compareExtra*](classQAccelPlot_1_1DataTextureMaterial.md#function-compareextra)
 
+
+<hr>
+## Protected Static Functions Documentation
+
+
+
+
+
+### function createLineShader {#function-createlineshader}
+
+_Returns the line shader program with vertex stage_ _vertexShaderFileName_ _and the line fragment stage._
+```C++
+static QSGMaterialShader * QAccelPlot::LineMaterial::createLineShader (
+    const QString & vertexShaderFileName
+) 
+```
+
+
+
+The vertex stage must declare the same uniform block as `line.vert`. 
+
+
+        
 
 <hr>
 

@@ -83,8 +83,8 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 |   | [**LineCurveGaps**](#function-linecurvegaps) (QObject \* parent=nullptr) <br>_Constructs a_ [_**LineCurveGaps**_](classQAccelPlot_1_1LineCurveGaps.md) _with the given__parent_ _._ |
-|  [**NanGapMode**](namespaceQAccelPlot_1_1NanGapModeNS.md#enum-mode) | [**nanMode**](#function-nanmode-22) () const<br>_Returns how invalid samples are rendered._  |
-|  void | [**setNanMode**](#function-setnanmode) ([**NanGapMode**](namespaceQAccelPlot_1_1NanGapModeNS.md#enum-mode) mode) <br>_Sets how invalid samples are rendered to_ _mode_ _._ |
+|  [**NanGapMode**](namespaceQAccelPlot_1_1NanGapModeNS.md#enum-mode) | [**nanMode**](#function-nanmode-22) () const<br>_Returns how invalid data points are rendered._  |
+|  void | [**setNanMode**](#function-setnanmode) ([**NanGapMode**](namespaceQAccelPlot_1_1NanGapModeNS.md#enum-mode) mode) <br>_Sets how invalid data points are rendered to_ _mode_ _._ |
 
 
 
@@ -119,7 +119,7 @@ flowchart TB
 Accessible via the `LineCurve::gaps` CONSTANT grouped property, for example `gaps.nanMode: QAccelPlot.NanGapMode.Connect`.
 
 
-A sample is invalid when its X or Y coordinate is NaN or ±Inf, or is not strictly positive on a log-scale axis. Invalid samples are never drawn as markers, never hit-tested, and are excluded from auto-ranging coordinate by coordinate, regardless of `nanMode`.
+A data point is invalid when its X or Y coordinate is NaN or ±Inf, or is not strictly positive on a log-scale axis. Invalid data points are never drawn as markers, never hit-tested, and are excluded from auto-ranging coordinate by coordinate, regardless of `nanMode`.
 
 
 
@@ -188,7 +188,7 @@ explicit QAccelPlot::LineCurveGaps::LineCurveGaps (
 
 ### function nanMode {#function-nanmode-22}
 
-_Returns how invalid samples are rendered._ 
+_Returns how invalid data points are rendered._ 
 ```C++
 NanGapMode QAccelPlot::LineCurveGaps::nanMode () const
 ```
@@ -203,7 +203,7 @@ NanGapMode QAccelPlot::LineCurveGaps::nanMode () const
 
 ### function setNanMode {#function-setnanmode}
 
-_Sets how invalid samples are rendered to_ _mode_ _._
+_Sets how invalid data points are rendered to_ _mode_ _._
 ```C++
 void QAccelPlot::LineCurveGaps::setNanMode (
     NanGapMode mode

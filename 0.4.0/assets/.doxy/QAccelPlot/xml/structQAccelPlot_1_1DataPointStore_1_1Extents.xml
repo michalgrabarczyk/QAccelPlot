@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1DataPointStore_1_1Extents" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::DataPointStore::Extents</compoundname>
+    <includes local="no">DataPointStore.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1DataPointStore_1_1Extents_1ad25ba8726ecd2c44ce225932ee01dabc" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; <ref refid="structQAccelPlot_1_1DataPointStore_1_1Extent" kindref="compound">Extent</ref> &gt;</type>
+        <definition>std::optional&lt;Extent&gt; QAccelPlot::DataPointStore::Extents::x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <qualifiedname>QAccelPlot::DataPointStore::Extents::x</qualifiedname>
+        <briefdescription>
+<para><ref refid="structQAccelPlot_1_1DataPointStore_1_1Extent" kindref="compound">Extent</ref> of the X columns. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="73" column="23" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1DataPointStore_1_1Extents_1a84e3ed30fdb71983f97cbdceabbe2b2c" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; <ref refid="structQAccelPlot_1_1DataPointStore_1_1Extent" kindref="compound">Extent</ref> &gt;</type>
+        <definition>std::optional&lt;Extent&gt; QAccelPlot::DataPointStore::Extents::y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <qualifiedname>QAccelPlot::DataPointStore::Extents::y</qualifiedname>
+        <briefdescription>
+<para><ref refid="structQAccelPlot_1_1DataPointStore_1_1Extent" kindref="compound">Extent</ref> of the Y columns. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="74" column="23" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="74" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="structQAccelPlot_1_1DataPointStore_1_1Extents" kindref="compound">Extents</ref> in both dimensions; a dimension without a valid coordinate has none. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="72" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="72" bodyend="75"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1DataPointStore_1_1Extents_1ad25ba8726ecd2c44ce225932ee01dabc" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore::Extents</scope><name>x</name></member>
+      <member refid="structQAccelPlot_1_1DataPointStore_1_1Extents_1a84e3ed30fdb71983f97cbdceabbe2b2c" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore::Extents</scope><name>y</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

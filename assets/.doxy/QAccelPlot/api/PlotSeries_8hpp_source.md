@@ -18,6 +18,8 @@
 #pragma once
 
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/inspection/SeriesInspection.hpp"
+#include "QAccelPlot/series/DataPointStore.hpp"
 
 #include <QPointer>
 #include <QQuickItem>
@@ -30,6 +32,9 @@
 #endif
 
 #include <limits>
+#include <optional>
+#include <string>
+#include <vector>
 
 namespace QAccelPlot {
 
@@ -44,6 +49,10 @@ class PlotSeries : public QQuickItem {
     Q_PROPERTY(Axis* yAxis READ yAxis WRITE setYAxis NOTIFY yAxisChanged)
     Q_PROPERTY(QRectF plotRect READ plotRect WRITE setPlotRect NOTIFY plotRectChanged)
     Q_PROPERTY(LegendSymbol legendSymbol READ legendSymbol WRITE setLegendSymbol NOTIFY legendSymbolChanged)
+
+    
+    Q_PROPERTY(quint64 dataRevision READ dataRevision NOTIFY dataRevisionChanged)
+    Q_PROPERTY(::QAccelPlot::SeriesInspection* inspection READ inspection CONSTANT)
 
 public:
     enum class LegendSymbol { Line, Fill, Marker };
@@ -71,7 +80,24 @@ public:
     };
     Q_ENUM(MarkerShape)
 
+    
+    struct DataExtent {
+        qreal min; 
+        qreal max; 
+    };
+
+    struct DataBounds {
+        qreal xMin; 
+        qreal xMax; 
+        qreal yMin; 
+        qreal yMax; 
+    };
+
     explicit PlotSeries(QQuickItem* parent = nullptr);
+    ~PlotSeries() override;
+
+    quint64 dataRevision() const;
+    SeriesInspection* inspection() const;
 
     QString name() const;
     void setName(const QString& name);
@@ -88,41 +114,121 @@ public:
     LegendSymbol legendSymbol() const;
     void setLegendSymbol(LegendSymbol symbol);
 
+    void setData(const double* data, int count);
+    void setData(std::vector<double>&& data, int count);
+    void setDataF(const float* data, int count);
+    void setDataF(std::vector<float>&& data, int count);
+    void setData(const double* data, int count, const DataBounds& bounds);
+    void setData(std::vector<double>&& data, int count, const DataBounds& bounds);
+    void setDataF(const float* data, int count, const DataBounds& bounds);
+    void setDataF(std::vector<float>&& data, int count, const DataBounds& bounds);
+    void postData(std::vector<double>&& data, int count);
+    void postData(std::vector<float>&& data, int count);
+    virtual void clearData();
+
+    std::optional<DataExtent> xDataRange() const;
+    std::optional<DataExtent> yDataRange() const;
+
 signals:
+    void dataRevisionChanged();
     void nameChanged();
     void xAxisChanged();
     void yAxisChanged();
     void plotRectChanged();
     void legendSymbolChanged();
-    void xDataRangeChanged(qreal min, qreal max);
-    void yDataRangeChanged(qreal min, qreal max);
 
 protected:
-    void setDataRanges(qreal xMin, qreal xMax, qreal yMin, qreal yMax);
-    void setXDataRange(qreal min, qreal max);
-    void setYDataRange(qreal min, qreal max);
+    struct DataPointWording {
+        std::string countName;  
+        std::string plural;     
+        std::string doubleUnit; 
+        std::string floatUnit;  
+    };
+
+    PlotSeries(DataPointStore::Layout layout, DataPointWording wording, QQuickItem* parent);
+
+    struct DataPointInput {
+        std::vector<double> doubles;        
+        std::vector<float> floats;          
+        const double* doubleArray{nullptr}; 
+        const float* floatArray{nullptr};   
+        int count{0};                       
+        int stride{0};                      
+        bool precise{true};                 
+
+        std::vector<double> toDoubles() &&;
+    };
+
+    virtual void applyDataPoints(DataPointInput&& input);
+    void storeDataPoints(DataPointInput&& input);
+    virtual int dataPointValueCount() const;
+
+    enum class DataChange {
+        Replaced, 
+        Appended, 
+    };
+
+    DataPointStore& dataPoints();
+    const DataPointStore& dataPoints() const;
+    bool logScaleX() const;
+    bool logScaleY() const;
+    bool validateRawDataArguments(const void* data, int count) const;
+    bool validateDataSize(std::size_t valueCount, int count, bool floatData, int valuesPerDataPoint = 0) const;
+    void appendDataPoint(const double* coordinates);
+    void notifyDataPointsChanged(DataChange change, int previousCount);
+    virtual void onDataPointsChanged(DataChange change, int previousCount);
+
+    void inspectionDataChanged(DataChange change = DataChange::Replaced);
+    void invalidateInspection();
+    virtual InspectionSource inspectionSource() const;
+    virtual bool inspectionAvailable() const;
+    virtual InspectionRecord inspectionRecord(int index) const;
+    virtual InspectionRecord inspectionRecordAt(const QPointF& position) const;
+
+    struct DataRanges {
+        std::optional<DataExtent> x; 
+        std::optional<DataExtent> y; 
+    };
+
+    virtual DataRanges computeDataRanges() const;
+    void invalidateDataRanges();
     void extendXDataRange(qreal x);
     void extendYDataRange(qreal y);
-    void clearDataRanges();
-    void clearXDataRange();
-    void clearYDataRange();
     virtual void onAxisScaleChanged();
-    QRectF resolvePlotRect();
+    virtual void onAxisRangeChanged();
+    QRectF resolvePlotRect() const;
+    bool event(QEvent* event) override;
 
 private:
-    void onAxisRangeChanged();
-    void reportXDataRangeToAxis() const;
-    void reportYDataRangeToAxis() const;
+    friend class SeriesInspection;
 
+    void handleAxisScaleChanged();
+    void handleAxisRangeChanged();
+    // Returns whether the scale of a dimension changed.
+    bool syncDataPointDimensions();
+    void ensureDataRanges() const;
+    void reportDataRangesChanged() const;
+    void deliverTopmostHover(QHoverEvent* event);
+    bool coveredBySeriesAbove(const QPointF& position) const;
+
+    bool hoverDelivered_{false};
+    quint64 dataRevision_{0};
+    mutable SeriesInspection* inspection_{nullptr};
     QString name_;
     QPointer<Axis> xAxis_;
     QPointer<Axis> yAxis_;
+    QMetaObject::Connection xAxisDestroyed_;
+    QMetaObject::Connection yAxisDestroyed_;
     QRectF plotRect_;
     LegendSymbol legendSymbol_{LegendSymbol::Line};
-    qreal lastXMin_{std::numeric_limits<qreal>::max()};
-    qreal lastXMax_{std::numeric_limits<qreal>::lowest()};
-    qreal lastYMin_{std::numeric_limits<qreal>::max()};
-    qreal lastYMax_{std::numeric_limits<qreal>::lowest()};
+    // The extents are a cache of a scan over the records, refreshed by const readers.
+    mutable std::optional<DataExtent> xDataExtent_;
+    mutable std::optional<DataExtent> yDataExtent_;
+    mutable bool dataRangesStale_{false};
+    // Bounds given with the data update in progress; they replace its scan.
+    std::optional<DataBounds> updateBounds_;
+    DataPointStore dataPoints_;
+    DataPointWording wording_;
 };
 
 } // namespace QAccelPlot

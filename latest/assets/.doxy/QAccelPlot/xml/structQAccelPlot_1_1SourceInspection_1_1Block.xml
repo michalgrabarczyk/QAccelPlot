@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1SourceInspection_1_1Block" kind="struct" language="C++" prot="private">
+    <compoundname>QAccelPlot::SourceInspection::Block</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1SourceInspection_1_1Block_1ae5c7697f2c6ae1241ce23a938e5deefe" prot="public" static="no" mutable="no">
+        <type><ref refid="structQAccelPlot_1_1SummaryAccumulator" kindref="compound">SummaryAccumulator</ref></type>
+        <definition>SummaryAccumulator QAccelPlot::SourceInspection::Block::stats</definition>
+        <argsstring></argsstring>
+        <name>stats</name>
+        <qualifiedname>QAccelPlot::SourceInspection::Block::stats</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/SourceInspection.hpp" line="48" column="28" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/SourceInspection.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1SourceInspection_1_1Block_1a72439887c11a9b8c90c743c214a8453b" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::SourceInspection::Block::xMin</definition>
+        <argsstring></argsstring>
+        <name>xMin</name>
+        <qualifiedname>QAccelPlot::SourceInspection::Block::xMin</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/SourceInspection.hpp" line="49" column="16" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/SourceInspection.hpp" bodystart="49" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1SourceInspection_1_1Block_1ac66464c171a820316420bd76af725fbf" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::SourceInspection::Block::xMax</definition>
+        <argsstring></argsstring>
+        <name>xMax</name>
+        <qualifiedname>QAccelPlot::SourceInspection::Block::xMax</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/SourceInspection.hpp" line="50" column="16" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/SourceInspection.hpp" bodystart="50" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1SourceInspection_1_1Block_1adc91d71af6689dc98beb3da7f4b5c663" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::SourceInspection::Block::computed</definition>
+        <argsstring></argsstring>
+        <name>computed</name>
+        <qualifiedname>QAccelPlot::SourceInspection::Block::computed</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/SourceInspection.hpp" line="51" column="14" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/SourceInspection.hpp" bodystart="51" bodyend="51"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::SourceInspection::Block</label>
+        <childnode refid="2" relation="usage">
+          <edgelabel>stats</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::SummaryAccumulator</label>
+        <link refid="structQAccelPlot_1_1SummaryAccumulator"/>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/inspection/internal/SourceInspection.hpp" line="47" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/SourceInspection.hpp" bodystart="47" bodyend="52"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1SourceInspection_1_1Block_1adc91d71af6689dc98beb3da7f4b5c663" prot="public" virt="non-virtual"><scope>QAccelPlot::SourceInspection::Block</scope><name>computed</name></member>
+      <member refid="structQAccelPlot_1_1SourceInspection_1_1Block_1ae5c7697f2c6ae1241ce23a938e5deefe" prot="public" virt="non-virtual"><scope>QAccelPlot::SourceInspection::Block</scope><name>stats</name></member>
+      <member refid="structQAccelPlot_1_1SourceInspection_1_1Block_1ac66464c171a820316420bd76af725fbf" prot="public" virt="non-virtual"><scope>QAccelPlot::SourceInspection::Block</scope><name>xMax</name></member>
+      <member refid="structQAccelPlot_1_1SourceInspection_1_1Block_1a72439887c11a9b8c90c743c214a8453b" prot="public" virt="non-virtual"><scope>QAccelPlot::SourceInspection::Block</scope><name>xMin</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

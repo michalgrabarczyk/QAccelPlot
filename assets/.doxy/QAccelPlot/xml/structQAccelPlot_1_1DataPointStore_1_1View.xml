@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1DataPointStore_1_1View" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::DataPointStore::View</compoundname>
+    <includes local="no">DataPointStore.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1DataPointStore_1_1View_1a5b60d3eac02c57fe20c27571e33ca165" prot="public" static="no" mutable="no">
+        <type>const double *</type>
+        <definition>const double* QAccelPlot::DataPointStore::View::precise</definition>
+        <argsstring></argsstring>
+        <name>precise</name>
+        <qualifiedname>QAccelPlot::DataPointStore::View::precise</qualifiedname>
+        <initializer>{nullptr}</initializer>
+        <briefdescription>
+<para>Double data points, or <computeroutput>nullptr</computeroutput> when <computeroutput>floats</computeroutput> is set. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="81" column="22" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="81" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1DataPointStore_1_1View_1aa7d47d0ee631603689bf7ca6a760246f" prot="public" static="no" mutable="no">
+        <type>const float *</type>
+        <definition>const float* QAccelPlot::DataPointStore::View::floats</definition>
+        <argsstring></argsstring>
+        <name>floats</name>
+        <qualifiedname>QAccelPlot::DataPointStore::View::floats</qualifiedname>
+        <initializer>{nullptr}</initializer>
+        <briefdescription>
+<para>Float data points, or <computeroutput>nullptr</computeroutput> when <computeroutput>precise</computeroutput> is set. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="82" column="21" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="82" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1DataPointStore_1_1View_1aef59dc2815524656e67e57f886d4a1aa" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::DataPointStore::View::stride</definition>
+        <argsstring></argsstring>
+        <name>stride</name>
+        <qualifiedname>QAccelPlot::DataPointStore::View::stride</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+<para>Values per data point in the set buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="83" column="13" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="83" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1DataPointStore_1_1View_1a878fcb15de52406766344008341f6143" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::DataPointStore::View::count</definition>
+        <argsstring></argsstring>
+        <name>count</name>
+        <qualifiedname>QAccelPlot::DataPointStore::View::count</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+<para>Number of data points. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="84" column="13" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="84" bodyend="84"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structQAccelPlot_1_1DataPointStore_1_1View_1afb9f0f1ff361d65e1ad61f15b80fc1b8" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::DataPointStore::View::value</definition>
+        <argsstring>(int index, int column) const noexcept</argsstring>
+        <name>value</name>
+        <qualifiedname>QAccelPlot::DataPointStore::View::value</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>column</declname>
+        </param>
+        <briefdescription>
+<para>Returns value <emphasis>column</emphasis> of data point <emphasis>index</emphasis> without narrowing double data. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="87" column="17"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Read-only view over interleaved data points in float or double precision. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Only valid until the next change of the store. </para>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="80" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="80" bodyend="88"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1DataPointStore_1_1View_1a878fcb15de52406766344008341f6143" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore::View</scope><name>count</name></member>
+      <member refid="structQAccelPlot_1_1DataPointStore_1_1View_1aa7d47d0ee631603689bf7ca6a760246f" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore::View</scope><name>floats</name></member>
+      <member refid="structQAccelPlot_1_1DataPointStore_1_1View_1a5b60d3eac02c57fe20c27571e33ca165" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore::View</scope><name>precise</name></member>
+      <member refid="structQAccelPlot_1_1DataPointStore_1_1View_1aef59dc2815524656e67e57f886d4a1aa" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore::View</scope><name>stride</name></member>
+      <member refid="structQAccelPlot_1_1DataPointStore_1_1View_1afb9f0f1ff361d65e1ad61f15b80fc1b8" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore::View</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

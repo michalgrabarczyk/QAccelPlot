@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1AxisTickValues" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::AxisTickValues</compoundname>
+    <includes local="no">AxisTicks.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1AxisTickValues_1a8e5608e9d6dde06b8f23b02c592f05a1" prot="public" static="no" mutable="no">
+        <type>QList&lt; qreal &gt;</type>
+        <definition>QList&lt;qreal&gt; QAccelPlot::AxisTickValues::majorValues</definition>
+        <argsstring></argsstring>
+        <name>majorValues</name>
+        <qualifiedname>QAccelPlot::AxisTickValues::majorValues</qualifiedname>
+        <briefdescription>
+<para>Data-space values of the visible major ticks. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" line="38" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1AxisTickValues_1ab350b4d1488eef9cc59ac1d220d5e5ad" prot="public" static="no" mutable="no">
+        <type>QList&lt; qreal &gt;</type>
+        <definition>QList&lt;qreal&gt; QAccelPlot::AxisTickValues::subtickValues</definition>
+        <argsstring></argsstring>
+        <name>subtickValues</name>
+        <qualifiedname>QAccelPlot::AxisTickValues::subtickValues</qualifiedname>
+        <briefdescription>
+<para>Data-space values of the visible subticks. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" line="39" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1AxisTickValues_1ab9e44d9ede62613b1ac2de94fb65981c" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTickValues::step</definition>
+        <argsstring></argsstring>
+        <name>step</name>
+        <qualifiedname>QAccelPlot::AxisTickValues::step</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+<para>Major tick step on a linear scale; 0 on a logarithmic scale. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" line="40" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1AxisTickValues_1a336022e74ae8df9b4f092c3e4a4978ae" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::AxisTickValues::logScale</definition>
+        <argsstring></argsstring>
+        <name>logScale</name>
+        <qualifiedname>QAccelPlot::AxisTickValues::logScale</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+<para>Whether the values were placed at powers of ten. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" line="41" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" bodystart="41" bodyend="41"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>The visible tick and subtick values for one axis viewport, without labels. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Built by <computeroutput><ref refid="classQAccelPlot_1_1AxisTickPainter_1aa8dd989ea1edb1442179ac87ac00bb5c" kindref="member">AxisTickPainter::computeTickValues()</ref></computeroutput>. <ref refid="classQAccelPlot_1_1Grid" kindref="compound">Grid</ref> lines and tick marks are both placed from it. </para>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" line="37" column="1" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" bodystart="37" bodyend="42"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1AxisTickValues_1a336022e74ae8df9b4f092c3e4a4978ae" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickValues</scope><name>logScale</name></member>
+      <member refid="structQAccelPlot_1_1AxisTickValues_1a8e5608e9d6dde06b8f23b02c592f05a1" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickValues</scope><name>majorValues</name></member>
+      <member refid="structQAccelPlot_1_1AxisTickValues_1ab9e44d9ede62613b1ac2de94fb65981c" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickValues</scope><name>step</name></member>
+      <member refid="structQAccelPlot_1_1AxisTickValues_1ab350b4d1488eef9cc59ac1d220d5e5ad" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickValues</scope><name>subtickValues</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

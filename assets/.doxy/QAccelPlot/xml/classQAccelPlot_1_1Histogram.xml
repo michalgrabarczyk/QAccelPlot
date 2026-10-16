@@ -1,0 +1,746 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1Histogram" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::Histogram</compoundname>
+    <includes local="no">Histogram.hpp</includes>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1Histogram_1a276a2637290fccee45da5d42bdc64c8b" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QML_ANONYMOUSint</type>
+        <definition>QML_ANONYMOUSint QAccelPlot::Histogram::binCount</definition>
+        <argsstring></argsstring>
+        <name>binCount</name>
+        <qualifiedname>QAccelPlot::Histogram::binCount</qualifiedname>
+        <read>binCount</read>
+        <briefdescription>
+<para>Read-only: number of bins; 0 for an invalid histogram. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="46" column="5" bodyfile="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Histogram_1ae06f993fc1b581283a0d36ac583e1d8b" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QList&lt; qreal &gt;</type>
+        <definition>QList&lt;qreal&gt; QAccelPlot::Histogram::edges</definition>
+        <argsstring></argsstring>
+        <name>edges</name>
+        <qualifiedname>QAccelPlot::Histogram::edges</qualifiedname>
+        <read>edgeList</read>
+        <briefdescription>
+<para>Read-only: the <computeroutput>binCount</computeroutput> + 1 bin edges in ascending order. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="48" column="5" bodyfile="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Histogram_1a3305c45638521cb08061d0f004440e8c" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QList&lt; qreal &gt;</type>
+        <definition>QList&lt;qreal&gt; QAccelPlot::Histogram::values</definition>
+        <argsstring></argsstring>
+        <name>values</name>
+        <qualifiedname>QAccelPlot::Histogram::values</qualifiedname>
+        <read>valueList</read>
+        <briefdescription>
+<para>Read-only: one value per bin, a count or, after <computeroutput><ref refid="classQAccelPlot_1_1Histogram_1ab07a03cf8d32c71cc963d2eba6de816e" kindref="member">density()</ref></computeroutput>, a density. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="50" column="5" bodyfile="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Histogram_1a469f2e79970eed48de08d404b7cab7be" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Histogram::total</definition>
+        <argsstring></argsstring>
+        <name>total</name>
+        <qualifiedname>QAccelPlot::Histogram::total</qualifiedname>
+        <read>total</read>
+        <briefdescription>
+<para>Read-only: sum of the bin counts, the number of samples inside the edges. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="52" column="5" bodyfile="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Histogram_1a1389eeaf28741090000e595d2bbf2897" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Histogram::uniform</definition>
+        <argsstring></argsstring>
+        <name>uniform</name>
+        <qualifiedname>QAccelPlot::Histogram::uniform</qualifiedname>
+        <read>isUniform</read>
+        <briefdescription>
+<para>Read-only: true when all bins have the same width. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="54" column="5" bodyfile="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Histogram_1a5eaba082587bbf8cc2aa035c14f8d810" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Histogram::binWidth</definition>
+        <argsstring></argsstring>
+        <name>binWidth</name>
+        <qualifiedname>QAccelPlot::Histogram::binWidth</qualifiedname>
+        <read>binWidth</read>
+        <briefdescription>
+<para>Read-only: the width of every bin, or NaN when the bins are not uniform. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="56" column="5" bodyfile="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1Histogram_1a44913896286f6e09c8074c1e789b428b" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; QAccelPlot::Histogram::edges_</definition>
+        <argsstring></argsstring>
+        <name>edges_</name>
+        <qualifiedname>QAccelPlot::Histogram::edges_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="120" column="17" bodyfile="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" bodystart="120" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Histogram_1a933117526b4af9184bfadf659043a21b" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; QAccelPlot::Histogram::values_</definition>
+        <argsstring></argsstring>
+        <name>values_</name>
+        <qualifiedname>QAccelPlot::Histogram::values_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="121" column="17" bodyfile="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Histogram_1a3db15b9fe1838f637b9357437dae1bea" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::Histogram::total_</definition>
+        <argsstring></argsstring>
+        <name>total_</name>
+        <qualifiedname>QAccelPlot::Histogram::total_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="122" column="12" bodyfile="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" bodystart="122" bodyend="122"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Histogram_1adc232aeadb12173b0f15fe92e7f7f7b6" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Histogram::uniform_</definition>
+        <argsstring></argsstring>
+        <name>uniform_</name>
+        <qualifiedname>QAccelPlot::Histogram::uniform_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="123" column="10" bodyfile="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" bodystart="123" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Histogram_1ae5e141e27d437bcf384ce3b1b48e94b7" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Histogram::density_</definition>
+        <argsstring></argsstring>
+        <name>density_</name>
+        <qualifiedname>QAccelPlot::Histogram::density_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="124" column="10" bodyfile="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" bodystart="124" bodyend="124"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Histogram_1ae8d360e2feef940b010358bee6a7f8df" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1Histogram" kindref="compound">Histogram</ref></type>
+        <definition>static Histogram QAccelPlot::Histogram::fromSamples</definition>
+        <argsstring>(const double *samples, std::size_t sampleCount, int binCount)</argsstring>
+        <name>fromSamples</name>
+        <qualifiedname>QAccelPlot::Histogram::fromSamples</qualifiedname>
+        <param>
+          <type>const double *</type>
+          <declname>samples</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>sampleCount</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>binCount</declname>
+        </param>
+        <briefdescription>
+<para>Counts <emphasis>sampleCount</emphasis> <emphasis>samples</emphasis> into <emphasis>binCount</emphasis> equal bins spanning the finite samples. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The range is 0 to 1 without finite samples, and widens by 0.5 on each side when all samples are equal. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="62" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Histogram_1a09bf6a6375bed21ec4d1a3421664e23b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1Histogram" kindref="compound">Histogram</ref></type>
+        <definition>static Histogram QAccelPlot::Histogram::fromSamples</definition>
+        <argsstring>(const double *samples, std::size_t sampleCount, int binCount, double min, double max)</argsstring>
+        <name>fromSamples</name>
+        <qualifiedname>QAccelPlot::Histogram::fromSamples</qualifiedname>
+        <param>
+          <type>const double *</type>
+          <declname>samples</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>sampleCount</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>binCount</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>min</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>max</declname>
+        </param>
+        <briefdescription>
+<para>Counts <emphasis>sampleCount</emphasis> <emphasis>samples</emphasis> into <emphasis>binCount</emphasis> equal bins from <emphasis>min</emphasis> to <emphasis>max</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="64" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Histogram_1ac264a7c00b747d1cdc271f8255fd67ca" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1Histogram" kindref="compound">Histogram</ref></type>
+        <definition>static Histogram QAccelPlot::Histogram::fromSamples</definition>
+        <argsstring>(const double *samples, std::size_t sampleCount, std::vector&lt; double &gt; edges)</argsstring>
+        <name>fromSamples</name>
+        <qualifiedname>QAccelPlot::Histogram::fromSamples</qualifiedname>
+        <param>
+          <type>const double *</type>
+          <declname>samples</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>sampleCount</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>edges</declname>
+        </param>
+        <briefdescription>
+<para>Counts <emphasis>sampleCount</emphasis> <emphasis>samples</emphasis> into the bins between <emphasis>edges</emphasis>, which must be finite and strictly increasing. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="66" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Histogram_1a361a3ae31cfa806488de8cf001814ad1" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1Histogram" kindref="compound">Histogram</ref></type>
+        <definition>static Histogram QAccelPlot::Histogram::fromSamples</definition>
+        <argsstring>(const float *samples, std::size_t sampleCount, int binCount)</argsstring>
+        <name>fromSamples</name>
+        <qualifiedname>QAccelPlot::Histogram::fromSamples</qualifiedname>
+        <param>
+          <type>const float *</type>
+          <declname>samples</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>sampleCount</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>binCount</declname>
+        </param>
+        <briefdescription>
+<para>Float overload of <computeroutput>fromSamples</computeroutput>(<emphasis>samples</emphasis>, <emphasis>sampleCount</emphasis>, <emphasis>binCount</emphasis>). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="68" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Histogram_1afe7975869b3ac2a2a2ce61363980f7c1" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1Histogram" kindref="compound">Histogram</ref></type>
+        <definition>static Histogram QAccelPlot::Histogram::fromSamples</definition>
+        <argsstring>(const float *samples, std::size_t sampleCount, int binCount, double min, double max)</argsstring>
+        <name>fromSamples</name>
+        <qualifiedname>QAccelPlot::Histogram::fromSamples</qualifiedname>
+        <param>
+          <type>const float *</type>
+          <declname>samples</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>sampleCount</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>binCount</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>min</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>max</declname>
+        </param>
+        <briefdescription>
+<para>Float overload of <computeroutput>fromSamples</computeroutput>(<emphasis>samples</emphasis>, <emphasis>sampleCount</emphasis>, <emphasis>binCount</emphasis>, <emphasis>min</emphasis>, <emphasis>max</emphasis>). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="70" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Histogram_1ad842a0aeee9feeb386adbf167c7385ad" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1Histogram" kindref="compound">Histogram</ref></type>
+        <definition>static Histogram QAccelPlot::Histogram::fromSamples</definition>
+        <argsstring>(const float *samples, std::size_t sampleCount, std::vector&lt; double &gt; edges)</argsstring>
+        <name>fromSamples</name>
+        <qualifiedname>QAccelPlot::Histogram::fromSamples</qualifiedname>
+        <param>
+          <type>const float *</type>
+          <declname>samples</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>sampleCount</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>edges</declname>
+        </param>
+        <briefdescription>
+<para>Float overload of <computeroutput>fromSamples</computeroutput>(<emphasis>samples</emphasis>, <emphasis>sampleCount</emphasis>, <emphasis>edges</emphasis>). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="72" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Histogram_1ad795ba1054f2dc9eab2229de0b730158" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1Histogram" kindref="compound">Histogram</ref></type>
+        <definition>static Histogram QAccelPlot::Histogram::fromCounts</definition>
+        <argsstring>(std::vector&lt; double &gt; edges, std::vector&lt; double &gt; counts)</argsstring>
+        <name>fromCounts</name>
+        <qualifiedname>QAccelPlot::Histogram::fromCounts</qualifiedname>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>edges</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>counts</declname>
+        </param>
+        <briefdescription>
+<para>Wraps data that is already binned: <emphasis>counts</emphasis> has one finite, non-negative value per bin between <emphasis>edges</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="74" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Histogram_1adeb5f9a99a18848f55df2b9087fe221e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>static std::vector&lt; double &gt; QAccelPlot::Histogram::linearEdges</definition>
+        <argsstring>(double min, double max, int binCount)</argsstring>
+        <name>linearEdges</name>
+        <qualifiedname>QAccelPlot::Histogram::linearEdges</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>min</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>max</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>binCount</declname>
+        </param>
+        <briefdescription>
+<para>Returns <emphasis>binCount</emphasis> + 1 equally spaced edges from <emphasis>min</emphasis> to <emphasis>max</emphasis>, or an empty vector for invalid arguments. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="77" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Histogram_1a0f9d4420b7a79480a2c3951933750d41" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>static std::vector&lt; double &gt; QAccelPlot::Histogram::logEdges</definition>
+        <argsstring>(double min, double max, int binCount)</argsstring>
+        <name>logEdges</name>
+        <qualifiedname>QAccelPlot::Histogram::logEdges</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>min</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>max</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>binCount</declname>
+        </param>
+        <briefdescription>
+<para>Returns <emphasis>binCount</emphasis> + 1 edges from <emphasis>min</emphasis> to <emphasis>max</emphasis>, equally spaced on a logarithmic axis. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><emphasis>min</emphasis> must be positive. Returns an empty vector for invalid arguments. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="81" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Histogram_1adc5f1a39edc89a93498d081542ef064b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>static std::vector&lt; double &gt; QAccelPlot::Histogram::decadeEdges</definition>
+        <argsstring>(double min, double max)</argsstring>
+        <name>decadeEdges</name>
+        <qualifiedname>QAccelPlot::Histogram::decadeEdges</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>min</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>max</declname>
+        </param>
+        <briefdescription>
+<para>Returns the edges from <emphasis>min</emphasis> to <emphasis>max</emphasis> at 1, 2, ..., 9 times each power of ten: the ticks of a logarithmic axis. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><emphasis>min</emphasis> and <emphasis>max</emphasis> are the first and the last edge. <emphasis>min</emphasis> must be positive. Returns an empty vector for invalid arguments. The bins widen tenfold at each power of ten, so draw them as <computeroutput><ref refid="classQAccelPlot_1_1Histogram_1ab07a03cf8d32c71cc963d2eba6de816e" kindref="member">density()</ref></computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="87" column="24"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Histogram_1aeacb15616b87e6b814d8f684579476e3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::Histogram::binCount</definition>
+        <argsstring>() const</argsstring>
+        <name>binCount</name>
+        <qualifiedname>QAccelPlot::Histogram::binCount</qualifiedname>
+        <briefdescription>
+<para>Returns the number of bins; 0 for an invalid histogram. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="90" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Histogram_1a21431c5fde5914215fedce0eeb58fa48" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::vector&lt; double &gt; &amp;</type>
+        <definition>const std::vector&lt; double &gt; &amp; QAccelPlot::Histogram::edges</definition>
+        <argsstring>() const</argsstring>
+        <name>edges</name>
+        <qualifiedname>QAccelPlot::Histogram::edges</qualifiedname>
+        <briefdescription>
+<para>Returns the <computeroutput><ref refid="classQAccelPlot_1_1Histogram_1a276a2637290fccee45da5d42bdc64c8b" kindref="member">binCount()</ref></computeroutput> + 1 bin edges in ascending order. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="92" column="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Histogram_1ad3b69022ebca953214ad8127b1a60904" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::vector&lt; double &gt; &amp;</type>
+        <definition>const std::vector&lt; double &gt; &amp; QAccelPlot::Histogram::values</definition>
+        <argsstring>() const</argsstring>
+        <name>values</name>
+        <qualifiedname>QAccelPlot::Histogram::values</qualifiedname>
+        <briefdescription>
+<para>Returns one value per bin, a count or, after <computeroutput><ref refid="classQAccelPlot_1_1Histogram_1ab07a03cf8d32c71cc963d2eba6de816e" kindref="member">density()</ref></computeroutput>, a density. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="94" column="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Histogram_1a8ed27c0df9b425d119ce33cdfac54746" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::Histogram::total</definition>
+        <argsstring>() const</argsstring>
+        <name>total</name>
+        <qualifiedname>QAccelPlot::Histogram::total</qualifiedname>
+        <briefdescription>
+<para>Returns the sum of the bin counts, the number of samples inside the edges. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="96" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Histogram_1ac468433607f9a45f3aff2520b11320a1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Histogram::isUniform</definition>
+        <argsstring>() const</argsstring>
+        <name>isUniform</name>
+        <qualifiedname>QAccelPlot::Histogram::isUniform</qualifiedname>
+        <briefdescription>
+<para>Returns true when all bins have the same width. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="98" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Histogram_1a9f2c69059493a31bc018435b080bf23f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::Histogram::binWidth</definition>
+        <argsstring>() const</argsstring>
+        <name>binWidth</name>
+        <qualifiedname>QAccelPlot::Histogram::binWidth</qualifiedname>
+        <briefdescription>
+<para>Returns the width of every bin, or NaN when the bins are not uniform. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="100" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Histogram_1ab07a03cf8d32c71cc963d2eba6de816e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE::QAccelPlot::Histogram</type>
+        <definition>Q_INVOKABLE::QAccelPlot::Histogram QAccelPlot::Histogram::density</definition>
+        <argsstring>() const</argsstring>
+        <name>density</name>
+        <qualifiedname>QAccelPlot::Histogram::density</qualifiedname>
+        <briefdescription>
+<para>Returns a copy whose values are densities: count / (<computeroutput><ref refid="classQAccelPlot_1_1Histogram_1a469f2e79970eed48de08d404b7cab7be" kindref="member">total()</ref></computeroutput> × bin width). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The bin areas sum to 1, so bins of different widths and data sets of different sizes are comparable. Returns the histogram unchanged when it already holds densities. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="106" column="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Histogram_1a24cd758a77adbcb5e025fba2eb2f952a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt; double &gt; QAccelPlot::Histogram::barData</definition>
+        <argsstring>() const</argsstring>
+        <name>barData</name>
+        <qualifiedname>QAccelPlot::Histogram::barData</qualifiedname>
+        <briefdescription>
+<para>Returns <computeroutput><ref refid="classQAccelPlot_1_1Histogram_1a276a2637290fccee45da5d42bdc64c8b" kindref="member">binCount()</ref></computeroutput> interleaved (from, to, value) bars, one per bin, for <computeroutput><ref refid="classQAccelPlot_1_1BarSeries_1a1635826f800ddc65da095e03a72c1e20" kindref="member">BarSeries::setRangedData()</ref></computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="109" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Histogram_1a70756f424261ec1d0498d9661ed7d313" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE QVariantList</type>
+        <definition>Q_INVOKABLE QVariantList QAccelPlot::Histogram::bars</definition>
+        <argsstring>() const</argsstring>
+        <name>bars</name>
+        <qualifiedname>QAccelPlot::Histogram::bars</qualifiedname>
+        <briefdescription>
+<para>Returns one object per bin with <computeroutput>from</computeroutput>, <computeroutput>to</computeroutput>, and <computeroutput>value</computeroutput>, for the QML <computeroutput><ref refid="classQAccelPlot_1_1BarSeries_1a06deb85cc7592812027db6e1287bea85" kindref="member">BarSeries.setData()</ref></computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="111" column="30"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Histogram_1aa7b5a1b0127027b76e4323f7bd95b51a" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Sample</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classQAccelPlot_1_1Histogram" kindref="compound">Histogram</ref></type>
+        <definition>static Histogram QAccelPlot::Histogram::spanning</definition>
+        <argsstring>(const Sample *samples, std::size_t sampleCount, int binCount)</argsstring>
+        <name>spanning</name>
+        <qualifiedname>QAccelPlot::Histogram::spanning</qualifiedname>
+        <param>
+          <type>const Sample *</type>
+          <declname>samples</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>sampleCount</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>binCount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="114" column="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Histogram_1ab01b427fcf8a74a6189836ef0bbb60bd" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Sample</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classQAccelPlot_1_1Histogram" kindref="compound">Histogram</ref></type>
+        <definition>static Histogram QAccelPlot::Histogram::binned</definition>
+        <argsstring>(const Sample *samples, std::size_t sampleCount, std::vector&lt; double &gt; edges)</argsstring>
+        <name>binned</name>
+        <qualifiedname>QAccelPlot::Histogram::binned</qualifiedname>
+        <param>
+          <type>const Sample *</type>
+          <declname>samples</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>sampleCount</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>edges</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="115" column="34"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Histogram_1a358fc1be11f36b1e0cab99b5e793a55f" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QList&lt; qreal &gt;</type>
+        <definition>QList&lt; qreal &gt; QAccelPlot::Histogram::edgeList</definition>
+        <argsstring>() const</argsstring>
+        <name>edgeList</name>
+        <qualifiedname>QAccelPlot::Histogram::edgeList</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="117" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Histogram_1acd84c7ff591d3256a51c1cff1dfe4e8f" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QList&lt; qreal &gt;</type>
+        <definition>QList&lt; qreal &gt; QAccelPlot::Histogram::valueList</definition>
+        <argsstring>() const</argsstring>
+        <name>valueList</name>
+        <qualifiedname>QAccelPlot::Histogram::valueList</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="118" column="11"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Samples counted into bins, convertible to <computeroutput><ref refid="classQAccelPlot_1_1BarSeries" kindref="compound">BarSeries</ref></computeroutput> data. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>A bin spans from its lower edge up to, but not including, its upper edge; the last bin also includes its upper edge. NaN samples and samples outside the edges are not counted.</para>
+<para>The functions are stateless, so a histogram can be built on a worker thread and its data passed to <computeroutput>postData()</computeroutput>.</para>
+<para><programlisting><codeline><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>histogram<sp/>=<sp/><ref refid="classQAccelPlot_1_1Histogram_1ae8d360e2feef940b010358bee6a7f8df" kindref="member">Histogram::fromSamples</ref>(samples.data(),<sp/>samples.size(),<sp/>40);</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="classQAccelPlot_1_1Histogram_1a70756f424261ec1d0498d9661ed7d313" kindref="member">bars</ref>-&gt;setRangedData(histogram.barData(),<sp/>histogram.binCount());</highlight></codeline>
+</programlisting></para>
+<para>In QML, histograms are created by the <computeroutput><ref refid="classQAccelPlot_1_1Histogram" kindref="compound">Histogram</ref></computeroutput> singleton, see <ref refid="classQAccelPlot_1_1HistogramFactory" kindref="compound">HistogramFactory</ref>.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1HistogramFactory" kindref="compound">HistogramFactory</ref>, <ref refid="classQAccelPlot_1_1BarSeries" kindref="compound">BarSeries</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" line="41" column="1" bodyfile="QAccelPlot/src/QAccelPlot/data/Histogram.hpp" bodystart="41" bodyend="125"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1Histogram_1a24cd758a77adbcb5e025fba2eb2f952a" prot="public" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>barData</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1a70756f424261ec1d0498d9661ed7d313" prot="public" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>bars</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1a276a2637290fccee45da5d42bdc64c8b" prot="public" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>binCount</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1aeacb15616b87e6b814d8f684579476e3" prot="public" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>binCount</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1ab01b427fcf8a74a6189836ef0bbb60bd" prot="private" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>binned</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1a5eaba082587bbf8cc2aa035c14f8d810" prot="public" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>binWidth</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1a9f2c69059493a31bc018435b080bf23f" prot="public" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>binWidth</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1adc5f1a39edc89a93498d081542ef064b" prot="public" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>decadeEdges</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1ab07a03cf8d32c71cc963d2eba6de816e" prot="public" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>density</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1ae5e141e27d437bcf384ce3b1b48e94b7" prot="private" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>density_</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1a358fc1be11f36b1e0cab99b5e793a55f" prot="private" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>edgeList</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1ae06f993fc1b581283a0d36ac583e1d8b" prot="public" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>edges</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1a21431c5fde5914215fedce0eeb58fa48" prot="public" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>edges</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1a44913896286f6e09c8074c1e789b428b" prot="private" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>edges_</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1ad795ba1054f2dc9eab2229de0b730158" prot="public" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>fromCounts</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1ae8d360e2feef940b010358bee6a7f8df" prot="public" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>fromSamples</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1a09bf6a6375bed21ec4d1a3421664e23b" prot="public" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>fromSamples</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1ac264a7c00b747d1cdc271f8255fd67ca" prot="public" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>fromSamples</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1a361a3ae31cfa806488de8cf001814ad1" prot="public" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>fromSamples</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1afe7975869b3ac2a2a2ce61363980f7c1" prot="public" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>fromSamples</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1ad842a0aeee9feeb386adbf167c7385ad" prot="public" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>fromSamples</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1ac468433607f9a45f3aff2520b11320a1" prot="public" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>isUniform</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1adeb5f9a99a18848f55df2b9087fe221e" prot="public" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>linearEdges</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1a0f9d4420b7a79480a2c3951933750d41" prot="public" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>logEdges</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1aa7b5a1b0127027b76e4323f7bd95b51a" prot="private" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>spanning</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1a469f2e79970eed48de08d404b7cab7be" prot="public" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>total</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1a8ed27c0df9b425d119ce33cdfac54746" prot="public" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>total</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1a3db15b9fe1838f637b9357437dae1bea" prot="private" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>total_</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1a1389eeaf28741090000e595d2bbf2897" prot="public" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>uniform</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1adc232aeadb12173b0f15fe92e7f7f7b6" prot="private" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>uniform_</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1acd84c7ff591d3256a51c1cff1dfe4e8f" prot="private" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>valueList</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1a3305c45638521cb08061d0f004440e8c" prot="public" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>values</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1ad3b69022ebca953214ad8127b1a60904" prot="public" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>values</name></member>
+      <member refid="classQAccelPlot_1_1Histogram_1a933117526b4af9184bfadf659043a21b" prot="private" virt="non-virtual"><scope>QAccelPlot::Histogram</scope><name>values_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

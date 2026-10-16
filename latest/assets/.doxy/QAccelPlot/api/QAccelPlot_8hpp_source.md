@@ -18,7 +18,9 @@
 #pragma once
 
 #include "QAccelPlot/PlotBorder.hpp"
+#include "QAccelPlot/PlotDragRect.hpp"
 #include "QAccelPlot/PlotMouseEvent.hpp"
+#include "QAccelPlot/PlotRectangleZoom.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/grid/Grid.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
@@ -36,6 +38,7 @@
 namespace QAccelPlot {
 
 class GridNode;
+class RectangleZoomOverlay;
 
 class QAccelPlot : public QQuickItem {
     Q_OBJECT
@@ -52,8 +55,14 @@ class QAccelPlot : public QQuickItem {
     Q_PROPERTY(QColor plotAreaColor READ plotAreaColor WRITE setPlotAreaColor NOTIFY plotAreaColorChanged)
     Q_PROPERTY(QColor axesAreaColor READ axesAreaColor WRITE setAxesAreaColor NOTIFY axesAreaColorChanged)
     Q_PROPERTY(PlotBorder* border READ border CONSTANT)
+    Q_PROPERTY(PlotRectangleZoom* rectangleZoom READ rectangleZoom CONSTANT)
     Q_PROPERTY(Grid* grid READ grid CONSTANT)
     Q_PROPERTY(QList<PlotSeries*> series READ series NOTIFY seriesChanged)
+    Q_PROPERTY(QQuickItem* overlay READ overlay CONSTANT)
+
+    
+    Q_PROPERTY(QPointF pointerPosition READ pointerPosition NOTIFY pointerChanged)
+    Q_PROPERTY(bool pointerInside READ pointerInside NOTIFY pointerChanged)
 
 public:
     explicit QAccelPlot(QQuickItem* parent = nullptr);
@@ -64,6 +73,11 @@ public:
     Q_INVOKABLE qreal pixelToDataX(qreal pixelX) const;
     Q_INVOKABLE qreal pixelToDataY(qreal pixelY) const;
     Q_INVOKABLE bool isInsidePlotArea(qreal x, qreal y) const;
+    Q_INVOKABLE bool zoomToRect(const QRectF& rect);
+    Q_INVOKABLE void rescaleAllAxes();
+
+    QPointF pointerPosition() const;
+    bool pointerInside() const;
 
     Axis* xAxis() const;
     void setXAxis(Axis* axis);
@@ -92,11 +106,18 @@ public:
 
     PlotBorder* border() const;
 
+    PlotRectangleZoom* rectangleZoom() const;
+
     Grid* grid() const;
 
     QList<PlotSeries*> series() const;
 
+    QQuickItem* overlay() const;
+
 signals:
+    void pointerChanged();
+    void escapePressed();
+    void pointerGrabLost();
     void xAxisChanged();
     void yAxisChanged();
     void x2AxisChanged();
@@ -119,31 +140,38 @@ protected:
     void hoverLeaveEvent(QHoverEvent* event) override;
     void mouseMoveEvent(QMouseEvent* event) override;
     void mouseReleaseEvent(QMouseEvent* event) override;
+    void mouseUngrabEvent() override;
+    void focusOutEvent(QFocusEvent* event) override;
     void mouseDoubleClickEvent(QMouseEvent* event) override;
     void keyPressEvent(QKeyEvent* event) override;
     void geometryChange(const QRectF& newGeometry, const QRectF& oldGeometry) override; 
     void itemChange(ItemChange change, const ItemChangeData& value) override;
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*) override;
 
-    Q_INVOKABLE void rescaleAllAxes();
-
 private:
+    enum class DragMode { Idle, Pan, RectangleZoom };
+    bool isAxisRegistered(Axis* axis) const;
     static void appendExtraAxis(QQmlListProperty<Axis>* list, Axis* axis);
     static qsizetype extraAxisCount(QQmlListProperty<Axis>* list);
     static Axis* extraAxis(QQmlListProperty<Axis>* list, qsizetype index);
     static void clearExtraAxes(QQmlListProperty<Axis>* list);
 
+    bool tryForwardKeyEventToAxis(Axis* axis, const QPointF& mousePos, QKeyEvent* event);
+    bool tryZoomAxisAtPosition(Axis* axis, const QPointF& pos, qreal wheelSteps);
+    void zoomAxisAtRatio(Axis* axis, qreal ratio, qreal wheelSteps);
     void connectAxisSignals(Axis* axis);
     void disconnectAxisSignals(Axis* axis);
     void axisDestroyed(QObject* object);
     void connectAxis(Axis* axis, Axis::Side side);
     void disconnectAxis(Axis* axis);
-    bool tryZoomAxisAtPosition(Axis* axis, const QPointF& pos, bool zoomingIn);
-    bool tryForwardKeyEventToAxis(Axis* axis, const QPointF& mousePos, QKeyEvent* event);
-    void zoomAxisAtRatio(Axis* axis, qreal ratio, bool zoomingIn);
     void zoomAxis(Axis* axis, qreal factor, qreal centerRatio);
     void panAxis(Axis* axis, qreal delta, qreal length);
+    QList<Axis*> attachedAxes() const;
+    void updateRectangleSelection(const QPointF& pos);
+    void cancelRectangleSelection();
     void layoutAxes();
+    void setPointer(const QPointF& position);
+    void registerSeries(QQuickItem* item);
 
     Axis* xAxis_{nullptr};
     Axis* yAxis_{nullptr};
@@ -151,10 +179,15 @@ private:
     Axis* y2Axis_{nullptr};
     QList<Axis*> extraAxes_;
 
-    bool isDragging_{false};
+    DragMode dragMode_{DragMode::Idle};
+    PlotDragRect zoomDrag_;
     QPointF lastMousePos_;
     // Last pointer position over the plot; key events go to the axis under it.
     std::optional<QPointF> pointerPos_;
+    QPointF lastPointerPos_;
+    // True while the pointer was last placed by a touch, which keeps it in place after the release.
+    bool touchPointer_{false};
+    bool touchPressed_{false};
     PlotMouseEvent mousePressEvent_{this};
     PlotMouseEvent mouseReleaseEvent_{this};
     PlotMouseEvent mouseDoubleClickEvent_{this};
@@ -164,6 +197,9 @@ private:
     QColor plotAreaColor_{ColorPalette::dark().plotArea};
     QColor axesAreaColor_{ColorPalette::dark().axesArea};
     PlotBorder* border_{nullptr};
+    PlotRectangleZoom* rectangleZoom_{nullptr};
+    RectangleZoomOverlay* rectangleZoomOverlay_{nullptr};
+    QQuickItem* overlay_{nullptr};
     Grid* grid_{nullptr};
     GridNode* gridNode_{nullptr};
     QList<PlotSeries*> series_;

@@ -207,7 +207,7 @@ See [QAccelPlot::TickLabelFormatter](classQAccelPlot_1_1TickLabelFormatter.md)
 ## Detailed Description
 
 
-Tick values are interpreted as milliseconds since the Unix epoch (1970-01-01T00:00:00 UTC).
+Tick values are interpreted as milliseconds since the Unix epoch (1970-01-01T00:00:00 UTC). Nonfinite values and values outside the qint64 millisecond range produce an empty label.
 
 
 

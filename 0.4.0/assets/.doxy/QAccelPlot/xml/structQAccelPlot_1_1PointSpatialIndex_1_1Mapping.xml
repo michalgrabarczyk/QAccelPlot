@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1PointSpatialIndex_1_1Mapping" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::PointSpatialIndex::Mapping</compoundname>
+    <includes local="no">PointSpatialIndex.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1PointSpatialIndex_1_1Mapping_1af4204dc8252100d7de1d95c001c88b7b" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PointSpatialIndex::Mapping::logX</definition>
+        <argsstring></argsstring>
+        <name>logX</name>
+        <qualifiedname>QAccelPlot::PointSpatialIndex::Mapping::logX</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+<para>Index log10(x) instead of x. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" line="32" column="14" bodyfile="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" bodystart="32" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1PointSpatialIndex_1_1Mapping_1aac88e50816f7fba7dd3a911309d16057" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PointSpatialIndex::Mapping::logY</definition>
+        <argsstring></argsstring>
+        <name>logY</name>
+        <qualifiedname>QAccelPlot::PointSpatialIndex::Mapping::logY</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+<para>Index log10(y) instead of y. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" line="33" column="14" bodyfile="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" bodystart="33" bodyend="33"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structQAccelPlot_1_1PointSpatialIndex_1_1Mapping_1a45bd9bdb66cc9ccd7b31b7993035cd9a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PointSpatialIndex::Mapping::operator==</definition>
+        <argsstring>(const Mapping &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>QAccelPlot::PointSpatialIndex::Mapping::operator==</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1PointSpatialIndex_1_1Mapping" kindref="compound">Mapping</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> when both mappings are identical. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" line="36" column="14"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Coordinate mapping applied before indexing. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" line="31" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" bodystart="31" bodyend="37"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1PointSpatialIndex_1_1Mapping_1af4204dc8252100d7de1d95c001c88b7b" prot="public" virt="non-virtual"><scope>QAccelPlot::PointSpatialIndex::Mapping</scope><name>logX</name></member>
+      <member refid="structQAccelPlot_1_1PointSpatialIndex_1_1Mapping_1aac88e50816f7fba7dd3a911309d16057" prot="public" virt="non-virtual"><scope>QAccelPlot::PointSpatialIndex::Mapping</scope><name>logY</name></member>
+      <member refid="structQAccelPlot_1_1PointSpatialIndex_1_1Mapping_1a45bd9bdb66cc9ccd7b31b7993035cd9a" prot="public" virt="non-virtual"><scope>QAccelPlot::PointSpatialIndex::Mapping</scope><name>operator==</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -26,6 +26,7 @@
 * `#include <QFont>`
 * `#include <QList>`
 * `#include <QMetaObject>`
+* `#include <QPointF>`
 * `#include <QPointer>`
 * `#include <QQuickPaintedItem>`
 * `#include <vector>`

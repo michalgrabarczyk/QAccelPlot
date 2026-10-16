@@ -28,7 +28,12 @@ public:
     QSGMaterialType* type() const override;
     QSGMaterialShader* createShader(QSGRendererInterface::RenderMode) const override;
 
-    float rectCount{0.0f}; 
+    float rectCount{0.0f};              
+    QVector2D minimumSize{0.0f, 0.0f};  
+    float borderWidth{0.0f};            
+    QColor borderColor{Qt::black};      
+    QColor hoverColor{Qt::transparent}; 
+    float hoveredIndex{-1.0f};          
 
 protected:
     int compareExtra(const QSGMaterial* other) const override;

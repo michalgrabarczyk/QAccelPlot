@@ -25,7 +25,7 @@
     
     
       
-        <title>QAccelPlot v0.3.0 Documentation</title>
+        <title>QAccelPlot v0.4.0 Documentation</title>
       
     
     
@@ -79,7 +79,7 @@
     "@type": "Person",
     "name": "Michal Grabarczyk"
   },
-  "softwareVersion": "0.3.0",
+  "softwareVersion": "0.4.0",
   "operatingSystem": "Cross-platform (Windows, Linux, macOS)",
   "applicationCategory": "DeveloperApplication",
   "keywords": ["plotting", "Qt Quick", "QML", "Scene Graph", "GPU", "real-time", "data visualization", "C++"]
@@ -131,7 +131,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="QAccelPlot v0.3.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.3.0 Documentation" data-md-component="logo">
+    <a href="." title="QAccelPlot v0.4.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.4.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -145,7 +145,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            QAccelPlot v0.3.0 Documentation
+            QAccelPlot v0.4.0 Documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -269,13 +269,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="QAccelPlot v0.3.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.3.0 Documentation" data-md-component="logo">
+    <a href="." title="QAccelPlot v0.4.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.4.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    QAccelPlot v0.3.0 Documentation
+    QAccelPlot v0.4.0 Documentation
   </label>
   
     <div class="md-nav__source">
@@ -558,6 +558,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -787,6 +797,34 @@
   
   
     <li class="md-nav__item">
+      <a href="cookbook/data-inspection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data inspection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="cookbook/point-clouds/" class="md-nav__link">
         
   
@@ -795,6 +833,118 @@
     
   
     Point clouds
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cookbook/rectangle-zoom/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rectangle zoom
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cookbook/bar-charts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bar charts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cookbook/histograms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Histograms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cookbook/bands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bands
   
 
     
@@ -1303,16 +1453,24 @@ frame.</p>
 <ul>
 <li><strong>Throughput</strong> — about 8M points replaced and drawn per frame at 60 FPS on the
   <a href="performance-comparison/">reference system</a>, without downsampling</li>
-<li><strong>Data paths</strong> — QML points, double vectors, moved <code>float</code> buffers, no-range
-  updates, and worker-thread <code>postData()</code></li>
-<li><strong>Interaction</strong> — pan, cursor-centered and per-axis zoom, rescale, hover hit
-  testing, and plot mouse events for custom tools</li>
-<li><strong>Invalid samples</strong> — <code>NaN</code>, <code>±Inf</code>, and non-positive log values break or
+<li><strong>Data paths</strong> — QML points, double vectors, moved <code>float</code> buffers, and
+  worker-thread <code>postData()</code></li>
+<li><strong>Interaction</strong> — pan, cursor-centered, per-axis, and rectangle zoom, rescale,
+  hover hit testing, and plot mouse events for custom tools</li>
+<li><strong>Inspection</strong> — crosshair, tooltip, nearest-data-point queries, and region
+  selection with statistics</li>
+<li><strong>Invalid data points</strong> — <code>NaN</code>, <code>±Inf</code>, and non-positive log values break or
   connect the curve consistently</li>
 <li><strong>Curves</strong> — solid, dashed, and marker-only styles; gradient fills and
   strokes; morph and draw transitions</li>
+<li><strong>Point clouds</strong> — <code>PointCloud</code> for large scatter data, colored uniformly or
+  by value, with a <code>ColorBar</code></li>
+<li><strong>Bars</strong> — <code>BarSeries</code> for vertical, horizontal, and grouped bar charts</li>
+<li><strong>Histograms</strong> — <code>Histogram</code> counts samples into equal or uneven bins, as
+  counts or density</li>
+<li><strong>Bands</strong> — <code>BandSeries</code> for confidence intervals and envelopes</li>
 <li><strong>Layout</strong> — secondary and extra axes, data-anchored QML overlays, and
-  <code>RectangleList</code> for many regions</li>
+  <code>RectangleSeries</code> for event spans and state timelines</li>
 </ul>
 <h3 id="quick-start">Quick start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kr">import</span> <span class="nx">QtQuick</span>
@@ -1332,8 +1490,11 @@ frame.</p>
 <li><strong><a href="getting-started/">Getting started</a></strong> — CMake integration and a first plot.</li>
 <li><strong><a href="concepts/">Concepts</a></strong> — Axes, series, gaps, overlays, and threading.</li>
 <li><strong><a href="performance/">Performance</a></strong> — Data paths, worker handoff, and benchmarking.</li>
+<li><strong><a href="performance-comparison/">Performance comparison</a></strong> — Benchmark setup and results.</li>
 <li><strong><a href="cookbook/">Cookbook</a></strong> — Recipes for common tasks.</li>
 <li><strong><a href="faq/">FAQ</a></strong> — Licensing, threading, and compatibility.</li>
+<li><strong><a href="troubleshooting/">Troubleshooting</a></strong> — Blank curves, build errors, and stutter.</li>
+<li><strong><a href="versioning/">Versioning</a></strong> — Release numbers, pinning, and documentation versions.</li>
 <li><strong><a href="api/">API reference</a></strong> — Types, properties, methods, signals, and enums.</li>
 </ul>
 <p>Each recipe links to a complete, runnable
@@ -1345,9 +1506,9 @@ frame.</p>
 <li>Qt 6.2 or newer with Core, Gui, Quick, and ShaderTools</li>
 <li>A hardware Qt Quick Scene Graph backend</li>
 </ul>
-<p>When the matching <code>QuickPrivate</code> component is available, it is used for
-in-place data texture updates. <code>-DQACCELPLOT_USE_QT_PRIVATE_API=OFF</code> forces a
-public-Qt-only build. QAccelPlot builds as a static library.</p>
+<p>QAccelPlot builds as a static library. Qt's <code>QuickPrivate</code> component is
+optional; see
+<a href="performance/#select-the-texture-upload-mode">texture upload modes</a>.</p>
 <h2 id="licensing">Licensing<a class="headerlink" href="#licensing" title="Permanent link">&para;</a></h2>
 <p>GPLv3 with the Universal FOSS Exception, or a commercial license. See
 <a href="https://github.com/michalgrabarczyk/QAccelPlot/blob/main/LICENSING.md"><code>LICENSING.md</code></a>.

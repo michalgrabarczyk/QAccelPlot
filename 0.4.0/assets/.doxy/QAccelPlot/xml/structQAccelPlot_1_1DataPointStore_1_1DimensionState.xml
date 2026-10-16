@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1DataPointStore_1_1DimensionState" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::DataPointStore::DimensionState</compoundname>
+    <includes local="no">DataPointStore.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1DataPointStore_1_1DimensionState_1a4778517c6e1cf5b440fde2f40a669289" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::DataPointStore::DimensionState::logScale</definition>
+        <argsstring></argsstring>
+        <name>logScale</name>
+        <qualifiedname>QAccelPlot::DataPointStore::DimensionState::logScale</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+<para>Whether the dimension is logarithmic. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="61" column="14" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="61" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1DataPointStore_1_1DimensionState_1afead56872fed44487e0e97e65134bc3a" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; <ref refid="structQAccelPlot_1_1DataPointStore_1_1Viewport" kindref="compound">Viewport</ref> &gt;</type>
+        <definition>std::optional&lt;Viewport&gt; QAccelPlot::DataPointStore::DimensionState::viewport</definition>
+        <argsstring></argsstring>
+        <name>viewport</name>
+        <qualifiedname>QAccelPlot::DataPointStore::DimensionState::viewport</qualifiedname>
+        <briefdescription>
+<para>The axis viewport, or <computeroutput>std::nullopt</computeroutput> without an axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="62" column="23" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Scale and viewport of one dimension, as its axis currently shows it. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="60" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="60" bodyend="63"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1DataPointStore_1_1DimensionState_1a4778517c6e1cf5b440fde2f40a669289" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore::DimensionState</scope><name>logScale</name></member>
+      <member refid="structQAccelPlot_1_1DataPointStore_1_1DimensionState_1afead56872fed44487e0e97e65134bc3a" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore::DimensionState</scope><name>viewport</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

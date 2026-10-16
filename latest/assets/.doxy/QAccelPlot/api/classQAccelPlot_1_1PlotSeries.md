@@ -24,7 +24,7 @@ _Common QML item contract for data series hosted by_ `PlotView` _._[More...](#de
 Inherits the following classes: QQuickItem
 
 
-Inherited by the following classes: [QAccelPlot::LineCurve](classQAccelPlot_1_1LineCurve.md),  [QAccelPlot::PointCloud](classQAccelPlot_1_1PointCloud.md),  [QAccelPlot::RectangleList](classQAccelPlot_1_1RectangleList.md)
+Inherited by the following classes: [QAccelPlot::BandSeries](classQAccelPlot_1_1BandSeries.md),  [QAccelPlot::BarSeries](classQAccelPlot_1_1BarSeries.md),  [QAccelPlot::LineCurve](classQAccelPlot_1_1LineCurve.md),  [QAccelPlot::PointCloud](classQAccelPlot_1_1PointCloud.md),  [QAccelPlot::RectangleSeries](classQAccelPlot_1_1RectangleSeries.md)
 
 
 ## Inheritance diagram
@@ -36,6 +36,14 @@ flowchart TB
   external_base_classQAccelPlot_1_1PlotSeries_1["QQuickItem"]
   external_base_classQAccelPlot_1_1PlotSeries_1 --> classQAccelPlot_1_1PlotSeries
 
+  classQAccelPlot_1_1BandSeries["QAccelPlot::BandSeries"]
+  classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1BandSeries
+  click classQAccelPlot_1_1BandSeries "../classQAccelPlot_1_1BandSeries/" "Open QAccelPlot::BandSeries"
+
+  classQAccelPlot_1_1BarSeries["QAccelPlot::BarSeries"]
+  classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1BarSeries
+  click classQAccelPlot_1_1BarSeries "../classQAccelPlot_1_1BarSeries/" "Open QAccelPlot::BarSeries"
+
   classQAccelPlot_1_1LineCurve["QAccelPlot::LineCurve"]
   classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1LineCurve
   click classQAccelPlot_1_1LineCurve "../classQAccelPlot_1_1LineCurve/" "Open QAccelPlot::LineCurve"
@@ -44,9 +52,9 @@ flowchart TB
   classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1PointCloud
   click classQAccelPlot_1_1PointCloud "../classQAccelPlot_1_1PointCloud/" "Open QAccelPlot::PointCloud"
 
-  classQAccelPlot_1_1RectangleList["QAccelPlot::RectangleList"]
-  classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1RectangleList
-  click classQAccelPlot_1_1RectangleList "../classQAccelPlot_1_1RectangleList/" "Open QAccelPlot::RectangleList"
+  classQAccelPlot_1_1RectangleSeries["QAccelPlot::RectangleSeries"]
+  classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1RectangleSeries
+  click classQAccelPlot_1_1RectangleSeries "../classQAccelPlot_1_1RectangleSeries/" "Open QAccelPlot::RectangleSeries"
 
 ```
 
@@ -59,6 +67,12 @@ flowchart TB
 
 
 
+## Classes
+
+| Type | Name |
+| ---: | :--- |
+| struct | [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) <br>_Extents of a data update that the caller already knows._  |
+| struct | [**DataExtent**](structQAccelPlot_1_1PlotSeries_1_1DataExtent.md) <br>_Extent of the valid coordinates in one dimension._  |
 
 
 ## Public Types
@@ -83,6 +97,8 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
+| property quint64 | [**dataRevision**](classQAccelPlot_1_1PlotSeries.md#property-datarevision-12)  <br>_Revision incremented by every accepted change of the series' records._  |
+| property [**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) \* | [**inspection**](classQAccelPlot_1_1PlotSeries.md#property-inspection-12)  <br>_Read-only constant: data queries for this series._  |
 | property [**LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol) | [**legendSymbol**](classQAccelPlot_1_1PlotSeries.md#property-legendsymbol-12)  <br>_Symbol style requested from the default legend._  |
 | property QString | [**name**](classQAccelPlot_1_1PlotSeries.md#property-name-12)  <br>_Identifying name used by the default legend._  |
 | property QRectF | [**plotRect**](classQAccelPlot_1_1PlotSeries.md#property-plotrect-12)  <br>_Plot area in parent-item coordinates, assigned by_ `PlotView` _._ |
@@ -96,13 +112,12 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
+| signal void | [**dataRevisionChanged**](classQAccelPlot_1_1PlotSeries.md#signal-datarevisionchanged)  <br>_Emitted when the dataRevision property changes._  |
 | signal void | [**legendSymbolChanged**](classQAccelPlot_1_1PlotSeries.md#signal-legendsymbolchanged)  <br> |
 | signal void | [**nameChanged**](classQAccelPlot_1_1PlotSeries.md#signal-namechanged)  <br> |
 | signal void | [**plotRectChanged**](classQAccelPlot_1_1PlotSeries.md#signal-plotrectchanged)  <br> |
 | signal void | [**xAxisChanged**](classQAccelPlot_1_1PlotSeries.md#signal-xaxischanged)  <br> |
-| signal void | [**xDataRangeChanged**](classQAccelPlot_1_1PlotSeries.md#signal-xdatarangechanged) (qreal min, qreal max) <br>_Emitted when the X data extent of this series changes._  |
 | signal void | [**yAxisChanged**](classQAccelPlot_1_1PlotSeries.md#signal-yaxischanged)  <br> |
-| signal void | [**yDataRangeChanged**](classQAccelPlot_1_1PlotSeries.md#signal-ydatarangechanged) (qreal min, qreal max) <br>_Emitted when the Y data extent of this series changes._  |
 
 
 
@@ -111,21 +126,42 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-|   | [**PlotSeries**](#function-plotseries) (QQuickItem \* parent=nullptr) <br> |
+|   | [**PlotSeries**](#function-plotseries-12) (QQuickItem \* parent=nullptr) <br> |
+| virtual void | [**clearData**](#function-cleardata) () <br>_Removes all data points from the series._  |
+|  quint64 | [**dataRevision**](#function-datarevision-22) () const<br>_Returns the current data revision._  |
+|  [**SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) \* | [**inspection**](#function-inspection-22) () const<br>_Returns the data queries for this series; created on first use and owned by the series._  |
 |  [**LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol) | [**legendSymbol**](#function-legendsymbol-22) () const<br> |
 |  QString | [**name**](#function-name-22) () const<br> |
 |  QRectF | [**plotRect**](#function-plotrect-22) () const<br> |
+|  void | [**postData**](#function-postdata-12) (std::vector&lt; double &gt; && data, int count) <br>_Queues a moved double buffer for assignment on the series' thread._  |
+|  void | [**postData**](#function-postdata-22) (std::vector&lt; float &gt; && data, int count) <br>_Queues a moved float buffer for assignment on the series' thread._  |
+|  void | [**setData**](#function-setdata-14) (const double \* data, int count) <br>_Replaces the series data with_ _count_ _data points copied from an interleaved double array._ |
+|  void | [**setData**](#function-setdata-24) (std::vector&lt; double &gt; && data, int count) <br>_Replaces the series data by moving an interleaved double buffer._  |
+|  void | [**setData**](#function-setdata-34) (const double \* data, int count, const [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) & bounds) <br>_Like_ `setData` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._ |
+|  void | [**setData**](#function-setdata-44) (std::vector&lt; double &gt; && data, int count, const [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) & bounds) <br>_Like_ `setData` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._ |
+|  void | [**setDataF**](#function-setdataf-14) (const float \* data, int count) <br>_Replaces the series data with_ _count_ _data points copied from an interleaved float array._ |
+|  void | [**setDataF**](#function-setdataf-24) (std::vector&lt; float &gt; && data, int count) <br>_Replaces the series data by moving an interleaved float buffer._  |
+|  void | [**setDataF**](#function-setdataf-34) (const float \* data, int count, const [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) & bounds) <br>_Like_ `setDataF` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._ |
+|  void | [**setDataF**](#function-setdataf-44) (std::vector&lt; float &gt; && data, int count, const [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) & bounds) <br>_Like_ `setDataF` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._ |
 |  void | [**setLegendSymbol**](#function-setlegendsymbol) ([**LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol) symbol) <br> |
 |  void | [**setName**](#function-setname) (const QString & name) <br> |
 |  void | [**setPlotRect**](#function-setplotrect) (const QRectF & rect) <br>_Updates the series geometry to exactly cover_ _rect_ _._ |
 |  void | [**setXAxis**](#function-setxaxis) ([**Axis**](classQAccelPlot_1_1Axis.md) \* axis) <br> |
 |  void | [**setYAxis**](#function-setyaxis) ([**Axis**](classQAccelPlot_1_1Axis.md) \* axis) <br> |
 |  [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**xAxis**](#function-xaxis-22) () const<br> |
+|  std::optional&lt; [**DataExtent**](structQAccelPlot_1_1PlotSeries_1_1DataExtent.md) &gt; | [**xDataRange**](#function-xdatarange) () const<br>_Returns the extent this series reports to its horizontal axis, or_ `std::nullopt` _when it has none._ |
 |  [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**yAxis**](#function-yaxis-22) () const<br> |
+|  std::optional&lt; [**DataExtent**](structQAccelPlot_1_1PlotSeries_1_1DataExtent.md) &gt; | [**yDataRange**](#function-ydatarange) () const<br>_Returns the extent this series reports to its vertical axis, or_ `std::nullopt` _when it has none._ |
+|   | [**~PlotSeries**](#function-plotseries) () override<br> |
 
 
 
 
+## Protected Types
+
+| Type | Name |
+| ---: | :--- |
+| enum  | [**DataChange**](#enum-datachange)  <br>_How the records changed in a data update._  |
 
 
 
@@ -150,16 +186,33 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-|  void | [**clearDataRanges**](#function-cleardataranges) () <br>_Clears cached extents after a series has been emptied._  |
-|  void | [**clearXDataRange**](#function-clearxdatarange) () <br>_Clears the cached X extent, e.g. when no sample has a valid X coordinate._  |
-|  void | [**clearYDataRange**](#function-clearydatarange) () <br>_Clears the cached Y extent, e.g. when no sample has a valid Y coordinate._  |
-|  void | [**extendXDataRange**](#function-extendxdatarange) (qreal x) <br>_Widens the reported X extent to include_ _x_ _._ |
-|  void | [**extendYDataRange**](#function-extendydatarange) (qreal y) <br>_Widens the reported Y extent to include_ _y_ _. A non-finite__y_ _leaves the extent unchanged._ |
+|   | [**PlotSeries**](#function-plotseries-22) ([**DataPointStore::Layout**](structQAccelPlot_1_1DataPointStore_1_1Layout.md) layout, [**DataPointWording**](structQAccelPlot_1_1PlotSeries_1_1DataPointWording.md) wording, QQuickItem \* parent) <br>_Creates a series whose data points have_ _layout_ _;__wording_ _names them in warnings._ |
+|  void | [**appendDataPoint**](#function-appenddatapoint) (const double \* coordinates) <br>_Appends one double data point and widens the data ranges by its valid coordinates._  |
+| virtual void | [**applyDataPoints**](#function-applydatapoints) ([**DataPointInput**](structQAccelPlot_1_1PlotSeries_1_1DataPointInput.md) && input) <br>_Applies data points passed to_ `setData()` _or_`setDataF()` _._ |
+| virtual [**DataRanges**](structQAccelPlot_1_1PlotSeries_1_1DataRanges.md) | [**computeDataRanges**](#function-computedataranges) () const<br>_Scans the records for their extents. The default implementation scans the data points._  |
+| virtual int | [**dataPointValueCount**](#function-datapointvaluecount) () const<br>_Returns the number of values per data point that_ `setData()` _and_`setDataF()` _take._ |
+|  [**DataPointStore**](classQAccelPlot_1_1DataPointStore.md) & | [**dataPoints**](#function-datapoints-12) () <br>_Returns the data points of the series._  |
+|  const [**DataPointStore**](classQAccelPlot_1_1DataPointStore.md) & | [**dataPoints**](#function-datapoints-22) () const<br>_Returns the data points of the series._  |
+|  bool | [**event**](#function-event) (QEvent \* event) override<br>_Withholds hover events from a series beneath another series under the cursor._  |
+|  void | [**extendXDataRange**](#function-extendxdatarange) (qreal x) <br>_Widens the X extent to include_ _x_ _and notifies the bound axes._ |
+|  void | [**extendYDataRange**](#function-extendydatarange) (qreal y) <br>_Widens the Y extent to include_ _y_ _. A non-finite__y_ _leaves the extent unchanged._ |
+| virtual bool | [**inspectionAvailable**](#function-inspectionavailable) () const<br>_Returns false while the records are ambiguous, such as during a data transition. Default: true._  |
+|  void | [**inspectionDataChanged**](#function-inspectiondatachanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change=DataChange::Replaced) <br>_Advances the data revision and refreshes the data queries. Call after every accepted record change._  |
+| virtual [**InspectionRecord**](structQAccelPlot_1_1InspectionRecord.md) | [**inspectionRecord**](#function-inspectionrecord) (int index) const<br>_Returns the native record at_ _index_ _for series that are not plain XY series. Default: unsupported._ |
+| virtual [**InspectionRecord**](structQAccelPlot_1_1InspectionRecord.md) | [**inspectionRecordAt**](#function-inspectionrecordat) (const QPointF & position) const<br>_Returns the native record drawn at the series-local_ _position_ _. Default: unsupported._ |
+| virtual [**InspectionSource**](structQAccelPlot_1_1InspectionSource.md) | [**inspectionSource**](#function-inspectionsource) () const<br>_Returns a view of the XY records that data point queries search. The default has none._  |
+|  void | [**invalidateDataRanges**](#function-invalidatedataranges) () <br>_Discards the cached extents and notifies the bound axes._  |
+|  void | [**invalidateInspection**](#function-invalidateinspection) () <br>_Refreshes the data queries after record validity changed without a data change, such as an axis scale switch._  |
+|  bool | [**logScaleX**](#function-logscalex) () const<br>_Returns whether the horizontal axis is logarithmic; false without an axis._  |
+|  bool | [**logScaleY**](#function-logscaley) () const<br>_Returns whether the vertical axis is logarithmic; false without an axis._  |
+|  void | [**notifyDataPointsChanged**](#function-notifydatapointschanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change, int previousCount) <br>_Finishes a change of the data points: data ranges,_ `onDataPointsChanged()` _, data queries, and a repaint._ |
+| virtual void | [**onAxisRangeChanged**](#function-onaxisrangechanged) () <br>_Called when the viewport of a bound axis changes. The default implementation schedules a repaint._  |
 | virtual void | [**onAxisScaleChanged**](#function-onaxisscalechanged) () <br>_Called when a bound axis switches between linear and logarithmic scale, or a different axis is bound._  |
-|  QRectF | [**resolvePlotRect**](#function-resolveplotrect) () <br>_Returns the plot area to render into, adopting it from the parent plot if needed._  |
-|  void | [**setDataRanges**](#function-setdataranges) (qreal xMin, qreal xMax, qreal yMin, qreal yMax) <br>_Reports this series' data extents to its bound axes._  |
-|  void | [**setXDataRange**](#function-setxdatarange) (qreal min, qreal max) <br>_Reports this series' X data extent to its bound horizontal axis. Non-finite extents are ignored._  |
-|  void | [**setYDataRange**](#function-setydatarange) (qreal min, qreal max) <br>_Reports this series' Y data extent to its bound vertical axis. Non-finite extents are ignored._  |
+| virtual void | [**onDataPointsChanged**](#function-ondatapointschanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change, int previousCount) <br>_Called after the data points changed, before the data queries are refreshed. The default does nothing._  |
+|  QRectF | [**resolvePlotRect**](#function-resolveplotrect) () const<br>_Returns the plot area to render into:_ `plotRect` _when set, otherwise the item's current size._ |
+|  void | [**storeDataPoints**](#function-storedatapoints) ([**DataPointInput**](structQAccelPlot_1_1PlotSeries_1_1DataPointInput.md) && input) <br>_Stores_ _input_ _as the data points and finishes the change._ |
+|  bool | [**validateDataSize**](#function-validatedatasize) (std::size\_t valueCount, int count, bool floatData, int valuesPerDataPoint=0) const<br>_Returns whether_ _valueCount_ _values hold__count_ _data points; warns otherwise._ |
+|  bool | [**validateRawDataArguments**](#function-validaterawdataarguments) (const void \* data, int count) const<br>_Returns whether_ _data_ _and__count_ _are valid arguments for copying data points; warns otherwise._ |
 
 
 
@@ -167,12 +220,32 @@ flowchart TB
 ## Detailed Description
 
 
-[**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) owns the integration shared by every plot type: axis bindings, plot-area layout, data-range reporting, and legend metadata. Concrete series remain responsible for their data model, rendering, and hit testing.
+[**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) owns the integration shared by every plot type: axis bindings, plot-area layout, data-range reporting, legend metadata, and a common C++ data-setting API backed by the series' data points. Concrete series define their data point layout, rendering, and hit testing.
+
+
+`setData()`, `setDataF()`, and `postData()` take interleaved values, one data point after another, in the layout of the series:
+
+
+
+|Series   |Data point   |Values    |
+|-----|-----|-----|
+|`LineCurve`   |(x, y)   |2    |
+|`PointCloud`   |(x, y)   |2    |
+|`RectangleSeries`   |(x1, y1, x2, y2)   |4    |
+|`BarSeries`   |(position, value)   |2    |
+|`BandSeries`   |(x, low, high)   |3   |
 
 
 
 
-**See also:** [**LineCurve**](classQAccelPlot_1_1LineCurve.md), [**PointCloud**](classQAccelPlot_1_1PointCloud.md), [**RectangleList**](classQAccelPlot_1_1RectangleList.md), [**QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) 
+
+
+The buffer holds _count_ times that many values. Series-specific setters take other layouts, such as point values, categories, or ranged bars.
+
+
+
+
+**See also:** [**LineCurve**](classQAccelPlot_1_1LineCurve.md), [**PointCloud**](classQAccelPlot_1_1PointCloud.md), [**RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md), [**BarSeries**](classQAccelPlot_1_1BarSeries.md), [**BandSeries**](classQAccelPlot_1_1BandSeries.md), [**QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) 
 
 
 
@@ -241,6 +314,36 @@ Every shape except `Pixel` fits within a square whose half-width is the marker s
 <hr>
 ## Public Properties Documentation
 
+
+
+
+
+### property dataRevision {#property-datarevision-12}
+
+_Revision incremented by every accepted change of the series' records._ 
+```C++
+quint64 QAccelPlot::PlotSeries::dataRevision;
+```
+
+
+
+
+<hr>
+
+
+
+
+### property inspection {#property-inspection-12}
+
+_Read-only constant: data queries for this series._ 
+```C++
+QAccelPlot::SeriesInspection* QAccelPlot::PlotSeries::inspection;
+```
+
+
+
+
+<hr>
 
 
 
@@ -322,6 +425,21 @@ Axis* QAccelPlot::PlotSeries::yAxis;
 
 
 
+### signal dataRevisionChanged {#signal-datarevisionchanged}
+
+_Emitted when the dataRevision property changes._ 
+```C++
+void QAccelPlot::PlotSeries::dataRevisionChanged;
+```
+
+
+
+
+<hr>
+
+
+
+
 ### signal legendSymbolChanged {#signal-legendsymbolchanged}
 
 ```C++
@@ -378,40 +496,10 @@ void QAccelPlot::PlotSeries::xAxisChanged;
 
 
 
-### signal xDataRangeChanged {#signal-xdatarangechanged}
-
-_Emitted when the X data extent of this series changes._ 
-```C++
-void QAccelPlot::PlotSeries::xDataRangeChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
 ### signal yAxisChanged {#signal-yaxischanged}
 
 ```C++
 void QAccelPlot::PlotSeries::yAxisChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
-### signal yDataRangeChanged {#signal-ydatarangechanged}
-
-_Emitted when the Y data extent of this series changes._ 
-```C++
-void QAccelPlot::PlotSeries::yDataRangeChanged;
 ```
 
 
@@ -424,12 +512,57 @@ void QAccelPlot::PlotSeries::yDataRangeChanged;
 
 
 
-### function PlotSeries {#function-plotseries}
+### function PlotSeries {#function-plotseries-12}
 
 ```C++
 explicit QAccelPlot::PlotSeries::PlotSeries (
     QQuickItem * parent=nullptr
 ) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function clearData {#function-cleardata}
+
+_Removes all data points from the series._ 
+```C++
+virtual void QAccelPlot::PlotSeries::clearData () 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function dataRevision {#function-datarevision-22}
+
+_Returns the current data revision._ 
+```C++
+quint64 QAccelPlot::PlotSeries::dataRevision () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function inspection {#function-inspection-22}
+
+_Returns the data queries for this series; created on first use and owned by the series._ 
+```C++
+SeriesInspection * QAccelPlot::PlotSeries::inspection () const
 ```
 
 
@@ -472,6 +605,194 @@ QString QAccelPlot::PlotSeries::name () const
 
 ```C++
 QRectF QAccelPlot::PlotSeries::plotRect () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function postData {#function-postdata-12}
+
+_Queues a moved double buffer for assignment on the series' thread._ 
+```C++
+void QAccelPlot::PlotSeries::postData (
+    std::vector< double > && data,
+    int count
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function postData {#function-postdata-22}
+
+_Queues a moved float buffer for assignment on the series' thread._ 
+```C++
+void QAccelPlot::PlotSeries::postData (
+    std::vector< float > && data,
+    int count
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setData {#function-setdata-14}
+
+_Replaces the series data with_ _count_ _data points copied from an interleaved double array._
+```C++
+void QAccelPlot::PlotSeries::setData (
+    const double * data,
+    int count
+) 
+```
+
+
+
+See the class description for the data point layout of each series. 
+
+
+        
+
+<hr>
+
+
+
+
+### function setData {#function-setdata-24}
+
+_Replaces the series data by moving an interleaved double buffer._ 
+```C++
+void QAccelPlot::PlotSeries::setData (
+    std::vector< double > && data,
+    int count
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setData {#function-setdata-34}
+
+_Like_ `setData` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._
+```C++
+void QAccelPlot::PlotSeries::setData (
+    const double * data,
+    int count,
+    const DataBounds & bounds
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setData {#function-setdata-44}
+
+_Like_ `setData` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._
+```C++
+void QAccelPlot::PlotSeries::setData (
+    std::vector< double > && data,
+    int count,
+    const DataBounds & bounds
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setDataF {#function-setdataf-14}
+
+_Replaces the series data with_ _count_ _data points copied from an interleaved float array._
+```C++
+void QAccelPlot::PlotSeries::setDataF (
+    const float * data,
+    int count
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setDataF {#function-setdataf-24}
+
+_Replaces the series data by moving an interleaved float buffer._ 
+```C++
+void QAccelPlot::PlotSeries::setDataF (
+    std::vector< float > && data,
+    int count
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setDataF {#function-setdataf-34}
+
+_Like_ `setDataF` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._
+```C++
+void QAccelPlot::PlotSeries::setDataF (
+    const float * data,
+    int count,
+    const DataBounds & bounds
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setDataF {#function-setdataf-44}
+
+_Like_ `setDataF` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._
+```C++
+void QAccelPlot::PlotSeries::setDataF (
+    std::vector< float > && data,
+    int count,
+    const DataBounds & bounds
+) 
 ```
 
 
@@ -577,10 +898,78 @@ Axis * QAccelPlot::PlotSeries::xAxis () const
 
 
 
+### function xDataRange {#function-xdatarange}
+
+_Returns the extent this series reports to its horizontal axis, or_ `std::nullopt` _when it has none._
+```C++
+std::optional< DataExtent > QAccelPlot::PlotSeries::xDataRange () const
+```
+
+
+
+The first read after a data update scans the records, unless the update came with `DataBounds`. 
+
+
+        
+
+<hr>
+
+
+
+
 ### function yAxis {#function-yaxis-22}
 
 ```C++
 Axis * QAccelPlot::PlotSeries::yAxis () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function yDataRange {#function-ydatarange}
+
+_Returns the extent this series reports to its vertical axis, or_ `std::nullopt` _when it has none._
+```C++
+std::optional< DataExtent > QAccelPlot::PlotSeries::yDataRange () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function ~PlotSeries {#function-plotseries}
+
+```C++
+QAccelPlot::PlotSeries::~PlotSeries () override
+```
+
+
+
+
+<hr>
+## Protected Types Documentation
+
+
+
+
+
+### enum DataChange {#enum-datachange}
+
+_How the records changed in a data update._ 
+```C++
+enum QAccelPlot::PlotSeries::DataChange {
+    Replaced,
+    Appended
+};
 ```
 
 
@@ -593,11 +982,15 @@ Axis * QAccelPlot::PlotSeries::yAxis () const
 
 
 
-### function clearDataRanges {#function-cleardataranges}
+### function PlotSeries {#function-plotseries-22}
 
-_Clears cached extents after a series has been emptied._ 
+_Creates a series whose data points have_ _layout_ _;__wording_ _names them in warnings._
 ```C++
-void QAccelPlot::PlotSeries::clearDataRanges () 
+QAccelPlot::PlotSeries::PlotSeries (
+    DataPointStore::Layout layout,
+    DataPointWording wording,
+    QQuickItem * parent
+) 
 ```
 
 
@@ -608,11 +1001,13 @@ void QAccelPlot::PlotSeries::clearDataRanges ()
 
 
 
-### function clearXDataRange {#function-clearxdatarange}
+### function appendDataPoint {#function-appenddatapoint}
 
-_Clears the cached X extent, e.g. when no sample has a valid X coordinate._ 
+_Appends one double data point and widens the data ranges by its valid coordinates._ 
 ```C++
-void QAccelPlot::PlotSeries::clearXDataRange () 
+void QAccelPlot::PlotSeries::appendDataPoint (
+    const double * coordinates
+) 
 ```
 
 
@@ -623,15 +1018,110 @@ void QAccelPlot::PlotSeries::clearXDataRange ()
 
 
 
-### function clearYDataRange {#function-clearydatarange}
+### function applyDataPoints {#function-applydatapoints}
 
-_Clears the cached Y extent, e.g. when no sample has a valid Y coordinate._ 
+_Applies data points passed to_ `setData()` _or_`setDataF()` _._
 ```C++
-void QAccelPlot::PlotSeries::clearYDataRange () 
+virtual void QAccelPlot::PlotSeries::applyDataPoints (
+    DataPointInput && input
+) 
 ```
 
 
 
+The default stores them; series that animate data changes override it. 
+
+
+        
+
+<hr>
+
+
+
+
+### function computeDataRanges {#function-computedataranges}
+
+_Scans the records for their extents. The default implementation scans the data points._ 
+```C++
+virtual DataRanges QAccelPlot::PlotSeries::computeDataRanges () const
+```
+
+
+
+Called when a data range is read after `invalidateDataRanges()`, so a series that nothing asks for its range never scans. 
+
+
+        
+
+<hr>
+
+
+
+
+### function dataPointValueCount {#function-datapointvaluecount}
+
+_Returns the number of values per data point that_ `setData()` _and_`setDataF()` _take._
+```C++
+virtual int QAccelPlot::PlotSeries::dataPointValueCount () const
+```
+
+
+
+The default is one per coordinate column. 
+
+
+        
+
+<hr>
+
+
+
+
+### function dataPoints {#function-datapoints-12}
+
+_Returns the data points of the series._ 
+```C++
+DataPointStore & QAccelPlot::PlotSeries::dataPoints () 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function dataPoints {#function-datapoints-22}
+
+_Returns the data points of the series._ 
+```C++
+const DataPointStore & QAccelPlot::PlotSeries::dataPoints () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function event {#function-event}
+
+_Withholds hover events from a series beneath another series under the cursor._ 
+```C++
+bool QAccelPlot::PlotSeries::event (
+    QEvent * event
+) override
+```
+
+
+
+Series ignore hover events so that the plot receives them too. Qt Quick 6.3 and newer stop at the topmost hovered item anyway; older versions also deliver the event to the series beneath, which then see a hover leave instead. 
+
+
+        
 
 <hr>
 
@@ -640,7 +1130,7 @@ void QAccelPlot::PlotSeries::clearYDataRange ()
 
 ### function extendXDataRange {#function-extendxdatarange}
 
-_Widens the reported X extent to include_ _x_ _._
+_Widens the X extent to include_ _x_ _and notifies the bound axes._
 ```C++
 void QAccelPlot::PlotSeries::extendXDataRange (
     qreal x
@@ -649,7 +1139,7 @@ void QAccelPlot::PlotSeries::extendXDataRange (
 
 
 
-Lets an append-style ingestion path update the range in O(1) instead of rescanning the whole buffer. A non-finite _x_ leaves the extent unchanged. 
+Lets an append-style ingestion path keep computed extents current in O(1) instead of rescanning the whole buffer. A non-finite _x_ leaves the extent unchanged. 
 
 
         
@@ -661,11 +1151,189 @@ Lets an append-style ingestion path update the range in O(1) instead of rescanni
 
 ### function extendYDataRange {#function-extendydatarange}
 
-_Widens the reported Y extent to include_ _y_ _. A non-finite__y_ _leaves the extent unchanged._
+_Widens the Y extent to include_ _y_ _. A non-finite__y_ _leaves the extent unchanged._
 ```C++
 void QAccelPlot::PlotSeries::extendYDataRange (
     qreal y
 ) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function inspectionAvailable {#function-inspectionavailable}
+
+_Returns false while the records are ambiguous, such as during a data transition. Default: true._ 
+```C++
+virtual bool QAccelPlot::PlotSeries::inspectionAvailable () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function inspectionDataChanged {#function-inspectiondatachanged}
+
+_Advances the data revision and refreshes the data queries. Call after every accepted record change._ 
+```C++
+void QAccelPlot::PlotSeries::inspectionDataChanged (
+    DataChange change=DataChange::Replaced
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function inspectionRecord {#function-inspectionrecord}
+
+_Returns the native record at_ _index_ _for series that are not plain XY series. Default: unsupported._
+```C++
+virtual InspectionRecord QAccelPlot::PlotSeries::inspectionRecord (
+    int index
+) const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function inspectionRecordAt {#function-inspectionrecordat}
+
+_Returns the native record drawn at the series-local_ _position_ _. Default: unsupported._
+```C++
+virtual InspectionRecord QAccelPlot::PlotSeries::inspectionRecordAt (
+    const QPointF & position
+) const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function inspectionSource {#function-inspectionsource}
+
+_Returns a view of the XY records that data point queries search. The default has none._ 
+```C++
+virtual InspectionSource QAccelPlot::PlotSeries::inspectionSource () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function invalidateDataRanges {#function-invalidatedataranges}
+
+_Discards the cached extents and notifies the bound axes._ 
+```C++
+void QAccelPlot::PlotSeries::invalidateDataRanges () 
+```
+
+
+
+Call after every change of the records, or of anything else `computeDataRanges()` depends on. 
+
+
+        
+
+<hr>
+
+
+
+
+### function invalidateInspection {#function-invalidateinspection}
+
+_Refreshes the data queries after record validity changed without a data change, such as an axis scale switch._ 
+```C++
+void QAccelPlot::PlotSeries::invalidateInspection () 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function logScaleX {#function-logscalex}
+
+_Returns whether the horizontal axis is logarithmic; false without an axis._ 
+```C++
+bool QAccelPlot::PlotSeries::logScaleX () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function logScaleY {#function-logscaley}
+
+_Returns whether the vertical axis is logarithmic; false without an axis._ 
+```C++
+bool QAccelPlot::PlotSeries::logScaleY () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function notifyDataPointsChanged {#function-notifydatapointschanged}
+
+_Finishes a change of the data points: data ranges,_ `onDataPointsChanged()` _, data queries, and a repaint._
+```C++
+void QAccelPlot::PlotSeries::notifyDataPointsChanged (
+    DataChange change,
+    int previousCount
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function onAxisRangeChanged {#function-onaxisrangechanged}
+
+_Called when the viewport of a bound axis changes. The default implementation schedules a repaint._ 
+```C++
+virtual void QAccelPlot::PlotSeries::onAxisRangeChanged () 
 ```
 
 
@@ -685,10 +1353,28 @@ virtual void QAccelPlot::PlotSeries::onAxisScaleChanged ()
 
 
 
-Log scale changes which samples are valid, so series that apply the invalid-sample contract override this to refresh ranges and cached geometry. The default implementation does nothing. 
+Log scale changes which data points are valid. The data ranges of a changed scale are already invalidated; series override this to refresh cached geometry. The default implementation does nothing. 
 
 
         
+
+<hr>
+
+
+
+
+### function onDataPointsChanged {#function-ondatapointschanged}
+
+_Called after the data points changed, before the data queries are refreshed. The default does nothing._ 
+```C++
+virtual void QAccelPlot::PlotSeries::onDataPointsChanged (
+    DataChange change,
+    int previousCount
+) 
+```
+
+
+
 
 <hr>
 
@@ -697,14 +1383,14 @@ Log scale changes which samples are valid, so series that apply the invalid-samp
 
 ### function resolvePlotRect {#function-resolveplotrect}
 
-_Returns the plot area to render into, adopting it from the parent plot if needed._ 
+_Returns the plot area to render into:_ `plotRect` _when set, otherwise the item's current size._
 ```C++
-QRectF QAccelPlot::PlotSeries::resolvePlotRect () 
+QRectF QAccelPlot::PlotSeries::resolvePlotRect () const
 ```
 
 
 
-Normally `plotRect` has already been assigned, and this just returns it. A series constructed in C++ with the plot as its parent is added before its own constructor runs, so the plot cannot assign `plotRect` at that point; calling this from `updatePaintNode` adopts the plot area lazily. Without a parent plot, returns the current size. 
+Safe to call from `updatePaintNode()`; it never modifies the item. 
 
 
         
@@ -714,15 +1400,12 @@ Normally `plotRect` has already been assigned, and this just returns it. A serie
 
 
 
-### function setDataRanges {#function-setdataranges}
+### function storeDataPoints {#function-storedatapoints}
 
-_Reports this series' data extents to its bound axes._ 
+_Stores_ _input_ _as the data points and finishes the change._
 ```C++
-void QAccelPlot::PlotSeries::setDataRanges (
-    qreal xMin,
-    qreal xMax,
-    qreal yMin,
-    qreal yMax
+void QAccelPlot::PlotSeries::storeDataPoints (
+    DataPointInput && input
 ) 
 ```
 
@@ -734,32 +1417,38 @@ void QAccelPlot::PlotSeries::setDataRanges (
 
 
 
-### function setXDataRange {#function-setxdatarange}
+### function validateDataSize {#function-validatedatasize}
 
-_Reports this series' X data extent to its bound horizontal axis. Non-finite extents are ignored._ 
+_Returns whether_ _valueCount_ _values hold__count_ _data points; warns otherwise._
 ```C++
-void QAccelPlot::PlotSeries::setXDataRange (
-    qreal min,
-    qreal max
-) 
+bool QAccelPlot::PlotSeries::validateDataSize (
+    std::size_t valueCount,
+    int count,
+    bool floatData,
+    int valuesPerDataPoint=0
+) const
 ```
 
 
 
+A data point has _valuesPerDataPoint_ values, or one per coordinate column when it is 0. 
+
+
+        
 
 <hr>
 
 
 
 
-### function setYDataRange {#function-setydatarange}
+### function validateRawDataArguments {#function-validaterawdataarguments}
 
-_Reports this series' Y data extent to its bound vertical axis. Non-finite extents are ignored._ 
+_Returns whether_ _data_ _and__count_ _are valid arguments for copying data points; warns otherwise._
 ```C++
-void QAccelPlot::PlotSeries::setYDataRange (
-    qreal min,
-    qreal max
-) 
+bool QAccelPlot::PlotSeries::validateRawDataArguments (
+    const void * data,
+    int count
+) const
 ```
 
 

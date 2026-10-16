@@ -44,7 +44,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| class | [**DrawTransition**](classQAccelPlot_1_1DrawTransition.md) <br>_An animation transition that reveals the target curve by drawing it point-by-point from start to end._  |
+| class | [**DrawTransition**](classQAccelPlot_1_1DrawTransition.md) <br>_An animation transition that reveals the target data point by point from start to end._  |
 
 
 

@@ -23,7 +23,7 @@
 
 namespace QAccelPlot {
 
-struct SampleRun {
+struct DataPointRun {
     int start; 
     int count; 
 };
@@ -32,18 +32,11 @@ namespace LineCurveGapFilter {
 
 [[nodiscard]] bool isValidPoint(const CurveDataView& data, int index, bool logScaleX, bool logScaleY);
 
-[[nodiscard]] int countInvalidPoints(const CurveDataView& data, int pointCount, bool logScaleX, bool logScaleY);
+[[nodiscard]] std::vector<DataPointRun> findValidRuns(const CurveDataView& data, int pointCount, bool logScaleX, bool logScaleY);
 
-[[nodiscard]] std::vector<SampleRun> findValidRuns(const CurveDataView& data, int pointCount, bool logScaleX, bool logScaleY);
+[[nodiscard]] std::vector<int> planRunSampling(const std::vector<DataPointRun>& runs, int maxSampledPoints);
 
-[[nodiscard]] std::vector<int> planRunSampling(const std::vector<SampleRun>& runs, int maxSampledPoints);
-
-[[nodiscard]] int sampledSourceIndex(const SampleRun& run, int sampleIndex, int sampledCount);
-
-int compactValidPoints(const std::vector<float>& data, int pointCount, bool logScaleX, bool logScaleY, std::vector<float>& output);
-
-int compactValidPoints(const std::vector<double>& data, const std::vector<float>& renderData, int pointCount, bool logScaleX, bool logScaleY,
-    std::vector<double>& output, std::vector<float>& renderOutput);
+void appendEnvelopeSamples(const CurveDataView& data, const DataPointRun& run, int sampledCount, std::vector<int>& indices);
 
 } // namespace LineCurveGapFilter
 

@@ -47,7 +47,7 @@ _Render-thread snapshot of gradient fill (area-under-curve) parameters._ [More..
 | ---: | :--- |
 |  [**GradientFillBaseline**](namespaceQAccelPlot_1_1GradientFillBaselineNS.md#enum-mode) | [**baseline**](#variable-baseline)   = `{GradientFillBaseline::AxisMinimum}`<br>_Baseline mode._  |
 |  qreal | [**baselineValue**](#variable-baselinevalue)   = `{0.0}`<br>_Fixed baseline data value when mode is_ `Value` _._ |
-|  [**GradientDirection**](namespaceQAccelPlot_1_1GradientDirectionNS.md#enum-direction) | [**direction**](#variable-direction)   = `{GradientDirection::Horizontal}`<br>_Gradient direction._  |
+|  Qt::Orientation | [**direction**](#variable-direction)   = `{Qt::Horizontal}`<br>_Gradient direction._  |
 |  bool | [**enabled**](#variable-enabled)   = `{false}`<br>`true` _when gradient fill is active._ |
 |  std::optional&lt; qreal &gt; | [**gradientValueMax**](#variable-gradientvaluemax)  <br>_Fixed max for gradient normalisation;_ `std::nullopt` _= derived from data range._ |
 |  std::optional&lt; qreal &gt; | [**gradientValueMin**](#variable-gradientvaluemin)  <br>_Fixed min for gradient normalisation;_ `std::nullopt` _= derived from data range._ |
@@ -149,7 +149,7 @@ qreal QAccelPlot::GradientFillPayload::baselineValue;
 
 _Gradient direction._ 
 ```C++
-GradientDirection QAccelPlot::GradientFillPayload::direction;
+Qt::Orientation QAccelPlot::GradientFillPayload::direction;
 ```
 
 

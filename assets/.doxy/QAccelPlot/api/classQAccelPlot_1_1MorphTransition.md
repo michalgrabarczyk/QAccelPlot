@@ -87,7 +87,7 @@ See [QAccelPlot::DataTransition](classQAccelPlot_1_1DataTransition.md)
 | property QML\_ANONYMOUSint | [**duration**](classQAccelPlot_1_1DataTransition.md#property-duration-12)  <br>_Duration of the transition in milliseconds. Default: 300._  |
 | property QEasingCurve | [**easing**](classQAccelPlot_1_1DataTransition.md#property-easing-12)  <br>_Easing curve applied to the animation progress. Default:_ `QEasingCurve::Linear` _._ |
 | property bool | [**enabled**](classQAccelPlot_1_1DataTransition.md#property-enabled-12)  <br>_Whether the transition is active. When_ `false` _, data updates are applied instantly._ |
-| property bool | [**running**](classQAccelPlot_1_1DataTransition.md#property-running-12)  <br>_Read-only:_ `true` _while the transition is playing._ |
+| property bool | [**running**](classQAccelPlot_1_1DataTransition.md#property-running-12)  <br>_Read-only:_ `true` _while the transition is playing on at least one element._ |
 
 
 
@@ -126,23 +126,24 @@ See [QAccelPlot::DataTransition](classQAccelPlot_1_1DataTransition.md)
 | Type | Name |
 | ---: | :--- |
 |   | [**DataTransition**](classQAccelPlot_1_1DataTransition.md#function-datatransition) (QObject \* parent=nullptr) <br>_Constructs an_ [_**DataTransition**_](classQAccelPlot_1_1DataTransition.md) _with the given__parent_ _._ |
-|  bool | [**advance**](classQAccelPlot_1_1DataTransition.md#function-advance) (std::vector&lt; double &gt; & outData, int & outPointCount) <br>_Advances the animation by one frame, writing the interpolated data into_ _outData_ _._ |
-|  void | [**cancel**](classQAccelPlot_1_1DataTransition.md#function-cancel) () <br>_Cancels the running transition immediately._  |
+|  bool | [**advance**](classQAccelPlot_1_1DataTransition.md#function-advance) ([**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md) & run, std::vector&lt; double &gt; & outData, int & outPointCount) <br>_Advances_ _run_ _by one frame, writing the interpolated data into__outData_ _._ |
+|  void | [**cancel**](classQAccelPlot_1_1DataTransition.md#function-cancel) () <br>_Ends every active run immediately._  |
 |  int | [**duration**](classQAccelPlot_1_1DataTransition.md#function-duration-22) () const<br>_Returns the animation duration in milliseconds._  |
 |  QEasingCurve | [**easing**](classQAccelPlot_1_1DataTransition.md#function-easing-22) () const<br>_Returns the easing curve._  |
 |  bool | [**enabled**](classQAccelPlot_1_1DataTransition.md#function-enabled-22) () const<br>_Returns_ `true` _if the transition is enabled._ |
-|  bool | [**running**](classQAccelPlot_1_1DataTransition.md#function-running-22) () const<br>_Returns_ `true` _while a transition is actively playing._ |
+|  bool | [**running**](classQAccelPlot_1_1DataTransition.md#function-running-22) () const<br>_Returns_ `true` _while at least one run is active._ |
 |  void | [**setDuration**](classQAccelPlot_1_1DataTransition.md#function-setduration) (int duration) <br>_Sets the animation duration to_ _duration_ _milliseconds._ |
 |  void | [**setEasing**](classQAccelPlot_1_1DataTransition.md#function-seteasing) (const QEasingCurve & easing) <br>_Sets the easing curve to_ _easing_ _._ |
 |  void | [**setEnabled**](classQAccelPlot_1_1DataTransition.md#function-setenabled) (bool enabled) <br>_Sets the enabled state to_ _enabled_ _._ |
-|  void | [**start**](classQAccelPlot_1_1DataTransition.md#function-start) (const std::vector&lt; double &gt; & currentData, int currentPointCount, std::vector&lt; double &gt; && newData, int newPointCount) <br>_Starts a new transition from_ _currentData_ _to__newData_ _._ |
+|  void | [**start**](classQAccelPlot_1_1DataTransition.md#function-start) ([**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md) & run, const std::vector&lt; double &gt; & currentData, int currentPointCount, std::vector&lt; double &gt; && newData, int newPointCount, int stride=2) <br>_Starts_ _run_ _from__currentData_ _to__newData_ _, restarting it if it is already active._ |
+|   | [**~DataTransition**](classQAccelPlot_1_1DataTransition.md#function-datatransition) () override<br>_Destroys the transition. Its runs stay pending, so their hosts can still show the target data._  |
 
 
 ## Public Static Functions
 
 | Type | Name |
 | ---: | :--- |
-|  double | [**interpolateCoordinate**](#function-interpolatecoordinate) (double from, double to, double easedProgress) <br>_Returns the coordinate between_ _from_ _and__to_ _at__easedProgress_ _, honoring the invalid-sample contract._ |
+|  double | [**interpolateCoordinate**](#function-interpolatecoordinate) (double from, double to, double easedProgress) <br>_Returns the coordinate between_ _from_ _and__to_ _at__easedProgress_ _, honoring the invalid-data-point contract._ |
 
 
 
@@ -191,7 +192,7 @@ See [QAccelPlot::DataTransition](classQAccelPlot_1_1DataTransition.md)
 
 | Type | Name |
 | ---: | :--- |
-| virtual void | [**interpolate**](#function-interpolate) (double easedProgress, const std::vector&lt; double &gt; & fromData, int fromPointCount, const std::vector&lt; double &gt; & toData, int toPointCount, std::vector&lt; double &gt; & outData, int & outPointCount) override<br>_Interpolates point positions between the two datasets at_ _easedProgress_ _(0–1)._ |
+| virtual void | [**interpolate**](#function-interpolate) (double easedProgress, const [**Dataset**](structQAccelPlot_1_1DataTransition_1_1Dataset.md) & from, const [**Dataset**](structQAccelPlot_1_1DataTransition_1_1Dataset.md) & to, [**Dataset**](structQAccelPlot_1_1DataTransition_1_1Dataset.md) & out) override<br>_Interpolates every value of every point between_ _from_ _and__to_ _at__easedProgress_ _._ |
 
 
 ## Protected Functions inherited from QAccelPlot::DataTransition
@@ -200,7 +201,7 @@ See [QAccelPlot::DataTransition](classQAccelPlot_1_1DataTransition.md)
 
 | Type | Name |
 | ---: | :--- |
-| virtual void | [**interpolate**](classQAccelPlot_1_1DataTransition.md#function-interpolate) (double easedProgress, const std::vector&lt; double &gt; & fromData, int fromPointCount, const std::vector&lt; double &gt; & toData, int toPointCount, std::vector&lt; double &gt; & outData, int & outPointCount) = 0<br>_Subclass entry point — computes the interpolated dataset at_ _easedProgress_ _(0–1)._ |
+| virtual void | [**interpolate**](classQAccelPlot_1_1DataTransition.md#function-interpolate) (double easedProgress, const [**Dataset**](structQAccelPlot_1_1DataTransition_1_1Dataset.md) & from, const [**Dataset**](structQAccelPlot_1_1DataTransition_1_1Dataset.md) & to, [**Dataset**](structQAccelPlot_1_1DataTransition_1_1Dataset.md) & out) = 0<br>_Subclass entry point — writes the dataset between_ _from_ _and__to_ _at__easedProgress_ _into__out_ _._ |
 
 
 
@@ -210,7 +211,7 @@ See [QAccelPlot::DataTransition](classQAccelPlot_1_1DataTransition.md)
 ## Detailed Description
 
 
-Each point is linearly blended from its old position to its new position. When the point counts differ, the shorter dataset is resampled to match. Non-finite coordinates are never interpolated: an invalid target coordinate is applied immediately, and a valid target coordinate replaces an invalid source coordinate without animation.
+Each point is linearly blended from its old position to its new position. When the point counts differ, the extra points start from, or end on, the last point of the shorter dataset. `BarSeries` grows and shrinks such bars at its baseline instead, and `PointCloud` shows or removes such points at once. Non-finite coordinates are never interpolated: an invalid target coordinate is applied immediately, and a valid target coordinate replaces an invalid source coordinate without animation.
 
 
 
@@ -247,7 +248,7 @@ explicit QAccelPlot::MorphTransition::MorphTransition (
 
 ### function interpolateCoordinate {#function-interpolatecoordinate}
 
-_Returns the coordinate between_ _from_ _and__to_ _at__easedProgress_ _, honoring the invalid-sample contract._
+_Returns the coordinate between_ _from_ _and__to_ _at__easedProgress_ _, honoring the invalid-data-point contract._
 ```C++
 static double QAccelPlot::MorphTransition::interpolateCoordinate (
     double from,
@@ -268,16 +269,13 @@ static double QAccelPlot::MorphTransition::interpolateCoordinate (
 
 ### function interpolate {#function-interpolate}
 
-_Interpolates point positions between the two datasets at_ _easedProgress_ _(0–1)._
+_Interpolates every value of every point between_ _from_ _and__to_ _at__easedProgress_ _._
 ```C++
 virtual void QAccelPlot::MorphTransition::interpolate (
     double easedProgress,
-    const std::vector< double > & fromData,
-    int fromPointCount,
-    const std::vector< double > & toData,
-    int toPointCount,
-    std::vector< double > & outData,
-    int & outPointCount
+    const Dataset & from,
+    const Dataset & to,
+    Dataset & out
 ) override
 ```
 

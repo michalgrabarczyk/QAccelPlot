@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1DataTransition_1_1Dataset" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::DataTransition::Dataset</compoundname>
+    <includes local="no">DataTransition.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1DataTransition_1_1Dataset_1a33f96e4a735e224ffcacdeb67f1d1445" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; QAccelPlot::DataTransition::Dataset::values</definition>
+        <argsstring></argsstring>
+        <name>values</name>
+        <qualifiedname>QAccelPlot::DataTransition::Dataset::values</qualifiedname>
+        <briefdescription>
+<para>The values, item after item. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="48" column="21" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1DataTransition_1_1Dataset_1a692985547f85437613de009447ad570b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::DataTransition::Dataset::count</definition>
+        <argsstring></argsstring>
+        <name>count</name>
+        <qualifiedname>QAccelPlot::DataTransition::Dataset::count</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+<para>Number of items in <computeroutput>values</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="50" column="13" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="50" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1DataTransition_1_1Dataset_1a36d1a57a6e87f13544aed1bc89e13f51" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::DataTransition::Dataset::stride</definition>
+        <argsstring></argsstring>
+        <name>stride</name>
+        <qualifiedname>QAccelPlot::DataTransition::Dataset::stride</qualifiedname>
+        <initializer>{2}</initializer>
+        <briefdescription>
+<para>Number of values per item. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="52" column="13" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="52" bodyend="52"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Data a transition animates: <computeroutput>count</computeroutput> items of <computeroutput>stride</computeroutput> values each, e.g. XY points with a stride of 2. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="46" column="5" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="46" bodyend="53"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1DataTransition_1_1Dataset_1a692985547f85437613de009447ad570b" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition::Dataset</scope><name>count</name></member>
+      <member refid="structQAccelPlot_1_1DataTransition_1_1Dataset_1a36d1a57a6e87f13544aed1bc89e13f51" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition::Dataset</scope><name>stride</name></member>
+      <member refid="structQAccelPlot_1_1DataTransition_1_1Dataset_1a33f96e4a735e224ffcacdeb67f1d1445" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition::Dataset</scope><name>values</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,211 @@
+
+
+# File QAccelPlot.hpp
+
+[**File List**](files.md) **>** [**QAccelPlot**](dir_84505bf06e96cd50072ae15b96eb466a.md) **>** [**src**](dir_3588d0448386bbe164b4703bb7530415.md) **>** [**QAccelPlot**](dir_0cbea278626d30118177d562182e643b.md) **>** [**QAccelPlot.hpp**](QAccelPlot_8hpp.md)
+
+[Go to the documentation of this file](QAccelPlot_8hpp.md)
+
+
+```C++
+//
+// SPDX-FileCopyrightText: 2026 Michal Grabarczyk
+// SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
+//
+// This file is also available under a separate commercial license.
+// See COMMERCIAL-LICENSING.md for contact information.
+//
+#pragma once
+
+#include "QAccelPlot/PlotBorder.hpp"
+#include "QAccelPlot/PlotDragRect.hpp"
+#include "QAccelPlot/PlotMouseEvent.hpp"
+#include "QAccelPlot/PlotRectangleZoom.hpp"
+#include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/grid/Grid.hpp"
+#include "QAccelPlot/series/PlotSeries.hpp"
+#include "QAccelPlot/theme/ColorPalette.hpp"
+
+#include <QColor>
+#include <QKeyEvent>
+#include <QPointF>
+#include <QQmlListProperty>
+#include <QQuickItem>
+#include <QRectF>
+
+#include <optional>
+
+namespace QAccelPlot {
+
+class GridNode;
+class RectangleZoomOverlay;
+
+class QAccelPlot : public QQuickItem {
+    Q_OBJECT
+    QML_NAMED_ELEMENT(PlotView)
+
+    
+    Q_PROPERTY(Axis* xAxis READ xAxis WRITE setXAxis NOTIFY xAxisChanged)
+    Q_PROPERTY(Axis* yAxis READ yAxis WRITE setYAxis NOTIFY yAxisChanged)
+    Q_PROPERTY(Axis* x2Axis READ x2Axis WRITE setX2Axis NOTIFY x2AxisChanged)
+    Q_PROPERTY(Axis* y2Axis READ y2Axis WRITE setY2Axis NOTIFY y2AxisChanged)
+    Q_PROPERTY(QQmlListProperty<Axis> extraAxes READ extraAxes)
+    Q_PROPERTY(qreal padding READ padding WRITE setPadding NOTIFY paddingChanged)
+    Q_PROPERTY(QRectF plotRect READ plotRect NOTIFY plotRectChanged)
+    Q_PROPERTY(QColor plotAreaColor READ plotAreaColor WRITE setPlotAreaColor NOTIFY plotAreaColorChanged)
+    Q_PROPERTY(QColor axesAreaColor READ axesAreaColor WRITE setAxesAreaColor NOTIFY axesAreaColorChanged)
+    Q_PROPERTY(PlotBorder* border READ border CONSTANT)
+    Q_PROPERTY(PlotRectangleZoom* rectangleZoom READ rectangleZoom CONSTANT)
+    Q_PROPERTY(Grid* grid READ grid CONSTANT)
+    Q_PROPERTY(QList<PlotSeries*> series READ series NOTIFY seriesChanged)
+    Q_PROPERTY(QQuickItem* overlay READ overlay CONSTANT)
+
+    
+    Q_PROPERTY(QPointF pointerPosition READ pointerPosition NOTIFY pointerChanged)
+    Q_PROPERTY(bool pointerInside READ pointerInside NOTIFY pointerChanged)
+
+public:
+    explicit QAccelPlot(QQuickItem* parent = nullptr);
+    ~QAccelPlot() override;
+
+    Q_INVOKABLE qreal dataToPixelX(qreal dataValue) const;
+    Q_INVOKABLE qreal dataToPixelY(qreal dataValue) const;
+    Q_INVOKABLE qreal pixelToDataX(qreal pixelX) const;
+    Q_INVOKABLE qreal pixelToDataY(qreal pixelY) const;
+    Q_INVOKABLE bool isInsidePlotArea(qreal x, qreal y) const;
+    Q_INVOKABLE bool zoomToRect(const QRectF& rect);
+    Q_INVOKABLE void rescaleAllAxes();
+
+    QPointF pointerPosition() const;
+    bool pointerInside() const;
+
+    Axis* xAxis() const;
+    void setXAxis(Axis* axis);
+
+    Axis* yAxis() const;
+    void setYAxis(Axis* axis);
+
+    Axis* x2Axis() const;
+    void setX2Axis(Axis* axis);
+
+    Axis* y2Axis() const;
+    void setY2Axis(Axis* axis);
+
+    QQmlListProperty<Axis> extraAxes();
+
+    qreal padding() const;
+    void setPadding(qreal p);
+
+    QRectF plotRect() const;
+
+    QColor plotAreaColor() const;
+    void setPlotAreaColor(const QColor& c);
+
+    QColor axesAreaColor() const;
+    void setAxesAreaColor(const QColor& c);
+
+    PlotBorder* border() const;
+
+    PlotRectangleZoom* rectangleZoom() const;
+
+    Grid* grid() const;
+
+    QList<PlotSeries*> series() const;
+
+    QQuickItem* overlay() const;
+
+signals:
+    void pointerChanged();
+    void escapePressed();
+    void pointerGrabLost();
+    void xAxisChanged();
+    void yAxisChanged();
+    void x2AxisChanged();
+    void y2AxisChanged();
+    void paddingChanged();
+    void plotRectChanged();
+    void plotAreaColorChanged();
+    void axesAreaColorChanged();
+    void seriesChanged();
+    void mousePressed(::QAccelPlot::PlotMouseEvent* event);
+    void mouseReleased(::QAccelPlot::PlotMouseEvent* event);
+    void mouseDoubleClicked(::QAccelPlot::PlotMouseEvent* event);
+    void mouseMoved(::QAccelPlot::PlotMouseEvent* event);
+
+protected:
+    void wheelEvent(QWheelEvent* event) override;
+    void mousePressEvent(QMouseEvent* event) override;
+    void hoverEnterEvent(QHoverEvent* event) override;
+    void hoverMoveEvent(QHoverEvent* event) override;
+    void hoverLeaveEvent(QHoverEvent* event) override;
+    void mouseMoveEvent(QMouseEvent* event) override;
+    void mouseReleaseEvent(QMouseEvent* event) override;
+    void mouseUngrabEvent() override;
+    void focusOutEvent(QFocusEvent* event) override;
+    void mouseDoubleClickEvent(QMouseEvent* event) override;
+    void keyPressEvent(QKeyEvent* event) override;
+    void geometryChange(const QRectF& newGeometry, const QRectF& oldGeometry) override; 
+    void itemChange(ItemChange change, const ItemChangeData& value) override;
+    QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*) override;
+
+private:
+    enum class DragMode { Idle, Pan, RectangleZoom };
+    bool isAxisRegistered(Axis* axis) const;
+    static void appendExtraAxis(QQmlListProperty<Axis>* list, Axis* axis);
+    static qsizetype extraAxisCount(QQmlListProperty<Axis>* list);
+    static Axis* extraAxis(QQmlListProperty<Axis>* list, qsizetype index);
+    static void clearExtraAxes(QQmlListProperty<Axis>* list);
+
+    bool tryForwardKeyEventToAxis(Axis* axis, const QPointF& mousePos, QKeyEvent* event);
+    bool tryZoomAxisAtPosition(Axis* axis, const QPointF& pos, qreal wheelSteps);
+    void zoomAxisAtRatio(Axis* axis, qreal ratio, qreal wheelSteps);
+    void connectAxisSignals(Axis* axis);
+    void disconnectAxisSignals(Axis* axis);
+    void axisDestroyed(QObject* object);
+    void connectAxis(Axis* axis, Axis::Side side);
+    void disconnectAxis(Axis* axis);
+    void zoomAxis(Axis* axis, qreal factor, qreal centerRatio);
+    void panAxis(Axis* axis, qreal delta, qreal length);
+    QList<Axis*> attachedAxes() const;
+    void updateRectangleSelection(const QPointF& pos);
+    void cancelRectangleSelection();
+    void layoutAxes();
+    void setPointer(const QPointF& position);
+    void registerSeries(QQuickItem* item);
+
+    Axis* xAxis_{nullptr};
+    Axis* yAxis_{nullptr};
+    Axis* x2Axis_{nullptr};
+    Axis* y2Axis_{nullptr};
+    QList<Axis*> extraAxes_;
+
+    DragMode dragMode_{DragMode::Idle};
+    PlotDragRect zoomDrag_;
+    QPointF lastMousePos_;
+    // Last pointer position over the plot; key events go to the axis under it.
+    std::optional<QPointF> pointerPos_;
+    QPointF lastPointerPos_;
+    // True while the pointer was last placed by a touch, which keeps it in place after the release.
+    bool touchPointer_{false};
+    bool touchPressed_{false};
+    PlotMouseEvent mousePressEvent_{this};
+    PlotMouseEvent mouseReleaseEvent_{this};
+    PlotMouseEvent mouseDoubleClickEvent_{this};
+    PlotMouseEvent mouseMoveEvent_{this};
+    qreal padding_{24.0};
+    QRectF plotRect_;
+    QColor plotAreaColor_{ColorPalette::dark().plotArea};
+    QColor axesAreaColor_{ColorPalette::dark().axesArea};
+    PlotBorder* border_{nullptr};
+    PlotRectangleZoom* rectangleZoom_{nullptr};
+    RectangleZoomOverlay* rectangleZoomOverlay_{nullptr};
+    QQuickItem* overlay_{nullptr};
+    Grid* grid_{nullptr};
+    GridNode* gridNode_{nullptr};
+    QList<PlotSeries*> series_;
+};
+
+} // namespace QAccelPlot
+```
+
+

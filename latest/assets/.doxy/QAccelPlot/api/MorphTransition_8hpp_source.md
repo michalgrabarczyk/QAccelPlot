@@ -31,8 +31,7 @@ public:
     static double interpolateCoordinate(double from, double to, double easedProgress);
 
 protected:
-    void interpolate(double easedProgress, const std::vector<double>& fromData, int fromPointCount, const std::vector<double>& toData, int toPointCount,
-        std::vector<double>& outData, int& outPointCount) override;
+    void interpolate(double easedProgress, const Dataset& from, const Dataset& to, Dataset& out) override;
 };
 
 } // namespace QAccelPlot

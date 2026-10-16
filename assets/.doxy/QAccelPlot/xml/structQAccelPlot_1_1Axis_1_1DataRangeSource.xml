@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1Axis_1_1DataRangeSource" kind="struct" language="C++" prot="private">
+    <compoundname>QAccelPlot::Axis::DataRangeSource</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1Axis_1_1DataRangeSource_1a0df57fb0a65daedb59afce1b2b230718" prot="public" static="no" mutable="no">
+        <type>const <ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> *</type>
+        <definition>const PlotSeries* QAccelPlot::Axis::DataRangeSource::series</definition>
+        <argsstring></argsstring>
+        <name>series</name>
+        <qualifiedname>QAccelPlot::Axis::DataRangeSource::series</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="298" column="26" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="298" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Axis_1_1DataRangeSource_1aa7ffa78d67a56ca80d46ad34071be6ff" prot="public" static="no" mutable="no">
+        <type>Qt::Orientation</type>
+        <definition>Qt::Orientation QAccelPlot::Axis::DataRangeSource::dimension</definition>
+        <argsstring></argsstring>
+        <name>dimension</name>
+        <qualifiedname>QAccelPlot::Axis::DataRangeSource::dimension</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="299" column="25" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="299" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::Axis::DataRangeSource</label>
+        <childnode refid="2" relation="usage">
+          <edgelabel>series</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::PlotSeries</label>
+        <link refid="classQAccelPlot_1_1PlotSeries"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QQuickItem</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="297" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="297" bodyend="300"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1Axis_1_1DataRangeSource_1aa7ffa78d67a56ca80d46ad34071be6ff" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis::DataRangeSource</scope><name>dimension</name></member>
+      <member refid="structQAccelPlot_1_1Axis_1_1DataRangeSource_1a0df57fb0a65daedb59afce1b2b230718" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis::DataRangeSource</scope><name>series</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

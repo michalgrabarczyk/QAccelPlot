@@ -1,0 +1,2554 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1Axis" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::Axis</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QQuickPaintedItem</basecompoundref>
+    <includes local="no">Axis.hpp</includes>
+    <innerclass refid="structQAccelPlot_1_1Axis_1_1DataRange" prot="private">QAccelPlot::Axis::DataRange</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Axis_1_1DataRangeSource" prot="private">QAccelPlot::Axis::DataRangeSource</innerclass>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classQAccelPlot_1_1Axis_1a53608b3c6fe0e1d195faa9b0c3b7a233" prot="public" static="no" strong="no">
+        <type></type>
+        <name>Side</name>
+        <qualifiedname>QAccelPlot::Axis::Side</qualifiedname>
+        <enumvalue id="classQAccelPlot_1_1Axis_1a53608b3c6fe0e1d195faa9b0c3b7a233a1143f05594f1e7fd066af3e6b239d64e" prot="public">
+          <name>Left</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1Axis_1a53608b3c6fe0e1d195faa9b0c3b7a233a2c632dea186b5586863157de64a21e42" prot="public">
+          <name>Top</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1Axis_1a53608b3c6fe0e1d195faa9b0c3b7a233aa63c758dd53bc156801790e754357524" prot="public">
+          <name>Right</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1Axis_1a53608b3c6fe0e1d195faa9b0c3b7a233aa5320d788f7ccc1c323cbde44b1ac904" prot="public">
+          <name>Bottom</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Side of the plot on which the axis is positioned. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="92" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="92" bodyend="92"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1Axis_1a7dc4f6741ca21456941ee90ca647fcbe" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Axis::viewportMin</definition>
+        <argsstring></argsstring>
+        <name>viewportMin</name>
+        <qualifiedname>QAccelPlot::Axis::viewportMin</qualifiedname>
+        <read>viewportMin</read>
+        <write>setViewportMin</write>
+        <briefdescription>
+<para>Lower bound of the visible range. Default: 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="37" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Axis_1ae7112f0aac515a9fad256f21696f3e31" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Axis::viewportMax</definition>
+        <argsstring></argsstring>
+        <name>viewportMax</name>
+        <qualifiedname>QAccelPlot::Axis::viewportMax</qualifiedname>
+        <read>viewportMax</read>
+        <write>setViewportMax</write>
+        <briefdescription>
+<para>Upper bound of the visible range. Default: 1. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="39" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Axis_1a7ff8bbf8f594cce69d3a56c9b7f7dc25" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Axis::dataMin</definition>
+        <argsstring></argsstring>
+        <name>dataMin</name>
+        <qualifiedname>QAccelPlot::Axis::dataMin</qualifiedname>
+        <read>dataMin</read>
+        <write>setDataMin</write>
+        <briefdescription>
+<para>Minimum data value of the series bound to this axis. Default: 0. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Computed from the series when read after a data update, which scans their records unless they were given data bounds. A value set here is used until a bound series with data changes its records. <computeroutput><ref refid="classQAccelPlot_1_1Axis_1a299cb2f85ca1cc0a7f139796ca99d740" kindref="member">dataMinChanged()</ref></computeroutput> also announces a data update whose new minimum has not been computed yet. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="45" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Axis_1ab9a1549ca7fa37509039903052111c85" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Axis::dataMax</definition>
+        <argsstring></argsstring>
+        <name>dataMax</name>
+        <qualifiedname>QAccelPlot::Axis::dataMax</qualifiedname>
+        <read>dataMax</read>
+        <write>setDataMax</write>
+        <briefdescription>
+<para>Maximum data value of the series bound to this axis. Default: 1. Computed like <computeroutput>dataMin</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="47" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Axis_1a2856ab0094d88f434df147328a442a80" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>Qt::Orientation</type>
+        <definition>Qt::Orientation QAccelPlot::Axis::orientation</definition>
+        <argsstring></argsstring>
+        <name>orientation</name>
+        <qualifiedname>QAccelPlot::Axis::orientation</qualifiedname>
+        <read>orientation</read>
+        <write>setOrientation</write>
+        <briefdescription>
+<para><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> orientation: <computeroutput>Qt.Horizontal</computeroutput> or <computeroutput>Qt.Vertical</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="49" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Axis_1ae33073d2747e83d3efcbe622cff56256" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QString</type>
+        <definition>QString QAccelPlot::Axis::label</definition>
+        <argsstring></argsstring>
+        <name>label</name>
+        <qualifiedname>QAccelPlot::Axis::label</qualifiedname>
+        <read>label</read>
+        <write>setLabel</write>
+        <briefdescription>
+<para>Optional axis label displayed alongside the axis line. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="51" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Axis_1a2abbdb25270d46244700356f0924cb61" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QFont</type>
+        <definition>QFont QAccelPlot::Axis::labelFont</definition>
+        <argsstring></argsstring>
+        <name>labelFont</name>
+        <qualifiedname>QAccelPlot::Axis::labelFont</qualifiedname>
+        <read>labelFont</read>
+        <write>setLabelFont</write>
+        <briefdescription>
+<para>Font used to render the axis label text. Default: application default font. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="53" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Axis_1ac68c93c1a95fc00a48820096890e6bcf" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Axis::hovered</definition>
+        <argsstring></argsstring>
+        <name>hovered</name>
+        <qualifiedname>QAccelPlot::Axis::hovered</qualifiedname>
+        <read>hovered</read>
+        <briefdescription>
+<para>Read-only: <computeroutput>true</computeroutput> while the mouse cursor is over the axis widget. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="55" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Axis_1a3f981525a5587cef62aca0b8d993374f" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::Axis::baselineColor</definition>
+        <argsstring></argsstring>
+        <name>baselineColor</name>
+        <qualifiedname>QAccelPlot::Axis::baselineColor</qualifiedname>
+        <read>baselineColor</read>
+        <write>setBaselineColor</write>
+        <briefdescription>
+<para>Color of the axis baseline. Default: <computeroutput>Colors.dark.axisLine</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="57" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Axis_1aaa3bd1ea8471f9a1d76132e63189426f" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::Axis::labelColor</definition>
+        <argsstring></argsstring>
+        <name>labelColor</name>
+        <qualifiedname>QAccelPlot::Axis::labelColor</qualifiedname>
+        <read>labelColor</read>
+        <write>setLabelColor</write>
+        <briefdescription>
+<para>Optional axis-label color. When invalid, the baselineColor is used. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="59" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Axis_1a30a5e9496a5e1a9829fe94fbefd249da" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Axis::baselineWidth</definition>
+        <argsstring></argsstring>
+        <name>baselineWidth</name>
+        <qualifiedname>QAccelPlot::Axis::baselineWidth</qualifiedname>
+        <read>baselineWidth</read>
+        <write>setBaselineWidth</write>
+        <briefdescription>
+<para>Width in pixels of the axis baseline. Default: 2. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="61" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Axis_1afddc8eb581624d62ec31c8b40046814c" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::Axis::hoverColor</definition>
+        <argsstring></argsstring>
+        <name>hoverColor</name>
+        <qualifiedname>QAccelPlot::Axis::hoverColor</qualifiedname>
+        <read>hoverColor</read>
+        <write>setHoverColor</write>
+        <briefdescription>
+<para>Tick and label color applied when the axis is hovered. Default: <computeroutput>Colors.dark.hover</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="63" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Axis_1a6d5dd52c2e067a309ed0015cf6a58770" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1Axis_1a53608b3c6fe0e1d195faa9b0c3b7a233" kindref="member">Side</ref></type>
+        <definition>Side QAccelPlot::Axis::side</definition>
+        <argsstring></argsstring>
+        <name>side</name>
+        <qualifiedname>QAccelPlot::Axis::side</qualifiedname>
+        <read>side</read>
+        <write>setSide</write>
+        <briefdescription>
+<para>Side of the plot on which the axis is drawn: Left, Top, Right, or Bottom. Assigned automatically for xAxis, yAxis, x2Axis, and y2Axis; set explicitly for an axis placed in extraAxes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="66" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Axis_1a781f80dc51fa720d8ee2650f1cc52df5" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Axis::labelPadding</definition>
+        <argsstring></argsstring>
+        <name>labelPadding</name>
+        <qualifiedname>QAccelPlot::Axis::labelPadding</qualifiedname>
+        <read>labelPadding</read>
+        <write>setLabelPadding</write>
+        <briefdescription>
+<para>Pixels of padding between the baseline and the axis label. Default: 30. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="68" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Axis_1af732e7b0478377c913561d23e563970e" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Axis::baselinePadding</definition>
+        <argsstring></argsstring>
+        <name>baselinePadding</name>
+        <qualifiedname>QAccelPlot::Axis::baselinePadding</qualifiedname>
+        <read>baselinePadding</read>
+        <write>setBaselinePadding</write>
+        <briefdescription>
+<para>Pixels of padding between the plot area edge and the baseline. Default: 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="70" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Axis_1a8551f09e2566c991e79177fd0616abac" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Axis::layoutSize</definition>
+        <argsstring></argsstring>
+        <name>layoutSize</name>
+        <qualifiedname>QAccelPlot::Axis::layoutSize</qualifiedname>
+        <read>layoutSize</read>
+        <write>setLayoutSize</write>
+        <briefdescription>
+<para>Layout thickness in pixels: width for vertical axes and height for horizontal axes. Default: 50. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="72" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Axis_1a6873a52bfe65db20dda17a9f5c535bc4" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1AxisTicker" kindref="compound">AxisTicker</ref> *</type>
+        <definition>AxisTicker* QAccelPlot::Axis::ticker</definition>
+        <argsstring></argsstring>
+        <name>ticker</name>
+        <qualifiedname>QAccelPlot::Axis::ticker</qualifiedname>
+        <read>ticker</read>
+        <briefdescription>
+<para>Read-only constant: tick appearance configuration object. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="74" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Axis_1a1f8a7a973efc3e0f2c248e6630dcb4b2" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Axis::logScale</definition>
+        <argsstring></argsstring>
+        <name>logScale</name>
+        <qualifiedname>QAccelPlot::Axis::logScale</qualifiedname>
+        <read>logScale</read>
+        <write>setLogScale</write>
+        <briefdescription>
+<para>Whether the axis uses a base-10 logarithmic scale. Default: <computeroutput>false</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="76" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Axis_1ac4b649e375037e2df64828c5f33ad4ae" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Axis::zoomScaleFactor</definition>
+        <argsstring></argsstring>
+        <name>zoomScaleFactor</name>
+        <qualifiedname>QAccelPlot::Axis::zoomScaleFactor</qualifiedname>
+        <read>zoomScaleFactor</read>
+        <write>setZoomScaleFactor</write>
+        <briefdescription>
+<para>Fraction by which the visible range is multiplied on each inward mouse-wheel step. Must be in (0, 1). Default: 0.9. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>On a zoom-in step the range is multiplied by this value; on zoom-out by its reciprocal. Decrease the factor (e.g. 0.5) to zoom faster; increase it toward 1.0 (e.g. 0.95) to zoom more slowly. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="81" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Axis_1ad7702f08894d50dc7da91d6669977321" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Axis::autoRescale</definition>
+        <argsstring></argsstring>
+        <name>autoRescale</name>
+        <qualifiedname>QAccelPlot::Axis::autoRescale</qualifiedname>
+        <read>autoRescale</read>
+        <write>setAutoRescale</write>
+        <briefdescription>
+<para>Whether the viewport follows the data range. Default: <computeroutput>false</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>While <computeroutput>true</computeroutput>, every data update of a bound series sets the viewport as <computeroutput><ref refid="classQAccelPlot_1_1Axis_1a1a4057e12caae2776590a0ce4bc38a84" kindref="member">rescaleToData()</ref></computeroutput> does, replacing a viewport set by panning, zooming, or <computeroutput>viewportMin</computeroutput> / <computeroutput>viewportMax</computeroutput>. Each update scans the series&apos; records unless they were given data bounds. The viewport is kept when the last series on the axis clears its data. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="88" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="88" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classQAccelPlot_1_1Axis_1aa9a8749c8792deb1a5bb343ba9166177" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class PlotSeries</definition>
+        <argsstring></argsstring>
+        <name>PlotSeries</name>
+        <qualifiedname>QAccelPlot::Axis::PlotSeries</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="290" column="18" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="290" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a012cbe718a49c188951929a6aae09cfa" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Axis::viewportMin_</definition>
+        <argsstring></argsstring>
+        <name>viewportMin_</name>
+        <qualifiedname>QAccelPlot::Axis::viewportMin_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="314" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="314" bodyend="314"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1aa47f4dc54d2030239accd1015c71aa60" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Axis::viewportMax_</definition>
+        <argsstring></argsstring>
+        <name>viewportMax_</name>
+        <qualifiedname>QAccelPlot::Axis::viewportMax_</qualifiedname>
+        <initializer>{1.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="315" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="315" bodyend="315"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a495dabe0e0bf8870e2bb07e4e215f52c" prot="private" static="no" mutable="yes">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Axis::dataMin_</definition>
+        <argsstring></argsstring>
+        <name>dataMin_</name>
+        <qualifiedname>QAccelPlot::Axis::dataMin_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="317" column="19" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="317" bodyend="317"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a0cc25df16f162e4759e2256b6b8dc223" prot="private" static="no" mutable="yes">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Axis::dataMax_</definition>
+        <argsstring></argsstring>
+        <name>dataMax_</name>
+        <qualifiedname>QAccelPlot::Axis::dataMax_</qualifiedname>
+        <initializer>{1.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="318" column="19" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="318" bodyend="318"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a91b5c61fad6a70a5cc76f25f1688ba37" prot="private" static="no" mutable="yes">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Axis::dataRangeStale_</definition>
+        <argsstring></argsstring>
+        <name>dataRangeStale_</name>
+        <qualifiedname>QAccelPlot::Axis::dataRangeStale_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="320" column="18" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="320" bodyend="320"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a15ca6a746e464d3cd06c1283b25ae463" prot="private" static="no" mutable="yes">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Axis::dataRangeFromSeries_</definition>
+        <argsstring></argsstring>
+        <name>dataRangeFromSeries_</name>
+        <qualifiedname>QAccelPlot::Axis::dataRangeFromSeries_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="322" column="18" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="322" bodyend="322"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a2a814e688b01678392bef9d96eca2786" prot="private" static="no" mutable="no">
+        <type>QList&lt; DataRangeSource &gt;</type>
+        <definition>QList&lt;DataRangeSource&gt; QAccelPlot::Axis::dataRangeSources_</definition>
+        <argsstring></argsstring>
+        <name>dataRangeSources_</name>
+        <qualifiedname>QAccelPlot::Axis::dataRangeSources_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="323" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="323" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1aaff783da4f239617fbac94a6bbbd1a1b" prot="private" static="no" mutable="no">
+        <type>QString</type>
+        <definition>QString QAccelPlot::Axis::label_</definition>
+        <argsstring></argsstring>
+        <name>label_</name>
+        <qualifiedname>QAccelPlot::Axis::label_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="324" column="13" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="324" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a34ee74a3f675f99c7336966e41d7ddf9" prot="private" static="no" mutable="no">
+        <type>QFont</type>
+        <definition>QFont QAccelPlot::Axis::labelFont_</definition>
+        <argsstring></argsstring>
+        <name>labelFont_</name>
+        <qualifiedname>QAccelPlot::Axis::labelFont_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="325" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="325" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a82e738c90d9c07a2a7601d2635cc9e5f" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Axis::hovered_</definition>
+        <argsstring></argsstring>
+        <name>hovered_</name>
+        <qualifiedname>QAccelPlot::Axis::hovered_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="326" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="326" bodyend="326"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a8199c37c2877e916ce3cf3fb330f667c" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Axis::isDragging_</definition>
+        <argsstring></argsstring>
+        <name>isDragging_</name>
+        <qualifiedname>QAccelPlot::Axis::isDragging_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="327" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="327" bodyend="327"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1afea28799a964d4c31c0f95fee42a73bd" prot="private" static="no" mutable="no">
+        <type>QPointF</type>
+        <definition>QPointF QAccelPlot::Axis::lastMousePos_</definition>
+        <argsstring></argsstring>
+        <name>lastMousePos_</name>
+        <qualifiedname>QAccelPlot::Axis::lastMousePos_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="328" column="13" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="328" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1abefbcbffaea39bfdd9ac2fc75fe21235" prot="private" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::Axis::baselineColor_</definition>
+        <argsstring></argsstring>
+        <name>baselineColor_</name>
+        <qualifiedname>QAccelPlot::Axis::baselineColor_</qualifiedname>
+        <initializer>{<ref refid="classQAccelPlot_1_1ColorPalette_1ab932bbb47c7cf2198f0cd6930b53788e" kindref="member">ColorPalette::dark</ref>().axisLine}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="329" column="12" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="329" bodyend="329"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a30a9e3c355e35ee6373c010a141896f2" prot="private" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::Axis::labelColor_</definition>
+        <argsstring></argsstring>
+        <name>labelColor_</name>
+        <qualifiedname>QAccelPlot::Axis::labelColor_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="330" column="12" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="330" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1abe4c0dde962c15029d020a438192aa01" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Axis::baselineWidth_</definition>
+        <argsstring></argsstring>
+        <name>baselineWidth_</name>
+        <qualifiedname>QAccelPlot::Axis::baselineWidth_</qualifiedname>
+        <initializer>{2.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="331" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="331" bodyend="331"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a19be585746339b50deb6df0c8c3ee1a2" prot="private" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::Axis::hoverColor_</definition>
+        <argsstring></argsstring>
+        <name>hoverColor_</name>
+        <qualifiedname>QAccelPlot::Axis::hoverColor_</qualifiedname>
+        <initializer>{<ref refid="classQAccelPlot_1_1ColorPalette_1ab932bbb47c7cf2198f0cd6930b53788e" kindref="member">ColorPalette::dark</ref>().hover}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="332" column="12" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="332" bodyend="332"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a424bc748bb483bed13427ed941fef6ca" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Axis::labelPadding_</definition>
+        <argsstring></argsstring>
+        <name>labelPadding_</name>
+        <qualifiedname>QAccelPlot::Axis::labelPadding_</qualifiedname>
+        <initializer>{30.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="333" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="333" bodyend="333"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1abc94b04ba6c4e6a95cf89ff38a4f725c" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Axis::baselinePadding_</definition>
+        <argsstring></argsstring>
+        <name>baselinePadding_</name>
+        <qualifiedname>QAccelPlot::Axis::baselinePadding_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="334" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="334" bodyend="334"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a0ee957337ccb7f3ed3ac51fda3c4145e" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Axis::layoutSize_</definition>
+        <argsstring></argsstring>
+        <name>layoutSize_</name>
+        <qualifiedname>QAccelPlot::Axis::layoutSize_</qualifiedname>
+        <initializer>{50.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="335" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="335" bodyend="335"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a0ef1ac26f84ff9d0e2ac2d25410ffa2a" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Axis::logScale_</definition>
+        <argsstring></argsstring>
+        <name>logScale_</name>
+        <qualifiedname>QAccelPlot::Axis::logScale_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="336" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="336" bodyend="336"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1aa0b8950516ae8fc1adcf51b01014e58d" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Axis::zoomScaleFactor_</definition>
+        <argsstring></argsstring>
+        <name>zoomScaleFactor_</name>
+        <qualifiedname>QAccelPlot::Axis::zoomScaleFactor_</qualifiedname>
+        <initializer>{0.9}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="337" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="337" bodyend="337"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a79831af4bb3994c20da40d3c1cf81e6a" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Axis::autoRescale_</definition>
+        <argsstring></argsstring>
+        <name>autoRescale_</name>
+        <qualifiedname>QAccelPlot::Axis::autoRescale_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="338" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="338" bodyend="338"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a5958ade0438ee967831eb048ceeac036" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Axis::extendWidgetForLabels_</definition>
+        <argsstring></argsstring>
+        <name>extendWidgetForLabels_</name>
+        <qualifiedname>QAccelPlot::Axis::extendWidgetForLabels_</qualifiedname>
+        <initializer>{true}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="339" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="339" bodyend="339"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1ae1a49787707d94d4cb5497ce0e9dabf5" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Axis::clampEdgeLabels_</definition>
+        <argsstring></argsstring>
+        <name>clampEdgeLabels_</name>
+        <qualifiedname>QAccelPlot::Axis::clampEdgeLabels_</qualifiedname>
+        <initializer>{true}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="340" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="340" bodyend="340"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1ab8a1514a770269981de531feec574096" prot="private" static="no" mutable="no">
+        <type>Qt::Orientation</type>
+        <definition>Qt::Orientation QAccelPlot::Axis::orientation_</definition>
+        <argsstring></argsstring>
+        <name>orientation_</name>
+        <qualifiedname>QAccelPlot::Axis::orientation_</qualifiedname>
+        <initializer>{Qt::Horizontal}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="341" column="21" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="341" bodyend="341"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a4375e365fad1d36eca25876049ada22d" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1Axis_1a53608b3c6fe0e1d195faa9b0c3b7a233" kindref="member">Side</ref></type>
+        <definition>Side QAccelPlot::Axis::side_</definition>
+        <argsstring></argsstring>
+        <name>side_</name>
+        <qualifiedname>QAccelPlot::Axis::side_</qualifiedname>
+        <initializer>{Bottom}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="342" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="342" bodyend="342"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a62984c5e09ddb1de57d6d49e6f5b421a" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1AxisTicker" kindref="compound">AxisTicker</ref> *</type>
+        <definition>AxisTicker* QAccelPlot::Axis::ticker_</definition>
+        <argsstring></argsstring>
+        <name>ticker_</name>
+        <qualifiedname>QAccelPlot::Axis::ticker_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="343" column="16" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="343" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1ae8d8683ddaacb4d5d390eac0fb9b6ef9" prot="private" static="no" mutable="no">
+        <type><ref refid="structQAccelPlot_1_1AxisTicks" kindref="compound">AxisTicks</ref></type>
+        <definition>AxisTicks QAccelPlot::Axis::ticks_</definition>
+        <argsstring></argsstring>
+        <name>ticks_</name>
+        <qualifiedname>QAccelPlot::Axis::ticks_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="344" column="15" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="344" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a4ded4e4d6d08ff8338cf62a8d48d749c" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::Axis::Axis</definition>
+        <argsstring>(QQuickItem *parent=nullptr, Side side=Bottom)</argsstring>
+        <name>Axis</name>
+        <qualifiedname>QAccelPlot::Axis::Axis</qualifiedname>
+        <param>
+          <type>QQuickItem *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1Axis_1a53608b3c6fe0e1d195faa9b0c3b7a233" kindref="member">Side</ref></type>
+          <declname>side</declname>
+          <defval>Bottom</defval>
+        </param>
+        <briefdescription>
+<para>Constructs an <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> with the given <emphasis>parent</emphasis> and initial <emphasis>side</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="96" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a7e609c5b9eefca817ca60c2d3bce8286" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Axis::viewportMin</definition>
+        <argsstring>() const</argsstring>
+        <name>viewportMin</name>
+        <qualifiedname>QAccelPlot::Axis::viewportMin</qualifiedname>
+        <briefdescription>
+<para>Returns the lower bound of the visible range. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="99" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a6a6f58d339c5e3449b9af4a88e9d07ee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::setViewportMin</definition>
+        <argsstring>(qreal m)</argsstring>
+        <name>setViewportMin</name>
+        <qualifiedname>QAccelPlot::Axis::setViewportMin</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Sets the lower bound of the visible range to <emphasis>m</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="101" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a0e36fc39ef75b402bc6d313ec034a6c0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Axis::viewportMax</definition>
+        <argsstring>() const</argsstring>
+        <name>viewportMax</name>
+        <qualifiedname>QAccelPlot::Axis::viewportMax</qualifiedname>
+        <briefdescription>
+<para>Returns the upper bound of the visible range. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="104" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a247e0e74dc8792a802a69c19cf7a938c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::setViewportMax</definition>
+        <argsstring>(qreal m)</argsstring>
+        <name>setViewportMax</name>
+        <qualifiedname>QAccelPlot::Axis::setViewportMax</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Sets the upper bound of the visible range to <emphasis>m</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="106" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a21aedd2ddaa592838b848cd1337be96f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Axis::dataMin</definition>
+        <argsstring>() const</argsstring>
+        <name>dataMin</name>
+        <qualifiedname>QAccelPlot::Axis::dataMin</qualifiedname>
+        <briefdescription>
+<para>Returns the minimum data value of the bound series, computing it if their data changed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="109" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1aabc10f0d12e9f6ce28c8b90d7909fd10" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::setDataMin</definition>
+        <argsstring>(qreal m)</argsstring>
+        <name>setDataMin</name>
+        <qualifiedname>QAccelPlot::Axis::setDataMin</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Sets the data minimum to <emphasis>m</emphasis> until a bound series with data changes its records. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="111" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a160ec813704b49d4a7906aac7badb3f2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Axis::dataMax</definition>
+        <argsstring>() const</argsstring>
+        <name>dataMax</name>
+        <qualifiedname>QAccelPlot::Axis::dataMax</qualifiedname>
+        <briefdescription>
+<para>Returns the maximum data value of the bound series, computing it if their data changed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="114" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1af9d7c5d69a2fd822642cb82b3e9d0323" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::setDataMax</definition>
+        <argsstring>(qreal m)</argsstring>
+        <name>setDataMax</name>
+        <qualifiedname>QAccelPlot::Axis::setDataMax</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Sets the data maximum to <emphasis>m</emphasis> until a bound series with data changes its records. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="116" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1accbd16f06365bf877e5a19f3da91fd59" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE void</type>
+        <definition>Q_INVOKABLE void QAccelPlot::Axis::setDataRange</definition>
+        <argsstring>(qreal min, qreal max)</argsstring>
+        <name>setDataRange</name>
+        <qualifiedname>QAccelPlot::Axis::setDataRange</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>min</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>max</declname>
+        </param>
+        <briefdescription>
+<para>Sets the data range to [<emphasis>min</emphasis>, <emphasis>max</emphasis>] until a bound series with data changes its records. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Unlike <computeroutput><ref refid="classQAccelPlot_1_1Axis_1aabc10f0d12e9f6ce28c8b90d7909fd10" kindref="member">setDataMin()</ref></computeroutput> and <computeroutput><ref refid="classQAccelPlot_1_1Axis_1af9d7c5d69a2fd822642cb82b3e9d0323" kindref="member">setDataMax()</ref></computeroutput>, this never computes the range from the series. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="121" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a380d835e16ec218eec1c3818620fa939" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Qt::Orientation</type>
+        <definition>Qt::Orientation QAccelPlot::Axis::orientation</definition>
+        <argsstring>() const</argsstring>
+        <name>orientation</name>
+        <qualifiedname>QAccelPlot::Axis::orientation</qualifiedname>
+        <briefdescription>
+<para>Returns the axis orientation. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="124" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a0eea4717445edb64d3eeaef12916042d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::setOrientation</definition>
+        <argsstring>(Qt::Orientation o)</argsstring>
+        <name>setOrientation</name>
+        <qualifiedname>QAccelPlot::Axis::setOrientation</qualifiedname>
+        <param>
+          <type>Qt::Orientation</type>
+          <declname>o</declname>
+        </param>
+        <briefdescription>
+<para>Sets the axis orientation to <emphasis>o</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="126" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a161a60a8013f765854d605d944a4d641" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QString</type>
+        <definition>QString QAccelPlot::Axis::label</definition>
+        <argsstring>() const</argsstring>
+        <name>label</name>
+        <qualifiedname>QAccelPlot::Axis::label</qualifiedname>
+        <briefdescription>
+<para>Returns the axis label string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="129" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1ae944337cd4076a43020727eacb4d048b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::setLabel</definition>
+        <argsstring>(const QString &amp;t)</argsstring>
+        <name>setLabel</name>
+        <qualifiedname>QAccelPlot::Axis::setLabel</qualifiedname>
+        <param>
+          <type>const QString &amp;</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+<para>Sets the axis label to <emphasis>t</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="131" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1aadb5be2730c0db9c8ddca104c021dbc8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QFont</type>
+        <definition>QFont QAccelPlot::Axis::labelFont</definition>
+        <argsstring>() const</argsstring>
+        <name>labelFont</name>
+        <qualifiedname>QAccelPlot::Axis::labelFont</qualifiedname>
+        <briefdescription>
+<para>Returns the axis label font. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="134" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a5f9558175769f1f8c2881ea91f3014a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::setLabelFont</definition>
+        <argsstring>(const QFont &amp;f)</argsstring>
+        <name>setLabelFont</name>
+        <qualifiedname>QAccelPlot::Axis::setLabelFont</qualifiedname>
+        <param>
+          <type>const QFont &amp;</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+<para>Sets the axis label font to <emphasis>f</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="136" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a79634c657c31eb3071ed636e44bc8fff" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1Axis_1a53608b3c6fe0e1d195faa9b0c3b7a233" kindref="member">Side</ref></type>
+        <definition>Side QAccelPlot::Axis::side</definition>
+        <argsstring>() const</argsstring>
+        <name>side</name>
+        <qualifiedname>QAccelPlot::Axis::side</qualifiedname>
+        <briefdescription>
+<para>Returns the axis side. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="139" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a0690d37a094661f693c10385e5d932a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::setSide</definition>
+        <argsstring>(Side s)</argsstring>
+        <name>setSide</name>
+        <qualifiedname>QAccelPlot::Axis::setSide</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1Axis_1a53608b3c6fe0e1d195faa9b0c3b7a233" kindref="member">Side</ref></type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+<para>Sets the axis side to <emphasis>s</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="141" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a9a7b367764a9293dd9e81c3a30da297b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Axis::hovered</definition>
+        <argsstring>() const</argsstring>
+        <name>hovered</name>
+        <qualifiedname>QAccelPlot::Axis::hovered</qualifiedname>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> if the mouse is currently over the axis widget. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="144" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a57a1c2d61f31ea59f821d075f4aec31f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::Axis::baselineColor</definition>
+        <argsstring>() const</argsstring>
+        <name>baselineColor</name>
+        <qualifiedname>QAccelPlot::Axis::baselineColor</qualifiedname>
+        <briefdescription>
+<para>Returns the axis baseline color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="147" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1aae3d1b11e28089fa3db65fc55d80f3e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::setBaselineColor</definition>
+        <argsstring>(const QColor &amp;c)</argsstring>
+        <name>setBaselineColor</name>
+        <qualifiedname>QAccelPlot::Axis::setBaselineColor</qualifiedname>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+<para>Sets the axis baseline color to <emphasis>c</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="149" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a8996be822df98d52f94c63b189bfbd7c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::Axis::labelColor</definition>
+        <argsstring>() const</argsstring>
+        <name>labelColor</name>
+        <qualifiedname>QAccelPlot::Axis::labelColor</qualifiedname>
+        <briefdescription>
+<para>Returns the axis-label color, or an invalid color when it follows baselineColor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="152" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a886a43206cdde2bbf3c8762c4c546573" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::setLabelColor</definition>
+        <argsstring>(const QColor &amp;c)</argsstring>
+        <name>setLabelColor</name>
+        <qualifiedname>QAccelPlot::Axis::setLabelColor</qualifiedname>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+<para>Sets the axis-label color to <emphasis>c</emphasis>. An invalid color restores the baselineColor fallback. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="154" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1adb071f0734b0110e16b697567c722075" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Axis::baselineWidth</definition>
+        <argsstring>() const</argsstring>
+        <name>baselineWidth</name>
+        <qualifiedname>QAccelPlot::Axis::baselineWidth</qualifiedname>
+        <briefdescription>
+<para>Returns the axis baseline width in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="157" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a5c16745cd23a1e6a0aa9f5c04c59621b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::setBaselineWidth</definition>
+        <argsstring>(qreal width)</argsstring>
+        <name>setBaselineWidth</name>
+        <qualifiedname>QAccelPlot::Axis::setBaselineWidth</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>width</declname>
+        </param>
+        <briefdescription>
+<para>Sets the axis baseline width to <emphasis>width</emphasis> pixels. Negative values are clamped to zero. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="159" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a76dbcd6d6b31efd6ce1b0dde8a74ae16" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::Axis::hoverColor</definition>
+        <argsstring>() const</argsstring>
+        <name>hoverColor</name>
+        <qualifiedname>QAccelPlot::Axis::hoverColor</qualifiedname>
+        <briefdescription>
+<para>Returns the hovered tick/label color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="162" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a05395fcd9c59730a8a526259320be246" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::setHoverColor</definition>
+        <argsstring>(const QColor &amp;c)</argsstring>
+        <name>setHoverColor</name>
+        <qualifiedname>QAccelPlot::Axis::setHoverColor</qualifiedname>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+<para>Sets the hovered color to <emphasis>c</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="164" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1aa217108bd9be218fdff20825ccfa3e1c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Axis::labelPadding</definition>
+        <argsstring>() const</argsstring>
+        <name>labelPadding</name>
+        <qualifiedname>QAccelPlot::Axis::labelPadding</qualifiedname>
+        <briefdescription>
+<para>Returns the padding between the baseline and the axis label in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="167" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a531f9f09061f99f0b73d3a4613e56a2f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::setLabelPadding</definition>
+        <argsstring>(qreal padding)</argsstring>
+        <name>setLabelPadding</name>
+        <qualifiedname>QAccelPlot::Axis::setLabelPadding</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>padding</declname>
+        </param>
+        <briefdescription>
+<para>Sets the padding between the baseline and the axis label to <emphasis>padding</emphasis> pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="169" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a4714bfe57cde838f5c30368fdd617523" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Axis::baselinePadding</definition>
+        <argsstring>() const</argsstring>
+        <name>baselinePadding</name>
+        <qualifiedname>QAccelPlot::Axis::baselinePadding</qualifiedname>
+        <briefdescription>
+<para>Returns the padding between the plot area edge and the baseline in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="172" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1aad66fffb0a122f1bf8f2bb9ab2220ab5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::setBaselinePadding</definition>
+        <argsstring>(qreal padding)</argsstring>
+        <name>setBaselinePadding</name>
+        <qualifiedname>QAccelPlot::Axis::setBaselinePadding</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>padding</declname>
+        </param>
+        <briefdescription>
+<para>Sets the padding between the plot area edge and the baseline to <emphasis>padding</emphasis> pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="174" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1adb52d6a8bee3ca1d8d3b79236fcc208f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Axis::layoutSize</definition>
+        <argsstring>() const</argsstring>
+        <name>layoutSize</name>
+        <qualifiedname>QAccelPlot::Axis::layoutSize</qualifiedname>
+        <briefdescription>
+<para>Returns the layout thickness in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="177" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a9157d5dc4cf978b807650e083baab6c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::setLayoutSize</definition>
+        <argsstring>(qreal size)</argsstring>
+        <name>setLayoutSize</name>
+        <qualifiedname>QAccelPlot::Axis::setLayoutSize</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+<para>Sets the layout thickness to <emphasis>size</emphasis> pixels. Negative values are clamped to zero. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="179" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a7e14dd389bbd1c794e12ca490c54c8ae" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1AxisTicker" kindref="compound">AxisTicker</ref> *</type>
+        <definition>AxisTicker * QAccelPlot::Axis::ticker</definition>
+        <argsstring>() const</argsstring>
+        <name>ticker</name>
+        <qualifiedname>QAccelPlot::Axis::ticker</qualifiedname>
+        <briefdescription>
+<para>Returns the tick configuration object. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="182" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a3c5174df0cfb8a7f70c54e57b841ea79" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Axis::logScale</definition>
+        <argsstring>() const</argsstring>
+        <name>logScale</name>
+        <qualifiedname>QAccelPlot::Axis::logScale</qualifiedname>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> when log scale is active. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="185" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1ae1341d0c24822f541050b2d7cd421abe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::setLogScale</definition>
+        <argsstring>(bool on)</argsstring>
+        <name>setLogScale</name>
+        <qualifiedname>QAccelPlot::Axis::setLogScale</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>on</declname>
+        </param>
+        <briefdescription>
+<para>Sets log-scale mode to <emphasis>on</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="187" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a26713372b37ed827412403426483e3e4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Axis::zoomScaleFactor</definition>
+        <argsstring>() const</argsstring>
+        <name>zoomScaleFactor</name>
+        <qualifiedname>QAccelPlot::Axis::zoomScaleFactor</qualifiedname>
+        <briefdescription>
+<para>Returns the zoom scale factor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="189" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a7f1db08361f435c278167ede2a7e6356" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::setZoomScaleFactor</definition>
+        <argsstring>(qreal factor)</argsstring>
+        <name>setZoomScaleFactor</name>
+        <qualifiedname>QAccelPlot::Axis::setZoomScaleFactor</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>factor</declname>
+        </param>
+        <briefdescription>
+<para>Sets the zoom scale factor to <emphasis>factor</emphasis> (clamped to the range (0, 1)). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Smaller values (e.g. 0.5) produce faster zooming; values closer to 1.0 (e.g. 0.95) produce slower zooming. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="193" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1adbb5d4c35d24c26bce8a7b32d372e327" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Axis::autoRescale</definition>
+        <argsstring>() const</argsstring>
+        <name>autoRescale</name>
+        <qualifiedname>QAccelPlot::Axis::autoRescale</qualifiedname>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> when the viewport follows the data range. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="196" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1ae901b2a7615399c057fcb9b1790ae55f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::setAutoRescale</definition>
+        <argsstring>(bool on)</argsstring>
+        <name>setAutoRescale</name>
+        <qualifiedname>QAccelPlot::Axis::setAutoRescale</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>on</declname>
+        </param>
+        <briefdescription>
+<para>Sets whether the viewport follows the data range to <emphasis>on</emphasis>. Enabling it rescales to the current data range. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="198" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a9316e91abccde24af6b84cc454850aa7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE void</type>
+        <definition>Q_INVOKABLE void QAccelPlot::Axis::toggleLogScale</definition>
+        <argsstring>()</argsstring>
+        <name>toggleLogScale</name>
+        <qualifiedname>QAccelPlot::Axis::toggleLogScale</qualifiedname>
+        <briefdescription>
+<para>Toggles the log-scale mode on or off. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="201" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a1a4057e12caae2776590a0ce4bc38a84" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE void</type>
+        <definition>Q_INVOKABLE void QAccelPlot::Axis::rescaleToData</definition>
+        <argsstring>()</argsstring>
+        <name>rescaleToData</name>
+        <qualifiedname>QAccelPlot::Axis::rescaleToData</qualifiedname>
+        <briefdescription>
+<para>Sets <computeroutput>viewportMin</computeroutput> and <computeroutput>viewportMax</computeroutput> to the current <computeroutput>dataMin</computeroutput> / <computeroutput>dataMax</computeroutput> range. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Emits <computeroutput><ref refid="classQAccelPlot_1_1Axis_1a5ba9fb9bcadc5833267ebd0312df1a50" kindref="member">rangeChanged()</ref></computeroutput> once. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="206" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a3613ed1b3cae19f09cc42571153a751c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::paint</definition>
+        <argsstring>(QPainter *painter) override</argsstring>
+        <name>paint</name>
+        <qualifiedname>QAccelPlot::Axis::paint</qualifiedname>
+        <param>
+          <type>QPainter *</type>
+          <declname>painter</declname>
+        </param>
+        <briefdescription>
+<para>Paints the axis widget (tick marks, labels, label text, background). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Draws the ticks and labels computed in <computeroutput><ref refid="classQAccelPlot_1_1Axis_1a354a8d09a5fc915eddfb161de29564ab" kindref="member">updatePolish()</ref></computeroutput>; with the threaded render loop this runs on the render thread. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="211" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a20f7bccae411aaa8ec9bf5f3072731eb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Axis::inwardTickOverlap</definition>
+        <argsstring>() const</argsstring>
+        <name>inwardTickOverlap</name>
+        <qualifiedname>QAccelPlot::Axis::inwardTickOverlap</qualifiedname>
+        <briefdescription>
+<para>Returns the inward tick overlap beyond <computeroutput>baselinePadding</computeroutput>, used by PlotView to size the plot area. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="214" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1ab7ea9c1ed6c2a558eb24178898236b43" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Axis::labelOverflow</definition>
+        <argsstring>() const</argsstring>
+        <name>labelOverflow</name>
+        <qualifiedname>QAccelPlot::Axis::labelOverflow</qualifiedname>
+        <briefdescription>
+<para>Returns extra width/height needed to accommodate edge tick labels that extend beyond the axis bounds. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="217" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a3e3bc4bd0b8d4ee0342dde118337981a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1AxisMapping" kindref="compound">AxisMapping</ref></type>
+        <definition>AxisMapping QAccelPlot::Axis::mapping</definition>
+        <argsstring>() const</argsstring>
+        <name>mapping</name>
+        <qualifiedname>QAccelPlot::Axis::mapping</qualifiedname>
+        <briefdescription>
+<para>Returns a snapshot of the current viewport mapping. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="220" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a62a5083556a2099f19b07964df065c2b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE qreal</type>
+        <definition>Q_INVOKABLE qreal QAccelPlot::Axis::coordToPixel</definition>
+        <argsstring>(qreal value, qreal length) const</argsstring>
+        <name>coordToPixel</name>
+        <qualifiedname>QAccelPlot::Axis::coordToPixel</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>Maps a data-space <emphasis>value</emphasis> to a pixel position along an axis of <emphasis>length</emphasis> pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="222" column="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a23e6adca53e163e30d607846d01f7c05" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE qreal</type>
+        <definition>Q_INVOKABLE qreal QAccelPlot::Axis::pixelToCoord</definition>
+        <argsstring>(qreal pos, qreal length) const</argsstring>
+        <name>pixelToCoord</name>
+        <qualifiedname>QAccelPlot::Axis::pixelToCoord</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>Maps a pixel <emphasis>pos</emphasis> along an axis of <emphasis>length</emphasis> pixels back to a data-space value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="224" column="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a383747084cfb3eba248740336d5dee3a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE QString</type>
+        <definition>Q_INVOKABLE QString QAccelPlot::Axis::formatValue</definition>
+        <argsstring>(qreal value, qreal length) const</argsstring>
+        <name>formatValue</name>
+        <qualifiedname>QAccelPlot::Axis::formatValue</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>Formats <emphasis>value</emphasis> for a readout on an axis of <emphasis>length</emphasis> pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Uses the tick label formatter with a precision one decimal digit finer than a pixel, so the text follows the zoom level instead of the tick spacing. Returns an empty string for a nonfinite <emphasis>value</emphasis>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="230" column="25"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1a82400193ff348ca22055b4917779a449" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::viewportMinChanged</definition>
+        <argsstring>()</argsstring>
+        <name>viewportMinChanged</name>
+        <qualifiedname>QAccelPlot::Axis::viewportMinChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the viewportMin property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="234" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1a2761f073b29c720b39edec4d99601e6f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::viewportMaxChanged</definition>
+        <argsstring>()</argsstring>
+        <name>viewportMaxChanged</name>
+        <qualifiedname>QAccelPlot::Axis::viewportMaxChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the viewportMax property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="236" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1a299cb2f85ca1cc0a7f139796ca99d740" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::dataMinChanged</definition>
+        <argsstring>()</argsstring>
+        <name>dataMinChanged</name>
+        <qualifiedname>QAccelPlot::Axis::dataMinChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the dataMin property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="238" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1a579449acd0f6d993f8b60a10360cc398" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::dataMaxChanged</definition>
+        <argsstring>()</argsstring>
+        <name>dataMaxChanged</name>
+        <qualifiedname>QAccelPlot::Axis::dataMaxChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the dataMax property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="240" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1a905fe22dd74642fbafe363a5a3a0ef68" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::orientationChanged</definition>
+        <argsstring>()</argsstring>
+        <name>orientationChanged</name>
+        <qualifiedname>QAccelPlot::Axis::orientationChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the orientation property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="242" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1a433aa0b5d46f0f864c2888e56dee9213" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::labelChanged</definition>
+        <argsstring>()</argsstring>
+        <name>labelChanged</name>
+        <qualifiedname>QAccelPlot::Axis::labelChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the label property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="244" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1aac5d9dc096f3b72f739a38aca966be05" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::labelFontChanged</definition>
+        <argsstring>()</argsstring>
+        <name>labelFontChanged</name>
+        <qualifiedname>QAccelPlot::Axis::labelFontChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the labelFont property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="246" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1aabbc08f20680daebe4cef93bee76ae8d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::hoveredChanged</definition>
+        <argsstring>()</argsstring>
+        <name>hoveredChanged</name>
+        <qualifiedname>QAccelPlot::Axis::hoveredChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the hovered property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="248" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1a5ba9fb9bcadc5833267ebd0312df1a50" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::rangeChanged</definition>
+        <argsstring>()</argsstring>
+        <name>rangeChanged</name>
+        <qualifiedname>QAccelPlot::Axis::rangeChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when either viewportMin or viewportMax changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="250" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1a940d8dfff84472bdbeb7121fdc58e9f1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::baselineColorChanged</definition>
+        <argsstring>()</argsstring>
+        <name>baselineColorChanged</name>
+        <qualifiedname>QAccelPlot::Axis::baselineColorChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the baselineColor property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="253" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1a90e7de0ca043e8247857c4b59b92c329" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::labelColorChanged</definition>
+        <argsstring>()</argsstring>
+        <name>labelColorChanged</name>
+        <qualifiedname>QAccelPlot::Axis::labelColorChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the labelColor property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="255" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1a43adeff2b46dc6dc39bb86040133b04b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::baselineWidthChanged</definition>
+        <argsstring>()</argsstring>
+        <name>baselineWidthChanged</name>
+        <qualifiedname>QAccelPlot::Axis::baselineWidthChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the baselineWidth property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="257" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1a491189d48850d69cf356f3ee10b32efe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::hoverColorChanged</definition>
+        <argsstring>()</argsstring>
+        <name>hoverColorChanged</name>
+        <qualifiedname>QAccelPlot::Axis::hoverColorChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the hoverColor property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="259" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1a7b1793813fac9450c071da4ca3ad61ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::sideChanged</definition>
+        <argsstring>()</argsstring>
+        <name>sideChanged</name>
+        <qualifiedname>QAccelPlot::Axis::sideChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the side property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="261" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1af7eeeb37b64310da3b5550c2cfdbe9f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::labelPaddingChanged</definition>
+        <argsstring>()</argsstring>
+        <name>labelPaddingChanged</name>
+        <qualifiedname>QAccelPlot::Axis::labelPaddingChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the labelPadding property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="263" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1af8f3ee95069edca12e65a024a56d8896" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::baselinePaddingChanged</definition>
+        <argsstring>()</argsstring>
+        <name>baselinePaddingChanged</name>
+        <qualifiedname>QAccelPlot::Axis::baselinePaddingChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the baselinePadding property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="265" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1aa543a9309019f009654cd0eb329622d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::layoutSizeChanged</definition>
+        <argsstring>()</argsstring>
+        <name>layoutSizeChanged</name>
+        <qualifiedname>QAccelPlot::Axis::layoutSizeChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the layoutSize property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="267" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1a8067516775c316543db13099af942265" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::logScaleChanged</definition>
+        <argsstring>()</argsstring>
+        <name>logScaleChanged</name>
+        <qualifiedname>QAccelPlot::Axis::logScaleChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the logScale property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="269" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1a490f2dbfdea8b031eab016501e9ca4b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::zoomScaleFactorChanged</definition>
+        <argsstring>()</argsstring>
+        <name>zoomScaleFactorChanged</name>
+        <qualifiedname>QAccelPlot::Axis::zoomScaleFactorChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the zoomScaleFactor property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="271" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1a029dbdda23dd9ef85b476e67aaf99743" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::autoRescaleChanged</definition>
+        <argsstring>()</argsstring>
+        <name>autoRescaleChanged</name>
+        <qualifiedname>QAccelPlot::Axis::autoRescaleChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the autoRescale property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="273" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1a269d9633b8dfcdb7a2041d7d990bfa3f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::doubleClicked</definition>
+        <argsstring>()</argsstring>
+        <name>doubleClicked</name>
+        <qualifiedname>QAccelPlot::Axis::doubleClicked</qualifiedname>
+        <briefdescription>
+<para>Emitted when the user double-clicks the axis widget. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="275" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1afe106425e7942d7794e5506e7955e80e" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::hoverEnterEvent</definition>
+        <argsstring>(QHoverEvent *event) override</argsstring>
+        <name>hoverEnterEvent</name>
+        <qualifiedname>QAccelPlot::Axis::hoverEnterEvent</qualifiedname>
+        <param>
+          <type>QHoverEvent *</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="278" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1ab5c3aacde298f6a0772378d354914fcc" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::hoverLeaveEvent</definition>
+        <argsstring>(QHoverEvent *event) override</argsstring>
+        <name>hoverLeaveEvent</name>
+        <qualifiedname>QAccelPlot::Axis::hoverLeaveEvent</qualifiedname>
+        <param>
+          <type>QHoverEvent *</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="279" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1ab0059b73141e10799436102f3ba75848" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::mousePressEvent</definition>
+        <argsstring>(QMouseEvent *event) override</argsstring>
+        <name>mousePressEvent</name>
+        <qualifiedname>QAccelPlot::Axis::mousePressEvent</qualifiedname>
+        <param>
+          <type>QMouseEvent *</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="280" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a60b4e069c81edc29aad7d6ff72a1e0b1" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::mouseMoveEvent</definition>
+        <argsstring>(QMouseEvent *event) override</argsstring>
+        <name>mouseMoveEvent</name>
+        <qualifiedname>QAccelPlot::Axis::mouseMoveEvent</qualifiedname>
+        <param>
+          <type>QMouseEvent *</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="281" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a9ab1b12201f190a7a02914a9321b6462" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::mouseReleaseEvent</definition>
+        <argsstring>(QMouseEvent *event) override</argsstring>
+        <name>mouseReleaseEvent</name>
+        <qualifiedname>QAccelPlot::Axis::mouseReleaseEvent</qualifiedname>
+        <param>
+          <type>QMouseEvent *</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="282" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a73addc8f4c2e5f09f0a9f85c80345767" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::mouseDoubleClickEvent</definition>
+        <argsstring>(QMouseEvent *event) override</argsstring>
+        <name>mouseDoubleClickEvent</name>
+        <qualifiedname>QAccelPlot::Axis::mouseDoubleClickEvent</qualifiedname>
+        <param>
+          <type>QMouseEvent *</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="283" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a7d6eb39b3c0bfab837de222d5f220ace" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::keyPressEvent</definition>
+        <argsstring>(QKeyEvent *event) override</argsstring>
+        <name>keyPressEvent</name>
+        <qualifiedname>QAccelPlot::Axis::keyPressEvent</qualifiedname>
+        <param>
+          <type>QKeyEvent *</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="284" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a354a8d09a5fc915eddfb161de29564ab" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::updatePolish</definition>
+        <argsstring>() override</argsstring>
+        <name>updatePolish</name>
+        <qualifiedname>QAccelPlot::Axis::updatePolish</qualifiedname>
+        <briefdescription>
+<para>Recomputes the visible tick values and formats their labels on the GUI thread, ahead of <computeroutput><ref refid="classQAccelPlot_1_1Axis_1a3613ed1b3cae19f09cc42571153a751c" kindref="member">paint()</ref></computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="286" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a725543d9fe6738ecb2bb3608e15f2378" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::componentComplete</definition>
+        <argsstring>() override</argsstring>
+        <name>componentComplete</name>
+        <qualifiedname>QAccelPlot::Axis::componentComplete</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="287" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a77debf2367bf95fd686cff8e6858de78" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::addDataRangeSource</definition>
+        <argsstring>(const PlotSeries *series, Qt::Orientation dimension)</argsstring>
+        <name>addDataRangeSource</name>
+        <qualifiedname>QAccelPlot::Axis::addDataRangeSource</qualifiedname>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> *</type>
+          <declname>series</declname>
+        </param>
+        <param>
+          <type>Qt::Orientation</type>
+          <declname>dimension</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="302" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1ab041d28c28d134a26cd42222c6585b54" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::removeDataRangeSource</definition>
+        <argsstring>(const PlotSeries *series, Qt::Orientation dimension)</argsstring>
+        <name>removeDataRangeSource</name>
+        <qualifiedname>QAccelPlot::Axis::removeDataRangeSource</qualifiedname>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> *</type>
+          <declname>series</declname>
+        </param>
+        <param>
+          <type>Qt::Orientation</type>
+          <declname>dimension</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="303" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a27f34309001173545b6ed448c225d315" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::invalidateDataRange</definition>
+        <argsstring>()</argsstring>
+        <name>invalidateDataRange</name>
+        <qualifiedname>QAccelPlot::Axis::invalidateDataRange</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="304" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a4c1405b3ab187d674906c8a292981483" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::ensureDataRange</definition>
+        <argsstring>() const</argsstring>
+        <name>ensureDataRange</name>
+        <qualifiedname>QAccelPlot::Axis::ensureDataRange</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="305" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1afa568c5d7e9bb84b6c29282c278477e0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::setDataRangeValues</definition>
+        <argsstring>(qreal min, qreal max)</argsstring>
+        <name>setDataRangeValues</name>
+        <qualifiedname>QAccelPlot::Axis::setDataRangeValues</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>min</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>max</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="306" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1abc0a691d1617d35784f65fa1b3cc9418" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>DataRange</type>
+        <definition>DataRange QAccelPlot::Axis::dataFitRange</definition>
+        <argsstring>() const</argsstring>
+        <name>dataFitRange</name>
+        <qualifiedname>QAccelPlot::Axis::dataFitRange</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="307" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a5f423ba946e6e70ad91a8bf845d8eb90" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::setViewportRange</definition>
+        <argsstring>(qreal min, qreal max)</argsstring>
+        <name>setViewportRange</name>
+        <qualifiedname>QAccelPlot::Axis::setViewportRange</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>min</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>max</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="308" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1af39f6cbab3836a0c97a71ea3be8af174" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::autoRescaleToData</definition>
+        <argsstring>()</argsstring>
+        <name>autoRescaleToData</name>
+        <qualifiedname>QAccelPlot::Axis::autoRescaleToData</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="309" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a42b69b0e37fb6bbc286fba9b117b325d" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Axis::valueResolution</definition>
+        <argsstring>(qreal value, qreal length) const</argsstring>
+        <name>valueResolution</name>
+        <qualifiedname>QAccelPlot::Axis::valueResolution</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="310" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a35a896b9c6def08c3be566a8bb7774c0" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::paintLabel</definition>
+        <argsstring>(QPainter *painter, const QRectF &amp;r, qreal axisX, qreal axisY) const</argsstring>
+        <name>paintLabel</name>
+        <qualifiedname>QAccelPlot::Axis::paintLabel</qualifiedname>
+        <param>
+          <type>QPainter *</type>
+          <declname>painter</declname>
+        </param>
+        <param>
+          <type>const QRectF &amp;</type>
+          <declname>r</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>axisX</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>axisY</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="311" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a47d127dfb87d7401ce91e52300d1db68" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::invalidateTicks</definition>
+        <argsstring>()</argsstring>
+        <name>invalidateTicks</name>
+        <qualifiedname>QAccelPlot::Axis::invalidateTicks</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="312" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A visual axis item that maps a data-space range to pixel coordinates and renders tick marks and labels. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Assign an <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> to the corresponding property of <computeroutput>PlotView</computeroutput> (<computeroutput>xAxis</computeroutput>, <computeroutput>yAxis</computeroutput>, etc.) to connect it to the plot. Tick appearance is configured via the <computeroutput>ticker</computeroutput> property. Supports linear and logarithmic scaling, mouse-driven pan/zoom, and custom label formatters. Set the inherited <computeroutput>visible</computeroutput> property to <computeroutput>false</computeroutput> to hide the axis and reclaim its layout space while preserving its range, coordinate mapping, and plot-wide navigation behavior.</para>
+<para><simplesect kind="see"><para>PlotView, <ref refid="classQAccelPlot_1_1AxisTicker" kindref="compound">AxisTicker</ref>, <ref refid="classQAccelPlot_1_1TickLabelFormatter" kindref="compound">TickLabelFormatter</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::Axis</label>
+        <link refid="classQAccelPlot_1_1Axis"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QQuickPaintedItem</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::Axis</label>
+        <link refid="classQAccelPlot_1_1Axis"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QQuickPaintedItem</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="33" column="1" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="33" bodyend="345"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1Axis_1a77debf2367bf95fd686cff8e6858de78" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>addDataRangeSource</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1ad7702f08894d50dc7da91d6669977321" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>autoRescale</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1adbb5d4c35d24c26bce8a7b32d372e327" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>autoRescale</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a79831af4bb3994c20da40d3c1cf81e6a" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>autoRescale_</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a029dbdda23dd9ef85b476e67aaf99743" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>autoRescaleChanged</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1af39f6cbab3836a0c97a71ea3be8af174" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>autoRescaleToData</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a4ded4e4d6d08ff8338cf62a8d48d749c" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>Axis</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a3f981525a5587cef62aca0b8d993374f" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>baselineColor</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a57a1c2d61f31ea59f821d075f4aec31f" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>baselineColor</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1abefbcbffaea39bfdd9ac2fc75fe21235" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>baselineColor_</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a940d8dfff84472bdbeb7121fdc58e9f1" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>baselineColorChanged</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1af732e7b0478377c913561d23e563970e" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>baselinePadding</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a4714bfe57cde838f5c30368fdd617523" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>baselinePadding</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1abc94b04ba6c4e6a95cf89ff38a4f725c" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>baselinePadding_</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1af8f3ee95069edca12e65a024a56d8896" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>baselinePaddingChanged</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a30a5e9496a5e1a9829fe94fbefd249da" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>baselineWidth</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1adb071f0734b0110e16b697567c722075" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>baselineWidth</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1abe4c0dde962c15029d020a438192aa01" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>baselineWidth_</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a43adeff2b46dc6dc39bb86040133b04b" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>baselineWidthChanged</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a53608b3c6fe0e1d195faa9b0c3b7a233aa5320d788f7ccc1c323cbde44b1ac904" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>Bottom</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1ae1a49787707d94d4cb5497ce0e9dabf5" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>clampEdgeLabels_</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a725543d9fe6738ecb2bb3608e15f2378" prot="protected" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>componentComplete</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a62a5083556a2099f19b07964df065c2b" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>coordToPixel</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1abc0a691d1617d35784f65fa1b3cc9418" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>dataFitRange</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1ab9a1549ca7fa37509039903052111c85" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>dataMax</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a160ec813704b49d4a7906aac7badb3f2" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>dataMax</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a0cc25df16f162e4759e2256b6b8dc223" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>dataMax_</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a579449acd0f6d993f8b60a10360cc398" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>dataMaxChanged</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a7ff8bbf8f594cce69d3a56c9b7f7dc25" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>dataMin</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a21aedd2ddaa592838b848cd1337be96f" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>dataMin</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a495dabe0e0bf8870e2bb07e4e215f52c" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>dataMin_</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a299cb2f85ca1cc0a7f139796ca99d740" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>dataMinChanged</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a15ca6a746e464d3cd06c1283b25ae463" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>dataRangeFromSeries_</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a2a814e688b01678392bef9d96eca2786" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>dataRangeSources_</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a91b5c61fad6a70a5cc76f25f1688ba37" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>dataRangeStale_</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a269d9633b8dfcdb7a2041d7d990bfa3f" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>doubleClicked</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a4c1405b3ab187d674906c8a292981483" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>ensureDataRange</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a5958ade0438ee967831eb048ceeac036" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>extendWidgetForLabels_</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a383747084cfb3eba248740336d5dee3a" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>formatValue</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1afddc8eb581624d62ec31c8b40046814c" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>hoverColor</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a76dbcd6d6b31efd6ce1b0dde8a74ae16" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>hoverColor</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a19be585746339b50deb6df0c8c3ee1a2" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>hoverColor_</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a491189d48850d69cf356f3ee10b32efe" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>hoverColorChanged</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1ac68c93c1a95fc00a48820096890e6bcf" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>hovered</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a9a7b367764a9293dd9e81c3a30da297b" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>hovered</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a82e738c90d9c07a2a7601d2635cc9e5f" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>hovered_</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1aabbc08f20680daebe4cef93bee76ae8d" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>hoveredChanged</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1afe106425e7942d7794e5506e7955e80e" prot="protected" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>hoverEnterEvent</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1ab5c3aacde298f6a0772378d354914fcc" prot="protected" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>hoverLeaveEvent</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a27f34309001173545b6ed448c225d315" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>invalidateDataRange</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a47d127dfb87d7401ce91e52300d1db68" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>invalidateTicks</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a20f7bccae411aaa8ec9bf5f3072731eb" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>inwardTickOverlap</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a8199c37c2877e916ce3cf3fb330f667c" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>isDragging_</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a7d6eb39b3c0bfab837de222d5f220ace" prot="protected" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>keyPressEvent</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1ae33073d2747e83d3efcbe622cff56256" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>label</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a161a60a8013f765854d605d944a4d641" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>label</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1aaff783da4f239617fbac94a6bbbd1a1b" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>label_</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a433aa0b5d46f0f864c2888e56dee9213" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>labelChanged</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1aaa3bd1ea8471f9a1d76132e63189426f" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>labelColor</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a8996be822df98d52f94c63b189bfbd7c" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>labelColor</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a30a9e3c355e35ee6373c010a141896f2" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>labelColor_</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a90e7de0ca043e8247857c4b59b92c329" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>labelColorChanged</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a2abbdb25270d46244700356f0924cb61" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>labelFont</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1aadb5be2730c0db9c8ddca104c021dbc8" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>labelFont</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a34ee74a3f675f99c7336966e41d7ddf9" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>labelFont_</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1aac5d9dc096f3b72f739a38aca966be05" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>labelFontChanged</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1ab7ea9c1ed6c2a558eb24178898236b43" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>labelOverflow</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a781f80dc51fa720d8ee2650f1cc52df5" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>labelPadding</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1aa217108bd9be218fdff20825ccfa3e1c" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>labelPadding</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a424bc748bb483bed13427ed941fef6ca" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>labelPadding_</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1af7eeeb37b64310da3b5550c2cfdbe9f9" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>labelPaddingChanged</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1afea28799a964d4c31c0f95fee42a73bd" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>lastMousePos_</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a8551f09e2566c991e79177fd0616abac" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>layoutSize</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1adb52d6a8bee3ca1d8d3b79236fcc208f" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>layoutSize</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a0ee957337ccb7f3ed3ac51fda3c4145e" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>layoutSize_</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1aa543a9309019f009654cd0eb329622d1" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>layoutSizeChanged</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a53608b3c6fe0e1d195faa9b0c3b7a233a1143f05594f1e7fd066af3e6b239d64e" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>Left</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a1f8a7a973efc3e0f2c248e6630dcb4b2" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>logScale</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a3c5174df0cfb8a7f70c54e57b841ea79" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>logScale</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a0ef1ac26f84ff9d0e2ac2d25410ffa2a" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>logScale_</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a8067516775c316543db13099af942265" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>logScaleChanged</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a3e3bc4bd0b8d4ee0342dde118337981a" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>mapping</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a73addc8f4c2e5f09f0a9f85c80345767" prot="protected" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>mouseDoubleClickEvent</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a60b4e069c81edc29aad7d6ff72a1e0b1" prot="protected" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>mouseMoveEvent</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1ab0059b73141e10799436102f3ba75848" prot="protected" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>mousePressEvent</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a9ab1b12201f190a7a02914a9321b6462" prot="protected" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>mouseReleaseEvent</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a2856ab0094d88f434df147328a442a80" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>orientation</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a380d835e16ec218eec1c3818620fa939" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>orientation</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1ab8a1514a770269981de531feec574096" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>orientation_</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a905fe22dd74642fbafe363a5a3a0ef68" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>orientationChanged</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a3613ed1b3cae19f09cc42571153a751c" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>paint</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a35a896b9c6def08c3be566a8bb7774c0" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>paintLabel</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a23e6adca53e163e30d607846d01f7c05" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>pixelToCoord</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1aa9a8749c8792deb1a5bb343ba9166177" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>PlotSeries</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a5ba9fb9bcadc5833267ebd0312df1a50" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>rangeChanged</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1ab041d28c28d134a26cd42222c6585b54" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>removeDataRangeSource</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a1a4057e12caae2776590a0ce4bc38a84" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>rescaleToData</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a53608b3c6fe0e1d195faa9b0c3b7a233aa63c758dd53bc156801790e754357524" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>Right</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1ae901b2a7615399c057fcb9b1790ae55f" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setAutoRescale</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1aae3d1b11e28089fa3db65fc55d80f3e1" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setBaselineColor</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1aad66fffb0a122f1bf8f2bb9ab2220ab5" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setBaselinePadding</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a5c16745cd23a1e6a0aa9f5c04c59621b" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setBaselineWidth</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1af9d7c5d69a2fd822642cb82b3e9d0323" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setDataMax</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1aabc10f0d12e9f6ce28c8b90d7909fd10" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setDataMin</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1accbd16f06365bf877e5a19f3da91fd59" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setDataRange</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1afa568c5d7e9bb84b6c29282c278477e0" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setDataRangeValues</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a05395fcd9c59730a8a526259320be246" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setHoverColor</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1ae944337cd4076a43020727eacb4d048b" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setLabel</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a886a43206cdde2bbf3c8762c4c546573" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setLabelColor</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a5f9558175769f1f8c2881ea91f3014a0" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setLabelFont</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a531f9f09061f99f0b73d3a4613e56a2f" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setLabelPadding</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a9157d5dc4cf978b807650e083baab6c6" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setLayoutSize</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1ae1341d0c24822f541050b2d7cd421abe" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setLogScale</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a0eea4717445edb64d3eeaef12916042d" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setOrientation</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a0690d37a094661f693c10385e5d932a2" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setSide</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a247e0e74dc8792a802a69c19cf7a938c" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setViewportMax</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a6a6f58d339c5e3449b9af4a88e9d07ee" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setViewportMin</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a5f423ba946e6e70ad91a8bf845d8eb90" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setViewportRange</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a7f1db08361f435c278167ede2a7e6356" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setZoomScaleFactor</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a6d5dd52c2e067a309ed0015cf6a58770" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>side</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a79634c657c31eb3071ed636e44bc8fff" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>side</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a53608b3c6fe0e1d195faa9b0c3b7a233" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>Side</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a4375e365fad1d36eca25876049ada22d" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>side_</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a7b1793813fac9450c071da4ca3ad61ea" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>sideChanged</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a6873a52bfe65db20dda17a9f5c535bc4" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>ticker</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a7e14dd389bbd1c794e12ca490c54c8ae" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>ticker</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a62984c5e09ddb1de57d6d49e6f5b421a" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>ticker_</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1ae8d8683ddaacb4d5d390eac0fb9b6ef9" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>ticks_</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a9316e91abccde24af6b84cc454850aa7" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>toggleLogScale</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a53608b3c6fe0e1d195faa9b0c3b7a233a2c632dea186b5586863157de64a21e42" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>Top</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a354a8d09a5fc915eddfb161de29564ab" prot="protected" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>updatePolish</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a42b69b0e37fb6bbc286fba9b117b325d" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>valueResolution</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1ae7112f0aac515a9fad256f21696f3e31" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>viewportMax</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a0e36fc39ef75b402bc6d313ec034a6c0" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>viewportMax</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1aa47f4dc54d2030239accd1015c71aa60" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>viewportMax_</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a2761f073b29c720b39edec4d99601e6f" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>viewportMaxChanged</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a7dc4f6741ca21456941ee90ca647fcbe" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>viewportMin</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a7e609c5b9eefca817ca60c2d3bce8286" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>viewportMin</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a012cbe718a49c188951929a6aae09cfa" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>viewportMin_</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a82400193ff348ca22055b4917779a449" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>viewportMinChanged</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1ac4b649e375037e2df64828c5f33ad4ae" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>zoomScaleFactor</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a26713372b37ed827412403426483e3e4" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>zoomScaleFactor</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1aa0b8950516ae8fc1adcf51b01014e58d" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>zoomScaleFactor_</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a490f2dbfdea8b031eab016501e9ca4b2" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>zoomScaleFactorChanged</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

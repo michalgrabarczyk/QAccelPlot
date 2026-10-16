@@ -1,0 +1,196 @@
+
+
+# File ColorBar.hpp
+
+[**File List**](files.md) **>** [**axis**](dir_4047c0a16b95170c37806a99233d1784.md) **>** [**ColorBar.hpp**](ColorBar_8hpp.md)
+
+[Go to the documentation of this file](ColorBar_8hpp.md)
+
+
+```C++
+//
+// SPDX-FileCopyrightText: 2026 Michal Grabarczyk
+// SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
+//
+// This file is also available under a separate commercial license.
+// See COMMERCIAL-LICENSING.md for contact information.
+//
+#pragma once
+
+#include "QAccelPlot/axis/AxisTicker.hpp"
+#include "QAccelPlot/axis/AxisTicks.hpp"
+#include "QAccelPlot/effects/GradientColorTypes.hpp"
+#include "QAccelPlot/series/PointCloud.hpp"
+#include "QAccelPlot/theme/ColorPalette.hpp"
+
+#include <QColor>
+#include <QFont>
+#include <QList>
+#include <QMetaObject>
+#include <QPointF>
+#include <QPointer>
+#include <QQuickPaintedItem>
+
+#include <vector>
+
+namespace QAccelPlot {
+
+class ColorBar : public QQuickPaintedItem {
+    Q_OBJECT
+    QML_NAMED_ELEMENT(ColorBar)
+
+    
+    Q_PROPERTY(PointCloud* series READ series WRITE setSeries NOTIFY seriesChanged)
+    Q_PROPERTY(Qt::Orientation orientation READ orientation WRITE setOrientation NOTIFY orientationChanged)
+    Q_PROPERTY(QString label READ label WRITE setLabel NOTIFY labelChanged)
+    Q_PROPERTY(QFont labelFont READ labelFont WRITE setLabelFont NOTIFY labelFontChanged)
+    Q_PROPERTY(QColor labelColor READ labelColor WRITE setLabelColor NOTIFY labelColorChanged)
+    Q_PROPERTY(qreal labelPadding READ labelPadding WRITE setLabelPadding NOTIFY labelPaddingChanged)
+    Q_PROPERTY(qreal barThickness READ barThickness WRITE setBarThickness NOTIFY barThicknessChanged)
+    Q_PROPERTY(QColor borderColor READ borderColor WRITE setBorderColor NOTIFY borderColorChanged)
+    Q_PROPERTY(qreal borderWidth READ borderWidth WRITE setBorderWidth NOTIFY borderWidthChanged)
+    Q_PROPERTY(qreal tickLabelWidth READ tickLabelWidth WRITE setTickLabelWidth NOTIFY tickLabelWidthChanged)
+    Q_PROPERTY(bool interactive READ interactive WRITE setInteractive NOTIFY interactiveChanged)
+    Q_PROPERTY(qreal zoomScaleFactor READ zoomScaleFactor WRITE setZoomScaleFactor NOTIFY zoomScaleFactorChanged)
+    Q_PROPERTY(bool hovered READ hovered NOTIFY hoveredChanged)
+    Q_PROPERTY(AxisTicker* ticker READ ticker CONSTANT)
+
+public:
+    explicit ColorBar(QQuickItem* parent = nullptr);
+
+    PointCloud* series() const;
+    void setSeries(PointCloud* series);
+
+    Qt::Orientation orientation() const;
+    void setOrientation(Qt::Orientation orientation);
+
+    QString label() const;
+    void setLabel(const QString& label);
+
+    QFont labelFont() const;
+    void setLabelFont(const QFont& font);
+
+    QColor labelColor() const;
+    void setLabelColor(const QColor& color);
+
+    qreal labelPadding() const;
+    void setLabelPadding(qreal padding);
+
+    qreal barThickness() const;
+    void setBarThickness(qreal thickness);
+
+    QColor borderColor() const;
+    void setBorderColor(const QColor& color);
+
+    qreal borderWidth() const;
+    void setBorderWidth(qreal width);
+
+    qreal tickLabelWidth() const;
+    void setTickLabelWidth(qreal width);
+
+    bool interactive() const;
+    void setInteractive(bool interactive);
+
+    qreal zoomScaleFactor() const;
+    void setZoomScaleFactor(qreal factor);
+
+    bool hovered() const;
+
+    AxisTicker* ticker() const;
+
+    Q_INVOKABLE void rescaleToData();
+
+    qreal valueToPixel(qreal value, qreal length) const;
+    qreal pixelToValue(qreal pixel, qreal length) const;
+
+    void paint(QPainter* painter) override;
+
+signals:
+    void seriesChanged();
+    void orientationChanged();
+    void labelChanged();
+    void labelFontChanged();
+    void labelColorChanged();
+    void labelPaddingChanged();
+    void barThicknessChanged();
+    void borderColorChanged();
+    void borderWidthChanged();
+    void tickLabelWidthChanged();
+    void interactiveChanged();
+    void zoomScaleFactorChanged();
+    void hoveredChanged();
+
+protected:
+    void hoverEnterEvent(QHoverEvent* event) override;
+    void hoverLeaveEvent(QHoverEvent* event) override;
+    void mousePressEvent(QMouseEvent* event) override;
+    void mouseMoveEvent(QMouseEvent* event) override;
+    void mouseReleaseEvent(QMouseEvent* event) override;
+    void mouseDoubleClickEvent(QMouseEvent* event) override;
+    void mouseUngrabEvent() override;
+    void wheelEvent(QWheelEvent* event) override;
+    void updatePolish() override;
+    void geometryChange(const QRectF& newGeometry, const QRectF& oldGeometry) override;
+
+private:
+    struct Layout {
+        QRectF strip;
+        QRectF tickArea;
+        QRectF title;
+        // Area that the tick marks and labels of a vertical bar may paint in.
+        QRectF tickClip;
+        qreal endInset{0.0};
+    };
+
+    void setHovered(bool hovered);
+    Colormap* seriesColormap() const;
+    qreal stripLength() const;
+    void panRange(qreal fraction);
+    void zoomRange(qreal factor, qreal anchorRatio);
+    void reconnectSeries();
+    void reconnectColormap();
+    void invalidate();
+    void captureColormap();
+    void updateImplicitSize();
+    Layout computeLayout() const;
+    qreal endInset() const;
+    qreal tickLabelHeight() const;
+    qreal tickLabelThickness() const;
+    qreal titleThickness() const;
+    qreal titleOffset() const;
+    void paintStrip(QPainter* painter) const;
+    void paintTicks(QPainter* painter) const;
+    void paintTitle(QPainter* painter) const;
+
+    QPointer<PointCloud> series_;
+    QList<QMetaObject::Connection> seriesConnections_;
+    QMetaObject::Connection colormapConnection_;
+    Qt::Orientation orientation_{Qt::Vertical};
+    QString label_;
+    QFont labelFont_;
+    QColor labelColor_{ColorPalette::dark().axisLine};
+    qreal labelPadding_{6.0};
+    qreal barThickness_{12.0};
+    QColor borderColor_{ColorPalette::dark().axisLine};
+    qreal borderWidth_{1.0};
+    qreal tickLabelWidth_{16.0};
+    bool interactive_{false};
+    qreal zoomScaleFactor_{0.9};
+    bool hovered_{false};
+    AxisTicker* ticker_;
+    bool isDragging_{false};
+    QPointF lastMousePos_;
+
+    // Captured on the GUI thread in updatePolish() and read by paint(), which may run on the render thread.
+    std::vector<GradientStopData> stops_;
+    qreal valueMin_{0.0};
+    qreal valueMax_{1.0};
+    bool logScale_{false};
+    AxisTicks ticks_;
+    Layout layout_;
+};
+
+} // namespace QAccelPlot
+```
+
+

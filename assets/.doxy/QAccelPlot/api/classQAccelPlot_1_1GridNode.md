@@ -105,7 +105,7 @@ flowchart TB
 ## Detailed Description
 
 
-Computes grid line positions from the same tick step as `AxisTickPainter` so that grid lines stay aligned with axis tick marks under all zoom levels, including log scale. 
+Draws grid lines at the tick values from `AxisTickPainter::computeTickValues()`, the same values the axis places its tick marks at, so both stay aligned under all zoom levels, including log scale. 
 
 
     

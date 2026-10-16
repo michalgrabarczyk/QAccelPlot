@@ -39,14 +39,14 @@
 | Type | Name |
 | ---: | :--- |
 | namespace | [**QAccelPlot**](namespaceQAccelPlot.md) <br> |
-| namespace | [**LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md) <br>_Stateless helpers implementing the invalid-sample contract shared by_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _subsystems._ |
+| namespace | [**LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md) <br>_Stateless helpers implementing the invalid-data-point contract shared by_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _subsystems._ |
 
 
 ## Classes
 
 | Type | Name |
 | ---: | :--- |
-| struct | [**SampleRun**](structQAccelPlot_1_1SampleRun.md) <br>_Contiguous range of valid curve samples, used to break fills and hit tests at gaps._  |
+| struct | [**DataPointRun**](structQAccelPlot_1_1DataPointRun.md) <br>_Contiguous range of valid curve data points, used to break fills and hit tests at gaps._  |
 
 
 

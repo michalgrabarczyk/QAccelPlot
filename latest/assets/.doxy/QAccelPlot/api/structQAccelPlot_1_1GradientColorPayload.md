@@ -45,7 +45,7 @@ _Render-thread snapshot of gradient stroke (line-color) parameters._ [More...](#
 
 | Type | Name |
 | ---: | :--- |
-|  [**GradientDirection**](namespaceQAccelPlot_1_1GradientDirectionNS.md#enum-direction) | [**direction**](#variable-direction)   = `{GradientDirection::Horizontal}`<br>_Gradient direction._  |
+|  Qt::Orientation | [**direction**](#variable-direction)   = `{Qt::Horizontal}`<br>_Gradient direction._  |
 |  bool | [**enabled**](#variable-enabled)   = `{false}`<br>`true` _when gradient stroke is active._ |
 |  std::optional&lt; qreal &gt; | [**gradientValueMax**](#variable-gradientvaluemax)  <br>_Fixed max for gradient normalisation;_ `std::nullopt` _= derived from data range._ |
 |  std::optional&lt; qreal &gt; | [**gradientValueMin**](#variable-gradientvaluemin)  <br>_Fixed min for gradient normalisation;_ `std::nullopt` _= derived from data range._ |
@@ -116,7 +116,7 @@ Assembled on the main thread and consumed by the line renderer without touching 
 
 _Gradient direction._ 
 ```C++
-GradientDirection QAccelPlot::GradientColorPayload::direction;
+Qt::Orientation QAccelPlot::GradientColorPayload::direction;
 ```
 
 

@@ -74,6 +74,8 @@ public:
     qreal max() const;
     void setMax(qreal value);
 
+    Q_INVOKABLE void setRange(qreal min, qreal max);
+
     Normalization norm() const;
     void setNorm(Normalization norm);
 
@@ -83,6 +85,11 @@ signals:
     void colormapChanged();
 
 private:
+    Q_SLOT void onStopChanged();
+    void onStopDestroyed(QObject* stop);
+    // Tracks the stop's lifetime and its position and color edits.
+    void connectStop(QObject* stop);
+    void disconnectStops();
     void rebuildStops();
     std::vector<GradientStopData> customStops() const;
 

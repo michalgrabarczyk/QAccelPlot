@@ -17,7 +17,7 @@
 
 _Vertex layout for line geometry, shared with the main thread for pre-built vertex caches._ 
 
-* `#include <LineCurveLineRenderer.hpp>`
+* `#include <LineStroke.hpp>`
 
 
 
@@ -205,5 +205,5 @@ float QAccelPlot::LineVertex::side;
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp`
 

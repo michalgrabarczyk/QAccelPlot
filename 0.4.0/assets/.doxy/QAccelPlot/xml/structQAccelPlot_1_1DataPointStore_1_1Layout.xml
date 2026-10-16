@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1DataPointStore_1_1Layout" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::DataPointStore::Layout</compoundname>
+    <includes local="no">DataPointStore.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1DataPointStore_1_1Layout_1a6500922730223b7002b40e026635b684" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classQAccelPlot_1_1DataPointStore_1a2a1f1ed22ed6c76b7068eb753cbb5fef" kindref="member">Dimension</ref> &gt;</type>
+        <definition>std::vector&lt;Dimension&gt; QAccelPlot::DataPointStore::Layout::columns</definition>
+        <argsstring></argsstring>
+        <name>columns</name>
+        <qualifiedname>QAccelPlot::DataPointStore::Layout::columns</qualifiedname>
+        <initializer>{Dimension::X, Dimension::Y}</initializer>
+        <briefdescription>
+<para>Coordinate columns in data point order. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="48" column="21" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="48" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1DataPointStore_1_1Layout_1a1b63c3ce89325e88a96d412d54ba28ef" prot="public" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1DataPointStore_1afe83393ab8a4e242aa3c5d0e45555122" kindref="member">RangeRule</ref></type>
+        <definition>RangeRule QAccelPlot::DataPointStore::Layout::rangeRule</definition>
+        <argsstring></argsstring>
+        <name>rangeRule</name>
+        <qualifiedname>QAccelPlot::DataPointStore::Layout::rangeRule</qualifiedname>
+        <initializer>{<ref refid="classQAccelPlot_1_1DataPointStore_1afe83393ab8a4e242aa3c5d0e45555122a6941686632549c8e3771fc6f6d74d2ac" kindref="member">RangeRule::EachCoordinate</ref>}</initializer>
+        <briefdescription>
+<para>Rule for the extents. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="49" column="19" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="49" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1DataPointStore_1_1Layout_1a509f6cddab026da6c7b429f635632b07" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::DataPointStore::Layout::attributeCount</definition>
+        <argsstring></argsstring>
+        <name>attributeCount</name>
+        <qualifiedname>QAccelPlot::DataPointStore::Layout::attributeCount</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+<para>Float attributes per data point; interleaved after the coordinates in render data. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="50" column="13" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="50" bodyend="50"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Shape of a data point. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="47" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="47" bodyend="51"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1DataPointStore_1_1Layout_1a509f6cddab026da6c7b429f635632b07" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore::Layout</scope><name>attributeCount</name></member>
+      <member refid="structQAccelPlot_1_1DataPointStore_1_1Layout_1a6500922730223b7002b40e026635b684" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore::Layout</scope><name>columns</name></member>
+      <member refid="structQAccelPlot_1_1DataPointStore_1_1Layout_1a1b63c3ce89325e88a96d412d54ba28ef" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore::Layout</scope><name>rangeRule</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -10,7 +10,7 @@
         <enumvalue id="namespaceQAccelPlot_1_1NanGapModeNS_1a7bc1561c858ec08f1c94fbc418062732ae4c38d6d45baf080943d323dd51a2ce8" prot="public">
           <name>Break</name>
           <briefdescription>
-<para>No line segment or fill is drawn to or from an invalid sample. </para>
+<para>No line segment or fill is drawn to or from an invalid data point. </para>
           </briefdescription>
           <detaileddescription>
           </detaileddescription>
@@ -18,13 +18,13 @@
         <enumvalue id="namespaceQAccelPlot_1_1NanGapModeNS_1a7bc1561c858ec08f1c94fbc418062732a49ab28040dfa07f53544970c6d147e1e" prot="public">
           <name>Connect</name>
           <briefdescription>
-<para>Invalid samples are skipped; the line and fill join the neighboring valid samples. </para>
+<para>Invalid data points are skipped; the line and fill join the neighboring valid data points. </para>
           </briefdescription>
           <detaileddescription>
           </detaileddescription>
         </enumvalue>
         <briefdescription>
-<para>Rendering strategies for invalid samples: NaN, ±Inf, or a non-positive value on a log-scale axis. </para>
+<para>Rendering strategies for invalid data points: NaN, ±Inf, or a non-positive value on a log-scale axis. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>

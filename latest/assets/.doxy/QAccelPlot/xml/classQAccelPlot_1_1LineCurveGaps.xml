@@ -68,7 +68,7 @@
         <name>nanMode</name>
         <qualifiedname>QAccelPlot::LineCurveGaps::nanMode</qualifiedname>
         <briefdescription>
-<para>Returns how invalid samples are rendered. </para>
+<para>Returns how invalid data points are rendered. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -87,7 +87,7 @@
           <declname>mode</declname>
         </param>
         <briefdescription>
-<para>Sets how invalid samples are rendered to <emphasis>mode</emphasis>. </para>
+<para>Sets how invalid data points are rendered to <emphasis>mode</emphasis>. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -118,7 +118,7 @@
     </briefdescription>
     <detaileddescription>
 <para>Accessible via the <computeroutput><ref refid="classQAccelPlot_1_1LineCurve_1a304e3f9be82a9fea7cb84b0c55068d9c" kindref="member">LineCurve::gaps</ref></computeroutput> CONSTANT grouped property, for example <computeroutput>gaps.nanMode: QAccelPlot.NanGapMode.Connect</computeroutput>.</para>
-<para>A sample is invalid when its X or Y coordinate is NaN or ±Inf, or is not strictly positive on a log-scale axis. Invalid samples are never drawn as markers, never hit-tested, and are excluded from auto-ranging coordinate by coordinate, regardless of <computeroutput>nanMode</computeroutput>.</para>
+<para>A data point is invalid when its X or Y coordinate is NaN or ±Inf, or is not strictly positive on a log-scale axis. Invalid data points are never drawn as markers, never hit-tested, and are excluded from auto-ranging coordinate by coordinate, regardless of <computeroutput>nanMode</computeroutput>.</para>
 <para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref> </para>
 </simplesect>
 </para>

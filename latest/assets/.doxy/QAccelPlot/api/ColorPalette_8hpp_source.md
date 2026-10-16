@@ -89,16 +89,11 @@ class ColorPalette : public QObject {
     Q_PROPERTY(QColor annotationRangeFill MEMBER annotationRangeFill CONSTANT)
     Q_PROPERTY(QColor annotationMarkerOutline MEMBER annotationMarkerOutline CONSTANT)
 
-    // Interactive tools
-    Q_PROPERTY(QColor toolRuler MEMBER toolRuler CONSTANT)
-    Q_PROPERTY(QColor toolAngle MEMBER toolAngle CONSTANT)
-    Q_PROPERTY(QColor toolPoint MEMBER toolPoint CONSTANT)
-    Q_PROPERTY(QColor toolRegion MEMBER toolRegion CONSTANT)
-    Q_PROPERTY(QColor toolOverlay MEMBER toolOverlay CONSTANT)
-
-    // Performance showcase
-    Q_PROPERTY(QColor performanceCurve MEMBER performanceCurve CONSTANT)
-    Q_PROPERTY(QColor performanceRectangles MEMBER performanceRectangles CONSTANT)
+    // Rectangle zoom
+    Q_PROPERTY(QColor rectangleZoomBorder MEMBER rectangleZoomBorder CONSTANT)
+    Q_PROPERTY(QColor rectangleZoomFill MEMBER rectangleZoomFill CONSTANT)
+    Q_PROPERTY(QColor selectionBorder MEMBER selectionBorder CONSTANT)
+    Q_PROPERTY(QColor selectionFill MEMBER selectionFill CONSTANT)
 
 public:
     static const ColorPalette& dark();
@@ -154,14 +149,10 @@ public:
     QColor annotationRangeFill;
     QColor annotationMarkerOutline;
 
-    QColor toolRuler;
-    QColor toolAngle;
-    QColor toolPoint;
-    QColor toolRegion;
-    QColor toolOverlay;
-
-    QColor performanceCurve;
-    QColor performanceRectangles;
+    QColor rectangleZoomBorder;
+    QColor rectangleZoomFill;
+    QColor selectionBorder;
+    QColor selectionFill;
 
 private:
     ColorPalette() = default;

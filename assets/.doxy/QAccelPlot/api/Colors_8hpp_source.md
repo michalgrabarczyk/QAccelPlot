@@ -36,6 +36,9 @@ class Colors : public QObject {
     Q_OBJECT
     QML_NAMED_ELEMENT(Colors)
     QML_SINGLETON
+    // Qt 6.3 and 6.4 register a singleton of a 0.x module without a name unless the added
+    // version names major version 0 explicitly.
+    QML_ADDED_IN_VERSION(0, 0)
     Q_PROPERTY(ColorPalette* dark READ dark CONSTANT)
     Q_PROPERTY(ColorPalette* light READ light CONSTANT)
 

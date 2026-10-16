@@ -19,6 +19,7 @@
 
 * `#include <QEasingCurve>`
 * `#include <QElapsedTimer>`
+* `#include <QList>`
 * `#include <QObject>`
 * `#include <QtQml/qqmlregistration.h>`
 * `#include <vector>`
@@ -49,6 +50,8 @@
 | Type | Name |
 | ---: | :--- |
 | class | [**DataTransition**](classQAccelPlot_1_1DataTransition.md) <br>_Abstract base class for animated data transitions on plot elements._  |
+| struct | [**Dataset**](structQAccelPlot_1_1DataTransition_1_1Dataset.md) <br>_Data a transition animates:_ `count` _items of_`stride` _values each, e.g. XY points with a stride of 2._ |
+| class | [**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md) <br>_One animation of a transition on one host element._  |
 
 
 

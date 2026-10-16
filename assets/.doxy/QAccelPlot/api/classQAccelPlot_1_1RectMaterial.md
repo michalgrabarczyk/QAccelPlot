@@ -15,7 +15,7 @@
 
 
 
-_QSGMaterial for rectangle list rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with a rect-count uniform._
+_QSGMaterial for rectangle series rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with a rect-count uniform._
 
 * `#include <RectMaterial.hpp>`
 
@@ -24,6 +24,7 @@ _QSGMaterial for rectangle list rendering, extending_ [_**DataTextureMaterial**_
 Inherits the following classes: [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 
 
+Inherited by the following classes: [QAccelPlot::BarMaterial](classQAccelPlot_1_1BarMaterial.md)
 
 
 ## Inheritance diagram
@@ -38,6 +39,10 @@ flowchart TB
 
   external_base_classQAccelPlot_1_1DataTextureMaterial_1["QSGMaterial"]
   external_base_classQAccelPlot_1_1DataTextureMaterial_1 --> classQAccelPlot_1_1DataTextureMaterial
+
+  classQAccelPlot_1_1BarMaterial["QAccelPlot::BarMaterial"]
+  classQAccelPlot_1_1RectMaterial --> classQAccelPlot_1_1BarMaterial
+  click classQAccelPlot_1_1BarMaterial "../classQAccelPlot_1_1BarMaterial/" "Open QAccelPlot::BarMaterial"
 
 ```
 
@@ -64,6 +69,11 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
+|  QColor | [**borderColor**](#variable-bordercolor)   = `{Qt::black}`<br>_Outline color._  |
+|  float | [**borderWidth**](#variable-borderwidth)   = `{0.0f}`<br>_Outline width in pixels, drawn inside each rectangle._  |
+|  QColor | [**hoverColor**](#variable-hovercolor)   = `{Qt::transparent}`<br>_Fill color of the highlighted rectangle._  |
+|  float | [**hoveredIndex**](#variable-hoveredindex)   = `{-1.0f}`<br>_Index of the highlighted rectangle, or -1 for none._  |
+|  QVector2D | [**minimumSize**](#variable-minimumsize)   = `{0.0f, 0.0f}`<br>_Minimum drawn rectangle width and height in pixels._  |
 |  float | [**rectCount**](#variable-rectcount)   = `{0.0f}`<br>_Number of rectangles in the data texture (used to index the sampler)._  |
 
 
@@ -74,7 +84,7 @@ See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 | Type | Name |
 | ---: | :--- |
 |  QColor | [**color**](classQAccelPlot_1_1DataTextureMaterial.md#variable-color)   = `{Qt::blue}`<br>_Line/fill color uniform._  |
-|  std::unique\_ptr&lt; QSGTexture &gt; | [**dataTexture**](classQAccelPlot_1_1DataTextureMaterial.md#variable-datatexture)  <br>_Owned data texture bound to the shader sampler._  |
+|  std::shared\_ptr&lt; [**DataTexture**](classQAccelPlot_1_1DataTexture.md) &gt; | [**dataTexture**](classQAccelPlot_1_1DataTextureMaterial.md#variable-datatexture)  <br>_Data texture sampled by the shader. Materials drawing the same samples may share one._  |
 |  QVector2D | [**domainMax**](classQAccelPlot_1_1DataTextureMaterial.md#variable-domainmax)   = `{1.0f, 1.0f}`<br>_Maximum data-space coordinate._  |
 |  QVector2D | [**domainMin**](classQAccelPlot_1_1DataTextureMaterial.md#variable-domainmin)   = `{0.0f, 0.0f}`<br>_Minimum data-space coordinate._  |
 |  float | [**logScaleX**](classQAccelPlot_1_1DataTextureMaterial.md#variable-logscalex)   = `{0.0f}`<br>_1.0 when the X axis uses log scale (float for std140 UBO compatibility)._  |
@@ -128,7 +138,8 @@ See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 | ---: | :--- |
 |   | [**DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md#function-datatexturematerial) () <br>_Constructs an empty_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _._ |
 |  int | [**compare**](classQAccelPlot_1_1DataTextureMaterial.md#function-compare) (const QSGMaterial \* other) override const<br>_Compares shared uniform fields; delegates type-specific fields to_ `compareExtra()` _._ |
-|  void | [**uploadTexture**](classQAccelPlot_1_1DataTextureMaterial.md#function-uploadtexture) (std::unique\_ptr&lt; QSGTexture &gt; & texture, QQuickWindow \* window, const float \* data, int floatCount) <br>_Uploads_ _floatCount_ _raw floats as an RGBA8888 data texture, reusing existing GPU/CPU buffers where possible._ |
+|  QSGTexture \* | [**sampledTexture**](classQAccelPlot_1_1DataTextureMaterial.md#function-sampledtexture) () const<br>_Returns the texture the shader samples, or_ `nullptr` _before_`dataTexture` _holds an upload._ |
+|  void | [**uploadTexture**](classQAccelPlot_1_1DataTextureMaterial.md#function-uploadtexture) (QQuickWindow \* window, const float \* data, int floatCount) <br>_Uploads_ _floatCount_ _raw floats from__data_ _into_`dataTexture` _, creating it when it is_`nullptr` _._ |
 |   | [**~DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md#function-datatexturematerial) () override<br> |
 
 
@@ -141,7 +152,7 @@ See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 | Type | Name |
 | ---: | :--- |
 |  const QSGGeometry::AttributeSet & | [**attributeSet**](classQAccelPlot_1_1DataTextureMaterial.md#function-attributeset) () <br>_Returns the shared vertex attribute set:_ `{float` _id, float param, uchar4 color} (12 bytes)._ |
-|  void | [**commitTexture**](classQAccelPlot_1_1DataTextureMaterial.md#function-committexture) (QSGMaterialShader::RenderState & state, int binding, QSGTexture \*\* texture, QSGTexture \* dataTexture) <br>_Commits_ _dataTexture_ _to sampler__binding_ _(call from_`updateSampledImage` _)._ |
+|  void | [**commitTexture**](classQAccelPlot_1_1DataTextureMaterial.md#function-committexture) (QSGMaterialShader::RenderState & state, int binding, QSGTexture \*\* texture, const [**DataTexture**](classQAccelPlot_1_1DataTexture.md) \* data) <br>_Commits the texture of_ _data_ _to sampler__binding_ _(call from_`updateSampledImage` _). Does nothing before an upload._ |
 |  bool | [**writeCommonUniforms**](classQAccelPlot_1_1DataTextureMaterial.md#function-writecommonuniforms) (char \* buf, int bufSize, const QMatrix4x4 & matrix, const [**DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) \* mat) <br>_Writes the shared UBO prefix (transform + color + domain + flags) into_ _buf_ _._ |
 
 
@@ -189,7 +200,7 @@ See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 
 | Type | Name |
 | ---: | :--- |
-| virtual int | [**compareExtra**](#function-compareextra) (const QSGMaterial \* other) override const<br>_Compares the_ `rectCount` _field after the base-class comparison succeeds._ |
+| virtual int | [**compareExtra**](#function-compareextra) (const QSGMaterial \* other) override const<br>_Compares the rectangle-specific uniforms after the base-class comparison succeeds._  |
 
 
 ## Protected Functions inherited from QAccelPlot::DataTextureMaterial
@@ -207,6 +218,81 @@ See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 
 ## Public Attributes Documentation
 
+
+
+
+
+### variable borderColor {#variable-bordercolor}
+
+_Outline color._ 
+```C++
+QColor QAccelPlot::RectMaterial::borderColor;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable borderWidth {#variable-borderwidth}
+
+_Outline width in pixels, drawn inside each rectangle._ 
+```C++
+float QAccelPlot::RectMaterial::borderWidth;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable hoverColor {#variable-hovercolor}
+
+_Fill color of the highlighted rectangle._ 
+```C++
+QColor QAccelPlot::RectMaterial::hoverColor;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable hoveredIndex {#variable-hoveredindex}
+
+_Index of the highlighted rectangle, or -1 for none._ 
+```C++
+float QAccelPlot::RectMaterial::hoveredIndex;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable minimumSize {#variable-minimumsize}
+
+_Minimum drawn rectangle width and height in pixels._ 
+```C++
+QVector2D QAccelPlot::RectMaterial::minimumSize;
+```
+
+
+
+
+<hr>
 
 
 
@@ -279,7 +365,7 @@ QSGMaterialType * QAccelPlot::RectMaterial::type () override const
 
 ### function compareExtra {#function-compareextra}
 
-_Compares the_ `rectCount` _field after the base-class comparison succeeds._
+_Compares the rectangle-specific uniforms after the base-class comparison succeeds._ 
 ```C++
 virtual int QAccelPlot::RectMaterial::compareExtra (
     const QSGMaterial * other

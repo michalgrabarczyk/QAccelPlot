@@ -17,8 +17,8 @@
 
 
 
+* `#include "QAccelPlot/materials/DataTexture.hpp"`
 * `#include <QColor>`
-* `#include <QImage>`
 * `#include <QMatrix4x4>`
 * `#include <QQuickWindow>`
 * `#include <QSGMaterial>`
@@ -51,7 +51,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| class | [**DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) <br>_Base QSGMaterial that uploads curve data as a floating-point texture and exposes shared shader uniforms._  |
+| class | [**DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) <br>_Base QSGMaterial that samples series data from a_ `DataTexture` _and exposes shared shader uniforms._ |
 
 
 

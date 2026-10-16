@@ -27,6 +27,7 @@
 #include <QFont>
 #include <QList>
 #include <QMetaObject>
+#include <QPointF>
 #include <QPointer>
 #include <QQuickPaintedItem>
 
@@ -40,7 +41,7 @@ class ColorBar : public QQuickPaintedItem {
 
     
     Q_PROPERTY(PointCloud* series READ series WRITE setSeries NOTIFY seriesChanged)
-    Q_PROPERTY(Orientation orientation READ orientation WRITE setOrientation NOTIFY orientationChanged)
+    Q_PROPERTY(Qt::Orientation orientation READ orientation WRITE setOrientation NOTIFY orientationChanged)
     Q_PROPERTY(QString label READ label WRITE setLabel NOTIFY labelChanged)
     Q_PROPERTY(QFont labelFont READ labelFont WRITE setLabelFont NOTIFY labelFontChanged)
     Q_PROPERTY(QColor labelColor READ labelColor WRITE setLabelColor NOTIFY labelColorChanged)
@@ -48,23 +49,20 @@ class ColorBar : public QQuickPaintedItem {
     Q_PROPERTY(qreal barThickness READ barThickness WRITE setBarThickness NOTIFY barThicknessChanged)
     Q_PROPERTY(QColor borderColor READ borderColor WRITE setBorderColor NOTIFY borderColorChanged)
     Q_PROPERTY(qreal borderWidth READ borderWidth WRITE setBorderWidth NOTIFY borderWidthChanged)
+    Q_PROPERTY(qreal tickLabelWidth READ tickLabelWidth WRITE setTickLabelWidth NOTIFY tickLabelWidthChanged)
+    Q_PROPERTY(bool interactive READ interactive WRITE setInteractive NOTIFY interactiveChanged)
+    Q_PROPERTY(qreal zoomScaleFactor READ zoomScaleFactor WRITE setZoomScaleFactor NOTIFY zoomScaleFactorChanged)
+    Q_PROPERTY(bool hovered READ hovered NOTIFY hoveredChanged)
     Q_PROPERTY(AxisTicker* ticker READ ticker CONSTANT)
 
 public:
-    enum Orientation {
-        Horizontal, 
-        Vertical    
-    };
-    Q_ENUM(Orientation)
-
-    
     explicit ColorBar(QQuickItem* parent = nullptr);
 
     PointCloud* series() const;
     void setSeries(PointCloud* series);
 
-    Orientation orientation() const;
-    void setOrientation(Orientation orientation);
+    Qt::Orientation orientation() const;
+    void setOrientation(Qt::Orientation orientation);
 
     QString label() const;
     void setLabel(const QString& label);
@@ -87,9 +85,23 @@ public:
     qreal borderWidth() const;
     void setBorderWidth(qreal width);
 
+    qreal tickLabelWidth() const;
+    void setTickLabelWidth(qreal width);
+
+    bool interactive() const;
+    void setInteractive(bool interactive);
+
+    qreal zoomScaleFactor() const;
+    void setZoomScaleFactor(qreal factor);
+
+    bool hovered() const;
+
     AxisTicker* ticker() const;
 
+    Q_INVOKABLE void rescaleToData();
+
     qreal valueToPixel(qreal value, qreal length) const;
+    qreal pixelToValue(qreal pixel, qreal length) const;
 
     void paint(QPainter* painter) override;
 
@@ -103,8 +115,20 @@ signals:
     void barThicknessChanged();
     void borderColorChanged();
     void borderWidthChanged();
+    void tickLabelWidthChanged();
+    void interactiveChanged();
+    void zoomScaleFactorChanged();
+    void hoveredChanged();
 
 protected:
+    void hoverEnterEvent(QHoverEvent* event) override;
+    void hoverLeaveEvent(QHoverEvent* event) override;
+    void mousePressEvent(QMouseEvent* event) override;
+    void mouseMoveEvent(QMouseEvent* event) override;
+    void mouseReleaseEvent(QMouseEvent* event) override;
+    void mouseDoubleClickEvent(QMouseEvent* event) override;
+    void mouseUngrabEvent() override;
+    void wheelEvent(QWheelEvent* event) override;
     void updatePolish() override;
     void geometryChange(const QRectF& newGeometry, const QRectF& oldGeometry) override;
 
@@ -113,9 +137,16 @@ private:
         QRectF strip;
         QRectF tickArea;
         QRectF title;
+        // Area that the tick marks and labels of a vertical bar may paint in.
+        QRectF tickClip;
         qreal endInset{0.0};
     };
 
+    void setHovered(bool hovered);
+    Colormap* seriesColormap() const;
+    qreal stripLength() const;
+    void panRange(qreal fraction);
+    void zoomRange(qreal factor, qreal anchorRatio);
     void reconnectSeries();
     void reconnectColormap();
     void invalidate();
@@ -134,7 +165,7 @@ private:
     QPointer<PointCloud> series_;
     QList<QMetaObject::Connection> seriesConnections_;
     QMetaObject::Connection colormapConnection_;
-    Orientation orientation_{Vertical};
+    Qt::Orientation orientation_{Qt::Vertical};
     QString label_;
     QFont labelFont_;
     QColor labelColor_{ColorPalette::dark().axisLine};
@@ -142,7 +173,13 @@ private:
     qreal barThickness_{12.0};
     QColor borderColor_{ColorPalette::dark().axisLine};
     qreal borderWidth_{1.0};
+    qreal tickLabelWidth_{16.0};
+    bool interactive_{false};
+    qreal zoomScaleFactor_{0.9};
+    bool hovered_{false};
     AxisTicker* ticker_;
+    bool isDragging_{false};
+    QPointF lastMousePos_;
 
     // Captured on the GUI thread in updatePolish() and read by paint(), which may run on the render thread.
     std::vector<GradientStopData> stops_;
@@ -150,7 +187,6 @@ private:
     qreal valueMax_{1.0};
     bool logScale_{false};
     AxisTicks ticks_;
-    qreal maxTickLabelWidth_{0.0};
     Layout layout_;
 };
 

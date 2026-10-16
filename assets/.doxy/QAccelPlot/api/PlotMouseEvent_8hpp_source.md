@@ -28,30 +28,30 @@ class PlotMouseEvent : public QObject {
     QML_UNCREATABLE("PlotMouseEvent can only be created by QAccelPlot.")
 
     
-    Q_PROPERTY(int button READ button CONSTANT)
+    Q_PROPERTY(Qt::MouseButton button READ button CONSTANT)
     Q_PROPERTY(qreal x READ x CONSTANT)
     Q_PROPERTY(qreal y READ y CONSTANT)
-    Q_PROPERTY(int modifiers READ modifiers CONSTANT)
+    Q_PROPERTY(Qt::KeyboardModifiers modifiers READ modifiers CONSTANT)
     Q_PROPERTY(bool accepted READ isAccepted WRITE setAccepted)
 
 public:
     explicit PlotMouseEvent(QObject* parent = nullptr);
 
-    int button() const;
+    Qt::MouseButton button() const;
     qreal x() const;
     qreal y() const;
-    int modifiers() const;
+    Qt::KeyboardModifiers modifiers() const;
     bool isAccepted() const;
     Q_INVOKABLE void accept();
     Q_INVOKABLE void ignore();
     void setAccepted(bool accepted);
-    void reset(int button, qreal x, qreal y, int modifiers);
+    void reset(Qt::MouseButton button, qreal x, qreal y, Qt::KeyboardModifiers modifiers);
 
 private:
-    int button_{0};
+    Qt::MouseButton button_{Qt::NoButton};
     qreal x_{0.0};
     qreal y_{0.0};
-    int modifiers_{0};
+    Qt::KeyboardModifiers modifiers_{Qt::NoModifier};
     bool accepted_{false};
 };
 
