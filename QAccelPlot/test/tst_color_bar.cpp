@@ -10,6 +10,7 @@
 #include "QAccelPlot/axis/AxisTickPainter.hpp"
 #include "QAccelPlot/axis/ColorBar.hpp"
 #include "QAccelPlot/effects/Colormap.hpp"
+#include "QAccelPlot/series/HeatmapSeries.hpp"
 #include "QAccelPlot/series/PointCloud.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 
@@ -232,6 +233,7 @@ private slots:
     void doubleClickRescalesToData();
     void gesturesAreIgnoredWithoutColormap();
     void sharedColormapMovesEverySeries();
+    void keysHeatmapSeries();
     void qmlInteractiveColorBar();
     void onlyInteractiveBarKeepsEventsFromPlot();
 };
@@ -796,6 +798,23 @@ void ColorBarTest::sharedColormapMovesEverySeries()
     drag(scene.bar, scene.center(), scene.center() + QPointF{scene.stripLength() / 4.0, 0.0});
     QCOMPARE_NEAR(other.dataValueMin(), 5.0);
     QCOMPARE_NEAR(other.dataValueMax(), 25.0);
+}
+
+void ColorBarTest::keysHeatmapSeries()
+{
+    auto heatmap = HeatmapSeries{};
+    heatmap.setValues(std::vector<float>{2.0f, 6.0f}, 2, 1);
+    auto bar = ColorBar{};
+    bar.setSeries(&heatmap);
+    QCOMPARE(bar.series(), &heatmap);
+
+    // The bar acts on the colormap the heatmap owns.
+    heatmap.colormap()->setRange(3.0, 4.0);
+    QCOMPARE(heatmap.dataValueMin(), 3.0);
+    bar.rescaleToData();
+    QVERIFY(std::isnan(heatmap.colormap()->min()));
+    QCOMPARE(heatmap.dataValueMin(), 2.0);
+    QCOMPARE(heatmap.dataValueMax(), 6.0);
 }
 
 void ColorBarTest::qmlInteractiveColorBar()

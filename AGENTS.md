@@ -86,7 +86,7 @@ QAccelPlot/
 │       ├── materials/            — QSGMaterial subclasses for GPU rendering
 │       ├── renderers/            — LineCurveLineRenderer, LineCurvePointRenderer, BandEdgeRenderer,
 │       │                           LineStroke (shared line ribbon helpers)
-│       ├── series/               — LineCurve, PointCloud, RectangleSeries, BarSeries, BandSeries,
+│       ├── series/               — LineCurve, PointCloud, HeatmapSeries, RectangleSeries, BarSeries, BandSeries,
 │       │                           PlotSeries, ColormappedSeries (colormap and value range base),
 │       │                           RectangleBorder (border grouped property),
 │       │                           BandEdges (edges grouped property),

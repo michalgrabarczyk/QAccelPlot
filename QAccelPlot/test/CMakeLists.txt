@@ -62,6 +62,8 @@ add_qaccelplot_test(tst_point_cloud_data     core tst_point_cloud_data.cpp)
 add_qaccelplot_test(tst_point_cloud_capacity core tst_point_cloud_capacity.cpp)
 add_qaccelplot_test(tst_series_capacity      core tst_series_capacity.cpp)
 add_qaccelplot_test(tst_point_cloud_transitions core tst_point_cloud_transitions.cpp)
+add_qaccelplot_test(tst_heatmap_series_data  core tst_heatmap_series_data.cpp)
+add_qaccelplot_test(tst_heatmap_series_rendering core tst_heatmap_series_rendering.cpp)
 add_qaccelplot_test(tst_line_styles          core tst_line_styles.cpp)
 add_qaccelplot_test(tst_data_anchor          core tst_data_anchor.cpp)
 add_qaccelplot_test(tst_axis_rescale         core tst_axis_rescale.cpp)
@@ -104,6 +106,9 @@ qt_import_qml_plugins(tst_line_curve_hover)
 # Renders a QML scene, so it needs the QML module plugin.
 target_link_libraries(tst_band_series_rendering PRIVATE QAccelPlot::QAccelPlot)
 qt_import_qml_plugins(tst_band_series_rendering)
+# Renders a QML scene, so it needs the QML module plugin.
+target_link_libraries(tst_heatmap_series_rendering PRIVATE QAccelPlot::QAccelPlot)
+qt_import_qml_plugins(tst_heatmap_series_rendering)
 
 add_qaccelplot_test(tst_series_inspection  core tst_series_inspection.cpp)
 add_qaccelplot_test(tst_inspection_row_model core tst_inspection_row_model.cpp)
