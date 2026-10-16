@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- `ColorBar.series` takes any `ColormappedSeries`, the new base of `PointCloud`.
+  In C++, `ColorBar::series()` returns a `ColormappedSeries*`.
+
 ## [0.4.0] — 2026-10-16
 
 ### Added

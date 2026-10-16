@@ -7,9 +7,7 @@
 //
 #pragma once
 
-#include "QAccelPlot/effects/Colormap.hpp"
-#include "QAccelPlot/effects/GradientColorTypes.hpp"
-#include "QAccelPlot/series/PlotSeries.hpp"
+#include "QAccelPlot/series/ColormappedSeries.hpp"
 #include "QAccelPlot/series/PointSpatialIndex.hpp"
 #include "QAccelPlot/series/SeriesMarker.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
@@ -17,9 +15,7 @@
 
 #include <QColor>
 #include <QList>
-#include <QMetaObject>
 #include <QPointF>
-#include <QPointer>
 
 #include <limits>
 #include <memory>
@@ -37,8 +33,8 @@ class TransitionRunner;
 /// \brief A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers.
 ///
 /// Every point is drawn as a GPU billboard with one of the marker shapes shared with \c LineCurve.
-/// Points are colored uniformly with \c color, or by a per-point scalar value mapped through a
-/// \c Colormap.
+/// Points are colored uniformly with \c color, or by a per-point scalar value mapped through
+/// \c colormap. Points are colored uniformly while \c colormap is null or no values are stored.
 ///
 /// Positions and values are uploaded as a single data texture; the vertex buffer depends only on the
 /// point count, so updating a cloud of constant size is one texture upload per frame. Methods whose
@@ -66,8 +62,8 @@ class TransitionRunner;
 /// limit, and twice that for 16384. Points beyond it are not drawn or hovered, and a warning is logged
 /// once.
 ///
-/// \sa LineCurve, Axis, PlotSeries, ColorBar, MorphTransition, DrawTransition
-class PointCloud : public PlotSeries {
+/// \sa LineCurve, Axis, ColormappedSeries, ColorBar, MorphTransition, DrawTransition
+class PointCloud : public ColormappedSeries {
     Q_OBJECT
     QML_NAMED_ELEMENT(PointCloud)
 
@@ -77,9 +73,6 @@ class PointCloud : public PlotSeries {
     /// defaults to \c Circle and does not accept \c None, because a cloud always draws markers; <tt>marker.size</tt>
     /// defaults to 3.
     Q_PROPERTY(SeriesMarker* marker READ marker CONSTANT)
-    /// \brief Maps per-point values to colors. Points are colored uniformly with \c color when this
-    /// is null or no values are stored. Default: null.
-    Q_PROPERTY(Colormap* colormap READ colormap WRITE setColormap NOTIFY colormapChanged)
     /// \brief Whether GPU-side anti-aliasing is applied to markers. Default: \c true.
     Q_PROPERTY(bool antialiasingEnabled READ antialiasingEnabled WRITE setAntialiasingEnabled NOTIFY antialiasingEnabledChanged)
     /// \brief Anti-aliasing feather width in pixels, clamped to [0, 10]. Default: 1.
@@ -94,12 +87,6 @@ class PointCloud : public PlotSeries {
     Q_PROPERTY(bool hasValues READ hasValues NOTIFY countChanged)
     /// \brief Read-only: index of the point under the cursor, or -1 when none.
     Q_PROPERTY(int hoveredIndex READ hoveredIndex NOTIFY hoveredIndexChanged)
-    /// \brief Read-only: lower bound of the value range, taken from \c Colormap::min when it is set
-    /// and from the data otherwise. \c ColorBar labels its ticks from this and \c dataValueMax.
-    Q_PROPERTY(qreal dataValueMin READ dataValueMin NOTIFY valueRangeChanged)
-    /// \brief Read-only: upper bound of the value range, taken from \c Colormap::max when it is set
-    /// and from the data otherwise.
-    Q_PROPERTY(qreal dataValueMax READ dataValueMax NOTIFY valueRangeChanged)
 
 public:
     /// \brief Constructs a PointCloud with the given \a parent.
@@ -114,11 +101,6 @@ public:
 
     /// \brief Returns the grouped marker settings. The object is owned by the cloud.
     SeriesMarker* marker() const;
-
-    /// \brief Returns the colormap, or \c nullptr when points are colored uniformly.
-    Colormap* colormap() const;
-    /// \brief Sets the colormap to \a colormap. Pass \c nullptr to color every point with \c color.
-    void setColormap(Colormap* colormap);
 
     /// \brief Returns \c true when GPU anti-aliasing is enabled.
     bool antialiasingEnabled() const;
@@ -146,10 +128,6 @@ public:
     bool hasValues() const;
     /// \brief Returns the index of the hovered point, or -1.
     int hoveredIndex() const;
-    /// \brief Returns the resolved lower bound of the value range.
-    qreal dataValueMin() const;
-    /// \brief Returns the resolved upper bound of the value range.
-    qreal dataValueMax() const;
 
     /// \brief Replaces all points with \a points and clears per-point values.
     Q_INVOKABLE void setData(const QList<QPointF>& points);
@@ -185,8 +163,6 @@ public:
 signals:
     /// \brief Emitted when the color property changes.
     void colorChanged();
-    /// \brief Emitted when the colormap property changes.
-    void colormapChanged();
     /// \brief Emitted when the antialiasingEnabled property changes.
     void antialiasingEnabledChanged();
     /// \brief Emitted when the antialiasingFeather property changes.
@@ -199,8 +175,6 @@ signals:
     void countChanged();
     /// \brief Emitted when the hovered point changes.
     void hoveredIndexChanged();
-    /// \brief Emitted when \c dataValueMin or \c dataValueMax changes.
-    void valueRangeChanged();
 
 protected:
     /// \cond INTERNAL
@@ -218,10 +192,10 @@ protected:
     void onAxisScaleChanged() override;
     /// \brief Refreshes the hover index, the value range, and the count after the points changed.
     void onDataPointsChanged(DataChange change, int previousCount) override;
+    /// \brief Returns the span of the finite point values.
+    std::optional<ValueSpan> scanValueRange() const override;
 
 private:
-    Q_SLOT void onColormapUpdated();
-
     /// \brief Points of \c stride doubles each: (x, y), or (x, y, value).
     struct Points {
         std::vector<double> values;
@@ -236,9 +210,6 @@ private:
     void applyDoubleData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
     /// \brief Finishes a change of the values alone, which leaves the data ranges as they are.
     void finishValueChange(int previousCount);
-    void updateValueRange();
-    void reconnectColormapSignals();
-    void refreshColorStops();
     void setHoveredIndex(int index);
     /// \brief Returns the number of points that take part in hover: those the data texture holds.
     int hoverPointCount() const;
@@ -274,8 +245,6 @@ private:
 
     QColor color_{ColorPalette::dark().seriesPrimary};
     SeriesMarker* marker_{new SeriesMarker{MarkerShape::Circle, 3.0, SeriesMarker::NoneShape::Rejected, this}};
-    QPointer<Colormap> colormap_;
-    std::vector<GradientStopData> colorStops_;
     bool antialiasingEnabled_{true};
     qreal antialiasingFeather_{1.0};
     qreal hoverRadius_{6.0};
@@ -286,8 +255,6 @@ private:
 
     // hasValues() as countChanged() last reported it.
     bool reportedHasValues_{false};
-    qreal dataValueMin_{0.0};
-    qreal dataValueMax_{1.0};
     // Render revision of the data points last uploaded to the GPU.
     std::uint64_t uploadedRevision_{0};
     // Whether the last frame held more records than the GPU buffers do; warns on each crossing.
@@ -306,8 +273,6 @@ private:
     // before the handler asks again, each time at the same position.
     mutable std::optional<HoverQuery> lastHoverQuery_;
     mutable int lastHoverIndex_{-1};
-
-    QList<QMetaObject::Connection> gradientConnections_;
 };
 
 } // namespace QAccelPlot

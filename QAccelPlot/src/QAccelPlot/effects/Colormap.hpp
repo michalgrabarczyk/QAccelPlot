@@ -27,8 +27,8 @@ namespace QAccelPlot {
 ///
 /// The ramp comes from \c preset, or from \c stops when a custom ramp is given. \c min and \c max
 /// bound the value range; leaving either unset resolves it from the data, so one colormap can be
-/// shared between series that resolve different ranges. Each series reports what it resolved, for
-/// example through \c PointCloud::dataValueMin().
+/// shared between series that resolve different ranges. Each series reports what it resolved
+/// through \c ColormappedSeries::dataValueMin() and \c ColormappedSeries::dataValueMax().
 ///
 /// \sa PointCloud, GradientFill, GradientStroke
 class Colormap : public QObject {

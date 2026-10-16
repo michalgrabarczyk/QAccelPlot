@@ -57,7 +57,7 @@ qreal rampPosition(const qreal value, const qreal minimum, const qreal maximum, 
     return nearlyEqual(range, 0.0) ? 0.0 : (value - minimum) / range;
 }
 
-Internal::ValueRange resolvedRange(const PointCloud& series)
+Internal::ValueRange resolvedRange(const ColormappedSeries& series)
 {
     return {series.dataValueMin(), series.dataValueMax()};
 }
@@ -112,12 +112,12 @@ ColorBar::ColorBar(QQuickItem* parent)
     invalidate();
 }
 
-PointCloud* ColorBar::series() const
+ColormappedSeries* ColorBar::series() const
 {
     return series_.data();
 }
 
-void ColorBar::setSeries(PointCloud* series)
+void ColorBar::setSeries(ColormappedSeries* series)
 {
     if (series_ == series) {
         return;
@@ -494,11 +494,11 @@ void ColorBar::reconnectSeries()
     seriesConnections_.clear();
 
     if (series_) {
-        seriesConnections_.append(connect(series_.data(), &PointCloud::colormapChanged, this, [this]() {
+        seriesConnections_.append(connect(series_.data(), &ColormappedSeries::colormapChanged, this, [this]() {
             reconnectColormap();
             invalidate();
         }));
-        seriesConnections_.append(connect(series_.data(), &PointCloud::valueRangeChanged, this, &ColorBar::invalidate));
+        seriesConnections_.append(connect(series_.data(), &ColormappedSeries::valueRangeChanged, this, &ColorBar::invalidate));
         seriesConnections_.append(connect(series_.data(), &QObject::destroyed, this, [this]() {
             reconnectSeries();
             emit seriesChanged();

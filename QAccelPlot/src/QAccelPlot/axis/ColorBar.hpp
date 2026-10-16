@@ -10,7 +10,7 @@
 #include "QAccelPlot/axis/AxisTicker.hpp"
 #include "QAccelPlot/axis/AxisTicks.hpp"
 #include "QAccelPlot/effects/GradientColorTypes.hpp"
-#include "QAccelPlot/series/PointCloud.hpp"
+#include "QAccelPlot/series/ColormappedSeries.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 
 #include <QColor>
@@ -27,11 +27,11 @@ namespace QAccelPlot {
 
 /// \brief A continuous key that shows how a series' \c Colormap maps values to colors.
 ///
-/// Draws the series' color ramp as a strip, with ticks and labels for the value range the series
-/// resolved (\c PointCloud::dataValueMin and \c PointCloud::dataValueMax). Ticks follow the
-/// colormap's \c norm, so a \c Log colormap gets decade ticks. The bar redraws when the colormap, the
-/// resolved range, or the assigned colormap changes. Nothing is drawn while the series has no
-/// colormap.
+/// Draws the color ramp of a \c ColormappedSeries, such as a \c PointCloud, as a strip, with ticks
+/// and labels for the value range the series resolved (\c ColormappedSeries::dataValueMin and
+/// \c ColormappedSeries::dataValueMax). Ticks follow the colormap's \c norm, so a \c Log colormap
+/// gets decade ticks. The bar redraws when the colormap, the resolved range, or the assigned colormap
+/// changes. Nothing is drawn while the series has no colormap.
 ///
 /// A vertical bar has its minimum at the bottom, with ticks on the right and \c label beside them,
 /// reading top to bottom.
@@ -56,13 +56,13 @@ namespace QAccelPlot {
 /// The gestures write \c Colormap::min and \c Colormap::max, so every series sharing the colormap
 /// follows. A QML binding on either bound overrides them when it is next evaluated.
 ///
-/// \sa PointCloud, Colormap, AxisTicker
+/// \sa ColormappedSeries, PointCloud, Colormap, AxisTicker
 class ColorBar : public QQuickPaintedItem {
     Q_OBJECT
     QML_NAMED_ELEMENT(ColorBar)
 
     /// \brief Series whose colormap and resolved value range are shown. Default: null.
-    Q_PROPERTY(PointCloud* series READ series WRITE setSeries NOTIFY seriesChanged)
+    Q_PROPERTY(ColormappedSeries* series READ series WRITE setSeries NOTIFY seriesChanged)
     /// \brief Direction of the ramp: \c Qt.Vertical or \c Qt.Horizontal. Default: \c Qt.Vertical.
     Q_PROPERTY(Qt::Orientation orientation READ orientation WRITE setOrientation NOTIFY orientationChanged)
     /// \brief Optional title drawn beside the tick labels. Default: empty.
@@ -105,9 +105,9 @@ public:
     explicit ColorBar(QQuickItem* parent = nullptr);
 
     /// \brief Returns the series whose colormap is shown, or \c nullptr.
-    PointCloud* series() const;
+    ColormappedSeries* series() const;
     /// \brief Sets the series whose colormap is shown to \a series.
-    void setSeries(PointCloud* series);
+    void setSeries(ColormappedSeries* series);
 
     /// \brief Returns the ramp direction.
     Qt::Orientation orientation() const;
@@ -266,7 +266,7 @@ private:
     void paintTicks(QPainter* painter) const;
     void paintTitle(QPainter* painter) const;
 
-    QPointer<PointCloud> series_;
+    QPointer<ColormappedSeries> series_;
     QList<QMetaObject::Connection> seriesConnections_;
     QMetaObject::Connection colormapConnection_;
     Qt::Orientation orientation_{Qt::Vertical};
