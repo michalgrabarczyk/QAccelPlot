@@ -25,7 +25,7 @@ level-of-detail (LOD) reduction.
 ## ⚡ Highlights
 
 - **GPU rendering**: Lines, markers, dashes, and gradients are drawn by shaders on OpenGL, OpenGL ES, Direct3D 11/12, Vulkan, and Metal.
-- **Series types**: Line curves, point clouds, bars, histograms, bands, and rectangle spans.
+- **Series types**: Line curves, point clouds, heatmaps, bars, histograms, bands, and rectangle spans.
 - **Interactive at full data size**: Pan, cursor-centered zoom, per-axis zoom, and double-click rescale work out of the box. Hover hit testing uses cached block bounds, so it stays responsive on large curves.
 - **Fast data paths**: Move interleaved `float` buffers into a curve, or hand buffers off from worker threads with `postData()`. Data ranges are computed only when needed.
 - **QML-native**: Plots, axes, and series are `QQuickItem`/`QObject` types that compose with Qt Quick layouts and bindings.
@@ -121,6 +121,7 @@ Explore runnable applications in the [`examples/`](examples/) directory:
 | Plot types | **[Histogram](examples/plot_types/histogram/)** | Sensor noise in equal bins, and request latencies in logarithmic bins or as density in one bin per axis tick. |
 | Plot types | **[Bands](examples/plot_types/bands/)** | Forecast with nested prediction intervals, and a rolling mean ± 2σ band over a simulated sensor signal. |
 | Plot types | **[Parametric Curves](examples/plot_types/parametric_curves/)** | Spiral, Lissajous figure, spirograph, and Van der Pol phase portrait: curves that loop and cross themselves. |
+| Plot types | **[Heatmap](examples/plot_types/heatmap/)** | Two-source wave interference on a 400 × 300 grid, with colormap presets, an interactive color bar, and a hover readout. |
 | Plot types | **[Point Cloud](examples/plot_types/point_cloud/)** | 200K-point scatter colored by value through a Colormap preset, with a hover tooltip, rectangle zoom, and morph and draw transitions between datasets. |
 | Plot types | **[State Timeline](examples/plot_types/state_timeline/)** | Two weeks of machine states in one RectangleSeries, colored by category, over full-height maintenance windows. |
 | Styling | **[Line Styles](examples/styling/line_styles/)** | Dash patterns, line weights, and antialiasing. |

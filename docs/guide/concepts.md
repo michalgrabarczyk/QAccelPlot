@@ -66,6 +66,11 @@ series beneath.
 `PointCloud` renders unconnected points as markers, colored uniformly or by a
 per-point value through a `Colormap`. It reports the hovered point index.
 
+`HeatmapSeries` renders a uniform grid of values as cells colored through a
+`Colormap`, placed by the outer edges of the grid. `PointCloud` and
+`HeatmapSeries` derive from `ColormappedSeries`, which resolves the value range
+that a `ColorBar` shows.
+
 `BandSeries` fills the area between a low and a high value at each X, such as
 confidence intervals and envelopes. It stores `(x, low, high)` triples and
 can draw lines along both edges.

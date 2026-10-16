@@ -6,10 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added
+
+- Heatmaps via `HeatmapSeries`: a uniform grid of values colored through a
+  `Colormap`, with cell records for inspection, a `ColorBar` key, and a
+  Heatmap example.
+
 ### Changed
 
-- `ColorBar.series` takes any `ColormappedSeries`, the new base of `PointCloud`.
-  In C++, `ColorBar::series()` returns a `ColormappedSeries*`.
+- `ColorBar.series` takes any `ColormappedSeries`, the new base of `PointCloud`
+  and `HeatmapSeries`. In C++, `ColorBar::series()` returns a `ColormappedSeries*`.
 
 ## [0.4.0] — 2026-10-16
 

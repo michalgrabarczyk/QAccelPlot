@@ -29,6 +29,8 @@ frame.
   strokes; morph and draw transitions
 - **Point clouds** — `PointCloud` for large scatter data, colored uniformly or
   by value, with a `ColorBar`
+- **Heatmaps** — `HeatmapSeries` for grids of values colored through a
+  colormap
 - **Bars** — `BarSeries` for vertical, horizontal, and grouped bar charts
 - **Histograms** — `Histogram` counts samples into equal or uneven bins, as
   counts or density
