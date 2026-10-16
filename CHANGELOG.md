@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [0.4.0] — 2026-10-16
+
 ### Added
 
 - Rectangle zoom via `PlotView.rectangleZoom` and `zoomToRect()`, with theme
@@ -91,8 +93,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `button` is a `Qt::MouseButton` and `modifiers` a `Qt::KeyboardModifiers` on
   `PlotMouseEvent`, `SelectionTool`, and `PlotView.rectangleZoom`, instead of `int`.
 - Renamed `nearly_equal()` in `MathUtils.hpp` to `nearlyEqual()`.
-- The QML module version follows the project version, 0.3 for now, instead of
-  1.0. Replace `import QAccelPlot 1.0` with `import QAccelPlot`.
+- The QML module version follows the project version, 0.4 in this release,
+  instead of 1.0. Replace `import QAccelPlot 1.0` with `import QAccelPlot`.
 - `PlotView::rescaleAllAxes()` is public instead of protected.
 
 ### Removed
