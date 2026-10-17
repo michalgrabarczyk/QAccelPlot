@@ -316,8 +316,8 @@ See [Troubleshooting](https://michalgrabarczyk.github.io/QAccelPlot/troubleshoot
 `PlotView` is the C++ plot item. It lays out axes, converts between data and
 pixel coordinates, handles pan and zoom, and collects child series.
 
-`Plot` is the QML wrapper most applications use. It adds a `Legend` and
-`legendVisible` to the full `PlotView` interface.
+`Plot` is the QML wrapper most applications use. It adds a `Legend`,
+`legendModel`, and `legendVisible` to the full `PlotView` interface.
 
 [`plotRect`][plot-rect] is the data area, excluding axes and padding. Use it to
 place clipped overlays and custom tools.
@@ -355,7 +355,8 @@ JavaScript callback.
 ## Series
 
 `PlotSeries` holds properties shared by all series: name, axes, plot rectangle,
-and legend symbol.
+and legend symbol. `legendEntry()` describes how a legend draws the series;
+`LegendModel` lists the entries of the visible series that have one.
 
 `LineCurve` renders lines, markers, line styles, gradients, and fills. It
 accepts data from QML or C++ buffers, as doubles or as interleaved floats.
@@ -913,8 +914,16 @@ QAccelPlot.Plot {
 }
 ```
 
-`Plot` shows a legend entry for every series. Set `legendVisible: false` to
-hide it, or assign `legend` to replace it.
+`Plot` shows a legend entry for every visible series that has one; a heatmap
+has none, because its color bar is its key. Set `legendVisible: false` to hide
+the legend, or assign `legend` to replace it. `Plot.legendModel` lists every
+entry; a `LegendModel` of your own lists a subset:
+
+```qml
+legend: QAccelPlot.Legend {
+    model: QAccelPlot.LegendModel { series: [measured, fit] }
+}
+```
 
 QML [`setData()`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1LineCurve/#function-setdata-18)
 suits small or rarely changing data. For large or frequent updates, see
@@ -1976,6 +1985,8 @@ QAccelPlot.ColorBar {
 }
 ```
 
+A heatmap has no legend entry: the color bar is its key.
+
 ## Read the cell under the pointer
 
 `inspection.recordAtPosition()` returns the record of the cell at a
@@ -2552,6 +2563,8 @@ Complete source: [`examples/showcases/performance`](https://github.com/michalgra
   coordinates.
 - [`PlotMouseEvent`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1PlotMouseEvent/) — mouse
   positions in plot and data coordinates.
+- [`LegendModel`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1LegendModel/) — legend entries of the
+  visible series that have one, each a [`LegendEntry`](https://michalgrabarczyk.github.io/QAccelPlot/api/structQAccelPlot_1_1LegendEntry/).
 - [`SeriesInspection`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1SeriesInspection/) — per-series
   data queries: nearest data points, brackets, region statistics, and index pages.
 - [`PlotInspector`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1PlotInspector/) — cursor state and

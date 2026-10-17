@@ -82,6 +82,7 @@ QAccelPlot/
 │       │                           PlotInspector, SelectionTool, InspectionRowModel,
 │       │                           internal/ (in-place search of ordered data, k-d index, async index cache,
 │       │                           objects declared inside an inspector, selection rectangle)
+│       ├── legend/               — LegendEntry (how a legend draws a series), LegendModel
 │       ├── linestyles/           — SolidLine, DashLine, NoLine
 │       ├── materials/            — QSGMaterial subclasses for GPU rendering
 │       ├── renderers/            — LineCurveLineRenderer, LineCurvePointRenderer, BandEdgeRenderer,

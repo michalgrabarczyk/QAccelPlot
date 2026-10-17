@@ -6,6 +6,7 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #include "QAccelPlot/series/BandSeries.hpp"
+#include "QAccelPlot/legend/LegendEntry.hpp"
 
 #include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/QAccelPlotLogging.hpp"
@@ -125,6 +126,7 @@ BandSeries::BandSeries(QQuickItem* parent)
     connect(edges_, &BandEdges::colorChanged, this, &QQuickItem::update);
     connect(edges_, &BandEdges::lineStyleChanged, this, &BandSeries::onEdgeLineStyleChanged);
     onEdgeLineStyleChanged();
+    connect(this, &BandSeries::colorChanged, this, &PlotSeries::legendEntryChanged);
 }
 
 QColor BandSeries::color() const
@@ -178,6 +180,14 @@ void BandSeries::setData(const std::vector<double>& xs, const std::vector<double
 void BandSeries::clearData()
 {
     PlotSeries::clearData();
+}
+
+std::optional<LegendEntry> BandSeries::legendEntry() const
+{
+    auto entry = LegendEntry{};
+    entry.symbol = legendSymbol();
+    entry.color = color_;
+    return entry;
 }
 
 QVariantMap BandSeries::valueAt(const qreal x) const

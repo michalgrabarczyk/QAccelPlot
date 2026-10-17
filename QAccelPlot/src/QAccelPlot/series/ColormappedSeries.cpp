@@ -80,10 +80,6 @@ const std::vector<GradientStopData>& ColormappedSeries::colorStops() const
     return colorStops_;
 }
 
-void ColormappedSeries::onColorStopsChanged()
-{
-}
-
 void ColormappedSeries::onColormapUpdated()
 {
     refreshColorStops();
@@ -104,7 +100,6 @@ void ColormappedSeries::reconnectColormapSignals()
     colormapConnections_.append(connect(colormap_.data(), &Colormap::colormapChanged, this, &ColormappedSeries::onColormapUpdated));
     colormapConnections_.append(connect(colormap_.data(), &QObject::destroyed, this, [this]() {
         colorStops_.clear();
-        onColorStopsChanged();
         updateValueRange();
         emit colormapChanged();
         update();
@@ -114,7 +109,6 @@ void ColormappedSeries::reconnectColormapSignals()
 void ColormappedSeries::refreshColorStops()
 {
     colorStops_ = colormap_ ? colormap_->resolvedStops() : std::vector<GradientStopData>{};
-    onColorStopsChanged();
 }
 
 } // namespace QAccelPlot

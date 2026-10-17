@@ -28,6 +28,8 @@
 
 namespace QAccelPlot {
 
+struct LegendEntry;
+
 /// \brief Common QML item contract for data series hosted by \c PlotView.
 ///
 /// PlotSeries owns the integration shared by every plot type: axis bindings,
@@ -147,6 +149,10 @@ public:
 
     LegendSymbol legendSymbol() const;
     void setLegendSymbol(LegendSymbol symbol);
+    /// \brief Returns how a legend draws the series, or \c std::nullopt for no legend entry. Default: no entry.
+    ///
+    /// Series that override it emit \c legendEntryChanged() whenever the result changes.
+    virtual std::optional<LegendEntry> legendEntry() const;
 
     /// \brief Replaces the series data with \a count data points copied from an interleaved double array.
     ///
@@ -188,6 +194,8 @@ signals:
     void yAxisChanged();
     void plotRectChanged();
     void legendSymbolChanged();
+    /// \brief Emitted when the result of \c legendEntry() changes.
+    void legendEntryChanged();
 
 protected:
     /// \brief Words used in the warnings about rejected data arguments.

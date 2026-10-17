@@ -183,7 +183,7 @@ Window {
                 Layout.fillHeight: true
                 grid.subGridVisible: false
                 legend: QAccelPlot.Legend {
-                    series: scatterPlot.series
+                    model: scatterPlot.legendModel
                 }
 
                 xAxis: ExampleAxis {

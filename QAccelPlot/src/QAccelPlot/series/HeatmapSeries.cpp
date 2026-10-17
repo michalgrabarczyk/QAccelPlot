@@ -60,28 +60,6 @@ bool setQuad(QSGGeometry* geometry, const QSizeF& size, const bool fresh)
     return true;
 }
 
-// Returns the color the ramp of \a stops shows at its middle.
-QColor middleColor(const std::vector<GradientStopData>& stops)
-{
-    if (stops.empty()) {
-        return Qt::transparent;
-    }
-    constexpr auto kMiddle = 0.5f;
-    const auto after = std::find_if(stops.cbegin(), stops.cend(), [](const GradientStopData& stop) { return stop.position >= kMiddle; });
-    if (after == stops.cbegin()) {
-        return after->color;
-    }
-    if (after == stops.cend()) {
-        return stops.back().color;
-    }
-    const auto& before = *(after - 1);
-    const auto span = after->position - before.position;
-    const auto t = span > 0.0f ? (kMiddle - before.position) / span : 0.0f;
-    const auto mix = [t](const float from, const float to) { return from + (to - from) * t; };
-    return QColor::fromRgbF(mix(before.color.redF(), after->color.redF()), mix(before.color.greenF(), after->color.greenF()),
-        mix(before.color.blueF(), after->color.blueF()), mix(before.color.alphaF(), after->color.alphaF()));
-}
-
 std::optional<PlotSeries::DataExtent> orderedExtent(const qreal from, const qreal to)
 {
     return PlotSeries::DataExtent{std::min(from, to), std::max(from, to)};
@@ -95,7 +73,6 @@ HeatmapSeries::HeatmapSeries(QQuickItem* parent)
 {
     setFlag(ItemHasContents, true);
     setAcceptedMouseButtons(Qt::NoButton);
-    setLegendSymbol(LegendSymbol::Fill);
     // Owned by the series, so it renders without setup; a shared colormap replaces it.
     setColormap(new Colormap(this));
 }
@@ -157,11 +134,6 @@ qreal HeatmapSeries::yMax() const
 void HeatmapSeries::setYMax(const qreal value)
 {
     setBound(edges_.yMax, value, &HeatmapSeries::yMaxChanged);
-}
-
-QColor HeatmapSeries::color() const
-{
-    return color_;
 }
 
 void HeatmapSeries::setValues(const QList<qreal>& values, const int columns)
@@ -341,16 +313,6 @@ std::optional<ColormappedSeries::ValueSpan> HeatmapSeries::scanValueRange() cons
         return std::nullopt;
     }
     return ValueSpan{minimum, maximum};
-}
-
-void HeatmapSeries::onColorStopsChanged()
-{
-    const auto color = middleColor(colorStops());
-    if (color_ == color) {
-        return;
-    }
-    color_ = color;
-    emit colorChanged();
 }
 
 bool HeatmapSeries::Extent::isFinite() const

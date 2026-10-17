@@ -11,27 +11,23 @@ import QAccelPlot
 Item {
     id: root
 
-    required property var sourceSeries
+    // A LegendEntry, as LegendModel provides it.
+    required property var entry
     property real requestedWidth: 28
 
-    readonly property bool isFillSymbol: sourceSeries.legendSymbol === PlotSeries.Fill
-    readonly property bool isMarkerSymbol: sourceSeries.legendSymbol === PlotSeries.Marker
-    readonly property color curveColor: sourceSeries.color !== undefined ? sourceSeries.color : "#808080"
-    readonly property var curveLineStyle: sourceSeries.lineStyle !== undefined ? sourceSeries.lineStyle : null
+    readonly property bool isFillSymbol: entry.symbol === PlotSeries.Fill
+    readonly property bool isMarkerSymbol: entry.symbol === PlotSeries.Marker
+    readonly property color curveColor: entry.color
+    readonly property var curveLineStyle: entry.lineStyle
     readonly property bool showLine: !isMarkerSymbol && (curveLineStyle ? curveLineStyle.showLine : true)
-    // Series without markers, such as RectangleSeries, have no marker group.
-    readonly property var curveMarkerGroup: sourceSeries.marker !== undefined ? sourceSeries.marker : null
-    readonly property int curveMarker: curveMarkerGroup ? curveMarkerGroup.shape : LineCurve.None
+    readonly property int curveMarker: entry.markerShape
     // Marker-only series such as dense point clouds often use tiny markers; keep their swatch legible.
-    readonly property real curveMarkerSize: {
-        const size = curveMarkerGroup ? curveMarkerGroup.size : 0;
-        return isMarkerSymbol ? Math.min(Math.max(size, 3.5), 7) : size;
-    }
-    readonly property bool curveMarkerFilled: curveMarkerGroup ? curveMarkerGroup.filled : true
-    readonly property real curveMarkerStrokeWidth: curveMarkerGroup ? curveMarkerGroup.strokeWidth : 1
-    readonly property real curveLineWidth: sourceSeries.lineWidth !== undefined ? Math.max(0, sourceSeries.lineWidth) : 1
-    readonly property bool curveAntialiasingEnabled: sourceSeries.antialiasingEnabled !== undefined ? sourceSeries.antialiasingEnabled : true
-    readonly property real curveAntialiasingFeather: sourceSeries.antialiasingFeather !== undefined ? sourceSeries.antialiasingFeather : 1
+    readonly property real curveMarkerSize: isMarkerSymbol ? Math.min(Math.max(entry.markerSize, 3.5), 7) : entry.markerSize
+    readonly property bool curveMarkerFilled: entry.markerFilled
+    readonly property real curveMarkerStrokeWidth: entry.markerStrokeWidth
+    readonly property real curveLineWidth: Math.max(0, entry.lineWidth)
+    readonly property bool curveAntialiasingEnabled: entry.antialiasingEnabled
+    readonly property real curveAntialiasingFeather: entry.antialiasingFeather
     readonly property bool hasMarker: curveMarker !== LineCurve.None
     // A single pixel is hard to see in a legend, so Pixel markers are shown as a small dot.
     readonly property bool pixelMarker: curveMarker === LineCurve.Pixel

@@ -151,6 +151,8 @@ public:
     void postData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
     /// \brief Removes all points and values.
     Q_INVOKABLE void clearData() override;
+    /// \brief Returns the legend entry: the symbol, color, and marker of the points.
+    std::optional<LegendEntry> legendEntry() const override;
 
     /// \brief Returns the index of the valid point within \c hoverRadius of item position \a position, or -1.
     int pointIndexAt(const QPointF& position) const;

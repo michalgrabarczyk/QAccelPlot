@@ -142,6 +142,8 @@ public:
 
     /// \brief Removes all rectangles.
     Q_INVOKABLE void clearData() override;
+    /// \brief Returns the legend entry: the symbol and color of the rectangles.
+    std::optional<LegendEntry> legendEntry() const override;
 
     /// \brief Sets one category per rectangle. An empty list clears categories; any other size must equal \c count.
     Q_INVOKABLE void setCategories(const QList<int>& categories);

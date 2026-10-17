@@ -9,7 +9,6 @@
 
 #include "QAccelPlot/series/ColormappedSeries.hpp"
 
-#include <QColor>
 #include <QList>
 #include <QPointF>
 
@@ -33,7 +32,8 @@ class HeatmapMaterial;
 ///
 /// Each cell is colored by mapping its value through \c colormap. The series starts with a Viridis
 /// colormap of its own whose range is resolved from the data; assign a shared \c Colormap to
-/// replace it. Nothing is drawn while \c colormap is null.
+/// replace it. Nothing is drawn while \c colormap is null. The series has no legend entry: a
+/// \c ColorBar is its key.
 ///
 /// \code
 /// QAccelPlot.HeatmapSeries {
@@ -89,8 +89,6 @@ class HeatmapSeries : public ColormappedSeries {
     Q_PROPERTY(qreal yMin READ yMin WRITE setYMin NOTIFY yMinChanged)
     /// \brief Top edge of the last row in data coordinates. Unset (NaN) means \c rows. Default: unset.
     Q_PROPERTY(qreal yMax READ yMax WRITE setYMax NOTIFY yMaxChanged)
-    /// \brief Read-only: color at the middle of the colormap's ramp, used by the legend.
-    Q_PROPERTY(QColor color READ color NOTIFY colorChanged)
 
 public:
     /// \brief Constructs a HeatmapSeries with the given \a parent.
@@ -124,9 +122,6 @@ public:
     /// \brief Sets the top grid edge to \a value. NaN unsets it.
     void setYMax(qreal value);
 
-    /// \brief Returns the color at the middle of the ramp, or transparent without a colormap.
-    QColor color() const;
-
     /// \brief Replaces the grid with \a values, row by row, \a columns per row.
     ///
     /// The number of values must be a multiple of \a columns. An empty list clears the values and
@@ -155,8 +150,6 @@ signals:
     void yMinChanged();
     /// \brief Emitted when the yMax property changes.
     void yMaxChanged();
-    /// \brief Emitted when the color property changes.
-    void colorChanged();
 
 protected:
     /// \cond INTERNAL
@@ -177,8 +170,6 @@ protected:
     void onAxisScaleChanged() override;
     /// \brief Returns the span of the finite cell values.
     std::optional<ValueSpan> scanValueRange() const override;
-    /// \brief Updates \c color to the middle of the new ramp.
-    void onColorStopsChanged() override;
 
 private:
     /// \brief Grid edges. In \c edges_ an unset edge is NaN; \c resolvedExtent() resolves it to index space.
@@ -211,7 +202,6 @@ private:
     int columns_{0};
     int rows_{0};
     Extent edges_;
-    QColor color_;
     // Incremented by every value change; the GPU texture holds the values of uploadedRevision_.
     std::uint64_t valuesRevision_{1};
     std::uint64_t uploadedRevision_{0};

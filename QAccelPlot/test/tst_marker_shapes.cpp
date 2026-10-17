@@ -128,18 +128,15 @@ bool isLit(const QImage& image, const QPoint& offset)
     return qGray(image.pixel(kCentre + offset.x(), kCentre + offset.y())) > 127;
 }
 
-// Returns the legend symbol item drawn for \a series, or nullptr.
-QQuickItem* findLegendSymbol(QQuickItem* item, const QObject* series)
+// Appends the legend symbol items under \a item to \a symbols, in legend order.
+void collectLegendSymbols(QQuickItem* item, QList<QQuickItem*>& symbols)
 {
-    if (item->property("sourceSeries").value<QObject*>() == series) {
-        return item;
+    if (item->property("curveMarker").isValid()) {
+        symbols.append(item);
     }
     for (auto* child : item->childItems()) {
-        if (auto* symbol = findLegendSymbol(child, series)) {
-            return symbol;
-        }
+        collectLegendSymbols(child, symbols);
     }
-    return nullptr;
 }
 
 } // namespace
@@ -273,7 +270,7 @@ void MarkerShapesTest::legendSymbolFollowsMarkerSettings()
                       "        marker.filled: false\n"
                       "        marker.strokeWidth: 1.5\n"
                       "    }\n"
-                      "    Legend { series: [curve, cloud] }\n"
+                      "    Legend { model: LegendModel { series: [curve, cloud] } }\n"
                       "}\n",
         QUrl{});
     const auto root = std::unique_ptr<QObject>{component.create()};
@@ -287,8 +284,10 @@ void MarkerShapesTest::legendSymbolFollowsMarkerSettings()
     const auto* cloud = root->property("cloud").value<PointCloud*>();
     QVERIFY(rootItem && curve && cloud);
 
-    const auto* curveSymbol = findLegendSymbol(rootItem, curve);
-    QVERIFY(curveSymbol);
+    auto symbols = QList<QQuickItem*>{};
+    collectLegendSymbols(rootItem, symbols);
+    QCOMPARE(symbols.size(), 2);
+    const auto* curveSymbol = symbols[0];
     QCOMPARE(curveSymbol->property("curveMarker").toInt(), static_cast<int>(Shape::Hexagon));
     QCOMPARE(curveSymbol->property("curveMarkerSize").toReal(), 6.0);
     QVERIFY(!curveSymbol->property("curveMarkerFilled").toBool());
@@ -297,8 +296,7 @@ void MarkerShapesTest::legendSymbolFollowsMarkerSettings()
     curve->marker()->setSize(8.0);
     QCOMPARE(curveSymbol->property("curveMarkerSize").toReal(), 8.0);
 
-    const auto* cloudSymbol = findLegendSymbol(rootItem, cloud);
-    QVERIFY(cloudSymbol);
+    const auto* cloudSymbol = symbols[1];
     QCOMPARE(cloudSymbol->property("curveMarker").toInt(), static_cast<int>(Shape::Square));
     QCOMPARE(cloudSymbol->property("curveMarkerSize").toReal(), 5.0);
     QVERIFY(!cloudSymbol->property("curveMarkerFilled").toBool());

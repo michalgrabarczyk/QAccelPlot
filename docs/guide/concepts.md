@@ -16,8 +16,8 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 `PlotView` is the C++ plot item. It lays out axes, converts between data and
 pixel coordinates, handles pan and zoom, and collects child series.
 
-`Plot` is the QML wrapper most applications use. It adds a `Legend` and
-`legendVisible` to the full `PlotView` interface.
+`Plot` is the QML wrapper most applications use. It adds a `Legend`,
+`legendModel`, and `legendVisible` to the full `PlotView` interface.
 
 [`plotRect`][plot-rect] is the data area, excluding axes and padding. Use it to
 place clipped overlays and custom tools.
@@ -55,7 +55,8 @@ JavaScript callback.
 ## Series
 
 `PlotSeries` holds properties shared by all series: name, axes, plot rectangle,
-and legend symbol.
+and legend symbol. `legendEntry()` describes how a legend draws the series;
+`LegendModel` lists the entries of the visible series that have one.
 
 `LineCurve` renders lines, markers, line styles, gradients, and fills. It
 accepts data from QML or C++ buffers, as doubles or as interleaved floats.

@@ -13,14 +13,15 @@ import QAccelPlot
 Rectangle {
     id: root
 
-    required property var series
+    // One row per entry; Plot provides a model over all its series as legendModel.
+    required property LegendModel model
     property color textColor: Colors.dark.text
     property font font: Qt.font({
         pixelSize: 12
     })
     property real symbolWidth: 28
 
-    visible: series.length > 0
+    visible: model.count > 0
 
     width: column.width + 16
     height: column.height + 12
@@ -38,26 +39,26 @@ Rectangle {
         spacing: 4
 
         Repeater {
-            id: curveRepeater
+            id: entryRepeater
 
-            model: root.series
+            model: root.model
 
             Row {
                 id: row
 
-                required property var modelData
-                required property int index
+                required property string name
+                required property var entry
 
                 spacing: 6
 
                 LegendSymbol {
-                    sourceSeries: row.modelData
+                    entry: row.entry
                     requestedWidth: root.symbolWidth
                     anchors.verticalCenter: parent.verticalCenter
                 }
 
                 Text {
-                    text: row.modelData.name || row.modelData.objectName || ("Curve " + (row.index + 1))
+                    text: row.name
                     font: root.font
                     color: root.textColor
                     anchors.verticalCenter: parent.verticalCenter

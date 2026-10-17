@@ -70,7 +70,7 @@ Window {
             grid.gridColor: colorPalette.grid
             grid.subGridColor: colorPalette.subGrid
             legend: QAccelPlot.Legend {
-                series: plot.series
+                model: plot.legendModel
                 color: colorPalette.legendBackground
                 textColor: colorPalette.text
                 border.color: colorPalette.legendBorder

@@ -7,6 +7,7 @@
 //
 #include "QAccelPlot/series/PointCloud.hpp"
 #include "QAccelPlot/inspection/internal/InspectionTypes.hpp"
+#include "QAccelPlot/legend/LegendEntry.hpp"
 
 #include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/QAccelPlotLogging.hpp"
@@ -100,6 +101,10 @@ PointCloud::PointCloud(QQuickItem* parent)
 
     for (const auto signal : {&SeriesMarker::shapeChanged, &SeriesMarker::sizeChanged, &SeriesMarker::filledChanged, &SeriesMarker::strokeWidthChanged}) {
         connect(marker_, signal, this, &QQuickItem::update);
+        connect(marker_, signal, this, &PlotSeries::legendEntryChanged);
+    }
+    for (const auto signal : {&PointCloud::colorChanged, &PointCloud::antialiasingEnabledChanged, &PointCloud::antialiasingFeatherChanged}) {
+        connect(this, signal, this, &PlotSeries::legendEntryChanged);
     }
     connect(transition_.get(), &TransitionRunner::frameDue, this, &PointCloud::advanceTransition);
     connect(transition_.get(), &TransitionRunner::interrupted, this, &PointCloud::endTransition);
@@ -292,6 +297,20 @@ void PointCloud::postData(std::vector<float>&& xyInterleaved, std::vector<float>
 void PointCloud::clearData()
 {
     applyFloatData({}, {}, 0);
+}
+
+std::optional<LegendEntry> PointCloud::legendEntry() const
+{
+    auto entry = LegendEntry{};
+    entry.symbol = legendSymbol();
+    entry.color = color_;
+    entry.markerShape = marker_->shape();
+    entry.markerSize = marker_->size();
+    entry.markerFilled = marker_->filled();
+    entry.markerStrokeWidth = marker_->strokeWidth();
+    entry.antialiasingEnabled = antialiasingEnabled_;
+    entry.antialiasingFeather = antialiasingFeather_;
+    return entry;
 }
 
 int PointCloud::pointIndexAt(const QPointF& position) const

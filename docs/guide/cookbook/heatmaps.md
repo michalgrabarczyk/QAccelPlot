@@ -84,6 +84,8 @@ QAccelPlot.ColorBar {
 }
 ```
 
+A heatmap has no legend entry: the color bar is its key.
+
 ## Read the cell under the pointer
 
 `inspection.recordAtPosition()` returns the record of the cell at a

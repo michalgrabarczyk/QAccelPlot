@@ -95,6 +95,8 @@ public:
     using PlotSeries::setDataF;
     /// \brief Removes all data points.
     Q_INVOKABLE void clearData() override;
+    /// \brief Returns the legend entry: the symbol and color of the band.
+    std::optional<LegendEntry> legendEntry() const override;
 
     /// \brief Returns the band at data coordinate \a x as an object with \c x, \c low, and \c high properties.
     ///

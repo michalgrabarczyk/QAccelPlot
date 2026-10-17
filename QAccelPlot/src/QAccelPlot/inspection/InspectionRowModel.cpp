@@ -7,9 +7,9 @@
 //
 #include "QAccelPlot/inspection/InspectionRowModel.hpp"
 
+#include "QAccelPlot/legend/LegendEntry.hpp"
+
 #include <QColor>
-#include <QMetaMethod>
-#include <QMetaProperty>
 
 #include <algorithm>
 #include <utility>
@@ -23,6 +23,13 @@ QString seriesName(const PlotSeries* series)
         return {};
     }
     return series->name().isEmpty() ? series->objectName() : series->name();
+}
+
+// The color of the series' legend entry; invalid for a series without one.
+QColor seriesColor(const PlotSeries* series)
+{
+    const auto entry = series ? series->legendEntry() : std::nullopt;
+    return entry ? entry->color : QColor{};
 }
 
 QVariant dataPointData(const InspectionRow& row, const int role)
@@ -111,7 +118,7 @@ QVariant InspectionRowModel::data(const QModelIndex& index, const int role) cons
     case SeriesNameRole:
         return seriesName(row.series);
     case SeriesColorRole:
-        return row.series ? row.series->property("color") : QVariant{QColor{}};
+        return seriesColor(row.series);
     default:
         return role < HasSummaryRole ? dataPointData(row, role) : summaryData(row, role);
     }
@@ -204,18 +211,14 @@ void InspectionRowModel::seriesAppearanceChanged()
     }
 }
 
-void InspectionRowModel::watchSeries(PlotSeries* series)
+void InspectionRowModel::watchSeries(PlotSeries* series) const
 {
     if (!series) {
         return;
     }
     connect(series, &PlotSeries::nameChanged, this, &InspectionRowModel::seriesAppearanceChanged, Qt::UniqueConnection);
     connect(series, &QObject::objectNameChanged, this, &InspectionRowModel::seriesAppearanceChanged, Qt::UniqueConnection);
-    const auto color = series->metaObject()->property(series->metaObject()->indexOfProperty("color"));
-    if (color.hasNotifySignal()) {
-        const auto slot = metaObject()->method(metaObject()->indexOfSlot("seriesAppearanceChanged()"));
-        connect(series, color.notifySignal(), this, slot, Qt::UniqueConnection);
-    }
+    connect(series, &PlotSeries::legendEntryChanged, this, &InspectionRowModel::seriesAppearanceChanged, Qt::UniqueConnection);
 }
 
 void InspectionRowModel::unwatchSeries(PlotSeries* series)

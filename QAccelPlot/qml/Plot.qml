@@ -11,8 +11,13 @@ import QAccelPlot
 PlotView {
     id: root
 
-    property Item legend: Legend {
+    // Legend entries of every visible series that has one.
+    readonly property LegendModel legendModel: LegendModel {
         series: root.series
+    }
+
+    property Item legend: Legend {
+        model: root.legendModel
     }
 
     property bool legendVisible: true
@@ -39,11 +44,12 @@ PlotView {
         }
     }
 
+    // While legendVisible is set, the legend decides its own visibility, as Legend does from its model.
     Binding {
         target: root.legend
         property: "visible"
-        value: root.legend ? (root.legendVisible && (root.legend.series !== undefined ? root.legend.series.length > 0 : true)) : false
-        when: root.legend !== null
+        value: false
+        when: root.legend !== null && !root.legendVisible
     }
 
     Binding {

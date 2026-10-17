@@ -10,6 +10,7 @@
 #include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/inspection/internal/InspectionTypes.hpp"
+#include "QAccelPlot/legend/LegendEntry.hpp"
 
 #include <QHoverEvent>
 
@@ -76,6 +77,7 @@ PlotSeries::PlotSeries(DataPointStore::Layout layout, DataPointWording wording, 
     , wording_(std::move(wording))
 {
     setClip(true);
+    connect(this, &PlotSeries::legendSymbolChanged, this, &PlotSeries::legendEntryChanged);
 }
 
 PlotSeries::~PlotSeries()
@@ -219,6 +221,11 @@ void PlotSeries::setLegendSymbol(const LegendSymbol symbol)
     }
     legendSymbol_ = symbol;
     emit legendSymbolChanged();
+}
+
+std::optional<LegendEntry> PlotSeries::legendEntry() const
+{
+    return std::nullopt;
 }
 
 void PlotSeries::setData(const double* data, const int count)

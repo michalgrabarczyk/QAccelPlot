@@ -78,8 +78,6 @@ protected:
     void updateValueRange();
     /// \brief Returns the ramp stops of the colormap, empty without one.
     const std::vector<GradientStopData>& colorStops() const;
-    /// \brief Called after \c colorStops() changed. The default does nothing.
-    virtual void onColorStopsChanged();
 
 private:
     Q_SLOT void onColormapUpdated();

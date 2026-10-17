@@ -6,6 +6,7 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #include "QAccelPlot/series/RectangleSeries.hpp"
+#include "QAccelPlot/legend/LegendEntry.hpp"
 
 #include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/QAccelPlotLogging.hpp"
@@ -67,6 +68,7 @@ RectangleSeries::RectangleSeries(QQuickItem* parent)
     setLegendSymbol(LegendSymbol::Fill);
     connect(border_, &RectangleBorder::widthChanged, this, &QQuickItem::update);
     connect(border_, &RectangleBorder::colorChanged, this, &QQuickItem::update);
+    connect(this, &RectangleSeries::colorChanged, this, &PlotSeries::legendEntryChanged);
 }
 
 RectangleSeries::~RectangleSeries() = default;
@@ -237,6 +239,14 @@ void RectangleSeries::postData(std::vector<float>&& data, std::vector<int>&& cat
 void RectangleSeries::clearData()
 {
     PlotSeries::clearData();
+}
+
+std::optional<LegendEntry> RectangleSeries::legendEntry() const
+{
+    auto entry = LegendEntry{};
+    entry.symbol = legendSymbol();
+    entry.color = color_;
+    return entry;
 }
 
 void RectangleSeries::setCategories(const QList<int>& categories)

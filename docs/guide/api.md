@@ -44,6 +44,8 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
   coordinates.
 - [`PlotMouseEvent`](api/classQAccelPlot_1_1PlotMouseEvent.md) — mouse
   positions in plot and data coordinates.
+- [`LegendModel`](api/classQAccelPlot_1_1LegendModel.md) — legend entries of the
+  visible series that have one, each a [`LegendEntry`](api/structQAccelPlot_1_1LegendEntry.md).
 - [`SeriesInspection`](api/classQAccelPlot_1_1SeriesInspection.md) — per-series
   data queries: nearest data points, brackets, region statistics, and index pages.
 - [`PlotInspector`](api/classQAccelPlot_1_1PlotInspector.md) — cursor state and

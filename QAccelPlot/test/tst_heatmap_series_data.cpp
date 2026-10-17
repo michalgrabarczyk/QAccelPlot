@@ -8,6 +8,7 @@
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/effects/Colormap.hpp"
 #include "QAccelPlot/inspection/SeriesInspection.hpp"
+#include "QAccelPlot/legend/LegendEntry.hpp"
 #include "QAccelPlot/series/HeatmapSeries.hpp"
 
 #include <QSignalSpy>
@@ -72,7 +73,6 @@ private slots:
     void logAxisReportsNoRange();
     void valueRangeSkipsNonFiniteValues();
     void valueRangeFollowsColormapBounds();
-    void colorFollowsTheRampMiddle();
     void recordsDescribeCells();
     void recordAtPositionFindsTheCell();
     void nonFiniteCellsAreStillRecords();
@@ -89,11 +89,11 @@ void HeatmapSeriesDataTest::defaultsRenderWithOwnColormap()
     QVERIFY(heatmap.colormap());
     QCOMPARE(heatmap.colormap()->parent(), &heatmap);
     QCOMPARE(heatmap.colormap()->preset(), Colormap::Preset::Viridis);
-    QCOMPARE(heatmap.legendSymbol(), PlotSeries::LegendSymbol::Fill);
+    // A color bar is its key, so it has no legend entry.
+    QVERIFY(!heatmap.legendEntry());
 
     heatmap.setColormap(nullptr);
     QVERIFY(!heatmap.colormap());
-    QCOMPARE(heatmap.color(), QColor{Qt::transparent});
 }
 
 void HeatmapSeriesDataTest::setValuesStoresShapeAndValues()
@@ -384,20 +384,6 @@ void HeatmapSeriesDataTest::valueRangeFollowsColormapBounds()
     heatmap.setColormap(&shared);
     QCOMPARE(heatmap.dataValueMin(), 0.0);
     QCOMPARE(heatmap.dataValueMax(), 100.0);
-}
-
-void HeatmapSeriesDataTest::colorFollowsTheRampMiddle()
-{
-    auto heatmap = HeatmapSeries{};
-    auto colorSpy = QSignalSpy{&heatmap, &HeatmapSeries::colorChanged};
-    heatmap.colormap()->setPreset(Colormap::Preset::Grayscale);
-    QCOMPARE(colorSpy.count(), 1);
-    const auto gray = heatmap.color();
-    QVERIFY(std::abs(gray.redF() - 0.5) < 0.02);
-    QCOMPARE(gray.redF(), gray.blueF());
-
-    heatmap.colormap()->setReversed(true);
-    QCOMPARE(heatmap.color(), gray);
 }
 
 void HeatmapSeriesDataTest::recordsDescribeCells()
