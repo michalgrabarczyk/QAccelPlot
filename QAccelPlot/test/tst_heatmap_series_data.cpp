@@ -62,6 +62,8 @@ private slots:
     void plotSeriesSettersKeepColumns();
     void plotSeriesSettersRejectIncompleteRows();
     void changingColumnsReshapesTheValues();
+    void shapeSignalsSeeTheNewState();
+    void boundSignalsSeeTheNewState();
     void postedValuesAreAppliedFromWorkerThread();
     void clearDataKeepsColumns();
     void unsetBoundsUseIndexSpace();
@@ -217,6 +219,41 @@ void HeatmapSeriesDataTest::changingColumnsReshapesTheValues()
     heatmap.setColumns(3);
     QCOMPARE(heatmap.rows(), 2);
     QCOMPARE(heatmap.valueAt(1, 2), 6.0);
+}
+
+void HeatmapSeriesDataTest::shapeSignalsSeeTheNewState()
+{
+    auto heatmap = HeatmapSeries{};
+    heatmap.setValues(sixValues(), 3, 2);
+    const auto revision = heatmap.dataRevision();
+    auto handled = false;
+    QObject::connect(&heatmap, &HeatmapSeries::rowsChanged, &heatmap, [&] {
+        handled = true;
+        QCOMPARE(heatmap.dataValueMin(), 10.0);
+        QCOMPARE(heatmap.dataValueMax(), 18.0);
+        QCOMPARE(heatmap.yDataRange()->max, 3.0);
+        QVERIFY(heatmap.dataRevision() > revision);
+    });
+
+    heatmap.setValues({10.0f, 11.0f, 12.0f, 13.0f, 14.0f, 15.0f, 16.0f, 17.0f, 18.0f}, 3, 3);
+    QVERIFY(handled);
+}
+
+void HeatmapSeriesDataTest::boundSignalsSeeTheNewState()
+{
+    auto heatmap = HeatmapSeries{};
+    heatmap.setValues(sixValues(), 3, 2);
+    QCOMPARE(heatmap.xDataRange()->min, 0.0);
+    const auto revision = heatmap.dataRevision();
+    auto handled = false;
+    QObject::connect(&heatmap, &HeatmapSeries::xMinChanged, &heatmap, [&] {
+        handled = true;
+        QCOMPARE(heatmap.xDataRange()->min, -4.0);
+        QVERIFY(heatmap.dataRevision() > revision);
+    });
+
+    heatmap.setXMin(-4.0);
+    QVERIFY(handled);
 }
 
 void HeatmapSeriesDataTest::postedValuesAreAppliedFromWorkerThread()

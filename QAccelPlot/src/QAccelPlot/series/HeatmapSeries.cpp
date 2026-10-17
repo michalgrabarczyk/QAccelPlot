@@ -400,15 +400,15 @@ void HeatmapSeries::applyShape(const int columns)
     const auto rows = columns_ > 0 ? static_cast<int>(values_.size() / static_cast<std::size_t>(columns_)) : 0;
     const auto previousRows = std::exchange(rows_, rows);
     ++valuesRevision_;
+    updateValueRange();
+    invalidateDataRanges();
+    inspectionDataChanged();
     if (columns_ != previousColumns) {
         emit columnsChanged();
     }
     if (rows_ != previousRows) {
         emit rowsChanged();
     }
-    updateValueRange();
-    invalidateDataRanges();
-    inspectionDataChanged();
     update();
 }
 
@@ -418,10 +418,10 @@ void HeatmapSeries::setBound(qreal& bound, const qreal value, void (HeatmapSerie
         return;
     }
     bound = value;
-    emit(this->*changed)();
     invalidateDataRanges();
     // The cell centers the records report moved.
     inspectionDataChanged();
+    emit(this->*changed)();
     update();
 }
 
