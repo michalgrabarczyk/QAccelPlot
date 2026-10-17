@@ -61,6 +61,7 @@ private slots:
     void mismatchedShapesAreRejected();
     void plotSeriesSettersKeepColumns();
     void plotSeriesSettersRejectIncompleteRows();
+    void dataBoundsReplaceTheEdgesUntilTheNextChange();
     void changingColumnsReshapesTheValues();
     void shapeSignalsSeeTheNewState();
     void boundSignalsSeeTheNewState();
@@ -192,6 +193,30 @@ void HeatmapSeriesDataTest::plotSeriesSettersRejectIncompleteRows()
     QTest::ignoreMessage(QtWarningMsg, "HeatmapSeries received 3 values for 2 cells; expected 2");
     heatmap.setDataF(std::vector<float>{1.0f, 2.0f, 3.0f}, 2);
     QCOMPARE(heatmap.rows(), 0);
+}
+
+void HeatmapSeriesDataTest::dataBoundsReplaceTheEdgesUntilTheNextChange()
+{
+    auto heatmap = HeatmapSeries{};
+    heatmap.setColumns(2);
+    const auto bounds = PlotSeries::DataBounds{-1.0, 1.0, -2.0, 2.0};
+
+    heatmap.setDataF(std::vector<float>{1.0f, 2.0f, 3.0f, 4.0f}, 4, bounds);
+    QCOMPARE(heatmap.xDataRange()->min, -1.0);
+    QCOMPARE(heatmap.xDataRange()->max, 1.0);
+    QCOMPARE(heatmap.yDataRange()->max, 2.0);
+
+    heatmap.setXMax(5.0);
+    QCOMPARE(heatmap.xDataRange()->min, 0.0);
+    QCOMPARE(heatmap.xDataRange()->max, 5.0);
+    QCOMPARE(heatmap.yDataRange()->min, 0.0);
+    QCOMPARE(heatmap.yDataRange()->max, 2.0);
+
+    heatmap.setDataF(std::vector<float>{1.0f, 2.0f, 3.0f, 4.0f}, 4, bounds);
+    QCOMPARE(heatmap.xDataRange()->max, 1.0);
+    heatmap.setColumns(4);
+    QCOMPARE(heatmap.xDataRange()->max, 5.0);
+    QCOMPARE(heatmap.yDataRange()->max, 1.0);
 }
 
 void HeatmapSeriesDataTest::changingColumnsReshapesTheValues()

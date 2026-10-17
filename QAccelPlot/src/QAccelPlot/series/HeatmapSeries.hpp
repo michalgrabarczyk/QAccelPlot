@@ -46,8 +46,10 @@ class HeatmapMaterial;
 ///
 /// \par Data
 /// \c setValues() replaces the values and the shape together. The \c PlotSeries setters take one
-/// value per cell and keep \c columns, so their count must be a multiple of it. Values are stored
-/// in single precision. \c postValues() and \c postData() may be called from any thread.
+/// value per cell and keep \c columns, so their count must be a multiple of it. \c DataBounds
+/// passed to them replace the grid edges as the data range until the values, the shape, or an edge
+/// next changes. Values are stored in single precision. \c postValues() and \c postData() may be
+/// called from any thread.
 ///
 /// \par Invalid cells
 /// Cells with a non-finite value, and cells with a value at or below zero under a \c Log colormap,
