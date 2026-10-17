@@ -138,7 +138,11 @@ Window {
                     id: readout
 
                     // The record of the cell under the pointer; the overlay shares the series' coordinates.
-                    readonly property var record: hover.hovered ? heatmap.inspection.recordAtPosition(hover.point.position) : null
+                    readonly property var record: {
+                        // A pan, a zoom, or new values change the cell under a still pointer.
+                        [plot.xAxis.viewportMin, plot.xAxis.viewportMax, plot.yAxis.viewportMin, plot.yAxis.viewportMax, heatmap.dataRevision];
+                        return hover.hovered ? heatmap.inspection.recordAtPosition(hover.point.position) : null;
+                    }
 
                     visible: record !== null && record.valid && !amplitudeBar.hovered
                     x: Math.min(hover.point.position.x + 14, overlay.width - width)
