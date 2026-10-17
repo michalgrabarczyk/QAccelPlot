@@ -46,7 +46,7 @@
 ## r
 
 * **RangeRule** ([**QAccelPlot::DataPointStore**](classQAccelPlot_1_1DataPointStore.md))
-* **Role** ([**QAccelPlot::InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md))
+* **Role** ([**QAccelPlot::InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md), [**QAccelPlot::LegendModel**](classQAccelPlot_1_1LegendModel.md))
 
 
 ## s

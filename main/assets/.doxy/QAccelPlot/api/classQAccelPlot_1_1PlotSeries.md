@@ -24,7 +24,7 @@ _Common QML item contract for data series hosted by_ `PlotView` _._[More...](#de
 Inherits the following classes: QQuickItem
 
 
-Inherited by the following classes: [QAccelPlot::BandSeries](classQAccelPlot_1_1BandSeries.md),  [QAccelPlot::BarSeries](classQAccelPlot_1_1BarSeries.md),  [QAccelPlot::LineCurve](classQAccelPlot_1_1LineCurve.md),  [QAccelPlot::PointCloud](classQAccelPlot_1_1PointCloud.md),  [QAccelPlot::RectangleSeries](classQAccelPlot_1_1RectangleSeries.md)
+Inherited by the following classes: [QAccelPlot::BandSeries](classQAccelPlot_1_1BandSeries.md),  [QAccelPlot::BarSeries](classQAccelPlot_1_1BarSeries.md),  [QAccelPlot::ColormappedSeries](classQAccelPlot_1_1ColormappedSeries.md),  [QAccelPlot::LineCurve](classQAccelPlot_1_1LineCurve.md),  [QAccelPlot::RectangleSeries](classQAccelPlot_1_1RectangleSeries.md)
 
 
 ## Inheritance diagram
@@ -44,13 +44,21 @@ flowchart TB
   classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1BarSeries
   click classQAccelPlot_1_1BarSeries "../classQAccelPlot_1_1BarSeries/" "Open QAccelPlot::BarSeries"
 
+  classQAccelPlot_1_1ColormappedSeries["QAccelPlot::ColormappedSeries"]
+  classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1ColormappedSeries
+  click classQAccelPlot_1_1ColormappedSeries "../classQAccelPlot_1_1ColormappedSeries/" "Open QAccelPlot::ColormappedSeries"
+
+  classQAccelPlot_1_1HeatmapSeries["QAccelPlot::HeatmapSeries"]
+  classQAccelPlot_1_1ColormappedSeries --> classQAccelPlot_1_1HeatmapSeries
+  click classQAccelPlot_1_1HeatmapSeries "../classQAccelPlot_1_1HeatmapSeries/" "Open QAccelPlot::HeatmapSeries"
+
+  classQAccelPlot_1_1PointCloud["QAccelPlot::PointCloud"]
+  classQAccelPlot_1_1ColormappedSeries --> classQAccelPlot_1_1PointCloud
+  click classQAccelPlot_1_1PointCloud "../classQAccelPlot_1_1PointCloud/" "Open QAccelPlot::PointCloud"
+
   classQAccelPlot_1_1LineCurve["QAccelPlot::LineCurve"]
   classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1LineCurve
   click classQAccelPlot_1_1LineCurve "../classQAccelPlot_1_1LineCurve/" "Open QAccelPlot::LineCurve"
-
-  classQAccelPlot_1_1PointCloud["QAccelPlot::PointCloud"]
-  classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1PointCloud
-  click classQAccelPlot_1_1PointCloud "../classQAccelPlot_1_1PointCloud/" "Open QAccelPlot::PointCloud"
 
   classQAccelPlot_1_1RectangleSeries["QAccelPlot::RectangleSeries"]
   classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1RectangleSeries
@@ -113,6 +121,7 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 | signal void | [**dataRevisionChanged**](classQAccelPlot_1_1PlotSeries.md#signal-datarevisionchanged)  <br>_Emitted when the dataRevision property changes._  |
+| signal void | [**legendEntryChanged**](classQAccelPlot_1_1PlotSeries.md#signal-legendentrychanged)  <br>_Emitted when the result of_ `legendEntry()` _changes._ |
 | signal void | [**legendSymbolChanged**](classQAccelPlot_1_1PlotSeries.md#signal-legendsymbolchanged)  <br> |
 | signal void | [**nameChanged**](classQAccelPlot_1_1PlotSeries.md#signal-namechanged)  <br> |
 | signal void | [**plotRectChanged**](classQAccelPlot_1_1PlotSeries.md#signal-plotrectchanged)  <br> |
@@ -130,6 +139,7 @@ flowchart TB
 | virtual void | [**clearData**](#function-cleardata) () <br>_Removes all data points from the series._  |
 |  quint64 | [**dataRevision**](#function-datarevision-22) () const<br>_Returns the current data revision._  |
 |  [**SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) \* | [**inspection**](#function-inspection-22) () const<br>_Returns the data queries for this series; created on first use and owned by the series._  |
+| virtual std::optional&lt; [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md) &gt; | [**legendEntry**](#function-legendentry) () const<br>_Returns how a legend draws the series, or_ `std::nullopt` _for no legend entry. Default: no entry._ |
 |  [**LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol) | [**legendSymbol**](#function-legendsymbol-22) () const<br> |
 |  QString | [**name**](#function-name-22) () const<br> |
 |  QRectF | [**plotRect**](#function-plotrect-22) () const<br> |
@@ -233,19 +243,20 @@ flowchart TB
 |`PointCloud`   |(x, y)   |2    |
 |`RectangleSeries`   |(x1, y1, x2, y2)   |4    |
 |`BarSeries`   |(position, value)   |2    |
-|`BandSeries`   |(x, low, high)   |3   |
+|`BandSeries`   |(x, low, high)   |3    |
+|`HeatmapSeries`   |cell value   |1   |
 
 
 
 
 
 
-The buffer holds _count_ times that many values. Series-specific setters take other layouts, such as point values, categories, or ranged bars.
+The buffer holds _count_ times that many values. A `HeatmapSeries` takes its cells row by row, `columns` per row. Series-specific setters take other layouts, such as point values, categories, or ranged bars.
 
 
 
 
-**See also:** [**LineCurve**](classQAccelPlot_1_1LineCurve.md), [**PointCloud**](classQAccelPlot_1_1PointCloud.md), [**RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md), [**BarSeries**](classQAccelPlot_1_1BarSeries.md), [**BandSeries**](classQAccelPlot_1_1BandSeries.md), [**QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) 
+**See also:** [**LineCurve**](classQAccelPlot_1_1LineCurve.md), [**PointCloud**](classQAccelPlot_1_1PointCloud.md), [**RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md), [**BarSeries**](classQAccelPlot_1_1BarSeries.md), [**BandSeries**](classQAccelPlot_1_1BandSeries.md), [**HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md), [**QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) 
 
 
 
@@ -440,6 +451,21 @@ void QAccelPlot::PlotSeries::dataRevisionChanged;
 
 
 
+### signal legendEntryChanged {#signal-legendentrychanged}
+
+_Emitted when the result of_ `legendEntry()` _changes._
+```C++
+void QAccelPlot::PlotSeries::legendEntryChanged;
+```
+
+
+
+
+<hr>
+
+
+
+
 ### signal legendSymbolChanged {#signal-legendsymbolchanged}
 
 ```C++
@@ -567,6 +593,25 @@ SeriesInspection * QAccelPlot::PlotSeries::inspection () const
 
 
 
+
+<hr>
+
+
+
+
+### function legendEntry {#function-legendentry}
+
+_Returns how a legend draws the series, or_ `std::nullopt` _for no legend entry. Default: no entry._
+```C++
+virtual std::optional< LegendEntry > QAccelPlot::PlotSeries::legendEntry () const
+```
+
+
+
+Series that override it emit `legendEntryChanged()` whenever the result changes. 
+
+
+        
 
 <hr>
 

@@ -51,6 +51,8 @@
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**Colormap**](classQAccelPlot_1_1Colormap.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**ColorPalette**](classQAccelPlot_1_1ColorPalette.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**Colors**](classQAccelPlot_1_1Colors.md)
@@ -108,6 +110,7 @@
 
 * [**Extent**](structQAccelPlot_1_1DataPointStore_1_1Extent.md)
 ([**QAccelPlot::DataPointStore**](classQAccelPlot_1_1DataPointStore.md))
+* [**Extent**](structQAccelPlot_1_1HeatmapSeries_1_1Extent.md)
 * [**Extents**](structQAccelPlot_1_1DataPointStore_1_1Extents.md)
 ([**QAccelPlot::DataPointStore**](classQAccelPlot_1_1DataPointStore.md))
 
@@ -146,6 +149,10 @@
 
 ## h
 
+* [**HeatmapMaterial**](classQAccelPlot_1_1HeatmapMaterial.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**Histogram**](classQAccelPlot_1_1Histogram.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**HistogramFactory**](classQAccelPlot_1_1HistogramFactory.md)
@@ -202,6 +209,10 @@
 * [**Layout**](structQAccelPlot_1_1DataPointStore_1_1Layout.md)
 ([**QAccelPlot::DataPointStore**](classQAccelPlot_1_1DataPointStore.md))
 * [**Layout**](structQAccelPlot_1_1ColorBar_1_1Layout.md)
+* [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**LegendModel**](classQAccelPlot_1_1LegendModel.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**LineCurve**](classQAccelPlot_1_1LineCurve.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md)
@@ -352,6 +363,8 @@
 
 * [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md)
 ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* [**ValueSpan**](structQAccelPlot_1_1ColormappedSeries_1_1ValueSpan.md)
+([**QAccelPlot::ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md))
 * [**Vertex**](structQAccelPlot_1_1BandMaterial_1_1Vertex.md)
 ([**QAccelPlot::BandMaterial**](classQAccelPlot_1_1BandMaterial.md))
 * [**Vertex**](structQAccelPlot_1_1RectVertexCache_1_1Vertex.md)

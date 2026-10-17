@@ -1,0 +1,507 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1ColormappedSeries" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::ColormappedSeries</compoundname>
+    <basecompoundref refid="classQAccelPlot_1_1PlotSeries" prot="public" virt="non-virtual">QAccelPlot::PlotSeries</basecompoundref>
+    <derivedcompoundref refid="classQAccelPlot_1_1HeatmapSeries" prot="public" virt="non-virtual">QAccelPlot::HeatmapSeries</derivedcompoundref>
+    <derivedcompoundref refid="classQAccelPlot_1_1PointCloud" prot="public" virt="non-virtual">QAccelPlot::PointCloud</derivedcompoundref>
+    <includes local="no">ColormappedSeries.hpp</includes>
+    <innerclass refid="structQAccelPlot_1_1ColormappedSeries_1_1ValueSpan" prot="protected">QAccelPlot::ColormappedSeries::ValueSpan</innerclass>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1ColormappedSeries_1a6ef2f6fdd71790de760e68a0dde19725" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref> *</type>
+        <definition>Colormap* QAccelPlot::ColormappedSeries::colormap</definition>
+        <argsstring></argsstring>
+        <name>colormap</name>
+        <qualifiedname>QAccelPlot::ColormappedSeries::colormap</qualifiedname>
+        <read>colormap</read>
+        <write>setColormap</write>
+        <briefdescription>
+<para>Maps values to colors. What a series draws without one is described by the series. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ColormappedSeries.hpp" line="36" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/ColormappedSeries.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1ColormappedSeries_1a1c2f3d9df4ef38b33addd7344f26f5e3" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ColormappedSeries::dataValueMin</definition>
+        <argsstring></argsstring>
+        <name>dataValueMin</name>
+        <qualifiedname>QAccelPlot::ColormappedSeries::dataValueMin</qualifiedname>
+        <read>dataValueMin</read>
+        <briefdescription>
+<para>Read-only: lower bound of the value range, taken from <computeroutput><ref refid="classQAccelPlot_1_1Colormap_1ad2faff816266d69fb598cad7c7c3c626" kindref="member">Colormap::min</ref></computeroutput> when it is set and from the data otherwise. <computeroutput><ref refid="classQAccelPlot_1_1ColorBar" kindref="compound">ColorBar</ref></computeroutput> labels its ticks from this and <computeroutput>dataValueMax</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ColormappedSeries.hpp" line="39" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/ColormappedSeries.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1ColormappedSeries_1a363084e6b7f15b4e1c0df55961625dc5" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ColormappedSeries::dataValueMax</definition>
+        <argsstring></argsstring>
+        <name>dataValueMax</name>
+        <qualifiedname>QAccelPlot::ColormappedSeries::dataValueMax</qualifiedname>
+        <read>dataValueMax</read>
+        <briefdescription>
+<para>Read-only: upper bound of the value range, taken from <computeroutput><ref refid="classQAccelPlot_1_1Colormap_1a1e42c41384869c79a017a49ee22c9fea" kindref="member">Colormap::max</ref></computeroutput> when it is set and from the data otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ColormappedSeries.hpp" line="42" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/ColormappedSeries.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1ColormappedSeries_1a070ecb47bb8abee9bd278120ae676492" prot="private" static="no" mutable="no">
+        <type>QPointer&lt; <ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref> &gt;</type>
+        <definition>QPointer&lt;Colormap&gt; QAccelPlot::ColormappedSeries::colormap_</definition>
+        <argsstring></argsstring>
+        <name>colormap_</name>
+        <qualifiedname>QAccelPlot::ColormappedSeries::colormap_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ColormappedSeries.hpp" line="87" column="14" bodyfile="QAccelPlot/src/QAccelPlot/series/ColormappedSeries.hpp" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ColormappedSeries_1a8e67a7cafcf3fbc0a7a8d1d233c3114f" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="structQAccelPlot_1_1GradientStopData" kindref="compound">GradientStopData</ref> &gt;</type>
+        <definition>std::vector&lt;GradientStopData&gt; QAccelPlot::ColormappedSeries::colorStops_</definition>
+        <argsstring></argsstring>
+        <name>colorStops_</name>
+        <qualifiedname>QAccelPlot::ColormappedSeries::colorStops_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ColormappedSeries.hpp" line="88" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/ColormappedSeries.hpp" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ColormappedSeries_1ac4b902d616648555b44dbf904b570aa0" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ColormappedSeries::dataValueMin_</definition>
+        <argsstring></argsstring>
+        <name>dataValueMin_</name>
+        <qualifiedname>QAccelPlot::ColormappedSeries::dataValueMin_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ColormappedSeries.hpp" line="89" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/ColormappedSeries.hpp" bodystart="89" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ColormappedSeries_1a7be7c20c9c448eedfa790e38eb055630" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ColormappedSeries::dataValueMax_</definition>
+        <argsstring></argsstring>
+        <name>dataValueMax_</name>
+        <qualifiedname>QAccelPlot::ColormappedSeries::dataValueMax_</qualifiedname>
+        <initializer>{1.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ColormappedSeries.hpp" line="90" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/ColormappedSeries.hpp" bodystart="90" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ColormappedSeries_1ae2bd8dd701b30cae3c67dd97473a5282" prot="private" static="no" mutable="no">
+        <type>QList&lt; QMetaObject::Connection &gt;</type>
+        <definition>QList&lt;QMetaObject::Connection&gt; QAccelPlot::ColormappedSeries::colormapConnections_</definition>
+        <argsstring></argsstring>
+        <name>colormapConnections_</name>
+        <qualifiedname>QAccelPlot::ColormappedSeries::colormapConnections_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ColormappedSeries.hpp" line="91" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/ColormappedSeries.hpp" bodystart="91" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1ColormappedSeries_1ac1cd2db41d45283715110df311c1b6b2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref> *</type>
+        <definition>Colormap * QAccelPlot::ColormappedSeries::colormap</definition>
+        <argsstring>() const</argsstring>
+        <name>colormap</name>
+        <qualifiedname>QAccelPlot::ColormappedSeries::colormap</qualifiedname>
+        <briefdescription>
+<para>Returns the colormap, or <computeroutput>nullptr</computeroutput> when none is assigned. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ColormappedSeries.hpp" line="46" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColormappedSeries_1af7024caaa6f96b3b9a00549b81b77b94" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColormappedSeries::setColormap</definition>
+        <argsstring>(Colormap *colormap)</argsstring>
+        <name>setColormap</name>
+        <qualifiedname>QAccelPlot::ColormappedSeries::setColormap</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref> *</type>
+          <declname>colormap</declname>
+        </param>
+        <briefdescription>
+<para>Sets the colormap to <emphasis>colormap</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ColormappedSeries.hpp" line="48" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColormappedSeries_1a7129c36a6c500c84ae38b7ed1c9e9550" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ColormappedSeries::dataValueMin</definition>
+        <argsstring>() const</argsstring>
+        <name>dataValueMin</name>
+        <qualifiedname>QAccelPlot::ColormappedSeries::dataValueMin</qualifiedname>
+        <briefdescription>
+<para>Returns the resolved lower bound of the value range. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ColormappedSeries.hpp" line="51" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColormappedSeries_1aa527a775ee075b0725bcd4636bb89794" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ColormappedSeries::dataValueMax</definition>
+        <argsstring>() const</argsstring>
+        <name>dataValueMax</name>
+        <qualifiedname>QAccelPlot::ColormappedSeries::dataValueMax</qualifiedname>
+        <briefdescription>
+<para>Returns the resolved upper bound of the value range. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ColormappedSeries.hpp" line="53" column="11"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1ColormappedSeries_1ad5bba208d43eda6cc52679e6950ef911" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColormappedSeries::colormapChanged</definition>
+        <argsstring>()</argsstring>
+        <name>colormapChanged</name>
+        <qualifiedname>QAccelPlot::ColormappedSeries::colormapChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the colormap property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ColormappedSeries.hpp" line="57" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1ColormappedSeries_1a22543380a1617e9003d11bc860fa461e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColormappedSeries::valueRangeChanged</definition>
+        <argsstring>()</argsstring>
+        <name>valueRangeChanged</name>
+        <qualifiedname>QAccelPlot::ColormappedSeries::valueRangeChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when <computeroutput>dataValueMin</computeroutput> or <computeroutput>dataValueMax</computeroutput> changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ColormappedSeries.hpp" line="59" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1ColormappedSeries_1a3d2ebd74bfcb9bc7df347450b5f487e7" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::ColormappedSeries::ColormappedSeries</definition>
+        <argsstring>(DataPointStore::Layout layout, DataPointWording wording, QQuickItem *parent)</argsstring>
+        <name>ColormappedSeries</name>
+        <qualifiedname>QAccelPlot::ColormappedSeries::ColormappedSeries</qualifiedname>
+        <param>
+          <type><ref refid="structQAccelPlot_1_1DataPointStore_1_1Layout" kindref="compound">DataPointStore::Layout</ref></type>
+          <declname>layout</declname>
+        </param>
+        <param>
+          <type><ref refid="structQAccelPlot_1_1PlotSeries_1_1DataPointWording" kindref="compound">DataPointWording</ref></type>
+          <declname>wording</declname>
+        </param>
+        <param>
+          <type>QQuickItem *</type>
+          <declname>parent</declname>
+        </param>
+        <briefdescription>
+<para>Creates a series whose data points have <emphasis>layout</emphasis>; <emphasis>wording</emphasis> names them in warnings. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ColormappedSeries.hpp" line="69" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColormappedSeries_1a93c65bb18a806ef7a45bd6c078d3b36a" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>std::optional&lt; <ref refid="structQAccelPlot_1_1ColormappedSeries_1_1ValueSpan" kindref="compound">ValueSpan</ref> &gt;</type>
+        <definition>virtual std::optional&lt; ValueSpan &gt; QAccelPlot::ColormappedSeries::scanValueRange</definition>
+        <argsstring>() const</argsstring>
+        <name>scanValueRange</name>
+        <qualifiedname>QAccelPlot::ColormappedSeries::scanValueRange</qualifiedname>
+        <reimplementedby refid="classQAccelPlot_1_1HeatmapSeries_1a2aba152846d3d341118262ebfc82d6ef">scanValueRange</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1PointCloud_1a8d0f77d90255e670a1200969deeb6535">scanValueRange</reimplementedby>
+        <briefdescription>
+<para>Returns the span of the finite values, or <computeroutput>std::nullopt</computeroutput> when there is none. Default: none. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Called by <computeroutput><ref refid="classQAccelPlot_1_1ColormappedSeries_1af60a985b12edcd00f04554ab3124773b" kindref="member">updateValueRange()</ref></computeroutput> only when the colormap leaves a bound unset. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ColormappedSeries.hpp" line="74" column="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColormappedSeries_1af60a985b12edcd00f04554ab3124773b" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColormappedSeries::updateValueRange</definition>
+        <argsstring>()</argsstring>
+        <name>updateValueRange</name>
+        <qualifiedname>QAccelPlot::ColormappedSeries::updateValueRange</qualifiedname>
+        <briefdescription>
+<para>Resolves the value range again. Call after every change of the values. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Emits <computeroutput><ref refid="classQAccelPlot_1_1ColormappedSeries_1a22543380a1617e9003d11bc860fa461e" kindref="member">valueRangeChanged()</ref></computeroutput> and schedules a repaint when the range changed. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ColormappedSeries.hpp" line="78" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColormappedSeries_1a1b38f2b97e22924388e036b5fa0bb66c" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::vector&lt; <ref refid="structQAccelPlot_1_1GradientStopData" kindref="compound">GradientStopData</ref> &gt; &amp;</type>
+        <definition>const std::vector&lt; GradientStopData &gt; &amp; QAccelPlot::ColormappedSeries::colorStops</definition>
+        <argsstring>() const</argsstring>
+        <name>colorStops</name>
+        <qualifiedname>QAccelPlot::ColormappedSeries::colorStops</qualifiedname>
+        <briefdescription>
+<para>Returns the ramp stops of the colormap, empty without one. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ColormappedSeries.hpp" line="80" column="23"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1ColormappedSeries_1acfa36c2c7ba47e80251cd042f71b7e11" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_SLOT void</type>
+        <definition>Q_SLOT void QAccelPlot::ColormappedSeries::onColormapUpdated</definition>
+        <argsstring>()</argsstring>
+        <name>onColormapUpdated</name>
+        <qualifiedname>QAccelPlot::ColormappedSeries::onColormapUpdated</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ColormappedSeries.hpp" line="83" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColormappedSeries_1a5baa96f31f686200de96e9332964644e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColormappedSeries::reconnectColormapSignals</definition>
+        <argsstring>()</argsstring>
+        <name>reconnectColormapSignals</name>
+        <qualifiedname>QAccelPlot::ColormappedSeries::reconnectColormapSignals</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ColormappedSeries.hpp" line="84" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColormappedSeries_1aeec86dd53e118eed3c4cd35af66e5e7a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColormappedSeries::refreshColorStops</definition>
+        <argsstring>()</argsstring>
+        <name>refreshColorStops</name>
+        <qualifiedname>QAccelPlot::ColormappedSeries::refreshColorStops</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ColormappedSeries.hpp" line="85" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Base class for series that color their data points by value through a <computeroutput><ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref></computeroutput>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Owns the <computeroutput>colormap</computeroutput> assignment and resolves the value range it maps: <computeroutput><ref refid="classQAccelPlot_1_1Colormap_1ad2faff816266d69fb598cad7c7c3c626" kindref="member">Colormap::min</ref></computeroutput> and <computeroutput><ref refid="classQAccelPlot_1_1Colormap_1a1e42c41384869c79a017a49ee22c9fea" kindref="member">Colormap::max</ref></computeroutput> where they are set, and the smallest and largest finite value of the series otherwise. <computeroutput><ref refid="classQAccelPlot_1_1ColorBar" kindref="compound">ColorBar</ref></computeroutput> shows the colormap and the resolved range of any such series.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref>, <ref refid="classQAccelPlot_1_1HeatmapSeries" kindref="compound">HeatmapSeries</ref>, <ref refid="classQAccelPlot_1_1ColorBar" kindref="compound">ColorBar</ref>, <ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::ColormappedSeries</label>
+        <link refid="classQAccelPlot_1_1ColormappedSeries"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>QAccelPlot::HeatmapSeries</label>
+        <link refid="classQAccelPlot_1_1HeatmapSeries"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::PlotSeries</label>
+        <link refid="classQAccelPlot_1_1PlotSeries"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>QAccelPlot::PointCloud</label>
+        <link refid="classQAccelPlot_1_1PointCloud"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QQuickItem</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::ColormappedSeries</label>
+        <link refid="classQAccelPlot_1_1ColormappedSeries"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::PlotSeries</label>
+        <link refid="classQAccelPlot_1_1PlotSeries"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QQuickItem</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/series/ColormappedSeries.hpp" line="30" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/ColormappedSeries.hpp" bodystart="30" bodyend="92"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1PlotSeries_1afb31a972c88456df230348f4e3794ab5" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>appendDataPoint</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ac760dabf61aac4bad4cc5e93ad4dae43" prot="protected" virt="virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>applyDataPoints</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ab8783373622d6edb7e55c3dd435fc399" prot="public" virt="virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>clearData</name></member>
+      <member refid="classQAccelPlot_1_1ColormappedSeries_1a6ef2f6fdd71790de760e68a0dde19725" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>colormap</name></member>
+      <member refid="classQAccelPlot_1_1ColormappedSeries_1ac1cd2db41d45283715110df311c1b6b2" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>colormap</name></member>
+      <member refid="classQAccelPlot_1_1ColormappedSeries_1a070ecb47bb8abee9bd278120ae676492" prot="private" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>colormap_</name></member>
+      <member refid="classQAccelPlot_1_1ColormappedSeries_1ad5bba208d43eda6cc52679e6950ef911" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>colormapChanged</name></member>
+      <member refid="classQAccelPlot_1_1ColormappedSeries_1ae2bd8dd701b30cae3c67dd97473a5282" prot="private" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>colormapConnections_</name></member>
+      <member refid="classQAccelPlot_1_1ColormappedSeries_1a3d2ebd74bfcb9bc7df347450b5f487e7" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>ColormappedSeries</name></member>
+      <member refid="classQAccelPlot_1_1ColormappedSeries_1a1b38f2b97e22924388e036b5fa0bb66c" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>colorStops</name></member>
+      <member refid="classQAccelPlot_1_1ColormappedSeries_1a8e67a7cafcf3fbc0a7a8d1d233c3114f" prot="private" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>colorStops_</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a5fcaa8127513e48c7c67443782811a1e" prot="protected" virt="virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>computeDataRanges</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a7f2b4290f315a7c3d22b7982763b8bc8" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>DataChange</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a92ba17a411311bfe937b241a8b470bae" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>dataPoints</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a6d99b3e386cc6e8d703e590c83a3332b" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>dataPoints</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a77d9c4792d45233735cfe620491fc8fc" prot="protected" virt="virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>dataPointValueCount</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a74c197e04386613b694bd8a63963c479" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>dataRevision</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a711dd6e106d9bf300932f06a499d0ead" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>dataRevision</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ae08fae615331785b023882afef1a4fa1" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>dataRevisionChanged</name></member>
+      <member refid="classQAccelPlot_1_1ColormappedSeries_1a363084e6b7f15b4e1c0df55961625dc5" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>dataValueMax</name></member>
+      <member refid="classQAccelPlot_1_1ColormappedSeries_1aa527a775ee075b0725bcd4636bb89794" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>dataValueMax</name></member>
+      <member refid="classQAccelPlot_1_1ColormappedSeries_1a7be7c20c9c448eedfa790e38eb055630" prot="private" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>dataValueMax_</name></member>
+      <member refid="classQAccelPlot_1_1ColormappedSeries_1a1c2f3d9df4ef38b33addd7344f26f5e3" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>dataValueMin</name></member>
+      <member refid="classQAccelPlot_1_1ColormappedSeries_1a7129c36a6c500c84ae38b7ed1c9e9550" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>dataValueMin</name></member>
+      <member refid="classQAccelPlot_1_1ColormappedSeries_1ac4b902d616648555b44dbf904b570aa0" prot="private" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>dataValueMin_</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a9c39c6af8c52c7efd9b75935c4d69110" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>event</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ab4c3a9f96024e2929e8122ac37cb69d3" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>extendXDataRange</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a8b6aac884387c8f8471b1eaab5557872" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>extendYDataRange</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a2a23af3683416afeea98697c66616cea" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>inspection</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a00a3d60288b86fd54569387281355060" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>inspection</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a32638eb7718d210d95fa70351696441d" prot="protected" virt="virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>inspectionAvailable</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a10efc3369e62d44c163ca7bdcd39fb26" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>inspectionDataChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a9f822a232d100806927a0a34f0ca1a5e" prot="protected" virt="virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>inspectionRecord</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a56c10df5cbc0648557caa5d40153ace8" prot="protected" virt="virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>inspectionRecordAt</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ae2ba190d0642e569bf6a300bbf2573e5" prot="protected" virt="virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>inspectionSource</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a6d479055f9c3acfd2be5befa8cf6d1a8" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>invalidateDataRanges</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a5d56c6f054d6dba8b905f0cb49e188d7" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>invalidateInspection</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a4e5a53df93bf478ae4b3f2f53ee4ff37" prot="public" virt="virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>legendEntry</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a1dbdd720bb06d07672267cfc603b932b" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>legendEntryChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>LegendSymbol</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ada3d9fd14934647c0f31870184f5eff5" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>legendSymbol</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a37f1fe5cb9f339d593147cd47b75d180" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>legendSymbol</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a2b88cb6eac8d12cf02b6daf37460150e" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>legendSymbolChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ad85ffb96b1c9ee3d13a25c412db1eac6" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>logScaleX</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a23f7dd78fbc4e5e03d2537ee2e40707c" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>logScaleY</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>MarkerShape</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a71b82b1a4372d71c848a3a09c59b20b0" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>name</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1abfa3199d6097eb55cf17697eff2be090" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>name</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1acd842870d90a7ece81859be06effe0a7" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>nameChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a76f0a354a43064f857553ffb2997b6da" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>notifyDataPointsChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a0d37e4fd843acbd10bd9c5d0bf2300c9" prot="protected" virt="virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>onAxisRangeChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a151516370fa311775c91c9cd7992e25e" prot="protected" virt="virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>onAxisScaleChanged</name></member>
+      <member refid="classQAccelPlot_1_1ColormappedSeries_1acfa36c2c7ba47e80251cd042f71b7e11" prot="private" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>onColormapUpdated</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a6aa2a1a96940b34ac259143005b0aa47" prot="protected" virt="virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>onDataPointsChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1aef0398b7a4f807870dd88a326c0e7d0d" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>plotRect</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1abf3aa64b08afe4f5d2a1728d035665b2" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>plotRect</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a9d58451724a7e0b06d7f04aeba101856" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>plotRectChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1aea1937eafb72c04be5befad4d37e3aac" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>PlotSeries</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a041d4bdadcfef0b798f785ec9c65d933" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>PlotSeries</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1acbf8fb06d9d8ca2a5ab3a0c4e060a4b4" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>postData</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1aad3e05b7da4d8c16ca53819017e7b6e0" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>postData</name></member>
+      <member refid="classQAccelPlot_1_1ColormappedSeries_1a5baa96f31f686200de96e9332964644e" prot="private" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>reconnectColormapSignals</name></member>
+      <member refid="classQAccelPlot_1_1ColormappedSeries_1aeec86dd53e118eed3c4cd35af66e5e7a" prot="private" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>refreshColorStops</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a956e8eb1ca7398b6b5f8022225d6edf7" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>resolvePlotRect</name></member>
+      <member refid="classQAccelPlot_1_1ColormappedSeries_1a93c65bb18a806ef7a45bd6c078d3b36a" prot="protected" virt="virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>scanValueRange</name></member>
+      <member refid="classQAccelPlot_1_1ColormappedSeries_1af7024caaa6f96b3b9a00549b81b77b94" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>setColormap</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a5615889cceabfee35f5e3e2dbd25f455" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>setData</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1af143a846c63372800995a0bd4f058598" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>setData</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a683165ce25c4f4a2f0cf3a36852c3721" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>setData</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ad10aa7307918305c127eb0b98c962484" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>setData</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1aa3475ca31d506b1b1c28ea586d61402e" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>setDataF</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a1180d75ce402fbf92fd7d95a4d0acda4" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>setDataF</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ab0d977683b1b06807842ade3c6011a3a" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>setDataF</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a795dc3374e83da98b6a471bb55f51fbd" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>setDataF</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a75695e62b548ccf79a1fe9c1f477a502" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>setLegendSymbol</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a239ef82d18c15985a337307cbc7872b4" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>setName</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a812c27ea194ec2f2c4bedde2cafb93f8" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>setPlotRect</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1acf14fd9c979717d73a9ab75bf3b763d4" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>setXAxis</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a871398840ba7045c168c79a78d564416" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>setYAxis</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a1957171db65a1684ebd515948dfb375d" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>storeDataPoints</name></member>
+      <member refid="classQAccelPlot_1_1ColormappedSeries_1af60a985b12edcd00f04554ab3124773b" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>updateValueRange</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a6c7c2ca488f737cd30ee447439441682" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>validateDataSize</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ac9c532c2c9fec18c4aa53252cda99b9c" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>validateRawDataArguments</name></member>
+      <member refid="classQAccelPlot_1_1ColormappedSeries_1a22543380a1617e9003d11bc860fa461e" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>valueRangeChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a250150d8eaea44c2608375839747b2b2" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>xAxis</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1afb85ad640494dbeaa616493a1bd4b966" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>xAxis</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ad43d8ab3035bab188de0a76ec2920267" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>xAxisChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a07181531fadaf89fd7140283ac91a563" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>xDataRange</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ae021f84424e1ea4ad44576961ac7d402" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>yAxis</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a63d01fc1b2581de3c4332aaf8fa90833" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>yAxis</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a860a8fdde757aaa1295cd2347f606685" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>yAxisChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a5d37db52b29132cab6e57ba335e30beb" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>yDataRange</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1aa42c9fdd09671734e0a752cad366a304" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>~PlotSeries</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -20,7 +20,7 @@
 * `#include "QAccelPlot/axis/AxisTicker.hpp"`
 * `#include "QAccelPlot/axis/AxisTicks.hpp"`
 * `#include "QAccelPlot/effects/GradientColorTypes.hpp"`
-* `#include "QAccelPlot/series/PointCloud.hpp"`
+* `#include "QAccelPlot/series/ColormappedSeries.hpp"`
 * `#include "QAccelPlot/theme/ColorPalette.hpp"`
 * `#include <QColor>`
 * `#include <QFont>`

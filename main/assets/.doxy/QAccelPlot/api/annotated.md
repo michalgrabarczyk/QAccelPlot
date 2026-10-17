@@ -26,6 +26,8 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **class** [**ColorBar**](classQAccelPlot_1_1ColorBar.md) _A continuous key that shows how a series'_ `Colormap` _maps values to colors._    
     * **class** [**ColorPalette**](classQAccelPlot_1_1ColorPalette.md) _A named set of theme colors shared by QML (via the_ `Colors` _singleton) and C++ defaults._    
     * **class** [**Colormap**](classQAccelPlot_1_1Colormap.md) _Maps data values to colors: a color ramp plus the rule that places a value on it._     
+    * **class** [**ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md) _Base class for series that color their data points by value through a_ `Colormap` _._    
+        * **struct** [**ValueSpan**](structQAccelPlot_1_1ColormappedSeries_1_1ValueSpan.md) _Smallest and largest finite value of a series._     
     * **class** [**Colors**](classQAccelPlot_1_1Colors.md) _QML singleton exposing_ [_**QAccelPlot**_](classQAccelPlot_1_1QAccelPlot.md) _'s built-in color palettes._    
     * **struct** [**CurveChunk**](structQAccelPlot_1_1CurveChunk.md) _Axis-aligned bounding box (AABB) for a contiguous block of curve points, used for hit-test culling._     
     * **struct** [**CurveDataView**](structQAccelPlot_1_1CurveDataView.md) _Read-only view over either interleaved float or double curve coordinates._     
@@ -62,6 +64,8 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **namespace** [**GradientValueSourceNS**](namespaceQAccelPlot_1_1GradientValueSourceNS.md) _Namespace exposing the_ `GradientValueSource` _enum to QML._    
     * **class** [**Grid**](classQAccelPlot_1_1Grid.md) _Configuration object that controls the appearance of the plot grid._     
     * **class** [**GridNode**](classQAccelPlot_1_1GridNode.md) _Internal QSGNode responsible for rendering the plot grid into the scene graph._     
+    * **class** [**HeatmapMaterial**](classQAccelPlot_1_1HeatmapMaterial.md) _Material that colors each fragment by the value of the heatmap cell under it._     
+    * **class** [**HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md) _A hardware-accelerated QML item that draws a grid of values as colored cells._     
     * **class** [**Histogram**](classQAccelPlot_1_1Histogram.md) _Samples counted into bins, convertible to_ `BarSeries` _data._    
     * **class** [**HistogramFactory**](classQAccelPlot_1_1HistogramFactory.md) _QML singleton_ `Histogram` _that creates_[_**Histogram**_](classQAccelPlot_1_1Histogram.md) _values from JavaScript arrays._    
     * **struct** [**InspectionBounds**](structQAccelPlot_1_1InspectionBounds.md) _Inclusive data-space region; infinite limits leave a dimension unbounded._     
@@ -86,6 +90,8 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
         * **class** [**HoverIndexBudget**](classQAccelPlot_1_1Internal_1_1HoverIndexBudget.md) _Decides when queried data is worth a hover index._     
         * **struct** [**RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md) _Mirrors the std140 uniform block of rect.vert._     
         * **struct** [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) _Bounds of an axis viewport or a colormap value range._     
+    * **struct** [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md) _How a legend draws one series: its symbol, color, line, and marker._     
+    * **class** [**LegendModel**](classQAccelPlot_1_1LegendModel.md) _List model of the legend entries of a list of series._     
     * **class** [**LineCurve**](classQAccelPlot_1_1LineCurve.md) _A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects._     
     * **class** [**LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md) _Abstract base class for visual effects applied to a_ `LineCurve` _._    
     * **namespace** [**LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md) _Stateless helpers implementing the invalid-data-point contract shared by_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _subsystems._    
@@ -150,6 +156,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
 * **struct** [**Compacted**](structQAccelPlot_1_1DataPointStore_1_1Compacted.md)     
 * **struct** [**Origin**](structQAccelPlot_1_1DataPointStore_1_1Origin.md)     
 * **struct** [**GridLineCollectionParams**](structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams.md)     
+* **struct** [**Extent**](structQAccelPlot_1_1HeatmapSeries_1_1Extent.md) [_**Grid**_](classQAccelPlot_1_1Grid.md) _edges. In_`edges_` _an unset edge is NaN;_`resolvedExtent()` _resolves it to index space._    
 * **struct** [**Job**](structQAccelPlot_1_1InspectionCache_1_1Job.md)     
 * **struct** [**Node**](structQAccelPlot_1_1InspectionIndex_1_1Node.md)     
 * **struct** [**FillSampleCache**](structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache.md)     

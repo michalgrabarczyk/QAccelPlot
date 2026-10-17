@@ -98,6 +98,7 @@ public:
     void postData(std::vector<float>&& data, std::vector<int>&& categories, int rectCount);
 
     Q_INVOKABLE void clearData() override;
+    std::optional<LegendEntry> legendEntry() const override;
 
     Q_INVOKABLE void setCategories(const QList<int>& categories);
 

@@ -74,7 +74,7 @@ flowchart TB
 | property QFont | [**labelFont**](classQAccelPlot_1_1ColorBar.md#property-labelfont-12)  <br>_Font of the title. Default: application default font._  |
 | property qreal | [**labelPadding**](classQAccelPlot_1_1ColorBar.md#property-labelpadding-12)  <br>_Gap in pixels between the tick labels and the title. Default: 6._  |
 | property Qt::Orientation | [**orientation**](classQAccelPlot_1_1ColorBar.md#property-orientation-12)  <br>_Direction of the ramp:_ `Qt.Vertical` _or_`Qt.Horizontal` _. Default:_`Qt.Vertical` _._ |
-| property [**PointCloud**](classQAccelPlot_1_1PointCloud.md) \* | [**series**](classQAccelPlot_1_1ColorBar.md#property-series-12)  <br>_Series whose colormap and resolved value range are shown. Default: null._  |
+| property [**ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md) \* | [**series**](classQAccelPlot_1_1ColorBar.md#property-series-12)  <br>_Series whose colormap and resolved value range are shown. Default: null._  |
 | property qreal | [**tickLabelWidth**](classQAccelPlot_1_1ColorBar.md#property-ticklabelwidth-12)  <br>_Width in pixels reserved for the tick labels of a vertical bar. Default: 16._  |
 | property [**AxisTicker**](classQAccelPlot_1_1AxisTicker.md) \* | [**ticker**](classQAccelPlot_1_1ColorBar.md#property-ticker-12)  <br>_Read-only constant: tick appearance, count, and label formatter._  |
 | property qreal | [**zoomScaleFactor**](classQAccelPlot_1_1ColorBar.md#property-zoomscalefactor-12)  <br>_Fraction by which the value range is multiplied on each inward mouse-wheel step. Must be in (0, 1). Default: 0.9._  |
@@ -121,7 +121,7 @@ flowchart TB
 |  void | [**paint**](#function-paint) (QPainter \* painter) override<br>_Paints the strip, ticks, tick labels, and title computed in_ `updatePolish()` _._ |
 |  qreal | [**pixelToValue**](#function-pixeltovalue) (qreal pixel, qreal length) const<br>_Maps a_ _pixel_ _position along a strip of__length_ _pixels back to a value._ |
 |  Q\_INVOKABLE void | [**rescaleToData**](#function-rescaletodata) () <br>_Unsets the colormap's_ `min` _and_`max` _, so the range is resolved from the data again._ |
-|  [**PointCloud**](classQAccelPlot_1_1PointCloud.md) \* | [**series**](#function-series-22) () const<br>_Returns the series whose colormap is shown, or_ `nullptr` _._ |
+|  [**ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md) \* | [**series**](#function-series-22) () const<br>_Returns the series whose colormap is shown, or_ `nullptr` _._ |
 |  void | [**setBarThickness**](#function-setbarthickness) (qreal thickness) <br>_Sets the strip thickness to_ _thickness_ _pixels. Negative values are clamped to 0._ |
 |  void | [**setBorderColor**](#function-setbordercolor) (const QColor & color) <br>_Sets the strip outline color to_ _color_ _._ |
 |  void | [**setBorderWidth**](#function-setborderwidth) (qreal width) <br>_Sets the strip outline width to_ _width_ _pixels. Negative values are clamped to 0._ |
@@ -131,7 +131,7 @@ flowchart TB
 |  void | [**setLabelFont**](#function-setlabelfont) (const QFont & font) <br>_Sets the title font to_ _font_ _._ |
 |  void | [**setLabelPadding**](#function-setlabelpadding) (qreal padding) <br>_Sets the gap between the tick labels and the title to_ _padding_ _pixels. Negative values are clamped to 0._ |
 |  void | [**setOrientation**](#function-setorientation) (Qt::Orientation orientation) <br>_Sets the ramp direction to_ _orientation_ _._ |
-|  void | [**setSeries**](#function-setseries) ([**PointCloud**](classQAccelPlot_1_1PointCloud.md) \* series) <br>_Sets the series whose colormap is shown to_ _series_ _._ |
+|  void | [**setSeries**](#function-setseries) ([**ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md) \* series) <br>_Sets the series whose colormap is shown to_ _series_ _._ |
 |  void | [**setTickLabelWidth**](#function-setticklabelwidth) (qreal width) <br>_Sets the width reserved for tick labels to_ _width_ _pixels. Negative values are clamped to 0._ |
 |  void | [**setZoomScaleFactor**](#function-setzoomscalefactor) (qreal factor) <br>_Sets the zoom scale factor to_ _factor_ _(clamped to the range (0, 1))._ |
 |  qreal | [**tickLabelWidth**](#function-ticklabelwidth-22) () const<br>_Returns the width reserved for tick labels in pixels._  |
@@ -183,7 +183,7 @@ flowchart TB
 ## Detailed Description
 
 
-Draws the series' color ramp as a strip, with ticks and labels for the value range the series resolved (`PointCloud::dataValueMin` and `PointCloud::dataValueMax`). Ticks follow the colormap's `norm`, so a `Log` colormap gets decade ticks. The bar redraws when the colormap, the resolved range, or the assigned colormap changes. Nothing is drawn while the series has no colormap.
+Draws the color ramp of a `PointCloud` or `HeatmapSeries` as a strip, with ticks and labels for the value range the series resolved (`ColormappedSeries::dataValueMin` and `ColormappedSeries::dataValueMax`). Ticks follow the colormap's `norm`, so a `Log` colormap gets decade ticks. The bar redraws when the colormap, the resolved range, or the assigned colormap changes. Nothing is drawn while the series has no colormap.
 
 
 A vertical bar has its minimum at the bottom, with ticks on the right and `label` beside them, reading top to bottom. A horizontal bar has its minimum on the left, with ticks and `label` below. Position the bar like any item, for example inside the plot area:
@@ -209,7 +209,7 @@ With `interactive` set, a left drag along the ramp pans the colormap's value ran
 
 
 
-**See also:** [**PointCloud**](classQAccelPlot_1_1PointCloud.md), [**Colormap**](classQAccelPlot_1_1Colormap.md), [**AxisTicker**](classQAccelPlot_1_1AxisTicker.md) 
+**See also:** [**ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md), [**PointCloud**](classQAccelPlot_1_1PointCloud.md), [**HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md), [**Colormap**](classQAccelPlot_1_1Colormap.md), [**AxisTicker**](classQAccelPlot_1_1AxisTicker.md) 
 
 
 
@@ -378,7 +378,7 @@ Qt::Orientation QAccelPlot::ColorBar::orientation;
 
 _Series whose colormap and resolved value range are shown. Default: null._ 
 ```C++
-PointCloud* QAccelPlot::ColorBar::series;
+ColormappedSeries* QAccelPlot::ColorBar::series;
 ```
 
 
@@ -870,7 +870,7 @@ Q_INVOKABLE void QAccelPlot::ColorBar::rescaleToData ()
 
 _Returns the series whose colormap is shown, or_ `nullptr` _._
 ```C++
-PointCloud * QAccelPlot::ColorBar::series () const
+ColormappedSeries * QAccelPlot::ColorBar::series () const
 ```
 
 
@@ -1039,7 +1039,7 @@ void QAccelPlot::ColorBar::setOrientation (
 _Sets the series whose colormap is shown to_ _series_ _._
 ```C++
 void QAccelPlot::ColorBar::setSeries (
-    PointCloud * series
+    ColormappedSeries * series
 ) 
 ```
 

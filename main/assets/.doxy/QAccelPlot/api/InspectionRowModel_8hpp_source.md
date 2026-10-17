@@ -91,7 +91,7 @@ signals:
 
 private:
     Q_SLOT void seriesAppearanceChanged();
-    void watchSeries(PlotSeries* series);
+    void watchSeries(PlotSeries* series) const;
     void unwatchSeries(PlotSeries* series);
     bool sameSeries(const QList<InspectionRow>& rows) const;
 

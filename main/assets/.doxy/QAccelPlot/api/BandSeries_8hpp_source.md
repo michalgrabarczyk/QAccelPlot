@@ -66,6 +66,7 @@ public:
     using PlotSeries::setData;
     using PlotSeries::setDataF;
     Q_INVOKABLE void clearData() override;
+    std::optional<LegendEntry> legendEntry() const override;
 
     Q_INVOKABLE QVariantMap valueAt(qreal x) const;
 

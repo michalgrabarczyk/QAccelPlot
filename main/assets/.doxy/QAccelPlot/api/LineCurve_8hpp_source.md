@@ -102,6 +102,7 @@ public:
     void setDataFWithCache(std::vector<float>&& data, int pointCount, std::vector<char>&& vertexCache);
     void setDataFWithCache(const float* xyInterleaved, int pointCount, std::vector<char>&& vertexCache);
     Q_INVOKABLE void clearData() override;
+    std::optional<LegendEntry> legendEntry() const override;
 
 protected:
     InspectionSource inspectionSource() const override;

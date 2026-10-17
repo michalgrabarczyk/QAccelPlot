@@ -111,6 +111,7 @@ public:
     void postRangedData(std::vector<double>&& data, int barCount);
 
     Q_INVOKABLE void clearData() override;
+    std::optional<LegendEntry> legendEntry() const override;
 
     Q_INVOKABLE void setCategories(const QList<int>& categories);
 

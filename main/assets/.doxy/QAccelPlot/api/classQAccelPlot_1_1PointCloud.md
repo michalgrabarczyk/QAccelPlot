@@ -21,7 +21,7 @@ _A hardware-accelerated QML item that renders large sets of unconnected 2D point
 
 
 
-Inherits the following classes: [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
+Inherits the following classes: [QAccelPlot::ColormappedSeries](classQAccelPlot_1_1ColormappedSeries.md)
 
 
 
@@ -32,14 +32,20 @@ Inherits the following classes: [QAccelPlot::PlotSeries](classQAccelPlot_1_1Plot
 flowchart TB
   classQAccelPlot_1_1PointCloud["QAccelPlot::PointCloud"]
 
+  classQAccelPlot_1_1ColormappedSeries["QAccelPlot::ColormappedSeries"]
+  classQAccelPlot_1_1ColormappedSeries --> classQAccelPlot_1_1PointCloud
+  click classQAccelPlot_1_1ColormappedSeries "../classQAccelPlot_1_1ColormappedSeries/" "Open QAccelPlot::ColormappedSeries"
+
   classQAccelPlot_1_1PlotSeries["QAccelPlot::PlotSeries"]
-  classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1PointCloud
+  classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1ColormappedSeries
   click classQAccelPlot_1_1PlotSeries "../classQAccelPlot_1_1PlotSeries/" "Open QAccelPlot::PlotSeries"
 
   external_base_classQAccelPlot_1_1PlotSeries_1["QQuickItem"]
   external_base_classQAccelPlot_1_1PlotSeries_1 --> classQAccelPlot_1_1PlotSeries
 
 ```
+
+
 
 
 
@@ -84,6 +90,16 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 
 
+
+
+
+
+
+
+
+
+
+
 ## Public Properties
 
 | Type | Name |
@@ -91,15 +107,23 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | property bool | [**antialiasingEnabled**](classQAccelPlot_1_1PointCloud.md#property-antialiasingenabled-12)  <br>_Whether GPU-side anti-aliasing is applied to markers. Default:_ `true` _._ |
 | property qreal | [**antialiasingFeather**](classQAccelPlot_1_1PointCloud.md#property-antialiasingfeather-12)  <br>_Anti-aliasing feather width in pixels, clamped to [0, 10]. Default: 1._  |
 | property QColor | [**color**](classQAccelPlot_1_1PointCloud.md#property-color-12)  <br>_Uniform marker color, also used by the legend. Default:_ `Colors.dark.seriesPrimary` _._ |
-| property [**Colormap**](classQAccelPlot_1_1Colormap.md) \* | [**colormap**](classQAccelPlot_1_1PointCloud.md#property-colormap-12)  <br>_Maps per-point values to colors. Points are colored uniformly with_ `color` _when this is null or no values are stored. Default: null._ |
 | property int | [**count**](classQAccelPlot_1_1PointCloud.md#property-count-12)  <br>_Read-only: number of points currently stored, including invalid ones._  |
-| property qreal | [**dataValueMax**](classQAccelPlot_1_1PointCloud.md#property-datavaluemax-12)  <br>_Read-only: upper bound of the value range, taken from_ `Colormap::max` _when it is set and from the data otherwise._ |
-| property qreal | [**dataValueMin**](classQAccelPlot_1_1PointCloud.md#property-datavaluemin-12)  <br>_Read-only: lower bound of the value range, taken from_ `Colormap::min` _when it is set and from the data otherwise._`ColorBar` _labels its ticks from this and_`dataValueMax` _._ |
 | property bool | [**hasValues**](classQAccelPlot_1_1PointCloud.md#property-hasvalues-12)  <br>_Read-only:_ `true` _when per-point values are stored._ |
 | property qreal | [**hoverRadius**](classQAccelPlot_1_1PointCloud.md#property-hoverradius-12)  <br>_Pick radius in pixels used for hover detection. Default: 6._  |
 | property int | [**hoveredIndex**](classQAccelPlot_1_1PointCloud.md#property-hoveredindex-12)  <br>_Read-only: index of the point under the cursor, or -1 when none._  |
 | property [**SeriesMarker**](classQAccelPlot_1_1SeriesMarker.md) \* | [**marker**](classQAccelPlot_1_1PointCloud.md#property-marker-12)  <br>_Grouped marker settings, e.g._ `marker.shape` _and_`marker.size` _._`marker.shape` _defaults to_`Circle` _and does not accept_`None` _, because a cloud always draws markers;_`marker.size` _defaults to 3._ |
 | property [**DataTransition**](classQAccelPlot_1_1DataTransition.md) \* | [**transition**](classQAccelPlot_1_1PointCloud.md#property-transition-12)  <br>_Optional data transition animation applied when new data arrives._  |
+
+
+## Public Properties inherited from QAccelPlot::ColormappedSeries
+
+See [QAccelPlot::ColormappedSeries](classQAccelPlot_1_1ColormappedSeries.md)
+
+| Type | Name |
+| ---: | :--- |
+| property [**Colormap**](classQAccelPlot_1_1Colormap.md) \* | [**colormap**](classQAccelPlot_1_1ColormappedSeries.md#property-colormap-12)  <br>_Maps values to colors. What a series draws without one is described by the series._  |
+| property qreal | [**dataValueMax**](classQAccelPlot_1_1ColormappedSeries.md#property-datavaluemax-12)  <br>_Read-only: upper bound of the value range, taken from_ `Colormap::max` _when it is set and from the data otherwise._ |
+| property qreal | [**dataValueMin**](classQAccelPlot_1_1ColormappedSeries.md#property-datavaluemin-12)  <br>_Read-only: lower bound of the value range, taken from_ `Colormap::min` _when it is set and from the data otherwise._`ColorBar` _labels its ticks from this and_`dataValueMax` _._ |
 
 
 ## Public Properties inherited from QAccelPlot::PlotSeries
@@ -121,6 +145,8 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 
 
+
+
 ## Public Signals
 
 | Type | Name |
@@ -128,12 +154,20 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | signal void | [**antialiasingEnabledChanged**](classQAccelPlot_1_1PointCloud.md#signal-antialiasingenabledchanged)  <br>_Emitted when the antialiasingEnabled property changes._  |
 | signal void | [**antialiasingFeatherChanged**](classQAccelPlot_1_1PointCloud.md#signal-antialiasingfeatherchanged)  <br>_Emitted when the antialiasingFeather property changes._  |
 | signal void | [**colorChanged**](classQAccelPlot_1_1PointCloud.md#signal-colorchanged)  <br>_Emitted when the color property changes._  |
-| signal void | [**colormapChanged**](classQAccelPlot_1_1PointCloud.md#signal-colormapchanged)  <br>_Emitted when the colormap property changes._  |
 | signal void | [**countChanged**](classQAccelPlot_1_1PointCloud.md#signal-countchanged)  <br>_Emitted when the number of points or the presence of values changes._  |
 | signal void | [**hoverRadiusChanged**](classQAccelPlot_1_1PointCloud.md#signal-hoverradiuschanged)  <br>_Emitted when the hoverRadius property changes._  |
 | signal void | [**hoveredIndexChanged**](classQAccelPlot_1_1PointCloud.md#signal-hoveredindexchanged)  <br>_Emitted when the hovered point changes._  |
 | signal void | [**transitionChanged**](classQAccelPlot_1_1PointCloud.md#signal-transitionchanged)  <br>_Emitted when the transition property changes._  |
-| signal void | [**valueRangeChanged**](classQAccelPlot_1_1PointCloud.md#signal-valuerangechanged)  <br>_Emitted when_ `dataValueMin` _or_`dataValueMax` _changes._ |
+
+
+## Public Signals inherited from QAccelPlot::ColormappedSeries
+
+See [QAccelPlot::ColormappedSeries](classQAccelPlot_1_1ColormappedSeries.md)
+
+| Type | Name |
+| ---: | :--- |
+| signal void | [**colormapChanged**](classQAccelPlot_1_1ColormappedSeries.md#signal-colormapchanged)  <br>_Emitted when the colormap property changes._  |
+| signal void | [**valueRangeChanged**](classQAccelPlot_1_1ColormappedSeries.md#signal-valuerangechanged)  <br>_Emitted when_ `dataValueMin` _or_`dataValueMax` _changes._ |
 
 
 ## Public Signals inherited from QAccelPlot::PlotSeries
@@ -143,11 +177,14 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | Type | Name |
 | ---: | :--- |
 | signal void | [**dataRevisionChanged**](classQAccelPlot_1_1PlotSeries.md#signal-datarevisionchanged)  <br>_Emitted when the dataRevision property changes._  |
+| signal void | [**legendEntryChanged**](classQAccelPlot_1_1PlotSeries.md#signal-legendentrychanged)  <br>_Emitted when the result of_ `legendEntry()` _changes._ |
 | signal void | [**legendSymbolChanged**](classQAccelPlot_1_1PlotSeries.md#signal-legendsymbolchanged)  <br> |
 | signal void | [**nameChanged**](classQAccelPlot_1_1PlotSeries.md#signal-namechanged)  <br> |
 | signal void | [**plotRectChanged**](classQAccelPlot_1_1PlotSeries.md#signal-plotrectchanged)  <br> |
 | signal void | [**xAxisChanged**](classQAccelPlot_1_1PlotSeries.md#signal-xaxischanged)  <br> |
 | signal void | [**yAxisChanged**](classQAccelPlot_1_1PlotSeries.md#signal-yaxischanged)  <br> |
+
+
 
 
 
@@ -163,14 +200,12 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  qreal | [**antialiasingFeather**](#function-antialiasingfeather-22) () const<br>_Returns the anti-aliasing feather width._  |
 | virtual Q\_INVOKABLE void | [**clearData**](#function-cleardata) () override<br>_Removes all points and values._  |
 |  QColor | [**color**](#function-color-22) () const<br>_Returns the uniform marker color._  |
-|  [**Colormap**](classQAccelPlot_1_1Colormap.md) \* | [**colormap**](#function-colormap-22) () const<br>_Returns the colormap, or_ `nullptr` _when points are colored uniformly._ |
 |  bool | [**contains**](#function-contains) (const QPointF & point) override const<br>_Returns_ `true` _when a valid point lies within_`hoverRadius` _of item position__point_ _._ |
 |  int | [**count**](#function-count-22) () const<br>_Returns the number of stored points._  |
-|  qreal | [**dataValueMax**](#function-datavaluemax-22) () const<br>_Returns the resolved upper bound of the value range._  |
-|  qreal | [**dataValueMin**](#function-datavaluemin-22) () const<br>_Returns the resolved lower bound of the value range._  |
 |  bool | [**hasValues**](#function-hasvalues-22) () const<br>_Returns_ `true` _when per-point values are stored._ |
 |  qreal | [**hoverRadius**](#function-hoverradius-22) () const<br>_Returns the hover pick radius in pixels._  |
 |  int | [**hoveredIndex**](#function-hoveredindex-22) () const<br>_Returns the index of the hovered point, or -1._  |
+| virtual std::optional&lt; [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md) &gt; | [**legendEntry**](#function-legendentry) () override const<br>_Returns the legend entry: the symbol, color, and marker of the points._  |
 |  [**SeriesMarker**](classQAccelPlot_1_1SeriesMarker.md) \* | [**marker**](#function-marker-22) () const<br>_Returns the grouped marker settings. The object is owned by the cloud._  |
 |  Q\_INVOKABLE QPointF | [**pointAt**](#function-pointat) (int index) const<br>_Returns point_ _index_ _, or a NaN point when__index_ _is out of range._ |
 |  int | [**pointIndexAt**](#function-pointindexat) (const QPointF & position) const<br>_Returns the index of the valid point within_ `hoverRadius` _of item position__position_ _, or -1._ |
@@ -181,7 +216,6 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  void | [**setAntialiasingEnabled**](#function-setantialiasingenabled) (bool enabled) <br>_Sets anti-aliasing to_ _enabled_ _._ |
 |  void | [**setAntialiasingFeather**](#function-setantialiasingfeather) (qreal feather) <br>_Sets the anti-aliasing feather width to_ _feather_ _pixels._ |
 |  void | [**setColor**](#function-setcolor) (const QColor & color) <br>_Sets the uniform marker color to_ _color_ _._ |
-|  void | [**setColormap**](#function-setcolormap) ([**Colormap**](classQAccelPlot_1_1Colormap.md) \* colormap) <br>_Sets the colormap to_ _colormap_ _. Pass_`nullptr` _to color every point with_`color` _._ |
 |  Q\_INVOKABLE void | [**setData**](#function-setdata-16) (const QList&lt; QPointF &gt; & points) <br>_Replaces all points with_ _points_ _and clears per-point values._ |
 |  void | [**setData**](#function-setdata-26) (std::vector&lt; double &gt; && xyInterleaved, std::vector&lt; float &gt; && values, int pointCount) <br>_Sets double-precision positions and per-point_ _values_ _(empty, or exactly__pointCount_ _floats)._ |
 |  void | [**setData**](#function-setdata-36) (const double \* data, int count) <br>_Replaces the series data with_ _count_ _data points copied from an interleaved double array._ |
@@ -201,6 +235,18 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |   | [**~PointCloud**](#function-pointcloud) () override<br>_Destroys the point cloud, ending its animation on the assigned transition._  |
 
 
+## Public Functions inherited from QAccelPlot::ColormappedSeries
+
+See [QAccelPlot::ColormappedSeries](classQAccelPlot_1_1ColormappedSeries.md)
+
+| Type | Name |
+| ---: | :--- |
+|  [**Colormap**](classQAccelPlot_1_1Colormap.md) \* | [**colormap**](classQAccelPlot_1_1ColormappedSeries.md#function-colormap-22) () const<br>_Returns the colormap, or_ `nullptr` _when none is assigned._ |
+|  qreal | [**dataValueMax**](classQAccelPlot_1_1ColormappedSeries.md#function-datavaluemax-22) () const<br>_Returns the resolved upper bound of the value range._  |
+|  qreal | [**dataValueMin**](classQAccelPlot_1_1ColormappedSeries.md#function-datavaluemin-22) () const<br>_Returns the resolved lower bound of the value range._  |
+|  void | [**setColormap**](classQAccelPlot_1_1ColormappedSeries.md#function-setcolormap) ([**Colormap**](classQAccelPlot_1_1Colormap.md) \* colormap) <br>_Sets the colormap to_ _colormap_ _._ |
+
+
 ## Public Functions inherited from QAccelPlot::PlotSeries
 
 See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
@@ -211,6 +257,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | virtual void | [**clearData**](classQAccelPlot_1_1PlotSeries.md#function-cleardata) () <br>_Removes all data points from the series._  |
 |  quint64 | [**dataRevision**](classQAccelPlot_1_1PlotSeries.md#function-datarevision-22) () const<br>_Returns the current data revision._  |
 |  [**SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) \* | [**inspection**](classQAccelPlot_1_1PlotSeries.md#function-inspection-22) () const<br>_Returns the data queries for this series; created on first use and owned by the series._  |
+| virtual std::optional&lt; [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md) &gt; | [**legendEntry**](classQAccelPlot_1_1PlotSeries.md#function-legendentry) () const<br>_Returns how a legend draws the series, or_ `std::nullopt` _for no legend entry. Default: no entry._ |
 |  [**LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol) | [**legendSymbol**](classQAccelPlot_1_1PlotSeries.md#function-legendsymbol-22) () const<br> |
 |  QString | [**name**](classQAccelPlot_1_1PlotSeries.md#function-name-22) () const<br> |
 |  QRectF | [**plotRect**](classQAccelPlot_1_1PlotSeries.md#function-plotrect-22) () const<br> |
@@ -234,6 +281,10 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**yAxis**](classQAccelPlot_1_1PlotSeries.md#function-yaxis-22) () const<br> |
 |  std::optional&lt; [**DataExtent**](structQAccelPlot_1_1PlotSeries_1_1DataExtent.md) &gt; | [**yDataRange**](classQAccelPlot_1_1PlotSeries.md#function-ydatarange) () const<br>_Returns the extent this series reports to its vertical axis, or_ `std::nullopt` _when it has none._ |
 |   | [**~PlotSeries**](classQAccelPlot_1_1PlotSeries.md#function-plotseries) () override<br> |
+
+
+
+
 
 
 
@@ -287,6 +338,24 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Protected Functions
 
 | Type | Name |
@@ -294,6 +363,19 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | virtual void | [**applyDataPoints**](#function-applydatapoints) ([**DataPointInput**](structQAccelPlot_1_1PlotSeries_1_1DataPointInput.md) && input) override<br>_Applies new points without values, animating to them when a transition is enabled._  |
 | virtual void | [**onAxisScaleChanged**](#function-onaxisscalechanged) () override<br>_Rebuilds the hover index, because log dimensions map points differently._  |
 | virtual void | [**onDataPointsChanged**](#function-ondatapointschanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change, int previousCount) override<br>_Refreshes the hover index, the value range, and the count after the points changed._  |
+| virtual std::optional&lt; [**ValueSpan**](structQAccelPlot_1_1ColormappedSeries_1_1ValueSpan.md) &gt; | [**scanValueRange**](#function-scanvaluerange) () override const<br>_Returns the span of the finite point values._  |
+
+
+## Protected Functions inherited from QAccelPlot::ColormappedSeries
+
+See [QAccelPlot::ColormappedSeries](classQAccelPlot_1_1ColormappedSeries.md)
+
+| Type | Name |
+| ---: | :--- |
+|   | [**ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md#function-colormappedseries) ([**DataPointStore::Layout**](structQAccelPlot_1_1DataPointStore_1_1Layout.md) layout, [**DataPointWording**](structQAccelPlot_1_1PlotSeries_1_1DataPointWording.md) wording, QQuickItem \* parent) <br>_Creates a series whose data points have_ _layout_ _;__wording_ _names them in warnings._ |
+|  const std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; & | [**colorStops**](classQAccelPlot_1_1ColormappedSeries.md#function-colorstops) () const<br>_Returns the ramp stops of the colormap, empty without one._  |
+| virtual std::optional&lt; [**ValueSpan**](structQAccelPlot_1_1ColormappedSeries_1_1ValueSpan.md) &gt; | [**scanValueRange**](classQAccelPlot_1_1ColormappedSeries.md#function-scanvaluerange) () const<br>_Returns the span of the finite values, or_ `std::nullopt` _when there is none. Default: none._ |
+|  void | [**updateValueRange**](classQAccelPlot_1_1ColormappedSeries.md#function-updatevaluerange) () <br>_Resolves the value range again. Call after every change of the values._  |
 
 
 ## Protected Functions inherited from QAccelPlot::PlotSeries
@@ -335,10 +417,12 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 
 
+
+
 ## Detailed Description
 
 
-Every point is drawn as a GPU billboard with one of the marker shapes shared with `LineCurve`. Points are colored uniformly with `color`, or by a per-point scalar value mapped through a `Colormap`.
+Every point is drawn as a GPU billboard with one of the marker shapes shared with `LineCurve`. Points are colored uniformly with `color`, or by a per-point scalar value mapped through `colormap`. Points are colored uniformly while `colormap` is null or no values are stored.
 
 
 Positions and values are uploaded as a single data texture; the vertex buffer depends only on the point count, so updating a cloud of constant size is one texture upload per frame. Methods whose names end in `F` take interleaved float XY pairs `[x0, y0, x1, y1, …]` and an optional value vector with one float per point. `postData()` may be called from any thread.
@@ -370,7 +454,7 @@ Coordinates are single precision. The number of renderable points is bounded by 
 
 
 
-**See also:** [**LineCurve**](classQAccelPlot_1_1LineCurve.md), [**Axis**](classQAccelPlot_1_1Axis.md), [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md), [**ColorBar**](classQAccelPlot_1_1ColorBar.md), [**MorphTransition**](classQAccelPlot_1_1MorphTransition.md), [**DrawTransition**](classQAccelPlot_1_1DrawTransition.md) 
+**See also:** [**LineCurve**](classQAccelPlot_1_1LineCurve.md), [**Axis**](classQAccelPlot_1_1Axis.md), [**ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md), [**ColorBar**](classQAccelPlot_1_1ColorBar.md), [**MorphTransition**](classQAccelPlot_1_1MorphTransition.md), [**DrawTransition**](classQAccelPlot_1_1DrawTransition.md) 
 
 
 
@@ -426,56 +510,11 @@ QColor QAccelPlot::PointCloud::color;
 
 
 
-### property colormap {#property-colormap-12}
-
-_Maps per-point values to colors. Points are colored uniformly with_ `color` _when this is null or no values are stored. Default: null._
-```C++
-Colormap* QAccelPlot::PointCloud::colormap;
-```
-
-
-
-
-<hr>
-
-
-
-
 ### property count {#property-count-12}
 
 _Read-only: number of points currently stored, including invalid ones._ 
 ```C++
 int QAccelPlot::PointCloud::count;
-```
-
-
-
-
-<hr>
-
-
-
-
-### property dataValueMax {#property-datavaluemax-12}
-
-_Read-only: upper bound of the value range, taken from_ `Colormap::max` _when it is set and from the data otherwise._
-```C++
-qreal QAccelPlot::PointCloud::dataValueMax;
-```
-
-
-
-
-<hr>
-
-
-
-
-### property dataValueMin {#property-datavaluemin-12}
-
-_Read-only: lower bound of the value range, taken from_ `Colormap::min` _when it is set and from the data otherwise._`ColorBar` _labels its ticks from this and_`dataValueMax` _._
-```C++
-qreal QAccelPlot::PointCloud::dataValueMin;
 ```
 
 
@@ -608,21 +647,6 @@ void QAccelPlot::PointCloud::colorChanged;
 
 
 
-### signal colormapChanged {#signal-colormapchanged}
-
-_Emitted when the colormap property changes._ 
-```C++
-void QAccelPlot::PointCloud::colormapChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
 ### signal countChanged {#signal-countchanged}
 
 _Emitted when the number of points or the presence of values changes._ 
@@ -673,21 +697,6 @@ void QAccelPlot::PointCloud::hoveredIndexChanged;
 _Emitted when the transition property changes._ 
 ```C++
 void QAccelPlot::PointCloud::transitionChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
-### signal valueRangeChanged {#signal-valuerangechanged}
-
-_Emitted when_ `dataValueMin` _or_`dataValueMax` _changes._
-```C++
-void QAccelPlot::PointCloud::valueRangeChanged;
 ```
 
 
@@ -779,21 +788,6 @@ QColor QAccelPlot::PointCloud::color () const
 
 
 
-### function colormap {#function-colormap-22}
-
-_Returns the colormap, or_ `nullptr` _when points are colored uniformly._
-```C++
-Colormap * QAccelPlot::PointCloud::colormap () const
-```
-
-
-
-
-<hr>
-
-
-
-
 ### function contains {#function-contains}
 
 _Returns_ `true` _when a valid point lies within_`hoverRadius` _of item position__point_ _._
@@ -820,36 +814,6 @@ Hover delivery uses this test, so stacked series underneath still receive hover 
 _Returns the number of stored points._ 
 ```C++
 int QAccelPlot::PointCloud::count () const
-```
-
-
-
-
-<hr>
-
-
-
-
-### function dataValueMax {#function-datavaluemax-22}
-
-_Returns the resolved upper bound of the value range._ 
-```C++
-qreal QAccelPlot::PointCloud::dataValueMax () const
-```
-
-
-
-
-<hr>
-
-
-
-
-### function dataValueMin {#function-datavaluemin-22}
-
-_Returns the resolved lower bound of the value range._ 
-```C++
-qreal QAccelPlot::PointCloud::dataValueMin () const
 ```
 
 
@@ -898,6 +862,23 @@ int QAccelPlot::PointCloud::hoveredIndex () const
 ```
 
 
+
+
+<hr>
+
+
+
+
+### function legendEntry {#function-legendentry}
+
+_Returns the legend entry: the symbol, color, and marker of the points._ 
+```C++
+virtual std::optional< LegendEntry > QAccelPlot::PointCloud::legendEntry () override const
+```
+
+
+
+Implements [*QAccelPlot::PlotSeries::legendEntry*](classQAccelPlot_1_1PlotSeries.md#function-legendentry)
 
 
 <hr>
@@ -1068,23 +1049,6 @@ _Sets the uniform marker color to_ _color_ _._
 ```C++
 void QAccelPlot::PointCloud::setColor (
     const QColor & color
-) 
-```
-
-
-
-
-<hr>
-
-
-
-
-### function setColormap {#function-setcolormap}
-
-_Sets the colormap to_ _colormap_ _. Pass_`nullptr` _to color every point with_`color` _._
-```C++
-void QAccelPlot::PointCloud::setColormap (
-    Colormap * colormap
 ) 
 ```
 
@@ -1452,6 +1416,23 @@ virtual void QAccelPlot::PointCloud::onDataPointsChanged (
 
 
 Implements [*QAccelPlot::PlotSeries::onDataPointsChanged*](classQAccelPlot_1_1PlotSeries.md#function-ondatapointschanged)
+
+
+<hr>
+
+
+
+
+### function scanValueRange {#function-scanvaluerange}
+
+_Returns the span of the finite point values._ 
+```C++
+virtual std::optional< ValueSpan > QAccelPlot::PointCloud::scanValueRange () override const
+```
+
+
+
+Implements [*QAccelPlot::ColormappedSeries::scanValueRange*](classQAccelPlot_1_1ColormappedSeries.md#function-scanvaluerange)
 
 
 <hr>

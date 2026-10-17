@@ -38,6 +38,8 @@
 
 namespace QAccelPlot {
 
+struct LegendEntry;
+
 class PlotSeries : public QQuickItem {
     Q_OBJECT
     QML_NAMED_ELEMENT(PlotSeries)
@@ -113,6 +115,7 @@ public:
 
     LegendSymbol legendSymbol() const;
     void setLegendSymbol(LegendSymbol symbol);
+    virtual std::optional<LegendEntry> legendEntry() const;
 
     void setData(const double* data, int count);
     void setData(std::vector<double>&& data, int count);
@@ -136,6 +139,7 @@ signals:
     void yAxisChanged();
     void plotRectChanged();
     void legendSymbolChanged();
+    void legendEntryChanged();
 
 protected:
     struct DataPointWording {

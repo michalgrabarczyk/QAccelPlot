@@ -662,6 +662,8 @@
       
         
       
+        
+      
     
     
     
@@ -927,6 +929,34 @@
     
   
     Point clouds
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/heatmaps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Heatmaps
   
 
     
@@ -1772,7 +1802,7 @@ every series and axis, for example in streaming-only views.</p>
 <li>Markers add geometry and fragment work per visible point. Fragment work grows
   with marker size; <code>LineCurve.Pixel</code> markers shade one pixel per point and
   suit very dense scatter plots.</li>
-<li>A <code>PointCloud</code> whose <code>Colormap</code> leaves <code>min</code> or <code>max</code> unset scans every value
+<li>A <code>PointCloud</code> or <code>HeatmapSeries</code> whose <code>Colormap</code> leaves <code>min</code> or <code>max</code> unset scans every value
   on each data update to resolve the range. Set both when the bounds of
   streaming values are known.</li>
 <li>Gradient effects add material and domain work.</li>

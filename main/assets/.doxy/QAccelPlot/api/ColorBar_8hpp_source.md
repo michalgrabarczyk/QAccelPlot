@@ -20,7 +20,7 @@
 #include "QAccelPlot/axis/AxisTicker.hpp"
 #include "QAccelPlot/axis/AxisTicks.hpp"
 #include "QAccelPlot/effects/GradientColorTypes.hpp"
-#include "QAccelPlot/series/PointCloud.hpp"
+#include "QAccelPlot/series/ColormappedSeries.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 
 #include <QColor>
@@ -40,7 +40,7 @@ class ColorBar : public QQuickPaintedItem {
     QML_NAMED_ELEMENT(ColorBar)
 
     
-    Q_PROPERTY(PointCloud* series READ series WRITE setSeries NOTIFY seriesChanged)
+    Q_PROPERTY(ColormappedSeries* series READ series WRITE setSeries NOTIFY seriesChanged)
     Q_PROPERTY(Qt::Orientation orientation READ orientation WRITE setOrientation NOTIFY orientationChanged)
     Q_PROPERTY(QString label READ label WRITE setLabel NOTIFY labelChanged)
     Q_PROPERTY(QFont labelFont READ labelFont WRITE setLabelFont NOTIFY labelFontChanged)
@@ -58,8 +58,8 @@ class ColorBar : public QQuickPaintedItem {
 public:
     explicit ColorBar(QQuickItem* parent = nullptr);
 
-    PointCloud* series() const;
-    void setSeries(PointCloud* series);
+    ColormappedSeries* series() const;
+    void setSeries(ColormappedSeries* series);
 
     Qt::Orientation orientation() const;
     void setOrientation(Qt::Orientation orientation);
@@ -162,7 +162,7 @@ private:
     void paintTicks(QPainter* painter) const;
     void paintTitle(QPainter* painter) const;
 
-    QPointer<PointCloud> series_;
+    QPointer<ColormappedSeries> series_;
     QList<QMetaObject::Connection> seriesConnections_;
     QMetaObject::Connection colormapConnection_;
     Qt::Orientation orientation_{Qt::Vertical};

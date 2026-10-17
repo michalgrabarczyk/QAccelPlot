@@ -68,6 +68,7 @@
 | class | [**ColorBar**](classQAccelPlot_1_1ColorBar.md) <br>_A continuous key that shows how a series'_ `Colormap` _maps values to colors._ |
 | class | [**ColorPalette**](classQAccelPlot_1_1ColorPalette.md) <br>_A named set of theme colors shared by QML (via the_ `Colors` _singleton) and C++ defaults._ |
 | class | [**Colormap**](classQAccelPlot_1_1Colormap.md) <br>_Maps data values to colors: a color ramp plus the rule that places a value on it._  |
+| class | [**ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md) <br>_Base class for series that color their data points by value through a_ `Colormap` _._ |
 | class | [**Colors**](classQAccelPlot_1_1Colors.md) <br>_QML singleton exposing_ [_**QAccelPlot**_](classQAccelPlot_1_1QAccelPlot.md) _'s built-in color palettes._ |
 | struct | [**CurveChunk**](structQAccelPlot_1_1CurveChunk.md) <br>_Axis-aligned bounding box (AABB) for a contiguous block of curve points, used for hit-test culling._  |
 | struct | [**CurveDataView**](structQAccelPlot_1_1CurveDataView.md) <br>_Read-only view over either interleaved float or double curve coordinates._  |
@@ -93,6 +94,8 @@
 | class | [**GradientTexture**](classQAccelPlot_1_1GradientTexture.md) <br>_Cached one-dimensional texture used by gradient materials._  |
 | class | [**Grid**](classQAccelPlot_1_1Grid.md) <br>_Configuration object that controls the appearance of the plot grid._  |
 | class | [**GridNode**](classQAccelPlot_1_1GridNode.md) <br>_Internal QSGNode responsible for rendering the plot grid into the scene graph._  |
+| class | [**HeatmapMaterial**](classQAccelPlot_1_1HeatmapMaterial.md) <br>_Material that colors each fragment by the value of the heatmap cell under it._  |
+| class | [**HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md) <br>_A hardware-accelerated QML item that draws a grid of values as colored cells._  |
 | class | [**Histogram**](classQAccelPlot_1_1Histogram.md) <br>_Samples counted into bins, convertible to_ `BarSeries` _data._ |
 | class | [**HistogramFactory**](classQAccelPlot_1_1HistogramFactory.md) <br>_QML singleton_ `Histogram` _that creates_[_**Histogram**_](classQAccelPlot_1_1Histogram.md) _values from JavaScript arrays._ |
 | struct | [**InspectionBounds**](structQAccelPlot_1_1InspectionBounds.md) <br>_Inclusive data-space region; infinite limits leave a dimension unbounded._  |
@@ -109,6 +112,8 @@
 | class | [**InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md) <br>_List model with one stable row per inspected series._  |
 | struct | [**InspectionSource**](structQAccelPlot_1_1InspectionSource.md) <br>_Read-only view over the XY records a series exposes to inspection queries._  |
 | struct | [**InspectionSummary**](structQAccelPlot_1_1InspectionSummary.md) <br>_Data-point-weighted Y statistics over the valid data points inside a region._  |
+| struct | [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md) <br>_How a legend draws one series: its symbol, color, line, and marker._  |
+| class | [**LegendModel**](classQAccelPlot_1_1LegendModel.md) <br>_List model of the legend entries of a list of series._  |
 | class | [**LineCurve**](classQAccelPlot_1_1LineCurve.md) <br>_A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects._  |
 | class | [**LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md) <br>_Abstract base class for visual effects applied to a_ `LineCurve` _._ |
 | class | [**LineCurveGaps**](classQAccelPlot_1_1LineCurveGaps.md) <br>_Controls how a_ `LineCurve` _renders gaps in its data._ |

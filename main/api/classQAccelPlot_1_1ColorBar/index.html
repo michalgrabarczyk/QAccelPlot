@@ -465,6 +465,8 @@
       
         
       
+        
+      
     
     
     
@@ -730,6 +732,34 @@
     
   
     Point clouds
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/heatmaps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Heatmaps
   
 
     
@@ -2228,7 +2258,7 @@
 <td style="text-align: left;"><a href="./#property-orientation-12"><strong>orientation</strong></a>  <br><em>Direction of the ramp:</em> <code>Qt.Vertical</code> <em>or</em><code>Qt.Horizontal</code> <em>. Default:</em><code>Qt.Vertical</code> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">property <a href="../classQAccelPlot_1_1PointCloud/"><strong>PointCloud</strong></a> *</td>
+<td style="text-align: right;">property <a href="../classQAccelPlot_1_1ColormappedSeries/"><strong>ColormappedSeries</strong></a> *</td>
 <td style="text-align: left;"><a href="./#property-series-12"><strong>series</strong></a>  <br><em>Series whose colormap and resolved value range are shown. Default: null.</em></td>
 </tr>
 <tr>
@@ -2374,7 +2404,7 @@
 <td style="text-align: left;"><a href="#function-rescaletodata"><strong>rescaleToData</strong></a> () <br><em>Unsets the colormap's</em> <code>min</code> <em>and</em><code>max</code> <em>, so the range is resolved from the data again.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classQAccelPlot_1_1PointCloud/"><strong>PointCloud</strong></a> *</td>
+<td style="text-align: right;"><a href="../classQAccelPlot_1_1ColormappedSeries/"><strong>ColormappedSeries</strong></a> *</td>
 <td style="text-align: left;"><a href="#function-series-22"><strong>series</strong></a> () const<br><em>Returns the series whose colormap is shown, or</em> <code>nullptr</code> <em>.</em></td>
 </tr>
 <tr>
@@ -2415,7 +2445,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setseries"><strong>setSeries</strong></a> (<a href="../classQAccelPlot_1_1PointCloud/"><strong>PointCloud</strong></a> * series) <br><em>Sets the series whose colormap is shown to</em> <em>series</em> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-setseries"><strong>setSeries</strong></a> (<a href="../classQAccelPlot_1_1ColormappedSeries/"><strong>ColormappedSeries</strong></a> * series) <br><em>Sets the series whose colormap is shown to</em> <em>series</em> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -2495,7 +2525,7 @@
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
-<p>Draws the series' color ramp as a strip, with ticks and labels for the value range the series resolved (<code>PointCloud::dataValueMin</code> and <code>PointCloud::dataValueMax</code>). Ticks follow the colormap's <code>norm</code>, so a <code>Log</code> colormap gets decade ticks. The bar redraws when the colormap, the resolved range, or the assigned colormap changes. Nothing is drawn while the series has no colormap.</p>
+<p>Draws the color ramp of a <code>PointCloud</code> or <code>HeatmapSeries</code> as a strip, with ticks and labels for the value range the series resolved (<code>ColormappedSeries::dataValueMin</code> and <code>ColormappedSeries::dataValueMax</code>). Ticks follow the colormap's <code>norm</code>, so a <code>Log</code> colormap gets decade ticks. The bar redraws when the colormap, the resolved range, or the assigned colormap changes. Nothing is drawn while the series has no colormap.</p>
 <p>A vertical bar has its minimum at the bottom, with ticks on the right and <code>label</code> beside them, reading top to bottom. A horizontal bar has its minimum on the left, with ticks and <code>label</code> below. Position the bar like any item, for example inside the plot area:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">QAccelPlot</span><span class="p">.</span><span class="n">ColorBar</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nl">series</span><span class="p">:</span><span class="w"> </span><span class="n">cloud</span>
@@ -2506,7 +2536,7 @@
 </code></pre></div>
 <p>The implicit size fits the strip, ticks, tick labels, and <code>label</code>, with a length of 160 pixels along the ramp. A vertical bar gives its tick labels the fixed <code>tickLabelWidth</code> and clips wider ones. Tick labels at the ends are kept inside the item.</p>
 <p>With <code>interactive</code> set, a left drag along the ramp pans the colormap's value range, the mouse wheel zooms it around the value under the cursor, and a double-click calls <code>rescaleToData()</code>. The gestures write <code>Colormap::min</code> and <code>Colormap::max</code>, so every series sharing the colormap follows. A QML binding on either bound overrides them when it is next evaluated.</p>
-<p><strong>See also:</strong> <a href="../classQAccelPlot_1_1PointCloud/"><strong>PointCloud</strong></a>, <a href="../classQAccelPlot_1_1Colormap/"><strong>Colormap</strong></a>, <a href="../classQAccelPlot_1_1AxisTicker/"><strong>AxisTicker</strong></a> </p>
+<p><strong>See also:</strong> <a href="../classQAccelPlot_1_1ColormappedSeries/"><strong>ColormappedSeries</strong></a>, <a href="../classQAccelPlot_1_1PointCloud/"><strong>PointCloud</strong></a>, <a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>HeatmapSeries</strong></a>, <a href="../classQAccelPlot_1_1Colormap/"><strong>Colormap</strong></a>, <a href="../classQAccelPlot_1_1AxisTicker/"><strong>AxisTicker</strong></a> </p>
 <h2 id="public-properties-documentation">Public Properties Documentation<a class="headerlink" href="#public-properties-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="property-barthickness-12">property barThickness<a class="headerlink" href="#property-barthickness-12" title="Permanent link">&para;</a></h3>
 <p><em>Thickness in pixels of the color strip across the ramp direction. Default: 12.</em> 
@@ -2571,7 +2601,7 @@
 
 <h3 id="property-series-12">property series<a class="headerlink" href="#property-series-12" title="Permanent link">&para;</a></h3>
 <p><em>Series whose colormap and resolved value range are shown. Default: null.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">PointCloud</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ColorBar</span><span class="o">::</span><span class="n">series</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">ColormappedSeries</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ColorBar</span><span class="o">::</span><span class="n">series</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
@@ -2768,7 +2798,7 @@
 
 <h3 id="function-series-22">function series<a class="headerlink" href="#function-series-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the series whose colormap is shown, or</em> <code>nullptr</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="n">PointCloud</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ColorBar</span><span class="o">::</span><span class="n">series</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="n">ColormappedSeries</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ColorBar</span><span class="o">::</span><span class="n">series</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
@@ -2847,7 +2877,7 @@
 <h3 id="function-setseries">function setSeries<a class="headerlink" href="#function-setseries" title="Permanent link">&para;</a></h3>
 <p><em>Sets the series whose colormap is shown to</em> <em>series</em> <em>.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ColorBar</span><span class="o">::</span><span class="n">setSeries</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a><span class="w">    </span><span class="n">PointCloud</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">series</span>
+<a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a><span class="w">    </span><span class="n">ColormappedSeries</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">series</span>
 <a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>

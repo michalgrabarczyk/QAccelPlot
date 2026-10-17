@@ -435,10 +435,10 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="107" column="17"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1InspectionRowModel_1a1b1ff25b42d741e2290707248c559127" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1InspectionRowModel_1a4893c14dc6fec2a0993d19c8cd46f9f1" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void QAccelPlot::InspectionRowModel::watchSeries</definition>
-        <argsstring>(PlotSeries *series)</argsstring>
+        <argsstring>(PlotSeries *series) const</argsstring>
         <name>watchSeries</name>
         <qualifiedname>QAccelPlot::InspectionRowModel::watchSeries</qualifiedname>
         <param>
@@ -561,7 +561,7 @@
       <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3ad69a92dc56efd24d7db12e22106d71a3" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>SummaryStatusRole</name></member>
       <member refid="classQAccelPlot_1_1InspectionRowModel_1a5b911cd24f7f2ba35b68e99f2dea4ef3" prot="private" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>unwatchSeries</name></member>
       <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3ab086bf1719aa9eeae1364e32ed9a10a8" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>ValidRole</name></member>
-      <member refid="classQAccelPlot_1_1InspectionRowModel_1a1b1ff25b42d741e2290707248c559127" prot="private" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>watchSeries</name></member>
+      <member refid="classQAccelPlot_1_1InspectionRowModel_1a4893c14dc6fec2a0993d19c8cd46f9f1" prot="private" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>watchSeries</name></member>
       <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3a175d3848e5214aa7376713538d6f38bd" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>XTextRole</name></member>
       <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3acfe5eca9695e6403095cbcca370d1054" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>YTextRole</name></member>
     </listofallmembers>

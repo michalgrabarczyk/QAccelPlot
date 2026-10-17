@@ -469,6 +469,8 @@
       
         
       
+        
+      
     
     
     
@@ -734,6 +736,34 @@
     
   
     Point clouds
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/heatmaps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Heatmaps
   
 
     
@@ -1319,6 +1349,10 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1ColorBar/"><strong>ColorBar</strong></a> <em>A continuous key that shows how a series'</em> <code>Colormap</code> <em>maps values to colors.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1ColorPalette/"><strong>ColorPalette</strong></a> <em>A named set of theme colors shared by QML (via the</em> <code>Colors</code> <em>singleton) and C++ defaults.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Colormap/"><strong>Colormap</strong></a> <em>Maps data values to colors: a color ramp plus the rule that places a value on it.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1ColormappedSeries/"><strong>ColormappedSeries</strong></a> <em>Base class for series that color their data points by value through a</em> <code>Colormap</code> <em>.</em>    <ul>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1ColormappedSeries_1_1ValueSpan/"><strong>ValueSpan</strong></a> <em>Smallest and largest finite value of a series.</em>     </li>
+</ul>
+</li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Colors/"><strong>Colors</strong></a> <em>QML singleton exposing</em> <a href="../classQAccelPlot_1_1QAccelPlot/"><em><strong>QAccelPlot</strong></em></a> <em>'s built-in color palettes.</em>    </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1CurveChunk/"><strong>CurveChunk</strong></a> <em>Axis-aligned bounding box (AABB) for a contiguous block of curve points, used for hit-test culling.</em>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1CurveDataView/"><strong>CurveDataView</strong></a> <em>Read-only view over either interleaved float or double curve coordinates.</em>     </li>
@@ -1359,6 +1393,8 @@
 <li><strong>namespace</strong> <a href="../namespaceQAccelPlot_1_1GradientValueSourceNS/"><strong>GradientValueSourceNS</strong></a> <em>Namespace exposing the</em> <code>GradientValueSource</code> <em>enum to QML.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Grid/"><strong>Grid</strong></a> <em>Configuration object that controls the appearance of the plot grid.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1GridNode/"><strong>GridNode</strong></a> <em>Internal QSGNode responsible for rendering the plot grid into the scene graph.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1HeatmapMaterial/"><strong>HeatmapMaterial</strong></a> <em>Material that colors each fragment by the value of the heatmap cell under it.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>HeatmapSeries</strong></a> <em>A hardware-accelerated QML item that draws a grid of values as colored cells.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Histogram/"><strong>Histogram</strong></a> <em>Samples counted into bins, convertible to</em> <code>BarSeries</code> <em>data.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1HistogramFactory/"><strong>HistogramFactory</strong></a> <em>QML singleton</em> <code>Histogram</code> <em>that creates</em><a href="../classQAccelPlot_1_1Histogram/"><em><strong>Histogram</strong></em></a> <em>values from JavaScript arrays.</em>    </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionBounds/"><strong>InspectionBounds</strong></a> <em>Inclusive data-space region; infinite limits leave a dimension unbounded.</em>     </li>
@@ -1389,6 +1425,8 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1ValueRange/"><strong>ValueRange</strong></a> <em>Bounds of an axis viewport or a colormap value range.</em>     </li>
 </ul>
 </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1LegendEntry/"><strong>LegendEntry</strong></a> <em>How a legend draws one series: its symbol, color, line, and marker.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1LegendModel/"><strong>LegendModel</strong></a> <em>List model of the legend entries of a list of series.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>LineCurve</strong></a> <em>A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurveEffect/"><strong>LineCurveEffect</strong></a> <em>Abstract base class for visual effects applied to a</em> <code>LineCurve</code> <em>.</em>    </li>
 <li><strong>namespace</strong> <a href="../namespaceQAccelPlot_1_1LineCurveGapFilter/"><strong>LineCurveGapFilter</strong></a> <em>Stateless helpers implementing the invalid-data-point contract shared by</em> <a href="../classQAccelPlot_1_1LineCurve/"><em><strong>LineCurve</strong></em></a> <em>subsystems.</em>    </li>
@@ -1461,6 +1499,7 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1DataPointStore_1_1Compacted/"><strong>Compacted</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1DataPointStore_1_1Origin/"><strong>Origin</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams/"><strong>GridLineCollectionParams</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1HeatmapSeries_1_1Extent/"><strong>Extent</strong></a> <a href="../classQAccelPlot_1_1Grid/"><em><strong>Grid</strong></em></a> <em>edges. In</em><code>edges_</code> <em>an unset edge is NaN;</em><code>resolvedExtent()</code> <em>resolves it to index space.</em>    </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionCache_1_1Job/"><strong>Job</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionIndex_1_1Node/"><strong>Node</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache/"><strong>FillSampleCache</strong></a>     </li>

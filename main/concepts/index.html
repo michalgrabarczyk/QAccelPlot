@@ -584,6 +584,8 @@
       
         
       
+        
+      
     
     
     
@@ -849,6 +851,34 @@
     
   
     Point clouds
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/heatmaps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Heatmaps
   
 
     
@@ -1477,8 +1507,8 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 <h2 id="plot-and-plotview">Plot and PlotView<a class="headerlink" href="#plot-and-plotview" title="Permanent link">&para;</a></h2>
 <p><code>PlotView</code> is the C++ plot item. It lays out axes, converts between data and
 pixel coordinates, handles pan and zoom, and collects child series.</p>
-<p><code>Plot</code> is the QML wrapper most applications use. It adds a <code>Legend</code> and
-<code>legendVisible</code> to the full <code>PlotView</code> interface.</p>
+<p><code>Plot</code> is the QML wrapper most applications use. It adds a <code>Legend</code>,
+<code>legendModel</code>, and <code>legendVisible</code> to the full <code>PlotView</code> interface.</p>
 <p><a href="../api/classQAccelPlot_1_1QAccelPlot/#property-plotrect-12"><code>plotRect</code></a> is the data area, excluding axes and padding. Use it to
 place clipped overlays and custom tools.</p>
 <h2 id="axes-and-ranges">Axes and ranges<a class="headerlink" href="#axes-and-ranges" title="Permanent link">&para;</a></h2>
@@ -1531,7 +1561,8 @@ logarithmic, and categorical labels; <code>TickLabelFormatter</code> also accept
 JavaScript callback.</p>
 <h2 id="series">Series<a class="headerlink" href="#series" title="Permanent link">&para;</a></h2>
 <p><code>PlotSeries</code> holds properties shared by all series: name, axes, plot rectangle,
-and legend symbol.</p>
+and legend symbol. <code>legendEntry()</code> describes how a legend draws the series;
+<code>LegendModel</code> lists the entries of the visible series that have one.</p>
 <p><code>LineCurve</code> renders lines, markers, line styles, gradients, and fills. It
 accepts data from QML or C++ buffers, as doubles or as interleaved floats.
 It reports <code>hovered</code> within <code>hoverRadius</code> pixels of the line or over a marker.
@@ -1539,6 +1570,10 @@ Set <code>hoverRadius: 0</code> on a line drawn over another series to leave hov
 series beneath.</p>
 <p><code>PointCloud</code> renders unconnected points as markers, colored uniformly or by a
 per-point value through a <code>Colormap</code>. It reports the hovered point index.</p>
+<p><code>HeatmapSeries</code> renders a uniform grid of values as cells colored through a
+<code>Colormap</code>, placed by the outer edges of the grid. <code>PointCloud</code> and
+<code>HeatmapSeries</code> derive from <code>ColormappedSeries</code>, which resolves the value range
+that a <code>ColorBar</code> shows.</p>
 <p><code>BandSeries</code> fills the area between a low and a high value at each X, such as
 confidence intervals and envelopes. It stores <code>(x, low, high)</code> triples and
 can draw lines along both edges.</p>

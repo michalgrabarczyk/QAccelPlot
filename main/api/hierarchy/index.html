@@ -469,6 +469,8 @@
       
         
       
+        
+      
     
     
     
@@ -734,6 +736,34 @@
     
   
     Point clouds
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/heatmaps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Heatmaps
   
 
     
@@ -1320,6 +1350,7 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1AxisTicks/"><strong>QAccelPlot::AxisTicks</strong></a> <em>The visible tick and subtick values, with formatted labels, for one axis viewport.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1BandEdgeRenderParams/"><strong>QAccelPlot::BandEdgeRenderParams</strong></a> <em>Inputs for</em> <a href="../classQAccelPlot_1_1BandEdgeRenderer/#function-paint"><em><strong>BandEdgeRenderer::paint()</strong></em></a> <em>, assembled while the GUI thread is blocked.</em></li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1BandMaterial_1_1Vertex/"><strong>QAccelPlot::BandMaterial::Vertex</strong></a> <a href="../structQAccelPlot_1_1BandMaterial_1_1Vertex/"><em><strong>Vertex</strong></em></a> <em>layout of the band triangle strip: two vertices per data point.</em></li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1ColormappedSeries_1_1ValueSpan/"><strong>QAccelPlot::ColormappedSeries::ValueSpan</strong></a> <em>Smallest and largest finite value of a series.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1CurveChunk/"><strong>QAccelPlot::CurveChunk</strong></a> <em>Axis-aligned bounding box (AABB) for a contiguous block of curve points, used for hit-test culling.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1CurveDataView/"><strong>QAccelPlot::CurveDataView</strong></a> <em>Read-only view over either interleaved float or double curve coordinates.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1CurveHitTestParams/"><strong>QAccelPlot::CurveHitTestParams</strong></a> <em>All inputs required for a</em> <code>contains()</code> <em>hit-test, bundled to reduce parameter count.</em></li>
@@ -1351,6 +1382,7 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionSummary/"><strong>QAccelPlot::InspectionSummary</strong></a> <em>Data-point-weighted Y statistics over the valid data points inside a region.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1RectUbo/"><strong>QAccelPlot::Internal::RectUbo</strong></a> <em>Mirrors the std140 uniform block of rect.vert.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1ValueRange/"><strong>QAccelPlot::Internal::ValueRange</strong></a> <em>Bounds of an axis viewport or a colormap value range.</em> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1LegendEntry/"><strong>QAccelPlot::LegendEntry</strong></a> <em>How a legend draws one series: its symbol, color, line, and marker.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a> <em>Input parameters for</em> <a href="../classQAccelPlot_1_1LineCurveLineRenderer/#function-paint"><em><strong>LineCurveLineRenderer::paint()</strong></em></a> <em>, assembled on the main thread.</em></li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1LineStroke_1_1Uniforms/"><strong>QAccelPlot::LineStroke::Uniforms</strong></a> <a href="../structQAccelPlot_1_1LineStroke_1_1Uniforms/"><em><strong>Uniforms</strong></em></a> <em>of a line material that do not depend on its shader variant.</em></li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1LineVertex/"><strong>QAccelPlot::LineVertex</strong></a> <em>Vertex layout for line geometry, shared with the main thread for pre-built vertex caches.</em> </li>
@@ -1373,6 +1405,7 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1DataPointStore_1_1Compacted/"><strong>QAccelPlot::DataPointStore::Compacted</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1DataPointStore_1_1Origin/"><strong>QAccelPlot::DataPointStore::Origin</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams/"><strong>QAccelPlot::GridNode::GridLineCollectionParams</strong></a> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1HeatmapSeries_1_1Extent/"><strong>QAccelPlot::HeatmapSeries::Extent</strong></a> <a href="../classQAccelPlot_1_1Grid/"><em><strong>Grid</strong></em></a> <em>edges. In</em><code>edges_</code> <em>an unset edge is NaN;</em><code>resolvedExtent()</code> <em>resolves it to index space.</em></li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionCache_1_1Job/"><strong>QAccelPlot::InspectionCache::Job</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionIndex_1_1Node/"><strong>QAccelPlot::InspectionIndex::Node</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache/"><strong>QAccelPlot::LineCurveLineRenderer::FillSampleCache</strong></a> </li>
@@ -1560,6 +1593,7 @@
 </li>
 </ul>
 </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1HeatmapMaterial/"><strong>QAccelPlot::HeatmapMaterial</strong></a> <em>Material that colors each fragment by the value of the heatmap cell under it.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a> <em>Base QSGMaterial that samples series data from a</em> <code>DataTexture</code> <em>and exposes shared shader uniforms.</em>    <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BandMaterial/"><strong>QAccelPlot::BandMaterial</strong></a> <em>QSGMaterial that fills a band between the low and high values of</em> <code>(x, low, high)</code> <em>data points.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineMaterial/"><strong>QAccelPlot::LineMaterial</strong></a> <em>QSGMaterial for line rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with line-specific uniforms.</em>    <ul>
@@ -1609,16 +1643,36 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a> <em>Common QML item contract for data series hosted by</em> <code>PlotView</code> <em>.</em>    <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BandSeries/"><strong>QAccelPlot::BandSeries</strong></a> <em>A hardware-accelerated QML item that fills the area between a low and a high value at each X.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BarSeries/"><strong>QAccelPlot::BarSeries</strong></a> <em>A hardware-accelerated QML item that renders a bar chart.</em> </li>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a> <em>A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1ColormappedSeries/"><strong>QAccelPlot::ColormappedSeries</strong></a> <em>Base class for series that color their data points by value through a</em> <code>Colormap</code> <em>.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a> <em>A hardware-accelerated QML item that draws a grid of values as colored cells.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a> <em>A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers.</em> </li>
+</ul>
+</li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a> <em>A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a> <em>A hardware-accelerated QML item that renders a large list of axis-aligned rectangles.</em> </li>
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a> <em>Common QML item contract for data series hosted by</em> <code>PlotView</code> <em>.</em>    <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BandSeries/"><strong>QAccelPlot::BandSeries</strong></a> <em>A hardware-accelerated QML item that fills the area between a low and a high value at each X.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BarSeries/"><strong>QAccelPlot::BarSeries</strong></a> <em>A hardware-accelerated QML item that renders a bar chart.</em> </li>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a> <em>A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1ColormappedSeries/"><strong>QAccelPlot::ColormappedSeries</strong></a> <em>Base class for series that color their data points by value through a</em> <code>Colormap</code> <em>.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a> <em>A hardware-accelerated QML item that draws a grid of values as colored cells.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a> <em>A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers.</em> </li>
+</ul>
+</li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a> <em>A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a> <em>A hardware-accelerated QML item that renders a large list of axis-aligned rectangles.</em> </li>
+</ul>
+</li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a> <em>Common QML item contract for data series hosted by</em> <code>PlotView</code> <em>.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandSeries/"><strong>QAccelPlot::BandSeries</strong></a> <em>A hardware-accelerated QML item that fills the area between a low and a high value at each X.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BarSeries/"><strong>QAccelPlot::BarSeries</strong></a> <em>A hardware-accelerated QML item that renders a bar chart.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1ColormappedSeries/"><strong>QAccelPlot::ColormappedSeries</strong></a> <em>Base class for series that color their data points by value through a</em> <code>Colormap</code> <em>.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a> <em>A hardware-accelerated QML item that draws a grid of values as colored cells.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a> <em>A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers.</em> </li>
+</ul>
+</li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a> <em>A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a> <em>A hardware-accelerated QML item that renders a large list of axis-aligned rectangles.</em> </li>
 </ul>
 </li>
@@ -1626,8 +1680,24 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a> <em>Common QML item contract for data series hosted by</em> <code>PlotView</code> <em>.</em>    <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BandSeries/"><strong>QAccelPlot::BandSeries</strong></a> <em>A hardware-accelerated QML item that fills the area between a low and a high value at each X.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BarSeries/"><strong>QAccelPlot::BarSeries</strong></a> <em>A hardware-accelerated QML item that renders a bar chart.</em> </li>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a> <em>A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1ColormappedSeries/"><strong>QAccelPlot::ColormappedSeries</strong></a> <em>Base class for series that color their data points by value through a</em> <code>Colormap</code> <em>.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a> <em>A hardware-accelerated QML item that draws a grid of values as colored cells.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a> <em>A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers.</em> </li>
+</ul>
+</li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a> <em>A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a> <em>A hardware-accelerated QML item that renders a large list of axis-aligned rectangles.</em> </li>
+</ul>
+</li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a> <em>Common QML item contract for data series hosted by</em> <code>PlotView</code> <em>.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandSeries/"><strong>QAccelPlot::BandSeries</strong></a> <em>A hardware-accelerated QML item that fills the area between a low and a high value at each X.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BarSeries/"><strong>QAccelPlot::BarSeries</strong></a> <em>A hardware-accelerated QML item that renders a bar chart.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1ColormappedSeries/"><strong>QAccelPlot::ColormappedSeries</strong></a> <em>Base class for series that color their data points by value through a</em> <code>Colormap</code> <em>.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a> <em>A hardware-accelerated QML item that draws a grid of values as colored cells.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a> <em>A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers.</em> </li>
+</ul>
+</li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a> <em>A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a> <em>A hardware-accelerated QML item that renders a large list of axis-aligned rectangles.</em> </li>
 </ul>
 </li>
@@ -1638,16 +1708,24 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a> <em>Common QML item contract for data series hosted by</em> <code>PlotView</code> <em>.</em>    <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BandSeries/"><strong>QAccelPlot::BandSeries</strong></a> <em>A hardware-accelerated QML item that fills the area between a low and a high value at each X.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BarSeries/"><strong>QAccelPlot::BarSeries</strong></a> <em>A hardware-accelerated QML item that renders a bar chart.</em> </li>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a> <em>A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1ColormappedSeries/"><strong>QAccelPlot::ColormappedSeries</strong></a> <em>Base class for series that color their data points by value through a</em> <code>Colormap</code> <em>.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a> <em>A hardware-accelerated QML item that draws a grid of values as colored cells.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a> <em>A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers.</em> </li>
+</ul>
+</li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a> <em>A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a> <em>A hardware-accelerated QML item that renders a large list of axis-aligned rectangles.</em> </li>
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a> <em>Common QML item contract for data series hosted by</em> <code>PlotView</code> <em>.</em>    <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BandSeries/"><strong>QAccelPlot::BandSeries</strong></a> <em>A hardware-accelerated QML item that fills the area between a low and a high value at each X.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BarSeries/"><strong>QAccelPlot::BarSeries</strong></a> <em>A hardware-accelerated QML item that renders a bar chart.</em> </li>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a> <em>A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1ColormappedSeries/"><strong>QAccelPlot::ColormappedSeries</strong></a> <em>Base class for series that color their data points by value through a</em> <code>Colormap</code> <em>.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a> <em>A hardware-accelerated QML item that draws a grid of values as colored cells.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a> <em>A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers.</em> </li>
+</ul>
+</li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a> <em>A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a> <em>A hardware-accelerated QML item that renders a large list of axis-aligned rectangles.</em> </li>
 </ul>
 </li>
@@ -1655,8 +1733,12 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a> <em>Common QML item contract for data series hosted by</em> <code>PlotView</code> <em>.</em>    <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BandSeries/"><strong>QAccelPlot::BandSeries</strong></a> <em>A hardware-accelerated QML item that fills the area between a low and a high value at each X.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BarSeries/"><strong>QAccelPlot::BarSeries</strong></a> <em>A hardware-accelerated QML item that renders a bar chart.</em> </li>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a> <em>A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1ColormappedSeries/"><strong>QAccelPlot::ColormappedSeries</strong></a> <em>Base class for series that color their data points by value through a</em> <code>Colormap</code> <em>.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a> <em>A hardware-accelerated QML item that draws a grid of values as colored cells.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a> <em>A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers.</em> </li>
+</ul>
+</li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a> <em>A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a> <em>A hardware-accelerated QML item that renders a large list of axis-aligned rectangles.</em> </li>
 </ul>
 </li>
@@ -1673,6 +1755,7 @@
 </li>
 <li><strong>class</strong> <strong>QAbstractListModel</strong>    <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1InspectionRowModel/"><strong>QAccelPlot::InspectionRowModel</strong></a> <em>List model with one stable row per inspected series.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1LegendModel/"><strong>QAccelPlot::LegendModel</strong></a> <em>List model of the legend entries of a list of series.</em> </li>
 </ul>
 </li>
 </ul>

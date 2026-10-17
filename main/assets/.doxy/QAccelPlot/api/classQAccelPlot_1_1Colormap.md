@@ -138,15 +138,15 @@ flowchart TB
 ## Detailed Description
 
 
-A colormap has no geometry. It is a one-dimensional ramp addressed by a normalized coordinate in [0, 1], and `norm` decides how a value reaches that coordinate. Series that color by value, such as `PointCloud`, index the ramp with each point's value. Effects that paint a ramp across the plot, such as `GradientFill` and `GradientStroke`, supply the coordinate from a position instead and own that geometry themselves, so they use only the ramp.
+A colormap has no geometry. It is a one-dimensional ramp addressed by a normalized coordinate in [0, 1], and `norm` decides how a value reaches that coordinate. Series that color by value, such as `PointCloud` and `HeatmapSeries`, index the ramp with each value. Effects that paint a ramp across the plot, such as `GradientFill` and `GradientStroke`, supply the coordinate from a position instead and own that geometry themselves, so they use only the ramp.
 
 
-The ramp comes from `preset`, or from `stops` when a custom ramp is given. `min` and `max` bound the value range; leaving either unset resolves it from the data, so one colormap can be shared between series that resolve different ranges. Each series reports what it resolved, for example through `PointCloud::dataValueMin()`.
+The ramp comes from `preset`, or from `stops` when a custom ramp is given. `min` and `max` bound the value range; leaving either unset resolves it from the data, so one colormap can be shared between series that resolve different ranges. Each series reports what it resolved through `ColormappedSeries::dataValueMin()` and `ColormappedSeries::dataValueMax()`.
 
 
 
 
-**See also:** [**PointCloud**](classQAccelPlot_1_1PointCloud.md), [**GradientFill**](classQAccelPlot_1_1GradientFill.md), [**GradientStroke**](classQAccelPlot_1_1GradientStroke.md) 
+**See also:** [**PointCloud**](classQAccelPlot_1_1PointCloud.md), [**HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md), [**GradientFill**](classQAccelPlot_1_1GradientFill.md), [**GradientStroke**](classQAccelPlot_1_1GradientStroke.md) 
 
 
 

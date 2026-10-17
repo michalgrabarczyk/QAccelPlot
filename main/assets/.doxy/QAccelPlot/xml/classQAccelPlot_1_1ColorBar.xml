@@ -6,9 +6,9 @@
     <includes local="no">ColorBar.hpp</includes>
     <innerclass refid="structQAccelPlot_1_1ColorBar_1_1Layout" prot="private">QAccelPlot::ColorBar::Layout</innerclass>
     <sectiondef kind="property">
-      <memberdef kind="property" id="classQAccelPlot_1_1ColorBar_1ab0ad22086be4316963dd5f10c8e061b1" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref> *</type>
-        <definition>PointCloud* QAccelPlot::ColorBar::series</definition>
+      <memberdef kind="property" id="classQAccelPlot_1_1ColorBar_1abeecf557895378319ac465dabd4a5776" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1ColormappedSeries" kindref="compound">ColormappedSeries</ref> *</type>
+        <definition>ColormappedSeries* QAccelPlot::ColorBar::series</definition>
         <argsstring></argsstring>
         <name>series</name>
         <qualifiedname>QAccelPlot::ColorBar::series</qualifiedname>
@@ -248,9 +248,9 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1aa3cc2b192eab576fd9f4107af254d7c8" prot="private" static="no" mutable="no">
-        <type>QPointer&lt; <ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref> &gt;</type>
-        <definition>QPointer&lt;PointCloud&gt; QAccelPlot::ColorBar::series_</definition>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1a6bfd18880e28c9da3f607be835a94968" prot="private" static="no" mutable="no">
+        <type>QPointer&lt; <ref refid="classQAccelPlot_1_1ColormappedSeries" kindref="compound">ColormappedSeries</ref> &gt;</type>
+        <definition>QPointer&lt;ColormappedSeries&gt; QAccelPlot::ColorBar::series_</definition>
         <argsstring></argsstring>
         <name>series_</name>
         <qualifiedname>QAccelPlot::ColorBar::series_</qualifiedname>
@@ -620,9 +620,9 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="105" column="14"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1ad0b680e75e82a86fed507bcea4234232" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref> *</type>
-        <definition>PointCloud * QAccelPlot::ColorBar::series</definition>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a56c60e2092db4bfb0f8de860803d0248" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1ColormappedSeries" kindref="compound">ColormappedSeries</ref> *</type>
+        <definition>ColormappedSeries * QAccelPlot::ColorBar::series</definition>
         <argsstring>() const</argsstring>
         <name>series</name>
         <qualifiedname>QAccelPlot::ColorBar::series</qualifiedname>
@@ -633,16 +633,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="108" column="16"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="108" column="23"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a2bebae04f369f8d79cc0015f7413affd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a297436f183f2d5cc48cbde535661822f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void QAccelPlot::ColorBar::setSeries</definition>
-        <argsstring>(PointCloud *series)</argsstring>
+        <argsstring>(ColormappedSeries *series)</argsstring>
         <name>setSeries</name>
         <qualifiedname>QAccelPlot::ColorBar::setSeries</qualifiedname>
         <param>
-          <type><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref> *</type>
+          <type><ref refid="classQAccelPlot_1_1ColormappedSeries" kindref="compound">ColormappedSeries</ref> *</type>
           <declname>series</declname>
         </param>
         <briefdescription>
@@ -1826,10 +1826,10 @@
 <para>A continuous key that shows how a series&apos; <computeroutput><ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref></computeroutput> maps values to colors. </para>
     </briefdescription>
     <detaileddescription>
-<para>Draws the series&apos; color ramp as a strip, with ticks and labels for the value range the series resolved (<computeroutput><ref refid="classQAccelPlot_1_1PointCloud_1a97f64ffffd4391114cf4e9ccf8270a1d" kindref="member">PointCloud::dataValueMin</ref></computeroutput> and <computeroutput><ref refid="classQAccelPlot_1_1PointCloud_1ad76ed015cc686207bab4c21bba2db56b" kindref="member">PointCloud::dataValueMax</ref></computeroutput>). Ticks follow the colormap&apos;s <computeroutput>norm</computeroutput>, so a <computeroutput>Log</computeroutput> colormap gets decade ticks. The bar redraws when the colormap, the resolved range, or the assigned colormap changes. Nothing is drawn while the series has no colormap.</para>
+<para>Draws the color ramp of a <computeroutput><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref></computeroutput> or <computeroutput><ref refid="classQAccelPlot_1_1HeatmapSeries" kindref="compound">HeatmapSeries</ref></computeroutput> as a strip, with ticks and labels for the value range the series resolved (<computeroutput><ref refid="classQAccelPlot_1_1ColormappedSeries_1a1c2f3d9df4ef38b33addd7344f26f5e3" kindref="member">ColormappedSeries::dataValueMin</ref></computeroutput> and <computeroutput><ref refid="classQAccelPlot_1_1ColormappedSeries_1a363084e6b7f15b4e1c0df55961625dc5" kindref="member">ColormappedSeries::dataValueMax</ref></computeroutput>). Ticks follow the colormap&apos;s <computeroutput>norm</computeroutput>, so a <computeroutput>Log</computeroutput> colormap gets decade ticks. The bar redraws when the colormap, the resolved range, or the assigned colormap changes. Nothing is drawn while the series has no colormap.</para>
 <para>A vertical bar has its minimum at the bottom, with ticks on the right and <computeroutput>label</computeroutput> beside them, reading top to bottom. A horizontal bar has its minimum on the left, with ticks and <computeroutput>label</computeroutput> below. Position the bar like any item, for example inside the plot area:</para>
 <para><programlisting><codeline><highlight class="normal">QAccelPlot.ColorBar<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1ColorBar_1ab0ad22086be4316963dd5f10c8e061b1" kindref="member">series</ref>:<sp/>cloud</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1ColorBar_1abeecf557895378319ac465dabd4a5776" kindref="member">series</ref>:<sp/>cloud</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1ColorBar_1aaaa69c6f48bf42480d87e441120e6284" kindref="member">label</ref>:<sp/></highlight><highlight class="stringliteral">&quot;Intensity&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>x:<sp/>plot.<ref refid="classQAccelPlot_1_1PlotSeries_1aef0398b7a4f807870dd88a326c0e7d0d" kindref="member">plotRect</ref>.right<sp/>-<sp/>width<sp/>-<sp/>8</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>y:<sp/>plot.plotRect.y<sp/>+<sp/>8</highlight></codeline>
@@ -1837,7 +1837,7 @@
 </programlisting></para>
 <para>The implicit size fits the strip, ticks, tick labels, and <computeroutput>label</computeroutput>, with a length of 160 pixels along the ramp. A vertical bar gives its tick labels the fixed <computeroutput>tickLabelWidth</computeroutput> and clips wider ones. Tick labels at the ends are kept inside the item.</para>
 <para>With <computeroutput>interactive</computeroutput> set, a left drag along the ramp pans the colormap&apos;s value range, the mouse wheel zooms it around the value under the cursor, and a double-click calls <computeroutput><ref refid="classQAccelPlot_1_1ColorBar_1a80193407bf04596dd3b781fc3fad68aa" kindref="member">rescaleToData()</ref></computeroutput>. The gestures write <computeroutput><ref refid="classQAccelPlot_1_1Colormap_1ad2faff816266d69fb598cad7c7c3c626" kindref="member">Colormap::min</ref></computeroutput> and <computeroutput><ref refid="classQAccelPlot_1_1Colormap_1a1e42c41384869c79a017a49ee22c9fea" kindref="member">Colormap::max</ref></computeroutput>, so every series sharing the colormap follows. A QML binding on either bound overrides them when it is next evaluated.</para>
-<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref>, <ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref>, <ref refid="classQAccelPlot_1_1AxisTicker" kindref="compound">AxisTicker</ref> </para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1ColormappedSeries" kindref="compound">ColormappedSeries</ref>, <ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref>, <ref refid="classQAccelPlot_1_1HeatmapSeries" kindref="compound">HeatmapSeries</ref>, <ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref>, <ref refid="classQAccelPlot_1_1AxisTicker" kindref="compound">AxisTicker</ref> </para>
 </simplesect>
 </para>
     </detaileddescription>
@@ -1932,9 +1932,9 @@
       <member refid="classQAccelPlot_1_1ColorBar_1a5ebf8a44f01852540bcb91abee5bacdf" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>reconnectColormap</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1ae5cc539f3170ac101be0fab89f103e78" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>reconnectSeries</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1a80193407bf04596dd3b781fc3fad68aa" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>rescaleToData</name></member>
-      <member refid="classQAccelPlot_1_1ColorBar_1ab0ad22086be4316963dd5f10c8e061b1" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>series</name></member>
-      <member refid="classQAccelPlot_1_1ColorBar_1ad0b680e75e82a86fed507bcea4234232" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>series</name></member>
-      <member refid="classQAccelPlot_1_1ColorBar_1aa3cc2b192eab576fd9f4107af254d7c8" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>series_</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1abeecf557895378319ac465dabd4a5776" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>series</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a56c60e2092db4bfb0f8de860803d0248" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>series</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a6bfd18880e28c9da3f607be835a94968" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>series_</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1aa1eab00f9284e5a770fb38ee60904117" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>seriesChanged</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1aaaf7c90d5b0266062633961a3e912a07" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>seriesColormap</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1ac05528ed26a421c1401d290629e0888f" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>seriesConnections_</name></member>
@@ -1948,7 +1948,7 @@
       <member refid="classQAccelPlot_1_1ColorBar_1a068a74a924e42379c7bf87290336aed7" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>setLabelFont</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1a38b16495b587b3b98185fc34dc97bc1a" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>setLabelPadding</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1a3848e694b7c42dcc05fc32af308168ec" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>setOrientation</name></member>
-      <member refid="classQAccelPlot_1_1ColorBar_1a2bebae04f369f8d79cc0015f7413affd" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>setSeries</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a297436f183f2d5cc48cbde535661822f" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>setSeries</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1aadc3f3dcec1597f8ea38741cc590e2f4" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>setTickLabelWidth</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1af16793eeee8f8e29ae2cca79b21c9a70" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>setZoomScaleFactor</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1abe9eca849d5a80fead1222177ecc59d7" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>stops_</name></member>

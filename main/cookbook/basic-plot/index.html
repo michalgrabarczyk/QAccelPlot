@@ -473,6 +473,8 @@
       
         
       
+        
+      
     
     
     
@@ -748,6 +750,34 @@
     
   
     Point clouds
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../heatmaps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Heatmaps
   
 
     
@@ -1342,8 +1372,14 @@ its data and optionally supplies a <code>name</code> for the legend.</p>
 <a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    <span class="p">}</span>
 <a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="p">}</span>
 </code></pre></div>
-<p><code>Plot</code> shows a legend entry for every series. Set <code>legendVisible: false</code> to
-hide it, or assign <code>legend</code> to replace it.</p>
+<p><code>Plot</code> shows a legend entry for every visible series that has one; a heatmap
+has none, because its color bar is its key. Set <code>legendVisible: false</code> to hide
+the legend, or assign <code>legend</code> to replace it. <code>Plot.legendModel</code> lists every
+entry; a <code>LegendModel</code> of your own lists a subset:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">legend:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Legend</span> <span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="k">model:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">LegendModel</span> <span class="p">{</span> <span class="k">series:</span> <span class="p">[</span><span class="nx">measured</span><span class="p">,</span> <span class="nx">fit</span><span class="p">]</span> <span class="p">}</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="p">}</span>
+</code></pre></div>
 <p>QML <a href="../../api/classQAccelPlot_1_1LineCurve/#function-setdata-18"><code>setData()</code></a>
 suits small or rarely changing data. For large or frequent updates, see
 <a href="../../performance/#select-the-data-path">Select the data path</a>.</p>
