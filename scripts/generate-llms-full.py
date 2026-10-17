@@ -38,6 +38,7 @@ DOC_FILES = [
     GUIDE_DIR / "cookbook" / "annotations.md",
     GUIDE_DIR / "cookbook" / "data-inspection.md",
     GUIDE_DIR / "cookbook" / "point-clouds.md",
+    GUIDE_DIR / "cookbook" / "heatmaps.md",
     GUIDE_DIR / "cookbook" / "rectangle-zoom.md",
     GUIDE_DIR / "cookbook" / "bar-charts.md",
     GUIDE_DIR / "cookbook" / "histograms.md",

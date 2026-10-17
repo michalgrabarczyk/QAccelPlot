@@ -187,6 +187,8 @@ public:
 
     /// \brief Removes all bars.
     Q_INVOKABLE void clearData() override;
+    /// \brief Returns the legend entry: the symbol and color of the bars.
+    std::optional<LegendEntry> legendEntry() const override;
 
     /// \brief Sets one category per bar. An empty list clears categories; any other size must equal \c count.
     Q_INVOKABLE void setCategories(const QList<int>& categories);

@@ -6,6 +6,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added
+
+- Heatmaps via `HeatmapSeries`: a uniform grid of values colored through a
+  `Colormap`, with cell records for inspection, a `ColorBar` key, and a
+  Heatmap example.
+- Legend entries described in C++: `PlotSeries::legendEntry()` returns a
+  `LegendEntry`, and `LegendModel` lists the entries of the visible series that
+  have one, such as `Plot.legendModel`.
+
+### Changed
+
+- `ColorBar.series` takes any `ColormappedSeries`, the new base of `PointCloud`
+  and `HeatmapSeries`. In C++, `ColorBar::series()` returns a `ColormappedSeries*`.
+- `Legend` takes a `model` instead of `series`. Hidden series have no entry, and
+  unnamed series are listed as "Series N".
+
 ## [0.4.0] — 2026-10-16
 
 ### Added

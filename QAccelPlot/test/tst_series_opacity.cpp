@@ -23,7 +23,7 @@ namespace {
 // Eight white series on black, one per data unit along X. With 40 px per unit, data (x, y)
 // maps to pixel (40 * x, 40 * (1 - y)). Antialiasing is off so sampled pixels are fully covered.
 constexpr auto kPixelsPerUnit = 40;
-constexpr auto kWindowWidth = 8 * kPixelsPerUnit;
+constexpr auto kWindowWidth = 9 * kPixelsPerUnit;
 constexpr auto kWindowHeight = kPixelsPerUnit;
 
 constexpr auto kScene = R"(
@@ -32,13 +32,13 @@ import QAccelPlot
 
 Item {
     id: root
-    width: 320
+    width: 360
     height: 40
 
     property real seriesOpacity: 1
     property real groupOpacity: 1
 
-    Axis { id: xAxis; orientation: Qt.Horizontal; viewportMin: 0; viewportMax: 8 }
+    Axis { id: xAxis; orientation: Qt.Horizontal; viewportMin: 0; viewportMax: 9 }
     Axis { id: yAxis; orientation: Qt.Vertical; viewportMin: 0; viewportMax: 1 }
 
     Item {
@@ -144,6 +144,19 @@ Item {
             color: "white"
             Component.onCompleted: setData([7.1, 7.9], [0.1, 0.1], [0.9, 0.9])
         }
+
+        HeatmapSeries {
+            anchors.fill: parent
+            opacity: root.seriesOpacity
+            xAxis: xAxis
+            yAxis: yAxis
+            xMin: 8.1
+            xMax: 8.9
+            yMin: 0.1
+            yMax: 0.9
+            colormap: Colormap { preset: Colormap.Grayscale; min: 0; max: 1 }
+            Component.onCompleted: setValues([1], 1)
+        }
     }
 }
 )";
@@ -217,6 +230,7 @@ void SeriesOpacityTest::seriesOpacityBlendsWithBackground_data()
     QTest::newRow("RectangleSeries") << QPoint{220, 20};
     QTest::newRow("BarSeries") << QPoint{260, 20};
     QTest::newRow("BandSeries") << QPoint{300, 20};
+    QTest::newRow("HeatmapSeries") << QPoint{340, 20};
 }
 
 void SeriesOpacityTest::seriesOpacityBlendsWithBackground()

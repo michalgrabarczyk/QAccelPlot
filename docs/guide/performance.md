@@ -105,7 +105,7 @@ every series and axis, for example in streaming-only views.
 - Markers add geometry and fragment work per visible point. Fragment work grows
   with marker size; `LineCurve.Pixel` markers shade one pixel per point and
   suit very dense scatter plots.
-- A `PointCloud` whose `Colormap` leaves `min` or `max` unset scans every value
+- A `PointCloud` or `HeatmapSeries` whose `Colormap` leaves `min` or `max` unset scans every value
   on each data update to resolve the range. Set both when the bounds of
   streaming values are known.
 - Gradient effects add material and domain work.

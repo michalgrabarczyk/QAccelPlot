@@ -28,6 +28,8 @@
 
 namespace QAccelPlot {
 
+struct LegendEntry;
+
 /// \brief Common QML item contract for data series hosted by \c PlotView.
 ///
 /// PlotSeries owns the integration shared by every plot type: axis bindings,
@@ -45,11 +47,13 @@ namespace QAccelPlot {
 /// | \c RectangleSeries | (x1, y1, x2, y2)  | 4      |
 /// | \c BarSeries       | (position, value) | 2      |
 /// | \c BandSeries      | (x, low, high)    | 3      |
+/// | \c HeatmapSeries   | cell value        | 1      |
 ///
-/// The buffer holds \a count times that many values. Series-specific setters take other layouts,
-/// such as point values, categories, or ranged bars.
+/// The buffer holds \a count times that many values. A \c HeatmapSeries takes its cells row by row,
+/// \c columns per row. Series-specific setters take other layouts, such as point values,
+/// categories, or ranged bars.
 ///
-/// \sa LineCurve, PointCloud, RectangleSeries, BarSeries, BandSeries, QAccelPlot
+/// \sa LineCurve, PointCloud, RectangleSeries, BarSeries, BandSeries, HeatmapSeries, QAccelPlot
 class PlotSeries : public QQuickItem {
     Q_OBJECT
     QML_NAMED_ELEMENT(PlotSeries)
@@ -145,6 +149,10 @@ public:
 
     LegendSymbol legendSymbol() const;
     void setLegendSymbol(LegendSymbol symbol);
+    /// \brief Returns how a legend draws the series, or \c std::nullopt for no legend entry. Default: no entry.
+    ///
+    /// Series that override it emit \c legendEntryChanged() whenever the result changes.
+    virtual std::optional<LegendEntry> legendEntry() const;
 
     /// \brief Replaces the series data with \a count data points copied from an interleaved double array.
     ///
@@ -186,6 +194,8 @@ signals:
     void yAxisChanged();
     void plotRectChanged();
     void legendSymbolChanged();
+    /// \brief Emitted when the result of \c legendEntry() changes.
+    void legendEntryChanged();
 
 protected:
     /// \brief Words used in the warnings about rejected data arguments.

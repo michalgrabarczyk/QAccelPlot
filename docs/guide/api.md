@@ -28,8 +28,10 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
   markers, data ingestion, effects, transitions, gaps, and hover.
 - [`PointCloud`](api/classQAccelPlot_1_1PointCloud.md) — large sets of
   unconnected points as markers, colored uniformly or by per-point values.
-- [`ColorBar`](api/classQAccelPlot_1_1ColorBar.md) — continuous key for a
-  point cloud's colormap and value range.
+- [`HeatmapSeries`](api/classQAccelPlot_1_1HeatmapSeries.md) — a uniform
+  grid of values as cells colored through a colormap.
+- [`ColorBar`](api/classQAccelPlot_1_1ColorBar.md) — continuous key for the
+  colormap and value range of a point cloud or heatmap.
 - [`BandSeries`](api/classQAccelPlot_1_1BandSeries.md) — filled area between a
   low and a high value at each X, with optional edge lines.
 - [`RectangleSeries`](api/classQAccelPlot_1_1RectangleSeries.md) — many data-space
@@ -42,6 +44,8 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
   coordinates.
 - [`PlotMouseEvent`](api/classQAccelPlot_1_1PlotMouseEvent.md) — mouse
   positions in plot and data coordinates.
+- [`LegendModel`](api/classQAccelPlot_1_1LegendModel.md) — legend entries of the
+  visible series that have one, each a [`LegendEntry`](api/structQAccelPlot_1_1LegendEntry.md).
 - [`SeriesInspection`](api/classQAccelPlot_1_1SeriesInspection.md) — per-series
   data queries: nearest data points, brackets, region statistics, and index pages.
 - [`PlotInspector`](api/classQAccelPlot_1_1PlotInspector.md) — cursor state and

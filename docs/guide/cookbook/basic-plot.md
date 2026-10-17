@@ -56,8 +56,16 @@ QAccelPlot.Plot {
 }
 ```
 
-`Plot` shows a legend entry for every series. Set `legendVisible: false` to
-hide it, or assign `legend` to replace it.
+`Plot` shows a legend entry for every visible series that has one; a heatmap
+has none, because its color bar is its key. Set `legendVisible: false` to hide
+the legend, or assign `legend` to replace it. `Plot.legendModel` lists every
+entry; a `LegendModel` of your own lists a subset:
+
+```qml
+legend: QAccelPlot.Legend {
+    model: QAccelPlot.LegendModel { series: [measured, fit] }
+}
+```
 
 QML [`setData()`](../api/classQAccelPlot_1_1LineCurve.md#function-setdata-18)
 suits small or rarely changing data. For large or frequent updates, see

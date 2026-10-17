@@ -159,6 +159,8 @@ public:
     void setDataFWithCache(const float* xyInterleaved, int pointCount, std::vector<char>&& vertexCache);
     /// \brief Removes all data points from the curve.
     Q_INVOKABLE void clearData() override;
+    /// \brief Returns the legend entry: the symbol, color, line, and marker of the curve.
+    std::optional<LegendEntry> legendEntry() const override;
 
 protected:
     /// \cond INTERNAL

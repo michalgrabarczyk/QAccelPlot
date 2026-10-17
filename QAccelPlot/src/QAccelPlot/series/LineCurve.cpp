@@ -13,6 +13,7 @@
 #include "QAccelPlot/effects/GradientFill.hpp"
 #include "QAccelPlot/effects/GradientStroke.hpp"
 #include "QAccelPlot/inspection/internal/InspectionTypes.hpp"
+#include "QAccelPlot/legend/LegendEntry.hpp"
 #include "QAccelPlot/series/LineCurveGapFilter.hpp"
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
 #include "QAccelPlot/transitions/DataTransition.hpp"
@@ -180,6 +181,13 @@ LineCurve::LineCurve(QQuickItem* parent)
     connect(transition_.get(), &TransitionRunner::frameDue, this, &LineCurve::advanceTransition);
     connect(transition_.get(), &TransitionRunner::interrupted, this, &LineCurve::finishTransition);
     connect(transition_.get(), &TransitionRunner::transitionDestroyed, this, &LineCurve::onTransitionDestroyed);
+    for (const auto signal : {&LineCurve::colorChanged, &LineCurve::lineWidthChanged, &LineCurve::lineStyleChanged, &LineCurve::antialiasingEnabledChanged,
+             &LineCurve::antialiasingFeatherChanged}) {
+        connect(this, signal, this, &PlotSeries::legendEntryChanged);
+    }
+    for (const auto signal : {&SeriesMarker::shapeChanged, &SeriesMarker::sizeChanged, &SeriesMarker::filledChanged, &SeriesMarker::strokeWidthChanged}) {
+        connect(marker_, signal, this, &PlotSeries::legendEntryChanged);
+    }
 }
 
 LineCurve::~LineCurve()
@@ -383,6 +391,22 @@ void LineCurve::clearData()
     cancelRunningTransition();
     dataPoints().clear();
     notifyDataPointsChanged(DataChange::Replaced, previousCount);
+}
+
+std::optional<LegendEntry> LineCurve::legendEntry() const
+{
+    auto entry = LegendEntry{};
+    entry.symbol = legendSymbol();
+    entry.color = color();
+    entry.lineWidth = lineWidth();
+    entry.lineStyle = lineStyle();
+    entry.markerShape = marker_->shape();
+    entry.markerSize = marker_->size();
+    entry.markerFilled = marker_->filled();
+    entry.markerStrokeWidth = marker_->strokeWidth();
+    entry.antialiasingEnabled = antialiasingEnabled();
+    entry.antialiasingFeather = antialiasingFeather();
+    return entry;
 }
 
 InspectionSource LineCurve::inspectionSource() const

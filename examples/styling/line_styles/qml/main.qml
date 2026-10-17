@@ -96,7 +96,7 @@ Window {
             Layout.fillHeight: true
             grid.subGridVisible: false
             legend: QAccelPlot.Legend {
-                series: dashPlot.series
+                model: dashPlot.legendModel
                 symbolWidth: 34
             }
 
@@ -154,7 +154,7 @@ Window {
             Layout.fillHeight: true
             grid.subGridVisible: false
             legend: QAccelPlot.Legend {
-                series: weightPlot.series
+                model: weightPlot.legendModel
                 symbolWidth: 34
             }
 

@@ -7,6 +7,7 @@
 //
 #include "QAccelPlot/series/PointCloud.hpp"
 #include "QAccelPlot/inspection/internal/InspectionTypes.hpp"
+#include "QAccelPlot/legend/LegendEntry.hpp"
 
 #include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/QAccelPlotLogging.hpp"
@@ -88,7 +89,7 @@ const std::vector<GradientStopData>& neutralColorStops()
 } // namespace
 
 PointCloud::PointCloud(QQuickItem* parent)
-    : PlotSeries(DataPointStore::Layout{{DataPointStore::Dimension::X, DataPointStore::Dimension::Y}, DataPointStore::RangeRule::WholeDataPoint, 1},
+    : ColormappedSeries(DataPointStore::Layout{{DataPointStore::Dimension::X, DataPointStore::Dimension::Y}, DataPointStore::RangeRule::WholeDataPoint, 1},
           DataPointWording{"data point", "points", "coordinates", "coordinates"}, parent)
     , transition_(std::make_unique<TransitionRunner>(this))
     , spatialIndexBudget_(std::make_unique<Internal::HoverIndexBudget>(kAssumedIndexCostPerPoint))
@@ -100,6 +101,10 @@ PointCloud::PointCloud(QQuickItem* parent)
 
     for (const auto signal : {&SeriesMarker::shapeChanged, &SeriesMarker::sizeChanged, &SeriesMarker::filledChanged, &SeriesMarker::strokeWidthChanged}) {
         connect(marker_, signal, this, &QQuickItem::update);
+        connect(marker_, signal, this, &PlotSeries::legendEntryChanged);
+    }
+    for (const auto signal : {&PointCloud::colorChanged, &PointCloud::antialiasingEnabledChanged, &PointCloud::antialiasingFeatherChanged}) {
+        connect(this, signal, this, &PlotSeries::legendEntryChanged);
     }
     connect(transition_.get(), &TransitionRunner::frameDue, this, &PointCloud::advanceTransition);
     connect(transition_.get(), &TransitionRunner::interrupted, this, &PointCloud::endTransition);
@@ -130,24 +135,6 @@ void PointCloud::setColor(const QColor& color)
 SeriesMarker* PointCloud::marker() const
 {
     return marker_;
-}
-
-Colormap* PointCloud::colormap() const
-{
-    return colormap_.data();
-}
-
-void PointCloud::setColormap(Colormap* colormap)
-{
-    if (colormap_ == colormap) {
-        return;
-    }
-    colormap_ = colormap;
-    reconnectColormapSignals();
-    refreshColorStops();
-    updateValueRange();
-    emit colormapChanged();
-    update();
 }
 
 bool PointCloud::antialiasingEnabled() const
@@ -221,16 +208,6 @@ bool PointCloud::hasValues() const
 int PointCloud::hoveredIndex() const
 {
     return hoveredIndex_;
-}
-
-qreal PointCloud::dataValueMin() const
-{
-    return dataValueMin_;
-}
-
-qreal PointCloud::dataValueMax() const
-{
-    return dataValueMax_;
 }
 
 void PointCloud::setData(const QList<QPointF>& points)
@@ -320,6 +297,20 @@ void PointCloud::postData(std::vector<float>&& xyInterleaved, std::vector<float>
 void PointCloud::clearData()
 {
     applyFloatData({}, {}, 0);
+}
+
+std::optional<LegendEntry> PointCloud::legendEntry() const
+{
+    auto entry = LegendEntry{};
+    entry.symbol = legendSymbol();
+    entry.color = color_;
+    entry.markerShape = marker_->shape();
+    entry.markerSize = marker_->size();
+    entry.markerFilled = marker_->filled();
+    entry.markerStrokeWidth = marker_->strokeWidth();
+    entry.antialiasingEnabled = antialiasingEnabled_;
+    entry.antialiasingFeather = antialiasingFeather_;
+    return entry;
 }
 
 int PointCloud::pointIndexAt(const QPointF& position) const
@@ -433,9 +424,10 @@ QSGNode* PointCloud::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* upda
         uploadedRevision_ = points.renderRevision();
     }
 
-    const auto useValueColor = colormap_ && hasValues() && colorStops_.size() >= 2;
+    const auto* const valueColormap = colormap();
+    const auto useValueColor = valueColormap && hasValues() && colorStops().size() >= 2;
     // The fragment shader always samples the colormap, so a neutral texture keeps the sampler valid.
-    material->colorMap.upload(window, useValueColor ? colorStops_ : neutralColorStops());
+    material->colorMap.upload(window, useValueColor ? colorStops() : neutralColorStops());
 
     material->color = color_;
     // The render data is origin-relative, so the domain is shifted by the same origin.
@@ -447,14 +439,14 @@ QSGNode* PointCloud::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* upda
     material->logScaleX = xAxis()->logScale() ? 1.0f : 0.0f;
     material->logScaleY = yAxis()->logScale() ? 1.0f : 0.0f;
     material->useVertexColor = useValueColor ? 1.0f : 0.0f;
-    material->valueLogScale = useValueColor && colormap_->norm() == Colormap::Normalization::Log ? 1.0f : 0.0f;
+    material->valueLogScale = useValueColor && valueColormap->norm() == Colormap::Normalization::Log ? 1.0f : 0.0f;
     material->markerSize = static_cast<float>(marker_->size());
     material->markerFilled = marker_->filled() ? 1.0f : 0.0f;
     material->markerStrokeWidth = static_cast<float>(marker_->strokeWidth());
     material->antialiasingEnabled = antialiasingEnabled_ ? 1.0f : 0.0f;
     material->antialiasingFeather = static_cast<float>(antialiasingFeather_);
-    material->valueMin = static_cast<float>(dataValueMin_);
-    material->valueMax = static_cast<float>(dataValueMax_);
+    material->valueMin = static_cast<float>(dataValueMin());
+    material->valueMax = static_cast<float>(dataValueMax());
     material->stride = static_cast<float>(stride);
     material->shapeType = static_cast<int>(marker_->shape()) - 1;
     node->markDirty(QSGNode::DirtyMaterial);
@@ -478,13 +470,6 @@ void PointCloud::hoverLeaveEvent(QHoverEvent* event)
 {
     setHoveredIndex(-1);
     QQuickItem::hoverLeaveEvent(event);
-}
-
-void PointCloud::onColormapUpdated()
-{
-    refreshColorStops();
-    updateValueRange();
-    update();
 }
 
 bool PointCloud::validateValues(const std::size_t valueCount, const int pointCount) const
@@ -578,59 +563,26 @@ void PointCloud::onDataPointsChanged(const DataChange /*change*/, const int prev
     }
 }
 
-void PointCloud::updateValueRange()
+std::optional<ColormappedSeries::ValueSpan> PointCloud::scanValueRange() const
 {
+    const auto values = dataPoints().attributes();
+    if (!values.data) {
+        return std::nullopt;
+    }
     auto minimum = std::numeric_limits<qreal>::max();
     auto maximum = std::numeric_limits<qreal>::lowest();
-    const auto fixedMin = colormap_ ? colormap_->min() : kNaN;
-    const auto fixedMax = colormap_ ? colormap_->max() : kNaN;
-    const auto needsDataRange = std::isnan(fixedMin) || std::isnan(fixedMax);
-    const auto values = dataPoints().attributes();
-    if (values.data && needsDataRange) {
-        for (auto index = std::size_t{0}; index < static_cast<std::size_t>(count()); ++index) {
-            const auto value = values.data[index * static_cast<std::size_t>(values.stride)];
-            if (!std::isfinite(value)) {
-                continue;
-            }
-            minimum = std::min(minimum, static_cast<qreal>(value));
-            maximum = std::max(maximum, static_cast<qreal>(value));
+    for (auto index = std::size_t{0}; index < static_cast<std::size_t>(count()); ++index) {
+        const auto value = values.data[index * static_cast<std::size_t>(values.stride)];
+        if (!std::isfinite(value)) {
+            continue;
         }
+        minimum = std::min(minimum, static_cast<qreal>(value));
+        maximum = std::max(maximum, static_cast<qreal>(value));
     }
-    const auto foundValues = minimum <= maximum;
-
-    const auto resolvedMin = std::isnan(fixedMin) ? (foundValues ? minimum : 0.0) : fixedMin;
-    const auto resolvedMax = std::isnan(fixedMax) ? (foundValues ? maximum : 1.0) : fixedMax;
-    if (nearlyEqual(resolvedMin, dataValueMin_) && nearlyEqual(resolvedMax, dataValueMax_)) {
-        return;
+    if (minimum > maximum) {
+        return std::nullopt;
     }
-    dataValueMin_ = resolvedMin;
-    dataValueMax_ = resolvedMax;
-    emit valueRangeChanged();
-    update();
-}
-
-void PointCloud::reconnectColormapSignals()
-{
-    for (const auto& connection : gradientConnections_) {
-        disconnect(connection);
-    }
-    gradientConnections_.clear();
-    if (!colormap_) {
-        return;
-    }
-
-    gradientConnections_.append(connect(colormap_.data(), &Colormap::colormapChanged, this, &PointCloud::onColormapUpdated));
-    gradientConnections_.append(connect(colormap_.data(), &QObject::destroyed, this, [this]() {
-        colorStops_.clear();
-        updateValueRange();
-        emit colormapChanged();
-        update();
-    }));
-}
-
-void PointCloud::refreshColorStops()
-{
-    colorStops_ = colormap_ ? colormap_->resolvedStops() : std::vector<GradientStopData>{};
+    return ValueSpan{minimum, maximum};
 }
 
 void PointCloud::setHoveredIndex(const int index)

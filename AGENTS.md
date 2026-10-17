@@ -82,11 +82,13 @@ QAccelPlot/
 │       │                           PlotInspector, SelectionTool, InspectionRowModel,
 │       │                           internal/ (in-place search of ordered data, k-d index, async index cache,
 │       │                           objects declared inside an inspector, selection rectangle)
+│       ├── legend/               — LegendEntry (how a legend draws a series), LegendModel
 │       ├── linestyles/           — SolidLine, DashLine, NoLine
 │       ├── materials/            — QSGMaterial subclasses for GPU rendering
 │       ├── renderers/            — LineCurveLineRenderer, LineCurvePointRenderer, BandEdgeRenderer,
 │       │                           LineStroke (shared line ribbon helpers)
-│       ├── series/               — LineCurve, PointCloud, RectangleSeries, BarSeries, BandSeries, PlotSeries,
+│       ├── series/               — LineCurve, PointCloud, HeatmapSeries, RectangleSeries, BarSeries, BandSeries,
+│       │                           PlotSeries, ColormappedSeries (colormap and value range base),
 │       │                           RectangleBorder (border grouped property),
 │       │                           BandEdges (edges grouped property),
 │       │                           LineCurveVertexCache, RectVertexCache,

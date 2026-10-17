@@ -6,6 +6,7 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #include "QAccelPlot/series/BarSeries.hpp"
+#include "QAccelPlot/legend/LegendEntry.hpp"
 
 #include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/QAccelPlotLogging.hpp"
@@ -116,6 +117,7 @@ BarSeries::BarSeries(QQuickItem* parent)
     connect(transition_.get(), &TransitionRunner::frameDue, this, &BarSeries::advanceTransition);
     connect(transition_.get(), &TransitionRunner::interrupted, this, &BarSeries::endTransition);
     connect(transition_.get(), &TransitionRunner::transitionDestroyed, this, &BarSeries::transitionChanged);
+    connect(this, &BarSeries::colorChanged, this, &PlotSeries::legendEntryChanged);
 }
 
 BarSeries::~BarSeries()
@@ -372,6 +374,14 @@ void BarSeries::postRangedData(std::vector<double>&& data, const int barCount)
 void BarSeries::clearData()
 {
     applyBars({}, false, {}, 0, false);
+}
+
+std::optional<LegendEntry> BarSeries::legendEntry() const
+{
+    auto entry = LegendEntry{};
+    entry.symbol = legendSymbol();
+    entry.color = color_;
+    return entry;
 }
 
 void BarSeries::setCategories(const QList<int>& categories)

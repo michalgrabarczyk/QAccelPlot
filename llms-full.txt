@@ -30,6 +30,8 @@ frame.
   strokes; morph and draw transitions
 - **Point clouds** — `PointCloud` for large scatter data, colored uniformly or
   by value, with a `ColorBar`
+- **Heatmaps** — `HeatmapSeries` for grids of values colored through a
+  colormap
 - **Bars** — `BarSeries` for vertical, horizontal, and grouped bar charts
 - **Histograms** — `Histogram` counts samples into equal or uneven bins, as
   counts or density
@@ -314,8 +316,8 @@ See [Troubleshooting](https://michalgrabarczyk.github.io/QAccelPlot/troubleshoot
 `PlotView` is the C++ plot item. It lays out axes, converts between data and
 pixel coordinates, handles pan and zoom, and collects child series.
 
-`Plot` is the QML wrapper most applications use. It adds a `Legend` and
-`legendVisible` to the full `PlotView` interface.
+`Plot` is the QML wrapper most applications use. It adds a `Legend`,
+`legendModel`, and `legendVisible` to the full `PlotView` interface.
 
 [`plotRect`][plot-rect] is the data area, excluding axes and padding. Use it to
 place clipped overlays and custom tools.
@@ -353,7 +355,8 @@ JavaScript callback.
 ## Series
 
 `PlotSeries` holds properties shared by all series: name, axes, plot rectangle,
-and legend symbol.
+and legend symbol. `legendEntry()` describes how a legend draws the series;
+`LegendModel` lists the entries of the visible series that have one.
 
 `LineCurve` renders lines, markers, line styles, gradients, and fills. It
 accepts data from QML or C++ buffers, as doubles or as interleaved floats.
@@ -363,6 +366,11 @@ series beneath.
 
 `PointCloud` renders unconnected points as markers, colored uniformly or by a
 per-point value through a `Colormap`. It reports the hovered point index.
+
+`HeatmapSeries` renders a uniform grid of values as cells colored through a
+`Colormap`, placed by the outer edges of the grid. `PointCloud` and
+`HeatmapSeries` derive from `ColormappedSeries`, which resolves the value range
+that a `ColorBar` shows.
 
 `BandSeries` fills the area between a low and a high value at each X, such as
 confidence intervals and envelopes. It stores `(x, low, high)` triples and
@@ -567,7 +575,7 @@ every series and axis, for example in streaming-only views.
 - Markers add geometry and fragment work per visible point. Fragment work grows
   with marker size; `LineCurve.Pixel` markers shade one pixel per point and
   suit very dense scatter plots.
-- A `PointCloud` whose `Colormap` leaves `min` or `max` unset scans every value
+- A `PointCloud` or `HeatmapSeries` whose `Colormap` leaves `min` or `max` unset scans every value
   on each data update to resolve the range. Set both when the bounds of
   streaming values are known.
 - Gradient effects add material and domain work.
@@ -842,6 +850,7 @@ Each recipe links to a complete runnable example.
 | [Annotations and tools](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/annotations/) | Data-attached labels, regions, measurement tools, and mouse handling |
 | [Data inspection](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/data-inspection/) | Crosshair, tooltip, nearest-data-point queries, region statistics, and selection |
 | [Point clouds](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/point-clouds/) | Large unconnected scatter data, coloring points by value, color bars, and hover picking |
+| [Heatmaps](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/heatmaps/) | Grids of values colored through a colormap, color bars, and reading cells |
 | [Rectangle zoom](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/rectangle-zoom/) | Drag a region to zoom all axes, or zoom from a custom tool |
 | [Bar charts](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/bar-charts/) | Vertical, horizontal, and grouped bars, baselines, category colors, and hover |
 | [Histograms](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/histograms/) | Equal and uneven bins, counts or density, from QML or C++ |
@@ -905,8 +914,16 @@ QAccelPlot.Plot {
 }
 ```
 
-`Plot` shows a legend entry for every series. Set `legendVisible: false` to
-hide it, or assign `legend` to replace it.
+`Plot` shows a legend entry for every visible series that has one; a heatmap
+has none, because its color bar is its key. Set `legendVisible: false` to hide
+the legend, or assign `legend` to replace it. `Plot.legendModel` lists every
+entry; a `LegendModel` of your own lists a subset:
+
+```qml
+legend: QAccelPlot.Legend {
+    model: QAccelPlot.LegendModel { series: [measured, fit] }
+}
+```
 
 QML [`setData()`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1LineCurve/#function-setdata-18)
 suits small or rarely changing data. For large or frequent updates, see
@@ -1889,6 +1906,158 @@ Complete source: [`examples/plot_types/point_cloud`](https://github.com/michalgr
 
 ---
 
+<!-- source: docs/guide/cookbook/heatmaps.md -->
+
+# Heatmaps
+
+Use [`QAccelPlot.HeatmapSeries`][heatmap-series] for values sampled on a
+regular grid, such as a field, an image, or a matrix. Each cell is colored by
+its value through a [`Colormap`][colormap].
+
+## Draw a heatmap
+
+```qml
+QAccelPlot.Plot {
+    id: plot
+    xAxis: QAccelPlot.Axis { viewportMin: -10; viewportMax: 10 }
+    yAxis: QAccelPlot.Axis { viewportMin: -5; viewportMax: 5 }
+
+    QAccelPlot.HeatmapSeries {
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        xMin: -10; xMax: 10
+        yMin: -5; yMax: 5
+        // Three columns by two rows.
+        Component.onCompleted: setValues([0, 1, 2,
+                                          3, 4, 5], 3)
+    }
+}
+```
+
+- Values are stored row by row, `columns` per row. Row 0 is at `yMin` and
+  column 0 at `xMin`.
+- `xMin`, `xMax`, `yMin`, and `yMax` are the outer edges of the grid, so a
+  cell is `(xMax - xMin) / columns` wide. An unset edge places the grid in
+  index space: column `c` spans `[c, c + 1]`. A reversed extent flips the grid.
+- The grid edges are the series' data range, so `rescaleToData()` fits the
+  whole grid.
+- `setValues()` sets `columns`. Do not bind `columns` while using it: when
+  the binding is re-evaluated, it reshapes the grid.
+- `valueAt(row, column)` reads a cell.
+
+## Choose the colors
+
+The series starts with its own Viridis `Colormap`, with the value range
+resolved from the data. Change it in place, or assign a shared one:
+
+```qml
+QAccelPlot.HeatmapSeries {
+    colormap: QAccelPlot.Colormap {
+        preset: QAccelPlot.Colormap.Inferno
+        min: -1
+        max: 1
+    }
+}
+```
+
+The colormap works as for [point clouds](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/point-clouds/#color-points-by-value):
+presets, `reversed`, custom `stops`, fixed or data-resolved `min` and `max`,
+and `norm: Colormap.Log`. `dataValueMin` and `dataValueMax` expose the resolved
+range. Nothing is drawn while `colormap` is null.
+
+These cells are transparent:
+
+- cells with a non-finite value, such as `NaN` for missing data;
+- under a `Log` colormap, cells with a value at or below zero.
+
+Non-finite values do not count toward the value range.
+
+## Show a color bar
+
+A [`ColorBar`][color-bar] keys a heatmap as it keys a point cloud; see
+[Show a color bar](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/point-clouds/#show-a-color-bar):
+
+```qml
+QAccelPlot.ColorBar {
+    series: heatmap
+    label: "Amplitude"
+    interactive: true
+}
+```
+
+A heatmap has no legend entry: the color bar is its key.
+
+## Read the cell under the pointer
+
+`inspection.recordAtPosition()` returns the record of the cell at a
+series-local position: pixels from the top left of the plot area. Its
+`fields` are `x` and `y` (the cell center), `value`, `row`, and `column`;
+`index` is `row * columns + column`.
+
+```qml
+// Covers the plot area, so its positions are series-local.
+Item {
+    parent: plot.overlay
+    x: plot.plotRect.x
+    y: plot.plotRect.y
+    width: plot.plotRect.width
+    height: plot.plotRect.height
+
+    HoverHandler { id: hover }
+
+    Text {
+        readonly property var record: heatmap.inspection.recordAtPosition(hover.point.position)
+        visible: hover.hovered && record.valid
+        text: visible ? record.fields.value.toFixed(3) : ""
+    }
+}
+```
+
+A cell with a non-finite value is still a match. `inspection.recordAt(index)`
+looks a cell up by index. While a grid edge is infinite, `recordAt()` returns
+`Inspection.Unavailable` and `recordAtPosition()` matches no cell.
+`PlotInspector`, and so `InspectionTooltip` and `Crosshair`, do not inspect
+heatmaps.
+
+## Set data from C++
+
+`setValues()` replaces the values and the shape together:
+
+```cpp
+// columns * rows floats, row by row.
+heatmap->setValues(std::move(values), columns, rows);
+```
+
+From a worker thread, `postValues()` takes the same arguments and queues the
+handoff; see [Background data production](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/background-data/).
+
+The `PlotSeries` setters, such as `setDataF(std::move(values), count)` and
+`postData()`, take one value per cell and keep `columns`, so `count` must be
+a multiple of it. Setting `columns` keeps the values and recomputes `rows`.
+
+## Limits
+
+- Each pixel takes the color of the cell under its center. Cells are not
+  interpolated.
+- Values are single precision.
+- Logarithmic axes are not supported. On one, the series draws nothing,
+  reports no data range in that dimension, and logs a warning.
+- A grid with an infinite edge, such as `xMin: -Infinity`, draws nothing.
+- A grid can have as many cells as the GPU data texture holds: about 67
+  million on a GPU with an 8192-pixel texture limit. A larger grid is not
+  drawn, and a warning is logged.
+- A grid of more than 16,777,216 (2^24) columns or rows is not drawn, and a
+  warning is logged: the GPU locates cells in single precision.
+
+Complete source: [`examples/plot_types/heatmap`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/heatmap)
+
+[heatmap-series]: ../api/classQAccelPlot_1_1HeatmapSeries.md
+[colormap]: ../api/classQAccelPlot_1_1Colormap.md
+[color-bar]: ../api/classQAccelPlot_1_1ColorBar.md
+
+
+---
+
 <!-- source: docs/guide/cookbook/rectangle-zoom.md -->
 
 # Rectangle zoom
@@ -2378,8 +2547,10 @@ Complete source: [`examples/showcases/performance`](https://github.com/michalgra
   markers, data ingestion, effects, transitions, gaps, and hover.
 - [`PointCloud`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1PointCloud/) — large sets of
   unconnected points as markers, colored uniformly or by per-point values.
-- [`ColorBar`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1ColorBar/) — continuous key for a
-  point cloud's colormap and value range.
+- [`HeatmapSeries`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1HeatmapSeries/) — a uniform
+  grid of values as cells colored through a colormap.
+- [`ColorBar`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1ColorBar/) — continuous key for the
+  colormap and value range of a point cloud or heatmap.
 - [`BandSeries`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1BandSeries/) — filled area between a
   low and a high value at each X, with optional edge lines.
 - [`RectangleSeries`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1RectangleSeries/) — many data-space
@@ -2392,6 +2563,8 @@ Complete source: [`examples/showcases/performance`](https://github.com/michalgra
   coordinates.
 - [`PlotMouseEvent`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1PlotMouseEvent/) — mouse
   positions in plot and data coordinates.
+- [`LegendModel`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1LegendModel/) — legend entries of the
+  visible series that have one, each a [`LegendEntry`](https://michalgrabarczyk.github.io/QAccelPlot/api/structQAccelPlot_1_1LegendEntry/).
 - [`SeriesInspection`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1SeriesInspection/) — per-series
   data queries: nearest data points, brackets, region statistics, and index pages.
 - [`PlotInspector`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1PlotInspector/) — cursor state and
