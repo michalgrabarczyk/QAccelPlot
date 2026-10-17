@@ -2035,6 +2035,8 @@ a multiple of it. Setting `columns` keeps the values and recomputes `rows`.
 - A grid can have as many cells as the GPU data texture holds: about 67
   million on a GPU with an 8192-pixel texture limit. A larger grid is not
   drawn, and a warning is logged.
+- A grid of more than 16,777,216 (2^24) columns or rows is not drawn, and a
+  warning is logged: the GPU locates cells in single precision.
 
 Complete source: [`examples/plot_types/heatmap`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/heatmap)
 

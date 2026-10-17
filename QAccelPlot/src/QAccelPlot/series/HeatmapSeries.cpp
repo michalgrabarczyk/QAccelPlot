@@ -27,6 +27,8 @@ namespace {
 
 constexpr auto kNaN = std::numeric_limits<qreal>::quiet_NaN();
 constexpr auto kQuadVertexCount = 4;
+// The fragment shader locates cells in single precision, which counts exactly up to 2^24.
+constexpr auto kMaxShaderCellsPerDimension = 1 << 24;
 
 QSGGeometryNode* createHeatmapNode()
 {
@@ -455,6 +457,16 @@ bool HeatmapSeries::canDraw(QQuickWindow* window)
         return false;
     }
     warnedAboutLogAxis_ = false;
+
+    const auto overPrecision = columns_ > kMaxShaderCellsPerDimension || rows_ > kMaxShaderCellsPerDimension;
+    if (overPrecision && !overPrecision_) {
+        qCWarning(lcQAccelPlot) << "HeatmapSeries has" << columns_ << "x" << rows_ << "cells; grids of more than" << kMaxShaderCellsPerDimension
+                                << "columns or rows are not drawn.";
+    }
+    overPrecision_ = overPrecision;
+    if (overPrecision) {
+        return false;
+    }
 
     const auto capacity = Internal::dataTextureItemCapacity(Internal::maxTextureSize(window), 1);
     const auto overCapacity = cellCount() > capacity;

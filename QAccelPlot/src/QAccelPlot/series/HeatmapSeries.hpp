@@ -64,8 +64,9 @@ class HeatmapMaterial;
 /// \par Limits
 /// Each pixel takes the color of the cell under its center, without interpolation. Logarithmic axes
 /// are not supported: the series draws nothing on one, reports no data range for it, and logs a
-/// warning. A grid with an infinite edge draws nothing. A grid of more cells than the GPU data
-/// texture holds, about 67 million for an 8192-pixel texture limit, draws nothing and logs a warning.
+/// warning. A grid with an infinite edge draws nothing. A grid of more than 16,777,216 (2^24)
+/// columns or rows, or of more cells than the GPU data texture holds, about 67 million for an
+/// 8192-pixel texture limit, draws nothing and logs a warning.
 ///
 /// \sa ColormappedSeries, Colormap, ColorBar, PlotSeries
 class HeatmapSeries : public ColormappedSeries {
@@ -218,6 +219,7 @@ private:
     std::uint64_t valuesRevision_{1};
     std::uint64_t uploadedRevision_{0};
     bool warnedAboutLogAxis_{false};
+    bool overPrecision_{false};
     bool overCapacity_{false};
 };
 

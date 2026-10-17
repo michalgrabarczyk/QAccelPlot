@@ -20,8 +20,10 @@
 #include <QSGRendererInterface>
 #include <QtTest/QtTest>
 
+#include <atomic>
 #include <limits>
 #include <memory>
+#include <vector>
 
 namespace QAccelPlot {
 
@@ -132,6 +134,42 @@ bool isColor(const QColor& pixel, const QColor& expected)
         && std::abs(pixel.blue() - expected.blue()) < kTolerance;
 }
 
+// Counts the warnings about too many columns or rows while it is alive and passes other messages on.
+class PrecisionWarningCounter {
+public:
+    PrecisionWarningCounter()
+    {
+        count_ = 0;
+        previousHandler_ = qInstallMessageHandler(handle);
+    }
+
+    ~PrecisionWarningCounter()
+    {
+        qInstallMessageHandler(previousHandler_);
+    }
+
+    PrecisionWarningCounter(const PrecisionWarningCounter&) = delete;
+    PrecisionWarningCounter& operator=(const PrecisionWarningCounter&) = delete;
+
+    int count() const
+    {
+        return count_;
+    }
+
+private:
+    static void handle(const QtMsgType type, const QMessageLogContext& context, const QString& message)
+    {
+        if (type == QtWarningMsg && message.contains(QStringLiteral("columns or rows are not drawn"))) {
+            ++count_;
+            return;
+        }
+        previousHandler_(type, context, message);
+    }
+
+    static inline std::atomic<int> count_{0};
+    static inline QtMessageHandler previousHandler_{nullptr};
+};
+
 } // namespace
 
 class HeatmapSeriesRenderingTest : public QObject {
@@ -146,6 +184,7 @@ private slots:
     void newValuesAndExtentRedrawTheGrid();
     void logAxisDrawsNothing();
     void infiniteEdgeDrawsNothing();
+    void tooManyColumnsDrawNothing();
     void qmlReadsCellRecords();
 
 private:
@@ -267,6 +306,31 @@ void HeatmapSeriesRenderingTest::infiniteEdgeDrawsNothing()
     heatmap->setXMin(2.0);
     image = scene_->grab();
     QVERIFY(isColor(image.pixelColor(scene_->pixel(3.5, 3.5)), Qt::red));
+}
+
+void HeatmapSeriesRenderingTest::tooManyColumnsDrawNothing()
+{
+    constexpr auto kColumns = (1 << 24) + 1;
+    auto* heatmap = scene_->heatmap();
+    const auto warnings = PrecisionWarningCounter{};
+
+    heatmap->setValues(std::vector<float>(kColumns, 2.0f), kColumns, 1);
+    auto image = scene_->grab();
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(6.5, 3.5)), Qt::black));
+    QCOMPARE(warnings.count(), 1);
+    // Further frames do not warn again.
+    heatmap->setXMax(9.0);
+    image = scene_->grab();
+    QCOMPARE(warnings.count(), 1);
+
+    heatmap->setValues({0.0f, 2.0f}, 2, 1);
+    image = scene_->grab();
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(3.5, 3.5)), Qt::red));
+
+    heatmap->setValues(std::vector<float>(kColumns, 2.0f), kColumns, 1);
+    image = scene_->grab();
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(3.5, 3.5)), Qt::black));
+    QCOMPARE(warnings.count(), 2);
 }
 
 void HeatmapSeriesRenderingTest::qmlReadsCellRecords()
