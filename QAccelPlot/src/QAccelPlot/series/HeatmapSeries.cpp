@@ -230,7 +230,7 @@ QSGNode* HeatmapSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* u
     const auto plotArea = resolvePlotRect();
     const auto extent = resolvedExtent();
     const auto drawable = cellCount() > 0 && xAxis() && yAxis() && plotArea.width() > 0.0 && plotArea.height() > 0.0 && colorStops().size() >= 2
-        && extent.xMin != extent.xMax && extent.yMin != extent.yMax;
+        && extent.isFinite() && extent.xMin != extent.xMax && extent.yMin != extent.yMax;
     if (!drawable || !canDraw(window)) {
         delete oldNode;
         return nullptr;
@@ -278,9 +278,13 @@ InspectionRecord HeatmapSeries::inspectionRecord(const int index) const
         result.status = InspectionStatus::InvalidArgument;
         return result;
     }
+    const auto extent = resolvedExtent();
+    if (!extent.isFinite()) {
+        result.status = InspectionStatus::Unavailable;
+        return result;
+    }
     const auto row = index / columns_;
     const auto column = index % columns_;
-    const auto extent = resolvedExtent();
     const auto cellWidth = (extent.xMax - extent.xMin) / columns_;
     const auto cellHeight = (extent.yMax - extent.yMin) / rows_;
     result.index = index;
@@ -348,6 +352,11 @@ void HeatmapSeries::onColorStopsChanged()
     }
     color_ = color;
     emit colorChanged();
+}
+
+bool HeatmapSeries::Extent::isFinite() const
+{
+    return std::isfinite(xMin) && std::isfinite(xMax) && std::isfinite(yMin) && std::isfinite(yMax);
 }
 
 HeatmapSeries::Extent HeatmapSeries::resolvedExtent() const
@@ -422,6 +431,9 @@ std::optional<std::pair<int, int>> HeatmapSeries::cellAt(const QPointF& position
         return std::nullopt;
     }
     const auto extent = resolvedExtent();
+    if (!extent.isFinite()) {
+        return std::nullopt;
+    }
     const auto x = xAxis()->pixelToCoord(position.x(), width());
     const auto y = yAxis()->pixelToCoord(position.y(), height());
     const auto column = std::floor((x - extent.xMin) / (extent.xMax - extent.xMin) * columns_);

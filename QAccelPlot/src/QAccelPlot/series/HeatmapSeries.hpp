@@ -56,13 +56,14 @@ class HeatmapMaterial;
 /// \par Inspection
 /// \c inspection.recordAt() and \c inspection.recordAtPosition() return a record with the fields
 /// \c x and \c y (the cell center), \c value, \c row, and \c column. A cell with a non-finite value
-/// is still a match. \c PlotInspector does not inspect heatmaps.
+/// is still a match. While a grid edge is not finite, \c recordAt() returns \c Unavailable and
+/// \c recordAtPosition() matches no cell. \c PlotInspector does not inspect heatmaps.
 ///
 /// \par Limits
 /// Each pixel takes the color of the cell under its center, without interpolation. Logarithmic axes
 /// are not supported: the series draws nothing on one, reports no data range for it, and logs a
-/// warning. A grid of more cells than the GPU data texture holds, about 67 million for an 8192-pixel
-/// texture limit, draws nothing and logs a warning.
+/// warning. A grid with an infinite edge draws nothing. A grid of more cells than the GPU data
+/// texture holds, about 67 million for an 8192-pixel texture limit, draws nothing and logs a warning.
 ///
 /// \sa ColormappedSeries, Colormap, ColorBar, PlotSeries
 class HeatmapSeries : public ColormappedSeries {
@@ -180,6 +181,9 @@ private:
         double xMax;
         double yMin;
         double yMax;
+
+        /// \brief Returns whether all four edges are finite.
+        bool isFinite() const;
     };
 
     Extent resolvedExtent() const;

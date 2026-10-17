@@ -2001,8 +2001,10 @@ Item {
 ```
 
 A cell with a non-finite value is still a match. `inspection.recordAt(index)`
-looks a cell up by index. `PlotInspector`, and so `InspectionTooltip` and
-`Crosshair`, do not inspect heatmaps.
+looks a cell up by index. While a grid edge is infinite, `recordAt()` returns
+`Inspection.Unavailable` and `recordAtPosition()` matches no cell.
+`PlotInspector`, and so `InspectionTooltip` and `Crosshair`, do not inspect
+heatmaps.
 
 ## Set data from C++
 
@@ -2027,6 +2029,7 @@ a multiple of it. Setting `columns` keeps the values and recomputes `rows`.
 - Values are single precision.
 - Logarithmic axes are not supported. On one, the series draws nothing,
   reports no data range in that dimension, and logs a warning.
+- A grid with an infinite edge, such as `xMin: -Infinity`, draws nothing.
 - A grid can have as many cells as the GPU data texture holds: about 67
   million on a GPU with an 8192-pixel texture limit. A larger grid is not
   drawn, and a warning is logged.

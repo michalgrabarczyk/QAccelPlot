@@ -73,6 +73,7 @@ private slots:
     void recordsDescribeCells();
     void recordAtPositionFindsTheCell();
     void nonFiniteCellsAreStillRecords();
+    void infiniteEdgesHaveNoCells();
 };
 
 void HeatmapSeriesDataTest::defaultsRenderWithOwnColormap()
@@ -394,6 +395,30 @@ void HeatmapSeriesDataTest::nonFiniteCellsAreStillRecords()
     QCOMPARE(record.status, InspectionStatus::Ready);
     QCOMPARE(record.index, 0);
     QVERIFY(std::isnan(record.fields.value(QStringLiteral("value")).toDouble()));
+}
+
+void HeatmapSeriesDataTest::infiniteEdgesHaveNoCells()
+{
+    constexpr auto kInfinity = std::numeric_limits<qreal>::infinity();
+    auto rig = InspectableHeatmap{};
+    rig.heatmap.setValues(sixValues(), 3, 2);
+    rig.heatmap.setXMax(6.0);
+    rig.heatmap.setYMax(10.0);
+    QCOMPARE(rig.heatmap.inspection()->recordAtPosition({5.0, 95.0}).status, InspectionStatus::Ready);
+
+    rig.heatmap.setXMax(kInfinity);
+    QCOMPARE(rig.heatmap.inspection()->recordAtPosition({5.0, 95.0}).status, InspectionStatus::NoMatch);
+    QCOMPARE(rig.heatmap.inspection()->recordAt(0).status, InspectionStatus::Unavailable);
+    QVERIFY(!rig.heatmap.xDataRange());
+
+    rig.heatmap.setXMax(6.0);
+    rig.heatmap.setYMin(-kInfinity);
+    QCOMPARE(rig.heatmap.inspection()->recordAtPosition({5.0, 95.0}).status, InspectionStatus::NoMatch);
+    QCOMPARE(rig.heatmap.inspection()->recordAt(0).status, InspectionStatus::Unavailable);
+    QCOMPARE(rig.heatmap.inspection()->recordAt(6).status, InspectionStatus::InvalidArgument);
+
+    rig.heatmap.setYMin(0.0);
+    QCOMPARE(rig.heatmap.inspection()->recordAt(0).status, InspectionStatus::Ready);
 }
 
 } // namespace QAccelPlot

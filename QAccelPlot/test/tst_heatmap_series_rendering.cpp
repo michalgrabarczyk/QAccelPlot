@@ -20,6 +20,7 @@
 #include <QSGRendererInterface>
 #include <QtTest/QtTest>
 
+#include <limits>
 #include <memory>
 
 namespace QAccelPlot {
@@ -144,6 +145,7 @@ private slots:
     void logNormLeavesNonPositiveCellsTransparent();
     void newValuesAndExtentRedrawTheGrid();
     void logAxisDrawsNothing();
+    void infiniteEdgeDrawsNothing();
     void qmlReadsCellRecords();
 
 private:
@@ -246,6 +248,25 @@ void HeatmapSeriesRenderingTest::logAxisDrawsNothing()
     plot->xAxis()->setViewportMax(10.0);
     image = scene_->grab();
     QVERIFY(isColor(image.pixelColor(scene_->pixel(6.5, 3.5)), Qt::blue));
+}
+
+void HeatmapSeriesRenderingTest::infiniteEdgeDrawsNothing()
+{
+    auto* heatmap = scene_->heatmap();
+    heatmap->setXMax(std::numeric_limits<qreal>::infinity());
+    auto image = scene_->grab();
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(3.5, 3.5)), Qt::black));
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(9.5, 3.5)), Qt::black));
+
+    heatmap->setXMax(8.0);
+    heatmap->setXMin(-std::numeric_limits<qreal>::infinity());
+    image = scene_->grab();
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(3.5, 3.5)), Qt::black));
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(6.5, 3.5)), Qt::black));
+
+    heatmap->setXMin(2.0);
+    image = scene_->grab();
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(3.5, 3.5)), Qt::red));
 }
 
 void HeatmapSeriesRenderingTest::qmlReadsCellRecords()
