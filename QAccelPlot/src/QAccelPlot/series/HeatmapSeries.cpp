@@ -82,7 +82,7 @@ QColor middleColor(const std::vector<GradientStopData>& stops)
         mix(before.color.blueF(), after->color.blueF()), mix(before.color.alphaF(), after->color.alphaF()));
 }
 
-std::optional<PlotSeries::DataExtent> orderedExtent(const double from, const double to)
+std::optional<PlotSeries::DataExtent> orderedExtent(const qreal from, const qreal to)
 {
     return PlotSeries::DataExtent{std::min(from, to), std::max(from, to)};
 }
@@ -91,10 +91,7 @@ std::optional<PlotSeries::DataExtent> orderedExtent(const double from, const dou
 
 HeatmapSeries::HeatmapSeries(QQuickItem* parent)
     : ColormappedSeries(DataPointStore::Layout{}, DataPointWording{"cell", "cells", "values", "values"}, parent)
-    , xMin_(kNaN)
-    , xMax_(kNaN)
-    , yMin_(kNaN)
-    , yMax_(kNaN)
+    , edges_{kNaN, kNaN, kNaN, kNaN}
 {
     setFlag(ItemHasContents, true);
     setAcceptedMouseButtons(Qt::NoButton);
@@ -124,42 +121,42 @@ int HeatmapSeries::rows() const
 
 qreal HeatmapSeries::xMin() const
 {
-    return xMin_;
+    return edges_.xMin;
 }
 
 void HeatmapSeries::setXMin(const qreal value)
 {
-    setBound(xMin_, value, &HeatmapSeries::xMinChanged);
+    setBound(edges_.xMin, value, &HeatmapSeries::xMinChanged);
 }
 
 qreal HeatmapSeries::xMax() const
 {
-    return xMax_;
+    return edges_.xMax;
 }
 
 void HeatmapSeries::setXMax(const qreal value)
 {
-    setBound(xMax_, value, &HeatmapSeries::xMaxChanged);
+    setBound(edges_.xMax, value, &HeatmapSeries::xMaxChanged);
 }
 
 qreal HeatmapSeries::yMin() const
 {
-    return yMin_;
+    return edges_.yMin;
 }
 
 void HeatmapSeries::setYMin(const qreal value)
 {
-    setBound(yMin_, value, &HeatmapSeries::yMinChanged);
+    setBound(edges_.yMin, value, &HeatmapSeries::yMinChanged);
 }
 
 qreal HeatmapSeries::yMax() const
 {
-    return yMax_;
+    return edges_.yMax;
 }
 
 void HeatmapSeries::setYMax(const qreal value)
 {
-    setBound(yMax_, value, &HeatmapSeries::yMaxChanged);
+    setBound(edges_.yMax, value, &HeatmapSeries::yMaxChanged);
 }
 
 QColor HeatmapSeries::color() const
@@ -363,8 +360,8 @@ bool HeatmapSeries::Extent::isFinite() const
 
 HeatmapSeries::Extent HeatmapSeries::resolvedExtent() const
 {
-    const auto resolve = [](const qreal bound, const double fallback) { return std::isnan(bound) ? fallback : static_cast<double>(bound); };
-    return {resolve(xMin_, 0.0), resolve(xMax_, columns_), resolve(yMin_, 0.0), resolve(yMax_, rows_)};
+    const auto resolve = [](const qreal edge, const qreal fallback) { return std::isnan(edge) ? fallback : edge; };
+    return {resolve(edges_.xMin, 0.0), resolve(edges_.xMax, columns_), resolve(edges_.yMin, 0.0), resolve(edges_.yMax, rows_)};
 }
 
 int HeatmapSeries::cellCount() const
@@ -485,8 +482,8 @@ void HeatmapSeries::updateMaterial(HeatmapMaterial& material, QQuickWindow* wind
     }
     material.colorMap.upload(window, colorStops());
 
-    // Item-local pixels map to cell coordinates through the axis viewports; computed in double so
-    // the single-precision uniforms stay exact near the visible cells.
+    // Item-local pixels map to cell coordinates through the axis viewports; computed before the cast
+    // to single precision, so the uniforms stay exact near the visible cells.
     const auto extent = resolvedExtent();
     const auto plotArea = resolvePlotRect();
     const auto columnsPerUnit = columns_ / (extent.xMax - extent.xMin);

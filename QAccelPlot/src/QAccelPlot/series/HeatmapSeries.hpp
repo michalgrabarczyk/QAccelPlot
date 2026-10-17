@@ -181,12 +181,12 @@ protected:
     void onColorStopsChanged() override;
 
 private:
-    /// \brief Grid edges with unset bounds resolved to index space.
+    /// \brief Grid edges. In \c edges_ an unset edge is NaN; \c resolvedExtent() resolves it to index space.
     struct Extent {
-        double xMin;
-        double xMax;
-        double yMin;
-        double yMax;
+        qreal xMin;
+        qreal xMax;
+        qreal yMin;
+        qreal yMax;
 
         /// \brief Returns whether all four edges are finite.
         bool isFinite() const;
@@ -210,10 +210,7 @@ private:
     std::vector<float> values_;
     int columns_{0};
     int rows_{0};
-    qreal xMin_;
-    qreal xMax_;
-    qreal yMin_;
-    qreal yMax_;
+    Extent edges_;
     QColor color_;
     // Incremented by every value change; the GPU texture holds the values of uploadedRevision_.
     std::uint64_t valuesRevision_{1};
