@@ -40,7 +40,8 @@ struct InspectionSource;
 /// worker thread first; until then queries return \c Inspection.Preparing. Requesting an index
 /// copies the series' buffer once on the calling thread, the index takes about 40 MB per million
 /// valid data points, and any data change discards it. Other series types expose native records
-/// through \c recordAt() and \c recordAtPosition() only.
+/// through \c recordAt() and \c recordAtPosition() only; \c HeatmapSeries also answers
+/// \c dataPointAtPosition().
 ///
 /// \sa PlotInspector, SelectionTool
 class SeriesInspection : public QObject {
@@ -50,6 +51,8 @@ class SeriesInspection : public QObject {
     Q_PROPERTY(::QAccelPlot::InspectionNS::Status status READ status NOTIFY statusChanged)
     /// \brief Whether the series has XY records that data point queries can search.
     Q_PROPERTY(bool supported READ supported NOTIFY statusChanged)
+    /// \brief Read-only constant: whether \c dataPointAtPosition() matches records drawn as areas, such as heatmap cells.
+    Q_PROPERTY(bool positionSupported READ positionSupported CONSTANT)
     /// \brief Largest page returned by \c indices().
     Q_PROPERTY(int maximumPageSize READ maximumPageSize CONSTANT)
 
@@ -60,6 +63,8 @@ public:
     InspectionStatus status() const;
     /// \brief Returns whether the series has XY records that data point queries can search.
     bool supported() const;
+    /// \brief Returns whether \c dataPointAtPosition() matches records drawn as areas.
+    bool positionSupported() const;
     /// \brief Returns the largest page returned by \c indices().
     int maximumPageSize() const;
 
@@ -95,6 +100,11 @@ public:
     Q_INVOKABLE ::QAccelPlot::InspectionRecord recordAt(int index) const;
     /// \brief Returns the native record drawn at the series-local \a position.
     Q_INVOKABLE ::QAccelPlot::InspectionRecord recordAtPosition(const QPointF& position) const;
+    /// \brief Returns the record drawn at the series-local \a position as a data point, such as the heatmap cell under it.
+    ///
+    /// \c Unsupported unless \c positionSupported is true. The coordinates and \c pixelPosition of a
+    /// match are the record's center, and \c distance is measured from \a position to it.
+    Q_INVOKABLE ::QAccelPlot::InspectionDataPoint dataPointAtPosition(const QPointF& position) const;
 
 signals:
     /// \brief Emitted when the readiness may have changed: after a data change, and when an index is ready.

@@ -227,6 +227,11 @@ bool SeriesInspection::supported() const
     return series_.inspectionSource().supported();
 }
 
+bool SeriesInspection::positionSupported() const
+{
+    return series_.positionInspectionSupported();
+}
+
 int SeriesInspection::maximumPageSize() const
 {
     return kMaximumPageSize;
@@ -369,6 +374,20 @@ InspectionRecord SeriesInspection::recordAt(const int index) const
 InspectionRecord SeriesInspection::recordAtPosition(const QPointF& position) const
 {
     auto result = series_.inspectionRecordAt(position);
+    result.dataRevision = series_.dataRevision();
+    return result;
+}
+
+InspectionDataPoint SeriesInspection::dataPointAtPosition(const QPointF& position) const
+{
+    auto result = InspectionDataPoint{};
+    if (!series_.positionInspectionSupported()) {
+        result.status = InspectionStatus::Unsupported;
+    } else if (!std::isfinite(position.x()) || !std::isfinite(position.y())) {
+        result.status = InspectionStatus::InvalidArgument;
+    } else {
+        result = series_.inspectionDataPointAt(position);
+    }
     result.dataRevision = series_.dataRevision();
     return result;
 }

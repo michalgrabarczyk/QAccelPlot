@@ -77,6 +77,7 @@ private slots:
     void recordAtPositionFindsTheCell();
     void nonFiniteCellsAreStillRecords();
     void infiniteEdgesHaveNoCells();
+    void dataPointAtPositionReportsTheCellCenter();
 };
 
 void HeatmapSeriesDataTest::defaultsRenderWithOwnColormap()
@@ -456,6 +457,7 @@ void HeatmapSeriesDataTest::infiniteEdgesHaveNoCells()
 
     rig.heatmap.setXMax(kInfinity);
     QCOMPARE(rig.heatmap.inspection()->recordAtPosition({5.0, 95.0}).status, InspectionStatus::NoMatch);
+    QCOMPARE(rig.heatmap.inspection()->dataPointAtPosition({5.0, 95.0}).status, InspectionStatus::NoMatch);
     QCOMPARE(rig.heatmap.inspection()->recordAt(0).status, InspectionStatus::Unavailable);
     QVERIFY(!rig.heatmap.xDataRange());
 
@@ -467,6 +469,42 @@ void HeatmapSeriesDataTest::infiniteEdgesHaveNoCells()
 
     rig.heatmap.setYMin(0.0);
     QCOMPARE(rig.heatmap.inspection()->recordAt(0).status, InspectionStatus::Ready);
+}
+
+void HeatmapSeriesDataTest::dataPointAtPositionReportsTheCellCenter()
+{
+    auto rig = InspectableHeatmap{};
+    // Columns span 2..4, 4..6, 6..8; rows span 0..5, 5..10.
+    rig.heatmap.setValues(sixValues(), 3, 2);
+    rig.heatmap.setXMin(2.0);
+    rig.heatmap.setXMax(8.0);
+    rig.heatmap.setYMin(0.0);
+    rig.heatmap.setYMax(10.0);
+    auto* inspection = rig.heatmap.inspection();
+    QVERIFY(inspection->positionSupported());
+    QVERIFY(!inspection->supported());
+
+    // Pixel (52, 22) is data (5.2, 7.8): column 1, row 1, centered at data (5, 7.5), pixel (50, 25).
+    const auto dataPoint = inspection->dataPointAtPosition({52.0, 22.0});
+    QCOMPARE(dataPoint.status, InspectionStatus::Ready);
+    QCOMPARE(dataPoint.dataRevision, rig.heatmap.dataRevision());
+    QCOMPARE(dataPoint.index, 4);
+    QCOMPARE(dataPoint.position, QPointF(5.0, 7.5));
+    QCOMPARE(dataPoint.pixelPosition, QPointF(50.0, 25.0));
+    QCOMPARE(dataPoint.value, 5.0);
+    QCOMPARE(dataPoint.distance, std::hypot(2.0, 3.0));
+    QVERIFY(!dataPoint.interpolated);
+
+    const auto outside = inspection->dataPointAtPosition({10.0, 50.0});
+    QCOMPARE(outside.status, InspectionStatus::NoMatch);
+    QCOMPARE(outside.dataRevision, rig.heatmap.dataRevision());
+    QCOMPARE(inspection->dataPointAtPosition({std::numeric_limits<qreal>::quiet_NaN(), 50.0}).status, InspectionStatus::InvalidArgument);
+
+    // A cell with a non-finite value still matches.
+    rig.heatmap.setValues({kNaN, 1.0f}, 2, 1);
+    const auto invalidCell = inspection->dataPointAtPosition({25.0, 50.0});
+    QCOMPARE(invalidCell.status, InspectionStatus::Ready);
+    QVERIFY(std::isnan(invalidCell.value));
 }
 
 } // namespace QAccelPlot

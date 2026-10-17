@@ -19,7 +19,11 @@ namespace QAccelPlot {
 
 class OverlayChildren;
 
-/// \brief Inspects every visible XY series of a plot at a cursor and publishes one model row per series.
+/// \brief Inspects the visible XY series and heatmaps of a plot at a cursor and publishes one model row per series.
+///
+/// Series whose \c SeriesInspection::positionSupported is true, such as \c HeatmapSeries, report the
+/// record under the cursor in every mode, and only while the cursor has both coordinates; \c radius,
+/// \c interpolate, and \c summaries do not apply to them.
 ///
 /// The cursor follows the plot's pointer by default; set \c followPointer to \c false and write
 /// \c cursorX to drive it from code, for example to link the crosshairs of several plots.
@@ -163,7 +167,7 @@ public:
 
     /// \brief Runs the queries now instead of on the next event-loop pass.
     Q_INVOKABLE void refresh();
-    /// \brief Moves the cursor \a steps source records along the first matching series and stops following the pointer.
+    /// \brief Moves the cursor \a steps source records along the first matching XY series and stops following the pointer.
     Q_INVOKABLE void stepCursor(int steps);
 
 signals:
@@ -218,6 +222,8 @@ private:
     // Fills state with the results at cursor. Returns false when user code run by a label formatter invalidated them.
     bool inspect(const QPointF& cursor, State& state) const;
     QList<Query> queryRows(const QPointF& cursor) const;
+    // Series matched by position report the record under a cursor with both coordinates, in every mode.
+    InspectionDataPoint matchDataPoint(PlotSeries& series, Mode mode, const QPointF& cursor, const QPointF& local) const;
     // Between two data points a series always matches; the radius only limits how far past its ends it still does.
     InspectionDataPoint dataPointAlong(SeriesInspection& inspection, Mode mode, const QPointF& local) const;
     InspectionSummary summarize(PlotSeries& series, const QPointF& local, Mode mode) const;

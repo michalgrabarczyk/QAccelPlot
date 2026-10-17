@@ -82,6 +82,7 @@ Window {
             QAccelPlot.HeatmapSeries {
                 id: heatmap
                 objectName: "heatmap"
+                name: "Amplitude"
                 xAxis: plot.xAxis
                 yAxis: plot.yAxis
                 xMin: -10
@@ -95,16 +96,11 @@ Window {
             }
 
             Item {
-                id: overlay
                 x: plot.plotRect.x
                 y: plot.plotRect.y
                 width: plot.plotRect.width
                 height: plot.plotRect.height
                 clip: true
-
-                HoverHandler {
-                    id: hover
-                }
 
                 Rectangle {
                     anchors.right: parent.right
@@ -133,33 +129,14 @@ Window {
                         ticker.tickCount: 8
                     }
                 }
+            }
 
-                Rectangle {
-                    id: readout
+            // Reports the cell under the pointer: its center and its value.
+            QAccelPlot.PlotInspector {
+                plot: plot
+                enabled: !amplitudeBar.hovered
 
-                    // The record of the cell under the pointer; the overlay shares the series' coordinates.
-                    readonly property var record: {
-                        // A pan, a zoom, or new values change the cell under a still pointer.
-                        [plot.xAxis.viewportMin, plot.xAxis.viewportMax, plot.yAxis.viewportMin, plot.yAxis.viewportMax, heatmap.dataRevision];
-                        return hover.hovered ? heatmap.inspection.recordAtPosition(hover.point.position) : null;
-                    }
-
-                    visible: record !== null && record.valid && !amplitudeBar.hovered
-                    x: Math.min(hover.point.position.x + 14, overlay.width - width)
-                    y: Math.max(hover.point.position.y - height - 10, 0)
-                    width: readoutText.implicitWidth + 12
-                    height: readoutText.implicitHeight + 8
-                    radius: 3
-                    color: colorPalette.tooltipBackground
-
-                    Text {
-                        id: readoutText
-                        anchors.centerIn: parent
-                        color: colorPalette.tooltipText
-                        font.pixelSize: 11
-                        text: readout.visible ? "(" + readout.record.fields.x.toFixed(2) + ", " + readout.record.fields.y.toFixed(2) + ")  amplitude " + readout.record.fields.value.toFixed(3) : ""
-                    }
-                }
+                QAccelPlot.InspectionTooltip {}
             }
         }
     }

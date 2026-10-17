@@ -10,6 +10,7 @@
 #include "QAccelPlot/axis/AxisTicker.hpp"
 #include "QAccelPlot/inspection/internal/OverlayChildren.hpp"
 
+#include <QLocale>
 #include <QScopedValueRollback>
 
 #include <algorithm>
@@ -368,7 +369,7 @@ void PlotInspector::stepCursor(const int steps)
     }
     const auto direction = steps > 0 ? 1 : -1;
     for (const auto& row : model_->rows()) {
-        if (!row.series || !row.dataPoint.valid()) {
+        if (!row.series || !row.dataPoint.valid() || !row.series->inspection()->supported()) {
             continue;
         }
         auto* inspection = row.series->inspection();
@@ -466,7 +467,7 @@ void PlotInspector::connectSeries(PlotSeries* series)
 bool PlotInspector::inspects(PlotSeries* series) const
 {
     return series->isVisible() && series->opacity() > 0 && (included_.isEmpty() || included_.contains(series)) && !excluded_.contains(series)
-        && series->inspection()->supported();
+        && (series->inspection()->supported() || series->inspection()->positionSupported());
 }
 
 QList<PlotSeries*> PlotInspector::inspectedSeries() const
@@ -546,7 +547,7 @@ QList<PlotInspector::Query> PlotInspector::queryRows(const QPointF& cursor) cons
         query.boundYAxis = series->yAxis();
         query.size = series->size();
         const auto local = series->mapFromItem(plot_, point);
-        query.row.dataPoint = mode == NearestXY ? series->inspection()->nearest(local, radius_) : dataPointAlong(*series->inspection(), mode, local);
+        query.row.dataPoint = matchDataPoint(*series, mode, cursor, local);
         if (query.row.dataPoint.valid()) {
             query.row.pixelPosition = series->mapToItem(plot_, query.row.dataPoint.pixelPosition);
         }
@@ -557,6 +558,20 @@ QList<PlotInspector::Query> PlotInspector::queryRows(const QPointF& cursor) cons
         queries.push_back(query);
     }
     return queries;
+}
+
+InspectionDataPoint PlotInspector::matchDataPoint(PlotSeries& series, const Mode mode, const QPointF& cursor, const QPointF& local) const
+{
+    auto& inspection = *series.inspection();
+    if (inspection.supported()) {
+        return mode == NearestXY ? inspection.nearest(local, radius_) : dataPointAlong(inspection, mode, local);
+    }
+    if (std::isfinite(cursor.x()) && std::isfinite(cursor.y())) {
+        return inspection.dataPointAtPosition(local);
+    }
+    auto result = InspectionDataPoint{};
+    result.dataRevision = series.dataRevision();
+    return result;
 }
 
 InspectionDataPoint PlotInspector::dataPointAlong(SeriesInspection& inspection, const Mode mode, const QPointF& local) const
@@ -603,6 +618,7 @@ void PlotInspector::formatRows(QList<Query>& queries) const
         if (row.dataPoint.valid()) {
             row.xText = format(query.xAxis, row.dataPoint.x(), query.size.width());
             row.yText = format(query.yAxis, row.dataPoint.y(), query.size.height());
+            row.valueText = std::isfinite(row.dataPoint.value) ? QLocale{}.toString(row.dataPoint.value, 'g', 6) : QString{};
         }
         if (row.summary.valid()) {
             row.minimumText = format(query.yAxis, row.summary.minimum, query.size.height());

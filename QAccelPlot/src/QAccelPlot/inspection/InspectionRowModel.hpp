@@ -22,6 +22,7 @@ struct InspectionRow {
     QPointF pixelPosition;         ///< \brief Data point position in plot-local logical pixels.
     QString xText;                 ///< \brief Data point X formatted by the series' X axis.
     QString yText;                 ///< \brief Data point Y formatted by the series' Y axis.
+    QString valueText;             ///< \brief Data point value with up to six significant digits; empty when it is NaN.
     bool hasSummary{false};        ///< \brief Whether \c summary was requested.
     InspectionSummary summary;     ///< \brief Region statistics.
     QString minimumText;           ///< \brief Summary minimum formatted by the series' Y axis.
@@ -36,7 +37,7 @@ struct InspectionRow {
 /// delegates are reused.
 ///
 /// Roles: \c series, \c seriesName, \c seriesColor, \c valid, \c dataPointStatus, \c dataPointIndex,
-/// \c dataPointX, \c dataPointY, \c dataPointValue, \c xText, \c yText, \c pixelPosition, \c distance,
+/// \c dataPointX, \c dataPointY, \c dataPointValue, \c xText, \c yText, \c valueText, \c pixelPosition, \c distance,
 /// \c interpolated, \c hasSummary, \c summaryStatus, \c summaryCount, \c minimum, \c maximum,
 /// \c mean, \c standardDeviation, \c minimumIndex, \c maximumIndex, \c minimumText,
 /// \c maximumText, and \c meanText.
@@ -60,6 +61,7 @@ public:
         DataPointValueRole,
         XTextRole,
         YTextRole,
+        ValueTextRole,
         PixelPositionRole,
         DistanceRole,
         InterpolatedRole,

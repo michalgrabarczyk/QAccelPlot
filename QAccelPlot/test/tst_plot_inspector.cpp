@@ -9,6 +9,7 @@
 
 #include <QAccelPlot/inspection/PlotInspector.hpp>
 #include <QAccelPlot/series/BarSeries.hpp>
+#include <QAccelPlot/series/HeatmapSeries.hpp>
 
 #include <QQmlComponent>
 #include <QQmlEngine>
@@ -117,6 +118,7 @@ private slots:
     void notifications();
     void cursor();
     void snapsToClosest();
+    void heatmapCells();
     void formatterMutation();
     void touch();
     void tooltipReusesDelegates();
@@ -421,6 +423,93 @@ void TestPlotInspector::snapsToClosest()
     inspector.refresh();
     QCOMPARE(inspector.position().x(), rig.pixel(5.2, 5).x());
     QCOMPARE(inspector.position().y(), rig.pixel(5, 5).y());
+}
+
+void TestPlotInspector::heatmapCells()
+{
+    auto rig = PlotRig{0, 10, 0, 10};
+    auto* curve = rig.addCurve({1, 1, 9, 9}, "curve");
+    auto* heatmap = new HeatmapSeries(&rig.plot);
+    heatmap->setName(QStringLiteral("heatmap"));
+    heatmap->setXAxis(&rig.x);
+    heatmap->setYAxis(&rig.y);
+    // Columns span 0..4 and 4..8; rows span 0..5 and 5..10.
+    heatmap->setXMax(8);
+    heatmap->setYMax(10);
+    heatmap->setValues({0.5, 1.25, 2, std::numeric_limits<qreal>::quiet_NaN()}, 2);
+    QTRY_COMPARE(rig.plot.series().size(), 2);
+    auto inspector = PlotInspector{};
+    inspector.setPlot(&rig.plot);
+    auto* model = inspector.model();
+    const auto rowOf = [&](const PlotSeries* series) {
+        for (auto row = 0; row < model->count(); ++row) {
+            if (model->get(row).value("series").value<PlotSeries*>() == series) {
+                return model->get(row);
+            }
+        }
+        return QVariantMap{};
+    };
+    const auto cellAt = [&](const QPointF& point) {
+        rig.hover(point);
+        inspector.refresh();
+        return rowOf(heatmap);
+    };
+
+    // The cell under the cursor matches in every mode, reported at its center.
+    for (const auto mode : {PlotInspector::NearestX, PlotInspector::NearestY, PlotInspector::NearestXY}) {
+        inspector.setMode(mode);
+        const auto row = cellAt(rig.pixel(5, 3));
+        QVERIFY(row.value("valid").toBool());
+        QCOMPARE(row.value("seriesName").toString(), QStringLiteral("heatmap"));
+        QCOMPARE(row.value("dataPointIndex").toInt(), 1);
+        QCOMPARE(row.value("dataPointX").toDouble(), 6.0);
+        QCOMPARE(row.value("dataPointY").toDouble(), 2.5);
+        QCOMPARE(row.value("dataPointValue").toDouble(), 1.25);
+        QCOMPARE(row.value("xText").toString(), QStringLiteral("6.000"));
+        QCOMPARE(row.value("yText").toString(), QStringLiteral("2.500"));
+        QCOMPARE(row.value("valueText").toString(), QStringLiteral("1.25"));
+        QCOMPARE(row.value("pixelPosition").toPointF(), rig.pixel(6, 2.5));
+    }
+    // Rows without a value have no value text.
+    QCOMPARE(rowOf(curve).value("valueText").toString(), QString{});
+    // A cell with a non-finite value still matches; outside the grid nothing does.
+    const auto invalidCell = cellAt(rig.pixel(5, 7));
+    QCOMPARE(invalidCell.value("dataPointIndex").toInt(), 3);
+    QCOMPARE(invalidCell.value("valueText").toString(), QString{});
+    const auto outside = cellAt(rig.pixel(9, 3));
+    QCOMPARE(outside.value("dataPointStatus").value<InspectionStatus>(), InspectionStatus::NoMatch);
+
+    // Snapping moves the crosshair to the cell center; summaries do not apply to cells.
+    inspector.setSnapToDataPoint(true);
+    inspector.setSummaries(true);
+    const auto snapped = cellAt(rig.pixel(5, 3));
+    QCOMPARE(inspector.position(), rig.pixel(6, 2.5));
+    QVERIFY(snapped.value("valid").toBool());
+    QVERIFY(snapped.value("summaryStatus").value<InspectionStatus>() != InspectionStatus::Ready);
+    inspector.setSnapToDataPoint(false);
+    inspector.setSummaries(false);
+
+    // Data changes refresh the row.
+    heatmap->setValues({0.5, 7, 2, 3}, 2);
+    QTRY_COMPARE(rowOf(heatmap).value("dataPointValue").toDouble(), 7.0);
+
+    // A cursor set from code matches cells only with both coordinates.
+    inspector.setFollowPointer(false);
+    inspector.setCursorX(5);
+    inspector.refresh();
+    QVERIFY(inspector.active());
+    QVERIFY(!rowOf(heatmap).value("valid").toBool());
+    QVERIFY(rowOf(curve).value("valid").toBool());
+    inspector.setCursorY(3);
+    inspector.refresh();
+    QCOMPARE(rowOf(heatmap).value("dataPointIndex").toInt(), 1);
+
+    // Stepping walks XY series only.
+    inspector.setIncludedSeries({heatmap});
+    inspector.refresh();
+    inspector.stepCursor(1);
+    QCOMPARE(inspector.cursorX(), 5.0);
+    QCOMPARE(rowOf(heatmap).value("dataPointIndex").toInt(), 1);
 }
 
 void TestPlotInspector::formatterMutation()

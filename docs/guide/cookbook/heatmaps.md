@@ -88,35 +88,27 @@ A heatmap has no legend entry: the color bar is its key.
 
 ## Read the cell under the pointer
 
-`inspection.recordAtPosition()` returns the record of the cell at a
-series-local position: pixels from the top left of the plot area. Its
-`fields` are `x` and `y` (the cell center), `value`, `row`, and `column`;
-`index` is `row * columns + column`.
+A [`PlotInspector`](data-inspection.md#inspector) reports the cell under the
+cursor in every mode. Its row has the cell center as `dataPointX` and
+`dataPointY`, the value as `dataPointValue` and `valueText`, and
+`row * columns + column` as `dataPointIndex`. `InspectionTooltip` shows the
+center and the value:
 
 ```qml
-// Covers the plot area, so its positions are series-local.
-Item {
-    parent: plot.overlay
-    x: plot.plotRect.x
-    y: plot.plotRect.y
-    width: plot.plotRect.width
-    height: plot.plotRect.height
+QAccelPlot.PlotInspector {
+    plot: plot
 
-    HoverHandler { id: hover }
-
-    Text {
-        readonly property var record: heatmap.inspection.recordAtPosition(hover.point.position)
-        visible: hover.hovered && record.valid
-        text: visible ? record.fields.value.toFixed(3) : ""
-    }
+    QAccelPlot.InspectionTooltip {}
 }
 ```
 
-A cell with a non-finite value is still a match. `inspection.recordAt(index)`
-looks a cell up by index. While a grid edge is infinite, `recordAt()` returns
-`Inspection.Unavailable` and `recordAtPosition()` matches no cell.
-`PlotInspector`, and so `InspectionTooltip` and `Crosshair`, do not inspect
-heatmaps.
+A cell with a non-finite value is still a match. In code,
+`inspection.dataPointAtPosition()` returns the same data point for a
+series-local position: pixels from the top left of the plot area.
+`inspection.recordAtPosition()` and `inspection.recordAt(index)` return the
+cell's record, whose `fields` are `x` and `y` (the cell center), `value`,
+`row`, and `column`. While a grid edge is infinite, `recordAt()` returns
+`Inspection.Unavailable` and no position matches a cell.
 
 ## Set data from C++
 

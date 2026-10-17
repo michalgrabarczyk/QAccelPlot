@@ -565,9 +565,13 @@ void TestSeriesInspection::nativeRecords()
     QCOMPARE(bars.inspection()->nearest({1, 1}).status, InspectionStatus::Unsupported);
     QCOMPARE(bands.inspection()->summarizeRange(0, 5).status, InspectionStatus::Unsupported);
     QCOMPARE(bands.inspection()->dataPointAt(0).status, InspectionStatus::Unsupported);
+    // Only heatmaps match data points by position.
+    QVERIFY(!bands.inspection()->positionSupported());
+    QCOMPARE(bands.inspection()->dataPointAtPosition({20, 50}).status, InspectionStatus::Unsupported);
     // XY series have no native records.
     auto curve = LineCurve{};
     QCOMPARE(curve.inspection()->recordAt(0).status, InspectionStatus::Unsupported);
+    QCOMPARE(curve.inspection()->dataPointAtPosition({0, 0}).status, InspectionStatus::Unsupported);
 }
 
 QTEST_MAIN(TestSeriesInspection)

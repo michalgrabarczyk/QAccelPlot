@@ -6,6 +6,7 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #include <QAccelPlot/inspection/InspectionRowModel.hpp>
+#include <QAccelPlot/series/HeatmapSeries.hpp>
 #include <QAccelPlot/series/LineCurve.hpp>
 
 #include <QSignalSpy>
@@ -44,6 +45,7 @@ private slots:
     void presentationChangesNotify_data();
     void presentationChangesNotify();
     void get_returnsEveryRoleByName();
+    void heatmapRow_reportsCellValue();
     void setRows_updatesInPlaceWhileSeriesAreUnchanged();
     void retainSeries_removesMissingAndDestroyedSeries();
 };
@@ -112,6 +114,26 @@ void TestInspectionRowModel::get_returnsEveryRoleByName()
     QCOMPARE(model.get(0).value("seriesName").toString(), QStringLiteral("fallback"));
     QVERIFY(model.get(1).isEmpty());
     QVERIFY(model.get(-1).isEmpty());
+}
+
+void TestInspectionRowModel::heatmapRow_reportsCellValue()
+{
+    auto heatmap = HeatmapSeries{};
+    heatmap.setName(QStringLiteral("field"));
+    auto model = InspectionRowModel{};
+    auto row = rowFor(&heatmap, 4);
+    row.dataPoint.value = 0.125;
+    row.valueText = QStringLiteral("0.125");
+    model.setRows({row});
+
+    const auto values = model.get(0);
+    QCOMPARE(values.value("seriesName").toString(), QStringLiteral("field"));
+    // A heatmap has no legend entry, so no series color.
+    QVERIFY(!values.value("seriesColor").value<QColor>().isValid());
+    QCOMPARE(values.value("dataPointIndex").toInt(), 4);
+    QCOMPARE(values.value("dataPointValue").toDouble(), 0.125);
+    QCOMPARE(values.value("valueText").toString(), QStringLiteral("0.125"));
+    QCOMPARE(model.data(model.index(0), InspectionRowModel::ValueTextRole).toString(), QStringLiteral("0.125"));
 }
 
 void TestInspectionRowModel::setRows_updatesInPlaceWhileSeriesAreUnchanged()

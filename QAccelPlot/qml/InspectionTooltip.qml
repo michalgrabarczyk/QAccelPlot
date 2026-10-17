@@ -29,6 +29,7 @@ Rectangle {
         required property color seriesColor
         required property string xText
         required property string yText
+        required property string valueText
         required property bool hasSummary
         required property int summaryCount
         required property string minimumText
@@ -52,7 +53,8 @@ Rectangle {
             text: {
                 if (row.hasSummary && row.summaryCount > 1)
                     return row.seriesName + ": " + row.minimumText + " … " + row.maximumText + " (" + row.summaryCount + ")";
-                return row.seriesName + ": " + row.xText + ", " + row.yText;
+                const text = row.seriesName + ": " + row.xText + ", " + row.yText;
+                return row.valueText === "" ? text : text + " = " + row.valueText;
             }
         }
     }

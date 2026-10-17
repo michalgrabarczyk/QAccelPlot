@@ -9,8 +9,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Added
 
 - Heatmaps via `HeatmapSeries`: a uniform grid of values colored through a
-  `Colormap`, with cell records for inspection, a `ColorBar` key, and a
-  Heatmap example.
+  `Colormap`, with a `ColorBar` key, a Heatmap example, and cell inspection
+  through `PlotInspector` and `inspection.dataPointAtPosition()`.
+- `valueText` inspection role with the value of a heatmap cell or a colored
+  `PointCloud` point. The default `InspectionTooltip` row shows it.
 - Legend entries described in C++: `PlotSeries::legendEntry()` returns a
   `LegendEntry`, and `LegendModel` lists the entries of the visible series that
   have one, such as `Plot.legendModel`.

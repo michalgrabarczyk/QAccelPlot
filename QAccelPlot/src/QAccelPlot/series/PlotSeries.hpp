@@ -275,6 +275,10 @@ protected:
     virtual InspectionRecord inspectionRecord(int index) const;
     /// \brief Returns the native record drawn at the series-local \a position. Default: unsupported.
     virtual InspectionRecord inspectionRecordAt(const QPointF& position) const;
+    /// \brief Returns whether \c inspectionDataPointAt() matches records drawn as areas, such as heatmap cells. Default: false.
+    virtual bool positionInspectionSupported() const;
+    /// \brief Returns the record drawn at the series-local \a position as a data point. Default: unsupported.
+    virtual InspectionDataPoint inspectionDataPointAt(const QPointF& position) const;
 
     /// \brief Extents of a series in both dimensions.
     ///

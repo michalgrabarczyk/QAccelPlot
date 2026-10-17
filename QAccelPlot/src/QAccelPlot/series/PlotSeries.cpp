@@ -499,6 +499,18 @@ InspectionRecord PlotSeries::inspectionRecordAt(const QPointF& /*position*/) con
     return result;
 }
 
+bool PlotSeries::positionInspectionSupported() const
+{
+    return false;
+}
+
+InspectionDataPoint PlotSeries::inspectionDataPointAt(const QPointF& /*position*/) const
+{
+    auto result = InspectionDataPoint{};
+    result.status = InspectionStatus::Unsupported;
+    return result;
+}
+
 PlotSeries::DataRanges PlotSeries::computeDataRanges() const
 {
     const auto extents = dataPoints_.extents(logScaleX(), logScaleY());
