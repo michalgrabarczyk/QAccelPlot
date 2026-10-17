@@ -74,7 +74,9 @@ class HeatmapSeries : public ColormappedSeries {
 
     /// \brief Number of cells per row. Changing it keeps the values and recomputes \c rows. Default: 0.
     ///
-    /// Values of an incomplete last row are kept but not drawn or inspected.
+    /// Values of an incomplete last row are kept but not drawn or inspected. \c setValues() sets it,
+    /// so do not bind \c columns while using \c setValues(): the binding reshapes the grid when it
+    /// is re-evaluated.
     Q_PROPERTY(int columns READ columns WRITE setColumns NOTIFY columnsChanged)
     /// \brief Read-only: number of complete rows of \c columns values.
     Q_PROPERTY(int rows READ rows NOTIFY rowsChanged)
@@ -127,7 +129,8 @@ public:
     /// \brief Replaces the grid with \a values, row by row, \a columns per row.
     ///
     /// The number of values must be a multiple of \a columns. An empty list clears the values and
-    /// keeps \c columns.
+    /// keeps \c columns. Sets \c columns without removing a binding on it, so do not bind
+    /// \c columns while using this function.
     Q_INVOKABLE void setValues(const QList<qreal>& values, int columns);
     /// \brief Replaces the grid with \a columns by \a rows values moved from \a values, row by row.
     void setValues(std::vector<float>&& values, int columns, int rows);

@@ -1932,6 +1932,8 @@ QAccelPlot.Plot {
   index space: column `c` spans `[c, c + 1]`. A reversed extent flips the grid.
 - The grid edges are the series' data range, so `rescaleToData()` fits the
   whole grid.
+- `setValues()` sets `columns`. Do not bind `columns` while using it: when
+  the binding is re-evaluated, it reshapes the grid.
 - `valueAt(row, column)` reads a cell.
 
 ## Choose the colors
