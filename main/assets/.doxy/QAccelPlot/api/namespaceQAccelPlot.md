@@ -131,7 +131,7 @@
 | class | [**OverlayChildren**](classQAccelPlot_1_1OverlayChildren.md) <br>_Objects declared inside an inspection tool in QML._  |
 | class | [**PlotBorder**](classQAccelPlot_1_1PlotBorder.md) <br>_Decorative frame configuration exposed by_ `PlotView::border` _._ |
 | class | [**PlotDragRect**](classQAccelPlot_1_1PlotDragRect.md) <br>_Rectangle dragged out inside the plot area, shared by rectangle zoom and data selection._  |
-| class | [**PlotInspector**](classQAccelPlot_1_1PlotInspector.md) <br>_Inspects every visible XY series of a plot at a cursor and publishes one model row per series._  |
+| class | [**PlotInspector**](classQAccelPlot_1_1PlotInspector.md) <br>_Inspects the visible XY series and heatmaps of a plot at a cursor and publishes one model row per series._  |
 | class | [**PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md) <br>_Carries mouse event data for the mouse signals._  |
 | class | [**PlotRectangleZoom**](classQAccelPlot_1_1PlotRectangleZoom.md) <br>_Rectangle zoom configuration and selection state exposed by PlotView._  |
 | class | [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) <br>_Common QML item contract for data series hosted by_ `PlotView` _._ |
@@ -167,6 +167,7 @@
 | typedef [**GradientFillBaselineNS::Mode**](namespaceQAccelPlot_1_1GradientFillBaselineNS.md#enum-mode) | [**GradientFillBaseline**](#typedef-gradientfillbaseline)  <br> |
 | typedef [**GradientValueSourceNS::Source**](namespaceQAccelPlot_1_1GradientValueSourceNS.md#enum-source) | [**GradientValueSource**](#typedef-gradientvaluesource)  <br> |
 | enum  | [**InspectionAxis**](#enum-inspectionaxis)  <br>_Data dimension a query measures along, or along which a series' records are ordered._  |
+| enum  | [**InspectionMatching**](#enum-inspectionmatching)  <br>_How_ `PlotInspector` _and_`SelectionTool` _match a series' data points to a position._ |
 | typedef [**InspectionNS::Status**](namespaceQAccelPlot_1_1InspectionNS.md#enum-status) | [**InspectionStatus**](#typedef-inspectionstatus)  <br> |
 | typedef [**NanGapModeNS::Mode**](namespaceQAccelPlot_1_1NanGapModeNS.md#enum-mode) | [**NanGapMode**](#typedef-nangapmode)  <br> |
 
@@ -279,6 +280,25 @@ _Data dimension a query measures along, or along which a series' records are ord
 enum QAccelPlot::InspectionAxis {
     X,
     Y
+};
+```
+
+
+
+
+<hr>
+
+
+
+
+### enum InspectionMatching {#enum-inspectionmatching}
+
+_How_ `PlotInspector` _and_`SelectionTool` _match a series' data points to a position._
+```C++
+enum QAccelPlot::InspectionMatching {
+    None,
+    Nearest,
+    Containing
 };
 ```
 

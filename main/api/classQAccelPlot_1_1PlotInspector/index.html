@@ -2262,7 +2262,7 @@
 
 <h1 id="class-qaccelplotplotinspector">Class QAccelPlot::PlotInspector<a class="headerlink" href="#class-qaccelplotplotinspector" title="Permanent link">&para;</a></h1>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="./"><strong>PlotInspector</strong></a></p>
-<p><em>Inspects every visible XY series of a plot at a cursor and publishes one model row per series.</em> <a href="#detailed-description">More...</a></p>
+<p><em>Inspects the visible XY series and heatmaps of a plot at a cursor and publishes one model row per series.</em> <a href="#detailed-description">More...</a></p>
 <ul>
 <li><code>#include &lt;PlotInspector.hpp&gt;</code></li>
 </ul>
@@ -2594,7 +2594,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">Q_INVOKABLE void</td>
-<td style="text-align: left;"><a href="#function-stepcursor"><strong>stepCursor</strong></a> (int steps) <br><em>Moves the cursor</em> <em>steps</em> <em>source records along the first matching series and stops following the pointer.</em></td>
+<td style="text-align: left;"><a href="#function-stepcursor"><strong>stepCursor</strong></a> (int steps) <br><em>Moves the cursor</em> <em>steps</em> <em>source records along the first matching XY series and stops following the pointer.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>
@@ -2615,6 +2615,7 @@
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
+<p>Series that draw data points as areas, such as <code>HeatmapSeries</code>, report the record under the cursor in every mode, and only while the cursor has both coordinates; <code>radius</code>, <code>interpolate</code>, and <code>summaries</code> do not apply to them, and <code>snapToDataPoint</code> moves both crosshair coordinates to the record's center.</p>
 <p>The cursor follows the plot's pointer by default; set <code>followPointer</code> to <code>false</code> and write <code>cursorX</code> to drive it from code, for example to link the crosshairs of several plots. Results are refreshed at most once per event-loop pass.</p>
 <p>In QML, declare <code>Crosshair</code>, <code>InspectionMarkers</code>, and <code>InspectionTooltip</code> inside the inspector: they receive it as their <code>inspector</code> and are stacked in declaration order, the last one on top.</p>
 <p><strong>See also:</strong> <a href="../classQAccelPlot_1_1SeriesInspection/"><strong>SeriesInspection</strong></a>, <a href="../classQAccelPlot_1_1InspectionRowModel/"><strong>InspectionRowModel</strong></a> </p>
@@ -3068,7 +3069,7 @@
 <hr>
 
 <h3 id="function-stepcursor">function stepCursor<a class="headerlink" href="#function-stepcursor" title="Permanent link">&para;</a></h3>
-<p><em>Moves the cursor</em> <em>steps</em> <em>source records along the first matching series and stops following the pointer.</em>
+<p><em>Moves the cursor</em> <em>steps</em> <em>source records along the first matching XY series and stops following the pointer.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotInspector</span><span class="o">::</span><span class="n">stepCursor</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-69-2" name="__codelineno-69-2" href="#__codelineno-69-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">steps</span>
 <a id="__codelineno-69-3" name="__codelineno-69-3" href="#__codelineno-69-3"></a><span class="p">)</span><span class="w"> </span>

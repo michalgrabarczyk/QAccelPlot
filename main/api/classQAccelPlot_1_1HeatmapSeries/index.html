@@ -1887,6 +1887,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#function-inspectiondatapointat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function inspectionDataPointAt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-inspectionrecord" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1913,6 +1924,28 @@
     <span class="md-ellipsis">
       
         function onAxisScaleChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-positioninspectionsupported" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function positionInspectionSupported
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-recordinspectionsupported" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function recordInspectionSupported
       
     </span>
   </a>
@@ -2457,6 +2490,10 @@
 <td style="text-align: left;"><a href="#function-datapointvaluecount"><strong>dataPointValueCount</strong></a> () override const<br><em>Returns 1: the</em> <code>PlotSeries</code> <em>setters take one value per cell.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">virtual <a href="../structQAccelPlot_1_1InspectionDataPoint/"><strong>InspectionDataPoint</strong></a></td>
+<td style="text-align: left;"><a href="#function-inspectiondatapointat"><strong>inspectionDataPointAt</strong></a> (const QPointF &amp; position) override const<br><em>Returns the cell drawn at the series-local</em> <em>position</em> <em>as a data point at its center.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">virtual <a href="../structQAccelPlot_1_1InspectionRecord/"><strong>InspectionRecord</strong></a></td>
 <td style="text-align: left;"><a href="#function-inspectionrecord"><strong>inspectionRecord</strong></a> (int index) override const<br><em>Returns the cell record at</em> <em>index</em> <em>.</em></td>
 </tr>
@@ -2467,6 +2504,14 @@
 <tr>
 <td style="text-align: right;">virtual void</td>
 <td style="text-align: left;"><a href="#function-onaxisscalechanged"><strong>onAxisScaleChanged</strong></a> () override<br><em>Repaints, because the series draws nothing on a logarithmic axis.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="#function-positioninspectionsupported"><strong>positionInspectionSupported</strong></a> () override const<br><em>Returns true: cells are matched by position.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="#function-recordinspectionsupported"><strong>recordInspectionSupported</strong></a> () override const<br><em>Returns true: cells are inspected as records.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual std::optional&lt; <a href="../structQAccelPlot_1_1ColormappedSeries_1_1ValueSpan/"><strong>ValueSpan</strong></a> &gt;</td>
@@ -2561,6 +2606,10 @@
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-inspectiondatachanged"><strong>inspectionDataChanged</strong></a> (<a href="../classQAccelPlot_1_1PlotSeries/#enum-datachange"><strong>DataChange</strong></a> change=DataChange::Replaced) <br><em>Advances the data revision and refreshes the data queries. Call after every accepted record change.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">virtual <a href="../structQAccelPlot_1_1InspectionDataPoint/"><strong>InspectionDataPoint</strong></a></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-inspectiondatapointat"><strong>inspectionDataPointAt</strong></a> (const QPointF &amp; position) const<br><em>Returns the record drawn at the series-local</em> <em>position</em> <em>as a data point. Default: unsupported.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">virtual <a href="../structQAccelPlot_1_1InspectionRecord/"><strong>InspectionRecord</strong></a></td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-inspectionrecord"><strong>inspectionRecord</strong></a> (int index) const<br><em>Returns the native record at</em> <em>index</em> <em>for series that are not plain XY series. Default: unsupported.</em></td>
 </tr>
@@ -2605,6 +2654,14 @@
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-ondatapointschanged"><strong>onDataPointsChanged</strong></a> (<a href="../classQAccelPlot_1_1PlotSeries/#enum-datachange"><strong>DataChange</strong></a> change, int previousCount) <br><em>Called after the data points changed, before the data queries are refreshed. The default does nothing.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-positioninspectionsupported"><strong>positionInspectionSupported</strong></a> () const<br><em>Returns whether</em> <code>inspectionDataPointAt()</code> <em>matches records drawn as areas, such as heatmap cells. Default: false.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-recordinspectionsupported"><strong>recordInspectionSupported</strong></a> () const<br><em>Returns whether</em> <code>inspectionRecord()</code> <em>and</em><code>inspectionRecordAt()</code> <em>answer for this series. Default: false.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">QRectF</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-resolveplotrect"><strong>resolvePlotRect</strong></a> () const<br><em>Returns the plot area to render into:</em> <code>plotRect</code> <em>when set, otherwise the item's current size.</em></td>
 </tr>
@@ -2640,7 +2697,7 @@
 <p>Cells with a non-finite value, and cells with a value at or below zero under a <code>Log</code> colormap, are transparent. Non-finite values do not count toward the value range.</p>
 <p>**
 **</p>
-<p><code>inspection.recordAt()</code> and <code>inspection.recordAtPosition()</code> return a record with the fields <code>x</code> and <code>y</code> (the cell center), <code>value</code>, <code>row</code>, and <code>column</code>. A cell with a non-finite value is still a match. While a grid edge is not finite, <code>recordAt()</code> returns <code>Unavailable</code> and <code>recordAtPosition()</code> matches no cell. <code>PlotInspector</code> does not inspect heatmaps.</p>
+<p><code>inspection.recordAt()</code> and <code>inspection.recordAtPosition()</code> return a record with the fields <code>x</code> and <code>y</code> (the cell center), <code>value</code>, <code>row</code>, and <code>column</code>. <code>inspection.dataPointAtPosition()</code> returns the cell as a data point at its center, with <code>index</code> <code>row * columns + column</code>, which <code>PlotInspector</code> reports in every mode. A cell with a non-finite value is still a match. While a grid edge is not finite, <code>recordAt()</code> returns <code>Unavailable</code> and no position matches a cell.</p>
 <p>**
 **</p>
 <p>Each pixel takes the color of the cell under its center, without interpolation. Logarithmic axes are not supported: the series draws nothing on one, reports no data range for it, and logs a warning. A grid with an infinite edge draws nothing. A grid of more than 16,777,216 (2^24) columns or rows, or of more cells than the GPU data texture holds, about 67 million for an 8192-pixel texture limit, draws nothing and logs a warning.</p>
@@ -2872,34 +2929,57 @@
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-datapointvaluecount"><em>QAccelPlot::PlotSeries::dataPointValueCount</em></a></p>
 <hr>
 
+<h3 id="function-inspectiondatapointat">function inspectionDataPointAt<a class="headerlink" href="#function-inspectiondatapointat" title="Permanent link">&para;</a></h3>
+<p><em>Returns the cell drawn at the series-local</em> <em>position</em> <em>as a data point at its center.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">InspectionDataPoint</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">inspectionDataPointAt</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">position</span>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-inspectiondatapointat"><em>QAccelPlot::PlotSeries::inspectionDataPointAt</em></a></p>
+<hr>
+
 <h3 id="function-inspectionrecord">function inspectionRecord<a class="headerlink" href="#function-inspectionrecord" title="Permanent link">&para;</a></h3>
 <p><em>Returns the cell record at</em> <em>index</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">InspectionRecord</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">inspectionRecord</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span>
-<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">InspectionRecord</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">inspectionRecord</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span>
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-inspectionrecord"><em>QAccelPlot::PlotSeries::inspectionRecord</em></a></p>
 <hr>
 
 <h3 id="function-inspectionrecordat">function inspectionRecordAt<a class="headerlink" href="#function-inspectionrecordat" title="Permanent link">&para;</a></h3>
 <p><em>Returns the record of the cell drawn at the series-local</em> <em>position</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">InspectionRecord</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">inspectionRecordAt</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">position</span>
-<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">InspectionRecord</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">inspectionRecordAt</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">position</span>
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-inspectionrecordat"><em>QAccelPlot::PlotSeries::inspectionRecordAt</em></a></p>
 <hr>
 
 <h3 id="function-onaxisscalechanged">function onAxisScaleChanged<a class="headerlink" href="#function-onaxisscalechanged" title="Permanent link">&para;</a></h3>
 <p><em>Repaints, because the series draws nothing on a logarithmic axis.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">onAxisScaleChanged</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">onAxisScaleChanged</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-onaxisscalechanged"><em>QAccelPlot::PlotSeries::onAxisScaleChanged</em></a></p>
 <hr>
 
+<h3 id="function-positioninspectionsupported">function positionInspectionSupported<a class="headerlink" href="#function-positioninspectionsupported" title="Permanent link">&para;</a></h3>
+<p><em>Returns true: cells are matched by position.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">positionInspectionSupported</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-positioninspectionsupported"><em>QAccelPlot::PlotSeries::positionInspectionSupported</em></a></p>
+<hr>
+
+<h3 id="function-recordinspectionsupported">function recordInspectionSupported<a class="headerlink" href="#function-recordinspectionsupported" title="Permanent link">&para;</a></h3>
+<p><em>Returns true: cells are inspected as records.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">recordInspectionSupported</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-recordinspectionsupported"><em>QAccelPlot::PlotSeries::recordInspectionSupported</em></a></p>
+<hr>
+
 <h3 id="function-scanvaluerange">function scanValueRange<a class="headerlink" href="#function-scanvaluerange" title="Permanent link">&para;</a></h3>
 <p><em>Returns the span of the finite cell values.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="w"> </span><span class="n">ValueSpan</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">scanValueRange</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="w"> </span><span class="n">ValueSpan</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">scanValueRange</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1ColormappedSeries/#function-scanvaluerange"><em>QAccelPlot::ColormappedSeries::scanValueRange</em></a></p>
 <hr>

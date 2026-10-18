@@ -140,6 +140,8 @@ private:
     // Fills state with the results at cursor. Returns false when user code run by a label formatter invalidated them.
     bool inspect(const QPointF& cursor, State& state) const;
     QList<Query> queryRows(const QPointF& cursor) const;
+    // Series matched by position report the record under a cursor with both coordinates, in every mode.
+    InspectionDataPoint matchDataPoint(PlotSeries& series, Mode mode, const QPointF& cursor, const QPointF& local) const;
     // Between two data points a series always matches; the radius only limits how far past its ends it still does.
     InspectionDataPoint dataPointAlong(SeriesInspection& inspection, Mode mode, const QPointF& local) const;
     InspectionSummary summarize(PlotSeries& series, const QPointF& local, Mode mode) const;

@@ -568,6 +568,7 @@
 * **valueMin** ([**QAccelPlot::HeatmapMaterial**](classQAccelPlot_1_1HeatmapMaterial.md), [**QAccelPlot::PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md))
 * **valuesRevision\_** ([**QAccelPlot::HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md))
 * **values\_** ([**QAccelPlot::HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md), [**QAccelPlot::Histogram**](classQAccelPlot_1_1Histogram.md))
+* **valueText** ([**QAccelPlot::InspectionRow**](structQAccelPlot_1_1InspectionRow.md))
 * **valueStride** ([**QAccelPlot::InspectionSource**](structQAccelPlot_1_1InspectionSource.md))
 * **vertexCacheRevision\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **vertexCache** ([**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md), [**QAccelPlot::PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md))

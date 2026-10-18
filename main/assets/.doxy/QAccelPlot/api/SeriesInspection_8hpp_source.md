@@ -30,6 +30,7 @@ namespace QAccelPlot {
 
 class PlotSeries;
 enum class InspectionAxis;
+enum class InspectionMatching;
 struct InspectionMetric;
 struct InspectionSource;
 
@@ -37,14 +38,12 @@ class SeriesInspection : public QObject {
     Q_OBJECT
     QML_ANONYMOUS
     Q_PROPERTY(::QAccelPlot::InspectionNS::Status status READ status NOTIFY statusChanged)
-    Q_PROPERTY(bool supported READ supported NOTIFY statusChanged)
     Q_PROPERTY(int maximumPageSize READ maximumPageSize CONSTANT)
 
 public:
     ~SeriesInspection() override;
 
     InspectionStatus status() const;
-    bool supported() const;
     int maximumPageSize() const;
 
     Q_INVOKABLE quint64 indexBytes() const;
@@ -63,15 +62,19 @@ public:
 
     Q_INVOKABLE ::QAccelPlot::InspectionRecord recordAt(int index) const;
     Q_INVOKABLE ::QAccelPlot::InspectionRecord recordAtPosition(const QPointF& position) const;
+    Q_INVOKABLE ::QAccelPlot::InspectionDataPoint dataPointAtPosition(const QPointF& position) const;
 
 signals:
     void statusChanged();
 
 private:
     friend class PlotSeries;
+    friend class PlotInspector;
+    friend class SelectionTool;
     struct Private;
 
     explicit SeriesInspection(PlotSeries& series);
+    InspectionMatching matching() const;
     void sourceChanged(bool appended);
     void sourceInvalidated();
     // Returns Ready when a query can run now: one along the given axis, or an on-screen or region query otherwise.

@@ -31,6 +31,7 @@ struct InspectionRow {
     QPointF pixelPosition;         
     QString xText;                 
     QString yText;                 
+    QString valueText;             
     bool hasSummary{false};        
     InspectionSummary summary;     
     QString minimumText;           
@@ -56,6 +57,7 @@ public:
         DataPointValueRole,
         XTextRole,
         YTextRole,
+        ValueTextRole,
         PixelPositionRole,
         DistanceRole,
         InterpolatedRole,

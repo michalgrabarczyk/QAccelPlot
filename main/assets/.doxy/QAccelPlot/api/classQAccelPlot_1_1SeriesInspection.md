@@ -66,7 +66,6 @@ flowchart TB
 | ---: | :--- |
 | property int | [**maximumPageSize**](classQAccelPlot_1_1SeriesInspection.md#property-maximumpagesize-12)  <br>_Largest page returned by_ `indices()` _._ |
 | property QML\_ANONYMOUSQAccelPlot::InspectionNS::Status | [**status**](classQAccelPlot_1_1SeriesInspection.md#property-status-12)  <br>_Readiness for data point queries:_ `Ready` _,_`Idle` _,_`Preparing` _,_`Unsupported` _, or_`Unavailable` _._ |
-| property bool | [**supported**](classQAccelPlot_1_1SeriesInspection.md#property-supported-12)  <br>_Whether the series has XY records that data point queries can search._  |
 
 
 
@@ -87,6 +86,7 @@ flowchart TB
 |  Q\_INVOKABLE::QAccelPlot::InspectionBracket | [**bracketByX**](#function-bracketbyx) (qreal pixelX) <br>_Returns the valid data points on either side of_ _pixelX_ _and the point between them._ |
 |  Q\_INVOKABLE::QAccelPlot::InspectionBracket | [**bracketByY**](#function-bracketbyy) (qreal pixelY) <br>_Returns the valid data points whose Y is on either side of_ _pixelY_ _and the point between them._ |
 |  Q\_INVOKABLE::QAccelPlot::InspectionDataPoint | [**dataPointAt**](#function-datapointat) (int index) const<br>_Returns the record at_ _index_ _;_`NoMatch` _with its raw coordinates when the record is invalid._ |
+|  Q\_INVOKABLE::QAccelPlot::InspectionDataPoint | [**dataPointAtPosition**](#function-datapointatposition) (const QPointF & position) const<br>_Returns the record drawn at the series-local_ _position_ _as a data point, such as the heatmap cell under it._ |
 |  Q\_INVOKABLE quint64 | [**indexBytes**](#function-indexbytes) () const<br>_Returns the bytes held by query caches and indexes, excluding the series' own data._  |
 |  Q\_INVOKABLE::QAccelPlot::InspectionPage | [**indices**](#function-indices) (qreal xMin, qreal xMax, qreal yMin, qreal yMax, int offset=0, int limit=4096, quint64 expectedRevision=0) <br>_Returns up to_ _limit_ _source indices inside the region, skipping the first__offset_ _matches._ |
 |  int | [**maximumPageSize**](#function-maximumpagesize-22) () const<br>_Returns the largest page returned by_ `indices()` _._ |
@@ -99,7 +99,6 @@ flowchart TB
 |  [**InspectionStatus**](namespaceQAccelPlot_1_1InspectionNS.md#enum-status) | [**status**](#function-status-22) () const<br>_Returns the readiness for data point queries._  |
 |  Q\_INVOKABLE::QAccelPlot::InspectionSummary | [**summarize**](#function-summarize) (qreal xMin, qreal xMax, qreal yMin, qreal yMax) <br>_Returns Y statistics of the valid data points inside the region._  |
 |  Q\_INVOKABLE::QAccelPlot::InspectionSummary | [**summarizeRange**](#function-summarizerange) (qreal xMin, qreal xMax) <br>_Returns Y statistics of the valid data points whose X lies in the interval._  |
-|  bool | [**supported**](#function-supported-22) () const<br>_Returns whether the series has XY records that data point queries can search._  |
 |   | [**~SeriesInspection**](#function-seriesinspection) () override<br> |
 
 
@@ -138,7 +137,7 @@ Available as `PlotSeries::inspection`. Call it on the series' thread. Pixel argu
 Queries cover every stored data point, also outside the viewport, and match data points rather than the line segments between them. Invalid data points never match, and equal distances resolve to the highest index. Statistics are data-point-weighted and use the original Y values.
 
 
-`LineCurve` and `PointCloud` answer every query. Series whose X or Y values are finite and non-decreasing are searched in place, need no preparation, and stay queryable while records are appended; queries along one axis, such as `nearestByX()`, need that order along their own axis. Other series of up to 20,000 records are scanned per query. Larger ones are indexed on a worker thread first; until then queries return `Inspection.Preparing`. Requesting an index copies the series' buffer once on the calling thread, the index takes about 40 MB per million valid data points, and any data change discards it. Other series types expose native records through `recordAt()` and `recordAtPosition()` only.
+`LineCurve` and `PointCloud` answer every query. Series whose X or Y values are finite and non-decreasing are searched in place, need no preparation, and stay queryable while records are appended; queries along one axis, such as `nearestByX()`, need that order along their own axis. Other series of up to 20,000 records are scanned per query. Larger ones are indexed on a worker thread first; until then queries return `Inspection.Preparing`. Requesting an index copies the series' buffer once on the calling thread, the index takes about 40 MB per million valid data points, and any data change discards it. Other series types expose native records through `recordAt()` and `recordAtPosition()` only; `HeatmapSeries` also answers `dataPointAtPosition()`.
 
 
 
@@ -178,21 +177,10 @@ QML_ANONYMOUSQAccelPlot::InspectionNS::Status QAccelPlot::SeriesInspection::stat
 
 
 
-
-<hr>
-
+Bar, rectangle, band, and heatmap series are `Ready` while available; the queries that do not apply to them return `Unsupported`. `Unsupported` only for a series that answers no query. 
 
 
-
-### property supported {#property-supported-12}
-
-_Whether the series has XY records that data point queries can search._ 
-```C++
-bool QAccelPlot::SeriesInspection::supported;
-```
-
-
-
+        
 
 <hr>
 ## Public Signals Documentation
@@ -263,6 +251,27 @@ Q_INVOKABLE::QAccelPlot::InspectionDataPoint QAccelPlot::SeriesInspection::dataP
 
 
 
+
+<hr>
+
+
+
+
+### function dataPointAtPosition {#function-datapointatposition}
+
+_Returns the record drawn at the series-local_ _position_ _as a data point, such as the heatmap cell under it._
+```C++
+Q_INVOKABLE::QAccelPlot::InspectionDataPoint QAccelPlot::SeriesInspection::dataPointAtPosition (
+    const QPointF & position
+) const
+```
+
+
+
+`Unsupported` for series that do not draw data points as areas. The coordinates and `pixelPosition` of a match are the record's center, and `distance` is measured from _position_ to it. 
+
+
+        
 
 <hr>
 
@@ -472,21 +481,6 @@ Q_INVOKABLE::QAccelPlot::InspectionSummary QAccelPlot::SeriesInspection::summari
     qreal xMin,
     qreal xMax
 ) 
-```
-
-
-
-
-<hr>
-
-
-
-
-### function supported {#function-supported-22}
-
-_Returns whether the series has XY records that data point queries can search._ 
-```C++
-bool QAccelPlot::SeriesInspection::supported () const
 ```
 
 

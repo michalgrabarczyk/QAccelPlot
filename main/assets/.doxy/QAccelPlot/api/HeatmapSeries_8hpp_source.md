@@ -84,8 +84,11 @@ protected:
 
     void applyDataPoints(DataPointInput&& input) override;
     int dataPointValueCount() const override;
+    bool recordInspectionSupported() const override;
     InspectionRecord inspectionRecord(int index) const override;
     InspectionRecord inspectionRecordAt(const QPointF& position) const override;
+    bool positionInspectionSupported() const override;
+    InspectionDataPoint inspectionDataPointAt(const QPointF& position) const override;
     DataRanges computeDataRanges() const override;
     void onAxisScaleChanged() override;
     std::optional<ValueSpan> scanValueRange() const override;
@@ -107,6 +110,7 @@ private:
     void applyShape(int columns);
     void setBound(qreal& bound, qreal value, void (HeatmapSeries::*changed)());
     std::optional<std::pair<int, int>> cellAt(const QPointF& position) const;
+    QPointF cellCenter(int row, int column) const;
     bool canDraw(QQuickWindow* window);
     void updateMaterial(HeatmapMaterial& material, QQuickWindow* window, bool newNode);
 

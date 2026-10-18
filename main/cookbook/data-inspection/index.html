@@ -1558,8 +1558,11 @@ the cursor. <code>SelectionTool</code> selects a region and reports its statisti
 <p><a href="../rectangle-zoom/">Rectangle zoom</a> defaults to Ctrl + left drag. If both are
 set to the same gesture, <code>SelectionTool</code> takes it.</p>
 <h2 id="inspector">Inspector<a class="headerlink" href="#inspector" title="Permanent link">&para;</a></h2>
-<p><a href="../../api/classQAccelPlot_1_1PlotInspector/"><code>PlotInspector</code></a> queries every visible <code>LineCurve</code> and
-<code>PointCloud</code> of the plot at the cursor. Other series types have no row.</p>
+<p><a href="../../api/classQAccelPlot_1_1PlotInspector/"><code>PlotInspector</code></a> queries every visible <code>LineCurve</code>,
+<code>PointCloud</code>, and <code>HeatmapSeries</code> of the plot at the cursor. Other series types
+have no row. A heatmap reports the cell under the cursor in every mode, at its
+center; <code>radius</code>, <code>interpolate</code>, and <code>summaries</code> do not apply to it, and
+<code>snapToDataPoint</code> moves both crosshair coordinates to the center.</p>
 <table>
 <thead>
 <tr>
@@ -1611,16 +1614,21 @@ and declare the roles it uses as required properties:</p>
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">}</span>
 </code></pre></div>
 <p><a href="../../api/classQAccelPlot_1_1InspectionRowModel/"><code>InspectionRowModel</code></a> lists the roles. Text roles such as <code>yText</code>
-use the axis' tick formatter at a precision that follows the zoom level.</p>
+use the axis' tick formatter at a precision that follows the zoom level.
+<code>valueText</code> holds the value of a heatmap cell or a colored <code>PointCloud</code> point
+with up to six significant digits; the default row shows it after the
+coordinates.</p>
 <h3 id="cursor-from-code">Cursor from code<a class="headerlink" href="#cursor-from-code" title="Permanent link">&para;</a></h3>
 <p>Set <code>followPointer: false</code> and write <code>cursorX</code>, <code>cursorY</code>, or both to place the
 cursor in data coordinates. With one coordinate, series are matched along that
-axis in every mode. Link two plots by binding one inspector to the other:</p>
+axis in every mode and heatmaps have no match. Link two plots by binding one
+inspector to the other:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">PlotInspector</span> <span class="p">{</span> <span class="kd">id: top</span><span class="p">;</span> <span class="k">plot:</span> <span class="nx">topPlot</span> <span class="p">}</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">PlotInspector</span> <span class="p">{</span> <span class="k">plot:</span> <span class="nx">bottomPlot</span><span class="p">;</span> <span class="k">followPointer:</span> <span class="kc">false</span><span class="p">;</span> <span class="k">cursorX:</span> <span class="nx">top</span><span class="p">.</span><span class="nx">cursorX</span> <span class="p">}</span>
 </code></pre></div>
 <p><code>stepCursor(n)</code> moves the cursor <code>n</code> source records along the first matching
-series and stops following the mouse pointer; use it for keyboard navigation.</p>
+XY series and stops following the mouse pointer; use it for keyboard
+navigation.</p>
 <h2 id="queries">Queries<a class="headerlink" href="#queries" title="Permanent link">&para;</a></h2>
 <p>Every series exposes its queries as <code>series.inspection</code>. Call them on the series'
 thread. Pixel arguments are series-local logical pixels: map a plot-local
@@ -1658,13 +1666,18 @@ position with <code>series.mapFromItem(plot, position)</code>.</p>
 <td><code>indices()</code></td>
 </tr>
 <tr>
-<td>Native record of a bar, rectangle, or band series</td>
+<td>Native record of a bar, rectangle, band, or heatmap series</td>
 <td><code>recordAt()</code>, <code>recordAtPosition()</code></td>
+</tr>
+<tr>
+<td>Heatmap cell at a position, as a data point</td>
+<td><code>dataPointAtPosition()</code></td>
 </tr>
 </tbody>
 </table>
 <p>Results carry a <code>status</code> and a <code>valid</code> flag. Compare <code>status</code> with
-<code>QAccelPlot.Inspection.Ready</code>, <code>NoMatch</code>, <code>Preparing</code>, or another status.
+<code>QAccelPlot.Inspection.Ready</code>, <code>NoMatch</code>, <code>Preparing</code>, or another status. A
+query that does not apply to the series returns <code>Unsupported</code>.
 <a href="../../api/classQAccelPlot_1_1SeriesInspection/"><code>SeriesInspection</code></a> specifies regions, tie-breaking, and
 paging.</p>
 <h3 id="readiness">Readiness<a class="headerlink" href="#readiness" title="Permanent link">&para;</a></h3>

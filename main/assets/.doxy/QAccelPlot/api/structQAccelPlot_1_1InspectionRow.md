@@ -53,6 +53,7 @@ _Inspection result of one series, as shown by one row of an_ `InspectionRowModel
 |  QPointF | [**pixelPosition**](#variable-pixelposition)  <br>_Data point position in plot-local logical pixels._  |
 |  QPointer&lt; [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) &gt; | [**series**](#variable-series)  <br>_Series the row describes._  |
 |  [**InspectionSummary**](structQAccelPlot_1_1InspectionSummary.md) | [**summary**](#variable-summary)  <br>_Region statistics._  |
+|  QString | [**valueText**](#variable-valuetext)  <br>_Data point value with up to six significant digits; empty when it is NaN._  |
 |  QString | [**xText**](#variable-xtext)  <br>_Data point X formatted by the series' X axis._  |
 |  QString | [**yText**](#variable-ytext)  <br>_Data point Y formatted by the series' Y axis._  |
 
@@ -215,6 +216,21 @@ QPointer<PlotSeries> QAccelPlot::InspectionRow::series;
 _Region statistics._ 
 ```C++
 InspectionSummary QAccelPlot::InspectionRow::summary;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable valueText {#variable-valuetext}
+
+_Data point value with up to six significant digits; empty when it is NaN._ 
+```C++
+QString QAccelPlot::InspectionRow::valueText;
 ```
 
 

@@ -1024,6 +1024,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#removed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Removed
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1064,7 +1075,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#removed" class="md-nav__link">
+  <a href="#removed_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Removed
@@ -1125,7 +1136,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#removed_1" class="md-nav__link">
+  <a href="#removed_2" class="md-nav__link">
     <span class="md-ellipsis">
       
         Removed
@@ -1619,6 +1630,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#removed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Removed
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1659,7 +1681,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#removed" class="md-nav__link">
+  <a href="#removed_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Removed
@@ -1720,7 +1742,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#removed_1" class="md-nav__link">
+  <a href="#removed_2" class="md-nav__link">
     <span class="md-ellipsis">
       
         Removed
@@ -1848,8 +1870,10 @@
 <h3 id="added">Added<a class="headerlink" href="#added" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Heatmaps via <code>HeatmapSeries</code>: a uniform grid of values colored through a
-  <code>Colormap</code>, with cell records for inspection, a <code>ColorBar</code> key, and a
-  Heatmap example.</li>
+  <code>Colormap</code>, with a <code>ColorBar</code> key, a Heatmap example, and cell inspection
+  through <code>PlotInspector</code> and <code>inspection.dataPointAtPosition()</code>.</li>
+<li><code>valueText</code> inspection role with the value of a heatmap cell or a colored
+  <code>PointCloud</code> point. The default <code>InspectionTooltip</code> row shows it.</li>
 <li>Legend entries described in C++: <code>PlotSeries::legendEntry()</code> returns a
   <code>LegendEntry</code>, and <code>LegendModel</code> lists the entries of the visible series that
   have one, such as <code>Plot.legendModel</code>.</li>
@@ -1860,6 +1884,14 @@
   and <code>HeatmapSeries</code>. In C++, <code>ColorBar::series()</code> returns a <code>ColormappedSeries*</code>.</li>
 <li><code>Legend</code> takes a <code>model</code> instead of <code>series</code>. Hidden series have no entry, and
   unnamed series are listed as "Series N".</li>
+<li><code>inspection.status</code> is <code>Ready</code> for bar, rectangle, band, and heatmap series
+  instead of <code>Unsupported</code>. Queries that do not apply to them still return
+  <code>Unsupported</code>.</li>
+</ul>
+<h3 id="removed">Removed<a class="headerlink" href="#removed" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>SeriesInspection.supported</code>. A query that does not apply to a series returns
+  <code>Inspection.Unsupported</code>.</li>
 </ul>
 <h2 id="040-2026-10-16">[0.4.0] — 2026-10-16<a class="headerlink" href="#040-2026-10-16" title="Permanent link">&para;</a></h2>
 <h3 id="added_1">Added<a class="headerlink" href="#added_1" title="Permanent link">&para;</a></h3>
@@ -1951,7 +1983,7 @@
   instead of 1.0. Replace <code>import QAccelPlot 1.0</code> with <code>import QAccelPlot</code>.</li>
 <li><code>PlotView::rescaleAllAxes()</code> is public instead of protected.</li>
 </ul>
-<h3 id="removed">Removed<a class="headerlink" href="#removed" title="Permanent link">&para;</a></h3>
+<h3 id="removed_1">Removed<a class="headerlink" href="#removed_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li>The <code>setDataNoRange()</code> and <code>setDataFNoRange()</code> setters. Use <code>setData()</code> and
   <code>setDataF()</code>, which no longer scan. To keep a range the application maintains,
@@ -2078,7 +2110,7 @@
   <code>styling/transitions</code>, <code>styling/theming</code> (dark and light palettes), and
   <code>data/missing_data</code> (invalid samples and gaps).</li>
 </ul>
-<h3 id="removed_1">Removed<a class="headerlink" href="#removed_1" title="Permanent link">&para;</a></h3>
+<h3 id="removed_2">Removed<a class="headerlink" href="#removed_2" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>LogTickLabelFormatter</code>. The default <code>NumericTickLabelFormatter</code> now labels
   logarithmic axes with the same superscript powers of ten.</li>

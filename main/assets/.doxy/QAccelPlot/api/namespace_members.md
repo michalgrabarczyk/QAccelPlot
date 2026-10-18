@@ -47,6 +47,7 @@
 ## i
 
 * **InspectionAxis** ([**QAccelPlot**](namespaceQAccelPlot.md))
+* **InspectionMatching** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **InspectionStatus** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **isValidPoint** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
 * **isEmptyChunk** ([**QAccelPlot**](namespaceQAccelPlot.md))

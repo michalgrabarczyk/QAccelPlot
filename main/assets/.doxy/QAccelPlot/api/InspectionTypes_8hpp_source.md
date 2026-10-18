@@ -27,6 +27,12 @@ namespace QAccelPlot {
 
 enum class InspectionAxis { X, Y };
 
+enum class InspectionMatching {
+    None,      
+    Nearest,   
+    Containing 
+};
+
 struct InspectionSource {
     const float* floats{nullptr};   
     int floatStride{2};             

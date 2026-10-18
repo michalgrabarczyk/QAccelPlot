@@ -1569,32 +1569,24 @@ range. Nothing is drawn while <code>colormap</code> is null.</p>
 </code></pre></div>
 <p>A heatmap has no legend entry: the color bar is its key.</p>
 <h2 id="read-the-cell-under-the-pointer">Read the cell under the pointer<a class="headerlink" href="#read-the-cell-under-the-pointer" title="Permanent link">&para;</a></h2>
-<p><code>inspection.recordAtPosition()</code> returns the record of the cell at a
-series-local position: pixels from the top left of the plot area. Its
-<code>fields</code> are <code>x</code> and <code>y</code> (the cell center), <code>value</code>, <code>row</code>, and <code>column</code>;
-<code>index</code> is <code>row * columns + column</code>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// Covers the plot area, so its positions are series-local.</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nx">Item</span> <span class="p">{</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="k">parent:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">overlay</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="k">x:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">plotRect</span><span class="p">.</span><span class="nx">x</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="k">y:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">plotRect</span><span class="p">.</span><span class="nx">y</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="k">width:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">plotRect</span><span class="p">.</span><span class="nx">width</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="k">height:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">plotRect</span><span class="p">.</span><span class="nx">height</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="nx">HoverHandler</span> <span class="p">{</span> <span class="kd">id: hover</span> <span class="p">}</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="nx">Text</span> <span class="p">{</span>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>        <span class="nx">readonly</span> <span class="nx">property</span> <span class="kd">var</span> <span class="k">record:</span> <span class="nx">heatmap</span><span class="p">.</span><span class="nx">inspection</span><span class="p">.</span><span class="nx">recordAtPosition</span><span class="p">(</span><span class="nx">hover</span><span class="p">.</span><span class="nx">point</span><span class="p">.</span><span class="nx">position</span><span class="p">)</span>
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>        <span class="k">visible:</span> <span class="nx">hover</span><span class="p">.</span><span class="nx">hovered</span> <span class="o">&amp;&amp;</span> <span class="nx">record</span><span class="p">.</span><span class="nx">valid</span>
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>        <span class="k">text:</span> <span class="nx">visible</span> <span class="o">?</span> <span class="nx">record</span><span class="p">.</span><span class="nx">fields</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">:</span> <span class="s2">""</span>
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>    <span class="p">}</span>
-<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="p">}</span>
+<p>A <a href="../data-inspection/#inspector"><code>PlotInspector</code></a> reports the cell under the
+cursor in every mode. Its row has the cell center as <code>dataPointX</code> and
+<code>dataPointY</code>, the value as <code>dataPointValue</code> and <code>valueText</code>, and
+<code>row * columns + column</code> as <code>dataPointIndex</code>. <code>InspectionTooltip</code> shows the
+center and the value:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">PlotInspector</span> <span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="k">plot:</span> <span class="nx">plot</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">InspectionTooltip</span> <span class="p">{}</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">}</span>
 </code></pre></div>
-<p>A cell with a non-finite value is still a match. <code>inspection.recordAt(index)</code>
-looks a cell up by index. While a grid edge is infinite, <code>recordAt()</code> returns
-<code>Inspection.Unavailable</code> and <code>recordAtPosition()</code> matches no cell.
-<code>PlotInspector</code>, and so <code>InspectionTooltip</code> and <code>Crosshair</code>, do not inspect
-heatmaps.</p>
+<p>A cell with a non-finite value is still a match. In code,
+<code>inspection.dataPointAtPosition()</code> returns the same data point for a
+series-local position: pixels from the top left of the plot area.
+<code>inspection.recordAtPosition()</code> and <code>inspection.recordAt(index)</code> return the
+cell's record, whose <code>fields</code> are <code>x</code> and <code>y</code> (the cell center), <code>value</code>,
+<code>row</code>, and <code>column</code>. While a grid edge is infinite, <code>recordAt()</code> returns
+<code>Inspection.Unavailable</code> and no position matches a cell.</p>
 <h2 id="set-data-from-c">Set data from C++<a class="headerlink" href="#set-data-from-c" title="Permanent link">&para;</a></h2>
 <p><code>setValues()</code> replaces the values and the shape together:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// columns * rows floats, row by row.</span>

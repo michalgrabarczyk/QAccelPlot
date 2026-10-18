@@ -130,7 +130,7 @@ flowchart TB
 Provided by `PlotInspector::model` and `SelectionTool::model`. Rows are added and removed only when the set of inspected series changes; cursor movement updates rows in place, so delegates are reused.
 
 
-Roles: `series`, `seriesName`, `seriesColor`, `valid`, `dataPointStatus`, `dataPointIndex`, `dataPointX`, `dataPointY`, `dataPointValue`, `xText`, `yText`, `pixelPosition`, `distance`, `interpolated`, `hasSummary`, `summaryStatus`, `summaryCount`, `minimum`, `maximum`, `mean`, `standardDeviation`, `minimumIndex`, `maximumIndex`, `minimumText`, `maximumText`, and `meanText`. 
+Roles: `series`, `seriesName`, `seriesColor`, `valid`, `dataPointStatus`, `dataPointIndex`, `dataPointX`, `dataPointY`, `dataPointValue`, `xText`, `yText`, `valueText`, `pixelPosition`, `distance`, `interpolated`, `hasSummary`, `summaryStatus`, `summaryCount`, `minimum`, `maximum`, `mean`, `standardDeviation`, `minimumIndex`, `maximumIndex`, `minimumText`, `maximumText`, and `meanText`. 
 
 
     
@@ -156,6 +156,7 @@ enum QAccelPlot::InspectionRowModel::Role {
     DataPointValueRole,
     XTextRole,
     YTextRole,
+    ValueTextRole,
     PixelPositionRole,
     DistanceRole,
     InterpolatedRole,

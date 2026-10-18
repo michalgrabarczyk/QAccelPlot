@@ -503,6 +503,7 @@
     <member refid="classQAccelPlot_1_1BarSeries_1a45c6603574abe01570bcd84683f83b9b" kind="signal"><name>countChanged</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a1f6e94225f0428888bf55003e9107596" kind="signal"><name>hoveredIndexChanged</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a860127a1dba71202ac873a5e816d1b03" kind="function"><name>updatePaintNode</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1ae7b6d208449e96807c0930f6a09c7244" kind="function"><name>recordInspectionSupported</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a41760a88ec011ddbace58769612b4581" kind="function"><name>inspectionRecord</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1acdcb1b36417bdd1ad09f97ecbd8739e5" kind="function"><name>inspectionRecordAt</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a66aecd184b51fcdb983c10a2f2912be9" kind="function"><name>hoverEnterEvent</name></member>
@@ -1415,8 +1416,11 @@
     <member refid="classQAccelPlot_1_1HeatmapSeries_1ac4f1f047d743cf151d420ae70f6d3689" kind="signal"><name>yMaxChanged</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a6f0f8aa366b12236dce2326a83b8de23" kind="function"><name>applyDataPoints</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1ae42a82d5f3ea0dc41ea488650c5c9b85" kind="function"><name>dataPointValueCount</name></member>
+    <member refid="classQAccelPlot_1_1HeatmapSeries_1a7e2575998c84ec3eeefa54844050ce14" kind="function"><name>recordInspectionSupported</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a74208964a970b987814138748f536826" kind="function"><name>inspectionRecord</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a5b0d4c7f7ae1a60376598441a3bf7165" kind="function"><name>inspectionRecordAt</name></member>
+    <member refid="classQAccelPlot_1_1HeatmapSeries_1a1df688a18eea4c775af167340ae025a1" kind="function"><name>positionInspectionSupported</name></member>
+    <member refid="classQAccelPlot_1_1HeatmapSeries_1ab41d3c91d98485afbca3aea726a99553" kind="function"><name>inspectionDataPointAt</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1ac08dc247e883c1439e2983f74461da56" kind="function"><name>computeDataRanges</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a31f7895f7ba1a6ee03d3e2c5a58820e0" kind="function"><name>onAxisScaleChanged</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a2aba152846d3d341118262ebfc82d6ef" kind="function"><name>scanValueRange</name></member>
@@ -1427,6 +1431,7 @@
     <member refid="classQAccelPlot_1_1HeatmapSeries_1ab723973d62db058b184666120e15fa5d" kind="function"><name>applyShape</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1aa2489db89d5d80bf1d17cc522a31a86e" kind="function"><name>setBound</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a5efe488b647d08ebe3f19ebc2f049bcd" kind="function"><name>cellAt</name></member>
+    <member refid="classQAccelPlot_1_1HeatmapSeries_1aa2cdaaa22e541bbd429d0b94a7424b5a" kind="function"><name>cellCenter</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a52ca4b850ee5371babd5f4f379ea2675" kind="function"><name>canDraw</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a5df095037766d7a4ef2adf70186c402b" kind="function"><name>updateMaterial</name></member>
   </compound>
@@ -1643,6 +1648,7 @@
     <member refid="structQAccelPlot_1_1InspectionRow_1a9ce0fd110b30c5b9303d85810bc4a719" kind="variable"><name>pixelPosition</name></member>
     <member refid="structQAccelPlot_1_1InspectionRow_1a5fdb7eadbbf34ae2b08e186e908b9918" kind="variable"><name>xText</name></member>
     <member refid="structQAccelPlot_1_1InspectionRow_1afba61f3055fdf3e4cb46520c22fc0af0" kind="variable"><name>yText</name></member>
+    <member refid="structQAccelPlot_1_1InspectionRow_1a13d158afaa19d6edb1c3919bb41ce42a" kind="variable"><name>valueText</name></member>
     <member refid="structQAccelPlot_1_1InspectionRow_1a1133c67e28da6470fac6eefc5590c7fd" kind="variable"><name>hasSummary</name></member>
     <member refid="structQAccelPlot_1_1InspectionRow_1ae47bb9213bef9185320232dbb764ffce" kind="variable"><name>summary</name></member>
     <member refid="structQAccelPlot_1_1InspectionRow_1a2c26a906b0c7edb7037f9a675211fc85" kind="variable"><name>minimumText</name></member>
@@ -1662,6 +1668,7 @@
     <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3aba5ac0557591c6fd2cbbaf3cd98daaf0" kind="enumvalue"><name>DataPointValueRole</name></member>
     <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3a175d3848e5214aa7376713538d6f38bd" kind="enumvalue"><name>XTextRole</name></member>
     <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3acfe5eca9695e6403095cbcca370d1054" kind="enumvalue"><name>YTextRole</name></member>
+    <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3ad34ba25de58f3f95e8086406457ed377" kind="enumvalue"><name>ValueTextRole</name></member>
     <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3ab288997d67e0abfdfad5b35ff8d1b732" kind="enumvalue"><name>PixelPositionRole</name></member>
     <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3a294d55edb524e5625a9d8a4dd692d14f" kind="enumvalue"><name>DistanceRole</name></member>
     <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3ae65e72339b42ad568d620061766f34d2" kind="enumvalue"><name>InterpolatedRole</name></member>
@@ -2223,6 +2230,7 @@
     <member refid="classQAccelPlot_1_1PlotInspector_1a3345ef3db8fbe96f1766f6144e3793ab" kind="function"><name>effectiveMode</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1aecc195716a3ae7f199d1cf0dab218134" kind="function"><name>inspect</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1ae5ec2dfb1769bd5a9978c0e56f95e05b" kind="function"><name>queryRows</name></member>
+    <member refid="classQAccelPlot_1_1PlotInspector_1a7de00794b2eac0eaa3c0d89c56380bce" kind="function"><name>matchDataPoint</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1a893dba7abe50f2e1bf0bbab561477569" kind="function"><name>dataPointAlong</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1abe7cf1db3852689333ad40dcade82770" kind="function"><name>summarize</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1a6eaa821277ae57419db6dfe380aa5693" kind="function"><name>formatRows</name></member>
@@ -2392,8 +2400,11 @@
     <member refid="classQAccelPlot_1_1PlotSeries_1a5d56c6f054d6dba8b905f0cb49e188d7" kind="function"><name>invalidateInspection</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1ae2ba190d0642e569bf6a300bbf2573e5" kind="function"><name>inspectionSource</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a32638eb7718d210d95fa70351696441d" kind="function"><name>inspectionAvailable</name></member>
+    <member refid="classQAccelPlot_1_1PlotSeries_1a11565c208e7f6c2615d367e96b133fd9" kind="function"><name>recordInspectionSupported</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a9f822a232d100806927a0a34f0ca1a5e" kind="function"><name>inspectionRecord</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a56c10df5cbc0648557caa5d40153ace8" kind="function"><name>inspectionRecordAt</name></member>
+    <member refid="classQAccelPlot_1_1PlotSeries_1a9bc3829157d222d0382bca8fd0025c54" kind="function"><name>positionInspectionSupported</name></member>
+    <member refid="classQAccelPlot_1_1PlotSeries_1aa12ee9f8a4fb237b8cf8789ae1a9df7e" kind="function"><name>inspectionDataPointAt</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a5fcaa8127513e48c7c67443782811a1e" kind="function"><name>computeDataRanges</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a6d479055f9c3acfd2be5befa8cf6d1a8" kind="function"><name>invalidateDataRanges</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1ab4c3a9f96024e2929e8122ac37cb69d3" kind="function"><name>extendXDataRange</name></member>
@@ -2812,6 +2823,7 @@
     <member refid="classQAccelPlot_1_1RectangleSeries_1a3ec6e2dc2b38de10b2e523a73bc4bb6c" kind="signal"><name>countChanged</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a0c70e2800949f9c27a4a6c744553025a" kind="signal"><name>hoveredIndexChanged</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a08b41be03eae3f6a87f077776bdf10f9" kind="function"><name>updatePaintNode</name></member>
+    <member refid="classQAccelPlot_1_1RectangleSeries_1a09d8e2cd705feb1278a2ae35eebf0f60" kind="function"><name>recordInspectionSupported</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1aef02be3d5bf326e8e2730b9743d4f7e5" kind="function"><name>inspectionRecord</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a80f460a4a64643cab9ed9c95523cce5d" kind="function"><name>inspectionRecordAt</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a4781f5e3d4a3831105d67be15accd03e" kind="function"><name>hoverEnterEvent</name></member>
@@ -3026,14 +3038,14 @@
   </compound>
   <compound refid="classQAccelPlot_1_1SeriesInspection" kind="class"><name>QAccelPlot::SeriesInspection</name>
     <member refid="classQAccelPlot_1_1SeriesInspection_1ace6210cc03e1617ffe0695d291febf39" kind="property"><name>status</name></member>
-    <member refid="classQAccelPlot_1_1SeriesInspection_1a91f8e182f992d1e97f1d8521b4089960" kind="property"><name>supported</name></member>
     <member refid="classQAccelPlot_1_1SeriesInspection_1a646347feccfa19ab97ac49f4257f4575" kind="property"><name>maximumPageSize</name></member>
     <member refid="classQAccelPlot_1_1SeriesInspection_1aa9a8749c8792deb1a5bb343ba9166177" kind="friend"><name>PlotSeries</name></member>
+    <member refid="classQAccelPlot_1_1SeriesInspection_1a6ba44ce88f709c8909df1881e5711f0d" kind="friend"><name>PlotInspector</name></member>
+    <member refid="classQAccelPlot_1_1SeriesInspection_1ae1ab3d02e1d79b76f74fcc63b8270d6d" kind="friend"><name>SelectionTool</name></member>
     <member refid="classQAccelPlot_1_1SeriesInspection_1a3502d0225565f7ff1e2e4bae79a4b8d3" kind="variable"><name>series_</name></member>
     <member refid="classQAccelPlot_1_1SeriesInspection_1a27755e38188fca8332fd52ad1d2dc3d6" kind="variable"><name>d_</name></member>
     <member refid="classQAccelPlot_1_1SeriesInspection_1ad47942fe19e7b0135374fb523a949042" kind="function"><name>~SeriesInspection</name></member>
     <member refid="classQAccelPlot_1_1SeriesInspection_1a2633680d73410b55c759c01c80275790" kind="function"><name>status</name></member>
-    <member refid="classQAccelPlot_1_1SeriesInspection_1a69b04871eeb4414ff833d536a16e9285" kind="function"><name>supported</name></member>
     <member refid="classQAccelPlot_1_1SeriesInspection_1a6884b6ff01c4dbf666ec479d2a94cc64" kind="function"><name>maximumPageSize</name></member>
     <member refid="classQAccelPlot_1_1SeriesInspection_1a3627b72b648d5c43484aa353f4baf175" kind="function"><name>indexBytes</name></member>
     <member refid="classQAccelPlot_1_1SeriesInspection_1af733a754d185f80c5943eaf9b44c835d" kind="function"><name>prepare</name></member>
@@ -3048,8 +3060,10 @@
     <member refid="classQAccelPlot_1_1SeriesInspection_1abe2a3b291d365904f0b9122c4dd5e513" kind="function"><name>indices</name></member>
     <member refid="classQAccelPlot_1_1SeriesInspection_1a6faa4c57048b0385b7d4c9e94398ebd4" kind="function"><name>recordAt</name></member>
     <member refid="classQAccelPlot_1_1SeriesInspection_1a10c601af40720ff7e8b2da7e9952c8da" kind="function"><name>recordAtPosition</name></member>
+    <member refid="classQAccelPlot_1_1SeriesInspection_1ae15b97ec714f1bcf4ad8a5eb2a4d5832" kind="function"><name>dataPointAtPosition</name></member>
     <member refid="classQAccelPlot_1_1SeriesInspection_1a56f3140510786f904c0527f772d13518" kind="signal"><name>statusChanged</name></member>
     <member refid="classQAccelPlot_1_1SeriesInspection_1a40c2b0b41083e0abbe1e66a62b932125" kind="function"><name>SeriesInspection</name></member>
+    <member refid="classQAccelPlot_1_1SeriesInspection_1a07923757f06ee75ed224098030049ad7" kind="function"><name>matching</name></member>
     <member refid="classQAccelPlot_1_1SeriesInspection_1a3ed993068ca01fc4db632c02a812e47c" kind="function"><name>sourceChanged</name></member>
     <member refid="classQAccelPlot_1_1SeriesInspection_1aea3df5618a3a0fc004440c6d91eea717" kind="function"><name>sourceInvalidated</name></member>
     <member refid="classQAccelPlot_1_1SeriesInspection_1a301cae784a5ada59788aed89b2fe8b70" kind="function"><name>acquire</name></member>
@@ -3250,6 +3264,10 @@
     <member refid="InspectionTypes_8hpp_1a83dfdbfef906e0b9e3984f0328a3c0a5" kind="enum"><name>InspectionAxis</name></member>
     <member refid="InspectionTypes_8hpp_1a83dfdbfef906e0b9e3984f0328a3c0a5a02129bb861061d1a052c592e2dc6b383" kind="enumvalue"><name>X</name></member>
     <member refid="InspectionTypes_8hpp_1a83dfdbfef906e0b9e3984f0328a3c0a5a57cec4137b614c87cb4e24a3d003a3e0" kind="enumvalue"><name>Y</name></member>
+    <member refid="InspectionTypes_8hpp_1af338153d924ebcc1d5eb0590cacbf947" kind="enum"><name>InspectionMatching</name></member>
+    <member refid="InspectionTypes_8hpp_1af338153d924ebcc1d5eb0590cacbf947a6adf97f83acf6453d4a6a4b1070f3754" kind="enumvalue"><name>None</name></member>
+    <member refid="InspectionTypes_8hpp_1af338153d924ebcc1d5eb0590cacbf947a60494f02d440f316319dd0fad40ad007" kind="enumvalue"><name>Nearest</name></member>
+    <member refid="InspectionTypes_8hpp_1af338153d924ebcc1d5eb0590cacbf947a1548f9eb6677a1ba46e221e2a59f96d3" kind="enumvalue"><name>Containing</name></member>
     <member refid="GradientColorTypes_8hpp_1a3128c25839dcba34322ff28cc4883a8f" kind="typedef"><name>GradientFillBaseline</name></member>
     <member refid="GradientColorTypes_8hpp_1a4e9f64212036d6f4c354c451ba2fc45e" kind="typedef"><name>GradientValueSource</name></member>
     <member refid="InspectionResult_8hpp_1a5f4b24dcd6ebda62dd105e6e3fad0ff8" kind="typedef"><name>InspectionStatus</name></member>

@@ -186,8 +186,11 @@ protected:
     void invalidateInspection();
     virtual InspectionSource inspectionSource() const;
     virtual bool inspectionAvailable() const;
+    virtual bool recordInspectionSupported() const;
     virtual InspectionRecord inspectionRecord(int index) const;
     virtual InspectionRecord inspectionRecordAt(const QPointF& position) const;
+    virtual bool positionInspectionSupported() const;
+    virtual InspectionDataPoint inspectionDataPointAt(const QPointF& position) const;
 
     struct DataRanges {
         std::optional<DataExtent> x; 

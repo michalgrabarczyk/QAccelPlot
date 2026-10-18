@@ -1825,6 +1825,7 @@
       <member refid="classQAccelPlot_1_1PlotSeries_1a00a3d60288b86fd54569387281355060" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>inspection</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a32638eb7718d210d95fa70351696441d" prot="protected" virt="virtual"><scope>QAccelPlot::PointCloud</scope><name>inspectionAvailable</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a10efc3369e62d44c163ca7bdcd39fb26" prot="protected" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>inspectionDataChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1aa12ee9f8a4fb237b8cf8789ae1a9df7e" prot="protected" virt="virtual"><scope>QAccelPlot::PointCloud</scope><name>inspectionDataPointAt</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a9f822a232d100806927a0a34f0ca1a5e" prot="protected" virt="virtual"><scope>QAccelPlot::PointCloud</scope><name>inspectionRecord</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a56c10df5cbc0648557caa5d40153ace8" prot="protected" virt="virtual"><scope>QAccelPlot::PointCloud</scope><name>inspectionRecordAt</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1ae2ba190d0642e569bf6a300bbf2573e5" prot="protected" virt="virtual"><scope>QAccelPlot::PointCloud</scope><name>inspectionSource</name></member>
@@ -1836,9 +1837,9 @@
       <member refid="classQAccelPlot_1_1PointCloud_1ad1049b66d981e9ad4f5191843148e964" prot="private" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>lastHoverQuery_</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1a5aa655aa86c9f0b1059a677985bdbe75" prot="public" virt="virtual"><scope>QAccelPlot::PointCloud</scope><name>legendEntry</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a1dbdd720bb06d07672267cfc603b932b" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>legendEntryChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>LegendSymbol</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1ada3d9fd14934647c0f31870184f5eff5" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>legendSymbol</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a37f1fe5cb9f339d593147cd47b75d180" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>legendSymbol</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>LegendSymbol</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a2b88cb6eac8d12cf02b6daf37460150e" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>legendSymbolChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1ad85ffb96b1c9ee3d13a25c412db1eac6" prot="protected" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>logScaleX</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a23f7dd78fbc4e5e03d2537ee2e40707c" prot="protected" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>logScaleY</name></member>
@@ -1863,10 +1864,12 @@
       <member refid="classQAccelPlot_1_1PointCloud_1a10f02cf4c7a9680f49605850ba2c4d29" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>pointAt</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1a793519b1f099be36410a87f91df0422d" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>PointCloud</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1a9117af696764fed41e8f19d0e38ab4e8" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>pointIndexAt</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a9bc3829157d222d0382bca8fd0025c54" prot="protected" virt="virtual"><scope>QAccelPlot::PointCloud</scope><name>positionInspectionSupported</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1ae4c10b12baaef1662956fa918b390128" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>postData</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1a7edd7b0179cbbaa27c9ecadaa5d87390" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>postData</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1acbf8fb06d9d8ca2a5ab3a0c4e060a4b4" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>postData</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1aad3e05b7da4d8c16ca53819017e7b6e0" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>postData</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a11565c208e7f6c2615d367e96b133fd9" prot="protected" virt="virtual"><scope>QAccelPlot::PointCloud</scope><name>recordInspectionSupported</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1ac0247ee0aab8c9713237b9d37b49de5d" prot="private" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>renderCapacity_</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1aace33ec25bc55d4d0c033909c164f47c" prot="private" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>reportedHasValues_</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a956e8eb1ca7398b6b5f8022225d6edf7" prot="protected" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>resolvePlotRect</name></member>

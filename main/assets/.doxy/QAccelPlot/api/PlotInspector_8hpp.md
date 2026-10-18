@@ -48,7 +48,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| class | [**PlotInspector**](classQAccelPlot_1_1PlotInspector.md) <br>_Inspects every visible XY series of a plot at a cursor and publishes one model row per series._  |
+| class | [**PlotInspector**](classQAccelPlot_1_1PlotInspector.md) <br>_Inspects the visible XY series and heatmaps of a plot at a cursor and publishes one model row per series._  |
 
 
 

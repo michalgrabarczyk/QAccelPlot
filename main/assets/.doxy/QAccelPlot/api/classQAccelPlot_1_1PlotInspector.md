@@ -15,7 +15,7 @@
 
 
 
-_Inspects every visible XY series of a plot at a cursor and publishes one model row per series._ [More...](#detailed-description)
+_Inspects the visible XY series and heatmaps of a plot at a cursor and publishes one model row per series._ [More...](#detailed-description)
 
 * `#include <PlotInspector.hpp>`
 
@@ -153,7 +153,7 @@ flowchart TB
 |  void | [**setSummaries**](#function-setsummaries) (bool enabled) <br>_Enables or disables neighborhood statistics._  |
 |  void | [**setSummaryRadius**](#function-setsummaryradius) (qreal radius) <br>_Sets the summary half-width; negative and nonfinite values are ignored._  |
 |  bool | [**snapToDataPoint**](#function-snaptodatapoint-22) () const<br>_Returns whether the crosshair snaps to the closest matching data point._  |
-|  Q\_INVOKABLE void | [**stepCursor**](#function-stepcursor) (int steps) <br>_Moves the cursor_ _steps_ _source records along the first matching series and stops following the pointer._ |
+|  Q\_INVOKABLE void | [**stepCursor**](#function-stepcursor) (int steps) <br>_Moves the cursor_ _steps_ _source records along the first matching XY series and stops following the pointer._ |
 |  bool | [**summaries**](#function-summaries-22) () const<br>_Returns whether rows include neighborhood statistics._  |
 |  qreal | [**summaryRadius**](#function-summaryradius-22) () const<br>_Returns the summary half-width in logical pixels._  |
 |  int | [**validCount**](#function-validcount-22) () const<br>_Returns the number of rows with a matching data point._  |
@@ -187,6 +187,9 @@ flowchart TB
 
 
 ## Detailed Description
+
+
+Series that draw data points as areas, such as `HeatmapSeries`, report the record under the cursor in every mode, and only while the cursor has both coordinates; `radius`, `interpolate`, and `summaries` do not apply to them, and `snapToDataPoint` moves both crosshair coordinates to the record's center.
 
 
 The cursor follows the plot's pointer by default; set `followPointer` to `false` and write `cursorX` to drive it from code, for example to link the crosshairs of several plots. Results are refreshed at most once per event-loop pass.
@@ -1291,7 +1294,7 @@ bool QAccelPlot::PlotInspector::snapToDataPoint () const
 
 ### function stepCursor {#function-stepcursor}
 
-_Moves the cursor_ _steps_ _source records along the first matching series and stops following the pointer._
+_Moves the cursor_ _steps_ _source records along the first matching XY series and stops following the pointer._
 ```C++
 Q_INVOKABLE void QAccelPlot::PlotInspector::stepCursor (
     int steps
