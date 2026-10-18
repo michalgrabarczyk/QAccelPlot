@@ -20,6 +20,7 @@ namespace QAccelPlot {
 
 class PlotSeries;
 enum class InspectionAxis;
+enum class InspectionMatching;
 struct InspectionMetric;
 struct InspectionSource;
 
@@ -40,16 +41,18 @@ struct InspectionSource;
 /// worker thread first; until then queries return \c Inspection.Preparing. Requesting an index
 /// copies the series' buffer once on the calling thread, the index takes about 40 MB per million
 /// valid data points, and any data change discards it. Other series types expose native records
-/// through \c recordAt() and \c recordAtPosition() only.
+/// through \c recordAt() and \c recordAtPosition() only; \c HeatmapSeries also answers
+/// \c dataPointAtPosition().
 ///
 /// \sa PlotInspector, SelectionTool
 class SeriesInspection : public QObject {
     Q_OBJECT
     QML_ANONYMOUS
     /// \brief Readiness for data point queries: \c Ready, \c Idle, \c Preparing, \c Unsupported, or \c Unavailable.
+    ///
+    /// Bar, rectangle, band, and heatmap series are \c Ready while available; the queries that do not
+    /// apply to them return \c Unsupported. \c Unsupported only for a series that answers no query.
     Q_PROPERTY(::QAccelPlot::InspectionNS::Status status READ status NOTIFY statusChanged)
-    /// \brief Whether the series has XY records that data point queries can search.
-    Q_PROPERTY(bool supported READ supported NOTIFY statusChanged)
     /// \brief Largest page returned by \c indices().
     Q_PROPERTY(int maximumPageSize READ maximumPageSize CONSTANT)
 
@@ -58,8 +61,6 @@ public:
 
     /// \brief Returns the readiness for data point queries.
     InspectionStatus status() const;
-    /// \brief Returns whether the series has XY records that data point queries can search.
-    bool supported() const;
     /// \brief Returns the largest page returned by \c indices().
     int maximumPageSize() const;
 
@@ -95,6 +96,11 @@ public:
     Q_INVOKABLE ::QAccelPlot::InspectionRecord recordAt(int index) const;
     /// \brief Returns the native record drawn at the series-local \a position.
     Q_INVOKABLE ::QAccelPlot::InspectionRecord recordAtPosition(const QPointF& position) const;
+    /// \brief Returns the record drawn at the series-local \a position as a data point, such as the heatmap cell under it.
+    ///
+    /// \c Unsupported for series that do not draw data points as areas. The coordinates and
+    /// \c pixelPosition of a match are the record's center, and \c distance is measured from \a position to it.
+    Q_INVOKABLE ::QAccelPlot::InspectionDataPoint dataPointAtPosition(const QPointF& position) const;
 
 signals:
     /// \brief Emitted when the readiness may have changed: after a data change, and when an index is ready.
@@ -102,9 +108,12 @@ signals:
 
 private:
     friend class PlotSeries;
+    friend class PlotInspector;
+    friend class SelectionTool;
     struct Private;
 
     explicit SeriesInspection(PlotSeries& series);
+    InspectionMatching matching() const;
     void sourceChanged(bool appended);
     void sourceInvalidated();
     // Returns Ready when a query can run now: one along the given axis, or an on-screen or region query otherwise.

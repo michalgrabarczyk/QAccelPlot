@@ -57,9 +57,10 @@ class HeatmapMaterial;
 ///
 /// \par Inspection
 /// \c inspection.recordAt() and \c inspection.recordAtPosition() return a record with the fields
-/// \c x and \c y (the cell center), \c value, \c row, and \c column. A cell with a non-finite value
-/// is still a match. While a grid edge is not finite, \c recordAt() returns \c Unavailable and
-/// \c recordAtPosition() matches no cell. \c PlotInspector does not inspect heatmaps.
+/// \c x and \c y (the cell center), \c value, \c row, and \c column. \c inspection.dataPointAtPosition()
+/// returns the cell as a data point at its center, with \c index <tt>row * columns + column</tt>,
+/// which \c PlotInspector reports in every mode. A cell with a non-finite value is still a match.
+/// While a grid edge is not finite, \c recordAt() returns \c Unavailable and no position matches a cell.
 ///
 /// \par Limits
 /// Each pixel takes the color of the cell under its center, without interpolation. Logarithmic axes
@@ -160,10 +161,16 @@ protected:
     void applyDataPoints(DataPointInput&& input) override;
     /// \brief Returns 1: the \c PlotSeries setters take one value per cell.
     int dataPointValueCount() const override;
+    /// \brief Returns true: cells are inspected as records.
+    bool recordInspectionSupported() const override;
     /// \brief Returns the cell record at \a index.
     InspectionRecord inspectionRecord(int index) const override;
     /// \brief Returns the record of the cell drawn at the series-local \a position.
     InspectionRecord inspectionRecordAt(const QPointF& position) const override;
+    /// \brief Returns true: cells are matched by position.
+    bool positionInspectionSupported() const override;
+    /// \brief Returns the cell drawn at the series-local \a position as a data point at its center.
+    InspectionDataPoint inspectionDataPointAt(const QPointF& position) const override;
     /// \brief Returns the grid edges in each linear dimension.
     DataRanges computeDataRanges() const override;
     /// \brief Repaints, because the series draws nothing on a logarithmic axis.
@@ -193,6 +200,8 @@ private:
     void setBound(qreal& bound, qreal value, void (HeatmapSeries::*changed)());
     /// \brief Returns the cell at series-local \a position as (row, column), or \c std::nullopt outside the grid.
     std::optional<std::pair<int, int>> cellAt(const QPointF& position) const;
+    /// \brief Returns the center of the cell at \a row and \a column in data coordinates.
+    QPointF cellCenter(int row, int column) const;
     /// \brief Returns whether the grid can be drawn into a window of \a window; warns once per reason it cannot.
     bool canDraw(QQuickWindow* window);
     /// \brief Writes the cell mapping, value range, and textures for the next frame into \a material.

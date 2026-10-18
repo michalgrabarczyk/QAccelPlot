@@ -42,8 +42,11 @@ set to the same gesture, `SelectionTool` takes it.
 
 ## Inspector
 
-[`PlotInspector`][plot-inspector] queries every visible `LineCurve` and
-`PointCloud` of the plot at the cursor. Other series types have no row.
+[`PlotInspector`][plot-inspector] queries every visible `LineCurve`,
+`PointCloud`, and `HeatmapSeries` of the plot at the cursor. Other series types
+have no row. A heatmap reports the cell under the cursor in every mode, at its
+center; `radius`, `interpolate`, and `summaries` do not apply to it, and
+`snapToDataPoint` moves both crosshair coordinates to the center.
 
 | Property | Effect |
 | --- | --- |
@@ -77,12 +80,16 @@ QAccelPlot.InspectionTooltip {
 
 [`InspectionRowModel`][row-model] lists the roles. Text roles such as `yText`
 use the axis' tick formatter at a precision that follows the zoom level.
+`valueText` holds the value of a heatmap cell or a colored `PointCloud` point
+with up to six significant digits; the default row shows it after the
+coordinates.
 
 ### Cursor from code
 
 Set `followPointer: false` and write `cursorX`, `cursorY`, or both to place the
 cursor in data coordinates. With one coordinate, series are matched along that
-axis in every mode. Link two plots by binding one inspector to the other:
+axis in every mode and heatmaps have no match. Link two plots by binding one
+inspector to the other:
 
 ```qml
 QAccelPlot.PlotInspector { id: top; plot: topPlot }
@@ -90,7 +97,8 @@ QAccelPlot.PlotInspector { plot: bottomPlot; followPointer: false; cursorX: top.
 ```
 
 `stepCursor(n)` moves the cursor `n` source records along the first matching
-series and stops following the mouse pointer; use it for keyboard navigation.
+XY series and stops following the mouse pointer; use it for keyboard
+navigation.
 
 ## Queries
 
@@ -111,10 +119,12 @@ if (dataPoint.valid)
 | Data points on either side and the point between them | `bracketByX()`, `bracketByY()` |
 | Y statistics of a region or an X interval | `summarize()`, `summarizeRange()` |
 | Source indices inside a region, in pages | `indices()` |
-| Native record of a bar, rectangle, or band series | `recordAt()`, `recordAtPosition()` |
+| Native record of a bar, rectangle, band, or heatmap series | `recordAt()`, `recordAtPosition()` |
+| Heatmap cell at a position, as a data point | `dataPointAtPosition()` |
 
 Results carry a `status` and a `valid` flag. Compare `status` with
-`QAccelPlot.Inspection.Ready`, `NoMatch`, `Preparing`, or another status.
+`QAccelPlot.Inspection.Ready`, `NoMatch`, `Preparing`, or another status. A
+query that does not apply to the series returns `Unsupported`.
 [`SeriesInspection`][series-inspection] specifies regions, tie-breaking, and
 paging.
 

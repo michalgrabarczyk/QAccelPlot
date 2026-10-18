@@ -271,10 +271,16 @@ protected:
     virtual InspectionSource inspectionSource() const;
     /// \brief Returns false while the records are ambiguous, such as during a data transition. Default: true.
     virtual bool inspectionAvailable() const;
+    /// \brief Returns whether \c inspectionRecord() and \c inspectionRecordAt() answer for this series. Default: false.
+    virtual bool recordInspectionSupported() const;
     /// \brief Returns the native record at \a index for series that are not plain XY series. Default: unsupported.
     virtual InspectionRecord inspectionRecord(int index) const;
     /// \brief Returns the native record drawn at the series-local \a position. Default: unsupported.
     virtual InspectionRecord inspectionRecordAt(const QPointF& position) const;
+    /// \brief Returns whether \c inspectionDataPointAt() matches records drawn as areas, such as heatmap cells. Default: false.
+    virtual bool positionInspectionSupported() const;
+    /// \brief Returns the record drawn at the series-local \a position as a data point. Default: unsupported.
+    virtual InspectionDataPoint inspectionDataPointAt(const QPointF& position) const;
 
     /// \brief Extents of a series in both dimensions.
     ///

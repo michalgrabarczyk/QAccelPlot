@@ -210,21 +210,16 @@ SeriesInspection::~SeriesInspection() = default;
 InspectionStatus SeriesInspection::status() const
 {
     const auto source = series_.inspectionSource();
-    if (!source.supported()) {
+    if (!source.supported() && !series_.recordInspectionSupported()) {
         return InspectionStatus::Unsupported;
     }
     if (!series_.inspectionAvailable()) {
         return InspectionStatus::Unavailable;
     }
-    if (d_->regionPlan(source).backend != Private::Backend::Index || d_->cache.index()) {
+    if (!source.supported() || d_->regionPlan(source).backend != Private::Backend::Index || d_->cache.index()) {
         return InspectionStatus::Ready;
     }
     return d_->cache.requested() ? InspectionStatus::Preparing : InspectionStatus::Idle;
-}
-
-bool SeriesInspection::supported() const
-{
-    return series_.inspectionSource().supported();
 }
 
 int SeriesInspection::maximumPageSize() const
@@ -373,11 +368,33 @@ InspectionRecord SeriesInspection::recordAtPosition(const QPointF& position) con
     return result;
 }
 
+InspectionDataPoint SeriesInspection::dataPointAtPosition(const QPointF& position) const
+{
+    auto result = InspectionDataPoint{};
+    if (!series_.positionInspectionSupported()) {
+        result.status = InspectionStatus::Unsupported;
+    } else if (!std::isfinite(position.x()) || !std::isfinite(position.y())) {
+        result.status = InspectionStatus::InvalidArgument;
+    } else {
+        result = series_.inspectionDataPointAt(position);
+    }
+    result.dataRevision = series_.dataRevision();
+    return result;
+}
+
 SeriesInspection::SeriesInspection(PlotSeries& series)
     : QObject(&series)
     , series_(series)
     , d_(std::make_unique<Private>(*this))
 {
+}
+
+InspectionMatching SeriesInspection::matching() const
+{
+    if (series_.inspectionSource().supported()) {
+        return InspectionMatching::Nearest;
+    }
+    return series_.positionInspectionSupported() ? InspectionMatching::Containing : InspectionMatching::None;
 }
 
 void SeriesInspection::sourceChanged(const bool appended)

@@ -18,6 +18,13 @@ namespace QAccelPlot {
 /// \brief Data dimension a query measures along, or along which a series' records are ordered.
 enum class InspectionAxis { X, Y };
 
+/// \brief How \c PlotInspector and \c SelectionTool match a series' data points to a position.
+enum class InspectionMatching {
+    None,      ///< \brief The series has no data points they can match.
+    Nearest,   ///< \brief XY data points, matched by distance.
+    Containing ///< \brief Data points drawn as areas, such as heatmap cells, matched by the area under the position.
+};
+
 /// \brief Read-only view over the XY records a series exposes to inspection queries.
 ///
 /// The pointers refer to the series' own buffers and are only valid until its next data change.

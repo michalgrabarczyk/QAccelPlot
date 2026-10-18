@@ -28,6 +28,9 @@ namespace {
 constexpr auto kInfinity = std::numeric_limits<double>::infinity();
 constexpr auto kNaN = std::numeric_limits<double>::quiet_NaN();
 
+// A series with neither XY data points nor native records.
+class PlainSeries final : public PlotSeries { };
+
 // Binds a standalone series to axes with a given viewport and a pixel size.
 void bind(PlotSeries& series, Axis& x, Axis& y, const QRectF& viewport, const QSizeF& size)
 {
@@ -559,15 +562,22 @@ void TestSeriesInspection::nativeRecords()
     QCOMPARE(hit.index, -1);
     QCOMPARE(bands.inspection()->recordAtPosition({20, 5}).status, InspectionStatus::NoMatch);
 
-    // Sample queries are reported as unsupported, whatever the arguments or geometry.
-    QVERIFY(!bars.inspection()->supported());
-    QCOMPARE(bars.inspection()->status(), InspectionStatus::Unsupported);
+    // Series with native records are ready; the XY queries report themselves as unsupported.
+    QCOMPARE(rectangles.inspection()->status(), InspectionStatus::Ready);
+    QCOMPARE(bars.inspection()->status(), InspectionStatus::Ready);
+    QCOMPARE(bands.inspection()->status(), InspectionStatus::Ready);
+    // A series that answers no query is unsupported.
+    auto plain = PlainSeries{};
+    QCOMPARE(plain.inspection()->status(), InspectionStatus::Unsupported);
     QCOMPARE(bars.inspection()->nearest({1, 1}).status, InspectionStatus::Unsupported);
     QCOMPARE(bands.inspection()->summarizeRange(0, 5).status, InspectionStatus::Unsupported);
     QCOMPARE(bands.inspection()->dataPointAt(0).status, InspectionStatus::Unsupported);
+    // Only heatmaps match data points by position.
+    QCOMPARE(bands.inspection()->dataPointAtPosition({20, 50}).status, InspectionStatus::Unsupported);
     // XY series have no native records.
     auto curve = LineCurve{};
     QCOMPARE(curve.inspection()->recordAt(0).status, InspectionStatus::Unsupported);
+    QCOMPARE(curve.inspection()->dataPointAtPosition({0, 0}).status, InspectionStatus::Unsupported);
 }
 
 QTEST_MAIN(TestSeriesInspection)

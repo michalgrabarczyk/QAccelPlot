@@ -122,6 +122,7 @@ signals:
 
 protected:
     /// \cond INTERNAL
+    bool recordInspectionSupported() const override;
     InspectionRecord inspectionRecord(int index) const override;
     InspectionRecord inspectionRecordAt(const QPointF& position) const override;
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updatePaintNodeData) override;

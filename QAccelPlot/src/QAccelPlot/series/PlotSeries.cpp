@@ -485,6 +485,11 @@ bool PlotSeries::inspectionAvailable() const
     return true;
 }
 
+bool PlotSeries::recordInspectionSupported() const
+{
+    return false;
+}
+
 InspectionRecord PlotSeries::inspectionRecord(const int /*index*/) const
 {
     auto result = InspectionRecord{};
@@ -495,6 +500,18 @@ InspectionRecord PlotSeries::inspectionRecord(const int /*index*/) const
 InspectionRecord PlotSeries::inspectionRecordAt(const QPointF& /*position*/) const
 {
     auto result = InspectionRecord{};
+    result.status = InspectionStatus::Unsupported;
+    return result;
+}
+
+bool PlotSeries::positionInspectionSupported() const
+{
+    return false;
+}
+
+InspectionDataPoint PlotSeries::inspectionDataPointAt(const QPointF& /*position*/) const
+{
+    auto result = InspectionDataPoint{};
     result.status = InspectionStatus::Unsupported;
     return result;
 }

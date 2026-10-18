@@ -9,8 +9,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Added
 
 - Heatmaps via `HeatmapSeries`: a uniform grid of values colored through a
-  `Colormap`, with cell records for inspection, a `ColorBar` key, and a
-  Heatmap example.
+  `Colormap`, with a `ColorBar` key, a Heatmap example, and cell inspection
+  through `PlotInspector` and `inspection.dataPointAtPosition()`.
+- `valueText` inspection role with the value of a heatmap cell or a colored
+  `PointCloud` point. The default `InspectionTooltip` row shows it.
 - Legend entries described in C++: `PlotSeries::legendEntry()` returns a
   `LegendEntry`, and `LegendModel` lists the entries of the visible series that
   have one, such as `Plot.legendModel`.
@@ -21,6 +23,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   and `HeatmapSeries`. In C++, `ColorBar::series()` returns a `ColormappedSeries*`.
 - `Legend` takes a `model` instead of `series`. Hidden series have no entry, and
   unnamed series are listed as "Series N".
+- `inspection.status` is `Ready` for bar, rectangle, band, and heatmap series
+  instead of `Unsupported`. Queries that do not apply to them still return
+  `Unsupported`.
+
+### Removed
+
+- `SeriesInspection.supported`. A query that does not apply to a series returns
+  `Inspection.Unsupported`.
 
 ## [0.4.0] — 2026-10-16
 

@@ -231,6 +231,8 @@ signals:
 
 protected:
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*) override;
+    /// \brief Returns true: bars are inspected as records.
+    bool recordInspectionSupported() const override;
     /// \brief Returns the bar at \a index with its position, value, and category.
     InspectionRecord inspectionRecord(int index) const override;
     /// \brief Returns the bar drawn at the series-local \a position.

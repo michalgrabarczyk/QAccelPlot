@@ -440,6 +440,11 @@ bool BarSeries::contains(const QPointF& point) const
     return boundingRect().contains(point) && barIndexAt(point) >= 0;
 }
 
+bool BarSeries::recordInspectionSupported() const
+{
+    return true;
+}
+
 InspectionRecord BarSeries::inspectionRecord(const int index) const
 {
     auto result = InspectionRecord{};

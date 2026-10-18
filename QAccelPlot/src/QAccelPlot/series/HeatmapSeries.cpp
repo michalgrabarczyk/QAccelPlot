@@ -14,6 +14,7 @@
 #include "QAccelPlot/materials/internal/DataTextureLayout.hpp"
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
 
+#include <QLineF>
 #include <QQuickWindow>
 #include <QSGGeometryNode>
 
@@ -242,6 +243,11 @@ int HeatmapSeries::dataPointValueCount() const
     return 1;
 }
 
+bool HeatmapSeries::recordInspectionSupported() const
+{
+    return true;
+}
+
 InspectionRecord HeatmapSeries::inspectionRecord(const int index) const
 {
     auto result = InspectionRecord{};
@@ -256,12 +262,11 @@ InspectionRecord HeatmapSeries::inspectionRecord(const int index) const
     }
     const auto row = index / columns_;
     const auto column = index % columns_;
-    const auto cellWidth = (extent.xMax - extent.xMin) / columns_;
-    const auto cellHeight = (extent.yMax - extent.yMin) / rows_;
+    const auto center = cellCenter(row, column);
     result.index = index;
     result.fields = QVariantMap{
-        {QStringLiteral("x"), extent.xMin + (column + 0.5) * cellWidth},
-        {QStringLiteral("y"), extent.yMin + (row + 0.5) * cellHeight},
+        {QStringLiteral("x"), center.x()},
+        {QStringLiteral("y"), center.y()},
         {QStringLiteral("value"), valueAt(row, column)},
         {QStringLiteral("row"), row},
         {QStringLiteral("column"), column},
@@ -274,6 +279,29 @@ InspectionRecord HeatmapSeries::inspectionRecordAt(const QPointF& position) cons
 {
     const auto cell = cellAt(position);
     return cell ? inspectionRecord(cell->first * columns_ + cell->second) : InspectionRecord{};
+}
+
+bool HeatmapSeries::positionInspectionSupported() const
+{
+    return true;
+}
+
+InspectionDataPoint HeatmapSeries::inspectionDataPointAt(const QPointF& position) const
+{
+    auto result = InspectionDataPoint{};
+    const auto cell = cellAt(position);
+    if (!cell) {
+        return result;
+    }
+    const auto [row, column] = *cell;
+    const auto center = cellCenter(row, column);
+    result.status = InspectionStatus::Ready;
+    result.index = row * columns_ + column;
+    result.position = center;
+    result.value = valueAt(row, column);
+    result.pixelPosition = QPointF{xAxis()->coordToPixel(center.x(), width()), yAxis()->coordToPixel(center.y(), height())};
+    result.distance = QLineF{position, result.pixelPosition}.length();
+    return result;
 }
 
 PlotSeries::DataRanges HeatmapSeries::computeDataRanges() const
@@ -404,6 +432,12 @@ std::optional<std::pair<int, int>> HeatmapSeries::cellAt(const QPointF& position
         return std::nullopt;
     }
     return std::pair<int, int>{static_cast<int>(row), static_cast<int>(column)};
+}
+
+QPointF HeatmapSeries::cellCenter(const int row, const int column) const
+{
+    const auto extent = resolvedExtent();
+    return {extent.xMin + (column + 0.5) * (extent.xMax - extent.xMin) / columns_, extent.yMin + (row + 0.5) * (extent.yMax - extent.yMin) / rows_};
 }
 
 bool HeatmapSeries::canDraw(QQuickWindow* window)

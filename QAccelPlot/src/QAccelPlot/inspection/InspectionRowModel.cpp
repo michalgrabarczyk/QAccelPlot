@@ -51,6 +51,8 @@ QVariant dataPointData(const InspectionRow& row, const int role)
         return row.xText;
     case InspectionRowModel::YTextRole:
         return row.yText;
+    case InspectionRowModel::ValueTextRole:
+        return row.valueText;
     case InspectionRowModel::PixelPositionRole:
         return row.pixelPosition;
     case InspectionRowModel::DistanceRole:
@@ -128,11 +130,11 @@ QHash<int, QByteArray> InspectionRowModel::roleNames() const
 {
     return {{SeriesRole, "series"}, {SeriesNameRole, "seriesName"}, {SeriesColorRole, "seriesColor"}, {ValidRole, "valid"},
         {DataPointStatusRole, "dataPointStatus"}, {DataPointIndexRole, "dataPointIndex"}, {DataPointXRole, "dataPointX"}, {DataPointYRole, "dataPointY"},
-        {DataPointValueRole, "dataPointValue"}, {XTextRole, "xText"}, {YTextRole, "yText"}, {PixelPositionRole, "pixelPosition"}, {DistanceRole, "distance"},
-        {InterpolatedRole, "interpolated"}, {HasSummaryRole, "hasSummary"}, {SummaryStatusRole, "summaryStatus"}, {SummaryCountRole, "summaryCount"},
-        {MinimumRole, "minimum"}, {MaximumRole, "maximum"}, {MeanRole, "mean"}, {StandardDeviationRole, "standardDeviation"},
-        {MinimumIndexRole, "minimumIndex"}, {MaximumIndexRole, "maximumIndex"}, {MinimumTextRole, "minimumText"}, {MaximumTextRole, "maximumText"},
-        {MeanTextRole, "meanText"}};
+        {DataPointValueRole, "dataPointValue"}, {XTextRole, "xText"}, {YTextRole, "yText"}, {ValueTextRole, "valueText"}, {PixelPositionRole, "pixelPosition"},
+        {DistanceRole, "distance"}, {InterpolatedRole, "interpolated"}, {HasSummaryRole, "hasSummary"}, {SummaryStatusRole, "summaryStatus"},
+        {SummaryCountRole, "summaryCount"}, {MinimumRole, "minimum"}, {MaximumRole, "maximum"}, {MeanRole, "mean"},
+        {StandardDeviationRole, "standardDeviation"}, {MinimumIndexRole, "minimumIndex"}, {MaximumIndexRole, "maximumIndex"}, {MinimumTextRole, "minimumText"},
+        {MaximumTextRole, "maximumText"}, {MeanTextRole, "meanText"}};
 }
 
 int InspectionRowModel::count() const
