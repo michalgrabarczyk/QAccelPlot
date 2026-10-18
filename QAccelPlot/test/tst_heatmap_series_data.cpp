@@ -481,6 +481,7 @@ void HeatmapSeriesDataTest::dataPointAtPositionReportsTheCellCenter()
     rig.heatmap.setYMin(0.0);
     rig.heatmap.setYMax(10.0);
     auto* inspection = rig.heatmap.inspection();
+    QCOMPARE(inspection->status(), InspectionStatus::Ready);
 
     // Pixel (52, 22) is data (5.2, 7.8): column 1, row 1, centered at data (5, 7.5), pixel (50, 25).
     const auto dataPoint = inspection->dataPointAtPosition({52.0, 22.0});

@@ -210,13 +210,13 @@ SeriesInspection::~SeriesInspection() = default;
 InspectionStatus SeriesInspection::status() const
 {
     const auto source = series_.inspectionSource();
-    if (!source.supported()) {
+    if (!source.supported() && !series_.recordInspectionSupported()) {
         return InspectionStatus::Unsupported;
     }
     if (!series_.inspectionAvailable()) {
         return InspectionStatus::Unavailable;
     }
-    if (d_->regionPlan(source).backend != Private::Backend::Index || d_->cache.index()) {
+    if (!source.supported() || d_->regionPlan(source).backend != Private::Backend::Index || d_->cache.index()) {
         return InspectionStatus::Ready;
     }
     return d_->cache.requested() ? InspectionStatus::Preparing : InspectionStatus::Idle;

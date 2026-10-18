@@ -161,6 +161,8 @@ protected:
     void applyDataPoints(DataPointInput&& input) override;
     /// \brief Returns 1: the \c PlotSeries setters take one value per cell.
     int dataPointValueCount() const override;
+    /// \brief Returns true: cells are inspected as records.
+    bool recordInspectionSupported() const override;
     /// \brief Returns the cell record at \a index.
     InspectionRecord inspectionRecord(int index) const override;
     /// \brief Returns the record of the cell drawn at the series-local \a position.

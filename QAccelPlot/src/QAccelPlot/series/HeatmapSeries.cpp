@@ -243,6 +243,11 @@ int HeatmapSeries::dataPointValueCount() const
     return 1;
 }
 
+bool HeatmapSeries::recordInspectionSupported() const
+{
+    return true;
+}
+
 InspectionRecord HeatmapSeries::inspectionRecord(const int index) const
 {
     auto result = InspectionRecord{};

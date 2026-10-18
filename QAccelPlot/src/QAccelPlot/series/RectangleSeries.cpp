@@ -294,6 +294,11 @@ bool RectangleSeries::contains(const QPointF& point) const
     return boundingRect().contains(point) && rectangleIndexAt(point) >= 0;
 }
 
+bool RectangleSeries::recordInspectionSupported() const
+{
+    return true;
+}
+
 InspectionRecord RectangleSeries::inspectionRecord(const int index) const
 {
     auto result = InspectionRecord{};

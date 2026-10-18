@@ -271,6 +271,8 @@ protected:
     virtual InspectionSource inspectionSource() const;
     /// \brief Returns false while the records are ambiguous, such as during a data transition. Default: true.
     virtual bool inspectionAvailable() const;
+    /// \brief Returns whether \c inspectionRecord() and \c inspectionRecordAt() answer for this series. Default: false.
+    virtual bool recordInspectionSupported() const;
     /// \brief Returns the native record at \a index for series that are not plain XY series. Default: unsupported.
     virtual InspectionRecord inspectionRecord(int index) const;
     /// \brief Returns the native record drawn at the series-local \a position. Default: unsupported.

@@ -179,6 +179,8 @@ signals:
 
 protected:
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*) override;
+    /// \brief Returns true: rectangles are inspected as records.
+    bool recordInspectionSupported() const override;
     /// \brief Returns the rectangle at \a index with its edges and category.
     InspectionRecord inspectionRecord(int index) const override;
     /// \brief Returns the rectangle drawn at the series-local \a position.

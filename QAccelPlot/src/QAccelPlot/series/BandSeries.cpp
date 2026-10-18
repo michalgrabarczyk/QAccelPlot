@@ -214,6 +214,11 @@ bool BandSeries::contains(const QPointF& point) const
     return point.y() >= std::min(lowPixel, highPixel) - tolerance && point.y() <= std::max(lowPixel, highPixel) + tolerance;
 }
 
+bool BandSeries::recordInspectionSupported() const
+{
+    return true;
+}
+
 InspectionRecord BandSeries::inspectionRecord(const int index) const
 {
     auto result = InspectionRecord{};

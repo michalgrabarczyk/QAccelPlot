@@ -1659,7 +1659,8 @@ if (dataPoint.valid)
 | Heatmap cell at a position, as a data point | `dataPointAtPosition()` |
 
 Results carry a `status` and a `valid` flag. Compare `status` with
-`QAccelPlot.Inspection.Ready`, `NoMatch`, `Preparing`, or another status.
+`QAccelPlot.Inspection.Ready`, `NoMatch`, `Preparing`, or another status. A
+query that does not apply to the series returns `Unsupported`.
 [`SeriesInspection`][series-inspection] specifies regions, tie-breaking, and
 paging.
 

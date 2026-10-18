@@ -23,6 +23,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   and `HeatmapSeries`. In C++, `ColorBar::series()` returns a `ColormappedSeries*`.
 - `Legend` takes a `model` instead of `series`. Hidden series have no entry, and
   unnamed series are listed as "Series N".
+- `inspection.status` is `Ready` for bar, rectangle, band, and heatmap series
+  instead of `Unsupported`. Queries that do not apply to them still return
+  `Unsupported`.
 
 ### Removed
 

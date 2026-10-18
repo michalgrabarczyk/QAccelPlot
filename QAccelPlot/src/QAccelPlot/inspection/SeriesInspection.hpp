@@ -49,6 +49,9 @@ class SeriesInspection : public QObject {
     Q_OBJECT
     QML_ANONYMOUS
     /// \brief Readiness for data point queries: \c Ready, \c Idle, \c Preparing, \c Unsupported, or \c Unavailable.
+    ///
+    /// Bar, rectangle, band, and heatmap series are \c Ready while available; the queries that do not
+    /// apply to them return \c Unsupported. \c Unsupported only for a series that answers no query.
     Q_PROPERTY(::QAccelPlot::InspectionNS::Status status READ status NOTIFY statusChanged)
     /// \brief Largest page returned by \c indices().
     Q_PROPERTY(int maximumPageSize READ maximumPageSize CONSTANT)

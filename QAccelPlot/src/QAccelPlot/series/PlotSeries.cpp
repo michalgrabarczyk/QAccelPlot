@@ -485,6 +485,11 @@ bool PlotSeries::inspectionAvailable() const
     return true;
 }
 
+bool PlotSeries::recordInspectionSupported() const
+{
+    return false;
+}
+
 InspectionRecord PlotSeries::inspectionRecord(const int /*index*/) const
 {
     auto result = InspectionRecord{};
