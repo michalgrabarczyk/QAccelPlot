@@ -127,6 +127,10 @@ private:
     QAccelPlot* plot_{nullptr};
 };
 
+// Columns and visible cells of highCellIndicesStayExactInMixedMappings().
+constexpr auto kPrecisionColumns = 1 << 20;
+constexpr auto kPrecisionVisibleCells = 32;
+
 bool isColor(const QColor& pixel, const QColor& expected)
 {
     constexpr auto kTolerance = 60;
@@ -361,20 +365,18 @@ void HeatmapSeriesRenderingTest::logSpacingWithNonPositiveEdgeDrawsNothing()
 
 void HeatmapSeriesRenderingTest::highCellIndicesStayExactInMixedMappings()
 {
-    constexpr auto kColumns = 1 << 20;
-    constexpr auto kVisibleCells = 32;
-    auto values = std::vector<float>(kColumns);
-    for (auto i = 0; i < kColumns; ++i) {
+    auto values = std::vector<float>(kPrecisionColumns);
+    for (auto i = 0; i < kPrecisionColumns; ++i) {
         values[static_cast<std::size_t>(i)] = i % 2 == 0 ? 0.0f : 2.0f;
     }
     auto* heatmap = scene_->heatmap();
-    heatmap->setValues(std::move(values), kColumns, 1);
+    heatmap->setValues(std::move(values), kPrecisionColumns, 1);
     heatmap->setYMin(0.0);
     heatmap->setYMax(10.0);
     auto* axis = scene_->plot()->xAxis();
     const auto checkCells = [this](const int first, const auto& center) {
         const auto image = scene_->grab();
-        for (auto cell = first; cell < first + kVisibleCells; ++cell) {
+        for (auto cell = first; cell < first + kPrecisionVisibleCells; ++cell) {
             const auto expected = cell % 2 == 0 ? QColor{Qt::red} : QColor{Qt::blue};
             QVERIFY2(isColor(image.pixelColor(scene_->pixel(center(cell), 5.0)), expected), qPrintable(QStringLiteral("cell %1").arg(cell)));
         }
@@ -383,9 +385,9 @@ void HeatmapSeriesRenderingTest::highCellIndicesStayExactInMixedMappings()
     // Linear cells [i, i + 1] on a log axis.
     constexpr auto kLinearFirst = 1'000'000;
     heatmap->setXMin(0.0);
-    heatmap->setXMax(kColumns);
+    heatmap->setXMax(kPrecisionColumns);
     axis->setViewportMin(kLinearFirst);
-    axis->setViewportMax(kLinearFirst + kVisibleCells);
+    axis->setViewportMax(kLinearFirst + kPrecisionVisibleCells);
     axis->setLogScale(true);
     checkCells(kLinearFirst, [](const int cell) { return cell + 0.5; });
     if (QTest::currentTestFailed()) {
@@ -393,14 +395,14 @@ void HeatmapSeriesRenderingTest::highCellIndicesStayExactInMixedMappings()
     }
 
     // Log cells over six decades on a linear axis, near 900000.
-    const auto edge = [](const double cell) { return std::pow(10.0, 6.0 * cell / kColumns); };
-    const auto logFirst = static_cast<int>(std::ceil(std::log10(900'000.0) / 6.0 * kColumns));
+    const auto edge = [](const double cell) { return std::pow(10.0, 6.0 * cell / kPrecisionColumns); };
+    const auto logFirst = static_cast<int>(std::ceil(std::log10(900'000.0) / 6.0 * kPrecisionColumns));
     heatmap->setXMin(1.0);
     heatmap->setXMax(1'000'000.0);
     heatmap->setXSpacing(HeatmapSeries::Spacing::Log);
     axis->setLogScale(false);
     axis->setViewportMin(edge(logFirst));
-    axis->setViewportMax(edge(logFirst + kVisibleCells));
+    axis->setViewportMax(edge(logFirst + kPrecisionVisibleCells));
     checkCells(logFirst, [&edge](const int cell) { return edge(cell + 0.5); });
 }
 
