@@ -45,7 +45,8 @@ set to the same gesture, `SelectionTool` takes it.
 [`PlotInspector`][plot-inspector] queries every visible `LineCurve`,
 `PointCloud`, and `HeatmapSeries` of the plot at the cursor. Other series types
 have no row. A heatmap reports the cell under the cursor in every mode, at its
-center; `radius`, `interpolate`, and `summaries` do not apply to it.
+center; `radius`, `interpolate`, and `summaries` do not apply to it, and
+`snapToDataPoint` moves both crosshair coordinates to the center.
 
 | Property | Effect |
 | --- | --- |

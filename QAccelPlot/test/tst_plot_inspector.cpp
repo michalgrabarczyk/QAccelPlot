@@ -479,11 +479,17 @@ void TestPlotInspector::heatmapCells()
     const auto outside = cellAt(rig.pixel(9, 3));
     QCOMPARE(outside.value("dataPointStatus").value<InspectionStatus>(), InspectionStatus::NoMatch);
 
-    // Snapping moves the crosshair to the cell center; summaries do not apply to cells.
+    // Snapping moves both crosshair coordinates to the cell center in every mode; summaries do not apply to cells.
     inspector.setSnapToDataPoint(true);
     inspector.setSummaries(true);
+    inspector.setExcludedSeries({curve});
+    for (const auto mode : {PlotInspector::NearestX, PlotInspector::NearestY, PlotInspector::NearestXY}) {
+        inspector.setMode(mode);
+        cellAt(rig.pixel(5, 3));
+        QCOMPARE(inspector.position(), rig.pixel(6, 2.5));
+    }
+    inspector.setExcludedSeries({});
     const auto snapped = cellAt(rig.pixel(5, 3));
-    QCOMPARE(inspector.position(), rig.pixel(6, 2.5));
     QVERIFY(snapped.value("valid").toBool());
     QVERIFY(snapped.value("summaryStatus").value<InspectionStatus>() != InspectionStatus::Ready);
     inspector.setSnapToDataPoint(false);

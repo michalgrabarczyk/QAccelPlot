@@ -651,7 +651,10 @@ QPointF PlotInspector::snappedPosition(const QList<Query>& queries, const QPoint
     if (!closest) {
         return cursor;
     }
-    // Only the coordinates the mode matches by are snapped.
+    // Only the coordinates the row was matched by are snapped; a cell is matched by both.
+    if (!closest->series->inspection()->supported()) {
+        return closest->pixelPosition;
+    }
     const auto mode = effectiveMode(cursor);
     return {mode == NearestY ? cursor.x() : closest->pixelPosition.x(), mode == NearestX ? cursor.y() : closest->pixelPosition.y()};
 }

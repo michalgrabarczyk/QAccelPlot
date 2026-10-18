@@ -23,7 +23,8 @@ class OverlayChildren;
 ///
 /// Series whose \c SeriesInspection::positionSupported is true, such as \c HeatmapSeries, report the
 /// record under the cursor in every mode, and only while the cursor has both coordinates; \c radius,
-/// \c interpolate, and \c summaries do not apply to them.
+/// \c interpolate, and \c summaries do not apply to them, and \c snapToDataPoint moves both crosshair
+/// coordinates to the record's center.
 ///
 /// The cursor follows the plot's pointer by default; set \c followPointer to \c false and write
 /// \c cursorX to drive it from code, for example to link the crosshairs of several plots.
