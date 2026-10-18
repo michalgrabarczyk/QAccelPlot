@@ -124,13 +124,14 @@ ScrollView {
         OptionSwitch {
             label: "Hover hit-testing"
             checked: root.settings.hoverEnabled
+            enabled: root.settings.hoverSupported
             Layout.fillWidth: true
             onToggled: checked => root.settings.hoverEnabled = checked
         }
 
         // The active page's own options.
         Loader {
-            sourceComponent: root.window.activePage === "pointCloud" ? pointCloudOptions : root.window.activePage === "rectangleSeries" ? rectangleSeriesOptions : root.window.activePage === "barSeries" ? barSeriesOptions : lineCurveOptions
+            sourceComponent: root.window.activePage === "pointCloud" ? pointCloudOptions : root.window.activePage === "rectangleSeries" ? rectangleSeriesOptions : root.window.activePage === "barSeries" ? barSeriesOptions : root.window.activePage === "heatmapSeries" ? heatmapSeriesOptions : lineCurveOptions
             Layout.fillWidth: true
         }
 
@@ -163,6 +164,14 @@ ScrollView {
 
             BarSeriesOptions {
                 settings: root.window.barSeriesSettings
+            }
+        }
+
+        Component {
+            id: heatmapSeriesOptions
+
+            HeatmapSeriesOptions {
+                settings: root.window.heatmapSeriesSettings
             }
         }
 

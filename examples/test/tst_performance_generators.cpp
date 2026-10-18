@@ -11,6 +11,7 @@
 #include "InterferenceGenerator.hpp"
 #include "PlasmaGenerator.hpp"
 #include "SineWaveGenerator.hpp"
+#include "SpectrogramGenerator.hpp"
 
 #include <QtTest/QtTest>
 
@@ -86,6 +87,11 @@ private slots:
     void interferenceValuesFollowTheWaves();
     void interferenceMovesOverTime();
     void interferenceCategoriesFollowTheValues();
+    void spectrogramGridIsSquare_data();
+    void spectrogramGridIsSquare();
+    void spectrogramValuesStayInRange();
+    void spectrogramScrollsOneRowPerStep();
+    void spectrogramFillsTheHistoryAtOnce();
 };
 
 void PerformanceGeneratorsTest::recordsAreSplitEvenly()
@@ -109,6 +115,7 @@ void PerformanceGeneratorsTest::splitDatasetsMatchTheUnsplitOnes()
         QVERIFY(nearlyEqual(generatedFloats<PlasmaGenerator>(count, seriesCount, timeSeconds), generatedFloats<PlasmaGenerator>(count, 1, timeSeconds)));
         QVERIFY(nearlyEqual(
             generatedFloats<InterferenceGenerator>(count, seriesCount, timeSeconds), generatedFloats<InterferenceGenerator>(count, 1, timeSeconds)));
+        QVERIFY(generatedFloats<SpectrogramGenerator>(count, seriesCount, timeSeconds) == generatedFloats<SpectrogramGenerator>(count, 1, timeSeconds));
     }
 
     auto generator = GalaxyGenerator{};
@@ -505,6 +512,81 @@ void PerformanceGeneratorsTest::interferenceCategoriesFollowTheValues()
         }
     }
     QVERIFY(std::all_of(usedCategories.begin(), usedCategories.end(), [](const bool used) { return used; }));
+}
+
+void PerformanceGeneratorsTest::spectrogramGridIsSquare_data()
+{
+    QTest::addColumn<int>("cellCount");
+    QTest::addColumn<int>("side");
+    QTest::newRow("one") << 1 << 1;
+    QTest::newRow("rounded up") << 1'000 << 32;
+    QTest::newRow("rounded down") << 1'003 << 32;
+    QTest::newRow("exact square") << 1'000'000 << 1'000;
+}
+
+void PerformanceGeneratorsTest::spectrogramGridIsSquare()
+{
+    QFETCH(int, cellCount);
+    QFETCH(int, side);
+    QCOMPARE(SpectrogramGenerator::gridSide(cellCount), side);
+
+    auto generator = SpectrogramGenerator{};
+    auto batch = SpectrogramBatch{};
+    generator.generate(batch, parametersFor<SpectrogramParameters>(cellCount, 3), 2.5);
+    auto nextRow = 0;
+    for (const auto& part : batch.parts) {
+        QCOMPARE(part.columns, side);
+        QCOMPARE(part.firstRow, nextRow);
+        QCOMPARE(part.count, part.columns * part.rows);
+        QCOMPARE(part.floats.size(), static_cast<std::size_t>(part.count));
+        nextRow += part.rows;
+    }
+    QCOMPARE(nextRow, side);
+}
+
+void PerformanceGeneratorsTest::spectrogramValuesStayInRange()
+{
+    const auto values = generatedFloats<SpectrogramGenerator>(10'000, 1, 3.7);
+    QVERIFY(std::all_of(values.begin(), values.end(), [](const float value) { return value >= 0.0f && value <= 1.0f; }));
+    // The tones and the chirp stand out from the noise floor.
+    QVERIFY(*std::max_element(values.begin(), values.end()) > 0.6f);
+    QVERIFY(*std::min_element(values.begin(), values.end()) < 0.25f);
+}
+
+void PerformanceGeneratorsTest::spectrogramScrollsOneRowPerStep()
+{
+    constexpr auto cellCount = 1'024;
+    constexpr auto side = 32;
+    constexpr auto step = SpectrogramGenerator::kScrollSeconds / side;
+    // Halfway through a step, so rounding cannot move the time across a row boundary.
+    constexpr auto timeSeconds = 40.5 * step;
+    auto generator = SpectrogramGenerator{};
+    auto before = SpectrogramBatch{};
+    auto after = SpectrogramBatch{};
+    generator.generate(before, parametersFor<SpectrogramParameters>(cellCount), timeSeconds);
+    generator.generate(after, parametersFor<SpectrogramParameters>(cellCount), timeSeconds + step);
+
+    // Every row moved one down; the top row is the new spectrum.
+    const auto& oldRows = before.parts.front().floats;
+    const auto& newRows = after.parts.front().floats;
+    QVERIFY(std::equal(newRows.begin(), newRows.end() - side, oldRows.begin() + side));
+    QVERIFY(!std::equal(newRows.end() - side, newRows.end(), oldRows.end() - side));
+}
+
+void PerformanceGeneratorsTest::spectrogramFillsTheHistoryAtOnce()
+{
+    // Every generated cell is at or above the noise floor, so a row left unwritten would show as 0.
+    const auto isFilled = [](const std::vector<float>& values) {
+        return !values.empty() && std::all_of(values.begin(), values.end(), [](const float value) { return value > 0.05f; });
+    };
+    auto generator = SpectrogramGenerator{};
+    auto batch = SpectrogramBatch{};
+    generator.generate(batch, parametersFor<SpectrogramParameters>(10'000), 0.0);
+    QVERIFY(isFilled(batch.parts.front().floats));
+
+    generator.generate(batch, parametersFor<SpectrogramParameters>(40'000), 0.0);
+    QCOMPARE(batch.parts.front().count, 40'000);
+    QVERIFY(isFilled(batch.parts.front().floats));
 }
 
 QTEST_GUILESS_MAIN(PerformanceGeneratorsTest)

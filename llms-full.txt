@@ -625,8 +625,8 @@ Benchmark both modes with your workload, or configure the
 ### Performance Lab
 
 [`examples/showcases/performance`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/showcases/performance)
-streams a `LineCurve`, a `PointCloud`, a `RectangleSeries`, and a `BarSeries`,
-one per tab, with options for record and series count, ingestion API, hover,
+streams a `LineCurve`, a `PointCloud`, a `RectangleSeries`, a `BarSeries`, and
+a `HeatmapSeries`, one per tab, with options for record and series count, ingestion API, hover,
 and rendering. Change one option at a time, at a record count that keeps
 display FPS below the refresh rate. The lab reports:
 
@@ -635,7 +635,8 @@ display FPS below the refresh rate. The lab reports:
   including worker-side generation.
 - **Peak update gap** — the longest interval between two dataset applications
   in the last reporting period.
-- **Throughput** — points, rectangles, or bars updated per second.
+- **Throughput** — points, rectangles, bars, or heatmap cells updated per
+  second.
 
 ### Included benchmarks
 

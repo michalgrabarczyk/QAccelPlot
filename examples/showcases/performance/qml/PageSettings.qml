@@ -19,4 +19,6 @@ QtObject {
     property string ingestion: "floatMove"
     // Whether the series take part in hover hit-testing.
     property bool hoverEnabled: true
+    // Whether the page's series type has hover hit-testing at all.
+    property bool hoverSupported: true
 }

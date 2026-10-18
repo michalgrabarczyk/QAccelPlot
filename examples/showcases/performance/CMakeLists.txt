@@ -11,6 +11,7 @@ qaccelplot_add_example(Performance
         src/DataDeliveryMetrics.cpp
         src/DatasetParts.cpp
         src/GalaxyGenerator.cpp
+        src/HeatmapSeriesFeed.cpp
         src/Ingestion.cpp
         src/InterferenceGenerator.cpp
         src/LineCurveFeed.cpp
@@ -21,12 +22,16 @@ qaccelplot_add_example(Performance
         src/ShowcaseController.cpp
         src/SineLookup.cpp
         src/SineWaveGenerator.cpp
+        src/SpectrogramGenerator.cpp
         src/main.cpp
     QML_FILES
         qml/BarSeriesOptions.qml
         qml/BarSeriesPage.qml
         qml/BarSeriesSettings.qml
         qml/ControlPanel.qml
+        qml/HeatmapSeriesOptions.qml
+        qml/HeatmapSeriesPage.qml
+        qml/HeatmapSeriesSettings.qml
         qml/LineCurveOptions.qml
         qml/LineCurvePage.qml
         qml/LineCurveSettings.qml

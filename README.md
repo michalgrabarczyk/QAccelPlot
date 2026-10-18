@@ -115,7 +115,7 @@ Explore runnable applications in the [`examples/`](examples/) directory:
 | Category | Example | Description |
 | :--- | :--- | :--- |
 | Showcases | **[Cosmic Pulsar](examples/showcases/pulsar/)** | Animated 80-ridge CP 1919 waterfall; dense antialiased lines fed from a worker thread. |
-| Showcases | **[Performance](examples/showcases/performance/)** | Performance lab: stream up to 10M points, rectangles, or bars per tab and compare the cost of series count, ingestion API, and rendering options. |
+| Showcases | **[Performance](examples/showcases/performance/)** | Performance lab: stream up to 10M points, rectangles, bars, or heatmap cells per tab and compare the cost of series count, ingestion API, and rendering options. |
 | Start | **[Quickstart](examples/quickstart/)** | Minimal plot setup. |
 | Plot types | **[Bar Chart](examples/plot_types/bar_chart/)** | Grouped monthly revenue with a horizontal toggle, profit bars colored against a target baseline, and animated updates. |
 | Plot types | **[Histogram](examples/plot_types/histogram/)** | Sensor noise in equal bins, and request latencies in logarithmic bins or as density in one bin per axis tick. |
