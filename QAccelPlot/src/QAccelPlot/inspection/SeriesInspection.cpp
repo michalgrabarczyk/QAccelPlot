@@ -222,16 +222,6 @@ InspectionStatus SeriesInspection::status() const
     return d_->cache.requested() ? InspectionStatus::Preparing : InspectionStatus::Idle;
 }
 
-bool SeriesInspection::supported() const
-{
-    return series_.inspectionSource().supported();
-}
-
-bool SeriesInspection::positionSupported() const
-{
-    return series_.positionInspectionSupported();
-}
-
 int SeriesInspection::maximumPageSize() const
 {
     return kMaximumPageSize;
@@ -397,6 +387,14 @@ SeriesInspection::SeriesInspection(PlotSeries& series)
     , series_(series)
     , d_(std::make_unique<Private>(*this))
 {
+}
+
+InspectionMatching SeriesInspection::matching() const
+{
+    if (series_.inspectionSource().supported()) {
+        return InspectionMatching::Nearest;
+    }
+    return series_.positionInspectionSupported() ? InspectionMatching::Containing : InspectionMatching::None;
 }
 
 void SeriesInspection::sourceChanged(const bool appended)

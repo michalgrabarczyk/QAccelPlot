@@ -560,13 +560,11 @@ void TestSeriesInspection::nativeRecords()
     QCOMPARE(bands.inspection()->recordAtPosition({20, 5}).status, InspectionStatus::NoMatch);
 
     // Sample queries are reported as unsupported, whatever the arguments or geometry.
-    QVERIFY(!bars.inspection()->supported());
     QCOMPARE(bars.inspection()->status(), InspectionStatus::Unsupported);
     QCOMPARE(bars.inspection()->nearest({1, 1}).status, InspectionStatus::Unsupported);
     QCOMPARE(bands.inspection()->summarizeRange(0, 5).status, InspectionStatus::Unsupported);
     QCOMPARE(bands.inspection()->dataPointAt(0).status, InspectionStatus::Unsupported);
     // Only heatmaps match data points by position.
-    QVERIFY(!bands.inspection()->positionSupported());
     QCOMPARE(bands.inspection()->dataPointAtPosition({20, 50}).status, InspectionStatus::Unsupported);
     // XY series have no native records.
     auto curve = LineCurve{};

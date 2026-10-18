@@ -20,6 +20,7 @@ namespace QAccelPlot {
 
 class PlotSeries;
 enum class InspectionAxis;
+enum class InspectionMatching;
 struct InspectionMetric;
 struct InspectionSource;
 
@@ -49,10 +50,6 @@ class SeriesInspection : public QObject {
     QML_ANONYMOUS
     /// \brief Readiness for data point queries: \c Ready, \c Idle, \c Preparing, \c Unsupported, or \c Unavailable.
     Q_PROPERTY(::QAccelPlot::InspectionNS::Status status READ status NOTIFY statusChanged)
-    /// \brief Whether the series has XY records that data point queries can search.
-    Q_PROPERTY(bool supported READ supported NOTIFY statusChanged)
-    /// \brief Read-only constant: whether \c dataPointAtPosition() matches records drawn as areas, such as heatmap cells.
-    Q_PROPERTY(bool positionSupported READ positionSupported CONSTANT)
     /// \brief Largest page returned by \c indices().
     Q_PROPERTY(int maximumPageSize READ maximumPageSize CONSTANT)
 
@@ -61,10 +58,6 @@ public:
 
     /// \brief Returns the readiness for data point queries.
     InspectionStatus status() const;
-    /// \brief Returns whether the series has XY records that data point queries can search.
-    bool supported() const;
-    /// \brief Returns whether \c dataPointAtPosition() matches records drawn as areas.
-    bool positionSupported() const;
     /// \brief Returns the largest page returned by \c indices().
     int maximumPageSize() const;
 
@@ -102,8 +95,8 @@ public:
     Q_INVOKABLE ::QAccelPlot::InspectionRecord recordAtPosition(const QPointF& position) const;
     /// \brief Returns the record drawn at the series-local \a position as a data point, such as the heatmap cell under it.
     ///
-    /// \c Unsupported unless \c positionSupported is true. The coordinates and \c pixelPosition of a
-    /// match are the record's center, and \c distance is measured from \a position to it.
+    /// \c Unsupported for series that do not draw data points as areas. The coordinates and
+    /// \c pixelPosition of a match are the record's center, and \c distance is measured from \a position to it.
     Q_INVOKABLE ::QAccelPlot::InspectionDataPoint dataPointAtPosition(const QPointF& position) const;
 
 signals:
@@ -112,9 +105,12 @@ signals:
 
 private:
     friend class PlotSeries;
+    friend class PlotInspector;
+    friend class SelectionTool;
     struct Private;
 
     explicit SeriesInspection(PlotSeries& series);
+    InspectionMatching matching() const;
     void sourceChanged(bool appended);
     void sourceInvalidated();
     // Returns Ready when a query can run now: one along the given axis, or an on-screen or region query otherwise.

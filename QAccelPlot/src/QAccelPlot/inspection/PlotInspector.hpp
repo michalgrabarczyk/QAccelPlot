@@ -21,8 +21,8 @@ class OverlayChildren;
 
 /// \brief Inspects the visible XY series and heatmaps of a plot at a cursor and publishes one model row per series.
 ///
-/// Series whose \c SeriesInspection::positionSupported is true, such as \c HeatmapSeries, report the
-/// record under the cursor in every mode, and only while the cursor has both coordinates; \c radius,
+/// Series that draw data points as areas, such as \c HeatmapSeries, report the record under the
+/// cursor in every mode, and only while the cursor has both coordinates; \c radius,
 /// \c interpolate, and \c summaries do not apply to them, and \c snapToDataPoint moves both crosshair
 /// coordinates to the record's center.
 ///

@@ -7,6 +7,7 @@
 //
 #include "QAccelPlot/inspection/SelectionTool.hpp"
 
+#include "QAccelPlot/inspection/internal/InspectionTypes.hpp"
 #include "QAccelPlot/inspection/internal/SelectionRectangle.hpp"
 
 #include <algorithm>
@@ -466,8 +467,8 @@ void SelectionTool::refreshRows()
 
 bool SelectionTool::selects(const PlotSeries* series) const
 {
-    return series->isVisible() && series->inspection()->supported() && (unbounded(region_.xMin, region_.xMax) || series->xAxis() == xAxis())
-        && (unbounded(region_.yMin, region_.yMax) || series->yAxis() == yAxis());
+    return series->isVisible() && series->inspection()->matching() == InspectionMatching::Nearest
+        && (unbounded(region_.xMin, region_.xMax) || series->xAxis() == xAxis()) && (unbounded(region_.yMin, region_.yMax) || series->yAxis() == yAxis());
 }
 
 QRectF SelectionTool::gestureRect() const

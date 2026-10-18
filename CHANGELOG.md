@@ -24,6 +24,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `Legend` takes a `model` instead of `series`. Hidden series have no entry, and
   unnamed series are listed as "Series N".
 
+### Removed
+
+- `SeriesInspection.supported`. A query that does not apply to a series returns
+  `Inspection.Unsupported`.
+
 ## [0.4.0] — 2026-10-16
 
 ### Added
