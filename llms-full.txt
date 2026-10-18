@@ -1955,6 +1955,43 @@ QAccelPlot.Plot {
   the binding is re-evaluated, it reshapes the grid.
 - `valueAt(row, column)` reads a cell.
 
+## Use logarithmic axes and spacing
+
+`xSpacing` and `ySpacing` set how cells are spaced between the grid edges,
+independently of the axis scale:
+
+- `HeatmapSeries.Linear` (default): cells of equal size in data coordinates.
+- `HeatmapSeries.Log`: cells of equal size in log10, each spanning the same
+  ratio, such as constant-Q or octave bins.
+
+| Spacing | Linear axis | Log axis |
+|---|---|---|
+| `Linear` | Equal widths | Narrower toward larger values |
+| `Log` | Wider toward larger values | Equal widths |
+
+```qml
+QAccelPlot.Plot {
+    id: plot
+    yAxis: QAccelPlot.Axis { viewportMin: 20; viewportMax: 20000; logScale: true }
+
+    QAccelPlot.HeatmapSeries {
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        xMin: 0; xMax: 10
+        // Rows of equal frequency ratio from 20 Hz to 20 kHz.
+        yMin: 20; yMax: 20000
+        ySpacing: QAccelPlot.HeatmapSeries.Log
+    }
+}
+```
+
+- On a log axis, the parts of `Linear` cells at or below zero are not drawn,
+  and the data range starts at the first cell edge above zero. A grid from
+  0 Hz, such as FFT bins, keeps its first bin.
+- `Log` spacing needs both edges of that dimension positive. Set them: an
+  unset edge resolves to index space, which starts at 0. Otherwise the series
+  draws nothing, reports no data range in that dimension, and logs a warning.
+
 ## Choose the colors
 
 The series starts with its own Viridis `Colormap`, with the value range
@@ -2000,10 +2037,10 @@ A heatmap has no legend entry: the color bar is its key.
 ## Read the cell under the pointer
 
 A [`PlotInspector`](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/data-inspection/#inspector) reports the cell under the
-cursor in every mode. Its row has the cell center as `dataPointX` and
-`dataPointY`, the value as `dataPointValue` and `valueText`, and
-`row * columns + column` as `dataPointIndex`. `InspectionTooltip` shows the
-center and the value:
+cursor in every mode. Its row has the cell center (geometric under `Log`
+spacing) as `dataPointX` and `dataPointY`, the value as `dataPointValue` and
+`valueText`, and `row * columns + column` as `dataPointIndex`.
+`InspectionTooltip` shows the center and the value:
 
 ```qml
 QAccelPlot.PlotInspector {
@@ -2018,8 +2055,9 @@ A cell with a non-finite value is still a match. In code,
 series-local position: pixels from the top left of the plot area.
 `inspection.recordAtPosition()` and `inspection.recordAt(index)` return the
 cell's record, whose `fields` are `x` and `y` (the cell center), `value`,
-`row`, and `column`. While a grid edge is infinite, `recordAt()` returns
-`Inspection.Unavailable` and no position matches a cell.
+`row`, and `column`. While a grid edge is infinite, or not positive under
+`Log` spacing, `recordAt()` returns `Inspection.Unavailable` and no position
+matches a cell.
 
 ## Set data from C++
 
@@ -2042,8 +2080,6 @@ a multiple of it. Setting `columns` keeps the values and recomputes `rows`.
 - Each pixel takes the color of the cell under its center. Cells are not
   interpolated.
 - Values are single precision.
-- Logarithmic axes are not supported. On one, the series draws nothing,
-  reports no data range in that dimension, and logs a warning.
 - A grid with an infinite edge, such as `xMin: -Infinity`, draws nothing.
 - A grid can have as many cells as the GPU data texture holds: about 67
   million on a GPU with an 8192-pixel texture limit. A larger grid is not

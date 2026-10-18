@@ -24,7 +24,7 @@ namespace {
 
 constexpr auto kColumns = 400;
 constexpr auto kRows = 300;
-// The grid edges, matching xMin, xMax, yMin, and yMax in main.qml.
+// The grid edges, matching xMin, xMax, yMin, and yMax in InterferencePage.qml.
 constexpr auto kXMin = -10.0;
 constexpr auto kXMax = 10.0;
 constexpr auto kYMin = -7.5;
@@ -59,6 +59,43 @@ std::vector<float> interferencePattern()
     return values;
 }
 
+constexpr auto kSweepColumns = 240;
+constexpr auto kSweepRows = 180;
+// The grid edges, matching LogBinsPage.qml.
+constexpr auto kDuration = 10.0;
+constexpr auto kLowestFrequency = 20.0;
+constexpr auto kHighestFrequency = 20000.0;
+
+// Level in dB of a bin centered at frequency, with a constant-Q response a twelfth of an octave
+// wide, for a tone at toneFrequency with its second and third harmonics.
+double binLevel(const double frequency, const double toneFrequency)
+{
+    constexpr auto kBandwidthOctaves = 1.0 / 12.0;
+    constexpr auto kNoiseFloor = 1e-4; // -80 dB
+    auto amplitude = kNoiseFloor;
+    for (auto harmonic = 1; harmonic <= 3; ++harmonic) {
+        const auto octaves = std::log2(frequency / (harmonic * toneFrequency)) / kBandwidthOctaves;
+        amplitude += std::exp(-0.5 * octaves * octaves) / (harmonic * harmonic);
+    }
+    return 20.0 * std::log10(amplitude);
+}
+
+// An exponential sweep from 50 Hz to 5 kHz in bins of equal frequency ratio, row 0 at
+// kLowestFrequency. Each bin is sampled at its time center and geometric frequency center.
+std::vector<float> frequencySweep()
+{
+    auto values = std::vector<float>{};
+    values.reserve(static_cast<std::size_t>(kSweepColumns) * kSweepRows);
+    for (auto row = 0; row < kSweepRows; ++row) {
+        const auto frequency = kLowestFrequency * std::pow(kHighestFrequency / kLowestFrequency, (row + 0.5) / kSweepRows);
+        for (auto column = 0; column < kSweepColumns; ++column) {
+            const auto time = kDuration * (column + 0.5) / kSweepColumns;
+            values.push_back(static_cast<float>(binLevel(frequency, 50.0 * std::pow(100.0, time / kDuration))));
+        }
+    }
+    return values;
+}
+
 } // namespace
 
 int main(int argc, char* argv[])
@@ -72,12 +109,14 @@ int main(int argc, char* argv[])
 
     engine.load(QUrl(QStringLiteral("qrc:/app/qml/main.qml")));
     auto* root = engine.rootObjects().value(0);
-    auto* heatmap = root ? root->findChild<QAccelPlot::HeatmapSeries*>(QStringLiteral("heatmap")) : nullptr;
-    if (!heatmap) {
-        qCritical() << "Unable to find the heatmap";
+    auto* interference = root ? root->findChild<QAccelPlot::HeatmapSeries*>(QStringLiteral("interferenceHeatmap")) : nullptr;
+    auto* logBins = root ? root->findChild<QAccelPlot::HeatmapSeries*>(QStringLiteral("logBinsHeatmap")) : nullptr;
+    if (!interference || !logBins) {
+        qCritical() << "Unable to find the heatmaps";
         return EXIT_FAILURE;
     }
-    heatmap->setValues(interferencePattern(), kColumns, kRows);
+    interference->setValues(interferencePattern(), kColumns, kRows);
+    logBins->setValues(frequencySweep(), kSweepColumns, kSweepRows);
 
     QAccelPlotExample::setupScreenshotHandler(app, engine);
     return app.exec();
