@@ -16,7 +16,7 @@ Item {
     required property QAccelPlot.Plot plot
     required property QAccelPlot.HeatmapSeries heatmap
     required property string barLabel
-    readonly property alias barHovered: colorBar.hovered
+    readonly property bool barHovered: colorBar.hovered
 
     x: plot.plotRect.x
     y: plot.plotRect.y
