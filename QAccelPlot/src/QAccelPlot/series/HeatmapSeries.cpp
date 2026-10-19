@@ -10,8 +10,10 @@
 
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/axis/AxisMapping.hpp"
 #include "QAccelPlot/materials/HeatmapMaterial.hpp"
 #include "QAccelPlot/materials/internal/DataTextureLayout.hpp"
+#include "QAccelPlot/series/internal/HeatmapGrid.hpp"
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
 
 #include <QLineF>
@@ -61,9 +63,13 @@ bool setQuad(QSGGeometry* geometry, const QSizeF& size, const bool fresh)
     return true;
 }
 
-std::optional<PlotSeries::DataExtent> orderedExtent(const qreal from, const qreal to)
+std::optional<PlotSeries::DataExtent> dataExtent(const Internal::HeatmapGridDimension& dimension, const bool logAxis)
 {
-    return PlotSeries::DataExtent{std::min(from, to), std::max(from, to)};
+    const auto extent = dimension.dataExtent(logAxis);
+    if (!extent) {
+        return std::nullopt;
+    }
+    return PlotSeries::DataExtent{extent->first, extent->second};
 }
 
 } // namespace
@@ -137,6 +143,26 @@ void HeatmapSeries::setYMax(const qreal value)
     setBound(edges_.yMax, value, &HeatmapSeries::yMaxChanged);
 }
 
+HeatmapSeries::Spacing HeatmapSeries::xSpacing() const
+{
+    return xSpacing_;
+}
+
+void HeatmapSeries::setXSpacing(const Spacing spacing)
+{
+    setSpacing(xSpacing_, spacing, &HeatmapSeries::xSpacingChanged);
+}
+
+HeatmapSeries::Spacing HeatmapSeries::ySpacing() const
+{
+    return ySpacing_;
+}
+
+void HeatmapSeries::setYSpacing(const Spacing spacing)
+{
+    setSpacing(ySpacing_, spacing, &HeatmapSeries::ySpacingChanged);
+}
+
 void HeatmapSeries::setValues(const QList<qreal>& values, const int columns)
 {
     if (values.isEmpty()) {
@@ -201,8 +227,8 @@ QSGNode* HeatmapSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* u
     }
     const auto plotArea = resolvePlotRect();
     const auto extent = resolvedExtent();
-    const auto drawable = cellCount() > 0 && xAxis() && yAxis() && plotArea.width() > 0.0 && plotArea.height() > 0.0 && colorStops().size() >= 2
-        && extent.isFinite() && extent.xMin != extent.xMax && extent.yMin != extent.yMax;
+    const auto drawable = cellCount() > 0 && xAxis() && yAxis() && xAxis()->mapping().valid && yAxis()->mapping().valid && plotArea.width() > 0.0
+        && plotArea.height() > 0.0 && colorStops().size() >= 2 && extent.isFinite() && extent.xMin != extent.xMax && extent.yMin != extent.yMax;
     if (!drawable || !canDraw(window)) {
         delete oldNode;
         return nullptr;
@@ -255,8 +281,7 @@ InspectionRecord HeatmapSeries::inspectionRecord(const int index) const
         result.status = InspectionStatus::InvalidArgument;
         return result;
     }
-    const auto extent = resolvedExtent();
-    if (!extent.isFinite()) {
+    if (!xDimension().isValid() || !yDimension().isValid()) {
         result.status = InspectionStatus::Unavailable;
         return result;
     }
@@ -309,14 +334,9 @@ PlotSeries::DataRanges HeatmapSeries::computeDataRanges() const
     if (cellCount() <= 0) {
         return {};
     }
-    const auto extent = resolvedExtent();
     auto ranges = DataRanges{};
-    if (!logScaleX()) {
-        ranges.x = orderedExtent(extent.xMin, extent.xMax);
-    }
-    if (!logScaleY()) {
-        ranges.y = orderedExtent(extent.yMin, extent.yMax);
-    }
+    ranges.x = dataExtent(xDimension(), logScaleX());
+    ranges.y = dataExtent(yDimension(), logScaleY());
     return ranges;
 }
 
@@ -352,6 +372,18 @@ HeatmapSeries::Extent HeatmapSeries::resolvedExtent() const
 {
     const auto resolve = [](const qreal edge, const qreal fallback) { return std::isnan(edge) ? fallback : edge; };
     return {resolve(edges_.xMin, 0.0), resolve(edges_.xMax, columns_), resolve(edges_.yMin, 0.0), resolve(edges_.yMax, rows_)};
+}
+
+Internal::HeatmapGridDimension HeatmapSeries::xDimension() const
+{
+    const auto extent = resolvedExtent();
+    return {extent.xMin, extent.xMax, columns_, xSpacing_ == Spacing::Log};
+}
+
+Internal::HeatmapGridDimension HeatmapSeries::yDimension() const
+{
+    const auto extent = resolvedExtent();
+    return {extent.yMin, extent.yMax, rows_, ySpacing_ == Spacing::Log};
 }
 
 int HeatmapSeries::cellCount() const
@@ -414,19 +446,30 @@ void HeatmapSeries::setBound(qreal& bound, const qreal value, void (HeatmapSerie
     update();
 }
 
+void HeatmapSeries::setSpacing(Spacing& current, const Spacing spacing, void (HeatmapSeries::*changed)())
+{
+    if (current == spacing) {
+        return;
+    }
+    current = spacing;
+    invalidateDataRanges();
+    inspectionDataChanged();
+    emit(this->*changed)();
+    update();
+}
+
 std::optional<std::pair<int, int>> HeatmapSeries::cellAt(const QPointF& position) const
 {
-    if (cellCount() <= 0 || !xAxis() || !yAxis() || logScaleX() || logScaleY() || width() <= 0.0 || height() <= 0.0) {
+    if (cellCount() <= 0 || !xAxis() || !yAxis() || !xAxis()->mapping().valid || !yAxis()->mapping().valid || width() <= 0.0 || height() <= 0.0) {
         return std::nullopt;
     }
-    const auto extent = resolvedExtent();
-    if (!extent.isFinite()) {
+    const auto columns = xDimension();
+    const auto rows = yDimension();
+    if (!columns.isValid() || !rows.isValid()) {
         return std::nullopt;
     }
-    const auto x = xAxis()->pixelToCoord(position.x(), width());
-    const auto y = yAxis()->pixelToCoord(position.y(), height());
-    const auto column = std::floor((x - extent.xMin) / (extent.xMax - extent.xMin) * columns_);
-    const auto row = std::floor((y - extent.yMin) / (extent.yMax - extent.yMin) * rows_);
+    const auto column = std::floor(columns.cellCoordinate(xAxis()->pixelToCoord(position.x(), width())));
+    const auto row = std::floor(rows.cellCoordinate(yAxis()->pixelToCoord(position.y(), height())));
     // An empty extent gives NaN or infinity.
     if (!std::isfinite(column) || !std::isfinite(row) || column < 0.0 || column >= columns_ || row < 0.0 || row >= rows_) {
         return std::nullopt;
@@ -436,20 +479,19 @@ std::optional<std::pair<int, int>> HeatmapSeries::cellAt(const QPointF& position
 
 QPointF HeatmapSeries::cellCenter(const int row, const int column) const
 {
-    const auto extent = resolvedExtent();
-    return {extent.xMin + (column + 0.5) * (extent.xMax - extent.xMin) / columns_, extent.yMin + (row + 0.5) * (extent.yMax - extent.yMin) / rows_};
+    return {xDimension().cellCenter(column), yDimension().cellCenter(row)};
 }
 
 bool HeatmapSeries::canDraw(QQuickWindow* window)
 {
-    if (logScaleX() || logScaleY()) {
-        if (!warnedAboutLogAxis_) {
-            qCWarning(lcQAccelPlot) << "HeatmapSeries does not support logarithmic axes and draws nothing on them.";
-            warnedAboutLogAxis_ = true;
-        }
+    const auto invalidLogSpacing = !xDimension().isValid() || !yDimension().isValid();
+    if (invalidLogSpacing && !invalidLogSpacing_) {
+        qCWarning(lcQAccelPlot) << "HeatmapSeries with Log spacing needs positive grid edges in that dimension; the heatmap is not drawn.";
+    }
+    invalidLogSpacing_ = invalidLogSpacing;
+    if (invalidLogSpacing) {
         return false;
     }
-    warnedAboutLogAxis_ = false;
 
     const auto overPrecision = columns_ > kMaxShaderCellsPerDimension || rows_ > kMaxShaderCellsPerDimension;
     if (overPrecision && !overPrecision_) {
@@ -464,7 +506,7 @@ bool HeatmapSeries::canDraw(QQuickWindow* window)
     const auto capacity = Internal::dataTextureItemCapacity(Internal::maxTextureSize(window), 1);
     const auto overCapacity = cellCount() > capacity;
     if (overCapacity && !overCapacity_) {
-        qCWarning(lcQAccelPlot) << "HeatmapSeries has" << cellCount() << "cells but draws at most" << capacity << "; the grid is not drawn.";
+        qCWarning(lcQAccelPlot) << "HeatmapSeries has" << cellCount() << "cells but draws at most" << capacity << "; the heatmap is not drawn.";
     }
     overCapacity_ = overCapacity;
     return !overCapacity;
@@ -478,17 +520,20 @@ void HeatmapSeries::updateMaterial(HeatmapMaterial& material, QQuickWindow* wind
     }
     material.colorMap.upload(window, colorStops());
 
-    // Item-local pixels map to cell coordinates through the axis viewports; computed before the cast
-    // to single precision, so the uniforms stay exact near the visible cells.
-    const auto extent = resolvedExtent();
     const auto plotArea = resolvePlotRect();
-    const auto columnsPerUnit = columns_ / (extent.xMax - extent.xMin);
-    const auto rowsPerUnit = rows_ / (extent.yMax - extent.yMin);
-    const auto xSpan = xAxis()->viewportMax() - xAxis()->viewportMin();
-    const auto ySpan = yAxis()->viewportMax() - yAxis()->viewportMin();
-    material.cellScale = QVector2D(static_cast<float>(xSpan / plotArea.width() * columnsPerUnit), static_cast<float>(-ySpan / plotArea.height() * rowsPerUnit));
-    material.cellOffset = QVector2D(
-        static_cast<float>((xAxis()->viewportMin() - extent.xMin) * columnsPerUnit), static_cast<float>((yAxis()->viewportMax() - extent.yMin) * rowsPerUnit));
+    auto xMapping = xAxis()->mapping();
+    xMapping.flipped = false;
+    // Rows run upward whatever the orientation of the y axis.
+    auto yMapping = yAxis()->mapping();
+    yMapping.flipped = true;
+    const auto columns = xDimension().shaderMapping(xMapping, plotArea.width());
+    const auto rows = yDimension().shaderMapping(yMapping, plotArea.height());
+    material.cellScale = QVector2D(static_cast<float>(columns.scale), static_cast<float>(rows.scale));
+    material.cellOffset = QVector2D(static_cast<float>(columns.offset), static_cast<float>(rows.offset));
+    material.cellRate = QVector2D(static_cast<float>(columns.rate), static_cast<float>(rows.rate));
+    material.cellShift = QVector2D(static_cast<float>(columns.shift), static_cast<float>(rows.shift));
+    material.columnMapping = static_cast<int>(columns.mode);
+    material.rowMapping = static_cast<int>(rows.mode);
     material.valueMin = static_cast<float>(dataValueMin());
     material.valueMax = static_cast<float>(dataValueMax());
     material.valueLogScale = colormap()->norm() == Colormap::Normalization::Log ? 1.0f : 0.0f;

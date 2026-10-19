@@ -40,7 +40,7 @@ Window {
 
         ExampleHeader {
             title: "Heatmap"
-            description: "Interference of two circular waves on a 400 × 300 grid. Hover a cell to read it, drag or wheel to pan and zoom, and drag or wheel the color bar to change its range."
+            description: "HeatmapSeries colors a grid of values. Interference: two circular waves on a 400 × 300 grid. Log-spaced bins: a frequency sweep in rows of equal frequency ratio, with ySpacing: HeatmapSeries.Log on a log axis. Hover a cell to read it, drag or wheel to pan and zoom, and drag or wheel the color bar to change its range."
 
             Label {
                 text: "Colormap"
@@ -58,85 +58,21 @@ Window {
             }
         }
 
-        QAccelPlot.Plot {
-            id: plot
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            border.color: colorPalette.plotBorder
-            border.width: 2
-            legendVisible: false
+        ExamplePages {
+            tabs: [
+                { name: "interference", title: "Interference" },
+                { name: "logBins", title: "Log-spaced bins" }
+            ]
 
-            xAxis: ExampleAxis {
-                viewportMin: -10
-                viewportMax: 10
-                label: "x (m)"
+            InterferencePage {
+                colorPalette: window.colorPalette
+                preset: window.presets[presetBox.currentIndex].preset
+                reversed: reversedBox.checked
             }
-
-            yAxis: ExampleAxis {
-                viewportMin: -7.5
-                viewportMax: 7.5
-                label: "y (m)"
-            }
-
-            // Filled from C++ with setValues(), 400 columns by 300 rows.
-            QAccelPlot.HeatmapSeries {
-                id: heatmap
-                objectName: "heatmap"
-                name: "Amplitude"
-                xAxis: plot.xAxis
-                yAxis: plot.yAxis
-                xMin: -10
-                xMax: 10
-                yMin: -7.5
-                yMax: 7.5
-                colormap: QAccelPlot.Colormap {
-                    preset: window.presets[presetBox.currentIndex].preset
-                    reversed: reversedBox.checked
-                }
-            }
-
-            Item {
-                x: plot.plotRect.x
-                y: plot.plotRect.y
-                width: plot.plotRect.width
-                height: plot.plotRect.height
-                clip: true
-
-                Rectangle {
-                    anchors.right: parent.right
-                    anchors.top: parent.top
-                    anchors.margins: 10
-                    width: amplitudeBar.width + 20
-                    height: amplitudeBar.height + 16
-                    radius: 4
-                    color: colorPalette.legendBackground
-                    border.color: colorPalette.legendBorder
-
-                    QAccelPlot.ColorBar {
-                        id: amplitudeBar
-                        x: 10
-                        y: 8
-                        height: 260
-                        barThickness: 24
-                        tickLabelWidth: 30
-                        series: heatmap
-                        interactive: true
-                        label: "Amplitude"
-                        labelColor: colorPalette.axisLabel
-                        borderColor: hovered ? colorPalette.hover : colorPalette.axisLine
-                        ticker.tickColor: colorPalette.tick
-                        ticker.tickLabelColor: colorPalette.axisTickLabel
-                        ticker.tickCount: 8
-                    }
-                }
-            }
-
-            // Reports the cell under the pointer: its center and its value.
-            QAccelPlot.PlotInspector {
-                plot: plot
-                enabled: !amplitudeBar.hovered
-
-                QAccelPlot.InspectionTooltip {}
+            LogBinsPage {
+                colorPalette: window.colorPalette
+                preset: window.presets[presetBox.currentIndex].preset
+                reversed: reversedBox.checked
             }
         }
     }

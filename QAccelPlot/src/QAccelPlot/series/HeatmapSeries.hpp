@@ -21,11 +21,14 @@ QT_FORWARD_DECLARE_CLASS(QQuickWindow)
 
 namespace QAccelPlot {
 
+namespace Internal {
+struct HeatmapGridDimension;
+}
 class HeatmapMaterial;
 
 /// \brief A hardware-accelerated QML item that draws a grid of values as colored cells.
 ///
-/// The grid has \c columns cells per row and \c rows rows of equal cells. Values are stored row by
+/// The grid has \c columns cells per row and \c rows rows of cells. Values are stored row by
 /// row: the value of a cell has index <tt>row * columns + column</tt>, with row 0 at \c yMin and
 /// column 0 at \c xMin. \c xMin, \c xMax, \c yMin, and \c yMax are the outer edges of the grid; an
 /// unset bound places the grid in index space, so column \a c spans [c, c + 1].
@@ -55,17 +58,25 @@ class HeatmapMaterial;
 /// Cells with a non-finite value, and cells with a value at or below zero under a \c Log colormap,
 /// are transparent. Non-finite values do not count toward the value range.
 ///
+/// \par Logarithmic axes and spacing
+/// \c xSpacing and \c ySpacing space the cells evenly in data or in log10, independently of the
+/// axis scale. On a log axis, \c Log cells have equal widths, \c Linear cells narrow toward larger
+/// values, and the parts of cells at or below zero are not drawn; the data range starts at the
+/// first cell edge above zero. Under \c Log spacing, both edges of that dimension must be positive,
+/// so set them: an unset edge resolves to index space, which starts at 0. Otherwise the series
+/// draws nothing, reports no data range in that dimension, and logs a warning.
+///
 /// \par Inspection
 /// \c inspection.recordAt() and \c inspection.recordAtPosition() return a record with the fields
-/// \c x and \c y (the cell center), \c value, \c row, and \c column. \c inspection.dataPointAtPosition()
-/// returns the cell as a data point at its center, with \c index <tt>row * columns + column</tt>,
-/// which \c PlotInspector reports in every mode. A cell with a non-finite value is still a match.
-/// While a grid edge is not finite, \c recordAt() returns \c Unavailable and no position matches a cell.
+/// \c x and \c y (the cell center, geometric under \c Log spacing), \c value, \c row, and
+/// \c column. \c inspection.dataPointAtPosition() returns the cell as a data point at its center,
+/// with \c index <tt>row * columns + column</tt>, which \c PlotInspector reports in every mode. A
+/// cell with a non-finite value is still a match. While a grid edge is not finite, or not positive
+/// under \c Log spacing, \c recordAt() returns \c Unavailable and no position matches a cell.
 ///
 /// \par Limits
-/// Each pixel takes the color of the cell under its center, without interpolation. Logarithmic axes
-/// are not supported: the series draws nothing on one, reports no data range for it, and logs a
-/// warning. A grid with an infinite edge draws nothing. A grid of more than 16,777,216 (2^24)
+/// Each pixel takes the color of the cell under its center, without interpolation. A grid with an
+/// infinite edge draws nothing. A grid of more than 16,777,216 (2^24)
 /// columns or rows, or of more cells than the GPU data texture holds, about 67 million for an
 /// 8192-pixel texture limit, draws nothing and logs a warning.
 ///
@@ -90,8 +101,19 @@ class HeatmapSeries : public ColormappedSeries {
     Q_PROPERTY(qreal yMin READ yMin WRITE setYMin NOTIFY yMinChanged)
     /// \brief Top edge of the last row in data coordinates. Unset (NaN) means \c rows. Default: unset.
     Q_PROPERTY(qreal yMax READ yMax WRITE setYMax NOTIFY yMaxChanged)
+    /// \brief How the columns are spaced between \c xMin and \c xMax. Default: \c Linear.
+    Q_PROPERTY(Spacing xSpacing READ xSpacing WRITE setXSpacing NOTIFY xSpacingChanged)
+    /// \brief How the rows are spaced between \c yMin and \c yMax. Default: \c Linear.
+    Q_PROPERTY(Spacing ySpacing READ ySpacing WRITE setYSpacing NOTIFY ySpacingChanged)
 
 public:
+    /// \brief How the cells of one dimension are spaced between its grid edges.
+    enum class Spacing {
+        Linear, ///< \brief Cells of equal size in data coordinates.
+        Log     ///< \brief Cells of equal size in log10, each spanning the same ratio. Both edges must be positive.
+    };
+    Q_ENUM(Spacing)
+
     /// \brief Constructs a HeatmapSeries with the given \a parent.
     explicit HeatmapSeries(QQuickItem* parent = nullptr);
 
@@ -123,6 +145,16 @@ public:
     /// \brief Sets the top grid edge to \a value. NaN unsets it.
     void setYMax(qreal value);
 
+    /// \brief Returns how the columns are spaced.
+    Spacing xSpacing() const;
+    /// \brief Sets how the columns are spaced to \a spacing.
+    void setXSpacing(Spacing spacing);
+
+    /// \brief Returns how the rows are spaced.
+    Spacing ySpacing() const;
+    /// \brief Sets how the rows are spaced to \a spacing.
+    void setYSpacing(Spacing spacing);
+
     /// \brief Replaces the grid with \a values, row by row, \a columns per row.
     ///
     /// The number of values must be a multiple of \a columns. An empty list clears the values and
@@ -151,6 +183,10 @@ signals:
     void yMinChanged();
     /// \brief Emitted when the yMax property changes.
     void yMaxChanged();
+    /// \brief Emitted when the xSpacing property changes.
+    void xSpacingChanged();
+    /// \brief Emitted when the ySpacing property changes.
+    void ySpacingChanged();
 
 protected:
     /// \cond INTERNAL
@@ -171,9 +207,9 @@ protected:
     bool positionInspectionSupported() const override;
     /// \brief Returns the cell drawn at the series-local \a position as a data point at its center.
     InspectionDataPoint inspectionDataPointAt(const QPointF& position) const override;
-    /// \brief Returns the grid edges in each linear dimension.
+    /// \brief Returns the grid edges in each dimension; on a log axis from the first cell edge above zero.
     DataRanges computeDataRanges() const override;
-    /// \brief Repaints, because the series draws nothing on a logarithmic axis.
+    /// \brief Repaints, because the mapping from pixels to cells depends on the axis scale.
     void onAxisScaleChanged() override;
     /// \brief Returns the span of the finite cell values.
     std::optional<ValueSpan> scanValueRange() const override;
@@ -191,6 +227,10 @@ private:
     };
 
     Extent resolvedExtent() const;
+    /// \brief Returns the columns of the grid.
+    Internal::HeatmapGridDimension xDimension() const;
+    /// \brief Returns the rows of the grid.
+    Internal::HeatmapGridDimension yDimension() const;
     int cellCount() const;
     bool validateShape(std::size_t valueCount, int columns, int rows) const;
     /// \brief Replaces the values with \a values of \a columns per row and finishes the change.
@@ -198,9 +238,10 @@ private:
     /// \brief Sets the shape to \a columns per row and finishes the change of the cells.
     void applyShape(int columns);
     void setBound(qreal& bound, qreal value, void (HeatmapSeries::*changed)());
+    void setSpacing(Spacing& current, Spacing spacing, void (HeatmapSeries::*changed)());
     /// \brief Returns the cell at series-local \a position as (row, column), or \c std::nullopt outside the grid.
     std::optional<std::pair<int, int>> cellAt(const QPointF& position) const;
-    /// \brief Returns the center of the cell at \a row and \a column in data coordinates.
+    /// \brief Returns the center of the cell at \a row and \a column in data coordinates; geometric under \c Log spacing.
     QPointF cellCenter(int row, int column) const;
     /// \brief Returns whether the grid can be drawn into a window of \a window; warns once per reason it cannot.
     bool canDraw(QQuickWindow* window);
@@ -211,10 +252,12 @@ private:
     int columns_{0};
     int rows_{0};
     Extent edges_;
+    Spacing xSpacing_{Spacing::Linear};
+    Spacing ySpacing_{Spacing::Linear};
     // Incremented by every value change; the GPU texture holds the values of uploadedRevision_.
     std::uint64_t valuesRevision_{1};
     std::uint64_t uploadedRevision_{0};
-    bool warnedAboutLogAxis_{false};
+    bool invalidLogSpacing_{false};
     bool overPrecision_{false};
     bool overCapacity_{false};
 };

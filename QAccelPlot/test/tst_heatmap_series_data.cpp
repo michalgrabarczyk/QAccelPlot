@@ -70,7 +70,10 @@ private slots:
     void clearDataKeepsColumns();
     void unsetBoundsUseIndexSpace();
     void boundsAreReportedAsDataRanges();
-    void logAxisReportsNoRange();
+    void logAxisRangeStartsAboveZero();
+    void logSpacingNeedsPositiveEdges();
+    void logSpacingRecordsUseGeometricCenters();
+    void recordAtPositionOnLogAxes();
     void valueRangeSkipsNonFiniteValues();
     void valueRangeFollowsColormapBounds();
     void recordsDescribeCells();
@@ -342,20 +345,122 @@ void HeatmapSeriesDataTest::boundsAreReportedAsDataRanges()
     QCOMPARE(heatmap.xDataRange()->max, 0.0);
 }
 
-void HeatmapSeriesDataTest::logAxisReportsNoRange()
+void HeatmapSeriesDataTest::logAxisRangeStartsAboveZero()
 {
     auto rig = InspectableHeatmap{};
     rig.heatmap.setValues(sixValues(), 3, 2);
-    QVERIFY(rig.heatmap.xDataRange());
-
     rig.xAxis.setViewportMin(1.0);
     rig.xAxis.setLogScale(true);
+    // Index space: column edges 0, 1, 2, 3.
+    QCOMPARE(rig.heatmap.xDataRange()->min, 1.0);
+    QCOMPARE(rig.heatmap.xDataRange()->max, 3.0);
+    QCOMPARE(rig.heatmap.yDataRange()->min, 0.0);
+
+    // Column edges -15, -5, 5, 15.
+    rig.heatmap.setXMin(-15.0);
+    rig.heatmap.setXMax(15.0);
+    QCOMPARE(rig.heatmap.xDataRange()->min, 5.0);
+    QCOMPARE(rig.heatmap.xDataRange()->max, 15.0);
+
+    rig.heatmap.setXMin(2.0);
+    rig.heatmap.setXMax(8.0);
+    QCOMPARE(rig.heatmap.xDataRange()->min, 2.0);
+    QCOMPARE(rig.heatmap.xDataRange()->max, 8.0);
+
+    rig.heatmap.setXMin(-8.0);
+    rig.heatmap.setXMax(0.0);
     QVERIFY(!rig.heatmap.xDataRange());
-    QVERIFY(rig.heatmap.yDataRange());
-    QCOMPARE(rig.heatmap.inspection()->recordAtPosition({5.0, 95.0}).status, InspectionStatus::NoMatch);
 
     rig.xAxis.setLogScale(false);
-    QVERIFY(rig.heatmap.xDataRange());
+    QCOMPARE(rig.heatmap.xDataRange()->min, -8.0);
+    QCOMPARE(rig.heatmap.xDataRange()->max, 0.0);
+}
+
+void HeatmapSeriesDataTest::logSpacingNeedsPositiveEdges()
+{
+    auto heatmap = HeatmapSeries{};
+    auto spacingSpy = QSignalSpy{&heatmap, &HeatmapSeries::xSpacingChanged};
+    heatmap.setValues(sixValues(), 3, 2);
+    heatmap.setXSpacing(HeatmapSeries::Spacing::Log);
+    heatmap.setXSpacing(HeatmapSeries::Spacing::Log);
+    QCOMPARE(spacingSpy.count(), 1);
+    QCOMPARE(heatmap.xSpacing(), HeatmapSeries::Spacing::Log);
+    QCOMPARE(heatmap.ySpacing(), HeatmapSeries::Spacing::Linear);
+
+    // The unset xMin resolves to 0.
+    QVERIFY(!heatmap.xDataRange());
+    QVERIFY(heatmap.yDataRange());
+    QCOMPARE(heatmap.inspection()->recordAt(0).status, InspectionStatus::Unavailable);
+
+    heatmap.setXMin(1.0);
+    heatmap.setXMax(1000.0);
+    QCOMPARE(heatmap.xDataRange()->min, 1.0);
+    QCOMPARE(heatmap.xDataRange()->max, 1000.0);
+    QCOMPARE(heatmap.inspection()->recordAt(0).status, InspectionStatus::Ready);
+
+    heatmap.setXMax(-1000.0);
+    QVERIFY(!heatmap.xDataRange());
+}
+
+void HeatmapSeriesDataTest::logSpacingRecordsUseGeometricCenters()
+{
+    auto heatmap = HeatmapSeries{};
+    heatmap.setValues(sixValues(), 3, 2);
+    heatmap.setXMin(1.0);
+    heatmap.setXMax(1000.0);
+    heatmap.setXSpacing(HeatmapSeries::Spacing::Log);
+    heatmap.setYMin(10.0);
+    heatmap.setYMax(20.0);
+
+    const auto record = heatmap.inspection()->recordAt(4);
+    QCOMPARE(record.fields.value(QStringLiteral("x")).toDouble(), std::pow(10.0, 1.5));
+    QCOMPARE(record.fields.value(QStringLiteral("y")).toDouble(), 17.5);
+    QCOMPARE(heatmap.inspection()->recordAt(2).fields.value(QStringLiteral("x")).toDouble(), std::pow(10.0, 2.5));
+}
+
+void HeatmapSeriesDataTest::recordAtPositionOnLogAxes()
+{
+    auto rig = InspectableHeatmap{};
+    rig.heatmap.setValues(sixValues(), 3, 2);
+    rig.heatmap.setYMax(10.0);
+    rig.xAxis.setViewportMin(1.0);
+    rig.xAxis.setViewportMax(1000.0);
+    rig.xAxis.setLogScale(true);
+
+    // Log cells on a log axis: columns 1..10, 10..100, 100..1000, each a third of the width.
+    rig.heatmap.setXMin(1.0);
+    rig.heatmap.setXMax(1000.0);
+    rig.heatmap.setXSpacing(HeatmapSeries::Spacing::Log);
+    QCOMPARE(rig.heatmap.inspection()->recordAtPosition({30.0, 95.0}).index, 0);
+    QCOMPARE(rig.heatmap.inspection()->recordAtPosition({36.0, 95.0}).index, 1);
+    QCOMPARE(rig.heatmap.inspection()->recordAtPosition({70.0, 95.0}).index, 2);
+    // Column 1 is centered at its geometric center, data 10^1.5, which is pixel 50.
+    const auto dataPoint = rig.heatmap.inspection()->dataPointAtPosition({36.0, 95.0});
+    QCOMPARE(dataPoint.index, 1);
+    QCOMPARE(dataPoint.position.x(), std::pow(10.0, 1.5));
+    QCOMPARE(dataPoint.pixelPosition.x(), 50.0);
+
+    // Linear cells on a log axis: columns 0..300, 300..600, 600..900. Pixel 80 is data 251, pixel 85 is 355.
+    rig.heatmap.setXSpacing(HeatmapSeries::Spacing::Linear);
+    rig.heatmap.setXMin(0.0);
+    rig.heatmap.setXMax(900.0);
+    QCOMPARE(rig.heatmap.inspection()->recordAtPosition({5.0, 95.0}).index, 0);
+    QCOMPARE(rig.heatmap.inspection()->recordAtPosition({80.0, 95.0}).index, 0);
+    QCOMPARE(rig.heatmap.inspection()->recordAtPosition({85.0, 95.0}).index, 1);
+    QCOMPARE(rig.heatmap.inspection()->recordAtPosition({97.0, 95.0}).index, 2);
+    QCOMPARE(rig.heatmap.inspection()->recordAtPosition({99.0, 95.0}).status, InspectionStatus::NoMatch);
+
+    // Log cells on a linear axis: columns 1..10, 10..100, 100..1000.
+    rig.xAxis.setLogScale(false);
+    rig.xAxis.setViewportMin(0.0);
+    rig.xAxis.setViewportMax(1000.0);
+    rig.heatmap.setXMin(1.0);
+    rig.heatmap.setXMax(1000.0);
+    rig.heatmap.setXSpacing(HeatmapSeries::Spacing::Log);
+    QCOMPARE(rig.heatmap.inspection()->recordAtPosition({0.05, 95.0}).status, InspectionStatus::NoMatch);
+    QCOMPARE(rig.heatmap.inspection()->recordAtPosition({0.5, 95.0}).index, 0);
+    QCOMPARE(rig.heatmap.inspection()->recordAtPosition({5.0, 95.0}).index, 1);
+    QCOMPARE(rig.heatmap.inspection()->recordAtPosition({50.0, 95.0}).index, 2);
 }
 
 void HeatmapSeriesDataTest::valueRangeSkipsNonFiniteValues()

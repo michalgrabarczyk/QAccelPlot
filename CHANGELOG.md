@@ -10,7 +10,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - Heatmaps via `HeatmapSeries`: a uniform grid of values colored through a
   `Colormap`, with a `ColorBar` key, a Heatmap example, and cell inspection
-  through `PlotInspector` and `inspection.dataPointAtPosition()`.
+  through `PlotInspector` and `inspection.dataPointAtPosition()`. Heatmaps
+  draw on logarithmic axes, and `xSpacing`/`ySpacing: HeatmapSeries.Log`
+  spaces cells evenly in log10.
 - `valueText` inspection role with the value of a heatmap cell or a colored
   `PointCloud` point. The default `InspectionTooltip` row shows it.
 - Legend entries described in C++: `PlotSeries::legendEntry()` returns a

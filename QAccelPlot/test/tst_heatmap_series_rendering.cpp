@@ -127,6 +127,10 @@ private:
     QAccelPlot* plot_{nullptr};
 };
 
+// Columns and visible cells of highCellIndicesStayExactInMixedMappings().
+constexpr auto kPrecisionColumns = 1 << 20;
+constexpr auto kPrecisionVisibleCells = 32;
+
 bool isColor(const QColor& pixel, const QColor& expected)
 {
     constexpr auto kTolerance = 60;
@@ -182,7 +186,11 @@ private slots:
     void colormapChangesRecolorTheCells();
     void logNormLeavesNonPositiveCellsTransparent();
     void newValuesAndExtentRedrawTheGrid();
-    void logAxisDrawsNothing();
+    void linearCellsOnLogAxes();
+    void linearCellsClipAtZeroOnLogAxis();
+    void logCellsOnLinearAndLogAxes();
+    void logSpacingWithNonPositiveEdgeDrawsNothing();
+    void highCellIndicesStayExactInMixedMappings();
     void infiniteEdgeDrawsNothing();
     void tooManyColumnsDrawNothing();
     void qmlReadsCellRecords();
@@ -273,20 +281,129 @@ void HeatmapSeriesRenderingTest::newValuesAndExtentRedrawTheGrid()
     QVERIFY(isColor(image.pixelColor(scene_->pixel(4.5, 0.5)), Qt::black));
 }
 
-void HeatmapSeriesRenderingTest::logAxisDrawsNothing()
+void HeatmapSeriesRenderingTest::linearCellsOnLogAxes()
 {
     auto* plot = scene_->plot();
-    plot->xAxis()->setViewportMin(1.0);
-    QTest::ignoreMessage(QtWarningMsg, "HeatmapSeries does not support logarithmic axes and draws nothing on them.");
-    plot->xAxis()->setLogScale(true);
+    for (auto* axis : {plot->xAxis(), plot->yAxis()}) {
+        axis->setViewportMin(1.0);
+        axis->setLogScale(true);
+    }
+    // Column and row edges 2, 5, 8.
+    const auto image = scene_->grab();
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(4.5, 3.5)), Qt::red));
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(4.9, 4.9)), Qt::red));
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(5.2, 3.5)), Qt::blue));
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(4.5, 5.2)), Qt::black));
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(7.5, 7.5)), Qt::blue));
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(1.5, 3.5)), Qt::black));
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(9.0, 3.5)), Qt::black));
+}
+
+void HeatmapSeriesRenderingTest::linearCellsClipAtZeroOnLogAxis()
+{
+    // Column edges -4, 2, 8: column 0 shows from the axis start up to 2.
+    scene_->heatmap()->setXMin(-4.0);
+    auto* axis = scene_->plot()->xAxis();
+    axis->setViewportMin(0.1);
+    axis->setLogScale(true);
+    const auto image = scene_->grab();
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(0.12, 3.5)), Qt::red));
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(1.8, 3.5)), Qt::red));
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(2.5, 3.5)), Qt::blue));
+}
+
+void HeatmapSeriesRenderingTest::logCellsOnLinearAndLogAxes()
+{
+    auto* heatmap = scene_->heatmap();
+    heatmap->setXSpacing(HeatmapSeries::Spacing::Log);
+    heatmap->setYSpacing(HeatmapSeries::Spacing::Log);
+    // Column and row edges 1, 10, 100.
+    heatmap->setXMin(1.0);
+    heatmap->setXMax(100.0);
+    heatmap->setYMin(1.0);
+    heatmap->setYMax(100.0);
+    auto* plot = scene_->plot();
+    plot->xAxis()->setViewportMax(200.0);
+    plot->yAxis()->setViewportMax(200.0);
     auto image = scene_->grab();
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(5.0, 5.0)), Qt::red));
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(13.0, 5.0)), Qt::blue));
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(5.0, 13.0)), Qt::black));
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(50.0, 50.0)), Qt::blue));
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(170.0, 5.0)), Qt::black));
+
+    for (auto* axis : {plot->xAxis(), plot->yAxis()}) {
+        axis->setViewportMin(0.5);
+        axis->setLogScale(true);
+    }
+    image = scene_->grab();
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(9.0, 5.0)), Qt::red));
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(11.0, 5.0)), Qt::blue));
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(5.0, 11.0)), Qt::black));
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(50.0, 50.0)), Qt::blue));
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(0.8, 5.0)), Qt::black));
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(170.0, 5.0)), Qt::black));
+}
+
+void HeatmapSeriesRenderingTest::logSpacingWithNonPositiveEdgeDrawsNothing()
+{
+    auto* heatmap = scene_->heatmap();
+    heatmap->setXSpacing(HeatmapSeries::Spacing::Log);
+    auto image = scene_->grab();
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(3.5, 3.5)), Qt::red));
+
+    QTest::ignoreMessage(QtWarningMsg, "HeatmapSeries with Log spacing needs positive grid edges in that dimension; the heatmap is not drawn.");
+    heatmap->setXMin(0.0);
+    image = scene_->grab();
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(3.5, 3.5)), Qt::black));
     QVERIFY(isColor(image.pixelColor(scene_->pixel(6.5, 3.5)), Qt::black));
 
-    plot->xAxis()->setLogScale(false);
-    plot->xAxis()->setViewportMin(0.0);
-    plot->xAxis()->setViewportMax(10.0);
+    heatmap->setXMin(2.0);
     image = scene_->grab();
-    QVERIFY(isColor(image.pixelColor(scene_->pixel(6.5, 3.5)), Qt::blue));
+    QVERIFY(isColor(image.pixelColor(scene_->pixel(3.5, 3.5)), Qt::red));
+}
+
+void HeatmapSeriesRenderingTest::highCellIndicesStayExactInMixedMappings()
+{
+    auto values = std::vector<float>(kPrecisionColumns);
+    for (auto i = 0; i < kPrecisionColumns; ++i) {
+        values[static_cast<std::size_t>(i)] = i % 2 == 0 ? 0.0f : 2.0f;
+    }
+    auto* heatmap = scene_->heatmap();
+    heatmap->setValues(std::move(values), kPrecisionColumns, 1);
+    heatmap->setYMin(0.0);
+    heatmap->setYMax(10.0);
+    auto* axis = scene_->plot()->xAxis();
+    const auto checkCells = [this](const int first, const auto& center) {
+        const auto image = scene_->grab();
+        for (auto cell = first; cell < first + kPrecisionVisibleCells; ++cell) {
+            const auto expected = cell % 2 == 0 ? QColor{Qt::red} : QColor{Qt::blue};
+            QVERIFY2(isColor(image.pixelColor(scene_->pixel(center(cell), 5.0)), expected), qPrintable(QStringLiteral("cell %1").arg(cell)));
+        }
+    };
+
+    // Linear cells [i, i + 1] on a log axis.
+    constexpr auto kLinearFirst = 1'000'000;
+    heatmap->setXMin(0.0);
+    heatmap->setXMax(kPrecisionColumns);
+    axis->setViewportMin(kLinearFirst);
+    axis->setViewportMax(kLinearFirst + kPrecisionVisibleCells);
+    axis->setLogScale(true);
+    checkCells(kLinearFirst, [](const int cell) { return cell + 0.5; });
+    if (QTest::currentTestFailed()) {
+        return;
+    }
+
+    // Log cells over six decades on a linear axis, near 900000.
+    const auto edge = [](const double cell) { return std::pow(10.0, 6.0 * cell / kPrecisionColumns); };
+    const auto logFirst = static_cast<int>(std::ceil(std::log10(900'000.0) / 6.0 * kPrecisionColumns));
+    heatmap->setXMin(1.0);
+    heatmap->setXMax(1'000'000.0);
+    heatmap->setXSpacing(HeatmapSeries::Spacing::Log);
+    axis->setLogScale(false);
+    axis->setViewportMin(edge(logFirst));
+    axis->setViewportMax(edge(logFirst + kPrecisionVisibleCells));
+    checkCells(logFirst, [&edge](const int cell) { return edge(cell + 0.5); });
 }
 
 void HeatmapSeriesRenderingTest::infiniteEdgeDrawsNothing()

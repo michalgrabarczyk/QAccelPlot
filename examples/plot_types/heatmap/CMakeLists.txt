@@ -10,4 +10,7 @@ qaccelplot_add_example(Heatmap
         src/main.cpp
     QML_FILES
         qml/main.qml
+        qml/HeatmapColorBar.qml
+        qml/InterferencePage.qml
+        qml/LogBinsPage.qml
 )
