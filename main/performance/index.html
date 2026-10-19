@@ -1860,8 +1860,8 @@ use the public path.</p>
 </ul>
 <h3 id="performance-lab">Performance Lab<a class="headerlink" href="#performance-lab" title="Permanent link">&para;</a></h3>
 <p><a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/showcases/performance"><code>examples/showcases/performance</code></a>
-streams a <code>LineCurve</code>, a <code>PointCloud</code>, a <code>RectangleSeries</code>, and a <code>BarSeries</code>,
-one per tab, with options for record and series count, ingestion API, hover,
+streams a <code>LineCurve</code>, a <code>PointCloud</code>, a <code>RectangleSeries</code>, a <code>BarSeries</code>, and
+a <code>HeatmapSeries</code>, one per tab, with options for record and series count, ingestion API, hover,
 and rendering. Change one option at a time, at a record count that keeps
 display FPS below the refresh rate. The lab reports:</p>
 <ul>
@@ -1870,7 +1870,8 @@ display FPS below the refresh rate. The lab reports:</p>
   including worker-side generation.</li>
 <li><strong>Peak update gap</strong> — the longest interval between two dataset applications
   in the last reporting period.</li>
-<li><strong>Throughput</strong> — points, rectangles, or bars updated per second.</li>
+<li><strong>Throughput</strong> — points, rectangles, bars, or heatmap cells updated per
+  second.</li>
 </ul>
 <h3 id="included-benchmarks">Included benchmarks<a class="headerlink" href="#included-benchmarks" title="Permanent link">&para;</a></h3>
 <ul>
