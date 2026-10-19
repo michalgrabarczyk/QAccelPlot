@@ -10,6 +10,7 @@
 #include "QAccelPlot/axis/AxisTickPainter.hpp"
 #include "QAccelPlot/axis/ColorBar.hpp"
 #include "QAccelPlot/effects/Colormap.hpp"
+#include "QAccelPlot/series/BarSeries.hpp"
 #include "QAccelPlot/series/HeatmapSeries.hpp"
 #include "QAccelPlot/series/PointCloud.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
@@ -234,6 +235,7 @@ private slots:
     void gesturesAreIgnoredWithoutColormap();
     void sharedColormapMovesEverySeries();
     void keysHeatmapSeries();
+    void keysBarSeries();
     void qmlInteractiveColorBar();
     void onlyInteractiveBarKeepsEventsFromPlot();
 };
@@ -815,6 +817,24 @@ void ColorBarTest::keysHeatmapSeries()
     QVERIFY(std::isnan(heatmap.colormap()->min()));
     QCOMPARE(heatmap.dataValueMin(), 2.0);
     QCOMPARE(heatmap.dataValueMax(), 6.0);
+}
+
+void ColorBarTest::keysBarSeries()
+{
+    auto colormap = Colormap{};
+    auto bars = BarSeries{};
+    bars.setColormap(&colormap);
+    bars.setColorSource(BarSeries::ColorSource::Position);
+    bars.setRangedData(std::vector<double>{-2.0, 0.0, 4.0, 0.0, 3.0, 9.0}, 2);
+    auto bar = ColorBar{};
+    bar.setSeries(&bars);
+    QCOMPARE(bar.series(), &bars);
+
+    // The key spans the bin edges, so it lines up with the position axis.
+    colormap.setRange(-1.0, 1.0);
+    bar.rescaleToData();
+    QCOMPARE(bars.dataValueMin(), -2.0);
+    QCOMPARE(bars.dataValueMax(), 3.0);
 }
 
 void ColorBarTest::qmlInteractiveColorBar()

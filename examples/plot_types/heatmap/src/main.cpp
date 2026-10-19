@@ -6,7 +6,9 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #include "ExampleUtils.hpp"
+#include "VisibleHistogram.hpp"
 
+#include <QAccelPlot/series/BarSeries.hpp>
 #include <QAccelPlot/series/HeatmapSeries.hpp>
 
 #include <QDebug>
@@ -32,6 +34,7 @@ constexpr auto kYMax = 7.5;
 
 constexpr auto kWavelength = 1.6;
 constexpr auto kSourceX = 3.0;
+constexpr auto kHistogramBins = 64;
 
 // Amplitude at (x, y) of a circular wave from a source at (sourceX, 0). A 2D wave decays with the
 // square root of the distance.
@@ -111,12 +114,15 @@ int main(int argc, char* argv[])
     auto* root = engine.rootObjects().value(0);
     auto* interference = root ? root->findChild<QAccelPlot::HeatmapSeries*>(QStringLiteral("interferenceHeatmap")) : nullptr;
     auto* logBins = root ? root->findChild<QAccelPlot::HeatmapSeries*>(QStringLiteral("logBinsHeatmap")) : nullptr;
-    if (!interference || !logBins) {
-        qCritical() << "Unable to find the heatmaps";
+    auto* amplitudeHistogram = root ? root->findChild<QAccelPlot::BarSeries*>(QStringLiteral("amplitudeHistogram")) : nullptr;
+    if (!interference || !logBins || !amplitudeHistogram) {
+        qCritical() << "Unable to find the heatmaps and the histogram";
         return EXIT_FAILURE;
     }
-    interference->setValues(interferencePattern(), kColumns, kRows);
+    auto pattern = interferencePattern();
+    interference->setValues(std::vector<float>(pattern), kColumns, kRows);
     logBins->setValues(frequencySweep(), kSweepColumns, kSweepRows);
+    auto histogram = QAccelPlotExample::VisibleHistogram{interference, amplitudeHistogram, std::move(pattern), kHistogramBins};
 
     QAccelPlotExample::setupScreenshotHandler(app, engine);
     return app.exec();

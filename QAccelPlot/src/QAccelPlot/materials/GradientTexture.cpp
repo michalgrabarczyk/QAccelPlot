@@ -52,6 +52,12 @@ GradientTexture::~GradientTexture()
     delete texture_;
 }
 
+const std::vector<GradientStopData>& GradientTexture::neutralStops()
+{
+    static const auto stops = std::vector<GradientStopData>{{0.0f, Qt::white}, {1.0f, Qt::white}};
+    return stops;
+}
+
 void GradientTexture::upload(QQuickWindow* window, const std::vector<GradientStopData>& stops)
 {
     if (!window || stops.size() < 2 || matches(stops)) {

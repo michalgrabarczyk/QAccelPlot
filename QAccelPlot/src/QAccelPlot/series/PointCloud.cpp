@@ -80,12 +80,6 @@ void clearPointVertices(QSGGeometry* geometry)
     std::memset(geometry->vertexData(), 0, byteCount);
 }
 
-const std::vector<GradientStopData>& neutralColorStops()
-{
-    static const auto stops = std::vector<GradientStopData>{{0.0f, Qt::white}, {1.0f, Qt::white}};
-    return stops;
-}
-
 } // namespace
 
 PointCloud::PointCloud(QQuickItem* parent)
@@ -427,7 +421,7 @@ QSGNode* PointCloud::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* upda
     const auto* const valueColormap = colormap();
     const auto useValueColor = valueColormap && hasValues() && colorStops().size() >= 2;
     // The fragment shader always samples the colormap, so a neutral texture keeps the sampler valid.
-    material->colorMap.upload(window, useValueColor ? colorStops() : neutralColorStops());
+    material->colorMap.upload(window, useValueColor ? colorStops() : GradientTexture::neutralStops());
 
     material->color = color_;
     // The render data is origin-relative, so the domain is shifted by the same origin.

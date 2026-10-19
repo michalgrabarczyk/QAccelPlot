@@ -121,7 +121,9 @@ QAccelPlot.ColorBar {
 }
 ```
 
-A heatmap has no legend entry: the color bar is its key.
+A heatmap has no legend entry: the color bar is its key. A histogram of the
+values can key it instead; see
+[Use a histogram as a color bar](histograms.md#use-a-histogram-as-a-color-bar).
 
 ## Read the cell under the pointer
 

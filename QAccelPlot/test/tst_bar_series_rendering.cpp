@@ -8,6 +8,7 @@
 #include "HoverEvents.hpp"
 #include "QAccelPlot/QAccelPlot.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/series/BarSeries.hpp"
 
 #include <QGuiApplication>
 #include <QImage>
@@ -130,6 +131,46 @@ constexpr auto kRangedScene = R"(
 }
 )";
 
+// Bars at x = 2, 5, and 8 with values 10, 5, and 20 under a blue-to-red colormap from 0 to 10. The
+// colormap overrides the lime color and the yellow category color, and white marks the hovered bar.
+constexpr auto kColormapScene = R"(
+    BarSeries {
+        objectName: "mapped"
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        color: "lime"
+        categoryColors: ["yellow"]
+        hoverColor: "white"
+        barWidth: 1
+        colormap: Colormap {
+            min: 0
+            max: 10
+            stops: [GradientStop { position: 0; color: "blue" }, GradientStop { position: 1; color: "red" }]
+        }
+        Component.onCompleted: setData([{ position: 2, value: 10, category: 0 }, { position: 5, value: 5 }, { position: 8, value: 20 }])
+    }
+}
+)";
+
+// Ranged bars over x 0..0.8 and 1..100 colored by position under a blue-to-red log colormap from 1 to 100.
+constexpr auto kLogColormapScene = R"(
+    BarSeries {
+        objectName: "logMapped"
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        color: "lime"
+        colorSource: BarSeries.Position
+        colormap: Colormap {
+            min: 1
+            max: 100
+            norm: Colormap.Log
+            stops: [GradientStop { position: 0; color: "blue" }, GradientStop { position: 1; color: "red" }]
+        }
+        Component.onCompleted: setData([{ from: 0, to: 0.8, value: 5 }, { from: 1, to: 100, value: 5 }])
+    }
+}
+)";
+
 // Shows a PlotView built from kScenePrefix and \a sceneBody in a 400 × 300 window.
 class SceneWindow {
 public:
@@ -204,6 +245,9 @@ private slots:
     void narrowBarsKeepMinimumWidthAndCategoriesSelectColors();
     void borderAndHoverColorApplyToBars();
     void rangedBarsSpanTheirOwnExtent();
+    void colormapColorsBarsByValue();
+    void colormapColorsBarsByPosition();
+    void logColormapPlacesRangedBarsByTheirMiddle();
 };
 
 void BarSeriesRenderingTest::verticalBarsSpanFromBaselineToValue()
@@ -387,6 +431,75 @@ void BarSeriesRenderingTest::rangedBarsSpanTheirOwnExtent()
     QVERIFY(isColor(image.pixelColor(scene.pixel(2.5, 5.0)), Qt::black));
     QVERIFY(isColor(image.pixelColor(scene.pixel(5.0, 2.0)), Qt::red));
     QVERIFY(isColor(image.pixelColor(scene.pixel(10.0, 2.0)), Qt::black));
+}
+
+void BarSeriesRenderingTest::colormapColorsBarsByValue()
+{
+    auto scene = SceneWindow{kColormapScene};
+    if (scene.isSoftware()) {
+        QSKIP("Custom materials require a hardware scene graph backend");
+    }
+    auto* plot = scene.plot();
+    QVERIFY2(plot, qPrintable(scene.error()));
+    QVERIFY(QTest::qWaitForWindowExposed(&scene.window()));
+    auto* bars = plot->findChild<QQuickItem*>(QStringLiteral("mapped"));
+    QVERIFY(bars);
+
+    const auto purple = QColor{128, 0, 128};
+    auto image = scene.grab();
+    QVERIFY(isColor(image.pixelColor(scene.pixel(2.0, 2.0)), Qt::red));
+    QVERIFY(isColor(image.pixelColor(scene.pixel(5.0, 2.0)), purple));
+    // Beyond the range, the bar takes the color at its end.
+    QVERIFY(isColor(image.pixelColor(scene.pixel(8.0, 2.0)), Qt::red));
+
+    const auto position = bars->mapFromScene(scene.pixel(5.0, 2.0));
+    auto event = QAccelPlotTest::hoverEvent(QEvent::HoverEnter, position, position);
+    QCoreApplication::sendEvent(bars, &event);
+    image = scene.grab();
+    QVERIFY(isColor(image.pixelColor(scene.pixel(5.0, 2.0)), Qt::white));
+
+    // Without a colormap, the bars take their color and category colors again.
+    qobject_cast<BarSeries*>(bars)->setColormap(nullptr);
+    image = scene.grab();
+    QVERIFY(isColor(image.pixelColor(scene.pixel(2.0, 2.0)), Qt::yellow));
+    QVERIFY(isColor(image.pixelColor(scene.pixel(8.0, 2.0)), Qt::green));
+}
+
+void BarSeriesRenderingTest::colormapColorsBarsByPosition()
+{
+    auto scene = SceneWindow{kColormapScene};
+    if (scene.isSoftware()) {
+        QSKIP("Custom materials require a hardware scene graph backend");
+    }
+    auto* plot = scene.plot();
+    QVERIFY2(plot, qPrintable(scene.error()));
+    QVERIFY(QTest::qWaitForWindowExposed(&scene.window()));
+    auto* bars = plot->findChild<QQuickItem*>(QStringLiteral("mapped"));
+    QVERIFY(bars);
+
+    // Positions 2, 5, and 8 lie at 0.2, 0.5, and 0.8 of the colormap; barOffset does not move them.
+    bars->setProperty("colorSource", static_cast<int>(BarSeries::ColorSource::Position));
+    bars->setProperty("barOffset", 0.5);
+    const auto image = scene.grab();
+    QVERIFY(isColor(image.pixelColor(scene.pixel(2.5, 2.0)), QColor{51, 0, 204}));
+    QVERIFY(isColor(image.pixelColor(scene.pixel(5.5, 2.0)), QColor{128, 0, 128}));
+    QVERIFY(isColor(image.pixelColor(scene.pixel(8.5, 2.0)), QColor{204, 0, 51}));
+}
+
+void BarSeriesRenderingTest::logColormapPlacesRangedBarsByTheirMiddle()
+{
+    auto scene = SceneWindow{kLogColormapScene};
+    if (scene.isSoftware()) {
+        QSKIP("Custom materials require a hardware scene graph backend");
+    }
+    QVERIFY2(scene.plot(), qPrintable(scene.error()));
+    QVERIFY(QTest::qWaitForWindowExposed(&scene.window()));
+
+    const auto image = scene.grab();
+    // A log norm cannot place the edge at 0, so that bar keeps its color.
+    QVERIFY(isColor(image.pixelColor(scene.pixel(0.4, 2.0)), Qt::green));
+    // The bar from 1 to 100 sits at the middle of the log ramp, not at its arithmetic middle 50.5.
+    QVERIFY(isColor(image.pixelColor(scene.pixel(5.0, 2.0)), QColor{128, 0, 128}));
 }
 
 } // namespace QAccelPlot

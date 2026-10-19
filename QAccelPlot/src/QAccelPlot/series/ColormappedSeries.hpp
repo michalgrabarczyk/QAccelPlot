@@ -26,7 +26,7 @@ namespace QAccelPlot {
 /// \c Colormap::max where they are set, and the smallest and largest finite value of the series
 /// otherwise. \c ColorBar shows the colormap and the resolved range of any such series.
 ///
-/// \sa PointCloud, HeatmapSeries, ColorBar, Colormap
+/// \sa PointCloud, HeatmapSeries, BarSeries, ColorBar, Colormap
 class ColormappedSeries : public PlotSeries {
     Q_OBJECT
     QML_NAMED_ELEMENT(ColormappedSeries)

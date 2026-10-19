@@ -1,5 +1,5 @@
 ---
-description: "Draw histograms in QAccelPlot: count samples into equal or uneven bins with Histogram, show counts or density, and draw them with a BarSeries from QML or C++."
+description: "Draw histograms in QAccelPlot: count samples into equal or uneven bins with Histogram, show counts or density, draw them with a BarSeries from QML or C++, and key a heatmap with a histogram of its values."
 ---
 
 <!--
@@ -92,6 +92,49 @@ bars->setRangedData(density.barData(), density.binCount());
 a worker thread can build the histogram and pass its data to
 `postRangedData()`.
 `Histogram::fromCounts(edges, counts)` wraps data that is already binned.
+
+## Use a histogram as a color bar
+
+A histogram of a heatmap's values can key its colors: color the bins with the
+heatmap's colormap through
+[`colorSource: BarSeries.Position`](bar-charts.md#color-bars-by-value), and let
+the histogram's value axis set the colormap range:
+
+```qml
+QAccelPlot.Colormap {
+    id: amplitudeColors
+    min: histogramPlot.yAxis.viewportMin
+    max: histogramPlot.yAxis.viewportMax
+}
+
+QAccelPlot.HeatmapSeries {
+    colormap: amplitudeColors
+}
+
+QAccelPlot.Plot {
+    id: histogramPlot
+    xAxis: QAccelPlot.Axis { autoRescale: true }
+    yAxis: QAccelPlot.Axis {}
+
+    QAccelPlot.BarSeries {
+        xAxis: histogramPlot.xAxis
+        yAxis: histogramPlot.yAxis
+        orientation: Qt.Horizontal
+        colorSource: QAccelPlot.BarSeries.Position
+        colormap: amplitudeColors
+    }
+}
+```
+
+- Panning or zooming the value axis recolors the heatmap and the bins.
+- Fill the bars with `setRangedData()`, and call `rescaleToData()` on the
+  value axis once to fit it to the bin edges.
+- Keep the bin edges fixed when recounting, for example over the cells in
+  view, so the value axis is never refitted under the user.
+
+The Interference page of
+[`examples/plot_types/heatmap`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/heatmap)
+recounts the cells in view as the heatmap pans and zooms.
 
 Complete source: [`examples/plot_types/histogram`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/histogram)
 

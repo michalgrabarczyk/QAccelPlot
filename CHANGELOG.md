@@ -20,11 +20,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   have one, such as `Plot.legendModel`.
 - A `HeatmapSeries` tab in the `showcases/performance` example, streaming a
   scrolling spectrogram of up to 10M cells.
+- Colormapped bars: `BarSeries.colormap` colors each bar by its value or, with
+  `colorSource: BarSeries.Position`, by its position or bin. The Heatmap
+  example keys its interference pattern with a histogram of the cells in view.
 
 ### Changed
 
-- `ColorBar.series` takes any `ColormappedSeries`, the new base of `PointCloud`
-  and `HeatmapSeries`. In C++, `ColorBar::series()` returns a `ColormappedSeries*`.
+- `ColorBar.series` takes any `ColormappedSeries`, the new base of `PointCloud`,
+  `HeatmapSeries`, and `BarSeries`. In C++, `ColorBar::series()` returns a
+  `ColormappedSeries*`.
 - `Legend` takes a `model` instead of `series`. Hidden series have no entry, and
   unnamed series are listed as "Series N".
 - `inspection.status` is `Ready` for bar, rectangle, band, and heatmap series

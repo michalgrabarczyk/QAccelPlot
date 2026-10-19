@@ -104,7 +104,7 @@ void appendRestingBars(std::vector<double>& bars, const std::vector<double>& sou
 }
 
 BarSeries::BarSeries(QQuickItem* parent)
-    : PlotSeries(barLayout(Qt::Vertical, false), DataPointWording{"data bar", "bars", "values", "values"}, parent)
+    : ColormappedSeries(barLayout(Qt::Vertical, false), DataPointWording{"data bar", "bars", "values", "values"}, parent)
     , color_(ColorPalette::dark().seriesPrimary)
     , transition_(std::make_unique<TransitionRunner>(this))
 {
@@ -237,6 +237,22 @@ void BarSeries::setCategoryColors(const QList<QColor>& colors)
         vertexCache_.invalidate();
     }
     emit categoryColorsChanged();
+    update();
+}
+
+BarSeries::ColorSource BarSeries::colorSource() const
+{
+    return colorSource_;
+}
+
+void BarSeries::setColorSource(const ColorSource source)
+{
+    if (colorSource_ == source) {
+        return;
+    }
+    colorSource_ = source;
+    updateValueRange();
+    emit colorSourceChanged();
     update();
 }
 
@@ -514,6 +530,7 @@ QSGNode* BarSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
     }
 
     updateMaterial(*material, renderCount);
+    updateColormapUniforms(*material, window);
     node->markDirty(QSGNode::DirtyMaterial);
     return node;
 }
@@ -653,6 +670,39 @@ void BarSeries::onDataPointsChanged(const DataChange /*change*/, const int previ
     if (previousCount != count()) {
         emit countChanged();
     }
+    updateValueRange();
+}
+
+std::optional<ColormappedSeries::ValueSpan> BarSeries::scanValueRange() const
+{
+    if (!colormap()) {
+        return std::nullopt;
+    }
+    const auto ranged = valuesPerBar() == 3;
+    const auto byPosition = colorSource_ == ColorSource::Position;
+    auto span = Extent{};
+    const auto include = [&span](const double coordinate) {
+        if (std::isfinite(coordinate)) {
+            span.include(coordinate);
+        }
+    };
+    for (auto i = 0; i < count(); ++i) {
+        if (std::isnan(positionSpan(i)[0]) || std::isnan(value(i))) {
+            continue;
+        }
+        if (!byPosition) {
+            include(value(i));
+            continue;
+        }
+        include(component(i, 0));
+        if (ranged) {
+            include(component(i, 1));
+        }
+    }
+    if (span.isEmpty()) {
+        return std::nullopt;
+    }
+    return ValueSpan{span.min, span.max};
 }
 
 bool BarSeries::animating() const
@@ -882,6 +932,31 @@ void BarSeries::updateMaterial(BarMaterial& material, const int renderCount) con
     material.baseline = static_cast<float>(baselineValue_ - (horizontal ? originX : originY));
     material.horizontal = horizontal ? 1.0f : 0.0f;
     material.ranged = valuesPerBar() == 3 ? 1.0f : 0.0f;
+}
+
+void BarSeries::updateColormapUniforms(BarMaterial& material, QQuickWindow* window) const
+{
+    using Dimension = DataPointStore::Dimension;
+    const auto mapped = colormapped();
+    // bar.vert always declares the colormap sampler, so a neutral ramp keeps it valid.
+    material.colorMap.upload(window, mapped ? colorStops() : GradientTexture::neutralStops());
+    const auto byValue = colorSource_ == ColorSource::Value;
+    material.colorSource = mapped ? (byValue ? 1.0f : 2.0f) : 0.0f;
+
+    // Linear normalization shifts the range by the render origin in double precision. A log one
+    // needs the absolute value, so the shader adds the origin back first.
+    const auto logScale = mapped && colormap()->norm() == Colormap::Normalization::Log;
+    const auto origin = dataPoints().renderOrigin(byValue == isHorizontal() ? Dimension::X : Dimension::Y);
+    const auto shift = logScale ? 0.0 : origin;
+    material.valueMin = static_cast<float>(dataValueMin() - shift);
+    material.valueMax = static_cast<float>(dataValueMax() - shift);
+    material.valueOrigin = logScale ? static_cast<float>(origin) : 0.0f;
+    material.valueLogScale = logScale ? 1.0f : 0.0f;
+}
+
+bool BarSeries::colormapped() const
+{
+    return colormap() && colorStops().size() >= 2;
 }
 
 void BarSeries::ensureSpatialGrid() const

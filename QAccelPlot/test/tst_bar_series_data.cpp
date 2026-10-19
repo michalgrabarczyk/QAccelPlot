@@ -6,6 +6,7 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/effects/Colormap.hpp"
 #include "QAccelPlot/materials/BarMaterial.hpp"
 #include "QAccelPlot/series/BarSeries.hpp"
 
@@ -72,6 +73,10 @@ private slots:
     void rangedBarsReportTheirEdgesAsRange();
     void rangedBarsOnALogPositionAxisSkipNonPositiveEdges();
     void rangedBarsAreUploadedAsTriples();
+    void valueRangeIsScannedOnlyWithAColormap();
+    void colorSourceSelectsTheScannedValues();
+    void colormapIsPassedToTheMaterial();
+    void logColormapReceivesAbsoluteValues();
 };
 
 void BarSeriesDataTest::defaultsMatchDocumentation()
@@ -86,6 +91,10 @@ void BarSeriesDataTest::defaultsMatchDocumentation()
     QCOMPARE(bars.legendSymbol(), PlotSeries::LegendSymbol::Fill);
     QCOMPARE(bars.count(), 0);
     QCOMPARE(bars.hoveredIndex(), -1);
+    QCOMPARE(bars.colorSource(), BarSeries::ColorSource::Value);
+    QVERIFY(!bars.colormap());
+    QCOMPARE(bars.dataValueMin(), 0.0);
+    QCOMPARE(bars.dataValueMax(), 1.0);
 }
 
 void BarSeriesDataTest::variantListNumbersUseIndexPositions()
@@ -522,6 +531,122 @@ void BarSeriesDataTest::rangedBarsAreUploadedAsTriples()
     bars.setData(std::vector<double>{epoch + 1.0, 5.0}, 1);
     node.reset(bars.updatePaintNode(node.release(), nullptr));
     QCOMPARE(material->ranged, 0.0f);
+}
+
+void BarSeriesDataTest::valueRangeIsScannedOnlyWithAColormap()
+{
+    auto bars = BarSeries{};
+    auto spy = QSignalSpy{&bars, &ColormappedSeries::valueRangeChanged};
+    bars.setData(std::vector<double>{1.0, 4.0, 2.0, -3.0}, 2);
+    QCOMPARE(bars.dataValueMin(), 0.0);
+    QCOMPARE(bars.dataValueMax(), 1.0);
+    QCOMPARE(spy.count(), 0);
+
+    auto colormap = Colormap{};
+    bars.setColormap(&colormap);
+    QCOMPARE(bars.dataValueMin(), -3.0);
+    QCOMPARE(bars.dataValueMax(), 4.0);
+    QCOMPARE(spy.count(), 1);
+
+    bars.setData(std::vector<double>{1.0, 6.0}, 1);
+    QCOMPARE(bars.dataValueMin(), 6.0);
+    QCOMPARE(bars.dataValueMax(), 6.0);
+    QCOMPARE(spy.count(), 2);
+
+    colormap.setRange(0.0, 10.0);
+    QCOMPARE(bars.dataValueMin(), 0.0);
+    QCOMPARE(bars.dataValueMax(), 10.0);
+}
+
+void BarSeriesDataTest::colorSourceSelectsTheScannedValues()
+{
+    auto colormap = Colormap{};
+    auto bars = BarSeries{};
+    bars.setColormap(&colormap);
+    // The bar with a NaN position is not drawn, and the infinite value has no place in the range.
+    bars.setData(std::vector<double>{1.0, 4.0, 3.0, 2.0, kNaN, 9.0, 5.0, kInf}, 4);
+    QCOMPARE(bars.dataValueMin(), 2.0);
+    QCOMPARE(bars.dataValueMax(), 4.0);
+
+    auto spy = QSignalSpy{&bars, &BarSeries::colorSourceChanged};
+    auto rangeSpy = QSignalSpy{&bars, &ColormappedSeries::valueRangeChanged};
+    bars.setColorSource(BarSeries::ColorSource::Position);
+    bars.setColorSource(BarSeries::ColorSource::Position);
+    QCOMPARE(spy.count(), 1);
+    QCOMPARE(rangeSpy.count(), 1);
+    // Positions ignore barOffset.
+    bars.setBarOffset(10.0);
+    QCOMPARE(bars.dataValueMin(), 1.0);
+    QCOMPARE(bars.dataValueMax(), 5.0);
+
+    // Ranged bars contribute both edges; the infinite edge has no place in the range.
+    bars.setRangedData(std::vector<double>{2.0, 3.0, 1.0, 3.0, 7.0, 2.0, 8.0, kInf, 3.0}, 3);
+    QCOMPARE(bars.dataValueMin(), 2.0);
+    QCOMPARE(bars.dataValueMax(), 8.0);
+}
+
+void BarSeriesDataTest::colormapIsPassedToTheMaterial()
+{
+    constexpr auto epoch = 1'789'032'600'000.0;
+    auto xAxis = Axis{};
+    auto yAxis = Axis{};
+    xAxis.setViewportMin(epoch);
+    xAxis.setViewportMax(epoch + 10.0);
+    auto window = QQuickWindow{};
+    auto bars = RenderableBars{};
+    bars.setParentItem(window.contentItem());
+    bars.setXAxis(&xAxis);
+    bars.setYAxis(&yAxis);
+    bars.setPlotRect({0, 0, 100, 100});
+    bars.setData(std::vector<double>{epoch + 1.0, 5.0, epoch + 3.0, 6.0}, 2);
+
+    auto node = std::unique_ptr<QSGNode>{bars.updatePaintNode(nullptr, nullptr)};
+    QVERIFY(node);
+    const auto* material = static_cast<BarMaterial*>(static_cast<QSGGeometryNode*>(node.get())->material());
+    QCOMPARE(material->colorSource, 0.0f);
+
+    auto colormap = Colormap{};
+    bars.setColormap(&colormap);
+    node.reset(bars.updatePaintNode(node.release(), nullptr));
+    // Values and positions are uploaded relative to the first one, and the range is shifted to match.
+    QCOMPARE(material->colorSource, 1.0f);
+    QCOMPARE(material->valueMin, 0.0f);
+    QCOMPARE(material->valueMax, 1.0f);
+    QCOMPARE(material->valueLogScale, 0.0f);
+
+    bars.setColorSource(BarSeries::ColorSource::Position);
+    node.reset(bars.updatePaintNode(node.release(), nullptr));
+    QCOMPARE(material->colorSource, 2.0f);
+    QCOMPARE(material->valueMin, 0.0f);
+    QCOMPARE(material->valueMax, 2.0f);
+    QCOMPARE(material->valueOrigin, 0.0f);
+}
+
+void BarSeriesDataTest::logColormapReceivesAbsoluteValues()
+{
+    auto xAxis = Axis{};
+    auto yAxis = Axis{};
+    xAxis.setViewportMin(1000.0);
+    xAxis.setViewportMax(1010.0);
+    auto window = QQuickWindow{};
+    auto bars = RenderableBars{};
+    bars.setParentItem(window.contentItem());
+    bars.setXAxis(&xAxis);
+    bars.setYAxis(&yAxis);
+    bars.setPlotRect({0, 0, 100, 100});
+    bars.setColorSource(BarSeries::ColorSource::Position);
+    bars.setData(std::vector<double>{1001.0, 5.0, 1003.0, 6.0}, 2);
+    auto colormap = Colormap{};
+    colormap.setNorm(Colormap::Normalization::Log);
+    bars.setColormap(&colormap);
+
+    auto node = std::unique_ptr<QSGNode>{bars.updatePaintNode(nullptr, nullptr)};
+    QVERIFY(node);
+    const auto* material = static_cast<BarMaterial*>(static_cast<QSGGeometryNode*>(node.get())->material());
+    QCOMPARE(material->valueLogScale, 1.0f);
+    QCOMPARE(material->valueMin, 1001.0f);
+    QCOMPARE(material->valueMax, 1003.0f);
+    QCOMPARE(material->valueOrigin, 1001.0f);
 }
 
 } // namespace QAccelPlot

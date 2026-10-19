@@ -19,7 +19,7 @@ namespace QAccelPlot {
 
 namespace {
 
-// Mirrors the std140 block in bar.vert: the rect.vert block followed by the bar geometry.
+// Mirrors the std140 block in bar.vert: the rect.vert block followed by the bar geometry and colormap.
 struct BarUbo {
     Internal::RectUbo rect; // 0–171
     float barWidth;         // 172–175
@@ -27,9 +27,14 @@ struct BarUbo {
     float baseline;         // 180–183
     float horizontal;       // 184–187
     float ranged;           // 188–191
+    float colorSource;      // 192–195
+    float valueMin;         // 196–199
+    float valueMax;         // 200–203
+    float valueOrigin;      // 204–207
+    float valueLogScale;    // 208–211
 };
 
-static_assert(sizeof(BarUbo) == 192);
+static_assert(sizeof(BarUbo) == 212);
 
 class BarShader : public QSGMaterialShader {
 public:
@@ -55,15 +60,22 @@ public:
         ubo.baseline = mat->baseline;
         ubo.horizontal = mat->horizontal;
         ubo.ranged = mat->ranged;
+        ubo.colorSource = mat->colorSource;
+        ubo.valueMin = mat->valueMin;
+        ubo.valueMax = mat->valueMax;
+        ubo.valueOrigin = mat->valueOrigin;
+        ubo.valueLogScale = mat->valueLogScale;
         memcpy(buf->data(), &ubo, sizeof(ubo));
         return true;
     }
 
     void updateSampledImage(RenderState& state, int binding, QSGTexture** texture, QSGMaterial* newMaterial, QSGMaterial* /*oldMaterial*/) override
     {
+        auto* mat = static_cast<BarMaterial*>(newMaterial);
         if (binding == 1) {
-            auto* mat = static_cast<BarMaterial*>(newMaterial);
             DataTextureMaterial::commitTexture(state, binding, texture, mat->dataTexture.get());
+        } else if (binding == 2) {
+            mat->colorMap.commit(state, binding, texture);
         }
     }
 };
@@ -90,12 +102,18 @@ int BarMaterial::compareExtra(const QSGMaterial* other) const
         return rectResult;
     }
     const auto* m = static_cast<const BarMaterial*>(other);
-    const auto mine = std::array<float, 5>{barWidth, barOffset, baseline, horizontal, ranged};
-    const auto theirs = std::array<float, 5>{m->barWidth, m->barOffset, m->baseline, m->horizontal, m->ranged};
+    const auto mine = std::array<float, 10>{barWidth, barOffset, baseline, horizontal, ranged, colorSource, valueMin, valueMax, valueOrigin, valueLogScale};
+    const auto theirs = std::array<float, 10>{
+        m->barWidth, m->barOffset, m->baseline, m->horizontal, m->ranged, m->colorSource, m->valueMin, m->valueMax, m->valueOrigin, m->valueLogScale};
     for (size_t i = 0; i < mine.size(); ++i) {
         if (mine[i] != theirs[i]) {
             return mine[i] < theirs[i] ? -1 : 1;
         }
+    }
+    const auto colorMapKey = colorMap.comparisonKey();
+    const auto otherColorMapKey = m->colorMap.comparisonKey();
+    if (colorMapKey != otherColorMapKey) {
+        return colorMapKey < otherColorMapKey ? -1 : 1;
     }
     return 0;
 }

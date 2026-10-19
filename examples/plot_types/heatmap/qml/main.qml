@@ -40,7 +40,7 @@ Window {
 
         ExampleHeader {
             title: "Heatmap"
-            description: "HeatmapSeries colors a grid of values. Interference: two circular waves on a 400 × 300 grid. Log-spaced bins: a frequency sweep in rows of equal frequency ratio, with ySpacing: HeatmapSeries.Log on a log axis. Hover a cell to read it, drag or wheel to pan and zoom, and drag or wheel the color bar to change its range."
+            description: "HeatmapSeries colors a grid of values. Interference: two circular waves on a 400 × 300 grid, keyed by a histogram of the cells in view whose amplitude axis sets the color range. Log-spaced bins: a frequency sweep in rows of equal frequency ratio, with ySpacing: HeatmapSeries.Log on a log axis. Hover a cell to read it, drag or wheel to pan and zoom, and drag or wheel the color bar or the histogram to change the color range."
 
             Label {
                 text: "Colormap"

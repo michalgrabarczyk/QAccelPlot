@@ -2033,7 +2033,9 @@ QAccelPlot.ColorBar {
 }
 ```
 
-A heatmap has no legend entry: the color bar is its key.
+A heatmap has no legend entry: the color bar is its key. A histogram of the
+values can key it instead; see
+[Use a histogram as a color bar](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/histograms/#use-a-histogram-as-a-color-bar).
 
 ## Read the cell under the pointer
 
@@ -2243,6 +2245,38 @@ QAccelPlot.BarSeries {
 `setCategories()` replaces the categories without changing the data. Outlines
 are set with `border.width` and `border.color`.
 
+## Color bars by value
+
+Assign a [`Colormap`][colormap] to color each bar from `colorSource`:
+
+```qml
+QAccelPlot.BarSeries {
+    colorSource: QAccelPlot.BarSeries.Position
+    colormap: QAccelPlot.Colormap {
+        preset: QAccelPlot.Colormap.Viridis
+        min: 0
+        max: 10
+    }
+}
+```
+
+| `colorSource` | Mapped to a color |
+| --- | --- |
+| `BarSeries.Value` (default) | The bar's value |
+| `BarSeries.Position` | The bar's position; for a ranged bar, the middle of its edges under the colormap's `norm` |
+
+- The colormap overrides `color` and `categoryColors`; `hoverColor` still
+  marks the hovered bar.
+- `min` and `max` work as for [point clouds](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/point-clouds/#color-points-by-value).
+  An unset bound resolves from the data, and ranged bars contribute both edges.
+  `dataValueMin` and `dataValueMax` expose the resolved range.
+- Values outside the range take the color at its nearer end.
+- `barOffset` does not move a bar's position on the colormap.
+- Under `norm: Colormap.Log`, a bar at or below zero keeps `color`.
+- A [`ColorBar`](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/point-clouds/#show-a-color-bar) keys the series. To key a
+  heatmap with a histogram of its values instead, see
+  [Use a histogram as a color bar](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/histograms/#use-a-histogram-as-a-color-bar).
+
 ## Hover
 
 `hoveredIndex` is the bar under the mouse pointer, or -1. `barAt(index)`
@@ -2291,6 +2325,7 @@ infinite value reaches the plot edge.
 Complete source: [`examples/plot_types/bar_chart`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/bar_chart)
 
 [bar-series]: ../api/classQAccelPlot_1_1BarSeries.md
+[colormap]: ../api/classQAccelPlot_1_1Colormap.md
 
 
 ---
@@ -2382,6 +2417,49 @@ bars->setRangedData(density.barData(), density.binCount());
 a worker thread can build the histogram and pass its data to
 `postRangedData()`.
 `Histogram::fromCounts(edges, counts)` wraps data that is already binned.
+
+## Use a histogram as a color bar
+
+A histogram of a heatmap's values can key its colors: color the bins with the
+heatmap's colormap through
+[`colorSource: BarSeries.Position`](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/bar-charts/#color-bars-by-value), and let
+the histogram's value axis set the colormap range:
+
+```qml
+QAccelPlot.Colormap {
+    id: amplitudeColors
+    min: histogramPlot.yAxis.viewportMin
+    max: histogramPlot.yAxis.viewportMax
+}
+
+QAccelPlot.HeatmapSeries {
+    colormap: amplitudeColors
+}
+
+QAccelPlot.Plot {
+    id: histogramPlot
+    xAxis: QAccelPlot.Axis { autoRescale: true }
+    yAxis: QAccelPlot.Axis {}
+
+    QAccelPlot.BarSeries {
+        xAxis: histogramPlot.xAxis
+        yAxis: histogramPlot.yAxis
+        orientation: Qt.Horizontal
+        colorSource: QAccelPlot.BarSeries.Position
+        colormap: amplitudeColors
+    }
+}
+```
+
+- Panning or zooming the value axis recolors the heatmap and the bins.
+- Fill the bars with `setRangedData()`, and call `rescaleToData()` on the
+  value axis once to fit it to the bin edges.
+- Keep the bin edges fixed when recounting, for example over the cells in
+  view, so the value axis is never refitted under the user.
+
+The Interference page of
+[`examples/plot_types/heatmap`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/heatmap)
+recounts the cells in view as the heatmap pans and zooms.
 
 Complete source: [`examples/plot_types/histogram`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/histogram)
 
