@@ -831,6 +831,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#use-logarithmic-axes-and-spacing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use logarithmic axes and spacing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#choose-the-colors" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1428,6 +1439,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#use-logarithmic-axes-and-spacing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use logarithmic axes and spacing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#choose-the-colors" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1537,16 +1559,67 @@ its value through a <a href="../../api/classQAccelPlot_1_1Colormap/"><code>Color
   the binding is re-evaluated, it reshapes the grid.</li>
 <li><code>valueAt(row, column)</code> reads a cell.</li>
 </ul>
+<h2 id="use-logarithmic-axes-and-spacing">Use logarithmic axes and spacing<a class="headerlink" href="#use-logarithmic-axes-and-spacing" title="Permanent link">&para;</a></h2>
+<p><code>xSpacing</code> and <code>ySpacing</code> set how cells are spaced between the grid edges,
+independently of the axis scale:</p>
+<ul>
+<li><code>HeatmapSeries.Linear</code> (default): cells of equal size in data coordinates.</li>
+<li><code>HeatmapSeries.Log</code>: cells of equal size in log10, each spanning the same
+  ratio, such as constant-Q or octave bins.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Spacing</th>
+<th>Linear axis</th>
+<th>Log axis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Linear</code></td>
+<td>Equal widths</td>
+<td>Narrower toward larger values</td>
+</tr>
+<tr>
+<td><code>Log</code></td>
+<td>Wider toward larger values</td>
+<td>Equal widths</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Plot</span> <span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="kd">id: plot</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="k">yAxis:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Axis</span> <span class="p">{</span> <span class="k">viewportMin:</span> <span class="mi">20</span><span class="p">;</span> <span class="k">viewportMax:</span> <span class="mi">20000</span><span class="p">;</span> <span class="k">logScale:</span> <span class="kc">true</span> <span class="p">}</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">HeatmapSeries</span> <span class="p">{</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        <span class="k">xAxis:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">xAxis</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        <span class="k">yAxis:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">yAxis</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        <span class="k">xMin:</span> <span class="mi">0</span><span class="p">;</span> <span class="k">xMax:</span> <span class="mi">10</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        <span class="c1">// Rows of equal frequency ratio from 20 Hz to 20 kHz.</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        <span class="k">yMin:</span> <span class="mi">20</span><span class="p">;</span> <span class="k">yMax:</span> <span class="mi">20000</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>        <span class="k">ySpacing:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">HeatmapSeries</span><span class="p">.</span><span class="nx">Log</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="p">}</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>On a log axis, the parts of <code>Linear</code> cells at or below zero are not drawn,
+  and the data range starts at the first cell edge above zero. A grid from
+  0 Hz, such as FFT bins, keeps its first bin.</li>
+<li><code>Log</code> spacing needs both edges of that dimension positive. Set them: an
+  unset edge resolves to index space, which starts at 0. Otherwise the series
+  draws nothing, reports no data range in that dimension, and logs a warning.</li>
+</ul>
 <h2 id="choose-the-colors">Choose the colors<a class="headerlink" href="#choose-the-colors" title="Permanent link">&para;</a></h2>
 <p>The series starts with its own Viridis <code>Colormap</code>, with the value range
 resolved from the data. Change it in place, or assign a shared one:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">HeatmapSeries</span> <span class="p">{</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="k">colormap:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Colormap</span> <span class="p">{</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>        <span class="k">preset:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Colormap</span><span class="p">.</span><span class="nx">Inferno</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>        <span class="k">min:</span> <span class="o">-</span><span class="mi">1</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="k">max:</span> <span class="mi">1</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="p">}</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">HeatmapSeries</span> <span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="k">colormap:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Colormap</span> <span class="p">{</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>        <span class="k">preset:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Colormap</span><span class="p">.</span><span class="nx">Inferno</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>        <span class="k">min:</span> <span class="o">-</span><span class="mi">1</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        <span class="k">max:</span> <span class="mi">1</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="p">}</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">}</span>
 </code></pre></div>
 <p>The colormap works as for <a href="../point-clouds/#color-points-by-value">point clouds</a>:
 presets, <code>reversed</code>, custom <code>stops</code>, fixed or data-resolved <code>min</code> and <code>max</code>,
@@ -1561,36 +1634,37 @@ range. Nothing is drawn while <code>colormap</code> is null.</p>
 <h2 id="show-a-color-bar">Show a color bar<a class="headerlink" href="#show-a-color-bar" title="Permanent link">&para;</a></h2>
 <p>A <a href="../../api/classQAccelPlot_1_1ColorBar/"><code>ColorBar</code></a> keys a heatmap as it keys a point cloud; see
 <a href="../point-clouds/#show-a-color-bar">Show a color bar</a>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">ColorBar</span> <span class="p">{</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="k">series:</span> <span class="nx">heatmap</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="k">label:</span> <span class="s2">"Amplitude"</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="k">interactive:</span> <span class="kc">true</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">ColorBar</span> <span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="k">series:</span> <span class="nx">heatmap</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="k">label:</span> <span class="s2">"Amplitude"</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="k">interactive:</span> <span class="kc">true</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">}</span>
 </code></pre></div>
 <p>A heatmap has no legend entry: the color bar is its key.</p>
 <h2 id="read-the-cell-under-the-pointer">Read the cell under the pointer<a class="headerlink" href="#read-the-cell-under-the-pointer" title="Permanent link">&para;</a></h2>
 <p>A <a href="../data-inspection/#inspector"><code>PlotInspector</code></a> reports the cell under the
-cursor in every mode. Its row has the cell center as <code>dataPointX</code> and
-<code>dataPointY</code>, the value as <code>dataPointValue</code> and <code>valueText</code>, and
-<code>row * columns + column</code> as <code>dataPointIndex</code>. <code>InspectionTooltip</code> shows the
-center and the value:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">PlotInspector</span> <span class="p">{</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="k">plot:</span> <span class="nx">plot</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">InspectionTooltip</span> <span class="p">{}</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">}</span>
+cursor in every mode. Its row has the cell center (geometric under <code>Log</code>
+spacing) as <code>dataPointX</code> and <code>dataPointY</code>, the value as <code>dataPointValue</code> and
+<code>valueText</code>, and <code>row * columns + column</code> as <code>dataPointIndex</code>.
+<code>InspectionTooltip</code> shows the center and the value:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">PlotInspector</span> <span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="k">plot:</span> <span class="nx">plot</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">InspectionTooltip</span> <span class="p">{}</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">}</span>
 </code></pre></div>
 <p>A cell with a non-finite value is still a match. In code,
 <code>inspection.dataPointAtPosition()</code> returns the same data point for a
 series-local position: pixels from the top left of the plot area.
 <code>inspection.recordAtPosition()</code> and <code>inspection.recordAt(index)</code> return the
 cell's record, whose <code>fields</code> are <code>x</code> and <code>y</code> (the cell center), <code>value</code>,
-<code>row</code>, and <code>column</code>. While a grid edge is infinite, <code>recordAt()</code> returns
-<code>Inspection.Unavailable</code> and no position matches a cell.</p>
+<code>row</code>, and <code>column</code>. While a grid edge is infinite, or not positive under
+<code>Log</code> spacing, <code>recordAt()</code> returns <code>Inspection.Unavailable</code> and no position
+matches a cell.</p>
 <h2 id="set-data-from-c">Set data from C++<a class="headerlink" href="#set-data-from-c" title="Permanent link">&para;</a></h2>
 <p><code>setValues()</code> replaces the values and the shape together:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// columns * rows floats, row by row.</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">heatmap</span><span class="o">-&gt;</span><span class="n">setValues</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">values</span><span class="p">),</span><span class="w"> </span><span class="n">columns</span><span class="p">,</span><span class="w"> </span><span class="n">rows</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// columns * rows floats, row by row.</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">heatmap</span><span class="o">-&gt;</span><span class="n">setValues</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">values</span><span class="p">),</span><span class="w"> </span><span class="n">columns</span><span class="p">,</span><span class="w"> </span><span class="n">rows</span><span class="p">);</span>
 </code></pre></div>
 <p>From a worker thread, <code>postValues()</code> takes the same arguments and queues the
 handoff; see <a href="../background-data/">Background data production</a>.</p>
@@ -1602,8 +1676,6 @@ a multiple of it. Setting <code>columns</code> keeps the values and recomputes <
 <li>Each pixel takes the color of the cell under its center. Cells are not
   interpolated.</li>
 <li>Values are single precision.</li>
-<li>Logarithmic axes are not supported. On one, the series draws nothing,
-  reports no data range in that dimension, and logs a warning.</li>
 <li>A grid with an infinite edge, such as <code>xMin: -Infinity</code>, draws nothing.</li>
 <li>A grid can have as many cells as the GPU data texture holds: about 67
   million on a GPU with an 8192-pixel texture limit. A larger grid is not

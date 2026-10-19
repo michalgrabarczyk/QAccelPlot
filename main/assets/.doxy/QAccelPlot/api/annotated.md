@@ -87,6 +87,8 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **struct** [**InspectionSource**](structQAccelPlot_1_1InspectionSource.md) _Read-only view over the XY records a series exposes to inspection queries._     
     * **struct** [**InspectionSummary**](structQAccelPlot_1_1InspectionSummary.md) _Data-point-weighted Y statistics over the valid data points inside a region._     
     * **namespace** [**Internal**](namespaceQAccelPlot_1_1Internal.md)     
+        * **struct** [**HeatmapGridDimension**](structQAccelPlot_1_1Internal_1_1HeatmapGridDimension.md) _One dimension of a heatmap grid:_ `count` _cells between the edges_`from` _and_`to` _._    
+        * **struct** [**HeatmapShaderMapping**](structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping.md) _How heatmap.frag maps an item-local pixel position_ _p_ _to a fractional cell coordinate along one dimension._    
         * **class** [**HoverIndexBudget**](classQAccelPlot_1_1Internal_1_1HoverIndexBudget.md) _Decides when queried data is worth a hover index._     
         * **struct** [**RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md) _Mirrors the std140 uniform block of rect.vert._     
         * **struct** [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) _Bounds of an axis viewport or a colormap value range._     

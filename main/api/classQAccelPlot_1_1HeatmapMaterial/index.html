@@ -1363,10 +1363,32 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#variable-cellrate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable cellRate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#variable-cellscale" class="md-nav__link">
     <span class="md-ellipsis">
       
         variable cellScale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variable-cellshift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable cellShift
       
     </span>
   </a>
@@ -1385,10 +1407,32 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#variable-columnmapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable columnMapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#variable-columns" class="md-nav__link">
     <span class="md-ellipsis">
       
         variable columns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variable-rowmapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable rowMapping
       
     </span>
   </a>
@@ -1558,11 +1602,19 @@
 <tbody>
 <tr>
 <td style="text-align: right;">QVector2D</td>
-<td style="text-align: left;"><a href="#variable-celloffset"><strong>cellOffset</strong></a>   = <code>{0.0f, 0.0f}</code><br><em>Cell coordinate at item-local pixel (0, 0).</em></td>
+<td style="text-align: left;"><a href="#variable-celloffset"><strong>cellOffset</strong></a>   = <code>{0.0f, 0.0f}</code><br><em>Offset of the cell mapping along X and Y.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">QVector2D</td>
-<td style="text-align: left;"><a href="#variable-cellscale"><strong>cellScale</strong></a>   = <code>{1.0f, 1.0f}</code><br><em>Cells per item-local pixel along X and Y.</em></td>
+<td style="text-align: left;"><a href="#variable-cellrate"><strong>cellRate</strong></a>   = <code>{0.0f, 0.0f}</code><br><em>Per-pixel rate of the non-affine cell mappings along X and Y.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">QVector2D</td>
+<td style="text-align: left;"><a href="#variable-cellscale"><strong>cellScale</strong></a>   = <code>{1.0f, 1.0f}</code><br><em>Factor of the cell mapping along X and Y.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">QVector2D</td>
+<td style="text-align: left;"><a href="#variable-cellshift"><strong>cellShift</strong></a>   = <code>{0.0f, 0.0f}</code><br><code>log1p</code> <em>argument at pixel 0 of the logarithmic cell mappings along X and Y.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classQAccelPlot_1_1GradientTexture/"><strong>GradientTexture</strong></a></td>
@@ -1570,7 +1622,15 @@
 </tr>
 <tr>
 <td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#variable-columnmapping"><strong>columnMapping</strong></a>   = <code>{0}</code><br><code>Internal::HeatmapShaderMapping::Mode</code> <em>along X.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
 <td style="text-align: left;"><a href="#variable-columns"><strong>columns</strong></a>   = <code>{0}</code><br><em>Cells per row.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#variable-rowmapping"><strong>rowMapping</strong></a>   = <code>{0}</code><br><code>Internal::HeatmapShaderMapping::Mode</code> <em>along Y.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">int</td>
@@ -1622,87 +1682,111 @@
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
-<p>The vertex shader maps item-local pixels to fractional cell coordinates with <code>cellScale</code> and <code>cellOffset</code>; the fragment shader reads the cell value from <code>values</code> and looks up its color in <code>colorMap</code>. </p>
+<p>Item-local pixels map to fractional cell coordinates per dimension, by the formula that <code>columnMapping</code> and <code>rowMapping</code> select from <code>Internal::HeatmapShaderMapping::Mode</code>. The fragment shader reads the cell value from <code>values</code> and looks up its color in <code>colorMap</code>. </p>
 <h2 id="public-attributes-documentation">Public Attributes Documentation<a class="headerlink" href="#public-attributes-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="variable-celloffset">variable cellOffset<a class="headerlink" href="#variable-celloffset" title="Permanent link">&para;</a></h3>
-<p><em>Cell coordinate at item-local pixel (0, 0).</em> 
+<p><em>Offset of the cell mapping along X and Y.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">QVector2D</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapMaterial</span><span class="o">::</span><span class="n">cellOffset</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
+<h3 id="variable-cellrate">variable cellRate<a class="headerlink" href="#variable-cellrate" title="Permanent link">&para;</a></h3>
+<p><em>Per-pixel rate of the non-affine cell mappings along X and Y.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">QVector2D</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapMaterial</span><span class="o">::</span><span class="n">cellRate</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="variable-cellscale">variable cellScale<a class="headerlink" href="#variable-cellscale" title="Permanent link">&para;</a></h3>
-<p><em>Cells per item-local pixel along X and Y.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">QVector2D</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapMaterial</span><span class="o">::</span><span class="n">cellScale</span><span class="p">;</span>
+<p><em>Factor of the cell mapping along X and Y.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">QVector2D</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapMaterial</span><span class="o">::</span><span class="n">cellScale</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="variable-cellshift">variable cellShift<a class="headerlink" href="#variable-cellshift" title="Permanent link">&para;</a></h3>
+<p><code>log1p</code> <em>argument at pixel 0 of the logarithmic cell mappings along X and Y.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">QVector2D</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapMaterial</span><span class="o">::</span><span class="n">cellShift</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-colormap">variable colorMap<a class="headerlink" href="#variable-colormap" title="Permanent link">&para;</a></h3>
 <p><a href="../classQAccelPlot_1_1Colormap/"><em><strong>Colormap</strong></em></a> <em>lookup texture sampled at binding 2.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">GradientTexture</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapMaterial</span><span class="o">::</span><span class="n">colorMap</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">GradientTexture</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapMaterial</span><span class="o">::</span><span class="n">colorMap</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="variable-columnmapping">variable columnMapping<a class="headerlink" href="#variable-columnmapping" title="Permanent link">&para;</a></h3>
+<p><code>Internal::HeatmapShaderMapping::Mode</code> <em>along X.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapMaterial</span><span class="o">::</span><span class="n">columnMapping</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-columns">variable columns<a class="headerlink" href="#variable-columns" title="Permanent link">&para;</a></h3>
 <p><em>Cells per row.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapMaterial</span><span class="o">::</span><span class="n">columns</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapMaterial</span><span class="o">::</span><span class="n">columns</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="variable-rowmapping">variable rowMapping<a class="headerlink" href="#variable-rowmapping" title="Permanent link">&para;</a></h3>
+<p><code>Internal::HeatmapShaderMapping::Mode</code> <em>along Y.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapMaterial</span><span class="o">::</span><span class="n">rowMapping</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-rows">variable rows<a class="headerlink" href="#variable-rows" title="Permanent link">&para;</a></h3>
 <p><em>Number of rows.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapMaterial</span><span class="o">::</span><span class="n">rows</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapMaterial</span><span class="o">::</span><span class="n">rows</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-valuelogscale">variable valueLogScale<a class="headerlink" href="#variable-valuelogscale" title="Permanent link">&para;</a></h3>
 <p><em>1.0 to place values on the ramp in log10 instead of linearly.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapMaterial</span><span class="o">::</span><span class="n">valueLogScale</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapMaterial</span><span class="o">::</span><span class="n">valueLogScale</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-valuemax">variable valueMax<a class="headerlink" href="#variable-valuemax" title="Permanent link">&para;</a></h3>
 <p><em>Value mapped to colormap position 1.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapMaterial</span><span class="o">::</span><span class="n">valueMax</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapMaterial</span><span class="o">::</span><span class="n">valueMax</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-valuemin">variable valueMin<a class="headerlink" href="#variable-valuemin" title="Permanent link">&para;</a></h3>
 <p><em>Value mapped to colormap position 0.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapMaterial</span><span class="o">::</span><span class="n">valueMin</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapMaterial</span><span class="o">::</span><span class="n">valueMin</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-values">variable values<a class="headerlink" href="#variable-values" title="Permanent link">&para;</a></h3>
 <p><em>Cell values, row by row, sampled at binding 1.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">DataTexture</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapMaterial</span><span class="o">::</span><span class="n">values</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">DataTexture</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapMaterial</span><span class="o">::</span><span class="n">values</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-heatmapmaterial">function HeatmapMaterial<a class="headerlink" href="#function-heatmapmaterial" title="Permanent link">&para;</a></h3>
 <p><em>Constructs a</em> <a href="./"><em><strong>HeatmapMaterial</strong></em></a> <em>with blending enabled and batching disabled.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapMaterial</span><span class="o">::</span><span class="n">HeatmapMaterial</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapMaterial</span><span class="o">::</span><span class="n">HeatmapMaterial</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-compare">function compare<a class="headerlink" href="#function-compare" title="Permanent link">&para;</a></h3>
 <p><em>Compares the uniforms and the texture identities.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapMaterial</span><span class="o">::</span><span class="n">compare</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QSGMaterial</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">other</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapMaterial</span><span class="o">::</span><span class="n">compare</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QSGMaterial</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">other</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-createshader">function createShader<a class="headerlink" href="#function-createshader" title="Permanent link">&para;</a></h3>
 <p><em>Creates and returns the heatmap shader program.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">QSGMaterialShader</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapMaterial</span><span class="o">::</span><span class="n">createShader</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="n">QSGRendererInterface</span><span class="o">::</span><span class="n">RenderMode</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">QSGMaterialShader</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapMaterial</span><span class="o">::</span><span class="n">createShader</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="n">QSGRendererInterface</span><span class="o">::</span><span class="n">RenderMode</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-type">function type<a class="headerlink" href="#function-type" title="Permanent link">&para;</a></h3>
 <p><em>Returns the unique material type identifier for this class.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">QSGMaterialType</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapMaterial</span><span class="o">::</span><span class="n">type</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">QSGMaterialType</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapMaterial</span><span class="o">::</span><span class="n">type</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 

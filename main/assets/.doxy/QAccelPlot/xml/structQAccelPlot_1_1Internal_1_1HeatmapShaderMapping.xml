@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::HeatmapShaderMapping</compoundname>
+    <includes local="no">HeatmapGrid.hpp</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1acef8c6e21dcb32492e2b3612bb7c6cb2" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>Mode</name>
+        <qualifiedname>QAccelPlot::Internal::HeatmapShaderMapping::Mode</qualifiedname>
+        <enumvalue id="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1acef8c6e21dcb32492e2b3612bb7c6cb2a5b525aab6e200981a842101f1bcbafc6" prot="public">
+          <name>Affine</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+<para><computeroutput>offset + scale * p</computeroutput>: the cell spacing matches the axis scale. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1acef8c6e21dcb32492e2b3612bb7c6cb2ac1e19c09f700938f0ff7f1fd4722a3ac" prot="public">
+          <name>Exponential</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+<para><computeroutput>offset + scale * expm1(rate * p)</computeroutput>: linear cells on a log axis. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1acef8c6e21dcb32492e2b3612bb7c6cb2a2f8e38ec1a5832670c5011a71603c929" prot="public">
+          <name>Logarithmic</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+<para><computeroutput>offset + scale * log1p(shift + rate * p)</computeroutput>: log cells on a linear axis. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Formula the shader evaluates; the values match heatmap.frag. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/HeatmapGrid.hpp" line="22" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/HeatmapGrid.hpp" bodystart="22" bodyend="26"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1a759173fc00b570b00bd8d8ac449c0dcb" prot="public" static="no" mutable="no">
+        <type><ref refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1acef8c6e21dcb32492e2b3612bb7c6cb2" kindref="member">Mode</ref></type>
+        <definition>Mode QAccelPlot::Internal::HeatmapShaderMapping::mode</definition>
+        <argsstring></argsstring>
+        <name>mode</name>
+        <qualifiedname>QAccelPlot::Internal::HeatmapShaderMapping::mode</qualifiedname>
+        <initializer>{<ref refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1acef8c6e21dcb32492e2b3612bb7c6cb2a5b525aab6e200981a842101f1bcbafc6" kindref="member">Mode::Affine</ref>}</initializer>
+        <briefdescription>
+<para>Formula to evaluate. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/HeatmapGrid.hpp" line="28" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/HeatmapGrid.hpp" bodystart="28" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1a977b4c26bf412400701b815c5b112ebe" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::HeatmapShaderMapping::scale</definition>
+        <argsstring></argsstring>
+        <name>scale</name>
+        <qualifiedname>QAccelPlot::Internal::HeatmapShaderMapping::scale</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+<para>Factor of the formula. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/HeatmapGrid.hpp" line="29" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/HeatmapGrid.hpp" bodystart="29" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1abf8e20b4d86152e274ff01756e65cd78" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::HeatmapShaderMapping::offset</definition>
+        <argsstring></argsstring>
+        <name>offset</name>
+        <qualifiedname>QAccelPlot::Internal::HeatmapShaderMapping::offset</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+<para>Offset of the formula. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/HeatmapGrid.hpp" line="30" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/HeatmapGrid.hpp" bodystart="30" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1a3564738f42681c7d36fc5e6252159bb4" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::HeatmapShaderMapping::rate</definition>
+        <argsstring></argsstring>
+        <name>rate</name>
+        <qualifiedname>QAccelPlot::Internal::HeatmapShaderMapping::rate</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+<para>Per-pixel rate of the formula; unused by <computeroutput>Affine</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/HeatmapGrid.hpp" line="31" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/HeatmapGrid.hpp" bodystart="31" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1ac224744b45687ba406fd07cf57258a30" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::HeatmapShaderMapping::shift</definition>
+        <argsstring></argsstring>
+        <name>shift</name>
+        <qualifiedname>QAccelPlot::Internal::HeatmapShaderMapping::shift</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+<para>Argument of <computeroutput>log1p</computeroutput> at pixel 0; used by <computeroutput>Logarithmic</computeroutput> only. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/HeatmapGrid.hpp" line="32" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/HeatmapGrid.hpp" bodystart="32" bodyend="32"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>How heatmap.frag maps an item-local pixel position <emphasis>p</emphasis> to a fractional cell coordinate along one dimension. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/series/internal/HeatmapGrid.hpp" line="20" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/HeatmapGrid.hpp" bodystart="20" bodyend="33"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1acef8c6e21dcb32492e2b3612bb7c6cb2" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::HeatmapShaderMapping</scope><name>Mode</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1a759173fc00b570b00bd8d8ac449c0dcb" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::HeatmapShaderMapping</scope><name>mode</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1abf8e20b4d86152e274ff01756e65cd78" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::HeatmapShaderMapping</scope><name>offset</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1a3564738f42681c7d36fc5e6252159bb4" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::HeatmapShaderMapping</scope><name>rate</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1a977b4c26bf412400701b815c5b112ebe" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::HeatmapShaderMapping</scope><name>scale</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1ac224744b45687ba406fd07cf57258a30" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::HeatmapShaderMapping</scope><name>shift</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

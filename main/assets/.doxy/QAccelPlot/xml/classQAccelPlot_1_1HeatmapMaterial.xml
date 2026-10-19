@@ -13,7 +13,7 @@
         <qualifiedname>QAccelPlot::HeatmapMaterial::cellScale</qualifiedname>
         <initializer>{1.0f, 1.0f}</initializer>
         <briefdescription>
-<para>Cells per item-local pixel along X and Y. </para>
+<para>Factor of the cell mapping along X and Y. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -29,13 +29,45 @@
         <qualifiedname>QAccelPlot::HeatmapMaterial::cellOffset</qualifiedname>
         <initializer>{0.0f, 0.0f}</initializer>
         <briefdescription>
-<para>Cell coordinate at item-local pixel (0, 0). </para>
+<para>Offset of the cell mapping along X and Y. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" line="36" column="15" bodyfile="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" bodystart="36" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1HeatmapMaterial_1ae8303f51061a1a5c04bd335f88fb8e2e" prot="public" static="no" mutable="no">
+        <type>QVector2D</type>
+        <definition>QVector2D QAccelPlot::HeatmapMaterial::cellRate</definition>
+        <argsstring></argsstring>
+        <name>cellRate</name>
+        <qualifiedname>QAccelPlot::HeatmapMaterial::cellRate</qualifiedname>
+        <initializer>{0.0f, 0.0f}</initializer>
+        <briefdescription>
+<para>Per-pixel rate of the non-affine cell mappings along X and Y. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" line="37" column="15" bodyfile="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" bodystart="37" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1HeatmapMaterial_1a7d00a817df0d4921e99d3f2a2ba78fef" prot="public" static="no" mutable="no">
+        <type>QVector2D</type>
+        <definition>QVector2D QAccelPlot::HeatmapMaterial::cellShift</definition>
+        <argsstring></argsstring>
+        <name>cellShift</name>
+        <qualifiedname>QAccelPlot::HeatmapMaterial::cellShift</qualifiedname>
+        <initializer>{0.0f, 0.0f}</initializer>
+        <briefdescription>
+<para><computeroutput>log1p</computeroutput> argument at pixel 0 of the logarithmic cell mappings along X and Y. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" line="38" column="15" bodyfile="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" bodystart="38" bodyend="38"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1HeatmapMaterial_1a412d1056e720a999b976344234901e5d" prot="public" static="no" mutable="no">
         <type>float</type>
@@ -51,7 +83,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" line="37" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" bodystart="37" bodyend="37"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" line="39" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" bodystart="39" bodyend="39"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1HeatmapMaterial_1a0d1a34a1d4522cc76e78cbe63ac89b8e" prot="public" static="no" mutable="no">
         <type>float</type>
@@ -67,7 +99,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" line="38" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" bodystart="38" bodyend="38"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" line="40" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" bodystart="40" bodyend="40"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1HeatmapMaterial_1a81c68712f02fae0571ae0a1ff2a869a8" prot="public" static="no" mutable="no">
         <type>float</type>
@@ -83,7 +115,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" line="39" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" bodystart="39" bodyend="39"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" line="41" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" bodystart="41" bodyend="41"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1HeatmapMaterial_1a8422a6e1bd643a69f90d346739d64bd9" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -99,7 +131,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" line="40" column="9" bodyfile="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" bodystart="40" bodyend="40"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" line="42" column="9" bodyfile="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" bodystart="42" bodyend="42"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1HeatmapMaterial_1ab336ea0202ee46c66957ec761680e1af" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -115,7 +147,39 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" line="41" column="9" bodyfile="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" bodystart="41" bodyend="41"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" line="43" column="9" bodyfile="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" bodystart="43" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1HeatmapMaterial_1aebbf5453f9e5de5d8be6514cab88e5d7" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::HeatmapMaterial::columnMapping</definition>
+        <argsstring></argsstring>
+        <name>columnMapping</name>
+        <qualifiedname>QAccelPlot::HeatmapMaterial::columnMapping</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+<para><computeroutput><ref refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1acef8c6e21dcb32492e2b3612bb7c6cb2" kindref="member">Internal::HeatmapShaderMapping::Mode</ref></computeroutput> along X. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" line="44" column="9" bodyfile="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" bodystart="44" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1HeatmapMaterial_1aab910227c65ac68b5abb996e07481df7" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::HeatmapMaterial::rowMapping</definition>
+        <argsstring></argsstring>
+        <name>rowMapping</name>
+        <qualifiedname>QAccelPlot::HeatmapMaterial::rowMapping</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+<para><computeroutput><ref refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1acef8c6e21dcb32492e2b3612bb7c6cb2" kindref="member">Internal::HeatmapShaderMapping::Mode</ref></computeroutput> along Y. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" line="45" column="9" bodyfile="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" bodystart="45" bodyend="45"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1HeatmapMaterial_1a4c5955547d7fb2648e2d8a00765fbcff" prot="public" static="no" mutable="no">
         <type><ref refid="classQAccelPlot_1_1DataTexture" kindref="compound">DataTexture</ref></type>
@@ -130,7 +194,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" line="42" column="17" bodyfile="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" bodystart="42" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" line="46" column="17" bodyfile="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" bodystart="46" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1HeatmapMaterial_1aca7bfc7c938b89cb9fff5e91276ff05e" prot="public" static="no" mutable="no">
         <type><ref refid="classQAccelPlot_1_1GradientTexture" kindref="compound">GradientTexture</ref></type>
@@ -145,7 +209,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" line="43" column="21" bodyfile="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" bodystart="43" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" line="47" column="21" bodyfile="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" bodystart="47" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -221,7 +285,7 @@
 <para>Material that colors each fragment by the value of the heatmap cell under it. </para>
     </briefdescription>
     <detaileddescription>
-<para>The vertex shader maps item-local pixels to fractional cell coordinates with <computeroutput>cellScale</computeroutput> and <computeroutput>cellOffset</computeroutput>; the fragment shader reads the cell value from <computeroutput>values</computeroutput> and looks up its color in <computeroutput>colorMap</computeroutput>. </para>
+<para>Item-local pixels map to fractional cell coordinates per dimension, by the formula that <computeroutput>columnMapping</computeroutput> and <computeroutput>rowMapping</computeroutput> select from <computeroutput><ref refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1acef8c6e21dcb32492e2b3612bb7c6cb2" kindref="member">Internal::HeatmapShaderMapping::Mode</ref></computeroutput>. The fragment shader reads the cell value from <computeroutput>values</computeroutput> and looks up its color in <computeroutput>colorMap</computeroutput>. </para>
     </detaileddescription>
     <inheritancegraph>
       <node id="1">
@@ -259,15 +323,19 @@
         <label>QSGMaterial</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" line="23" column="1" bodyfile="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" bodystart="23" bodyend="44"/>
+    <location file="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" line="23" column="1" bodyfile="QAccelPlot/src/QAccelPlot/materials/HeatmapMaterial.hpp" bodystart="23" bodyend="48"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1HeatmapMaterial_1a50ceac5be0f0015a53a92a84574db7a8" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapMaterial</scope><name>cellOffset</name></member>
+      <member refid="classQAccelPlot_1_1HeatmapMaterial_1ae8303f51061a1a5c04bd335f88fb8e2e" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapMaterial</scope><name>cellRate</name></member>
       <member refid="classQAccelPlot_1_1HeatmapMaterial_1a2b045d255144fae8ed0d760aae1bb60c" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapMaterial</scope><name>cellScale</name></member>
+      <member refid="classQAccelPlot_1_1HeatmapMaterial_1a7d00a817df0d4921e99d3f2a2ba78fef" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapMaterial</scope><name>cellShift</name></member>
       <member refid="classQAccelPlot_1_1HeatmapMaterial_1aca7bfc7c938b89cb9fff5e91276ff05e" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapMaterial</scope><name>colorMap</name></member>
+      <member refid="classQAccelPlot_1_1HeatmapMaterial_1aebbf5453f9e5de5d8be6514cab88e5d7" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapMaterial</scope><name>columnMapping</name></member>
       <member refid="classQAccelPlot_1_1HeatmapMaterial_1a8422a6e1bd643a69f90d346739d64bd9" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapMaterial</scope><name>columns</name></member>
       <member refid="classQAccelPlot_1_1HeatmapMaterial_1adaf2efc212b4f6b6cadc63d9a8160443" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapMaterial</scope><name>compare</name></member>
       <member refid="classQAccelPlot_1_1HeatmapMaterial_1ad7032ab3bd89a96d12293fc8f1dd1e9b" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapMaterial</scope><name>createShader</name></member>
       <member refid="classQAccelPlot_1_1HeatmapMaterial_1ad8456b96f6c0b847c73c480be569572c" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapMaterial</scope><name>HeatmapMaterial</name></member>
+      <member refid="classQAccelPlot_1_1HeatmapMaterial_1aab910227c65ac68b5abb996e07481df7" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapMaterial</scope><name>rowMapping</name></member>
       <member refid="classQAccelPlot_1_1HeatmapMaterial_1ab336ea0202ee46c66957ec761680e1af" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapMaterial</scope><name>rows</name></member>
       <member refid="classQAccelPlot_1_1HeatmapMaterial_1a0567dfc2a667672588c25bf10362a8a7" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapMaterial</scope><name>type</name></member>
       <member refid="classQAccelPlot_1_1HeatmapMaterial_1a81c68712f02fae0571ae0a1ff2a869a8" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapMaterial</scope><name>valueLogScale</name></member>

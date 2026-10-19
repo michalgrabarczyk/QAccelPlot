@@ -1360,14 +1360,29 @@
     <member refid="classQAccelPlot_1_1GridNode_1a8f3379579bde6537cf9f8efc9a7e1fc6" kind="function"><name>update</name></member>
     <member refid="classQAccelPlot_1_1GridNode_1a3fb5247927287a82e3de24681b403bd9" kind="function"><name>collectAxisGridLines</name></member>
   </compound>
+  <compound refid="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension" kind="struct"><name>QAccelPlot::Internal::HeatmapGridDimension</name>
+    <member refid="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension_1a4b9c33c299e2c03bae44879eacef32a2" kind="variable"><name>from</name></member>
+    <member refid="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension_1ace5b71ed8bd0fed108676a047717ccf2" kind="variable"><name>to</name></member>
+    <member refid="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension_1ac985b61d8b14ee61132637d53bb4f6ad" kind="variable"><name>count</name></member>
+    <member refid="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension_1ad715181cf1d92c415b8b058171f25e2e" kind="variable"><name>logSpacing</name></member>
+    <member refid="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension_1a0bcdfabd0d8753a92ca8361f8942583f" kind="function"><name>isValid</name></member>
+    <member refid="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension_1a82052e443b3b467b2e8ed267b0d6a119" kind="function"><name>cellCoordinate</name></member>
+    <member refid="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension_1aee62cb5c8ce17faff7f81a570cc70326" kind="function"><name>cellCenter</name></member>
+    <member refid="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension_1ad89ad17c129114e7f4240d0d922d8f65" kind="function"><name>dataExtent</name></member>
+    <member refid="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension_1af13aa209ff41fbda8a177466c37754a0" kind="function"><name>shaderMapping</name></member>
+  </compound>
   <compound refid="classQAccelPlot_1_1HeatmapMaterial" kind="class"><name>QAccelPlot::HeatmapMaterial</name>
     <member refid="classQAccelPlot_1_1HeatmapMaterial_1a2b045d255144fae8ed0d760aae1bb60c" kind="variable"><name>cellScale</name></member>
     <member refid="classQAccelPlot_1_1HeatmapMaterial_1a50ceac5be0f0015a53a92a84574db7a8" kind="variable"><name>cellOffset</name></member>
+    <member refid="classQAccelPlot_1_1HeatmapMaterial_1ae8303f51061a1a5c04bd335f88fb8e2e" kind="variable"><name>cellRate</name></member>
+    <member refid="classQAccelPlot_1_1HeatmapMaterial_1a7d00a817df0d4921e99d3f2a2ba78fef" kind="variable"><name>cellShift</name></member>
     <member refid="classQAccelPlot_1_1HeatmapMaterial_1a412d1056e720a999b976344234901e5d" kind="variable"><name>valueMin</name></member>
     <member refid="classQAccelPlot_1_1HeatmapMaterial_1a0d1a34a1d4522cc76e78cbe63ac89b8e" kind="variable"><name>valueMax</name></member>
     <member refid="classQAccelPlot_1_1HeatmapMaterial_1a81c68712f02fae0571ae0a1ff2a869a8" kind="variable"><name>valueLogScale</name></member>
     <member refid="classQAccelPlot_1_1HeatmapMaterial_1a8422a6e1bd643a69f90d346739d64bd9" kind="variable"><name>columns</name></member>
     <member refid="classQAccelPlot_1_1HeatmapMaterial_1ab336ea0202ee46c66957ec761680e1af" kind="variable"><name>rows</name></member>
+    <member refid="classQAccelPlot_1_1HeatmapMaterial_1aebbf5453f9e5de5d8be6514cab88e5d7" kind="variable"><name>columnMapping</name></member>
+    <member refid="classQAccelPlot_1_1HeatmapMaterial_1aab910227c65ac68b5abb996e07481df7" kind="variable"><name>rowMapping</name></member>
     <member refid="classQAccelPlot_1_1HeatmapMaterial_1a4c5955547d7fb2648e2d8a00765fbcff" kind="variable"><name>values</name></member>
     <member refid="classQAccelPlot_1_1HeatmapMaterial_1aca7bfc7c938b89cb9fff5e91276ff05e" kind="variable"><name>colorMap</name></member>
     <member refid="classQAccelPlot_1_1HeatmapMaterial_1ad8456b96f6c0b847c73c480be569572c" kind="function"><name>HeatmapMaterial</name></member>
@@ -1376,19 +1391,26 @@
     <member refid="classQAccelPlot_1_1HeatmapMaterial_1adaf2efc212b4f6b6cadc63d9a8160443" kind="function"><name>compare</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1HeatmapSeries" kind="class"><name>QAccelPlot::HeatmapSeries</name>
+    <member refid="classQAccelPlot_1_1HeatmapSeries_1abc79609d71b96763b42727cb82524be8" kind="enum"><name>Spacing</name></member>
+    <member refid="classQAccelPlot_1_1HeatmapSeries_1abc79609d71b96763b42727cb82524be8a32a843da6ea40ab3b17a3421ccdf671b" kind="enumvalue"><name>Linear</name></member>
+    <member refid="classQAccelPlot_1_1HeatmapSeries_1abc79609d71b96763b42727cb82524be8ace0be71e33226e4c1db2bcea5959f16b" kind="enumvalue"><name>Log</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1ab1785a2ee234a9aee3c5d0037606711a" kind="property"><name>columns</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1aa81b1008b583a70b37651205e44d58a3" kind="property"><name>rows</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a3a03e0e5ef4cd4078ab3015c4682741c" kind="property"><name>xMin</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1ab76526dfbe4c538fde56e4e27eb191e8" kind="property"><name>xMax</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1ac9000a99e673d9448fed9a1fae78c00e" kind="property"><name>yMin</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1ae1070888c648f16ec93653089719509b" kind="property"><name>yMax</name></member>
+    <member refid="classQAccelPlot_1_1HeatmapSeries_1afbfcd7450ee10bb1b717959d269511d9" kind="property"><name>xSpacing</name></member>
+    <member refid="classQAccelPlot_1_1HeatmapSeries_1a9d66a82df9631ef3718f537161d4909c" kind="property"><name>ySpacing</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a3b52fec564f128a52a206082ad2288ce" kind="variable"><name>values_</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1af17462fe21889e0d5ea09a34df1757e3" kind="variable"><name>columns_</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1abd31148506feeb574ed49ee6a4ba9d28" kind="variable"><name>rows_</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1aeb49666f1274faac995b0204c73e98f6" kind="variable"><name>edges_</name></member>
+    <member refid="classQAccelPlot_1_1HeatmapSeries_1a57b65fd25f1698b08a0925b3b6b54b8c" kind="variable"><name>xSpacing_</name></member>
+    <member refid="classQAccelPlot_1_1HeatmapSeries_1a47a4a64ffbc010f041a1accf3a739925" kind="variable"><name>ySpacing_</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1ade0e99065750e16887b44f87f996b2d2" kind="variable"><name>valuesRevision_</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a23b144662c05309361bfec37bac5b53b" kind="variable"><name>uploadedRevision_</name></member>
-    <member refid="classQAccelPlot_1_1HeatmapSeries_1aceb01e46f8021e2c5103cefd66392b35" kind="variable"><name>warnedAboutLogAxis_</name></member>
+    <member refid="classQAccelPlot_1_1HeatmapSeries_1adda020aaff0061b27d8ea62c2e296f3b" kind="variable"><name>invalidLogSpacing_</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a683a41c321284ff45c680ae27a260621" kind="variable"><name>overPrecision_</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a500f71e21124cc11847847df503f0830" kind="variable"><name>overCapacity_</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1ac69f6745d57d131950997321358eeffb" kind="function"><name>HeatmapSeries</name></member>
@@ -1403,6 +1425,10 @@
     <member refid="classQAccelPlot_1_1HeatmapSeries_1ad1c1729bf8abda954e0a2357e3a18a5a" kind="function"><name>setYMin</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1acf66b0859aa645d48426789a70d2152a" kind="function"><name>yMax</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1ac7dc7a641275b7cbf10162922059b0f0" kind="function"><name>setYMax</name></member>
+    <member refid="classQAccelPlot_1_1HeatmapSeries_1a6843c5147ef4bab15b32b27dbbbdb51b" kind="function"><name>xSpacing</name></member>
+    <member refid="classQAccelPlot_1_1HeatmapSeries_1ac8a66f02b5672ec125bcbbe72cb8e8a2" kind="function"><name>setXSpacing</name></member>
+    <member refid="classQAccelPlot_1_1HeatmapSeries_1abe22f67a8215a1ec3801e9a15d013a70" kind="function"><name>ySpacing</name></member>
+    <member refid="classQAccelPlot_1_1HeatmapSeries_1a8e214d5482c6079369a9814f71242fc1" kind="function"><name>setYSpacing</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a0039354570d995f0ab0adfbc9ab1a03a" kind="function"><name>setValues</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1ab43b2e3bf9e9cd18fd9e3faa9c5b46e0" kind="function"><name>setValues</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a2f740517e1369822ddd73d25b15c8443" kind="function"><name>postValues</name></member>
@@ -1414,6 +1440,8 @@
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a0eba5dd48d92d931767a4386890c1091" kind="signal"><name>xMaxChanged</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a727b37da5a6e3df77ba7642bcc79f573" kind="signal"><name>yMinChanged</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1ac4f1f047d743cf151d420ae70f6d3689" kind="signal"><name>yMaxChanged</name></member>
+    <member refid="classQAccelPlot_1_1HeatmapSeries_1a22ed227e9236b3b15325df7ed9c44142" kind="signal"><name>xSpacingChanged</name></member>
+    <member refid="classQAccelPlot_1_1HeatmapSeries_1a59f75db4684a2c39666f3aa7872b52fd" kind="signal"><name>ySpacingChanged</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a6f0f8aa366b12236dce2326a83b8de23" kind="function"><name>applyDataPoints</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1ae42a82d5f3ea0dc41ea488650c5c9b85" kind="function"><name>dataPointValueCount</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a7e2575998c84ec3eeefa54844050ce14" kind="function"><name>recordInspectionSupported</name></member>
@@ -1425,15 +1453,29 @@
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a31f7895f7ba1a6ee03d3e2c5a58820e0" kind="function"><name>onAxisScaleChanged</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a2aba152846d3d341118262ebfc82d6ef" kind="function"><name>scanValueRange</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a605bd9dfc0546fed73a6efba9f763194" kind="function"><name>resolvedExtent</name></member>
+    <member refid="classQAccelPlot_1_1HeatmapSeries_1a4f46fb2e4b3961ed187b6572ce80ed86" kind="function"><name>xDimension</name></member>
+    <member refid="classQAccelPlot_1_1HeatmapSeries_1aa9d761ca26600160b460da7bd58c8987" kind="function"><name>yDimension</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1ad3f074956bc2221d402a56f92900b8e1" kind="function"><name>cellCount</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a1a5c5273cd3bd8e0bf2e6ea53d7676d8" kind="function"><name>validateShape</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1abb0a99f31ec4c0c716cd22bd6b3b63f2" kind="function"><name>storeValues</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1ab723973d62db058b184666120e15fa5d" kind="function"><name>applyShape</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1aa2489db89d5d80bf1d17cc522a31a86e" kind="function"><name>setBound</name></member>
+    <member refid="classQAccelPlot_1_1HeatmapSeries_1adfa6d81fe85e847c91f3f6016a64a2a7" kind="function"><name>setSpacing</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a5efe488b647d08ebe3f19ebc2f049bcd" kind="function"><name>cellAt</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1aa2cdaaa22e541bbd429d0b94a7424b5a" kind="function"><name>cellCenter</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a52ca4b850ee5371babd5f4f379ea2675" kind="function"><name>canDraw</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a5df095037766d7a4ef2adf70186c402b" kind="function"><name>updateMaterial</name></member>
+  </compound>
+  <compound refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping" kind="struct"><name>QAccelPlot::Internal::HeatmapShaderMapping</name>
+    <member refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1acef8c6e21dcb32492e2b3612bb7c6cb2" kind="enum"><name>Mode</name></member>
+    <member refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1acef8c6e21dcb32492e2b3612bb7c6cb2a5b525aab6e200981a842101f1bcbafc6" kind="enumvalue"><name>Affine</name></member>
+    <member refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1acef8c6e21dcb32492e2b3612bb7c6cb2ac1e19c09f700938f0ff7f1fd4722a3ac" kind="enumvalue"><name>Exponential</name></member>
+    <member refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1acef8c6e21dcb32492e2b3612bb7c6cb2a2f8e38ec1a5832670c5011a71603c929" kind="enumvalue"><name>Logarithmic</name></member>
+    <member refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1a759173fc00b570b00bd8d8ac449c0dcb" kind="variable"><name>mode</name></member>
+    <member refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1a977b4c26bf412400701b815c5b112ebe" kind="variable"><name>scale</name></member>
+    <member refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1abf8e20b4d86152e274ff01756e65cd78" kind="variable"><name>offset</name></member>
+    <member refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1a3564738f42681c7d36fc5e6252159bb4" kind="variable"><name>rate</name></member>
+    <member refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1ac224744b45687ba406fd07cf57258a30" kind="variable"><name>shift</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1Histogram" kind="class"><name>QAccelPlot::Histogram</name>
     <member refid="classQAccelPlot_1_1Histogram_1a276a2637290fccee45da5d42bdc64c8b" kind="property"><name>binCount</name></member>
@@ -3500,6 +3542,8 @@
   <compound refid="DataPointStore_8hpp" kind="file"><name>DataPointStore.hpp</name>
   </compound>
   <compound refid="HeatmapSeries_8hpp" kind="file"><name>HeatmapSeries.hpp</name>
+  </compound>
+  <compound refid="HeatmapGrid_8hpp" kind="file"><name>HeatmapGrid.hpp</name>
   </compound>
   <compound refid="HoverIndexBudget_8hpp" kind="file"><name>HoverIndexBudget.hpp</name>
   </compound>

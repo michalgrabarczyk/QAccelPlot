@@ -35,11 +35,15 @@ public:
 
     QVector2D cellScale{1.0f, 1.0f};  
     QVector2D cellOffset{0.0f, 0.0f}; 
+    QVector2D cellRate{0.0f, 0.0f};   
+    QVector2D cellShift{0.0f, 0.0f};  
     float valueMin{0.0f};             
     float valueMax{1.0f};             
     float valueLogScale{0.0f};        
     int columns{0};                   
     int rows{0};                      
+    int columnMapping{0};             
+    int rowMapping{0};                
     DataTexture values;               
     GradientTexture colorMap;         
 };

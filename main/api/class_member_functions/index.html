@@ -1738,7 +1738,7 @@
 <li><strong>collectAxisGridLines</strong> (<a href="../classQAccelPlot_1_1GridNode/"><strong>QAccelPlot::GridNode</strong></a>)</li>
 <li><strong>canDraw</strong> (<a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>)</li>
 <li><strong>cellAt</strong> (<a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>)</li>
-<li><strong>cellCenter</strong> (<a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>)</li>
+<li><strong>cellCenter</strong> (<a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>, <a href="../structQAccelPlot_1_1Internal_1_1HeatmapGridDimension/"><strong>QAccelPlot::Internal::HeatmapGridDimension</strong></a>)</li>
 <li><strong>cellCount</strong> (<a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>)</li>
 <li><strong>columns</strong> (<a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>)</li>
 <li><strong>consider</strong> (<a href="../structQAccelPlot_1_1InspectionHit/"><strong>QAccelPlot::InspectionHit</strong></a>)</li>
@@ -1746,6 +1746,7 @@
 <li><strong>createNode</strong> (<a href="../classQAccelPlot_1_1InspectionIndex/"><strong>QAccelPlot::InspectionIndex</strong></a>)</li>
 <li><strong>coord</strong> (<a href="../structQAccelPlot_1_1InspectionMetric/"><strong>QAccelPlot::InspectionMetric</strong></a>)</li>
 <li><strong>coordinate</strong> (<a href="../structQAccelPlot_1_1InspectionSource/"><strong>QAccelPlot::InspectionSource</strong></a>, <a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a>)</li>
+<li><strong>cellCoordinate</strong> (<a href="../structQAccelPlot_1_1Internal_1_1HeatmapGridDimension/"><strong>QAccelPlot::Internal::HeatmapGridDimension</strong></a>)</li>
 <li><strong>cancelRunningTransition</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>)</li>
 <li><strong>clearEffects</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>)</li>
 <li><strong>connectAnimationTicks</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>)</li>
@@ -1817,6 +1818,7 @@
 <li><strong>density</strong> (<a href="../classQAccelPlot_1_1Histogram/"><strong>QAccelPlot::Histogram</strong></a>)</li>
 <li><strong>distanceToBounds</strong> (<a href="../classQAccelPlot_1_1InspectionIndex/"><strong>QAccelPlot::InspectionIndex</strong></a>)</li>
 <li><strong>data</strong> (<a href="../classQAccelPlot_1_1InspectionRowModel/"><strong>QAccelPlot::InspectionRowModel</strong></a>, <a href="../classQAccelPlot_1_1LegendModel/"><strong>QAccelPlot::LegendModel</strong></a>, <a href="../classQAccelPlot_1_1LineCurveVertexCache/"><strong>QAccelPlot::LineCurveVertexCache</strong></a>, <a href="../classQAccelPlot_1_1PlotInspector/"><strong>QAccelPlot::PlotInspector</strong></a>)</li>
+<li><strong>dataExtent</strong> (<a href="../structQAccelPlot_1_1Internal_1_1HeatmapGridDimension/"><strong>QAccelPlot::Internal::HeatmapGridDimension</strong></a>)</li>
 <li><strong>doFormatLogTick</strong> (<a href="../classQAccelPlot_1_1NumericTickLabelFormatter/"><strong>QAccelPlot::NumericTickLabelFormatter</strong></a>, <a href="../classQAccelPlot_1_1TickLabelFormatter/"><strong>QAccelPlot::TickLabelFormatter</strong></a>)</li>
 <li><strong>dataPointAlong</strong> (<a href="../classQAccelPlot_1_1PlotInspector/"><strong>QAccelPlot::PlotInspector</strong></a>)</li>
 <li><strong>dataPoints</strong> (<a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>)</li>
@@ -1939,7 +1941,7 @@
 <li><strong>invalidateRender</strong> (<a href="../classQAccelPlot_1_1DataPointStore/"><strong>QAccelPlot::DataPointStore</strong></a>)</li>
 <li><strong>isPrecise</strong> (<a href="../classQAccelPlot_1_1DataPointStore/"><strong>QAccelPlot::DataPointStore</strong></a>)</li>
 <li><strong>interpolate</strong> (<a href="../classQAccelPlot_1_1DataTransition/"><strong>QAccelPlot::DataTransition</strong></a>, <a href="../classQAccelPlot_1_1DrawTransition/"><strong>QAccelPlot::DrawTransition</strong></a>, <a href="../classQAccelPlot_1_1MorphTransition/"><strong>QAccelPlot::MorphTransition</strong></a>, <a href="../classQAccelPlot_1_1PlotInspector/"><strong>QAccelPlot::PlotInspector</strong></a>, <a href="../classQAccelPlot_1_1SeriesInspection/"><strong>QAccelPlot::SeriesInspection</strong></a>)</li>
-<li><strong>isValid</strong> (<a href="../structQAccelPlot_1_1GradientColorPayload/"><strong>QAccelPlot::GradientColorPayload</strong></a>, <a href="../structQAccelPlot_1_1GradientFillPayload/"><strong>QAccelPlot::GradientFillPayload</strong></a>, <a href="../structQAccelPlot_1_1SpatialGrid_1_1ItemBounds/"><strong>QAccelPlot::SpatialGrid::ItemBounds</strong></a>)</li>
+<li><strong>isValid</strong> (<a href="../structQAccelPlot_1_1GradientColorPayload/"><strong>QAccelPlot::GradientColorPayload</strong></a>, <a href="../structQAccelPlot_1_1GradientFillPayload/"><strong>QAccelPlot::GradientFillPayload</strong></a>, <a href="../structQAccelPlot_1_1Internal_1_1HeatmapGridDimension/"><strong>QAccelPlot::Internal::HeatmapGridDimension</strong></a>, <a href="../structQAccelPlot_1_1SpatialGrid_1_1ItemBounds/"><strong>QAccelPlot::SpatialGrid::ItemBounds</strong></a>)</li>
 <li><strong>inspectionDataPointAt</strong> (<a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>, <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>)</li>
 <li><strong>isUniform</strong> (<a href="../classQAccelPlot_1_1Histogram/"><strong>QAccelPlot::Histogram</strong></a>)</li>
 <li><strong>InspectionCache</strong> (<a href="../classQAccelPlot_1_1InspectionCache/"><strong>QAccelPlot::InspectionCache</strong></a>)</li>
@@ -2359,11 +2361,14 @@
 <li><strong>subGridVisible</strong> (<a href="../classQAccelPlot_1_1Grid/"><strong>QAccelPlot::Grid</strong></a>)</li>
 <li><strong>setBound</strong> (<a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>)</li>
 <li><strong>setColumns</strong> (<a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>)</li>
+<li><strong>setSpacing</strong> (<a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>)</li>
 <li><strong>setValues</strong> (<a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>, <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a>)</li>
 <li><strong>setXMax</strong> (<a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>)</li>
 <li><strong>setXMin</strong> (<a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>)</li>
+<li><strong>setXSpacing</strong> (<a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>)</li>
 <li><strong>setYMax</strong> (<a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>)</li>
 <li><strong>setYMin</strong> (<a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>)</li>
+<li><strong>setYSpacing</strong> (<a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>)</li>
 <li><strong>storeValues</strong> (<a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>)</li>
 <li><strong>spanning</strong> (<a href="../classQAccelPlot_1_1Histogram/"><strong>QAccelPlot::Histogram</strong></a>)</li>
 <li><strong>sortOrder</strong> (<a href="../classQAccelPlot_1_1InspectionIndex/"><strong>QAccelPlot::InspectionIndex</strong></a>)</li>
@@ -2373,6 +2378,7 @@
 <li><strong>seriesAppearanceChanged</strong> (<a href="../classQAccelPlot_1_1InspectionRowModel/"><strong>QAccelPlot::InspectionRowModel</strong></a>)</li>
 <li><strong>setRows</strong> (<a href="../classQAccelPlot_1_1InspectionRowModel/"><strong>QAccelPlot::InspectionRowModel</strong></a>)</li>
 <li><strong>supported</strong> (<a href="../structQAccelPlot_1_1InspectionSource/"><strong>QAccelPlot::InspectionSource</strong></a>)</li>
+<li><strong>shaderMapping</strong> (<a href="../structQAccelPlot_1_1Internal_1_1HeatmapGridDimension/"><strong>QAccelPlot::Internal::HeatmapGridDimension</strong></a>)</li>
 <li><strong>setAntialiasingEnabled</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>, <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a>)</li>
 <li><strong>setAntialiasingFeather</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>, <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a>)</li>
 <li><strong>setDataFWithCache</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>)</li>
@@ -2557,8 +2563,10 @@
 <ul>
 <li><strong>x</strong> (<a href="../structQAccelPlot_1_1CurveDataView/"><strong>QAccelPlot::CurveDataView</strong></a>, <a href="../structQAccelPlot_1_1InspectionDataPoint/"><strong>QAccelPlot::InspectionDataPoint</strong></a>, <a href="../structQAccelPlot_1_1InspectionSource/"><strong>QAccelPlot::InspectionSource</strong></a>, <a href="../classQAccelPlot_1_1PlotMouseEvent/"><strong>QAccelPlot::PlotMouseEvent</strong></a>)</li>
 <li><strong>xAxis</strong> (<a href="../classQAccelPlot_1_1DataAnchor/"><strong>QAccelPlot::DataAnchor</strong></a>, <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>, <a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>, <a href="../classQAccelPlot_1_1SelectionTool/"><strong>QAccelPlot::SelectionTool</strong></a>)</li>
+<li><strong>xDimension</strong> (<a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>)</li>
 <li><strong>xMax</strong> (<a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>, <a href="../classQAccelPlot_1_1SelectionTool/"><strong>QAccelPlot::SelectionTool</strong></a>)</li>
 <li><strong>xMin</strong> (<a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>, <a href="../classQAccelPlot_1_1SelectionTool/"><strong>QAccelPlot::SelectionTool</strong></a>)</li>
+<li><strong>xSpacing</strong> (<a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>)</li>
 <li><strong>xDataRange</strong> (<a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>)</li>
 <li><strong>x2Axis</strong> (<a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
 </ul>
@@ -2566,8 +2574,10 @@
 <ul>
 <li><strong>y</strong> (<a href="../structQAccelPlot_1_1CurveDataView/"><strong>QAccelPlot::CurveDataView</strong></a>, <a href="../structQAccelPlot_1_1InspectionDataPoint/"><strong>QAccelPlot::InspectionDataPoint</strong></a>, <a href="../structQAccelPlot_1_1InspectionSource/"><strong>QAccelPlot::InspectionSource</strong></a>, <a href="../classQAccelPlot_1_1PlotMouseEvent/"><strong>QAccelPlot::PlotMouseEvent</strong></a>)</li>
 <li><strong>yAxis</strong> (<a href="../classQAccelPlot_1_1DataAnchor/"><strong>QAccelPlot::DataAnchor</strong></a>, <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>, <a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>, <a href="../classQAccelPlot_1_1SelectionTool/"><strong>QAccelPlot::SelectionTool</strong></a>)</li>
+<li><strong>yDimension</strong> (<a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>)</li>
 <li><strong>yMax</strong> (<a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>, <a href="../classQAccelPlot_1_1SelectionTool/"><strong>QAccelPlot::SelectionTool</strong></a>)</li>
 <li><strong>yMin</strong> (<a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>, <a href="../classQAccelPlot_1_1SelectionTool/"><strong>QAccelPlot::SelectionTool</strong></a>)</li>
+<li><strong>ySpacing</strong> (<a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>)</li>
 <li><strong>yDataRange</strong> (<a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>)</li>
 <li><strong>y2Axis</strong> (<a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
 </ul>

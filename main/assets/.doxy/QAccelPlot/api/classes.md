@@ -149,10 +149,14 @@
 
 ## h
 
+* [**HeatmapGridDimension**](structQAccelPlot_1_1Internal_1_1HeatmapGridDimension.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * [**HeatmapMaterial**](classQAccelPlot_1_1HeatmapMaterial.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**HeatmapShaderMapping**](structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * [**Histogram**](classQAccelPlot_1_1Histogram.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**HistogramFactory**](classQAccelPlot_1_1HistogramFactory.md)

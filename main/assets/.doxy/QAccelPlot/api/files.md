@@ -106,6 +106,7 @@ Here is a list of all files with brief descriptions:
                 * **file** [**PointCloud.hpp**](PointCloud_8hpp.md)     
                 * **file** [**PointSpatialIndex.hpp**](PointSpatialIndex_8hpp.md)     
                 * **dir** [**internal**](dir_70e6e0d61970c92b37b608a046280901.md)     
+                    * **file** [**HeatmapGrid.hpp**](HeatmapGrid_8hpp.md)     
                     * **file** [**HoverIndexBudget.hpp**](HoverIndexBudget_8hpp.md)     
                     * **file** [**RectGeometry.hpp**](RectGeometry_8hpp.md)     
                     * **file** [**SeriesSupport.hpp**](SeriesSupport_8hpp.md)     

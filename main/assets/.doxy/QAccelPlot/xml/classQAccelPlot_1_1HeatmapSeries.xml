@@ -5,6 +5,37 @@
     <basecompoundref refid="classQAccelPlot_1_1ColormappedSeries" prot="public" virt="non-virtual">QAccelPlot::ColormappedSeries</basecompoundref>
     <includes local="no">HeatmapSeries.hpp</includes>
     <innerclass refid="structQAccelPlot_1_1HeatmapSeries_1_1Extent" prot="private">QAccelPlot::HeatmapSeries::Extent</innerclass>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classQAccelPlot_1_1HeatmapSeries_1abc79609d71b96763b42727cb82524be8" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>Spacing</name>
+        <qualifiedname>QAccelPlot::HeatmapSeries::Spacing</qualifiedname>
+        <enumvalue id="classQAccelPlot_1_1HeatmapSeries_1abc79609d71b96763b42727cb82524be8a32a843da6ea40ab3b17a3421ccdf671b" prot="public">
+          <name>Linear</name>
+          <briefdescription>
+<para>Cells of equal size in data coordinates. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1HeatmapSeries_1abc79609d71b96763b42727cb82524be8ace0be71e33226e4c1db2bcea5959f16b" prot="public">
+          <name>Log</name>
+          <briefdescription>
+<para>Cells of equal size in log10, each spanning the same ratio. Both edges must be positive. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>How the cells of one dimension are spaced between its grid edges. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="111" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="111" bodyend="114"/>
+      </memberdef>
+    </sectiondef>
     <sectiondef kind="property">
       <memberdef kind="property" id="classQAccelPlot_1_1HeatmapSeries_1ab1785a2ee234a9aee3c5d0037606711a" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>int</type>
@@ -22,7 +53,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="82" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="82" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="93" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="93" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1HeatmapSeries_1aa81b1008b583a70b37651205e44d58a3" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>int</type>
@@ -38,7 +69,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="84" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="84" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="95" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="95" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1HeatmapSeries_1a3a03e0e5ef4cd4078ab3015c4682741c" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>qreal</type>
@@ -55,7 +86,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="86" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="86" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="97" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="97" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1HeatmapSeries_1ab76526dfbe4c538fde56e4e27eb191e8" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>qreal</type>
@@ -72,7 +103,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="88" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="88" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="99" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="99" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1HeatmapSeries_1ac9000a99e673d9448fed9a1fae78c00e" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>qreal</type>
@@ -89,7 +120,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="90" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="90" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="101" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="101" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1HeatmapSeries_1ae1070888c648f16ec93653089719509b" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>qreal</type>
@@ -106,7 +137,41 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="92" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="92" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="103" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1HeatmapSeries_1afbfcd7450ee10bb1b717959d269511d9" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1HeatmapSeries_1abc79609d71b96763b42727cb82524be8" kindref="member">Spacing</ref></type>
+        <definition>Spacing QAccelPlot::HeatmapSeries::xSpacing</definition>
+        <argsstring></argsstring>
+        <name>xSpacing</name>
+        <qualifiedname>QAccelPlot::HeatmapSeries::xSpacing</qualifiedname>
+        <read>xSpacing</read>
+        <write>setXSpacing</write>
+        <briefdescription>
+<para>How the columns are spaced between <computeroutput>xMin</computeroutput> and <computeroutput>xMax</computeroutput>. Default: <computeroutput>Linear</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="105" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1HeatmapSeries_1a9d66a82df9631ef3718f537161d4909c" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1HeatmapSeries_1abc79609d71b96763b42727cb82524be8" kindref="member">Spacing</ref></type>
+        <definition>Spacing QAccelPlot::HeatmapSeries::ySpacing</definition>
+        <argsstring></argsstring>
+        <name>ySpacing</name>
+        <qualifiedname>QAccelPlot::HeatmapSeries::ySpacing</qualifiedname>
+        <read>ySpacing</read>
+        <write>setYSpacing</write>
+        <briefdescription>
+<para>How the rows are spaced between <computeroutput>yMin</computeroutput> and <computeroutput>yMax</computeroutput>. Default: <computeroutput>Linear</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="107" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="107" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-attrib">
@@ -122,7 +187,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="210" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="210" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="251" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="251" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1HeatmapSeries_1af17462fe21889e0d5ea09a34df1757e3" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -137,7 +202,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="211" column="9" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="211" bodyend="211"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="252" column="9" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="252" bodyend="252"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1HeatmapSeries_1abd31148506feeb574ed49ee6a4ba9d28" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -152,7 +217,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="212" column="9" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="212" bodyend="212"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="253" column="9" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="253" bodyend="253"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1HeatmapSeries_1aeb49666f1274faac995b0204c73e98f6" prot="private" static="no" mutable="no">
         <type>Extent</type>
@@ -166,7 +231,37 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="213" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="213" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="254" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="254" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1HeatmapSeries_1a57b65fd25f1698b08a0925b3b6b54b8c" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1HeatmapSeries_1abc79609d71b96763b42727cb82524be8" kindref="member">Spacing</ref></type>
+        <definition>Spacing QAccelPlot::HeatmapSeries::xSpacing_</definition>
+        <argsstring></argsstring>
+        <name>xSpacing_</name>
+        <qualifiedname>QAccelPlot::HeatmapSeries::xSpacing_</qualifiedname>
+        <initializer>{<ref refid="classQAccelPlot_1_1HeatmapSeries_1abc79609d71b96763b42727cb82524be8a32a843da6ea40ab3b17a3421ccdf671b" kindref="member">Spacing::Linear</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="255" column="13" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="255" bodyend="255"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1HeatmapSeries_1a47a4a64ffbc010f041a1accf3a739925" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1HeatmapSeries_1abc79609d71b96763b42727cb82524be8" kindref="member">Spacing</ref></type>
+        <definition>Spacing QAccelPlot::HeatmapSeries::ySpacing_</definition>
+        <argsstring></argsstring>
+        <name>ySpacing_</name>
+        <qualifiedname>QAccelPlot::HeatmapSeries::ySpacing_</qualifiedname>
+        <initializer>{<ref refid="classQAccelPlot_1_1HeatmapSeries_1abc79609d71b96763b42727cb82524be8a32a843da6ea40ab3b17a3421ccdf671b" kindref="member">Spacing::Linear</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="256" column="13" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="256" bodyend="256"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1HeatmapSeries_1ade0e99065750e16887b44f87f996b2d2" prot="private" static="no" mutable="no">
         <type>std::uint64_t</type>
@@ -181,7 +276,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="215" column="19" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="215" bodyend="215"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="258" column="19" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="258" bodyend="258"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1HeatmapSeries_1a23b144662c05309361bfec37bac5b53b" prot="private" static="no" mutable="no">
         <type>std::uint64_t</type>
@@ -196,14 +291,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="216" column="19" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="216" bodyend="216"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="259" column="19" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="259" bodyend="259"/>
       </memberdef>
-      <memberdef kind="variable" id="classQAccelPlot_1_1HeatmapSeries_1aceb01e46f8021e2c5103cefd66392b35" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="classQAccelPlot_1_1HeatmapSeries_1adda020aaff0061b27d8ea62c2e296f3b" prot="private" static="no" mutable="no">
         <type>bool</type>
-        <definition>bool QAccelPlot::HeatmapSeries::warnedAboutLogAxis_</definition>
+        <definition>bool QAccelPlot::HeatmapSeries::invalidLogSpacing_</definition>
         <argsstring></argsstring>
-        <name>warnedAboutLogAxis_</name>
-        <qualifiedname>QAccelPlot::HeatmapSeries::warnedAboutLogAxis_</qualifiedname>
+        <name>invalidLogSpacing_</name>
+        <qualifiedname>QAccelPlot::HeatmapSeries::invalidLogSpacing_</qualifiedname>
         <initializer>{false}</initializer>
         <briefdescription>
         </briefdescription>
@@ -211,7 +306,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="217" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="217" bodyend="217"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="260" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="260" bodyend="260"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1HeatmapSeries_1a683a41c321284ff45c680ae27a260621" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -226,7 +321,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="218" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="218" bodyend="218"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="261" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="261" bodyend="261"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1HeatmapSeries_1a500f71e21124cc11847847df503f0830" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -241,7 +336,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="219" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="219" bodyend="219"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="262" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="262" bodyend="262"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -263,7 +358,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="96" column="14"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="118" column="14"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1a2d869e9e2de1775edb98f12c1f39449a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -278,7 +373,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="99" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="121" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1a4928893ab6bacf06fced8472d1304ebe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -297,7 +392,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="101" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="123" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1a5ed95a47bfd0952bbf49444b75279f6c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -312,7 +407,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="104" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="126" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1a6fd1f620a3093f83c3ebc6ef8a8b294c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -327,7 +422,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="107" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="129" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1a2dbe78822e5ee9b3307f2ca1cc90dd30" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -346,7 +441,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="109" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="131" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1aa7ff49e12346ead3fd45c5062371a003" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -361,7 +456,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="112" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="134" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1a3a5d80f134693418883696ea39825846" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -380,7 +475,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="114" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="136" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1a544e9f36eb4dbfcd390919b7b3debb67" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -395,7 +490,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="117" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="139" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1ad1c1729bf8abda954e0a2357e3a18a5a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -414,7 +509,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="119" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="141" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1acf66b0859aa645d48426789a70d2152a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -429,7 +524,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="122" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="144" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1ac7dc7a641275b7cbf10162922059b0f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -448,7 +543,75 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="124" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="146" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1a6843c5147ef4bab15b32b27dbbbdb51b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1HeatmapSeries_1abc79609d71b96763b42727cb82524be8" kindref="member">Spacing</ref></type>
+        <definition>Spacing QAccelPlot::HeatmapSeries::xSpacing</definition>
+        <argsstring>() const</argsstring>
+        <name>xSpacing</name>
+        <qualifiedname>QAccelPlot::HeatmapSeries::xSpacing</qualifiedname>
+        <briefdescription>
+<para>Returns how the columns are spaced. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="149" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1ac8a66f02b5672ec125bcbbe72cb8e8a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::HeatmapSeries::setXSpacing</definition>
+        <argsstring>(Spacing spacing)</argsstring>
+        <name>setXSpacing</name>
+        <qualifiedname>QAccelPlot::HeatmapSeries::setXSpacing</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1HeatmapSeries_1abc79609d71b96763b42727cb82524be8" kindref="member">Spacing</ref></type>
+          <declname>spacing</declname>
+        </param>
+        <briefdescription>
+<para>Sets how the columns are spaced to <emphasis>spacing</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="151" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1abe22f67a8215a1ec3801e9a15d013a70" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1HeatmapSeries_1abc79609d71b96763b42727cb82524be8" kindref="member">Spacing</ref></type>
+        <definition>Spacing QAccelPlot::HeatmapSeries::ySpacing</definition>
+        <argsstring>() const</argsstring>
+        <name>ySpacing</name>
+        <qualifiedname>QAccelPlot::HeatmapSeries::ySpacing</qualifiedname>
+        <briefdescription>
+<para>Returns how the rows are spaced. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="154" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1a8e214d5482c6079369a9814f71242fc1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::HeatmapSeries::setYSpacing</definition>
+        <argsstring>(Spacing spacing)</argsstring>
+        <name>setYSpacing</name>
+        <qualifiedname>QAccelPlot::HeatmapSeries::setYSpacing</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1HeatmapSeries_1abc79609d71b96763b42727cb82524be8" kindref="member">Spacing</ref></type>
+          <declname>spacing</declname>
+        </param>
+        <briefdescription>
+<para>Sets how the rows are spaced to <emphasis>spacing</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="156" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1a0039354570d995f0ab0adfbc9ab1a03a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE void</type>
@@ -472,7 +635,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="131" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="163" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1ab43b2e3bf9e9cd18fd9e3faa9c5b46e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -499,7 +662,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="133" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="165" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1a2f740517e1369822ddd73d25b15c8443" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -526,7 +689,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="135" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="167" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1a946684fd146943b6916bb2280d92b475" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE qreal</type>
@@ -549,7 +712,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="137" column="23"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="169" column="23"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1a1ee2abfc5e2f35f9bacde19e7952a7cd" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>Q_INVOKABLE void</type>
@@ -565,7 +728,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="139" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="171" column="22"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="signal">
@@ -582,7 +745,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="143" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="175" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1HeatmapSeries_1aca4c110c68a8f64c63efc3577bec9a4e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -597,7 +760,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="145" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="177" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1HeatmapSeries_1a4065a6da716acfe9f9b13d98abd1c643" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -612,7 +775,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="147" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="179" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1HeatmapSeries_1a0eba5dd48d92d931767a4386890c1091" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -627,7 +790,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="149" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="181" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1HeatmapSeries_1a727b37da5a6e3df77ba7642bcc79f573" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -642,7 +805,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="151" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="183" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1HeatmapSeries_1ac4f1f047d743cf151d420ae70f6d3689" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -657,7 +820,37 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="153" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="185" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1HeatmapSeries_1a22ed227e9236b3b15325df7ed9c44142" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::HeatmapSeries::xSpacingChanged</definition>
+        <argsstring>()</argsstring>
+        <name>xSpacingChanged</name>
+        <qualifiedname>QAccelPlot::HeatmapSeries::xSpacingChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the xSpacing property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="187" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1HeatmapSeries_1a59f75db4684a2c39666f3aa7872b52fd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::HeatmapSeries::ySpacingChanged</definition>
+        <argsstring>()</argsstring>
+        <name>ySpacingChanged</name>
+        <qualifiedname>QAccelPlot::HeatmapSeries::ySpacingChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the ySpacing property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="189" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="protected-func">
@@ -679,7 +872,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="161" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="197" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1ae42a82d5f3ea0dc41ea488650c5c9b85" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type>int</type>
@@ -695,7 +888,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="163" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="199" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1a7e2575998c84ec3eeefa54844050ce14" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type>bool</type>
@@ -711,7 +904,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="165" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="201" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1a74208964a970b987814138748f536826" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type><ref refid="structQAccelPlot_1_1InspectionRecord" kindref="compound">InspectionRecord</ref></type>
@@ -731,7 +924,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="167" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="203" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1a5b0d4c7f7ae1a60376598441a3bf7165" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type><ref refid="structQAccelPlot_1_1InspectionRecord" kindref="compound">InspectionRecord</ref></type>
@@ -751,7 +944,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="169" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="205" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1a1df688a18eea4c775af167340ae025a1" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type>bool</type>
@@ -767,7 +960,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="171" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="207" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1ab41d3c91d98485afbca3aea726a99553" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type><ref refid="structQAccelPlot_1_1InspectionDataPoint" kindref="compound">InspectionDataPoint</ref></type>
@@ -787,7 +980,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="173" column="25"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="209" column="25"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1ac08dc247e883c1439e2983f74461da56" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type><ref refid="structQAccelPlot_1_1PlotSeries_1_1DataRanges" kindref="compound">DataRanges</ref></type>
@@ -797,13 +990,13 @@
         <qualifiedname>QAccelPlot::HeatmapSeries::computeDataRanges</qualifiedname>
         <reimplements refid="classQAccelPlot_1_1PlotSeries_1a5fcaa8127513e48c7c67443782811a1e">computeDataRanges</reimplements>
         <briefdescription>
-<para>Returns the grid edges in each linear dimension. </para>
+<para>Returns the grid edges in each dimension; on a log axis from the first cell edge above zero. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="175" column="16"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="211" column="16"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1a31f7895f7ba1a6ee03d3e2c5a58820e0" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -813,13 +1006,13 @@
         <qualifiedname>QAccelPlot::HeatmapSeries::onAxisScaleChanged</qualifiedname>
         <reimplements refid="classQAccelPlot_1_1PlotSeries_1a151516370fa311775c91c9cd7992e25e">onAxisScaleChanged</reimplements>
         <briefdescription>
-<para>Repaints, because the series draws nothing on a logarithmic axis. </para>
+<para>Repaints, because the mapping from pixels to cells depends on the axis scale. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="177" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="213" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1a2aba152846d3d341118262ebfc82d6ef" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type>std::optional&lt; <ref refid="structQAccelPlot_1_1ColormappedSeries_1_1ValueSpan" kindref="compound">ValueSpan</ref> &gt;</type>
@@ -835,7 +1028,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="179" column="19"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="215" column="19"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
@@ -851,7 +1044,37 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="193" column="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="229" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1a4f46fb2e4b3961ed187b6572ce80ed86" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension" kindref="compound">Internal::HeatmapGridDimension</ref></type>
+        <definition>Internal::HeatmapGridDimension QAccelPlot::HeatmapSeries::xDimension</definition>
+        <argsstring>() const</argsstring>
+        <name>xDimension</name>
+        <qualifiedname>QAccelPlot::HeatmapSeries::xDimension</qualifiedname>
+        <briefdescription>
+<para>Returns the columns of the grid. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="231" column="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1aa9d761ca26600160b460da7bd58c8987" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension" kindref="compound">Internal::HeatmapGridDimension</ref></type>
+        <definition>Internal::HeatmapGridDimension QAccelPlot::HeatmapSeries::yDimension</definition>
+        <argsstring>() const</argsstring>
+        <name>yDimension</name>
+        <qualifiedname>QAccelPlot::HeatmapSeries::yDimension</qualifiedname>
+        <briefdescription>
+<para>Returns the rows of the grid. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="233" column="36"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1ad3f074956bc2221d402a56f92900b8e1" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -865,7 +1088,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="194" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="234" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1a1a5c5273cd3bd8e0bf2e6ea53d7676d8" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -891,7 +1114,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="195" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="235" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1abb0a99f31ec4c0c716cd22bd6b3b63f2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -914,7 +1137,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="197" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="237" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1ab723973d62db058b184666120e15fa5d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -933,7 +1156,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="199" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="239" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1aa2489db89d5d80bf1d17cc522a31a86e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -959,7 +1182,33 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="200" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="240" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1adfa6d81fe85e847c91f3f6016a64a2a7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::HeatmapSeries::setSpacing</definition>
+        <argsstring>(Spacing &amp;current, Spacing spacing, void(HeatmapSeries::*changed)())</argsstring>
+        <name>setSpacing</name>
+        <qualifiedname>QAccelPlot::HeatmapSeries::setSpacing</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1HeatmapSeries_1abc79609d71b96763b42727cb82524be8" kindref="member">Spacing</ref> &amp;</type>
+          <declname>current</declname>
+        </param>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1HeatmapSeries_1abc79609d71b96763b42727cb82524be8" kindref="member">Spacing</ref></type>
+          <declname>spacing</declname>
+        </param>
+        <param>
+          <type>void(HeatmapSeries::*)()</type>
+          <declname>changed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="241" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1a5efe488b647d08ebe3f19ebc2f049bcd" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::optional&lt; std::pair&lt; int, int &gt; &gt;</type>
@@ -978,7 +1227,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="202" column="19"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="243" column="19"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1aa2cdaaa22e541bbd429d0b94a7424b5a" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QPointF</type>
@@ -995,13 +1244,13 @@
           <declname>column</declname>
         </param>
         <briefdescription>
-<para>Returns the center of the cell at <emphasis>row</emphasis> and <emphasis>column</emphasis> in data coordinates. </para>
+<para>Returns the center of the cell at <emphasis>row</emphasis> and <emphasis>column</emphasis> in data coordinates; geometric under <computeroutput>Log</computeroutput> spacing. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="204" column="13"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="245" column="13"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1a52ca4b850ee5371babd5f4f379ea2675" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -1020,7 +1269,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="206" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="247" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1a5df095037766d7a4ef2adf70186c402b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1047,14 +1296,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="208" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="249" column="10"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
 <para>A hardware-accelerated QML item that draws a grid of values as colored cells. </para>
     </briefdescription>
     <detaileddescription>
-<para>The grid has <computeroutput>columns</computeroutput> cells per row and <computeroutput>rows</computeroutput> rows of equal cells. Values are stored row by row: the value of a cell has index <computeroutput>row * columns + column</computeroutput>, with row 0 at <computeroutput>yMin</computeroutput> and column 0 at <computeroutput>xMin</computeroutput>. <computeroutput>xMin</computeroutput>, <computeroutput>xMax</computeroutput>, <computeroutput>yMin</computeroutput>, and <computeroutput>yMax</computeroutput> are the outer edges of the grid; an unset bound places the grid in index space, so column <emphasis>c</emphasis> spans [c, c + 1].</para>
+<para>The grid has <computeroutput>columns</computeroutput> cells per row and <computeroutput>rows</computeroutput> rows of cells. Values are stored row by row: the value of a cell has index <computeroutput>row * columns + column</computeroutput>, with row 0 at <computeroutput>yMin</computeroutput> and column 0 at <computeroutput>xMin</computeroutput>. <computeroutput>xMin</computeroutput>, <computeroutput>xMax</computeroutput>, <computeroutput>yMin</computeroutput>, and <computeroutput>yMax</computeroutput> are the outer edges of the grid; an unset bound places the grid in index space, so column <emphasis>c</emphasis> spans [c, c + 1].</para>
 <para>Each cell is colored by mapping its value through <computeroutput>colormap</computeroutput>. The series starts with a Viridis colormap of its own whose range is resolved from the data; assign a shared <computeroutput><ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref></computeroutput> to replace it. Nothing is drawn while <computeroutput>colormap</computeroutput> is null. The series has no legend entry: a <computeroutput><ref refid="classQAccelPlot_1_1ColorBar" kindref="compound">ColorBar</ref></computeroutput> is its key.</para>
 <para><programlisting><codeline><highlight class="normal">QAccelPlot.HeatmapSeries<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1HeatmapSeries_1a3a03e0e5ef4cd4078ab3015c4682741c" kindref="member">xMin</ref>:<sp/>-10;<sp/><ref refid="classQAccelPlot_1_1HeatmapSeries_1ab76526dfbe4c538fde56e4e27eb191e8" kindref="member">xMax</ref>:<sp/>10</highlight></codeline>
@@ -1067,9 +1316,11 @@
 </simplesect>
 <simplesect kind="par"><title>Invalid cells</title><para>Cells with a non-finite value, and cells with a value at or below zero under a <computeroutput>Log</computeroutput> colormap, are transparent. Non-finite values do not count toward the value range.</para>
 </simplesect>
-<simplesect kind="par"><title>Inspection</title><para><computeroutput>inspection.recordAt()</computeroutput> and <computeroutput>inspection.recordAtPosition()</computeroutput> return a record with the fields <computeroutput>x</computeroutput> and <computeroutput>y</computeroutput> (the cell center), <computeroutput>value</computeroutput>, <computeroutput>row</computeroutput>, and <computeroutput>column</computeroutput>. <computeroutput>inspection.dataPointAtPosition()</computeroutput> returns the cell as a data point at its center, with <computeroutput>index</computeroutput> <computeroutput>row * columns + column</computeroutput>, which <computeroutput><ref refid="classQAccelPlot_1_1PlotInspector" kindref="compound">PlotInspector</ref></computeroutput> reports in every mode. A cell with a non-finite value is still a match. While a grid edge is not finite, <computeroutput>recordAt()</computeroutput> returns <computeroutput>Unavailable</computeroutput> and no position matches a cell.</para>
+<simplesect kind="par"><title>Logarithmic axes and spacing</title><para><computeroutput>xSpacing</computeroutput> and <computeroutput>ySpacing</computeroutput> space the cells evenly in data or in log10, independently of the axis scale. On a log axis, <computeroutput>Log</computeroutput> cells have equal widths, <computeroutput>Linear</computeroutput> cells narrow toward larger values, and the parts of cells at or below zero are not drawn; the data range starts at the first cell edge above zero. Under <computeroutput>Log</computeroutput> spacing, both edges of that dimension must be positive, so set them: an unset edge resolves to index space, which starts at 0. Otherwise the series draws nothing, reports no data range in that dimension, and logs a warning.</para>
 </simplesect>
-<simplesect kind="par"><title>Limits</title><para>Each pixel takes the color of the cell under its center, without interpolation. Logarithmic axes are not supported: the series draws nothing on one, reports no data range for it, and logs a warning. A grid with an infinite edge draws nothing. A grid of more than 16,777,216 (2^24) columns or rows, or of more cells than the GPU data texture holds, about 67 million for an 8192-pixel texture limit, draws nothing and logs a warning.</para>
+<simplesect kind="par"><title>Inspection</title><para><computeroutput>inspection.recordAt()</computeroutput> and <computeroutput>inspection.recordAtPosition()</computeroutput> return a record with the fields <computeroutput>x</computeroutput> and <computeroutput>y</computeroutput> (the cell center, geometric under <computeroutput>Log</computeroutput> spacing), <computeroutput>value</computeroutput>, <computeroutput>row</computeroutput>, and <computeroutput>column</computeroutput>. <computeroutput>inspection.dataPointAtPosition()</computeroutput> returns the cell as a data point at its center, with <computeroutput>index</computeroutput> <computeroutput>row * columns + column</computeroutput>, which <computeroutput><ref refid="classQAccelPlot_1_1PlotInspector" kindref="compound">PlotInspector</ref></computeroutput> reports in every mode. A cell with a non-finite value is still a match. While a grid edge is not finite, or not positive under <computeroutput>Log</computeroutput> spacing, <computeroutput>recordAt()</computeroutput> returns <computeroutput>Unavailable</computeroutput> and no position matches a cell.</para>
+</simplesect>
+<simplesect kind="par"><title>Limits</title><para>Each pixel takes the color of the cell under its center, without interpolation. A grid with an infinite edge draws nothing. A grid of more than 16,777,216 (2^24) columns or rows, or of more cells than the GPU data texture holds, about 67 million for an 8192-pixel texture limit, draws nothing and logs a warning.</para>
 </simplesect>
 <simplesect kind="see"><para><ref refid="classQAccelPlot_1_1ColormappedSeries" kindref="compound">ColormappedSeries</ref>, <ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref>, <ref refid="classQAccelPlot_1_1ColorBar" kindref="compound">ColorBar</ref>, <ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> </para>
 </simplesect>
@@ -1121,7 +1372,7 @@
         <label>QQuickItem</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="73" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="73" bodyend="220"/>
+    <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="84" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="84" bodyend="263"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1PlotSeries_1afb31a972c88456df230348f4e3794ab5" prot="protected" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>appendDataPoint</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1a6f0f8aa366b12236dce2326a83b8de23" prot="protected" virt="virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>applyDataPoints</name></member>
@@ -1167,6 +1418,7 @@
       <member refid="classQAccelPlot_1_1PlotSeries_1ae2ba190d0642e569bf6a300bbf2573e5" prot="protected" virt="virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>inspectionSource</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a6d479055f9c3acfd2be5befa8cf6d1a8" prot="protected" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>invalidateDataRanges</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a5d56c6f054d6dba8b905f0cb49e188d7" prot="protected" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>invalidateInspection</name></member>
+      <member refid="classQAccelPlot_1_1HeatmapSeries_1adda020aaff0061b27d8ea62c2e296f3b" prot="private" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>invalidLogSpacing_</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a4e5a53df93bf478ae4b3f2f53ee4ff37" prot="public" virt="virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>legendEntry</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a1dbdd720bb06d07672267cfc603b932b" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>legendEntryChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1ada3d9fd14934647c0f31870184f5eff5" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>legendSymbol</name></member>
@@ -1216,14 +1468,18 @@
       <member refid="classQAccelPlot_1_1PlotSeries_1a75695e62b548ccf79a1fe9c1f477a502" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>setLegendSymbol</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a239ef82d18c15985a337307cbc7872b4" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>setName</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a812c27ea194ec2f2c4bedde2cafb93f8" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>setPlotRect</name></member>
+      <member refid="classQAccelPlot_1_1HeatmapSeries_1adfa6d81fe85e847c91f3f6016a64a2a7" prot="private" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>setSpacing</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1a0039354570d995f0ab0adfbc9ab1a03a" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>setValues</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1ab43b2e3bf9e9cd18fd9e3faa9c5b46e0" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>setValues</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1acf14fd9c979717d73a9ab75bf3b763d4" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>setXAxis</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1a3a5d80f134693418883696ea39825846" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>setXMax</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1a2dbe78822e5ee9b3307f2ca1cc90dd30" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>setXMin</name></member>
+      <member refid="classQAccelPlot_1_1HeatmapSeries_1ac8a66f02b5672ec125bcbbe72cb8e8a2" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>setXSpacing</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a871398840ba7045c168c79a78d564416" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>setYAxis</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1ac7dc7a641275b7cbf10162922059b0f0" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>setYMax</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1ad1c1729bf8abda954e0a2357e3a18a5a" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>setYMin</name></member>
+      <member refid="classQAccelPlot_1_1HeatmapSeries_1a8e214d5482c6079369a9814f71242fc1" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>setYSpacing</name></member>
+      <member refid="classQAccelPlot_1_1HeatmapSeries_1abc79609d71b96763b42727cb82524be8" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>Spacing</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a1957171db65a1684ebd515948dfb375d" prot="protected" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>storeDataPoints</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1abb0a99f31ec4c0c716cd22bd6b3b63f2" prot="private" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>storeValues</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1a5df095037766d7a4ef2adf70186c402b" prot="private" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>updateMaterial</name></member>
@@ -1236,27 +1492,36 @@
       <member refid="classQAccelPlot_1_1ColormappedSeries_1a22543380a1617e9003d11bc860fa461e" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>valueRangeChanged</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1a3b52fec564f128a52a206082ad2288ce" prot="private" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>values_</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1ade0e99065750e16887b44f87f996b2d2" prot="private" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>valuesRevision_</name></member>
-      <member refid="classQAccelPlot_1_1HeatmapSeries_1aceb01e46f8021e2c5103cefd66392b35" prot="private" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>warnedAboutLogAxis_</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a250150d8eaea44c2608375839747b2b2" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>xAxis</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1afb85ad640494dbeaa616493a1bd4b966" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>xAxis</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1ad43d8ab3035bab188de0a76ec2920267" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>xAxisChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a07181531fadaf89fd7140283ac91a563" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>xDataRange</name></member>
+      <member refid="classQAccelPlot_1_1HeatmapSeries_1a4f46fb2e4b3961ed187b6572ce80ed86" prot="private" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>xDimension</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1ab76526dfbe4c538fde56e4e27eb191e8" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>xMax</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1aa7ff49e12346ead3fd45c5062371a003" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>xMax</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1a0eba5dd48d92d931767a4386890c1091" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>xMaxChanged</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1a3a03e0e5ef4cd4078ab3015c4682741c" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>xMin</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1a6fd1f620a3093f83c3ebc6ef8a8b294c" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>xMin</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1a4065a6da716acfe9f9b13d98abd1c643" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>xMinChanged</name></member>
+      <member refid="classQAccelPlot_1_1HeatmapSeries_1afbfcd7450ee10bb1b717959d269511d9" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>xSpacing</name></member>
+      <member refid="classQAccelPlot_1_1HeatmapSeries_1a6843c5147ef4bab15b32b27dbbbdb51b" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>xSpacing</name></member>
+      <member refid="classQAccelPlot_1_1HeatmapSeries_1a57b65fd25f1698b08a0925b3b6b54b8c" prot="private" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>xSpacing_</name></member>
+      <member refid="classQAccelPlot_1_1HeatmapSeries_1a22ed227e9236b3b15325df7ed9c44142" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>xSpacingChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1ae021f84424e1ea4ad44576961ac7d402" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>yAxis</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a63d01fc1b2581de3c4332aaf8fa90833" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>yAxis</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a860a8fdde757aaa1295cd2347f606685" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>yAxisChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a5d37db52b29132cab6e57ba335e30beb" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>yDataRange</name></member>
+      <member refid="classQAccelPlot_1_1HeatmapSeries_1aa9d761ca26600160b460da7bd58c8987" prot="private" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>yDimension</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1ae1070888c648f16ec93653089719509b" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>yMax</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1acf66b0859aa645d48426789a70d2152a" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>yMax</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1ac4f1f047d743cf151d420ae70f6d3689" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>yMaxChanged</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1ac9000a99e673d9448fed9a1fae78c00e" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>yMin</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1a544e9f36eb4dbfcd390919b7b3debb67" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>yMin</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1a727b37da5a6e3df77ba7642bcc79f573" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>yMinChanged</name></member>
+      <member refid="classQAccelPlot_1_1HeatmapSeries_1a9d66a82df9631ef3718f537161d4909c" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>ySpacing</name></member>
+      <member refid="classQAccelPlot_1_1HeatmapSeries_1abe22f67a8215a1ec3801e9a15d013a70" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>ySpacing</name></member>
+      <member refid="classQAccelPlot_1_1HeatmapSeries_1a47a4a64ffbc010f041a1accf3a739925" prot="private" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>ySpacing_</name></member>
+      <member refid="classQAccelPlot_1_1HeatmapSeries_1a59f75db4684a2c39666f3aa7872b52fd" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>ySpacingChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1aa42c9fdd09671734e0a752cad366a304" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>~PlotSeries</name></member>
     </listofallmembers>
   </compounddef>

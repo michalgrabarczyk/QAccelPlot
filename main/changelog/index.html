@@ -1871,7 +1871,9 @@
 <ul>
 <li>Heatmaps via <code>HeatmapSeries</code>: a uniform grid of values colored through a
   <code>Colormap</code>, with a <code>ColorBar</code> key, a Heatmap example, and cell inspection
-  through <code>PlotInspector</code> and <code>inspection.dataPointAtPosition()</code>.</li>
+  through <code>PlotInspector</code> and <code>inspection.dataPointAtPosition()</code>. Heatmaps
+  draw on logarithmic axes, and <code>xSpacing</code>/<code>ySpacing: HeatmapSeries.Log</code>
+  spaces cells evenly in log10.</li>
 <li><code>valueText</code> inspection role with the value of a heatmap cell or a colored
   <code>PointCloud</code> point. The default <code>InspectionTooltip</code> row shows it.</li>
 <li>Legend entries described in C++: <code>PlotSeries::legendEntry()</code> returns a

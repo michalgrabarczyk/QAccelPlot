@@ -56,10 +56,14 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-|  QVector2D | [**cellOffset**](#variable-celloffset)   = `{0.0f, 0.0f}`<br>_Cell coordinate at item-local pixel (0, 0)._  |
-|  QVector2D | [**cellScale**](#variable-cellscale)   = `{1.0f, 1.0f}`<br>_Cells per item-local pixel along X and Y._  |
+|  QVector2D | [**cellOffset**](#variable-celloffset)   = `{0.0f, 0.0f}`<br>_Offset of the cell mapping along X and Y._  |
+|  QVector2D | [**cellRate**](#variable-cellrate)   = `{0.0f, 0.0f}`<br>_Per-pixel rate of the non-affine cell mappings along X and Y._  |
+|  QVector2D | [**cellScale**](#variable-cellscale)   = `{1.0f, 1.0f}`<br>_Factor of the cell mapping along X and Y._  |
+|  QVector2D | [**cellShift**](#variable-cellshift)   = `{0.0f, 0.0f}`<br>`log1p` _argument at pixel 0 of the logarithmic cell mappings along X and Y._ |
 |  [**GradientTexture**](classQAccelPlot_1_1GradientTexture.md) | [**colorMap**](#variable-colormap)  <br>[_**Colormap**_](classQAccelPlot_1_1Colormap.md) _lookup texture sampled at binding 2._ |
+|  int | [**columnMapping**](#variable-columnmapping)   = `{0}`<br>`Internal::HeatmapShaderMapping::Mode` _along X._ |
 |  int | [**columns**](#variable-columns)   = `{0}`<br>_Cells per row._  |
+|  int | [**rowMapping**](#variable-rowmapping)   = `{0}`<br>`Internal::HeatmapShaderMapping::Mode` _along Y._ |
 |  int | [**rows**](#variable-rows)   = `{0}`<br>_Number of rows._  |
 |  float | [**valueLogScale**](#variable-valuelogscale)   = `{0.0f}`<br>_1.0 to place values on the ramp in log10 instead of linearly._  |
 |  float | [**valueMax**](#variable-valuemax)   = `{1.0f}`<br>_Value mapped to colormap position 1._  |
@@ -120,7 +124,7 @@ flowchart TB
 ## Detailed Description
 
 
-The vertex shader maps item-local pixels to fractional cell coordinates with `cellScale` and `cellOffset`; the fragment shader reads the cell value from `values` and looks up its color in `colorMap`. 
+Item-local pixels map to fractional cell coordinates per dimension, by the formula that `columnMapping` and `rowMapping` select from `Internal::HeatmapShaderMapping::Mode`. The fragment shader reads the cell value from `values` and looks up its color in `colorMap`. 
 
 
     
@@ -132,7 +136,7 @@ The vertex shader maps item-local pixels to fractional cell coordinates with `ce
 
 ### variable cellOffset {#variable-celloffset}
 
-_Cell coordinate at item-local pixel (0, 0)._ 
+_Offset of the cell mapping along X and Y._ 
 ```C++
 QVector2D QAccelPlot::HeatmapMaterial::cellOffset;
 ```
@@ -145,11 +149,41 @@ QVector2D QAccelPlot::HeatmapMaterial::cellOffset;
 
 
 
+### variable cellRate {#variable-cellrate}
+
+_Per-pixel rate of the non-affine cell mappings along X and Y._ 
+```C++
+QVector2D QAccelPlot::HeatmapMaterial::cellRate;
+```
+
+
+
+
+<hr>
+
+
+
+
 ### variable cellScale {#variable-cellscale}
 
-_Cells per item-local pixel along X and Y._ 
+_Factor of the cell mapping along X and Y._ 
 ```C++
 QVector2D QAccelPlot::HeatmapMaterial::cellScale;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable cellShift {#variable-cellshift}
+
+`log1p` _argument at pixel 0 of the logarithmic cell mappings along X and Y._
+```C++
+QVector2D QAccelPlot::HeatmapMaterial::cellShift;
 ```
 
 
@@ -175,11 +209,41 @@ GradientTexture QAccelPlot::HeatmapMaterial::colorMap;
 
 
 
+### variable columnMapping {#variable-columnmapping}
+
+`Internal::HeatmapShaderMapping::Mode` _along X._
+```C++
+int QAccelPlot::HeatmapMaterial::columnMapping;
+```
+
+
+
+
+<hr>
+
+
+
+
 ### variable columns {#variable-columns}
 
 _Cells per row._ 
 ```C++
 int QAccelPlot::HeatmapMaterial::columns;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable rowMapping {#variable-rowmapping}
+
+`Internal::HeatmapShaderMapping::Mode` _along Y._
+```C++
+int QAccelPlot::HeatmapMaterial::rowMapping;
 ```
 
 

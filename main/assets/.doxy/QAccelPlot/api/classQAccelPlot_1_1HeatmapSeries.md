@@ -56,6 +56,11 @@ flowchart TB
 
 
 
+## Public Types
+
+| Type | Name |
+| ---: | :--- |
+| enum  | [**Spacing**](#enum-spacing)  <br>_How the cells of one dimension are spaced between its grid edges._  |
 
 
 
@@ -108,8 +113,10 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | property int | [**rows**](classQAccelPlot_1_1HeatmapSeries.md#property-rows-12)  <br>_Read-only: number of complete rows of_ `columns` _values._ |
 | property qreal | [**xMax**](classQAccelPlot_1_1HeatmapSeries.md#property-xmax-12)  <br>_Right edge of the last column in data coordinates. Unset (NaN) means_ `columns` _. Default: unset._ |
 | property qreal | [**xMin**](classQAccelPlot_1_1HeatmapSeries.md#property-xmin-12)  <br>_Left edge of column 0 in data coordinates. Unset (NaN) means 0. Default: unset._  |
+| property [**Spacing**](classQAccelPlot_1_1HeatmapSeries.md#enum-spacing) | [**xSpacing**](classQAccelPlot_1_1HeatmapSeries.md#property-xspacing-12)  <br>_How the columns are spaced between_ `xMin` _and_`xMax` _. Default:_`Linear` _._ |
 | property qreal | [**yMax**](classQAccelPlot_1_1HeatmapSeries.md#property-ymax-12)  <br>_Top edge of the last row in data coordinates. Unset (NaN) means_ `rows` _. Default: unset._ |
 | property qreal | [**yMin**](classQAccelPlot_1_1HeatmapSeries.md#property-ymin-12)  <br>_Bottom edge of row 0 in data coordinates. Unset (NaN) means 0. Default: unset._  |
+| property [**Spacing**](classQAccelPlot_1_1HeatmapSeries.md#enum-spacing) | [**ySpacing**](classQAccelPlot_1_1HeatmapSeries.md#property-yspacing-12)  <br>_How the rows are spaced between_ `yMin` _and_`yMax` _. Default:_`Linear` _._ |
 
 
 ## Public Properties inherited from QAccelPlot::ColormappedSeries
@@ -152,8 +159,10 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | signal void | [**rowsChanged**](classQAccelPlot_1_1HeatmapSeries.md#signal-rowschanged)  <br>_Emitted when the rows property changes._  |
 | signal void | [**xMaxChanged**](classQAccelPlot_1_1HeatmapSeries.md#signal-xmaxchanged)  <br>_Emitted when the xMax property changes._  |
 | signal void | [**xMinChanged**](classQAccelPlot_1_1HeatmapSeries.md#signal-xminchanged)  <br>_Emitted when the xMin property changes._  |
+| signal void | [**xSpacingChanged**](classQAccelPlot_1_1HeatmapSeries.md#signal-xspacingchanged)  <br>_Emitted when the xSpacing property changes._  |
 | signal void | [**yMaxChanged**](classQAccelPlot_1_1HeatmapSeries.md#signal-ymaxchanged)  <br>_Emitted when the yMax property changes._  |
 | signal void | [**yMinChanged**](classQAccelPlot_1_1HeatmapSeries.md#signal-yminchanged)  <br>_Emitted when the yMin property changes._  |
+| signal void | [**ySpacingChanged**](classQAccelPlot_1_1HeatmapSeries.md#signal-yspacingchanged)  <br>_Emitted when the ySpacing property changes._  |
 
 
 ## Public Signals inherited from QAccelPlot::ColormappedSeries
@@ -201,13 +210,17 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  void | [**setValues**](#function-setvalues-22) (std::vector&lt; float &gt; && values, int columns, int rows) <br>_Replaces the grid with_ _columns_ _by__rows_ _values moved from__values_ _, row by row._ |
 |  void | [**setXMax**](#function-setxmax) (qreal value) <br>_Sets the right grid edge to_ _value_ _. NaN unsets it._ |
 |  void | [**setXMin**](#function-setxmin) (qreal value) <br>_Sets the left grid edge to_ _value_ _. NaN unsets it._ |
+|  void | [**setXSpacing**](#function-setxspacing) ([**Spacing**](classQAccelPlot_1_1HeatmapSeries.md#enum-spacing) spacing) <br>_Sets how the columns are spaced to_ _spacing_ _._ |
 |  void | [**setYMax**](#function-setymax) (qreal value) <br>_Sets the top grid edge to_ _value_ _. NaN unsets it._ |
 |  void | [**setYMin**](#function-setymin) (qreal value) <br>_Sets the bottom grid edge to_ _value_ _. NaN unsets it._ |
+|  void | [**setYSpacing**](#function-setyspacing) ([**Spacing**](classQAccelPlot_1_1HeatmapSeries.md#enum-spacing) spacing) <br>_Sets how the rows are spaced to_ _spacing_ _._ |
 |  Q\_INVOKABLE qreal | [**valueAt**](#function-valueat) (int row, int column) const<br>_Returns the value of the cell at_ _row_ _and__column_ _, or NaN when it is outside the grid._ |
 |  qreal | [**xMax**](#function-xmax-22) () const<br>_Returns the right grid edge, or NaN when unset._  |
 |  qreal | [**xMin**](#function-xmin-22) () const<br>_Returns the left grid edge, or NaN when unset._  |
+|  [**Spacing**](classQAccelPlot_1_1HeatmapSeries.md#enum-spacing) | [**xSpacing**](#function-xspacing-22) () const<br>_Returns how the columns are spaced._  |
 |  qreal | [**yMax**](#function-ymax-22) () const<br>_Returns the top grid edge, or NaN when unset._  |
 |  qreal | [**yMin**](#function-ymin-22) () const<br>_Returns the bottom grid edge, or NaN when unset._  |
+|  [**Spacing**](classQAccelPlot_1_1HeatmapSeries.md#enum-spacing) | [**ySpacing**](#function-yspacing-22) () const<br>_Returns how the rows are spaced._  |
 
 
 ## Public Functions inherited from QAccelPlot::ColormappedSeries
@@ -336,12 +349,12 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | Type | Name |
 | ---: | :--- |
 | virtual void | [**applyDataPoints**](#function-applydatapoints) ([**DataPointInput**](structQAccelPlot_1_1PlotSeries_1_1DataPointInput.md) && input) override<br>_Stores the cell values passed to the_ `PlotSeries` _setters, keeping_`columns` _._ |
-| virtual [**DataRanges**](structQAccelPlot_1_1PlotSeries_1_1DataRanges.md) | [**computeDataRanges**](#function-computedataranges) () override const<br>_Returns the grid edges in each linear dimension._  |
+| virtual [**DataRanges**](structQAccelPlot_1_1PlotSeries_1_1DataRanges.md) | [**computeDataRanges**](#function-computedataranges) () override const<br>_Returns the grid edges in each dimension; on a log axis from the first cell edge above zero._  |
 | virtual int | [**dataPointValueCount**](#function-datapointvaluecount) () override const<br>_Returns 1: the_ `PlotSeries` _setters take one value per cell._ |
 | virtual [**InspectionDataPoint**](structQAccelPlot_1_1InspectionDataPoint.md) | [**inspectionDataPointAt**](#function-inspectiondatapointat) (const QPointF & position) override const<br>_Returns the cell drawn at the series-local_ _position_ _as a data point at its center._ |
 | virtual [**InspectionRecord**](structQAccelPlot_1_1InspectionRecord.md) | [**inspectionRecord**](#function-inspectionrecord) (int index) override const<br>_Returns the cell record at_ _index_ _._ |
 | virtual [**InspectionRecord**](structQAccelPlot_1_1InspectionRecord.md) | [**inspectionRecordAt**](#function-inspectionrecordat) (const QPointF & position) override const<br>_Returns the record of the cell drawn at the series-local_ _position_ _._ |
-| virtual void | [**onAxisScaleChanged**](#function-onaxisscalechanged) () override<br>_Repaints, because the series draws nothing on a logarithmic axis._  |
+| virtual void | [**onAxisScaleChanged**](#function-onaxisscalechanged) () override<br>_Repaints, because the mapping from pixels to cells depends on the axis scale._  |
 | virtual bool | [**positionInspectionSupported**](#function-positioninspectionsupported) () override const<br>_Returns true: cells are matched by position._  |
 | virtual bool | [**recordInspectionSupported**](#function-recordinspectionsupported) () override const<br>_Returns true: cells are inspected as records._  |
 | virtual std::optional&lt; [**ValueSpan**](structQAccelPlot_1_1ColormappedSeries_1_1ValueSpan.md) &gt; | [**scanValueRange**](#function-scanvaluerange) () override const<br>_Returns the span of the finite cell values._  |
@@ -406,7 +419,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 ## Detailed Description
 
 
-The grid has `columns` cells per row and `rows` rows of equal cells. Values are stored row by row: the value of a cell has index `row * columns + column`, with row 0 at `yMin` and column 0 at `xMin`. `xMin`, `xMax`, `yMin`, and `yMax` are the outer edges of the grid; an unset bound places the grid in index space, so column _c_ spans [c, c + 1].
+The grid has `columns` cells per row and `rows` rows of cells. Values are stored row by row: the value of a cell has index `row * columns + column`, with row 0 at `yMin` and column 0 at `xMin`. `xMin`, `xMax`, `yMin`, and `yMax` are the outer edges of the grid; an unset bound places the grid in index space, so column _c_ spans [c, c + 1].
 
 
 Each cell is colored by mapping its value through `colormap`. The series starts with a Viridis colormap of its own whose range is resolved from the data; assign a shared `Colormap` to replace it. Nothing is drawn while `colormap` is null. The series has no legend entry: a `ColorBar` is its key.
@@ -445,7 +458,7 @@ Cells with a non-finite value, and cells with a value at or below zero under a `
 **
 **
 
-`inspection.recordAt()` and `inspection.recordAtPosition()` return a record with the fields `x` and `y` (the cell center), `value`, `row`, and `column`. `inspection.dataPointAtPosition()` returns the cell as a data point at its center, with `index` `row * columns + column`, which `PlotInspector` reports in every mode. A cell with a non-finite value is still a match. While a grid edge is not finite, `recordAt()` returns `Unavailable` and no position matches a cell.
+`xSpacing` and `ySpacing` space the cells evenly in data or in log10, independently of the axis scale. On a log axis, `Log` cells have equal widths, `Linear` cells narrow toward larger values, and the parts of cells at or below zero are not drawn; the data range starts at the first cell edge above zero. Under `Log` spacing, both edges of that dimension must be positive, so set them: an unset edge resolves to index space, which starts at 0. Otherwise the series draws nothing, reports no data range in that dimension, and logs a warning.
 
 
 
@@ -453,7 +466,15 @@ Cells with a non-finite value, and cells with a value at or below zero under a `
 **
 **
 
-Each pixel takes the color of the cell under its center, without interpolation. Logarithmic axes are not supported: the series draws nothing on one, reports no data range for it, and logs a warning. A grid with an infinite edge draws nothing. A grid of more than 16,777,216 (2^24) columns or rows, or of more cells than the GPU data texture holds, about 67 million for an 8192-pixel texture limit, draws nothing and logs a warning.
+`inspection.recordAt()` and `inspection.recordAtPosition()` return a record with the fields `x` and `y` (the cell center, geometric under `Log` spacing), `value`, `row`, and `column`. `inspection.dataPointAtPosition()` returns the cell as a data point at its center, with `index` `row * columns + column`, which `PlotInspector` reports in every mode. A cell with a non-finite value is still a match. While a grid edge is not finite, or not positive under `Log` spacing, `recordAt()` returns `Unavailable` and no position matches a cell.
+
+
+
+
+**
+**
+
+Each pixel takes the color of the cell under its center, without interpolation. A grid with an infinite edge draws nothing. A grid of more than 16,777,216 (2^24) columns or rows, or of more cells than the GPU data texture holds, about 67 million for an 8192-pixel texture limit, draws nothing and logs a warning.
 
 
 
@@ -463,6 +484,26 @@ Each pixel takes the color of the cell under its center, without interpolation. 
 
 
     
+## Public Types Documentation
+
+
+
+
+
+### enum Spacing {#enum-spacing}
+
+_How the cells of one dimension are spaced between its grid edges._ 
+```C++
+enum QAccelPlot::HeatmapSeries::Spacing {
+    Linear,
+    Log
+};
+```
+
+
+
+
+<hr>
 ## Public Properties Documentation
 
 
@@ -533,6 +574,21 @@ qreal QAccelPlot::HeatmapSeries::xMin;
 
 
 
+### property xSpacing {#property-xspacing-12}
+
+_How the columns are spaced between_ `xMin` _and_`xMax` _. Default:_`Linear` _._
+```C++
+Spacing QAccelPlot::HeatmapSeries::xSpacing;
+```
+
+
+
+
+<hr>
+
+
+
+
 ### property yMax {#property-ymax-12}
 
 _Top edge of the last row in data coordinates. Unset (NaN) means_ `rows` _. Default: unset._
@@ -553,6 +609,21 @@ qreal QAccelPlot::HeatmapSeries::yMax;
 _Bottom edge of row 0 in data coordinates. Unset (NaN) means 0. Default: unset._ 
 ```C++
 qreal QAccelPlot::HeatmapSeries::yMin;
+```
+
+
+
+
+<hr>
+
+
+
+
+### property ySpacing {#property-yspacing-12}
+
+_How the rows are spaced between_ `yMin` _and_`yMax` _. Default:_`Linear` _._
+```C++
+Spacing QAccelPlot::HeatmapSeries::ySpacing;
 ```
 
 
@@ -625,6 +696,21 @@ void QAccelPlot::HeatmapSeries::xMinChanged;
 
 
 
+### signal xSpacingChanged {#signal-xspacingchanged}
+
+_Emitted when the xSpacing property changes._ 
+```C++
+void QAccelPlot::HeatmapSeries::xSpacingChanged;
+```
+
+
+
+
+<hr>
+
+
+
+
 ### signal yMaxChanged {#signal-ymaxchanged}
 
 _Emitted when the yMax property changes._ 
@@ -645,6 +731,21 @@ void QAccelPlot::HeatmapSeries::yMaxChanged;
 _Emitted when the yMin property changes._ 
 ```C++
 void QAccelPlot::HeatmapSeries::yMinChanged;
+```
+
+
+
+
+<hr>
+
+
+
+
+### signal ySpacingChanged {#signal-yspacingchanged}
+
+_Emitted when the ySpacing property changes._ 
+```C++
+void QAccelPlot::HeatmapSeries::ySpacingChanged;
 ```
 
 
@@ -832,6 +933,23 @@ void QAccelPlot::HeatmapSeries::setXMin (
 
 
 
+### function setXSpacing {#function-setxspacing}
+
+_Sets how the columns are spaced to_ _spacing_ _._
+```C++
+void QAccelPlot::HeatmapSeries::setXSpacing (
+    Spacing spacing
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function setYMax {#function-setymax}
 
 _Sets the top grid edge to_ _value_ _. NaN unsets it._
@@ -855,6 +973,23 @@ _Sets the bottom grid edge to_ _value_ _. NaN unsets it._
 ```C++
 void QAccelPlot::HeatmapSeries::setYMin (
     qreal value
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setYSpacing {#function-setyspacing}
+
+_Sets how the rows are spaced to_ _spacing_ _._
+```C++
+void QAccelPlot::HeatmapSeries::setYSpacing (
+    Spacing spacing
 ) 
 ```
 
@@ -914,6 +1049,21 @@ qreal QAccelPlot::HeatmapSeries::xMin () const
 
 
 
+### function xSpacing {#function-xspacing-22}
+
+_Returns how the columns are spaced._ 
+```C++
+Spacing QAccelPlot::HeatmapSeries::xSpacing () const
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function yMax {#function-ymax-22}
 
 _Returns the top grid edge, or NaN when unset._ 
@@ -934,6 +1084,21 @@ qreal QAccelPlot::HeatmapSeries::yMax () const
 _Returns the bottom grid edge, or NaN when unset._ 
 ```C++
 qreal QAccelPlot::HeatmapSeries::yMin () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function ySpacing {#function-yspacing-22}
+
+_Returns how the rows are spaced._ 
+```C++
+Spacing QAccelPlot::HeatmapSeries::ySpacing () const
 ```
 
 
@@ -967,7 +1132,7 @@ Implements [*QAccelPlot::PlotSeries::applyDataPoints*](classQAccelPlot_1_1PlotSe
 
 ### function computeDataRanges {#function-computedataranges}
 
-_Returns the grid edges in each linear dimension._ 
+_Returns the grid edges in each dimension; on a log axis from the first cell edge above zero._ 
 ```C++
 virtual DataRanges QAccelPlot::HeatmapSeries::computeDataRanges () override const
 ```
@@ -1058,7 +1223,7 @@ Implements [*QAccelPlot::PlotSeries::inspectionRecordAt*](classQAccelPlot_1_1Plo
 
 ### function onAxisScaleChanged {#function-onaxisscalechanged}
 
-_Repaints, because the series draws nothing on a logarithmic axis._ 
+_Repaints, because the mapping from pixels to cells depends on the axis scale._ 
 ```C++
 virtual void QAccelPlot::HeatmapSeries::onAxisScaleChanged () override
 ```

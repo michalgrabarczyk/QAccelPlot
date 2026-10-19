@@ -31,6 +31,9 @@ QT_FORWARD_DECLARE_CLASS(QQuickWindow)
 
 namespace QAccelPlot {
 
+namespace Internal {
+struct HeatmapGridDimension;
+}
 class HeatmapMaterial;
 
 class HeatmapSeries : public ColormappedSeries {
@@ -44,8 +47,17 @@ class HeatmapSeries : public ColormappedSeries {
     Q_PROPERTY(qreal xMax READ xMax WRITE setXMax NOTIFY xMaxChanged)
     Q_PROPERTY(qreal yMin READ yMin WRITE setYMin NOTIFY yMinChanged)
     Q_PROPERTY(qreal yMax READ yMax WRITE setYMax NOTIFY yMaxChanged)
+    Q_PROPERTY(Spacing xSpacing READ xSpacing WRITE setXSpacing NOTIFY xSpacingChanged)
+    Q_PROPERTY(Spacing ySpacing READ ySpacing WRITE setYSpacing NOTIFY ySpacingChanged)
 
 public:
+    enum class Spacing {
+        Linear, 
+        Log     
+    };
+    Q_ENUM(Spacing)
+
+    
     explicit HeatmapSeries(QQuickItem* parent = nullptr);
 
     int columns() const;
@@ -65,6 +77,12 @@ public:
     qreal yMax() const;
     void setYMax(qreal value);
 
+    Spacing xSpacing() const;
+    void setXSpacing(Spacing spacing);
+
+    Spacing ySpacing() const;
+    void setYSpacing(Spacing spacing);
+
     Q_INVOKABLE void setValues(const QList<qreal>& values, int columns);
     void setValues(std::vector<float>&& values, int columns, int rows);
     void postValues(std::vector<float>&& values, int columns, int rows);
@@ -78,6 +96,8 @@ signals:
     void xMaxChanged();
     void yMinChanged();
     void yMaxChanged();
+    void xSpacingChanged();
+    void ySpacingChanged();
 
 protected:
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updatePaintNodeData) override;
@@ -104,11 +124,14 @@ private:
     };
 
     Extent resolvedExtent() const;
+    Internal::HeatmapGridDimension xDimension() const;
+    Internal::HeatmapGridDimension yDimension() const;
     int cellCount() const;
     bool validateShape(std::size_t valueCount, int columns, int rows) const;
     void storeValues(std::vector<float>&& values, int columns);
     void applyShape(int columns);
     void setBound(qreal& bound, qreal value, void (HeatmapSeries::*changed)());
+    void setSpacing(Spacing& current, Spacing spacing, void (HeatmapSeries::*changed)());
     std::optional<std::pair<int, int>> cellAt(const QPointF& position) const;
     QPointF cellCenter(int row, int column) const;
     bool canDraw(QQuickWindow* window);
@@ -118,10 +141,12 @@ private:
     int columns_{0};
     int rows_{0};
     Extent edges_;
+    Spacing xSpacing_{Spacing::Linear};
+    Spacing ySpacing_{Spacing::Linear};
     // Incremented by every value change; the GPU texture holds the values of uploadedRevision_.
     std::uint64_t valuesRevision_{1};
     std::uint64_t uploadedRevision_{0};
-    bool warnedAboutLogAxis_{false};
+    bool invalidLogSpacing_{false};
     bool overPrecision_{false};
     bool overCapacity_{false};
 };
