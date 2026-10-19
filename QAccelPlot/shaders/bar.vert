@@ -73,52 +73,68 @@ bool readBar(int index, out uint startBits, out uint endBits, out uint valueBits
     return isFiniteBits(positionBits) && !isNaNBits(valueBits);
 }
 
-// Returns where the origin-relative float bit pattern `bits` lies on the colormap, from 0 to 1,
-// or -1 when the normalization cannot place it. Values beyond the range clamp to its ends.
-float colormapPosition(uint bits) {
+// Colormap position of an infinite value. Finite, so the middle of a ranged bar with one infinite
+// edge stays beyond the colormap end.
+const float kFarColormapPosition = 1.0e30;
+
+// Places the origin-relative float bit pattern `bits` on the colormap, unclamped: 0 at valueMin
+// and 1 at valueMax. Returns false when the normalization cannot place it.
+bool colormapPosition(uint bits, out float position) {
+    position = 0.0;
     bool logScale = ubuf.valueLogScale > 0.5;
     float lo = ubuf.valueMin;
     float hi = ubuf.valueMax;
     bool negative = (bits & 0x80000000u) != 0u;
     if (isNaNBits(bits) || (logScale && (lo <= 0.0 || hi <= 0.0))) {
-        return -1.0;
+        return false;
     }
     if (!isFiniteBits(bits)) {
         if (logScale && negative) {
-            return -1.0;
+            return false;
         }
-        return negative == (hi >= lo) ? 0.0 : 1.0;
+        position = negative == (hi >= lo) ? -kFarColormapPosition : kFarColormapPosition;
+        return true;
     }
     float value = uintBitsToFloat(bits) + ubuf.valueOrigin;
     if (logScale) {
         if (value <= 0.0) {
-            return -1.0;
+            return false;
         }
         value = safeLog10(value);
         lo = safeLog10(lo);
         hi = safeLog10(hi);
     }
     float range = hi - lo;
-    return abs(range) > 0.0 ? clamp((value - lo) / range, 0.0, 1.0) : 0.0;
+    if (abs(range) > 0.0) {
+        position = clamp((value - lo) / range, -kFarColormapPosition, kFarColormapPosition);
+    }
+    return true;
 }
 
 // Returns where bar `index` lies on the colormap, from 0 to 1, or -1 when it keeps the rectangle color.
-// A ranged bar's position is the middle of its edges on the colormap.
+// A ranged bar's position is the middle of its edges on the colormap. Positions beyond the range
+// clamp to its ends.
 float barColormapPosition(int index) {
     if (ubuf.colorSource < 0.5) {
         return -1.0;
     }
     int stride = ubuf.ranged > 0.5 ? 3 : 2;
     int base = index * stride;
+    float position;
     if (ubuf.colorSource < 1.5) {
-        return colormapPosition(fetchFloatBits(base + stride - 1));
+        return colormapPosition(fetchFloatBits(base + stride - 1), position) ? clamp(position, 0.0, 1.0) : -1.0;
     }
-    float start = colormapPosition(fetchFloatBits(base));
-    if (ubuf.ranged < 0.5 || start < 0.0) {
-        return start;
+    if (!colormapPosition(fetchFloatBits(base), position)) {
+        return -1.0;
     }
-    float end = colormapPosition(fetchFloatBits(base + 1));
-    return end < 0.0 ? -1.0 : 0.5 * (start + end);
+    if (ubuf.ranged > 0.5) {
+        float end;
+        if (!colormapPosition(fetchFloatBits(base + 1), end)) {
+            return -1.0;
+        }
+        position = 0.5 * (position + end);
+    }
+    return clamp(position, 0.0, 1.0);
 }
 
 // Returns the fill color of bar `index`: the hover color, its colormap color, or the rectangle color.

@@ -171,6 +171,24 @@ constexpr auto kLogColormapScene = R"(
 }
 )";
 
+// Ranged bars over x 1..29 (value 3) and 2..+Inf (value 8) colored by position under a
+// blue-to-red colormap from 0 to 10. Both start inside the range and end beyond it.
+constexpr auto kStraddlingColormapScene = R"(
+    BarSeries {
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        color: "lime"
+        colorSource: BarSeries.Position
+        colormap: Colormap {
+            min: 0
+            max: 10
+            stops: [GradientStop { position: 0; color: "blue" }, GradientStop { position: 1; color: "red" }]
+        }
+        Component.onCompleted: setData([{ from: 1, to: 29, value: 3 }, { from: 2, to: Infinity, value: 8 }])
+    }
+}
+)";
+
 // Shows a PlotView built from kScenePrefix and \a sceneBody in a 400 × 300 window.
 class SceneWindow {
 public:
@@ -248,6 +266,7 @@ private slots:
     void colormapColorsBarsByValue();
     void colormapColorsBarsByPosition();
     void logColormapPlacesRangedBarsByTheirMiddle();
+    void rangedBarsWithTheirMiddleBeyondTheRangeTakeItsEnd();
 };
 
 void BarSeriesRenderingTest::verticalBarsSpanFromBaselineToValue()
@@ -500,6 +519,21 @@ void BarSeriesRenderingTest::logColormapPlacesRangedBarsByTheirMiddle()
     QVERIFY(isColor(image.pixelColor(scene.pixel(0.4, 2.0)), Qt::green));
     // The bar from 1 to 100 sits at the middle of the log ramp, not at its arithmetic middle 50.5.
     QVERIFY(isColor(image.pixelColor(scene.pixel(5.0, 2.0)), QColor{128, 0, 128}));
+}
+
+void BarSeriesRenderingTest::rangedBarsWithTheirMiddleBeyondTheRangeTakeItsEnd()
+{
+    auto scene = SceneWindow{kStraddlingColormapScene};
+    if (scene.isSoftware()) {
+        QSKIP("Custom materials require a hardware scene graph backend");
+    }
+    QVERIFY2(scene.plot(), qPrintable(scene.error()));
+    QVERIFY(QTest::qWaitForWindowExposed(&scene.window()));
+
+    const auto image = scene.grab();
+    // The middles 15 and +Inf lie beyond the range, so neither bar takes a color from inside it.
+    QVERIFY(isColor(image.pixelColor(scene.pixel(1.5, 1.5)), Qt::red));
+    QVERIFY(isColor(image.pixelColor(scene.pixel(5.0, 6.0)), Qt::red));
 }
 
 } // namespace QAccelPlot
