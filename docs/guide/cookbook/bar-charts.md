@@ -135,7 +135,9 @@ QAccelPlot.BarSeries {
   `dataValueMin` and `dataValueMax` expose the resolved range.
 - Values outside the range take the color at its nearer end.
 - `barOffset` does not move a bar's position on the colormap.
-- Under `norm: Colormap.Log`, a bar at or below zero keeps `color`.
+- Under `norm: Colormap.Log`, a bar at or below zero keeps `color`. If an
+  unset bound resolves from such a bar, the range is not positive and every
+  bar keeps `color`; set `min` above zero.
 - A [`ColorBar`](point-clouds.md#show-a-color-bar) keys the series. To key a
   heatmap with a histogram of its values instead, see
   [Use a histogram as a color bar](histograms.md#use-a-histogram-as-a-color-bar).

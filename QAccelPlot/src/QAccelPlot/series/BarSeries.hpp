@@ -55,8 +55,10 @@ class TransitionRunner;
 /// \c barOffset does not apply. A colormap with at least two stops overrides \c color and
 /// \c categoryColors, and \c hoverColor still marks the hovered bar. Values outside the value range
 /// take the color at its nearer end. A bar whose source the norm cannot map, such as a non-positive
-/// one under \c Log, keeps \c color or its category color. Bars can be histogram bins colored by
-/// their bin, with a \c ColorBar or the position axis as the key:
+/// one under \c Log, keeps \c color or its category color. Under \c Log, an unset bound resolved
+/// from such a bar is not positive, so every bar keeps its color; set \c Colormap::min above zero.
+/// Bars can be histogram bins colored by their bin, with a \c ColorBar or the position axis as the
+/// key:
 ///
 /// \code
 /// QAccelPlot.BarSeries {
