@@ -38,6 +38,7 @@ add_qaccelplot_test(tst_performance_generators
     "${CMAKE_SOURCE_DIR}/examples/showcases/performance/src/PlasmaGenerator.cpp"
     "${CMAKE_SOURCE_DIR}/examples/showcases/performance/src/SineLookup.cpp"
     "${CMAKE_SOURCE_DIR}/examples/showcases/performance/src/SineWaveGenerator.cpp"
+    "${CMAKE_SOURCE_DIR}/examples/showcases/performance/src/SpectrogramGenerator.cpp"
 )
 target_include_directories(tst_performance_generators PRIVATE
     "${CMAKE_SOURCE_DIR}/examples/showcases/performance/src"
@@ -70,7 +71,7 @@ if(QACCELPLOT_BUILD_VISUAL_TESTS)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleBarChart               bar_chart)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleBands                  bands PAGES forecast rollingStats)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleHistogram              histogram)
-    add_qaccelplot_example_visual_tests(QAccelPlotExamplePerformance            performance PAGES lineCurve pointCloud rectangleSeries barSeries)
+    add_qaccelplot_example_visual_tests(QAccelPlotExamplePerformance            performance PAGES lineCurve pointCloud rectangleSeries barSeries heatmapSeries)
     add_qaccelplot_example_visual_tests(QAccelPlotExamplePulsar                 pulsar)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleLineStyles             line_styles)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleMarkers                markers)

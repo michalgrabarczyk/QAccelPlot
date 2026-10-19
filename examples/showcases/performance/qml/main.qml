@@ -19,6 +19,7 @@ Window {
     property QtObject pointCloudSettings: pointCloudDefaults.createObject(window)
     property QtObject rectangleSeriesSettings: rectangleSeriesDefaults.createObject(window)
     property QtObject barSeriesSettings: barSeriesDefaults.createObject(window)
+    property QtObject heatmapSeriesSettings: heatmapSeriesDefaults.createObject(window)
     property int fps: 60
     property real averageFrameTimeMs: 16.7
     property int updateRate: 60
@@ -26,7 +27,7 @@ Window {
     readonly property string activePage: pages.currentName
     readonly property int maximumCount: 10000000
     readonly property var countPresets: [1000, 10000, 100000, 300000, 500000, 1000000, 2000000, 5000000, 10000000]
-    readonly property QtObject activeSettings: activePage === "pointCloud" ? pointCloudSettings : activePage === "rectangleSeries" ? rectangleSeriesSettings : activePage === "barSeries" ? barSeriesSettings : lineCurveSettings
+    readonly property QtObject activeSettings: activePage === "pointCloud" ? pointCloudSettings : activePage === "rectangleSeries" ? rectangleSeriesSettings : activePage === "barSeries" ? barSeriesSettings : activePage === "heatmapSeries" ? heatmapSeriesSettings : lineCurveSettings
     readonly property int activeCount: activeSettings.count
     readonly property real throughputMillions: activeCount * updateRate / 1000000
     readonly property QtObject colorPalette: QAccelPlot.Colors.dark
@@ -39,6 +40,8 @@ Window {
             rectangleSeriesSettings = rectangleSeriesDefaults.createObject(window);
         } else if (activePage === "barSeries") {
             barSeriesSettings = barSeriesDefaults.createObject(window);
+        } else if (activePage === "heatmapSeries") {
+            heatmapSeriesSettings = heatmapSeriesDefaults.createObject(window);
         } else {
             lineCurveSettings = lineCurveDefaults.createObject(window);
         }
@@ -76,6 +79,12 @@ Window {
         id: barSeriesDefaults
 
         BarSeriesSettings {}
+    }
+
+    Component {
+        id: heatmapSeriesDefaults
+
+        HeatmapSeriesSettings {}
     }
 
     FrameDriver {
@@ -179,7 +188,8 @@ Window {
                     { name: "lineCurve", title: "LineCurve" },
                     { name: "pointCloud", title: "PointCloud" },
                     { name: "rectangleSeries", title: "RectangleSeries" },
-                    { name: "barSeries", title: "BarSeries" }
+                    { name: "barSeries", title: "BarSeries" },
+                    { name: "heatmapSeries", title: "HeatmapSeries" }
                 ]
 
                 LineCurvePage {
@@ -193,6 +203,9 @@ Window {
                 }
                 BarSeriesPage {
                     settings: window.barSeriesSettings
+                }
+                HeatmapSeriesPage {
+                    settings: window.heatmapSeriesSettings
                 }
             }
         }

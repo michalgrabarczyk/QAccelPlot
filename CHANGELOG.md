@@ -18,6 +18,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Legend entries described in C++: `PlotSeries::legendEntry()` returns a
   `LegendEntry`, and `LegendModel` lists the entries of the visible series that
   have one, such as `Plot.legendModel`.
+- A `HeatmapSeries` tab in the `showcases/performance` example, streaming a
+  scrolling spectrogram of up to 10M cells.
 
 ### Changed
 
