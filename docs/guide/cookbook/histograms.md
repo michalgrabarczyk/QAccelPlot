@@ -98,7 +98,8 @@ a worker thread can build the histogram and pass its data to
 A histogram of a heatmap's values can key its colors: color the bins with the
 heatmap's colormap through
 [`colorSource: BarSeries.Position`](bar-charts.md#color-bars-by-value), and let
-the histogram's value axis set the colormap range:
+the histogram's bin axis set the colormap range. With horizontal bars, that is
+`yAxis`, the bars' position axis:
 
 ```qml
 QAccelPlot.Colormap {
@@ -126,11 +127,11 @@ QAccelPlot.Plot {
 }
 ```
 
-- Panning or zooming the value axis recolors the heatmap and the bins.
+- Panning or zooming the bin axis recolors the heatmap and the bins.
 - Fill the bars with `setRangedData()`, and call `rescaleToData()` on the
-  value axis once to fit it to the bin edges.
+  bin axis once to fit it to the bin edges.
 - Keep the bin edges fixed when recounting, for example over the cells in
-  view, so the value axis is never refitted under the user.
+  view, so the bin axis is never refitted under the user.
 
 The Interference page of
 [`examples/plot_types/heatmap`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/heatmap)
