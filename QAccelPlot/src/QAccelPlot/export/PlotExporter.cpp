@@ -148,7 +148,13 @@ void PlotExporter::setPlot(::QAccelPlot::QAccelPlot* plot)
     if (plot_ == plot) {
         return;
     }
+    if (plot_) {
+        disconnect(plot_, &QObject::destroyed, this, nullptr);
+    }
     plot_ = plot;
+    if (plot_) {
+        connect(plot_, &QObject::destroyed, this, &PlotExporter::plotChanged);
+    }
     emit plotChanged();
 }
 

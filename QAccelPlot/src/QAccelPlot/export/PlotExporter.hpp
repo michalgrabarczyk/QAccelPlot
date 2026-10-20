@@ -48,7 +48,7 @@ namespace QAccelPlot {
 class PlotExporter : public QObject {
     Q_OBJECT
     QML_NAMED_ELEMENT(PlotExporter)
-    /// \brief Plot to export.
+    /// \brief Plot to export; null once the plot is destroyed.
     Q_PROPERTY(::QAccelPlot::QAccelPlot* plot READ plot WRITE setPlot NOTIFY plotChanged)
     /// \brief Image pixels per logical pixel; 0 uses the window's device pixel ratio. Default: 0.
     ///

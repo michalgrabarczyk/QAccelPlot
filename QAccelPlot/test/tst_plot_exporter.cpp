@@ -76,6 +76,7 @@ private slots:
     void defaultsAndValidation();
     void supportedFormatsIncludeCommonRasterFormats();
     void failsWithoutPlot();
+    void clearsPlotWhenItIsDestroyed();
     void failsForUnsupportedFormat();
     void failsForHiddenPlot();
     void failsWhenWindowHidesBeforeCapture();
@@ -209,6 +210,22 @@ void PlotExporterTest::failsWithoutPlot()
     QCOMPARE(finished.constFirst().at(0).toBool(), false);
     QCOMPARE(finished.constFirst().at(2).toString(), QStringLiteral("No plot is set."));
     QVERIFY(!exporter.busy());
+}
+
+void PlotExporterTest::clearsPlotWhenItIsDestroyed()
+{
+    auto exporter = PlotExporter{};
+    auto replaced = std::make_unique<QAccelPlot>();
+    auto plot = std::make_unique<QAccelPlot>();
+    exporter.setPlot(replaced.get());
+    exporter.setPlot(plot.get());
+    auto plotChanges = QSignalSpy{&exporter, &PlotExporter::plotChanged};
+
+    replaced.reset();
+    QCOMPARE(plotChanges.count(), 0);
+    plot.reset();
+    QCOMPARE(plotChanges.count(), 1);
+    QVERIFY(!exporter.plot());
 }
 
 void PlotExporterTest::failsForUnsupportedFormat()
