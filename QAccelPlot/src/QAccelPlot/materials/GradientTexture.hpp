@@ -28,6 +28,9 @@ public:
     GradientTexture(const GradientTexture&) = delete;
     GradientTexture& operator=(const GradientTexture&) = delete;
 
+    /// \brief Returns a plain white ramp that keeps the sampler valid while a shader maps no values.
+    static const std::vector<GradientStopData>& neutralStops();
+
     /// \brief Updates the 256-sample texture when \a stops changed.
     void upload(QQuickWindow* window, const std::vector<GradientStopData>& stops);
     /// \brief Commits the texture to the requested shader sampler binding.

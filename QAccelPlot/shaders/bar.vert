@@ -18,7 +18,7 @@ layout(location = 1) out vec4 v_edgeDistance;
 layout(location = 2) out vec4 v_borderColor;
 layout(location = 3) out float v_borderWidth;
 
-// Must match BarUbo in BarMaterial.cpp: the rect.vert block followed by the bar geometry.
+// Must match BarUbo in BarMaterial.cpp: the rect.vert block followed by the bar geometry and colormap.
 layout(std140, binding = 0) uniform buf {
     mat4 matrix;          //   0-63
     vec4 color;           //  64-79
@@ -40,9 +40,15 @@ layout(std140, binding = 0) uniform buf {
     float baseline;       // 180-183: value-axis data units, may be -Inf
     float horizontal;     // 184-187: 1 when positions lie on the Y axis
     float ranged;         // 188-191: 1 when a bar is (from, to, value) instead of (position, value)
+    float colorSource;    // 192-195: 0 no colormap, 1 the value, 2 the position is mapped
+    float valueMin;       // 196-199: value at colormap position 0
+    float valueMax;       // 200-203: value at colormap position 1
+    float valueOrigin;    // 204-207: added to the data before the log normalization
+    float valueLogScale;  // 208-211: 1 to normalize in log10
 } ubuf;
 
 layout(binding = 1) uniform sampler2D dataSampler;
+layout(binding = 2) uniform sampler2D colorMapSampler;
 
 #include "data_texture.glsl"
 #include "math_utils.glsl"
@@ -67,9 +73,84 @@ bool readBar(int index, out uint startBits, out uint endBits, out uint valueBits
     return isFiniteBits(positionBits) && !isNaNBits(valueBits);
 }
 
+// Colormap position of an infinite value. Finite, so the middle of a ranged bar with one infinite
+// edge stays beyond the colormap end.
+const float kFarColormapPosition = 1.0e30;
+
+// Places the origin-relative float bit pattern `bits` on the colormap, unclamped: 0 at valueMin
+// and 1 at valueMax. Returns false when the normalization cannot place it.
+bool colormapPosition(uint bits, out float position) {
+    position = 0.0;
+    bool logScale = ubuf.valueLogScale > 0.5;
+    float lo = ubuf.valueMin;
+    float hi = ubuf.valueMax;
+    bool negative = (bits & 0x80000000u) != 0u;
+    if (isNaNBits(bits) || (logScale && (lo <= 0.0 || hi <= 0.0))) {
+        return false;
+    }
+    if (!isFiniteBits(bits)) {
+        if (logScale && negative) {
+            return false;
+        }
+        position = negative == (hi >= lo) ? -kFarColormapPosition : kFarColormapPosition;
+        return true;
+    }
+    float value = uintBitsToFloat(bits) + ubuf.valueOrigin;
+    if (logScale) {
+        if (value <= 0.0) {
+            return false;
+        }
+        value = safeLog10(value);
+        lo = safeLog10(lo);
+        hi = safeLog10(hi);
+    }
+    float range = hi - lo;
+    if (abs(range) > 0.0) {
+        position = clamp((value - lo) / range, -kFarColormapPosition, kFarColormapPosition);
+    }
+    return true;
+}
+
+// Returns where bar `index` lies on the colormap, from 0 to 1, or -1 when it keeps the rectangle color.
+// A ranged bar's position is the middle of its edges on the colormap. Positions beyond the range
+// clamp to its ends.
+float barColormapPosition(int index) {
+    if (ubuf.colorSource < 0.5) {
+        return -1.0;
+    }
+    int stride = ubuf.ranged > 0.5 ? 3 : 2;
+    int base = index * stride;
+    float position;
+    if (ubuf.colorSource < 1.5) {
+        return colormapPosition(fetchFloatBits(base + stride - 1), position) ? clamp(position, 0.0, 1.0) : -1.0;
+    }
+    if (!colormapPosition(fetchFloatBits(base), position)) {
+        return -1.0;
+    }
+    if (ubuf.ranged > 0.5) {
+        float end;
+        if (!colormapPosition(fetchFloatBits(base + 1), end)) {
+            return -1.0;
+        }
+        position = 0.5 * (position + end);
+    }
+    return clamp(position, 0.0, 1.0);
+}
+
+// Returns the fill color of bar `index`: the hover color, its colormap color, or the rectangle color.
+vec4 barFillColor(int index) {
+    float t = index == int(ubuf.hoveredIndex) ? -1.0 : barColormapPosition(index);
+    if (t < 0.0) {
+        return rectFillColor(index, vertexColor);
+    }
+    vec4 color = textureLod(colorMapSampler, vec2(t, 0.5), 0.0);
+    color.a *= ubuf.opacity;
+    return color;
+}
+
 void main() {
     int index = int(barId);
-    v_color = rectFillColor(index, vertexColor);
+    v_color = barFillColor(index);
     v_borderColor = vec4(ubuf.borderColor.rgb, ubuf.borderColor.a * ubuf.opacity);
     v_borderWidth = ubuf.borderWidth;
 

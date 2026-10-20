@@ -7,7 +7,7 @@
 //
 #pragma once
 
-#include "QAccelPlot/series/PlotSeries.hpp"
+#include "QAccelPlot/series/ColormappedSeries.hpp"
 #include "QAccelPlot/series/RectVertexCache.hpp"
 #include "QAccelPlot/series/RectangleBorder.hpp"
 #include "QAccelPlot/series/SpatialGrid.hpp"
@@ -49,6 +49,28 @@ class TransitionRunner;
 /// with one outside \c categoryColors, use \c color. For grouped bars, use one series per group
 /// with a narrower \c barWidth and a different \c barOffset.
 ///
+/// \par Colormap
+/// Assign a \c colormap to color each bar by \c colorSource: its \c value, or its \c position. The
+/// position of a ranged bar is the middle of its edges as the colormap's \c norm places them, and
+/// \c barOffset does not apply. A colormap with at least two stops overrides \c color and
+/// \c categoryColors, and \c hoverColor still marks the hovered bar. Values outside the value range
+/// take the color at its nearer end. A bar whose source the norm cannot map, such as a non-positive
+/// one under \c Log, keeps \c color or its category color. Under \c Log, an unset bound resolved
+/// from such a bar is not positive, so every bar keeps its color; set \c Colormap::min above zero.
+/// Bars can be histogram bins colored by their bin, with a \c ColorBar or the position axis as the
+/// key:
+///
+/// \code
+/// QAccelPlot.BarSeries {
+///     orientation: Qt.Horizontal
+///     colorSource: QAccelPlot.BarSeries.Position
+///     colormap: QAccelPlot.Colormap { preset: QAccelPlot.Colormap.Viridis }
+/// }
+/// \endcode
+///
+/// The value range is scanned only while a colormap is assigned, so streaming bars without one does
+/// not scan them. Without a colormap, \c dataValueMin and \c dataValueMax are 0 and 1.
+///
 /// \par Transitions
 /// Assign a \c MorphTransition or \c DrawTransition to \c transition to animate data updates.
 /// With \c MorphTransition, bars move to their new position and value, new bars grow from
@@ -61,8 +83,8 @@ class TransitionRunner;
 /// \par Limits
 /// Up to 16,777,216 (2^24) bars are drawn correctly, as the shader indexes bars in single precision.
 ///
-/// \sa RectangleSeries, Axis, MorphTransition, DrawTransition
-class BarSeries : public PlotSeries {
+/// \sa RectangleSeries, Axis, Colormap, ColorBar, MorphTransition, DrawTransition
+class BarSeries : public ColormappedSeries {
     Q_OBJECT
     QML_NAMED_ELEMENT(BarSeries)
 
@@ -82,6 +104,8 @@ class BarSeries : public PlotSeries {
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
     /// \brief Fill colors indexed by each bar's \c category. Default: empty.
     Q_PROPERTY(QList<QColor> categoryColors READ categoryColors WRITE setCategoryColors NOTIFY categoryColorsChanged)
+    /// \brief What the \c colormap maps to a bar's color. Default: \c Value.
+    Q_PROPERTY(ColorSource colorSource READ colorSource WRITE setColorSource NOTIFY colorSourceChanged)
     /// \brief Grouped outline settings, e.g. <tt>border.width</tt> and <tt>border.color</tt>. No outline by default.
     Q_PROPERTY(RectangleBorder* border READ border CONSTANT)
     /// \brief Fill color of the bar under the cursor. Default: an invalid color, no highlight.
@@ -94,6 +118,13 @@ class BarSeries : public PlotSeries {
     Q_PROPERTY(int hoveredIndex READ hoveredIndex NOTIFY hoveredIndexChanged)
 
 public:
+    /// \brief The part of a bar that the \c colormap maps to its color.
+    enum class ColorSource {
+        Value,   ///< \brief The bar's value.
+        Position ///< \brief The bar's position, or the middle of a ranged bar's edges.
+    };
+    Q_ENUM(ColorSource)
+
     /// \brief Constructs a BarSeries with the given \a parent.
     explicit BarSeries(QQuickItem* parent = nullptr);
     /// \brief Destroys the series, ending its animation on the assigned transition.
@@ -133,6 +164,11 @@ public:
     QList<QColor> categoryColors() const;
     /// \brief Sets the fill colors indexed by category to \a colors.
     void setCategoryColors(const QList<QColor>& colors);
+
+    /// \brief Returns what the colormap maps to a bar's color.
+    ColorSource colorSource() const;
+    /// \brief Sets what the colormap maps to a bar's color to \a source.
+    void setColorSource(ColorSource source);
 
     /// \brief Returns the grouped outline settings. The object is owned by the series.
     RectangleBorder* border() const;
@@ -220,6 +256,8 @@ signals:
     void colorChanged();
     /// \brief Emitted when the categoryColors property changes.
     void categoryColorsChanged();
+    /// \brief Emitted when the colorSource property changes.
+    void colorSourceChanged();
     /// \brief Emitted when the hoverColor property changes.
     void hoverColorChanged();
     /// \brief Emitted when the transition property changes.
@@ -247,8 +285,12 @@ protected:
     /// \brief Repaints with the coordinates mapped for the new scale.
     void onAxisScaleChanged() override;
     DataRanges computeDataRanges() const override;
-    /// \brief Refreshes the vertices, the hover index, and the count after the bars changed.
+    /// \brief Refreshes the vertices, the hover index, the count, and the value range after the bars changed.
     void onDataPointsChanged(DataChange change, int previousCount) override;
+    /// \brief Returns the span of the finite \c colorSource values while a colormap is assigned.
+    ///
+    /// Ranged bars contribute both edges for \c Position.
+    std::optional<ValueSpan> scanValueRange() const override;
 
 private:
     // A set of bars: count bars of stride values each, with one category per bar or none.
@@ -306,6 +348,10 @@ private:
     QSGNode* releaseNode(QSGNode* oldNode) const;
     // Sets the uniforms for drawing the first \a renderCount of the drawn bars.
     void updateMaterial(BarMaterial& material, int renderCount) const;
+    // Uploads the colormap ramp and sets the uniforms that place each bar on it.
+    void updateColormapUniforms(BarMaterial& material, QQuickWindow* window) const;
+    // True when the colormap colors the bars instead of color and categoryColors.
+    bool colormapped() const;
     void ensureSpatialGrid() const;
     // Builds the vertices of the first \a barCount of the drawn bars.
     void buildVertexCache(int barCount);
@@ -317,6 +363,7 @@ private:
     qreal minimumWidth_{1.0};
     QColor color_;
     QList<QColor> categoryColors_;
+    ColorSource colorSource_{ColorSource::Value};
     RectangleBorder* border_{new RectangleBorder{this}};
     QColor hoverColor_;
     int hoveredIndex_{-1};

@@ -30,7 +30,7 @@ namespace QAccelPlot {
 /// shared between series that resolve different ranges. Each series reports what it resolved
 /// through \c ColormappedSeries::dataValueMin() and \c ColormappedSeries::dataValueMax().
 ///
-/// \sa PointCloud, HeatmapSeries, GradientFill, GradientStroke
+/// \sa PointCloud, HeatmapSeries, BarSeries, GradientFill, GradientStroke
 class Colormap : public QObject {
     Q_OBJECT
     QML_NAMED_ELEMENT(Colormap)

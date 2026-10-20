@@ -27,7 +27,7 @@ namespace QAccelPlot {
 
 /// \brief A continuous key that shows how a series' \c Colormap maps values to colors.
 ///
-/// Draws the color ramp of a \c PointCloud or \c HeatmapSeries as a strip, with ticks and labels for
+/// Draws the color ramp of a \c PointCloud, \c HeatmapSeries, or \c BarSeries as a strip, with ticks and labels for
 /// the value range the series resolved (\c ColormappedSeries::dataValueMin and
 /// \c ColormappedSeries::dataValueMax). Ticks follow the colormap's \c norm, so a \c Log colormap
 /// gets decade ticks. The bar redraws when the colormap, the resolved range, or the assigned colormap
@@ -56,7 +56,7 @@ namespace QAccelPlot {
 /// The gestures write \c Colormap::min and \c Colormap::max, so every series sharing the colormap
 /// follows. A QML binding on either bound overrides them when it is next evaluated.
 ///
-/// \sa ColormappedSeries, PointCloud, HeatmapSeries, Colormap, AxisTicker
+/// \sa ColormappedSeries, PointCloud, HeatmapSeries, BarSeries, Colormap, AxisTicker
 class ColorBar : public QQuickPaintedItem {
     Q_OBJECT
     QML_NAMED_ELEMENT(ColorBar)

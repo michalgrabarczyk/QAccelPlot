@@ -1,5 +1,5 @@
 ---
-description: "Draw bar charts in QAccelPlot with BarSeries: vertical and horizontal bars, grouped bars, custom baselines, colors by category, hover, animated updates, and C++ data paths."
+description: "Draw bar charts in QAccelPlot with BarSeries: vertical and horizontal bars, grouped bars, custom baselines, colors by category or through a colormap, hover, animated updates, and C++ data paths."
 ---
 
 <!--
@@ -108,6 +108,40 @@ QAccelPlot.BarSeries {
 `setCategories()` replaces the categories without changing the data. Outlines
 are set with `border.width` and `border.color`.
 
+## Color bars by value
+
+Assign a [`Colormap`][colormap] to color each bar from `colorSource`:
+
+```qml
+QAccelPlot.BarSeries {
+    colorSource: QAccelPlot.BarSeries.Position
+    colormap: QAccelPlot.Colormap {
+        preset: QAccelPlot.Colormap.Viridis
+        min: 0
+        max: 10
+    }
+}
+```
+
+| `colorSource` | Mapped to a color |
+| --- | --- |
+| `BarSeries.Value` (default) | The bar's value |
+| `BarSeries.Position` | The bar's position; for a ranged bar, the middle of its edges under the colormap's `norm` |
+
+- The colormap overrides `color` and `categoryColors`; `hoverColor` still
+  marks the hovered bar.
+- `min` and `max` work as for [point clouds](point-clouds.md#color-points-by-value).
+  An unset bound resolves from the data, and ranged bars contribute both edges.
+  `dataValueMin` and `dataValueMax` expose the resolved range.
+- Values outside the range take the color at its nearer end.
+- `barOffset` does not move a bar's position on the colormap.
+- Under `norm: Colormap.Log`, a bar at or below zero keeps `color` or its
+  category color. If an unset bound resolves from such a bar, the range is not
+  positive and every bar keeps its color; set `min` above zero.
+- A [`ColorBar`](point-clouds.md#show-a-color-bar) keys the series. To key a
+  heatmap with a histogram of its values instead, see
+  [Use a histogram as a color bar](histograms.md#use-a-histogram-as-a-color-bar).
+
 ## Hover
 
 `hoveredIndex` is the bar under the mouse pointer, or -1. `barAt(index)`
@@ -156,3 +190,4 @@ infinite value reaches the plot edge.
 Complete source: [`examples/plot_types/bar_chart`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/bar_chart)
 
 [bar-series]: ../api/classQAccelPlot_1_1BarSeries.md
+[colormap]: ../api/classQAccelPlot_1_1Colormap.md
