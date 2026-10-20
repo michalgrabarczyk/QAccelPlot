@@ -262,7 +262,7 @@ bool PlotExporter::startCapture(const Operation operation, const QString& path, 
 
     const auto dpi = dpi_ > 0.0 ? dpi_ : kLogicalDpi * scale;
     capture_ = std::make_unique<Capture>(operation, path, format, quality_, dpi, plot_.data(), scale);
-    plot_->setTransparentBackground(transparentBackground_);
+    plot_->beginExport(transparentBackground_);
     capture_->grab = plot_->grabToImage(grabTargetSize(imagePixelSize(plot_, scale), plot_->window()->effectiveDevicePixelRatio()));
     if (!capture_->grab) {
         endCapture();
@@ -292,6 +292,9 @@ QString PlotExporter::captureError(const qreal scale) const
 {
     if (!plot_) {
         return QStringLiteral("No plot is set.");
+    }
+    if (plot_->exporting_) {
+        return QStringLiteral("Another export of this plot is in progress.");
     }
     auto* window = plot_->window();
     if (!window) {
@@ -366,7 +369,7 @@ void PlotExporter::endCapture()
         return;
     }
     if (capture_->plot) {
-        capture_->plot->setTransparentBackground(false);
+        capture_->plot->endExport();
     }
     releaseGrab(capture_->grab, capture_->window, capture_->grabFinished);
     capture_.reset();

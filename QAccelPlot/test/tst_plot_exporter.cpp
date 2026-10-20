@@ -83,6 +83,7 @@ private slots:
     void leavesOutBackgroundsOnlyForTheCapture();
     void rasterizesPaintedItemsAtScaleAndRestoresThem();
     void rejectsRequestWhileBusy();
+    void rejectsSecondExporterOfSamePlot();
     void savesPng();
     void savesJpegOverWhite();
     void savesToFileUrl();
@@ -337,6 +338,31 @@ void PlotExporterTest::rejectsRequestWhileBusy()
     QTRY_COMPARE(finished.count(), 2);
     QCOMPARE(finished.at(1).at(0).toBool(), true);
     QVERIFY(!exporter.busy());
+}
+
+void PlotExporterTest::rejectsSecondExporterOfSamePlot()
+{
+    auto* axis = plot_->xAxis();
+    const auto originalTextureSize = axis->textureSize();
+    auto first = PlotExporter{};
+    first.setPlot(plot_);
+    first.setScale(3.0);
+    first.setTransparentBackground(true);
+    auto second = PlotExporter{};
+    second.setPlot(plot_);
+    auto firstFinished = QSignalSpy{&first, &PlotExporter::finished};
+    auto secondFinished = QSignalSpy{&second, &PlotExporter::finished};
+
+    QVERIFY(first.grabImage());
+    QTest::ignoreMessage(QtWarningMsg, "PlotExporter: Another export of this plot is in progress.");
+    QVERIFY(!second.grabImage());
+    QCOMPARE(secondFinished.count(), 1);
+    QVERIFY(firstFinished.wait());
+    QCOMPARE(firstFinished.constFirst().at(0).toBool(), true);
+
+    QCOMPARE(axis->textureSize(), originalTextureSize);
+    QVERIFY(isColor(window_->grabWindow().pixelColor(2, 2), Qt::blue));
+    QVERIFY(!grab(second).isNull());
 }
 
 void PlotExporterTest::savesPng()

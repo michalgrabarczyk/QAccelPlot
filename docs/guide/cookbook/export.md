@@ -61,10 +61,10 @@ does.
   minimized, or destroyed first. Encoding and writing the file run on a worker
   thread, and an existing file is replaced only once the new one is complete.
 - A request fails immediately, returning `false`, when another request is in
-  progress (`busy`), the file format is unsupported, the plot is hidden, has no
-  size, or is not in a window, the window is hidden or minimized, the window
-  uses the software backend, or the image would exceed the GPU's maximum
-  texture size.
+  progress (`busy`), another exporter is capturing the same plot, the file
+  format is unsupported, the plot is hidden, has no size, or is not in a
+  window, the window is hidden or minimized, the window uses the software
+  backend, or the image would exceed the GPU's maximum texture size.
 - With `transparentBackground` set, the plot shows no background for the one
   frame the capture is taken in.
 

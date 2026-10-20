@@ -28,7 +28,7 @@ namespace QAccelPlot {
 /// hardware scene graph backend.
 ///
 /// Every request is asynchronous and ends with exactly one \c finished() signal. A request made
-/// while \c busy is rejected. The capture is taken on the next frame, and fails when the window
+/// while \c busy, or while another exporter captures the same plot, is rejected. The capture is taken on the next frame, and fails when the window
 /// is hidden, minimized, or destroyed first; encoding and writing a file run on a worker thread.
 ///
 /// \par Usage

@@ -1097,13 +1097,22 @@ void QAccelPlot::registerSeries(QQuickItem* item)
     emit seriesChanged();
 }
 
-void QAccelPlot::setTransparentBackground(const bool transparent)
+void QAccelPlot::beginExport(const bool transparentBackground)
 {
-    if (transparentBackground_ == transparent) {
-        return;
+    exporting_ = true;
+    transparentBackground_ = transparentBackground;
+    if (transparentBackground_) {
+        update();
     }
-    transparentBackground_ = transparent;
-    update();
+}
+
+void QAccelPlot::endExport()
+{
+    exporting_ = false;
+    if (transparentBackground_) {
+        transparentBackground_ = false;
+        update();
+    }
 }
 
 } // namespace QAccelPlot
