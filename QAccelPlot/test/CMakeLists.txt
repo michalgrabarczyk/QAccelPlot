@@ -131,3 +131,19 @@ add_qaccelplot_test(tst_histogram_qml      core tst_histogram_qml.cpp)
 # Loads a QML scene, so it needs the QML module plugin.
 target_link_libraries(tst_histogram_qml PRIVATE QAccelPlot::QAccelPlot)
 qt_import_qml_plugins(tst_histogram_qml)
+
+add_qaccelplot_test(tst_plot_exporter      core tst_plot_exporter.cpp)
+# Renders a QML scene, so it needs the QML module plugin.
+target_link_libraries(tst_plot_exporter PRIVATE QAccelPlot::QAccelPlot)
+qt_import_qml_plugins(tst_plot_exporter)
+# Runs again at a device pixel ratio of 2, where Qt 6.2 and later versions size item grabs differently.
+add_test(NAME tst_plot_exporter_hidpi COMMAND tst_plot_exporter)
+set(_hidpi_environment "QT_FORCE_STDERR_LOGGING=1" "QT_SCALE_FACTOR=2")
+if(WIN32)
+    list(PREPEND _hidpi_environment "${_qaccelplot_windows_path_environment}")
+endif()
+set_tests_properties(tst_plot_exporter_hidpi PROPERTIES
+    LABELS "unit-test;unit-test-core"
+    ENVIRONMENT "${_hidpi_environment}"
+)
+set_property(TEST tst_plot_exporter_hidpi PROPERTY FAIL_REGULAR_EXPRESSION ${_qaccelplot_unexpected_warnings})

@@ -44,6 +44,7 @@ DOC_FILES = [
     GUIDE_DIR / "cookbook" / "histograms.md",
     GUIDE_DIR / "cookbook" / "bands.md",
     GUIDE_DIR / "cookbook" / "background-data.md",
+    GUIDE_DIR / "cookbook" / "export.md",
     GUIDE_DIR / "api.md",
 ]
 

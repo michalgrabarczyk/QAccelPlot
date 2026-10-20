@@ -5,7 +5,9 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
+#include "QAccelPlot/QAccelPlot.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/export/PlotExporter.hpp"
 #include "QAccelPlot/series/BandSeries.hpp"
 #include "QAccelPlot/series/BarSeries.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
@@ -16,6 +18,7 @@
 #include <QQuickWindow>
 #include <QRegularExpression>
 #include <QSGRendererInterface>
+#include <QSignalSpy>
 #include <QtTest/QtTest>
 
 #include <vector>
@@ -30,7 +33,7 @@ constexpr auto kDataUpdates = 3;
 } // namespace
 
 // The software scene graph backend cannot run the series' shaders. Every series must skip drawing
-// there, once with a warning, and keep working while its data changes.
+// there, once with a warning, and keep working while its data changes. Exporting a plot fails with an error.
 class SoftwareBackendTest : public QObject {
     Q_OBJECT
 
@@ -40,6 +43,7 @@ private slots:
     void bandSeriesIsSkipped();
     void rectangleSeriesIsSkipped();
     void barSeriesIsSkipped();
+    void exportFails();
 
 private:
     // Renders \a Series after each of several data updates and expects its one warning.
@@ -69,6 +73,25 @@ void SoftwareBackendTest::rectangleSeriesIsSkipped()
 void SoftwareBackendTest::barSeriesIsSkipped()
 {
     renderAfterDataUpdates<BarSeries>("BarSeries", {0.5, 0.5}, 1);
+}
+
+void SoftwareBackendTest::exportFails()
+{
+    auto window = QQuickWindow{};
+    window.resize(kSize, kSize);
+    auto plot = QAccelPlot{};
+    plot.setSize({kSize, kSize});
+    plot.setParentItem(window.contentItem());
+    window.show();
+    QVERIFY(QTest::qWaitForWindowExposed(&window));
+
+    auto exporter = PlotExporter{};
+    exporter.setPlot(&plot);
+    auto finished = QSignalSpy{&exporter, &PlotExporter::finished};
+    QTest::ignoreMessage(QtWarningMsg, "PlotExporter: Exporting requires a hardware scene graph backend.");
+    QVERIFY(!exporter.grabImage());
+    QCOMPARE(finished.count(), 1);
+    QCOMPARE(finished.constFirst().at(0).toBool(), false);
 }
 
 template <typename Series> void SoftwareBackendTest::renderAfterDataUpdates(const char* typeName, std::vector<double> data, const int recordCount)

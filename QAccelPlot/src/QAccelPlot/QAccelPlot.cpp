@@ -702,10 +702,10 @@ QSGNode* QAccelPlot::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
     auto* borderBottom = static_cast<QSGRectangleNode*>(borderRight->nextSibling());
 
     axesBg->setRect(QRectF(0, 0, width(), height()));
-    axesBg->setColor(axesAreaColor_);
+    axesBg->setColor(transparentBackground_ ? QColor(Qt::transparent) : axesAreaColor_);
 
     plotBg->setRect(plotRect_);
-    plotBg->setColor(plotAreaColor_);
+    plotBg->setColor(transparentBackground_ ? QColor(Qt::transparent) : plotAreaColor_);
 
     gridNode_->update(grid_, xAxis_, yAxis_, plotRect_);
 
@@ -1095,6 +1095,15 @@ void QAccelPlot::registerSeries(QQuickItem* item)
     series->setPlotRect(plotRect_);
     series_.append(series);
     emit seriesChanged();
+}
+
+void QAccelPlot::setTransparentBackground(const bool transparent)
+{
+    if (transparentBackground_ == transparent) {
+        return;
+    }
+    transparentBackground_ = transparent;
+    update();
 }
 
 } // namespace QAccelPlot

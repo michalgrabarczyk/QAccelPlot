@@ -133,6 +133,7 @@ Explore runnable applications in the [`examples/`](examples/) directory:
 | Axes | **[Multiple Axes](examples/axes/multiple_axes/)** | Dual wavelength/frequency scale, multi-rate time axes, and ECG panels sharing one time axis. |
 | Data | **[Realtime](examples/data/realtime/)** | Scrolling vibration signal in a 20-second window, updated every frame. |
 | Data | **[Missing Data](examples/data/missing_data/)** | NaN, ±Inf, and log-invalid data points drawn as gaps or connected. |
+| Data | **[Export](examples/data/export/)** | Save a plot as PNG, JPEG, WebP, or TIFF at a chosen scale and background, or copy it to the clipboard. |
 | Interaction | **[Annotations](examples/interaction/annotations/)** | QML overlays anchored to data coordinates. |
 | Interaction | **[Measurement Tools](examples/interaction/measurement_tools/)** | Distance ruler, angle tool, rectangular selection, and point markers. |
 | Interaction | **[Data Inspection](examples/interaction/data_inspection/)** | Crosshair, per-series tooltip, and region selection with statistics over one million data points. |
@@ -204,7 +205,7 @@ ctest --test-dir build --output-on-failure
 Planned before 1.0:
 
 - Heatmaps.
-- SVG and PNG export.
+- SVG export.
 - Per-axis pan and zoom limits.
 - Touch panning and pinch zoom.
 

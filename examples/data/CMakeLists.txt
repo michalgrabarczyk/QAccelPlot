@@ -5,5 +5,6 @@
 # This file is also available under a separate commercial license.
 # See COMMERCIAL-LICENSING.md for contact information.
 #
+add_subdirectory(export)
 add_subdirectory(missing_data)
 add_subdirectory(realtime)
