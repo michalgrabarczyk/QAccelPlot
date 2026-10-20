@@ -17,7 +17,7 @@
 //
 #pragma once
 
-#include "QAccelPlot/series/PlotSeries.hpp"
+#include "QAccelPlot/series/ColormappedSeries.hpp"
 #include "QAccelPlot/series/RectVertexCache.hpp"
 #include "QAccelPlot/series/RectangleBorder.hpp"
 #include "QAccelPlot/series/SpatialGrid.hpp"
@@ -38,7 +38,7 @@ namespace QAccelPlot {
 class BarMaterial;
 class TransitionRunner;
 
-class BarSeries : public PlotSeries {
+class BarSeries : public ColormappedSeries {
     Q_OBJECT
     QML_NAMED_ELEMENT(BarSeries)
 
@@ -50,6 +50,7 @@ class BarSeries : public PlotSeries {
     Q_PROPERTY(qreal minimumWidth READ minimumWidth WRITE setMinimumWidth NOTIFY minimumWidthChanged)
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
     Q_PROPERTY(QList<QColor> categoryColors READ categoryColors WRITE setCategoryColors NOTIFY categoryColorsChanged)
+    Q_PROPERTY(ColorSource colorSource READ colorSource WRITE setColorSource NOTIFY colorSourceChanged)
     Q_PROPERTY(RectangleBorder* border READ border CONSTANT)
     Q_PROPERTY(QColor hoverColor READ hoverColor WRITE setHoverColor NOTIFY hoverColorChanged)
     Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
@@ -57,6 +58,13 @@ class BarSeries : public PlotSeries {
     Q_PROPERTY(int hoveredIndex READ hoveredIndex NOTIFY hoveredIndexChanged)
 
 public:
+    enum class ColorSource {
+        Value,   
+        Position 
+    };
+    Q_ENUM(ColorSource)
+
+    
     explicit BarSeries(QQuickItem* parent = nullptr);
     ~BarSeries() override;
 
@@ -80,6 +88,9 @@ public:
 
     QList<QColor> categoryColors() const;
     void setCategoryColors(const QList<QColor>& colors);
+
+    ColorSource colorSource() const;
+    void setColorSource(ColorSource source);
 
     RectangleBorder* border() const;
 
@@ -128,6 +139,7 @@ signals:
     void minimumWidthChanged();
     void colorChanged();
     void categoryColorsChanged();
+    void colorSourceChanged();
     void hoverColorChanged();
     void transitionChanged();
     void countChanged();
@@ -146,6 +158,7 @@ protected:
     void onAxisScaleChanged() override;
     DataRanges computeDataRanges() const override;
     void onDataPointsChanged(DataChange change, int previousCount) override;
+    std::optional<ValueSpan> scanValueRange() const override;
 
 private:
     // A set of bars: count bars of stride values each, with one category per bar or none.
@@ -203,6 +216,10 @@ private:
     QSGNode* releaseNode(QSGNode* oldNode) const;
     // Sets the uniforms for drawing the first \a renderCount of the drawn bars.
     void updateMaterial(BarMaterial& material, int renderCount) const;
+    // Uploads the colormap ramp and sets the uniforms that place each bar on it.
+    void updateColormapUniforms(BarMaterial& material, QQuickWindow* window) const;
+    // True when the colormap colors the bars instead of color and categoryColors.
+    bool colormapped() const;
     void ensureSpatialGrid() const;
     // Builds the vertices of the first \a barCount of the drawn bars.
     void buildVertexCache(int barCount);
@@ -214,6 +231,7 @@ private:
     qreal minimumWidth_{1.0};
     QColor color_;
     QList<QColor> categoryColors_;
+    ColorSource colorSource_{ColorSource::Value};
     RectangleBorder* border_{new RectangleBorder{this}};
     QColor hoverColor_;
     int hoveredIndex_{-1};

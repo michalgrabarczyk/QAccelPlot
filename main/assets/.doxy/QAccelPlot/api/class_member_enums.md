@@ -5,6 +5,7 @@
 
 ## c
 
+* **ColorSource** ([**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md))
 * **Coverage** ([**QAccelPlot::SourceInspection**](classQAccelPlot_1_1SourceInspection.md))
 
 

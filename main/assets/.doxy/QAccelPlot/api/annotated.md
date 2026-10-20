@@ -21,7 +21,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **class** [**BandMaterial**](classQAccelPlot_1_1BandMaterial.md) _QSGMaterial that fills a band between the low and high values of_ `(x, low, high)` _data points._    
         * **struct** [**Vertex**](structQAccelPlot_1_1BandMaterial_1_1Vertex.md) [_**Vertex**_](structQAccelPlot_1_1BandMaterial_1_1Vertex.md) _layout of the band triangle strip: two vertices per data point._    
     * **class** [**BandSeries**](classQAccelPlot_1_1BandSeries.md) _A hardware-accelerated QML item that fills the area between a low and a high value at each X._     
-    * **class** [**BarMaterial**](classQAccelPlot_1_1BarMaterial.md) _QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry uniforms._    
+    * **class** [**BarMaterial**](classQAccelPlot_1_1BarMaterial.md) _QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry and colormap uniforms._    
     * **class** [**BarSeries**](classQAccelPlot_1_1BarSeries.md) _A hardware-accelerated QML item that renders a bar chart._     
     * **class** [**ColorBar**](classQAccelPlot_1_1ColorBar.md) _A continuous key that shows how a series'_ `Colormap` _maps values to colors._    
     * **class** [**ColorPalette**](classQAccelPlot_1_1ColorPalette.md) _A named set of theme colors shared by QML (via the_ `Colors` _singleton) and C++ defaults._    

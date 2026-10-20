@@ -17,6 +17,7 @@
 //
 #pragma once
 
+#include "QAccelPlot/materials/GradientTexture.hpp"
 #include "QAccelPlot/materials/RectMaterial.hpp"
 
 namespace QAccelPlot {
@@ -33,6 +34,12 @@ public:
     float baseline{0.0f};   
     float horizontal{0.0f}; 
     float ranged{0.0f};     
+    float colorSource{0.0f};
+    float valueMin{0.0f};      
+    float valueMax{1.0f};      
+    float valueOrigin{0.0f};   
+    float valueLogScale{0.0f}; 
+    GradientTexture colorMap;  
 
 protected:
     int compareExtra(const QSGMaterial* other) const override;

@@ -1881,11 +1881,15 @@
   have one, such as <code>Plot.legendModel</code>.</li>
 <li>A <code>HeatmapSeries</code> tab in the <code>showcases/performance</code> example, streaming a
   scrolling spectrogram of up to 10M cells.</li>
+<li>Colormapped bars: <code>BarSeries.colormap</code> colors each bar by its value or, with
+  <code>colorSource: BarSeries.Position</code>, by its position or bin. The Heatmap
+  example keys its interference pattern with a histogram of the cells in view.</li>
 </ul>
 <h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
 <ul>
-<li><code>ColorBar.series</code> takes any <code>ColormappedSeries</code>, the new base of <code>PointCloud</code>
-  and <code>HeatmapSeries</code>. In C++, <code>ColorBar::series()</code> returns a <code>ColormappedSeries*</code>.</li>
+<li><code>ColorBar.series</code> takes any <code>ColormappedSeries</code>, the new base of <code>PointCloud</code>,
+  <code>HeatmapSeries</code>, and <code>BarSeries</code>. In C++, <code>ColorBar::series()</code> returns a
+  <code>ColormappedSeries*</code>.</li>
 <li><code>Legend</code> takes a <code>model</code> instead of <code>series</code>. Hidden series have no entry, and
   unnamed series are listed as "Series N".</li>
 <li><code>inspection.status</code> is <code>Ready</code> for bar, rectangle, band, and heatmap series

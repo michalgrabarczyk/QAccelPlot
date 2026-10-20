@@ -21,7 +21,7 @@ _A hardware-accelerated QML item that renders a bar chart._ [More...](#detailed-
 
 
 
-Inherits the following classes: [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
+Inherits the following classes: [QAccelPlot::ColormappedSeries](classQAccelPlot_1_1ColormappedSeries.md)
 
 
 
@@ -32,8 +32,12 @@ Inherits the following classes: [QAccelPlot::PlotSeries](classQAccelPlot_1_1Plot
 flowchart TB
   classQAccelPlot_1_1BarSeries["QAccelPlot::BarSeries"]
 
+  classQAccelPlot_1_1ColormappedSeries["QAccelPlot::ColormappedSeries"]
+  classQAccelPlot_1_1ColormappedSeries --> classQAccelPlot_1_1BarSeries
+  click classQAccelPlot_1_1ColormappedSeries "../classQAccelPlot_1_1ColormappedSeries/" "Open QAccelPlot::ColormappedSeries"
+
   classQAccelPlot_1_1PlotSeries["QAccelPlot::PlotSeries"]
-  classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1BarSeries
+  classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1ColormappedSeries
   click classQAccelPlot_1_1PlotSeries "../classQAccelPlot_1_1PlotSeries/" "Open QAccelPlot::PlotSeries"
 
   external_base_classQAccelPlot_1_1PlotSeries_1["QQuickItem"]
@@ -50,6 +54,13 @@ flowchart TB
 
 
 
+
+
+## Public Types
+
+| Type | Name |
+| ---: | :--- |
+| enum  | [**ColorSource**](#enum-colorsource)  <br>_The part of a bar that the_ `colormap` _maps to its color._ |
 
 
 
@@ -84,6 +95,16 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 
 
+
+
+
+
+
+
+
+
+
+
 ## Public Properties
 
 | Type | Name |
@@ -94,12 +115,24 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | property [**RectangleBorder**](classQAccelPlot_1_1RectangleBorder.md) \* | [**border**](classQAccelPlot_1_1BarSeries.md#property-border-12)  <br>_Grouped outline settings, e.g._ `border.width` _and_`border.color` _. No outline by default._ |
 | property QList&lt; QColor &gt; | [**categoryColors**](classQAccelPlot_1_1BarSeries.md#property-categorycolors-12)  <br>_Fill colors indexed by each bar's_ `category` _. Default: empty._ |
 | property QColor | [**color**](classQAccelPlot_1_1BarSeries.md#property-color-12)  <br>_Fill color of bars without a category color. Default:_ `Colors.dark.seriesPrimary` _._ |
+| property [**ColorSource**](classQAccelPlot_1_1BarSeries.md#enum-colorsource) | [**colorSource**](classQAccelPlot_1_1BarSeries.md#property-colorsource-12)  <br>_What the_ `colormap` _maps to a bar's color. Default:_`Value` _._ |
 | property int | [**count**](classQAccelPlot_1_1BarSeries.md#property-count-12)  <br>_Read-only: number of bars currently loaded._  |
 | property QColor | [**hoverColor**](classQAccelPlot_1_1BarSeries.md#property-hovercolor-12)  <br>_Fill color of the bar under the cursor. Default: an invalid color, no highlight._  |
 | property int | [**hoveredIndex**](classQAccelPlot_1_1BarSeries.md#property-hoveredindex-12)  <br>_Read-only: index of the bar under the cursor, or -1 when none._  |
 | property qreal | [**minimumWidth**](classQAccelPlot_1_1BarSeries.md#property-minimumwidth-12)  <br>_Minimum drawn bar width in pixels, so bars stay visible when zoomed out. Default: 1. Clamped to at least 0._  |
 | property Qt::Orientation | [**orientation**](classQAccelPlot_1_1BarSeries.md#property-orientation-12)  <br>_Direction the bars grow in. Default:_ `Qt.Vertical` _, positions on the X axis and values on the Y axis._ |
 | property [**DataTransition**](classQAccelPlot_1_1DataTransition.md) \* | [**transition**](classQAccelPlot_1_1BarSeries.md#property-transition-12)  <br>_Optional data transition animation applied when new data arrives._  |
+
+
+## Public Properties inherited from QAccelPlot::ColormappedSeries
+
+See [QAccelPlot::ColormappedSeries](classQAccelPlot_1_1ColormappedSeries.md)
+
+| Type | Name |
+| ---: | :--- |
+| property [**Colormap**](classQAccelPlot_1_1Colormap.md) \* | [**colormap**](classQAccelPlot_1_1ColormappedSeries.md#property-colormap-12)  <br>_Maps values to colors. What a series draws without one is described by the series._  |
+| property qreal | [**dataValueMax**](classQAccelPlot_1_1ColormappedSeries.md#property-datavaluemax-12)  <br>_Read-only: upper bound of the value range, taken from_ `Colormap::max` _when it is set and from the data otherwise._ |
+| property qreal | [**dataValueMin**](classQAccelPlot_1_1ColormappedSeries.md#property-datavaluemin-12)  <br>_Read-only: lower bound of the value range, taken from_ `Colormap::min` _when it is set and from the data otherwise._`ColorBar` _labels its ticks from this and_`dataValueMax` _._ |
 
 
 ## Public Properties inherited from QAccelPlot::PlotSeries
@@ -121,6 +154,8 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 
 
+
+
 ## Public Signals
 
 | Type | Name |
@@ -130,12 +165,23 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | signal void | [**baselineValueChanged**](classQAccelPlot_1_1BarSeries.md#signal-baselinevaluechanged)  <br>_Emitted when the baselineValue property changes._  |
 | signal void | [**categoryColorsChanged**](classQAccelPlot_1_1BarSeries.md#signal-categorycolorschanged)  <br>_Emitted when the categoryColors property changes._  |
 | signal void | [**colorChanged**](classQAccelPlot_1_1BarSeries.md#signal-colorchanged)  <br>_Emitted when the color property changes._  |
+| signal void | [**colorSourceChanged**](classQAccelPlot_1_1BarSeries.md#signal-colorsourcechanged)  <br>_Emitted when the colorSource property changes._  |
 | signal void | [**countChanged**](classQAccelPlot_1_1BarSeries.md#signal-countchanged)  <br>_Emitted when the bar count changes._  |
 | signal void | [**hoverColorChanged**](classQAccelPlot_1_1BarSeries.md#signal-hovercolorchanged)  <br>_Emitted when the hoverColor property changes._  |
 | signal void | [**hoveredIndexChanged**](classQAccelPlot_1_1BarSeries.md#signal-hoveredindexchanged)  <br>_Emitted when the hovered bar index changes._  |
 | signal void | [**minimumWidthChanged**](classQAccelPlot_1_1BarSeries.md#signal-minimumwidthchanged)  <br>_Emitted when the minimumWidth property changes._  |
 | signal void | [**orientationChanged**](classQAccelPlot_1_1BarSeries.md#signal-orientationchanged)  <br>_Emitted when the orientation property changes._  |
 | signal void | [**transitionChanged**](classQAccelPlot_1_1BarSeries.md#signal-transitionchanged)  <br>_Emitted when the transition property changes._  |
+
+
+## Public Signals inherited from QAccelPlot::ColormappedSeries
+
+See [QAccelPlot::ColormappedSeries](classQAccelPlot_1_1ColormappedSeries.md)
+
+| Type | Name |
+| ---: | :--- |
+| signal void | [**colormapChanged**](classQAccelPlot_1_1ColormappedSeries.md#signal-colormapchanged)  <br>_Emitted when the colormap property changes._  |
+| signal void | [**valueRangeChanged**](classQAccelPlot_1_1ColormappedSeries.md#signal-valuerangechanged)  <br>_Emitted when_ `dataValueMin` _or_`dataValueMax` _changes._ |
 
 
 ## Public Signals inherited from QAccelPlot::PlotSeries
@@ -157,6 +203,8 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 
 
+
+
 ## Public Functions
 
 | Type | Name |
@@ -171,6 +219,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  QList&lt; QColor &gt; | [**categoryColors**](#function-categorycolors-22) () const<br>_Returns the fill colors indexed by category._  |
 | virtual Q\_INVOKABLE void | [**clearData**](#function-cleardata) () override<br>_Removes all bars._  |
 |  QColor | [**color**](#function-color-22) () const<br>_Returns the bar fill color._  |
+|  [**ColorSource**](classQAccelPlot_1_1BarSeries.md#enum-colorsource) | [**colorSource**](#function-colorsource-22) () const<br>_Returns what the colormap maps to a bar's color._  |
 |  bool | [**contains**](#function-contains) (const QPointF & point) override const<br>_Returns_ `true` _when a bar lies under item position__point_ _._ |
 |  int | [**count**](#function-count-22) () const<br>_Returns the number of bars currently loaded._  |
 |  QColor | [**hoverColor**](#function-hovercolor-22) () const<br>_Returns the fill color of the hovered bar._  |
@@ -189,6 +238,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  Q\_INVOKABLE void | [**setCategories**](#function-setcategories) (const QList&lt; int &gt; & categories) <br>_Sets one category per bar. An empty list clears categories; any other size must equal_ `count` _._ |
 |  void | [**setCategoryColors**](#function-setcategorycolors) (const QList&lt; QColor &gt; & colors) <br>_Sets the fill colors indexed by category to_ _colors_ _._ |
 |  void | [**setColor**](#function-setcolor) (const QColor & color) <br>_Sets the fill color to_ _color_ _._ |
+|  void | [**setColorSource**](#function-setcolorsource) ([**ColorSource**](classQAccelPlot_1_1BarSeries.md#enum-colorsource) source) <br>_Sets what the colormap maps to a bar's color to_ _source_ _._ |
 |  Q\_INVOKABLE void | [**setData**](#function-setdata-16) (const QVariantList & bars) <br>_Loads bars from_ _bars_ _, a QML list of numbers or objects._ |
 |  void | [**setData**](#function-setdata-26) (std::vector&lt; double &gt; && data, std::vector&lt; int &gt; && categories, int barCount) <br>_Moves_ _data_ _and per-bar__categories_ _(empty, or exactly__barCount_ _) into the series._ |
 |  void | [**setData**](#function-setdata-36) (const double \* data, int count) <br>_Replaces the series data with_ _count_ _data points copied from an interleaved double array._ |
@@ -208,6 +258,18 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  void | [**setTransition**](#function-settransition) ([**DataTransition**](classQAccelPlot_1_1DataTransition.md) \* transition) <br>_Sets the data transition to_ _transition_ _._ |
 |  [**DataTransition**](classQAccelPlot_1_1DataTransition.md) \* | [**transition**](#function-transition-22) () const<br>_Returns the active data transition, or_ `nullptr` _if none._ |
 |   | [**~BarSeries**](#function-barseries) () override<br>_Destroys the series, ending its animation on the assigned transition._  |
+
+
+## Public Functions inherited from QAccelPlot::ColormappedSeries
+
+See [QAccelPlot::ColormappedSeries](classQAccelPlot_1_1ColormappedSeries.md)
+
+| Type | Name |
+| ---: | :--- |
+|  [**Colormap**](classQAccelPlot_1_1Colormap.md) \* | [**colormap**](classQAccelPlot_1_1ColormappedSeries.md#function-colormap-22) () const<br>_Returns the colormap, or_ `nullptr` _when none is assigned._ |
+|  qreal | [**dataValueMax**](classQAccelPlot_1_1ColormappedSeries.md#function-datavaluemax-22) () const<br>_Returns the resolved upper bound of the value range._  |
+|  qreal | [**dataValueMin**](classQAccelPlot_1_1ColormappedSeries.md#function-datavaluemin-22) () const<br>_Returns the resolved lower bound of the value range._  |
+|  void | [**setColormap**](classQAccelPlot_1_1ColormappedSeries.md#function-setcolormap) ([**Colormap**](classQAccelPlot_1_1Colormap.md) \* colormap) <br>_Sets the colormap to_ _colormap_ _._ |
 
 
 ## Public Functions inherited from QAccelPlot::PlotSeries
@@ -244,6 +306,10 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**yAxis**](classQAccelPlot_1_1PlotSeries.md#function-yaxis-22) () const<br> |
 |  std::optional&lt; [**DataExtent**](structQAccelPlot_1_1PlotSeries_1_1DataExtent.md) &gt; | [**yDataRange**](classQAccelPlot_1_1PlotSeries.md#function-ydatarange) () const<br>_Returns the extent this series reports to its vertical axis, or_ `std::nullopt` _when it has none._ |
 |   | [**~PlotSeries**](classQAccelPlot_1_1PlotSeries.md#function-plotseries) () override<br> |
+
+
+
+
 
 
 
@@ -297,6 +363,24 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Protected Functions
 
 | Type | Name |
@@ -310,9 +394,22 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | virtual [**InspectionRecord**](structQAccelPlot_1_1InspectionRecord.md) | [**inspectionRecord**](#function-inspectionrecord) (int index) override const<br>_Returns the bar at_ _index_ _with its position, value, and category._ |
 | virtual [**InspectionRecord**](structQAccelPlot_1_1InspectionRecord.md) | [**inspectionRecordAt**](#function-inspectionrecordat) (const QPointF & position) override const<br>_Returns the bar drawn at the series-local_ _position_ _._ |
 | virtual void | [**onAxisScaleChanged**](#function-onaxisscalechanged) () override<br>_Repaints with the coordinates mapped for the new scale._  |
-| virtual void | [**onDataPointsChanged**](#function-ondatapointschanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change, int previousCount) override<br>_Refreshes the vertices, the hover index, and the count after the bars changed._  |
+| virtual void | [**onDataPointsChanged**](#function-ondatapointschanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change, int previousCount) override<br>_Refreshes the vertices, the hover index, the count, and the value range after the bars changed._  |
 | virtual bool | [**recordInspectionSupported**](#function-recordinspectionsupported) () override const<br>_Returns true: bars are inspected as records._  |
+| virtual std::optional&lt; [**ValueSpan**](structQAccelPlot_1_1ColormappedSeries_1_1ValueSpan.md) &gt; | [**scanValueRange**](#function-scanvaluerange) () override const<br>_Returns the span of the finite_ `colorSource` _values while a colormap is assigned._ |
 |  QSGNode \* | [**updatePaintNode**](#function-updatepaintnode) (QSGNode \* oldNode, UpdatePaintNodeData \*) override<br> |
+
+
+## Protected Functions inherited from QAccelPlot::ColormappedSeries
+
+See [QAccelPlot::ColormappedSeries](classQAccelPlot_1_1ColormappedSeries.md)
+
+| Type | Name |
+| ---: | :--- |
+|   | [**ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md#function-colormappedseries) ([**DataPointStore::Layout**](structQAccelPlot_1_1DataPointStore_1_1Layout.md) layout, [**DataPointWording**](structQAccelPlot_1_1PlotSeries_1_1DataPointWording.md) wording, QQuickItem \* parent) <br>_Creates a series whose data points have_ _layout_ _;__wording_ _names them in warnings._ |
+|  const std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; & | [**colorStops**](classQAccelPlot_1_1ColormappedSeries.md#function-colorstops) () const<br>_Returns the ramp stops of the colormap, empty without one._  |
+| virtual std::optional&lt; [**ValueSpan**](structQAccelPlot_1_1ColormappedSeries_1_1ValueSpan.md) &gt; | [**scanValueRange**](classQAccelPlot_1_1ColormappedSeries.md#function-scanvaluerange) () const<br>_Returns the span of the finite values, or_ `std::nullopt` _when there is none. Default: none._ |
+|  void | [**updateValueRange**](classQAccelPlot_1_1ColormappedSeries.md#function-updatevaluerange) () <br>_Resolves the value range again. Call after every change of the values._  |
 
 
 ## Protected Functions inherited from QAccelPlot::PlotSeries
@@ -357,6 +454,8 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 
 
+
+
 ## Detailed Description
 
 
@@ -377,6 +476,28 @@ Each bar can carry a `category`, an index into `categoryColors`. Bars without a 
 **
 **
 
+Assign a `colormap` to color each bar by `colorSource:` its `value`, or its `position`. The position of a ranged bar is the middle of its edges as the colormap's `norm` places them, and `barOffset` does not apply. A colormap with at least two stops overrides `color` and `categoryColors`, and `hoverColor` still marks the hovered bar. Values outside the value range take the color at its nearer end. A bar whose source the norm cannot map, such as a non-positive one under `Log`, keeps `color` or its category color. Under `Log`, an unset bound resolved from such a bar is not positive, so every bar keeps its color; set `Colormap::min` above zero. Bars can be histogram bins colored by their bin, with a `ColorBar` or the position axis as the key:
+
+
+
+```C++
+QAccelPlot.BarSeries {
+    orientation: Qt.Horizontal
+    colorSource: QAccelPlot.BarSeries.Position
+    colormap: QAccelPlot.Colormap { preset: QAccelPlot.Colormap.Viridis }
+}
+```
+
+
+
+The value range is scanned only while a colormap is assigned, so streaming bars without one does not scan them. Without a colormap, `dataValueMin` and `dataValueMax` are 0 and 1.
+
+
+
+
+**
+**
+
 Assign a `MorphTransition` or `DrawTransition` to `transition` to animate data updates. With `MorphTransition`, bars move to their new position and value, new bars grow from `baselineValue`, and removed bars shrink to it. Bars that change between ranged and (position, value) all grow in. `count`, `barAt()`, the data ranges, hover, and inspection use the new data from the start of the animation. While a transition is enabled, the `setDataF()` overloads store doubles. `clearData()`, and replacing, clearing, or cancelling `transition`, skip to the new data.
 
 
@@ -390,11 +511,31 @@ Up to 16,777,216 (2^24) bars are drawn correctly, as the shader indexes bars in 
 
 
 
-**See also:** [**RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md), [**Axis**](classQAccelPlot_1_1Axis.md), [**MorphTransition**](classQAccelPlot_1_1MorphTransition.md), [**DrawTransition**](classQAccelPlot_1_1DrawTransition.md) 
+**See also:** [**RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md), [**Axis**](classQAccelPlot_1_1Axis.md), [**Colormap**](classQAccelPlot_1_1Colormap.md), [**ColorBar**](classQAccelPlot_1_1ColorBar.md), [**MorphTransition**](classQAccelPlot_1_1MorphTransition.md), [**DrawTransition**](classQAccelPlot_1_1DrawTransition.md) 
 
 
 
     
+## Public Types Documentation
+
+
+
+
+
+### enum ColorSource {#enum-colorsource}
+
+_The part of a bar that the_ `colormap` _maps to its color._
+```C++
+enum QAccelPlot::BarSeries::ColorSource {
+    Value,
+    Position
+};
+```
+
+
+
+
+<hr>
 ## Public Properties Documentation
 
 
@@ -485,6 +626,21 @@ QList<QColor> QAccelPlot::BarSeries::categoryColors;
 _Fill color of bars without a category color. Default:_ `Colors.dark.seriesPrimary` _._
 ```C++
 QColor QAccelPlot::BarSeries::color;
+```
+
+
+
+
+<hr>
+
+
+
+
+### property colorSource {#property-colorsource-12}
+
+_What the_ `colormap` _maps to a bar's color. Default:_`Value` _._
+```C++
+ColorSource QAccelPlot::BarSeries::colorSource;
 ```
 
 
@@ -652,6 +808,21 @@ void QAccelPlot::BarSeries::categoryColorsChanged;
 _Emitted when the color property changes._ 
 ```C++
 void QAccelPlot::BarSeries::colorChanged;
+```
+
+
+
+
+<hr>
+
+
+
+
+### signal colorSourceChanged {#signal-colorsourcechanged}
+
+_Emitted when the colorSource property changes._ 
+```C++
+void QAccelPlot::BarSeries::colorSourceChanged;
 ```
 
 
@@ -906,6 +1077,21 @@ Implements [*QAccelPlot::PlotSeries::clearData*](classQAccelPlot_1_1PlotSeries.m
 _Returns the bar fill color._ 
 ```C++
 QColor QAccelPlot::BarSeries::color () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function colorSource {#function-colorsource-22}
+
+_Returns what the colormap maps to a bar's color._ 
+```C++
+ColorSource QAccelPlot::BarSeries::colorSource () const
 ```
 
 
@@ -1212,6 +1398,23 @@ _Sets the fill color to_ _color_ _._
 ```C++
 void QAccelPlot::BarSeries::setColor (
     const QColor & color
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setColorSource {#function-setcolorsource}
+
+_Sets what the colormap maps to a bar's color to_ _source_ _._
+```C++
+void QAccelPlot::BarSeries::setColorSource (
+    ColorSource source
 ) 
 ```
 
@@ -1736,7 +1939,7 @@ Implements [*QAccelPlot::PlotSeries::onAxisScaleChanged*](classQAccelPlot_1_1Plo
 
 ### function onDataPointsChanged {#function-ondatapointschanged}
 
-_Refreshes the vertices, the hover index, and the count after the bars changed._ 
+_Refreshes the vertices, the hover index, the count, and the value range after the bars changed._ 
 ```C++
 virtual void QAccelPlot::BarSeries::onDataPointsChanged (
     DataChange change,
@@ -1764,6 +1967,27 @@ virtual bool QAccelPlot::BarSeries::recordInspectionSupported () override const
 
 
 Implements [*QAccelPlot::PlotSeries::recordInspectionSupported*](classQAccelPlot_1_1PlotSeries.md#function-recordinspectionsupported)
+
+
+<hr>
+
+
+
+
+### function scanValueRange {#function-scanvaluerange}
+
+_Returns the span of the finite_ `colorSource` _values while a colormap is assigned._
+```C++
+virtual std::optional< ValueSpan > QAccelPlot::BarSeries::scanValueRange () override const
+```
+
+
+
+Ranged bars contribute both edges for `Position`. 
+
+
+        
+Implements [*QAccelPlot::ColormappedSeries::scanValueRange*](classQAccelPlot_1_1ColormappedSeries.md#function-scanvaluerange)
 
 
 <hr>

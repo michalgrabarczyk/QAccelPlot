@@ -24,7 +24,7 @@ _Base class for series that color their data points by value through a_ `Colorma
 Inherits the following classes: [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 
-Inherited by the following classes: [QAccelPlot::HeatmapSeries](classQAccelPlot_1_1HeatmapSeries.md),  [QAccelPlot::PointCloud](classQAccelPlot_1_1PointCloud.md)
+Inherited by the following classes: [QAccelPlot::BarSeries](classQAccelPlot_1_1BarSeries.md),  [QAccelPlot::HeatmapSeries](classQAccelPlot_1_1HeatmapSeries.md),  [QAccelPlot::PointCloud](classQAccelPlot_1_1PointCloud.md)
 
 
 ## Inheritance diagram
@@ -39,6 +39,10 @@ flowchart TB
 
   external_base_classQAccelPlot_1_1PlotSeries_1["QQuickItem"]
   external_base_classQAccelPlot_1_1PlotSeries_1 --> classQAccelPlot_1_1PlotSeries
+
+  classQAccelPlot_1_1BarSeries["QAccelPlot::BarSeries"]
+  classQAccelPlot_1_1ColormappedSeries --> classQAccelPlot_1_1BarSeries
+  click classQAccelPlot_1_1BarSeries "../classQAccelPlot_1_1BarSeries/" "Open QAccelPlot::BarSeries"
 
   classQAccelPlot_1_1HeatmapSeries["QAccelPlot::HeatmapSeries"]
   classQAccelPlot_1_1ColormappedSeries --> classQAccelPlot_1_1HeatmapSeries
@@ -305,7 +309,7 @@ Owns the `colormap` assignment and resolves the value range it maps: `Colormap::
 
 
 
-**See also:** [**PointCloud**](classQAccelPlot_1_1PointCloud.md), [**HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md), [**ColorBar**](classQAccelPlot_1_1ColorBar.md), [**Colormap**](classQAccelPlot_1_1Colormap.md) 
+**See also:** [**PointCloud**](classQAccelPlot_1_1PointCloud.md), [**HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md), [**BarSeries**](classQAccelPlot_1_1BarSeries.md), [**ColorBar**](classQAccelPlot_1_1ColorBar.md), [**Colormap**](classQAccelPlot_1_1Colormap.md) 
 
 
 

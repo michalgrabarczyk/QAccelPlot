@@ -4,7 +4,6 @@
     <compoundname>QAccelPlot::PlotSeries</compoundname>
     <basecompoundref prot="public" virt="non-virtual">QQuickItem</basecompoundref>
     <derivedcompoundref refid="classQAccelPlot_1_1BandSeries" prot="public" virt="non-virtual">QAccelPlot::BandSeries</derivedcompoundref>
-    <derivedcompoundref refid="classQAccelPlot_1_1BarSeries" prot="public" virt="non-virtual">QAccelPlot::BarSeries</derivedcompoundref>
     <derivedcompoundref refid="classQAccelPlot_1_1ColormappedSeries" prot="public" virt="non-virtual">QAccelPlot::ColormappedSeries</derivedcompoundref>
     <derivedcompoundref refid="classQAccelPlot_1_1LineCurve" prot="public" virt="non-virtual">QAccelPlot::LineCurve</derivedcompoundref>
     <derivedcompoundref refid="classQAccelPlot_1_1RectangleSeries" prot="public" virt="non-virtual">QAccelPlot::RectangleSeries</derivedcompoundref>
@@ -1998,13 +1997,13 @@
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="4">
+      <node id="5">
         <label>QAccelPlot::BarSeries</label>
         <link refid="classQAccelPlot_1_1BarSeries"/>
-        <childnode refid="1" relation="public-inheritance">
+        <childnode refid="4" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="5">
+      <node id="4">
         <label>QAccelPlot::ColormappedSeries</label>
         <link refid="classQAccelPlot_1_1ColormappedSeries"/>
         <childnode refid="1" relation="public-inheritance">
@@ -2013,7 +2012,7 @@
       <node id="6">
         <label>QAccelPlot::HeatmapSeries</label>
         <link refid="classQAccelPlot_1_1HeatmapSeries"/>
-        <childnode refid="5" relation="public-inheritance">
+        <childnode refid="4" relation="public-inheritance">
         </childnode>
       </node>
       <node id="8">
@@ -2031,7 +2030,7 @@
       <node id="7">
         <label>QAccelPlot::PointCloud</label>
         <link refid="classQAccelPlot_1_1PointCloud"/>
-        <childnode refid="5" relation="public-inheritance">
+        <childnode refid="4" relation="public-inheritance">
         </childnode>
       </node>
       <node id="9">

@@ -1662,7 +1662,7 @@
 <li><code>#include &lt;ColormappedSeries.hpp&gt;</code></li>
 </ul>
 <p>Inherits the following classes: <a href="../classQAccelPlot_1_1PlotSeries/">QAccelPlot::PlotSeries</a></p>
-<p>Inherited by the following classes: <a href="../classQAccelPlot_1_1HeatmapSeries/">QAccelPlot::HeatmapSeries</a>,  <a href="../classQAccelPlot_1_1PointCloud/">QAccelPlot::PointCloud</a></p>
+<p>Inherited by the following classes: <a href="../classQAccelPlot_1_1BarSeries/">QAccelPlot::BarSeries</a>,  <a href="../classQAccelPlot_1_1HeatmapSeries/">QAccelPlot::HeatmapSeries</a>,  <a href="../classQAccelPlot_1_1PointCloud/">QAccelPlot::PointCloud</a></p>
 <h2 id="inheritance-diagram">Inheritance diagram<a class="headerlink" href="#inheritance-diagram" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart TB
   classQAccelPlot_1_1ColormappedSeries["QAccelPlot::ColormappedSeries"]
@@ -1673,6 +1673,10 @@
 
   external_base_classQAccelPlot_1_1PlotSeries_1["QQuickItem"]
   external_base_classQAccelPlot_1_1PlotSeries_1 --&gt; classQAccelPlot_1_1PlotSeries
+
+  classQAccelPlot_1_1BarSeries["QAccelPlot::BarSeries"]
+  classQAccelPlot_1_1ColormappedSeries --&gt; classQAccelPlot_1_1BarSeries
+  click classQAccelPlot_1_1BarSeries "../classQAccelPlot_1_1BarSeries/" "Open QAccelPlot::BarSeries"
 
   classQAccelPlot_1_1HeatmapSeries["QAccelPlot::HeatmapSeries"]
   classQAccelPlot_1_1ColormappedSeries --&gt; classQAccelPlot_1_1HeatmapSeries
@@ -2152,7 +2156,7 @@
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
 <p>Owns the <code>colormap</code> assignment and resolves the value range it maps: <code>Colormap::min</code> and <code>Colormap::max</code> where they are set, and the smallest and largest finite value of the series otherwise. <code>ColorBar</code> shows the colormap and the resolved range of any such series.</p>
-<p><strong>See also:</strong> <a href="../classQAccelPlot_1_1PointCloud/"><strong>PointCloud</strong></a>, <a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>HeatmapSeries</strong></a>, <a href="../classQAccelPlot_1_1ColorBar/"><strong>ColorBar</strong></a>, <a href="../classQAccelPlot_1_1Colormap/"><strong>Colormap</strong></a> </p>
+<p><strong>See also:</strong> <a href="../classQAccelPlot_1_1PointCloud/"><strong>PointCloud</strong></a>, <a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>HeatmapSeries</strong></a>, <a href="../classQAccelPlot_1_1BarSeries/"><strong>BarSeries</strong></a>, <a href="../classQAccelPlot_1_1ColorBar/"><strong>ColorBar</strong></a>, <a href="../classQAccelPlot_1_1Colormap/"><strong>Colormap</strong></a> </p>
 <h2 id="public-properties-documentation">Public Properties Documentation<a class="headerlink" href="#public-properties-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="property-colormap-12">property colormap<a class="headerlink" href="#property-colormap-12" title="Permanent link">&para;</a></h3>
 <p><em>Maps values to colors. What a series draws without one is described by the series.</em> 

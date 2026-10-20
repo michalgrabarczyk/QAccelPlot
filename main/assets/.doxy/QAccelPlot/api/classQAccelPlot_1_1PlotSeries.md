@@ -24,7 +24,7 @@ _Common QML item contract for data series hosted by_ `PlotView` _._[More...](#de
 Inherits the following classes: QQuickItem
 
 
-Inherited by the following classes: [QAccelPlot::BandSeries](classQAccelPlot_1_1BandSeries.md),  [QAccelPlot::BarSeries](classQAccelPlot_1_1BarSeries.md),  [QAccelPlot::ColormappedSeries](classQAccelPlot_1_1ColormappedSeries.md),  [QAccelPlot::LineCurve](classQAccelPlot_1_1LineCurve.md),  [QAccelPlot::RectangleSeries](classQAccelPlot_1_1RectangleSeries.md)
+Inherited by the following classes: [QAccelPlot::BandSeries](classQAccelPlot_1_1BandSeries.md),  [QAccelPlot::ColormappedSeries](classQAccelPlot_1_1ColormappedSeries.md),  [QAccelPlot::LineCurve](classQAccelPlot_1_1LineCurve.md),  [QAccelPlot::RectangleSeries](classQAccelPlot_1_1RectangleSeries.md)
 
 
 ## Inheritance diagram
@@ -40,13 +40,13 @@ flowchart TB
   classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1BandSeries
   click classQAccelPlot_1_1BandSeries "../classQAccelPlot_1_1BandSeries/" "Open QAccelPlot::BandSeries"
 
-  classQAccelPlot_1_1BarSeries["QAccelPlot::BarSeries"]
-  classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1BarSeries
-  click classQAccelPlot_1_1BarSeries "../classQAccelPlot_1_1BarSeries/" "Open QAccelPlot::BarSeries"
-
   classQAccelPlot_1_1ColormappedSeries["QAccelPlot::ColormappedSeries"]
   classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1ColormappedSeries
   click classQAccelPlot_1_1ColormappedSeries "../classQAccelPlot_1_1ColormappedSeries/" "Open QAccelPlot::ColormappedSeries"
+
+  classQAccelPlot_1_1BarSeries["QAccelPlot::BarSeries"]
+  classQAccelPlot_1_1ColormappedSeries --> classQAccelPlot_1_1BarSeries
+  click classQAccelPlot_1_1BarSeries "../classQAccelPlot_1_1BarSeries/" "Open QAccelPlot::BarSeries"
 
   classQAccelPlot_1_1HeatmapSeries["QAccelPlot::HeatmapSeries"]
   classQAccelPlot_1_1ColormappedSeries --> classQAccelPlot_1_1HeatmapSeries

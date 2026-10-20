@@ -146,7 +146,7 @@ The ramp comes from `preset`, or from `stops` when a custom ramp is given. `min`
 
 
 
-**See also:** [**PointCloud**](classQAccelPlot_1_1PointCloud.md), [**HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md), [**GradientFill**](classQAccelPlot_1_1GradientFill.md), [**GradientStroke**](classQAccelPlot_1_1GradientStroke.md) 
+**See also:** [**PointCloud**](classQAccelPlot_1_1PointCloud.md), [**HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md), [**BarSeries**](classQAccelPlot_1_1BarSeries.md), [**GradientFill**](classQAccelPlot_1_1GradientFill.md), [**GradientStroke**](classQAccelPlot_1_1GradientStroke.md) 
 
 
 

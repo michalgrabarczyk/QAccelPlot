@@ -37,6 +37,8 @@ public:
     GradientTexture(const GradientTexture&) = delete;
     GradientTexture& operator=(const GradientTexture&) = delete;
 
+    static const std::vector<GradientStopData>& neutralStops();
+
     void upload(QQuickWindow* window, const std::vector<GradientStopData>& stops);
     void commit(QSGMaterialShader::RenderState& state, int binding, QSGTexture** texture);
     qint64 comparisonKey() const;

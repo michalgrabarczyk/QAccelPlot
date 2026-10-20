@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/GradientTexture.hpp" line="41" column="12" bodyfile="QAccelPlot/src/QAccelPlot/materials/GradientTexture.hpp" bodystart="41" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/GradientTexture.hpp" line="44" column="12" bodyfile="QAccelPlot/src/QAccelPlot/materials/GradientTexture.hpp" bodystart="44" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1GradientTexture_1a64ae8ee5a40a38c2f79edcb327c3af3b" prot="private" static="no" mutable="no">
         <type>QSGTexture *</type>
@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/GradientTexture.hpp" line="42" column="16" bodyfile="QAccelPlot/src/QAccelPlot/materials/GradientTexture.hpp" bodystart="42" bodyend="42"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/GradientTexture.hpp" line="45" column="16" bodyfile="QAccelPlot/src/QAccelPlot/materials/GradientTexture.hpp" bodystart="45" bodyend="45"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1GradientTexture_1a2e292a73a961284f83a8c010272f4be8" prot="private" static="no" mutable="no">
         <type>std::vector&lt; <ref refid="structQAccelPlot_1_1GradientStopData" kindref="compound">GradientStopData</ref> &gt;</type>
@@ -45,7 +45,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/GradientTexture.hpp" line="43" column="17" bodyfile="QAccelPlot/src/QAccelPlot/materials/GradientTexture.hpp" bodystart="43" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/GradientTexture.hpp" line="46" column="17" bodyfile="QAccelPlot/src/QAccelPlot/materials/GradientTexture.hpp" bodystart="46" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -132,7 +132,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/GradientTexture.hpp" line="32" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/GradientTexture.hpp" line="35" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1GradientTexture_1a7bcb2e27e711d318d86fde9378742809" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -159,7 +159,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/GradientTexture.hpp" line="34" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/GradientTexture.hpp" line="37" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1GradientTexture_1ad26c8fc3b6962552a63719161388722c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qint64</type>
@@ -174,7 +174,24 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/GradientTexture.hpp" line="36" column="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/GradientTexture.hpp" line="39" column="12"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientTexture_1a6453bb308d6474cf2e7bbfedac513916" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::vector&lt; <ref refid="structQAccelPlot_1_1GradientStopData" kindref="compound">GradientStopData</ref> &gt; &amp;</type>
+        <definition>static const std::vector&lt; GradientStopData &gt; &amp; QAccelPlot::GradientTexture::neutralStops</definition>
+        <argsstring>()</argsstring>
+        <name>neutralStops</name>
+        <qualifiedname>QAccelPlot::GradientTexture::neutralStops</qualifiedname>
+        <briefdescription>
+<para>Returns a plain white ramp that keeps the sampler valid while a shader maps no values. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/GradientTexture.hpp" line="32" column="30"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
@@ -194,7 +211,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/GradientTexture.hpp" line="39" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/GradientTexture.hpp" line="42" column="10"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -202,7 +219,7 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="QAccelPlot/src/QAccelPlot/materials/GradientTexture.hpp" line="23" column="1" bodyfile="QAccelPlot/src/QAccelPlot/materials/GradientTexture.hpp" bodystart="23" bodyend="44"/>
+    <location file="QAccelPlot/src/QAccelPlot/materials/GradientTexture.hpp" line="23" column="1" bodyfile="QAccelPlot/src/QAccelPlot/materials/GradientTexture.hpp" bodystart="23" bodyend="47"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1GradientTexture_1a7bcb2e27e711d318d86fde9378742809" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientTexture</scope><name>commit</name></member>
       <member refid="classQAccelPlot_1_1GradientTexture_1ad26c8fc3b6962552a63719161388722c" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientTexture</scope><name>comparisonKey</name></member>
@@ -210,6 +227,7 @@
       <member refid="classQAccelPlot_1_1GradientTexture_1a51d71f30e0c46dc80470204804d81625" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientTexture</scope><name>GradientTexture</name></member>
       <member refid="classQAccelPlot_1_1GradientTexture_1a7ed95f096166315bd2f0e80617f2dbe5" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientTexture</scope><name>image_</name></member>
       <member refid="classQAccelPlot_1_1GradientTexture_1a64f3cd7194c74410335e73fe7825a9da" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientTexture</scope><name>matches</name></member>
+      <member refid="classQAccelPlot_1_1GradientTexture_1a6453bb308d6474cf2e7bbfedac513916" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientTexture</scope><name>neutralStops</name></member>
       <member refid="classQAccelPlot_1_1GradientTexture_1a674a9f25c861950947b271e7e5f4c0c3" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientTexture</scope><name>operator=</name></member>
       <member refid="classQAccelPlot_1_1GradientTexture_1a2e292a73a961284f83a8c010272f4be8" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientTexture</scope><name>stops_</name></member>
       <member refid="classQAccelPlot_1_1GradientTexture_1a64ae8ee5a40a38c2f79edcb327c3af3b" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientTexture</scope><name>texture_</name></member>

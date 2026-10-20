@@ -2345,7 +2345,7 @@
 <li><code>#include &lt;PlotSeries.hpp&gt;</code></li>
 </ul>
 <p>Inherits the following classes: QQuickItem</p>
-<p>Inherited by the following classes: <a href="../classQAccelPlot_1_1BandSeries/">QAccelPlot::BandSeries</a>,  <a href="../classQAccelPlot_1_1BarSeries/">QAccelPlot::BarSeries</a>,  <a href="../classQAccelPlot_1_1ColormappedSeries/">QAccelPlot::ColormappedSeries</a>,  <a href="../classQAccelPlot_1_1LineCurve/">QAccelPlot::LineCurve</a>,  <a href="../classQAccelPlot_1_1RectangleSeries/">QAccelPlot::RectangleSeries</a></p>
+<p>Inherited by the following classes: <a href="../classQAccelPlot_1_1BandSeries/">QAccelPlot::BandSeries</a>,  <a href="../classQAccelPlot_1_1ColormappedSeries/">QAccelPlot::ColormappedSeries</a>,  <a href="../classQAccelPlot_1_1LineCurve/">QAccelPlot::LineCurve</a>,  <a href="../classQAccelPlot_1_1RectangleSeries/">QAccelPlot::RectangleSeries</a></p>
 <h2 id="inheritance-diagram">Inheritance diagram<a class="headerlink" href="#inheritance-diagram" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart TB
   classQAccelPlot_1_1PlotSeries["QAccelPlot::PlotSeries"]
@@ -2357,13 +2357,13 @@
   classQAccelPlot_1_1PlotSeries --&gt; classQAccelPlot_1_1BandSeries
   click classQAccelPlot_1_1BandSeries "../classQAccelPlot_1_1BandSeries/" "Open QAccelPlot::BandSeries"
 
-  classQAccelPlot_1_1BarSeries["QAccelPlot::BarSeries"]
-  classQAccelPlot_1_1PlotSeries --&gt; classQAccelPlot_1_1BarSeries
-  click classQAccelPlot_1_1BarSeries "../classQAccelPlot_1_1BarSeries/" "Open QAccelPlot::BarSeries"
-
   classQAccelPlot_1_1ColormappedSeries["QAccelPlot::ColormappedSeries"]
   classQAccelPlot_1_1PlotSeries --&gt; classQAccelPlot_1_1ColormappedSeries
   click classQAccelPlot_1_1ColormappedSeries "../classQAccelPlot_1_1ColormappedSeries/" "Open QAccelPlot::ColormappedSeries"
+
+  classQAccelPlot_1_1BarSeries["QAccelPlot::BarSeries"]
+  classQAccelPlot_1_1ColormappedSeries --&gt; classQAccelPlot_1_1BarSeries
+  click classQAccelPlot_1_1BarSeries "../classQAccelPlot_1_1BarSeries/" "Open QAccelPlot::BarSeries"
 
   classQAccelPlot_1_1HeatmapSeries["QAccelPlot::HeatmapSeries"]
   classQAccelPlot_1_1ColormappedSeries --&gt; classQAccelPlot_1_1HeatmapSeries

@@ -3,6 +3,7 @@
   <compounddef id="classQAccelPlot_1_1ColormappedSeries" kind="class" language="C++" prot="public">
     <compoundname>QAccelPlot::ColormappedSeries</compoundname>
     <basecompoundref refid="classQAccelPlot_1_1PlotSeries" prot="public" virt="non-virtual">QAccelPlot::PlotSeries</basecompoundref>
+    <derivedcompoundref refid="classQAccelPlot_1_1BarSeries" prot="public" virt="non-virtual">QAccelPlot::BarSeries</derivedcompoundref>
     <derivedcompoundref refid="classQAccelPlot_1_1HeatmapSeries" prot="public" virt="non-virtual">QAccelPlot::HeatmapSeries</derivedcompoundref>
     <derivedcompoundref refid="classQAccelPlot_1_1PointCloud" prot="public" virt="non-virtual">QAccelPlot::PointCloud</derivedcompoundref>
     <includes local="no">ColormappedSeries.hpp</includes>
@@ -264,6 +265,7 @@
         <argsstring>() const</argsstring>
         <name>scanValueRange</name>
         <qualifiedname>QAccelPlot::ColormappedSeries::scanValueRange</qualifiedname>
+        <reimplementedby refid="classQAccelPlot_1_1BarSeries_1a1499c326d07508041640efc8f9db2b3b">scanValueRange</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1HeatmapSeries_1a2aba152846d3d341118262ebfc82d6ef">scanValueRange</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1PointCloud_1a8d0f77d90255e670a1200969deeb6535">scanValueRange</reimplementedby>
         <briefdescription>
@@ -357,18 +359,24 @@
     </briefdescription>
     <detaileddescription>
 <para>Owns the <computeroutput>colormap</computeroutput> assignment and resolves the value range it maps: <computeroutput><ref refid="classQAccelPlot_1_1Colormap_1ad2faff816266d69fb598cad7c7c3c626" kindref="member">Colormap::min</ref></computeroutput> and <computeroutput><ref refid="classQAccelPlot_1_1Colormap_1a1e42c41384869c79a017a49ee22c9fea" kindref="member">Colormap::max</ref></computeroutput> where they are set, and the smallest and largest finite value of the series otherwise. <computeroutput><ref refid="classQAccelPlot_1_1ColorBar" kindref="compound">ColorBar</ref></computeroutput> shows the colormap and the resolved range of any such series.</para>
-<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref>, <ref refid="classQAccelPlot_1_1HeatmapSeries" kindref="compound">HeatmapSeries</ref>, <ref refid="classQAccelPlot_1_1ColorBar" kindref="compound">ColorBar</ref>, <ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref> </para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref>, <ref refid="classQAccelPlot_1_1HeatmapSeries" kindref="compound">HeatmapSeries</ref>, <ref refid="classQAccelPlot_1_1BarSeries" kindref="compound">BarSeries</ref>, <ref refid="classQAccelPlot_1_1ColorBar" kindref="compound">ColorBar</ref>, <ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref> </para>
 </simplesect>
 </para>
     </detaileddescription>
     <inheritancegraph>
+      <node id="4">
+        <label>QAccelPlot::BarSeries</label>
+        <link refid="classQAccelPlot_1_1BarSeries"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
       <node id="1">
         <label>QAccelPlot::ColormappedSeries</label>
         <link refid="classQAccelPlot_1_1ColormappedSeries"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="4">
+      <node id="5">
         <label>QAccelPlot::HeatmapSeries</label>
         <link refid="classQAccelPlot_1_1HeatmapSeries"/>
         <childnode refid="1" relation="public-inheritance">
@@ -380,7 +388,7 @@
         <childnode refid="3" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="5">
+      <node id="6">
         <label>QAccelPlot::PointCloud</label>
         <link refid="classQAccelPlot_1_1PointCloud"/>
         <childnode refid="1" relation="public-inheritance">

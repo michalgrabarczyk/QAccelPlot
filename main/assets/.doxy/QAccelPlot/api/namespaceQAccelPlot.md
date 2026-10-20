@@ -63,7 +63,7 @@
 | class | [**BandEdges**](classQAccelPlot_1_1BandEdges.md) <br>_Controls the lines a_ `BandSeries` _draws along its lower and upper edges._ |
 | class | [**BandMaterial**](classQAccelPlot_1_1BandMaterial.md) <br>_QSGMaterial that fills a band between the low and high values of_ `(x, low, high)` _data points._ |
 | class | [**BandSeries**](classQAccelPlot_1_1BandSeries.md) <br>_A hardware-accelerated QML item that fills the area between a low and a high value at each X._  |
-| class | [**BarMaterial**](classQAccelPlot_1_1BarMaterial.md) <br>_QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry uniforms._ |
+| class | [**BarMaterial**](classQAccelPlot_1_1BarMaterial.md) <br>_QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry and colormap uniforms._ |
 | class | [**BarSeries**](classQAccelPlot_1_1BarSeries.md) <br>_A hardware-accelerated QML item that renders a bar chart._  |
 | class | [**ColorBar**](classQAccelPlot_1_1ColorBar.md) <br>_A continuous key that shows how a series'_ `Colormap` _maps values to colors._ |
 | class | [**ColorPalette**](classQAccelPlot_1_1ColorPalette.md) <br>_A named set of theme colors shared by QML (via the_ `Colors` _singleton) and C++ defaults._ |

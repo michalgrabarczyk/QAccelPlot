@@ -183,7 +183,7 @@ flowchart TB
 ## Detailed Description
 
 
-Draws the color ramp of a `PointCloud` or `HeatmapSeries` as a strip, with ticks and labels for the value range the series resolved (`ColormappedSeries::dataValueMin` and `ColormappedSeries::dataValueMax`). Ticks follow the colormap's `norm`, so a `Log` colormap gets decade ticks. The bar redraws when the colormap, the resolved range, or the assigned colormap changes. Nothing is drawn while the series has no colormap.
+Draws the color ramp of a `PointCloud`, `HeatmapSeries`, or `BarSeries` as a strip, with ticks and labels for the value range the series resolved (`ColormappedSeries::dataValueMin` and `ColormappedSeries::dataValueMax`). Ticks follow the colormap's `norm`, so a `Log` colormap gets decade ticks. The bar redraws when the colormap, the resolved range, or the assigned colormap changes. Nothing is drawn while the series has no colormap.
 
 
 A vertical bar has its minimum at the bottom, with ticks on the right and `label` beside them, reading top to bottom. A horizontal bar has its minimum on the left, with ticks and `label` below. Position the bar like any item, for example inside the plot area:
@@ -209,7 +209,7 @@ With `interactive` set, a left drag along the ramp pans the colormap's value ran
 
 
 
-**See also:** [**ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md), [**PointCloud**](classQAccelPlot_1_1PointCloud.md), [**HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md), [**Colormap**](classQAccelPlot_1_1Colormap.md), [**AxisTicker**](classQAccelPlot_1_1AxisTicker.md) 
+**See also:** [**ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md), [**PointCloud**](classQAccelPlot_1_1PointCloud.md), [**HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md), [**BarSeries**](classQAccelPlot_1_1BarSeries.md), [**Colormap**](classQAccelPlot_1_1Colormap.md), [**AxisTicker**](classQAccelPlot_1_1AxisTicker.md) 
 
 
 

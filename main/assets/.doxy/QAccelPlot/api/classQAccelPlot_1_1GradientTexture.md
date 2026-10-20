@@ -70,6 +70,11 @@ _Cached one-dimensional texture used by gradient materials._
 |   | [**~GradientTexture**](#function-gradienttexture) () <br> |
 
 
+## Public Static Functions
+
+| Type | Name |
+| ---: | :--- |
+|  const std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; & | [**neutralStops**](#function-neutralstops) () <br>_Returns a plain white ramp that keeps the sampler valid while a shader maps no values._  |
 
 
 
@@ -204,6 +209,23 @@ void QAccelPlot::GradientTexture::upload (
 
 ```C++
 QAccelPlot::GradientTexture::~GradientTexture () 
+```
+
+
+
+
+<hr>
+## Public Static Functions Documentation
+
+
+
+
+
+### function neutralStops {#function-neutralstops}
+
+_Returns a plain white ramp that keeps the sampler valid while a shader maps no values._ 
+```C++
+static const std::vector< GradientStopData > & QAccelPlot::GradientTexture::neutralStops () 
 ```
 
 
