@@ -50,6 +50,8 @@ Window {
         id: saveDialog
         fileMode: FileDialog.SaveFile
         nameFilters: ["PNG image (*.png)", "JPEG image (*.jpg)", "WebP image (*.webp)", "TIFF image (*.tif)"]
+        // save() picks the format from the suffix, so a name typed without one gets the filter's.
+        defaultSuffix: selectedNameFilter.extensions[0]
         onAccepted: exporter.save(selectedFile)
     }
 
