@@ -80,6 +80,7 @@ private slots:
     void failsForHiddenPlot();
     void failsWhenWindowHidesBeforeCapture();
     void failsWhenWindowIsDestroyedBeforeCapture();
+    void failsForImageBeyondTextureLimit();
     void grabSizeIsTheClosestReachable_data();
     void grabSizeIsTheClosestReachable();
     void grabsAtScaleWithResolution();
@@ -268,6 +269,16 @@ void PlotExporterTest::failsWhenWindowIsDestroyedBeforeCapture()
     window_.reset();
     QCOMPARE(finished.count(), 1);
     QCOMPARE(finished.constFirst().at(0).toBool(), false);
+    QVERIFY(!exporter.busy());
+}
+
+void PlotExporterTest::failsForImageBeyondTextureLimit()
+{
+    auto exporter = PlotExporter{};
+    exporter.setPlot(plot_);
+    exporter.setScale(1e9);
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression(R"(^PlotExporter: The image size 2e\+11x1\.5e\+11 exceeds the GPU texture limit of \d+ pixels\.$)"));
+    QVERIFY(!exporter.grabImage());
     QVERIFY(!exporter.busy());
 }
 

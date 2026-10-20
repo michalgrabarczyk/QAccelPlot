@@ -49,6 +49,15 @@ Internal::GrabSize grabSize(const QQuickItem* item, const qreal scale)
     return Internal::grabSizeFor(imagePixelSize(item, scale), item->window()->effectiveDevicePixelRatio());
 }
 
+QString textureLimitError(const QSizeF& size, const int limit)
+{
+    constexpr auto kDigits = 10;
+    return QStringLiteral("The image size %1x%2 exceeds the GPU texture limit of %3 pixels.")
+        .arg(std::round(size.width()), 0, 'g', kDigits)
+        .arg(std::round(size.height()), 0, 'g', kDigits)
+        .arg(limit);
+}
+
 QWindow* shownWindow(QQuickWindow* window)
 {
     auto* renderWindow = QQuickRenderControl::renderWindowFor(window);
@@ -305,10 +314,15 @@ QString PlotExporter::captureError(const qreal scale) const
     if (!Internal::supportsCustomShaderRendering(window)) {
         return QStringLiteral("Exporting requires a hardware scene graph backend.");
     }
-    const auto pixels = grabSize(plot_, scale).image;
     const auto limit = Internal::maxTextureSize(window);
+    // Checked before rounding to int pixels, which a huge scale would overflow.
+    const auto wanted = plot_->size() * scale;
+    if (wanted.width() >= limit + 0.5 || wanted.height() >= limit + 0.5) {
+        return textureLimitError(wanted, limit);
+    }
+    const auto pixels = grabSize(plot_, scale).image;
     if (pixels.width() > limit || pixels.height() > limit) {
-        return QStringLiteral("The image size %1x%2 exceeds the GPU texture limit of %3 pixels.").arg(pixels.width()).arg(pixels.height()).arg(limit);
+        return textureLimitError(pixels, limit);
     }
     return {};
 }
