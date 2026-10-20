@@ -77,6 +77,8 @@ private slots:
     void failsWithoutPlot();
     void failsForUnsupportedFormat();
     void failsForHiddenPlot();
+    void failsWhenWindowHidesBeforeCapture();
+    void failsWhenWindowIsDestroyedBeforeCapture();
     void grabsAtScaleWithResolution();
     void leavesOutBackgroundsOnlyForTheCapture();
     void rasterizesPaintedItemsAtScaleAndRestoresThem();
@@ -222,6 +224,47 @@ void PlotExporterTest::failsForHiddenPlot()
     plot_->setVisible(false);
     QTest::ignoreMessage(QtWarningMsg, "PlotExporter: The plot is not visible.");
     QVERIFY(!exporter.grabImage());
+}
+
+void PlotExporterTest::failsWhenWindowHidesBeforeCapture()
+{
+    auto exporter = PlotExporter{};
+    exporter.setPlot(plot_);
+    exporter.setTransparentBackground(true);
+    auto finished = QSignalSpy{&exporter, &PlotExporter::finished};
+    QVERIFY(exporter.grabImage());
+    QTest::ignoreMessage(QtWarningMsg, "PlotExporter: The plot's window was hidden before the capture.");
+    window_->hide();
+    QCOMPARE(finished.count(), 1);
+    QCOMPARE(finished.constFirst().at(0).toBool(), false);
+    QVERIFY(!exporter.busy());
+    QTest::ignoreMessage(QtWarningMsg, "PlotExporter: The plot is not visible.");
+    QVERIFY(!exporter.grabImage());
+
+    // Qt 6.2 under xvfb never exposes a window shown again after hide(), so a new window shows the plot.
+    auto shownWindow = QQuickWindow{};
+    shownWindow.setColor(Qt::black);
+    shownWindow.resize(kPlotWidth, kPlotHeight);
+    plot_->setParentItem(shownWindow.contentItem());
+    shownWindow.show();
+    QVERIFY(QTest::qWaitForWindowExposed(&shownWindow));
+    QVERIFY(isColor(shownWindow.grabWindow().pixelColor(2, 2), Qt::blue));
+    QVERIFY(!grab(exporter).isNull());
+    plot_->setParentItem(nullptr);
+}
+
+void PlotExporterTest::failsWhenWindowIsDestroyedBeforeCapture()
+{
+    auto exporter = PlotExporter{};
+    exporter.setPlot(plot_);
+    auto finished = QSignalSpy{&exporter, &PlotExporter::finished};
+    QVERIFY(exporter.grabImage());
+    // Destroying the window hides it first on some platforms.
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("PlotExporter: The plot's window was (hidden|destroyed) before the capture."));
+    window_.reset();
+    QCOMPARE(finished.count(), 1);
+    QCOMPARE(finished.constFirst().at(0).toBool(), false);
+    QVERIFY(!exporter.busy());
 }
 
 void PlotExporterTest::grabsAtScaleWithResolution()

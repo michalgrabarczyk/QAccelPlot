@@ -54,10 +54,39 @@ QSize grabTargetSize(const QSize& pixels, const qreal devicePixelRatio)
 #endif
 }
 
+QWindow* shownWindow(QQuickWindow* window)
+{
+    auto* renderWindow = QQuickRenderControl::renderWindowFor(window);
+    return renderWindow ? renderWindow : window;
+}
+
+bool isHidden(const QWindow::Visibility visibility)
+{
+    return visibility == QWindow::Hidden || visibility == QWindow::Minimized;
+}
+
+// A hidden, minimized, or otherwise unexposed window renders no frames, so a grab in it would never complete.
+// Exposure follows hiding only once the platform reports it, so the visibility is checked as well.
 bool isShown(QQuickWindow* window)
 {
-    const auto* renderWindow = QQuickRenderControl::renderWindowFor(window);
-    return renderWindow ? renderWindow->isVisible() : window->isVisible();
+    const auto* shown = shownWindow(window);
+    return !isHidden(shown->visibility()) && shown->isExposed();
+}
+
+// Deletes \a grab once Qt no longer uses it: the render thread runs an unfinished grab when its window renders next.
+void releaseGrab(const QSharedPointer<QQuickItemGrabResult>& grab, const QObject* window, const bool finished)
+{
+    if (!grab) {
+        return;
+    }
+    auto* const owner = new QObject;
+    QObject::connect(owner, &QObject::destroyed, [grab]() { });
+    if (finished || !window) {
+        owner->deleteLater();
+        return;
+    }
+    QObject::connect(grab.data(), &QQuickItemGrabResult::ready, owner, &QObject::deleteLater);
+    QObject::connect(window, &QObject::destroyed, owner, &QObject::deleteLater);
 }
 
 } // namespace
@@ -71,6 +100,7 @@ struct PlotExporter::Capture {
         , quality(quality)
         , dpi(dpi)
         , plot(plot)
+        , window(plot->window())
         , textures(plot, scale, plot->window()->effectiveDevicePixelRatio())
     {
     }
@@ -81,7 +111,13 @@ struct PlotExporter::Capture {
     int quality;
     qreal dpi;
     QPointer<::QAccelPlot::QAccelPlot> plot;
+    // A QWindow: hiding it from ~QWindow can end the capture after the QQuickWindow part is gone.
+    QPointer<QWindow> window;
     Internal::ScopedPaintedItemTextures textures;
+    QSharedPointer<QQuickItemGrabResult> grab;
+    bool grabFinished{false};
+    // Context of the connections that end the capture; destroying it disconnects them.
+    QObject connections;
 };
 
 PlotExporter::PlotExporter(QObject* parent)
@@ -227,14 +263,29 @@ bool PlotExporter::startCapture(const Operation operation, const QString& path, 
     const auto dpi = dpi_ > 0.0 ? dpi_ : kLogicalDpi * scale;
     capture_ = std::make_unique<Capture>(operation, path, format, quality_, dpi, plot_.data(), scale);
     plot_->setTransparentBackground(transparentBackground_);
-    const auto result = plot_->grabToImage(grabTargetSize(imagePixelSize(plot_, scale), plot_->window()->effectiveDevicePixelRatio()));
-    if (!result) {
+    capture_->grab = plot_->grabToImage(grabTargetSize(imagePixelSize(plot_, scale), plot_->window()->effectiveDevicePixelRatio()));
+    if (!capture_->grab) {
         endCapture();
         return fail(path, QStringLiteral("Qt Quick could not start the capture."));
     }
     setBusy(true);
-    connect(result.data(), &QQuickItemGrabResult::ready, this, [this, result]() { captured(result->image()); }, Qt::SingleShotConnection);
+    watchCapture();
     return true;
+}
+
+void PlotExporter::watchCapture()
+{
+    auto* const context = &capture_->connections;
+    connect(capture_->grab.data(), &QQuickItemGrabResult::ready, context, [this]() {
+        capture_->grabFinished = true;
+        captured(capture_->grab->image());
+    });
+    connect(shownWindow(plot_->window()), &QWindow::visibilityChanged, context, [this](const QWindow::Visibility visibility) {
+        if (isHidden(visibility)) {
+            abortCapture(QStringLiteral("The plot's window was hidden before the capture."));
+        }
+    });
+    connect(capture_->window, &QObject::destroyed, context, [this]() { abortCapture(QStringLiteral("The plot's window was destroyed before the capture.")); });
 }
 
 QString PlotExporter::captureError(const qreal scale) const
@@ -302,11 +353,22 @@ void PlotExporter::captured(QImage image)
     }
 }
 
+void PlotExporter::abortCapture(const QString& error)
+{
+    const auto path = capture_->path;
+    endCapture();
+    finish(false, path, error);
+}
+
 void PlotExporter::endCapture()
 {
-    if (capture_ && capture_->plot) {
+    if (!capture_) {
+        return;
+    }
+    if (capture_->plot) {
         capture_->plot->setTransparentBackground(false);
     }
+    releaseGrab(capture_->grab, capture_->window, capture_->grabFinished);
     capture_.reset();
 }
 

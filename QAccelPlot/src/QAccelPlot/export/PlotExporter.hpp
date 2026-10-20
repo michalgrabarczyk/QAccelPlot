@@ -24,11 +24,12 @@ namespace QAccelPlot {
 ///
 /// The capture contains the plot item and everything drawn inside its bounds, as on screen:
 /// series, axes, legend, overlays, and any child items. Children outside the bounds are clipped.
-/// The plot must be visible in a window that renders through a hardware scene graph backend.
+/// The plot must be visible in a window that is shown, not minimized, and renders through a
+/// hardware scene graph backend.
 ///
 /// Every request is asynchronous and ends with exactly one \c finished() signal. A request made
-/// while \c busy is rejected. The capture is taken on the next frame; encoding and writing a file
-/// run on a worker thread.
+/// while \c busy is rejected. The capture is taken on the next frame, and fails when the window
+/// is hidden, minimized, or destroyed first; encoding and writing a file run on a worker thread.
 ///
 /// \par Usage
 /// \code
@@ -139,9 +140,11 @@ private:
     struct Capture;
 
     bool startCapture(Operation operation, const QString& path, const QByteArray& format);
+    void watchCapture();
     QString captureError(qreal scale) const;
     qreal effectiveScale() const;
     void captured(QImage image);
+    void abortCapture(const QString& error);
     void endCapture();
     void saveInBackground(const QImage& image, const QString& path, const QByteArray& format, int quality);
     bool fail(const QString& path, const QString& error);
