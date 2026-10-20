@@ -49,6 +49,9 @@ class PlotExporter : public QObject {
     /// \brief Plot to export.
     Q_PROPERTY(::QAccelPlot::QAccelPlot* plot READ plot WRITE setPlot NOTIFY plotChanged)
     /// \brief Image pixels per logical pixel; 0 uses the window's device pixel ratio. Default: 0.
+    ///
+    /// At a device pixel ratio other than 1, Qt 6.3 and later cannot render every image size, so
+    /// a side can be a pixel shorter or longer than the plot's size times the scale.
     Q_PROPERTY(qreal scale READ scale WRITE setScale NOTIFY scaleChanged)
     /// \brief Encoder quality from 0 to 100 passed to \c QImageWriter; -1 uses the format's default. Default: -1.
     ///

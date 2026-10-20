@@ -8,6 +8,7 @@
 #include "QAccelPlot/export/PlotExporter.hpp"
 
 #include "QAccelPlot/QAccelPlotLogging.hpp"
+#include "QAccelPlot/export/internal/GrabSize.hpp"
 #include "QAccelPlot/export/internal/ImageFile.hpp"
 #include "QAccelPlot/export/internal/ScopedPaintedItemTextures.hpp"
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
@@ -43,15 +44,9 @@ QSize imagePixelSize(const QQuickItem* item, const qreal scale)
     return QSize(std::max(1, qRound(item->width() * scale)), std::max(1, qRound(item->height() * scale)));
 }
 
-// Qt 6.2 grabs targetSize physical pixels; later versions multiply targetSize by the device pixel ratio.
-QSize grabTargetSize(const QSize& pixels, const qreal devicePixelRatio)
+Internal::GrabSize grabSize(const QQuickItem* item, const qreal scale)
 {
-#if QT_VERSION < QT_VERSION_CHECK(6, 3, 0)
-    Q_UNUSED(devicePixelRatio)
-    return pixels;
-#else
-    return QSize(std::max(1, qRound(pixels.width() / devicePixelRatio)), std::max(1, qRound(pixels.height() / devicePixelRatio)));
-#endif
+    return Internal::grabSizeFor(imagePixelSize(item, scale), item->window()->effectiveDevicePixelRatio());
 }
 
 QWindow* shownWindow(QQuickWindow* window)
@@ -263,7 +258,7 @@ bool PlotExporter::startCapture(const Operation operation, const QString& path, 
     const auto dpi = dpi_ > 0.0 ? dpi_ : kLogicalDpi * scale;
     capture_ = std::make_unique<Capture>(operation, path, format, quality_, dpi, plot_.data(), scale);
     plot_->beginExport(transparentBackground_);
-    capture_->grab = plot_->grabToImage(grabTargetSize(imagePixelSize(plot_, scale), plot_->window()->effectiveDevicePixelRatio()));
+    capture_->grab = plot_->grabToImage(grabSize(plot_, scale).target);
     if (!capture_->grab) {
         endCapture();
         return fail(path, QStringLiteral("Qt Quick could not start the capture."));
@@ -309,7 +304,7 @@ QString PlotExporter::captureError(const qreal scale) const
     if (!Internal::supportsCustomShaderRendering(window)) {
         return QStringLiteral("Exporting requires a hardware scene graph backend.");
     }
-    const auto pixels = imagePixelSize(plot_, scale);
+    const auto pixels = grabSize(plot_, scale).image;
     const auto limit = Internal::maxTextureSize(window);
     if (pixels.width() > limit || pixels.height() > limit) {
         return QStringLiteral("The image size %1x%2 exceeds the GPU texture limit of %3 pixels.").arg(pixels.width()).arg(pixels.height()).arg(limit);

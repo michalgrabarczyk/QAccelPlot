@@ -42,7 +42,7 @@ screen: series, axes, the legend, overlays, and child items.
 
 | Property | Default | Meaning |
 | --- | --- | --- |
-| `scale` | `0` | Image pixels per logical pixel. `0` uses the window's device pixel ratio, so the image matches the screen. The layout does not change: a 2× image has the same ticks and text positions, drawn at twice the resolution. |
+| `scale` | `0` | Image pixels per logical pixel. `0` uses the window's device pixel ratio, so the image matches the screen. The layout does not change: a 2× image has the same ticks and text positions, drawn at twice the resolution. At a device pixel ratio other than 1, a side can differ by one pixel from its size × scale. |
 | `quality` | `-1` | 0–100, passed to `QImageWriter`. `-1` uses the format's default. JPEG and WebP trade size for artifacts; PNG stays lossless. |
 | `dpi` | `0` | Resolution stored in the file. `0` stores 96 × scale, so documents place the image at its on-screen size. |
 | `transparentBackground` | `false` | Leaves out `axesAreaColor` and `plotAreaColor`, so the image takes the background it is placed on. The grid, series, axes, and legend are drawn as usual. |

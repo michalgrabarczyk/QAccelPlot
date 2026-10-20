@@ -7,6 +7,7 @@
 //
 #include "QAccelPlot/QAccelPlot.hpp"
 #include "QAccelPlot/export/PlotExporter.hpp"
+#include "QAccelPlot/export/internal/GrabSize.hpp"
 
 #include <QClipboard>
 #include <QFileInfo>
@@ -79,6 +80,8 @@ private slots:
     void failsForHiddenPlot();
     void failsWhenWindowHidesBeforeCapture();
     void failsWhenWindowIsDestroyedBeforeCapture();
+    void grabSizeIsTheClosestReachable_data();
+    void grabSizeIsTheClosestReachable();
     void grabsAtScaleWithResolution();
     void leavesOutBackgroundsOnlyForTheCapture();
     void rasterizesPaintedItemsAtScaleAndRestoresThem();
@@ -266,6 +269,36 @@ void PlotExporterTest::failsWhenWindowIsDestroyedBeforeCapture()
     QCOMPARE(finished.count(), 1);
     QCOMPARE(finished.constFirst().at(0).toBool(), false);
     QVERIFY(!exporter.busy());
+}
+
+void PlotExporterTest::grabSizeIsTheClosestReachable_data()
+{
+    QTest::addColumn<int>("pixels");
+    QTest::addColumn<qreal>("devicePixelRatio");
+    // Image side on Qt 6.3 and later, which renders the target size times the device pixel ratio.
+    QTest::addColumn<int>("expected");
+    QTest::newRow("ratio 1") << 201 << 1.0 << 201;
+    QTest::newRow("even side at ratio 2") << 400 << 2.0 << 400;
+    QTest::newRow("odd side at ratio 2") << 101 << 2.0 << 100;
+    QTest::newRow("reachable at ratio 1.25") << 251 << 1.25 << 251;
+    QTest::newRow("reachable at ratio 1.5") << 300 << 1.5 << 300;
+    QTest::newRow("unreachable at ratio 1.5") << 202 << 1.5 << 201;
+}
+
+void PlotExporterTest::grabSizeIsTheClosestReachable()
+{
+    QFETCH(int, pixels);
+    QFETCH(qreal, devicePixelRatio);
+    QFETCH(int, expected);
+    const auto size = Internal::grabSizeFor(QSize(pixels, pixels), devicePixelRatio);
+#if QT_VERSION < QT_VERSION_CHECK(6, 3, 0)
+    Q_UNUSED(expected)
+    QCOMPARE(size.target, QSize(pixels, pixels));
+    QCOMPARE(size.image, QSize(pixels, pixels));
+#else
+    QCOMPARE(size.image, QSize(expected, expected));
+    QCOMPARE(size.target * devicePixelRatio, size.image);
+#endif
 }
 
 void PlotExporterTest::grabsAtScaleWithResolution()
