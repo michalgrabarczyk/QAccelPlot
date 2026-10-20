@@ -57,14 +57,16 @@ does.
 
 - Each request ends with one `finished(ok, path, error)`. `path` is empty
   except for `save()`.
+- A request made while `busy` only returns `false` and warns; `finished()`
+  stays with the request in progress.
 - The capture happens on the next frame. It fails if the window is hidden,
   minimized, or destroyed first. Encoding and writing the file run on a worker
   thread, and an existing file is replaced only once the new one is complete.
-- A request fails immediately, returning `false`, when another request is in
-  progress (`busy`), another exporter is capturing the same plot, the file
-  format is unsupported, the plot is hidden, has no size, or is not in a
-  window, the window is hidden or minimized, the window uses the software
-  backend, or the image would exceed the GPU's maximum texture size.
+- A request fails immediately, returning `false`, when another exporter is
+  capturing the same plot, the file format is unsupported, the plot is hidden,
+  has no size, or is not in a window, the window is hidden or minimized, the
+  window uses the software backend, or the image would exceed the GPU's
+  maximum texture size.
 - With `transparentBackground` set, the plot shows no background for the one
   frame the capture is taken in.
 

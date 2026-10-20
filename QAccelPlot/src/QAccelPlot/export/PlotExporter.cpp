@@ -219,11 +219,7 @@ bool PlotExporter::busy() const
 bool PlotExporter::save(const QString& path)
 {
     const auto filePath = Internal::localFilePath(path);
-    const auto format = Internal::imageFormatForPath(filePath);
-    if (format.isEmpty()) {
-        return fail(filePath, QStringLiteral("Cannot save %1: unsupported image format.").arg(filePath));
-    }
-    return startCapture(Operation::Save, filePath, format);
+    return startCapture(Operation::Save, filePath, Internal::imageFormatForPath(filePath));
 }
 
 bool PlotExporter::copyToClipboard()
@@ -247,8 +243,13 @@ QStringList PlotExporter::supportedFormats()
 
 bool PlotExporter::startCapture(const Operation operation, const QString& path, const QByteArray& format)
 {
+    // finished() belongs to the request in progress, so a rejected one only warns.
     if (busy_) {
-        return fail(path, QStringLiteral("Another export is in progress."));
+        qCWarning(lcQAccelPlot, "PlotExporter: Another export is in progress.");
+        return false;
+    }
+    if (operation == Operation::Save && format.isEmpty()) {
+        return fail(path, QStringLiteral("Cannot save %1: unsupported image format.").arg(path));
     }
     const auto scale = effectiveScale();
     if (const auto error = captureError(scale); !error.isEmpty()) {

@@ -367,9 +367,12 @@ void PlotExporterTest::rejectsRequestWhileBusy()
     QVERIFY(exporter.busy());
     QTest::ignoreMessage(QtWarningMsg, "PlotExporter: Another export is in progress.");
     QVERIFY(!exporter.grabImage());
+    QTest::ignoreMessage(QtWarningMsg, "PlotExporter: Another export is in progress.");
+    QVERIFY(!exporter.save(QStringLiteral("plot.unknown")));
+    QCOMPARE(finished.count(), 0);
+    QVERIFY(finished.wait());
     QCOMPARE(finished.count(), 1);
-    QTRY_COMPARE(finished.count(), 2);
-    QCOMPARE(finished.at(1).at(0).toBool(), true);
+    QCOMPARE(finished.constFirst().at(0).toBool(), true);
     QVERIFY(!exporter.busy());
 }
 

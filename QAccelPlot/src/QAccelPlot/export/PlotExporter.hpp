@@ -27,9 +27,11 @@ namespace QAccelPlot {
 /// The plot must be visible in a window that is shown, not minimized, and renders through a
 /// hardware scene graph backend.
 ///
-/// Every request is asynchronous and ends with exactly one \c finished() signal. A request made
-/// while \c busy, or while another exporter captures the same plot, is rejected. The capture is taken on the next frame, and fails when the window
-/// is hidden, minimized, or destroyed first; encoding and writing a file run on a worker thread.
+/// Every request is asynchronous and ends with exactly one \c finished() signal, except one made
+/// while \c busy: it returns false with a warning and leaves \c finished() to the request in
+/// progress. A request for a plot another exporter is capturing fails. The capture is taken on the
+/// next frame, and fails when the window is hidden, minimized, or destroyed first; encoding and
+/// writing a file run on a worker thread.
 ///
 /// \par Usage
 /// \code
@@ -108,8 +110,8 @@ public:
     /// \brief Saves the plot to \a path in the format its suffix names.
     ///
     /// \a path may be a local file path or a \c file: URL. An existing file is replaced only
-    /// when the new one is written completely. Returns false, after emitting \c finished(), when
-    /// the request fails immediately.
+    /// when the new one is written completely. Returns false when the request fails immediately,
+    /// after emitting \c finished() unless the exporter is \c busy.
     Q_INVOKABLE bool save(const QString& path);
     /// \brief Copies the plot image to the clipboard; returns false when the request fails immediately.
     Q_INVOKABLE bool copyToClipboard();
