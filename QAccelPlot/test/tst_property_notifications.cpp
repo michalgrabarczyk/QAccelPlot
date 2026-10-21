@@ -18,6 +18,7 @@
 #include "QAccelPlot/grid/Grid.hpp"
 #include "QAccelPlot/series/BandSeries.hpp"
 #include "QAccelPlot/series/BarSeries.hpp"
+#include "QAccelPlot/series/ErrorBarSeries.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
 #include "QAccelPlot/series/RectangleSeries.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
@@ -55,6 +56,7 @@ const std::map<QString, Factory>& factories()
         {QStringLiteral("Colormap"), make<Colormap>()},
         {QStringLiteral("DataAnchor"), make<DataAnchor>()},
         {QStringLiteral("DateTimeTickLabelFormatter"), make<DateTimeTickLabelFormatter>()},
+        {QStringLiteral("ErrorBarSeries"), make<ErrorBarSeries>()},
         {QStringLiteral("GradientFill"), make<GradientFill>()},
         {QStringLiteral("GradientStroke"), make<GradientStroke>()},
         {QStringLiteral("Grid"), make<Grid>()},
@@ -175,6 +177,14 @@ void PropertyNotificationsTest::writeNotifiesOnceAndRoundTrips_data()
     row("BarSeries", "color", palette.seriesSecondary);
     row("BarSeries", "categoryColors", QVariant::fromValue(QList<QColor>{palette.statusGood, palette.statusError}));
     row("BarSeries", "hoverColor", palette.seriesYellow);
+
+    row("ErrorBarSeries", "orientation", QVariant::fromValue(Qt::Horizontal));
+    row("ErrorBarSeries", "color", palette.seriesSecondary);
+    row("ErrorBarSeries", "lineWidth", 3.0);
+    row("ErrorBarSeries", "capLength", 12.0);
+    row("ErrorBarSeries", "offset", 0.25);
+    row("ErrorBarSeries", "hoverColor", palette.seriesYellow);
+    row("ErrorBarSeries", "hoverRadius", 2.0);
 
     row("RectangleSeries", "color", palette.seriesSecondary);
     row("RectangleSeries", "categoryColors", QVariant::fromValue(QList<QColor>{palette.statusGood, palette.statusError}));

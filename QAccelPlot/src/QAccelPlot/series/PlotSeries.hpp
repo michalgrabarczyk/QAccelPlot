@@ -47,13 +47,14 @@ struct LegendEntry;
 /// | \c RectangleSeries | (x1, y1, x2, y2)  | 4      |
 /// | \c BarSeries       | (position, value) | 2      |
 /// | \c BandSeries      | (x, low, high)    | 3      |
+/// | \c ErrorBarSeries  | (x, y, low, high) | 4      |
 /// | \c HeatmapSeries   | cell value        | 1      |
 ///
 /// The buffer holds \a count times that many values. A \c HeatmapSeries takes its cells row by row,
 /// \c columns per row. Series-specific setters take other layouts, such as point values,
 /// categories, or ranged bars.
 ///
-/// \sa LineCurve, PointCloud, RectangleSeries, BarSeries, BandSeries, HeatmapSeries, QAccelPlot
+/// \sa LineCurve, PointCloud, RectangleSeries, BarSeries, BandSeries, ErrorBarSeries, HeatmapSeries, QAccelPlot
 class PlotSeries : public QQuickItem {
     Q_OBJECT
     QML_NAMED_ELEMENT(PlotSeries)

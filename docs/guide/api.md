@@ -34,6 +34,8 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
   colormap and value range of a point cloud or heatmap.
 - [`BandSeries`](api/classQAccelPlot_1_1BandSeries.md) — filled area between a
   low and a high value at each X, with optional edge lines.
+- [`ErrorBarSeries`](api/classQAccelPlot_1_1ErrorBarSeries.md) — capped lines
+  from a low to a high bound at each data point, vertical or horizontal.
 - [`RectangleSeries`](api/classQAccelPlot_1_1RectangleSeries.md) — many data-space
   rectangles in one item: spans and state timelines.
 - [`BarSeries`](api/classQAccelPlot_1_1BarSeries.md) — vertical, horizontal, and

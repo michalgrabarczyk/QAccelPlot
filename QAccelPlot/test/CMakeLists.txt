@@ -57,6 +57,8 @@ add_qaccelplot_test(tst_bar_series_transitions core tst_bar_series_transitions.c
 add_qaccelplot_test(tst_band_series_data     core tst_band_series_data.cpp)
 add_qaccelplot_test(tst_band_series_rendering core tst_band_series_rendering.cpp)
 add_qaccelplot_test(tst_band_series_capacity core tst_band_series_capacity.cpp)
+add_qaccelplot_test(tst_error_bar_series_data core tst_error_bar_series_data.cpp)
+add_qaccelplot_test(tst_error_bar_series_rendering core tst_error_bar_series_rendering.cpp)
 add_qaccelplot_test(tst_point_spatial_index  core tst_point_spatial_index.cpp)
 add_qaccelplot_test(tst_point_cloud_data     core tst_point_cloud_data.cpp)
 add_qaccelplot_test(tst_point_cloud_capacity core tst_point_cloud_capacity.cpp)
@@ -107,6 +109,9 @@ qt_import_qml_plugins(tst_line_curve_hover)
 # Renders a QML scene, so it needs the QML module plugin.
 target_link_libraries(tst_band_series_rendering PRIVATE QAccelPlot::QAccelPlot)
 qt_import_qml_plugins(tst_band_series_rendering)
+# Renders a QML scene, so it needs the QML module plugin.
+target_link_libraries(tst_error_bar_series_rendering PRIVATE QAccelPlot::QAccelPlot)
+qt_import_qml_plugins(tst_error_bar_series_rendering)
 # Renders a QML scene, so it needs the QML module plugin.
 target_link_libraries(tst_heatmap_series_rendering PRIVATE QAccelPlot::QAccelPlot)
 qt_import_qml_plugins(tst_heatmap_series_rendering)

@@ -78,6 +78,10 @@ that a `ColorBar` shows.
 confidence intervals and envelopes. It stores `(x, low, high)` triples and
 can draw lines along both edges.
 
+`ErrorBarSeries` draws a capped line from a low to a high bound at each data
+point, along the Y axis or, with `orientation: Qt.Horizontal`, the X axis. It
+stores `(x, y, low, high)` quadruples and does not draw the values.
+
 `RectangleSeries` renders many data-space rectangles in one item, such as event
 spans and state timelines. Infinite edges reach the plot edge, and a
 per-rectangle category selects the fill color. It reports the hovered
@@ -93,6 +97,7 @@ own extent as (from, to, value), e.g. the bins of a histogram.
 `LineCurve` applies one invalid-data-point contract to rendering, gradient fills,
 dash patterns, transitions, auto-ranging, and hover hit testing. For the other
 series, see [bands](cookbook/bands.md#invalid-data-points),
+[error bars](cookbook/error-bars.md#invalid-data-points),
 [point clouds](cookbook/point-clouds.md#invalid-points), and
 [bars](cookbook/bar-charts.md#invalid-bars).
 

@@ -35,6 +35,8 @@ frame.
 - **Histograms** — `Histogram` counts samples into equal or uneven bins, as
   counts or density
 - **Bands** — `BandSeries` for confidence intervals and envelopes
+- **Error bars** — `ErrorBarSeries` for symmetric and asymmetric errors,
+  vertical or horizontal
 - **Layout** — secondary and extra axes, data-anchored QML overlays, and
   `RectangleSeries` for event spans and state timelines
 

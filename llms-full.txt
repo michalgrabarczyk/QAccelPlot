@@ -36,6 +36,8 @@ frame.
 - **Histograms** — `Histogram` counts samples into equal or uneven bins, as
   counts or density
 - **Bands** — `BandSeries` for confidence intervals and envelopes
+- **Error bars** — `ErrorBarSeries` for symmetric and asymmetric errors,
+  vertical or horizontal
 - **Layout** — secondary and extra axes, data-anchored QML overlays, and
   `RectangleSeries` for event spans and state timelines
 
@@ -378,6 +380,10 @@ that a `ColorBar` shows.
 confidence intervals and envelopes. It stores `(x, low, high)` triples and
 can draw lines along both edges.
 
+`ErrorBarSeries` draws a capped line from a low to a high bound at each data
+point, along the Y axis or, with `orientation: Qt.Horizontal`, the X axis. It
+stores `(x, y, low, high)` quadruples and does not draw the values.
+
 `RectangleSeries` renders many data-space rectangles in one item, such as event
 spans and state timelines. Infinite edges reach the plot edge, and a
 per-rectangle category selects the fill color. It reports the hovered
@@ -393,6 +399,7 @@ own extent as (from, to, value), e.g. the bins of a histogram.
 `LineCurve` applies one invalid-data-point contract to rendering, gradient fills,
 dash patterns, transitions, auto-ranging, and hover hit testing. For the other
 series, see [bands](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/bands/#invalid-data-points),
+[error bars](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/error-bars/#invalid-data-points),
 [point clouds](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/point-clouds/#invalid-points), and
 [bars](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/bar-charts/#invalid-bars).
 
@@ -859,6 +866,7 @@ Each recipe links to a complete runnable example.
 | [Bar charts](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/bar-charts/) | Vertical, horizontal, and grouped bars, baselines, category colors, and hover |
 | [Histograms](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/histograms/) | Equal and uneven bins, counts or density, from QML or C++ |
 | [Bands](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/bands/) | Confidence intervals and envelopes between a low and a high value, with edge lines |
+| [Error bars](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/error-bars/) | Symmetric and asymmetric errors, vertical and horizontal, on points and grouped bars |
 | [Background data production](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/background-data/) | Safe high-throughput worker-to-UI handoff |
 | [Exporting images](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/export/) | PNG, JPEG, and other raster files, the clipboard, and `QImage` capture |
 
@@ -2761,6 +2769,8 @@ Complete source: [`examples/data/export`](https://github.com/michalgrabarczyk/QA
   colormap and value range of a point cloud or heatmap.
 - [`BandSeries`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1BandSeries/) — filled area between a
   low and a high value at each X, with optional edge lines.
+- [`ErrorBarSeries`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1ErrorBarSeries/) — capped lines
+  from a low to a high bound at each data point, vertical or horizontal.
 - [`RectangleSeries`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1RectangleSeries/) — many data-space
   rectangles in one item: spans and state timelines.
 - [`BarSeries`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1BarSeries/) — vertical, horizontal, and
