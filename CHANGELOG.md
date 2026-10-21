@@ -23,6 +23,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Colormapped bars: `BarSeries.colormap` colors each bar by its value or, with
   `colorSource: BarSeries.Position`, by its position or bin. The Heatmap
   example keys its interference pattern with a histogram of the cells in view.
+- Image export with `PlotExporter`: save a plot as PNG, JPEG, or another
+  raster format, copy it to the clipboard, or capture a `QImage`, at a chosen
+  scale. Includes an Export example.
 
 ### Changed
 

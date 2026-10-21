@@ -28,6 +28,7 @@
 namespace QAccelPlot {
 
 class GridNode;
+class PlotExporter;
 class RectangleZoomOverlay;
 
 /// \brief The main plot canvas QML item — hosts axes, curves, and a grid.
@@ -232,6 +233,8 @@ protected:
     /// \endcond
 
 private:
+    friend class PlotExporter;
+
     enum class DragMode { Idle, Pan, RectangleZoom };
     bool isAxisRegistered(Axis* axis) const;
     static void appendExtraAxis(QQmlListProperty<Axis>* list, Axis* axis);
@@ -255,6 +258,10 @@ private:
     void layoutAxes();
     void setPointer(const QPointF& position);
     void registerSeries(QQuickItem* item);
+    // Marks the plot as captured by a PlotExporter, drawing both background areas transparent when \a transparentBackground.
+    void beginExport(bool transparentBackground);
+    // Ends the capture and restores the backgrounds.
+    void endExport();
 
     Axis* xAxis_{nullptr};
     Axis* yAxis_{nullptr};
@@ -279,6 +286,9 @@ private:
     QRectF plotRect_;
     QColor plotAreaColor_{ColorPalette::dark().plotArea};
     QColor axesAreaColor_{ColorPalette::dark().axesArea};
+    // One exporter captures the plot at a time: the capture changes how the plot renders.
+    bool exporting_{false};
+    bool transparentBackground_{false};
     PlotBorder* border_{nullptr};
     PlotRectangleZoom* rectangleZoom_{nullptr};
     RectangleZoomOverlay* rectangleZoomOverlay_{nullptr};
