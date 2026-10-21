@@ -39,6 +39,11 @@
 * **NoneShape** ([**QAccelPlot::SeriesMarker**](classQAccelPlot_1_1SeriesMarker.md))
 
 
+## o
+
+* **Operation** ([**QAccelPlot::PlotExporter**](classQAccelPlot_1_1PlotExporter.md))
+
+
 ## p
 
 * **Preset** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))

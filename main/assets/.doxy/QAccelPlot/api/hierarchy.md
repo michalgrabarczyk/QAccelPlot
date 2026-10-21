@@ -14,6 +14,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **class** [**QAccelPlot::InspectionCache::Host**](classQAccelPlot_1_1InspectionCache_1_1Host.md) _Series-side callbacks; all are invoked on the series' thread._ 
 * **class** [**QAccelPlot::InspectionIndex**](classQAccelPlot_1_1InspectionIndex.md) _Immutable k-d tree over the valid data points of a series, with their order along each axis._ 
 * **class** [**QAccelPlot::Internal::HoverIndexBudget**](classQAccelPlot_1_1Internal_1_1HoverIndexBudget.md) _Decides when queried data is worth a hover index._ 
+* **class** [**QAccelPlot::Internal::ScopedPaintedItemTextures**](classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures.md) _Rasterizes the painted items under a root item at a capture scale until destroyed._ 
 * **class** [**QAccelPlot::LineCurveLineRenderer**](classQAccelPlot_1_1LineCurveLineRenderer.md) _Internal renderer responsible for building and updating QSGNode line geometry for a_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _._
 * **class** [**QAccelPlot::LineCurvePointRenderer**](classQAccelPlot_1_1LineCurvePointRenderer.md) _Internal renderer responsible for building and updating QSGNode marker geometry for a_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _._
 * **class** [**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md) _Owns a_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _'s pre-built vertex bytes and the metadata required to use them safely._
@@ -61,6 +62,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **struct** [**QAccelPlot::InspectionRow**](structQAccelPlot_1_1InspectionRow.md) _Inspection result of one series, as shown by one row of an_ `InspectionRowModel` _._
 * **struct** [**QAccelPlot::InspectionSource**](structQAccelPlot_1_1InspectionSource.md) _Read-only view over the XY records a series exposes to inspection queries._ 
 * **struct** [**QAccelPlot::InspectionSummary**](structQAccelPlot_1_1InspectionSummary.md) _Data-point-weighted Y statistics over the valid data points inside a region._ 
+* **struct** [**QAccelPlot::Internal::GrabSize**](structQAccelPlot_1_1Internal_1_1GrabSize.md) _Sizes of one item grab._ 
 * **struct** [**QAccelPlot::Internal::HeatmapGridDimension**](structQAccelPlot_1_1Internal_1_1HeatmapGridDimension.md) _One dimension of a heatmap grid:_ `count` _cells between the edges_`from` _and_`to` _._
 * **struct** [**QAccelPlot::Internal::HeatmapShaderMapping**](structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping.md) _How heatmap.frag maps an item-local pixel position_ _p_ _to a fractional cell coordinate along one dimension._
 * **struct** [**QAccelPlot::Internal::RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md) _Mirrors the std140 uniform block of rect.vert._ 
@@ -91,6 +93,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **struct** [**QAccelPlot::HeatmapSeries::Extent**](structQAccelPlot_1_1HeatmapSeries_1_1Extent.md) [_**Grid**_](classQAccelPlot_1_1Grid.md) _edges. In_`edges_` _an unset edge is NaN;_`resolvedExtent()` _resolves it to index space._
 * **struct** [**QAccelPlot::InspectionCache::Job**](structQAccelPlot_1_1InspectionCache_1_1Job.md) 
 * **struct** [**QAccelPlot::InspectionIndex::Node**](structQAccelPlot_1_1InspectionIndex_1_1Node.md) 
+* **struct** [**QAccelPlot::Internal::ScopedPaintedItemTextures::SavedTexture**](structQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1_1SavedTexture.md) 
 * **struct** [**QAccelPlot::LineCurveLineRenderer::FillSampleCache**](structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache.md) 
 * **struct** [**QAccelPlot::PointCloud::HoverQuery**](structQAccelPlot_1_1PointCloud_1_1HoverQuery.md) _A hover query in the spatial index's coordinates. With the data, it decides the answer._ 
 * **struct** [**QAccelPlot::PointCloud::Points**](structQAccelPlot_1_1PointCloud_1_1Points.md) _Points of_ `stride` _doubles each: (x, y), or (x, y, value)._
@@ -152,6 +155,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
         * **class** [**QAccelPlot::NumericTickLabelFormatter**](classQAccelPlot_1_1NumericTickLabelFormatter.md) _The default tick label formatter — produces numeric labels with automatic decimal precision._ 
         * **class** [**QAccelPlot::TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md) _A tick label formatter that maps integer tick indices to a user-supplied list of strings._ 
     * **class** [**QAccelPlot::PlotBorder**](classQAccelPlot_1_1PlotBorder.md) _Decorative frame configuration exposed by_ `PlotView::border` _._
+    * **class** [**QAccelPlot::PlotExporter**](classQAccelPlot_1_1PlotExporter.md) _Exports a plot as a raster image: to a file, to the clipboard, or as a_ `QImage` _._
     * **class** [**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md) _Inspects the visible XY series and heatmaps of a plot at a cursor and publishes one model row per series._ 
     * **class** [**QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md) _Carries mouse event data for the mouse signals._ 
     * **class** [**QAccelPlot::PlotRectangleZoom**](classQAccelPlot_1_1PlotRectangleZoom.md) _Rectangle zoom configuration and selection state exposed by PlotView._ 

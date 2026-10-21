@@ -33,6 +33,11 @@
 * **findValidRuns** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
 
 
+## g
+
+* **grabSizeFor** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+
+
 ## h
 
 * **hoverEnabled** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
@@ -40,9 +45,15 @@
 
 ## i
 
+* **imageFormatForPath** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **isValidPoint** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
 * **isEmptyChunk** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **isValidCoordinate** ([**QAccelPlot**](namespaceQAccelPlot.md))
+
+
+## l
+
+* **localFilePath** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
 
 ## m
@@ -78,6 +89,7 @@
 ## s
 
 * **summarize** ([**QAccelPlot::InspectionScan**](namespaceQAccelPlot_1_1InspectionScan.md))
+* **setImageResolution** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **supportsCustomShaderRendering** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
 
@@ -97,6 +109,7 @@
 * **warnIfOutgrowsCapacity** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **wheelZoomFactor** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **widenedSpan** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **writeImageFile** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **writeRectUniforms** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **writeVertices** ([**QAccelPlot::LineStroke**](namespaceQAccelPlot_1_1LineStroke.md))
 

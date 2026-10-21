@@ -87,10 +87,12 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **struct** [**InspectionSource**](structQAccelPlot_1_1InspectionSource.md) _Read-only view over the XY records a series exposes to inspection queries._     
     * **struct** [**InspectionSummary**](structQAccelPlot_1_1InspectionSummary.md) _Data-point-weighted Y statistics over the valid data points inside a region._     
     * **namespace** [**Internal**](namespaceQAccelPlot_1_1Internal.md)     
+        * **struct** [**GrabSize**](structQAccelPlot_1_1Internal_1_1GrabSize.md) _Sizes of one item grab._     
         * **struct** [**HeatmapGridDimension**](structQAccelPlot_1_1Internal_1_1HeatmapGridDimension.md) _One dimension of a heatmap grid:_ `count` _cells between the edges_`from` _and_`to` _._    
         * **struct** [**HeatmapShaderMapping**](structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping.md) _How heatmap.frag maps an item-local pixel position_ _p_ _to a fractional cell coordinate along one dimension._    
         * **class** [**HoverIndexBudget**](classQAccelPlot_1_1Internal_1_1HoverIndexBudget.md) _Decides when queried data is worth a hover index._     
         * **struct** [**RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md) _Mirrors the std140 uniform block of rect.vert._     
+        * **class** [**ScopedPaintedItemTextures**](classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures.md) _Rasterizes the painted items under a root item at a capture scale until destroyed._     
         * **struct** [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) _Bounds of an axis viewport or a colormap value range._     
     * **struct** [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md) _How a legend draws one series: its symbol, color, line, and marker._     
     * **class** [**LegendModel**](classQAccelPlot_1_1LegendModel.md) _List model of the legend entries of a list of series._     
@@ -115,6 +117,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **class** [**OverlayChildren**](classQAccelPlot_1_1OverlayChildren.md) _Objects declared inside an inspection tool in QML._     
     * **class** [**PlotBorder**](classQAccelPlot_1_1PlotBorder.md) _Decorative frame configuration exposed by_ `PlotView::border` _._    
     * **class** [**PlotDragRect**](classQAccelPlot_1_1PlotDragRect.md) _Rectangle dragged out inside the plot area, shared by rectangle zoom and data selection._     
+    * **class** [**PlotExporter**](classQAccelPlot_1_1PlotExporter.md) _Exports a plot as a raster image: to a file, to the clipboard, or as a_ `QImage` _._    
     * **class** [**PlotInspector**](classQAccelPlot_1_1PlotInspector.md) _Inspects the visible XY series and heatmaps of a plot at a cursor and publishes one model row per series._     
     * **class** [**PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md) _Carries mouse event data for the mouse signals._     
     * **class** [**PlotRectangleZoom**](classQAccelPlot_1_1PlotRectangleZoom.md) _Rectangle zoom configuration and selection state exposed by PlotView._     
@@ -161,6 +164,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
 * **struct** [**Extent**](structQAccelPlot_1_1HeatmapSeries_1_1Extent.md) [_**Grid**_](classQAccelPlot_1_1Grid.md) _edges. In_`edges_` _an unset edge is NaN;_`resolvedExtent()` _resolves it to index space._    
 * **struct** [**Job**](structQAccelPlot_1_1InspectionCache_1_1Job.md)     
 * **struct** [**Node**](structQAccelPlot_1_1InspectionIndex_1_1Node.md)     
+* **struct** [**SavedTexture**](structQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1_1SavedTexture.md)     
 * **struct** [**FillSampleCache**](structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache.md)     
 * **struct** [**HoverQuery**](structQAccelPlot_1_1PointCloud_1_1HoverQuery.md) _A hover query in the spatial index's coordinates. With the data, it decides the answer._     
 * **struct** [**Points**](structQAccelPlot_1_1PointCloud_1_1Points.md) _Points of_ `stride` _doubles each: (x, y), or (x, y, value)._    

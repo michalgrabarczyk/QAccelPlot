@@ -471,6 +471,8 @@
       
         
       
+        
+      
     
     
     
@@ -917,6 +919,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/export/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exporting images
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1333,6 +1363,7 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1InspectionCache_1_1Host/"><strong>QAccelPlot::InspectionCache::Host</strong></a> <em>Series-side callbacks; all are invoked on the series' thread.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1InspectionIndex/"><strong>QAccelPlot::InspectionIndex</strong></a> <em>Immutable k-d tree over the valid data points of a series, with their order along each axis.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1HoverIndexBudget/"><strong>QAccelPlot::Internal::HoverIndexBudget</strong></a> <em>Decides when queried data is worth a hover index.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures/"><strong>QAccelPlot::Internal::ScopedPaintedItemTextures</strong></a> <em>Rasterizes the painted items under a root item at a capture scale until destroyed.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurveLineRenderer/"><strong>QAccelPlot::LineCurveLineRenderer</strong></a> <em>Internal renderer responsible for building and updating QSGNode line geometry for a</em> <a href="../classQAccelPlot_1_1LineCurve/"><em><strong>LineCurve</strong></em></a> <em>.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurvePointRenderer/"><strong>QAccelPlot::LineCurvePointRenderer</strong></a> <em>Internal renderer responsible for building and updating QSGNode marker geometry for a</em> <a href="../classQAccelPlot_1_1LineCurve/"><em><strong>LineCurve</strong></em></a> <em>.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurveVertexCache/"><strong>QAccelPlot::LineCurveVertexCache</strong></a> <em>Owns a</em> <a href="../classQAccelPlot_1_1LineCurve/"><em><strong>LineCurve</strong></em></a> <em>'s pre-built vertex bytes and the metadata required to use them safely.</em></li>
@@ -1380,6 +1411,7 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionRow/"><strong>QAccelPlot::InspectionRow</strong></a> <em>Inspection result of one series, as shown by one row of an</em> <code>InspectionRowModel</code> <em>.</em></li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionSource/"><strong>QAccelPlot::InspectionSource</strong></a> <em>Read-only view over the XY records a series exposes to inspection queries.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionSummary/"><strong>QAccelPlot::InspectionSummary</strong></a> <em>Data-point-weighted Y statistics over the valid data points inside a region.</em> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1GrabSize/"><strong>QAccelPlot::Internal::GrabSize</strong></a> <em>Sizes of one item grab.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1HeatmapGridDimension/"><strong>QAccelPlot::Internal::HeatmapGridDimension</strong></a> <em>One dimension of a heatmap grid:</em> <code>count</code> <em>cells between the edges</em><code>from</code> <em>and</em><code>to</code> <em>.</em></li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping/"><strong>QAccelPlot::Internal::HeatmapShaderMapping</strong></a> <em>How heatmap.frag maps an item-local pixel position</em> <em>p</em> <em>to a fractional cell coordinate along one dimension.</em></li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1RectUbo/"><strong>QAccelPlot::Internal::RectUbo</strong></a> <em>Mirrors the std140 uniform block of rect.vert.</em> </li>
@@ -1410,6 +1442,7 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1HeatmapSeries_1_1Extent/"><strong>QAccelPlot::HeatmapSeries::Extent</strong></a> <a href="../classQAccelPlot_1_1Grid/"><em><strong>Grid</strong></em></a> <em>edges. In</em><code>edges_</code> <em>an unset edge is NaN;</em><code>resolvedExtent()</code> <em>resolves it to index space.</em></li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionCache_1_1Job/"><strong>QAccelPlot::InspectionCache::Job</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionIndex_1_1Node/"><strong>QAccelPlot::InspectionIndex::Node</strong></a> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1_1SavedTexture/"><strong>QAccelPlot::Internal::ScopedPaintedItemTextures::SavedTexture</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache/"><strong>QAccelPlot::LineCurveLineRenderer::FillSampleCache</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointCloud_1_1HoverQuery/"><strong>QAccelPlot::PointCloud::HoverQuery</strong></a> <em>A hover query in the spatial index's coordinates. With the data, it decides the answer.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointCloud_1_1Points/"><strong>QAccelPlot::PointCloud::Points</strong></a> <em>Points of</em> <code>stride</code> <em>doubles each: (x, y), or (x, y, value).</em></li>
@@ -1495,6 +1528,7 @@
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotBorder/"><strong>QAccelPlot::PlotBorder</strong></a> <em>Decorative frame configuration exposed by</em> <code>PlotView::border</code> <em>.</em></li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotExporter/"><strong>QAccelPlot::PlotExporter</strong></a> <em>Exports a plot as a raster image: to a file, to the clipboard, or as a</em> <code>QImage</code> <em>.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotInspector/"><strong>QAccelPlot::PlotInspector</strong></a> <em>Inspects the visible XY series and heatmaps of a plot at a cursor and publishes one model row per series.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotMouseEvent/"><strong>QAccelPlot::PlotMouseEvent</strong></a> <em>Carries mouse event data for the mouse signals.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotRectangleZoom/"><strong>QAccelPlot::PlotRectangleZoom</strong></a> <em>Rectangle zoom configuration and selection state exposed by PlotView.</em> </li>

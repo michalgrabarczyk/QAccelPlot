@@ -38,10 +38,12 @@
 
 | Type | Name |
 | ---: | :--- |
+| struct | [**GrabSize**](structQAccelPlot_1_1Internal_1_1GrabSize.md) <br>_Sizes of one item grab._  |
 | struct | [**HeatmapGridDimension**](structQAccelPlot_1_1Internal_1_1HeatmapGridDimension.md) <br>_One dimension of a heatmap grid:_ `count` _cells between the edges_`from` _and_`to` _._ |
 | struct | [**HeatmapShaderMapping**](structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping.md) <br>_How heatmap.frag maps an item-local pixel position_ _p_ _to a fractional cell coordinate along one dimension._ |
 | class | [**HoverIndexBudget**](classQAccelPlot_1_1Internal_1_1HoverIndexBudget.md) <br>_Decides when queried data is worth a hover index._  |
 | struct | [**RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md) <br>_Mirrors the std140 uniform block of rect.vert._  |
+| class | [**ScopedPaintedItemTextures**](classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures.md) <br>_Rasterizes the painted items under a root item at a capture scale until destroyed._  |
 | struct | [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) <br>_Bounds of an axis viewport or a colormap value range._  |
 
 
@@ -77,15 +79,20 @@
 |  constexpr int | [**dataTextureHeight**](#function-datatextureheight) (const int floatCount) <br>_Returns the number of data texture rows needed to store_ _floatCount_ _floats._ |
 |  constexpr qint64 | [**dataTextureItemCapacity**](#function-datatextureitemcapacity) (const int maxHeight, const int floatsPerItem) <br>_Returns how many items of_ _floatsPerItem_ _floats fit in a data texture at most__maxHeight_ _rows tall._ |
 |  qreal | [**edgePixel**](#function-edgepixel) (double value, const [**Axis**](classQAccelPlot_1_1Axis.md) & axis, qreal length) <br>_Maps rectangle edge_ _value_ _on__axis_ _to item pixels along an item side__length_ _pixels long._ |
+|  [**GrabSize**](structQAccelPlot_1_1Internal_1_1GrabSize.md) | [**grabSizeFor**](#function-grabsizefor) (const QSize & pixels, qreal devicePixelRatio) <br>_Returns the grab whose image is closest to_ _pixels_ _in a window at__devicePixelRatio_ _._ |
 |  bool | [**hoverEnabled**](#function-hoverenabled) () <br>_Returns whether series accept hover events:_ `false` _only when_`QACCELPLOT_HOVER_ENABLED` _is 0._ |
+|  QByteArray | [**imageFormatForPath**](#function-imageformatforpath) (const QString & path) <br>_Returns the lowercase_ `QImageWriter` _format for__path's_ _suffix, or an empty array when none can write it._ |
+|  QString | [**localFilePath**](#function-localfilepath) (const QString & pathOrUrl) <br>_Returns_ _pathOrUrl_ _as a local file path; a_`file:` _URL, as a QML file dialog returns, is converted._ |
 |  int | [**maxTextureSize**](#function-maxtexturesize) (QQuickWindow \* window) <br>_Returns the largest texture width and height, in pixels, that_ _window's_ _GPU supports._ |
 |  [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) | [**pannedRange**](#function-pannedrange) (const [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) & range, qreal fraction, bool logarithmic) <br>_Returns_ _range_ _shifted by__fraction_ _of its extent; a positive__fraction_ _raises both bounds._ |
 |  int | [**recordCapacity**](#function-recordcapacity) (QQuickWindow \* window, int floatsPerRecord, int vertexBytesPerRecord) <br>_Returns how many records a series draws that reads them from the data texture by a float vertex id._  |
+|  void | [**setImageResolution**](#function-setimageresolution) (QImage & image, qreal dpi) <br>_Sets the resolution stored with_ _image_ _to__dpi_ _dots per inch._ |
 |  bool | [**supportsCustomShaderRendering**](#function-supportscustomshaderrendering) (const QQuickWindow \* window) <br>_Returns_ `true` _when__window_ _renders through a hardware scene graph backend that runs custom shaders._ |
 |  void | [**uploadDataTexture**](#function-uploaddatatexture) (std::unique\_ptr&lt; QSGTexture &gt; & texture, QQuickWindow \* window, const QImage & image) <br>_Uploads an image to the live-data texture using the configured Qt API path._  |
 |  bool | [**warnIfOutgrowsCapacity**](#function-warnifoutgrowscapacity) (bool wasOverCapacity, int recordCount, int capacity, const char \* seriesType, const char \* records) <br>_Returns whether_ _recordCount_ _exceeds__capacity_ _, and warns when it newly does._ |
 |  qreal | [**wheelZoomFactor**](#function-wheelzoomfactor) (qreal zoomScaleFactor, bool zoomingIn, qreal steps=1.0) <br>_Returns the extent multiplier for mouse-wheel zoom with a_ _zoomScaleFactor_ _in (0, 1)._ |
 |  std::pair&lt; qreal, qreal &gt; | [**widenedSpan**](#function-widenedspan) (qreal a, qreal b, qreal minimumSize) <br>_Returns the pixel span between edges_ _a_ _and__b_ _, widened around its center to at least__minimumSize_ _._ |
+|  QString | [**writeImageFile**](#function-writeimagefile) (const QImage & image, const QString & path, const QByteArray & format, int quality) <br>_Writes_ _image_ _to__path_ _in__format_ _and returns an error message, or an empty string on success._ |
 |  void | [**writeRectUniforms**](#function-writerectuniforms) ([**RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md) & ubo, const QSGMaterialShader::RenderState & state, const [**RectMaterial**](classQAccelPlot_1_1RectMaterial.md) & material) <br>_Fills_ _ubo_ _from__material_ _and the matrix and opacity of the render__state_ _._ |
 |  [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) | [**zoomedRange**](#function-zoomedrange) (const [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) & range, qreal factor, qreal anchorRatio, bool logarithmic) <br>_Returns_ _range_ _with its extent multiplied by__factor_ _, keeping the value at__anchorRatio_ _in place._ |
 
@@ -201,11 +208,67 @@ Infinite edges, and non-positive edges on a log axis, map to infinity on the mat
 
 
 
+### function grabSizeFor {#function-grabsizefor}
+
+_Returns the grab whose image is closest to_ _pixels_ _in a window at__devicePixelRatio_ _._
+```C++
+GrabSize QAccelPlot::Internal::grabSizeFor (
+    const QSize & pixels,
+    qreal devicePixelRatio
+) 
+```
+
+
+
+Qt 6.2 renders the target size in pixels. Later versions multiply it by the device pixel ratio and round, so some pixel counts cannot be rendered and the image can differ from _pixels_ by a pixel; a tie picks the smaller image. 
+
+
+        
+
+<hr>
+
+
+
+
 ### function hoverEnabled {#function-hoverenabled}
 
 _Returns whether series accept hover events:_ `false` _only when_`QACCELPLOT_HOVER_ENABLED` _is 0._
 ```C++
 bool QAccelPlot::Internal::hoverEnabled () 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function imageFormatForPath {#function-imageformatforpath}
+
+_Returns the lowercase_ `QImageWriter` _format for__path's_ _suffix, or an empty array when none can write it._
+```C++
+QByteArray QAccelPlot::Internal::imageFormatForPath (
+    const QString & path
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function localFilePath {#function-localfilepath}
+
+_Returns_ _pathOrUrl_ _as a local file path; a_`file:` _URL, as a QML file dialog returns, is converted._
+```C++
+QString QAccelPlot::Internal::localFilePath (
+    const QString & pathOrUrl
+) 
 ```
 
 
@@ -277,6 +340,24 @@ A record takes _floatsPerRecord_ floats of the data texture and _vertexBytesPerR
 
 
         
+
+<hr>
+
+
+
+
+### function setImageResolution {#function-setimageresolution}
+
+_Sets the resolution stored with_ _image_ _to__dpi_ _dots per inch._
+```C++
+void QAccelPlot::Internal::setImageResolution (
+    QImage & image,
+    qreal dpi
+) 
+```
+
+
+
 
 <hr>
 
@@ -381,6 +462,30 @@ std::pair< qreal, qreal > QAccelPlot::Internal::widenedSpan (
 
 
 Matches `widenedSpan()` in rect\_geometry.glsl, so hit tests use the drawn size. 
+
+
+        
+
+<hr>
+
+
+
+
+### function writeImageFile {#function-writeimagefile}
+
+_Writes_ _image_ _to__path_ _in__format_ _and returns an error message, or an empty string on success._
+```C++
+QString QAccelPlot::Internal::writeImageFile (
+    const QImage & image,
+    const QString & path,
+    const QByteArray & format,
+    int quality
+) 
+```
+
+
+
+_quality_ is passed to `QImageWriter::setQuality()`. Formats without an alpha channel get the image composited over white. The file is replaced atomically, so a failed write leaves an existing file intact. Safe to call from a worker thread. 
 
 
         

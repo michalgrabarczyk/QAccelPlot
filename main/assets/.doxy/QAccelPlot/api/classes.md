@@ -124,6 +124,8 @@
 
 ## g
 
+* [**GrabSize**](structQAccelPlot_1_1Internal_1_1GrabSize.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * [**GradientColorPayload**](structQAccelPlot_1_1GradientColorPayload.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**GradientFill**](classQAccelPlot_1_1GradientFill.md)
@@ -275,6 +277,8 @@
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**PlotDragRect**](classQAccelPlot_1_1PlotDragRect.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**PlotExporter**](classQAccelPlot_1_1PlotExporter.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**PlotInspector**](classQAccelPlot_1_1PlotInspector.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md)
@@ -328,6 +332,9 @@
 
 ## s
 
+* [**SavedTexture**](structQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1_1SavedTexture.md)
+* [**ScopedPaintedItemTextures**](classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * [**SelectionRectangle**](classQAccelPlot_1_1SelectionRectangle.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**SelectionTool**](classQAccelPlot_1_1SelectionTool.md)

@@ -48,6 +48,7 @@
 * **borderWidth** ([**QAccelPlot::Internal::RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md), [**QAccelPlot::RectMaterial**](classQAccelPlot_1_1RectMaterial.md))
 * **bytes\_** ([**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md))
 * **b** ([**QAccelPlot::LineVertex**](structQAccelPlot_1_1LineVertex.md), [**QAccelPlot::PointVertex**](structQAccelPlot_1_1PointVertex.md), [**QAccelPlot::RectVertexCache::Vertex**](structQAccelPlot_1_1RectVertexCache_1_1Vertex.md))
+* **busy\_** ([**QAccelPlot::PlotExporter**](classQAccelPlot_1_1PlotExporter.md))
 * **button\_** ([**QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md), [**QAccelPlot::SelectionTool**](classQAccelPlot_1_1SelectionTool.md))
 * **blocks\_** ([**QAccelPlot::SourceInspection**](classQAccelPlot_1_1SourceInspection.md))
 * **boundedX\_** ([**QAccelPlot::SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md))
@@ -85,6 +86,7 @@
 * **columns\_** ([**QAccelPlot::HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md), [**QAccelPlot::PointSpatialIndex**](classQAccelPlot_1_1PointSpatialIndex.md))
 * **chunksValid\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **chunks\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
+* **capture\_** ([**QAccelPlot::PlotExporter**](classQAccelPlot_1_1PlotExporter.md))
 * **children\_** ([**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md))
 * **connections\_** ([**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md), [**QAccelPlot::SelectionTool**](classQAccelPlot_1_1SelectionTool.md))
 * **cursorXText\_** ([**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md))
@@ -148,6 +150,7 @@
 * **dashPatternSize** ([**QAccelPlot::LineMaterial**](classQAccelPlot_1_1LineMaterial.md))
 * **dashPeriod** ([**QAccelPlot::LineMaterial**](classQAccelPlot_1_1LineMaterial.md))
 * **dash** ([**QAccelPlot::LineStroke::Uniforms**](structQAccelPlot_1_1LineStroke_1_1Uniforms.md))
+* **dpi\_** ([**QAccelPlot::PlotExporter**](classQAccelPlot_1_1PlotExporter.md))
 * **doubleArray** ([**QAccelPlot::PlotSeries::DataPointInput**](structQAccelPlot_1_1PlotSeries_1_1DataPointInput.md))
 * **doubleUnit** ([**QAccelPlot::PlotSeries::DataPointWording**](structQAccelPlot_1_1PlotSeries_1_1DataPointWording.md))
 * **dataPoints\_** ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
@@ -174,6 +177,7 @@
 * **effects\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **end\_** ([**QAccelPlot::PlotDragRect**](classQAccelPlot_1_1PlotDragRect.md))
 * **excluded\_** ([**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md))
+* **exporting\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **extraAxes\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **endInset** ([**QAccelPlot::ColorBar::Layout**](structQAccelPlot_1_1ColorBar_1_1Layout.md))
 
@@ -258,11 +262,13 @@
 * **interpolated** ([**QAccelPlot::InspectionBracket**](structQAccelPlot_1_1InspectionBracket.md))
 * **index\_** ([**QAccelPlot::InspectionCache**](classQAccelPlot_1_1InspectionCache.md))
 * **index** ([**QAccelPlot::InspectionHit**](structQAccelPlot_1_1InspectionHit.md), [**QAccelPlot::InspectionIndex::Point**](structQAccelPlot_1_1InspectionIndex_1_1Point.md), [**QAccelPlot::InspectionCache::Job**](structQAccelPlot_1_1InspectionCache_1_1Job.md))
+* **image** ([**QAccelPlot::Internal::GrabSize**](structQAccelPlot_1_1Internal_1_1GrabSize.md))
 * **included\_** ([**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md))
 * **interpolate\_** ([**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md))
 * **inspection\_** ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
 * **indexedRevision\_** ([**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
 * **itemBounds\_** ([**QAccelPlot::SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md))
+* **item** ([**QAccelPlot::Internal::ScopedPaintedItemTextures::SavedTexture**](structQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1_1SavedTexture.md))
 * **itemSize** ([**QAccelPlot::RectangleSeries::HitTestInputs**](structQAccelPlot_1_1RectangleSeries_1_1HitTestInputs.md))
 
 
@@ -414,14 +420,19 @@
 * **pendingVertexCache\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **pointRenderer\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **pointCount\_** ([**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md))
+* **plot\_** ([**QAccelPlot::PlotExporter**](classQAccelPlot_1_1PlotExporter.md), [**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md), [**QAccelPlot::SelectionTool**](classQAccelPlot_1_1SelectionTool.md))
 * **pinnedX\_** ([**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md))
 * **pinnedY\_** ([**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md))
-* **plot\_** ([**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md), [**QAccelPlot::SelectionTool**](classQAccelPlot_1_1SelectionTool.md))
 * **position\_** ([**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md))
 * **plural** ([**QAccelPlot::PlotSeries::DataPointWording**](structQAccelPlot_1_1PlotSeries_1_1DataPointWording.md))
 * **padding\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **plotAreaColor\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **pointerPos\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
+
+
+## q
+
+* **quality\_** ([**QAccelPlot::PlotExporter**](classQAccelPlot_1_1PlotExporter.md))
 
 
 ## r
@@ -496,10 +507,14 @@
 * **scale** ([**QAccelPlot::Internal::HeatmapShaderMapping**](structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping.md))
 * **shift** ([**QAccelPlot::Internal::HeatmapShaderMapping**](structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping.md))
 * **scanCost\_** ([**QAccelPlot::Internal::HoverIndexBudget**](classQAccelPlot_1_1Internal_1_1HoverIndexBudget.md))
+* **saved\_** ([**QAccelPlot::Internal::ScopedPaintedItemTextures**](classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures.md))
 * **symbol** ([**QAccelPlot::LegendEntry**](structQAccelPlot_1_1LegendEntry.md))
 * **styleChanged\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **sourceData** ([**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md), [**QAccelPlot::PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md))
 * **start\_** ([**QAccelPlot::PlotDragRect**](classQAccelPlot_1_1PlotDragRect.md))
+* **savePath\_** ([**QAccelPlot::PlotExporter**](classQAccelPlot_1_1PlotExporter.md))
+* **saveWatcher\_** ([**QAccelPlot::PlotExporter**](classQAccelPlot_1_1PlotExporter.md))
+* **scale\_** ([**QAccelPlot::PlotExporter**](classQAccelPlot_1_1PlotExporter.md))
 * **snapToDataPoint\_** ([**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md))
 * **summaries\_** ([**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md))
 * **summaryRadius\_** ([**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md))
@@ -541,15 +556,18 @@
 * **timer\_** ([**QAccelPlot::DataTransition::Run**](classQAccelPlot_1_1DataTransition_1_1Run.md), [**QAccelPlot::InspectionCache**](classQAccelPlot_1_1InspectionCache.md))
 * **to\_** ([**QAccelPlot::DataTransition::Run**](classQAccelPlot_1_1DataTransition_1_1Run.md))
 * **total\_** ([**QAccelPlot::Histogram**](classQAccelPlot_1_1Histogram.md))
+* **target** ([**QAccelPlot::Internal::GrabSize**](structQAccelPlot_1_1Internal_1_1GrabSize.md))
 * **to** ([**QAccelPlot::Internal::HeatmapGridDimension**](structQAccelPlot_1_1Internal_1_1HeatmapGridDimension.md))
 * **toolProperty\_** ([**QAccelPlot::OverlayChildren**](classQAccelPlot_1_1OverlayChildren.md))
 * **tool\_** ([**QAccelPlot::OverlayChildren**](classQAccelPlot_1_1OverlayChildren.md), [**QAccelPlot::SelectionRectangle**](classQAccelPlot_1_1SelectionRectangle.md))
+* **transparentBackground\_** ([**QAccelPlot::PlotExporter**](classQAccelPlot_1_1PlotExporter.md), [**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **touchPointer\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **touchPressed\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **tickLabel\_** ([**QAccelPlot::TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md))
 * **tickArea** ([**QAccelPlot::ColorBar::Layout**](structQAccelPlot_1_1ColorBar_1_1Layout.md))
 * **tickClip** ([**QAccelPlot::ColorBar::Layout**](structQAccelPlot_1_1ColorBar_1_1Layout.md))
 * **title** ([**QAccelPlot::ColorBar::Layout**](structQAccelPlot_1_1ColorBar_1_1Layout.md))
+* **textureSize** ([**QAccelPlot::Internal::ScopedPaintedItemTextures::SavedTexture**](structQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1_1SavedTexture.md))
 
 
 ## u

@@ -131,6 +131,7 @@
 | class | [**OverlayChildren**](classQAccelPlot_1_1OverlayChildren.md) <br>_Objects declared inside an inspection tool in QML._  |
 | class | [**PlotBorder**](classQAccelPlot_1_1PlotBorder.md) <br>_Decorative frame configuration exposed by_ `PlotView::border` _._ |
 | class | [**PlotDragRect**](classQAccelPlot_1_1PlotDragRect.md) <br>_Rectangle dragged out inside the plot area, shared by rectangle zoom and data selection._  |
+| class | [**PlotExporter**](classQAccelPlot_1_1PlotExporter.md) <br>_Exports a plot as a raster image: to a file, to the clipboard, or as a_ `QImage` _._ |
 | class | [**PlotInspector**](classQAccelPlot_1_1PlotInspector.md) <br>_Inspects the visible XY series and heatmaps of a plot at a cursor and publishes one model row per series._  |
 | class | [**PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md) <br>_Carries mouse event data for the mouse signals._  |
 | class | [**PlotRectangleZoom**](classQAccelPlot_1_1PlotRectangleZoom.md) <br>_Rectangle zoom configuration and selection state exposed by PlotView._  |

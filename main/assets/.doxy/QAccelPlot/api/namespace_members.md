@@ -37,6 +37,7 @@
 
 * **GradientFillBaseline** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **GradientValueSource** ([**QAccelPlot**](namespaceQAccelPlot.md))
+* **grabSizeFor** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
 
 ## h
@@ -49,6 +50,7 @@
 * **InspectionAxis** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **InspectionMatching** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **InspectionStatus** ([**QAccelPlot**](namespaceQAccelPlot.md))
+* **imageFormatForPath** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **isValidPoint** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
 * **isEmptyChunk** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **isValidCoordinate** ([**QAccelPlot**](namespaceQAccelPlot.md))
@@ -59,6 +61,11 @@
 * **kDataTextureWidth** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **kMaxDashPatternSize** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **kNearlyEqualEpsilon** ([**QAccelPlot**](namespaceQAccelPlot.md))
+
+
+## l
+
+* **localFilePath** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
 
 ## m
@@ -98,6 +105,7 @@
 * **Source** ([**QAccelPlot::GradientValueSourceNS**](namespaceQAccelPlot_1_1GradientValueSourceNS.md))
 * **Status** ([**QAccelPlot::InspectionNS**](namespaceQAccelPlot_1_1InspectionNS.md))
 * **summarize** ([**QAccelPlot::InspectionScan**](namespaceQAccelPlot_1_1InspectionScan.md))
+* **setImageResolution** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **supportsCustomShaderRendering** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
 
@@ -117,6 +125,7 @@
 * **warnIfOutgrowsCapacity** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **wheelZoomFactor** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **widenedSpan** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **writeImageFile** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **writeRectUniforms** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **writeVertices** ([**QAccelPlot::LineStroke**](namespaceQAccelPlot_1_1LineStroke.md))
 
