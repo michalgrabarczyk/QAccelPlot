@@ -9,6 +9,7 @@
 
 #include "QAccelPlot/series/PlotSeries.hpp"
 #include "QAccelPlot/series/SpatialGrid.hpp"
+#include "QAccelPlot/transitions/DataTransition.hpp"
 
 #include <QColor>
 #include <QList>
@@ -22,6 +23,7 @@
 
 #include <cstdint>
 #include <limits>
+#include <memory>
 #include <optional>
 #include <vector>
 
@@ -30,6 +32,7 @@ class QSGGeometryNode;
 namespace QAccelPlot {
 
 class ErrorBarMaterial;
+class TransitionRunner;
 
 /// \brief A hardware-accelerated QML item that draws error bars: a line from a low to a high bound at each data point, capped at both ends.
 ///
@@ -72,11 +75,20 @@ class ErrorBarMaterial;
 /// series under the cursor is hovered: set \c hoverEnabled to \c false to leave hover to the series
 /// beneath.
 ///
+/// \par Transitions
+/// Assign a \c MorphTransition or \c DrawTransition to \c transition to animate data updates. With
+/// \c MorphTransition, error bars move to their new position, value, and bounds. New error bars
+/// appear, and removed ones disappear, at once. \c count, \c errorBarAt(), the data ranges, and
+/// inspection use the new data from the start of the animation, while hover picks the error bars as
+/// drawn. While a transition is enabled, the \c setDataF() overloads store doubles. \c appendData(),
+/// \c appendErrorData(), \c clearData(), and replacing, clearing, or cancelling \c transition, skip
+/// to the new data.
+///
 /// \par Limits
 /// At most 16,777,216 (2^24) error bars are drawn, fewer on GPUs whose maximum texture size is below
 /// 8192. Error bars beyond the limit are not drawn or hovered, and a warning is logged once.
 ///
-/// \sa PointCloud, LineCurve, BandSeries
+/// \sa PointCloud, LineCurve, BandSeries, MorphTransition, DrawTransition
 class ErrorBarSeries : public PlotSeries {
     Q_OBJECT
     QML_NAMED_ELEMENT(ErrorBarSeries)
@@ -97,6 +109,8 @@ class ErrorBarSeries : public PlotSeries {
     Q_PROPERTY(QColor hoverColor READ hoverColor WRITE setHoverColor NOTIFY hoverColorChanged)
     /// \brief Pick distance in pixels from an error bar or its caps, clamped to at least 0. Default: 6.
     Q_PROPERTY(qreal hoverRadius READ hoverRadius WRITE setHoverRadius NOTIFY hoverRadiusChanged)
+    /// \brief Optional data transition animation applied when new data arrives.
+    Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
     /// \brief Read-only: number of data points currently loaded.
     Q_PROPERTY(int count READ count NOTIFY countChanged)
     /// \brief Read-only: index of the error bar under the cursor, or -1 when none.
@@ -105,6 +119,7 @@ class ErrorBarSeries : public PlotSeries {
 public:
     /// \brief Constructs an ErrorBarSeries with the given \a parent.
     explicit ErrorBarSeries(QQuickItem* parent = nullptr);
+    /// \brief Destroys the series, ending its animation on the assigned transition.
     ~ErrorBarSeries() override;
 
     /// \brief Returns the axis the bounds lie on.
@@ -141,6 +156,11 @@ public:
     qreal hoverRadius() const;
     /// \brief Sets the hover pick distance to \a radius pixels. Negative values are clamped to 0.
     void setHoverRadius(qreal radius);
+
+    /// \brief Returns the active data transition, or \c nullptr if none.
+    DataTransition* transition() const;
+    /// \brief Sets the data transition to \a transition.
+    void setTransition(DataTransition* transition);
 
     /// \brief Returns the number of data points currently loaded.
     int count() const;
@@ -206,6 +226,8 @@ signals:
     void hoverColorChanged();
     /// \brief Emitted when the hoverRadius property changes.
     void hoverRadiusChanged();
+    /// \brief Emitted when the transition property changes.
+    void transitionChanged();
     /// \brief Emitted when the data point count changes.
     void countChanged();
     /// \brief Emitted when the hovered error bar changes.
@@ -221,6 +243,8 @@ protected:
     void hoverMoveEvent(QHoverEvent* event) override;
     void hoverLeaveEvent(QHoverEvent* event) override;
     /// \endcond
+    /// \brief Stores \a input, animating it from the drawn error bars while a transition is enabled.
+    void applyDataPoints(DataPointInput&& input) override;
     /// \brief Refreshes the hover lookup and repaints after a bound axis changes between linear and log scale.
     void onAxisScaleChanged() override;
     /// \brief Refreshes the hover lookup and the count after the data points changed.
@@ -239,11 +263,18 @@ private:
 
     bool isHorizontal() const;
     double component(int index, int column) const;
-    // Returns error bar \a index as drawn, or nullopt when it is not drawn.
-    std::optional<DataBar> dataBar(int index) const;
-    // Pixel distance from \a position to the line and caps of error bar \a index, or nullopt when it is not drawn.
+    // Returns error bar \a index of \a dataPoints as drawn, or nullopt when it is not drawn.
+    std::optional<DataBar> dataBar(const DataPointStore::View& dataPoints, int index) const;
+    // Pixel distance from \a position to the line and caps of drawn error bar \a index, or nullopt when it is not drawn.
     std::optional<qreal> pixelDistance(int index, const QPointF& position) const;
     void applyInterleavedData(std::vector<double>&& data);
+    void applyDoubleData(std::vector<double>&& data, int dataPointCount);
+    // Starts animating from the \a drawnCount error bars in \a drawn to the stored ones.
+    void startTransition(const std::vector<double>& drawn, int drawnCount);
+    void advanceTransition();
+    // Shows the stored data points at once, when a transition was drawing others.
+    void endTransition();
+    void discardTransition();
     void setHoveredIndex(int index);
     void onGeometryChanged();
     void ensureSpatialGrid() const;
@@ -258,6 +289,9 @@ private:
     QColor hoverColor_;
     qreal hoverRadius_{6.0};
     int hoveredIndex_{-1};
+    std::unique_ptr<TransitionRunner> transition_;
+    // Frame buffer of the animation, recycled from frame to frame.
+    std::vector<double> frameBuffer_;
     // Render revision of the data points last uploaded to the GPU.
     std::uint64_t uploadedRevision_{0};
     // Whether the last frame held more data points than the GPU buffers do; warns on each crossing.

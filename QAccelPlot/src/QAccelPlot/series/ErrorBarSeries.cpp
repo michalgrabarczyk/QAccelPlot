@@ -14,6 +14,7 @@
 #include "QAccelPlot/series/internal/RectGeometry.hpp"
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
+#include "QAccelPlot/transitions/TransitionRunner.hpp"
 
 #include <QHoverEvent>
 #include <QQuickWindow>
@@ -121,6 +122,18 @@ QSGGeometryNode* createErrorBarNode()
     return node;
 }
 
+// Copies the data points of \a view as doubles, for float and double data alike.
+std::vector<double> doubleData(const DataPointStore::View& view)
+{
+    auto data = std::vector<double>(static_cast<std::size_t>(view.count) * kStride);
+    for (auto index = 0; index < view.count; ++index) {
+        for (auto column = 0; column < kStride; ++column) {
+            data[static_cast<std::size_t>(index) * kStride + static_cast<std::size_t>(column)] = view.value(index, column);
+        }
+    }
+    return data;
+}
+
 } // namespace
 
 ErrorBarSeries::ErrorBarSeries(QQuickItem* parent)
@@ -128,13 +141,21 @@ ErrorBarSeries::ErrorBarSeries(QQuickItem* parent)
           DataPointWording{"data point", "data points", "values", "values"}, parent)
     , color_(ColorPalette::dark().seriesPrimary)
     , hoverColor_(ColorPalette::dark().hover)
+    , transition_(std::make_unique<TransitionRunner>(this))
 {
     setFlag(ItemHasContents, true);
     supportHover();
     setAcceptedMouseButtons(Qt::NoButton);
+    connect(transition_.get(), &TransitionRunner::frameDue, this, &ErrorBarSeries::advanceTransition);
+    connect(transition_.get(), &TransitionRunner::interrupted, this, &ErrorBarSeries::endTransition);
+    connect(transition_.get(), &TransitionRunner::transitionDestroyed, this, &ErrorBarSeries::transitionChanged);
 }
 
-ErrorBarSeries::~ErrorBarSeries() = default;
+ErrorBarSeries::~ErrorBarSeries()
+{
+    // runningChanged handlers can still read the series until QObject destruction.
+    transition_->cancel();
+}
 
 Qt::Orientation ErrorBarSeries::orientation() const
 {
@@ -244,6 +265,18 @@ void ErrorBarSeries::setHoverRadius(const qreal radius)
     emit hoverRadiusChanged();
 }
 
+DataTransition* ErrorBarSeries::transition() const
+{
+    return transition_->transition();
+}
+
+void ErrorBarSeries::setTransition(DataTransition* transition)
+{
+    if (transition_->setTransition(transition)) {
+        emit transitionChanged();
+    }
+}
+
 int ErrorBarSeries::count() const
 {
     return dataPoints().count();
@@ -256,6 +289,7 @@ int ErrorBarSeries::hoveredIndex() const
 
 void ErrorBarSeries::appendData(const qreal x, const qreal y, const qreal low, const qreal high)
 {
+    endTransition();
     const auto dataPoint = std::array<double, kStride>{x, y, low, high};
     appendDataPoint(dataPoint.data());
 }
@@ -304,6 +338,7 @@ void ErrorBarSeries::setErrorData(
 
 void ErrorBarSeries::clearData()
 {
+    discardTransition();
     PlotSeries::clearData();
 }
 
@@ -329,7 +364,7 @@ int ErrorBarSeries::errorBarIndexAt(const QPointF& position) const
     const auto y2 = yAxis()->pixelToCoord(position.y() + reach, height());
     ensureSpatialGrid();
 
-    const auto drawnCount = std::min(count(), renderCapacity_);
+    const auto drawnCount = std::min(dataPoints().drawnView().count, renderCapacity_);
     auto nearest = -1;
     auto nearestDistance = hoverRadius_;
     // Accepts no candidate, so that the grid offers each one in the box to find the nearest.
@@ -363,7 +398,7 @@ InspectionRecord ErrorBarSeries::inspectionRecord(const int index) const
     }
     result.index = index;
     result.fields = errorBarAt(index);
-    result.status = dataBar(index) ? InspectionStatus::Ready : InspectionStatus::NoMatch;
+    result.status = dataBar(dataPoints().view(), index) ? InspectionStatus::Ready : InspectionStatus::NoMatch;
     return result;
 }
 
@@ -426,6 +461,18 @@ void ErrorBarSeries::hoverLeaveEvent(QHoverEvent* event)
     QQuickItem::hoverLeaveEvent(event);
 }
 
+void ErrorBarSeries::applyDataPoints(DataPointInput&& input)
+{
+    if (transition_->enabled()) {
+        // Transitions animate doubles.
+        const auto dataPointCount = input.count;
+        applyDoubleData(std::move(input).toDoubles(), dataPointCount);
+        return;
+    }
+    discardTransition();
+    storeDataPoints(std::move(input));
+}
+
 void ErrorBarSeries::onAxisScaleChanged()
 {
     // Log scale changes which data points are drawn.
@@ -454,24 +501,24 @@ double ErrorBarSeries::component(const int index, const int column) const
     return dataPoints().value(index, column);
 }
 
-std::optional<ErrorBarSeries::DataBar> ErrorBarSeries::dataBar(const int index) const
+std::optional<ErrorBarSeries::DataBar> ErrorBarSeries::dataBar(const DataPointStore::View& dataPoints, const int index) const
 {
     const auto horizontal = isHorizontal();
-    const auto position = component(index, horizontal ? 1 : 0) + offset_;
-    const auto value = component(index, horizontal ? 0 : 1);
+    const auto position = dataPoints.value(index, horizontal ? 1 : 0) + offset_;
+    const auto value = dataPoints.value(index, horizontal ? 0 : 1);
     if (!isValidCoordinate(position, horizontal ? logScaleY() : logScaleX()) || std::isnan(value)) {
         return std::nullopt;
     }
     const auto valueLogScale = horizontal ? logScaleX() : logScaleY();
-    const auto low = component(index, kLowColumn);
-    const auto high = component(index, kHighColumn);
+    const auto low = dataPoints.value(index, kLowColumn);
+    const auto high = dataPoints.value(index, kHighColumn);
     return DataBar{position, std::isnan(low) ? value : low, std::isnan(high) ? value : high, isValidCoordinate(low, valueLogScale),
         isValidCoordinate(high, valueLogScale)};
 }
 
 std::optional<qreal> ErrorBarSeries::pixelDistance(const int index, const QPointF& position) const
 {
-    const auto bar = dataBar(index);
+    const auto bar = dataBar(dataPoints().drawnView(), index);
     if (!bar || lineWidth_ <= 0.0) {
         return std::nullopt;
     }
@@ -505,6 +552,67 @@ void ErrorBarSeries::applyInterleavedData(std::vector<double>&& data)
     setData(std::move(data), dataPointCount);
 }
 
+void ErrorBarSeries::applyDoubleData(std::vector<double>&& data, const int dataPointCount)
+{
+    const auto previousCount = count();
+    // Copied before the data changes: a transition starts from the error bars drawn now.
+    const auto drawnView = dataPoints().drawnView();
+    const auto drawn = doubleData(drawnView);
+    dataPoints().setPrecise(std::move(data), dataPointCount);
+    startTransition(drawn, drawnView.count);
+    notifyDataPointsChanged(DataChange::Replaced, previousCount);
+}
+
+void ErrorBarSeries::startTransition(const std::vector<double>& drawn, const int drawnCount)
+{
+    const auto errorBarCount = count();
+    if (errorBarCount == 0) {
+        discardTransition();
+        return;
+    }
+    // New error bars appear at once, so only those drawn now start elsewhere.
+    auto target = doubleData(dataPoints().view());
+    auto start = target;
+    const auto sharedCount = static_cast<std::ptrdiff_t>(std::min(drawnCount, errorBarCount)) * kStride;
+    std::copy_n(drawn.cbegin(), sharedCount, start.begin());
+
+    transition_->start(start, errorBarCount, std::move(target), errorBarCount, kStride);
+    frameBuffer_ = dataPoints().setDrawn(std::move(start), errorBarCount);
+    spatialGridValid_ = false;
+}
+
+void ErrorBarSeries::advanceTransition()
+{
+    auto shownCount = 0;
+    transition_->advance(frameBuffer_, shownCount);
+    if (!transition_->pending()) {
+        endTransition();
+        return;
+    }
+    // A transition may show fewer error bars, as DrawTransition does; the others are not drawn.
+    frameBuffer_.resize(static_cast<std::size_t>(count()) * kStride, kNaN);
+    frameBuffer_ = dataPoints().setDrawn(std::move(frameBuffer_), count());
+    spatialGridValid_ = false;
+    update();
+}
+
+void ErrorBarSeries::endTransition()
+{
+    if (!dataPoints().hasDrawn()) {
+        return;
+    }
+    discardTransition();
+    update();
+}
+
+void ErrorBarSeries::discardTransition()
+{
+    transition_->cancel();
+    dataPoints().clearDrawn();
+    frameBuffer_ = std::vector<double>{};
+    spatialGridValid_ = false;
+}
+
 void ErrorBarSeries::setHoveredIndex(const int index)
 {
     if (hoveredIndex_ == index) {
@@ -530,16 +638,17 @@ void ErrorBarSeries::ensureSpatialGrid() const
     // Only the position is indexed. Error bars often span much of the value axis, which would push
     // them past the grid's per-item cell limit into its linear scan; the pixel test checks the rest.
     const auto horizontal = isHorizontal();
-    hitRects_.resize(static_cast<std::size_t>(count()) * 4);
-    for (auto i = 0; i < count(); ++i) {
+    const auto drawn = dataPoints().drawnView();
+    hitRects_.resize(static_cast<std::size_t>(drawn.count) * 4);
+    for (auto i = 0; i < drawn.count; ++i) {
         auto rect = std::array<double, 4>{kNaN, kNaN, kNaN, kNaN};
-        if (const auto bar = dataBar(i)) {
+        if (const auto bar = dataBar(drawn, i)) {
             rect = horizontal ? std::array<double, 4>{-kInf, bar->position, kInf, bar->position}
                               : std::array<double, 4>{bar->position, -kInf, bar->position, kInf};
         }
         std::copy(rect.cbegin(), rect.cend(), hitRects_.begin() + static_cast<std::ptrdiff_t>(i) * 4);
     }
-    spatialGrid_.build(hitRects_.data(), count());
+    spatialGrid_.build(hitRects_.data(), drawn.count);
     spatialGridValid_ = true;
 }
 

@@ -59,6 +59,7 @@ add_qaccelplot_test(tst_band_series_rendering core tst_band_series_rendering.cpp
 add_qaccelplot_test(tst_band_series_capacity core tst_band_series_capacity.cpp)
 add_qaccelplot_test(tst_error_bar_series_data core tst_error_bar_series_data.cpp)
 add_qaccelplot_test(tst_error_bar_series_rendering core tst_error_bar_series_rendering.cpp)
+add_qaccelplot_test(tst_error_bar_series_transitions core tst_error_bar_series_transitions.cpp)
 add_qaccelplot_test(tst_point_spatial_index  core tst_point_spatial_index.cpp)
 add_qaccelplot_test(tst_point_cloud_data     core tst_point_cloud_data.cpp)
 add_qaccelplot_test(tst_point_cloud_capacity core tst_point_cloud_capacity.cpp)

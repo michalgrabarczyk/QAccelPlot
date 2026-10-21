@@ -120,7 +120,7 @@ Explore runnable applications in the [`examples/`](examples/) directory:
 | Plot types | **[Bar Chart](examples/plot_types/bar_chart/)** | Grouped monthly revenue with a horizontal toggle, profit bars colored against a target baseline, and animated updates. |
 | Plot types | **[Histogram](examples/plot_types/histogram/)** | Sensor noise in equal bins, and request latencies in logarithmic bins or as density in one bin per axis tick. |
 | Plot types | **[Bands](examples/plot_types/bands/)** | Forecast with nested prediction intervals, and a rolling mean ± 2σ band over a simulated sensor signal. |
-| Plot types | **[Error Bars](examples/plot_types/error_bars/)** | Calibration measurements with asymmetric reading errors and reference errors along X, and error bars on grouped bars. |
+| Plot types | **[Error Bars](examples/plot_types/error_bars/)** | Calibration measurements with asymmetric reading errors and reference errors along X, animated between samples with morph and draw transitions, and error bars on grouped bars. |
 | Plot types | **[Parametric Curves](examples/plot_types/parametric_curves/)** | Spiral, Lissajous figure, spirograph, and Van der Pol phase portrait: curves that loop and cross themselves. |
 | Plot types | **[Heatmap](examples/plot_types/heatmap/)** | Two-source wave interference on a 400 × 300 grid, keyed by a histogram of the cells in view, with colormap presets, an interactive color bar, and a hover readout. |
 | Plot types | **[Point Cloud](examples/plot_types/point_cloud/)** | 200K-point scatter colored by value through a Colormap preset, with a hover tooltip, rectangle zoom, and morph and draw transitions between datasets. |

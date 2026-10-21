@@ -1,5 +1,5 @@
 ---
-description: "Draw error bars in QAccelPlot with ErrorBarSeries: symmetric and asymmetric errors, vertical and horizontal error bars, caps, error bars on grouped bars, hover, and data from C++."
+description: "Draw error bars in QAccelPlot with ErrorBarSeries: symmetric and asymmetric errors, vertical and horizontal error bars, caps, error bars on grouped bars, hover, animated updates, and data from C++."
 ---
 
 <!--
@@ -122,6 +122,22 @@ errorBars->setData(std::move(dataPoints), count);
 `setErrorData()` also takes `std::vector<double>` arguments. For float buffers,
 worker-thread handoff, and data bounds, see
 [Select the data path](../performance.md#select-the-data-path).
+
+## Animate data changes
+
+Assign a `MorphTransition` or a `DrawTransition` to `transition`, as for a
+[`LineCurve`](styling.md#animated-data-changes). Give the series that draws the
+values the same transition, so both move together.
+
+- `MorphTransition` moves each error bar to the new position, value, and bounds
+  of the same index.
+- `DrawTransition` shows the new error bars one after another.
+- New error bars appear, and removed ones disappear, at once.
+- `count`, `errorBarAt()`, the data ranges, and inspection use the new data
+  from the start of the animation. Hover picks the error bars as drawn.
+- `appendData()`, `appendErrorData()`, and `clearData()` show the new data at
+  once.
+- While a transition is enabled, the float paths store doubles.
 
 ## Invalid data points
 
