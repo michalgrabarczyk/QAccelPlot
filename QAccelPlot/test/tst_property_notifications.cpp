@@ -156,6 +156,7 @@ void PropertyNotificationsTest::writeNotifiesOnceAndRoundTrips_data()
 
     row("LineCurve", "name", QStringLiteral("Series A"));
     row("LineCurve", "hoverRadius", 4.0);
+    row("LineCurve", "hoverEnabled", false);
 
     row("MorphTransition", "duration", 1234);
     row("MorphTransition", "easing", QEasingCurve{QEasingCurve::OutBounce});

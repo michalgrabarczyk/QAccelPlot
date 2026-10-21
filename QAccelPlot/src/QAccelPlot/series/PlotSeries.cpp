@@ -11,6 +11,7 @@
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/inspection/internal/InspectionTypes.hpp"
 #include "QAccelPlot/legend/LegendEntry.hpp"
+#include "QAccelPlot/series/internal/SeriesSupport.hpp"
 
 #include <QHoverEvent>
 
@@ -54,6 +55,16 @@ DataPointStore::DimensionState dimensionState(const Axis* axis)
         return {};
     }
     return DataPointStore::DimensionState{axis->logScale(), DataPointStore::Viewport{axis->viewportMin(), axis->viewportMax()}};
+}
+
+QHoverEvent hoverLeave()
+{
+    const auto outside = QPointF{-1.0, -1.0};
+#if QT_VERSION >= QT_VERSION_CHECK(6, 3, 0)
+    return QHoverEvent{QEvent::HoverLeave, outside, outside, outside};
+#else
+    return QHoverEvent{QEvent::HoverLeave, outside, outside};
+#endif
 }
 
 std::optional<PlotSeries::DataExtent> validExtent(const std::optional<PlotSeries::DataExtent>& extent)
@@ -221,6 +232,21 @@ void PlotSeries::setLegendSymbol(const LegendSymbol symbol)
     }
     legendSymbol_ = symbol;
     emit legendSymbolChanged();
+}
+
+bool PlotSeries::hoverEnabled() const
+{
+    return hoverEnabled_;
+}
+
+void PlotSeries::setHoverEnabled(const bool enabled)
+{
+    if (hoverEnabled_ == enabled) {
+        return;
+    }
+    hoverEnabled_ = enabled;
+    updateAcceptHoverEvents();
+    emit hoverEnabledChanged();
 }
 
 std::optional<LegendEntry> PlotSeries::legendEntry() const
@@ -585,6 +611,12 @@ QRectF PlotSeries::resolvePlotRect() const
     return QRectF(0, 0, width(), height());
 }
 
+void PlotSeries::supportHover()
+{
+    hoverSupported_ = true;
+    updateAcceptHoverEvents();
+}
+
 bool PlotSeries::event(QEvent* event)
 {
     if constexpr (kHoverReachesSeriesBeneath) {
@@ -692,6 +724,21 @@ bool PlotSeries::coveredBySeriesAbove(const QPointF& position) const
         }
     }
     return false;
+}
+
+void PlotSeries::updateAcceptHoverEvents()
+{
+    const auto accept = hoverSupported_ && hoverEnabled_ && Internal::hoverEnabled();
+    if (accept == acceptHoverEvents()) {
+        return;
+    }
+    setAcceptHoverEvents(accept);
+    if (!accept) {
+        // Qt would send the leave only on the next frame, and Qt older than 6.3 not at all.
+        hoverDelivered_ = false;
+        auto leave = hoverLeave();
+        hoverLeaveEvent(&leave);
+    }
 }
 
 } // namespace QAccelPlot

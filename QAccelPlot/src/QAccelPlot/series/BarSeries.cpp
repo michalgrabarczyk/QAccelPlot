@@ -109,7 +109,7 @@ BarSeries::BarSeries(QQuickItem* parent)
     , transition_(std::make_unique<TransitionRunner>(this))
 {
     setFlag(ItemHasContents, true);
-    setAcceptHoverEvents(Internal::hoverEnabled());
+    supportHover();
     setAcceptedMouseButtons(Qt::NoButton);
     setLegendSymbol(LegendSymbol::Fill);
     connect(border_, &RectangleBorder::widthChanged, this, &QQuickItem::update);

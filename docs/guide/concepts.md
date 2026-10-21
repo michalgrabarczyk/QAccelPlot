@@ -55,8 +55,10 @@ JavaScript callback.
 ## Series
 
 `PlotSeries` holds properties shared by all series: name, axes, plot rectangle,
-and legend symbol. `legendEntry()` describes how a legend draws the series;
-`LegendModel` lists the entries of the visible series that have one.
+legend symbol, and `hoverEnabled`. `legendEntry()` describes how a legend draws the series;
+`LegendModel` lists the entries of the visible series that have one. Only the
+topmost series under the mouse pointer is hovered; `hoverEnabled: false` leaves
+hover to the series beneath.
 
 `LineCurve` renders lines, markers, line styles, gradients, and fills. It
 accepts data from QML or C++ buffers, as doubles or as interleaved floats.

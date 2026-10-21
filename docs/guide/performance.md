@@ -97,8 +97,9 @@ Hover cost per mouse move:
 A `RectangleSeries` also tests every rectangle spanning more than 64 grid
 cells, so many long rectangles make its lookup `O(N)`.
 
-Set the environment variable `QACCELPLOT_HOVER_ENABLED=0` to turn hover off for
-every series and axis, for example in streaming-only views.
+Set `hoverEnabled: false` to turn hover off for one series. Set the environment
+variable `QACCELPLOT_HOVER_ENABLED=0` to turn it off for every series and axis,
+for example in streaming-only views.
 
 ### Other rendering costs
 

@@ -68,6 +68,7 @@ private slots:
     void tallBarsKeepLookupsLocal();
     void hoverEventsTrackBarUnderCursor();
     void rangedBarsAreHitWithinTheirOwnExtent();
+    void disablingHoverClearsHoveredBar();
 };
 
 void BarHoverTest::barIndexAtFindsBarsBetweenBaselineAndValue()
@@ -222,6 +223,27 @@ void BarHoverTest::hoverEventsTrackBarUnderCursor()
     hover(QEvent::HoverMove, axes.pixel(3.0, 2.5));
     bars.setData(std::vector<double>{1.0, 2.0}, 1);
     QCOMPARE(bars.hoveredIndex(), -1);
+}
+
+void BarHoverTest::disablingHoverClearsHoveredBar()
+{
+    auto axes = AxisPair{};
+    auto bars = HoverableBars{};
+    setBars(bars, axes);
+    QVERIFY(bars.acceptHoverEvents());
+    auto event = QAccelPlotTest::hoverEvent(QEvent::HoverEnter, axes.pixel(1.0, 1.5), axes.pixel(1.0, 1.5));
+    bars.hoverEnterEvent(&event);
+    QCOMPARE(bars.hoveredIndex(), 0);
+
+    auto spy = QSignalSpy{&bars, &QAccelPlot::PlotSeries::hoverEnabledChanged};
+    bars.setHoverEnabled(false);
+    QCOMPARE(spy.count(), 1);
+    QVERIFY(!bars.acceptHoverEvents());
+    QCOMPARE(bars.hoveredIndex(), -1);
+
+    bars.setHoverEnabled(true);
+    QVERIFY(bars.acceptHoverEvents());
+    QCOMPARE(spy.count(), 2);
 }
 
 void BarHoverTest::rangedBarsAreHitWithinTheirOwnExtent()

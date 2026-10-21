@@ -355,8 +355,10 @@ JavaScript callback.
 ## Series
 
 `PlotSeries` holds properties shared by all series: name, axes, plot rectangle,
-and legend symbol. `legendEntry()` describes how a legend draws the series;
-`LegendModel` lists the entries of the visible series that have one.
+legend symbol, and `hoverEnabled`. `legendEntry()` describes how a legend draws the series;
+`LegendModel` lists the entries of the visible series that have one. Only the
+topmost series under the mouse pointer is hovered; `hoverEnabled: false` leaves
+hover to the series beneath.
 
 `LineCurve` renders lines, markers, line styles, gradients, and fills. It
 accepts data from QML or C++ buffers, as doubles or as interleaved floats.
@@ -567,8 +569,9 @@ Hover cost per mouse move:
 A `RectangleSeries` also tests every rectangle spanning more than 64 grid
 cells, so many long rectangles make its lookup `O(N)`.
 
-Set the environment variable `QACCELPLOT_HOVER_ENABLED=0` to turn hover off for
-every series and axis, for example in streaming-only views.
+Set `hoverEnabled: false` to turn hover off for one series. Set the environment
+variable `QACCELPLOT_HOVER_ENABLED=0` to turn it off for every series and axis,
+for example in streaming-only views.
 
 ### Other rendering costs
 
@@ -2570,7 +2573,7 @@ gap there. Auto-ranging skips invalid values one by one.
 
 `hovered` is `true` while the mouse pointer is inside the band or on an edge
 line. Only the topmost series under the mouse pointer is hovered, so nested
-bands highlight one at a time. Set `hoverRadius: 0` on a `LineCurve` drawn over
+bands highlight one at a time. Set `hoverEnabled: false` on a series drawn over
 a band to leave hover to the band:
 
 ```qml

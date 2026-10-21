@@ -26,6 +26,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Image export with `PlotExporter`: save a plot as PNG, JPEG, or another
   raster format, copy it to the clipboard, or capture a `QImage`, at a chosen
   scale. Includes an Export example.
+- `PlotSeries.hoverEnabled` turns hover off for one series and leaves it to the
+  series beneath.
 
 ### Changed
 
