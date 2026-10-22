@@ -63,7 +63,7 @@ RectangleSeries::RectangleSeries(QQuickItem* parent)
     , spatialGridBudget_(std::make_unique<Internal::HoverIndexBudget>(kAssumedIndexCostPerRectangle))
 {
     setFlag(ItemHasContents, true);
-    setAcceptHoverEvents(Internal::hoverEnabled());
+    supportHover();
     setAcceptedMouseButtons(Qt::NoButton);
     setLegendSymbol(LegendSymbol::Fill);
     connect(border_, &RectangleBorder::widthChanged, this, &QQuickItem::update);

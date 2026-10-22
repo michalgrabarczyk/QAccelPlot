@@ -47,13 +47,14 @@ struct LegendEntry;
 /// | \c RectangleSeries | (x1, y1, x2, y2)  | 4      |
 /// | \c BarSeries       | (position, value) | 2      |
 /// | \c BandSeries      | (x, low, high)    | 3      |
+/// | \c ErrorBarSeries  | (x, y, low, high) | 4      |
 /// | \c HeatmapSeries   | cell value        | 1      |
 ///
 /// The buffer holds \a count times that many values. A \c HeatmapSeries takes its cells row by row,
 /// \c columns per row. Series-specific setters take other layouts, such as point values,
 /// categories, or ranged bars.
 ///
-/// \sa LineCurve, PointCloud, RectangleSeries, BarSeries, BandSeries, HeatmapSeries, QAccelPlot
+/// \sa LineCurve, PointCloud, RectangleSeries, BarSeries, BandSeries, ErrorBarSeries, HeatmapSeries, QAccelPlot
 class PlotSeries : public QQuickItem {
     Q_OBJECT
     QML_NAMED_ELEMENT(PlotSeries)
@@ -69,6 +70,12 @@ class PlotSeries : public QQuickItem {
     Q_PROPERTY(QRectF plotRect READ plotRect WRITE setPlotRect NOTIFY plotRectChanged)
     /// \brief Symbol style requested from the default legend.
     Q_PROPERTY(LegendSymbol legendSymbol READ legendSymbol WRITE setLegendSymbol NOTIFY legendSymbolChanged)
+    /// \brief Whether the series reacts to the mouse cursor. Default: \c true.
+    ///
+    /// When \c false, the series is never hovered and hover reaches the series beneath it.
+    /// \c QACCELPLOT_HOVER_ENABLED=0 turns hover off for every series regardless of this property.
+    /// Series without hover feedback, such as \c HeatmapSeries, ignore it.
+    Q_PROPERTY(bool hoverEnabled READ hoverEnabled WRITE setHoverEnabled NOTIFY hoverEnabledChanged)
 
     /// \brief Revision incremented by every accepted change of the series' records.
     Q_PROPERTY(quint64 dataRevision READ dataRevision NOTIFY dataRevisionChanged)
@@ -149,6 +156,14 @@ public:
 
     LegendSymbol legendSymbol() const;
     void setLegendSymbol(LegendSymbol symbol);
+
+    /// \brief Returns whether the series reacts to the mouse cursor.
+    bool hoverEnabled() const;
+    /// \brief Sets whether the series reacts to the mouse cursor to \a enabled.
+    ///
+    /// Turning hover off while the series is hovered clears its hover state at once.
+    void setHoverEnabled(bool enabled);
+
     /// \brief Returns how a legend draws the series, or \c std::nullopt for no legend entry. Default: no entry.
     ///
     /// Series that override it emit \c legendEntryChanged() whenever the result changes.
@@ -194,6 +209,8 @@ signals:
     void yAxisChanged();
     void plotRectChanged();
     void legendSymbolChanged();
+    /// \brief Emitted when the hoverEnabled property changes.
+    void hoverEnabledChanged();
     /// \brief Emitted when the result of \c legendEntry() changes.
     void legendEntryChanged();
 
@@ -317,6 +334,11 @@ protected:
     ///
     /// Safe to call from \c updatePaintNode(); it never modifies the item.
     QRectF resolvePlotRect() const;
+    /// \brief Makes the series accept hover events while \c hoverEnabled is \c true.
+    ///
+    /// Call from the constructor of a series that reacts to the cursor. Its \c hoverLeaveEvent()
+    /// must clear the hover state, as turning \c hoverEnabled off calls it.
+    void supportHover();
     /// \brief Withholds hover events from a series beneath another series under the cursor.
     ///
     /// Series ignore hover events so that the plot receives them too. Qt Quick 6.3 and newer stop
@@ -335,7 +357,10 @@ private:
     void reportDataRangesChanged() const;
     void deliverTopmostHover(QHoverEvent* event);
     bool coveredBySeriesAbove(const QPointF& position) const;
+    void updateAcceptHoverEvents();
 
+    bool hoverSupported_{false};
+    bool hoverEnabled_{true};
     bool hoverDelivered_{false};
     quint64 dataRevision_{0};
     mutable SeriesInspection* inspection_{nullptr};

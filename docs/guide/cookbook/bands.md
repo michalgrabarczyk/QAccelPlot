@@ -103,7 +103,7 @@ gap there. Auto-ranging skips invalid values one by one.
 
 `hovered` is `true` while the mouse pointer is inside the band or on an edge
 line. Only the topmost series under the mouse pointer is hovered, so nested
-bands highlight one at a time. Set `hoverRadius: 0` on a `LineCurve` drawn over
+bands highlight one at a time. Set `hoverEnabled: false` on a series drawn over
 a band to leave hover to the band:
 
 ```qml

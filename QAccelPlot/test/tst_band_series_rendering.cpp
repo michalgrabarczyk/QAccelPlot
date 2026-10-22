@@ -453,6 +453,22 @@ void BandSeriesRenderingTest::hoverReachesStackedBands()
     // With hoverRadius 0 the line leaves hover to the band beneath it.
     line->setProperty("hoverRadius", 0.0);
     QCOMPARE(hoveredAt(5.0), (std::array<bool, 3>{false, true, false}));
+
+    // A series with hover turned off is unhovered at once and leaves hover to the series beneath it.
+    line->setProperty("hoverRadius", 10.0);
+    hoveredAt(9.0);
+    QCOMPARE(hoveredAt(5.0), (std::array<bool, 3>{false, false, true}));
+    line->setProperty("hoverEnabled", false);
+    QVERIFY(!line->property("hovered").toBool());
+    hoveredAt(9.0);
+    QCOMPARE(hoveredAt(5.0), (std::array<bool, 3>{false, true, false}));
+    inner->setProperty("hoverEnabled", false);
+    QVERIFY(!inner->property("hovered").toBool());
+    hoveredAt(9.0);
+    QCOMPARE(hoveredAt(5.0), (std::array<bool, 3>{true, false, false}));
+    line->setProperty("hoverEnabled", true);
+    hoveredAt(9.0);
+    QCOMPARE(hoveredAt(5.0), (std::array<bool, 3>{false, false, true}));
 }
 
 } // namespace QAccelPlot

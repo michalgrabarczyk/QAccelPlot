@@ -23,21 +23,7 @@ vec2 cornerUV(int c) {
     return vec2(0.0, 1.0); // c == 5
 }
 
-// Returns an edge's position as a fraction of the viewport from dMin (0) to dMax (1),
-// clamped to one viewport beyond each side. Infinite edges map straight onto that margin,
-// so they reach past the plot edge even when dMin and dMax are too far from the render
-// origin to differ in single precision.
-float viewportFraction(uint bits, float dMin, float dMax, bool logScale) {
-    if (!isFiniteBits(bits)) {
-        bool towardMin = ((bits & 0x80000000u) != 0u) == (dMax >= dMin);
-        return towardMin ? -1.0 : 2.0;
-    }
-    float value = uintBitsToFloat(bits);
-    if (logScale) {
-        value = safeLog10(value);
-    }
-    return clamp((value - dMin) / (dMax - dMin), -1.0, 2.0);
-}
+#include "viewport_fraction.glsl"
 
 // Widens the pixel span from a to b around its center to at least minSize, keeping a and b in order.
 vec2 widenedSpan(float a, float b, float minSize) {

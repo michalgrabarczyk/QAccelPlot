@@ -89,7 +89,7 @@ PointCloud::PointCloud(QQuickItem* parent)
     , spatialIndexBudget_(std::make_unique<Internal::HoverIndexBudget>(kAssumedIndexCostPerPoint))
 {
     setFlag(ItemHasContents, true);
-    setAcceptHoverEvents(Internal::hoverEnabled());
+    supportHover();
     setAcceptedMouseButtons(Qt::NoButton);
     setLegendSymbol(LegendSymbol::Marker);
 

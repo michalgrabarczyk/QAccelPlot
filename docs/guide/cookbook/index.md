@@ -1,5 +1,5 @@
 ---
-description: "QAccelPlot cookbook — recipes for static plots, real-time scrolling data, axis formats, multiple axes, styling, annotations, data inspection, point clouds, heatmaps, rectangle zoom, bar charts, histograms, bands, background data production, and exporting images."
+description: "QAccelPlot cookbook — recipes for static plots, real-time scrolling data, axis formats, multiple axes, styling, annotations, data inspection, point clouds, heatmaps, rectangle zoom, bar charts, histograms, bands, error bars, background data production, and exporting images."
 ---
 
 <!--
@@ -26,6 +26,7 @@ Each recipe links to a complete runnable example.
 | [Bar charts](bar-charts.md) | Vertical, horizontal, and grouped bars, baselines, category colors, and hover |
 | [Histograms](histograms.md) | Equal and uneven bins, counts or density, from QML or C++ |
 | [Bands](bands.md) | Confidence intervals and envelopes between a low and a high value, with edge lines |
+| [Error bars](error-bars.md) | Symmetric and asymmetric errors, vertical and horizontal, on points and grouped bars |
 | [Background data production](background-data.md) | Safe high-throughput worker-to-UI handoff |
 | [Exporting images](export.md) | PNG, JPEG, and other raster files, the clipboard, and `QImage` capture |
 

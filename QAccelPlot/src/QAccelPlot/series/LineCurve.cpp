@@ -168,7 +168,7 @@ LineCurve::LineCurve(QQuickItem* parent)
     , transition_(std::make_unique<TransitionRunner>(this))
 {
     setFlag(ItemHasContents, true);
-    setAcceptHoverEvents(Internal::hoverEnabled());
+    supportHover();
     connect(gaps_, &LineCurveGaps::nanModeChanged, this, &LineCurve::onNanGapModeChanged);
     connect(marker_, &SeriesMarker::shapeChanged, this, &LineCurve::onMarkerShapeChanged);
     // Size, fill, and outline width are material uniforms, so they need no vertex rebuild.
@@ -584,9 +584,11 @@ void LineCurve::hoverEnterEvent(QHoverEvent* event)
 
 void LineCurve::hoverLeaveEvent(QHoverEvent* event)
 {
-    hovered_ = false;
-    emit hoveredChanged();
-    update();
+    if (hovered_) {
+        hovered_ = false;
+        emit hoveredChanged();
+        update();
+    }
     QQuickItem::hoverLeaveEvent(event);
 }
 

@@ -119,7 +119,7 @@ BandSeries::BandSeries(QQuickItem* parent)
     , color_(defaultBandColor())
 {
     setFlag(ItemHasContents, true);
-    setAcceptHoverEvents(Internal::hoverEnabled());
+    supportHover();
     setAcceptedMouseButtons(Qt::NoButton);
     setLegendSymbol(LegendSymbol::Fill);
     connect(edges_, &BandEdges::widthChanged, this, &QQuickItem::update);
