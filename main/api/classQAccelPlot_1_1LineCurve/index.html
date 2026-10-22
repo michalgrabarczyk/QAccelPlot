@@ -1455,6 +1455,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#protected-attributes-inherited-from-qaccelplotplotseries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protected Attributes inherited from QAccelPlot::PlotSeries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#protected-functions" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2759,7 +2770,31 @@
 <tbody>
 <tr>
 <td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#enum-capacityoverflow"><strong>CapacityOverflow</strong></a>  <br><em>What a series draws when its records outgrow its GPU capacity.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#enum-datachange"><strong>DataChange</strong></a>  <br><em>How the records changed in a data update.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="protected-attributes-inherited-from-qaccelplotplotseries">Protected Attributes inherited from QAccelPlot::PlotSeries<a class="headerlink" href="#protected-attributes-inherited-from-qaccelplotplotseries" title="Permanent link">&para;</a></h2>
+<p>See <a href="../classQAccelPlot_1_1PlotSeries/">QAccelPlot::PlotSeries</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#variable-overrendercapacity_"><strong>overRenderCapacity_</strong></a>   = <code>{false}</code><br><em>Whether the record count of the last</em> <code>updateRenderCapacity()</code> <em>exceeded</em><code>renderCapacity_</code> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#variable-rendercapacity_"><strong>renderCapacity_</strong></a>   = <code>{std::numeric\_limits&amp;lt;int&amp;gt;::max()}</code><br><em>Records the GPU buffers hold, as of the last</em> <code>updateRenderCapacity()</code> <em>; the largest</em><code>int</code> <em>before the first.</em></td>
 </tr>
 </tbody>
 </table>
@@ -2915,6 +2950,10 @@
 <tr>
 <td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-supporthover"><strong>supportHover</strong></a> () <br><em>Makes the series accept hover events while</em> <code>hoverEnabled</code> <em>is</em><code>true</code> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-updaterendercapacity"><strong>updateRenderCapacity</strong></a> (int capacity, int recordCount, <a href="../classQAccelPlot_1_1PlotSeries/#enum-capacityoverflow"><strong>CapacityOverflow</strong></a> overflow=CapacityOverflow::DropsExcess) <br><em>Stores</em> <em>capacity</em> <em>, the number of records the GPU buffers hold, and warns when__recordCount</em> <em>newly exceeds it.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>

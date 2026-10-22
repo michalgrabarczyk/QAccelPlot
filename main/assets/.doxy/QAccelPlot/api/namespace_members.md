@@ -122,7 +122,6 @@
 
 ## w
 
-* **warnIfOutgrowsCapacity** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **wheelZoomFactor** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **widenedSpan** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **writeImageFile** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))

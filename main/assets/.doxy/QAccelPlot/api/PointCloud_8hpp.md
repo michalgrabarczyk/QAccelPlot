@@ -25,7 +25,6 @@
 * `#include <QColor>`
 * `#include <QList>`
 * `#include <QPointF>`
-* `#include <limits>`
 * `#include <memory>`
 * `#include <optional>`
 * `#include <vector>`

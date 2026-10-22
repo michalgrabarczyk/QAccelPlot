@@ -32,7 +32,6 @@
 #endif
 
 #include <cstdint>
-#include <limits>
 #include <memory>
 #include <optional>
 #include <vector>
@@ -179,10 +178,6 @@ private:
     std::vector<double> frameBuffer_;
     // Render revision of the data points last uploaded to the GPU.
     std::uint64_t uploadedRevision_{0};
-    // Whether the last frame held more data points than the GPU buffers do; warns on each crossing.
-    bool overCapacity_{false};
-    // Error bars the GPU draws, as of the last frame; those beyond are not hovered either.
-    int renderCapacity_{std::numeric_limits<int>::max()};
     // Data-space rectangles of the error bars that bound the hover candidates.
     mutable std::vector<double> hitRects_;
     mutable SpatialGrid spatialGrid_;

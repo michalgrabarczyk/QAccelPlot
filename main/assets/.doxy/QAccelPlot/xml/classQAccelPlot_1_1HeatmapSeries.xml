@@ -323,21 +323,6 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="261" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="261" bodyend="261"/>
       </memberdef>
-      <memberdef kind="variable" id="classQAccelPlot_1_1HeatmapSeries_1a500f71e21124cc11847847df503f0830" prot="private" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool QAccelPlot::HeatmapSeries::overCapacity_</definition>
-        <argsstring></argsstring>
-        <name>overCapacity_</name>
-        <qualifiedname>QAccelPlot::HeatmapSeries::overCapacity_</qualifiedname>
-        <initializer>{false}</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="262" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="262" bodyend="262"/>
-      </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
       <memberdef kind="function" id="classQAccelPlot_1_1HeatmapSeries_1ac69f6745d57d131950997321358eeffb" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
@@ -1372,12 +1357,13 @@
         <label>QQuickItem</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="84" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="84" bodyend="263"/>
+    <location file="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" line="84" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/HeatmapSeries.hpp" bodystart="84" bodyend="262"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1PlotSeries_1afb31a972c88456df230348f4e3794ab5" prot="protected" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>appendDataPoint</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1a6f0f8aa366b12236dce2326a83b8de23" prot="protected" virt="virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>applyDataPoints</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1ab723973d62db058b184666120e15fa5d" prot="private" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>applyShape</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1a52ca4b850ee5371babd5f4f379ea2675" prot="private" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>canDraw</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a8e2bc0b299f2d8b1d1c489cd532c10c7" prot="protected" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>CapacityOverflow</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1a5efe488b647d08ebe3f19ebc2f049bcd" prot="private" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>cellAt</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1aa2cdaaa22e541bbd429d0b94a7424b5a" prot="private" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>cellCenter</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1ad3f074956bc2221d402a56f92900b8e1" prot="private" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>cellCount</name></member>
@@ -1424,9 +1410,9 @@
       <member refid="classQAccelPlot_1_1HeatmapSeries_1adda020aaff0061b27d8ea62c2e296f3b" prot="private" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>invalidLogSpacing_</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a4e5a53df93bf478ae4b3f2f53ee4ff37" prot="public" virt="virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>legendEntry</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a1dbdd720bb06d07672267cfc603b932b" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>legendEntryChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>LegendSymbol</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1ada3d9fd14934647c0f31870184f5eff5" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>legendSymbol</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a37f1fe5cb9f339d593147cd47b75d180" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>legendSymbol</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>LegendSymbol</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a2b88cb6eac8d12cf02b6daf37460150e" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>legendSymbolChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1ad85ffb96b1c9ee3d13a25c412db1eac6" prot="protected" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>logScaleX</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a23f7dd78fbc4e5e03d2537ee2e40707c" prot="protected" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>logScaleY</name></member>
@@ -1438,8 +1424,8 @@
       <member refid="classQAccelPlot_1_1PlotSeries_1a0d37e4fd843acbd10bd9c5d0bf2300c9" prot="protected" virt="virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>onAxisRangeChanged</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1a31f7895f7ba1a6ee03d3e2c5a58820e0" prot="protected" virt="virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>onAxisScaleChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a6aa2a1a96940b34ac259143005b0aa47" prot="protected" virt="virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>onDataPointsChanged</name></member>
-      <member refid="classQAccelPlot_1_1HeatmapSeries_1a500f71e21124cc11847847df503f0830" prot="private" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>overCapacity_</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1a683a41c321284ff45c680ae27a260621" prot="private" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>overPrecision_</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a7e959948dfdc3fded2cfd5819c62ee61" prot="protected" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>overRenderCapacity_</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1aef0398b7a4f807870dd88a326c0e7d0d" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>plotRect</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1abf3aa64b08afe4f5d2a1728d035665b2" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>plotRect</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a9d58451724a7e0b06d7f04aeba101856" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>plotRectChanged</name></member>
@@ -1450,6 +1436,7 @@
       <member refid="classQAccelPlot_1_1PlotSeries_1aad3e05b7da4d8c16ca53819017e7b6e0" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>postData</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1a2f740517e1369822ddd73d25b15c8443" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>postValues</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1a7e2575998c84ec3eeefa54844050ce14" prot="protected" virt="virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>recordInspectionSupported</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1af46b6cad22a7db687f5b6a93c960abd4" prot="protected" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>renderCapacity_</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1a605bd9dfc0546fed73a6efba9f763194" prot="private" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>resolvedExtent</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a956e8eb1ca7398b6b5f8022225d6edf7" prot="protected" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>resolvePlotRect</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1aa81b1008b583a70b37651205e44d58a3" prot="public" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>rows</name></member>
@@ -1488,6 +1475,7 @@
       <member refid="classQAccelPlot_1_1HeatmapSeries_1abb0a99f31ec4c0c716cd22bd6b3b63f2" prot="private" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>storeValues</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1aa443c35379a9aa2df5da14a5b87a7417" prot="protected" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>supportHover</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1a5df095037766d7a4ef2adf70186c402b" prot="private" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>updateMaterial</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ae657768ad16fcf2b26eac4ce2f6cfd75" prot="protected" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>updateRenderCapacity</name></member>
       <member refid="classQAccelPlot_1_1ColormappedSeries_1af60a985b12edcd00f04554ab3124773b" prot="protected" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>updateValueRange</name></member>
       <member refid="classQAccelPlot_1_1HeatmapSeries_1a23b144662c05309361bfec37bac5b53b" prot="private" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>uploadedRevision_</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a6c7c2ca488f737cd30ee447439441682" prot="protected" virt="non-virtual"><scope>QAccelPlot::HeatmapSeries</scope><name>validateDataSize</name></member>

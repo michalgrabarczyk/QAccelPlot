@@ -1095,6 +1095,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#fixed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixed
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1146,7 +1157,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fixed" class="md-nav__link">
+  <a href="#fixed_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Fixed
@@ -1207,7 +1218,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fixed_1" class="md-nav__link">
+  <a href="#fixed_2" class="md-nav__link">
     <span class="md-ellipsis">
       
         Fixed
@@ -1257,7 +1268,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fixed_2" class="md-nav__link">
+  <a href="#fixed_3" class="md-nav__link">
     <span class="md-ellipsis">
       
         Fixed
@@ -1701,6 +1712,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#fixed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixed
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1752,7 +1774,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fixed" class="md-nav__link">
+  <a href="#fixed_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Fixed
@@ -1813,7 +1835,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fixed_1" class="md-nav__link">
+  <a href="#fixed_2" class="md-nav__link">
     <span class="md-ellipsis">
       
         Fixed
@@ -1863,7 +1885,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fixed_2" class="md-nav__link">
+  <a href="#fixed_3" class="md-nav__link">
     <span class="md-ellipsis">
       
         Fixed
@@ -1970,6 +1992,11 @@
 <li><code>SeriesInspection.supported</code>. A query that does not apply to a series returns
   <code>Inspection.Unsupported</code>.</li>
 </ul>
+<h3 id="fixed">Fixed<a class="headerlink" href="#fixed" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>LineCurve</code>, <code>BarSeries</code>, <code>RectangleSeries</code>, and <code>BandSeries</code> no longer hover
+  records beyond their GPU capacity, which are not drawn.</li>
+</ul>
 <h2 id="040-2026-10-16">[0.4.0] — 2026-10-16<a class="headerlink" href="#040-2026-10-16" title="Permanent link">&para;</a></h2>
 <h3 id="added_1">Added<a class="headerlink" href="#added_1" title="Permanent link">&para;</a></h3>
 <ul>
@@ -2068,7 +2095,7 @@
 <li><code>PlotSeries::xDataRangeChanged()</code> and <code>yDataRangeChanged()</code>. Read <code>xDataRange()</code>
   and <code>yDataRange()</code>, or connect to <code>Axis.dataMinChanged()</code> / <code>dataMaxChanged()</code>.</li>
 </ul>
-<h3 id="fixed">Fixed<a class="headerlink" href="#fixed" title="Permanent link">&para;</a></h3>
+<h3 id="fixed_1">Fixed<a class="headerlink" href="#fixed_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>TextTickLabelFormatter</code> returns an empty label for non-finite or out-of-range
   tick values without an integer conversion failure.</li>
@@ -2192,7 +2219,7 @@
 <li><code>LogTickLabelFormatter</code>. The default <code>NumericTickLabelFormatter</code> now labels
   logarithmic axes with the same superscript powers of ten.</li>
 </ul>
-<h3 id="fixed_1">Fixed<a class="headerlink" href="#fixed_1" title="Permanent link">&para;</a></h3>
+<h3 id="fixed_2">Fixed<a class="headerlink" href="#fixed_2" title="Permanent link">&para;</a></h3>
 <ul>
 <li>The Qt Quick <code>opacity</code> property, set on a series or inherited from a parent
   item, now applies to <code>LineCurve</code> lines, markers, <code>GradientStroke</code>, and
@@ -2274,7 +2301,7 @@
   built-in dark palette instead of generic Qt colors. The <code>Colors</code> palette is
   defined once in C++ and shared with QML, where its usage is unchanged.</li>
 </ul>
-<h3 id="fixed_2">Fixed<a class="headerlink" href="#fixed_2" title="Permanent link">&para;</a></h3>
+<h3 id="fixed_3">Fixed<a class="headerlink" href="#fixed_3" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Legend line and marker samples now use the curve renderers, keeping marker
   shapes and dash patterns consistent across graphics backends and display scales.</li>

@@ -1572,17 +1572,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#function-warnifoutgrowscapacity" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        function warnIfOutgrowsCapacity
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#function-wheelzoomfactor" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1777,10 +1766,6 @@
 <td style="text-align: left;"><a href="#function-uploaddatatexture"><strong>uploadDataTexture</strong></a> (std::unique_ptr&lt; QSGTexture &gt; &amp; texture, QQuickWindow * window, const QImage &amp; image) <br><em>Uploads an image to the live-data texture using the configured Qt API path.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">bool</td>
-<td style="text-align: left;"><a href="#function-warnifoutgrowscapacity"><strong>warnIfOutgrowsCapacity</strong></a> (bool wasOverCapacity, int recordCount, int capacity, const char * seriesType, const char * records) <br><em>Returns whether</em> <em>recordCount</em> <em>exceeds__capacity</em> <em>, and warns when it newly does.</em></td>
-</tr>
-<tr>
 <td style="text-align: right;">qreal</td>
 <td style="text-align: left;"><a href="#function-wheelzoomfactor"><strong>wheelZoomFactor</strong></a> (qreal zoomScaleFactor, bool zoomingIn, qreal steps=1.0) <br><em>Returns the extent multiplier for mouse-wheel zoom with a</em> <em>zoomScaleFactor</em> <em>in (0, 1).</em></td>
 </tr>
@@ -1928,71 +1913,58 @@
 </code></pre></div></p>
 <hr>
 
-<h3 id="function-warnifoutgrowscapacity">function warnIfOutgrowsCapacity<a class="headerlink" href="#function-warnifoutgrowscapacity" title="Permanent link">&para;</a></h3>
-<p><em>Returns whether</em> <em>recordCount</em> <em>exceeds__capacity</em> <em>, and warns when it newly does.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">warnIfOutgrowsCapacity</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">wasOverCapacity</span><span class="p">,</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">recordCount</span><span class="p">,</span>
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">capacity</span><span class="p">,</span>
-<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">seriesType</span><span class="p">,</span>
-<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">records</span>
-<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<p>Pass the previous result as <em>wasOverCapacity</em>. A series that stays over capacity, for example while streaming, warns once; one whose data fits again and then outgrows the capacity warns again. <em>seriesType</em> and <em>records</em> name the series and its records in the warning. </p>
-<hr>
-
 <h3 id="function-wheelzoomfactor">function wheelZoomFactor<a class="headerlink" href="#function-wheelzoomfactor" title="Permanent link">&para;</a></h3>
 <p><em>Returns the extent multiplier for mouse-wheel zoom with a</em> <em>zoomScaleFactor</em> <em>in (0, 1).</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">wheelZoomFactor</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">zoomScaleFactor</span><span class="p">,</span>
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">zoomingIn</span><span class="p">,</span>
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">steps</span><span class="o">=</span><span class="mf">1.0</span>
-<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">wheelZoomFactor</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">zoomScaleFactor</span><span class="p">,</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">zoomingIn</span><span class="p">,</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">steps</span><span class="o">=</span><span class="mf">1.0</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <p>Zooming in multiplies the extent by the factor and zooming out by its reciprocal. A factor of 0 or below counts as 0.01 and a factor of 1 or above as 0.99, so a step always zooms and never collapses the range. Fractional step counts scale partial wheel notches proportionally. </p>
 <hr>
 
 <h3 id="function-widenedspan">function widenedSpan<a class="headerlink" href="#function-widenedspan" title="Permanent link">&para;</a></h3>
 <p><em>Returns the pixel span between edges</em> <em>a</em> <em>and__b</em> <em>, widened around its center to at least__minimumSize</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="w"> </span><span class="n">qreal</span><span class="p">,</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">widenedSpan</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">a</span><span class="p">,</span>
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">b</span><span class="p">,</span>
-<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">minimumSize</span>
-<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="w"> </span><span class="n">qreal</span><span class="p">,</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">widenedSpan</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">a</span><span class="p">,</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">b</span><span class="p">,</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">minimumSize</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <p>Matches <code>widenedSpan()</code> in rect_geometry.glsl, so hit tests use the drawn size. </p>
 <hr>
 
 <h3 id="function-writeimagefile">function writeImageFile<a class="headerlink" href="#function-writeimagefile" title="Permanent link">&para;</a></h3>
 <p><em>Writes</em> <em>image</em> <em>to__path</em> <em>in__format</em> <em>and returns an error message, or an empty string on success.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">QString</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">writeImageFile</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QImage</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">image</span><span class="p">,</span>
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">path</span><span class="p">,</span>
-<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QByteArray</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">format</span><span class="p">,</span>
-<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">quality</span>
-<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">QString</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">writeImageFile</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QImage</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">image</span><span class="p">,</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">path</span><span class="p">,</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QByteArray</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">format</span><span class="p">,</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">quality</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <p><em>quality</em> is passed to <code>QImageWriter::setQuality()</code>. Formats without an alpha channel get the image composited over white. The file is replaced atomically, so a failed write leaves an existing file intact. Safe to call from a worker thread. </p>
 <hr>
 
 <h3 id="function-writerectuniforms">function writeRectUniforms<a class="headerlink" href="#function-writerectuniforms" title="Permanent link">&para;</a></h3>
 <p><em>Fills</em> <em>ubo</em> <em>from__material</em> <em>and the matrix and opacity of the render__state</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">writeRectUniforms</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="n">RectUbo</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">ubo</span><span class="p">,</span>
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QSGMaterialShader</span><span class="o">::</span><span class="n">RenderState</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">,</span>
-<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">RectMaterial</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">material</span>
-<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">writeRectUniforms</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="n">RectUbo</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">ubo</span><span class="p">,</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QSGMaterialShader</span><span class="o">::</span><span class="n">RenderState</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">,</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">RectMaterial</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">material</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-zoomedrange">function zoomedRange<a class="headerlink" href="#function-zoomedrange" title="Permanent link">&para;</a></h3>
 <p><em>Returns</em> <em>range</em> <em>with its extent multiplied by__factor</em> <em>, keeping the value at__anchorRatio</em> <em>in place.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">ValueRange</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">zoomedRange</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">ValueRange</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">range</span><span class="p">,</span>
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">factor</span><span class="p">,</span>
-<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">anchorRatio</span><span class="p">,</span>
-<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">logarithmic</span>
-<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">ValueRange</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">zoomedRange</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">ValueRange</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">range</span><span class="p">,</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">factor</span><span class="p">,</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">anchorRatio</span><span class="p">,</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">logarithmic</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <p><em>anchorRatio</em> is a position inside the range: 0 at <code>min</code> and 1 at <code>max</code>. With <em>logarithmic</em> set, the extent is measured in <code>log10</code> space. A range that is not positive is zoomed linearly instead. Returns <em>range</em> unchanged when a bound would leave the range of a double: it would not be finite, or in <code>log10</code> space it would reach zero. </p>
 <hr>

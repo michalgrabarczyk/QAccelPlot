@@ -25,7 +25,6 @@
 * `#include <QVariantMap>`
 * `#include <QtQml/qqmlregistration.h>`
 * `#include <cstdint>`
-* `#include <limits>`
 * `#include <memory>`
 * `#include <optional>`
 * `#include <vector>`

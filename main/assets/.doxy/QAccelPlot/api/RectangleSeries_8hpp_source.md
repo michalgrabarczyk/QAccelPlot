@@ -173,8 +173,6 @@ private:
     int hoveredIndex_{-1};
     // Render revision of the rectangles last uploaded to the GPU.
     std::uint64_t uploadedRevision_{0};
-    // Whether the last frame held more records than the GPU buffers do; warns on each crossing.
-    bool overCapacity_{false};
     // Vertex colors are category colors when categories are set; otherwise \c color is a uniform.
     RectVertexCache vertexCache_;
     // Whether the vertex cache holds category colors.

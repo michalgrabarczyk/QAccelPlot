@@ -266,22 +266,20 @@
 <codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/>std::uint64_t<sp/>uploadedRevision_{0};</highlight></codeline>
 <codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Render<sp/>revision<sp/>of<sp/>the<sp/>points<sp/>the<sp/>vertex<sp/>cache<sp/>was<sp/>built<sp/>from.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/>std::uint64_t<sp/>vertexCacheRevision_{0};</highlight></codeline>
-<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Whether<sp/>the<sp/>last<sp/>frame<sp/>held<sp/>more<sp/>records<sp/>than<sp/>the<sp/>GPU<sp/>buffers<sp/>do;<sp/>warns<sp/>on<sp/>each<sp/>crossing.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>overCapacity_{</highlight><highlight class="keyword">false</highlight><highlight class="normal">};</highlight></codeline>
-<codeline lineno="277"><highlight class="normal"></highlight></codeline>
-<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Pre-built<sp/>vertex<sp/>cache.<sp/>The<sp/>render<sp/>thread<sp/>consumes<sp/>it<sp/>via<sp/>a<sp/>single<sp/>memcpy,<sp/>which<sp/>is</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>significantly<sp/>faster<sp/>than<sp/>writing<sp/>to<sp/>GPU-mapped<sp/>memory<sp/>struct-by-struct.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1LineCurveVertexCache" kindref="compound">LineCurveVertexCache</ref><sp/>vertexCache_;</highlight></codeline>
-<codeline lineno="281"><highlight class="normal"></highlight></codeline>
-<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Data-space<sp/>bounding<sp/>boxes<sp/>per<sp/>chunk<sp/>of<sp/>kChunkSize<sp/>points,<sp/>extended<sp/>to</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>adjacent<sp/>boundary<sp/>points<sp/>to<sp/>cover<sp/>bridging<sp/>segments<sp/>between<sp/>chunks.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Rebuilt<sp/>lazily<sp/>when<sp/>chunksValid_<sp/>is<sp/>false.<sp/>Marked<sp/>mutable<sp/>for<sp/>lazy<sp/>init</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>from<sp/>the<sp/>const<sp/>contains()<sp/>path.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/>std::vector&lt;CurveChunk&gt;<sp/>chunks_;</highlight></codeline>
-<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>chunksValid_{</highlight><highlight class="keyword">false</highlight><highlight class="normal">};</highlight></codeline>
-<codeline lineno="288"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="289"><highlight class="normal"></highlight></codeline>
-<codeline lineno="290"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="275"><highlight class="normal"></highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Pre-built<sp/>vertex<sp/>cache.<sp/>The<sp/>render<sp/>thread<sp/>consumes<sp/>it<sp/>via<sp/>a<sp/>single<sp/>memcpy,<sp/>which<sp/>is</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>significantly<sp/>faster<sp/>than<sp/>writing<sp/>to<sp/>GPU-mapped<sp/>memory<sp/>struct-by-struct.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1LineCurveVertexCache" kindref="compound">LineCurveVertexCache</ref><sp/>vertexCache_;</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"></highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Data-space<sp/>bounding<sp/>boxes<sp/>per<sp/>chunk<sp/>of<sp/>kChunkSize<sp/>points,<sp/>extended<sp/>to</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>adjacent<sp/>boundary<sp/>points<sp/>to<sp/>cover<sp/>bridging<sp/>segments<sp/>between<sp/>chunks.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Rebuilt<sp/>lazily<sp/>when<sp/>chunksValid_<sp/>is<sp/>false.<sp/>Marked<sp/>mutable<sp/>for<sp/>lazy<sp/>init</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>from<sp/>the<sp/>const<sp/>contains()<sp/>path.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/>std::vector&lt;CurveChunk&gt;<sp/>chunks_;</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>chunksValid_{</highlight><highlight class="keyword">false</highlight><highlight class="normal">};</highlight></codeline>
+<codeline lineno="286"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"></highlight></codeline>
+<codeline lineno="288"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp"/>
   </compounddef>

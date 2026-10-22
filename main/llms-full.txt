@@ -2594,8 +2594,8 @@ QAccelPlot.BandSeries {
 ## Limits
 
 At most 16,777,216 (2^24) data points are drawn, fewer on GPUs whose maximum
-texture size is below 6144. Data points beyond the limit are not drawn, and a
-warning is logged once.
+texture size is below 6144. Data points beyond the limit are not drawn or
+hovered, and a warning is logged once.
 
 Complete source: [`examples/plot_types/bands`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/bands)
 

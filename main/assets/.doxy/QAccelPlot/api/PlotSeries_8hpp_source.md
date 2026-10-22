@@ -210,8 +210,16 @@ protected:
     virtual void onAxisScaleChanged();
     virtual void onAxisRangeChanged();
     QRectF resolvePlotRect() const;
+    enum class CapacityOverflow {
+        DropsExcess, 
+        DropsAll,    
+    };
+    void updateRenderCapacity(int capacity, int recordCount, CapacityOverflow overflow = CapacityOverflow::DropsExcess);
     void supportHover();
     bool event(QEvent* event) override;
+
+    int renderCapacity_{std::numeric_limits<int>::max()};
+    bool overRenderCapacity_{false};
 
 private:
     friend class SeriesInspection;

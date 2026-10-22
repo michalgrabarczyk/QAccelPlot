@@ -469,42 +469,6 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="34" column="5" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="34" declcolumn="5"/>
       </memberdef>
-      <memberdef kind="function" id="SeriesSupport_8hpp_1af24418972a266f8d8d474a792a036ce6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>bool</type>
-        <definition>bool QAccelPlot::Internal::warnIfOutgrowsCapacity</definition>
-        <argsstring>(bool wasOverCapacity, int recordCount, int capacity, const char *seriesType, const char *records)</argsstring>
-        <name>warnIfOutgrowsCapacity</name>
-        <qualifiedname>QAccelPlot::Internal::warnIfOutgrowsCapacity</qualifiedname>
-        <param>
-          <type>bool</type>
-          <declname>wasOverCapacity</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>recordCount</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>capacity</declname>
-        </param>
-        <param>
-          <type>const char *</type>
-          <declname>seriesType</declname>
-        </param>
-        <param>
-          <type>const char *</type>
-          <declname>records</declname>
-        </param>
-        <briefdescription>
-<para>Returns whether <emphasis>recordCount</emphasis> exceeds <emphasis>capacity</emphasis>, and warns when it newly does. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>Pass the previous result as <emphasis>wasOverCapacity</emphasis>. A series that stays over capacity, for example while streaming, warns once; one whose data fits again and then outgrows the capacity warns again. <emphasis>seriesType</emphasis> and <emphasis>records</emphasis> name the series and its records in the warning. </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="41" column="6" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="41" declcolumn="6"/>
-      </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>

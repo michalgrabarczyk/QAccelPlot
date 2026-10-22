@@ -31,8 +31,6 @@ int maxTextureSize(QQuickWindow* window);
 
 int recordCapacity(QQuickWindow* window, int floatsPerRecord, int vertexBytesPerRecord);
 
-bool warnIfOutgrowsCapacity(bool wasOverCapacity, int recordCount, int capacity, const char* seriesType, const char* records);
-
 } // namespace QAccelPlot::Internal
 ```
 

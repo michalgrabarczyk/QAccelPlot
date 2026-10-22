@@ -179,11 +179,18 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
+| enum  | [**CapacityOverflow**](#enum-capacityoverflow)  <br>_What a series draws when its records outgrow its GPU capacity._  |
 | enum  | [**DataChange**](#enum-datachange)  <br>_How the records changed in a data update._  |
 
 
 
 
+## Protected Attributes
+
+| Type | Name |
+| ---: | :--- |
+|  bool | [**overRenderCapacity\_**](#variable-overrendercapacity_)   = `{false}`<br>_Whether the record count of the last_ `updateRenderCapacity()` _exceeded_`renderCapacity_` _._ |
+|  int | [**renderCapacity\_**](#variable-rendercapacity_)   = `{std::numeric\_limits&lt;int&gt;::max()}`<br>_Records the GPU buffers hold, as of the last_ `updateRenderCapacity()` _; the largest_`int` _before the first._ |
 
 
 
@@ -233,6 +240,7 @@ flowchart TB
 |  QRectF | [**resolvePlotRect**](#function-resolveplotrect) () const<br>_Returns the plot area to render into:_ `plotRect` _when set, otherwise the item's current size._ |
 |  void | [**storeDataPoints**](#function-storedatapoints) ([**DataPointInput**](structQAccelPlot_1_1PlotSeries_1_1DataPointInput.md) && input) <br>_Stores_ _input_ _as the data points and finishes the change._ |
 |  void | [**supportHover**](#function-supporthover) () <br>_Makes the series accept hover events while_ `hoverEnabled` _is_`true` _._ |
+|  void | [**updateRenderCapacity**](#function-updaterendercapacity) (int capacity, int recordCount, [**CapacityOverflow**](classQAccelPlot_1_1PlotSeries.md#enum-capacityoverflow) overflow=CapacityOverflow::DropsExcess) <br>_Stores_ _capacity_ _, the number of records the GPU buffers hold, and warns when__recordCount_ _newly exceeds it._ |
 |  bool | [**validateDataSize**](#function-validatedatasize) (std::size\_t valueCount, int count, bool floatData, int valuesPerDataPoint=0) const<br>_Returns whether_ _valueCount_ _values hold__count_ _data points; warns otherwise._ |
 |  bool | [**validateRawDataArguments**](#function-validaterawdataarguments) (const void \* data, int count) const<br>_Returns whether_ _data_ _and__count_ _are valid arguments for copying data points; warns otherwise._ |
 
@@ -1090,6 +1098,24 @@ QAccelPlot::PlotSeries::~PlotSeries () override
 
 
 
+### enum CapacityOverflow {#enum-capacityoverflow}
+
+_What a series draws when its records outgrow its GPU capacity._ 
+```C++
+enum QAccelPlot::PlotSeries::CapacityOverflow {
+    DropsExcess,
+    DropsAll
+};
+```
+
+
+
+
+<hr>
+
+
+
+
 ### enum DataChange {#enum-datachange}
 
 _How the records changed in a data update._ 
@@ -1098,6 +1124,38 @@ enum QAccelPlot::PlotSeries::DataChange {
     Replaced,
     Appended
 };
+```
+
+
+
+
+<hr>
+## Protected Attributes Documentation
+
+
+
+
+
+### variable overRenderCapacity\_ {#variable-overrendercapacity_}
+
+_Whether the record count of the last_ `updateRenderCapacity()` _exceeded_`renderCapacity_` _._
+```C++
+bool QAccelPlot::PlotSeries::overRenderCapacity_;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable renderCapacity\_ {#variable-rendercapacity_}
+
+_Records the GPU buffers hold, as of the last_ `updateRenderCapacity()` _; the largest_`int` _before the first._
+```C++
+int QAccelPlot::PlotSeries::renderCapacity_;
 ```
 
 
@@ -1602,6 +1660,29 @@ void QAccelPlot::PlotSeries::supportHover ()
 
 
 Call from the constructor of a series that reacts to the cursor. Its `hoverLeaveEvent()` must clear the hover state, as turning `hoverEnabled` off calls it. 
+
+
+        
+
+<hr>
+
+
+
+
+### function updateRenderCapacity {#function-updaterendercapacity}
+
+_Stores_ _capacity_ _, the number of records the GPU buffers hold, and warns when__recordCount_ _newly exceeds it._
+```C++
+void QAccelPlot::PlotSeries::updateRenderCapacity (
+    int capacity,
+    int recordCount,
+    CapacityOverflow overflow=CapacityOverflow::DropsExcess
+) 
+```
+
+
+
+Call from `updatePaintNode()` on every frame. A series that stays over capacity, for example while streaming, warns once; one whose data fits again and then outgrows the capacity warns again. _overflow_ says in the warning what the series draws. 
 
 
         

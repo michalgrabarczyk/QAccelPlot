@@ -89,7 +89,6 @@
 |  void | [**setImageResolution**](#function-setimageresolution) (QImage & image, qreal dpi) <br>_Sets the resolution stored with_ _image_ _to__dpi_ _dots per inch._ |
 |  bool | [**supportsCustomShaderRendering**](#function-supportscustomshaderrendering) (const QQuickWindow \* window) <br>_Returns_ `true` _when__window_ _renders through a hardware scene graph backend that runs custom shaders._ |
 |  void | [**uploadDataTexture**](#function-uploaddatatexture) (std::unique\_ptr&lt; QSGTexture &gt; & texture, QQuickWindow \* window, const QImage & image) <br>_Uploads an image to the live-data texture using the configured Qt API path._  |
-|  bool | [**warnIfOutgrowsCapacity**](#function-warnifoutgrowscapacity) (bool wasOverCapacity, int recordCount, int capacity, const char \* seriesType, const char \* records) <br>_Returns whether_ _recordCount_ _exceeds__capacity_ _, and warns when it newly does._ |
 |  qreal | [**wheelZoomFactor**](#function-wheelzoomfactor) (qreal zoomScaleFactor, bool zoomingIn, qreal steps=1.0) <br>_Returns the extent multiplier for mouse-wheel zoom with a_ _zoomScaleFactor_ _in (0, 1)._ |
 |  std::pair&lt; qreal, qreal &gt; | [**widenedSpan**](#function-widenedspan) (qreal a, qreal b, qreal minimumSize) <br>_Returns the pixel span between edges_ _a_ _and__b_ _, widened around its center to at least__minimumSize_ _._ |
 |  QString | [**writeImageFile**](#function-writeimagefile) (const QImage & image, const QString & path, const QByteArray & format, int quality) <br>_Writes_ _image_ _to__path_ _in__format_ _and returns an error message, or an empty string on success._ |
@@ -394,31 +393,6 @@ void QAccelPlot::Internal::uploadDataTexture (
 
 
 
-
-<hr>
-
-
-
-
-### function warnIfOutgrowsCapacity {#function-warnifoutgrowscapacity}
-
-_Returns whether_ _recordCount_ _exceeds__capacity_ _, and warns when it newly does._
-```C++
-bool QAccelPlot::Internal::warnIfOutgrowsCapacity (
-    bool wasOverCapacity,
-    int recordCount,
-    int capacity,
-    const char * seriesType,
-    const char * records
-) 
-```
-
-
-
-Pass the previous result as _wasOverCapacity_. A series that stays over capacity, for example while streaming, warns once; one whose data fits again and then outgrows the capacity warns again. _seriesType_ and _records_ name the series and its records in the warning. 
-
-
-        
 
 <hr>
 

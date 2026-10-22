@@ -419,6 +419,7 @@
     <listofallmembers>
       <member refid="classQAccelPlot_1_1PlotSeries_1afb31a972c88456df230348f4e3794ab5" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>appendDataPoint</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1ac760dabf61aac4bad4cc5e93ad4dae43" prot="protected" virt="virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>applyDataPoints</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a8e2bc0b299f2d8b1d1c489cd532c10c7" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>CapacityOverflow</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1ab8783373622d6edb7e55c3dd435fc399" prot="public" virt="virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>clearData</name></member>
       <member refid="classQAccelPlot_1_1ColormappedSeries_1a6ef2f6fdd71790de760e68a0dde19725" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>colormap</name></member>
       <member refid="classQAccelPlot_1_1ColormappedSeries_1ac1cd2db41d45283715110df311c1b6b2" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>colormap</name></member>
@@ -460,9 +461,9 @@
       <member refid="classQAccelPlot_1_1PlotSeries_1a5d56c6f054d6dba8b905f0cb49e188d7" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>invalidateInspection</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a4e5a53df93bf478ae4b3f2f53ee4ff37" prot="public" virt="virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>legendEntry</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a1dbdd720bb06d07672267cfc603b932b" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>legendEntryChanged</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>LegendSymbol</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1ada3d9fd14934647c0f31870184f5eff5" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>legendSymbol</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a37f1fe5cb9f339d593147cd47b75d180" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>legendSymbol</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>LegendSymbol</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a2b88cb6eac8d12cf02b6daf37460150e" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>legendSymbolChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1ad85ffb96b1c9ee3d13a25c412db1eac6" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>logScaleX</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a23f7dd78fbc4e5e03d2537ee2e40707c" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>logScaleY</name></member>
@@ -475,6 +476,7 @@
       <member refid="classQAccelPlot_1_1PlotSeries_1a151516370fa311775c91c9cd7992e25e" prot="protected" virt="virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>onAxisScaleChanged</name></member>
       <member refid="classQAccelPlot_1_1ColormappedSeries_1acfa36c2c7ba47e80251cd042f71b7e11" prot="private" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>onColormapUpdated</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a6aa2a1a96940b34ac259143005b0aa47" prot="protected" virt="virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>onDataPointsChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a7e959948dfdc3fded2cfd5819c62ee61" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>overRenderCapacity_</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1aef0398b7a4f807870dd88a326c0e7d0d" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>plotRect</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1abf3aa64b08afe4f5d2a1728d035665b2" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>plotRect</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a9d58451724a7e0b06d7f04aeba101856" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>plotRectChanged</name></member>
@@ -486,6 +488,7 @@
       <member refid="classQAccelPlot_1_1ColormappedSeries_1a5baa96f31f686200de96e9332964644e" prot="private" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>reconnectColormapSignals</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a11565c208e7f6c2615d367e96b133fd9" prot="protected" virt="virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>recordInspectionSupported</name></member>
       <member refid="classQAccelPlot_1_1ColormappedSeries_1aeec86dd53e118eed3c4cd35af66e5e7a" prot="private" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>refreshColorStops</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1af46b6cad22a7db687f5b6a93c960abd4" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>renderCapacity_</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a956e8eb1ca7398b6b5f8022225d6edf7" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>resolvePlotRect</name></member>
       <member refid="classQAccelPlot_1_1ColormappedSeries_1a93c65bb18a806ef7a45bd6c078d3b36a" prot="protected" virt="virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>scanValueRange</name></member>
       <member refid="classQAccelPlot_1_1ColormappedSeries_1af7024caaa6f96b3b9a00549b81b77b94" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>setColormap</name></member>
@@ -505,6 +508,7 @@
       <member refid="classQAccelPlot_1_1PlotSeries_1a871398840ba7045c168c79a78d564416" prot="public" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>setYAxis</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a1957171db65a1684ebd515948dfb375d" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>storeDataPoints</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1aa443c35379a9aa2df5da14a5b87a7417" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>supportHover</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ae657768ad16fcf2b26eac4ce2f6cfd75" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>updateRenderCapacity</name></member>
       <member refid="classQAccelPlot_1_1ColormappedSeries_1af60a985b12edcd00f04554ab3124773b" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>updateValueRange</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a6c7c2ca488f737cd30ee447439441682" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>validateDataSize</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1ac9c532c2c9fec18c4aa53252cda99b9c" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColormappedSeries</scope><name>validateRawDataArguments</name></member>

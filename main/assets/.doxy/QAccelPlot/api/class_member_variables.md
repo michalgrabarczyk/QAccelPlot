@@ -396,7 +396,6 @@
 * **orientation\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md), [**QAccelPlot::ErrorBarSeries**](classQAccelPlot_1_1ErrorBarSeries.md))
 * **origin** ([**QAccelPlot::AxisMapping**](structQAccelPlot_1_1AxisMapping.md))
 * **orientation** ([**QAccelPlot::AxisTickPainter::Params**](structQAccelPlot_1_1AxisTickPainter_1_1Params.md))
-* **overCapacity\_** ([**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md), [**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md), [**QAccelPlot::ErrorBarSeries**](classQAccelPlot_1_1ErrorBarSeries.md), [**QAccelPlot::HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md), [**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md), [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md))
 * **offset** ([**QAccelPlot::DashParameters**](structQAccelPlot_1_1DashParameters.md), [**QAccelPlot::ErrorBarMaterial**](classQAccelPlot_1_1ErrorBarMaterial.md), [**QAccelPlot::Internal::HeatmapShaderMapping**](structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping.md))
 * **originX\_** ([**QAccelPlot::DataPointStore**](classQAccelPlot_1_1DataPointStore.md))
 * **originY\_** ([**QAccelPlot::DataPointStore**](classQAccelPlot_1_1DataPointStore.md))
@@ -407,6 +406,7 @@
 * **objects\_** ([**QAccelPlot::OverlayChildren**](classQAccelPlot_1_1OverlayChildren.md))
 * **overlay\_** ([**QAccelPlot::OverlayChildren**](classQAccelPlot_1_1OverlayChildren.md), [**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **owner\_** ([**QAccelPlot::OverlayChildren**](classQAccelPlot_1_1OverlayChildren.md))
+* **overRenderCapacity\_** ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
 
 
 ## p
@@ -459,7 +459,6 @@
 * **renderValid\_** ([**QAccelPlot::DataPointStore**](classQAccelPlot_1_1DataPointStore.md))
 * **running\_** ([**QAccelPlot::DataTransition**](classQAccelPlot_1_1DataTransition.md))
 * **runs\_** ([**QAccelPlot::DataTransition**](classQAccelPlot_1_1DataTransition.md))
-* **renderCapacity\_** ([**QAccelPlot::ErrorBarSeries**](classQAccelPlot_1_1ErrorBarSeries.md), [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
 * **rowMapping** ([**QAccelPlot::HeatmapMaterial**](classQAccelPlot_1_1HeatmapMaterial.md))
 * **rows** ([**QAccelPlot::HeatmapMaterial**](classQAccelPlot_1_1HeatmapMaterial.md))
 * **rows\_** ([**QAccelPlot::HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md), [**QAccelPlot::InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md), [**QAccelPlot::LegendModel**](classQAccelPlot_1_1LegendModel.md), [**QAccelPlot::PointSpatialIndex**](classQAccelPlot_1_1PointSpatialIndex.md), [**QAccelPlot::SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md))
@@ -470,6 +469,7 @@
 * **r** ([**QAccelPlot::LineVertex**](structQAccelPlot_1_1LineVertex.md), [**QAccelPlot::PointVertex**](structQAccelPlot_1_1PointVertex.md), [**QAccelPlot::RectVertexCache::Vertex**](structQAccelPlot_1_1RectVertexCache_1_1Vertex.md))
 * **radius\_** ([**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md))
 * **refreshing\_** ([**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md))
+* **renderCapacity\_** ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
 * **reportedHasValues\_** ([**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
 * **rectangleZoomOverlay\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **rectangleZoom\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))

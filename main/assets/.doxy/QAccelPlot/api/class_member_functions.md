@@ -992,6 +992,7 @@
 * **updateLineMaterial** ([**QAccelPlot::LineCurveLineRenderer**](classQAccelPlot_1_1LineCurveLineRenderer.md))
 * **updateLineVertices** ([**QAccelPlot::LineCurveLineRenderer**](classQAccelPlot_1_1LineCurveLineRenderer.md))
 * **updateAcceptHoverEvents** ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
+* **updateRenderCapacity** ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
 * **updateRectangleSelection** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 
 
