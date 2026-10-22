@@ -24,7 +24,7 @@ _Common QML item contract for data series hosted by_ `PlotView` _._[More...](#de
 Inherits the following classes: QQuickItem
 
 
-Inherited by the following classes: [QAccelPlot::BandSeries](classQAccelPlot_1_1BandSeries.md),  [QAccelPlot::ColormappedSeries](classQAccelPlot_1_1ColormappedSeries.md),  [QAccelPlot::LineCurve](classQAccelPlot_1_1LineCurve.md),  [QAccelPlot::RectangleSeries](classQAccelPlot_1_1RectangleSeries.md)
+Inherited by the following classes: [QAccelPlot::BandSeries](classQAccelPlot_1_1BandSeries.md),  [QAccelPlot::ColormappedSeries](classQAccelPlot_1_1ColormappedSeries.md),  [QAccelPlot::ErrorBarSeries](classQAccelPlot_1_1ErrorBarSeries.md),  [QAccelPlot::LineCurve](classQAccelPlot_1_1LineCurve.md),  [QAccelPlot::RectangleSeries](classQAccelPlot_1_1RectangleSeries.md)
 
 
 ## Inheritance diagram
@@ -55,6 +55,10 @@ flowchart TB
   classQAccelPlot_1_1PointCloud["QAccelPlot::PointCloud"]
   classQAccelPlot_1_1ColormappedSeries --> classQAccelPlot_1_1PointCloud
   click classQAccelPlot_1_1PointCloud "../classQAccelPlot_1_1PointCloud/" "Open QAccelPlot::PointCloud"
+
+  classQAccelPlot_1_1ErrorBarSeries["QAccelPlot::ErrorBarSeries"]
+  classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1ErrorBarSeries
+  click classQAccelPlot_1_1ErrorBarSeries "../classQAccelPlot_1_1ErrorBarSeries/" "Open QAccelPlot::ErrorBarSeries"
 
   classQAccelPlot_1_1LineCurve["QAccelPlot::LineCurve"]
   classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1LineCurve
@@ -106,6 +110,7 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 | property quint64 | [**dataRevision**](classQAccelPlot_1_1PlotSeries.md#property-datarevision-12)  <br>_Revision incremented by every accepted change of the series' records._  |
+| property bool | [**hoverEnabled**](classQAccelPlot_1_1PlotSeries.md#property-hoverenabled-12)  <br>_Whether the series reacts to the mouse cursor. Default:_ `true` _._ |
 | property [**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) \* | [**inspection**](classQAccelPlot_1_1PlotSeries.md#property-inspection-12)  <br>_Read-only constant: data queries for this series._  |
 | property [**LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol) | [**legendSymbol**](classQAccelPlot_1_1PlotSeries.md#property-legendsymbol-12)  <br>_Symbol style requested from the default legend._  |
 | property QString | [**name**](classQAccelPlot_1_1PlotSeries.md#property-name-12)  <br>_Identifying name used by the default legend._  |
@@ -121,6 +126,7 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 | signal void | [**dataRevisionChanged**](classQAccelPlot_1_1PlotSeries.md#signal-datarevisionchanged)  <br>_Emitted when the dataRevision property changes._  |
+| signal void | [**hoverEnabledChanged**](classQAccelPlot_1_1PlotSeries.md#signal-hoverenabledchanged)  <br>_Emitted when the hoverEnabled property changes._  |
 | signal void | [**legendEntryChanged**](classQAccelPlot_1_1PlotSeries.md#signal-legendentrychanged)  <br>_Emitted when the result of_ `legendEntry()` _changes._ |
 | signal void | [**legendSymbolChanged**](classQAccelPlot_1_1PlotSeries.md#signal-legendsymbolchanged)  <br> |
 | signal void | [**nameChanged**](classQAccelPlot_1_1PlotSeries.md#signal-namechanged)  <br> |
@@ -138,6 +144,7 @@ flowchart TB
 |   | [**PlotSeries**](#function-plotseries-12) (QQuickItem \* parent=nullptr) <br> |
 | virtual void | [**clearData**](#function-cleardata) () <br>_Removes all data points from the series._  |
 |  quint64 | [**dataRevision**](#function-datarevision-22) () const<br>_Returns the current data revision._  |
+|  bool | [**hoverEnabled**](#function-hoverenabled-22) () const<br>_Returns whether the series reacts to the mouse cursor._  |
 |  [**SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) \* | [**inspection**](#function-inspection-22) () const<br>_Returns the data queries for this series; created on first use and owned by the series._  |
 | virtual std::optional&lt; [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md) &gt; | [**legendEntry**](#function-legendentry) () const<br>_Returns how a legend draws the series, or_ `std::nullopt` _for no legend entry. Default: no entry._ |
 |  [**LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol) | [**legendSymbol**](#function-legendsymbol-22) () const<br> |
@@ -153,6 +160,7 @@ flowchart TB
 |  void | [**setDataF**](#function-setdataf-24) (std::vector&lt; float &gt; && data, int count) <br>_Replaces the series data by moving an interleaved float buffer._  |
 |  void | [**setDataF**](#function-setdataf-34) (const float \* data, int count, const [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) & bounds) <br>_Like_ `setDataF` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._ |
 |  void | [**setDataF**](#function-setdataf-44) (std::vector&lt; float &gt; && data, int count, const [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) & bounds) <br>_Like_ `setDataF` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._ |
+|  void | [**setHoverEnabled**](#function-sethoverenabled) (bool enabled) <br>_Sets whether the series reacts to the mouse cursor to_ _enabled_ _._ |
 |  void | [**setLegendSymbol**](#function-setlegendsymbol) ([**LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol) symbol) <br> |
 |  void | [**setName**](#function-setname) (const QString & name) <br> |
 |  void | [**setPlotRect**](#function-setplotrect) (const QRectF & rect) <br>_Updates the series geometry to exactly cover_ _rect_ _._ |
@@ -224,6 +232,7 @@ flowchart TB
 | virtual bool | [**recordInspectionSupported**](#function-recordinspectionsupported) () const<br>_Returns whether_ `inspectionRecord()` _and_`inspectionRecordAt()` _answer for this series. Default: false._ |
 |  QRectF | [**resolvePlotRect**](#function-resolveplotrect) () const<br>_Returns the plot area to render into:_ `plotRect` _when set, otherwise the item's current size._ |
 |  void | [**storeDataPoints**](#function-storedatapoints) ([**DataPointInput**](structQAccelPlot_1_1PlotSeries_1_1DataPointInput.md) && input) <br>_Stores_ _input_ _as the data points and finishes the change._ |
+|  void | [**supportHover**](#function-supporthover) () <br>_Makes the series accept hover events while_ `hoverEnabled` _is_`true` _._ |
 |  bool | [**validateDataSize**](#function-validatedatasize) (std::size\_t valueCount, int count, bool floatData, int valuesPerDataPoint=0) const<br>_Returns whether_ _valueCount_ _values hold__count_ _data points; warns otherwise._ |
 |  bool | [**validateRawDataArguments**](#function-validaterawdataarguments) (const void \* data, int count) const<br>_Returns whether_ _data_ _and__count_ _are valid arguments for copying data points; warns otherwise._ |
 
@@ -247,6 +256,7 @@ flowchart TB
 |`RectangleSeries`   |(x1, y1, x2, y2)   |4    |
 |`BarSeries`   |(position, value)   |2    |
 |`BandSeries`   |(x, low, high)   |3    |
+|`ErrorBarSeries`   |(x, y, low, high)   |4    |
 |`HeatmapSeries`   |cell value   |1   |
 
 
@@ -259,7 +269,7 @@ The buffer holds _count_ times that many values. A `HeatmapSeries` takes its cel
 
 
 
-**See also:** [**LineCurve**](classQAccelPlot_1_1LineCurve.md), [**PointCloud**](classQAccelPlot_1_1PointCloud.md), [**RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md), [**BarSeries**](classQAccelPlot_1_1BarSeries.md), [**BandSeries**](classQAccelPlot_1_1BandSeries.md), [**HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md), [**QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) 
+**See also:** [**LineCurve**](classQAccelPlot_1_1LineCurve.md), [**PointCloud**](classQAccelPlot_1_1PointCloud.md), [**RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md), [**BarSeries**](classQAccelPlot_1_1BarSeries.md), [**BandSeries**](classQAccelPlot_1_1BandSeries.md), [**ErrorBarSeries**](classQAccelPlot_1_1ErrorBarSeries.md), [**HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md), [**QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) 
 
 
 
@@ -341,6 +351,25 @@ quint64 QAccelPlot::PlotSeries::dataRevision;
 
 
 
+
+<hr>
+
+
+
+
+### property hoverEnabled {#property-hoverenabled-12}
+
+_Whether the series reacts to the mouse cursor. Default:_ `true` _._
+```C++
+bool QAccelPlot::PlotSeries::hoverEnabled;
+```
+
+
+
+When `false`, the series is never hovered and hover reaches the series beneath it. `QACCELPLOT_HOVER_ENABLED=0` turns hover off for every series regardless of this property. Series without hover feedback, such as `HeatmapSeries`, ignore it. 
+
+
+        
 
 <hr>
 
@@ -444,6 +473,21 @@ Axis* QAccelPlot::PlotSeries::yAxis;
 _Emitted when the dataRevision property changes._ 
 ```C++
 void QAccelPlot::PlotSeries::dataRevisionChanged;
+```
+
+
+
+
+<hr>
+
+
+
+
+### signal hoverEnabledChanged {#signal-hoverenabledchanged}
+
+_Emitted when the hoverEnabled property changes._ 
+```C++
+void QAccelPlot::PlotSeries::hoverEnabledChanged;
 ```
 
 
@@ -577,6 +621,21 @@ virtual void QAccelPlot::PlotSeries::clearData ()
 _Returns the current data revision._ 
 ```C++
 quint64 QAccelPlot::PlotSeries::dataRevision () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function hoverEnabled {#function-hoverenabled-22}
+
+_Returns whether the series reacts to the mouse cursor._ 
+```C++
+bool QAccelPlot::PlotSeries::hoverEnabled () const
 ```
 
 
@@ -845,6 +904,27 @@ void QAccelPlot::PlotSeries::setDataF (
 
 
 
+
+<hr>
+
+
+
+
+### function setHoverEnabled {#function-sethoverenabled}
+
+_Sets whether the series reacts to the mouse cursor to_ _enabled_ _._
+```C++
+void QAccelPlot::PlotSeries::setHoverEnabled (
+    bool enabled
+) 
+```
+
+
+
+Turning hover off while the series is hovered clears its hover state at once. 
+
+
+        
 
 <hr>
 
@@ -1506,6 +1586,25 @@ void QAccelPlot::PlotSeries::storeDataPoints (
 
 
 
+
+<hr>
+
+
+
+
+### function supportHover {#function-supporthover}
+
+_Makes the series accept hover events while_ `hoverEnabled` _is_`true` _._
+```C++
+void QAccelPlot::PlotSeries::supportHover () 
+```
+
+
+
+Call from the constructor of a series that reacts to the cursor. Its `hoverLeaveEvent()` must clear the hover state, as turning `hoverEnabled` off calls it. 
+
+
+        
 
 <hr>
 

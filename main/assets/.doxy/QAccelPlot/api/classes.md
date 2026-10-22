@@ -74,6 +74,7 @@
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**DataAnchor**](classQAccelPlot_1_1DataAnchor.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**DataBar**](structQAccelPlot_1_1ErrorBarSeries_1_1DataBar.md)
 * [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md)
 ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
 * [**DataExtent**](structQAccelPlot_1_1PlotSeries_1_1DataExtent.md)
@@ -108,6 +109,10 @@
 
 ## e
 
+* [**ErrorBarMaterial**](classQAccelPlot_1_1ErrorBarMaterial.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**ErrorBarSeries**](classQAccelPlot_1_1ErrorBarSeries.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**Extent**](structQAccelPlot_1_1DataPointStore_1_1Extent.md)
 ([**QAccelPlot::DataPointStore**](classQAccelPlot_1_1DataPointStore.md))
 * [**Extent**](structQAccelPlot_1_1HeatmapSeries_1_1Extent.md)

@@ -36,6 +36,8 @@ frame.
 - **Histograms** — `Histogram` counts samples into equal or uneven bins, as
   counts or density
 - **Bands** — `BandSeries` for confidence intervals and envelopes
+- **Error bars** — `ErrorBarSeries` for symmetric and asymmetric errors,
+  vertical or horizontal
 - **Layout** — secondary and extra axes, data-anchored QML overlays, and
   `RectangleSeries` for event spans and state timelines
 
@@ -355,8 +357,10 @@ JavaScript callback.
 ## Series
 
 `PlotSeries` holds properties shared by all series: name, axes, plot rectangle,
-and legend symbol. `legendEntry()` describes how a legend draws the series;
-`LegendModel` lists the entries of the visible series that have one.
+legend symbol, and `hoverEnabled`. `legendEntry()` describes how a legend draws the series;
+`LegendModel` lists the entries of the visible series that have one. Only the
+topmost series under the mouse pointer is hovered; `hoverEnabled: false` leaves
+hover to the series beneath.
 
 `LineCurve` renders lines, markers, line styles, gradients, and fills. It
 accepts data from QML or C++ buffers, as doubles or as interleaved floats.
@@ -376,6 +380,10 @@ that a `ColorBar` shows.
 confidence intervals and envelopes. It stores `(x, low, high)` triples and
 can draw lines along both edges.
 
+`ErrorBarSeries` draws a capped line from a low to a high bound at each data
+point, along the Y axis or, with `orientation: Qt.Horizontal`, the X axis. It
+stores `(x, y, low, high)` quadruples and does not draw the values.
+
 `RectangleSeries` renders many data-space rectangles in one item, such as event
 spans and state timelines. Infinite edges reach the plot edge, and a
 per-rectangle category selects the fill color. It reports the hovered
@@ -391,6 +399,7 @@ own extent as (from, to, value), e.g. the bins of a histogram.
 `LineCurve` applies one invalid-data-point contract to rendering, gradient fills,
 dash patterns, transitions, auto-ranging, and hover hit testing. For the other
 series, see [bands](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/bands/#invalid-data-points),
+[error bars](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/error-bars/#invalid-data-points),
 [point clouds](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/point-clouds/#invalid-points), and
 [bars](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/bar-charts/#invalid-bars).
 
@@ -567,8 +576,9 @@ Hover cost per mouse move:
 A `RectangleSeries` also tests every rectangle spanning more than 64 grid
 cells, so many long rectangles make its lookup `O(N)`.
 
-Set the environment variable `QACCELPLOT_HOVER_ENABLED=0` to turn hover off for
-every series and axis, for example in streaming-only views.
+Set `hoverEnabled: false` to turn hover off for one series. Set the environment
+variable `QACCELPLOT_HOVER_ENABLED=0` to turn it off for every series and axis,
+for example in streaming-only views.
 
 ### Other rendering costs
 
@@ -856,6 +866,7 @@ Each recipe links to a complete runnable example.
 | [Bar charts](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/bar-charts/) | Vertical, horizontal, and grouped bars, baselines, category colors, and hover |
 | [Histograms](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/histograms/) | Equal and uneven bins, counts or density, from QML or C++ |
 | [Bands](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/bands/) | Confidence intervals and envelopes between a low and a high value, with edge lines |
+| [Error bars](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/error-bars/) | Symmetric and asymmetric errors, vertical and horizontal, on points and grouped bars |
 | [Background data production](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/background-data/) | Safe high-throughput worker-to-UI handoff |
 | [Exporting images](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/export/) | PNG, JPEG, and other raster files, the clipboard, and `QImage` capture |
 
@@ -2570,7 +2581,7 @@ gap there. Auto-ranging skips invalid values one by one.
 
 `hovered` is `true` while the mouse pointer is inside the band or on an edge
 line. Only the topmost series under the mouse pointer is hovered, so nested
-bands highlight one at a time. Set `hoverRadius: 0` on a `LineCurve` drawn over
+bands highlight one at a time. Set `hoverEnabled: false` on a series drawn over
 a band to leave hover to the band:
 
 ```qml
@@ -2758,6 +2769,8 @@ Complete source: [`examples/data/export`](https://github.com/michalgrabarczyk/QA
   colormap and value range of a point cloud or heatmap.
 - [`BandSeries`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1BandSeries/) — filled area between a
   low and a high value at each X, with optional edge lines.
+- [`ErrorBarSeries`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1ErrorBarSeries/) — capped lines
+  from a low to a high bound at each data point, vertical or horizontal.
 - [`RectangleSeries`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1RectangleSeries/) — many data-space
   rectangles in one item: spans and state timelines.
 - [`BarSeries`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1BarSeries/) — vertical, horizontal, and

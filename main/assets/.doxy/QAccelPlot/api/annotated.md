@@ -51,6 +51,8 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
         * **class** [**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md) _One animation of a transition on one host element._     
     * **class** [**DateTimeTickLabelFormatter**](classQAccelPlot_1_1DateTimeTickLabelFormatter.md) _A tick label formatter that displays tick values as formatted date/time strings._     
     * **class** [**DrawTransition**](classQAccelPlot_1_1DrawTransition.md) _An animation transition that reveals the target data point by point from start to end._     
+    * **class** [**ErrorBarMaterial**](classQAccelPlot_1_1ErrorBarMaterial.md) _Material that draws error bars from (x, y, low, high) data points in a data texture._     
+    * **class** [**ErrorBarSeries**](classQAccelPlot_1_1ErrorBarSeries.md) _A hardware-accelerated QML item that draws error bars: a line from a low to a high bound at each data point, capped at both ends._     
     * **struct** [**FillSamples**](structQAccelPlot_1_1FillSamples.md) _Data points of a gradient fill: one group per run of valid data points, broken at gaps._     
     * **struct** [**GradientColorPayload**](structQAccelPlot_1_1GradientColorPayload.md) _Render-thread snapshot of gradient stroke (line-color) parameters._     
     * **class** [**GradientFill**](classQAccelPlot_1_1GradientFill.md) _A_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _effect that fills the area under the curve with a color gradient._    
@@ -160,6 +162,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
 * **struct** [**Layout**](structQAccelPlot_1_1ColorBar_1_1Layout.md)     
 * **struct** [**Compacted**](structQAccelPlot_1_1DataPointStore_1_1Compacted.md)     
 * **struct** [**Origin**](structQAccelPlot_1_1DataPointStore_1_1Origin.md)     
+* **struct** [**DataBar**](structQAccelPlot_1_1ErrorBarSeries_1_1DataBar.md)     
 * **struct** [**GridLineCollectionParams**](structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams.md)     
 * **struct** [**Extent**](structQAccelPlot_1_1HeatmapSeries_1_1Extent.md) [_**Grid**_](classQAccelPlot_1_1Grid.md) _edges. In_`edges_` _an unset edge is NaN;_`resolvedExtent()` _resolves it to index space._    
 * **struct** [**Job**](structQAccelPlot_1_1InspectionCache_1_1Job.md)     

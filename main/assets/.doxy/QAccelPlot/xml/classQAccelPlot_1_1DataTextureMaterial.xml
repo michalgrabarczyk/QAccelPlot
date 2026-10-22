@@ -4,6 +4,7 @@
     <compoundname>QAccelPlot::DataTextureMaterial</compoundname>
     <basecompoundref prot="public" virt="non-virtual">QSGMaterial</basecompoundref>
     <derivedcompoundref refid="classQAccelPlot_1_1BandMaterial" prot="public" virt="non-virtual">QAccelPlot::BandMaterial</derivedcompoundref>
+    <derivedcompoundref refid="classQAccelPlot_1_1ErrorBarMaterial" prot="public" virt="non-virtual">QAccelPlot::ErrorBarMaterial</derivedcompoundref>
     <derivedcompoundref refid="classQAccelPlot_1_1LineMaterial" prot="public" virt="non-virtual">QAccelPlot::LineMaterial</derivedcompoundref>
     <derivedcompoundref refid="classQAccelPlot_1_1PointCloudMaterial" prot="public" virt="non-virtual">QAccelPlot::PointCloudMaterial</derivedcompoundref>
     <derivedcompoundref refid="classQAccelPlot_1_1RectMaterial" prot="public" virt="non-virtual">QAccelPlot::RectMaterial</derivedcompoundref>
@@ -318,6 +319,7 @@
         <qualifiedname>QAccelPlot::DataTextureMaterial::compareExtra</qualifiedname>
         <reimplementedby refid="classQAccelPlot_1_1BandMaterial_1ae9b9d19eee75b5bc4211dc185d5e8bea">compareExtra</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1BarMaterial_1a69a4d646d25a5f2bb6eed58351481d86">compareExtra</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1ErrorBarMaterial_1a6512d5ec2a1f0438fdaebcd5d64ad49d">compareExtra</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1GradientLineMaterial_1a4ea998d5a0d1b31f79c6366ed9d4ec62">compareExtra</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1LineMaterial_1a5d1614172bf87baafa3e13c5468ee4fd">compareExtra</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1PointCloudMaterial_1aa96ef790f251fd28099bd81a8bf03643">compareExtra</reimplementedby>
@@ -355,10 +357,10 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
-      <node id="5">
+      <node id="6">
         <label>QAccelPlot::BandEdgeMaterial</label>
         <link refid="classQAccelPlot_1_1BandEdgeMaterial"/>
-        <childnode refid="4" relation="public-inheritance">
+        <childnode refid="5" relation="public-inheritance">
         </childnode>
       </node>
       <node id="3">
@@ -367,10 +369,10 @@
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="9">
+      <node id="10">
         <label>QAccelPlot::BarMaterial</label>
         <link refid="classQAccelPlot_1_1BarMaterial"/>
-        <childnode refid="8" relation="public-inheritance">
+        <childnode refid="9" relation="public-inheritance">
         </childnode>
       </node>
       <node id="1">
@@ -379,25 +381,31 @@
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="6">
-        <label>QAccelPlot::GradientLineMaterial</label>
-        <link refid="classQAccelPlot_1_1GradientLineMaterial"/>
-        <childnode refid="4" relation="public-inheritance">
+      <node id="4">
+        <label>QAccelPlot::ErrorBarMaterial</label>
+        <link refid="classQAccelPlot_1_1ErrorBarMaterial"/>
+        <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="4">
+      <node id="7">
+        <label>QAccelPlot::GradientLineMaterial</label>
+        <link refid="classQAccelPlot_1_1GradientLineMaterial"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
         <label>QAccelPlot::LineMaterial</label>
         <link refid="classQAccelPlot_1_1LineMaterial"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="7">
+      <node id="8">
         <label>QAccelPlot::PointCloudMaterial</label>
         <link refid="classQAccelPlot_1_1PointCloudMaterial"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="8">
+      <node id="9">
         <label>QAccelPlot::RectMaterial</label>
         <link refid="classQAccelPlot_1_1RectMaterial"/>
         <childnode refid="1" relation="public-inheritance">

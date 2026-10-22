@@ -469,6 +469,8 @@
       
         
       
+        
+      
     
     
     
@@ -874,6 +876,34 @@
     
   
     Bands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/error-bars/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error bars
   
 
     
@@ -1963,6 +1993,10 @@
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-datarevision-12"><strong>dataRevision</strong></a>  <br><em>Revision incremented by every accepted change of the series' records.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">property bool</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-hoverenabled-12"><strong>hoverEnabled</strong></a>  <br><em>Whether the series reacts to the mouse cursor. Default:</em> <code>true</code> <em>.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">property <a href="../classQAccelPlot_1_1SeriesInspection/"><strong>QAccelPlot::SeriesInspection</strong></a> *</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-inspection-12"><strong>inspection</strong></a>  <br><em>Read-only constant: data queries for this series.</em></td>
 </tr>
@@ -2024,6 +2058,10 @@
 <tr>
 <td style="text-align: right;">signal void</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#signal-datarevisionchanged"><strong>dataRevisionChanged</strong></a>  <br><em>Emitted when the dataRevision property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#signal-hoverenabledchanged"><strong>hoverEnabledChanged</strong></a>  <br><em>Emitted when the hoverEnabled property changes.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">signal void</td>
@@ -2169,6 +2207,10 @@
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-datarevision-22"><strong>dataRevision</strong></a> () const<br><em>Returns the current data revision.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-hoverenabled-22"><strong>hoverEnabled</strong></a> () const<br><em>Returns whether the series reacts to the mouse cursor.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;"><a href="../classQAccelPlot_1_1SeriesInspection/"><strong>SeriesInspection</strong></a> *</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-inspection-22"><strong>inspection</strong></a> () const<br><em>Returns the data queries for this series; created on first use and owned by the series.</em></td>
 </tr>
@@ -2227,6 +2269,10 @@
 <tr>
 <td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setdataf-44"><strong>setDataF</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, int count, const <a href="../structQAccelPlot_1_1PlotSeries_1_1DataBounds/"><strong>DataBounds</strong></a> &amp; bounds) <br><em>Like</em> <code>setDataF</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-sethoverenabled"><strong>setHoverEnabled</strong></a> (bool enabled) <br><em>Sets whether the series reacts to the mouse cursor to</em> <em>enabled</em> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -2430,6 +2476,10 @@
 <tr>
 <td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-storedatapoints"><strong>storeDataPoints</strong></a> (<a href="../structQAccelPlot_1_1PlotSeries_1_1DataPointInput/"><strong>DataPointInput</strong></a> &amp;&amp; input) <br><em>Stores</em> <em>input</em> <em>as the data points and finishes the change.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-supporthover"><strong>supportHover</strong></a> () <br><em>Makes the series accept hover events while</em> <code>hoverEnabled</code> <em>is</em><code>true</code> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>

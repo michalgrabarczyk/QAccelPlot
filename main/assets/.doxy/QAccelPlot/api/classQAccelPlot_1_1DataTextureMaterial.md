@@ -24,7 +24,7 @@ _Base QSGMaterial that samples series data from a_ `DataTexture` _and exposes sh
 Inherits the following classes: QSGMaterial
 
 
-Inherited by the following classes: [QAccelPlot::BandMaterial](classQAccelPlot_1_1BandMaterial.md),  [QAccelPlot::LineMaterial](classQAccelPlot_1_1LineMaterial.md),  [QAccelPlot::PointCloudMaterial](classQAccelPlot_1_1PointCloudMaterial.md),  [QAccelPlot::RectMaterial](classQAccelPlot_1_1RectMaterial.md)
+Inherited by the following classes: [QAccelPlot::BandMaterial](classQAccelPlot_1_1BandMaterial.md),  [QAccelPlot::ErrorBarMaterial](classQAccelPlot_1_1ErrorBarMaterial.md),  [QAccelPlot::LineMaterial](classQAccelPlot_1_1LineMaterial.md),  [QAccelPlot::PointCloudMaterial](classQAccelPlot_1_1PointCloudMaterial.md),  [QAccelPlot::RectMaterial](classQAccelPlot_1_1RectMaterial.md)
 
 
 ## Inheritance diagram
@@ -39,6 +39,10 @@ flowchart TB
   classQAccelPlot_1_1BandMaterial["QAccelPlot::BandMaterial"]
   classQAccelPlot_1_1DataTextureMaterial --> classQAccelPlot_1_1BandMaterial
   click classQAccelPlot_1_1BandMaterial "../classQAccelPlot_1_1BandMaterial/" "Open QAccelPlot::BandMaterial"
+
+  classQAccelPlot_1_1ErrorBarMaterial["QAccelPlot::ErrorBarMaterial"]
+  classQAccelPlot_1_1DataTextureMaterial --> classQAccelPlot_1_1ErrorBarMaterial
+  click classQAccelPlot_1_1ErrorBarMaterial "../classQAccelPlot_1_1ErrorBarMaterial/" "Open QAccelPlot::ErrorBarMaterial"
 
   classQAccelPlot_1_1LineMaterial["QAccelPlot::LineMaterial"]
   classQAccelPlot_1_1DataTextureMaterial --> classQAccelPlot_1_1LineMaterial

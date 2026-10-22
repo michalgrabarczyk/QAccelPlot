@@ -51,6 +51,7 @@ class PlotSeries : public QQuickItem {
     Q_PROPERTY(Axis* yAxis READ yAxis WRITE setYAxis NOTIFY yAxisChanged)
     Q_PROPERTY(QRectF plotRect READ plotRect WRITE setPlotRect NOTIFY plotRectChanged)
     Q_PROPERTY(LegendSymbol legendSymbol READ legendSymbol WRITE setLegendSymbol NOTIFY legendSymbolChanged)
+    Q_PROPERTY(bool hoverEnabled READ hoverEnabled WRITE setHoverEnabled NOTIFY hoverEnabledChanged)
 
     
     Q_PROPERTY(quint64 dataRevision READ dataRevision NOTIFY dataRevisionChanged)
@@ -115,6 +116,10 @@ public:
 
     LegendSymbol legendSymbol() const;
     void setLegendSymbol(LegendSymbol symbol);
+
+    bool hoverEnabled() const;
+    void setHoverEnabled(bool enabled);
+
     virtual std::optional<LegendEntry> legendEntry() const;
 
     void setData(const double* data, int count);
@@ -139,6 +144,7 @@ signals:
     void yAxisChanged();
     void plotRectChanged();
     void legendSymbolChanged();
+    void hoverEnabledChanged();
     void legendEntryChanged();
 
 protected:
@@ -204,6 +210,7 @@ protected:
     virtual void onAxisScaleChanged();
     virtual void onAxisRangeChanged();
     QRectF resolvePlotRect() const;
+    void supportHover();
     bool event(QEvent* event) override;
 
 private:
@@ -217,7 +224,10 @@ private:
     void reportDataRangesChanged() const;
     void deliverTopmostHover(QHoverEvent* event);
     bool coveredBySeriesAbove(const QPointF& position) const;
+    void updateAcceptHoverEvents();
 
+    bool hoverSupported_{false};
+    bool hoverEnabled_{true};
     bool hoverDelivered_{false};
     quint64 dataRevision_{0};
     mutable SeriesInspection* inspection_{nullptr};

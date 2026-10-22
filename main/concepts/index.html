@@ -588,6 +588,8 @@
       
         
       
+        
+      
     
     
     
@@ -993,6 +995,34 @@
     
   
     Bands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/error-bars/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error bars
   
 
     
@@ -1591,8 +1621,10 @@ logarithmic, and categorical labels; <code>TickLabelFormatter</code> also accept
 JavaScript callback.</p>
 <h2 id="series">Series<a class="headerlink" href="#series" title="Permanent link">&para;</a></h2>
 <p><code>PlotSeries</code> holds properties shared by all series: name, axes, plot rectangle,
-and legend symbol. <code>legendEntry()</code> describes how a legend draws the series;
-<code>LegendModel</code> lists the entries of the visible series that have one.</p>
+legend symbol, and <code>hoverEnabled</code>. <code>legendEntry()</code> describes how a legend draws the series;
+<code>LegendModel</code> lists the entries of the visible series that have one. Only the
+topmost series under the mouse pointer is hovered; <code>hoverEnabled: false</code> leaves
+hover to the series beneath.</p>
 <p><code>LineCurve</code> renders lines, markers, line styles, gradients, and fills. It
 accepts data from QML or C++ buffers, as doubles or as interleaved floats.
 It reports <code>hovered</code> within <code>hoverRadius</code> pixels of the line or over a marker.
@@ -1607,6 +1639,9 @@ that a <code>ColorBar</code> shows.</p>
 <p><code>BandSeries</code> fills the area between a low and a high value at each X, such as
 confidence intervals and envelopes. It stores <code>(x, low, high)</code> triples and
 can draw lines along both edges.</p>
+<p><code>ErrorBarSeries</code> draws a capped line from a low to a high bound at each data
+point, along the Y axis or, with <code>orientation: Qt.Horizontal</code>, the X axis. It
+stores <code>(x, y, low, high)</code> quadruples and does not draw the values.</p>
 <p><code>RectangleSeries</code> renders many data-space rectangles in one item, such as event
 spans and state timelines. Infinite edges reach the plot edge, and a
 per-rectangle category selects the fill color. It reports the hovered
@@ -1619,6 +1654,7 @@ own extent as (from, to, value), e.g. the bins of a histogram.</p>
 <p><code>LineCurve</code> applies one invalid-data-point contract to rendering, gradient fills,
 dash patterns, transitions, auto-ranging, and hover hit testing. For the other
 series, see <a href="../cookbook/bands/#invalid-data-points">bands</a>,
+<a href="../cookbook/error-bars/#invalid-data-points">error bars</a>,
 <a href="../cookbook/point-clouds/#invalid-points">point clouds</a>, and
 <a href="../cookbook/bar-charts/#invalid-bars">bars</a>.</p>
 <p>A data point is <strong>invalid</strong> when its X or Y coordinate is <code>NaN</code> or <code>±Inf</code>, or when a
