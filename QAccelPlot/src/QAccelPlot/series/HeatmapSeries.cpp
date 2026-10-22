@@ -503,13 +503,9 @@ bool HeatmapSeries::canDraw(QQuickWindow* window)
         return false;
     }
 
-    const auto capacity = Internal::dataTextureItemCapacity(Internal::maxTextureSize(window), 1);
-    const auto overCapacity = cellCount() > capacity;
-    if (overCapacity && !overCapacity_) {
-        qCWarning(lcQAccelPlot) << "HeatmapSeries has" << cellCount() << "cells but draws at most" << capacity << "; the heatmap is not drawn.";
-    }
-    overCapacity_ = overCapacity;
-    return !overCapacity;
+    const auto capacity = std::min(Internal::dataTextureItemCapacity(Internal::maxTextureSize(window), 1), qint64{std::numeric_limits<int>::max()});
+    updateRenderCapacity(static_cast<int>(capacity), cellCount(), CapacityOverflow::DropsAll);
+    return !overRenderCapacity_;
 }
 
 void HeatmapSeries::updateMaterial(HeatmapMaterial& material, QQuickWindow* window, const bool newNode)

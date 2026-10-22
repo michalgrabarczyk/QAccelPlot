@@ -460,7 +460,7 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updat
     }
 
     const auto capacity = pointCapacity(window(), hasLine, hasPoints);
-    overCapacity_ = Internal::warnIfOutgrowsCapacity(overCapacity_, renderPointCount(), capacity, "LineCurve", "points");
+    updateRenderCapacity(capacity, renderPointCount());
     const auto drawnPointCount = std::min(renderPointCount(), capacity);
     const auto minPoints = hasPoints ? 1 : 2;
     if (drawnPointCount < minPoints) {
@@ -610,19 +610,19 @@ bool LineCurve::contains(const QPointF& point) const
     const qreal h = height();
     const auto logX = logScaleX();
     const auto logY = logScaleY();
+    const auto drawnPointCount = std::min(renderPointCount(), renderCapacity_);
 
     if (marker_->shape() != MarkerShape::None) {
         // Pixel markers ignore the marker size, so hover them within a small fixed radius.
         constexpr static auto kPixelMarkerHitRadiusPx = qreal{3.0};
         const auto hitRadius = marker_->shape() == MarkerShape::Pixel ? kPixelMarkerHitRadiusPx : marker_->size();
-        if (pointRenderer_.contains(point, CurveHitTestParams{sourceDataView(), renderPointCount(), chunks_, xAxis(), yAxis(), w, h, hitRadius, logX, logY})) {
+        if (pointRenderer_.contains(point, CurveHitTestParams{sourceDataView(), drawnPointCount, chunks_, xAxis(), yAxis(), w, h, hitRadius, logX, logY})) {
             return true;
         }
     }
 
     if (lineStyle_ && lineStyle_->showLine() && hoverRadius_ > 0.0) {
-        return lineRenderer_.contains(
-            point, CurveHitTestParams{sourceDataView(), renderPointCount(), chunks_, xAxis(), yAxis(), w, h, hoverRadius_, logX, logY});
+        return lineRenderer_.contains(point, CurveHitTestParams{sourceDataView(), drawnPointCount, chunks_, xAxis(), yAxis(), w, h, hoverRadius_, logX, logY});
     }
 
     return false;

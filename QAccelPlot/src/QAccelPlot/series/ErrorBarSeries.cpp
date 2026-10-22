@@ -25,6 +25,7 @@
 #include <cmath>
 #include <cstring>
 #include <initializer_list>
+#include <limits>
 #include <utility>
 
 namespace QAccelPlot {
@@ -411,8 +412,7 @@ InspectionRecord ErrorBarSeries::inspectionRecordAt(const QPointF& position) con
 QSGNode* ErrorBarSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* /*updatePaintNodeData*/)
 {
     auto* window = this->window();
-    renderCapacity_ = Internal::recordCapacity(window, kStride, kVertexBytesPerErrorBar);
-    overCapacity_ = Internal::warnIfOutgrowsCapacity(overCapacity_, count(), renderCapacity_, "ErrorBarSeries", "error bars");
+    updateRenderCapacity(Internal::recordCapacity(window, kStride, kVertexBytesPerErrorBar), count());
     if (count() <= 0 || !xAxis() || !yAxis() || resolvePlotRect().isEmpty() || !window) {
         delete oldNode;
         return nullptr;

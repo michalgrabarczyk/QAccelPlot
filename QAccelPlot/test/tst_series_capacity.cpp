@@ -7,6 +7,7 @@
 //
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/series/BarSeries.hpp"
+#include "QAccelPlot/series/HeatmapSeries.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
 #include "QAccelPlot/series/RectangleSeries.hpp"
 
@@ -126,19 +127,20 @@ std::vector<float> stackedRectangles(const int rectCount)
 
 } // namespace
 
-// A series draws the records its GPU buffers hold and warns about the rest each time its data outgrows them.
+// A series draws and hovers the records its GPU buffers hold and warns about the rest each time its data outgrows them.
 class SeriesCapacityTest : public QObject {
     Q_OBJECT
 
 private slots:
-    void linePointsBeyondCapacityAreNotDrawn();
-    void rectanglesBeyondCapacityAreNotDrawn();
-    void barsBeyondCapacityAreNotDrawn();
+    void linePointsBeyondCapacityAreNotDrawnOrHovered();
+    void rectanglesBeyondCapacityAreNotDrawnOrHovered();
+    void barsBeyondCapacityAreNotDrawnOrHovered();
+    void heatmapBeyondCapacityIsNotDrawn();
     void warnsEachTimeDataOutgrowsCapacity();
     void eachSeriesWarnsAboutItsOwnData();
 };
 
-void SeriesCapacityTest::linePointsBeyondCapacityAreNotDrawn()
+void SeriesCapacityTest::linePointsBeyondCapacityAreNotDrawnOrHovered()
 {
     auto scene = Scene{};
     if (scene.isSoftware()) {
@@ -168,9 +170,18 @@ void SeriesCapacityTest::linePointsBeyondCapacityAreNotDrawn()
     const auto image = scene.window.grabWindow();
     QVERIFY(isLit(image, 50, 25));
     QVERIFY(isDark(image, 50, 75));
+
+    const auto& item = static_cast<const QQuickItem&>(curve);
+    QVERIFY(item.contains({50, 25}));
+    QVERIFY(!item.contains({50, 75}));
+
+    curve.marker()->setShape(PlotSeries::MarkerShape::Circle);
+    curve.setHoverRadius(0.0);
+    QVERIFY(item.contains({50, 25}));
+    QVERIFY(!item.contains({50, 75}));
 }
 
-void SeriesCapacityTest::rectanglesBeyondCapacityAreNotDrawn()
+void SeriesCapacityTest::rectanglesBeyondCapacityAreNotDrawnOrHovered()
 {
     auto scene = Scene{};
     if (scene.isSoftware()) {
@@ -196,9 +207,13 @@ void SeriesCapacityTest::rectanglesBeyondCapacityAreNotDrawn()
     const auto image = scene.window.grabWindow();
     QVERIFY(isLit(image, 25, 50));
     QVERIFY(isDark(image, 75, 50));
+
+    const auto drawn = rectangles.rectangleIndexAt({25, 50});
+    QVERIFY(drawn >= 0 && drawn < kCapacity);
+    QCOMPARE(rectangles.rectangleIndexAt({75, 50}), -1);
 }
 
-void SeriesCapacityTest::barsBeyondCapacityAreNotDrawn()
+void SeriesCapacityTest::barsBeyondCapacityAreNotDrawnOrHovered()
 {
     auto scene = Scene{};
     if (scene.isSoftware()) {
@@ -224,6 +239,36 @@ void SeriesCapacityTest::barsBeyondCapacityAreNotDrawn()
     const auto image = scene.window.grabWindow();
     QVERIFY(isLit(image, 25, 50));
     QVERIFY(isDark(image, 75, 50));
+
+    const auto drawn = bars.barIndexAt({25, 50});
+    QVERIFY(drawn >= 0 && drawn < kCapacity);
+    QCOMPARE(bars.barIndexAt({75, 50}), -1);
+}
+
+void SeriesCapacityTest::heatmapBeyondCapacityIsNotDrawn()
+{
+    auto scene = Scene{};
+    if (scene.isSoftware()) {
+        QSKIP("Custom materials require a hardware scene graph backend");
+    }
+    // One float per cell: the data texture holds 8192 cells.
+    constexpr auto kOverSide = 100;
+    constexpr auto kUnderSide = 50;
+    auto heatmap = HeatmapSeries{};
+    scene.add(heatmap);
+    heatmap.setXMin(0.0);
+    heatmap.setXMax(1.0);
+    heatmap.setYMin(0.0);
+    heatmap.setYMax(1.0);
+    scene.window.show();
+    QVERIFY(QTest::qWaitForWindowExposed(&scene.window));
+
+    QTest::ignoreMessage(QtWarningMsg, "HeatmapSeries has 10000 cells but draws at most 8192 ; the series is not drawn.");
+    heatmap.setValues(std::vector<float>(kOverSide * kOverSide, 1.0f), kOverSide, kOverSide);
+    QCOMPARE(scene.window.grabWindow().pixel(50, 50), qRgb(0, 0, 0));
+
+    heatmap.setValues(std::vector<float>(kUnderSide * kUnderSide, 1.0f), kUnderSide, kUnderSide);
+    QVERIFY(scene.window.grabWindow().pixel(50, 50) != qRgb(0, 0, 0));
 }
 
 void SeriesCapacityTest::warnsEachTimeDataOutgrowsCapacity()

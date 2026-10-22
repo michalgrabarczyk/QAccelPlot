@@ -611,6 +611,24 @@ QRectF PlotSeries::resolvePlotRect() const
     return QRectF(0, 0, width(), height());
 }
 
+void PlotSeries::updateRenderCapacity(const int capacity, const int recordCount, const CapacityOverflow overflow)
+{
+    const auto wasOverCapacity = overRenderCapacity_;
+    renderCapacity_ = capacity;
+    overRenderCapacity_ = recordCount > capacity;
+    if (!overRenderCapacity_ || wasOverCapacity) {
+        return;
+    }
+    const auto* series = seriesName(*this);
+    const auto* records = wording_.plural.c_str();
+    if (overflow == CapacityOverflow::DropsAll) {
+        qCWarning(lcQAccelPlot) << series << "has" << recordCount << records << "but draws at most" << capacity << "; the series is not drawn.";
+    } else {
+        qCWarning(lcQAccelPlot) << series << "has" << recordCount << records << "but draws at most" << capacity << "; the remaining" << records
+                                << "are not drawn.";
+    }
+}
+
 void PlotSeries::supportHover()
 {
     hoverSupported_ = true;

@@ -49,6 +49,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `SeriesInspection.supported`. A query that does not apply to a series returns
   `Inspection.Unsupported`.
 
+### Fixed
+
+- `LineCurve`, `BarSeries`, `RectangleSeries`, and `BandSeries` no longer hover
+  records beyond their GPU capacity, which are not drawn.
+
 ## [0.4.0] — 2026-10-16
 
 ### Added

@@ -180,7 +180,7 @@ bool LineCurvePointRenderer::contains(const QPointF& point, const CurveHitTestPa
             continue;
         }
 
-        const auto pointEnd = chunk.start + chunk.count;
+        const auto pointEnd = std::min(chunk.start + chunk.count, params.pointCount);
         for (auto index = chunk.start; index < pointEnd; ++index) {
             if (!LineCurveGapFilter::isValidPoint(params.data, index, params.nonPositiveXInvalid, params.nonPositiveYInvalid)) {
                 continue;
@@ -193,9 +193,6 @@ bool LineCurvePointRenderer::contains(const QPointF& point, const CurveHitTestPa
             }
         }
     }
-
-    // Suppress unused-parameter warning when chunks covers all points.
-    Q_UNUSED(params.pointCount)
     return false;
 }
 

@@ -447,8 +447,9 @@ int BarSeries::barIndexAt(const QPointF& position) const
     const auto y1 = yAxis()->pixelToCoord(position.y() - halfY, height());
     const auto y2 = yAxis()->pixelToCoord(position.y() + halfY, height());
     ensureSpatialGrid();
+    const auto drawnCount = std::min(count(), renderCapacity_);
     return spatialGrid_.queryTopmost(std::min(x1, x2), std::min(y1, y2), std::max(x1, x2), std::max(y1, y2),
-        [this, &position](const int index) { return containsInPixels(index, position); });
+        [this, &position, drawnCount](const int index) { return index < drawnCount && containsInPixels(index, position); });
 }
 
 bool BarSeries::contains(const QPointF& point) const
@@ -485,7 +486,7 @@ QSGNode* BarSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
     auto* window = this->window();
     const auto drawnCount = drawnBarCount();
     const auto capacity = Internal::recordCapacity(window, valuesPerBar(), RectVertexCache::kBytesPerRect);
-    overCapacity_ = Internal::warnIfOutgrowsCapacity(overCapacity_, drawnCount, capacity, "BarSeries", "bars");
+    updateRenderCapacity(capacity, drawnCount);
     if (drawnCount <= 0 || !xAxis() || !yAxis() || plotRect().isEmpty() || !window) {
         return releaseNode(oldNode);
     }

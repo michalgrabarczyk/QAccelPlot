@@ -161,7 +161,8 @@ private:
     double value(int index, int component) const;
     bool dataPointValid(int index) const;
     void updateXAscending();
-    std::optional<Span> spanAt(qreal x) const;
+    // Returns the band at x as drawn from the first dataPointCount data points.
+    std::optional<Span> spanAt(qreal x, int dataPointCount) const;
     bool edgesVisible() const;
     QColor edgeColor() const;
     void setHovered(bool hovered);
@@ -181,8 +182,6 @@ private:
     std::optional<QPointF> hoverPosition_;
     // Render revision of the data points last uploaded to the GPU.
     std::uint64_t uploadedRevision_{0};
-    // Whether the last frame held more records than the GPU buffers do; warns on each crossing.
-    bool overCapacity_{false};
     bool xAscending_{true};
     QMetaObject::Connection edgeStyleConnection_;
     BandEdgeRenderer lowerEdgeRenderer_{BandEdgeMaterial::Edge::Lower};

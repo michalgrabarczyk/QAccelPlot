@@ -405,7 +405,10 @@ QSGNode* RectangleSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*
 {
     auto* window = this->window();
     const auto capacity = Internal::recordCapacity(window, kValuesPerRectangle, RectVertexCache::kBytesPerRect);
-    overCapacity_ = Internal::warnIfOutgrowsCapacity(overCapacity_, count(), capacity, "RectangleSeries", "rectangles");
+    if (capacity != renderCapacity_) {
+        lastHitTest_.reset();
+    }
+    updateRenderCapacity(capacity, count());
     if (count() <= 0) {
         delete oldNode;
         return nullptr;
@@ -564,7 +567,8 @@ int RectangleSeries::topmostRectangleAt(const QPointF& position) const
     const auto minY = std::min(y1, y2);
     const auto maxX = std::max(x1, x2);
     const auto maxY = std::max(y1, y2);
-    const auto accept = [this, &position](const int index) { return containsInPixels(index, position); };
+    const auto drawnCount = std::min(count(), renderCapacity_);
+    const auto accept = [this, &position, drawnCount](const int index) { return index < drawnCount && containsInPixels(index, position); };
     if (spatialGridReady()) {
         return spatialGrid_.queryTopmost(minX, minY, maxX, maxY, accept);
     }

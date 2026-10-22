@@ -272,8 +272,6 @@ private:
     std::uint64_t uploadedRevision_{0};
     // Render revision of the points the vertex cache was built from.
     std::uint64_t vertexCacheRevision_{0};
-    // Whether the last frame held more records than the GPU buffers do; warns on each crossing.
-    bool overCapacity_{false};
 
     // Pre-built vertex cache. The render thread consumes it via a single memcpy, which is
     // significantly faster than writing to GPU-mapped memory struct-by-struct.

@@ -259,7 +259,6 @@ private:
     std::uint64_t uploadedRevision_{0};
     bool invalidLogSpacing_{false};
     bool overPrecision_{false};
-    bool overCapacity_{false};
 };
 
 } // namespace QAccelPlot
