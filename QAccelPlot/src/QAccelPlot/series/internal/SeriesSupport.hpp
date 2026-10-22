@@ -33,11 +33,4 @@ int maxTextureSize(QQuickWindow* window);
 /// float holds exactly, and by \c QSGGeometry, which sizes its vertex buffer in \c int bytes.
 int recordCapacity(QQuickWindow* window, int floatsPerRecord, int vertexBytesPerRecord);
 
-/// \brief Returns whether \a recordCount exceeds \a capacity, and warns when it newly does.
-///
-/// Pass the previous result as \a wasOverCapacity. A series that stays over capacity, for example
-/// while streaming, warns once; one whose data fits again and then outgrows the capacity warns
-/// again. \a seriesType and \a records name the series and its records in the warning.
-bool warnIfOutgrowsCapacity(bool wasOverCapacity, int recordCount, int capacity, const char* seriesType, const char* records);
-
 } // namespace QAccelPlot::Internal

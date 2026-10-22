@@ -192,7 +192,7 @@ std::optional<LegendEntry> BandSeries::legendEntry() const
 
 QVariantMap BandSeries::valueAt(const qreal x) const
 {
-    const auto span = spanAt(x);
+    const auto span = spanAt(x, dataPoints().count());
     if (!span) {
         return {};
     }
@@ -204,7 +204,7 @@ bool BandSeries::contains(const QPointF& point) const
     if (!xAxis() || !yAxis() || !boundingRect().contains(point)) {
         return false;
     }
-    const auto span = spanAt(xAxis()->pixelToCoord(point.x(), width()));
+    const auto span = spanAt(xAxis()->pixelToCoord(point.x(), width()), std::min(dataPoints().count(), renderCapacity_));
     if (!span) {
         return false;
     }
@@ -258,8 +258,7 @@ QSGNode* BandSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* /*up
         delete oldNode;
         return nullptr;
     }
-    const auto capacity = dataPointCapacity(window());
-    overCapacity_ = Internal::warnIfOutgrowsCapacity(overCapacity_, dataPoints().count(), capacity, "BandSeries", "data points");
+    updateRenderCapacity(dataPointCapacity(window()), dataPoints().count());
     if (dataPoints().count() < 2 || !xAxis() || !yAxis() || resolvePlotRect().isEmpty()) {
         delete oldNode;
         return nullptr;
@@ -367,7 +366,7 @@ void BandSeries::updateXAscending()
     xAscending_ = points.precise ? isAscending(points.precise, points.count) : isAscending(points.floats, points.count);
 }
 
-std::optional<BandSeries::Span> BandSeries::spanAt(const qreal x) const
+std::optional<BandSeries::Span> BandSeries::spanAt(const qreal x, const int dataPointCount) const
 {
     const auto logX = logScaleX();
     const auto logY = logScaleY();
@@ -376,7 +375,6 @@ std::optional<BandSeries::Span> BandSeries::spanAt(const qreal x) const
     }
     // First data point whose X is not below x.
     auto first = int{0};
-    const auto dataPointCount = dataPoints().count();
     auto last = dataPointCount;
     while (first < last) {
         const auto middle = first + (last - first) / 2;
@@ -459,16 +457,15 @@ void BandSeries::onEdgeLineStyleChanged()
 BandSeries::RenderView BandSeries::renderView()
 {
     const auto rect = resolvePlotRect();
-    const auto dataPointCount = dataPoints().count();
-    const auto capacity = dataPointCapacity(window());
+    const auto drawnCount = std::min(dataPoints().count(), renderCapacity_);
     const auto originX = dataPoints().renderOrigin(DataPointStore::Dimension::X);
     const auto originY = dataPoints().renderOrigin(DataPointStore::Dimension::Y);
     return RenderView{
         QVector2D(static_cast<float>(xAxis()->viewportMin() - originX), static_cast<float>(yAxis()->viewportMin() - originY)),
         QVector2D(static_cast<float>(xAxis()->viewportMax() - originX), static_cast<float>(yAxis()->viewportMax() - originY)),
         QVector2D(static_cast<float>(rect.width()), static_cast<float>(rect.height())),
-        std::min(dataPointCount, capacity),
-        reservedDataPointCount(std::min(dataPointCount, capacity)),
+        drawnCount,
+        reservedDataPointCount(drawnCount),
     };
 }
 

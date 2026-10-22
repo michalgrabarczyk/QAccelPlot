@@ -50,7 +50,7 @@ struct CurveDataView {
 /// \brief All inputs required for a \c contains() hit-test, bundled to reduce parameter count.
 struct CurveHitTestParams {
     CurveDataView data;                    ///< \brief Interleaved XY source data without precision loss.
-    int pointCount;                        ///< \brief Number of points in \c data.
+    int pointCount;                        ///< \brief Number of leading points in \c data to test; later points are never hit.
     const std::vector<CurveChunk>& chunks; ///< \brief Precomputed chunk bounding boxes.
     Axis* xAxis;                           ///< \brief Horizontal axis for coordinate mapping.
     Axis* yAxis;                           ///< \brief Vertical axis for coordinate mapping.

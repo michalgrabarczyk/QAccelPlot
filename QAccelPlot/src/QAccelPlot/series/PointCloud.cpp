@@ -390,18 +390,17 @@ QSGNode* PointCloud::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* upda
     const auto& points = dataPoints();
     const auto stride = points.renderStride();
     const auto capacity = pointCapacity(window, stride);
-    overCapacity_ = Internal::warnIfOutgrowsCapacity(overCapacity_, count(), capacity, "PointCloud", "points");
+    if (capacity != renderCapacity_) {
+        invalidateSpatialIndex();
+    }
+    updateRenderCapacity(capacity, count());
     const auto plotArea = resolvePlotRect();
     if (count() <= 0 || !xAxis() || !yAxis() || plotArea.width() <= 0.0 || plotArea.height() <= 0.0) {
         delete oldNode;
         return nullptr;
     }
 
-    if (capacity != renderCapacity_) {
-        renderCapacity_ = capacity;
-        invalidateSpatialIndex();
-    }
-    const auto renderCount = std::min(points.renderCount(), capacity);
+    const auto renderCount = std::min(points.renderCount(), renderCapacity_);
     auto* node = oldNode ? static_cast<QSGGeometryNode*>(oldNode) : createPointCloudNode();
     auto* material = static_cast<PointCloudMaterial*>(node->material());
 

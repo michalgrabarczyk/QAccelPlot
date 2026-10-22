@@ -334,6 +334,17 @@ protected:
     ///
     /// Safe to call from \c updatePaintNode(); it never modifies the item.
     QRectF resolvePlotRect() const;
+    /// \brief What a series draws when its records outgrow its GPU capacity.
+    enum class CapacityOverflow {
+        DropsExcess, ///< \brief Draws the records within the capacity.
+        DropsAll,    ///< \brief Draws nothing.
+    };
+    /// \brief Stores \a capacity, the number of records the GPU buffers hold, and warns when \a recordCount newly exceeds it.
+    ///
+    /// Call from \c updatePaintNode() on every frame. A series that stays over capacity, for example
+    /// while streaming, warns once; one whose data fits again and then outgrows the capacity warns
+    /// again. \a overflow says in the warning what the series draws.
+    void updateRenderCapacity(int capacity, int recordCount, CapacityOverflow overflow = CapacityOverflow::DropsExcess);
     /// \brief Makes the series accept hover events while \c hoverEnabled is \c true.
     ///
     /// Call from the constructor of a series that reacts to the cursor. Its \c hoverLeaveEvent()
@@ -345,6 +356,11 @@ protected:
     /// at the topmost hovered item anyway; older versions also deliver the event to the series
     /// beneath, which then see a hover leave instead.
     bool event(QEvent* event) override;
+
+    /// \brief Records the GPU buffers hold, as of the last \c updateRenderCapacity(); the largest \c int before the first.
+    int renderCapacity_{std::numeric_limits<int>::max()};
+    /// \brief Whether the record count of the last \c updateRenderCapacity() exceeded \c renderCapacity_.
+    bool overRenderCapacity_{false};
 
 private:
     friend class SeriesInspection;

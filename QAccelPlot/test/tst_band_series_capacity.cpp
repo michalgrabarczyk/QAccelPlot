@@ -31,10 +31,10 @@ class BandSeriesCapacityTest : public QObject {
     Q_OBJECT
 
 private slots:
-    void dataPointsBeyondCapacityAreNotDrawn();
+    void dataPointsBeyondCapacityAreNotDrawnOrHovered();
 };
 
-void BandSeriesCapacityTest::dataPointsBeyondCapacityAreNotDrawn()
+void BandSeriesCapacityTest::dataPointsBeyondCapacityAreNotDrawnOrHovered()
 {
     auto window = QQuickWindow{};
     if (window.rendererInterface()->graphicsApi() == QSGRendererInterface::Software) {
@@ -68,6 +68,9 @@ void BandSeriesCapacityTest::dataPointsBeyondCapacityAreNotDrawn()
     const auto image = window.grabWindow();
     QVERIFY(qGray(image.pixel(25, 50)) > 200);
     QVERIFY(qGray(image.pixel(75, 50)) < 50);
+
+    QVERIFY(band.contains({25, 50}));
+    QVERIFY(!band.contains({75, 50}));
 }
 
 } // namespace QAccelPlot

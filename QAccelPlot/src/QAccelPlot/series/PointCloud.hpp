@@ -17,7 +17,6 @@
 #include <QList>
 #include <QPointF>
 
-#include <limits>
 #include <memory>
 #include <optional>
 #include <vector>
@@ -259,12 +258,6 @@ private:
     bool reportedHasValues_{false};
     // Render revision of the data points last uploaded to the GPU.
     std::uint64_t uploadedRevision_{0};
-    // Whether the last frame held more records than the GPU buffers do; warns on each crossing.
-    bool overCapacity_{false};
-
-    // Points the GPU data texture holds, recorded during the last sync. Points beyond it are
-    // neither drawn nor hovered.
-    int renderCapacity_{std::numeric_limits<int>::max()};
 
     mutable PointSpatialIndex spatialIndex_;
     mutable bool spatialIndexValid_{false};
