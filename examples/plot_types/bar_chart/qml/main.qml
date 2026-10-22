@@ -256,51 +256,36 @@ Window {
                 Component.onCompleted: window.updateProfitBars()
             }
 
-            Item {
-                id: overlay
-                x: profitPlot.plotRect.x
-                y: profitPlot.plotRect.y
-                width: profitPlot.plotRect.width
-                height: profitPlot.plotRect.height
-                clip: true
+            HoverHandler {
+                id: profitHover
+            }
 
-                QAccelPlot.DataAnchor {
-                    id: tooltipAnchor
+            Rectangle {
+                id: tooltip
 
-                    readonly property var hovered: profitBars.hoveredIndex >= 0 ? profitBars.barAt(profitBars.hoveredIndex) : null
+                readonly property var hovered: profitBars.hoveredIndex >= 0 ? profitBars.barAt(profitBars.hoveredIndex) : null
 
-                    visible: hovered !== null
-                    xAxis: profitPlot.xAxis
-                    yAxis: profitPlot.yAxis
-                    plotRect: Qt.rect(0, 0, overlay.width, overlay.height)
-                    dataX1: hovered ? hovered.position : 0
-                    dataX2: dataX1
-                    dataY1: hovered ? Math.max(hovered.value, profitBars.baselineValue) : 0
-                    dataY2: dataY1
+                visible: hovered !== null
+                x: Math.max(profitPlot.plotRect.left + 4, Math.min(profitHover.point.position.x + 14, profitPlot.plotRect.right - width - 4))
+                y: Math.max(profitPlot.plotRect.top + 4, Math.min(profitHover.point.position.y - height - 10, profitPlot.plotRect.bottom - height - 4))
+                z: 2
+                width: tooltipText.implicitWidth + 12
+                height: tooltipText.implicitHeight + 8
+                radius: 3
+                color: colorPalette.tooltipBackground
 
-                    Rectangle {
-                        x: -width / 2
-                        y: -height - 6
-                        width: tooltipText.implicitWidth + 12
-                        height: tooltipText.implicitHeight + 8
-                        radius: 3
-                        color: colorPalette.tooltipBackground
-
-                        Text {
-                            id: tooltipText
-                            anchors.centerIn: parent
-                            color: colorPalette.tooltipText
-                            font.pixelSize: 11
-                            text: {
-                                const bar = tooltipAnchor.hovered;
-                                if (!bar) {
-                                    return "";
-                                }
-                                const difference = bar.value - profitBars.baselineValue;
-                                return window.monthNames[bar.position] + ": " + bar.value + " k$ (" + (difference >= 0 ? "+" : "") + difference
-                                    + " vs. target)";
-                            }
+                Text {
+                    id: tooltipText
+                    anchors.centerIn: parent
+                    color: colorPalette.tooltipText
+                    font.pixelSize: 11
+                    text: {
+                        const bar = tooltip.hovered;
+                        if (!bar) {
+                            return "";
                         }
+                        const difference = bar.value - profitBars.baselineValue;
+                        return window.monthNames[bar.position] + ": " + bar.value + " k$ (" + (difference >= 0 ? "+" : "") + difference + " vs. target)";
                     }
                 }
             }

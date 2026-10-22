@@ -178,50 +178,36 @@ Item {
                 transition: root.sampleTransition
             }
 
-            Item {
-                id: overlay
-                x: plot.plotRect.x
-                y: plot.plotRect.y
-                width: plot.plotRect.width
-                height: plot.plotRect.height
-                clip: true
+            HoverHandler {
+                id: hover
+            }
 
-                QAccelPlot.DataAnchor {
-                    id: tooltipAnchor
+            Rectangle {
+                id: tooltip
 
-                    readonly property int index: root.hoveredIndex
+                readonly property int index: root.hoveredIndex
 
-                    visible: index >= 0
-                    xAxis: plot.xAxis
-                    yAxis: plot.yAxis
-                    plotRect: Qt.rect(0, 0, overlay.width, overlay.height)
-                    dataX1: index >= 0 ? root.references[index] : 0
-                    dataX2: dataX1
-                    dataY1: index >= 0 ? root.readings[index] + root.errorsAbove[index] : 0
-                    dataY2: dataY1
+                visible: index >= 0
+                x: Math.max(plot.plotRect.left + 4, Math.min(hover.point.position.x + 14, plot.plotRect.right - width - 4))
+                y: Math.max(plot.plotRect.top + 4, Math.min(hover.point.position.y - height - 10, plot.plotRect.bottom - height - 4))
+                z: 2
+                width: tooltipText.implicitWidth + 12
+                height: tooltipText.implicitHeight + 8
+                radius: 3
+                color: root.colorPalette.tooltipBackground
 
-                    Rectangle {
-                        x: -width / 2
-                        y: -height - 12
-                        width: tooltipText.implicitWidth + 12
-                        height: tooltipText.implicitHeight + 8
-                        radius: 3
-                        color: root.colorPalette.tooltipBackground
-
-                        Text {
-                            id: tooltipText
-                            anchors.centerIn: parent
-                            color: root.colorPalette.tooltipText
-                            font.pixelSize: 11
-                            text: {
-                                const i = tooltipAnchor.index;
-                                if (i < 0) {
-                                    return "";
-                                }
-                                return root.references[i].toFixed(2) + " ± " + root.referenceErrors[i].toFixed(2) + " mg/L:  " + root.readings[i].toFixed(2) + " +"
-                                    + root.errorsAbove[i].toFixed(2) + " / −" + root.errorsBelow[i].toFixed(2) + " mV";
-                            }
+                Text {
+                    id: tooltipText
+                    anchors.centerIn: parent
+                    color: root.colorPalette.tooltipText
+                    font.pixelSize: 11
+                    text: {
+                        const i = tooltip.index;
+                        if (i < 0) {
+                            return "";
                         }
+                        return root.references[i].toFixed(2) + " ± " + root.referenceErrors[i].toFixed(2) + " mg/L:  " + root.readings[i].toFixed(2) + " +"
+                            + root.errorsAbove[i].toFixed(2) + " / −" + root.errorsBelow[i].toFixed(2) + " mV";
                     }
                 }
             }
