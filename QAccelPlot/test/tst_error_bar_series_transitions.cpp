@@ -11,6 +11,7 @@
 #include "QAccelPlot/series/ErrorBarSeries.hpp"
 #include "QAccelPlot/transitions/DrawTransition.hpp"
 #include "QAccelPlot/transitions/MorphTransition.hpp"
+#include "WindowPlacement.hpp"
 
 #include <QGuiApplication>
 #include <QImage>
@@ -145,6 +146,9 @@ void ErrorBarSeriesTransitionsTest::init()
     bars_->setColor(Qt::red);
     bars_->setLineWidth(4.0);
     bars_->setCapLength(0.0);
+    // A real cursor over the window would hover an error bar and draw it in the hover color.
+    bars_->setHoverEnabled(false);
+    QAccelPlotTest::moveAwayFromCursor(*window_);
     window_->show();
     QVERIFY(QTest::qWaitForWindowExposed(window_.get()));
 }
