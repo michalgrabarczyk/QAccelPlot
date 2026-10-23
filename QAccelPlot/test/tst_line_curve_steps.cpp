@@ -54,7 +54,8 @@ struct AxesFixture {
     }
 };
 
-// Renderer parameters for \a data drawn with \a mode on \a axes in a 1000 × 100 px viewport.
+// Renderer parameters for \a data drawn with \a mode on \a axes in a 1000 × 100 px viewport. They refer to
+// \a gradient and \a fill, which must outlive them.
 LineCurveRenderParams renderParams(const std::vector<float>& data, AxesFixture& axes, const StepMode mode, const GradientColorPayload& gradient,
     const GradientFillPayload& fill, const LineStyle* lineStyle)
 {
@@ -324,7 +325,9 @@ void LineCurveStepsTest::dashLengthsFollowSteps()
     auto dash = DashLine{};
     dash.setPattern({8, 4});
     const auto data = std::vector<float>{1, 2, 5, 8, 9, 4};
-    const auto params = renderParams(data, axes, StepMode::After, GradientColorPayload{}, GradientFillPayload{}, &dash);
+    const auto gradient = GradientColorPayload{};
+    const auto fill = GradientFillPayload{};
+    const auto params = renderParams(data, axes, StepMode::After, gradient, fill, &dash);
     const auto root = std::unique_ptr<QSGNode>{LineCurveLineRenderer{}.paint(nullptr, params)};
     const auto* geometry = static_cast<const QSGGeometryNode*>(root->lastChild())->geometry();
     QCOMPARE(geometry->vertexCount(), 12);
@@ -351,7 +354,8 @@ void LineCurveStepsTest::fillFollowsSteps()
     // A lone data point before the gap still fills its step up to the X of the invalid one.
     const auto nan = std::numeric_limits<float>::quiet_NaN();
     const auto data = std::vector<float>{1, 2, 5, nan, 8, 4, 9, 6};
-    const auto params = renderParams(data, axes, StepMode::After, GradientColorPayload{}, fill, nullptr);
+    const auto gradient = GradientColorPayload{};
+    const auto params = renderParams(data, axes, StepMode::After, gradient, fill, nullptr);
     const auto root = std::unique_ptr<QSGNode>{LineCurveLineRenderer{}.paint(nullptr, params)};
     const auto* geometry = static_cast<const QSGGeometryNode*>(root->firstChild())->geometry();
 
