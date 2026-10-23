@@ -117,7 +117,7 @@ QAccelPlot.LineCurve {
 
 | `gaps.nanMode` | Behavior |
 | --- | --- |
-| `NanGapMode.Break` (default) | No segment or fill is drawn to or from an invalid data point. Valid neighbors end squarely, and a valid data point isolated between two invalid data points draws no line. |
+| `NanGapMode.Break` (default) | No segment or fill is drawn to or from an invalid data point. Valid neighbors end squarely, and a valid data point isolated between two invalid data points draws no line. With a [step mode](cookbook/styling.md#step-lines), a value still holds up to the X of an invalid neighbor when that X is finite. |
 | `NanGapMode.Connect` | Invalid data points are skipped and the line, fill, and hit test join the nearest valid data points. |
 
 Despite its name, `nanMode` applies to every invalid data point, including `±Inf`

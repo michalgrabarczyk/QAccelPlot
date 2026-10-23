@@ -233,7 +233,7 @@ private slots:
         currentFrameIndex_ = 0;
 
         for (auto i = 0; i < scenario.curveCount(); ++i) {
-            auto* series = createSeries();
+            auto* series = createSeries(scenario.stepMode());
             series->setXAxis(xAxis_);
             series->setYAxis(yAxis_);
             series_.push_back(series);
@@ -246,7 +246,7 @@ private slots:
 
         dataBufferPool_.reset();
         dataBufferPool_ = std::make_unique<QAccelPlot::ExistingDataBufferPool>(
-            currentPointCount_, scenario.curveCount(), QAccelPlot::sourceBufferCount(currentUpdateMode_));
+            currentPointCount_, scenario.curveCount(), QAccelPlot::sourceBufferCount(currentUpdateMode_), scenario.stepMode());
         pointValues_.clear();
         if (currentSeriesType_ == QAccelPlot::BenchmarkScenario::SeriesType::PointCloud
             && currentUpdateMode_ != QAccelPlot::BenchmarkScenario::UpdateMode::Static) {
@@ -266,14 +266,16 @@ private slots:
         dataBufferPool_->discardVertexCache();
     }
 
-    QAccelPlot::PlotSeries* createSeries()
+    QAccelPlot::PlotSeries* createSeries(const QAccelPlot::StepMode stepMode)
     {
         if (currentSeriesType_ == QAccelPlot::BenchmarkScenario::SeriesType::PointCloud) {
             auto* cloud = new QAccelPlot::PointCloud(plot_);
             cloud->marker()->setSize(1.5);
             return cloud;
         }
-        return new QAccelPlot::LineCurve(plot_);
+        auto* curve = new QAccelPlot::LineCurve(plot_);
+        curve->setStepMode(stepMode);
+        return curve;
     }
 
     void setPointCloudData(QAccelPlot::PointCloud* cloud, const float* dataPtr)

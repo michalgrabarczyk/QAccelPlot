@@ -14,10 +14,11 @@
 
 namespace QAccelPlot {
 
-ExistingDataBufferPool::ExistingDataBufferPool(const int pointCount, const int curveCount, const int bufferCount)
+ExistingDataBufferPool::ExistingDataBufferPool(const int pointCount, const int curveCount, const int bufferCount, const StepMode stepMode)
     : pointCount_(std::max(0, pointCount))
     , curveCount_(std::max(1, curveCount))
     , bufferCount_(std::clamp(bufferCount, 1, kMaxBufferCount))
+    , stepMode_(stepMode)
 {
     generate();
 }
@@ -95,7 +96,7 @@ void ExistingDataBufferPool::generate()
         }
     }
 
-    LineCurveLineRenderer{}.buildVertexCache(buffers_.front().front(), pointCount_, vertexCache_);
+    LineCurveLineRenderer{}.buildVertexCache(buffers_.front().front(), pointCount_, vertexCache_, stepMode_);
 }
 
 } // namespace QAccelPlot

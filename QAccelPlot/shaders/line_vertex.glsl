@@ -10,7 +10,7 @@
 // sample layouts; see line_geometry.glsl.
 
 layout(location = 0) in float id;
-layout(location = 1) in float side; // 1.0 or -1.0
+layout(location = 1) in float side; // +-(1 + path corner); the sign is the ribbon side
 layout(location = 2) in vec4 vertexColor;
 layout(location = 3) in float arcLength;
 
@@ -37,6 +37,7 @@ layout(std140, binding = 0) uniform buf {
     int dashPatternSize;
     vec4 dashPattern[2];
     float opacity;
+    float stepMode;
 } ubuf;
 
 layout(binding = 1) uniform sampler2D dataSampler;
@@ -47,10 +48,11 @@ layout(binding = 1) uniform sampler2D dataSampler;
 
 void main() {
     v_color = mix(ubuf.color, vertexColor, ubuf.useVertexColor);
-    v_edgeDistance = side * lineRibbonHalfExtent();
+    float ribbonSide = lineVertexSide(side);
+    v_edgeDistance = ribbonSide * lineRibbonHalfExtent();
     v_arcLength = arcLength;
 
-    LineVertexResult vertex = computeLineVertex(int(id), side);
+    LineVertexResult vertex = computeLineVertex(int(id), lineVertexCorner(side), ribbonSide);
     v_validWeight = vertex.validWeight;
     gl_Position = vertex.position;
 }

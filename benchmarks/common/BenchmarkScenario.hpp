@@ -10,6 +10,8 @@
 /// \file BenchmarkScenario.hpp
 /// \brief Parameterized benchmark scenario definitions.
 
+#include <QAccelPlot/series/StepMode.hpp>
+
 #include <QString>
 
 #include <vector>
@@ -34,8 +36,9 @@ public:
 
     /// \brief Plot series type exercised by the scenario.
     enum class SeriesType {
-        LineCurve,  ///< Connected curves (\c LineCurve).
-        PointCloud, ///< Unconnected markers (\c PointCloud).
+        LineCurve,     ///< Connected curves (\c LineCurve).
+        PointCloud,    ///< Unconnected markers (\c PointCloud).
+        StepLineCurve, ///< Connected curves drawn as steps (\c LineCurve with \c StepMode::After).
     };
 
     /// \brief Constructs a scenario with all parameters.
@@ -68,6 +71,8 @@ public:
 
     /// \brief Plot series type exercised by the scenario.
     SeriesType seriesType() const;
+    /// \brief Returns the step mode of the scenario's curves: \c StepMode::After for \c StepLineCurve, \c StepMode::None otherwise.
+    StepMode stepMode() const;
 
     /// \brief Returns \c true for CPU-only micro-benchmarks that run without rendering.
     bool isCpuOnly() const;

@@ -400,6 +400,7 @@ void BenchmarkRunner::setupScene(const BenchmarkScenario& scenario)
 
     for (auto i = 0; i < scenario.curveCount(); ++i) {
         auto* curve = new LineCurve(plot_);
+        curve->setStepMode(scenario.stepMode());
         curve->setXAxis(xAxis_);
         curve->setYAxis(yAxis_);
         curves_.push_back(curve);
@@ -411,7 +412,8 @@ void BenchmarkRunner::setupScene(const BenchmarkScenario& scenario)
     yAxis_->setViewportMax(2.0);
 
     dataBufferPool_.reset();
-    dataBufferPool_ = std::make_unique<ExistingDataBufferPool>(currentPointCount_, scenario.curveCount(), sourceBufferCount(currentUpdateMode_));
+    dataBufferPool_
+        = std::make_unique<ExistingDataBufferPool>(currentPointCount_, scenario.curveCount(), sourceBufferCount(currentUpdateMode_), scenario.stepMode());
     for (size_t i = 0; i < curves_.size(); ++i) {
         const auto* dataPtr = dataBufferPool_->curveBufferData(static_cast<int>(i), 0);
         curves_[i]->setDataFWithCache(dataPtr, currentPointCount_, std::vector<char>(dataBufferPool_->vertexCache()));

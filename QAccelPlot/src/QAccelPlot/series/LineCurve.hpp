@@ -16,6 +16,7 @@
 #include "QAccelPlot/series/LineCurveVertexCache.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
 #include "QAccelPlot/series/SeriesMarker.hpp"
+#include "QAccelPlot/series/StepMode.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 #include "QAccelPlot/transitions/DataTransition.hpp"
 
@@ -55,12 +56,18 @@ class TransitionRunner;
 /// Several curves can share one transition. Replacing or clearing \c transition, cancelling it, or
 /// appending data during an animation skips to the new data.
 ///
+/// \par Step lines
+/// \c stepMode draws the line as steps, for example <tt>stepMode: QAccelPlot.StepMode.After</tt>. The gradient fill,
+/// dash pattern, and hover follow the steps, markers stay on the data points, and interpolated inspection reads the
+/// value a step holds. The line follows the data points in order and is not sorted by X.
+///
 /// \par Invalid data points and gaps
 /// A data point is invalid when its X or Y coordinate is NaN or ±Inf, or is not strictly positive on a
 /// log-scale axis. Invalid data points are never drawn as markers, never hit-tested, and are excluded from
 /// auto-ranging coordinate by coordinate (a finite X with an invalid Y still extends the X range). How the line and
 /// gradient fill treat them is controlled by the \c gaps grouped property: <tt>gaps.nanMode</tt> \c Break (default)
 /// leaves a gap, \c Connect joins the neighboring valid data points. Insert \c NaN to mark missing telemetry explicitly.
+/// With a step mode and \c Break, a value holds up to the X of an invalid neighbor when that X is finite.
 ///
 /// \sa Axis, SeriesMarker, GradientFill, GradientStroke, DrawTransition, MorphTransition
 class LineCurve : public PlotSeries {
@@ -89,6 +96,8 @@ class LineCurve : public PlotSeries {
     Q_PROPERTY(LineCurveGaps* gaps READ gaps CONSTANT)
     /// \brief Grouped marker settings, e.g. <tt>marker.shape</tt> and <tt>marker.size</tt>.
     Q_PROPERTY(SeriesMarker* marker READ marker CONSTANT)
+    /// \brief How the line joins consecutive data points. Default: \c StepMode.None.
+    Q_PROPERTY(StepMode stepMode READ stepMode WRITE setStepMode NOTIFY stepModeChanged)
 
 public:
     /// \brief Constructs a LineCurve with the given \a parent.
@@ -144,6 +153,11 @@ public:
     /// \brief Returns the grouped marker settings. The object is owned by the curve.
     SeriesMarker* marker() const;
 
+    /// \brief Returns how the line joins consecutive data points.
+    StepMode stepMode() const;
+    /// \brief Sets how the line joins consecutive data points to \a mode.
+    void setStepMode(StepMode mode);
+
     /// \brief Appends a single data point (\a x, \a y) to the curve. Triggers a redraw.
     Q_INVOKABLE void appendData(qreal x, qreal y);
     /// \brief Replaces the curve data with \a data (a list of QPointF values).
@@ -197,6 +211,8 @@ signals:
     void antialiasingEnabledChanged();
     /// \brief Emitted when the antialiasingFeather property changes.
     void antialiasingFeatherChanged();
+    /// \brief Emitted when the stepMode property changes.
+    void stepModeChanged();
 
 private:
     void onTransitionDestroyed();
@@ -260,6 +276,7 @@ private:
     bool styleChanged_{false};
     LineCurveGaps* gaps_{new LineCurveGaps{this}};
     SeriesMarker* marker_{new SeriesMarker{MarkerShape::None, 4.0, SeriesMarker::NoneShape::Accepted, this}};
+    StepMode stepMode_{StepMode::None};
     QList<LineCurveEffect*> effects_;
     LineCurveLineRenderer lineRenderer_;
     LineCurvePointRenderer pointRenderer_;

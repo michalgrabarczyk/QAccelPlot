@@ -8,6 +8,7 @@
 #pragma once
 
 #include "QAccelPlot/axis/AxisMapping.hpp"
+#include "QAccelPlot/series/StepMode.hpp"
 
 #include <QPointF>
 
@@ -29,14 +30,15 @@ enum class InspectionMatching {
 ///
 /// The pointers refer to the series' own buffers and are only valid until its next data change.
 struct InspectionSource {
-    const float* floats{nullptr};   ///< \brief Interleaved single-precision records; X and Y lead each record.
-    int floatStride{2};             ///< \brief Floats per record in \c floats.
-    const double* doubles{nullptr}; ///< \brief Interleaved double-precision XY pairs; takes precedence over \c floats.
-    const float* values{nullptr};   ///< \brief Optional per-record scalar.
-    int valueStride{1};             ///< \brief Floats between consecutive scalars in \c values.
-    int count{-1};                  ///< \brief Number of records, or -1 when the series has no XY records.
-    bool logX{false};               ///< \brief Whether X is on a logarithmic axis.
-    bool logY{false};               ///< \brief Whether Y is on a logarithmic axis.
+    const float* floats{nullptr};      ///< \brief Interleaved single-precision records; X and Y lead each record.
+    int floatStride{2};                ///< \brief Floats per record in \c floats.
+    const double* doubles{nullptr};    ///< \brief Interleaved double-precision XY pairs; takes precedence over \c floats.
+    const float* values{nullptr};      ///< \brief Optional per-record scalar.
+    int valueStride{1};                ///< \brief Floats between consecutive scalars in \c values.
+    int count{-1};                     ///< \brief Number of records, or -1 when the series has no XY records.
+    bool logX{false};                  ///< \brief Whether X is on a logarithmic axis.
+    bool logY{false};                  ///< \brief Whether Y is on a logarithmic axis.
+    StepMode stepMode{StepMode::None}; ///< \brief How the series' line joins consecutive records; interpolation follows it.
 
     [[nodiscard]] bool supported() const noexcept;
     [[nodiscard]] double x(int index) const noexcept;

@@ -37,9 +37,10 @@ struct LineUbo {
     int dashPatternSize;       // 140–143
     float dashPattern[8];      // 144–175
     float opacity;             // 176–179
+    float stepMode;            // 180–183
 };
 
-static_assert(sizeof(LineUbo) == 180);
+static_assert(sizeof(LineUbo) == 184);
 
 class LineShader : public QSGMaterialShader {
 public:
@@ -84,6 +85,7 @@ public:
         ubo.dashPatternSize = mat->dashPatternSize;
         memcpy(ubo.dashPattern, mat->dashPattern, sizeof(ubo.dashPattern));
         ubo.opacity = state.opacity();
+        ubo.stepMode = mat->stepMode;
         memcpy(buf->data(), &ubo, sizeof(ubo));
         return true;
     }
@@ -139,6 +141,9 @@ int LineMaterial::compareExtra(const QSGMaterial* other) const
     }
     if (dashOffset != m->dashOffset) {
         return dashOffset < m->dashOffset ? -1 : 1;
+    }
+    if (stepMode != m->stepMode) {
+        return stepMode < m->stepMode ? -1 : 1;
     }
     const auto activePatternSize = std::clamp(dashPatternSize, 0, 8);
     for (auto index = int{0}; index < activePatternSize; ++index) {

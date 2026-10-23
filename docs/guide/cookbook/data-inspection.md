@@ -52,7 +52,7 @@ center; `radius`, `interpolate`, and `summaries` do not apply to it, and
 | --- | --- |
 | `mode` | `NearestX` reports each series at the cursor's X. `NearestY` does the same at the cursor's Y, for series whose independent variable is Y. `NearestXY` picks the data point closest on screen. |
 | `radius` | Pick distance in logical pixels. In `NearestX` and `NearestY` it only applies beyond a series' extreme data points; between two data points a series always matches. |
-| `interpolate` | In `NearestX` and `NearestY`, report the point on the line between two consecutive data points. |
+| `interpolate` | In `NearestX` and `NearestY`, report the point on the line between two consecutive data points. On a step line it is on the step, and its `index` is the data point holding the value. |
 | `snapToDataPoint` | Move the crosshair to the closest matching data point. |
 | `summaries`, `summaryRadius` | Add the count and Y statistics of the data points within `summaryRadius` pixels of the cursor. Use it for dense data, where one pixel column holds many data points. |
 | `includedSeries`, `excludedSeries` | Restrict the inspected series. |

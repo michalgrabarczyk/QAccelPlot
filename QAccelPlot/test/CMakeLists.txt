@@ -45,6 +45,7 @@ add_qaccelplot_test(tst_line_curve_transitions core tst_line_curve_transitions.c
 add_qaccelplot_test(tst_material_comparison  core tst_material_comparison.cpp)
 add_qaccelplot_test(tst_line_curve_point_renderer core tst_line_curve_point_renderer.cpp)
 add_qaccelplot_test(tst_line_curve_line_renderer core tst_line_curve_line_renderer.cpp)
+add_qaccelplot_test(tst_line_curve_steps     core tst_line_curve_steps.cpp)
 add_qaccelplot_test(tst_marker_shapes        core tst_marker_shapes.cpp)
 add_qaccelplot_test(tst_rectangle_series_data  core tst_rectangle_series_data.cpp)
 add_qaccelplot_test(tst_rectangle_hover      core tst_rectangle_hover.cpp)
@@ -113,6 +114,8 @@ qt_import_qml_plugins(tst_band_series_rendering)
 # Renders a QML scene, so it needs the QML module plugin.
 target_link_libraries(tst_error_bar_series_rendering PRIVATE QAccelPlot::QAccelPlot)
 qt_import_qml_plugins(tst_error_bar_series_rendering)
+target_link_libraries(tst_line_curve_steps PRIVATE QAccelPlot::QAccelPlot)
+qt_import_qml_plugins(tst_line_curve_steps)
 # Renders a QML scene, so it needs the QML module plugin.
 target_link_libraries(tst_heatmap_series_rendering PRIVATE QAccelPlot::QAccelPlot)
 qt_import_qml_plugins(tst_heatmap_series_rendering)

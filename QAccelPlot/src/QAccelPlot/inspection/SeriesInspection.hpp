@@ -8,6 +8,7 @@
 #pragma once
 
 #include "QAccelPlot/inspection/InspectionResult.hpp"
+#include "QAccelPlot/series/StepMode.hpp"
 
 #include <QObject>
 #include <QPointF>
@@ -123,9 +124,10 @@ private:
     InspectionDataPoint nearestAlong(InspectionAxis axis, qreal pixel, qreal radius);
     InspectionBracket bracketAlong(InspectionAxis axis, qreal pixel);
     InspectionDataPoint makeDataPoint(const InspectionSource& source, int index, qreal distance) const;
-    // Interpolates along the straight on-screen segment, which also follows logarithmic axes.
-    InspectionDataPoint interpolate(
-        const InspectionMetric& metric, InspectionAxis axis, const InspectionDataPoint& left, const InspectionDataPoint& right, qreal pixel) const;
+    // Interpolates along the line drawn with stepMode between left and right: the straight on-screen segment, which
+    // also follows logarithmic axes, or the steps. A step point belongs to the data point whose step or riser it is on.
+    InspectionDataPoint interpolate(const InspectionMetric& metric, InspectionAxis axis, const InspectionDataPoint& left, const InspectionDataPoint& right,
+        qreal pixel, StepMode stepMode) const;
 
     PlotSeries& series_;
     std::unique_ptr<Private> d_;

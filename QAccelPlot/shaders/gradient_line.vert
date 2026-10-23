@@ -38,6 +38,7 @@ layout(std140, binding = 0) uniform buf {
     vec4 dashPattern[2];
     vec4 gradientParameters;
     float opacity;
+    float stepMode;
 } ubuf;
 
 layout(binding = 1) uniform sampler2D dataSampler;
@@ -48,10 +49,11 @@ layout(binding = 1) uniform sampler2D dataSampler;
 
 void main() {
     v_color = mix(ubuf.color, vertexColor, ubuf.useVertexColor);
-    v_edgeDistance = side * lineRibbonHalfExtent();
+    float ribbonSide = lineVertexSide(side);
+    v_edgeDistance = ribbonSide * lineRibbonHalfExtent();
     v_arcLength = arcLength;
 
-    LineVertexResult vertex = computeLineVertex(int(id), side);
+    LineVertexResult vertex = computeLineVertex(int(id), lineVertexCorner(side), ribbonSide);
     v_validWeight = vertex.validWeight;
     gl_Position = vertex.position;
 

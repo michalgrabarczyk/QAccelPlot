@@ -52,12 +52,15 @@ struct LineCurveRenderParams {
     const GradientFillPayload& gradientFillPayload; ///< \brief Gradient fill parameters.
     const std::vector<char>* vertexCache;           ///< \brief Pre-built vertex buffer, or \c nullptr to build on the render thread.
     const LineStyle* lineStyle;                     ///< \brief Active line style (dash pattern etc.).
+    StepMode stepMode{StepMode::None};              ///< \brief How the line joins consecutive data points.
 };
 
-/// \brief Data points of a gradient fill: one group per run of valid data points, broken at gaps.
+/// \brief Outline of a gradient fill in data space: one group of points per run of valid data points, broken at gaps.
+///
+/// Each point is a sampled data point or, with a step mode, a step corner.
 struct FillSamples {
-    std::vector<int> sampledCounts; ///< \brief Number of samples of each run; zero for runs too short to fill.
-    std::vector<int> indices;       ///< \brief Source indices of all sampled runs, run after run.
+    std::vector<int> pointCounts; ///< \brief Number of points of each run; zero for runs too short to fill.
+    std::vector<QPointF> points;  ///< \brief Points of all runs, run after run.
 };
 
 /// \brief Internal renderer responsible for building and updating QSGNode line geometry for a LineCurve.
@@ -66,10 +69,11 @@ struct FillSamples {
 /// vertex caches assembled on the main thread for reduced render-thread stalls.
 class LineCurveLineRenderer {
 public:
-    /// \brief Pre-builds the vertex buffer into \a cache on the calling thread (main thread safe).
+    /// \brief Pre-builds the vertex buffer of a line drawn with \a stepMode into \a cache on the calling thread (main thread safe).
     ///
     /// Writes neutral RGBA (1,1,1,1); solid and gradient shaders obtain their colors from their materials.
-    void buildVertexCache(const std::vector<float>& data, int pointCount, std::vector<char>& cache) const;
+    /// A curve rejects a cache whose step mode needs a different number of vertices per data point than its own.
+    void buildVertexCache(const std::vector<float>& data, int pointCount, std::vector<char>& cache, StepMode stepMode = StepMode::None) const;
 
     /// \brief Returns \c true if \a point lies within \a params.hitThreshold pixels of the curve.
     bool contains(const QPointF& point, const CurveHitTestParams& params) const;
@@ -87,11 +91,14 @@ private:
         int pointCount{-1};
         bool logScaleX{false};
         bool logScaleY{false};
+        StepMode stepMode{StepMode::None};
         FillSamples samples;
     };
 
     void updateFillGeometry(QSGGeometryNode* fillNode, const LineCurveRenderParams& params) const;
     const FillSamples& fillSamples(const LineCurveRenderParams& params) const;
+    /// \brief Rebuilds \a samples: the fill outline of every run of valid data points, decimated to the fill vertex budget.
+    static void rebuildFillSamples(const LineCurveRenderParams& params, FillSamples& samples);
     void updateLineMaterial(
         LineMaterial* material, const LineCurveRenderParams& params, const QColor& effectiveColor, bool useVertexColor, const DashParameters& dashParams) const;
     std::vector<float> computeArcLengths(const LineCurveRenderParams& params, const DashParameters& dashParams) const;
