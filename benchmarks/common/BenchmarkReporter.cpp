@@ -23,6 +23,19 @@ namespace QAccelPlot {
 
 namespace {
 
+QString seriesTypeName(const BenchmarkScenario::SeriesType type)
+{
+    switch (type) {
+    case BenchmarkScenario::SeriesType::PointCloud:
+        return QStringLiteral("point_cloud");
+    case BenchmarkScenario::SeriesType::StepLineCurve:
+        return QStringLiteral("step_line_curve");
+    case BenchmarkScenario::SeriesType::LineCurve:
+        break;
+    }
+    return QStringLiteral("line_curve");
+}
+
 QString workloadName(const BenchmarkScenario& scenario)
 {
     if (scenario.name().startsWith(QStringLiteral("data_ingestion")) || scenario.name().startsWith(QStringLiteral("double_ingestion"))) {
@@ -95,8 +108,7 @@ QString BenchmarkReporter::toJson() const
         obj[QStringLiteral("description")] = entry.scenario.description();
         obj[QStringLiteral("point_count")] = entry.scenario.pointCount();
         obj[QStringLiteral("curve_count")] = entry.scenario.curveCount();
-        obj[QStringLiteral("series_type")]
-            = entry.scenario.seriesType() == BenchmarkScenario::SeriesType::PointCloud ? QStringLiteral("point_cloud") : QStringLiteral("line_curve");
+        obj[QStringLiteral("series_type")] = seriesTypeName(entry.scenario.seriesType());
         obj[QStringLiteral("duration_seconds")] = entry.scenario.durationSeconds();
         obj[QStringLiteral("workload")] = workloadName(entry.scenario);
         obj[QStringLiteral("data_generation_included")] = false;

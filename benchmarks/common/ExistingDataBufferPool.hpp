@@ -7,6 +7,8 @@
 //
 #pragma once
 
+#include <QAccelPlot/series/StepMode.hpp>
+
 #include <cstddef>
 #include <vector>
 
@@ -23,7 +25,7 @@ class ExistingDataBufferPool {
 public:
     static constexpr int kMaxBufferCount = 3;
 
-    explicit ExistingDataBufferPool(int pointCount = 1'000'000, int curveCount = 1, int bufferCount = 2);
+    explicit ExistingDataBufferPool(int pointCount = 1'000'000, int curveCount = 1, int bufferCount = 2, StepMode stepMode = StepMode::None);
 
     int pointCount() const;
     int curveCount() const;
@@ -45,6 +47,7 @@ private:
     std::size_t sourceBytes_{0};
     std::vector<std::vector<std::vector<float>>> buffers_;
     std::vector<char> vertexCache_;
+    StepMode stepMode_{StepMode::None};
 };
 
 } // namespace QAccelPlot
