@@ -849,6 +849,7 @@
     <member refid="structQAccelPlot_1_1CurveHitTestParams_1a3a0eb19eeecd2c998d876fc025a5eae6" kind="variable"><name>hitThreshold</name></member>
     <member refid="structQAccelPlot_1_1CurveHitTestParams_1afe7ab29b082c6728978495cd9dd5c281" kind="variable"><name>nonPositiveXInvalid</name></member>
     <member refid="structQAccelPlot_1_1CurveHitTestParams_1a7ed6bb861a49049a11ed3b4593013b75" kind="variable"><name>nonPositiveYInvalid</name></member>
+    <member refid="structQAccelPlot_1_1CurveHitTestParams_1ad044f6907ac597f8eb55ed97b5003c48" kind="variable"><name>stepMode</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1DashLine" kind="class"><name>QAccelPlot::DashLine</name>
     <member refid="classQAccelPlot_1_1DashLine_1a14b888662b5d21842fe482d174e64c83" kind="property"><name>pattern</name></member>
@@ -1251,11 +1252,12 @@
     <member refid="structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache_1a9bc0fa0309af1dd29fd5b0e4e118fc07" kind="variable"><name>pointCount</name></member>
     <member refid="structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache_1a437129e2bae38b9ce0043cdd2b111ee1" kind="variable"><name>logScaleX</name></member>
     <member refid="structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache_1a457ba48f251c42e63a254ded7f1eb42b" kind="variable"><name>logScaleY</name></member>
+    <member refid="structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache_1ac652f56c0d2fecf6606601da4a7d2563" kind="variable"><name>stepMode</name></member>
     <member refid="structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache_1ae7841549972de5bba482a7b8e75ab3c8" kind="variable"><name>samples</name></member>
   </compound>
   <compound refid="structQAccelPlot_1_1FillSamples" kind="struct"><name>QAccelPlot::FillSamples</name>
-    <member refid="structQAccelPlot_1_1FillSamples_1ad44cbb10f3ba069744505cb4d6098664" kind="variable"><name>sampledCounts</name></member>
-    <member refid="structQAccelPlot_1_1FillSamples_1ad6b22fe0a92689c6bbc01da4497259c8" kind="variable"><name>indices</name></member>
+    <member refid="structQAccelPlot_1_1FillSamples_1afb7393fb469441b2a8adf0a8b039ab8e" kind="variable"><name>pointCounts</name></member>
+    <member refid="structQAccelPlot_1_1FillSamples_1a7adf662264ec86ecf3b512f5b870e3ad" kind="variable"><name>points</name></member>
   </compound>
   <compound refid="structQAccelPlot_1_1Internal_1_1GrabSize" kind="struct"><name>QAccelPlot::Internal::GrabSize</name>
     <member refid="structQAccelPlot_1_1Internal_1_1GrabSize_1a7e46c185057615cd3d1155cf08d43cb0" kind="variable"><name>target</name></member>
@@ -1888,6 +1890,7 @@
     <member refid="structQAccelPlot_1_1InspectionSource_1ab95694338376f12b3453705c24f93139" kind="variable"><name>count</name></member>
     <member refid="structQAccelPlot_1_1InspectionSource_1a1d38efa70a924dd2a726e8cc9a14b551" kind="variable"><name>logX</name></member>
     <member refid="structQAccelPlot_1_1InspectionSource_1ac369e6db426be94eb20d4e0b975ff8bb" kind="variable"><name>logY</name></member>
+    <member refid="structQAccelPlot_1_1InspectionSource_1a9d84c74a26effe3dd613dd03c7b1c523" kind="variable"><name>stepMode</name></member>
     <member refid="structQAccelPlot_1_1InspectionSource_1ac8121073d7a2f19c356f2cae9a72d4cf" kind="function"><name>supported</name></member>
     <member refid="structQAccelPlot_1_1InspectionSource_1afd6cae93bc18cfd8faf1811a8acbdda8" kind="function"><name>x</name></member>
     <member refid="structQAccelPlot_1_1InspectionSource_1a4ce7682dd8d09487465c53b3b8b826d6" kind="function"><name>y</name></member>
@@ -1986,6 +1989,7 @@
     <member refid="classQAccelPlot_1_1LineCurve_1afd2dc2f55a0ebc51ce212ea522342c0e" kind="property"><name>effects</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a304e3f9be82a9fea7cb84b0c55068d9c" kind="property"><name>gaps</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a93749015bedc2e340dd7585326857558" kind="property"><name>marker</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a36e3ab79648d6df5522c4b0d6bfea83f" kind="property"><name>stepMode</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1aedcc3b0602b15ac7e34317cdaf5af93a" kind="variable"><name>color_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1ae46bb43854c8650cd1e7c95e0750fd38" kind="variable"><name>lineWidth_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1aaf9e303776ac5d6b31058e6580959d44" kind="variable"><name>hovered_</name></member>
@@ -2000,6 +2004,7 @@
     <member refid="classQAccelPlot_1_1LineCurve_1ac552a150914bc2baa2315c2f1fbb9b1e" kind="variable"><name>styleChanged_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a0cea9b141c185d364d04d73e37aee689" kind="variable"><name>gaps_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a4386542c038915acfd34c436fc920c2f" kind="variable"><name>marker_</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a049677423cfd8ade391a6000cf0bbf09" kind="variable"><name>stepMode_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1ad095b422bfe38fb89b934874ce1244e8" kind="variable"><name>effects_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1acf924165805a2eedb08666d81d9eb034" kind="variable"><name>lineRenderer_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1adce498a4ff6dec862279c366c82d3ecf" kind="variable"><name>pointRenderer_</name></member>
@@ -2029,6 +2034,8 @@
     <member refid="classQAccelPlot_1_1LineCurve_1a7bd8ef4b7beb4a6bc054eecba5a5d3b8" kind="function"><name>effects</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a7e81c6340766beef529e410f693f1337" kind="function"><name>gaps</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a999644a6f7ee789a9ca8ee0c420fbc92" kind="function"><name>marker</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1ad990a3be3d76e09fd2677fc8fa2ae223" kind="function"><name>stepMode</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a7531888983f6389c1fe31ae5464787c7" kind="function"><name>setStepMode</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1acc4aaa04bfb63170079842c8b9b10f62" kind="function"><name>appendData</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1acf9463cc9f4c0e0eb7cc9d053b7e7114" kind="function"><name>setData</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1aad067a9b84289a5c73637905cbc61a69" kind="function"><name>setData</name></member>
@@ -2058,6 +2065,7 @@
     <member refid="classQAccelPlot_1_1LineCurve_1a888793f4978ae28e97af934c09ee4ccf" kind="signal"><name>lineStyleChanged</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1adeb1c85fe5606e9ddd1513af329a4c40" kind="signal"><name>antialiasingEnabledChanged</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1abd7343d8d2679fae990517629a395134" kind="signal"><name>antialiasingFeatherChanged</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a8a1b04593a18769cb7199df95b37d697" kind="signal"><name>stepModeChanged</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a67e91391ff98db2ebf6a455d922f3a4c" kind="function"><name>onTransitionDestroyed</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1aa37cd6e308baa0caf70d89328d3632dd" kind="function"><name>onLineStyleChanged</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a78010918673eb08bcc452b7ff0dcc4b2" kind="function"><name>onLineStyleDestroyed</name></member>
@@ -2111,7 +2119,7 @@
   </compound>
   <compound refid="classQAccelPlot_1_1LineCurveLineRenderer" kind="class"><name>QAccelPlot::LineCurveLineRenderer</name>
     <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1aa99d416e318386cbd8e05b097059a2f5" kind="variable"><name>fillSampleCache_</name></member>
-    <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1aa3fd5b32404b8e54f73ab1a06a9dd837" kind="function"><name>buildVertexCache</name></member>
+    <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1ae5f3f9782fc9ae8df2da2ce08e3603c0" kind="function"><name>buildVertexCache</name></member>
     <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1a17184b26756ffd86f96dcdf75bb64261" kind="function"><name>contains</name></member>
     <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1af7080fe3330b521649272adbb02774d2" kind="function"><name>paint</name></member>
     <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1aad2aeb6202a3f49358ebef70f7984a74" kind="function"><name>updateFillGeometry</name></member>
@@ -2119,6 +2127,7 @@
     <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1abdb98a8664940d4af7055b827f0cdc6a" kind="function"><name>updateLineMaterial</name></member>
     <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1acd5483c4b2fa460e54d9ed26707b3664" kind="function"><name>computeArcLengths</name></member>
     <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1abfab712d021f205b5f87da1134df7eb5" kind="function"><name>updateLineVertices</name></member>
+    <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1a45ac5f5a186ccb917fda94ffce31e0d5" kind="function"><name>rebuildFillSamples</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1LineCurvePointRenderer" kind="class"><name>QAccelPlot::LineCurvePointRenderer</name>
     <member refid="classQAccelPlot_1_1LineCurvePointRenderer_1aeec69e3fbde7288e816628524bbf17da" kind="function"><name>buildVertexCache</name></member>
@@ -2147,6 +2156,7 @@
     <member refid="structQAccelPlot_1_1LineCurveRenderParams_1a2cf199f8410c7c1c0de3810050ea0a07" kind="variable"><name>gradientFillPayload</name></member>
     <member refid="structQAccelPlot_1_1LineCurveRenderParams_1a10152470065abb408038036ccf05637f" kind="variable"><name>vertexCache</name></member>
     <member refid="structQAccelPlot_1_1LineCurveRenderParams_1a4ab4ba8b8debf5085265dc7b8e887531" kind="variable"><name>lineStyle</name></member>
+    <member refid="structQAccelPlot_1_1LineCurveRenderParams_1a0a93a7753baa485528f0368bb490a7f9" kind="variable"><name>stepMode</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1LineCurveVertexCache" kind="class"><name>QAccelPlot::LineCurveVertexCache</name>
     <member refid="classQAccelPlot_1_1LineCurveVertexCache_1a5d6071fcad71f0c11c8c69bf75e50110" kind="enum"><name>Layout</name></member>
@@ -2178,6 +2188,7 @@
     <member refid="classQAccelPlot_1_1LineMaterial_1a39517de146145fe8cad195ebeb07bd67" kind="variable"><name>dashOffset</name></member>
     <member refid="classQAccelPlot_1_1LineMaterial_1a78a7f44883b754d72d762f9a72092d5f" kind="variable"><name>dashPatternSize</name></member>
     <member refid="classQAccelPlot_1_1LineMaterial_1a080b9d1cb2b2f9db95cfe30bdb78ea0c" kind="variable"><name>dashPattern</name></member>
+    <member refid="classQAccelPlot_1_1LineMaterial_1a41fb11620fd1082c4a75d720b065334d" kind="variable"><name>stepMode</name></member>
     <member refid="classQAccelPlot_1_1LineMaterial_1a1cf3366d7811fd1d0240850a2cc94385" kind="function"><name>LineMaterial</name></member>
     <member refid="classQAccelPlot_1_1LineMaterial_1ad2e33cfca32e32a638eef4215541870a" kind="function"><name>type</name></member>
     <member refid="classQAccelPlot_1_1LineMaterial_1a481e131cc233943335dfb606cd1f72fd" kind="function"><name>createShader</name></member>
@@ -2466,6 +2477,7 @@
     <member refid="classQAccelPlot_1_1PlotInspector_1a76dd8d43a5d664c448bbc9e8d11c9135" kind="function"><name>inspectedSeries</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1a8debbd1b11906b53e5a3f2e815b297c8" kind="function"><name>cursorPosition</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1a3345ef3db8fbe96f1766f6144e3793ab" kind="function"><name>effectiveMode</name></member>
+    <member refid="classQAccelPlot_1_1PlotInspector_1a6e93449a8ea17040c3de60ba57fe5196" kind="function"><name>lowerNeighborIndex</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1aecc195716a3ae7f199d1cf0dab218134" kind="function"><name>inspect</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1ae5ec2dfb1769bd5a9978c0e56f95e05b" kind="function"><name>queryRows</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1a7de00794b2eac0eaa3c0d89c56380bce" kind="function"><name>matchDataPoint</name></member>
@@ -3339,7 +3351,7 @@
     <member refid="classQAccelPlot_1_1SeriesInspection_1a307fcc4f31d40433a8ae8f4dbd0962ac" kind="function"><name>nearestAlong</name></member>
     <member refid="classQAccelPlot_1_1SeriesInspection_1ac46cd1c251b53b13c3d0a50c09d38a60" kind="function"><name>bracketAlong</name></member>
     <member refid="classQAccelPlot_1_1SeriesInspection_1ac1fbea1a601259062944d5b60918796d" kind="function"><name>makeDataPoint</name></member>
-    <member refid="classQAccelPlot_1_1SeriesInspection_1ab5da40ab1af5e2b3d6ee1a1ec4de9213" kind="function"><name>interpolate</name></member>
+    <member refid="classQAccelPlot_1_1SeriesInspection_1a35c7a19a49cd4cff12af67c3a933951a" kind="function"><name>interpolate</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1SeriesMarker" kind="class"><name>QAccelPlot::SeriesMarker</name>
     <member refid="classQAccelPlot_1_1SeriesMarker_1a5ca5f50687b737db61497817c6ac3f9b" kind="enum"><name>NoneShape</name></member>
@@ -3540,6 +3552,7 @@
     <member refid="GradientColorTypes_8hpp_1a4e9f64212036d6f4c354c451ba2fc45e" kind="typedef"><name>GradientValueSource</name></member>
     <member refid="InspectionResult_8hpp_1a5f4b24dcd6ebda62dd105e6e3fad0ff8" kind="typedef"><name>InspectionStatus</name></member>
     <member refid="LineCurveGaps_8hpp_1a11817d21a4214c355f999476b958e020" kind="typedef"><name>NanGapMode</name></member>
+    <member refid="StepMode_8hpp_1a701d066e167f1caad8be578e0750f7b1" kind="typedef"><name>StepMode</name></member>
     <member refid="LineStyle_8hpp_1a44595e259edb178d9a8c42317ab2cff7" kind="variable"><name>kMaxDashPatternSize</name></member>
     <member refid="MathUtils_8hpp_1a5d7d51876775f2a846a29ae3032b7f1e" kind="variable"><name>kNearlyEqualEpsilon</name></member>
     <member refid="GradientCoordinateUtils_8hpp_1a7a483f340fdb2f9ed6987539809e69cc" kind="function"><name>unboundedGradientCoordinate</name></member>
@@ -3602,6 +3615,9 @@
     <member refid="SeriesSupport_8hpp_1ac34e08413bb3b53ff8e1154bf2c494dc" kind="function"><name>supportsCustomShaderRendering</name></member>
     <member refid="SeriesSupport_8hpp_1aa6ae5dce39f0d0f413c54cf6cf325998" kind="function"><name>maxTextureSize</name></member>
     <member refid="SeriesSupport_8hpp_1a1115a2b55eeca9e9b1f936432726572f" kind="function"><name>recordCapacity</name></member>
+    <member refid="StepPath_8hpp_1a6f2f7ff4a80785b5d31e9313e7434119" kind="function"><name>stepCornerCount</name></member>
+    <member refid="StepPath_8hpp_1ac74d04114ac7b3ee265f24b21ffc3e94" kind="function"><name>stepCorner</name></member>
+    <member refid="StepPath_8hpp_1ac63eb0e7a6e4ca78c809a994ee3a8b92" kind="function"><name>linePathPoint</name></member>
   </compound>
   <compound refid="namespaceQAccelPlot_1_1LineCurveGapFilter" kind="namespace"><name>QAccelPlot::LineCurveGapFilter</name>
     <member refid="namespaceQAccelPlot_1_1LineCurveGapFilter_1a86cea55256cf82fcf5f4be05f163607f" kind="function"><name>isValidPoint</name></member>
@@ -3612,7 +3628,7 @@
   <compound refid="namespaceQAccelPlot_1_1LineStroke" kind="namespace"><name>QAccelPlot::LineStroke</name>
     <member refid="namespaceQAccelPlot_1_1LineStroke_1a355af60129939c4834fa6809a060e42e" kind="function"><name>vertexAttributes</name></member>
     <member refid="namespaceQAccelPlot_1_1LineStroke_1ad34be219c368025674bc07494320b820" kind="function"><name>createNode</name></member>
-    <member refid="namespaceQAccelPlot_1_1LineStroke_1aad02ecbc329bbb3551ca9675268d98c4" kind="function"><name>writeVertices</name></member>
+    <member refid="namespaceQAccelPlot_1_1LineStroke_1a9ef03f551509110edd4ad16ab0ecd133" kind="function"><name>writeVertices</name></member>
     <member refid="namespaceQAccelPlot_1_1LineStroke_1a7af6559bbaacc22fb8a3919a13bed452" kind="function"><name>applyUniforms</name></member>
     <member refid="namespaceQAccelPlot_1_1LineStroke_1af2fc7665b16774aa448d7292f7fcc541" kind="function"><name>arcLengths</name></member>
   </compound>
@@ -3620,6 +3636,13 @@
     <member refid="namespaceQAccelPlot_1_1NanGapModeNS_1a7bc1561c858ec08f1c94fbc418062732" kind="enum"><name>Mode</name></member>
     <member refid="namespaceQAccelPlot_1_1NanGapModeNS_1a7bc1561c858ec08f1c94fbc418062732ae4c38d6d45baf080943d323dd51a2ce8" kind="enumvalue"><name>Break</name></member>
     <member refid="namespaceQAccelPlot_1_1NanGapModeNS_1a7bc1561c858ec08f1c94fbc418062732a49ab28040dfa07f53544970c6d147e1e" kind="enumvalue"><name>Connect</name></member>
+  </compound>
+  <compound refid="namespaceQAccelPlot_1_1StepModeNS" kind="namespace"><name>QAccelPlot::StepModeNS</name>
+    <member refid="namespaceQAccelPlot_1_1StepModeNS_1af348af83845fdf1f08b475737f62a7cd" kind="enum"><name>Mode</name></member>
+    <member refid="namespaceQAccelPlot_1_1StepModeNS_1af348af83845fdf1f08b475737f62a7cda6adf97f83acf6453d4a6a4b1070f3754" kind="enumvalue"><name>None</name></member>
+    <member refid="namespaceQAccelPlot_1_1StepModeNS_1af348af83845fdf1f08b475737f62a7cda9060587edeb01a63e3d3edc959678d1e" kind="enumvalue"><name>Before</name></member>
+    <member refid="namespaceQAccelPlot_1_1StepModeNS_1af348af83845fdf1f08b475737f62a7cda7bfcadb5535fe8aad5032762b7bfe159" kind="enumvalue"><name>After</name></member>
+    <member refid="namespaceQAccelPlot_1_1StepModeNS_1af348af83845fdf1f08b475737f62a7cda4f1f6016fc9f3f2353c0cc7c67b292bd" kind="enumvalue"><name>Center</name></member>
   </compound>
   <compound refid="DataAnchor_8hpp" kind="file"><name>DataAnchor.hpp</name>
   </compound>
@@ -3793,6 +3816,8 @@
   </compound>
   <compound refid="SeriesSupport_8hpp" kind="file"><name>SeriesSupport.hpp</name>
   </compound>
+  <compound refid="StepPath_8hpp" kind="file"><name>StepPath.hpp</name>
+  </compound>
   <compound refid="LineCurve_8hpp" kind="file"><name>LineCurve.hpp</name>
   </compound>
   <compound refid="LineCurveGapFilter_8hpp" kind="file"><name>LineCurveGapFilter.hpp</name>
@@ -3816,6 +3841,8 @@
   <compound refid="SeriesMarker_8hpp" kind="file"><name>SeriesMarker.hpp</name>
   </compound>
   <compound refid="SpatialGrid_8hpp" kind="file"><name>SpatialGrid.hpp</name>
+  </compound>
+  <compound refid="StepMode_8hpp" kind="file"><name>StepMode.hpp</name>
   </compound>
   <compound refid="ColorPalette_8hpp" kind="file"><name>ColorPalette.hpp</name>
   </compound>

@@ -62,7 +62,7 @@ _One XY source data point returned by an inspection query._
 | property quint64 | [**dataRevision**](structQAccelPlot_1_1InspectionDataPoint.md#property-datarevision)  <br>_Data revision the query ran against._  |
 | property qreal | [**distance**](structQAccelPlot_1_1InspectionDataPoint.md#property-distance)  <br>_Distance from the query position in logical pixels._  |
 | property int | [**index**](structQAccelPlot_1_1InspectionDataPoint.md#property-index)  <br>_Source index, counting invalid records; -1 when nothing matched._  |
-| property bool | [**interpolated**](structQAccelPlot_1_1InspectionDataPoint.md#property-interpolated)  <br>_True when the coordinates are interpolated between two data points; index is then the left neighbor._  |
+| property bool | [**interpolated**](structQAccelPlot_1_1InspectionDataPoint.md#property-interpolated)  <br>_True when the coordinates are interpolated between two data points; index is then the data point whose value is shown._  |
 | property QPointF | [**pixelPosition**](structQAccelPlot_1_1InspectionDataPoint.md#property-pixelposition)  <br>_Series-local position in logical pixels._  |
 | property QML\_ANONYMOUSQAccelPlot::InspectionNS::Status | [**status**](structQAccelPlot_1_1InspectionDataPoint.md#property-status-12)  <br>_Query outcome._  |
 | property bool | [**valid**](structQAccelPlot_1_1InspectionDataPoint.md#property-valid-12)  <br>_True when status is_ `Ready` _._ |
@@ -209,14 +209,17 @@ Source index.
 
 ### property interpolated {#property-interpolated}
 
-_True when the coordinates are interpolated between two data points; index is then the left neighbor._ 
+_True when the coordinates are interpolated between two data points; index is then the data point whose value is shown._ 
 ```C++
 bool QAccelPlot::InspectionDataPoint::interpolated;
 ```
 
 
 
-Interpolated point. 
+Interpolated point.
+
+
+That is the left neighbor, or on a step line the data point whose step or riser holds the point. 
 
 
         

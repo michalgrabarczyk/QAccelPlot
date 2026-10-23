@@ -61,16 +61,17 @@ struct LineCurveRenderParams {
     const GradientFillPayload& gradientFillPayload; 
     const std::vector<char>* vertexCache;           
     const LineStyle* lineStyle;                     
+    StepMode stepMode{StepMode::None};              
 };
 
 struct FillSamples {
-    std::vector<int> sampledCounts; 
-    std::vector<int> indices;       
+    std::vector<int> pointCounts; 
+    std::vector<QPointF> points;  
 };
 
 class LineCurveLineRenderer {
 public:
-    void buildVertexCache(const std::vector<float>& data, int pointCount, std::vector<char>& cache) const;
+    void buildVertexCache(const std::vector<float>& data, int pointCount, std::vector<char>& cache, StepMode stepMode = StepMode::None) const;
 
     bool contains(const QPointF& point, const CurveHitTestParams& params) const;
 
@@ -83,11 +84,13 @@ private:
         int pointCount{-1};
         bool logScaleX{false};
         bool logScaleY{false};
+        StepMode stepMode{StepMode::None};
         FillSamples samples;
     };
 
     void updateFillGeometry(QSGGeometryNode* fillNode, const LineCurveRenderParams& params) const;
     const FillSamples& fillSamples(const LineCurveRenderParams& params) const;
+    static void rebuildFillSamples(const LineCurveRenderParams& params, FillSamples& samples);
     void updateLineMaterial(
         LineMaterial* material, const LineCurveRenderParams& params, const QColor& effectiveColor, bool useVertexColor, const DashParameters& dashParams) const;
     std::vector<float> computeArcLengths(const LineCurveRenderParams& params, const DashParameters& dashParams) const;

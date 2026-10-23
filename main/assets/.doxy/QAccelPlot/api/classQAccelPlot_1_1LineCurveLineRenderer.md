@@ -61,7 +61,7 @@ _Internal renderer responsible for building and updating QSGNode line geometry f
 
 | Type | Name |
 | ---: | :--- |
-|  void | [**buildVertexCache**](#function-buildvertexcache) (const std::vector&lt; float &gt; & data, int pointCount, std::vector&lt; char &gt; & cache) const<br>_Pre-builds the vertex buffer into_ _cache_ _on the calling thread (main thread safe)._ |
+|  void | [**buildVertexCache**](#function-buildvertexcache) (const std::vector&lt; float &gt; & data, int pointCount, std::vector&lt; char &gt; & cache, [**StepMode**](namespaceQAccelPlot_1_1StepModeNS.md#enum-mode) stepMode=StepMode::None) const<br>_Pre-builds the vertex buffer of a line drawn with_ _stepMode_ _into__cache_ _on the calling thread (main thread safe)._ |
 |  bool | [**contains**](#function-contains) (const QPointF & point, const [**CurveHitTestParams**](structQAccelPlot_1_1CurveHitTestParams.md) & params) const<br>_Returns_ `true` _if__point_ _lies within__params.hitThreshold_ _pixels of the curve._ |
 |  QSGNode \* | [**paint**](#function-paint) (QSGNode \* oldNode, const [**LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md) & params) const<br>_Updates the scene graph node tree for this curve._  |
 
@@ -107,18 +107,19 @@ Supports solid and dashed lines, gradient stroke, gradient fill, and optional pr
 
 ### function buildVertexCache {#function-buildvertexcache}
 
-_Pre-builds the vertex buffer into_ _cache_ _on the calling thread (main thread safe)._
+_Pre-builds the vertex buffer of a line drawn with_ _stepMode_ _into__cache_ _on the calling thread (main thread safe)._
 ```C++
 void QAccelPlot::LineCurveLineRenderer::buildVertexCache (
     const std::vector< float > & data,
     int pointCount,
-    std::vector< char > & cache
+    std::vector< char > & cache,
+    StepMode stepMode=StepMode::None
 ) const
 ```
 
 
 
-Writes neutral RGBA (1,1,1,1); solid and gradient shaders obtain their colors from their materials. 
+Writes neutral RGBA (1,1,1,1); solid and gradient shaders obtain their colors from their materials. A curve rejects a cache whose step mode needs a different number of vertices per data point than its own. 
 
 
         

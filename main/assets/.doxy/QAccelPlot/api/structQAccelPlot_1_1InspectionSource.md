@@ -51,6 +51,7 @@ _Read-only view over the XY records a series exposes to inspection queries._ [Mo
 |  const float \* | [**floats**](#variable-floats)   = `{nullptr}`<br>_Interleaved single-precision records; X and Y lead each record._  |
 |  bool | [**logX**](#variable-logx)   = `{false}`<br>_Whether X is on a logarithmic axis._  |
 |  bool | [**logY**](#variable-logy)   = `{false}`<br>_Whether Y is on a logarithmic axis._  |
+|  [**StepMode**](namespaceQAccelPlot_1_1StepModeNS.md#enum-mode) | [**stepMode**](#variable-stepmode)   = `{StepMode::None}`<br>_How the series' line joins consecutive records; interpolation follows it._  |
 |  int | [**valueStride**](#variable-valuestride)   = `{1}`<br>_Floats between consecutive scalars in_ `values` _._ |
 |  const float \* | [**values**](#variable-values)   = `{nullptr}`<br>_Optional per-record scalar._  |
 
@@ -200,6 +201,21 @@ bool QAccelPlot::InspectionSource::logX;
 _Whether Y is on a logarithmic axis._ 
 ```C++
 bool QAccelPlot::InspectionSource::logY;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable stepMode {#variable-stepmode}
+
+_How the series' line joins consecutive records; interpolation follows it._ 
+```C++
+StepMode QAccelPlot::InspectionSource::stepMode;
 ```
 
 

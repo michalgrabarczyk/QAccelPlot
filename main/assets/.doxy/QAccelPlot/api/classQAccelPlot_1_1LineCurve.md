@@ -98,6 +98,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | property [**LineStyle**](classQAccelPlot_1_1LineStyle.md) \* | [**lineStyle**](classQAccelPlot_1_1LineCurve.md#property-linestyle-12)  <br>_Line style (_ [_**SolidLine**_](classQAccelPlot_1_1SolidLine.md) _,_[_**DashLine**_](classQAccelPlot_1_1DashLine.md) _, or_[_**NoLine**_](classQAccelPlot_1_1NoLine.md) _). Default:_[_**SolidLine**_](classQAccelPlot_1_1SolidLine.md) _._ |
 | property qreal | [**lineWidth**](classQAccelPlot_1_1LineCurve.md#property-linewidth-12)  <br>_Line stroke width in pixels. Default: 1._  |
 | property [**SeriesMarker**](classQAccelPlot_1_1SeriesMarker.md) \* | [**marker**](classQAccelPlot_1_1LineCurve.md#property-marker-12)  <br>_Grouped marker settings, e.g._ `marker.shape` _and_`marker.size` _._ |
+| property [**StepMode**](namespaceQAccelPlot_1_1StepModeNS.md#enum-mode) | [**stepMode**](classQAccelPlot_1_1LineCurve.md#property-stepmode-12)  <br>_How the line joins consecutive data points. Default:_ `StepMode.None` _._ |
 | property [**DataTransition**](classQAccelPlot_1_1DataTransition.md) \* | [**transition**](classQAccelPlot_1_1LineCurve.md#property-transition-12)  <br>_Optional data transition animation applied when new data arrives._  |
 
 
@@ -132,6 +133,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | signal void | [**hoveredChanged**](classQAccelPlot_1_1LineCurve.md#signal-hoveredchanged)  <br>_Emitted when the hovered property changes._  |
 | signal void | [**lineStyleChanged**](classQAccelPlot_1_1LineCurve.md#signal-linestylechanged)  <br>_Emitted when the lineStyle property changes._  |
 | signal void | [**lineWidthChanged**](classQAccelPlot_1_1LineCurve.md#signal-linewidthchanged)  <br>_Emitted when the lineWidth property changes._  |
+| signal void | [**stepModeChanged**](classQAccelPlot_1_1LineCurve.md#signal-stepmodechanged)  <br>_Emitted when the stepMode property changes._  |
 | signal void | [**transitionChanged**](classQAccelPlot_1_1LineCurve.md#signal-transitionchanged)  <br>_Emitted when the transition property changes._  |
 
 
@@ -193,7 +195,9 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  void | [**setHoverRadius**](#function-sethoverradius) (qreal radius) <br>_Sets the line hover pick radius to_ _radius_ _pixels. Negative values are clamped to 0. Marker hit testing is unaffected._ |
 |  void | [**setLineStyle**](#function-setlinestyle) ([**LineStyle**](classQAccelPlot_1_1LineStyle.md) \* style) <br>_Sets the line style to_ _style_ _._ |
 |  void | [**setLineWidth**](#function-setlinewidth) (qreal w) <br>_Sets the line stroke width to_ _w_ _pixels._ |
+|  void | [**setStepMode**](#function-setstepmode) ([**StepMode**](namespaceQAccelPlot_1_1StepModeNS.md#enum-mode) mode) <br>_Sets how the line joins consecutive data points to_ _mode_ _._ |
 |  void | [**setTransition**](#function-settransition) ([**DataTransition**](classQAccelPlot_1_1DataTransition.md) \* transition) <br>_Sets the data transition to_ _transition_ _._ |
+|  [**StepMode**](namespaceQAccelPlot_1_1StepModeNS.md#enum-mode) | [**stepMode**](#function-stepmode-22) () const<br>_Returns how the line joins consecutive data points._  |
 |  [**DataTransition**](classQAccelPlot_1_1DataTransition.md) \* | [**transition**](#function-transition-22) () const<br>_Returns the active data transition, or_ `nullptr` _if none._ |
 |   | [**~LineCurve**](#function-linecurve) () override<br>_Destroys the curve, ending its animation on the assigned transition._  |
 
@@ -385,7 +389,15 @@ Animated data updates are enabled by assigning a `DrawTransition` or `MorphTrans
 **
 **
 
-A data point is invalid when its X or Y coordinate is NaN or ±Inf, or is not strictly positive on a log-scale axis. Invalid data points are never drawn as markers, never hit-tested, and are excluded from auto-ranging coordinate by coordinate (a finite X with an invalid Y still extends the X range). How the line and gradient fill treat them is controlled by the `gaps` grouped property: `gaps.nanMode` `Break` (default) leaves a gap, `Connect` joins the neighboring valid data points. Insert `NaN` to mark missing telemetry explicitly.
+`stepMode` draws the line as steps, for example `stepMode: QAccelPlot.StepMode.After`. The gradient fill, dash pattern, and hover follow the steps, markers stay on the data points, and interpolated inspection reads the value a step holds. The line follows the data points in order and is not sorted by X.
+
+
+
+
+**
+**
+
+A data point is invalid when its X or Y coordinate is NaN or ±Inf, or is not strictly positive on a log-scale axis. Invalid data points are never drawn as markers, never hit-tested, and are excluded from auto-ranging coordinate by coordinate (a finite X with an invalid Y still extends the X range). How the line and gradient fill treat them is controlled by the `gaps` grouped property: `gaps.nanMode` `Break` (default) leaves a gap, `Connect` joins the neighboring valid data points. Insert `NaN` to mark missing telemetry explicitly. With a step mode and `Break`, a value holds up to the X of an invalid neighbor when that X is finite.
 
 
 
@@ -551,6 +563,21 @@ SeriesMarker* QAccelPlot::LineCurve::marker;
 
 
 
+### property stepMode {#property-stepmode-12}
+
+_How the line joins consecutive data points. Default:_ `StepMode.None` _._
+```C++
+StepMode QAccelPlot::LineCurve::stepMode;
+```
+
+
+
+
+<hr>
+
+
+
+
 ### property transition {#property-transition-12}
 
 _Optional data transition animation applied when new data arrives._ 
@@ -663,6 +690,21 @@ void QAccelPlot::LineCurve::lineStyleChanged;
 _Emitted when the lineWidth property changes._ 
 ```C++
 void QAccelPlot::LineCurve::lineWidthChanged;
+```
+
+
+
+
+<hr>
+
+
+
+
+### signal stepModeChanged {#signal-stepmodechanged}
+
+_Emitted when the stepMode property changes._ 
+```C++
+void QAccelPlot::LineCurve::stepModeChanged;
 ```
 
 
@@ -1272,6 +1314,23 @@ void QAccelPlot::LineCurve::setLineWidth (
 
 
 
+### function setStepMode {#function-setstepmode}
+
+_Sets how the line joins consecutive data points to_ _mode_ _._
+```C++
+void QAccelPlot::LineCurve::setStepMode (
+    StepMode mode
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function setTransition {#function-settransition}
 
 _Sets the data transition to_ _transition_ _._
@@ -1279,6 +1338,21 @@ _Sets the data transition to_ _transition_ _._
 void QAccelPlot::LineCurve::setTransition (
     DataTransition * transition
 ) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function stepMode {#function-stepmode-22}
+
+_Returns how the line joins consecutive data points._ 
+```C++
+StepMode QAccelPlot::LineCurve::stepMode () const
 ```
 
 

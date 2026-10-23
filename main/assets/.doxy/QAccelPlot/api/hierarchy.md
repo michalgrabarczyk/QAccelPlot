@@ -46,7 +46,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **struct** [**QAccelPlot::DataPointStore::View**](structQAccelPlot_1_1DataPointStore_1_1View.md) _Read-only view over interleaved data points in float or double precision._ 
 * **struct** [**QAccelPlot::DataPointStore::Viewport**](structQAccelPlot_1_1DataPointStore_1_1Viewport.md) _Visible range of one dimension._ 
 * **struct** [**QAccelPlot::DataTransition::Dataset**](structQAccelPlot_1_1DataTransition_1_1Dataset.md) _Data a transition animates:_ `count` _items of_`stride` _values each, e.g. XY points with a stride of 2._
-* **struct** [**QAccelPlot::FillSamples**](structQAccelPlot_1_1FillSamples.md) _Data points of a gradient fill: one group per run of valid data points, broken at gaps._ 
+* **struct** [**QAccelPlot::FillSamples**](structQAccelPlot_1_1FillSamples.md) _Outline of a gradient fill in data space: one group of points per run of valid data points, broken at gaps._ 
 * **struct** [**QAccelPlot::GradientColorPayload**](structQAccelPlot_1_1GradientColorPayload.md) _Render-thread snapshot of gradient stroke (line-color) parameters._ 
 * **struct** [**QAccelPlot::GradientFillPayload**](structQAccelPlot_1_1GradientFillPayload.md) _Render-thread snapshot of gradient fill (area-under-curve) parameters._ 
 * **struct** [**QAccelPlot::GradientStopData**](structQAccelPlot_1_1GradientStopData.md) _A single color stop within a gradient definition._ 

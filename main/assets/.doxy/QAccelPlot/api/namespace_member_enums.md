@@ -11,7 +11,7 @@
 
 ## m
 
-* **Mode** ([**QAccelPlot::GradientFillBaselineNS**](namespaceQAccelPlot_1_1GradientFillBaselineNS.md), [**QAccelPlot::NanGapModeNS**](namespaceQAccelPlot_1_1NanGapModeNS.md))
+* **Mode** ([**QAccelPlot::GradientFillBaselineNS**](namespaceQAccelPlot_1_1GradientFillBaselineNS.md), [**QAccelPlot::NanGapModeNS**](namespaceQAccelPlot_1_1NanGapModeNS.md), [**QAccelPlot::StepModeNS**](namespaceQAccelPlot_1_1StepModeNS.md))
 
 
 ## s

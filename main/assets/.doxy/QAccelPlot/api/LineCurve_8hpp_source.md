@@ -26,6 +26,7 @@
 #include "QAccelPlot/series/LineCurveVertexCache.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
 #include "QAccelPlot/series/SeriesMarker.hpp"
+#include "QAccelPlot/series/StepMode.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 #include "QAccelPlot/transitions/DataTransition.hpp"
 
@@ -59,6 +60,7 @@ class LineCurve : public PlotSeries {
     Q_PROPERTY(QQmlListProperty<LineCurveEffect> effects READ effects)
     Q_PROPERTY(LineCurveGaps* gaps READ gaps CONSTANT)
     Q_PROPERTY(SeriesMarker* marker READ marker CONSTANT)
+    Q_PROPERTY(StepMode stepMode READ stepMode WRITE setStepMode NOTIFY stepModeChanged)
 
 public:
     explicit LineCurve(QQuickItem* parent = nullptr);
@@ -93,6 +95,9 @@ public:
 
     SeriesMarker* marker() const;
 
+    StepMode stepMode() const;
+    void setStepMode(StepMode mode);
+
     Q_INVOKABLE void appendData(qreal x, qreal y);
     Q_INVOKABLE void setData(const QList<QPointF>& data);
     void setData(const std::vector<double>& xs, const std::vector<double>& ys);
@@ -125,6 +130,7 @@ signals:
     void lineStyleChanged();
     void antialiasingEnabledChanged();
     void antialiasingFeatherChanged();
+    void stepModeChanged();
 
 private:
     void onTransitionDestroyed();
@@ -188,6 +194,7 @@ private:
     bool styleChanged_{false};
     LineCurveGaps* gaps_{new LineCurveGaps{this}};
     SeriesMarker* marker_{new SeriesMarker{MarkerShape::None, 4.0, SeriesMarker::NoneShape::Accepted, this}};
+    StepMode stepMode_{StepMode::None};
     QList<LineCurveEffect*> effects_;
     LineCurveLineRenderer lineRenderer_;
     LineCurvePointRenderer pointRenderer_;

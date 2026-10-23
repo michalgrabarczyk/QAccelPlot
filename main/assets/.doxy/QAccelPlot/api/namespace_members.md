@@ -65,12 +65,13 @@
 
 ## l
 
+* **linePathPoint** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **localFilePath** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
 
 ## m
 
-* **Mode** ([**QAccelPlot::GradientFillBaselineNS**](namespaceQAccelPlot_1_1GradientFillBaselineNS.md), [**QAccelPlot::NanGapModeNS**](namespaceQAccelPlot_1_1NanGapModeNS.md))
+* **Mode** ([**QAccelPlot::GradientFillBaselineNS**](namespaceQAccelPlot_1_1GradientFillBaselineNS.md), [**QAccelPlot::NanGapModeNS**](namespaceQAccelPlot_1_1NanGapModeNS.md), [**QAccelPlot::StepModeNS**](namespaceQAccelPlot_1_1StepModeNS.md))
 * **maxTextureSize** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
 
@@ -106,7 +107,10 @@
 * **Status** ([**QAccelPlot::InspectionNS**](namespaceQAccelPlot_1_1InspectionNS.md))
 * **summarize** ([**QAccelPlot::InspectionScan**](namespaceQAccelPlot_1_1InspectionScan.md))
 * **setImageResolution** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **stepCorner** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **stepCornerCount** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **supportsCustomShaderRendering** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **StepMode** ([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
 ## u

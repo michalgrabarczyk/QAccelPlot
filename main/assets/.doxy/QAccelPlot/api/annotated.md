@@ -53,7 +53,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **class** [**DrawTransition**](classQAccelPlot_1_1DrawTransition.md) _An animation transition that reveals the target data point by point from start to end._     
     * **class** [**ErrorBarMaterial**](classQAccelPlot_1_1ErrorBarMaterial.md) _Material that draws error bars from (x, y, low, high) data points in a data texture._     
     * **class** [**ErrorBarSeries**](classQAccelPlot_1_1ErrorBarSeries.md) _A hardware-accelerated QML item that draws error bars: a line from a low to a high bound at each data point, capped at both ends._     
-    * **struct** [**FillSamples**](structQAccelPlot_1_1FillSamples.md) _Data points of a gradient fill: one group per run of valid data points, broken at gaps._     
+    * **struct** [**FillSamples**](structQAccelPlot_1_1FillSamples.md) _Outline of a gradient fill in data space: one group of points per run of valid data points, broken at gaps._     
     * **struct** [**GradientColorPayload**](structQAccelPlot_1_1GradientColorPayload.md) _Render-thread snapshot of gradient stroke (line-color) parameters._     
     * **class** [**GradientFill**](classQAccelPlot_1_1GradientFill.md) _A_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _effect that fills the area under the curve with a color gradient._    
     * **namespace** [**GradientFillBaselineNS**](namespaceQAccelPlot_1_1GradientFillBaselineNS.md) _Namespace exposing the_ `GradientFillBaseline` _enum to QML._    
@@ -149,6 +149,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **class** [**SolidLine**](classQAccelPlot_1_1SolidLine.md) _The default line style — renders a continuous solid line with no gaps._     
     * **class** [**SourceInspection**](classQAccelPlot_1_1SourceInspection.md) _Inspection queries that read a series' own buffer whose records are ordered along one axis._     
     * **class** [**SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md) _Uniform-grid spatial index with bounded per-rectangle storage._     
+    * **namespace** [**StepModeNS**](namespaceQAccelPlot_1_1StepModeNS.md) _Namespace exposing the_ `StepMode` _enum to QML._    
     * **struct** [**SummaryAccumulator**](structQAccelPlot_1_1SummaryAccumulator.md) _Running data-point-weighted Y statistics that can be merged across disjoint data point sets._     
     * **class** [**TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md) _A tick label formatter that maps integer tick indices to a user-supplied list of strings._     
     * **class** [**TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md) _Abstract base class for tick label formatters._     

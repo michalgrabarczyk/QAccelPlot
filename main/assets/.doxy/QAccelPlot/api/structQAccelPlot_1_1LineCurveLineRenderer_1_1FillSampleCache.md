@@ -49,6 +49,7 @@
 |  bool | [**logScaleY**](#variable-logscaley)   = `{false}`<br> |
 |  int | [**pointCount**](#variable-pointcount)   = `{-1}`<br> |
 |  [**FillSamples**](structQAccelPlot_1_1FillSamples.md) | [**samples**](#variable-samples)  <br> |
+|  [**StepMode**](namespaceQAccelPlot_1_1StepModeNS.md#enum-mode) | [**stepMode**](#variable-stepmode)   = `{StepMode::None}`<br> |
 
 
 
@@ -159,6 +160,20 @@ int QAccelPlot::LineCurveLineRenderer::FillSampleCache::pointCount;
 
 ```C++
 FillSamples QAccelPlot::LineCurveLineRenderer::FillSampleCache::samples;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable stepMode {#variable-stepmode}
+
+```C++
+StepMode QAccelPlot::LineCurveLineRenderer::FillSampleCache::stepMode;
 ```
 
 

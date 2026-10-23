@@ -19,5 +19,10 @@
 * **NanGapMode** ([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
+## s
+
+* **StepMode** ([**QAccelPlot**](namespaceQAccelPlot.md))
+
+
 
 

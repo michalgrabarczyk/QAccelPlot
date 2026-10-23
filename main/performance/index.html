@@ -1777,7 +1777,8 @@ floats.</p>
 prebuilt vertex cache, so vertex assembly can move off the UI and render
 threads. It ties application code to renderer details; use it only when
 measurements justify it. The cache must match the current point count and
-renderer layout, otherwise it is rejected and normal vertex assembly runs.</p>
+renderer layout, otherwise it is rejected and normal vertex assembly runs. For
+a step line, build it with <code>buildVertexCache(data, count, cache, stepMode)</code>.</p>
 <h2 id="data-ranges-are-computed-on-demand">Data ranges are computed on demand<a class="headerlink" href="#data-ranges-are-computed-on-demand" title="Permanent link">&para;</a></h2>
 <p>No setter scans the data for its range. After an update, a series scans its
 records the first time something reads the range:</p>

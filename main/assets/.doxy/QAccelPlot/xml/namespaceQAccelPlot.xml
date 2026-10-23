@@ -121,6 +121,7 @@
     <innernamespace refid="namespaceQAccelPlot_1_1LineCurveGapFilter">QAccelPlot::LineCurveGapFilter</innernamespace>
     <innernamespace refid="namespaceQAccelPlot_1_1LineStroke">QAccelPlot::LineStroke</innernamespace>
     <innernamespace refid="namespaceQAccelPlot_1_1NanGapModeNS">QAccelPlot::NanGapModeNS</innernamespace>
+    <innernamespace refid="namespaceQAccelPlot_1_1StepModeNS">QAccelPlot::StepModeNS</innernamespace>
     <sectiondef kind="enum">
       <memberdef kind="enum" id="InspectionTypes_8hpp_1a83dfdbfef906e0b9e3984f0328a3c0a5" prot="public" static="no" strong="yes">
         <type></type>
@@ -147,7 +148,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="19" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="19" bodyend="19"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="20" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="20" bodyend="20"/>
       </memberdef>
       <memberdef kind="enum" id="InspectionTypes_8hpp_1af338153d924ebcc1d5eb0590cacbf947" prot="public" static="no" strong="yes">
         <type></type>
@@ -184,7 +185,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="22" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="22" bodyend="26"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="23" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="23" bodyend="27"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="typedef">
@@ -243,6 +244,20 @@
         <inbodydescription>
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/LineCurveGaps.hpp" line="28" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurveGaps.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="StepMode_8hpp_1a701d066e167f1caad8be578e0750f7b1" prot="public" static="no">
+        <type><ref refid="namespaceQAccelPlot_1_1StepModeNS_1af348af83845fdf1f08b475737f62a7cd" kindref="member">StepModeNS::Mode</ref></type>
+        <definition>using QAccelPlot::StepMode = typedef StepModeNS::Mode</definition>
+        <argsstring></argsstring>
+        <name>StepMode</name>
+        <qualifiedname>QAccelPlot::StepMode</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/StepMode.hpp" line="33" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/StepMode.hpp" bodystart="33" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="var">
@@ -442,7 +457,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="107" column="9" declfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" declline="107" declcolumn="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="109" column="9" declfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" declline="109" declcolumn="9"/>
       </memberdef>
       <memberdef kind="function" id="MathUtils_8hpp_1a9b86bb1e432c9efd9b8e5af40a5f0ca3" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type>bool</type>
@@ -567,7 +582,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/CurveRendererParams.hpp" line="65" column="13" bodyfile="QAccelPlot/src/QAccelPlot/renderers/CurveRendererParams.hpp" bodystart="65" bodyend="68"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/CurveRendererParams.hpp" line="67" column="13" bodyfile="QAccelPlot/src/QAccelPlot/renderers/CurveRendererParams.hpp" bodystart="67" bodyend="70"/>
       </memberdef>
     </sectiondef>
     <briefdescription>

@@ -69,7 +69,7 @@ _Building blocks for the line ribbon drawn by the line shaders, shared by the li
 |  std::vector&lt; float &gt; | [**arcLengths**](#function-arclengths) (const int pointCount, const PixelAt & pixelAt) <br>_Returns the cumulative pixel length at each of_ _pointCount_ _data points, for dash patterns._ |
 |  QSGGeometryNode \* | [**createNode**](#function-createnode) (int vertexCount, QSGMaterial \* material) <br>_Returns a triangle-strip node with_ _vertexCount_ _line vertices that owns__material_ _._ |
 |  const QSGGeometry::AttributeSet & | [**vertexAttributes**](#function-vertexattributes) () <br>_Returns the vertex attribute set matching_ `LineVertex` _._ |
-|  void | [**writeVertices**](#function-writevertices) ([**LineVertex**](structQAccelPlot_1_1LineVertex.md) \* vertices, int pointCount, const QColor & color, const std::vector&lt; float &gt; & arcLengths) <br>_Writes two ribbon vertices per data point for_ _pointCount_ _data points into__vertices_ _._ |
+|  void | [**writeVertices**](#function-writevertices) ([**LineVertex**](structQAccelPlot_1_1LineVertex.md) \* vertices, int pointCount, int cornerCount, const QColor & color, const std::vector&lt; float &gt; & arcLengths) <br>_Writes two ribbon vertices per path point for_ _pointCount_ _data points of__cornerCount_ _path points each into__vertices_ _._ |
 
 
 
@@ -180,11 +180,12 @@ const QSGGeometry::AttributeSet & QAccelPlot::LineStroke::vertexAttributes ()
 
 ### function writeVertices {#function-writevertices}
 
-_Writes two ribbon vertices per data point for_ _pointCount_ _data points into__vertices_ _._
+_Writes two ribbon vertices per path point for_ _pointCount_ _data points of__cornerCount_ _path points each into__vertices_ _._
 ```C++
 void QAccelPlot::LineStroke::writeVertices (
     LineVertex * vertices,
     int pointCount,
+    int cornerCount,
     const QColor & color,
     const std::vector< float > & arcLengths
 ) 
@@ -192,7 +193,7 @@ void QAccelPlot::LineStroke::writeVertices (
 
 
 
-_arcLengths_ holds cumulative lengths of the leading data points, or is empty for solid lines. Data points past its end, such as vertices reserved for appended data, repeat its last length. 
+_arcLengths_ holds cumulative lengths of the leading path points, or is empty for solid lines. Path points past its end, such as vertices reserved for appended data, repeat its last length. 
 
 
         

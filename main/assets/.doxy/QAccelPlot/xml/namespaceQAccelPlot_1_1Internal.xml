@@ -469,6 +469,113 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="34" column="5" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="34" declcolumn="5"/>
       </memberdef>
+      <memberdef kind="function" id="StepPath_8hpp_1a6f2f7ff4a80785b5d31e9313e7434119" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::stepCornerCount</definition>
+        <argsstring>(StepMode mode) noexcept</argsstring>
+        <name>stepCornerCount</name>
+        <qualifiedname>QAccelPlot::Internal::stepCornerCount</qualifiedname>
+        <param>
+          <type><ref refid="namespaceQAccelPlot_1_1StepModeNS_1af348af83845fdf1f08b475737f62a7cd" kindref="member">StepMode</ref></type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+<para>Returns the number of line path points per data point for <emphasis>mode:</emphasis> the data point and the step corners after it. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/StepPath.hpp" line="20" column="6" declfile="QAccelPlot/src/QAccelPlot/series/internal/StepPath.hpp" declline="20" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="StepPath_8hpp_1ac74d04114ac7b3ee265f24b21ffc3e94" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::optional&lt; QPointF &gt;</type>
+        <definition>std::optional&lt; QPointF &gt; QAccelPlot::Internal::stepCorner</definition>
+        <argsstring>(const CurveDataView &amp;data, int from, int to, int corner, StepMode mode, bool logScaleX, bool logScaleY)</argsstring>
+        <name>stepCorner</name>
+        <qualifiedname>QAccelPlot::Internal::stepCorner</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1CurveDataView" kindref="compound">CurveDataView</ref> &amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>from</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>to</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>corner</declname>
+        </param>
+        <param>
+          <type><ref refid="namespaceQAccelPlot_1_1StepModeNS_1af348af83845fdf1f08b475737f62a7cd" kindref="member">StepMode</ref></type>
+          <declname>mode</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>logScaleX</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>logScaleY</declname>
+        </param>
+        <briefdescription>
+<para>Returns corner <emphasis>corner</emphasis> of the step from data point <emphasis>from</emphasis> to data point <emphasis>to</emphasis>, in data space. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Corner 0 is data point <emphasis>from</emphasis>. A step corner holds the Y of the data point whose flat step it ends or starts, and is drawn when that data point is valid and the X values placing the corner are usable. Returns <computeroutput>std::nullopt</computeroutput> for a corner that is not drawn. Matches the line shader. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/StepPath.hpp" line="27" column="16" declfile="QAccelPlot/src/QAccelPlot/series/internal/StepPath.hpp" declline="27" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="StepPath_8hpp_1ac63eb0e7a6e4ca78c809a994ee3a8b92" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::optional&lt; QPointF &gt;</type>
+        <definition>std::optional&lt; QPointF &gt; QAccelPlot::Internal::linePathPoint</definition>
+        <argsstring>(const CurveDataView &amp;data, int pointCount, int index, int corner, StepMode mode, bool logScaleX, bool logScaleY)</argsstring>
+        <name>linePathPoint</name>
+        <qualifiedname>QAccelPlot::Internal::linePathPoint</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1CurveDataView" kindref="compound">CurveDataView</ref> &amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>pointCount</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>corner</declname>
+        </param>
+        <param>
+          <type><ref refid="namespaceQAccelPlot_1_1StepModeNS_1af348af83845fdf1f08b475737f62a7cd" kindref="member">StepMode</ref></type>
+          <declname>mode</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>logScaleX</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>logScaleY</declname>
+        </param>
+        <briefdescription>
+<para>Returns path point <emphasis>corner</emphasis> of data point <emphasis>index</emphasis> on the drawn line of <emphasis>pointCount</emphasis> data points. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The last data point has no step after it, so its corners repeat it. Matches the vertices of the line shader. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/StepPath.hpp" line="32" column="16" declfile="QAccelPlot/src/QAccelPlot/series/internal/StepPath.hpp" declline="32" declcolumn="16"/>
+      </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>

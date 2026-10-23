@@ -18,6 +18,7 @@
 #pragma once
 
 #include "QAccelPlot/axis/AxisMapping.hpp"
+#include "QAccelPlot/series/StepMode.hpp"
 
 #include <QPointF>
 
@@ -34,14 +35,15 @@ enum class InspectionMatching {
 };
 
 struct InspectionSource {
-    const float* floats{nullptr};   
-    int floatStride{2};             
-    const double* doubles{nullptr}; 
-    const float* values{nullptr};   
-    int valueStride{1};             
-    int count{-1};                  
-    bool logX{false};               
-    bool logY{false};               
+    const float* floats{nullptr};      
+    int floatStride{2};                
+    const double* doubles{nullptr};    
+    const float* values{nullptr};      
+    int valueStride{1};                
+    int count{-1};                     
+    bool logX{false};                  
+    bool logY{false};                  
+    StepMode stepMode{StepMode::None}; 
 
     [[nodiscard]] bool supported() const noexcept;
     [[nodiscard]] double x(int index) const noexcept;

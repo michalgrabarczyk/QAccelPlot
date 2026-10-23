@@ -53,6 +53,7 @@
 
 ## l
 
+* **linePathPoint** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **localFilePath** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
 
@@ -90,6 +91,8 @@
 
 * **summarize** ([**QAccelPlot::InspectionScan**](namespaceQAccelPlot_1_1InspectionScan.md))
 * **setImageResolution** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **stepCorner** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **stepCornerCount** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **supportsCustomShaderRendering** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
 

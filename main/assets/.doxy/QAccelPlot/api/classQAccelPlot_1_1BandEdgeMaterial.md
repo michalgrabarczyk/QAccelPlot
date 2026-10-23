@@ -89,6 +89,7 @@ See [QAccelPlot::LineMaterial](classQAccelPlot_1_1LineMaterial.md)
 |  float | [**dashPeriod**](classQAccelPlot_1_1LineMaterial.md#variable-dashperiod)   = `{0.0f}`<br>_Total dash+gap cycle length in pixels._  |
 |  float | [**lineWidth**](classQAccelPlot_1_1LineMaterial.md#variable-linewidth)   = `{1.0f}`<br>_Rendered line width in pixels._  |
 |  float | [**pointCount**](classQAccelPlot_1_1LineMaterial.md#variable-pointcount)   = `{0.0f}`<br>_Number of data points (used to index the data texture)._  |
+|  float | [**stepMode**](classQAccelPlot_1_1LineMaterial.md#variable-stepmode)   = `{0.0f}`<br>`StepMode` _of the line, as a float (std140 offset 180 in the UBO)._ |
 
 
 ## Public Attributes inherited from QAccelPlot::DataTextureMaterial

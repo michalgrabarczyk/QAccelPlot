@@ -137,6 +137,8 @@ private:
     std::optional<QPointF> cursorPosition() const;
     // Returns the mode the cursor allows: without one of its coordinates, series are matched along the other axis.
     Mode effectiveMode(const QPointF& cursor) const;
+    // Returns the source index of the data point at or before an interpolated dataPoint. On a step line its index can be the one after.
+    int lowerNeighborIndex(SeriesInspection& inspection, const InspectionDataPoint& dataPoint) const;
     // Fills state with the results at cursor. Returns false when user code run by a label formatter invalidated them.
     bool inspect(const QPointF& cursor, State& state) const;
     QList<Query> queryRows(const QPointF& cursor) const;

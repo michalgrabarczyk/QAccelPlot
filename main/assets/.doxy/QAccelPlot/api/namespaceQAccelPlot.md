@@ -44,6 +44,7 @@
 | namespace | [**LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md) <br>_Stateless helpers implementing the invalid-data-point contract shared by_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _subsystems._ |
 | namespace | [**LineStroke**](namespaceQAccelPlot_1_1LineStroke.md) <br>_Building blocks for the line ribbon drawn by the line shaders, shared by the line renderers._  |
 | namespace | [**NanGapModeNS**](namespaceQAccelPlot_1_1NanGapModeNS.md) <br>_Namespace exposing the_ `NanGapMode` _enum to QML._ |
+| namespace | [**StepModeNS**](namespaceQAccelPlot_1_1StepModeNS.md) <br>_Namespace exposing the_ `StepMode` _enum to QML._ |
 
 
 ## Classes
@@ -85,7 +86,7 @@
 | class | [**DrawTransition**](classQAccelPlot_1_1DrawTransition.md) <br>_An animation transition that reveals the target data point by point from start to end._  |
 | class | [**ErrorBarMaterial**](classQAccelPlot_1_1ErrorBarMaterial.md) <br>_Material that draws error bars from (x, y, low, high) data points in a data texture._  |
 | class | [**ErrorBarSeries**](classQAccelPlot_1_1ErrorBarSeries.md) <br>_A hardware-accelerated QML item that draws error bars: a line from a low to a high bound at each data point, capped at both ends._  |
-| struct | [**FillSamples**](structQAccelPlot_1_1FillSamples.md) <br>_Data points of a gradient fill: one group per run of valid data points, broken at gaps._  |
+| struct | [**FillSamples**](structQAccelPlot_1_1FillSamples.md) <br>_Outline of a gradient fill in data space: one group of points per run of valid data points, broken at gaps._  |
 | struct | [**GradientColorPayload**](structQAccelPlot_1_1GradientColorPayload.md) <br>_Render-thread snapshot of gradient stroke (line-color) parameters._  |
 | class | [**GradientFill**](classQAccelPlot_1_1GradientFill.md) <br>_A_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _effect that fills the area under the curve with a color gradient._ |
 | class | [**GradientFillMaterial**](classQAccelPlot_1_1GradientFillMaterial.md) <br>_Scene-graph material that evaluates fill gradients per fragment._  |
@@ -173,6 +174,7 @@
 | enum  | [**InspectionMatching**](#enum-inspectionmatching)  <br>_How_ `PlotInspector` _and_`SelectionTool` _match a series' data points to a position._ |
 | typedef [**InspectionNS::Status**](namespaceQAccelPlot_1_1InspectionNS.md#enum-status) | [**InspectionStatus**](#typedef-inspectionstatus)  <br> |
 | typedef [**NanGapModeNS::Mode**](namespaceQAccelPlot_1_1NanGapModeNS.md#enum-mode) | [**NanGapMode**](#typedef-nangapmode)  <br> |
+| typedef [**StepModeNS::Mode**](namespaceQAccelPlot_1_1StepModeNS.md#enum-mode) | [**StepMode**](#typedef-stepmode)  <br> |
 
 
 
@@ -331,6 +333,20 @@ using QAccelPlot::InspectionStatus = typedef InspectionNS::Status;
 
 ```C++
 using QAccelPlot::NanGapMode = typedef NanGapModeNS::Mode;
+```
+
+
+
+
+<hr>
+
+
+
+
+### typedef StepMode {#typedef-stepmode}
+
+```C++
+using QAccelPlot::StepMode = typedef StepModeNS::Mode;
 ```
 
 

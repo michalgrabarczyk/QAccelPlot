@@ -52,6 +52,7 @@ _All inputs required for a_ `contains()` _hit-test, bundled to reduce parameter 
 |  bool | [**nonPositiveXInvalid**](#variable-nonpositivexinvalid)  <br>_Whether non-positive X values are invalid data points (X axis uses log scale)._  |
 |  bool | [**nonPositiveYInvalid**](#variable-nonpositiveyinvalid)  <br>_Whether non-positive Y values are invalid data points (Y axis uses log scale)._  |
 |  int | [**pointCount**](#variable-pointcount)  <br>_Number of leading points in_ `data` _to test; later points are never hit._ |
+|  [**StepMode**](namespaceQAccelPlot_1_1StepModeNS.md#enum-mode) | [**stepMode**](#variable-stepmode)   = `{StepMode::None}`<br>_How the line joins consecutive data points._  |
 |  qreal | [**width**](#variable-width)  <br>_Width of the curve item in pixels._  |
 |  [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**xAxis**](#variable-xaxis)  <br>_Horizontal axis for coordinate mapping._  |
 |  [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**yAxis**](#variable-yaxis)  <br>_Vertical axis for coordinate mapping._  |
@@ -200,6 +201,21 @@ bool QAccelPlot::CurveHitTestParams::nonPositiveYInvalid;
 _Number of leading points in_ `data` _to test; later points are never hit._
 ```C++
 int QAccelPlot::CurveHitTestParams::pointCount;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable stepMode {#variable-stepmode}
+
+_How the line joins consecutive data points._ 
+```C++
+StepMode QAccelPlot::CurveHitTestParams::stepMode;
 ```
 
 

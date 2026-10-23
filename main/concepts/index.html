@@ -1677,7 +1677,7 @@ property. <code>gaps.nanMode</code> selects how the line and fill treat invalid 
 <tbody>
 <tr>
 <td><code>NanGapMode.Break</code> (default)</td>
-<td>No segment or fill is drawn to or from an invalid data point. Valid neighbors end squarely, and a valid data point isolated between two invalid data points draws no line.</td>
+<td>No segment or fill is drawn to or from an invalid data point. Valid neighbors end squarely, and a valid data point isolated between two invalid data points draws no line. With a <a href="../cookbook/styling/#step-lines">step mode</a>, a value still holds up to the X of an invalid neighbor when that X is finite.</td>
 </tr>
 <tr>
 <td><code>NanGapMode.Connect</code></td>

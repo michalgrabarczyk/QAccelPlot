@@ -160,14 +160,15 @@
         <qualifiedname>QAccelPlot::InspectionDataPoint::interpolated</qualifiedname>
         <initializer>{false}</initializer>
         <briefdescription>
-<para>True when the coordinates are interpolated between two data points; index is then the left neighbor. </para>
+<para>True when the coordinates are interpolated between two data points; index is then the data point whose value is shown. </para>
         </briefdescription>
         <detaileddescription>
-<para>Interpolated point. </para>
+<para>Interpolated point.</para>
+<para>That is the left neighbor, or on a step line the data point whose step or riser holds the point. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="68" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="68" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="70" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="70" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-attrib">
@@ -185,7 +186,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="71" column="22" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="71" bodyend="71"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="73" column="22" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="73" bodyend="73"/>
       </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1InspectionDataPoint_1a482830ba6d2ff1afe2a49921b3be3c53" prot="public" static="no" mutable="no">
         <type>QPointF</type>
@@ -201,7 +202,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="74" column="13" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="74" bodyend="74"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="76" column="13" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="76" bodyend="76"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -218,7 +219,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="81" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="83" column="10"/>
       </memberdef>
       <memberdef kind="function" id="structQAccelPlot_1_1InspectionDataPoint_1a7b88c8a3434d70fc5ab171833a78a12a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -233,7 +234,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="83" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="85" column="11"/>
       </memberdef>
       <memberdef kind="function" id="structQAccelPlot_1_1InspectionDataPoint_1ae7cca1e6aa900a04e3bdcdd87ae90ce7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -248,7 +249,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="85" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="87" column="11"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -256,7 +257,7 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="46" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="46" bodyend="86"/>
+    <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="46" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="46" bodyend="88"/>
     <listofallmembers>
       <member refid="structQAccelPlot_1_1InspectionDataPoint_1aecc9143c6adf69b534594c469efc9da4" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionDataPoint</scope><name>dataRevision</name></member>
       <member refid="structQAccelPlot_1_1InspectionDataPoint_1a6eeff45082b8921ec685b1e2d4af3182" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionDataPoint</scope><name>distance</name></member>

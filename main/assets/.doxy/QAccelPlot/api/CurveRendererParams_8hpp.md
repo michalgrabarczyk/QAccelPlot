@@ -18,6 +18,7 @@
 
 
 * `#include "QAccelPlot/axis/Axis.hpp"`
+* `#include "QAccelPlot/series/StepMode.hpp"`
 * `#include <vector>`
 
 

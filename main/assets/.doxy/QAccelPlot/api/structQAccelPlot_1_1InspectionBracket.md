@@ -63,7 +63,7 @@ _The valid data points on either side of a position on one axis._
 | ---: | :--- |
 | property bool | [**adjacent**](structQAccelPlot_1_1InspectionBracket.md#property-adjacent)  <br>_True when both neighbors exist and their source indices are consecutive._  |
 | property quint64 | [**dataRevision**](structQAccelPlot_1_1InspectionBracket.md#property-datarevision)  <br>_Data revision the query ran against._  |
-| property [**QAccelPlot::InspectionDataPoint**](structQAccelPlot_1_1InspectionDataPoint.md) | [**interpolated**](structQAccelPlot_1_1InspectionBracket.md#property-interpolated-12)  <br>_Point on the straight on-screen segment between adjacent neighbors; invalid otherwise._  |
+| property [**QAccelPlot::InspectionDataPoint**](structQAccelPlot_1_1InspectionDataPoint.md) | [**interpolated**](structQAccelPlot_1_1InspectionBracket.md#property-interpolated-12)  <br>_Point on the line between adjacent neighbors: the straight on-screen segment, or the steps of a step line; invalid otherwise._  |
 | property [**QAccelPlot::InspectionDataPoint**](structQAccelPlot_1_1InspectionDataPoint.md) | [**left**](structQAccelPlot_1_1InspectionBracket.md#property-left-12)  <br>_Valid data point with the largest coordinate at or below the position; invalid when there is none._  |
 | property [**QAccelPlot::InspectionDataPoint**](structQAccelPlot_1_1InspectionDataPoint.md) | [**right**](structQAccelPlot_1_1InspectionBracket.md#property-right-12)  <br>_Valid data point with the smallest coordinate above the position; invalid when there is none._  |
 | property QML\_ANONYMOUSQAccelPlot::InspectionNS::Status | [**status**](structQAccelPlot_1_1InspectionBracket.md#property-status-12)  <br>`Ready` _when at least one neighbor exists._ |
@@ -217,7 +217,7 @@ Data revision.
 
 ### property interpolated {#property-interpolated-12}
 
-_Point on the straight on-screen segment between adjacent neighbors; invalid otherwise._ 
+_Point on the line between adjacent neighbors: the straight on-screen segment, or the steps of a step line; invalid otherwise._ 
 ```C++
 QAccelPlot::InspectionDataPoint QAccelPlot::InspectionBracket::interpolated;
 ```

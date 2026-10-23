@@ -42,10 +42,10 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="60" column="17" declfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" declline="60" declcolumn="17"/>
       </memberdef>
-      <memberdef kind="function" id="namespaceQAccelPlot_1_1LineStroke_1aad02ecbc329bbb3551ca9675268d98c4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespaceQAccelPlot_1_1LineStroke_1a9ef03f551509110edd4ad16ab0ecd133" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void QAccelPlot::LineStroke::writeVertices</definition>
-        <argsstring>(LineVertex *vertices, int pointCount, const QColor &amp;color, const std::vector&lt; float &gt; &amp;arcLengths)</argsstring>
+        <argsstring>(LineVertex *vertices, int pointCount, int cornerCount, const QColor &amp;color, const std::vector&lt; float &gt; &amp;arcLengths)</argsstring>
         <name>writeVertices</name>
         <qualifiedname>QAccelPlot::LineStroke::writeVertices</qualifiedname>
         <param>
@@ -57,6 +57,10 @@
           <declname>pointCount</declname>
         </param>
         <param>
+          <type>int</type>
+          <declname>cornerCount</declname>
+        </param>
+        <param>
           <type>const QColor &amp;</type>
           <declname>color</declname>
         </param>
@@ -65,10 +69,10 @@
           <declname>arcLengths</declname>
         </param>
         <briefdescription>
-<para>Writes two ribbon vertices per data point for <emphasis>pointCount</emphasis> data points into <emphasis>vertices</emphasis>. </para>
+<para>Writes two ribbon vertices per path point for <emphasis>pointCount</emphasis> data points of <emphasis>cornerCount</emphasis> path points each into <emphasis>vertices</emphasis>. </para>
         </briefdescription>
         <detaileddescription>
-<para><emphasis>arcLengths</emphasis> holds cumulative lengths of the leading data points, or is empty for solid lines. Data points past its end, such as vertices reserved for appended data, repeat its last length. </para>
+<para><emphasis>arcLengths</emphasis> holds cumulative lengths of the leading path points, or is empty for solid lines. Path points past its end, such as vertices reserved for appended data, repeat its last length. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>

@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespaceQAccelPlot_1_1StepModeNS" kind="namespace" language="C++">
+    <compoundname>QAccelPlot::StepModeNS</compoundname>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="namespaceQAccelPlot_1_1StepModeNS_1af348af83845fdf1f08b475737f62a7cd" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>Mode</name>
+        <qualifiedname>QAccelPlot::StepModeNS::Mode</qualifiedname>
+        <enumvalue id="namespaceQAccelPlot_1_1StepModeNS_1af348af83845fdf1f08b475737f62a7cda6adf97f83acf6453d4a6a4b1070f3754" prot="public">
+          <name>None</name>
+          <briefdescription>
+<para>Straight segments between data points. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespaceQAccelPlot_1_1StepModeNS_1af348af83845fdf1f08b475737f62a7cda9060587edeb01a63e3d3edc959678d1e" prot="public">
+          <name>Before</name>
+          <briefdescription>
+<para>Each value holds from the previous data point&apos;s X up to its own X: the line rises first. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespaceQAccelPlot_1_1StepModeNS_1af348af83845fdf1f08b475737f62a7cda7bfcadb5535fe8aad5032762b7bfe159" prot="public">
+          <name>After</name>
+          <briefdescription>
+<para>Each value holds from its own X up to the next data point&apos;s X: the line runs flat first. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespaceQAccelPlot_1_1StepModeNS_1af348af83845fdf1f08b475737f62a7cda4f1f6016fc9f3f2353c0cc7c67b292bd" prot="public">
+          <name>Center</name>
+          <briefdescription>
+<para>Each value holds between the midpoints to its neighbors, halfway on screen (the geometric mean on a log axis). </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>How a line joins consecutive data points: straight, or as a horizontal step and a vertical riser. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A step mode decides where each data point&apos;s value holds. The line starts at the first data point and ends at the last one; a step never reaches past them. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/StepMode.hpp" line="24" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/StepMode.hpp" bodystart="24" bodyend="29"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Namespace exposing the <computeroutput>StepMode</computeroutput> enum to QML. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/series/StepMode.hpp" line="16" column="1"/>
+  </compounddef>
+</doxygen>

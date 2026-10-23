@@ -51,7 +51,7 @@ _Vertex layout for line geometry, shared with the main thread for pre-built vert
 |  unsigned char | [**g**](#variable-g)  <br>_Green channel (used when_ `useVertexColor` _is true)._ |
 |  float | [**id**](#variable-id)  <br>_Point index in the data buffer._  |
 |  unsigned char | [**r**](#variable-r)  <br>_Red channel (used when_ `useVertexColor` _is true)._ |
-|  float | [**side**](#variable-side)  <br>_Side of the line (-0.5 or +0.5) for screen-space extrusion._  |
+|  float | [**side**](#variable-side)  <br>`±(1 + corner)` _: the sign is the ribbon side,_`corner` _the step corner after the point (0 for the point itself)._ |
 
 
 
@@ -194,7 +194,7 @@ unsigned char QAccelPlot::LineVertex::r;
 
 ### variable side {#variable-side}
 
-_Side of the line (-0.5 or +0.5) for screen-space extrusion._ 
+`±(1 + corner)` _: the sign is the ribbon side,_`corner` _the step corner after the point (0 for the point itself)._
 ```C++
 float QAccelPlot::LineVertex::side;
 ```

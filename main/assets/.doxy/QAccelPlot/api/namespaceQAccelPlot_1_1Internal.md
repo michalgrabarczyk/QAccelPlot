@@ -82,11 +82,14 @@
 |  [**GrabSize**](structQAccelPlot_1_1Internal_1_1GrabSize.md) | [**grabSizeFor**](#function-grabsizefor) (const QSize & pixels, qreal devicePixelRatio) <br>_Returns the grab whose image is closest to_ _pixels_ _in a window at__devicePixelRatio_ _._ |
 |  bool | [**hoverEnabled**](#function-hoverenabled) () <br>_Returns whether series accept hover events:_ `false` _only when_`QACCELPLOT_HOVER_ENABLED` _is 0._ |
 |  QByteArray | [**imageFormatForPath**](#function-imageformatforpath) (const QString & path) <br>_Returns the lowercase_ `QImageWriter` _format for__path's_ _suffix, or an empty array when none can write it._ |
+|  std::optional&lt; QPointF &gt; | [**linePathPoint**](#function-linepathpoint) (const [**CurveDataView**](structQAccelPlot_1_1CurveDataView.md) & data, int pointCount, int index, int corner, [**StepMode**](namespaceQAccelPlot_1_1StepModeNS.md#enum-mode) mode, bool logScaleX, bool logScaleY) <br>_Returns path point_ _corner_ _of data point__index_ _on the drawn line of__pointCount_ _data points._ |
 |  QString | [**localFilePath**](#function-localfilepath) (const QString & pathOrUrl) <br>_Returns_ _pathOrUrl_ _as a local file path; a_`file:` _URL, as a QML file dialog returns, is converted._ |
 |  int | [**maxTextureSize**](#function-maxtexturesize) (QQuickWindow \* window) <br>_Returns the largest texture width and height, in pixels, that_ _window's_ _GPU supports._ |
 |  [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) | [**pannedRange**](#function-pannedrange) (const [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) & range, qreal fraction, bool logarithmic) <br>_Returns_ _range_ _shifted by__fraction_ _of its extent; a positive__fraction_ _raises both bounds._ |
 |  int | [**recordCapacity**](#function-recordcapacity) (QQuickWindow \* window, int floatsPerRecord, int vertexBytesPerRecord) <br>_Returns how many records a series draws that reads them from the data texture by a float vertex id._  |
 |  void | [**setImageResolution**](#function-setimageresolution) (QImage & image, qreal dpi) <br>_Sets the resolution stored with_ _image_ _to__dpi_ _dots per inch._ |
+|  std::optional&lt; QPointF &gt; | [**stepCorner**](#function-stepcorner) (const [**CurveDataView**](structQAccelPlot_1_1CurveDataView.md) & data, int from, int to, int corner, [**StepMode**](namespaceQAccelPlot_1_1StepModeNS.md#enum-mode) mode, bool logScaleX, bool logScaleY) <br>_Returns corner_ _corner_ _of the step from data point__from_ _to data point__to_ _, in data space._ |
+|  int | [**stepCornerCount**](#function-stepcornercount) ([**StepMode**](namespaceQAccelPlot_1_1StepModeNS.md#enum-mode) mode) noexcept<br>_Returns the number of line path points per data point for_ _mode:_ _the data point and the step corners after it._ |
 |  bool | [**supportsCustomShaderRendering**](#function-supportscustomshaderrendering) (const QQuickWindow \* window) <br>_Returns_ `true` _when__window_ _renders through a hardware scene graph backend that runs custom shaders._ |
 |  void | [**uploadDataTexture**](#function-uploaddatatexture) (std::unique\_ptr&lt; QSGTexture &gt; & texture, QQuickWindow \* window, const QImage & image) <br>_Uploads an image to the live-data texture using the configured Qt API path._  |
 |  qreal | [**wheelZoomFactor**](#function-wheelzoomfactor) (qreal zoomScaleFactor, bool zoomingIn, qreal steps=1.0) <br>_Returns the extent multiplier for mouse-wheel zoom with a_ _zoomScaleFactor_ _in (0, 1)._ |
@@ -261,6 +264,33 @@ QByteArray QAccelPlot::Internal::imageFormatForPath (
 
 
 
+### function linePathPoint {#function-linepathpoint}
+
+_Returns path point_ _corner_ _of data point__index_ _on the drawn line of__pointCount_ _data points._
+```C++
+std::optional< QPointF > QAccelPlot::Internal::linePathPoint (
+    const CurveDataView & data,
+    int pointCount,
+    int index,
+    int corner,
+    StepMode mode,
+    bool logScaleX,
+    bool logScaleY
+) 
+```
+
+
+
+The last data point has no step after it, so its corners repeat it. Matches the vertices of the line shader. 
+
+
+        
+
+<hr>
+
+
+
+
 ### function localFilePath {#function-localfilepath}
 
 _Returns_ _pathOrUrl_ _as a local file path; a_`file:` _URL, as a QML file dialog returns, is converted._
@@ -353,6 +383,50 @@ void QAccelPlot::Internal::setImageResolution (
     QImage & image,
     qreal dpi
 ) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function stepCorner {#function-stepcorner}
+
+_Returns corner_ _corner_ _of the step from data point__from_ _to data point__to_ _, in data space._
+```C++
+std::optional< QPointF > QAccelPlot::Internal::stepCorner (
+    const CurveDataView & data,
+    int from,
+    int to,
+    int corner,
+    StepMode mode,
+    bool logScaleX,
+    bool logScaleY
+) 
+```
+
+
+
+Corner 0 is data point _from_. A step corner holds the Y of the data point whose flat step it ends or starts, and is drawn when that data point is valid and the X values placing the corner are usable. Returns `std::nullopt` for a corner that is not drawn. Matches the line shader. 
+
+
+        
+
+<hr>
+
+
+
+
+### function stepCornerCount {#function-stepcornercount}
+
+_Returns the number of line path points per data point for_ _mode:_ _the data point and the step corners after it._
+```C++
+int QAccelPlot::Internal::stepCornerCount (
+    StepMode mode
+) noexcept
 ```
 
 

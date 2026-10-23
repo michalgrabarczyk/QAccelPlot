@@ -81,6 +81,7 @@ flowchart TB
 |  float | [**dashPeriod**](#variable-dashperiod)   = `{0.0f}`<br>_Total dash+gap cycle length in pixels._  |
 |  float | [**lineWidth**](#variable-linewidth)   = `{1.0f}`<br>_Rendered line width in pixels._  |
 |  float | [**pointCount**](#variable-pointcount)   = `{0.0f}`<br>_Number of data points (used to index the data texture)._  |
+|  float | [**stepMode**](#variable-stepmode)   = `{0.0f}`<br>`StepMode` _of the line, as a float (std140 offset 180 in the UBO)._ |
 
 
 ## Public Attributes inherited from QAccelPlot::DataTextureMaterial
@@ -230,7 +231,7 @@ See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 ## Detailed Description
 
 
-Supplies line width, point count, anti-aliasing parameters, and dash pattern data to the line shaders (std140 offsets 104–179 in the UBO; 176–179 holds the inherited item opacity). 
+Supplies line width, point count, anti-aliasing parameters, and dash pattern data to the line shaders (std140 offsets 104–183 in the UBO; 176–179 holds the inherited item opacity). 
 
 
     
@@ -350,6 +351,21 @@ float QAccelPlot::LineMaterial::lineWidth;
 _Number of data points (used to index the data texture)._ 
 ```C++
 float QAccelPlot::LineMaterial::pointCount;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable stepMode {#variable-stepmode}
+
+`StepMode` _of the line, as a float (std140 offset 180 in the UBO)._
+```C++
+float QAccelPlot::LineMaterial::stepMode;
 ```
 
 

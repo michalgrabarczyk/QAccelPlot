@@ -18,6 +18,7 @@
 
 
 * `#include "QAccelPlot/inspection/InspectionResult.hpp"`
+* `#include "QAccelPlot/series/StepMode.hpp"`
 * `#include <QObject>`
 * `#include <QPointF>`
 * `#include <limits>`

@@ -18,6 +18,7 @@
 
 
 * `#include "QAccelPlot/axis/AxisMapping.hpp"`
+* `#include "QAccelPlot/series/StepMode.hpp"`
 * `#include <QPointF>`
 * `#include <limits>`
 

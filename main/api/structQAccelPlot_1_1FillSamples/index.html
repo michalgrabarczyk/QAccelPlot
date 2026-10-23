@@ -1367,6 +1367,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#detailed-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#public-attributes-documentation" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1379,10 +1390,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#variable-indices" class="md-nav__link">
+  <a href="#variable-pointcounts" class="md-nav__link">
     <span class="md-ellipsis">
       
-        variable indices
+        variable pointCounts
       
     </span>
   </a>
@@ -1390,10 +1401,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#variable-sampledcounts" class="md-nav__link">
+  <a href="#variable-points" class="md-nav__link">
     <span class="md-ellipsis">
       
-        variable sampledCounts
+        variable points
       
     </span>
   </a>
@@ -1424,7 +1435,7 @@
 
 <h1 id="struct-qaccelplotfillsamples">Struct QAccelPlot::FillSamples<a class="headerlink" href="#struct-qaccelplotfillsamples" title="Permanent link">&para;</a></h1>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="./"><strong>FillSamples</strong></a></p>
-<p><em>Data points of a gradient fill: one group per run of valid data points, broken at gaps.</em> </p>
+<p><em>Outline of a gradient fill in data space: one group of points per run of valid data points, broken at gaps.</em> <a href="#detailed-description">More...</a></p>
 <ul>
 <li><code>#include &lt;LineCurveLineRenderer.hpp&gt;</code></li>
 </ul>
@@ -1439,24 +1450,26 @@
 <tbody>
 <tr>
 <td style="text-align: right;">std::vector&lt; int &gt;</td>
-<td style="text-align: left;"><a href="#variable-indices"><strong>indices</strong></a>  <br><em>Source indices of all sampled runs, run after run.</em></td>
+<td style="text-align: left;"><a href="#variable-pointcounts"><strong>pointCounts</strong></a>  <br><em>Number of points of each run; zero for runs too short to fill.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">std::vector&lt; int &gt;</td>
-<td style="text-align: left;"><a href="#variable-sampledcounts"><strong>sampledCounts</strong></a>  <br><em>Number of samples of each run; zero for runs too short to fill.</em></td>
+<td style="text-align: right;">std::vector&lt; QPointF &gt;</td>
+<td style="text-align: left;"><a href="#variable-points"><strong>points</strong></a>  <br><em>Points of all runs, run after run.</em></td>
 </tr>
 </tbody>
 </table>
+<h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
+<p>Each point is a sampled data point or, with a step mode, a step corner. </p>
 <h2 id="public-attributes-documentation">Public Attributes Documentation<a class="headerlink" href="#public-attributes-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="variable-indices">variable indices<a class="headerlink" href="#variable-indices" title="Permanent link">&para;</a></h3>
-<p><em>Source indices of all sampled runs, run after run.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">FillSamples</span><span class="o">::</span><span class="n">indices</span><span class="p">;</span>
+<h3 id="variable-pointcounts">variable pointCounts<a class="headerlink" href="#variable-pointcounts" title="Permanent link">&para;</a></h3>
+<p><em>Number of points of each run; zero for runs too short to fill.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">FillSamples</span><span class="o">::</span><span class="n">pointCounts</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
-<h3 id="variable-sampledcounts">variable sampledCounts<a class="headerlink" href="#variable-sampledcounts" title="Permanent link">&para;</a></h3>
-<p><em>Number of samples of each run; zero for runs too short to fill.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">FillSamples</span><span class="o">::</span><span class="n">sampledCounts</span><span class="p">;</span>
+<h3 id="variable-points">variable points<a class="headerlink" href="#variable-points" title="Permanent link">&para;</a></h3>
+<p><em>Points of all runs, run after run.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">QPointF</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">FillSamples</span><span class="o">::</span><span class="n">points</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
