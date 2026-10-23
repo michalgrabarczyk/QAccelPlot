@@ -40,7 +40,8 @@ The table shows `LineCurve`. Every series has `setData()`,
 prebuilt vertex cache, so vertex assembly can move off the UI and render
 threads. It ties application code to renderer details; use it only when
 measurements justify it. The cache must match the current point count and
-renderer layout, otherwise it is rejected and normal vertex assembly runs.
+renderer layout, otherwise it is rejected and normal vertex assembly runs. For
+a step line, build it with `buildVertexCache(data, count, cache, stepMode)`.
 
 ## Data ranges are computed on demand
 

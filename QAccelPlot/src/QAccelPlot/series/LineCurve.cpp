@@ -16,6 +16,7 @@
 #include "QAccelPlot/legend/LegendEntry.hpp"
 #include "QAccelPlot/series/LineCurveGapFilter.hpp"
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
+#include "QAccelPlot/series/internal/StepPath.hpp"
 #include "QAccelPlot/transitions/DataTransition.hpp"
 #include "QAccelPlot/transitions/TransitionRunner.hpp"
 
@@ -151,11 +152,11 @@ constexpr auto kMaxMarkerPoints = std::numeric_limits<int>::max() / (kMarkerVert
 constexpr auto kMaxLinePoints = 1 << 24;
 
 // Number of points a curve with these parts draws in \a window.
-int pointCapacity(QQuickWindow* window, const bool hasLine, const bool hasPoints)
+int pointCapacity(QQuickWindow* window, const bool hasLine, const bool hasPoints, const StepMode stepMode)
 {
     auto capacity = hasPoints ? kMaxMarkerPoints : std::numeric_limits<int>::max();
     if (hasLine) {
-        capacity = std::min(capacity, Internal::recordCapacity(window, 2, kLineVertexBytesPerPoint));
+        capacity = std::min(capacity, Internal::recordCapacity(window, 2, kLineVertexBytesPerPoint * Internal::stepCornerCount(stepMode)));
     }
     return capacity;
 }
@@ -334,6 +335,23 @@ SeriesMarker* LineCurve::marker() const
     return marker_;
 }
 
+StepMode LineCurve::stepMode() const
+{
+    return stepMode_;
+}
+
+void LineCurve::setStepMode(const StepMode mode)
+{
+    if (stepMode_ == mode) {
+        return;
+    }
+    stepMode_ = mode;
+    emit stepModeChanged();
+    invalidateVertices();
+    invalidateInspection();
+    update();
+}
+
 void LineCurve::appendData(const qreal x, const qreal y)
 {
     finishTransition();
@@ -418,6 +436,7 @@ InspectionSource LineCurve::inspectionSource() const
     source.logY = logScaleY();
     source.doubles = points.precise;
     source.floats = points.floats;
+    source.stepMode = stepMode_;
     return source;
 }
 
@@ -459,7 +478,7 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updat
         styleChanged_ = false;
     }
 
-    const auto capacity = pointCapacity(window(), hasLine, hasPoints);
+    const auto capacity = pointCapacity(window(), hasLine, hasPoints, stepMode_);
     updateRenderCapacity(capacity, renderPointCount());
     const auto drawnPointCount = std::min(renderPointCount(), capacity);
     const auto minPoints = hasPoints ? 1 : 2;
@@ -523,7 +542,7 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updat
     if (hasLine) {
         const auto lineParams = LineCurveRenderParams{window(), renderData(), sourceDataView(), drawnPointCount, dataChanged, color_, hovered_, lineWidth_,
             domainMin, domainMax, viewportSize, xAxis(), yAxis(), xAxis()->logScale(), yAxis()->logScale(), antialiasingEnabled_, antialiasingFeather_,
-            renderGradientPayload, gradientFillPayload, hasPoints ? nullptr : cache, lineStyle_};
+            renderGradientPayload, gradientFillPayload, hasPoints ? nullptr : cache, lineStyle_, stepMode_};
         lineNode = lineRenderer_.paint(lineOldNode, lineParams);
     }
 
@@ -622,7 +641,8 @@ bool LineCurve::contains(const QPointF& point) const
     }
 
     if (lineStyle_ && lineStyle_->showLine() && hoverRadius_ > 0.0) {
-        return lineRenderer_.contains(point, CurveHitTestParams{sourceDataView(), drawnPointCount, chunks_, xAxis(), yAxis(), w, h, hoverRadius_, logX, logY});
+        return lineRenderer_.contains(
+            point, CurveHitTestParams{sourceDataView(), drawnPointCount, chunks_, xAxis(), yAxis(), w, h, hoverRadius_, logX, logY, stepMode_});
     }
 
     return false;
@@ -880,7 +900,7 @@ std::size_t LineCurve::expectedVertexCacheSize() const
         return 0;
     }
     if (hasLine && renderPointCount() >= 2) {
-        return static_cast<std::size_t>(renderPointCount()) * 2 * sizeof(LineVertex);
+        return static_cast<std::size_t>(renderPointCount()) * static_cast<std::size_t>(Internal::stepCornerCount(stepMode_)) * 2 * sizeof(LineVertex);
     }
     if (hasPoints) {
         return static_cast<std::size_t>(renderPointCount()) * 6 * sizeof(PointVertex);
@@ -919,7 +939,7 @@ void LineCurve::rebuildVertexCache()
     // A cache of more points than the curve draws would not be used.
     if (lineStyle_ && lineStyle_->showLine() && !isDash && renderPointCount() >= 2 && renderPointCount() <= kMaxLinePoints) {
         vertexCache_.rebuild(LineCurveVertexCache::Layout::Line, renderPointCount(),
-            [this](std::vector<char>& bytes) { lineRenderer_.buildVertexCache(renderData(), renderPointCount(), bytes); });
+            [this](std::vector<char>& bytes) { lineRenderer_.buildVertexCache(renderData(), renderPointCount(), bytes, stepMode_); });
     } else if (marker_->shape() != MarkerShape::None && renderPointCount() >= 1 && renderPointCount() <= kMaxMarkerPoints) {
         vertexCache_.rebuild(LineCurveVertexCache::Layout::Points, renderPointCount(),
             [this](std::vector<char>& bytes) { pointRenderer_.buildVertexCache(renderData(), renderPointCount(), bytes); });

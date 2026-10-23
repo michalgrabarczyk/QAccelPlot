@@ -14,6 +14,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <optional>
 
 namespace QAccelPlot {
 namespace {
@@ -46,6 +47,28 @@ InspectionSummary toSummary(const SummaryAccumulator& stats, const quint64 revis
     result.mean = stats.mean;
     result.standardDeviation = stats.standardDeviation();
     return result;
+}
+
+// Where a line drawn with a step mode passes between two adjacent data points.
+struct StepPoint {
+    bool ownedByRight;    // The point belongs to the right data point: it is on its step or its riser.
+    bool acrossFromRight; // The coordinate across the query axis is the right data point's, not the left one's.
+    bool acrossBetween;   // The coordinate across the query axis lies halfway between the data points.
+};
+
+// Returns where a line drawn with \a mode passes at \a ratio of the way from the left to the right data point
+// along the query axis. Along X the line holds a value; along Y it climbs the riser between the two values.
+StepPoint stepPointBetween(const StepMode mode, const bool alongX, const double ratio)
+{
+    if (mode == StepMode::After) {
+        return alongX ? StepPoint{false, false, false} : StepPoint{true, true, false};
+    }
+    if (mode == StepMode::Before) {
+        const auto right = alongX && ratio > 0.0;
+        return StepPoint{right, right, false};
+    }
+    const auto right = ratio >= 0.5;
+    return StepPoint{right, right, !alongX};
 }
 
 // Whether appending the last record of source keeps its coordinates along axis non-decreasing.
@@ -497,7 +520,7 @@ InspectionBracket SeriesInspection::bracketAlong(const InspectionAxis axis, cons
     result.adjacent = found.left >= 0 && found.right == found.left + 1;
     result.interpolated.dataRevision = result.dataRevision;
     if (result.adjacent) {
-        result.interpolated = interpolate(*mapping, axis, result.left, result.right, pixel);
+        result.interpolated = interpolate(*mapping, axis, result.left, result.right, pixel, source.stepMode);
     }
     return result;
 }
@@ -520,26 +543,40 @@ InspectionDataPoint SeriesInspection::makeDataPoint(const InspectionSource& sour
     return result;
 }
 
-InspectionDataPoint SeriesInspection::interpolate(
-    const InspectionMetric& metric, const InspectionAxis axis, const InspectionDataPoint& left, const InspectionDataPoint& right, const qreal pixel) const
+InspectionDataPoint SeriesInspection::interpolate(const InspectionMetric& metric, const InspectionAxis axis, const InspectionDataPoint& left,
+    const InspectionDataPoint& right, const qreal pixel, const StepMode stepMode) const
 {
     auto result = InspectionDataPoint{};
     result.dataRevision = left.dataRevision;
     const auto alongX = axis == InspectionAxis::X;
-    const auto from = alongX ? left.pixelPosition.x() : left.pixelPosition.y();
-    const auto span = (alongX ? right.pixelPosition.x() : right.pixelPosition.y()) - from;
+    const auto acrossAxis = alongX ? InspectionAxis::Y : InspectionAxis::X;
+    const auto pixelAlong = [alongX](const QPointF& position) { return alongX ? position.x() : position.y(); };
+    const auto pixelAcross = [alongX](const QPointF& position) { return alongX ? position.y() : position.x(); };
+    const auto from = pixelAlong(left.pixelPosition);
+    const auto span = pixelAlong(right.pixelPosition) - from;
     if (!std::isfinite(span) || span == 0.0) {
         return result;
     }
     const auto ratio = std::clamp((pixel - from) / span, 0.0, 1.0);
-    const auto across = alongX ? left.pixelPosition.y() + ratio * (right.pixelPosition.y() - left.pixelPosition.y())
-                               : left.pixelPosition.x() + ratio * (right.pixelPosition.x() - left.pixelPosition.x());
-    result.status = InspectionStatus::Ready;
+    auto across = pixelAcross(left.pixelPosition) + ratio * (pixelAcross(right.pixelPosition) - pixelAcross(left.pixelPosition));
+    auto acrossCoordinate = std::optional<double>{};
     result.index = left.index;
+    if (stepMode != StepMode::None) {
+        const auto step = stepPointBetween(stepMode, alongX, ratio);
+        const auto& acrossPoint = step.acrossFromRight ? right : left;
+        result.index = step.ownedByRight ? right.index : left.index;
+        across = step.acrossBetween ? (pixelAcross(left.pixelPosition) + pixelAcross(right.pixelPosition)) * 0.5 : pixelAcross(acrossPoint.pixelPosition);
+        if (!step.acrossBetween) {
+            acrossCoordinate = alongX ? acrossPoint.position.y() : acrossPoint.position.x();
+        }
+    }
+    result.status = InspectionStatus::Ready;
     result.interpolated = true;
     result.distance = 0.0;
     result.pixelPosition = alongX ? QPointF{pixel, across} : QPointF{across, pixel};
-    result.position = {metric.coord(InspectionAxis::X, result.pixelPosition.x()), metric.coord(InspectionAxis::Y, result.pixelPosition.y())};
+    const auto alongCoordinate = metric.coord(axis, pixel);
+    const auto acrossValue = acrossCoordinate.value_or(metric.coord(acrossAxis, across));
+    result.position = alongX ? QPointF{alongCoordinate, acrossValue} : QPointF{acrossValue, alongCoordinate};
     return result;
 }
 

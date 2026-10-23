@@ -27,7 +27,7 @@ class LineMaterial;
 /// \brief Vertex layout for line geometry, shared with the main thread for pre-built vertex caches.
 struct LineVertex {
     float id;        ///< \brief Point index in the data buffer.
-    float side;      ///< \brief Side of the line (-0.5 or +0.5) for screen-space extrusion.
+    float side;      ///< \brief <tt>±(1 + corner)</tt>: the sign is the ribbon side, \c corner the step corner after the point (0 for the point itself).
     unsigned char r; ///< \brief Red channel (used when \c useVertexColor is true).
     unsigned char g; ///< \brief Green channel (used when \c useVertexColor is true).
     unsigned char b; ///< \brief Blue channel (used when \c useVertexColor is true).
@@ -59,11 +59,11 @@ const QSGGeometry::AttributeSet& vertexAttributes();
 /// \brief Returns a triangle-strip node with \a vertexCount line vertices that owns \a material.
 QSGGeometryNode* createNode(int vertexCount, QSGMaterial* material);
 
-/// \brief Writes two ribbon vertices per data point for \a pointCount data points into \a vertices.
+/// \brief Writes two ribbon vertices per path point for \a pointCount data points of \a cornerCount path points each into \a vertices.
 ///
-/// \a arcLengths holds cumulative lengths of the leading data points, or is empty for solid lines. Data points
+/// \a arcLengths holds cumulative lengths of the leading path points, or is empty for solid lines. Path points
 /// past its end, such as vertices reserved for appended data, repeat its last length.
-void writeVertices(LineVertex* vertices, int pointCount, const QColor& color, const std::vector<float>& arcLengths);
+void writeVertices(LineVertex* vertices, int pointCount, int cornerCount, const QColor& color, const std::vector<float>& arcLengths);
 
 /// \brief Copies \a uniforms into \a material.
 void applyUniforms(LineMaterial& material, const Uniforms& uniforms);

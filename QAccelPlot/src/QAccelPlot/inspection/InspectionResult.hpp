@@ -64,7 +64,9 @@ struct InspectionDataPoint {
     Q_PROPERTY(QPointF pixelPosition MEMBER pixelPosition CONSTANT)
     /// \brief Distance from the query position in logical pixels.
     Q_PROPERTY(qreal distance MEMBER distance CONSTANT)
-    /// \brief True when the coordinates are interpolated between two data points; index is then the left neighbor.
+    /// \brief True when the coordinates are interpolated between two data points; index is then the data point whose value is shown.
+    ///
+    /// That is the left neighbor, or on a step line the data point whose step or riser holds the point.
     Q_PROPERTY(bool interpolated MEMBER interpolated CONSTANT)
 
 public:
@@ -141,7 +143,7 @@ struct InspectionBracket {
     Q_PROPERTY(::QAccelPlot::InspectionDataPoint right MEMBER right CONSTANT)
     /// \brief True when both neighbors exist and their source indices are consecutive.
     Q_PROPERTY(bool adjacent MEMBER adjacent CONSTANT)
-    /// \brief Point on the straight on-screen segment between adjacent neighbors; invalid otherwise.
+    /// \brief Point on the line between adjacent neighbors: the straight on-screen segment, or the steps of a step line; invalid otherwise.
     Q_PROPERTY(::QAccelPlot::InspectionDataPoint interpolated MEMBER interpolated CONSTANT)
 
 public:

@@ -107,6 +107,7 @@ private slots:
     void replacementAndScale();
     void bracketEnds();
     void interpolation();
+    void stepInterpolation();
     void argumentsAndAxisLifetime();
     void transition();
     void unorderedScan();
@@ -281,6 +282,56 @@ void TestSeriesInspection::interpolation()
     bracket = inspection->bracketByX(300);
     QVERIFY(std::abs(bracket.interpolated.y() - 100.0) < 1e-9);
     QCOMPARE(bracket.interpolated.pixelPosition.x(), 300.0);
+}
+
+void TestSeriesInspection::stepInterpolation()
+{
+    auto curve = LineCurve{};
+    auto x = Axis{};
+    auto y = Axis{};
+    bind(curve, x, y, {QPointF{0, 0}, QPointF{10, 10}}, {1000, 100});
+    curve.setData(std::vector<double>{2, 1, 4, 9}, 2);
+    auto* inspection = curve.inspection();
+    const auto alongX = [&](const qreal dataX) { return inspection->bracketByX(dataX * 100).interpolated; };
+    const auto alongY = [&](const qreal dataY) { return inspection->bracketByY(100 - dataY * 10).interpolated; };
+
+    // Along X the readout is the value the step holds, and index is the data point holding it.
+    curve.setStepMode(StepMode::After);
+    QCOMPARE(alongX(3).index, 0);
+    QCOMPARE(alongX(3).y(), 1.0);
+    QCOMPARE(alongX(3).x(), 3.0);
+    QCOMPARE(alongX(3).pixelPosition, QPointF(300, 90));
+    curve.setStepMode(StepMode::Before);
+    QCOMPARE(alongX(3).index, 1);
+    QCOMPARE(alongX(3).y(), 9.0);
+    QCOMPARE(alongX(2).index, 0);
+    QCOMPARE(alongX(2).y(), 1.0);
+    curve.setStepMode(StepMode::Center);
+    QCOMPARE(alongX(2.9).index, 0);
+    QCOMPARE(alongX(2.9).y(), 1.0);
+    QCOMPARE(alongX(3.1).index, 1);
+    QCOMPARE(alongX(3.1).y(), 9.0);
+
+    // Along Y the readout is on the riser between the two values.
+    curve.setStepMode(StepMode::After);
+    QCOMPARE(alongY(4).index, 1);
+    QCOMPARE(alongY(4).x(), 4.0);
+    curve.setStepMode(StepMode::Before);
+    QCOMPARE(alongY(4).index, 0);
+    QCOMPARE(alongY(4).x(), 2.0);
+    curve.setStepMode(StepMode::Center);
+    QCOMPARE(alongY(4).index, 0);
+    QVERIFY(std::abs(alongY(4).x() - 3.0) < 1e-9);
+    QCOMPARE(alongY(6).index, 1);
+
+    // A centered step on a log X axis changes value halfway on screen, at the geometric mean.
+    x.setLogScale(true);
+    x.setViewportMin(1);
+    x.setViewportMax(100);
+    curve.setData(std::vector<double>{2, 1, 50, 9}, 2);
+    const auto pixelOf = [](const qreal dataX) { return std::log10(dataX) / 2 * 1000; };
+    QCOMPARE(inspection->bracketByX(pixelOf(9)).interpolated.y(), 1.0);
+    QCOMPARE(inspection->bracketByX(pixelOf(11)).interpolated.y(), 9.0);
 }
 
 void TestSeriesInspection::argumentsAndAxisLifetime()

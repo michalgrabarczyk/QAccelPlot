@@ -1,5 +1,5 @@
 ---
-description: "Style QAccelPlot curves with color palettes, dash patterns, point markers, gradient fills and strokes, and animated data transitions."
+description: "Style QAccelPlot curves with color palettes, dash patterns, point markers, step lines, gradient fills and strokes, and animated data transitions."
 ---
 
 <!--
@@ -52,6 +52,47 @@ Line styles are `QAccelPlot.SolidLine`, `QAccelPlot.DashLine`, and
 Marker settings are grouped under `marker`: `shape`, `size`, `filled`, and
 `strokeWidth`.
 A dash pattern lists alternating on/off lengths in pixels.
+
+## Step lines
+
+[`stepMode`][step-mode] draws the line as horizontal steps joined by vertical
+risers:
+
+```qml
+QAccelPlot.LineCurve {
+    stepMode: QAccelPlot.StepMode.After
+}
+```
+
+| `StepMode` | Each value holds |
+| --- | --- |
+| `None` (default) | Nowhere: straight segments join the data points. |
+| `Before` | From the previous data point's X up to its own X. |
+| `After` | From its own X up to the next data point's X. |
+| `Center` | Between the midpoints to its neighbors, halfway on screen (the geometric mean on a log axis). |
+
+- The line starts at the first data point and ends at the last one. To hold the
+  last value until now, append a data point at the current X.
+- The gradient fill, dash pattern, and hover follow the steps. Markers stay on
+  the data points.
+- With [`PlotInspector.interpolate`](data-inspection.md), a crosshair between
+  two data points reads the value the step holds, and `index` is the data point
+  holding it.
+- The line follows the data points in order; X is not sorted.
+
+To outline a histogram, repeat the last value at the last edge and draw it with
+`After`:
+
+```qml
+QAccelPlot.LineCurve {
+    stepMode: QAccelPlot.StepMode.After
+    Component.onCompleted: {
+        const histogram = QAccelPlot.Histogram.fromSamples(samples, 40);
+        const values = histogram.values;
+        setData(histogram.edges.map((edge, i) => Qt.point(edge, values[Math.min(i, values.length - 1)])));
+    }
+}
+```
 
 ## Marker shapes
 
@@ -161,6 +202,8 @@ Complete sources:
 - [`examples/styling/markers`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/markers)
 - [`examples/styling/gradients`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/gradients)
 - [`examples/styling/transitions`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/transitions)
+- [`examples/plot_types/step_lines`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/step_lines)
 
 [effects]: ../api/classQAccelPlot_1_1LineCurve.md#property-effects-12
+[step-mode]: ../api/classQAccelPlot_1_1LineCurve.md#property-stepmode-12
 [transition]: ../api/classQAccelPlot_1_1LineCurve.md#property-transition-12

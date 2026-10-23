@@ -15,6 +15,7 @@
 #include "QAccelPlot/renderers/CurveRendererParams.hpp"
 #include "QAccelPlot/renderers/LineStroke.hpp"
 #include "QAccelPlot/series/LineCurveGapFilter.hpp"
+#include "QAccelPlot/series/internal/StepPath.hpp"
 
 #include <QSGGeometry>
 #include <QSGGeometryNode>
@@ -78,9 +79,9 @@ int fillVertexCount(const FillSamples& samples)
 {
     auto vertexCount = int{0};
     auto drawnRuns = int{0};
-    for (const auto sampled : samples.sampledCounts) {
-        if (sampled > 0) {
-            vertexCount += sampled * 2;
+    for (const auto runPoints : samples.pointCounts) {
+        if (runPoints > 0) {
+            vertexCount += runPoints * 2;
             ++drawnRuns;
         }
     }
@@ -88,17 +89,17 @@ int fillVertexCount(const FillSamples& samples)
     return vertexCount + std::max(0, drawnRuns - 1) * 2;
 }
 
-void assembleFillVertices(QSGGeometry* geometry, const CurveDataView data, const FillSamples& samples, Axis* xAxis, Axis* yAxis, const qreal width,
-    const qreal height, const GradientFillPayload& gradientFillPayload)
+void assembleFillVertices(QSGGeometry* geometry, const FillSamples& samples, Axis* xAxis, Axis* yAxis, const qreal width, const qreal height,
+    const GradientFillPayload& gradientFillPayload)
 {
     auto* vertices = static_cast<GradientFillVertex*>(geometry->vertexData());
     const auto baselineData = (gradientFillPayload.baseline == GradientFillBaseline::AxisMinimum) ? yAxis->viewportMin() : gradientFillPayload.baselineValue;
     const auto baselinePixel = static_cast<float>(yAxis->coordToPixel(baselineData, height));
 
     auto written = int{0};
-    auto nextSample = std::size_t{0};
-    for (const auto sampledCount : samples.sampledCounts) {
-        if (sampledCount <= 0) {
+    auto nextPoint = std::size_t{0};
+    for (const auto runPoints : samples.pointCounts) {
+        if (runPoints <= 0) {
             continue;
         }
         const auto runStartVertex = written;
@@ -107,10 +108,10 @@ void assembleFillVertices(QSGGeometry* geometry, const CurveDataView data, const
             vertices[written] = vertices[written - 1];
             written += 2;
         }
-        for (auto sample = int{0}; sample < sampledCount; ++sample) {
-            const auto sourceIndex = samples.indices[nextSample++];
-            const auto px = data.x(sourceIndex);
-            const auto py = data.y(sourceIndex);
+        for (auto point = int{0}; point < runPoints; ++point) {
+            const auto& dataPoint = samples.points[nextPoint++];
+            const auto px = dataPoint.x();
+            const auto py = dataPoint.y();
             const auto xPixel = static_cast<float>(xAxis->coordToPixel(px, width));
             const auto yPixel = static_cast<float>(yAxis->coordToPixel(py, height));
 
@@ -123,6 +124,64 @@ void assembleFillVertices(QSGGeometry* geometry, const CurveDataView data, const
             vertices[runStartVertex + 1] = vertices[runStartVertex + 2];
         }
     }
+}
+
+// Appends the fill outline of \a run to \a points: the data points \a sampled and, with a step mode, the step
+// corners between them and those of the steps reaching into the gaps on either side of the run.
+void appendRunOutline(const CurveDataView& data, const int pointCount, const DataPointRun& run, const std::vector<int>& sampled, const StepMode mode,
+    const bool logScaleX, const bool logScaleY, std::vector<QPointF>& points)
+{
+    const auto cornerCount = Internal::stepCornerCount(mode);
+    const auto appendCorners = [&](const int from, const int to) {
+        for (auto corner = 1; corner < cornerCount; ++corner) {
+            if (const auto point = Internal::stepCorner(data, from, to, corner, mode, logScaleX, logScaleY)) {
+                points.push_back(*point);
+            }
+        }
+    };
+    if (run.start > 0) {
+        appendCorners(run.start - 1, run.start);
+    }
+    for (auto i = std::size_t{0}; i < sampled.size(); ++i) {
+        const auto index = sampled[i];
+        points.emplace_back(data.x(index), data.y(index));
+        const auto next = i + 1 < sampled.size() ? sampled[i + 1] : index + 1;
+        if (next < pointCount) {
+            appendCorners(index, next);
+        }
+    }
+}
+
+// Returns the squared pixel distance from \a point to the segment from \a from to \a to.
+qreal squaredDistanceToSegment(const QPointF& point, const QPointF& from, const QPointF& to)
+{
+    const auto lengthSquared = QPointF::dotProduct(to - from, to - from);
+    const auto t = (lengthSquared == 0.0) ? 0.0 : std::clamp(QPointF::dotProduct(point - from, to - from) / lengthSquared, 0.0, 1.0);
+    const auto projection = from + t * (to - from);
+    return QPointF::dotProduct(point - projection, point - projection);
+}
+
+// Returns true when \a point is closer than \a thresholdSquared to the drawn line from data point \a index to the next one.
+bool segmentsFromPointHit(const QPointF& point, const CurveHitTestParams& params, const int index, const qreal thresholdSquared)
+{
+    const auto pixelAt = [&params](const int pointIndex, const int corner) -> std::optional<QPointF> {
+        const auto dataPoint = Internal::linePathPoint(
+            params.data, params.pointCount, pointIndex, corner, params.stepMode, params.nonPositiveXInvalid, params.nonPositiveYInvalid);
+        if (!dataPoint) {
+            return std::nullopt;
+        }
+        return QPointF{params.xAxis->coordToPixel(dataPoint->x(), params.width), params.yAxis->coordToPixel(dataPoint->y(), params.height)};
+    };
+    const auto cornerCount = Internal::stepCornerCount(params.stepMode);
+    auto from = pixelAt(index, 0);
+    for (auto corner = 1; corner <= cornerCount; ++corner) {
+        const auto to = corner < cornerCount ? pixelAt(index, corner) : pixelAt(index + 1, 0);
+        if (from && to && squaredDistanceToSegment(point, *from, *to) < thresholdSquared) {
+            return true;
+        }
+        from = to;
+    }
+    return false;
 }
 
 QSGNode* createLineRootNode(const int strokeVertexCount, const bool gradientStroke)
@@ -174,13 +233,15 @@ QSGNode* ensureLineRootNode(QSGNode* oldNode, const int strokeVertexCount, const
 
 } // namespace
 
-void LineCurveLineRenderer::buildVertexCache([[maybe_unused]] const std::vector<float>& data, const int pointCount, std::vector<char>& cache) const
+void LineCurveLineRenderer::buildVertexCache(
+    [[maybe_unused]] const std::vector<float>& data, const int pointCount, std::vector<char>& cache, const StepMode stepMode) const
 {
-    const auto byteSize = static_cast<std::size_t>(pointCount) * 2 * sizeof(LineVertex);
+    const auto cornerCount = Internal::stepCornerCount(stepMode);
+    const auto byteSize = static_cast<std::size_t>(pointCount) * static_cast<std::size_t>(cornerCount) * 2 * sizeof(LineVertex);
     cache.resize(byteSize);
     // Neutral RGBA: the shader uses the material color uniform (useVertexColor == 0) for
     // non-gradient rendering, so per-vertex color is irrelevant in that path.
-    LineStroke::writeVertices(reinterpret_cast<LineVertex*>(cache.data()), pointCount, Qt::white, {});
+    LineStroke::writeVertices(reinterpret_cast<LineVertex*>(cache.data()), pointCount, cornerCount, Qt::white, {});
 }
 
 bool LineCurveLineRenderer::contains(const QPointF& point, const CurveHitTestParams& params) const
@@ -208,23 +269,13 @@ bool LineCurveLineRenderer::contains(const QPointF& point, const CurveHitTestPar
             continue;
         }
 
-        // Inner loop: test all segments whose first endpoint is in this chunk, including
-        // the bridging segment to the following chunk (segEnd is clamped to pointCount-1).
+        // Inner loop: test the line from every data point in this chunk, including the
+        // bridging line to the following chunk (segEnd is clamped to pointCount-1). Step
+        // corners lie within the bounding box of the two data points they join.
         const auto segStart = std::max(0, chunk.start - 1);
         const auto segEnd = std::min(chunk.start + chunk.count, params.pointCount - 1);
         for (auto index = segStart; index < segEnd; ++index) {
-            if (!LineCurveGapFilter::isValidPoint(params.data, index, params.nonPositiveXInvalid, params.nonPositiveYInvalid)
-                || !LineCurveGapFilter::isValidPoint(params.data, index + 1, params.nonPositiveXInvalid, params.nonPositiveYInvalid)) {
-                continue;
-            }
-            const auto p1
-                = QPointF{params.xAxis->coordToPixel(params.data.x(index), params.width), params.yAxis->coordToPixel(params.data.y(index), params.height)};
-            const auto p2 = QPointF{
-                params.xAxis->coordToPixel(params.data.x(index + 1), params.width), params.yAxis->coordToPixel(params.data.y(index + 1), params.height)};
-            const auto lineLengthSquared = QPointF::dotProduct(p2 - p1, p2 - p1);
-            const auto t = (lineLengthSquared == 0.0) ? 0.0 : std::max(0.0, std::min(1.0, QPointF::dotProduct(point - p1, p2 - p1) / lineLengthSquared));
-            const auto projection = p1 + t * (p2 - p1);
-            if (QPointF::dotProduct(point - projection, point - projection) < thresholdSquared) {
+            if (segmentsFromPointHit(point, params, index, thresholdSquared)) {
                 return true;
             }
         }
@@ -235,7 +286,7 @@ bool LineCurveLineRenderer::contains(const QPointF& point, const CurveHitTestPar
 
 QSGNode* LineCurveLineRenderer::paint(QSGNode* oldNode, const LineCurveRenderParams& params) const
 {
-    const auto vertexCount = params.pointCount * 2;
+    const auto vertexCount = params.pointCount * 2 * Internal::stepCornerCount(params.stepMode);
     const auto gradientStroke = params.gradientPayload.isValid();
     auto rootRecreated = false;
     auto* rootNode = ensureLineRootNode(oldNode, vertexCount, gradientStroke, rootRecreated);
@@ -291,8 +342,8 @@ void LineCurveLineRenderer::updateFillGeometry(QSGGeometryNode* fillNode, const 
         fillNode->geometry()->allocate(vertexCount);
     }
     if (samples && vertexCount > 0) {
-        assembleFillVertices(fillNode->geometry(), params.sourceData, *samples, params.xAxis, params.yAxis, params.viewportSize.x(), params.viewportSize.y(),
-            params.gradientFillPayload);
+        assembleFillVertices(
+            fillNode->geometry(), *samples, params.xAxis, params.yAxis, params.viewportSize.x(), params.viewportSize.y(), params.gradientFillPayload);
         fillNode->markDirty(QSGNode::DirtyGeometry);
         auto* material = static_cast<GradientFillMaterial*>(fillNode->material());
         material->opacity = params.gradientFillPayload.opacity;
@@ -309,20 +360,42 @@ const FillSamples& LineCurveLineRenderer::fillSamples(const LineCurveRenderParam
     const auto* dataIdentity
         = params.sourceData.doubleData ? static_cast<const void*>(params.sourceData.doubleData) : static_cast<const void*>(params.sourceData.floatData);
     const auto stale = params.dataChanged || cache.data != dataIdentity || cache.pointCount != params.pointCount || cache.logScaleX != params.logScaleX
-        || cache.logScaleY != params.logScaleY;
+        || cache.logScaleY != params.logScaleY || cache.stepMode != params.stepMode;
     if (stale) {
-        const auto runs = LineCurveGapFilter::findValidRuns(params.sourceData, params.pointCount, params.logScaleX, params.logScaleY);
-        cache.samples.sampledCounts = LineCurveGapFilter::planRunSampling(runs, kMaxFillVertices / 2);
-        cache.samples.indices.clear();
-        for (auto run = std::size_t{0}; run < runs.size(); ++run) {
-            LineCurveGapFilter::appendEnvelopeSamples(params.sourceData, runs[run], cache.samples.sampledCounts[run], cache.samples.indices);
-        }
+        rebuildFillSamples(params, cache.samples);
         cache.data = dataIdentity;
         cache.pointCount = params.pointCount;
         cache.logScaleX = params.logScaleX;
         cache.logScaleY = params.logScaleY;
+        cache.stepMode = params.stepMode;
     }
     return cache.samples;
+}
+
+void LineCurveLineRenderer::rebuildFillSamples(const LineCurveRenderParams& params, FillSamples& samples)
+{
+    const auto runs = LineCurveGapFilter::findValidRuns(params.sourceData, params.pointCount, params.logScaleX, params.logScaleY);
+    const auto stepped = params.stepMode != StepMode::None;
+    const auto sampledCounts = LineCurveGapFilter::planRunSampling(runs, kMaxFillVertices / (2 * Internal::stepCornerCount(params.stepMode)));
+    samples.pointCounts.clear();
+    samples.points.clear();
+    auto sampled = std::vector<int>{};
+    for (auto run = std::size_t{0}; run < runs.size(); ++run) {
+        // A lone data point still fills the step it holds.
+        const auto sampledCount = stepped && runs[run].count == 1 ? 1 : sampledCounts[run];
+        const auto runStart = samples.points.size();
+        if (sampledCount > 0) {
+            sampled.clear();
+            LineCurveGapFilter::appendEnvelopeSamples(params.sourceData, runs[run], sampledCount, sampled);
+            appendRunOutline(params.sourceData, params.pointCount, runs[run], sampled, params.stepMode, params.logScaleX, params.logScaleY, samples.points);
+        }
+        auto runPoints = static_cast<int>(samples.points.size() - runStart);
+        if (runPoints < 2) {
+            samples.points.resize(runStart);
+            runPoints = 0;
+        }
+        samples.pointCounts.push_back(runPoints);
+    }
 }
 
 void LineCurveLineRenderer::updateLineMaterial(LineMaterial* material, const LineCurveRenderParams& params, const QColor& effectiveColor,
@@ -332,6 +405,7 @@ void LineCurveLineRenderer::updateLineMaterial(LineMaterial* material, const Lin
         LineStroke::Uniforms{effectiveColor, params.lineWidth, params.domainMin, params.domainMax, params.viewportSize, params.logScaleX, params.logScaleY,
             params.pointCount, params.antialiasingEnabled, params.antialiasingFeather, dashParams});
     material->useVertexColor = useVertexColor ? 1.0f : 0.0f;
+    material->stepMode = static_cast<float>(params.stepMode);
     if (auto* gradientMaterial = dynamic_cast<GradientLineMaterial*>(material)) {
         gradientMaterial->gradientDirection = params.gradientPayload.direction == Qt::Vertical ? 1.0f : 0.0f;
         gradientMaterial->gradientValueMin = static_cast<float>(params.gradientPayload.gradientValueMin.value_or(0.0));
@@ -345,12 +419,14 @@ std::vector<float> LineCurveLineRenderer::computeArcLengths(const LineCurveRende
     if (!dashParams.enabled || !params.xAxis || !params.yAxis || params.pointCount <= 0) {
         return {};
     }
-    return LineStroke::arcLengths(params.pointCount, [&params](const int i) -> std::optional<QPointF> {
-        if (!LineCurveGapFilter::isValidPoint(params.sourceData, i, params.logScaleX, params.logScaleY)) {
+    const auto cornerCount = Internal::stepCornerCount(params.stepMode);
+    return LineStroke::arcLengths(params.pointCount * cornerCount, [&params, cornerCount](const int pathIndex) -> std::optional<QPointF> {
+        const auto point = Internal::linePathPoint(
+            params.sourceData, params.pointCount, pathIndex / cornerCount, pathIndex % cornerCount, params.stepMode, params.logScaleX, params.logScaleY);
+        if (!point) {
             return std::nullopt;
         }
-        return QPointF{params.xAxis->coordToPixel(params.sourceData.x(i), params.viewportSize.x()),
-            params.yAxis->coordToPixel(params.sourceData.y(i), params.viewportSize.y())};
+        return QPointF{params.xAxis->coordToPixel(point->x(), params.viewportSize.x()), params.yAxis->coordToPixel(point->y(), params.viewportSize.y())};
     });
 }
 
@@ -365,7 +441,8 @@ void LineCurveLineRenderer::updateLineVertices(QSGGeometry* geometry, const Line
         std::memcpy(geometry->vertexData(), params.vertexCache->data(), expectedCacheBytes);
     } else {
         // Fallback: assemble on the render thread (dash lines or no cache).
-        LineStroke::writeVertices(static_cast<LineVertex*>(geometry->vertexData()), params.pointCount, effectiveColor, arcLengths);
+        LineStroke::writeVertices(
+            static_cast<LineVertex*>(geometry->vertexData()), params.pointCount, Internal::stepCornerCount(params.stepMode), effectiveColor, arcLengths);
     }
 }
 

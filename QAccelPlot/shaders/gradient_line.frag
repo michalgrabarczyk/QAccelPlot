@@ -34,6 +34,7 @@ layout(std140, binding = 0) uniform buf {
     vec4 dashPattern[2];
     vec4 gradientParameters;
     float opacity;
+    float stepMode;
 } ubuf;
 
 layout(binding = 2) uniform sampler2D gradientSampler;

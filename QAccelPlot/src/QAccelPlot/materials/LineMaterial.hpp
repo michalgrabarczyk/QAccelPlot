@@ -14,7 +14,7 @@ namespace QAccelPlot {
 /// \brief QSGMaterial for line rendering, extending DataTextureMaterial with line-specific uniforms.
 ///
 /// Supplies line width, point count, anti-aliasing parameters, and dash pattern data
-/// to the line shaders (std140 offsets 104–179 in the UBO; 176–179 holds the inherited item opacity).
+/// to the line shaders (std140 offsets 104–183 in the UBO; 176–179 holds the inherited item opacity).
 class LineMaterial : public DataTextureMaterial {
 public:
     /// \brief Constructs a LineMaterial with default uniform values.
@@ -35,6 +35,8 @@ public:
     float dashOffset{0.0f}; ///< \brief Phase offset into the dash pattern.
     int dashPatternSize{0}; ///< \brief Number of valid entries in \c dashPattern.
     float dashPattern[8]{}; ///< \brief Alternating dash/gap lengths (up to 8 entries).
+
+    float stepMode{0.0f};   ///< \brief \c StepMode of the line, as a float (std140 offset 180 in the UBO).
 
 protected:
     /// \brief Returns the line shader program with vertex stage \a vertexShaderFileName and the line fragment stage.

@@ -8,6 +8,7 @@
 #pragma once
 
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/series/StepMode.hpp"
 
 #include <vector>
 
@@ -59,6 +60,7 @@ struct CurveHitTestParams {
     qreal hitThreshold;                    ///< \brief Hit distance threshold in pixels.
     bool nonPositiveXInvalid;              ///< \brief Whether non-positive X values are invalid data points (X axis uses log scale).
     bool nonPositiveYInvalid;              ///< \brief Whether non-positive Y values are invalid data points (Y axis uses log scale).
+    StepMode stepMode{StepMode::None};     ///< \brief How the line joins consecutive data points.
 };
 
 /// \brief Returns \c true when \a chunk contains no valid data point and can be skipped by hit tests.

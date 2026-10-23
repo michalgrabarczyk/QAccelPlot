@@ -47,8 +47,8 @@ QSGGeometryNode* BandEdgeRenderer::paint(QSGGeometryNode* oldNode, const BandEdg
         arcLengthScale_.reset();
     }
     if (countChanged || lengthsStale) {
-        LineStroke::writeVertices(
-            static_cast<LineVertex*>(geometry->vertexData()), params.reservedCount, params.uniforms.color, dashed ? arcLengths(params) : std::vector<float>{});
+        LineStroke::writeVertices(static_cast<LineVertex*>(geometry->vertexData()), params.reservedCount, 1, params.uniforms.color,
+            dashed ? arcLengths(params) : std::vector<float>{});
         node->markDirty(QSGNode::DirtyGeometry);
     }
     node->markDirty(QSGNode::DirtyMaterial);

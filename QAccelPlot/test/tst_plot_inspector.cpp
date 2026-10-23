@@ -113,6 +113,7 @@ class TestPlotInspector : public QObject {
 private slots:
     void rows();
     void matching();
+    void steppingFromHeldValues();
     void matchingByY();
     void summariesAndFilters();
     void notifications();
@@ -208,6 +209,36 @@ void TestPlotInspector::matching()
     QVERIFY(between.value("interpolated").toBool());
     QVERIFY(std::abs(between.value("dataPointX").toDouble() - 5.0) < 1e-9);
     QVERIFY(std::abs(between.value("dataPointY").toDouble() - 4.5) < 1e-9);
+}
+
+void TestPlotInspector::steppingFromHeldValues()
+{
+    auto rig = PlotRig{0, 10, 0, 10};
+    auto* curve = rig.addCurve({2, 1, 4, 9, 6, 3});
+    curve->setStepMode(StepMode::Before);
+    QTRY_COMPARE(rig.plot.series().size(), 1);
+    auto inspector = PlotInspector{};
+    inspector.setPlot(&rig.plot);
+    inspector.setMode(PlotInspector::NearestX);
+    inspector.setInterpolate(true);
+    const auto indexAfterStep = [&](const int steps) {
+        inspector.setFollowPointer(true);
+        rig.hover(rig.pixel(3, 5));
+        inspector.refresh();
+        inspector.stepCursor(steps);
+        return inspector.model()->get(0).value("dataPointIndex").toInt();
+    };
+
+    // Between x 2 and 4 a Before step holds the value of the data point at 4, yet steps go to either neighbor.
+    rig.hover(rig.pixel(3, 5));
+    inspector.refresh();
+    const auto held = inspector.model()->get(0);
+    QVERIFY(held.value("interpolated").toBool());
+    QCOMPARE(held.value("dataPointIndex").toInt(), 1);
+    QCOMPARE(held.value("dataPointY").toDouble(), 9.0);
+    QCOMPARE(indexAfterStep(-1), 0);
+    QCOMPARE(indexAfterStep(1), 1);
+    QCOMPARE(indexAfterStep(2), 2);
 }
 
 void TestPlotInspector::matchingByY()

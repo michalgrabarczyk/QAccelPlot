@@ -96,6 +96,7 @@ QAccelPlot/
 │       │                           BandEdges (edges grouped property),
 │       │                           LineCurveVertexCache, RectVertexCache,
 │       │                           LineCurveGaps (gaps grouped property),
+│       │                           StepMode (how a line joins data points),
 │       │                           LineCurveGapFilter (invalid-sample contract),
 │       │                           SpatialGrid, PointSpatialIndex (hover hit testing)
 │       ├── theme/                — ColorPalette (light/dark palette values), Colors QML singleton

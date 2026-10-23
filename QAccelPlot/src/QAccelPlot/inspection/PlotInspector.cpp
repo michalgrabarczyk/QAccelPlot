@@ -376,8 +376,9 @@ void PlotInspector::stepCursor(const int steps)
         auto* inspection = row.series->inspection();
         auto target = row.dataPoint;
         auto remaining = std::abs(steps);
-        // An interpolated row sits between its index and the next one.
-        auto index = row.dataPoint.index + (row.dataPoint.interpolated && direction < 0 ? 0 : direction);
+        // An interpolated row sits between its lower neighbor and the next data point.
+        const auto lower = row.dataPoint.interpolated ? lowerNeighborIndex(*inspection, row.dataPoint) : row.dataPoint.index;
+        auto index = lower + (row.dataPoint.interpolated && direction < 0 ? 0 : direction);
         for (; remaining > 0; index += direction) {
             const auto candidate = inspection->dataPointAt(index);
             if (candidate.valid()) {
@@ -506,6 +507,14 @@ PlotInspector::Mode PlotInspector::effectiveMode(const QPointF& cursor) const
         return NearestX;
     }
     return std::isfinite(cursor.x()) ? mode_ : NearestY;
+}
+
+int PlotInspector::lowerNeighborIndex(SeriesInspection& inspection, const InspectionDataPoint& dataPoint) const
+{
+    const auto cursor = cursorPosition();
+    const auto byY = (cursor ? effectiveMode(*cursor) : mode_) == NearestY;
+    const auto bracket = byY ? inspection.bracketByY(dataPoint.pixelPosition.y()) : inspection.bracketByX(dataPoint.pixelPosition.x());
+    return bracket.left.valid() ? bracket.left.index : dataPoint.index;
 }
 
 bool PlotInspector::inspect(const QPointF& cursor, State& state) const

@@ -32,6 +32,7 @@ layout(std140, binding = 0) uniform buf {
     int dashPatternSize;
     vec4 dashPattern[2];
     float opacity;
+    float stepMode;
 } ubuf;
 
 void main() {

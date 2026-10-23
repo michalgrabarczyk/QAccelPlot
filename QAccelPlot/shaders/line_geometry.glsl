@@ -8,7 +8,7 @@
 // Shared ribbon geometry for line vertex shaders.
 // Requires: a `ubuf` uniform block with matrix, domainMin, domainMax,
 // viewportSize, lineWidth, logScaleX, logScaleY, pointCount,
-// antialiasingEnabled and antialiasingFeather members,
+// antialiasingEnabled, antialiasingFeather and stepMode members,
 // followed by includes of data_texture.glsl and math_utils.glsl.
 //
 // Samples are read as LINE_SAMPLE_STRIDE floats each, X first. LINE_Y_BITS(base)
@@ -60,6 +60,67 @@ bool fetchSample(int index, out vec2 position) {
     return (ubuf.logScaleX < 0.5 || position.x > 0.0) && (ubuf.logScaleY < 0.5 || position.y > 0.0);
 }
 
+// Step modes, matching QAccelPlot::StepMode.
+const int kStepNone = 0;
+const int kStepBefore = 1;
+const int kStepAfter = 2;
+const int kStepCenter = 3;
+
+int lineStepMode() {
+    return int(ubuf.stepMode + 0.5);
+}
+
+// Path points per sample: the sample and the step corners after it.
+int lineStepCornerCount() {
+    int mode = lineStepMode();
+    if (mode == kStepCenter) {
+        return 3;
+    }
+    return mode == kStepNone ? 1 : 2;
+}
+
+// Fetches the X of sample `index` and returns whether it can place a step
+// corner: finite, and positive on a log-scale X axis.
+bool fetchStepX(int index, out float x) {
+    uint bits = fetchFloatBits(clamp(index, 0, int(ubuf.pointCount) - 1) * LINE_SAMPLE_STRIDE);
+    x = uintBitsToFloat(bits);
+    return isFiniteBits(bits) && (ubuf.logScaleX < 0.5 || x > 0.0);
+}
+
+// Fetches path point `corner` of sample `index`. Corner 0 is the sample; the
+// others are the corners of the step to the next sample. A corner holds the Y
+// of the sample whose flat step it ends or starts, and is valid when that
+// sample is valid and the X values placing the corner are usable. The last
+// sample has no step after it, so its corners repeat it. Matches
+// QAccelPlot::Internal::linePathPoint().
+bool fetchPathPoint(int index, int corner, out vec2 position) {
+    if (corner == 0 || index < 0 || index >= int(ubuf.pointCount) - 1) {
+        return fetchSample(index, position);
+    }
+    int mode = lineStepMode();
+    bool ownerIsNext = mode == kStepBefore || corner == 2;
+    vec2 owner;
+    bool valid = fetchSample(ownerIsNext ? index + 1 : index, owner);
+    float fromX;
+    float toX;
+    bool fromUsable = fetchStepX(index, fromX);
+    bool toUsable = fetchStepX(index + 1, toX);
+    float x;
+    if (mode == kStepAfter) {
+        x = toX;
+        valid = valid && toUsable;
+    } else if (mode == kStepBefore) {
+        x = fromX;
+        valid = valid && fromUsable;
+    } else {
+        // Halfway on screen: the geometric mean on a log axis, which is never origin-shifted.
+        x = ubuf.logScaleX > 0.5 ? sqrt(fromX) * sqrt(toX) : 0.5 * (fromX + toX);
+        valid = valid && fromUsable && toUsable;
+    }
+    position = vec2(x, owner.y);
+    return valid;
+}
+
 // Places both ribbon vertices of an invalid sample on the centre of an adjacent
 // valid sample, or outside the view volume inside an invalid run. This keeps
 // triangles within a gap degenerate and avoids NaN clip positions.
@@ -77,16 +138,38 @@ LineVertexResult invalidLineVertex(vec2 position, bool previousValid, vec2 previ
     return result;
 }
 
-// Computes the miter-joined ribbon vertex on `side` (+1 or -1) of sample `index`.
-// A valid sample next to an invalid neighbor is treated as a line endpoint.
-LineVertexResult computeLineVertex(int index, float side) {
+// Returns the ribbon side, +1 or -1, of a vertex whose `side` attribute is
+// +-(1 + corner).
+float lineVertexSide(float side) {
+    return side < 0.0 ? -1.0 : 1.0;
+}
+
+// Returns the path corner of a vertex whose `side` attribute is +-(1 + corner).
+int lineVertexCorner(float side) {
+    return int(abs(side) + 0.5) - 1;
+}
+
+// Computes the miter-joined ribbon vertex on `side` (+1 or -1) of path point
+// `corner` of sample `index`. A valid point next to an invalid neighbor is
+// treated as a line endpoint.
+LineVertexResult computeLineVertex(int index, int corner, float side) {
+    // The corners of the last sample collapse onto it, so they add no triangles.
+    if (index >= int(ubuf.pointCount) - 1) {
+        corner = 0;
+    }
+    int cornerCount = lineStepCornerCount();
+    int previousIndex = corner > 0 ? index : index - 1;
+    int previousCorner = corner > 0 ? corner - 1 : cornerCount - 1;
+    int nextIndex = corner < cornerCount - 1 ? index : index + 1;
+    int nextCorner = corner < cornerCount - 1 ? corner + 1 : 0;
+
     vec2 p = vec2(0.0);
     vec2 pr;
     vec2 nx;
     // Vertices past the last sample, reserved for appended data, collapse onto the last sample.
-    bool pValid = index < int(ubuf.pointCount) && fetchSample(index, p);
-    bool prValid = fetchSample(index - 1, pr);
-    bool nxValid = fetchSample(index + 1, nx);
+    bool pValid = index < int(ubuf.pointCount) && fetchPathPoint(index, corner, p);
+    bool prValid = fetchPathPoint(previousIndex, previousCorner, pr);
+    bool nxValid = fetchPathPoint(nextIndex, nextCorner, nx);
 
     if (!pValid) {
         return invalidLineVertex(p, prValid, pr, nxValid, nx);
