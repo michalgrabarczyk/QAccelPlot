@@ -1411,6 +1411,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#protected-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protected Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#detailed-description" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1742,6 +1753,45 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#protected-functions-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protected Functions Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Protected Functions Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#function-classbegin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function classBegin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-componentcomplete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function componentComplete
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1765,13 +1815,15 @@
 <ul>
 <li><code>#include &lt;Colormap.hpp&gt;</code></li>
 </ul>
-<p>Inherits the following classes: QObject</p>
+<p>Inherits the following classes: QObject,  QQmlParserStatus</p>
 <h2 id="inheritance-diagram">Inheritance diagram<a class="headerlink" href="#inheritance-diagram" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart TB
   classQAccelPlot_1_1Colormap["QAccelPlot::Colormap"]
 
   external_base_classQAccelPlot_1_1Colormap_1["QObject"]
   external_base_classQAccelPlot_1_1Colormap_1 --&gt; classQAccelPlot_1_1Colormap
+  external_base_classQAccelPlot_1_1Colormap_2["QQmlParserStatus"]
+  external_base_classQAccelPlot_1_1Colormap_2 --&gt; classQAccelPlot_1_1Colormap
 </code></pre>
 <h2 id="public-types">Public Types<a class="headerlink" href="#public-types" title="Permanent link">&para;</a></h2>
 <table>
@@ -1823,7 +1875,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">property QQmlListProperty&lt; QObject &gt;</td>
-<td style="text-align: left;"><a href="./#property-stops-12"><strong>stops</strong></a>  <br><em>Custom ramp as a list of objects with</em> <code>position</code> <em>and</em><code>color</code> <em>, such as</em><code>GradientStop</code> <em>. Overrides</em><code>preset</code> <em>when non-empty.</em></td>
+<td style="text-align: left;"><a href="./#property-stops-12"><strong>stops</strong></a>  <br><em>Custom ramp as a list of objects with</em> <code>position</code> <em>and</em><code>color</code> <em>, such as</em><code>GradientStop</code> <em>. Overrides</em><code>preset</code> <em>when non-empty. Stops are read again once the component is complete. The ramp follows changes to a stop that notifies them, to a</em><code>GradientStop</code> <em>inside a</em><code>Gradient</code> <em>, and to a</em><code>GradientStop</code> <em>declared in this list.</em></td>
 </tr>
 </tbody>
 </table>
@@ -1909,6 +1961,25 @@
 </tr>
 </tbody>
 </table>
+<h2 id="protected-functions">Protected Functions<a class="headerlink" href="#protected-functions" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-classbegin"><strong>classBegin</strong></a> () override<br><em>Does nothing; part of</em> <code>QQmlParserStatus</code> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-componentcomplete"><strong>componentComplete</strong></a> () override<br><em>Reads the stops again after their bindings are evaluated.</em></td>
+</tr>
+</tbody>
+</table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
 <p>A colormap has no geometry. It is a one-dimensional ramp addressed by a normalized coordinate in [0, 1], and <code>norm</code> decides how a value reaches that coordinate. Series that color by value, such as <code>PointCloud</code> and <code>HeatmapSeries</code>, index the ramp with each value. Effects that paint a ramp across the plot, such as <code>GradientFill</code> and <code>GradientStroke</code>, supply the coordinate from a position instead and own that geometry themselves, so they use only the ramp.</p>
 <p>The ramp comes from <code>preset</code>, or from <code>stops</code> when a custom ramp is given. <code>min</code> and <code>max</code> bound the value range; leaving either unset resolves it from the data, so one colormap can be shared between series that resolve different ranges. Each series reports what it resolved through <code>ColormappedSeries::dataValueMin()</code> and <code>ColormappedSeries::dataValueMax()</code>.</p>
@@ -1968,7 +2039,7 @@
 <hr>
 
 <h3 id="property-stops-12">property stops<a class="headerlink" href="#property-stops-12" title="Permanent link">&para;</a></h3>
-<p><em>Custom ramp as a list of objects with</em> <code>position</code> <em>and</em><code>color</code> <em>, such as</em><code>GradientStop</code> <em>. Overrides</em><code>preset</code> <em>when non-empty.</em>
+<p><em>Custom ramp as a list of objects with</em> <code>position</code> <em>and</em><code>color</code> <em>, such as</em><code>GradientStop</code> <em>. Overrides</em><code>preset</code> <em>when non-empty. Stops are read again once the component is complete. The ramp follows changes to a stop that notifies them, to a</em><code>GradientStop</code> <em>inside a</em><code>Gradient</code> <em>, and to a</em><code>GradientStop</code> <em>declared in this list.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">QQmlListProperty</span><span class="o">&lt;</span><span class="n">QObject</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Colormap</span><span class="o">::</span><span class="n">stops</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
@@ -2076,6 +2147,18 @@
 <h3 id="function-stops-22">function stops<a class="headerlink" href="#function-stops-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the custom ramp stops, empty when the preset supplies the ramp.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">QQmlListProperty</span><span class="o">&lt;</span><span class="w"> </span><span class="n">QObject</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Colormap</span><span class="o">::</span><span class="n">stops</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+<h2 id="protected-functions-documentation">Protected Functions Documentation<a class="headerlink" href="#protected-functions-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="function-classbegin">function classBegin<a class="headerlink" href="#function-classbegin" title="Permanent link">&para;</a></h3>
+<p><em>Does nothing; part of</em> <code>QQmlParserStatus</code> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Colormap</span><span class="o">::</span><span class="n">classBegin</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-componentcomplete">function componentComplete<a class="headerlink" href="#function-componentcomplete" title="Permanent link">&para;</a></h3>
+<p><em>Reads the stops again after their bindings are evaluated.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Colormap</span><span class="o">::</span><span class="n">componentComplete</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
 <hr>
 

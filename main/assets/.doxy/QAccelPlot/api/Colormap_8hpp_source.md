@@ -21,14 +21,16 @@
 
 #include <QObject>
 #include <QQmlListProperty>
+#include <QQmlParserStatus>
 #include <QtQml/qqmlregistration.h>
 
 #include <vector>
 
 namespace QAccelPlot {
 
-class Colormap : public QObject {
+class Colormap : public QObject, public QQmlParserStatus {
     Q_OBJECT
+    Q_INTERFACES(QQmlParserStatus)
     QML_NAMED_ELEMENT(Colormap)
 
     
@@ -84,12 +86,19 @@ public:
 signals:
     void colormapChanged();
 
+protected:
+    void classBegin() override;
+    void componentComplete() override;
+
 private:
     Q_SLOT void onStopChanged();
     void onStopDestroyed(QObject* stop);
     // Tracks the stop's lifetime and its position and color edits.
     void connectStop(QObject* stop);
     void disconnectStops();
+    // Moves a GradientStop declared in this list under an internal Gradient, so its edits notify.
+    void adoptStop(QObject* stop);
+    QObject* stopTracker();
     void rebuildStops();
     std::vector<GradientStopData> customStops() const;
 

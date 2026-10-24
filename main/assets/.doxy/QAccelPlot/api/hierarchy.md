@@ -351,6 +351,8 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
     * **class** [**QAccelPlot::OutlinedRectangle**](classQAccelPlot_1_1OutlinedRectangle.md) _Item that fills its bounds and outlines them with a line of one logical pixel._     
         * **class** [**QAccelPlot::RectangleZoomOverlay**](classQAccelPlot_1_1RectangleZoomOverlay.md) 
     * **class** [**QAccelPlot::SelectionRectangle**](classQAccelPlot_1_1SelectionRectangle.md) _Draws the gesture or the selected region of a_ [_**SelectionTool**_](classQAccelPlot_1_1SelectionTool.md) _, clipped to the plot area._
+* **class** **QQmlParserStatus**    
+    * **class** [**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md) _Maps data values to colors: a color ramp plus the rule that places a value on it._ 
 * **class** **QSGNode**    
     * **class** [**QAccelPlot::GridNode**](classQAccelPlot_1_1GridNode.md) _Internal QSGNode responsible for rendering the plot grid into the scene graph._ 
 * **class** **QAbstractListModel**    

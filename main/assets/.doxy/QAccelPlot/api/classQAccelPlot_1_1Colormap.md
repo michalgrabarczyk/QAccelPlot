@@ -21,7 +21,7 @@ _Maps data values to colors: a color ramp plus the rule that places a value on i
 
 
 
-Inherits the following classes: QObject
+Inherits the following classes: QObject,  QQmlParserStatus
 
 
 
@@ -34,6 +34,8 @@ flowchart TB
 
   external_base_classQAccelPlot_1_1Colormap_1["QObject"]
   external_base_classQAccelPlot_1_1Colormap_1 --> classQAccelPlot_1_1Colormap
+  external_base_classQAccelPlot_1_1Colormap_2["QQmlParserStatus"]
+  external_base_classQAccelPlot_1_1Colormap_2 --> classQAccelPlot_1_1Colormap
 
 ```
 
@@ -75,7 +77,7 @@ flowchart TB
 | property [**Normalization**](classQAccelPlot_1_1Colormap.md#enum-normalization) | [**norm**](classQAccelPlot_1_1Colormap.md#property-norm-12)  <br>_How a value is placed on the ramp. Default:_ `Linear` _._ |
 | property [**Preset**](classQAccelPlot_1_1Colormap.md#enum-preset) | [**preset**](classQAccelPlot_1_1Colormap.md#property-preset-12)  <br>_Built-in color ramp. Ignored when_ `stops` _is non-empty. Default:_`Viridis` _._ |
 | property bool | [**reversed**](classQAccelPlot_1_1Colormap.md#property-reversed-12)  <br>_Whether the ramp runs from its last color to its first. Applies to_ `preset` _and_`stops` _alike. Default:_`false` _._ |
-| property QQmlListProperty&lt; QObject &gt; | [**stops**](classQAccelPlot_1_1Colormap.md#property-stops-12)  <br>_Custom ramp as a list of objects with_ `position` _and_`color` _, such as_`GradientStop` _. Overrides_`preset` _when non-empty._ |
+| property QQmlListProperty&lt; QObject &gt; | [**stops**](classQAccelPlot_1_1Colormap.md#property-stops-12)  <br>_Custom ramp as a list of objects with_ `position` _and_`color` _, such as_`GradientStop` _. Overrides_`preset` _when non-empty. Stops are read again once the component is complete. The ramp follows changes to a stop that notifies them, to a_`GradientStop` _inside a_`Gradient` _, and to a_`GradientStop` _declared in this list._ |
 
 
 
@@ -131,6 +133,12 @@ flowchart TB
 
 
 
+## Protected Functions
+
+| Type | Name |
+| ---: | :--- |
+|  void | [**classBegin**](#function-classbegin) () override<br>_Does nothing; part of_ `QQmlParserStatus` _._ |
+|  void | [**componentComplete**](#function-componentcomplete) () override<br>_Reads the stops again after their bindings are evaluated._  |
 
 
 
@@ -280,7 +288,7 @@ bool QAccelPlot::Colormap::reversed;
 
 ### property stops {#property-stops-12}
 
-_Custom ramp as a list of objects with_ `position` _and_`color` _, such as_`GradientStop` _. Overrides_`preset` _when non-empty._
+_Custom ramp as a list of objects with_ `position` _and_`color` _, such as_`GradientStop` _. Overrides_`preset` _when non-empty. Stops are read again once the component is complete. The ramp follows changes to a stop that notifies them, to a_`GradientStop` _inside a_`Gradient` _, and to a_`GradientStop` _declared in this list._
 ```C++
 QQmlListProperty<QObject> QAccelPlot::Colormap::stops;
 ```
@@ -531,6 +539,38 @@ void QAccelPlot::Colormap::setReversed (
 _Returns the custom ramp stops, empty when the preset supplies the ramp._ 
 ```C++
 QQmlListProperty< QObject > QAccelPlot::Colormap::stops () 
+```
+
+
+
+
+<hr>
+## Protected Functions Documentation
+
+
+
+
+
+### function classBegin {#function-classbegin}
+
+_Does nothing; part of_ `QQmlParserStatus` _._
+```C++
+void QAccelPlot::Colormap::classBegin () override
+```
+
+
+
+
+<hr>
+
+
+
+
+### function componentComplete {#function-componentcomplete}
+
+_Reads the stops again after their bindings are evaluated._ 
+```C++
+void QAccelPlot::Colormap::componentComplete () override
 ```
 
 

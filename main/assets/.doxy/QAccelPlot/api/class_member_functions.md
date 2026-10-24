@@ -22,6 +22,7 @@
 * **applyFloatBars** ([**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md))
 * **applyFloatData** ([**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md), [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md), [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md))
 * **applyRangedData** ([**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md))
+* **adoptStop** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **appendStop** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **append** ([**QAccelPlot::DataPointStore**](classQAccelPlot_1_1DataPointStore.md), [**QAccelPlot::OverlayChildren**](classQAccelPlot_1_1OverlayChildren.md))
 * **assignFloat** ([**QAccelPlot::DataPointStore**](classQAccelPlot_1_1DataPointStore.md))
@@ -105,7 +106,7 @@
 
 ## c
 
-* **componentComplete** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
+* **componentComplete** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **coordToPixel** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
 * **computeLinearTickValues** ([**QAccelPlot::AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md))
 * **computeLogScaleTickValues** ([**QAccelPlot::AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md))
@@ -131,6 +132,7 @@
 * **createDark** ([**QAccelPlot::ColorPalette**](classQAccelPlot_1_1ColorPalette.md))
 * **createLight** ([**QAccelPlot::ColorPalette**](classQAccelPlot_1_1ColorPalette.md))
 * **Colormap** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
+* **classBegin** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **clearStops** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **connectStop** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **customStops** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
@@ -764,6 +766,7 @@
 * **setReversed** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **stopAt** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **stopCount** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
+* **stopTracker** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **stops** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **setColormap** ([**QAccelPlot::ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md), [**QAccelPlot::GradientFill**](classQAccelPlot_1_1GradientFill.md), [**QAccelPlot::GradientStroke**](classQAccelPlot_1_1GradientStroke.md))
 * **setPattern** ([**QAccelPlot::DashLine**](classQAccelPlot_1_1DashLine.md))
