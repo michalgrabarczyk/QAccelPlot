@@ -13,6 +13,8 @@
 #include <QColor>
 #include <QMetaMethod>
 #include <QMetaProperty>
+#include <QQmlComponent>
+#include <QQmlEngine>
 
 #include <algorithm>
 #include <array>
@@ -23,6 +25,7 @@ namespace QAccelPlot {
 namespace {
 
 constexpr auto kNaN = std::numeric_limits<qreal>::quiet_NaN();
+constexpr auto kStopTrackerName = "_qaccelplot_stopTracker";
 
 bool sameBound(const qreal current, const qreal value)
 {
@@ -218,6 +221,19 @@ const std::vector<GradientStopData>& Colormap::resolvedStops() const
     return resolvedStops_;
 }
 
+void Colormap::classBegin()
+{
+}
+
+void Colormap::componentComplete()
+{
+    if (stopObjects_.isEmpty()) {
+        return;
+    }
+    rebuildStops();
+    emit colormapChanged();
+}
+
 void Colormap::onStopChanged()
 {
     rebuildStops();
@@ -242,6 +258,7 @@ void Colormap::connectStop(QObject* stop)
             connect(stop, property.notifySignal(), this, onChanged, Qt::UniqueConnection);
         }
     }
+    adoptStop(stop);
     if (auto* gradient = updatingParent(stop)) {
         connect(gradient, gradient->metaObject()->method(gradient->metaObject()->indexOfSignal("updated()")), this, onChanged, Qt::UniqueConnection);
     }
@@ -255,6 +272,37 @@ void Colormap::disconnectStops()
             disconnect(gradient, nullptr, this, nullptr);
         }
     }
+}
+
+void Colormap::adoptStop(QObject* stop)
+{
+    if (stop->parent() != this || !stop->inherits("QQuickGradientStop")) {
+        return;
+    }
+    if (auto* tracker = stopTracker()) {
+        stop->setParent(tracker);
+    }
+}
+
+// QQuickGradient is private API, so the tracker is created through the QML engine.
+QObject* Colormap::stopTracker()
+{
+    if (auto* tracker = findChild<QObject*>(QLatin1String{kStopTrackerName}, Qt::FindDirectChildrenOnly)) {
+        return tracker;
+    }
+    auto* engine = qmlEngine(this);
+    if (engine == nullptr) {
+        return nullptr;
+    }
+    auto component = QQmlComponent{engine};
+    component.setData(QByteArrayLiteral("import QtQuick\nGradient {}\n"), QUrl{});
+    auto* tracker = component.create();
+    if (tracker != nullptr) {
+        QQmlEngine::setObjectOwnership(tracker, QQmlEngine::CppOwnership);
+        tracker->setObjectName(QLatin1String{kStopTrackerName});
+        tracker->setParent(this);
+    }
+    return tracker;
 }
 
 void Colormap::rebuildStops()

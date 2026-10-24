@@ -1843,17 +1843,17 @@ Without a colormap, or without per-point values, every point uses `color`.
 
 The presets are `Viridis`, `Plasma`, `Inferno`, `Magma`, `Grayscale`, and
 `Rainbow`; `reversed: true` runs a ramp from its last color to its first. For
-a custom ramp, pass the stops of a `Gradient`, whose orientation is ignored:
+a custom ramp, list `GradientStop`s in `stops`. The ramp follows bindings on
+their `position` and `color`:
 
 ```qml
-Gradient {
-    id: ramp
-    GradientStop { position: 0.0; color: "#fde725" }
-    GradientStop { position: 1.0; color: "#440154" }
-}
-
 QAccelPlot.PointCloud {
-    colormap: QAccelPlot.Colormap { stops: ramp.stops }
+    colormap: QAccelPlot.Colormap {
+        stops: [
+            GradientStop { position: 0.0; color: "#fde725" },
+            GradientStop { position: 1.0; color: QAccelPlot.Colors.dark.seriesPrimary }
+        ]
+    }
 }
 ```
 
