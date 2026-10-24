@@ -118,6 +118,7 @@ private slots:
     void summariesAndFilters();
     void notifications();
     void cursor();
+    void pixelCursor();
     void snapsToClosest();
     void heatmapCells();
     void formatterMutation();
@@ -275,8 +276,8 @@ void TestPlotInspector::matchingByY()
     inspector.setSummaries(true);
     inspector.setSummaryRadius(1000);
     const auto snapped = rowAt(rig.pixel(9, 2));
-    QCOMPARE(inspector.position().x(), rig.pixel(9, 2).x());
-    QCOMPARE(inspector.position().y(), rig.pixel(3, 1).y());
+    QCOMPARE(inspector.crosshairPosition().x(), rig.pixel(9, 2).x());
+    QCOMPARE(inspector.crosshairPosition().y(), rig.pixel(3, 1).y());
     QCOMPARE(snapped.value("summaryCount").toInt(), 2);
 
     // A cursor set from code with only a Y has no vertical line and matches by Y in every mode.
@@ -286,8 +287,8 @@ void TestPlotInspector::matchingByY()
     inspector.setCursorY(8);
     inspector.refresh();
     QVERIFY(inspector.active());
-    QVERIFY(std::isnan(inspector.position().x()));
-    QCOMPARE(inspector.position().y(), rig.pixel(0, 8).y());
+    QVERIFY(std::isnan(inspector.crosshairPosition().x()));
+    QCOMPARE(inspector.crosshairPosition().y(), rig.pixel(0, 8).y());
     QCOMPARE(inspector.model()->get(0).value("dataPointIndex").toInt(), 1);
     QCOMPARE(inspector.cursorXText(), QString{});
     QCOMPARE(inspector.cursorYText(), QStringLiteral("8.000"));
@@ -335,7 +336,7 @@ void TestPlotInspector::notifications()
     inspector.setPlot(&rig.plot);
     QTest::qWait(20);
     auto active = QSignalSpy{&inspector, &PlotInspector::activeChanged};
-    auto position = QSignalSpy{&inspector, &PlotInspector::positionChanged};
+    auto position = QSignalSpy{&inspector, &PlotInspector::crosshairPositionChanged};
     auto cursor = QSignalSpy{&inspector, &PlotInspector::cursorChanged};
     auto valid = QSignalSpy{&inspector, &PlotInspector::validCountChanged};
     auto radius = QSignalSpy{&inspector, &PlotInspector::radiusChanged};
@@ -402,13 +403,13 @@ void TestPlotInspector::cursor()
     inspector.setCursorX(5.2);
     inspector.refresh();
     QVERIFY(inspector.active());
-    QCOMPARE(inspector.position().x(), rig.pixel(5.2, 0).x());
-    QVERIFY(std::isnan(inspector.position().y()));
+    QCOMPARE(inspector.crosshairPosition().x(), rig.pixel(5.2, 0).x());
+    QVERIFY(std::isnan(inspector.crosshairPosition().y()));
     QCOMPARE(inspector.model()->get(0).value("dataPointIndex").toInt(), 2);
     QCOMPARE(inspector.cursorYText(), QString{});
     inspector.setCursorY(4);
     inspector.refresh();
-    QCOMPARE(inspector.position(), rig.pixel(5.2, 4));
+    QCOMPARE(inspector.crosshairPosition(), rig.pixel(5.2, 4));
 
     // Stepping walks the records of the first matching series.
     inspector.stepCursor(1);
@@ -434,6 +435,61 @@ void TestPlotInspector::cursor()
     QCOMPARE(inspector.model()->get(0).value("dataPointIndex").toInt(), 2);
 }
 
+void TestPlotInspector::pixelCursor()
+{
+    auto rig = PlotRig{0, 10, 0, 10};
+    rig.addCurve({1, 1, 3, 2, 5, 9, 7, 4});
+    QTRY_COMPARE(rig.plot.series().size(), 1);
+    auto inspector = PlotInspector{};
+    inspector.setPlot(&rig.plot);
+    const auto cursorPixel = [&inspector] { return QPointF{inspector.cursorPixelX(), inspector.cursorPixelY()}; };
+
+    // While following the pointer, the cursor pixel is the pointer's.
+    rig.hover(rig.pixel(3, 2));
+    inspector.refresh();
+    QCOMPARE(cursorPixel(), rig.pixel(3, 2));
+
+    // A pixel cursor reports the data under it at once.
+    inspector.setFollowPointer(false);
+    const auto pixel = rig.pixel(5, 4);
+    inspector.setCursorPixelX(pixel.x());
+    inspector.setCursorPixelY(pixel.y());
+    QCOMPARE(cursorPixel(), pixel);
+    QVERIFY(std::abs(inspector.cursorX() - 5.0) < 1e-9);
+    QVERIFY(std::abs(inspector.cursorY() - 4.0) < 1e-9);
+    inspector.refresh();
+    QCOMPARE(inspector.crosshairPosition(), pixel);
+    QCOMPARE(inspector.model()->get(0).value("dataPointIndex").toInt(), 2);
+
+    // Zooming keeps it on the same pixels and re-maps its data coordinates.
+    auto cursor = QSignalSpy{&inspector, &PlotInspector::cursorChanged};
+    rig.x.setViewportMax(14);
+    QTRY_COMPARE(inspector.model()->get(0).value("dataPointIndex").toInt(), 3);
+    QVERIFY(cursor.count() > 0);
+    QCOMPARE(cursorPixel(), pixel);
+    QCOMPARE(inspector.crosshairPosition(), pixel);
+    QVERIFY(std::abs(inspector.cursorX() - 7.0) < 1e-9);
+    QVERIFY(inspector.cursorXText().startsWith(QLatin1Char('7')));
+
+    // Writing cursorX places X in data units again; Y stays on its pixel.
+    inspector.setCursorX(9);
+    QCOMPARE(inspector.cursorX(), 9.0);
+    QCOMPARE(inspector.cursorPixelX(), rig.pixel(9, 0).x());
+    rig.x.setViewportMin(4);
+    rig.y.setViewportMax(20);
+    QTRY_COMPARE(inspector.cursorPixelX(), rig.pixel(9, 0).x());
+    QTRY_VERIFY(std::abs(inspector.cursorY() - 8.0) < 1e-9);
+    QCOMPARE(inspector.cursorX(), 9.0);
+    QCOMPARE(inspector.cursorPixelY(), pixel.y());
+
+    // A NaN coordinate leaves the cursor without it.
+    inspector.setCursorPixelY(qQNaN());
+    inspector.refresh();
+    QVERIFY(inspector.active());
+    QVERIFY(std::isnan(inspector.cursorY()));
+    QVERIFY(std::isnan(inspector.crosshairPosition().y()));
+}
+
 void TestPlotInspector::snapsToClosest()
 {
     auto rig = PlotRig{0, 10, 0, 10};
@@ -449,11 +505,11 @@ void TestPlotInspector::snapsToClosest()
     inspector.refresh();
     QCOMPARE(inspector.validCount(), 2);
     // The crosshair moves to the closest sample, not to the first registered series.
-    QCOMPARE(inspector.position(), rig.pixel(5.2, 5));
+    QCOMPARE(inspector.crosshairPosition(), rig.pixel(5.2, 5));
     inspector.setMode(PlotInspector::NearestX);
     inspector.refresh();
-    QCOMPARE(inspector.position().x(), rig.pixel(5.2, 5).x());
-    QCOMPARE(inspector.position().y(), rig.pixel(5, 5).y());
+    QCOMPARE(inspector.crosshairPosition().x(), rig.pixel(5.2, 5).x());
+    QCOMPARE(inspector.crosshairPosition().y(), rig.pixel(5, 5).y());
 }
 
 void TestPlotInspector::heatmapCells()
@@ -517,7 +573,7 @@ void TestPlotInspector::heatmapCells()
     for (const auto mode : {PlotInspector::NearestX, PlotInspector::NearestY, PlotInspector::NearestXY}) {
         inspector.setMode(mode);
         cellAt(rig.pixel(5, 3));
-        QCOMPARE(inspector.position(), rig.pixel(6, 2.5));
+        QCOMPARE(inspector.crosshairPosition(), rig.pixel(6, 2.5));
     }
     inspector.setExcludedSeries({});
     const auto snapped = cellAt(rig.pixel(5, 3));
@@ -606,13 +662,13 @@ void TestPlotInspector::touch()
     // A tap inspects at the touched position and the cursor stays there after the finger lifts.
     QTest::touchEvent(&window, device.get()).press(0, point, &window);
     QTest::touchEvent(&window, device.get()).release(0, point, &window);
-    QTRY_COMPARE(inspector.position().toPoint(), point);
+    QTRY_COMPARE(inspector.crosshairPosition().toPoint(), point);
     QVERIFY(inspector.active());
     QCOMPARE(inspector.validCount(), 1);
 
     // The mouse takes the cursor back as soon as it moves over the plot.
     QTest::mouseMove(&window, point + QPoint{40, 0});
-    QTRY_COMPARE(inspector.position().toPoint(), point + QPoint(40, 0));
+    QTRY_COMPARE(inspector.crosshairPosition().toPoint(), point + QPoint(40, 0));
     QTest::mouseMove(&window, QPoint{-20, -20});
     QTRY_VERIFY(!inspector.active());
 }
@@ -666,11 +722,11 @@ void TestPlotInspector::tooltipPlacement()
     QVERIFY(QTest::qWaitForWindowExposed(&scene.window));
     scene.inspector.setCursorX(5);
     QTRY_VERIFY(scene.tooltip->isVisible());
-    QTRY_VERIFY(scene.tooltip->x() > scene.inspector.position().x());
+    QTRY_VERIFY(scene.tooltip->x() > scene.inspector.crosshairPosition().x());
 
     // Near the right edge the tooltip flips to the other side of the cursor instead of covering it.
     scene.inspector.setCursorX(9.7);
-    QTRY_VERIFY(scene.tooltip->x() + scene.tooltip->width() < scene.inspector.position().x());
+    QTRY_VERIFY(scene.tooltip->x() + scene.tooltip->width() < scene.inspector.crosshairPosition().x());
 
     // Beyond every series' last sample nothing matches and the tooltip hides.
     scene.inspector.setRadius(2);

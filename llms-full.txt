@@ -1650,8 +1650,9 @@ center; `radius`, `interpolate`, and `summaries` do not apply to it, and
 | `summaries`, `summaryRadius` | Add the count and Y statistics of the data points within `summaryRadius` pixels of the cursor. Use it for dense data, where one pixel column holds many data points. |
 | `includedSeries`, `excludedSeries` | Restrict the inspected series. |
 
-The inspector reports `active`, the crosshair `position`, `cursorX` and
-`cursorY` with their formatted texts, `validCount`, and `model`.
+The inspector reports `active`, `crosshairPosition` in plot-local pixels, the
+cursor in data units (`cursorX`, `cursorY`, with their formatted texts) and in
+pixels (`cursorPixelX`, `cursorPixelY`), `validCount`, and `model`.
 
 ### Tooltip rows
 
@@ -1688,6 +1689,27 @@ inspector to the other:
 QAccelPlot.PlotInspector { id: top; plot: topPlot }
 QAccelPlot.PlotInspector { plot: bottomPlot; followPointer: false; cursorX: top.cursorX }
 ```
+
+To drive the cursor from a pixel position, such as a scripted pointer, write
+`cursorPixelX` and `cursorPixelY` in plot-local pixels. The cursor stays on
+those pixels when the axes pan or zoom, and `cursorX` and `cursorY` report the
+data under it. A binding such as `cursorX: plot.pixelToDataX(x)` goes stale
+instead, because `pixelToDataX()` has no change signal.
+
+```qml
+QAccelPlot.PlotInspector {
+    plot: plotView
+    followPointer: false
+    cursorPixelX: pointer.x // pointer is in plot-local pixels
+    cursorPixelY: pointer.y
+}
+```
+
+Each coordinate is in the unit it was last written in: writing `cursorX` after
+`cursorPixelX` places X in data units again.
+
+One pixel can span several data points. To rest on a known data point, write
+its `cursorX` and `cursorY` instead.
 
 `stepCursor(n)` moves the cursor `n` source records along the first matching
 XY series and stops following the mouse pointer; use it for keyboard

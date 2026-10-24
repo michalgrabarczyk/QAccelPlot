@@ -74,9 +74,10 @@ struct PlotInspector::Query {
 
 struct PlotInspector::State {
     bool active{false};
-    QPointF position{kNaN, kNaN};
+    QPointF crosshairPosition{kNaN, kNaN};
     qreal cursorX{kNaN};
     qreal cursorY{kNaN};
+    QPointF cursorPixel{kNaN, kNaN};
     QString cursorXText;
     QString cursorYText;
     QList<InspectionRow> rows;
@@ -84,9 +85,10 @@ struct PlotInspector::State {
 
 PlotInspector::PlotInspector(QObject* parent)
     : QObject(parent)
-    , position_(kNaN, kNaN)
+    , crosshairPosition_(kNaN, kNaN)
     , cursorX_(kNaN)
     , cursorY_(kNaN)
+    , cursorPixel_(kNaN, kNaN)
     , pinnedX_(kNaN)
     , pinnedY_(kNaN)
     , model_(new InspectionRowModel(this))
@@ -276,12 +278,14 @@ qreal PlotInspector::cursorX() const
 
 void PlotInspector::setCursorX(const qreal x)
 {
-    if (sameValue(pinnedX_, x)) {
+    if (!pinnedXInPixels_ && sameValue(pinnedX_, x)) {
         return;
     }
     pinnedX_ = x;
+    pinnedXInPixels_ = false;
     if (!followPointer_) {
         cursorX_ = x;
+        cursorPixel_.setX(pinnedPixel().x());
         schedule();
         emit cursorChanged();
     }
@@ -294,12 +298,54 @@ qreal PlotInspector::cursorY() const
 
 void PlotInspector::setCursorY(const qreal y)
 {
-    if (sameValue(pinnedY_, y)) {
+    if (!pinnedYInPixels_ && sameValue(pinnedY_, y)) {
         return;
     }
     pinnedY_ = y;
+    pinnedYInPixels_ = false;
     if (!followPointer_) {
         cursorY_ = y;
+        cursorPixel_.setY(pinnedPixel().y());
+        schedule();
+        emit cursorChanged();
+    }
+}
+
+qreal PlotInspector::cursorPixelX() const
+{
+    return cursorPixel_.x();
+}
+
+void PlotInspector::setCursorPixelX(const qreal x)
+{
+    if (pinnedXInPixels_ && sameValue(pinnedX_, x)) {
+        return;
+    }
+    pinnedX_ = x;
+    pinnedXInPixels_ = true;
+    if (!followPointer_) {
+        cursorX_ = pinnedData().x();
+        cursorPixel_.setX(x);
+        schedule();
+        emit cursorChanged();
+    }
+}
+
+qreal PlotInspector::cursorPixelY() const
+{
+    return cursorPixel_.y();
+}
+
+void PlotInspector::setCursorPixelY(const qreal y)
+{
+    if (pinnedYInPixels_ && sameValue(pinnedY_, y)) {
+        return;
+    }
+    pinnedY_ = y;
+    pinnedYInPixels_ = true;
+    if (!followPointer_) {
+        cursorY_ = pinnedData().y();
+        cursorPixel_.setY(y);
         schedule();
         emit cursorChanged();
     }
@@ -320,9 +366,9 @@ bool PlotInspector::active() const
     return active_;
 }
 
-QPointF PlotInspector::position() const
+QPointF PlotInspector::crosshairPosition() const
 {
-    return position_;
+    return crosshairPosition_;
 }
 
 InspectionRowModel* PlotInspector::model() const
@@ -344,9 +390,13 @@ void PlotInspector::refresh()
     }
     const auto guard = QScopedValueRollback<bool>{refreshing_, true};
     auto state = State{};
-    state.cursorX = followPointer_ ? kNaN : pinnedX_;
-    state.cursorY = followPointer_ ? kNaN : pinnedY_;
-    if (const auto cursor = cursorPosition()) {
+    if (!followPointer_) {
+        const auto data = pinnedData();
+        state.cursorX = data.x();
+        state.cursorY = data.y();
+        state.cursorPixel = pinnedPixel();
+    }
+    if (const auto cursor = activeCursor()) {
         if (!inspect(*cursor, state)) {
             // A label formatter changed what was queried; the results are stale.
             schedule();
@@ -395,6 +445,8 @@ void PlotInspector::stepCursor(const int steps)
         }
         pinnedX_ = plot_->pixelToDataX(pixel.x());
         pinnedY_ = plot_->pixelToDataY(pixel.y());
+        pinnedXInPixels_ = false;
+        pinnedYInPixels_ = false;
         refresh();
         return;
     }
@@ -480,7 +532,27 @@ QList<PlotSeries*> PlotInspector::inspectedSeries() const
     return result;
 }
 
-std::optional<QPointF> PlotInspector::cursorPosition() const
+QPointF PlotInspector::pinnedData() const
+{
+    const auto area = plot_ ? plot_->plotRect() : QRectF{};
+    const auto mapsX = plot_ && plot_->xAxis() && !area.isEmpty() && std::isfinite(pinnedX_);
+    const auto mapsY = plot_ && plot_->yAxis() && !area.isEmpty() && std::isfinite(pinnedY_);
+    const auto x = pinnedXInPixels_ ? (mapsX ? plot_->pixelToDataX(pinnedX_) : kNaN) : pinnedX_;
+    const auto y = pinnedYInPixels_ ? (mapsY ? plot_->pixelToDataY(pinnedY_) : kNaN) : pinnedY_;
+    return {x, y};
+}
+
+QPointF PlotInspector::pinnedPixel() const
+{
+    const auto area = plot_ ? plot_->plotRect() : QRectF{};
+    const auto mapsX = plot_ && plot_->xAxis() && !area.isEmpty() && std::isfinite(pinnedX_);
+    const auto mapsY = plot_ && plot_->yAxis() && !area.isEmpty() && std::isfinite(pinnedY_);
+    const auto x = pinnedXInPixels_ ? pinnedX_ : (mapsX ? area.x() + plot_->xAxis()->coordToPixel(pinnedX_, area.width()) : kNaN);
+    const auto y = pinnedYInPixels_ ? pinnedY_ : (mapsY ? area.y() + plot_->yAxis()->coordToPixel(pinnedY_, area.height()) : kNaN);
+    return {x, y};
+}
+
+std::optional<QPointF> PlotInspector::activeCursor() const
 {
     if (!enabled_ || !plot_) {
         return std::nullopt;
@@ -489,13 +561,14 @@ std::optional<QPointF> PlotInspector::cursorPosition() const
         return plot_->pointerInside() ? std::optional{plot_->pointerPosition()} : std::nullopt;
     }
     const auto area = plot_->plotRect();
-    const auto hasX = plot_->xAxis() && std::isfinite(pinnedX_);
-    const auto hasY = plot_->yAxis() && std::isfinite(pinnedY_);
+    const auto pixel = pinnedPixel();
+    const auto x = pixel.x();
+    const auto y = pixel.y();
+    const auto hasX = std::isfinite(x);
+    const auto hasY = std::isfinite(y);
     if (area.isEmpty() || (!hasX && !hasY)) {
         return std::nullopt;
     }
-    const auto x = hasX ? area.x() + plot_->xAxis()->coordToPixel(pinnedX_, area.width()) : kNaN;
-    const auto y = hasY ? area.y() + plot_->yAxis()->coordToPixel(pinnedY_, area.height()) : kNaN;
     // X leads when both are set, so a cursor from code stays active while its X is inside the plot area.
     const auto inside = hasX ? x >= area.left() && x <= area.right() : y >= area.top() && y <= area.bottom();
     return inside ? std::optional{QPointF{x, y}} : std::nullopt;
@@ -511,7 +584,7 @@ PlotInspector::Mode PlotInspector::effectiveMode(const QPointF& cursor) const
 
 int PlotInspector::lowerNeighborIndex(SeriesInspection& inspection, const InspectionDataPoint& dataPoint) const
 {
-    const auto cursor = cursorPosition();
+    const auto cursor = activeCursor();
     const auto byY = (cursor ? effectiveMode(*cursor) : mode_) == NearestY;
     const auto bracket = byY ? inspection.bracketByY(dataPoint.pixelPosition.y()) : inspection.bracketByX(dataPoint.pixelPosition.x());
     return bracket.left.valid() ? bracket.left.index : dataPoint.index;
@@ -526,13 +599,14 @@ bool PlotInspector::inspect(const QPointF& cursor, State& state) const
         return false;
     }
     state.active = true;
-    state.position = snappedPosition(queries, cursor);
+    state.crosshairPosition = snappedPosition(queries, cursor);
     const auto area = plot->plotRect();
-    const auto dataX = std::isfinite(state.position.x()) && plot->xAxis() ? plot->pixelToDataX(state.position.x()) : kNaN;
-    const auto dataY = std::isfinite(state.position.y()) && plot->yAxis() ? plot->pixelToDataY(state.position.y()) : kNaN;
+    const auto dataX = std::isfinite(state.crosshairPosition.x()) && plot->xAxis() ? plot->pixelToDataX(state.crosshairPosition.x()) : kNaN;
+    const auto dataY = std::isfinite(state.crosshairPosition.y()) && plot->yAxis() ? plot->pixelToDataY(state.crosshairPosition.y()) : kNaN;
     if (followPointer_) {
         state.cursorX = dataX;
         state.cursorY = dataY;
+        state.cursorPixel = state.crosshairPosition;
     }
     state.cursorXText = format(plot->xAxis(), dataX, area.width());
     state.cursorYText = plot ? format(plot->yAxis(), dataY, area.height()) : QString{};
@@ -674,20 +748,21 @@ void PlotInspector::publish(const State& state)
     const auto validCount
         = static_cast<int>(std::count_if(state.rows.cbegin(), state.rows.cend(), [](const InspectionRow& row) { return row.dataPoint.valid(); }));
     const auto activeDiffers = active_ != state.active;
-    const auto positionDiffers = !samePoint(position_, state.position);
-    const auto cursorDiffers
-        = !sameValue(cursorX_, state.cursorX) || !sameValue(cursorY_, state.cursorY) || cursorXText_ != state.cursorXText || cursorYText_ != state.cursorYText;
+    const auto crosshairPositionDiffers = !samePoint(crosshairPosition_, state.crosshairPosition);
+    const auto cursorDiffers = !sameValue(cursorX_, state.cursorX) || !sameValue(cursorY_, state.cursorY) || !samePoint(cursorPixel_, state.cursorPixel)
+        || cursorXText_ != state.cursorXText || cursorYText_ != state.cursorYText;
     const auto validCountDiffers = validCount_ != validCount;
     active_ = state.active;
-    position_ = state.position;
+    crosshairPosition_ = state.crosshairPosition;
     cursorX_ = state.cursorX;
     cursorY_ = state.cursorY;
+    cursorPixel_ = state.cursorPixel;
     cursorXText_ = state.cursorXText;
     cursorYText_ = state.cursorYText;
     validCount_ = validCount;
     model_->setRows(state.rows);
-    if (positionDiffers) {
-        emit positionChanged();
+    if (crosshairPositionDiffers) {
+        emit crosshairPositionChanged();
     }
     if (cursorDiffers) {
         emit cursorChanged();

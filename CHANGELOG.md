@@ -35,9 +35,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Step lines via `LineCurve.stepMode` (`Before`, `After`, or `Center`): the
   fill, dash pattern, hover, and interpolated inspection follow the steps.
   Includes a Step Lines example.
+- `PlotInspector.cursorPixelX` and `cursorPixelY` place the cursor in
+  plot-local pixels; it stays on those pixels when the axes pan or zoom.
 
 ### Changed
 
+- Renamed `PlotInspector.position` to `crosshairPosition`, and
+  `positionChanged()` to `crosshairPositionChanged()`.
 - `ColorBar.series` takes any `ColormappedSeries`, the new base of `PointCloud`,
   `HeatmapSeries`, and `BarSeries`. In C++, `ColorBar::series()` returns a
   `ColormappedSeries*`.
