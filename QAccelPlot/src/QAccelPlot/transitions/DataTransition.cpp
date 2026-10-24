@@ -7,10 +7,31 @@
 //
 #include "QAccelPlot/transitions/DataTransition.hpp"
 
-#include <algorithm>
+#include <QAbstractAnimation>
+
 #include <utility>
 
 namespace QAccelPlot {
+
+namespace {
+
+/// \brief Endless animation whose current time follows Qt's animation timer and its installed driver.
+class AnimationClock final : public QAbstractAnimation {
+public:
+    using QAbstractAnimation::QAbstractAnimation;
+
+    int duration() const override
+    {
+        return -1;
+    }
+
+protected:
+    void updateCurrentTime(int /*currentTime*/) override
+    {
+    }
+};
+
+} // namespace
 
 DataTransition::Run::~Run()
 {
@@ -68,6 +89,7 @@ void DataTransition::Run::detach()
 
 DataTransition::DataTransition(QObject* parent)
     : QObject(parent)
+    , clock_(new AnimationClock(this))
 {
 }
 
@@ -141,8 +163,8 @@ void DataTransition::start(
     run.to_.values = std::move(newData);
     run.to_.count = newPointCount;
     run.to_.stride = stride;
-    run.timer_.start();
     setRunning(true);
+    run.startTime_ = clock_->currentTime();
 }
 
 void DataTransition::cancel()
@@ -160,13 +182,12 @@ bool DataTransition::advance(Run& run, std::vector<double>& outData, int& outPoi
         return false;
     }
 
-    const auto elapsed = run.timer_.elapsed();
-    const auto dur = std::max(duration_, 1);
-    const auto progress = std::clamp(static_cast<qreal>(elapsed) / dur, 0.0, 1.0);
-    if (progress >= 1.0) {
+    const auto elapsed = clock_->currentTime() - run.startTime_;
+    if (elapsed >= duration_) {
         run.finish(outData, outPointCount);
         return false;
     }
+    const auto progress = static_cast<qreal>(elapsed) / duration_;
 
     // The frame borrows the caller's buffer, so its capacity is reused from frame to frame.
     auto frame = Dataset{std::move(outData), outPointCount, run.to_.stride};
@@ -188,6 +209,12 @@ void DataTransition::setRunning(const bool running)
         return;
     }
     running_ = running;
+    // Runs measure time from their start, so the clock restarts from zero for each running phase.
+    if (running) {
+        clock_->start();
+    } else {
+        clock_->stop();
+    }
     emit runningChanged();
 }
 
