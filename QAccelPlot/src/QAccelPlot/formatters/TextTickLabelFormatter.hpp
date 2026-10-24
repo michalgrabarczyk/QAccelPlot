@@ -16,15 +16,16 @@ namespace QAccelPlot {
 
 /// \brief A tick label formatter that maps integer tick indices to a user-supplied list of strings.
 ///
-/// The tick value is rounded to the nearest integer and used as an index into \c labels.
-/// Values outside the list range are rendered as empty strings.
+/// A tick on an integer value is labeled with the string at that index in \c labels. Other
+/// values and indices outside the list range are rendered as empty strings. On a linear axis,
+/// \c minimumTickStep() keeps ticks on whole numbers when the axis is zoomed in.
 ///
 /// \sa NumericTickLabelFormatter, TickLabelFormatter
 class TextTickLabelFormatter : public TickLabelFormatter {
     Q_OBJECT
     QML_NAMED_ELEMENT(TextTickLabelFormatter)
 
-    /// \brief The ordered list of label strings, indexed by the rounded tick value.
+    /// \brief The ordered list of label strings, indexed by the integer tick value.
     Q_PROPERTY(QStringList labels READ labels WRITE setLabels NOTIFY labelsChanged)
 
 public:
@@ -36,12 +37,15 @@ public:
     /// \brief Sets the label list to \a labels.
     void setLabels(const QStringList& labels);
 
+    /// \brief Returns \c 1, so a zoomed linear axis keeps one tick per label instead of ticks between labels.
+    qreal minimumTickStep() const override;
+
 signals:
     /// \brief Emitted when the labels property changes.
     void labelsChanged();
 
 protected:
-    /// \brief Returns the label at the index corresponding to \a value, or an empty string if out of range.
+    /// \brief Returns the label at the integer \a value, or an empty string if \a value is not an integer or is out of range.
     QString doFormat(qreal value, qreal tickStep) const override;
 
 private:
