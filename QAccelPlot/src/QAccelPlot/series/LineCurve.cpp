@@ -680,9 +680,12 @@ void LineCurve::onDataPointsChanged(const DataChange change, const int /*previou
         return;
     }
     refreshVertexCacheForDataChange();
-    // Pre-build chunk AABBs on the caller thread alongside the vertex cache so that
-    // hover hit-tests never block on a lazy O(N) rebuild during live rendering.
-    rebuildChunks();
+    chunksValid_ = false;
+    // A curve that accepts hover pre-builds its chunk AABBs, so that hover hit-tests never block
+    // on a lazy O(N) rebuild during live rendering. Other curves build them on the first hit test.
+    if (acceptHoverEvents()) {
+        rebuildChunks();
+    }
 }
 
 void LineCurve::onTransitionDestroyed()

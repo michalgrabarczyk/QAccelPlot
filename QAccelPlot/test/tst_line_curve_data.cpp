@@ -53,6 +53,8 @@ private slots:
     void hoverEnterAndLeaveToggleHovered();
     void lineAndMarkerCurveContainsLineAndMarkers();
     void hoverRadiusLimitsLineHitTest();
+    void hitTestFollowsDataUpdates_data();
+    void hitTestFollowsDataUpdates();
     void reassignedEffectsSurviveListClear();
     void destroyedEffectIsRemovedFromList();
     void defaultLineStyleIsDestroyedWithCurve();
@@ -518,6 +520,41 @@ void LineCurveDataTest::hoverRadiusLimitsLineHitTest()
     curve.marker()->setShape(LineCurve::MarkerShape::Circle);
     QVERIFY(item.contains({10, 50}));
     QVERIFY(!item.contains({50, 50}));
+}
+
+void LineCurveDataTest::hitTestFollowsDataUpdates_data()
+{
+    QTest::addColumn<bool>("hoverEnabled");
+    QTest::newRow("hover enabled") << true;
+    QTest::newRow("hover disabled") << false;
+}
+
+void LineCurveDataTest::hitTestFollowsDataUpdates()
+{
+    QFETCH(bool, hoverEnabled);
+    auto xAxis = Axis{};
+    xAxis.setOrientation(Qt::Horizontal);
+    auto yAxis = Axis{};
+    yAxis.setOrientation(Qt::Vertical);
+    auto curve = LineCurve{};
+    curve.setXAxis(&xAxis);
+    curve.setYAxis(&yAxis);
+    curve.setPlotRect({0, 0, 100, 100});
+    curve.setHoverEnabled(hoverEnabled);
+    const auto& item = static_cast<const QQuickItem&>(curve);
+
+    curve.setDataF(std::vector<float>{0.1f, 0.5f, 0.9f, 0.5f}, 2);
+    QVERIFY(item.contains({50, 50}));
+    QVERIFY(!item.contains({50, 80}));
+
+    curve.setDataF(std::vector<float>{0.1f, 0.2f, 0.9f, 0.2f}, 2);
+    QVERIFY(item.contains({50, 80}));
+    QVERIFY(!item.contains({50, 50}));
+
+    curve.setHoverEnabled(!hoverEnabled);
+    curve.setDataF(std::vector<float>{0.1f, 0.5f, 0.9f, 0.5f}, 2);
+    QVERIFY(item.contains({50, 50}));
+    QVERIFY(!item.contains({50, 80}));
 }
 
 void LineCurveDataTest::reassignedEffectsSurviveListClear()

@@ -50,6 +50,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `inspection.status` is `Ready` for bar, rectangle, band, and heatmap series
   instead of `Unsupported`. Queries that do not apply to them still return
   `Unsupported`.
+- A `LineCurve` with hover off no longer scans its points on every data update.
+  Streaming eight 512K-point curves takes about a quarter of the UI-thread time.
 
 ### Removed
 
