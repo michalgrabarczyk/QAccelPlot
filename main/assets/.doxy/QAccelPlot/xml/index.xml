@@ -1077,6 +1077,7 @@
     <member refid="classQAccelPlot_1_1DataTextureMaterial_1a3c4115d0b9f08938db44fd529c10f24b" kind="function"><name>writeCommonUniforms</name></member>
     <member refid="classQAccelPlot_1_1DataTextureMaterial_1ab9ea2c6bb472ce5d1f3ed968c4dfb68f" kind="function"><name>commitTexture</name></member>
     <member refid="classQAccelPlot_1_1DataTextureMaterial_1ac078fe555ea028d1a7aa0d2b3d5d4a25" kind="function"><name>attributeSet</name></member>
+    <member refid="classQAccelPlot_1_1DataTextureMaterial_1ab3956754bb359cdee269e210cff6c157" kind="function"><name>vertexIndexAttributeSet</name></member>
     <member refid="classQAccelPlot_1_1DataTextureMaterial_1a7cd48b95da2721520a594dae33147990" kind="function"><name>compareExtra</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1DataTransition" kind="class"><name>QAccelPlot::DataTransition</name>
@@ -2126,6 +2127,7 @@
     <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1ae5f3f9782fc9ae8df2da2ce08e3603c0" kind="function"><name>buildVertexCache</name></member>
     <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1a17184b26756ffd86f96dcdf75bb64261" kind="function"><name>contains</name></member>
     <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1af7080fe3330b521649272adbb02774d2" kind="function"><name>paint</name></member>
+    <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1ab63d17c7f37f32b08df0d4eeb1a3184a" kind="function"><name>dataTexture</name></member>
     <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1aad2aeb6202a3f49358ebef70f7984a74" kind="function"><name>updateFillGeometry</name></member>
     <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1a1b52a3889372e19d879605bba2fc3cc9" kind="function"><name>fillSamples</name></member>
     <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1abdb98a8664940d4af7055b827f0cdc6a" kind="function"><name>updateLineMaterial</name></member>
@@ -2134,6 +2136,7 @@
     <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1a45ac5f5a186ccb917fda94ffce31e0d5" kind="function"><name>rebuildFillSamples</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1LineCurvePointRenderer" kind="class"><name>QAccelPlot::LineCurvePointRenderer</name>
+    <member refid="classQAccelPlot_1_1LineCurvePointRenderer_1afa3b3e044ac5e0485d43f1f22a7015c9" kind="variable"><name>kVerticesPerPoint</name></member>
     <member refid="classQAccelPlot_1_1LineCurvePointRenderer_1aeec69e3fbde7288e816628524bbf17da" kind="function"><name>buildVertexCache</name></member>
     <member refid="classQAccelPlot_1_1LineCurvePointRenderer_1af95a1d6fb2fd390603024cef6a15d5d5" kind="function"><name>contains</name></member>
     <member refid="classQAccelPlot_1_1LineCurvePointRenderer_1a938ef71f14fe97ae9eee935fc4ceef52" kind="function"><name>paint</name></member>
@@ -2813,14 +2816,14 @@
     <member refid="classQAccelPlot_1_1PointCloudMaterial_1a38d6f5a149938f173b26694846c7fc7b" kind="function"><name>PointCloudMaterial</name></member>
     <member refid="classQAccelPlot_1_1PointCloudMaterial_1a419c94113a89e5d6dfa7d90f5f24320a" kind="function"><name>type</name></member>
     <member refid="classQAccelPlot_1_1PointCloudMaterial_1a176a721751f5a2e4699bf4504cf92e60" kind="function"><name>createShader</name></member>
-    <member refid="classQAccelPlot_1_1PointCloudMaterial_1a57183c28c5d979d6c3c11122d9462f1a" kind="function"><name>attributeSet</name></member>
     <member refid="classQAccelPlot_1_1PointCloudMaterial_1aa96ef790f251fd28099bd81a8bf03643" kind="function"><name>compareExtra</name></member>
   </compound>
   <compound refid="structQAccelPlot_1_1PointCurveRenderParams" kind="struct"><name>QAccelPlot::PointCurveRenderParams</name>
+    <member refid="structQAccelPlot_1_1PointCurveRenderParams_1aaf9622761df658b1dc643a77dc7faca3" kind="variable"><name>window</name></member>
     <member refid="structQAccelPlot_1_1PointCurveRenderParams_1a760e8f29fc605b05f08966413c0e3a13" kind="variable"><name>data</name></member>
-    <member refid="structQAccelPlot_1_1PointCurveRenderParams_1ab1ba23bc662b1a429a78faebe12c2019" kind="variable"><name>sourceData</name></member>
     <member refid="structQAccelPlot_1_1PointCurveRenderParams_1aef6cff460337216ce9fe6622d5d98ad3" kind="variable"><name>pointCount</name></member>
     <member refid="structQAccelPlot_1_1PointCurveRenderParams_1ab15e4141e0b60d86680b114a9dcaba2d" kind="variable"><name>dataChanged</name></member>
+    <member refid="structQAccelPlot_1_1PointCurveRenderParams_1aba5de360230e77d3a26056402b407bb7" kind="variable"><name>dataTexture</name></member>
     <member refid="structQAccelPlot_1_1PointCurveRenderParams_1a57cd5d1f0c942535d273d3d2c36c1996" kind="variable"><name>color</name></member>
     <member refid="structQAccelPlot_1_1PointCurveRenderParams_1ab1aa70a1fb9c2fa35c9437a7f5743d46" kind="variable"><name>hovered</name></member>
     <member refid="structQAccelPlot_1_1PointCurveRenderParams_1a6cc41826adefcbe7f0ffdafb338bd2f2" kind="variable"><name>markerSize</name></member>
@@ -2838,24 +2841,20 @@
     <member refid="structQAccelPlot_1_1PointCurveRenderParams_1a53be39fcb259900620ff26254b5e6632" kind="variable"><name>markerFilled</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1PointMaterial" kind="class"><name>QAccelPlot::PointMaterial</name>
-    <member refid="classQAccelPlot_1_1PointMaterial_1ad926ebbb38c3b52c3cec9f6bdba4c5be" kind="variable"><name>color</name></member>
-    <member refid="classQAccelPlot_1_1PointMaterial_1a1fe19d66bc1f17f1ad126579decc661d" kind="variable"><name>domainMin</name></member>
-    <member refid="classQAccelPlot_1_1PointMaterial_1a6cf58ce9fc83ddafad362fadd1b73678" kind="variable"><name>domainMax</name></member>
-    <member refid="classQAccelPlot_1_1PointMaterial_1a3ff9a8bc102feba5af72ffe2380d7b22" kind="variable"><name>viewportSize</name></member>
     <member refid="classQAccelPlot_1_1PointMaterial_1a04dc2fdee93d946fb012a039e6c3e70a" kind="variable"><name>markerSize</name></member>
-    <member refid="classQAccelPlot_1_1PointMaterial_1ae64250e1655e119c9439bc57b29c86b8" kind="variable"><name>logScaleX</name></member>
-    <member refid="classQAccelPlot_1_1PointMaterial_1ac1d21a7d4d48f1e5f1774a554fb34912" kind="variable"><name>logScaleY</name></member>
-    <member refid="classQAccelPlot_1_1PointMaterial_1a961bcb0f626902f72d9f18128262ebc1" kind="variable"><name>useVertexColor</name></member>
     <member refid="classQAccelPlot_1_1PointMaterial_1abe060e2bc02514aa736ba97698f090d7" kind="variable"><name>antialiasingEnabled</name></member>
     <member refid="classQAccelPlot_1_1PointMaterial_1af116e339e27cd8218b8afa8e39806aec" kind="variable"><name>antialiasingFeather</name></member>
     <member refid="classQAccelPlot_1_1PointMaterial_1aa5ee5d786e4ecf249c4b716a9d701db6" kind="variable"><name>shapeType</name></member>
     <member refid="classQAccelPlot_1_1PointMaterial_1aeeb956418a5ff9346f4e1385dad28ab3" kind="variable"><name>markerStrokeWidth</name></member>
     <member refid="classQAccelPlot_1_1PointMaterial_1adb685253c8ee2cb8e1f1dafa632c4712" kind="variable"><name>markerFilled</name></member>
+    <member refid="classQAccelPlot_1_1PointMaterial_1acede36e5ce220a03db594ecfd518cdd2" kind="variable"><name>gradientDirection</name></member>
+    <member refid="classQAccelPlot_1_1PointMaterial_1a1463be3aed70959b727126eb1b65d4f1" kind="variable"><name>gradientValueMin</name></member>
+    <member refid="classQAccelPlot_1_1PointMaterial_1abd230f21bb2d31d853ac5f61167604be" kind="variable"><name>gradientValueMax</name></member>
+    <member refid="classQAccelPlot_1_1PointMaterial_1a0ba546424e4578bbb4e0598cf132f273" kind="variable"><name>gradientTexture</name></member>
     <member refid="classQAccelPlot_1_1PointMaterial_1ad6745428838a330ff10c978c2c7d442f" kind="function"><name>PointMaterial</name></member>
-    <member refid="classQAccelPlot_1_1PointMaterial_1aaa84f84d6e6a78e7554f0b7cf9f69615" kind="function"><name>~PointMaterial</name></member>
     <member refid="classQAccelPlot_1_1PointMaterial_1a4dfda0309d4ef4b39364303cf3ff82f9" kind="function"><name>type</name></member>
     <member refid="classQAccelPlot_1_1PointMaterial_1a8d943d45e2a1b82a023bdb2bc8602977" kind="function"><name>createShader</name></member>
-    <member refid="classQAccelPlot_1_1PointMaterial_1aa3274999becc64e72aec901ff6ba903f" kind="function"><name>compare</name></member>
+    <member refid="classQAccelPlot_1_1PointMaterial_1a16e4223fdd470a65ce5c3dcb42b33b9c" kind="function"><name>compareExtra</name></member>
   </compound>
   <compound refid="structQAccelPlot_1_1PointCloud_1_1Points" kind="struct"><name>QAccelPlot::PointCloud::Points</name>
     <member refid="structQAccelPlot_1_1PointCloud_1_1Points_1ad713cbba3efd6db98bb7e22b96824bdb" kind="variable"><name>values</name></member>
@@ -2891,14 +2890,7 @@
     <member refid="classQAccelPlot_1_1PointSpatialIndex_1a10f10356ef4926654c1466e412562872" kind="function"><name>cellRow</name></member>
   </compound>
   <compound refid="structQAccelPlot_1_1PointVertex" kind="struct"><name>QAccelPlot::PointVertex</name>
-    <member refid="structQAccelPlot_1_1PointVertex_1a2bd7ddc4c66850847e26c112f12864d0" kind="variable"><name>x</name></member>
-    <member refid="structQAccelPlot_1_1PointVertex_1ad08410d87c9f1e0d98d6ea725829dc89" kind="variable"><name>y</name></member>
-    <member refid="structQAccelPlot_1_1PointVertex_1a812277ea710afb8d9343e3effc13ee3b" kind="variable"><name>cornerX</name></member>
-    <member refid="structQAccelPlot_1_1PointVertex_1a4f3a42b513e7e4ba5cb88d85f7103106" kind="variable"><name>cornerY</name></member>
-    <member refid="structQAccelPlot_1_1PointVertex_1aa77496b0d983bbad3e893cfe305c9a5d" kind="variable"><name>r</name></member>
-    <member refid="structQAccelPlot_1_1PointVertex_1a2f145f34d6b463a0154d569a19b5f61f" kind="variable"><name>g</name></member>
-    <member refid="structQAccelPlot_1_1PointVertex_1a28cc575c2a4b6e4d10df8704a8d693a8" kind="variable"><name>b</name></member>
-    <member refid="structQAccelPlot_1_1PointVertex_1ae4cb728945e5e4df9ffffffc658809b9" kind="variable"><name>a</name></member>
+    <member refid="structQAccelPlot_1_1PointVertex_1a9c8b247f3d10b7a585910f94cb762e1f" kind="variable"><name>padding</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1QAccelPlot" kind="class"><name>QAccelPlot::QAccelPlot</name>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a79b32fd14a755657b4404b7c053611a1" kind="enum"><name>DragMode</name></member>

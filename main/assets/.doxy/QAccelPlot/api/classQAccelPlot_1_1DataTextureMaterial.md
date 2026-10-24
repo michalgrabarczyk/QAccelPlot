@@ -24,7 +24,7 @@ _Base QSGMaterial that samples series data from a_ `DataTexture` _and exposes sh
 Inherits the following classes: QSGMaterial
 
 
-Inherited by the following classes: [QAccelPlot::BandMaterial](classQAccelPlot_1_1BandMaterial.md),  [QAccelPlot::ErrorBarMaterial](classQAccelPlot_1_1ErrorBarMaterial.md),  [QAccelPlot::LineMaterial](classQAccelPlot_1_1LineMaterial.md),  [QAccelPlot::PointCloudMaterial](classQAccelPlot_1_1PointCloudMaterial.md),  [QAccelPlot::RectMaterial](classQAccelPlot_1_1RectMaterial.md)
+Inherited by the following classes: [QAccelPlot::BandMaterial](classQAccelPlot_1_1BandMaterial.md),  [QAccelPlot::ErrorBarMaterial](classQAccelPlot_1_1ErrorBarMaterial.md),  [QAccelPlot::LineMaterial](classQAccelPlot_1_1LineMaterial.md),  [QAccelPlot::PointCloudMaterial](classQAccelPlot_1_1PointCloudMaterial.md),  [QAccelPlot::PointMaterial](classQAccelPlot_1_1PointMaterial.md),  [QAccelPlot::RectMaterial](classQAccelPlot_1_1RectMaterial.md)
 
 
 ## Inheritance diagram
@@ -59,6 +59,10 @@ flowchart TB
   classQAccelPlot_1_1PointCloudMaterial["QAccelPlot::PointCloudMaterial"]
   classQAccelPlot_1_1DataTextureMaterial --> classQAccelPlot_1_1PointCloudMaterial
   click classQAccelPlot_1_1PointCloudMaterial "../classQAccelPlot_1_1PointCloudMaterial/" "Open QAccelPlot::PointCloudMaterial"
+
+  classQAccelPlot_1_1PointMaterial["QAccelPlot::PointMaterial"]
+  classQAccelPlot_1_1DataTextureMaterial --> classQAccelPlot_1_1PointMaterial
+  click classQAccelPlot_1_1PointMaterial "../classQAccelPlot_1_1PointMaterial/" "Open QAccelPlot::PointMaterial"
 
   classQAccelPlot_1_1RectMaterial["QAccelPlot::RectMaterial"]
   classQAccelPlot_1_1DataTextureMaterial --> classQAccelPlot_1_1RectMaterial
@@ -130,6 +134,7 @@ flowchart TB
 | ---: | :--- |
 |  const QSGGeometry::AttributeSet & | [**attributeSet**](#function-attributeset) () <br>_Returns the shared vertex attribute set:_ `{float` _id, float param, uchar4 color} (12 bytes)._ |
 |  void | [**commitTexture**](#function-committexture) (QSGMaterialShader::RenderState & state, int binding, QSGTexture \*\* texture, const [**DataTexture**](classQAccelPlot_1_1DataTexture.md) \* data) <br>_Commits the texture of_ _data_ _to sampler__binding_ _(call from_`updateSampledImage` _). Does nothing before an upload._ |
+|  const QSGGeometry::AttributeSet & | [**vertexIndexAttributeSet**](#function-vertexindexattributeset) () <br>_Returns the attribute set of marker quads: one ignored_ `uchar4` _placeholder (4 bytes)._ |
 |  bool | [**writeCommonUniforms**](#function-writecommonuniforms) (char \* buf, int bufSize, const QMatrix4x4 & matrix, const [**DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) \* mat) <br>_Writes the shared UBO prefix (transform + color + domain + flags) into_ _buf_ _._ |
 
 
@@ -426,6 +431,25 @@ static void QAccelPlot::DataTextureMaterial::commitTexture (
 
 
 
+
+<hr>
+
+
+
+
+### function vertexIndexAttributeSet {#function-vertexindexattributeset}
+
+_Returns the attribute set of marker quads: one ignored_ `uchar4` _placeholder (4 bytes)._
+```C++
+static const QSGGeometry::AttributeSet & QAccelPlot::DataTextureMaterial::vertexIndexAttributeSet () 
+```
+
+
+
+The marker shaders derive the point index and quad corner from `gl_VertexIndex`. 
+
+
+        
 
 <hr>
 

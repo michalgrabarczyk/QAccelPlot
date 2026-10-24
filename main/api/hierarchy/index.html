@@ -1457,7 +1457,7 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PlotSeries_1_1DataRanges/"><strong>QAccelPlot::PlotSeries::DataRanges</strong></a> <em>Extents of a series in both dimensions.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointCurveRenderParams/"><strong>QAccelPlot::PointCurveRenderParams</strong></a> <em>Input parameters for</em> <a href="../classQAccelPlot_1_1LineCurvePointRenderer/#function-paint"><em><strong>LineCurvePointRenderer::paint()</strong></em></a> <em>, assembled on the main thread.</em></li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointSpatialIndex_1_1Mapping/"><strong>QAccelPlot::PointSpatialIndex::Mapping</strong></a> <em>Coordinate mapping applied before indexing.</em> </li>
-<li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointVertex/"><strong>QAccelPlot::PointVertex</strong></a> <em>Vertex layout for point (marker) geometry, shared with the main thread for vertex caches.</em> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointVertex/"><strong>QAccelPlot::PointVertex</strong></a> <em>Placeholder vertex of a marker quad, shared with the main thread for vertex caches.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1SummaryAccumulator/"><strong>QAccelPlot::SummaryAccumulator</strong></a> <em>Running data-point-weighted Y statistics that can be merged across disjoint data point sets.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Axis_1_1DataRange/"><strong>QAccelPlot::Axis::DataRange</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Axis_1_1DataRangeSource/"><strong>QAccelPlot::Axis::DataRangeSource</strong></a> </li>
@@ -1598,6 +1598,7 @@
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloudMaterial/"><strong>QAccelPlot::PointCloudMaterial</strong></a> <em>QSGMaterial for</em> <code>PointCloud</code> <em>rendering.</em></li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PointMaterial/"><strong>QAccelPlot::PointMaterial</strong></a> <em>QSGMaterial for</em> <code>LineCurve</code> <em>marker rendering.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectMaterial/"><strong>QAccelPlot::RectMaterial</strong></a> <em>QSGMaterial for rectangle series rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with a rect-count uniform.</em>    <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BarMaterial/"><strong>QAccelPlot::BarMaterial</strong></a> <em>QSGMaterial for bar series rendering, extending</em> <a href="../classQAccelPlot_1_1RectMaterial/"><em><strong>RectMaterial</strong></em></a> <em>with the bar geometry and colormap uniforms.</em></li>
 </ul>
@@ -1613,6 +1614,7 @@
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloudMaterial/"><strong>QAccelPlot::PointCloudMaterial</strong></a> <em>QSGMaterial for</em> <code>PointCloud</code> <em>rendering.</em></li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PointMaterial/"><strong>QAccelPlot::PointMaterial</strong></a> <em>QSGMaterial for</em> <code>LineCurve</code> <em>marker rendering.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectMaterial/"><strong>QAccelPlot::RectMaterial</strong></a> <em>QSGMaterial for rectangle series rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with a rect-count uniform.</em>    <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BarMaterial/"><strong>QAccelPlot::BarMaterial</strong></a> <em>QSGMaterial for bar series rendering, extending</em> <a href="../classQAccelPlot_1_1RectMaterial/"><em><strong>RectMaterial</strong></em></a> <em>with the bar geometry and colormap uniforms.</em></li>
 </ul>
@@ -1628,6 +1630,7 @@
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloudMaterial/"><strong>QAccelPlot::PointCloudMaterial</strong></a> <em>QSGMaterial for</em> <code>PointCloud</code> <em>rendering.</em></li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PointMaterial/"><strong>QAccelPlot::PointMaterial</strong></a> <em>QSGMaterial for</em> <code>LineCurve</code> <em>marker rendering.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectMaterial/"><strong>QAccelPlot::RectMaterial</strong></a> <em>QSGMaterial for rectangle series rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with a rect-count uniform.</em>    <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BarMaterial/"><strong>QAccelPlot::BarMaterial</strong></a> <em>QSGMaterial for bar series rendering, extending</em> <a href="../classQAccelPlot_1_1RectMaterial/"><em><strong>RectMaterial</strong></em></a> <em>with the bar geometry and colormap uniforms.</em></li>
 </ul>
@@ -1643,6 +1646,7 @@
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloudMaterial/"><strong>QAccelPlot::PointCloudMaterial</strong></a> <em>QSGMaterial for</em> <code>PointCloud</code> <em>rendering.</em></li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PointMaterial/"><strong>QAccelPlot::PointMaterial</strong></a> <em>QSGMaterial for</em> <code>LineCurve</code> <em>marker rendering.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectMaterial/"><strong>QAccelPlot::RectMaterial</strong></a> <em>QSGMaterial for rectangle series rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with a rect-count uniform.</em>    <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BarMaterial/"><strong>QAccelPlot::BarMaterial</strong></a> <em>QSGMaterial for bar series rendering, extending</em> <a href="../classQAccelPlot_1_1RectMaterial/"><em><strong>RectMaterial</strong></em></a> <em>with the bar geometry and colormap uniforms.</em></li>
 </ul>
@@ -1658,6 +1662,7 @@
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloudMaterial/"><strong>QAccelPlot::PointCloudMaterial</strong></a> <em>QSGMaterial for</em> <code>PointCloud</code> <em>rendering.</em></li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PointMaterial/"><strong>QAccelPlot::PointMaterial</strong></a> <em>QSGMaterial for</em> <code>LineCurve</code> <em>marker rendering.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectMaterial/"><strong>QAccelPlot::RectMaterial</strong></a> <em>QSGMaterial for rectangle series rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with a rect-count uniform.</em>    <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BarMaterial/"><strong>QAccelPlot::BarMaterial</strong></a> <em>QSGMaterial for bar series rendering, extending</em> <a href="../classQAccelPlot_1_1RectMaterial/"><em><strong>RectMaterial</strong></em></a> <em>with the bar geometry and colormap uniforms.</em></li>
 </ul>
@@ -1674,6 +1679,7 @@
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloudMaterial/"><strong>QAccelPlot::PointCloudMaterial</strong></a> <em>QSGMaterial for</em> <code>PointCloud</code> <em>rendering.</em></li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PointMaterial/"><strong>QAccelPlot::PointMaterial</strong></a> <em>QSGMaterial for</em> <code>LineCurve</code> <em>marker rendering.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectMaterial/"><strong>QAccelPlot::RectMaterial</strong></a> <em>QSGMaterial for rectangle series rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with a rect-count uniform.</em>    <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BarMaterial/"><strong>QAccelPlot::BarMaterial</strong></a> <em>QSGMaterial for bar series rendering, extending</em> <a href="../classQAccelPlot_1_1RectMaterial/"><em><strong>RectMaterial</strong></em></a> <em>with the bar geometry and colormap uniforms.</em></li>
 </ul>
@@ -1690,6 +1696,7 @@
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloudMaterial/"><strong>QAccelPlot::PointCloudMaterial</strong></a> <em>QSGMaterial for</em> <code>PointCloud</code> <em>rendering.</em></li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PointMaterial/"><strong>QAccelPlot::PointMaterial</strong></a> <em>QSGMaterial for</em> <code>LineCurve</code> <em>marker rendering.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectMaterial/"><strong>QAccelPlot::RectMaterial</strong></a> <em>QSGMaterial for rectangle series rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with a rect-count uniform.</em>    <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BarMaterial/"><strong>QAccelPlot::BarMaterial</strong></a> <em>QSGMaterial for bar series rendering, extending</em> <a href="../classQAccelPlot_1_1RectMaterial/"><em><strong>RectMaterial</strong></em></a> <em>with the bar geometry and colormap uniforms.</em></li>
 </ul>
@@ -1705,13 +1712,13 @@
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloudMaterial/"><strong>QAccelPlot::PointCloudMaterial</strong></a> <em>QSGMaterial for</em> <code>PointCloud</code> <em>rendering.</em></li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PointMaterial/"><strong>QAccelPlot::PointMaterial</strong></a> <em>QSGMaterial for</em> <code>LineCurve</code> <em>marker rendering.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectMaterial/"><strong>QAccelPlot::RectMaterial</strong></a> <em>QSGMaterial for rectangle series rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with a rect-count uniform.</em>    <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BarMaterial/"><strong>QAccelPlot::BarMaterial</strong></a> <em>QSGMaterial for bar series rendering, extending</em> <a href="../classQAccelPlot_1_1RectMaterial/"><em><strong>RectMaterial</strong></em></a> <em>with the bar geometry and colormap uniforms.</em></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1PointMaterial/"><strong>QAccelPlot::PointMaterial</strong></a> <em>QSGMaterial for marker (point) rendering.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a> <em>Base QSGMaterial that samples series data from a</em> <code>DataTexture</code> <em>and exposes shared shader uniforms.</em>    <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BandMaterial/"><strong>QAccelPlot::BandMaterial</strong></a> <em>QSGMaterial that fills a band between the low and high values of</em> <code>(x, low, high)</code> <em>data points.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1ErrorBarMaterial/"><strong>QAccelPlot::ErrorBarMaterial</strong></a> <em>Material that draws error bars from (x, y, low, high) data points in a data texture.</em> </li>
@@ -1721,6 +1728,23 @@
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloudMaterial/"><strong>QAccelPlot::PointCloudMaterial</strong></a> <em>QSGMaterial for</em> <code>PointCloud</code> <em>rendering.</em></li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PointMaterial/"><strong>QAccelPlot::PointMaterial</strong></a> <em>QSGMaterial for</em> <code>LineCurve</code> <em>marker rendering.</em></li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1RectMaterial/"><strong>QAccelPlot::RectMaterial</strong></a> <em>QSGMaterial for rectangle series rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with a rect-count uniform.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BarMaterial/"><strong>QAccelPlot::BarMaterial</strong></a> <em>QSGMaterial for bar series rendering, extending</em> <a href="../classQAccelPlot_1_1RectMaterial/"><em><strong>RectMaterial</strong></em></a> <em>with the bar geometry and colormap uniforms.</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a> <em>Base QSGMaterial that samples series data from a</em> <code>DataTexture</code> <em>and exposes shared shader uniforms.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandMaterial/"><strong>QAccelPlot::BandMaterial</strong></a> <em>QSGMaterial that fills a band between the low and high values of</em> <code>(x, low, high)</code> <em>data points.</em></li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1ErrorBarMaterial/"><strong>QAccelPlot::ErrorBarMaterial</strong></a> <em>Material that draws error bars from (x, y, low, high) data points in a data texture.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1LineMaterial/"><strong>QAccelPlot::LineMaterial</strong></a> <em>QSGMaterial for line rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with line-specific uniforms.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandEdgeMaterial/"><strong>QAccelPlot::BandEdgeMaterial</strong></a> <em>Line material for the lower or upper edge line of a band, reading</em> <code>(x, low, high)</code> <em>data points.</em></li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1GradientLineMaterial/"><strong>QAccelPlot::GradientLineMaterial</strong></a> <em>Line material variant that samples a one-dimensional gradient texture.</em> </li>
+</ul>
+</li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloudMaterial/"><strong>QAccelPlot::PointCloudMaterial</strong></a> <em>QSGMaterial for</em> <code>PointCloud</code> <em>rendering.</em></li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PointMaterial/"><strong>QAccelPlot::PointMaterial</strong></a> <em>QSGMaterial for</em> <code>LineCurve</code> <em>marker rendering.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectMaterial/"><strong>QAccelPlot::RectMaterial</strong></a> <em>QSGMaterial for rectangle series rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with a rect-count uniform.</em>    <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BarMaterial/"><strong>QAccelPlot::BarMaterial</strong></a> <em>QSGMaterial for bar series rendering, extending</em> <a href="../classQAccelPlot_1_1RectMaterial/"><em><strong>RectMaterial</strong></em></a> <em>with the bar geometry and colormap uniforms.</em></li>
 </ul>

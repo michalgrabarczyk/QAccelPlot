@@ -43,6 +43,11 @@ _Internal renderer responsible for building and updating QSGNode marker geometry
 
 
 
+## Public Static Attributes
+
+| Type | Name |
+| ---: | :--- |
+|  constexpr int | [**kVerticesPerPoint**](#variable-kverticesperpoint)   = `{6}`<br>_Number of vertices drawn per marker._  |
 
 
 
@@ -61,7 +66,7 @@ _Internal renderer responsible for building and updating QSGNode marker geometry
 
 | Type | Name |
 | ---: | :--- |
-|  void | [**buildVertexCache**](#function-buildvertexcache) (const std::vector&lt; float &gt; & data, int pointCount, std::vector&lt; char &gt; & cache) const<br>_Pre-builds the vertex buffer into_ _cache_ _on the calling thread (main thread safe)._ |
+|  void | [**buildVertexCache**](#function-buildvertexcache) (const std::vector&lt; float &gt; & data, int pointCount, std::vector&lt; char &gt; & cache) const<br>_Pre-builds the vertex buffer of_ _pointCount_ _markers into__cache_ _on the calling thread (main thread safe)._ |
 |  bool | [**contains**](#function-contains) (const QPointF & point, const [**CurveHitTestParams**](structQAccelPlot_1_1CurveHitTestParams.md) & params) const<br>_Returns_ `true` _if__point_ _lies within__params.hitThreshold_ _pixels of any marker._ |
 |  QSGNode \* | [**paint**](#function-paint) (QSGNode \* oldNode, const [**PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md) & params) const<br>_Updates the scene graph node tree for the point markers._  |
 
@@ -95,10 +100,27 @@ _Internal renderer responsible for building and updating QSGNode marker geometry
 ## Detailed Description
 
 
-Renders per-point markers using a single GPU-side quad per point. Supports pre-built vertex caches assembled on the main thread. 
+Renders per-point markers as two triangles per point. The vertex buffer depends only on the point count, so data updates of the same size only upload the data texture. 
 
 
     
+## Public Static Attributes Documentation
+
+
+
+
+
+### variable kVerticesPerPoint {#variable-kverticesperpoint}
+
+_Number of vertices drawn per marker._ 
+```C++
+constexpr int QAccelPlot::LineCurvePointRenderer::kVerticesPerPoint;
+```
+
+
+
+
+<hr>
 ## Public Functions Documentation
 
 
@@ -107,7 +129,7 @@ Renders per-point markers using a single GPU-side quad per point. Supports pre-b
 
 ### function buildVertexCache {#function-buildvertexcache}
 
-_Pre-builds the vertex buffer into_ _cache_ _on the calling thread (main thread safe)._
+_Pre-builds the vertex buffer of_ _pointCount_ _markers into__cache_ _on the calling thread (main thread safe)._
 ```C++
 void QAccelPlot::LineCurvePointRenderer::buildVertexCache (
     const std::vector< float > & data,
@@ -118,6 +140,10 @@ void QAccelPlot::LineCurvePointRenderer::buildVertexCache (
 
 
 
+The cache depends only on _pointCount_; _data_ is not read. 
+
+
+        
 
 <hr>
 
@@ -154,7 +180,7 @@ QSGNode * QAccelPlot::LineCurvePointRenderer::paint (
 
 
 
-When _params.vertexCache_ is non-null the vertex data is transferred via a fast `memcpy`. 
+The vertex buffer is written only when the point count changes, from _params.vertexCache_ when it matches. 
 
 
         

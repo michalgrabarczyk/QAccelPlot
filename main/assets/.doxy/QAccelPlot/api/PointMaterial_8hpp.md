@@ -17,10 +17,8 @@
 
 
 
-* `#include <QColor>`
-* `#include <QSGMaterial>`
-* `#include <QSGMaterialShader>`
-* `#include <QVector2D>`
+* `#include "QAccelPlot/materials/DataTextureMaterial.hpp"`
+* `#include "QAccelPlot/materials/GradientTexture.hpp"`
 
 
 
@@ -47,7 +45,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| class | [**PointMaterial**](classQAccelPlot_1_1PointMaterial.md) <br>_QSGMaterial for marker (point) rendering._  |
+| class | [**PointMaterial**](classQAccelPlot_1_1PointMaterial.md) <br>_QSGMaterial for_ `LineCurve` _marker rendering._ |
 
 
 

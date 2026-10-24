@@ -15,13 +15,13 @@
 
 
 
-_QSGMaterial for marker (point) rendering._ [More...](#detailed-description)
+_QSGMaterial for_ `LineCurve` _marker rendering._[More...](#detailed-description)
 
 * `#include <PointMaterial.hpp>`
 
 
 
-Inherits the following classes: QSGMaterial
+Inherits the following classes: [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 
 
 
@@ -32,10 +32,18 @@ Inherits the following classes: QSGMaterial
 flowchart TB
   classQAccelPlot_1_1PointMaterial["QAccelPlot::PointMaterial"]
 
-  external_base_classQAccelPlot_1_1PointMaterial_1["QSGMaterial"]
-  external_base_classQAccelPlot_1_1PointMaterial_1 --> classQAccelPlot_1_1PointMaterial
+  classQAccelPlot_1_1DataTextureMaterial["QAccelPlot::DataTextureMaterial"]
+  classQAccelPlot_1_1DataTextureMaterial --> classQAccelPlot_1_1PointMaterial
+  click classQAccelPlot_1_1DataTextureMaterial "../classQAccelPlot_1_1DataTextureMaterial/" "Open QAccelPlot::DataTextureMaterial"
+
+  external_base_classQAccelPlot_1_1DataTextureMaterial_1["QSGMaterial"]
+  external_base_classQAccelPlot_1_1DataTextureMaterial_1 --> classQAccelPlot_1_1DataTextureMaterial
 
 ```
+
+
+
+
 
 
 
@@ -58,17 +66,44 @@ flowchart TB
 | ---: | :--- |
 |  float | [**antialiasingEnabled**](#variable-antialiasingenabled)   = `{1.0f}`<br>_1.0 when GPU anti-aliasing is active._  |
 |  float | [**antialiasingFeather**](#variable-antialiasingfeather)   = `{1.0f}`<br>_Anti-aliasing feather width in pixels._  |
-|  QColor | [**color**](#variable-color)   = `{Qt::blue}`<br>_Base marker color._  |
-|  QVector2D | [**domainMax**](#variable-domainmax)   = `{1.0f, 1.0f}`<br>_Maximum data-space coordinate._  |
-|  QVector2D | [**domainMin**](#variable-domainmin)   = `{0.0f, 0.0f}`<br>_Minimum data-space coordinate._  |
-|  float | [**logScaleX**](#variable-logscalex)   = `{0.0f}`<br>_1.0 when the X axis uses log scale._  |
-|  float | [**logScaleY**](#variable-logscaley)   = `{0.0f}`<br>_1.0 when the Y axis uses log scale._  |
+|  float | [**gradientDirection**](#variable-gradientdirection)   = `{0.0f}`<br>_0.0 for a horizontal gradient, 1.0 for a vertical one._  |
+|  [**GradientTexture**](classQAccelPlot_1_1GradientTexture.md) | [**gradientTexture**](#variable-gradienttexture)  <br>_Gradient lookup texture sampled at binding 2._  |
+|  float | [**gradientValueMax**](#variable-gradientvaluemax)   = `{1.0f}`<br>_Render-space data value at gradient position 1._  |
+|  float | [**gradientValueMin**](#variable-gradientvaluemin)   = `{0.0f}`<br>_Render-space data value at gradient position 0._  |
 |  float | [**markerFilled**](#variable-markerfilled)   = `{1.0f}`<br>_1.0 for filled markers, 0.0 for hollow outlines._  |
 |  float | [**markerSize**](#variable-markersize)   = `{4.0f}`<br>_Marker radius in pixels._  |
 |  float | [**markerStrokeWidth**](#variable-markerstrokewidth)   = `{1.0f}`<br>_Outline width in pixels for hollow markers._  |
 |  int | [**shapeType**](#variable-shapetype)   = `{0}`<br>_Marker shape:_ `PlotSeries::MarkerShape` _value minus one (0 = Circle)._ |
-|  float | [**useVertexColor**](#variable-usevertexcolor)   = `{0.0f}`<br>_1.0 when per-vertex color overrides_ `color` _._ |
-|  QVector2D | [**viewportSize**](#variable-viewportsize)   = `{800.0f, 600.0f}`<br>_Viewport size in pixels._  |
+
+
+## Public Attributes inherited from QAccelPlot::DataTextureMaterial
+
+See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
+
+| Type | Name |
+| ---: | :--- |
+|  QColor | [**color**](classQAccelPlot_1_1DataTextureMaterial.md#variable-color)   = `{Qt::blue}`<br>_Line/fill color uniform._  |
+|  std::shared\_ptr&lt; [**DataTexture**](classQAccelPlot_1_1DataTexture.md) &gt; | [**dataTexture**](classQAccelPlot_1_1DataTextureMaterial.md#variable-datatexture)  <br>_Data texture sampled by the shader. Materials drawing the same samples may share one._  |
+|  QVector2D | [**domainMax**](classQAccelPlot_1_1DataTextureMaterial.md#variable-domainmax)   = `{1.0f, 1.0f}`<br>_Maximum data-space coordinate._  |
+|  QVector2D | [**domainMin**](classQAccelPlot_1_1DataTextureMaterial.md#variable-domainmin)   = `{0.0f, 0.0f}`<br>_Minimum data-space coordinate._  |
+|  float | [**logScaleX**](classQAccelPlot_1_1DataTextureMaterial.md#variable-logscalex)   = `{0.0f}`<br>_1.0 when the X axis uses log scale (float for std140 UBO compatibility)._  |
+|  float | [**logScaleY**](classQAccelPlot_1_1DataTextureMaterial.md#variable-logscaley)   = `{0.0f}`<br>_1.0 when the Y axis uses log scale (float for std140 UBO compatibility)._  |
+|  float | [**useVertexColor**](classQAccelPlot_1_1DataTextureMaterial.md#variable-usevertexcolor)   = `{0.0f}`<br>_1.0 when per-vertex color overrides_ `color` _(float for std140 UBO compatibility)._ |
+|  QVector2D | [**viewportSize**](classQAccelPlot_1_1DataTextureMaterial.md#variable-viewportsize)   = `{800.0f, 600.0f}`<br>_Viewport size in pixels._  |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -90,10 +125,35 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 |   | [**PointMaterial**](#function-pointmaterial) () <br>_Constructs a_ [_**PointMaterial**_](classQAccelPlot_1_1PointMaterial.md) _with default uniform values._ |
-|  int | [**compare**](#function-compare) (const QSGMaterial \* other) override const<br>_Compares all uniform fields for equality._  |
 |  QSGMaterialShader \* | [**createShader**](#function-createshader) (QSGRendererInterface::RenderMode) override const<br>_Creates and returns the point shader program._  |
 |  QSGMaterialType \* | [**type**](#function-type) () override const<br>_Returns the unique material type identifier for this class._  |
-|   | [**~PointMaterial**](#function-pointmaterial) () override<br> |
+
+
+## Public Functions inherited from QAccelPlot::DataTextureMaterial
+
+See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
+
+| Type | Name |
+| ---: | :--- |
+|   | [**DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md#function-datatexturematerial) () <br>_Constructs an empty_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _._ |
+|  int | [**compare**](classQAccelPlot_1_1DataTextureMaterial.md#function-compare) (const QSGMaterial \* other) override const<br>_Compares shared uniform fields; delegates type-specific fields to_ `compareExtra()` _._ |
+|  QSGTexture \* | [**sampledTexture**](classQAccelPlot_1_1DataTextureMaterial.md#function-sampledtexture) () const<br>_Returns the texture the shader samples, or_ `nullptr` _before_`dataTexture` _holds an upload._ |
+|  void | [**uploadTexture**](classQAccelPlot_1_1DataTextureMaterial.md#function-uploadtexture) (QQuickWindow \* window, const float \* data, int floatCount) <br>_Uploads_ _floatCount_ _raw floats from__data_ _into_`dataTexture` _, creating it when it is_`nullptr` _._ |
+|   | [**~DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md#function-datatexturematerial) () override<br> |
+
+
+
+
+## Public Static Functions inherited from QAccelPlot::DataTextureMaterial
+
+See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
+
+| Type | Name |
+| ---: | :--- |
+|  const QSGGeometry::AttributeSet & | [**attributeSet**](classQAccelPlot_1_1DataTextureMaterial.md#function-attributeset) () <br>_Returns the shared vertex attribute set:_ `{float` _id, float param, uchar4 color} (12 bytes)._ |
+|  void | [**commitTexture**](classQAccelPlot_1_1DataTextureMaterial.md#function-committexture) (QSGMaterialShader::RenderState & state, int binding, QSGTexture \*\* texture, const [**DataTexture**](classQAccelPlot_1_1DataTexture.md) \* data) <br>_Commits the texture of_ _data_ _to sampler__binding_ _(call from_`updateSampledImage` _). Does nothing before an upload._ |
+|  const QSGGeometry::AttributeSet & | [**vertexIndexAttributeSet**](classQAccelPlot_1_1DataTextureMaterial.md#function-vertexindexattributeset) () <br>_Returns the attribute set of marker quads: one ignored_ `uchar4` _placeholder (4 bytes)._ |
+|  bool | [**writeCommonUniforms**](classQAccelPlot_1_1DataTextureMaterial.md#function-writecommonuniforms) (char \* buf, int bufSize, const QMatrix4x4 & matrix, const [**DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) \* mat) <br>_Writes the shared UBO prefix (transform + color + domain + flags) into_ _buf_ _._ |
 
 
 
@@ -116,6 +176,40 @@ flowchart TB
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Protected Functions
+
+| Type | Name |
+| ---: | :--- |
+| virtual int | [**compareExtra**](#function-compareextra) (const QSGMaterial \* other) override const<br>_Compares marker-specific uniforms and the gradient texture identity._  |
+
+
+## Protected Functions inherited from QAccelPlot::DataTextureMaterial
+
+See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
+
+| Type | Name |
+| ---: | :--- |
+| virtual int | [**compareExtra**](classQAccelPlot_1_1DataTextureMaterial.md#function-compareextra) (const QSGMaterial \* other) const<br>_Subclass hook for_ `compare()` _— called after the shared fields compare equal._ |
 
 
 
@@ -125,7 +219,7 @@ flowchart TB
 ## Detailed Description
 
 
-Passes per-point color, domain bounds, marker size, and shape type to the point fragment shader. Unlike `LineMaterial` this class does not inherit from `DataTextureMaterial` because markers do not require a data texture. 
+Marker positions are read from the inherited data texture as interleaved XY floats, so the vertex buffer depends only on the point count. With `useVertexColor` == 1 the markers take their color from `gradientTexture` at their position along `gradientDirection`. 
 
 
     
@@ -165,11 +259,11 @@ float QAccelPlot::PointMaterial::antialiasingFeather;
 
 
 
-### variable color {#variable-color}
+### variable gradientDirection {#variable-gradientdirection}
 
-_Base marker color._ 
+_0.0 for a horizontal gradient, 1.0 for a vertical one._ 
 ```C++
-QColor QAccelPlot::PointMaterial::color;
+float QAccelPlot::PointMaterial::gradientDirection;
 ```
 
 
@@ -180,11 +274,11 @@ QColor QAccelPlot::PointMaterial::color;
 
 
 
-### variable domainMax {#variable-domainmax}
+### variable gradientTexture {#variable-gradienttexture}
 
-_Maximum data-space coordinate._ 
+_Gradient lookup texture sampled at binding 2._ 
 ```C++
-QVector2D QAccelPlot::PointMaterial::domainMax;
+GradientTexture QAccelPlot::PointMaterial::gradientTexture;
 ```
 
 
@@ -195,11 +289,11 @@ QVector2D QAccelPlot::PointMaterial::domainMax;
 
 
 
-### variable domainMin {#variable-domainmin}
+### variable gradientValueMax {#variable-gradientvaluemax}
 
-_Minimum data-space coordinate._ 
+_Render-space data value at gradient position 1._ 
 ```C++
-QVector2D QAccelPlot::PointMaterial::domainMin;
+float QAccelPlot::PointMaterial::gradientValueMax;
 ```
 
 
@@ -210,26 +304,11 @@ QVector2D QAccelPlot::PointMaterial::domainMin;
 
 
 
-### variable logScaleX {#variable-logscalex}
+### variable gradientValueMin {#variable-gradientvaluemin}
 
-_1.0 when the X axis uses log scale._ 
+_Render-space data value at gradient position 0._ 
 ```C++
-float QAccelPlot::PointMaterial::logScaleX;
-```
-
-
-
-
-<hr>
-
-
-
-
-### variable logScaleY {#variable-logscaley}
-
-_1.0 when the Y axis uses log scale._ 
-```C++
-float QAccelPlot::PointMaterial::logScaleY;
+float QAccelPlot::PointMaterial::gradientValueMin;
 ```
 
 
@@ -296,36 +375,6 @@ int QAccelPlot::PointMaterial::shapeType;
 
 
 <hr>
-
-
-
-
-### variable useVertexColor {#variable-usevertexcolor}
-
-_1.0 when per-vertex color overrides_ `color` _._
-```C++
-float QAccelPlot::PointMaterial::useVertexColor;
-```
-
-
-
-
-<hr>
-
-
-
-
-### variable viewportSize {#variable-viewportsize}
-
-_Viewport size in pixels._ 
-```C++
-QVector2D QAccelPlot::PointMaterial::viewportSize;
-```
-
-
-
-
-<hr>
 ## Public Functions Documentation
 
 
@@ -337,23 +386,6 @@ QVector2D QAccelPlot::PointMaterial::viewportSize;
 _Constructs a_ [_**PointMaterial**_](classQAccelPlot_1_1PointMaterial.md) _with default uniform values._
 ```C++
 QAccelPlot::PointMaterial::PointMaterial () 
-```
-
-
-
-
-<hr>
-
-
-
-
-### function compare {#function-compare}
-
-_Compares all uniform fields for equality._ 
-```C++
-int QAccelPlot::PointMaterial::compare (
-    const QSGMaterial * other
-) override const
 ```
 
 
@@ -392,17 +424,24 @@ QSGMaterialType * QAccelPlot::PointMaterial::type () override const
 
 
 <hr>
+## Protected Functions Documentation
 
 
 
 
-### function ~PointMaterial {#function-pointmaterial}
 
+### function compareExtra {#function-compareextra}
+
+_Compares marker-specific uniforms and the gradient texture identity._ 
 ```C++
-QAccelPlot::PointMaterial::~PointMaterial () override
+virtual int QAccelPlot::PointMaterial::compareExtra (
+    const QSGMaterial * other
+) override const
 ```
 
 
+
+Implements [*QAccelPlot::DataTextureMaterial::compareExtra*](classQAccelPlot_1_1DataTextureMaterial.md#function-compareextra)
 
 
 <hr>

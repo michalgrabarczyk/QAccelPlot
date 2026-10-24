@@ -142,9 +142,9 @@
 | class | [**PointCloud**](classQAccelPlot_1_1PointCloud.md) <br>_A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers._  |
 | class | [**PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md) <br>_QSGMaterial for_ `PointCloud` _rendering._ |
 | struct | [**PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md) <br>_Input parameters for_ [_**LineCurvePointRenderer::paint()**_](classQAccelPlot_1_1LineCurvePointRenderer.md#function-paint) _, assembled on the main thread._ |
-| class | [**PointMaterial**](classQAccelPlot_1_1PointMaterial.md) <br>_QSGMaterial for marker (point) rendering._  |
+| class | [**PointMaterial**](classQAccelPlot_1_1PointMaterial.md) <br>_QSGMaterial for_ `LineCurve` _marker rendering._ |
 | class | [**PointSpatialIndex**](classQAccelPlot_1_1PointSpatialIndex.md) <br>_Uniform-grid spatial index for nearest-point queries over large point sets._  |
-| struct | [**PointVertex**](structQAccelPlot_1_1PointVertex.md) <br>_Vertex layout for point (marker) geometry, shared with the main thread for vertex caches._  |
+| struct | [**PointVertex**](structQAccelPlot_1_1PointVertex.md) <br>_Placeholder vertex of a marker quad, shared with the main thread for vertex caches._  |
 | class | [**QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) <br>_The main plot canvas QML item — hosts axes, curves, and a grid._  |
 | class | [**RectMaterial**](classQAccelPlot_1_1RectMaterial.md) <br>_QSGMaterial for rectangle series rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with a rect-count uniform._ |
 | class | [**RectVertexCache**](classQAccelPlot_1_1RectVertexCache.md) <br>_Vertices of a series that draws each rectangle as a quad positioned from a data texture._  |

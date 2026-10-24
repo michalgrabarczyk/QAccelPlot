@@ -30,12 +30,14 @@
 #include <QSGNode>
 #include <QVector2D>
 
+#include <memory>
 #include <vector>
 
 QT_FORWARD_DECLARE_CLASS(QQuickWindow)
 
 namespace QAccelPlot {
 
+class DataTexture;
 struct DashParameters;
 class LineMaterial;
 
@@ -76,6 +78,8 @@ public:
     bool contains(const QPointF& point, const CurveHitTestParams& params) const;
 
     QSGNode* paint(QSGNode* oldNode, const LineCurveRenderParams& params) const;
+
+    static std::shared_ptr<DataTexture> dataTexture(QSGNode* node);
 
 private:
     // Gradient fill data points, cached across frames because they depend only on the data.

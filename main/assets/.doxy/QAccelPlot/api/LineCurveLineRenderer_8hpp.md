@@ -28,6 +28,7 @@
 * `#include <QSGGeometry>`
 * `#include <QSGNode>`
 * `#include <QVector2D>`
+* `#include <memory>`
 * `#include <vector>`
 
 

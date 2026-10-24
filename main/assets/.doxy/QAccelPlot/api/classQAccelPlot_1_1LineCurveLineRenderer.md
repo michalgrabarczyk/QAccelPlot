@@ -66,6 +66,11 @@ _Internal renderer responsible for building and updating QSGNode line geometry f
 |  QSGNode \* | [**paint**](#function-paint) (QSGNode \* oldNode, const [**LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md) & params) const<br>_Updates the scene graph node tree for this curve._  |
 
 
+## Public Static Functions
+
+| Type | Name |
+| ---: | :--- |
+|  std::shared\_ptr&lt; [**DataTexture**](classQAccelPlot_1_1DataTexture.md) &gt; | [**dataTexture**](#function-datatexture) (QSGNode \* node) <br>_Returns the data texture of the line in_ _node_ _, a tree returned by_[_**paint()**_](classQAccelPlot_1_1LineCurveLineRenderer.md#function-paint) _, or_`nullptr` _before an upload._ |
 
 
 
@@ -163,6 +168,25 @@ When _params.vertexCache_ is non-null the vertex data is transferred via a fast 
 
 
         
+
+<hr>
+## Public Static Functions Documentation
+
+
+
+
+
+### function dataTexture {#function-datatexture}
+
+_Returns the data texture of the line in_ _node_ _, a tree returned by_[_**paint()**_](classQAccelPlot_1_1LineCurveLineRenderer.md#function-paint) _, or_`nullptr` _before an upload._
+```C++
+static std::shared_ptr< DataTexture > QAccelPlot::LineCurveLineRenderer::dataTexture (
+    QSGNode * node
+) 
+```
+
+
+
 
 <hr>
 

@@ -1411,17 +1411,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#public-static-functions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Public Static Functions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#public-static-functions-inherited-from-qaccelplotdatatexturematerial" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1654,34 +1643,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#public-static-functions-documentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Public Static Functions Documentation
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Public Static Functions Documentation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#function-attributeset" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        function attributeSet
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#protected-functions-documentation" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1898,21 +1859,6 @@
 </tr>
 </tbody>
 </table>
-<h2 id="public-static-functions">Public Static Functions<a class="headerlink" href="#public-static-functions" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th style="text-align: right;">Type</th>
-<th style="text-align: left;">Name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: right;">const QSGGeometry::AttributeSet &amp;</td>
-<td style="text-align: left;"><a href="#function-attributeset"><strong>attributeSet</strong></a> () <br><em>Returns the per-vertex attribute set: one ignored</em> <code>uchar4</code> <em>placeholder (4 bytes).</em></td>
-</tr>
-</tbody>
-</table>
 <h2 id="public-static-functions-inherited-from-qaccelplotdatatexturematerial">Public Static Functions inherited from QAccelPlot::DataTextureMaterial<a class="headerlink" href="#public-static-functions-inherited-from-qaccelplotdatatexturematerial" title="Permanent link">&para;</a></h2>
 <p>See <a href="../classQAccelPlot_1_1DataTextureMaterial/">QAccelPlot::DataTextureMaterial</a></p>
 <table>
@@ -1930,6 +1876,10 @@
 <tr>
 <td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTextureMaterial/#function-committexture"><strong>commitTexture</strong></a> (QSGMaterialShader::RenderState &amp; state, int binding, QSGTexture ** texture, const <a href="../classQAccelPlot_1_1DataTexture/"><strong>DataTexture</strong></a> * data) <br><em>Commits the texture of</em> <em>data</em> <em>to sampler__binding</em> <em>(call from</em><code>updateSampledImage</code> <em>). Does nothing before an upload.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">const QSGGeometry::AttributeSet &amp;</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTextureMaterial/#function-vertexindexattributeset"><strong>vertexIndexAttributeSet</strong></a> () <br><em>Returns the attribute set of marker quads: one ignored</em> <code>uchar4</code> <em>placeholder (4 bytes).</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>
@@ -2071,19 +2021,12 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">QSGMaterialType</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloudMaterial</span><span class="o">::</span><span class="n">type</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
-<h2 id="public-static-functions-documentation">Public Static Functions Documentation<a class="headerlink" href="#public-static-functions-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="function-attributeset">function attributeSet<a class="headerlink" href="#function-attributeset" title="Permanent link">&para;</a></h3>
-<p><em>Returns the per-vertex attribute set: one ignored</em> <code>uchar4</code> <em>placeholder (4 bytes).</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">QSGGeometry</span><span class="o">::</span><span class="n">AttributeSet</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloudMaterial</span><span class="o">::</span><span class="n">attributeSet</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
-</code></pre></div></p>
-<p>The shader derives the point index and billboard corner from <code>gl_VertexIndex</code>. </p>
-<hr>
 <h2 id="protected-functions-documentation">Protected Functions Documentation<a class="headerlink" href="#protected-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-compareextra">function compareExtra<a class="headerlink" href="#function-compareextra" title="Permanent link">&para;</a></h3>
 <p><em>Compares point-cloud-specific uniforms and the colormap texture identity.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloudMaterial</span><span class="o">::</span><span class="n">compareExtra</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QSGMaterial</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">other</span>
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloudMaterial</span><span class="o">::</span><span class="n">compareExtra</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QSGMaterial</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">other</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1DataTextureMaterial/#function-compareextra"><em>QAccelPlot::DataTextureMaterial::compareExtra</em></a></p>
 <hr>

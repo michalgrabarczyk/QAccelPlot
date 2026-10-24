@@ -1434,6 +1434,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#variable-datatexture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable dataTexture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#variable-domainmax" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1555,17 +1566,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#variable-sourcedata" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        variable sourceData
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#variable-vertexcache" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1581,6 +1581,17 @@
     <span class="md-ellipsis">
       
         variable viewportSize
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variable-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable window
       
     </span>
   </a>
@@ -1645,6 +1656,10 @@
 <td style="text-align: left;"><a href="#variable-datachanged"><strong>dataChanged</strong></a>  <br><em>Whether data has changed since the last frame.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">std::shared_ptr&lt; <a href="../classQAccelPlot_1_1DataTexture/"><strong>DataTexture</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#variable-datatexture"><strong>dataTexture</strong></a>  <br><em>Texture that already holds</em> <code>data</code> <em>, or</em><code>nullptr</code> <em>to upload</em><code>data</code> <em>.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">QVector2D</td>
 <td style="text-align: left;"><a href="#variable-domainmax"><strong>domainMax</strong></a>  <br><em>Maximum data-space coordinate.</em></td>
 </tr>
@@ -1654,7 +1669,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">const <a href="../structQAccelPlot_1_1GradientColorPayload/"><strong>GradientColorPayload</strong></a> &amp;</td>
-<td style="text-align: left;"><a href="#variable-gradientpayload"><strong>gradientPayload</strong></a>  <br><em>Gradient color parameters.</em></td>
+<td style="text-align: left;"><a href="#variable-gradientpayload"><strong>gradientPayload</strong></a>  <br><em>Gradient color parameters, with value bounds in the coordinates of</em> <code>data</code> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>
@@ -1689,16 +1704,16 @@
 <td style="text-align: left;"><a href="#variable-shapetype"><strong>shapeType</strong></a>  <br><em>Marker shape index (</em> <code>PlotSeries::MarkerShape</code> <em>value minus one).</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../structQAccelPlot_1_1CurveDataView/"><strong>CurveDataView</strong></a></td>
-<td style="text-align: left;"><a href="#variable-sourcedata"><strong>sourceData</strong></a>  <br><em>Original float or double data used by CPU-side operations.</em></td>
-</tr>
-<tr>
 <td style="text-align: right;">const std::vector&lt; char &gt; *</td>
 <td style="text-align: left;"><a href="#variable-vertexcache"><strong>vertexCache</strong></a>  <br><em>Pre-built vertex buffer, or</em> <code>nullptr</code> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">QVector2D</td>
 <td style="text-align: left;"><a href="#variable-viewportsize"><strong>viewportSize</strong></a>  <br><em>Viewport size in pixels.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">QQuickWindow *</td>
+<td style="text-align: left;"><a href="#variable-window"><strong>window</strong></a>  <br><em>Window providing the texture upload context.</em></td>
 </tr>
 </tbody>
 </table>
@@ -1733,75 +1748,75 @@
 </code></pre></div></p>
 <hr>
 
+<h3 id="variable-datatexture">variable dataTexture<a class="headerlink" href="#variable-datatexture" title="Permanent link">&para;</a></h3>
+<p><em>Texture that already holds</em> <code>data</code> <em>, or</em><code>nullptr</code> <em>to upload</em><code>data</code> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">DataTexture</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">dataTexture</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="variable-domainmax">variable domainMax<a class="headerlink" href="#variable-domainmax" title="Permanent link">&para;</a></h3>
 <p><em>Maximum data-space coordinate.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">QVector2D</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">domainMax</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">QVector2D</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">domainMax</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-domainmin">variable domainMin<a class="headerlink" href="#variable-domainmin" title="Permanent link">&para;</a></h3>
 <p><em>Minimum data-space coordinate.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">QVector2D</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">domainMin</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">QVector2D</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">domainMin</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-gradientpayload">variable gradientPayload<a class="headerlink" href="#variable-gradientpayload" title="Permanent link">&para;</a></h3>
-<p><em>Gradient color parameters.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">const</span><span class="w"> </span><span class="n">GradientColorPayload</span><span class="o">&amp;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">gradientPayload</span><span class="p">;</span>
+<p><em>Gradient color parameters, with value bounds in the coordinates of</em> <code>data</code> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">const</span><span class="w"> </span><span class="n">GradientColorPayload</span><span class="o">&amp;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">gradientPayload</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-hovered">variable hovered<a class="headerlink" href="#variable-hovered" title="Permanent link">&para;</a></h3>
 <p><em>Whether the curve is currently hovered.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">hovered</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">hovered</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-logscalex">variable logScaleX<a class="headerlink" href="#variable-logscalex" title="Permanent link">&para;</a></h3>
 <p><em>Whether the X axis uses log scale.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">logScaleX</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">logScaleX</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-logscaley">variable logScaleY<a class="headerlink" href="#variable-logscaley" title="Permanent link">&para;</a></h3>
 <p><em>Whether the Y axis uses log scale.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">logScaleY</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">logScaleY</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-markerfilled">variable markerFilled<a class="headerlink" href="#variable-markerfilled" title="Permanent link">&para;</a></h3>
 <p><em>Whether closed marker shapes are filled rather than outlined.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">markerFilled</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">markerFilled</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-markersize">variable markerSize<a class="headerlink" href="#variable-markersize" title="Permanent link">&para;</a></h3>
 <p><em>Marker radius in pixels.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">markerSize</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">markerSize</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-markerstrokewidth">variable markerStrokeWidth<a class="headerlink" href="#variable-markerstrokewidth" title="Permanent link">&para;</a></h3>
 <p><em>Outline width in pixels for hollow markers.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">markerStrokeWidth</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">markerStrokeWidth</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-pointcount">variable pointCount<a class="headerlink" href="#variable-pointcount" title="Permanent link">&para;</a></h3>
 <p><em>Number of points in</em> <code>data</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">pointCount</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">pointCount</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-shapetype">variable shapeType<a class="headerlink" href="#variable-shapetype" title="Permanent link">&para;</a></h3>
 <p><em>Marker shape index (</em> <code>PlotSeries::MarkerShape</code> <em>value minus one).</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">shapeType</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="variable-sourcedata">variable sourceData<a class="headerlink" href="#variable-sourcedata" title="Permanent link">&para;</a></h3>
-<p><em>Original float or double data used by CPU-side operations.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">CurveDataView</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">sourceData</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">shapeType</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
@@ -1814,6 +1829,12 @@
 <h3 id="variable-viewportsize">variable viewportSize<a class="headerlink" href="#variable-viewportsize" title="Permanent link">&para;</a></h3>
 <p><em>Viewport size in pixels.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">QVector2D</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">viewportSize</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="variable-window">variable window<a class="headerlink" href="#variable-window" title="Permanent link">&para;</a></h3>
+<p><em>Window providing the texture upload context.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">QQuickWindow</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">window</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 

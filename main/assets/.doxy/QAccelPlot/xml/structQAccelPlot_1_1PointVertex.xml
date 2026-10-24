@@ -4,142 +4,31 @@
     <compoundname>QAccelPlot::PointVertex</compoundname>
     <includes local="no">LineCurvePointRenderer.hpp</includes>
     <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="structQAccelPlot_1_1PointVertex_1a2bd7ddc4c66850847e26c112f12864d0" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float QAccelPlot::PointVertex::x</definition>
-        <argsstring></argsstring>
-        <name>x</name>
-        <qualifiedname>QAccelPlot::PointVertex::x</qualifiedname>
+      <memberdef kind="variable" id="structQAccelPlot_1_1PointVertex_1a9c8b247f3d10b7a585910f94cb762e1f" prot="public" static="no" mutable="no">
+        <type>unsigned char</type>
+        <definition>unsigned char QAccelPlot::PointVertex::padding[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>padding</name>
+        <qualifiedname>QAccelPlot::PointVertex::padding</qualifiedname>
         <briefdescription>
-<para>Data-space X coordinate. </para>
+<para>Ignored; written as zero. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="47" column="11" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="47" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="structQAccelPlot_1_1PointVertex_1ad08410d87c9f1e0d98d6ea725829dc89" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float QAccelPlot::PointVertex::y</definition>
-        <argsstring></argsstring>
-        <name>y</name>
-        <qualifiedname>QAccelPlot::PointVertex::y</qualifiedname>
-        <briefdescription>
-<para>Data-space Y coordinate. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="48" column="11" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="48" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="structQAccelPlot_1_1PointVertex_1a812277ea710afb8d9343e3effc13ee3b" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float QAccelPlot::PointVertex::cornerX</definition>
-        <argsstring></argsstring>
-        <name>cornerX</name>
-        <qualifiedname>QAccelPlot::PointVertex::cornerX</qualifiedname>
-        <briefdescription>
-<para>Screen-space X corner offset for quad expansion. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="49" column="11" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="49" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="structQAccelPlot_1_1PointVertex_1a4f3a42b513e7e4ba5cb88d85f7103106" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float QAccelPlot::PointVertex::cornerY</definition>
-        <argsstring></argsstring>
-        <name>cornerY</name>
-        <qualifiedname>QAccelPlot::PointVertex::cornerY</qualifiedname>
-        <briefdescription>
-<para>Screen-space Y corner offset for quad expansion. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="50" column="11" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="50" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="structQAccelPlot_1_1PointVertex_1aa77496b0d983bbad3e893cfe305c9a5d" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float QAccelPlot::PointVertex::r</definition>
-        <argsstring></argsstring>
-        <name>r</name>
-        <qualifiedname>QAccelPlot::PointVertex::r</qualifiedname>
-        <briefdescription>
-<para>Red channel. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="51" column="11" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="51" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="structQAccelPlot_1_1PointVertex_1a2f145f34d6b463a0154d569a19b5f61f" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float QAccelPlot::PointVertex::g</definition>
-        <argsstring></argsstring>
-        <name>g</name>
-        <qualifiedname>QAccelPlot::PointVertex::g</qualifiedname>
-        <briefdescription>
-<para>Green channel. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="52" column="11" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="52" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="structQAccelPlot_1_1PointVertex_1a28cc575c2a4b6e4d10df8704a8d693a8" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float QAccelPlot::PointVertex::b</definition>
-        <argsstring></argsstring>
-        <name>b</name>
-        <qualifiedname>QAccelPlot::PointVertex::b</qualifiedname>
-        <briefdescription>
-<para>Blue channel. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="53" column="11" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="53" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="structQAccelPlot_1_1PointVertex_1ae4cb728945e5e4df9ffffffc658809b9" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float QAccelPlot::PointVertex::a</definition>
-        <argsstring></argsstring>
-        <name>a</name>
-        <qualifiedname>QAccelPlot::PointVertex::a</qualifiedname>
-        <briefdescription>
-<para>Alpha channel. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="54" column="11" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="54" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="56" column="19" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="56" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
-<para>Vertex layout for point (marker) geometry, shared with the main thread for vertex caches. </para>
+<para>Placeholder vertex of a marker quad, shared with the main thread for vertex caches. </para>
     </briefdescription>
     <detaileddescription>
+<para>The marker shader reads the point from the data texture and derives the point index and quad corner from the vertex index, so it ignores the vertex content. </para>
     </detaileddescription>
-    <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="46" column="1" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="46" bodyend="55"/>
+    <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="55" column="1" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="55" bodyend="57"/>
     <listofallmembers>
-      <member refid="structQAccelPlot_1_1PointVertex_1ae4cb728945e5e4df9ffffffc658809b9" prot="public" virt="non-virtual"><scope>QAccelPlot::PointVertex</scope><name>a</name></member>
-      <member refid="structQAccelPlot_1_1PointVertex_1a28cc575c2a4b6e4d10df8704a8d693a8" prot="public" virt="non-virtual"><scope>QAccelPlot::PointVertex</scope><name>b</name></member>
-      <member refid="structQAccelPlot_1_1PointVertex_1a812277ea710afb8d9343e3effc13ee3b" prot="public" virt="non-virtual"><scope>QAccelPlot::PointVertex</scope><name>cornerX</name></member>
-      <member refid="structQAccelPlot_1_1PointVertex_1a4f3a42b513e7e4ba5cb88d85f7103106" prot="public" virt="non-virtual"><scope>QAccelPlot::PointVertex</scope><name>cornerY</name></member>
-      <member refid="structQAccelPlot_1_1PointVertex_1a2f145f34d6b463a0154d569a19b5f61f" prot="public" virt="non-virtual"><scope>QAccelPlot::PointVertex</scope><name>g</name></member>
-      <member refid="structQAccelPlot_1_1PointVertex_1aa77496b0d983bbad3e893cfe305c9a5d" prot="public" virt="non-virtual"><scope>QAccelPlot::PointVertex</scope><name>r</name></member>
-      <member refid="structQAccelPlot_1_1PointVertex_1a2bd7ddc4c66850847e26c112f12864d0" prot="public" virt="non-virtual"><scope>QAccelPlot::PointVertex</scope><name>x</name></member>
-      <member refid="structQAccelPlot_1_1PointVertex_1ad08410d87c9f1e0d98d6ea725829dc89" prot="public" virt="non-virtual"><scope>QAccelPlot::PointVertex</scope><name>y</name></member>
+      <member refid="structQAccelPlot_1_1PointVertex_1a9c8b247f3d10b7a585910f94cb762e1f" prot="public" virt="non-virtual"><scope>QAccelPlot::PointVertex</scope><name>padding</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

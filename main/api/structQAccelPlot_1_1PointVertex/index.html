@@ -1367,6 +1367,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#detailed-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#public-attributes-documentation" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1379,87 +1390,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#variable-a" class="md-nav__link">
+  <a href="#variable-padding" class="md-nav__link">
     <span class="md-ellipsis">
       
-        variable a
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#variable-b" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        variable b
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#variable-cornerx" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        variable cornerX
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#variable-cornery" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        variable cornerY
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#variable-g" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        variable g
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#variable-r" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        variable r
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#variable-x" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        variable x
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#variable-y" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        variable y
+        variable padding
       
     </span>
   </a>
@@ -1490,7 +1424,7 @@
 
 <h1 id="struct-qaccelplotpointvertex">Struct QAccelPlot::PointVertex<a class="headerlink" href="#struct-qaccelplotpointvertex" title="Permanent link">&para;</a></h1>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="./"><strong>PointVertex</strong></a></p>
-<p><em>Vertex layout for point (marker) geometry, shared with the main thread for vertex caches.</em> </p>
+<p><em>Placeholder vertex of a marker quad, shared with the main thread for vertex caches.</em> <a href="#detailed-description">More...</a></p>
 <ul>
 <li><code>#include &lt;LineCurvePointRenderer.hpp&gt;</code></li>
 </ul>
@@ -1504,85 +1438,17 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;">float</td>
-<td style="text-align: left;"><a href="#variable-a"><strong>a</strong></a>  <br><em>Alpha channel.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">float</td>
-<td style="text-align: left;"><a href="#variable-b"><strong>b</strong></a>  <br><em>Blue channel.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">float</td>
-<td style="text-align: left;"><a href="#variable-cornerx"><strong>cornerX</strong></a>  <br><em>Screen-space X corner offset for quad expansion.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">float</td>
-<td style="text-align: left;"><a href="#variable-cornery"><strong>cornerY</strong></a>  <br><em>Screen-space Y corner offset for quad expansion.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">float</td>
-<td style="text-align: left;"><a href="#variable-g"><strong>g</strong></a>  <br><em>Green channel.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">float</td>
-<td style="text-align: left;"><a href="#variable-r"><strong>r</strong></a>  <br><em>Red channel.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">float</td>
-<td style="text-align: left;"><a href="#variable-x"><strong>x</strong></a>  <br><em>Data-space X coordinate.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">float</td>
-<td style="text-align: left;"><a href="#variable-y"><strong>y</strong></a>  <br><em>Data-space Y coordinate.</em></td>
+<td style="text-align: right;">unsigned char</td>
+<td style="text-align: left;"><a href="#variable-padding"><strong>padding</strong></a>  <br><em>Ignored; written as zero.</em></td>
 </tr>
 </tbody>
 </table>
+<h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
+<p>The marker shader reads the point from the data texture and derives the point index and quad corner from the vertex index, so it ignores the vertex content. </p>
 <h2 id="public-attributes-documentation">Public Attributes Documentation<a class="headerlink" href="#public-attributes-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="variable-a">variable a<a class="headerlink" href="#variable-a" title="Permanent link">&para;</a></h3>
-<p><em>Alpha channel.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointVertex</span><span class="o">::</span><span class="n">a</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="variable-b">variable b<a class="headerlink" href="#variable-b" title="Permanent link">&para;</a></h3>
-<p><em>Blue channel.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointVertex</span><span class="o">::</span><span class="n">b</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="variable-cornerx">variable cornerX<a class="headerlink" href="#variable-cornerx" title="Permanent link">&para;</a></h3>
-<p><em>Screen-space X corner offset for quad expansion.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointVertex</span><span class="o">::</span><span class="n">cornerX</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="variable-cornery">variable cornerY<a class="headerlink" href="#variable-cornery" title="Permanent link">&para;</a></h3>
-<p><em>Screen-space Y corner offset for quad expansion.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointVertex</span><span class="o">::</span><span class="n">cornerY</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="variable-g">variable g<a class="headerlink" href="#variable-g" title="Permanent link">&para;</a></h3>
-<p><em>Green channel.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointVertex</span><span class="o">::</span><span class="n">g</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="variable-r">variable r<a class="headerlink" href="#variable-r" title="Permanent link">&para;</a></h3>
-<p><em>Red channel.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointVertex</span><span class="o">::</span><span class="n">r</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="variable-x">variable x<a class="headerlink" href="#variable-x" title="Permanent link">&para;</a></h3>
-<p><em>Data-space X coordinate.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointVertex</span><span class="o">::</span><span class="n">x</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="variable-y">variable y<a class="headerlink" href="#variable-y" title="Permanent link">&para;</a></h3>
-<p><em>Data-space Y coordinate.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointVertex</span><span class="o">::</span><span class="n">y</span><span class="p">;</span>
+<h3 id="variable-padding">variable padding<a class="headerlink" href="#variable-padding" title="Permanent link">&para;</a></h3>
+<p><em>Ignored; written as zero.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointVertex</span><span class="o">::</span><span class="n">padding</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
 </code></pre></div></p>
 <hr>
 

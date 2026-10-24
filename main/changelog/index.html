@@ -1995,6 +1995,8 @@
   <code>Unsupported</code>.</li>
 <li>A <code>LineCurve</code> with hover off no longer scans its points on every data update.
   Streaming eight 512K-point curves takes about a quarter of the UI-thread time.</li>
+<li><code>LineCurve</code> markers read their positions from the GPU data texture, so data
+  updates no longer rebuild a vertex buffer per marker.</li>
 </ul>
 <h3 id="removed">Removed<a class="headerlink" href="#removed" title="Permanent link">&para;</a></h3>
 <ul>

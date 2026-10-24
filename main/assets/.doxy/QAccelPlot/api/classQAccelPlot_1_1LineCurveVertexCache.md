@@ -250,7 +250,7 @@ bool QAccelPlot::LineCurveVertexCache::isReusableForDataChange (
 
 
 
-Solid-line cache vertices contain no XY values and can therefore be reused when the point count remains unchanged. 
+Solid-line and marker cache vertices contain no XY values and can therefore be reused when the point count remains unchanged. 
 
 
         

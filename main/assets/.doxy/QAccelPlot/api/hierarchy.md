@@ -78,7 +78,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **struct** [**QAccelPlot::PlotSeries::DataRanges**](structQAccelPlot_1_1PlotSeries_1_1DataRanges.md) _Extents of a series in both dimensions._ 
 * **struct** [**QAccelPlot::PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md) _Input parameters for_ [_**LineCurvePointRenderer::paint()**_](classQAccelPlot_1_1LineCurvePointRenderer.md#function-paint) _, assembled on the main thread._
 * **struct** [**QAccelPlot::PointSpatialIndex::Mapping**](structQAccelPlot_1_1PointSpatialIndex_1_1Mapping.md) _Coordinate mapping applied before indexing._ 
-* **struct** [**QAccelPlot::PointVertex**](structQAccelPlot_1_1PointVertex.md) _Vertex layout for point (marker) geometry, shared with the main thread for vertex caches._ 
+* **struct** [**QAccelPlot::PointVertex**](structQAccelPlot_1_1PointVertex.md) _Placeholder vertex of a marker quad, shared with the main thread for vertex caches._ 
 * **struct** [**QAccelPlot::SummaryAccumulator**](structQAccelPlot_1_1SummaryAccumulator.md) _Running data-point-weighted Y statistics that can be merged across disjoint data point sets._ 
 * **struct** [**QAccelPlot::Axis::DataRange**](structQAccelPlot_1_1Axis_1_1DataRange.md) 
 * **struct** [**QAccelPlot::Axis::DataRangeSource**](structQAccelPlot_1_1Axis_1_1DataRangeSource.md) 
@@ -185,6 +185,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
             * **class** [**QAccelPlot::BandEdgeMaterial**](classQAccelPlot_1_1BandEdgeMaterial.md) _Line material for the lower or upper edge line of a band, reading_ `(x, low, high)` _data points._
             * **class** [**QAccelPlot::GradientLineMaterial**](classQAccelPlot_1_1GradientLineMaterial.md) _Line material variant that samples a one-dimensional gradient texture._ 
         * **class** [**QAccelPlot::PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md) _QSGMaterial for_ `PointCloud` _rendering._
+        * **class** [**QAccelPlot::PointMaterial**](classQAccelPlot_1_1PointMaterial.md) _QSGMaterial for_ `LineCurve` _marker rendering._
         * **class** [**QAccelPlot::RectMaterial**](classQAccelPlot_1_1RectMaterial.md) _QSGMaterial for rectangle series rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with a rect-count uniform._    
             * **class** [**QAccelPlot::BarMaterial**](classQAccelPlot_1_1BarMaterial.md) _QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry and colormap uniforms._
     * **class** [**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) _Base QSGMaterial that samples series data from a_ `DataTexture` _and exposes shared shader uniforms._    
@@ -194,6 +195,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
             * **class** [**QAccelPlot::BandEdgeMaterial**](classQAccelPlot_1_1BandEdgeMaterial.md) _Line material for the lower or upper edge line of a band, reading_ `(x, low, high)` _data points._
             * **class** [**QAccelPlot::GradientLineMaterial**](classQAccelPlot_1_1GradientLineMaterial.md) _Line material variant that samples a one-dimensional gradient texture._ 
         * **class** [**QAccelPlot::PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md) _QSGMaterial for_ `PointCloud` _rendering._
+        * **class** [**QAccelPlot::PointMaterial**](classQAccelPlot_1_1PointMaterial.md) _QSGMaterial for_ `LineCurve` _marker rendering._
         * **class** [**QAccelPlot::RectMaterial**](classQAccelPlot_1_1RectMaterial.md) _QSGMaterial for rectangle series rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with a rect-count uniform._    
             * **class** [**QAccelPlot::BarMaterial**](classQAccelPlot_1_1BarMaterial.md) _QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry and colormap uniforms._
     * **class** [**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) _Base QSGMaterial that samples series data from a_ `DataTexture` _and exposes shared shader uniforms._    
@@ -203,6 +205,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
             * **class** [**QAccelPlot::BandEdgeMaterial**](classQAccelPlot_1_1BandEdgeMaterial.md) _Line material for the lower or upper edge line of a band, reading_ `(x, low, high)` _data points._
             * **class** [**QAccelPlot::GradientLineMaterial**](classQAccelPlot_1_1GradientLineMaterial.md) _Line material variant that samples a one-dimensional gradient texture._ 
         * **class** [**QAccelPlot::PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md) _QSGMaterial for_ `PointCloud` _rendering._
+        * **class** [**QAccelPlot::PointMaterial**](classQAccelPlot_1_1PointMaterial.md) _QSGMaterial for_ `LineCurve` _marker rendering._
         * **class** [**QAccelPlot::RectMaterial**](classQAccelPlot_1_1RectMaterial.md) _QSGMaterial for rectangle series rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with a rect-count uniform._    
             * **class** [**QAccelPlot::BarMaterial**](classQAccelPlot_1_1BarMaterial.md) _QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry and colormap uniforms._
     * **class** [**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) _Base QSGMaterial that samples series data from a_ `DataTexture` _and exposes shared shader uniforms._    
@@ -212,6 +215,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
             * **class** [**QAccelPlot::BandEdgeMaterial**](classQAccelPlot_1_1BandEdgeMaterial.md) _Line material for the lower or upper edge line of a band, reading_ `(x, low, high)` _data points._
             * **class** [**QAccelPlot::GradientLineMaterial**](classQAccelPlot_1_1GradientLineMaterial.md) _Line material variant that samples a one-dimensional gradient texture._ 
         * **class** [**QAccelPlot::PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md) _QSGMaterial for_ `PointCloud` _rendering._
+        * **class** [**QAccelPlot::PointMaterial**](classQAccelPlot_1_1PointMaterial.md) _QSGMaterial for_ `LineCurve` _marker rendering._
         * **class** [**QAccelPlot::RectMaterial**](classQAccelPlot_1_1RectMaterial.md) _QSGMaterial for rectangle series rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with a rect-count uniform._    
             * **class** [**QAccelPlot::BarMaterial**](classQAccelPlot_1_1BarMaterial.md) _QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry and colormap uniforms._
     * **class** [**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) _Base QSGMaterial that samples series data from a_ `DataTexture` _and exposes shared shader uniforms._    
@@ -221,6 +225,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
             * **class** [**QAccelPlot::BandEdgeMaterial**](classQAccelPlot_1_1BandEdgeMaterial.md) _Line material for the lower or upper edge line of a band, reading_ `(x, low, high)` _data points._
             * **class** [**QAccelPlot::GradientLineMaterial**](classQAccelPlot_1_1GradientLineMaterial.md) _Line material variant that samples a one-dimensional gradient texture._ 
         * **class** [**QAccelPlot::PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md) _QSGMaterial for_ `PointCloud` _rendering._
+        * **class** [**QAccelPlot::PointMaterial**](classQAccelPlot_1_1PointMaterial.md) _QSGMaterial for_ `LineCurve` _marker rendering._
         * **class** [**QAccelPlot::RectMaterial**](classQAccelPlot_1_1RectMaterial.md) _QSGMaterial for rectangle series rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with a rect-count uniform._    
             * **class** [**QAccelPlot::BarMaterial**](classQAccelPlot_1_1BarMaterial.md) _QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry and colormap uniforms._
     * **class** [**QAccelPlot::GradientFillMaterial**](classQAccelPlot_1_1GradientFillMaterial.md) _Scene-graph material that evaluates fill gradients per fragment._ 
@@ -231,6 +236,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
             * **class** [**QAccelPlot::BandEdgeMaterial**](classQAccelPlot_1_1BandEdgeMaterial.md) _Line material for the lower or upper edge line of a band, reading_ `(x, low, high)` _data points._
             * **class** [**QAccelPlot::GradientLineMaterial**](classQAccelPlot_1_1GradientLineMaterial.md) _Line material variant that samples a one-dimensional gradient texture._ 
         * **class** [**QAccelPlot::PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md) _QSGMaterial for_ `PointCloud` _rendering._
+        * **class** [**QAccelPlot::PointMaterial**](classQAccelPlot_1_1PointMaterial.md) _QSGMaterial for_ `LineCurve` _marker rendering._
         * **class** [**QAccelPlot::RectMaterial**](classQAccelPlot_1_1RectMaterial.md) _QSGMaterial for rectangle series rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with a rect-count uniform._    
             * **class** [**QAccelPlot::BarMaterial**](classQAccelPlot_1_1BarMaterial.md) _QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry and colormap uniforms._
     * **class** [**QAccelPlot::HeatmapMaterial**](classQAccelPlot_1_1HeatmapMaterial.md) _Material that colors each fragment by the value of the heatmap cell under it._ 
@@ -241,6 +247,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
             * **class** [**QAccelPlot::BandEdgeMaterial**](classQAccelPlot_1_1BandEdgeMaterial.md) _Line material for the lower or upper edge line of a band, reading_ `(x, low, high)` _data points._
             * **class** [**QAccelPlot::GradientLineMaterial**](classQAccelPlot_1_1GradientLineMaterial.md) _Line material variant that samples a one-dimensional gradient texture._ 
         * **class** [**QAccelPlot::PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md) _QSGMaterial for_ `PointCloud` _rendering._
+        * **class** [**QAccelPlot::PointMaterial**](classQAccelPlot_1_1PointMaterial.md) _QSGMaterial for_ `LineCurve` _marker rendering._
         * **class** [**QAccelPlot::RectMaterial**](classQAccelPlot_1_1RectMaterial.md) _QSGMaterial for rectangle series rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with a rect-count uniform._    
             * **class** [**QAccelPlot::BarMaterial**](classQAccelPlot_1_1BarMaterial.md) _QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry and colormap uniforms._
     * **class** [**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) _Base QSGMaterial that samples series data from a_ `DataTexture` _and exposes shared shader uniforms._    
@@ -250,9 +257,9 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
             * **class** [**QAccelPlot::BandEdgeMaterial**](classQAccelPlot_1_1BandEdgeMaterial.md) _Line material for the lower or upper edge line of a band, reading_ `(x, low, high)` _data points._
             * **class** [**QAccelPlot::GradientLineMaterial**](classQAccelPlot_1_1GradientLineMaterial.md) _Line material variant that samples a one-dimensional gradient texture._ 
         * **class** [**QAccelPlot::PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md) _QSGMaterial for_ `PointCloud` _rendering._
+        * **class** [**QAccelPlot::PointMaterial**](classQAccelPlot_1_1PointMaterial.md) _QSGMaterial for_ `LineCurve` _marker rendering._
         * **class** [**QAccelPlot::RectMaterial**](classQAccelPlot_1_1RectMaterial.md) _QSGMaterial for rectangle series rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with a rect-count uniform._    
             * **class** [**QAccelPlot::BarMaterial**](classQAccelPlot_1_1BarMaterial.md) _QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry and colormap uniforms._
-    * **class** [**QAccelPlot::PointMaterial**](classQAccelPlot_1_1PointMaterial.md) _QSGMaterial for marker (point) rendering._ 
     * **class** [**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) _Base QSGMaterial that samples series data from a_ `DataTexture` _and exposes shared shader uniforms._    
         * **class** [**QAccelPlot::BandMaterial**](classQAccelPlot_1_1BandMaterial.md) _QSGMaterial that fills a band between the low and high values of_ `(x, low, high)` _data points._
         * **class** [**QAccelPlot::ErrorBarMaterial**](classQAccelPlot_1_1ErrorBarMaterial.md) _Material that draws error bars from (x, y, low, high) data points in a data texture._ 
@@ -260,6 +267,17 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
             * **class** [**QAccelPlot::BandEdgeMaterial**](classQAccelPlot_1_1BandEdgeMaterial.md) _Line material for the lower or upper edge line of a band, reading_ `(x, low, high)` _data points._
             * **class** [**QAccelPlot::GradientLineMaterial**](classQAccelPlot_1_1GradientLineMaterial.md) _Line material variant that samples a one-dimensional gradient texture._ 
         * **class** [**QAccelPlot::PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md) _QSGMaterial for_ `PointCloud` _rendering._
+        * **class** [**QAccelPlot::PointMaterial**](classQAccelPlot_1_1PointMaterial.md) _QSGMaterial for_ `LineCurve` _marker rendering._
+        * **class** [**QAccelPlot::RectMaterial**](classQAccelPlot_1_1RectMaterial.md) _QSGMaterial for rectangle series rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with a rect-count uniform._    
+            * **class** [**QAccelPlot::BarMaterial**](classQAccelPlot_1_1BarMaterial.md) _QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry and colormap uniforms._
+    * **class** [**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) _Base QSGMaterial that samples series data from a_ `DataTexture` _and exposes shared shader uniforms._    
+        * **class** [**QAccelPlot::BandMaterial**](classQAccelPlot_1_1BandMaterial.md) _QSGMaterial that fills a band between the low and high values of_ `(x, low, high)` _data points._
+        * **class** [**QAccelPlot::ErrorBarMaterial**](classQAccelPlot_1_1ErrorBarMaterial.md) _Material that draws error bars from (x, y, low, high) data points in a data texture._ 
+        * **class** [**QAccelPlot::LineMaterial**](classQAccelPlot_1_1LineMaterial.md) _QSGMaterial for line rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with line-specific uniforms._    
+            * **class** [**QAccelPlot::BandEdgeMaterial**](classQAccelPlot_1_1BandEdgeMaterial.md) _Line material for the lower or upper edge line of a band, reading_ `(x, low, high)` _data points._
+            * **class** [**QAccelPlot::GradientLineMaterial**](classQAccelPlot_1_1GradientLineMaterial.md) _Line material variant that samples a one-dimensional gradient texture._ 
+        * **class** [**QAccelPlot::PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md) _QSGMaterial for_ `PointCloud` _rendering._
+        * **class** [**QAccelPlot::PointMaterial**](classQAccelPlot_1_1PointMaterial.md) _QSGMaterial for_ `LineCurve` _marker rendering._
         * **class** [**QAccelPlot::RectMaterial**](classQAccelPlot_1_1RectMaterial.md) _QSGMaterial for rectangle series rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with a rect-count uniform._    
             * **class** [**QAccelPlot::BarMaterial**](classQAccelPlot_1_1BarMaterial.md) _QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry and colormap uniforms._
 * **class** **QQuickItem**    

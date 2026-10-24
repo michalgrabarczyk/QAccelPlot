@@ -1367,6 +1367,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#public-static-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Static Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#detailed-description" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1427,6 +1438,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#public-static-functions-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Static Functions Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Static Functions Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#function-datatexture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function dataTexture
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1473,6 +1512,21 @@
 </tr>
 </tbody>
 </table>
+<h2 id="public-static-functions">Public Static Functions<a class="headerlink" href="#public-static-functions" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">std::shared_ptr&lt; <a href="../classQAccelPlot_1_1DataTexture/"><strong>DataTexture</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#function-datatexture"><strong>dataTexture</strong></a> (QSGNode * node) <br><em>Returns the data texture of the line in</em> <em>node</em> <em>, a tree returned by</em><a href="./#function-paint"><em><strong>paint()</strong></em></a> <em>, or</em><code>nullptr</code> <em>before an upload.</em></td>
+</tr>
+</tbody>
+</table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
 <p>Supports solid and dashed lines, gradient stroke, gradient fill, and optional pre-built vertex caches assembled on the main thread for reduced render-thread stalls. </p>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
@@ -1505,6 +1559,14 @@
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <p>When <em>params.vertexCache</em> is non-null the vertex data is transferred via a fast <code>memcpy</code>; otherwise geometry is built in-place on the render thread. </p>
+<hr>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation<a class="headerlink" href="#public-static-functions-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="function-datatexture">function dataTexture<a class="headerlink" href="#function-datatexture" title="Permanent link">&para;</a></h3>
+<p><em>Returns the data texture of the line in</em> <em>node</em> <em>, a tree returned by</em><a href="./#function-paint"><em><strong>paint()</strong></em></a> <em>, or</em><code>nullptr</code> <em>before an upload.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">static</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="w"> </span><span class="n">DataTexture</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurveLineRenderer</span><span class="o">::</span><span class="n">dataTexture</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="n">QSGNode</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">node</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
 <hr>
 
 <hr />
