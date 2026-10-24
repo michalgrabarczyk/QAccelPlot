@@ -38,6 +38,7 @@ private slots:
     void textFormat_data();
     void textFormat();
     void text_labelsChanged_emitsSignal();
+    void minimumTickStep_onlyTextFormatterSetsOne();
 
     void ticker_formatterPropertyChange_emitsSignal();
     void ticker_formatterReplacement_emitsSignal();
@@ -190,36 +191,43 @@ void TestFormatters::textFormat_data()
 {
     QTest::addColumn<QStringList>("labels");
     QTest::addColumn<qreal>("value");
+    QTest::addColumn<qreal>("tickStep");
     QTest::addColumn<QString>("expected");
 
     const auto alphabet = QStringList{QStringLiteral("alpha"), QStringLiteral("beta"), QStringLiteral("gamma")};
     const auto numbers = QStringList{QStringLiteral("zero"), QStringLiteral("one"), QStringLiteral("two")};
-    QTest::newRow("first-label") << alphabet << 0.0 << QStringLiteral("alpha");
-    QTest::newRow("middle-label") << alphabet << 1.0 << QStringLiteral("beta");
-    QTest::newRow("last-label") << alphabet << 2.0 << QStringLiteral("gamma");
-    QTest::newRow("out-of-bounds") << QStringList{QStringLiteral("only")} << 5.0 << QString{};
-    QTest::newRow("negative-index") << QStringList{QStringLiteral("a"), QStringLiteral("b")} << -1.0 << QString{};
-    QTest::newRow("empty-list") << QStringList{} << 0.0 << QString{};
-    QTest::newRow("fraction-rounds-up") << numbers << 1.6 << QStringLiteral("two");
-    QTest::newRow("fraction-rounds-down") << numbers << 0.4 << QStringLiteral("zero");
-    QTest::newRow("half-rounds-up") << numbers << 1.5 << QStringLiteral("two");
-    QTest::newRow("small-negative-rounds-to-first") << numbers << -0.4 << QStringLiteral("zero");
-    QTest::newRow("negative-half-is-out-of-range") << numbers << -0.5 << QString{};
-    QTest::newRow("past-last-rounds-out-of-range") << numbers << 2.5 << QString{};
-    QTest::newRow("large-positive-index") << numbers << 3e9 << QString{};
-    QTest::newRow("large-negative-index") << numbers << -3e9 << QString{};
-    QTest::newRow("non-finite-index") << numbers << qQNaN() << QString{};
+    QTest::newRow("first-label") << alphabet << 0.0 << 1.0 << QStringLiteral("alpha");
+    QTest::newRow("middle-label") << alphabet << 1.0 << 1.0 << QStringLiteral("beta");
+    QTest::newRow("last-label") << alphabet << 2.0 << 1.0 << QStringLiteral("gamma");
+    QTest::newRow("out-of-bounds") << QStringList{QStringLiteral("only")} << 5.0 << 1.0 << QString{};
+    QTest::newRow("negative-index") << QStringList{QStringLiteral("a"), QStringLiteral("b")} << -1.0 << 1.0 << QString{};
+    QTest::newRow("empty-list") << QStringList{} << 0.0 << 1.0 << QString{};
+    QTest::newRow("fraction-above-index") << numbers << 1.6 << 0.2 << QString{};
+    QTest::newRow("fraction-below-index") << numbers << 0.4 << 0.2 << QString{};
+    QTest::newRow("half-between-indices") << numbers << 1.5 << 0.5 << QString{};
+    QTest::newRow("small-negative-fraction") << numbers << -0.4 << 0.2 << QString{};
+    QTest::newRow("rounding-error-above-index") << numbers << 1.0 + 1e-12 << 0.2 << QStringLiteral("one");
+    QTest::newRow("rounding-error-below-index") << numbers << 2.0 - 1e-12 << 0.2 << QStringLiteral("two");
+    QTest::newRow("rounding-error-below-first") << numbers << -1e-12 << 0.2 << QStringLiteral("zero");
+    QTest::newRow("deep-zoom-step-off-index") << numbers << 1.0 + 1e-7 << 1e-7 << QString{};
+    QTest::newRow("non-finite-step") << numbers << 1.0 << qQNaN() << QStringLiteral("one");
+    QTest::newRow("zero-step") << numbers << 1.0 << 0.0 << QStringLiteral("one");
+    QTest::newRow("past-last-is-out-of-range") << numbers << 3.0 << 1.0 << QString{};
+    QTest::newRow("large-positive-index") << numbers << 3e9 << 1.0 << QString{};
+    QTest::newRow("large-negative-index") << numbers << -3e9 << 1.0 << QString{};
+    QTest::newRow("non-finite-index") << numbers << qQNaN() << 1.0 << QString{};
 }
 
 void TestFormatters::textFormat()
 {
     QFETCH(QStringList, labels);
     QFETCH(qreal, value);
+    QFETCH(qreal, tickStep);
     QFETCH(QString, expected);
 
     auto formatter = QAccelPlot::TextTickLabelFormatter{};
     formatter.setLabels(labels);
-    QCOMPARE(formatter.format(value, 1.0), expected);
+    QCOMPARE(formatter.format(value, tickStep), expected);
 }
 
 void TestFormatters::text_labelsChanged_emitsSignal()
@@ -231,6 +239,13 @@ void TestFormatters::text_labelsChanged_emitsSignal()
 
     formatter.setLabels({QStringLiteral("x")});
     QCOMPARE(spy.count(), 1);
+}
+
+void TestFormatters::minimumTickStep_onlyTextFormatterSetsOne()
+{
+    QCOMPARE(QAccelPlot::NumericTickLabelFormatter{}.minimumTickStep(), 0.0);
+    QCOMPARE(QAccelPlot::DateTimeTickLabelFormatter{}.minimumTickStep(), 0.0);
+    QCOMPARE(QAccelPlot::TextTickLabelFormatter{}.minimumTickStep(), 1.0);
 }
 
 void TestFormatters::ticker_formatterPropertyChange_emitsSignal()

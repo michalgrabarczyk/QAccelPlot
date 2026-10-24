@@ -9,6 +9,7 @@
 
 #include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/formatters/TickLabelFormatter.hpp"
 
 #include <QFontMetricsF>
 #include <QPainter>
@@ -183,8 +184,8 @@ AxisTickValues AxisTickPainter::computeLogScaleTickValues(const qreal viewportLo
 
 AxisTickValues AxisTickPainter::computeLinearTickValues(const qreal viewportLow, const qreal viewportHigh, const AxisTicker& ticker)
 {
-    // Compute a "nice" world-aligned tick step from the requested tick count.
-    const auto step = computeNiceStep(viewportLow, viewportHigh, ticker.tickCount());
+    // Compute a "nice" world-aligned tick step from the requested tick count, no finer than the formatter allows.
+    const auto step = std::max(computeNiceStep(viewportLow, viewportHigh, ticker.tickCount()), ticker.tickLabelFormatter()->minimumTickStep());
     if (!std::isfinite(step) || step <= 0.0) {
         return {};
     }

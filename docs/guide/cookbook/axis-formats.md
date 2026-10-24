@@ -46,7 +46,8 @@ xAxis: QAccelPlot.Axis {
 }
 ```
 
-The data points still use X coordinates `0` through `6`.
+The data points still use X coordinates `0` through `6`. Zoomed in, the axis
+still ticks only at whole numbers, so each category is labeled once.
 
 ## Logarithmic axes
 

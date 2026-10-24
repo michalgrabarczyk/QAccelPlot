@@ -41,6 +41,12 @@ public:
     /// its \c tickStep. Without a callback this delegates to \c doFormatLogTick().
     QString formatLogTick(qreal value) const;
 
+    /// \brief Returns the smallest major tick step a linear axis may use with this formatter.
+    ///
+    /// The axis raises a smaller "nice" step to this value. The default is \c 0, no minimum.
+    /// Called from the scene graph sync as well as the GUI thread, so overrides must not call into QML.
+    virtual qreal minimumTickStep() const;
+
     /// \brief Returns the optional JavaScript override callback.
     QJSValue tickLabel() const;
     /// \brief Sets the JavaScript override callback to \a tickLabel.

@@ -9,9 +9,27 @@
 
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 
+#include <algorithm>
 #include <cmath>
 
 namespace QAccelPlot {
+
+namespace {
+
+/// \brief Returns how far a tick value may sit from an integer and still be labeled, given the \a tickStep.
+///
+/// Tick values carry rounding error, so an exact comparison would drop labels. The tolerance shrinks with
+/// steps below one so that a tick one step away from an index stays unlabeled on a deeply zoomed axis.
+qreal indexTolerance(const qreal tickStep)
+{
+    constexpr static auto kRelativeTolerance = qreal{1e-6};
+    if (!std::isfinite(tickStep) || tickStep <= 0.0) {
+        return kRelativeTolerance;
+    }
+    return kRelativeTolerance * std::min(tickStep, qreal{1.0});
+}
+
+} // namespace
 
 TextTickLabelFormatter::TextTickLabelFormatter(QObject* parent)
     : TickLabelFormatter(parent)
@@ -33,12 +51,20 @@ void TextTickLabelFormatter::setLabels(const QStringList& labels)
     emit formatChanged();
 }
 
-QString TextTickLabelFormatter::doFormat(const qreal value, [[maybe_unused]] const qreal tickStep) const
+qreal TextTickLabelFormatter::minimumTickStep() const
+{
+    return 1.0;
+}
+
+QString TextTickLabelFormatter::doFormat(const qreal value, const qreal tickStep) const
 {
     if (!std::isfinite(value)) {
         return {};
     }
     const auto index = std::round(value);
+    if (std::abs(value - index) > indexTolerance(tickStep)) {
+        return {};
+    }
     if (index < 0.0 || index >= static_cast<qreal>(labels_.size())) {
         qCDebug(lcQAccelPlot) << "index" << index << "out of range [0," << labels_.size() << "), returning empty string";
         return {};

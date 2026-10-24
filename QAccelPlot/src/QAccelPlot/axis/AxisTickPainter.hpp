@@ -61,7 +61,8 @@ public:
 
     /// \brief Returns the visible tick and subtick values for the \a viewportMin to \a viewportMax range, without labels.
     ///
-    /// Does not call the label formatter, so it is safe on the render thread. Empty when \a ticker is null or has no
+    /// Does not format labels, so it is safe on the render thread. A linear step never goes below the formatter's
+    /// \c TickLabelFormatter::minimumTickStep(). Empty when \a ticker is null or has no
     /// major ticks, and for a collapsed or nonfinite viewport.
     static AxisTickValues computeTickValues(qreal viewportMin, qreal viewportMax, bool logScale, const AxisTicker* ticker);
 

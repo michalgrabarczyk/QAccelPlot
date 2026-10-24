@@ -7,6 +7,7 @@
 //
 #include "HoverEvents.hpp"
 #include "QAccelPlot/axis/AxisTickPainter.hpp"
+#include "QAccelPlot/formatters/TextTickLabelFormatter.hpp"
 #include "QAccelPlot/formatters/TickLabelFormatter.hpp"
 
 #include <QHoverEvent>
@@ -80,6 +81,28 @@ protected:
 
 private:
     QString label_;
+};
+
+class MinimumStepTickLabelFormatter final : public QAccelPlot::TickLabelFormatter {
+public:
+    explicit MinimumStepTickLabelFormatter(const qreal minimumStep)
+        : minimumStep_(minimumStep)
+    {
+    }
+
+    qreal minimumTickStep() const override
+    {
+        return minimumStep_;
+    }
+
+protected:
+    QString doFormat(qreal, qreal) const override
+    {
+        return {};
+    }
+
+private:
+    qreal minimumStep_;
 };
 
 class RecordingTickLabelFormatter final : public QAccelPlot::TickLabelFormatter {
@@ -196,6 +219,10 @@ private slots:
     void computeTicks_passesTickStepToFormatter();
     void computeTicks_linearLabelsShareDecimals_data();
     void computeTicks_linearLabelsShareDecimals();
+    void computeTicks_zoomedCategoryAxisKeepsWholeSteps_data();
+    void computeTicks_zoomedCategoryAxisKeepsWholeSteps();
+    void computeTickValues_formatterMinimumStepRaisesStep();
+    void computeTickValues_logScaleIgnoresMinimumStep();
     void computeTicks_logScaleTicksAndSubticks();
     void computeTicks_logScaleMajorTicksReceiveNonZeroStep();
     void computeTicks_logScaleLabelsUsePowersOfTen();
@@ -511,6 +538,76 @@ void TestAxisTickPainter::computeTicks_linearLabelsShareDecimals()
         labels.append(tick.label);
     }
     QCOMPARE(labels, expected);
+}
+
+void TestAxisTickPainter::computeTicks_zoomedCategoryAxisKeepsWholeSteps_data()
+{
+    QTest::addColumn<qreal>("viewportMin");
+    QTest::addColumn<qreal>("viewportMax");
+    QTest::addColumn<int>("tickCount");
+    QTest::addColumn<qreal>("expectedStep");
+    QTest::addColumn<QStringList>("expected");
+
+    const auto all = QStringList{"Pump DE", "Pump NDE", "Motor DE", "Motor NDE", "Gearbox"};
+    QTest::newRow("step-1") << 0.0 << 4.0 << 4 << 1.0 << all;
+    QTest::newRow("step-2") << 0.0 << 4.0 << 2 << 2.0 << QStringList{"Pump DE", "Motor DE", "Gearbox"};
+    QTest::newRow("zoomed-from-0.5") << 0.0 << 2.0 << 4 << 1.0 << QStringList{"Pump DE", "Pump NDE", "Motor DE"};
+    QTest::newRow("zoomed-from-0.2") << 0.0 << 1.0 << 5 << 1.0 << QStringList{"Pump DE", "Pump NDE"};
+    QTest::newRow("zoomed-from-0.2-offset") << 2.9 << 4.1 << 6 << 1.0 << QStringList{"Motor NDE", "Gearbox"};
+    QTest::newRow("zoomed-between-categories") << 1.05 << 1.95 << 9 << 1.0 << QStringList{};
+}
+
+void TestAxisTickPainter::computeTicks_zoomedCategoryAxisKeepsWholeSteps()
+{
+    QFETCH(qreal, viewportMin);
+    QFETCH(qreal, viewportMax);
+    QFETCH(int, tickCount);
+    QFETCH(qreal, expectedStep);
+    QFETCH(QStringList, expected);
+
+    auto formatter = QAccelPlot::TextTickLabelFormatter{};
+    formatter.setLabels({"Pump DE", "Pump NDE", "Motor DE", "Motor NDE", "Gearbox"});
+    auto ticker = QAccelPlot::AxisTicker{};
+    ticker.setTickCount(tickCount);
+    ticker.setSubtickCount(0);
+    ticker.setTickLabelFormatter(&formatter);
+
+    const auto values = QAccelPlot::AxisTickPainter::computeTickValues(viewportMin, viewportMax, false, &ticker);
+    const auto ticks = QAccelPlot::AxisTickPainter::computeTicks(viewportMin, viewportMax, false, &ticker);
+
+    QCOMPARE(values.step, expectedStep);
+    auto labels = QStringList{};
+    for (const auto& tick : ticks.majorTicks) {
+        labels.append(tick.label);
+    }
+    QCOMPARE(labels, expected);
+}
+
+void TestAxisTickPainter::computeTickValues_formatterMinimumStepRaisesStep()
+{
+    auto formatter = MinimumStepTickLabelFormatter{0.5};
+    auto ticker = QAccelPlot::AxisTicker{};
+    ticker.setTickCount(5);
+    ticker.setSubtickCount(1);
+    ticker.setTickLabelFormatter(&formatter);
+
+    const auto values = QAccelPlot::AxisTickPainter::computeTickValues(0.0, 1.0, false, &ticker);
+
+    // [0, 1] / 5 gives a nice step of 0.2; the formatter's minimum raises it to 0.5.
+    QCOMPARE(values.step, 0.5);
+    QCOMPARE(values.majorValues, (QList<qreal>{0.0, 0.5, 1.0}));
+    QCOMPARE(values.subtickValues, (QList<qreal>{0.25, 0.75}));
+}
+
+void TestAxisTickPainter::computeTickValues_logScaleIgnoresMinimumStep()
+{
+    auto formatter = MinimumStepTickLabelFormatter{1000.0};
+    auto ticker = QAccelPlot::AxisTicker{};
+    ticker.setTickLabelFormatter(&formatter);
+
+    const auto values = QAccelPlot::AxisTickPainter::computeTickValues(1.0, 100.0, true, &ticker);
+
+    QCOMPARE(values.majorValues, (QList<qreal>{1.0, 10.0, 100.0}));
 }
 
 void TestAxisTickPainter::computeTicks_logScaleLabelsUsePowersOfTen()

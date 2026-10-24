@@ -32,6 +32,11 @@ QString TickLabelFormatter::formatLogTick(const qreal value) const
     return doFormatLogTick(value);
 }
 
+qreal TickLabelFormatter::minimumTickStep() const
+{
+    return 0.0;
+}
+
 QString TickLabelFormatter::doFormatLogTick(const qreal value) const
 {
     return doFormat(value, value);
