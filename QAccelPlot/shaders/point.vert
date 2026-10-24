@@ -8,85 +8,46 @@
 #version 440
 #extension GL_GOOGLE_include_directive : require
 
-layout(location = 0) in vec2 pos;      // data-space coordinate
-layout(location = 1) in vec2 corner;   // quad corner: each component is -1 or +1
-layout(location = 2) in vec4 vertexColor;
-
-layout(location = 0) out vec4 v_color;
-layout(location = 1) out vec2 v_uv;    // forwarded to fragment shader for SDF shaping; +-1 is markerSize
+layout(location = 0) out vec2 v_uv;                  // +-1 is markerSize; the quad extends further with antialiasing
+layout(location = 1) out float v_gradientCoordinate; // unclamped gradient coordinate of the marker
 
 layout(std140, binding = 0) uniform buf {
-    mat4  matrix;
-    vec4  color;
-    vec2  domainMin;
-    vec2  domainMax;
-    vec2  viewportSize;
-    float markerSize;
-    float logScaleX;
-    float logScaleY;
-    float useVertexColor;
-    float antialiasingEnabled;
-    float antialiasingFeather;
-    int   shapeType;
-    float markerStrokeWidth;
-    float markerFilled;
-    float opacity;
+    mat4  matrix;              //   0-63
+    vec4  color;               //  64-79
+    vec2  domainMin;           //  80-87
+    vec2  domainMax;           //  88-95
+    vec2  viewportSize;        //  96-103
+    float logScaleX;           // 104-107
+    float logScaleY;           // 108-111
+    float useVertexColor;      // 112-115: 1.0 = gradient color
+    float markerSize;          // 116-119
+    float antialiasingEnabled; // 120-123
+    float antialiasingFeather; // 124-127
+    int   shapeType;           // 128-131
+    float markerStrokeWidth;   // 132-135
+    float markerFilled;        // 136-139
+    float gradientDirection;   // 140-143: 0.0 = horizontal, 1.0 = vertical
+    float gradientValueMin;    // 144-147
+    float gradientValueMax;    // 148-151
+    float opacity;             // 152-155: inherited item opacity
 } ubuf;
 
+layout(binding = 1) uniform sampler2D dataSampler;
+
+#include "data_texture.glsl"
 #include "math_utils.glsl"
 #include "point_shapes.glsl"
+#include "marker_vertex.glsl"
 
 void main() {
-    v_color = mix(ubuf.color, vertexColor, ubuf.useVertexColor);
+    MarkerVertex marker = computeMarkerVertex(2);
+    v_uv = marker.uv;
+    gl_Position = marker.position;
 
-    // Invalid samples (non-finite, or not strictly positive on a log-scale
-    // dimension) are not drawn. All six corners share the culled position, so
-    // the quad has zero area. Log-scale dimensions are never origin-shifted.
-    bool valid = floatIsFinite(pos.x) && floatIsFinite(pos.y)
-        && (ubuf.logScaleX < 0.5 || pos.x > 0.0)
-        && (ubuf.logScaleY < 0.5 || pos.y > 0.0);
-    if (!valid) {
-        v_uv = corner;
-        gl_Position = kCulledClipPosition;
-        return;
-    }
-
-    vec2 dMin = ubuf.domainMin;
-    vec2 dMax = ubuf.domainMax;
-    vec2 p    = pos;
-
-    if (ubuf.logScaleX > 0.5) {
-        dMin.x = safeLog10(dMin.x);
-        dMax.x = safeLog10(dMax.x);
-        p.x    = safeLog10(p.x);
-    }
-
-    if (ubuf.logScaleY > 0.5) {
-        dMin.y = safeLog10(dMin.y);
-        dMax.y = safeLog10(dMax.y);
-        p.y    = safeLog10(p.y);
-    }
-
-    vec2 range   = dMax - dMin;
-    vec2 p_local = vec2(
-        (p.x - dMin.x) / range.x * ubuf.viewportSize.x,
-        (1.0 - (p.y - dMin.y) / range.y) * ubuf.viewportSize.y
-    );
-
-    float halfExtent = ubuf.markerSize;
-    if (ubuf.shapeType == kPixel) {
-        // A Pixel marker covers exactly one pixel: snap the centre to the pixel grid
-        // and ignore markerSize and antialiasing.
-        p_local = floor(p_local) + 0.5;
-        halfExtent = 0.5;
-    } else if (ubuf.antialiasingEnabled > 0.5 && ubuf.antialiasingFeather > 0.0) {
-        // With antialiasing, the quad grows by half the feather so the coverage ramp
-        // centred on the shape edge is not clipped by the geometry.
-        halfExtent += ubuf.antialiasingFeather * 0.5;
-    }
-    v_uv = corner * (halfExtent / max(ubuf.markerSize, 1e-4));
-
-    // Expand the point centre into a billboard quad in item-local pixel space
-    vec2 final_pos = p_local + corner * halfExtent;
-    gl_Position = ubuf.matrix * vec4(final_pos, 0.0, 1.0);
+    // Same palette coordinate as gradient_line.vert: horizontal runs left to right,
+    // while vertical position 0 is the top (largest Y value).
+    float gradientValue = ubuf.gradientDirection < 0.5 ? marker.dataPosition.x : marker.dataPosition.y;
+    float gradientRange = max(ubuf.gradientValueMax - ubuf.gradientValueMin, 1e-6);
+    float normalizedGradient = (gradientValue - ubuf.gradientValueMin) / gradientRange;
+    v_gradientCoordinate = ubuf.gradientDirection < 0.5 ? normalizedGradient : 1.0 - normalizedGradient;
 }

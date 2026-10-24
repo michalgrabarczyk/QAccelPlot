@@ -52,6 +52,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `Unsupported`.
 - A `LineCurve` with hover off no longer scans its points on every data update.
   Streaming eight 512K-point curves takes about a quarter of the UI-thread time.
+- `LineCurve` markers read their positions from the GPU data texture, so data
+  updates no longer rebuild a vertex buffer per marker.
 
 ### Removed
 

@@ -14,6 +14,7 @@
 #include "QAccelPlot/effects/GradientStroke.hpp"
 #include "QAccelPlot/inspection/internal/InspectionTypes.hpp"
 #include "QAccelPlot/legend/LegendEntry.hpp"
+#include "QAccelPlot/materials/internal/DataTextureLayout.hpp"
 #include "QAccelPlot/series/LineCurveGapFilter.hpp"
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
 #include "QAccelPlot/series/internal/StepPath.hpp"
@@ -144,17 +145,24 @@ template <typename Effect, typename Payload, typename RangeFn> Payload resolveGr
 }
 
 constexpr auto kLineVerticesPerPoint = 2;
-constexpr auto kMarkerVerticesPerPoint = 6;
 constexpr auto kLineVertexBytesPerPoint = kLineVerticesPerPoint * static_cast<int>(sizeof(LineVertex));
-// Markers carry their positions in the vertex buffer, which QSGGeometry sizes in int bytes.
-constexpr auto kMaxMarkerPoints = std::numeric_limits<int>::max() / (kMarkerVerticesPerPoint * static_cast<int>(sizeof(PointVertex)));
+constexpr auto kMarkerVertexBytesPerPoint = LineCurvePointRenderer::kVerticesPerPoint * static_cast<int>(sizeof(PointVertex));
+// QSGGeometry sizes the marker vertex buffer in int bytes.
+constexpr auto kMaxMarkerPoints = std::numeric_limits<int>::max() / kMarkerVertexBytesPerPoint;
 // Float vertex ids, which the line shader reads its data points by, are exact up to 2^24.
 constexpr auto kMaxLinePoints = 1 << 24;
+
+// Number of markers drawn in \a window. Markers read their points by integer vertex index, so the
+// float vertex id limit of lines does not apply.
+int markerCapacity(QQuickWindow* window)
+{
+    return static_cast<int>(std::min<qint64>(Internal::dataTextureItemCapacity(Internal::maxTextureSize(window), 2), kMaxMarkerPoints));
+}
 
 // Number of points a curve with these parts draws in \a window.
 int pointCapacity(QQuickWindow* window, const bool hasLine, const bool hasPoints, const StepMode stepMode)
 {
-    auto capacity = hasPoints ? kMaxMarkerPoints : std::numeric_limits<int>::max();
+    auto capacity = hasPoints ? markerCapacity(window) : std::numeric_limits<int>::max();
     if (hasLine) {
         capacity = std::min(capacity, Internal::recordCapacity(window, 2, kLineVertexBytesPerPoint * Internal::stepCornerCount(stepMode)));
     }
@@ -487,9 +495,9 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updat
         return nullptr;
     }
 
-    // The marker cache holds render positions, which a new render origin moves.
     const auto revision = dataPoints().renderRevision();
-    if (revision != vertexCacheRevision_ && !vertexCache_.isReusableForDataChange(LineCurveVertexCache::Layout::Line, drawnPointCount)) {
+    const auto cacheLayout = hasLine ? LineCurveVertexCache::Layout::Line : LineCurveVertexCache::Layout::Points;
+    if (revision != vertexCacheRevision_ && !vertexCache_.isReusableForDataChange(cacheLayout, drawnPointCount)) {
         vertexCache_.invalidate();
     }
     const auto dataChanged = dataChanged_ || revision != uploadedRevision_;
@@ -548,9 +556,11 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updat
 
     if (hasPoints) {
         const auto shapeType = static_cast<int>(marker_->shape()) - 1;
-        const auto pointParams = PointCurveRenderParams{renderData(), sourceDataView(), drawnPointCount, dataChanged, color_, hovered_, marker_->size(),
-            domainMin, domainMax, viewportSize, xAxis()->logScale(), yAxis()->logScale(), antialiasingEnabled_, antialiasingFeather_, gradientPayload,
-            hasLine ? nullptr : cache, shapeType, marker_->strokeWidth(), marker_->filled()};
+        // Markers draw the points the line already uploaded.
+        const auto pointParams
+            = PointCurveRenderParams{window(), renderData(), drawnPointCount, dataChanged, hasLine ? LineCurveLineRenderer::dataTexture(lineNode) : nullptr,
+                color_, hovered_, marker_->size(), domainMin, domainMax, viewportSize, xAxis()->logScale(), yAxis()->logScale(), antialiasingEnabled_,
+                antialiasingFeather_, renderGradientPayload, hasLine ? nullptr : cache, shapeType, marker_->strokeWidth(), marker_->filled()};
         pointNode = pointRenderer_.paint(pointOldNode, pointParams);
     }
 
@@ -881,10 +891,10 @@ void LineCurve::refreshVertexCacheForDataChange()
         return;
     }
 
-    // Solid-line cache vertices contain only point indices and ribbon sides, so
-    // they remain valid across same-sized data updates. Marker cache vertices
-    // contain XY positions and must be rebuilt for every update.
-    if (hasLine && vertexCache_.isReusableForDataChange(LineCurveVertexCache::Layout::Line, renderPointCount())) {
+    // Solid-line and marker cache vertices contain no XY values, so they remain
+    // valid across same-sized data updates.
+    const auto layout = hasLine ? LineCurveVertexCache::Layout::Line : LineCurveVertexCache::Layout::Points;
+    if (vertexCache_.isReusableForDataChange(layout, renderPointCount())) {
         return;
     }
 
@@ -906,7 +916,7 @@ std::size_t LineCurve::expectedVertexCacheSize() const
         return static_cast<std::size_t>(renderPointCount()) * static_cast<std::size_t>(Internal::stepCornerCount(stepMode_)) * 2 * sizeof(LineVertex);
     }
     if (hasPoints) {
-        return static_cast<std::size_t>(renderPointCount()) * 6 * sizeof(PointVertex);
+        return static_cast<std::size_t>(renderPointCount()) * static_cast<std::size_t>(kMarkerVertexBytesPerPoint);
     }
     return 0;
 }

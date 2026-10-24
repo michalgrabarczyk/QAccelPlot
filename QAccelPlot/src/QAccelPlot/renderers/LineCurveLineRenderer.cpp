@@ -333,6 +333,12 @@ QSGNode* LineCurveLineRenderer::paint(QSGNode* oldNode, const LineCurveRenderPar
     return rootNode;
 }
 
+std::shared_ptr<DataTexture> LineCurveLineRenderer::dataTexture(QSGNode* node)
+{
+    auto* lineNode = node ? static_cast<QSGGeometryNode*>(node->lastChild()) : nullptr;
+    return lineNode ? static_cast<LineMaterial*>(lineNode->material())->dataTexture : nullptr;
+}
+
 void LineCurveLineRenderer::updateFillGeometry(QSGGeometryNode* fillNode, const LineCurveRenderParams& params) const
 {
     const auto fillEnabled = params.gradientFillPayload.isValid() && params.xAxis && params.yAxis;

@@ -40,7 +40,7 @@ public:
 
     /// \brief Returns whether this cache can survive a data change with the requested layout.
     ///
-    /// Solid-line cache vertices contain no XY values and can therefore be
+    /// Solid-line and marker cache vertices contain no XY values and can therefore be
     /// reused when the point count remains unchanged.
     [[nodiscard]] bool isReusableForDataChange(Layout requiredLayout, int pointCount) const noexcept;
 

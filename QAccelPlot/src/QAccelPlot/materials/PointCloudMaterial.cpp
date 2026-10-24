@@ -8,11 +8,9 @@
 #include "QAccelPlot/materials/PointCloudMaterial.hpp"
 
 #include <QByteArray>
-#include <QSGGeometry>
 #include <QSGMaterialShader>
 
 #include <cstring>
-#include <iterator>
 
 namespace QAccelPlot {
 
@@ -109,18 +107,6 @@ QSGMaterialType* PointCloudMaterial::type() const
 QSGMaterialShader* PointCloudMaterial::createShader(QSGRendererInterface::RenderMode) const
 {
     return new PointCloudShader;
-}
-
-const QSGGeometry::AttributeSet& PointCloudMaterial::attributeSet()
-{
-    static constexpr int kVertexStride{4};        // uchar4 placeholder; Metal needs a multiple of 4
-    static constexpr int kAttrLocationPadding{0}; // layout(location = 0) in point_cloud.vert
-
-    static const QSGGeometry::Attribute attributes[] = {
-        QSGGeometry::Attribute::create(kAttrLocationPadding, 4, QSGGeometry::UnsignedByteType),
-    };
-    static const QSGGeometry::AttributeSet attrSet = {static_cast<int>(std::size(attributes)), kVertexStride, attributes};
-    return attrSet;
 }
 
 int PointCloudMaterial::compareExtra(const QSGMaterial* other) const
