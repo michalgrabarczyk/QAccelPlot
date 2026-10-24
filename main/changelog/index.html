@@ -1978,9 +1978,13 @@
 <li>Step lines via <code>LineCurve.stepMode</code> (<code>Before</code>, <code>After</code>, or <code>Center</code>): the
   fill, dash pattern, hover, and interpolated inspection follow the steps.
   Includes a Step Lines example.</li>
+<li><code>PlotInspector.cursorPixelX</code> and <code>cursorPixelY</code> place the cursor in
+  plot-local pixels; it stays on those pixels when the axes pan or zoom.</li>
 </ul>
 <h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
 <ul>
+<li>Renamed <code>PlotInspector.position</code> to <code>crosshairPosition</code>, and
+  <code>positionChanged()</code> to <code>crosshairPositionChanged()</code>.</li>
 <li><code>ColorBar.series</code> takes any <code>ColormappedSeries</code>, the new base of <code>PointCloud</code>,
   <code>HeatmapSeries</code>, and <code>BarSeries</code>. In C++, <code>ColorBar::series()</code> returns a
   <code>ColormappedSeries*</code>.</li>

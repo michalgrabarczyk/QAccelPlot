@@ -2385,10 +2385,12 @@
     <member refid="classQAccelPlot_1_1PlotInspector_1a33315202af925b84b3d77e049ce77195" kind="property"><name>followPointer</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1a798d4b51d6da6c2511abe566f66aa6f9" kind="property"><name>cursorX</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1a50f31ceca35b4b2e2950407dd96b8392" kind="property"><name>cursorY</name></member>
+    <member refid="classQAccelPlot_1_1PlotInspector_1a6a67bcff191066b26f024cb591ae066d" kind="property"><name>cursorPixelX</name></member>
+    <member refid="classQAccelPlot_1_1PlotInspector_1a9e9cf0fc4b130dd27d17a17ed96621b4" kind="property"><name>cursorPixelY</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1a8a75a392898963d6417965bc1e9170d2" kind="property"><name>cursorXText</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1a65536cd373fe8fa4a6ab9d8e620eade3" kind="property"><name>cursorYText</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1a7eef56474aca5f07dd812f0fd16ccfd3" kind="property"><name>active</name></member>
-    <member refid="classQAccelPlot_1_1PlotInspector_1aa18a013c11579af97c8fa4748c573eba" kind="property"><name>position</name></member>
+    <member refid="classQAccelPlot_1_1PlotInspector_1aa3ded7f0e7c7b2062600d475d5398f2c" kind="property"><name>crosshairPosition</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1a0bfc971d317ca5e10284c4345b03d147" kind="property"><name>model</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1a37d216deba7f0f9d9ae605117dd3ac35" kind="property"><name>validCount</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1a310a99588c1b33bd5ee35c4e269128a6" kind="variable"><name>plot_</name></member>
@@ -2406,11 +2408,14 @@
     <member refid="classQAccelPlot_1_1PlotInspector_1ad4fd5d434bae8ea613a679965b428007" kind="variable"><name>pending_</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1abb84ece9732c5d490258ada5f2f4278c" kind="variable"><name>refreshing_</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1aa71469c6f35da7dac589efff36b687d4" kind="variable"><name>active_</name></member>
-    <member refid="classQAccelPlot_1_1PlotInspector_1ad8e2716152eadc06e40cde617330c5ab" kind="variable"><name>position_</name></member>
+    <member refid="classQAccelPlot_1_1PlotInspector_1a8f9cf982dd2c9502e962083547f4a08b" kind="variable"><name>crosshairPosition_</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1a59b350344a2ff5a77df8abe271eef2ca" kind="variable"><name>cursorX_</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1ae9c3526496a6b25fb6e0c89253551004" kind="variable"><name>cursorY_</name></member>
+    <member refid="classQAccelPlot_1_1PlotInspector_1aa0d56d60fe65e6385ab34d5fee84ae00" kind="variable"><name>cursorPixel_</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1a06273c10d050153900bcb7a15dcd24f6" kind="variable"><name>pinnedX_</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1ad46c27f6446bd717cb965f940e074ac0" kind="variable"><name>pinnedY_</name></member>
+    <member refid="classQAccelPlot_1_1PlotInspector_1ac47c318d7c7dd31dcad42c32f1efbb8a" kind="variable"><name>pinnedXInPixels_</name></member>
+    <member refid="classQAccelPlot_1_1PlotInspector_1acd611e65e239d538a85a4fa8961930e0" kind="variable"><name>pinnedYInPixels_</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1a22d3b039c0b76678a2059f62361d7d99" kind="variable"><name>cursorXText_</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1a29c11b60ed7f43dd3e44a6b6218d6771" kind="variable"><name>cursorYText_</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1aa7e7470ce45c6e8cb17046413d1997e9" kind="variable"><name>validCount_</name></member>
@@ -2445,10 +2450,14 @@
     <member refid="classQAccelPlot_1_1PlotInspector_1ae05453859326132780df51c446c3211b" kind="function"><name>setCursorX</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1ac442cf9e82c667688bf8c32ebd107eb0" kind="function"><name>cursorY</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1aa9aae460acf9e08c3ebb09e56818e06f" kind="function"><name>setCursorY</name></member>
+    <member refid="classQAccelPlot_1_1PlotInspector_1aed5ceb07a2b157e8c61a46b2a8990217" kind="function"><name>cursorPixelX</name></member>
+    <member refid="classQAccelPlot_1_1PlotInspector_1a0238b6609dde5969c0b1045a0f823150" kind="function"><name>setCursorPixelX</name></member>
+    <member refid="classQAccelPlot_1_1PlotInspector_1a672561dd10df1d228e821819069b9da9" kind="function"><name>cursorPixelY</name></member>
+    <member refid="classQAccelPlot_1_1PlotInspector_1acd29f9d160c53f1fcbcf321b028196c3" kind="function"><name>setCursorPixelY</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1a8aa34e55c37c9c036d578df944a55c50" kind="function"><name>cursorXText</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1a6924af1c50c490e840f80f86f10ed10f" kind="function"><name>cursorYText</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1ac011486642f9be249ffa3de4061f5f1a" kind="function"><name>active</name></member>
-    <member refid="classQAccelPlot_1_1PlotInspector_1a26739c3c50de6c1a29d407e25d2d68df" kind="function"><name>position</name></member>
+    <member refid="classQAccelPlot_1_1PlotInspector_1a51074d54c96fa928a81c8c4c5cf7b0f2" kind="function"><name>crosshairPosition</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1ad537a369f42d56da4462adc0d86ac187" kind="function"><name>model</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1af83ef18aabeddb8a2e352b740a0e200e" kind="function"><name>validCount</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1a9c1a14497e3c9016e8df7af507bdac42" kind="function"><name>refresh</name></member>
@@ -2466,7 +2475,7 @@
     <member refid="classQAccelPlot_1_1PlotInspector_1aa8cdb155e7a192cbf9a62f24c88e4981" kind="signal"><name>followPointerChanged</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1af6bb6cd39684bdf89d02e7eeb51c5fd4" kind="signal"><name>cursorChanged</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1af3ca79c3baa66d072cad0692b8a417d2" kind="signal"><name>activeChanged</name></member>
-    <member refid="classQAccelPlot_1_1PlotInspector_1a192f930b5d6fe5cd54a69ae42123c826" kind="signal"><name>positionChanged</name></member>
+    <member refid="classQAccelPlot_1_1PlotInspector_1afbca315a6a4d04ce668a107a04308b9c" kind="signal"><name>crosshairPositionChanged</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1ade00dc3f3f3018ea430cb9bb70feb0a9" kind="signal"><name>validCountChanged</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1ad64afbb550411f0271b415bf9dddf3b2" kind="signal"><name>refreshed</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1aff93b94cdf0623675a0bd9982d814718" kind="function"><name>schedule</name></member>
@@ -2475,7 +2484,9 @@
     <member refid="classQAccelPlot_1_1PlotInspector_1a5b6181fcbe9362813fe6b026f49854a1" kind="function"><name>connectSeries</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1ac97bc68344c751f08b488fd324bba290" kind="function"><name>inspects</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1a76dd8d43a5d664c448bbc9e8d11c9135" kind="function"><name>inspectedSeries</name></member>
-    <member refid="classQAccelPlot_1_1PlotInspector_1a8debbd1b11906b53e5a3f2e815b297c8" kind="function"><name>cursorPosition</name></member>
+    <member refid="classQAccelPlot_1_1PlotInspector_1a927059f1cb996dc9b42ae2dc99327a08" kind="function"><name>pinnedData</name></member>
+    <member refid="classQAccelPlot_1_1PlotInspector_1a514b3aee07202bd4e01fe45f93761fac" kind="function"><name>pinnedPixel</name></member>
+    <member refid="classQAccelPlot_1_1PlotInspector_1a7ffa20c62e4c58138eed724941490fe5" kind="function"><name>activeCursor</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1a3345ef3db8fbe96f1766f6144e3793ab" kind="function"><name>effectiveMode</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1a6e93449a8ea17040c3de60ba57fe5196" kind="function"><name>lowerNeighborIndex</name></member>
     <member refid="classQAccelPlot_1_1PlotInspector_1aecc195716a3ae7f199d1cf0dab218134" kind="function"><name>inspect</name></member>

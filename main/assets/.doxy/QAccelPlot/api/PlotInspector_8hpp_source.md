@@ -47,10 +47,12 @@ class PlotInspector : public QObject {
     Q_PROPERTY(bool followPointer READ followPointer WRITE setFollowPointer NOTIFY followPointerChanged)
     Q_PROPERTY(qreal cursorX READ cursorX WRITE setCursorX NOTIFY cursorChanged)
     Q_PROPERTY(qreal cursorY READ cursorY WRITE setCursorY NOTIFY cursorChanged)
+    Q_PROPERTY(qreal cursorPixelX READ cursorPixelX WRITE setCursorPixelX NOTIFY cursorChanged)
+    Q_PROPERTY(qreal cursorPixelY READ cursorPixelY WRITE setCursorPixelY NOTIFY cursorChanged)
     Q_PROPERTY(QString cursorXText READ cursorXText NOTIFY cursorChanged)
     Q_PROPERTY(QString cursorYText READ cursorYText NOTIFY cursorChanged)
     Q_PROPERTY(bool active READ active NOTIFY activeChanged)
-    Q_PROPERTY(QPointF position READ position NOTIFY positionChanged)
+    Q_PROPERTY(QPointF crosshairPosition READ crosshairPosition NOTIFY crosshairPositionChanged)
     Q_PROPERTY(::QAccelPlot::InspectionRowModel* model READ model CONSTANT)
     Q_PROPERTY(int validCount READ validCount NOTIFY validCountChanged)
 
@@ -94,10 +96,14 @@ public:
     void setCursorX(qreal x);
     qreal cursorY() const;
     void setCursorY(qreal y);
+    qreal cursorPixelX() const;
+    void setCursorPixelX(qreal x);
+    qreal cursorPixelY() const;
+    void setCursorPixelY(qreal y);
     QString cursorXText() const;
     QString cursorYText() const;
     bool active() const;
-    QPointF position() const;
+    QPointF crosshairPosition() const;
     InspectionRowModel* model() const;
     int validCount() const;
 
@@ -118,7 +124,7 @@ signals:
     void followPointerChanged();
     void cursorChanged();
     void activeChanged();
-    void positionChanged();
+    void crosshairPositionChanged();
     void validCountChanged();
     void refreshed();
 
@@ -133,8 +139,11 @@ private:
     void connectSeries(PlotSeries* series);
     bool inspects(PlotSeries* series) const;
     QList<PlotSeries*> inspectedSeries() const;
+    // Returns the cursor set from code in data units and in plot-local pixels; a coordinate it lacks, or that cannot be mapped, is NaN.
+    QPointF pinnedData() const;
+    QPointF pinnedPixel() const;
     // Returns the cursor in plot-local pixels, or nothing while the inspector is inactive. A coordinate that a cursor set from code lacks is NaN.
-    std::optional<QPointF> cursorPosition() const;
+    std::optional<QPointF> activeCursor() const;
     // Returns the mode the cursor allows: without one of its coordinates, series are matched along the other axis.
     Mode effectiveMode(const QPointF& cursor) const;
     // Returns the source index of the data point at or before an interpolated dataPoint. On a step line its index can be the one after.
@@ -167,12 +176,15 @@ private:
     bool pending_{false};
     bool refreshing_{false};
     bool active_{false};
-    QPointF position_;
+    QPointF crosshairPosition_;
     qreal cursorX_;
     qreal cursorY_;
-    // Cursor set from code; used while followPointer_ is false.
+    QPointF cursorPixel_;
+    // Cursor set from code; used while followPointer_ is false. Each coordinate is in data units, or in plot-local pixels when its flag is set.
     qreal pinnedX_;
     qreal pinnedY_;
+    bool pinnedXInPixels_{false};
+    bool pinnedYInPixels_{false};
     QString cursorXText_;
     QString cursorYText_;
     int validCount_{0};
