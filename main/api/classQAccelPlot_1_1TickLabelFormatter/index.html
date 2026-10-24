@@ -1534,6 +1534,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#function-minimumtickstep" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function minimumTickStep
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-setticklabel" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1699,6 +1710,10 @@
 <td style="text-align: left;"><a href="#function-formatlogtick"><strong>formatLogTick</strong></a> (qreal value) const<br><em>Returns the display string for a major tick at</em> <em>value</em> <em>on a logarithmic axis.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">virtual qreal</td>
+<td style="text-align: left;"><a href="#function-minimumtickstep"><strong>minimumTickStep</strong></a> () const<br><em>Returns the smallest major tick step a linear axis may use with this formatter.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="#function-setticklabel"><strong>setTickLabel</strong></a> (const QJSValue &amp; tickLabel) <br><em>Sets the JavaScript override callback to</em> <em>tickLabel</em> <em>.</em></td>
 </tr>
@@ -1776,34 +1791,41 @@
 <p>Log-scale ticks have no single step, so the <code>tickLabel</code> JS callback receives <em>value</em> as its <code>tickStep</code>. Without a callback this delegates to <code>doFormatLogTick()</code>. </p>
 <hr>
 
+<h3 id="function-minimumtickstep">function minimumTickStep<a class="headerlink" href="#function-minimumtickstep" title="Permanent link">&para;</a></h3>
+<p><em>Returns the smallest major tick step a linear axis may use with this formatter.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TickLabelFormatter</span><span class="o">::</span><span class="n">minimumTickStep</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<p>The axis raises a smaller "nice" step to this value. The default is <code>0</code>, no minimum. Called from the scene graph sync as well as the GUI thread, so overrides must not call into QML. </p>
+<hr>
+
 <h3 id="function-setticklabel">function setTickLabel<a class="headerlink" href="#function-setticklabel" title="Permanent link">&para;</a></h3>
 <p><em>Sets the JavaScript override callback to</em> <em>tickLabel</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TickLabelFormatter</span><span class="o">::</span><span class="n">setTickLabel</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QJSValue</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">tickLabel</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TickLabelFormatter</span><span class="o">::</span><span class="n">setTickLabel</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QJSValue</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">tickLabel</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-ticklabel-22">function tickLabel<a class="headerlink" href="#function-ticklabel-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the optional JavaScript override callback.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">QJSValue</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TickLabelFormatter</span><span class="o">::</span><span class="n">tickLabel</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">QJSValue</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TickLabelFormatter</span><span class="o">::</span><span class="n">tickLabel</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 <h2 id="protected-functions-documentation">Protected Functions Documentation<a class="headerlink" href="#protected-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-doformat">function doFormat<a class="headerlink" href="#function-doformat" title="Permanent link">&para;</a></h3>
 <p><em>Subclass entry point — returns the formatted label for</em> <em>value</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TickLabelFormatter</span><span class="o">::</span><span class="n">doFormat</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span><span class="p">,</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">tickStep</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TickLabelFormatter</span><span class="o">::</span><span class="n">doFormat</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span><span class="p">,</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">tickStep</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-doformatlogtick">function doFormatLogTick<a class="headerlink" href="#function-doformatlogtick" title="Permanent link">&para;</a></h3>
 <p><em>Subclass entry point for log-scale major ticks — returns the label for</em> <em>value</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TickLabelFormatter</span><span class="o">::</span><span class="n">doFormatLogTick</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TickLabelFormatter</span><span class="o">::</span><span class="n">doFormatLogTick</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <p>The default implementation returns <code>doFormat(value, value)</code>, using the tick's own magnitude as a proxy for the precision it needs. </p>
 <hr>

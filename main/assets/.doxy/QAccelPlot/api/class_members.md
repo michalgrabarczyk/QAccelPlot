@@ -792,6 +792,7 @@
 * **merge** ([**QAccelPlot::SummaryAccumulator**](structQAccelPlot_1_1SummaryAccumulator.md))
 * **minimum** ([**QAccelPlot::SummaryAccumulator**](structQAccelPlot_1_1SummaryAccumulator.md))
 * **minimumIndex** ([**QAccelPlot::SummaryAccumulator**](structQAccelPlot_1_1SummaryAccumulator.md))
+* **minimumTickStep** ([**QAccelPlot::TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md), [**QAccelPlot::TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md))
 * **makeRect** ([**QAccelPlot::GridNode::GridLineCollectionParams**](structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams.md))
 * **maxIndex** ([**QAccelPlot::InspectionIndex::Node**](structQAccelPlot_1_1InspectionIndex_1_1Node.md))
 

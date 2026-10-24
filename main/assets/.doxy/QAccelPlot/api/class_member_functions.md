@@ -490,6 +490,7 @@
 * **maximumPageSize** ([**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md))
 * **metric** ([**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md))
 * **merge** ([**QAccelPlot::SummaryAccumulator**](structQAccelPlot_1_1SummaryAccumulator.md))
+* **minimumTickStep** ([**QAccelPlot::TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md), [**QAccelPlot::TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md))
 
 
 ## n

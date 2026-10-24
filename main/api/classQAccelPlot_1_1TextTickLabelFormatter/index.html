@@ -1556,6 +1556,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#function-minimumtickstep" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function minimumTickStep
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-setlabels" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1645,7 +1656,7 @@
 <tbody>
 <tr>
 <td style="text-align: right;">property QStringList</td>
-<td style="text-align: left;"><a href="./#property-labels-12"><strong>labels</strong></a>  <br><em>The ordered list of label strings, indexed by the rounded tick value.</em></td>
+<td style="text-align: left;"><a href="./#property-labels-12"><strong>labels</strong></a>  <br><em>The ordered list of label strings, indexed by the integer tick value.</em></td>
 </tr>
 </tbody>
 </table>
@@ -1718,6 +1729,10 @@
 <td style="text-align: left;"><a href="#function-labels-22"><strong>labels</strong></a> () const<br><em>Returns the current label list.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">virtual qreal</td>
+<td style="text-align: left;"><a href="#function-minimumtickstep"><strong>minimumTickStep</strong></a> () override const<br><em>Returns</em> <code>1</code> <em>, so a zoomed linear axis keeps one tick per label instead of ticks between labels.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="#function-setlabels"><strong>setLabels</strong></a> (const QStringList &amp; labels) <br><em>Sets the label list to</em> <em>labels</em> <em>.</em></td>
 </tr>
@@ -1746,6 +1761,10 @@
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1TickLabelFormatter/#function-formatlogtick"><strong>formatLogTick</strong></a> (qreal value) const<br><em>Returns the display string for a major tick at</em> <em>value</em> <em>on a logarithmic axis.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">virtual qreal</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TickLabelFormatter/#function-minimumtickstep"><strong>minimumTickStep</strong></a> () const<br><em>Returns the smallest major tick step a linear axis may use with this formatter.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1TickLabelFormatter/#function-setticklabel"><strong>setTickLabel</strong></a> (const QJSValue &amp; tickLabel) <br><em>Sets the JavaScript override callback to</em> <em>tickLabel</em> <em>.</em></td>
 </tr>
@@ -1766,7 +1785,7 @@
 <tbody>
 <tr>
 <td style="text-align: right;">virtual QString</td>
-<td style="text-align: left;"><a href="#function-doformat"><strong>doFormat</strong></a> (qreal value, qreal tickStep) override const<br><em>Returns the label at the index corresponding to</em> <em>value</em> <em>, or an empty string if out of range.</em></td>
+<td style="text-align: left;"><a href="#function-doformat"><strong>doFormat</strong></a> (qreal value, qreal tickStep) override const<br><em>Returns the label at the integer</em> <em>value</em> <em>, or an empty string if__value</em> <em>is not an integer or is out of range.</em></td>
 </tr>
 </tbody>
 </table>
@@ -1791,11 +1810,11 @@
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
-<p>The tick value is rounded to the nearest integer and used as an index into <code>labels</code>. Values outside the list range are rendered as empty strings.</p>
+<p>A tick on an integer value is labeled with the string at that index in <code>labels</code>. Other values and indices outside the list range are rendered as empty strings. On a linear axis, <code>minimumTickStep()</code> keeps ticks on whole numbers when the axis is zoomed in.</p>
 <p><strong>See also:</strong> <a href="../classQAccelPlot_1_1NumericTickLabelFormatter/"><strong>NumericTickLabelFormatter</strong></a>, <a href="../classQAccelPlot_1_1TickLabelFormatter/"><strong>TickLabelFormatter</strong></a> </p>
 <h2 id="public-properties-documentation">Public Properties Documentation<a class="headerlink" href="#public-properties-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="property-labels-12">property labels<a class="headerlink" href="#property-labels-12" title="Permanent link">&para;</a></h3>
-<p><em>The ordered list of label strings, indexed by the rounded tick value.</em> 
+<p><em>The ordered list of label strings, indexed by the integer tick value.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">QStringList</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TextTickLabelFormatter</span><span class="o">::</span><span class="n">labels</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
@@ -1820,20 +1839,27 @@
 </code></pre></div></p>
 <hr>
 
+<h3 id="function-minimumtickstep">function minimumTickStep<a class="headerlink" href="#function-minimumtickstep" title="Permanent link">&para;</a></h3>
+<p><em>Returns</em> <code>1</code> <em>, so a zoomed linear axis keeps one tick per label instead of ticks between labels.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TextTickLabelFormatter</span><span class="o">::</span><span class="n">minimumTickStep</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<p>Implements <a href="../classQAccelPlot_1_1TickLabelFormatter/#function-minimumtickstep"><em>QAccelPlot::TickLabelFormatter::minimumTickStep</em></a></p>
+<hr>
+
 <h3 id="function-setlabels">function setLabels<a class="headerlink" href="#function-setlabels" title="Permanent link">&para;</a></h3>
 <p><em>Sets the label list to</em> <em>labels</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TextTickLabelFormatter</span><span class="o">::</span><span class="n">setLabels</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QStringList</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">labels</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TextTickLabelFormatter</span><span class="o">::</span><span class="n">setLabels</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QStringList</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">labels</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 <h2 id="protected-functions-documentation">Protected Functions Documentation<a class="headerlink" href="#protected-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-doformat">function doFormat<a class="headerlink" href="#function-doformat" title="Permanent link">&para;</a></h3>
-<p><em>Returns the label at the index corresponding to</em> <em>value</em> <em>, or an empty string if out of range.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TextTickLabelFormatter</span><span class="o">::</span><span class="n">doFormat</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span><span class="p">,</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">tickStep</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<p><em>Returns the label at the integer</em> <em>value</em> <em>, or an empty string if__value</em> <em>is not an integer or is out of range.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TextTickLabelFormatter</span><span class="o">::</span><span class="n">doFormat</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span><span class="p">,</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">tickStep</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1TickLabelFormatter/#function-doformat"><em>QAccelPlot::TickLabelFormatter::doFormat</em></a></p>
 <hr>

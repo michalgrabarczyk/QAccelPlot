@@ -168,7 +168,7 @@ static AxisTickValues QAccelPlot::AxisTickPainter::computeTickValues (
 
 
 
-Does not call the label formatter, so it is safe on the render thread. Empty when _ticker_ is null or has no major ticks, and for a collapsed or nonfinite viewport. 
+Does not format labels, so it is safe on the render thread. A linear step never goes below the formatter's `TickLabelFormatter::minimumTickStep()`. Empty when _ticker_ is null or has no major ticks, and for a collapsed or nonfinite viewport. 
 
 
         

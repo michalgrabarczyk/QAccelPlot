@@ -44,30 +44,32 @@
 <codeline lineno="14"><highlight class="normal"></highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
 <codeline lineno="16"><highlight class="normal"></highlight></codeline>
-<codeline lineno="23" refid="classQAccelPlot_1_1TextTickLabelFormatter" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1TextTickLabelFormatter" kindref="compound">TextTickLabelFormatter</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter" kindref="compound">TickLabelFormatter</ref><sp/>{</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_OBJECT</highlight></codeline>
-<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_NAMED_ELEMENT(<ref refid="classQAccelPlot_1_1TextTickLabelFormatter" kindref="compound">TextTickLabelFormatter</ref>)</highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QStringList<sp/><ref refid="classQAccelPlot_1_1TextTickLabelFormatter_1afbf71434f34d43e806188b5879a84e6f" kindref="member">labels</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1TextTickLabelFormatter_1afbf71434f34d43e806188b5879a84e6f" kindref="member">labels</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1TextTickLabelFormatter_1a96c422a8061ebfc9a0f9791efcc7d932" kindref="member">setLabels</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1TextTickLabelFormatter_1abba8b5071ec769f69a69d97aaf26d3b3" kindref="member">labelsChanged</ref>)</highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TextTickLabelFormatter" kindref="compound">TextTickLabelFormatter</ref>(QObject*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="33"><highlight class="normal"></highlight></codeline>
-<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>QStringList<sp/><ref refid="classQAccelPlot_1_1TextTickLabelFormatter_1afbf71434f34d43e806188b5879a84e6f" kindref="member">labels</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TextTickLabelFormatter_1a96c422a8061ebfc9a0f9791efcc7d932" kindref="member">setLabels</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QStringList&amp;<sp/><ref refid="classQAccelPlot_1_1TextTickLabelFormatter_1afbf71434f34d43e806188b5879a84e6f" kindref="member">labels</ref>);</highlight></codeline>
-<codeline lineno="38"><highlight class="normal"></highlight></codeline>
-<codeline lineno="39"><highlight class="normal">signals:</highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TextTickLabelFormatter_1abba8b5071ec769f69a69d97aaf26d3b3" kindref="member">labelsChanged</ref>();</highlight></codeline>
+<codeline lineno="24" refid="classQAccelPlot_1_1TextTickLabelFormatter" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1TextTickLabelFormatter" kindref="compound">TextTickLabelFormatter</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter" kindref="compound">TickLabelFormatter</ref><sp/>{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_OBJECT</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_NAMED_ELEMENT(<ref refid="classQAccelPlot_1_1TextTickLabelFormatter" kindref="compound">TextTickLabelFormatter</ref>)</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QStringList<sp/><ref refid="classQAccelPlot_1_1TextTickLabelFormatter_1afbf71434f34d43e806188b5879a84e6f" kindref="member">labels</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1TextTickLabelFormatter_1afbf71434f34d43e806188b5879a84e6f" kindref="member">labels</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1TextTickLabelFormatter_1a96c422a8061ebfc9a0f9791efcc7d932" kindref="member">setLabels</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1TextTickLabelFormatter_1abba8b5071ec769f69a69d97aaf26d3b3" kindref="member">labelsChanged</ref>)</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TextTickLabelFormatter" kindref="compound">TextTickLabelFormatter</ref>(QObject*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>QStringList<sp/><ref refid="classQAccelPlot_1_1TextTickLabelFormatter_1afbf71434f34d43e806188b5879a84e6f" kindref="member">labels</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TextTickLabelFormatter_1a96c422a8061ebfc9a0f9791efcc7d932" kindref="member">setLabels</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QStringList&amp;<sp/><ref refid="classQAccelPlot_1_1TextTickLabelFormatter_1afbf71434f34d43e806188b5879a84e6f" kindref="member">labels</ref>);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/><ref refid="classQAccelPlot_1_1TextTickLabelFormatter_1ab9573a84e54e9aff72972c7ce8901a61" kindref="member">minimumTickStep</ref>()<sp/></highlight><highlight class="keyword">const<sp/>override</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight></codeline>
-<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>QString<sp/><ref refid="classQAccelPlot_1_1TextTickLabelFormatter_1a383f71783d6e3052200b1f01087362a2" kindref="member">doFormat</ref>(qreal<sp/>value,<sp/>qreal<sp/>tickStep)<sp/></highlight><highlight class="keyword">const<sp/>override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">signals:</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TextTickLabelFormatter_1abba8b5071ec769f69a69d97aaf26d3b3" kindref="member">labelsChanged</ref>();</highlight></codeline>
 <codeline lineno="46"><highlight class="normal"></highlight></codeline>
-<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>QStringList<sp/>labels_;</highlight></codeline>
-<codeline lineno="49"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>QString<sp/><ref refid="classQAccelPlot_1_1TextTickLabelFormatter_1a383f71783d6e3052200b1f01087362a2" kindref="member">doFormat</ref>(qreal<sp/>value,<sp/>qreal<sp/>tickStep)<sp/></highlight><highlight class="keyword">const<sp/>override</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="50"><highlight class="normal"></highlight></codeline>
-<codeline lineno="51"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>QStringList<sp/>labels_;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="QAccelPlot/src/QAccelPlot/formatters/TextTickLabelFormatter.hpp"/>
   </compounddef>
