@@ -27,7 +27,8 @@ class OverlayChildren;
 /// coordinates to the record's center.
 ///
 /// The cursor follows the plot's pointer by default; set \c followPointer to \c false and write
-/// \c cursorX to drive it from code, for example to link the crosshairs of several plots.
+/// \c cursorX to drive it from code, for example to link the crosshairs of several plots, or
+/// \c cursorPixelX to keep it at a pixel while the axes pan or zoom.
 /// Results are refreshed at most once per event-loop pass.
 ///
 /// In QML, declare \c Crosshair, \c InspectionMarkers, and \c InspectionTooltip inside the inspector:
@@ -71,14 +72,23 @@ class PlotInspector : public QObject {
     Q_PROPERTY(qreal cursorX READ cursorX WRITE setCursorX NOTIFY cursorChanged)
     /// \brief Cursor Y on the plot's primary Y axis; see \c cursorX. NaN leaves the cursor without a Y.
     Q_PROPERTY(qreal cursorY READ cursorY WRITE setCursorY NOTIFY cursorChanged)
+    /// \brief Cursor X in plot-local logical pixels, the pixel of \c cursorX; NaN when the cursor has no X.
+    ///
+    /// A written value is used while \c followPointer is false. It stays at the same pixel when the axes
+    /// pan or zoom, and \c cursorX reports the data under it. Writing \c cursorX places the cursor in data
+    /// units again.
+    Q_PROPERTY(qreal cursorPixelX READ cursorPixelX WRITE setCursorPixelX NOTIFY cursorChanged)
+    /// \brief Cursor Y in plot-local logical pixels, the pixel of \c cursorY; see \c cursorPixelX.
+    Q_PROPERTY(qreal cursorPixelY READ cursorPixelY WRITE setCursorPixelY NOTIFY cursorChanged)
     /// \brief Crosshair X formatted by the plot's primary X axis.
     Q_PROPERTY(QString cursorXText READ cursorXText NOTIFY cursorChanged)
     /// \brief Crosshair Y formatted by the plot's primary Y axis; empty without a cursor Y.
     Q_PROPERTY(QString cursorYText READ cursorYText NOTIFY cursorChanged)
     /// \brief True while enabled and the cursor is inside the plot area.
     Q_PROPERTY(bool active READ active NOTIFY activeChanged)
-    /// \brief Crosshair position in plot-local logical pixels; a coordinate the cursor lacks is NaN.
-    Q_PROPERTY(QPointF position READ position NOTIFY positionChanged)
+    /// \brief Crosshair position in plot-local logical pixels: the cursor's, or the matched data point's with \c snapToDataPoint. A coordinate the cursor lacks
+    /// is NaN.
+    Q_PROPERTY(QPointF crosshairPosition READ crosshairPosition NOTIFY crosshairPositionChanged)
     /// \brief Read-only constant: one row per inspected series.
     Q_PROPERTY(::QAccelPlot::InspectionRowModel* model READ model CONSTANT)
     /// \brief Number of rows with a matching data point.
@@ -153,6 +163,14 @@ public:
     qreal cursorY() const;
     /// \brief Sets the cursor Y used while \c followPointer is false.
     void setCursorY(qreal y);
+    /// \brief Returns the cursor X in plot-local logical pixels.
+    qreal cursorPixelX() const;
+    /// \brief Sets the cursor X in plot-local logical pixels used while \c followPointer is false.
+    void setCursorPixelX(qreal x);
+    /// \brief Returns the cursor Y in plot-local logical pixels.
+    qreal cursorPixelY() const;
+    /// \brief Sets the cursor Y in plot-local logical pixels used while \c followPointer is false.
+    void setCursorPixelY(qreal y);
     /// \brief Returns the formatted crosshair X.
     QString cursorXText() const;
     /// \brief Returns the formatted crosshair Y.
@@ -160,7 +178,7 @@ public:
     /// \brief Returns whether the cursor is inside the plot area.
     bool active() const;
     /// \brief Returns the crosshair position in plot-local logical pixels.
-    QPointF position() const;
+    QPointF crosshairPosition() const;
     /// \brief Returns the row model.
     InspectionRowModel* model() const;
     /// \brief Returns the number of rows with a matching data point.
@@ -198,8 +216,8 @@ signals:
     void cursorChanged();
     /// \brief Emitted when the active property changes.
     void activeChanged();
-    /// \brief Emitted when the position property changes.
-    void positionChanged();
+    /// \brief Emitted when the crosshairPosition property changes.
+    void crosshairPositionChanged();
     /// \brief Emitted when the validCount property changes.
     void validCountChanged();
     /// \brief Emitted after every refresh that published results.
@@ -216,8 +234,11 @@ private:
     void connectSeries(PlotSeries* series);
     bool inspects(PlotSeries* series) const;
     QList<PlotSeries*> inspectedSeries() const;
+    // Returns the cursor set from code in data units and in plot-local pixels; a coordinate it lacks, or that cannot be mapped, is NaN.
+    QPointF pinnedData() const;
+    QPointF pinnedPixel() const;
     // Returns the cursor in plot-local pixels, or nothing while the inspector is inactive. A coordinate that a cursor set from code lacks is NaN.
-    std::optional<QPointF> cursorPosition() const;
+    std::optional<QPointF> activeCursor() const;
     // Returns the mode the cursor allows: without one of its coordinates, series are matched along the other axis.
     Mode effectiveMode(const QPointF& cursor) const;
     // Returns the source index of the data point at or before an interpolated dataPoint. On a step line its index can be the one after.
@@ -250,12 +271,15 @@ private:
     bool pending_{false};
     bool refreshing_{false};
     bool active_{false};
-    QPointF position_;
+    QPointF crosshairPosition_;
     qreal cursorX_;
     qreal cursorY_;
-    // Cursor set from code; used while followPointer_ is false.
+    QPointF cursorPixel_;
+    // Cursor set from code; used while followPointer_ is false. Each coordinate is in data units, or in plot-local pixels when its flag is set.
     qreal pinnedX_;
     qreal pinnedY_;
+    bool pinnedXInPixels_{false};
+    bool pinnedYInPixels_{false};
     QString cursorXText_;
     QString cursorYText_;
     int validCount_{0};

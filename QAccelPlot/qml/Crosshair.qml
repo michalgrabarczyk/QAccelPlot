@@ -26,10 +26,10 @@ Item {
     })
 
     // A cursor set from code may have no Y; the horizontal line is hidden then.
-    readonly property bool hasX: inspector !== null && !isNaN(inspector.position.x)
-    readonly property bool hasY: inspector !== null && !isNaN(inspector.position.y)
-    readonly property real cursorX: hasX ? inspector.position.x - x : 0
-    readonly property real cursorY: hasY ? inspector.position.y - y : 0
+    readonly property bool hasX: inspector !== null && !isNaN(inspector.crosshairPosition.x)
+    readonly property bool hasY: inspector !== null && !isNaN(inspector.crosshairPosition.y)
+    readonly property real cursorX: hasX ? inspector.crosshairPosition.x - x : 0
+    readonly property real cursorY: hasY ? inspector.crosshairPosition.y - y : 0
     readonly property rect area: inspector && inspector.plot ? inspector.plot.plotRect : Qt.rect(0, 0, 0, 0)
 
     parent: inspector && inspector.plot ? inspector.plot.overlay : null

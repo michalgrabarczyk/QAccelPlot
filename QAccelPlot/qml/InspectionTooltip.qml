@@ -60,8 +60,8 @@ Rectangle {
     }
 
     readonly property rect area: inspector && inspector.plot ? inspector.plot.plotRect : Qt.rect(0, 0, 0, 0)
-    readonly property real anchorX: !inspector || isNaN(inspector.position.x) ? area.x + area.width / 2 : inspector.position.x
-    readonly property real anchorY: !inspector || isNaN(inspector.position.y) ? area.y + area.height / 2 : inspector.position.y
+    readonly property real anchorX: !inspector || isNaN(inspector.crosshairPosition.x) ? area.x + area.width / 2 : inspector.crosshairPosition.x
+    readonly property real anchorY: !inspector || isNaN(inspector.crosshairPosition.y) ? area.y + area.height / 2 : inspector.crosshairPosition.y
 
     // Places the tooltip after the cursor, or before it when it would not fit inside the plot area.
     function place(anchor, size, start, length) {
