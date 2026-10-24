@@ -19,10 +19,14 @@
 #include <QCoreApplication>
 #include <QDebug>
 #include <QElapsedTimer>
+#include <QSemaphore>
 
 #include <algorithm>
+#include <atomic>
 #include <cmath>
 #include <functional>
+#include <memory>
+#include <thread>
 #include <vector>
 
 using namespace QAccelPlot;
@@ -117,7 +121,7 @@ void runTimedLoop(BenchmarkReporter& reporter, const BenchmarkScenario& scenario
     results.frameIntervalMinMs = results.frameTimeMinMs;
     results.frameIntervalMaxMs = results.frameTimeMaxMs;
     results.fpsMin = 1000.0 / results.frameTimeMaxMs;
-    results.dataThroughputMpps = (scenario.pointCount() * results.fpsAvg) / 1'000'000.0;
+    results.dataThroughputMpps = (static_cast<double>(scenario.pointCount()) * scenario.curveCount() * results.fpsAvg) / 1'000'000.0;
 
     reporter.addResult(scenario, results);
 }
@@ -131,6 +135,77 @@ void runDataIngestionBenchmark(BenchmarkReporter& reporter, const BenchmarkScena
 
     // Copying the source buffer simulates new data arriving and is excluded from timing.
     runTimedLoop(reporter, scenario, [&]() { dataCopy = data; }, [&]() { curve.setDataF(std::move(dataCopy), pointCount); });
+}
+
+// Moves newly allocated buffers into several streaming curves every frame, as a worker that posts
+// them would: each curve frees its previous buffer, and together they exceed most last-level caches.
+void runMultiCurveIngestionBenchmark(BenchmarkReporter& reporter, const BenchmarkScenario& scenario)
+{
+    const auto pointCount = scenario.pointCount();
+    const auto curveCount = static_cast<std::size_t>(scenario.curveCount());
+    const auto data = makeSineData(pointCount);
+    auto curves = std::vector<std::unique_ptr<LineCurve>>{};
+    for (auto i = std::size_t{0}; i < curveCount; ++i) {
+        curves.push_back(std::make_unique<LineCurve>());
+        curves.back()->setHoverEnabled(false);
+    }
+    auto buffers = std::vector<std::vector<float>>(curveCount);
+
+    runTimedLoop(
+        reporter, scenario,
+        [&]() {
+            for (auto& buffer : buffers) {
+                buffer = std::vector<float>(data);
+            }
+        },
+        [&]() {
+            for (auto i = std::size_t{0}; i < curveCount; ++i) {
+                curves[i]->setDataF(std::move(buffers[i]), pointCount);
+            }
+        });
+}
+
+// Like runMultiCurveIngestionBenchmark(), with a worker thread that builds the next frame's buffers
+// and posts them with postData() while the timed thread applies the current frame.
+void runPostedIngestionBenchmark(BenchmarkReporter& reporter, const BenchmarkScenario& scenario)
+{
+    const auto pointCount = scenario.pointCount();
+    const auto curveCount = static_cast<std::size_t>(scenario.curveCount());
+    const auto data = makeSineData(pointCount);
+    auto curves = std::vector<std::unique_ptr<LineCurve>>{};
+    for (auto i = std::size_t{0}; i < curveCount; ++i) {
+        curves.push_back(std::make_unique<LineCurve>());
+        curves.back()->setHoverEnabled(false);
+    }
+
+    auto produce = QSemaphore{1};
+    auto posted = QSemaphore{0};
+    auto stop = std::atomic_bool{false};
+    auto worker = std::thread{[&]() {
+        while (true) {
+            produce.acquire();
+            if (stop) {
+                return;
+            }
+            for (auto& curve : curves) {
+                curve->postData(std::vector<float>(data), pointCount);
+            }
+            posted.release();
+        }
+    }};
+
+    runTimedLoop(
+        reporter, scenario,
+        [&]() {
+            posted.acquire();
+            produce.release();
+        },
+        []() { QCoreApplication::sendPostedEvents(); });
+
+    stop = true;
+    produce.release();
+    worker.join();
+    QCoreApplication::sendPostedEvents();
 }
 
 void runDoubleIngestionBenchmark(BenchmarkReporter& reporter, const BenchmarkScenario& scenario)
@@ -228,6 +303,8 @@ int main(int argc, char* argv[])
 
     auto outputOption = QCommandLineOption{QStringList() << "o" << "output", "Output JSON results to <file>.", "file"};
     parser.addOption(outputOption);
+    auto scenarioOption = QCommandLineOption{QStringList() << "s" << "scenario", "Run only the scenarios whose name starts with <prefix>.", "prefix"};
+    parser.addOption(scenarioOption);
 
     parser.process(app);
 
@@ -235,8 +312,16 @@ int main(int argc, char* argv[])
     reporter.setGraphicsApi("CPU-Only");
 
     const auto scenarios = BenchmarkScenario::defaultScenarios();
+    const auto scenarioPrefix = parser.value(scenarioOption);
     for (const auto& scenario : scenarios) {
-        if (scenario.name().startsWith("data_ingestion")) {
+        if (!scenario.name().startsWith(scenarioPrefix)) {
+            continue;
+        }
+        if (scenario.name().startsWith("data_ingestion_posted")) {
+            runPostedIngestionBenchmark(reporter, scenario);
+        } else if (scenario.name().startsWith("data_ingestion_multi")) {
+            runMultiCurveIngestionBenchmark(reporter, scenario);
+        } else if (scenario.name().startsWith("data_ingestion")) {
             runDataIngestionBenchmark(reporter, scenario);
         } else if (scenario.name().startsWith("double_ingestion")) {
             runDoubleIngestionBenchmark(reporter, scenario);
