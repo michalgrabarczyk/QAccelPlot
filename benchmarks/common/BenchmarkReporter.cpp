@@ -30,6 +30,8 @@ QString seriesTypeName(const BenchmarkScenario::SeriesType type)
         return QStringLiteral("point_cloud");
     case BenchmarkScenario::SeriesType::StepLineCurve:
         return QStringLiteral("step_line_curve");
+    case BenchmarkScenario::SeriesType::MarkedLineCurve:
+        return QStringLiteral("marked_line_curve");
     case BenchmarkScenario::SeriesType::LineCurve:
         break;
     }

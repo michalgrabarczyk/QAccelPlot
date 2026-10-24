@@ -73,6 +73,11 @@ StepMode BenchmarkScenario::stepMode() const
     return seriesType_ == SeriesType::StepLineCurve ? StepMode::After : StepMode::None;
 }
 
+bool BenchmarkScenario::hasMarkers() const
+{
+    return seriesType_ == SeriesType::MarkedLineCurve;
+}
+
 bool BenchmarkScenario::isCpuOnly() const
 {
     for (const auto* prefix :
@@ -100,6 +105,9 @@ std::vector<BenchmarkScenario> BenchmarkScenario::defaultScenarios()
         {QStringLiteral("static_1m_steps"), QStringLiteral("Steps 1M + Pan"),
             QStringLiteral("One existing 1M-point buffer drawn as steps, with the viewport panning back and forth every frame"), 1'000'000, 1,
             UpdateMode::Static, 5, 1, SeriesType::StepLineCurve},
+        {QStringLiteral("static_1m_markers"), QStringLiteral("Markers 1M + Pan"),
+            QStringLiteral("One existing 1M-point buffer drawn with a marker on every data point, with the viewport panning back and forth every frame"),
+            1'000'000, 1, UpdateMode::Static, 5, 1, SeriesType::MarkedLineCurve},
         {QStringLiteral("live_100k"), QStringLiteral("Live 100K"), QStringLiteral("Existing 100K-point float buffers copied and rendered every frame"), 100'000,
             1, UpdateMode::Live, 10, 2},
         {QStringLiteral("live_500k"), QStringLiteral("Live 500K"), QStringLiteral("Existing 500K-point float buffers copied and rendered every frame"), 500'000,
@@ -109,6 +117,9 @@ std::vector<BenchmarkScenario> BenchmarkScenario::defaultScenarios()
         {QStringLiteral("live_1m_steps"), QStringLiteral("Steps Live 1M"),
             QStringLiteral("Existing 1M-point float buffers copied into a curve drawn as steps every frame"), 1'000'000, 1, UpdateMode::Live, 10, 2,
             SeriesType::StepLineCurve},
+        {QStringLiteral("live_1m_markers"), QStringLiteral("Markers Live 1M"),
+            QStringLiteral("Existing 1M-point float buffers copied into a curve with a marker on every data point every frame"), 1'000'000, 1, UpdateMode::Live,
+            10, 2, SeriesType::MarkedLineCurve},
         {QStringLiteral("live_2m"), QStringLiteral("Live 2M"), QStringLiteral("Existing 2M-point float buffers copied and rendered every frame"), 2'000'000, 1,
             UpdateMode::Live, 10, 2},
         {QStringLiteral("live_5m"), QStringLiteral("Live 5M"), QStringLiteral("Existing 5M-point float buffers copied and rendered every frame — stress test"),

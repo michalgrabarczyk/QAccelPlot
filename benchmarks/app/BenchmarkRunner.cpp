@@ -401,6 +401,10 @@ void BenchmarkRunner::setupScene(const BenchmarkScenario& scenario)
     for (auto i = 0; i < scenario.curveCount(); ++i) {
         auto* curve = new LineCurve(plot_);
         curve->setStepMode(scenario.stepMode());
+        if (scenario.hasMarkers()) {
+            curve->marker()->setShape(PlotSeries::MarkerShape::Circle);
+            curve->marker()->setSize(2.0);
+        }
         curve->setXAxis(xAxis_);
         curve->setYAxis(yAxis_);
         curves_.push_back(curve);
@@ -416,7 +420,8 @@ void BenchmarkRunner::setupScene(const BenchmarkScenario& scenario)
         = std::make_unique<ExistingDataBufferPool>(currentPointCount_, scenario.curveCount(), sourceBufferCount(currentUpdateMode_), scenario.stepMode());
     for (size_t i = 0; i < curves_.size(); ++i) {
         const auto* dataPtr = dataBufferPool_->curveBufferData(static_cast<int>(i), 0);
-        curves_[i]->setDataFWithCache(dataPtr, currentPointCount_, std::vector<char>(dataBufferPool_->vertexCache()));
+        curves_[i]->setDataFWithCache(
+            dataPtr, currentPointCount_, scenario.hasMarkers() ? std::vector<char>{} : std::vector<char>(dataBufferPool_->vertexCache()));
     }
     dataBufferPool_->discardVertexCache();
 }

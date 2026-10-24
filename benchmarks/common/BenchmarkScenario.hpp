@@ -36,9 +36,10 @@ public:
 
     /// \brief Plot series type exercised by the scenario.
     enum class SeriesType {
-        LineCurve,     ///< Connected curves (\c LineCurve).
-        PointCloud,    ///< Unconnected markers (\c PointCloud).
-        StepLineCurve, ///< Connected curves drawn as steps (\c LineCurve with \c StepMode::After).
+        LineCurve,       ///< Connected curves (\c LineCurve).
+        PointCloud,      ///< Unconnected markers (\c PointCloud).
+        StepLineCurve,   ///< Connected curves drawn as steps (\c LineCurve with \c StepMode::After).
+        MarkedLineCurve, ///< Connected curves with a circle marker on every data point (\c LineCurve with \c marker.shape).
     };
 
     /// \brief Constructs a scenario with all parameters.
@@ -73,6 +74,8 @@ public:
     SeriesType seriesType() const;
     /// \brief Returns the step mode of the scenario's curves: \c StepMode::After for \c StepLineCurve, \c StepMode::None otherwise.
     StepMode stepMode() const;
+    /// \brief Returns \c true when the scenario's curves draw a marker on every data point.
+    bool hasMarkers() const;
 
     /// \brief Returns \c true for CPU-only micro-benchmarks that run without rendering.
     bool isCpuOnly() const;
