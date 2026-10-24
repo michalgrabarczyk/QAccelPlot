@@ -8,12 +8,13 @@
 #pragma once
 
 #include <QEasingCurve>
-#include <QElapsedTimer>
 #include <QList>
 #include <QObject>
 #include <QtQml/qqmlregistration.h>
 
 #include <vector>
+
+QT_FORWARD_DECLARE_CLASS(QAbstractAnimation)
 
 namespace QAccelPlot {
 
@@ -24,6 +25,10 @@ namespace QAccelPlot {
 /// which the host element calls on the GUI thread before each scene graph synchronization,
 /// so \c runningChanged is always emitted on the GUI thread.
 ///
+/// Time comes from Qt's animation timer on the transition's thread, the clock of QML animations.
+/// An installed \c QAnimationDriver therefore steps transitions too, for example to record
+/// frames offscreen at a fixed time step.
+///
 /// One transition can be assigned to several elements. Each element keeps its own \c Run with the
 /// data it animates between, so the elements animate independently.
 ///
@@ -33,6 +38,8 @@ class DataTransition : public QObject {
     QML_ANONYMOUS
 
     /// \brief Duration of the transition in milliseconds. Default: 300.
+    ///
+    /// With 0 or less, a run shows the target data at its next frame.
     Q_PROPERTY(int duration READ duration WRITE setDuration NOTIFY durationChanged)
     /// \brief Easing curve applied to the animation progress. Default: \c QEasingCurve::Linear.
     Q_PROPERTY(QEasingCurve easing READ easing WRITE setEasing NOTIFY easingChanged)
@@ -93,7 +100,7 @@ public:
         bool pending_{false};
         Dataset from_;
         Dataset to_;
-        QElapsedTimer timer_;
+        int startTime_{0};
     };
 
     /// \brief Constructs an DataTransition with the given \a parent.
@@ -165,6 +172,7 @@ private:
     bool enabled_{true};
     bool running_{false};
     QList<Run*> runs_;
+    QAbstractAnimation* clock_;
 };
 
 } // namespace QAccelPlot
