@@ -159,6 +159,9 @@ private slots:
     void pixelMarkerCoversOnePixel();
     void pixelMarkerHitTestIgnoresMarkerSize();
     void gradientStrokeColorsMarkersBetweenStops();
+    void verticalGradientPutsTopMarkerAtFirstStop();
+    void markersFollowSameSizeDataUpdates_data();
+    void markersFollowSameSizeDataUpdates();
 };
 
 void MarkerShapesTest::shapeIndicesMatchShaders()
@@ -540,6 +543,116 @@ void MarkerShapesTest::gradientStrokeColorsMarkersBetweenStops()
     const auto right = image.pixelColor(kCurveSize * 3 / 4, kCentre);
     QVERIFY2(near(left, QColor{128, 128, 0}), qPrintable(left.name()));
     QVERIFY2(near(right, QColor{0, 128, 128}), qPrintable(right.name()));
+}
+
+void MarkerShapesTest::verticalGradientPutsTopMarkerAtFirstStop()
+{
+    auto window = QQuickWindow{};
+    window.setColor(Qt::black);
+    window.resize(kCurveSize, kCurveSize);
+
+    auto engine = QQmlEngine{};
+    auto component = QQmlComponent{&engine};
+    // Like line strokes and fills, a vertical gradient runs from the top (position 0) down.
+    component.setData("import QtQuick\n"
+                      "import QAccelPlot\n"
+                      "LineCurve {\n"
+                      "    width: 64; height: 64\n"
+                      "    xAxis: Axis { orientation: Qt.Horizontal; viewportMin: 0; viewportMax: 1 }\n"
+                      "    yAxis: Axis { orientation: Qt.Vertical; viewportMin: 0; viewportMax: 1 }\n"
+                      "    lineStyle: NoLine {}\n"
+                      "    marker.shape: LineCurve.Square\n"
+                      "    marker.size: 4\n"
+                      "    antialiasingEnabled: false\n"
+                      "    effects: GradientStroke {\n"
+                      "        direction: Qt.Vertical\n"
+                      "        valueMinSource: GradientValueSource.Fixed; valueMin: 0\n"
+                      "        valueMaxSource: GradientValueSource.Fixed; valueMax: 1\n"
+                      "        gradient: Gradient {\n"
+                      "            GradientStop { position: 0.0; color: \"#ff0000\" }\n"
+                      "            GradientStop { position: 1.0; color: \"#0000ff\" }\n"
+                      "        }\n"
+                      "    }\n"
+                      "    Component.onCompleted: setData([Qt.point(0.5, 0.75), Qt.point(0.5, 0.25)])\n"
+                      "}\n",
+        QUrl{});
+    const auto root = std::unique_ptr<QObject>{component.create()};
+    QVERIFY2(root, qPrintable(component.errorString()));
+    qobject_cast<QQuickItem*>(root.get())->setParentItem(window.contentItem());
+
+    window.show();
+    QVERIFY(QTest::qWaitForWindowExposed(&window));
+    const auto image = window.grabWindow();
+    if (window.rendererInterface()->graphicsApi() == QSGRendererInterface::Software) {
+        QSKIP("Custom materials do not render with the software scene graph backend");
+    }
+
+    const auto near = [](const QColor& pixel, const QColor& expected) {
+        constexpr auto kTolerance = 8;
+        return std::abs(pixel.red() - expected.red()) <= kTolerance && std::abs(pixel.green() - expected.green()) <= kTolerance
+            && std::abs(pixel.blue() - expected.blue()) <= kTolerance;
+    };
+    const auto top = image.pixelColor(kCentre, kCurveSize / 4);
+    const auto bottom = image.pixelColor(kCentre, kCurveSize * 3 / 4);
+    QVERIFY2(near(top, QColor{191, 0, 64}), qPrintable(top.name()));
+    QVERIFY2(near(bottom, QColor{64, 0, 191}), qPrintable(bottom.name()));
+}
+
+void MarkerShapesTest::markersFollowSameSizeDataUpdates_data()
+{
+    QTest::addColumn<bool>("withLine");
+    QTest::newRow("markers only") << false;
+    // Markers drawn with a line read the line's data texture.
+    QTest::newRow("markers on a line") << true;
+}
+
+void MarkerShapesTest::markersFollowSameSizeDataUpdates()
+{
+    QFETCH(bool, withLine);
+    auto window = QQuickWindow{};
+    window.setColor(Qt::black);
+    window.resize(kCurveSize, kCurveSize);
+
+    auto xAxis = Axis{};
+    auto yAxis = Axis{};
+    xAxis.setOrientation(Qt::Horizontal);
+    yAxis.setOrientation(Qt::Vertical);
+    for (auto* axis : {&xAxis, &yAxis}) {
+        axis->setViewportMin(0.0);
+        axis->setViewportMax(1.0);
+    }
+
+    auto curve = LineCurve{window.contentItem()};
+    curve.setSize(QSizeF{kCurveSize, kCurveSize});
+    curve.setXAxis(&xAxis);
+    curve.setYAxis(&yAxis);
+    if (!withLine) {
+        curve.setLineStyle(new NoLine{&curve});
+    }
+    curve.setColor(Qt::white);
+    curve.marker()->setShape(Shape::Square);
+    curve.marker()->setSize(6.0);
+    curve.setAntialiasingEnabled(false);
+    // Markers at pixels (16, 16) and (48, 48), joined by a line along the main diagonal.
+    curve.setData(std::vector<double>{0.25, 0.75}, std::vector<double>{0.75, 0.25});
+
+    window.show();
+    QVERIFY(QTest::qWaitForWindowExposed(&window));
+    const auto before = window.grabWindow();
+    if (window.rendererInterface()->graphicsApi() == QSGRendererInterface::Software) {
+        QSKIP("Custom materials do not render with the software scene graph backend");
+    }
+    // Each probe lies inside one marker and at least 5 px from both lines.
+    const auto firstMarker = QPoint{20, 12};
+    const auto movedMarker = QPoint{20, 52};
+    QVERIFY(qGray(before.pixel(firstMarker)) > 127);
+    QVERIFY(qGray(before.pixel(movedMarker)) <= 127);
+
+    // Markers at pixels (16, 48) and (48, 16), joined along the other diagonal.
+    curve.setData(std::vector<double>{0.25, 0.75}, std::vector<double>{0.25, 0.75});
+    const auto after = window.grabWindow();
+    QVERIFY(qGray(after.pixel(firstMarker)) <= 127);
+    QVERIFY(qGray(after.pixel(movedMarker)) > 127);
 }
 
 } // namespace QAccelPlot

@@ -20,12 +20,14 @@
 #include <QSGNode>
 #include <QVector2D>
 
+#include <memory>
 #include <vector>
 
 QT_FORWARD_DECLARE_CLASS(QQuickWindow)
 
 namespace QAccelPlot {
 
+class DataTexture;
 struct DashParameters;
 class LineMaterial;
 
@@ -83,6 +85,9 @@ public:
     /// When \a params.vertexCache is non-null the vertex data is transferred via a fast \c memcpy;
     /// otherwise geometry is built in-place on the render thread.
     QSGNode* paint(QSGNode* oldNode, const LineCurveRenderParams& params) const;
+
+    /// \brief Returns the data texture of the line in \a node, a tree returned by paint(), or \c nullptr before an upload.
+    static std::shared_ptr<DataTexture> dataTexture(QSGNode* node);
 
 private:
     // Gradient fill data points, cached across frames because they depend only on the data.

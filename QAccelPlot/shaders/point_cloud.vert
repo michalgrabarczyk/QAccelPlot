@@ -8,11 +8,6 @@
 #version 440
 #extension GL_GOOGLE_include_directive : require
 
-// The point index and billboard corner come from gl_VertexIndex. The scene graph requires at least
-// one vertex attribute, so the vertex buffer holds this placeholder; its content is ignored. It is
-// stored as 4 unsigned bytes (UNormByte4, 4 bytes per vertex) and read as a normalized vec4.
-layout(location = 0) in vec4 vertexPadding;
-
 layout(location = 0) out vec2 v_uv;        // +-1 is markerSize; the quad extends further with antialiasing
 layout(location = 1) out float v_colorT;   // normalized colormap coordinate
 layout(location = 2) out float v_useValue; // 1.0 when the colormap applies to this point
@@ -44,15 +39,7 @@ layout(binding = 1) uniform sampler2D dataSampler;
 #include "data_texture.glsl"
 #include "math_utils.glsl"
 #include "point_shapes.glsl"
-
-vec2 cornerOffset(int c) {
-    if (c == 0) return vec2(-1.0, -1.0);
-    if (c == 1) return vec2( 1.0, -1.0);
-    if (c == 2) return vec2( 1.0,  1.0);
-    if (c == 3) return vec2(-1.0, -1.0);
-    if (c == 4) return vec2( 1.0,  1.0);
-    return vec2(-1.0, 1.0); // c == 5
-}
+#include "marker_vertex.glsl"
 
 // Collapses every vertex of a skipped point onto one position outside clip space,
 // so the billboard has zero area and is clipped away.
@@ -64,49 +51,17 @@ void discardPoint() {
 }
 
 void main() {
-    // Reading the placeholder keeps it in the shader interface on every backend. UNorm values are
-    // finite, so the product is always zero.
-    int vertexIndex = gl_VertexIndex + int(vertexPadding.x * 0.0);
-    int pointId = vertexIndex / 6;
-    int corner = vertexIndex % 6;
-
     int strideInt = int(ubuf.stride + 0.5);
-    int base = pointId * strideInt;
-    uint xBits = fetchFloatBits(base);
-    uint yBits = fetchFloatBits(base + 1);
-    if (!isFiniteBits(xBits) || !isFiniteBits(yBits)) {
+    MarkerVertex marker = computeMarkerVertex(strideInt);
+    if (!marker.valid) {
         discardPoint();
         return;
-    }
-
-    vec2 p = vec2(uintBitsToFloat(xBits), uintBitsToFloat(yBits));
-    vec2 dMin = ubuf.domainMin;
-    vec2 dMax = ubuf.domainMax;
-
-    if (ubuf.logScaleX > 0.5) {
-        if (p.x <= 0.0) {
-            discardPoint();
-            return;
-        }
-        dMin.x = safeLog10(dMin.x);
-        dMax.x = safeLog10(dMax.x);
-        p.x = safeLog10(p.x);
-    }
-
-    if (ubuf.logScaleY > 0.5) {
-        if (p.y <= 0.0) {
-            discardPoint();
-            return;
-        }
-        dMin.y = safeLog10(dMin.y);
-        dMax.y = safeLog10(dMax.y);
-        p.y = safeLog10(p.y);
     }
 
     v_useValue = 0.0;
     v_colorT = 0.0;
     if (ubuf.useVertexColor > 0.5 && strideInt >= 3) {
-        uint valueBits = fetchFloatBits(base + 2);
+        uint valueBits = fetchFloatBits(marker.base + 2);
         if (isFiniteBits(valueBits)) {
             float value = uintBitsToFloat(valueBits);
             float lo = ubuf.valueMin;
@@ -127,28 +82,6 @@ void main() {
         }
     }
 
-    vec2 offset = cornerOffset(corner);
-
-    vec2 range = dMax - dMin;
-    vec2 p_local = vec2(
-        (p.x - dMin.x) / range.x * ubuf.viewportSize.x,
-        (1.0 - (p.y - dMin.y) / range.y) * ubuf.viewportSize.y
-    );
-
-    float halfExtent = ubuf.markerSize;
-    if (ubuf.shapeType == kPixel) {
-        // A Pixel marker covers exactly one pixel: snap the centre to the pixel grid
-        // and ignore markerSize and antialiasing.
-        p_local = floor(p_local) + 0.5;
-        halfExtent = 0.5;
-    } else if (ubuf.antialiasingEnabled > 0.5 && ubuf.antialiasingFeather > 0.0) {
-        // With antialiasing, the quad grows by half the feather so the coverage ramp
-        // centred on the shape edge is not clipped by the geometry.
-        halfExtent += ubuf.antialiasingFeather * 0.5;
-    }
-    v_uv = offset * (halfExtent / max(ubuf.markerSize, 1e-4));
-
-    // Expand the point centre into a billboard quad in item-local pixel space.
-    vec2 final_pos = p_local + offset * halfExtent;
-    gl_Position = ubuf.matrix * vec4(final_pos, 0.0, 1.0);
+    v_uv = marker.uv;
+    gl_Position = marker.position;
 }

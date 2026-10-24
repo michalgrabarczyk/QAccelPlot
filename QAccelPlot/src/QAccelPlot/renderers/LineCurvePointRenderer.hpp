@@ -15,16 +15,22 @@
 #include <QSGNode>
 #include <QVector2D>
 
+#include <memory>
 #include <vector>
+
+QT_FORWARD_DECLARE_CLASS(QQuickWindow)
 
 namespace QAccelPlot {
 
+class DataTexture;
+
 /// \brief Input parameters for LineCurvePointRenderer::paint(), assembled on the main thread.
 struct PointCurveRenderParams {
+    QQuickWindow* window;                        ///< \brief Window providing the texture upload context.
     const std::vector<float>& data;              ///< \brief GPU-ready interleaved XY float data.
-    CurveDataView sourceData;                    ///< \brief Original float or double data used by CPU-side operations.
     int pointCount;                              ///< \brief Number of points in \c data.
     bool dataChanged;                            ///< \brief Whether data has changed since the last frame.
+    std::shared_ptr<DataTexture> dataTexture;    ///< \brief Texture that already holds \c data, or \c nullptr to upload \c data.
     QColor color;                                ///< \brief Base marker color.
     bool hovered;                                ///< \brief Whether the curve is currently hovered.
     qreal markerSize;                            ///< \brief Marker radius in pixels.
@@ -35,32 +41,33 @@ struct PointCurveRenderParams {
     bool logScaleY;                              ///< \brief Whether the Y axis uses log scale.
     bool antialiasingEnabled;                    ///< \brief Whether GPU-side anti-aliasing is active.
     qreal antialiasingFeather;                   ///< \brief Anti-aliasing feather width in pixels.
-    const GradientColorPayload& gradientPayload; ///< \brief Gradient color parameters.
+    const GradientColorPayload& gradientPayload; ///< \brief Gradient color parameters, with value bounds in the coordinates of \c data.
     const std::vector<char>* vertexCache;        ///< \brief Pre-built vertex buffer, or \c nullptr.
     int shapeType;                               ///< \brief Marker shape index (\c PlotSeries::MarkerShape value minus one).
     qreal markerStrokeWidth;                     ///< \brief Outline width in pixels for hollow markers.
     bool markerFilled;                           ///< \brief Whether closed marker shapes are filled rather than outlined.
 };
 
-/// \brief Vertex layout for point (marker) geometry, shared with the main thread for vertex caches.
+/// \brief Placeholder vertex of a marker quad, shared with the main thread for vertex caches.
+///
+/// The marker shader reads the point from the data texture and derives the point index and quad
+/// corner from the vertex index, so it ignores the vertex content.
 struct PointVertex {
-    float x;       ///< \brief Data-space X coordinate.
-    float y;       ///< \brief Data-space Y coordinate.
-    float cornerX; ///< \brief Screen-space X corner offset for quad expansion.
-    float cornerY; ///< \brief Screen-space Y corner offset for quad expansion.
-    float r;       ///< \brief Red channel.
-    float g;       ///< \brief Green channel.
-    float b;       ///< \brief Blue channel.
-    float a;       ///< \brief Alpha channel.
+    unsigned char padding[4]; ///< \brief Ignored; written as zero.
 };
 
 /// \brief Internal renderer responsible for building and updating QSGNode marker geometry for a LineCurve.
 ///
-/// Renders per-point markers using a single GPU-side quad per point. Supports pre-built
-/// vertex caches assembled on the main thread.
+/// Renders per-point markers as two triangles per point. The vertex buffer depends only on the
+/// point count, so data updates of the same size only upload the data texture.
 class LineCurvePointRenderer {
 public:
-    /// \brief Pre-builds the vertex buffer into \a cache on the calling thread (main thread safe).
+    /// \brief Number of vertices drawn per marker.
+    static constexpr int kVerticesPerPoint{6};
+
+    /// \brief Pre-builds the vertex buffer of \a pointCount markers into \a cache on the calling thread (main thread safe).
+    ///
+    /// The cache depends only on \a pointCount; \a data is not read.
     void buildVertexCache(const std::vector<float>& data, int pointCount, std::vector<char>& cache) const;
 
     /// \brief Returns \c true if \a point lies within \a params.hitThreshold pixels of any marker.
@@ -68,7 +75,8 @@ public:
 
     /// \brief Updates the scene graph node tree for the point markers.
     ///
-    /// When \a params.vertexCache is non-null the vertex data is transferred via a fast \c memcpy.
+    /// The vertex buffer is written only when the point count changes, from \a params.vertexCache
+    /// when it matches.
     QSGNode* paint(QSGNode* oldNode, const PointCurveRenderParams& params) const;
 };
 

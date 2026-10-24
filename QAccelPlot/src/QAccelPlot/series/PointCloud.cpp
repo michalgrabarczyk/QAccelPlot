@@ -51,13 +51,13 @@ constexpr auto kNaN = std::numeric_limits<qreal>::quiet_NaN();
 int pointCapacity(QQuickWindow* window, const int stride)
 {
     // QSGGeometry sizes its vertex buffer in int bytes.
-    const auto maxGeometryPoints = std::numeric_limits<int>::max() / (kVerticesPerPoint * PointCloudMaterial::attributeSet().stride);
+    const auto maxGeometryPoints = std::numeric_limits<int>::max() / (kVerticesPerPoint * DataTextureMaterial::vertexIndexAttributeSet().stride);
     return static_cast<int>(std::min<qint64>(Internal::dataTextureItemCapacity(Internal::maxTextureSize(window), stride), maxGeometryPoints));
 }
 
 QSGGeometryNode* createPointCloudNode()
 {
-    auto* geometry = new QSGGeometry(PointCloudMaterial::attributeSet(), 0);
+    auto* geometry = new QSGGeometry(DataTextureMaterial::vertexIndexAttributeSet(), 0);
     geometry->setDrawingMode(QSGGeometry::DrawTriangles);
     // The buffer only changes with the point count; let the backend keep it in static GPU memory.
     geometry->setVertexDataPattern(QSGGeometry::StaticPattern);

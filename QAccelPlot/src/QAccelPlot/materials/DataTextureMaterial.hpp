@@ -56,6 +56,11 @@ public:
     /// \brief Returns the shared vertex attribute set: \c {float id, float param, uchar4 color} (12 bytes).
     static const QSGGeometry::AttributeSet& attributeSet();
 
+    /// \brief Returns the attribute set of marker quads: one ignored \c uchar4 placeholder (4 bytes).
+    ///
+    /// The marker shaders derive the point index and quad corner from \c gl_VertexIndex.
+    static const QSGGeometry::AttributeSet& vertexIndexAttributeSet();
+
     /// \brief Returns the texture the shader samples, or \c nullptr before \c dataTexture holds an upload.
     QSGTexture* sampledTexture() const;
 

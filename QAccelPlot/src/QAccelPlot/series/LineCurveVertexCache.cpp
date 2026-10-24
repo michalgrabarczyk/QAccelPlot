@@ -40,7 +40,7 @@ void LineCurveVertexCache::rebuild(const Layout layout, const int pointCount, co
 
 bool LineCurveVertexCache::isReusableForDataChange(const Layout requiredLayout, const int pointCount) const noexcept
 {
-    return valid_ && requiredLayout == Layout::Line && layout_ == Layout::Line && pointCount_ == pointCount;
+    return valid_ && requiredLayout != Layout::None && layout_ == requiredLayout && pointCount_ == pointCount;
 }
 
 void LineCurveVertexCache::invalidate() noexcept

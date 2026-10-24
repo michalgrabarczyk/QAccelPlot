@@ -166,6 +166,11 @@ void MaterialComparisonTest::pointMaterialsCompareMappingUniforms()
     auto differentColorMode = PointMaterial{};
     differentColorMode.useVertexColor = 1.0f;
     QVERIFY(left.compare(&differentColorMode) != 0);
+
+    auto differentGradient = PointMaterial{};
+    differentGradient.gradientDirection = 1.0f;
+    QVERIFY(left.compare(&differentGradient) != 0);
+    QVERIFY(differentGradient.compare(&left) == -left.compare(&differentGradient));
 }
 
 void MaterialComparisonTest::pointMaterialsCompareMarkerStyleUniforms()

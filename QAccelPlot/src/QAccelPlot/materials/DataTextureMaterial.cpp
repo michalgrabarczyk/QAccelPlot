@@ -140,6 +140,18 @@ const QSGGeometry::AttributeSet& DataTextureMaterial::attributeSet()
     return attrSet;
 }
 
+const QSGGeometry::AttributeSet& DataTextureMaterial::vertexIndexAttributeSet()
+{
+    static constexpr int kVertexStride{4};        // uchar4 placeholder; Metal needs a multiple of 4
+    static constexpr int kAttrLocationPadding{0}; // layout(location = 0) in marker_vertex.glsl
+
+    static const QSGGeometry::Attribute attributes[] = {
+        QSGGeometry::Attribute::create(kAttrLocationPadding, 4, QSGGeometry::UnsignedByteType),
+    };
+    static const QSGGeometry::AttributeSet attrSet = {static_cast<int>(std::size(attributes)), kVertexStride, attributes};
+    return attrSet;
+}
+
 QSGTexture* DataTextureMaterial::sampledTexture() const
 {
     return dataTexture ? dataTexture->texture() : nullptr;

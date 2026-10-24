@@ -7,7 +7,6 @@
 //
 #include "QAccelPlot/renderers/LineCurvePointRenderer.hpp"
 
-#include "QAccelPlot/effects/GradientCoordinateUtils.hpp"
 #include "QAccelPlot/materials/PointMaterial.hpp"
 #include "QAccelPlot/renderers/CurveRendererParams.hpp"
 #include "QAccelPlot/series/LineCurveGapFilter.hpp"
@@ -16,147 +15,67 @@
 #include <QSGGeometryNode>
 
 #include <algorithm>
-#include <cmath>
 #include <cstring>
-#include <iterator>
 
 namespace QAccelPlot {
 
 namespace {
-// Minimum gradient stop/axis range used as a divisor guard to prevent division by zero during interpolation.
-constexpr auto kMinGradientRangeEpsilon = float{1e-6f};
 
-QColor evaluateGradientColor(const GradientColorPayload& gradientPayload, const float normalizedValue)
+QSGGeometryNode* createPointNode()
 {
-    if (!gradientPayload.isValid()) {
-        return Qt::transparent;
-    }
-
-    if (normalizedValue <= gradientPayload.stops.front().position) {
-        return gradientPayload.stops.front().color;
-    }
-    if (normalizedValue >= gradientPayload.stops.back().position) {
-        return gradientPayload.stops.back().color;
-    }
-
-    // Evaluated once per marker, so the bracketing stops are found by binary search.
-    const auto& stops = gradientPayload.stops;
-    const auto right
-        = std::lower_bound(stops.begin() + 1, stops.end(), normalizedValue, [](const auto& stop, const float value) { return stop.position < value; });
-    const auto& leftStop = *std::prev(right);
-    const auto& rightStop = *right;
-
-    const auto stopRange = std::max(rightStop.position - leftStop.position, kMinGradientRangeEpsilon);
-    const auto interpolation = std::clamp((normalizedValue - leftStop.position) / stopRange, 0.0f, 1.0f);
-
-    const auto red = leftStop.color.redF() + (rightStop.color.redF() - leftStop.color.redF()) * interpolation;
-    const auto green = leftStop.color.greenF() + (rightStop.color.greenF() - leftStop.color.greenF()) * interpolation;
-    const auto blue = leftStop.color.blueF() + (rightStop.color.blueF() - leftStop.color.blueF()) * interpolation;
-    const auto alpha = leftStop.color.alphaF() + (rightStop.color.alphaF() - leftStop.color.alphaF()) * interpolation;
-    return QColor::fromRgbF(red, green, blue, alpha);
-}
-
-float normalizedGradientValue(const GradientColorPayload& gradientPayload, const qreal dataX, const qreal dataY)
-{
-    const auto valueMin = gradientPayload.gradientValueMin.value_or(0.0);
-    const auto valueMax = gradientPayload.gradientValueMax.value_or(1.0);
-    const auto value = (gradientPayload.direction == Qt::Horizontal) ? dataX : dataY;
-    const auto normalized = unboundedGradientCoordinate(gradientPayload.direction, value, valueMin, valueMax);
-    if (std::isnan(normalized)) {
-        // Invalid data points are culled by the vertex shader; any color is acceptable.
-        return 0.0f;
-    }
-    return std::clamp(normalized, 0.0f, 1.0f);
-}
-
-QSGGeometryNode* createPointNode(const int vertexCount)
-{
-    auto* node = new QSGGeometryNode;
-
-    static constexpr int kVertexStride{32};      // float pos[2] (8) + float corner[2] (8) + float rgba[4] (16)
-    static constexpr int kAttrLocationPos{0};    // layout(location = 0): data-space point position (x, y)
-    static constexpr int kAttrLocationCorner{1}; // layout(location = 1): marker quad corner offset (-1..+1, -1..+1)
-    static constexpr int kAttrLocationColor{2};  // layout(location = 2): per-vertex RGBA color (float4)
-    static constexpr int kComponentsVec2{2};     // 2 floats
-    static constexpr int kComponentsVec4{4};     // 4 floats
-
-    static const QSGGeometry::Attribute attributes[] = {
-        QSGGeometry::Attribute::create(kAttrLocationPos, kComponentsVec2, QSGGeometry::FloatType),
-        QSGGeometry::Attribute::create(kAttrLocationCorner, kComponentsVec2, QSGGeometry::FloatType),
-        QSGGeometry::Attribute::create(kAttrLocationColor, kComponentsVec4, QSGGeometry::FloatType),
-    };
-    static const QSGGeometry::AttributeSet attrSet = {static_cast<int>(std::size(attributes)), kVertexStride, attributes};
-
-    auto* geometry = new QSGGeometry(attrSet, vertexCount);
+    auto* geometry = new QSGGeometry(DataTextureMaterial::vertexIndexAttributeSet(), 0);
     geometry->setDrawingMode(QSGGeometry::DrawTriangles);
+    // The buffer only changes with the point count; let the backend keep it in static GPU memory.
+    geometry->setVertexDataPattern(QSGGeometry::StaticPattern);
+
+    auto* node = new QSGGeometryNode;
     node->setGeometry(geometry);
     node->setFlag(QSGNode::OwnsGeometry);
-
     node->setMaterial(new PointMaterial);
     node->setFlag(QSGNode::OwnsMaterial);
-
     return node;
 }
 
-void assemblePointVertices(QSGGeometry* geometry, const std::vector<float>& data, const CurveDataView sourceData, const int pointCount,
-    const QColor& effectiveColor, const GradientColorPayload& gradientPayload)
+void writePointVertices(QSGGeometry* geometry, const std::vector<char>* vertexCache)
 {
-    auto* vertices = static_cast<PointVertex*>(geometry->vertexData());
-    const auto* src = data.data();
-    const auto hasGradient = gradientPayload.isValid();
-
-    // Hoist base color conversion — avoids 4 QColor::xF() calls per vertex in the common no-gradient path.
-    const auto baseR = static_cast<float>(effectiveColor.redF());
-    const auto baseG = static_cast<float>(effectiveColor.greenF());
-    const auto baseB = static_cast<float>(effectiveColor.blueF());
-    const auto baseA = static_cast<float>(effectiveColor.alphaF());
-
-    for (int index = 0; index < pointCount; ++index) {
-        const auto px = src[index * 2];
-        const auto py = src[index * 2 + 1];
-
-        auto r = baseR;
-        auto g = baseG;
-        auto b = baseB;
-        auto a = baseA;
-        if (hasGradient) {
-            const auto normalizedValue = normalizedGradientValue(gradientPayload, sourceData.x(index), sourceData.y(index));
-            const auto c = evaluateGradientColor(gradientPayload, normalizedValue);
-            r = static_cast<float>(c.redF());
-            g = static_cast<float>(c.greenF());
-            b = static_cast<float>(c.blueF());
-            a = static_cast<float>(c.alphaF());
-        }
-
-        vertices[index * 6 + 0] = {px, py, -1.0f, -1.0f, r, g, b, a};
-        vertices[index * 6 + 1] = {px, py, 1.0f, -1.0f, r, g, b, a};
-        vertices[index * 6 + 2] = {px, py, 1.0f, 1.0f, r, g, b, a};
-        vertices[index * 6 + 3] = {px, py, -1.0f, -1.0f, r, g, b, a};
-        vertices[index * 6 + 4] = {px, py, 1.0f, 1.0f, r, g, b, a};
-        vertices[index * 6 + 5] = {px, py, -1.0f, 1.0f, r, g, b, a};
+    const auto byteCount = static_cast<std::size_t>(geometry->vertexCount()) * sizeof(PointVertex);
+    if (vertexCache && vertexCache->size() == byteCount) {
+        std::memcpy(geometry->vertexData(), vertexCache->data(), byteCount);
+    } else {
+        std::memset(geometry->vertexData(), 0, byteCount);
     }
+}
+
+void updatePointMaterial(PointMaterial& material, const PointCurveRenderParams& params)
+{
+    material.color = params.hovered ? params.color.lighter(150) : params.color;
+    material.markerSize = static_cast<float>(params.markerSize);
+    material.domainMin = params.domainMin;
+    material.domainMax = params.domainMax;
+    material.viewportSize = params.viewportSize;
+    material.logScaleX = params.logScaleX ? 1.0f : 0.0f;
+    material.logScaleY = params.logScaleY ? 1.0f : 0.0f;
+    material.antialiasingEnabled = params.antialiasingEnabled ? 1.0f : 0.0f;
+    material.antialiasingFeather = static_cast<float>(params.antialiasingFeather);
+    material.shapeType = params.shapeType;
+    material.markerStrokeWidth = static_cast<float>(params.markerStrokeWidth);
+    material.markerFilled = params.markerFilled ? 1.0f : 0.0f;
+
+    const auto& gradient = params.gradientPayload;
+    const auto useGradient = gradient.isValid();
+    material.useVertexColor = useGradient ? 1.0f : 0.0f;
+    material.gradientDirection = gradient.direction == Qt::Vertical ? 1.0f : 0.0f;
+    material.gradientValueMin = static_cast<float>(gradient.gradientValueMin.value_or(0.0));
+    material.gradientValueMax = static_cast<float>(gradient.gradientValueMax.value_or(1.0));
+    // The fragment shader always samples the gradient, so a neutral texture keeps the sampler valid.
+    material.gradientTexture.upload(params.window, useGradient ? gradient.stops : GradientTexture::neutralStops());
 }
 
 } // namespace
 
-void LineCurvePointRenderer::buildVertexCache(const std::vector<float>& data, const int pointCount, std::vector<char>& cache) const
+void LineCurvePointRenderer::buildVertexCache([[maybe_unused]] const std::vector<float>& data, const int pointCount, std::vector<char>& cache) const
 {
-    const auto byteSize = static_cast<std::size_t>(pointCount) * 6 * sizeof(PointVertex);
-    cache.resize(byteSize);
-    auto* vertices = reinterpret_cast<PointVertex*>(cache.data());
-    const auto* src = data.data();
-
-    // Writes neutral RGBA — the shader uses the material color uniform when useVertexColor==0.
-    for (int index = 0; index < pointCount; ++index) {
-        const auto px = src[index * 2];
-        const auto py = src[index * 2 + 1];
-        vertices[index * 6 + 0] = {px, py, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f};
-        vertices[index * 6 + 1] = {px, py, 1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f};
-        vertices[index * 6 + 2] = {px, py, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f};
-        vertices[index * 6 + 3] = {px, py, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f};
-        vertices[index * 6 + 4] = {px, py, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f};
-        vertices[index * 6 + 5] = {px, py, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f};
-    }
+    cache.assign(static_cast<std::size_t>(std::max(pointCount, 0)) * kVerticesPerPoint * sizeof(PointVertex), 0);
 }
 
 bool LineCurvePointRenderer::contains(const QPointF& point, const CurveHitTestParams& params) const
@@ -198,42 +117,22 @@ bool LineCurvePointRenderer::contains(const QPointF& point, const CurveHitTestPa
 
 QSGNode* LineCurvePointRenderer::paint(QSGNode* oldNode, const PointCurveRenderParams& params) const
 {
-    const auto vertexCount = params.pointCount * 6;
-    auto* node = oldNode ? static_cast<QSGGeometryNode*>(oldNode) : createPointNode(vertexCount);
-
-    // Only reallocate when the vertex count actually changes — avoids GPU buffer
-    // churn (and the associated CPU stall) every frame during steady-state rendering.
+    auto* node = oldNode ? static_cast<QSGGeometryNode*>(oldNode) : createPointNode();
+    const auto vertexCount = params.pointCount * kVerticesPerPoint;
     if (node->geometry()->vertexCount() != vertexCount) {
         node->geometry()->allocate(vertexCount);
-    }
-
-    const auto effectiveColor = params.hovered ? params.color.lighter(150) : params.color;
-    const auto useVertexColor = params.gradientPayload.isValid();
-
-    auto* material = static_cast<PointMaterial*>(node->material());
-    material->color = effectiveColor;
-    material->markerSize = static_cast<float>(params.markerSize);
-    material->domainMin = params.domainMin;
-    material->domainMax = params.domainMax;
-    material->viewportSize = params.viewportSize;
-    material->logScaleX = params.logScaleX ? 1.0f : 0.0f;
-    material->logScaleY = params.logScaleY ? 1.0f : 0.0f;
-    material->useVertexColor = useVertexColor ? 1.0f : 0.0f;
-    material->antialiasingEnabled = params.antialiasingEnabled ? 1.0f : 0.0f;
-    material->antialiasingFeather = static_cast<float>(params.antialiasingFeather);
-    material->shapeType = params.shapeType;
-    material->markerStrokeWidth = static_cast<float>(params.markerStrokeWidth);
-    material->markerFilled = params.markerFilled ? 1.0f : 0.0f;
-
-    if (params.dataChanged || !oldNode || useVertexColor) {
-        const auto expectedCacheBytes = static_cast<std::size_t>(node->geometry()->vertexCount()) * sizeof(PointVertex);
-        if (params.vertexCache && params.vertexCache->size() == expectedCacheBytes && !useVertexColor) {
-            std::memcpy(node->geometry()->vertexData(), params.vertexCache->data(), expectedCacheBytes);
-        } else {
-            assemblePointVertices(node->geometry(), params.data, params.sourceData, params.pointCount, effectiveColor, params.gradientPayload);
-        }
+        writePointVertices(node->geometry(), params.vertexCache);
         node->markDirty(QSGNode::DirtyGeometry);
     }
+
+    auto* material = static_cast<PointMaterial*>(node->material());
+    if (params.dataTexture) {
+        material->dataTexture = params.dataTexture;
+    } else if (params.dataChanged || !oldNode || !material->dataTexture) {
+        // A freshly created node owns a new material, so it always needs the data texture.
+        material->uploadTexture(params.window, params.data.data(), params.pointCount * 2);
+    }
+    updatePointMaterial(*material, params);
 
     node->markDirty(QSGNode::DirtyMaterial);
     return node;
