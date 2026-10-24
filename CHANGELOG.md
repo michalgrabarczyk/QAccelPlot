@@ -62,6 +62,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - `LineCurve`, `BarSeries`, `RectangleSeries`, and `BandSeries` no longer hover
   records beyond their GPU capacity, which are not drawn.
+- `Colormap.stops` reads bound `GradientStop`s after their bindings are
+  evaluated, and follows later changes to stops declared in the list.
 
 ## [0.4.0] — 2026-10-16
 

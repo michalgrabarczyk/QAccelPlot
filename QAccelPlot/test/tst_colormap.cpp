@@ -78,6 +78,8 @@ private slots:
     void destroyedStopsAreRemoved();
     void sharedGradientStopChangesUpdateRamp();
     void notifyingStopChangesUpdateRamp();
+    void qmlBoundStopsFollowBindings();
+    void qmlBoundStopsListedByIdAreReadAfterBindings();
     void replacedStopsAreNoLongerTracked();
 };
 
@@ -463,6 +465,73 @@ void ColormapTest::notifyingStopChangesUpdateRamp()
     const auto& stops = colormap->resolvedStops();
     QCOMPARE(stops.front().color, QColor{"#00ff00"});
     QCOMPARE(stops[1].position, 0.5f);
+    delete root;
+}
+
+void ColormapTest::qmlBoundStopsFollowBindings()
+{
+    auto engine = QQmlEngine{};
+    auto component = QQmlComponent{&engine};
+    // Inline GradientStops read their bindings after being appended and have no change signals.
+    auto* root = build(engine, component,
+        "import QtQuick\n"
+        "import QAccelPlot\n"
+        "Item {\n"
+        "    id: root\n"
+        "    property color low: \"#ff0000\"\n"
+        "    property real middle: 0.25\n"
+        "    property alias colormap: map\n"
+        "    Colormap {\n"
+        "        id: map\n"
+        "        stops: [ GradientStop { position: 0.0; color: root.low },\n"
+        "                 GradientStop { position: root.middle; color: \"#00ff00\" },\n"
+        "                 GradientStop { position: 1.0; color: \"#0000ff\" } ]\n"
+        "    }\n"
+        "}\n");
+    QVERIFY(root);
+    auto* colormap = root->property("colormap").value<Colormap*>();
+    QVERIFY(colormap);
+    QCOMPARE(colormap->resolvedStops().size(), std::size_t{3});
+    QCOMPARE(colormap->resolvedStops().front().color, QColor{"#ff0000"});
+    QCOMPARE(colormap->resolvedStops()[1].position, 0.25f);
+    auto spy = QSignalSpy{colormap, &Colormap::colormapChanged};
+
+    root->setProperty("low", QColor{"#ffff00"});
+    QCOMPARE(spy.count(), 1);
+    QCOMPARE(colormap->resolvedStops().front().color, QColor{"#ffff00"});
+
+    root->setProperty("middle", 0.75);
+    QCOMPARE(spy.count(), 2);
+    QCOMPARE(colormap->resolvedStops()[1].position, 0.75f);
+    delete root;
+}
+
+void ColormapTest::qmlBoundStopsListedByIdAreReadAfterBindings()
+{
+    auto engine = QQmlEngine{};
+    auto component = QQmlComponent{&engine};
+    // Stops outside the list and outside a Gradient have no change signals. Declared before the
+    // colormap, their bindings run after its stops binding.
+    auto* root = build(engine, component,
+        "import QtQuick\n"
+        "import QAccelPlot\n"
+        "Item {\n"
+        "    id: root\n"
+        "    property color low: \"#ff0000\"\n"
+        "    property real middle: 0.25\n"
+        "    property alias colormap: map\n"
+        "    GradientStop { id: first; position: 0.0; color: root.low }\n"
+        "    GradientStop { id: second; position: root.middle; color: \"#00ff00\" }\n"
+        "    GradientStop { id: last; position: 1.0; color: \"#0000ff\" }\n"
+        "    Colormap { id: map; stops: [first, second, last] }\n"
+        "}\n");
+    QVERIFY(root);
+    auto* colormap = root->property("colormap").value<Colormap*>();
+    QVERIFY(colormap);
+    const auto& stops = colormap->resolvedStops();
+    QCOMPARE(stops.size(), std::size_t{3});
+    QCOMPARE(stops.front().color, QColor{"#ff0000"});
+    QCOMPARE(stops[1].position, 0.25f);
     delete root;
 }
 

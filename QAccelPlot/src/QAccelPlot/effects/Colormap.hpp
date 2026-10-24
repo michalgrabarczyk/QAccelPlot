@@ -11,6 +11,7 @@
 
 #include <QObject>
 #include <QQmlListProperty>
+#include <QQmlParserStatus>
 #include <QtQml/qqmlregistration.h>
 
 #include <vector>
@@ -31,14 +32,17 @@ namespace QAccelPlot {
 /// through \c ColormappedSeries::dataValueMin() and \c ColormappedSeries::dataValueMax().
 ///
 /// \sa PointCloud, HeatmapSeries, BarSeries, GradientFill, GradientStroke
-class Colormap : public QObject {
+class Colormap : public QObject, public QQmlParserStatus {
     Q_OBJECT
+    Q_INTERFACES(QQmlParserStatus)
     QML_NAMED_ELEMENT(Colormap)
 
     /// \brief Built-in color ramp. Ignored when \c stops is non-empty. Default: \c Viridis.
     Q_PROPERTY(Preset preset READ preset WRITE setPreset NOTIFY colormapChanged)
     /// \brief Custom ramp as a list of objects with \c position and \c color, such as \c GradientStop.
-    /// Overrides \c preset when non-empty.
+    /// Overrides \c preset when non-empty. Stops are read again once the component is complete. The
+    /// ramp follows changes to a stop that notifies them, to a \c GradientStop inside a \c Gradient,
+    /// and to a \c GradientStop declared in this list.
     Q_PROPERTY(QQmlListProperty<QObject> stops READ stops NOTIFY colormapChanged)
     /// \brief Whether the ramp runs from its last color to its first. Applies to \c preset and
     /// \c stops alike. Default: \c false.
@@ -115,12 +119,21 @@ signals:
     /// \brief Emitted when the ramp, its bounds, or the normalization changes.
     void colormapChanged();
 
+protected:
+    /// \brief Does nothing; part of \c QQmlParserStatus.
+    void classBegin() override;
+    /// \brief Reads the stops again after their bindings are evaluated.
+    void componentComplete() override;
+
 private:
     Q_SLOT void onStopChanged();
     void onStopDestroyed(QObject* stop);
     // Tracks the stop's lifetime and its position and color edits.
     void connectStop(QObject* stop);
     void disconnectStops();
+    // Moves a GradientStop declared in this list under an internal Gradient, so its edits notify.
+    void adoptStop(QObject* stop);
+    QObject* stopTracker();
     void rebuildStops();
     std::vector<GradientStopData> customStops() const;
 
