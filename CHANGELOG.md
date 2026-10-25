@@ -37,6 +37,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   Includes a Step Lines example.
 - `PlotInspector.cursorPixelX` and `cursorPixelY` place the cursor in
   plot-local pixels; it stays on those pixels when the axes pan or zoom.
+- A Vibration Monitoring showcase: eight accelerometer channels streamed live,
+  2M points replaced every frame, with spectrum, spectrogram, and RMS panels.
+  Examples can record deterministic frames with `--record`, and
+  `scripts/frames-to-gif.py` turns them into a GIF.
 
 ### Changed
 

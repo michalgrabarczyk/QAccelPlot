@@ -7,3 +7,4 @@
 #
 add_subdirectory(performance)
 add_subdirectory(pulsar)
+add_subdirectory(vibration_monitoring)

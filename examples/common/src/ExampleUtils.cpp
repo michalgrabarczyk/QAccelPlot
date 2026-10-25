@@ -7,6 +7,7 @@
 //
 #include "ExampleUtils.hpp"
 
+#include <QAnimationDriver>
 #include <QDebug>
 #include <QDir>
 #include <QFileInfo>
@@ -26,6 +27,7 @@
 #include <QTimer>
 #include <QtMath>
 
+#include <algorithm>
 #include <cstdlib>
 #include <functional>
 #include <optional>
@@ -211,6 +213,95 @@ void restorePaintedItemTextures(const QList<PaintedItemTextureState>& states)
     }
 }
 
+// Qt 6.2 treats grabToImage(targetSize) as a physical pixel size. Since Qt 6.3 it treats
+// targetSize as device-independent and multiplies it by QQuickWindow::effectiveDevicePixelRatio().
+constexpr auto kGrabTargetScaledByDevicePixelRatio = QT_VERSION >= QT_VERSION_CHECK(6, 3, 0);
+
+// Offscreen capture of a window's content at the window's logical size.
+struct ContentCapture {
+    QImage image;
+    QSize logicalWindowSize;
+    QSize offscreenTargetSize;
+    qreal effectiveDevicePixelRatio{1.0};
+    qsizetype paintedItemCount{0};
+    QString error;
+};
+
+QImage compositeOverWindowColor(QImage grabbedImage, const QSize& size, const QColor& windowColor)
+{
+    // grabToImage() captures the content item, while QQuickWindow::color
+    // is the scene's clear color. Composite the two to match grabWindow().
+    grabbedImage.setDevicePixelRatio(1.0);
+    QImage image(size, QImage::Format_RGBA8888_Premultiplied);
+    image.fill(windowColor);
+    {
+        QPainter painter(&image);
+        painter.drawImage(QPoint(0, 0), grabbedImage);
+    }
+    image.setDevicePixelRatio(1.0);
+    return image;
+}
+
+// Renders the content item of window offscreen in a single render pass and composites it over
+// the window color. done receives the capture, or its error, unless context is destroyed first.
+void captureContent(QQuickWindow* window, QObject* context, std::function<void(const ContentCapture&)> done)
+{
+    // The CI desktop may use QT_SCALE_FACTOR < 1 so that every example window
+    // fits on screen. grabWindow() would then return a reduced framebuffer. An
+    // item grab renders into an offscreen target of the requested pixel size,
+    // preserving text and geometry detail while using the window's active RHI.
+    auto capture = ContentCapture{};
+    capture.logicalWindowSize = window->size();
+    capture.effectiveDevicePixelRatio = window->effectiveDevicePixelRatio();
+    if (capture.effectiveDevicePixelRatio <= 0.0) {
+        capture.error = QStringLiteral("Unable to capture screenshot: the window has an invalid device pixel ratio.");
+        done(capture);
+        return;
+    }
+    capture.offscreenTargetSize = kGrabTargetScaledByDevicePixelRatio ? QSize(qRound(capture.logicalWindowSize.width() / capture.effectiveDevicePixelRatio),
+                                                                            qRound(capture.logicalWindowSize.height() / capture.effectiveDevicePixelRatio))
+                                                                      : capture.logicalWindowSize;
+
+    auto* contentItem = window->contentItem();
+    if (!contentItem) {
+        capture.error = QStringLiteral("Unable to capture screenshot: the window has no content item.");
+        done(capture);
+        return;
+    }
+
+    const auto paintedItemTextureStates = preparePaintedItemsForCapture(contentItem, capture.effectiveDevicePixelRatio);
+    capture.paintedItemCount = paintedItemTextureStates.size();
+
+    auto grabResult = contentItem->grabToImage(capture.offscreenTargetSize);
+    if (!grabResult) {
+        restorePaintedItemTextures(paintedItemTextureStates);
+        capture.error = QStringLiteral("Unable to start an offscreen screenshot capture.");
+        done(capture);
+        return;
+    }
+
+    const auto windowColor = window->color();
+    QObject::connect(
+        grabResult.data(), &QQuickItemGrabResult::ready, context,
+        [grabResult, capture, windowColor, paintedItemTextureStates, done = std::move(done)]() mutable {
+            const auto grabbedImage = grabResult->image();
+            restorePaintedItemTextures(paintedItemTextureStates);
+            if (grabbedImage.isNull()) {
+                capture.error = QStringLiteral("Offscreen screenshot capture returned an empty image.");
+            } else if (grabbedImage.size() != capture.logicalWindowSize) {
+                capture.error = QStringLiteral("Offscreen screenshot has %1x%2 pixels; expected %3x%4. Refusing to resize the capture.")
+                                    .arg(grabbedImage.width())
+                                    .arg(grabbedImage.height())
+                                    .arg(capture.logicalWindowSize.width())
+                                    .arg(capture.logicalWindowSize.height());
+            } else {
+                capture.image = compositeOverWindowColor(grabbedImage, capture.logicalWindowSize, windowColor);
+            }
+            done(capture);
+        },
+        Qt::SingleShotConnection);
+}
+
 // A TabBar (or another Container) with this objectName lists the example's pages. Each page
 // button's objectName is the page name accepted by --page.
 constexpr auto kPagesObjectName = "examplePages";
@@ -275,6 +366,122 @@ bool selectPage(QQuickWindow* window, const QString& name, QString& error)
     error = QStringLiteral("Unable to select page '%1'. Available pages: %2").arg(name, available.join(QStringLiteral(", ")));
     return false;
 }
+
+// Reads "--name <n>" as a positive integer no larger than maximum; keeps value when the option is absent.
+bool readPositiveOption(const QStringList& arguments, const QString& name, const int maximum, int& value, QString& error)
+{
+    const auto text = optionValue(arguments, name);
+    if (!text) {
+        return true;
+    }
+    auto valid = false;
+    const auto parsed = text->toInt(&valid);
+    if (!valid || parsed <= 0 || parsed > maximum) {
+        error = QStringLiteral("%1 requires a whole number from 1 to %2, got '%3'.").arg(name).arg(maximum).arg(*text);
+        return false;
+    }
+    value = parsed;
+    return true;
+}
+
+// Qt's animation clock, set to each recorded frame's time instead of following the wall clock.
+// QML animations and data transitions then show the same moment in every run, however long a
+// frame takes to render.
+class SteppedAnimationDriver final : public QAnimationDriver {
+public:
+    using QAnimationDriver::QAnimationDriver;
+
+    qint64 elapsed() const override
+    {
+        return elapsedMilliseconds_;
+    }
+
+    void advanceTo(const qint64 milliseconds)
+    {
+        elapsedMilliseconds_ = milliseconds;
+        advance();
+    }
+
+private:
+    qint64 elapsedMilliseconds_{0};
+};
+
+// The installed recording clock, or nullptr before installRecordingClock().
+SteppedAnimationDriver*& recordingClock()
+{
+    static SteppedAnimationDriver* clock = nullptr;
+    return clock;
+}
+
+// Prepares each frame through the example, captures it offscreen, and writes it as a numbered PNG.
+class FrameRecorder final : public QObject {
+public:
+    FrameRecorder(QQuickWindow* window, RecordingOptions options, FramePreparer prepareFrame)
+        : QObject(window)
+        , window_(window)
+        , options_(std::move(options))
+        , prepareFrame_(std::move(prepareFrame))
+    {
+    }
+
+    void start()
+    {
+        installRecordingClock();
+        animationClock_ = recordingClock();
+        // The first swapped frame shows that the window is exposed and its scene graph is ready.
+        QObject::connect(window_, &QQuickWindow::frameSwapped, this, [this]() { prepareNextFrame(); }, Qt::SingleShotConnection);
+        window_->update();
+    }
+
+private:
+    void prepareNextFrame()
+    {
+        if (frameIndex_ == options_.frameCount) {
+            qInfo().noquote() << QStringLiteral("Recorded %1 frames to %2").arg(options_.frameCount).arg(QDir::toNativeSeparators(options_.directory));
+            QCoreApplication::quit();
+            return;
+        }
+        const auto timeSeconds = static_cast<double>(frameIndex_) / options_.framesPerSecond;
+        animationClock_->advanceTo(qRound64(timeSeconds * 1000.0));
+        prepareFrame_(frameIndex_, timeSeconds, [self = QPointer<FrameRecorder>(this)]() {
+            if (self) {
+                // Queued, so that the events the new frame posted, such as deferred inspector
+                // refreshes, run before the capture.
+                QMetaObject::invokeMethod(self, &FrameRecorder::captureFrame, Qt::QueuedConnection);
+            }
+        });
+    }
+
+    void captureFrame()
+    {
+        captureContent(window_, this, [this](const ContentCapture& capture) {
+            if (!capture.error.isEmpty()) {
+                fail(capture.error);
+                return;
+            }
+            const auto name = QStringLiteral("frame_%1.png").arg(frameIndex_, 5, 10, QLatin1Char('0'));
+            const auto path = QDir(options_.directory).filePath(name);
+            if (!capture.image.save(path)) {
+                fail(QStringLiteral("Unable to save frame to: %1").arg(path));
+                return;
+            }
+            ++frameIndex_;
+            prepareNextFrame();
+        });
+    }
+
+    void fail(const QString& message)
+    {
+        qCritical().noquote() << message;
+        QCoreApplication::exit(EXIT_FAILURE);
+    }
+
+    QQuickWindow* window_;
+    RecordingOptions options_;
+    FramePreparer prepareFrame_;
+    SteppedAnimationDriver* animationClock_{nullptr};
+    int frameIndex_{0};
+};
 
 } // namespace
 
@@ -386,126 +593,140 @@ void setupScreenshotHandler(QGuiApplication& app, QQmlApplicationEngine& engine,
             return;
         }
 
-        // The CI desktop may use QT_SCALE_FACTOR < 1 so that every example window
-        // fits on screen. grabWindow() would then return a reduced framebuffer. An
-        // item grab renders into an offscreen target of the requested pixel size,
-        // preserving text and geometry detail while using the window's active RHI.
-        const auto logicalWindowSize = window->size();
-        const auto effectiveDevicePixelRatio = window->effectiveDevicePixelRatio();
-        if (effectiveDevicePixelRatio <= 0.0) {
-            fail(QStringLiteral("Unable to capture screenshot: the window has an invalid device pixel ratio."));
-            return;
-        }
-
-        // Qt 6.2 treats grabToImage(targetSize) as a physical pixel size. Since
-        // Qt 6.3 it treats targetSize as device-independent and multiplies it
-        // by QQuickWindow::effectiveDevicePixelRatio(). Match those documented
-        // implementations directly so every capture is a single render pass.
-        // MSVC folds the constant into the lambda below and reports the variable as unreferenced.
-#if QT_VERSION < QT_VERSION_CHECK(6, 3, 0)
-        [[maybe_unused]] constexpr bool grabTargetScaledByDevicePixelRatio = false;
-        const auto offscreenTargetSize = logicalWindowSize;
-#else
-        [[maybe_unused]] constexpr bool grabTargetScaledByDevicePixelRatio = true;
-        const QSize offscreenTargetSize(qRound(logicalWindowSize.width() / effectiveDevicePixelRatio),
-            qRound(logicalWindowSize.height() / effectiveDevicePixelRatio));
-#endif
-
-        auto* contentItem = window->contentItem();
-        if (!contentItem) {
-            fail(QStringLiteral("Unable to capture screenshot: the window has no content item."));
-            return;
-        }
-
-        const auto paintedItemTextureStates = preparePaintedItemsForCapture(contentItem, effectiveDevicePixelRatio);
-        qInfo().noquote() << QStringLiteral("Prepared %1 painted items for native-resolution capture.").arg(paintedItemTextureStates.size());
-
-        auto grabResult = contentItem->grabToImage(offscreenTargetSize);
-        if (!grabResult) {
-            restorePaintedItemTextures(paintedItemTextureStates);
-            fail(QStringLiteral("Unable to start an offscreen screenshot capture."));
-            return;
-        }
-
-        const auto windowColor = window->color();
         const auto page = currentPageName(window);
-        QObject::connect(
-            grabResult.data(), &QQuickItemGrabResult::ready, &app,
-            [&app, grabResult, path, requestedApi, actualApi, actualQtVersion, logicalWindowSize, offscreenTargetSize, effectiveDevicePixelRatio,
-                grabTargetScaledByDevicePixelRatio, windowColor, page, paintedItemTextureStates, contextInfo]() {
-                auto failCapture = [&app](const QString& message) {
-                    qCritical().noquote() << message;
-                    app.exit(EXIT_FAILURE);
-                };
+        captureContent(window, &app, [&app, path, requestedApi, actualApi, actualQtVersion, page, contextInfo](const ContentCapture& capture) {
+            auto failCapture = [&app](const QString& message) {
+                qCritical().noquote() << message;
+                app.exit(EXIT_FAILURE);
+            };
 
-                auto grabbedImage = grabResult->image();
-                restorePaintedItemTextures(paintedItemTextureStates);
-                if (grabbedImage.isNull()) {
-                    failCapture(QStringLiteral("Offscreen screenshot capture returned an empty image."));
-                    return;
-                }
+            if (!capture.error.isEmpty()) {
+                failCapture(capture.error);
+                return;
+            }
+            qInfo().noquote() << QStringLiteral("Prepared %1 painted items for native-resolution capture.").arg(capture.paintedItemCount);
 
-                const auto capturedPixelSize = grabbedImage.size();
-                if (capturedPixelSize != logicalWindowSize) {
-                    failCapture(QStringLiteral("Offscreen screenshot has %1x%2 pixels; expected %3x%4. Refusing to resize the capture.")
-                            .arg(capturedPixelSize.width())
-                            .arg(capturedPixelSize.height())
-                            .arg(logicalWindowSize.width())
-                            .arg(logicalWindowSize.height()));
-                    return;
-                }
+            if (!capture.image.save(path)) {
+                failCapture(QStringLiteral("Unable to save screenshot to: %1").arg(path));
+                return;
+            }
 
-                // grabToImage() captures the content item, while QQuickWindow::color
-                // is the scene's clear color. Composite the two to match grabWindow().
-                grabbedImage.setDevicePixelRatio(1.0);
-                QImage image(logicalWindowSize, QImage::Format_RGBA8888_Premultiplied);
-                image.fill(windowColor);
-                {
-                    QPainter painter(&image);
-                    painter.drawImage(QPoint(0, 0), grabbedImage);
-                }
-                image.setDevicePixelRatio(1.0);
+            const auto metadataPath = path + QStringLiteral(".rhi.json");
 
-                if (!image.save(path)) {
-                    failCapture(QStringLiteral("Unable to save screenshot to: %1").arg(path));
-                    return;
-                }
+            const auto metadata = QJsonDocument(QJsonObject{
+                                                    {QStringLiteral("version"), 5},
+                                                    {QStringLiteral("capture_method"), QStringLiteral("item_grab_to_image")},
+                                                    {QStringLiteral("grab_target_scaled_by_device_pixel_ratio"), kGrabTargetScaledByDevicePixelRatio},
+                                                    {QStringLiteral("requested_graphics_api"), requestedApi},
+                                                    {QStringLiteral("actual_graphics_api"), actualApi},
+                                                    {QStringLiteral("opengl_context_observed"), contextInfo.observed},
+                                                    {QStringLiteral("opengl_es"), contextInfo.isOpenGles},
+                                                    {QStringLiteral("opengl_major_version"), contextInfo.majorVersion},
+                                                    {QStringLiteral("opengl_minor_version"), contextInfo.minorVersion},
+                                                    {QStringLiteral("qt_version"), actualQtVersion},
+                                                    {QStringLiteral("logical_window_width"), capture.logicalWindowSize.width()},
+                                                    {QStringLiteral("logical_window_height"), capture.logicalWindowSize.height()},
+                                                    {QStringLiteral("offscreen_target_width"), capture.offscreenTargetSize.width()},
+                                                    {QStringLiteral("offscreen_target_height"), capture.offscreenTargetSize.height()},
+                                                    {QStringLiteral("effective_device_pixel_ratio"), capture.effectiveDevicePixelRatio},
+                                                    {QStringLiteral("captured_pixel_width"), capture.image.width()},
+                                                    {QStringLiteral("captured_pixel_height"), capture.image.height()},
+                                                    {QStringLiteral("page"), page},
+                                                })
+                                      .toJson(QJsonDocument::Indented);
+            QSaveFile metadataFile(metadataPath);
+            if (!metadataFile.open(QIODevice::WriteOnly) || metadataFile.write(metadata) != metadata.size() || !metadataFile.commit()) {
+                failCapture(QStringLiteral("Unable to save graphics metadata to: %1").arg(metadataPath));
+                return;
+            }
 
-                const auto metadataPath = path + QStringLiteral(".rhi.json");
-
-                const auto metadata = QJsonDocument(QJsonObject{
-                                                        {QStringLiteral("version"), 5},
-                                                        {QStringLiteral("capture_method"), QStringLiteral("item_grab_to_image")},
-                                                        {QStringLiteral("grab_target_scaled_by_device_pixel_ratio"), grabTargetScaledByDevicePixelRatio},
-                                                        {QStringLiteral("requested_graphics_api"), requestedApi},
-                                                        {QStringLiteral("actual_graphics_api"), actualApi},
-                                                        {QStringLiteral("opengl_context_observed"), contextInfo.observed},
-                                                        {QStringLiteral("opengl_es"), contextInfo.isOpenGles},
-                                                        {QStringLiteral("opengl_major_version"), contextInfo.majorVersion},
-                                                        {QStringLiteral("opengl_minor_version"), contextInfo.minorVersion},
-                                                        {QStringLiteral("qt_version"), actualQtVersion},
-                                                        {QStringLiteral("logical_window_width"), logicalWindowSize.width()},
-                                                        {QStringLiteral("logical_window_height"), logicalWindowSize.height()},
-                                                        {QStringLiteral("offscreen_target_width"), offscreenTargetSize.width()},
-                                                        {QStringLiteral("offscreen_target_height"), offscreenTargetSize.height()},
-                                                        {QStringLiteral("effective_device_pixel_ratio"), effectiveDevicePixelRatio},
-                                                        {QStringLiteral("captured_pixel_width"), capturedPixelSize.width()},
-                                                        {QStringLiteral("captured_pixel_height"), capturedPixelSize.height()},
-                                                        {QStringLiteral("page"), page},
-                                                    })
-                                          .toJson(QJsonDocument::Indented);
-                QSaveFile metadataFile(metadataPath);
-                if (!metadataFile.open(QIODevice::WriteOnly) || metadataFile.write(metadata) != metadata.size() || !metadataFile.commit()) {
-                    failCapture(QStringLiteral("Unable to save graphics metadata to: %1").arg(metadataPath));
-                    return;
-                }
-
-                qDebug() << "Screenshot saved to" << path;
-                qDebug() << "Graphics metadata saved to" << metadataPath;
-                app.quit();
-            },
-            Qt::SingleShotConnection);
+            qDebug() << "Screenshot saved to" << path;
+            qDebug() << "Graphics metadata saved to" << metadataPath;
+            app.quit();
+        });
     });
+}
+
+bool lightThemeRequested(const QStringList& arguments)
+{
+    const auto theme = optionValue(arguments, QStringLiteral("--theme"));
+    if (!theme) {
+        return false;
+    }
+    if (*theme != QLatin1String("light") && *theme != QLatin1String("dark")) {
+        qWarning().noquote() << QStringLiteral("--theme takes 'light' or 'dark', got '%1'; using the dark theme.").arg(*theme);
+    }
+    return *theme == QLatin1String("light");
+}
+
+void configureFrameRecording(const int argc, char* argv[])
+{
+    const auto recording = std::any_of(argv, argv + argc, [](const char* argument) { return qstrncmp(argument, "--record", 8) == 0; });
+    if (!recording) {
+        return;
+    }
+    if (qEnvironmentVariableIsEmpty("QSG_DISTANCEFIELD_ANTIALIASING")) {
+        qputenv("QSG_DISTANCEFIELD_ANTIALIASING", "gray");
+    }
+    if (qEnvironmentVariableIsEmpty("QSG_RENDER_LOOP")) {
+        qputenv("QSG_RENDER_LOOP", "basic");
+    }
+}
+
+std::optional<RecordingOptions> recordingOptions(const QStringList& arguments, const RecordingOptions& defaults, QString& error)
+{
+    const auto directory = optionValue(arguments, QStringLiteral("--record"));
+    if (!directory) {
+        return std::nullopt;
+    }
+    if (directory->isEmpty() || directory->startsWith(QLatin1String("--"))) {
+        error = QStringLiteral("--record requires an output directory.");
+        return std::nullopt;
+    }
+
+    auto options = defaults;
+    options.directory = *directory;
+    if (!readPositiveOption(arguments, QStringLiteral("--frames"), 100000, options.frameCount, error)
+        || !readPositiveOption(arguments, QStringLiteral("--fps"), 240, options.framesPerSecond, error)) {
+        return std::nullopt;
+    }
+    if (options.frameCount <= 0 || options.framesPerSecond <= 0) {
+        error = QStringLiteral("--record requires --frames and --fps.");
+        return std::nullopt;
+    }
+    return options;
+}
+
+void installRecordingClock()
+{
+    auto*& clock = recordingClock();
+    if (!clock) {
+        clock = new SteppedAnimationDriver(QCoreApplication::instance());
+        clock->install();
+    }
+}
+
+bool startFrameRecording(QGuiApplication& app, QQuickWindow* window, const RecordingOptions& options, FramePreparer prepareFrame)
+{
+    auto directory = QDir(options.directory);
+    if (!directory.mkpath(QStringLiteral("."))) {
+        qCritical().noquote() << QStringLiteral("Unable to create recording directory: %1").arg(directory.absolutePath());
+        return false;
+    }
+    // Frames left from an earlier, longer recording would otherwise end up in the animation.
+    for (const auto& name : directory.entryList({QStringLiteral("frame_*.png")}, QDir::Files)) {
+        directory.remove(name);
+    }
+
+    QObject::connect(window, &QQuickWindow::sceneGraphError, &app, [](const QQuickWindow::SceneGraphError error, const QString& message) {
+        qCritical().noquote() << QStringLiteral("Qt Quick scene graph error %1: %2").arg(static_cast<int>(error)).arg(message);
+        QCoreApplication::exit(EXIT_FAILURE);
+    });
+
+    // Owned by the window.
+    auto* recorder = new FrameRecorder(window, options, std::move(prepareFrame));
+    recorder->start();
+    return true;
 }
 
 } // namespace QAccelPlotExample
