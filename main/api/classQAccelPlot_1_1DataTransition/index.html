@@ -1920,6 +1920,7 @@
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
 <p>Subclasses implement <code>interpolate()</code> to define how the element animates between an old dataset and a new one. The transition is driven frame-by-frame by <code>advance()</code>, which the host element calls on the GUI thread before each scene graph synchronization, so <code>runningChanged</code> is always emitted on the GUI thread.</p>
+<p>Time comes from Qt's animation timer on the transition's thread, the clock of QML animations. An installed <code>QAnimationDriver</code> therefore steps transitions too, for example to record frames offscreen at a fixed time step.</p>
 <p>One transition can be assigned to several elements. Each element keeps its own <code>Run</code> with the data it animates between, so the elements animate independently.</p>
 <p><strong>See also:</strong> <a href="../classQAccelPlot_1_1DrawTransition/"><strong>DrawTransition</strong></a>, <a href="../classQAccelPlot_1_1MorphTransition/"><strong>MorphTransition</strong></a>, <a href="../classQAccelPlot_1_1LineCurve/"><strong>LineCurve</strong></a>, <a href="../classQAccelPlot_1_1BarSeries/"><strong>BarSeries</strong></a>, <a href="../classQAccelPlot_1_1PointCloud/"><strong>PointCloud</strong></a> </p>
 <h2 id="public-properties-documentation">Public Properties Documentation<a class="headerlink" href="#public-properties-documentation" title="Permanent link">&para;</a></h2>
@@ -1927,6 +1928,7 @@
 <p><em>Duration of the transition in milliseconds. Default: 300.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">QML_ANONYMOUSint</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">duration</span><span class="p">;</span>
 </code></pre></div></p>
+<p>With 0 or less, a run shows the target data at its next frame. </p>
 <hr>
 
 <h3 id="property-easing-12">property easing<a class="headerlink" href="#property-easing-12" title="Permanent link">&para;</a></h3>

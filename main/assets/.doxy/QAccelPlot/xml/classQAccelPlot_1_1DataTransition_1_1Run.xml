@@ -19,7 +19,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="88" column="22" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="88" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="95" column="22" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="95" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-attrib">
@@ -36,7 +36,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="92" column="24" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="92" bodyend="92"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="99" column="24" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="99" bodyend="99"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1DataTransition_1_1Run_1aff0f335c67aa21067add8f849fe26834" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -51,7 +51,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="93" column="14" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="93" bodyend="93"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="100" column="14" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="100" bodyend="100"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1DataTransition_1_1Run_1a55e7575a14128e7365ebd5f8c453faa6" prot="private" static="no" mutable="no">
         <type><ref refid="structQAccelPlot_1_1DataTransition_1_1Dataset" kindref="compound">Dataset</ref></type>
@@ -65,7 +65,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="94" column="17" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="94" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="101" column="17" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="101" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1DataTransition_1_1Run_1a792556335f5480ff98cb1b7e7683e2be" prot="private" static="no" mutable="no">
         <type><ref refid="structQAccelPlot_1_1DataTransition_1_1Dataset" kindref="compound">Dataset</ref></type>
@@ -79,21 +79,22 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="95" column="17" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="95" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="102" column="17" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="102" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classQAccelPlot_1_1DataTransition_1_1Run_1ada81aa8072cc514bd4402b1659ff7598" prot="private" static="no" mutable="no">
-        <type>QElapsedTimer</type>
-        <definition>QElapsedTimer QAccelPlot::DataTransition::Run::timer_</definition>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataTransition_1_1Run_1aa6483ec4207fd1982c8195e653325ef8" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::DataTransition::Run::startTime_</definition>
         <argsstring></argsstring>
-        <name>timer_</name>
-        <qualifiedname>QAccelPlot::DataTransition::Run::timer_</qualifiedname>
+        <name>startTime_</name>
+        <qualifiedname>QAccelPlot::DataTransition::Run::startTime_</qualifiedname>
+        <initializer>{0}</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="96" column="23" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="96" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="103" column="13" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="103" bodyend="103"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -110,7 +111,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="64" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="71" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1_1Run_1a658fd5396ad09234d4632e6a93eb7cbc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -125,7 +126,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="66" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="73" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1_1Run_1a9dbc249ed7b1e041b6034278ba90271b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -142,7 +143,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="68" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="75" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1_1Run_1a73550e4e14b8102cad9d1ec96322a99a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classQAccelPlot_1_1DataTransition_1_1Run" kindref="compound">Run</ref> &amp;</type>
@@ -159,7 +160,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="69" column="13"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="76" column="13"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1_1Run_1a86b0fdc489fc2c5000a6b1367d1bed6a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -174,7 +175,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="72" column="14"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="79" column="14"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1_1Run_1abc5498d25adbd22f24d6933922dadfad" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -189,7 +190,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="74" column="14"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="81" column="14"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1_1Run_1a537de5c8a7de4cd207647b0254a33f08" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>const std::vector&lt; double &gt; &amp;</type>
@@ -204,7 +205,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="76" column="27"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="83" column="27"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1_1Run_1a0061eb81bf6c9d4c279013dccfea4f66" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -219,7 +220,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="78" column="13"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="85" column="13"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1_1Run_1a6c2cef1e39fff13250f0d99cff73a79b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -245,7 +246,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="83" column="14"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="90" column="14"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1_1Run_1a344062aa896d29fe0f1dba9382d3ece8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -260,7 +261,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="85" column="14"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="92" column="14"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
@@ -276,7 +277,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="90" column="14"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="97" column="14"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -285,7 +286,7 @@
     <detaileddescription>
 <para>Holds the data the host animates from and to. A run is <emphasis>active</emphasis> while the transition advances it, and <emphasis>pending</emphasis> until the host takes the target data with <computeroutput><ref refid="classQAccelPlot_1_1DataTransition_1_1Run_1a6c2cef1e39fff13250f0d99cff73a79b" kindref="member">finish()</ref></computeroutput>. A run ended by <computeroutput><ref refid="classQAccelPlot_1_1DataTransition_1a4c514985f26ad17a66d219fa7b57f557" kindref="member">DataTransition::cancel()</ref></computeroutput> or by destroying the transition stays pending, so the host can still show the target data. Destroying a run ends it. </para>
     </detaileddescription>
-    <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="61" column="5" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="61" bodyend="97"/>
+    <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="68" column="5" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="68" bodyend="104"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1a86b0fdc489fc2c5000a6b1367d1bed6a" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition::Run</scope><name>active</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1a344062aa896d29fe0f1dba9382d3ece8" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition::Run</scope><name>cancel</name></member>
@@ -298,9 +299,9 @@
       <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1aff0f335c67aa21067add8f849fe26834" prot="private" virt="non-virtual"><scope>QAccelPlot::DataTransition::Run</scope><name>pending_</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1aa36e282c925ae7e71551aef5e52306df" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition::Run</scope><name>Run</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1a9dbc249ed7b1e041b6034278ba90271b" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition::Run</scope><name>Run</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1aa6483ec4207fd1982c8195e653325ef8" prot="private" virt="non-virtual"><scope>QAccelPlot::DataTransition::Run</scope><name>startTime_</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1a537de5c8a7de4cd207647b0254a33f08" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition::Run</scope><name>targetData</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1a0061eb81bf6c9d4c279013dccfea4f66" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition::Run</scope><name>targetPointCount</name></member>
-      <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1ada81aa8072cc514bd4402b1659ff7598" prot="private" virt="non-virtual"><scope>QAccelPlot::DataTransition::Run</scope><name>timer_</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1a792556335f5480ff98cb1b7e7683e2be" prot="private" virt="non-virtual"><scope>QAccelPlot::DataTransition::Run</scope><name>to_</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1a800dcd4f3ac2da0f2dab81f448f3043d" prot="private" virt="non-virtual"><scope>QAccelPlot::DataTransition::Run</scope><name>transition_</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1a658fd5396ad09234d4632e6a93eb7cbc" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition::Run</scope><name>~Run</name></member>

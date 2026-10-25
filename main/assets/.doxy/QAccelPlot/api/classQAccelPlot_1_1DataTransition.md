@@ -154,6 +154,9 @@ flowchart TB
 Subclasses implement `interpolate()` to define how the element animates between an old dataset and a new one. The transition is driven frame-by-frame by `advance()`, which the host element calls on the GUI thread before each scene graph synchronization, so `runningChanged` is always emitted on the GUI thread.
 
 
+Time comes from Qt's animation timer on the transition's thread, the clock of QML animations. An installed `QAnimationDriver` therefore steps transitions too, for example to record frames offscreen at a fixed time step.
+
+
 One transition can be assigned to several elements. Each element keeps its own `Run` with the data it animates between, so the elements animate independently.
 
 
@@ -179,6 +182,10 @@ QML_ANONYMOUSint QAccelPlot::DataTransition::duration;
 
 
 
+With 0 or less, a run shows the target data at its next frame. 
+
+
+        
 
 <hr>
 
