@@ -8,6 +8,7 @@
 #include "QAccelPlot/transitions/DrawTransition.hpp"
 #include "QAccelPlot/transitions/MorphTransition.hpp"
 
+#include <QAnimationDriver>
 #include <QtTest/QtTest>
 
 #include <cmath>
@@ -17,7 +18,7 @@
 
 // ---------------------------------------------------------------------------
 // Helper subclasses to expose protected interpolate() for direct testing,
-// avoiding dependence on the real-time QElapsedTimer inside advance().
+// avoiding dependence on the animation clock inside advance().
 // ---------------------------------------------------------------------------
 
 template <typename Transition> class Exposed : public Transition {
@@ -77,6 +78,10 @@ private slots:
     void transition_advance_whenNotRunning_returnsFalse();
     void transition_advance_interpolatesUntilDurationElapses();
     void transition_advance_keepsTheStride();
+    void transition_zeroDuration_endsAtNextFrame();
+
+    // Animation clock
+    void transition_advance_followsTheAnimationDriver();
 
     // Invalid samples
     void morph_invalidTarget_appearsImmediately();
@@ -333,7 +338,6 @@ void TestTransitions::transition_sharedRunsAdvanceIndependently()
     QVERIFY(secondOut[0] >= 100.0 && secondOut[0] < 200.0);
 
     t.setDuration(0);
-    QTest::qWait(2);
     QVERIFY(!t.advance(first, firstOut, firstCount));
     QCOMPARE(firstOut, (std::vector<double>{10.0, 10.0}));
     QVERIFY(t.running());
@@ -498,7 +502,6 @@ void TestTransitions::transition_advance_interpolatesUntilDurationElapses()
 
     auto runningSpy = QSignalSpy{&t, &QAccelPlot::DataTransition::runningChanged};
     t.setDuration(0);
-    QTest::qWait(2);
     QVERIFY(!t.advance(run, out, outCount));
     QVERIFY(!t.running());
     QVERIFY(!run.pending());
@@ -520,6 +523,87 @@ void TestTransitions::transition_advance_keepsTheStride()
 
     QCOMPARE(outCount, 1);
     QCOMPARE(out, (std::vector<double>{1.0, 2.0, 3.0}));
+}
+
+void TestTransitions::transition_zeroDuration_endsAtNextFrame()
+{
+    auto t = QAccelPlot::MorphTransition{};
+    auto run = QAccelPlot::DataTransition::Run{};
+    t.setDuration(0);
+    t.start(run, {0.0, 0.0}, 1, {10.0, 20.0}, 1);
+
+    auto out = std::vector<double>{};
+    auto outCount = 0;
+    QVERIFY(!t.advance(run, out, outCount));
+    QVERIFY(!t.running());
+    QCOMPARE(out, (std::vector<double>{10.0, 20.0}));
+}
+
+// ---------------------------------------------------------------------------
+// Animation clock
+// ---------------------------------------------------------------------------
+
+// Animation time that moves only when stepped, as in a frame recorder.
+class SteppedAnimationDriver : public QAnimationDriver {
+public:
+    qint64 elapsed() const override
+    {
+        return elapsed_;
+    }
+
+    void step(const qint64 milliseconds)
+    {
+        elapsed_ += milliseconds;
+        advance();
+    }
+
+protected:
+    void start() override
+    {
+        elapsed_ = 0;
+        QAnimationDriver::start();
+    }
+
+private:
+    qint64 elapsed_{0};
+};
+
+void TestTransitions::transition_advance_followsTheAnimationDriver()
+{
+    auto driver = SteppedAnimationDriver{};
+    driver.install();
+    auto t = QAccelPlot::MorphTransition{};
+    auto run = QAccelPlot::DataTransition::Run{};
+    t.setDuration(300);
+    t.setEasing(QEasingCurve{QEasingCurve::Linear});
+    t.start(run, {0.0, 0.0}, 1, {30.0, 60.0}, 1);
+
+    // Qt starts its animation timer through queued calls, and the first tick takes in the wall
+    // time they took. Restarting the run after that tick leaves the run only the stepped time.
+    QTRY_VERIFY(driver.isRunning());
+    driver.step(0);
+    t.start(run, {0.0, 0.0}, 1, {30.0, 60.0}, 1);
+
+    auto out = std::vector<double>{};
+    auto outCount = 0;
+    QTest::qWait(t.duration() + 100);
+    QVERIFY(t.advance(run, out, outCount));
+    QCOMPARE(out[0], 0.0);
+
+    driver.step(100);
+    QVERIFY(t.advance(run, out, outCount));
+    QCOMPARE(out[0], 10.0);
+    QCOMPARE(out[1], 20.0);
+
+    driver.step(100);
+    QVERIFY(t.advance(run, out, outCount));
+    QCOMPARE(out[0], 20.0);
+    QCOMPARE(out[1], 40.0);
+
+    driver.step(100);
+    QVERIFY(!t.advance(run, out, outCount));
+    QVERIFY(!t.running());
+    QCOMPARE(out, (std::vector<double>{30.0, 60.0}));
 }
 
 // ---------------------------------------------------------------------------

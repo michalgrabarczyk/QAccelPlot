@@ -54,6 +54,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   Streaming eight 512K-point curves takes about a quarter of the UI-thread time.
 - `LineCurve` markers read their positions from the GPU data texture, so data
   updates no longer rebuild a vertex buffer per marker.
+- Data transitions run on Qt's animation clock, like QML animations, so an
+  installed `QAnimationDriver` can step them frame by frame. A `duration` of 0
+  ends at the next frame.
 
 ### Removed
 
