@@ -16,7 +16,7 @@
         <link rel="prev" href="../concepts/">
       
       
-        <link rel="next" href="../performance-comparison/">
+        <link rel="next" href="../cookbook/">
       
       
         
@@ -445,6 +445,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-to-expect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What to expect
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#select-the-data-path" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -602,33 +613,6 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../performance-comparison/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Performance comparison
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
     
     
       
@@ -681,7 +665,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -703,14 +687,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1184,6 +1168,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Example gallery
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../changelog/" class="md-nav__link">
         
   
@@ -1553,6 +1564,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-to-expect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What to expect
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#select-the-data-path" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1721,8 +1743,88 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 <h1 id="performance">Performance<a class="headerlink" href="#performance" title="Permanent link">&para;</a></h1>
 <p>Throughput depends on point count, update rate, data conversion, range scans,
 series count, line style, effects, window size, graphics backend, and refresh
-rate. Measure a workload that matches your application. For cross-library
-numbers, see the <a href="../performance-comparison/">performance comparison</a>.</p>
+rate. Measure a workload that matches your application.</p>
+<h2 id="what-to-expect">What to expect<a class="headerlink" href="#what-to-expect" title="Permanent link">&para;</a></h2>
+<p>Frame rates from the <a href="#included-benchmarks">included benchmarks</a>:</p>
+<table>
+<thead>
+<tr>
+<th>Workload</th>
+<th>Points</th>
+<th>FPS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Replace a <code>LineCurve</code>'s data every frame with <code>setDataF(const float*, count)</code></td>
+<td>1M</td>
+<td>255</td>
+</tr>
+<tr>
+<td></td>
+<td>2M</td>
+<td>135</td>
+</tr>
+<tr>
+<td></td>
+<td>5M</td>
+<td>55</td>
+</tr>
+<tr>
+<td></td>
+<td>10M</td>
+<td>28</td>
+</tr>
+<tr>
+<td>Replace the data of five <code>LineCurve</code>s every frame</td>
+<td>5 × 1M</td>
+<td>55</td>
+</tr>
+<tr>
+<td>Pan over a <code>LineCurve</code> whose data does not change</td>
+<td>1M</td>
+<td>640</td>
+</tr>
+<tr>
+<td></td>
+<td>5M</td>
+<td>185</td>
+</tr>
+</tbody>
+</table>
+<p>Replacing data runs at about 275M points per second, roughly 4.5M points per
+frame at 60 FPS. FPS is not capped by the display: each frame is timed from the
+data or viewport update until the GPU finishes rendering it.</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GPU</td>
+<td>NVIDIA GeForce GTX 970, driver 560.94</td>
+</tr>
+<tr>
+<td>CPU</td>
+<td>AMD Ryzen 9 5900X</td>
+</tr>
+<tr>
+<td>OS</td>
+<td>Windows 10 Pro 22H2</td>
+</tr>
+<tr>
+<td>Qt</td>
+<td>6.11.2, OpenGL, <code>QACCELPLOT_USE_QT_PRIVATE_API=ON</code></td>
+</tr>
+<tr>
+<td>Render size</td>
+<td>1920 × 1080 offscreen, default series styling</td>
+</tr>
+</tbody>
+</table>
 <h2 id="select-the-data-path">Select the data path<a class="headerlink" href="#select-the-data-path" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -2011,13 +2113,13 @@ display FPS below the refresh rate. The lab reports:</p>
         
         
           
-          <a href="../performance-comparison/" class="md-footer__link md-footer__link--next" aria-label="Next: Performance comparison">
+          <a href="../cookbook/" class="md-footer__link md-footer__link--next" aria-label="Next: Index">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Performance comparison
+                Index
               </div>
             </div>
             <div class="md-footer__button md-icon">
