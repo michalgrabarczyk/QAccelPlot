@@ -23,8 +23,8 @@ RowLayout {
     spacing: 12
 
     Rectangle {
-        width: 9
-        height: 9
+        implicitWidth: 9
+        implicitHeight: 9
         radius: 4.5
         color: strip.monitor.paused ? strip.colorPalette.statusWarning : strip.colorPalette.statusGood
     }
