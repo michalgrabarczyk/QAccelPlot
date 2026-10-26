@@ -2016,6 +2016,10 @@
   records beyond their GPU capacity, which are not drawn.</li>
 <li><code>Colormap.stops</code> reads bound <code>GradientStop</code>s after their bindings are
   evaluated, and follows later changes to stops declared in the list.</li>
+<li>Panning and zooming no longer re-upload every series' vertex data each
+  frame: the grid updates its scene graph nodes in place.</li>
+<li>The benchmarks render into their offscreen target and wait for the GPU each
+  frame, so GPU-bound scenarios report their real frame time.</li>
 </ul>
 <h2 id="040-2026-10-16">[0.4.0] — 2026-10-16<a class="headerlink" href="#040-2026-10-16" title="Permanent link">&para;</a></h2>
 <h3 id="added_1">Added<a class="headerlink" href="#added_1" title="Permanent link">&para;</a></h3>

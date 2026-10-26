@@ -31,7 +31,7 @@ class Grid;
 
 class GridNode : public QSGNode {
 public:
-    explicit GridNode() = default;
+    explicit GridNode();
 
     void update(const Grid* grid, const Axis* xAxis, const Axis* yAxis, const QRectF& plotRect);
 
@@ -46,9 +46,12 @@ private:
         std::function<QRectF(qreal dataValue, qreal halfWidth)> makeRect;
     };
 
+    void collectGridLines(QVector<QRectF>& mainRects, QVector<QRectF>& subRects, const Grid* grid, const Axis* xAxis, const Axis* yAxis) const;
     void collectAxisGridLines(QVector<QRectF>& mainRects, QVector<QRectF>& subRects, const Grid* grid, const GridLineCollectionParams& p) const;
 
     QRectF plotRect_;
+    QSGGeometryNode* subGridNode_;
+    QSGGeometryNode* mainGridNode_;
 };
 
 } // namespace QAccelPlot

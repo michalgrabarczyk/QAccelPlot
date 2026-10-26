@@ -1469,7 +1469,7 @@
 <tbody>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-gridnode"><strong>GridNode</strong></a> () = default<br><em>Constructs an empty</em> <a href="./"><em><strong>GridNode</strong></em></a> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-gridnode"><strong>GridNode</strong></a> () <br><em>Constructs a</em> <a href="./"><em><strong>GridNode</strong></em></a> <em>with empty sub-grid and main grid children.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -1478,11 +1478,12 @@
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
-<p>Draws grid lines at the tick values from <code>AxisTickPainter::computeTickValues()</code>, the same values the axis places its tick marks at, so both stay aligned under all zoom levels, including log scale. </p>
+<p>Draws grid lines at the tick values from <code>AxisTickPainter::computeTickValues()</code>, the same values the axis places its tick marks at, so both stay aligned under all zoom levels, including log scale.</p>
+<p>Keeps two child geometry nodes, sub-grid first and main grid second, for its whole lifetime and updates them in place. A hidden layer keeps its node with no vertices. Adding or removing nodes would make the Qt Quick renderer rebuild all batches and re-upload every series' vertex data. </p>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-gridnode">function GridNode<a class="headerlink" href="#function-gridnode" title="Permanent link">&para;</a></h3>
-<p><em>Constructs an empty</em> <a href="./"><em><strong>GridNode</strong></em></a> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">explicit</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GridNode</span><span class="o">::</span><span class="n">GridNode</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span>
+<p><em>Constructs a</em> <a href="./"><em><strong>GridNode</strong></em></a> <em>with empty sub-grid and main grid children.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">explicit</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GridNode</span><span class="o">::</span><span class="n">GridNode</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 

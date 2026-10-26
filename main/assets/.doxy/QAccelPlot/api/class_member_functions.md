@@ -152,6 +152,7 @@
 * **commit** ([**QAccelPlot::GradientTexture**](classQAccelPlot_1_1GradientTexture.md))
 * **comparisonKey** ([**QAccelPlot::GradientTexture**](classQAccelPlot_1_1GradientTexture.md))
 * **collectAxisGridLines** ([**QAccelPlot::GridNode**](classQAccelPlot_1_1GridNode.md))
+* **collectGridLines** ([**QAccelPlot::GridNode**](classQAccelPlot_1_1GridNode.md))
 * **canDraw** ([**QAccelPlot::HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md))
 * **cellAt** ([**QAccelPlot::HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md))
 * **cellCenter** ([**QAccelPlot::HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md), [**QAccelPlot::Internal::HeatmapGridDimension**](structQAccelPlot_1_1Internal_1_1HeatmapGridDimension.md))
