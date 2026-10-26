@@ -36,25 +36,16 @@ level-of-detail (LOD) reduction.
 
 ---
 
-## 📊 Performance at a Glance
+## 📊 Performance
 
-Maximum points each library can replace and render every frame while
-sustaining 60 FPS on the same system:
+QAccelPlot draws every sample, with no downsampling or level-of-detail
+reduction. Millions of points can be replaced and drawn every frame at 60 FPS.
 
-![Performance comparison](docs/guide/assets/performance_comparison.svg)
-
-<sub>Measured on NVIDIA GeForce GTX 970 / AMD Ryzen 9 5900X / Windows 10 Pro with Qt 6.11.2 and OpenGL. Each frame replaces the complete dataset. [Read full benchmark setup & methodology →](https://michalgrabarczyk.github.io/QAccelPlot/performance-comparison/)</sub>
-
-### Architectural Comparison
-
-| Feature / Metric | **QAccelPlot** | **Qt Graphs** | **QCustomPlot** |
-| :--- | :--- | :--- | :--- |
-| **Rendering Backend** | **Qt Scene Graph** | Qt Scene Graph | QWidget paint buffers (optional OpenGL) |
-| **Qt Quick / QML Native** | **Yes** — Native `QQuickItem` | Yes | No (QWidget-based) |
-| **60 FPS Dataset Capacity**\* | **~8M points** | ~13K points | ~2.75M (OpenGL) |
-| **Bulk Data Input** | **QML points, double vectors, moved or copied `float` buffers, prebuilt vertex cache** | `QList<QPointF>` replace | Key/value vector copies |
-
-<sub>* Point capacity varies with hardware. Figures shown reflect measurements on the [benchmark reference system](https://michalgrabarczyk.github.io/QAccelPlot/performance-comparison/).</sub>
+Exact performance depends on the GPU, the series type, the styling (line width,
+markers, gradients), and how the data is passed in. See the
+[Performance guide](https://michalgrabarczyk.github.io/QAccelPlot/performance/)
+for what each option costs and
+[figures measured on a reference system](https://michalgrabarczyk.github.io/QAccelPlot/main/performance/#what-to-expect).
 
 ---
 
