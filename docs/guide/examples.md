@@ -39,12 +39,6 @@ Each executable is named after its example, for example
     Stream up to 10M points, rectangles, bars, or heatmap cells per tab and compare the cost of
     series count, ingestion API, and rendering options.
 
--   ![Cosmic Pulsar](assets/examples/pulsar.webp)
-
-    **[Cosmic Pulsar](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/showcases/pulsar)**
-
-    Animated 80-ridge CP 1919 waterfall; dense antialiased lines fed from a worker thread.
-
 -   ![Quickstart](assets/examples/quickstart.webp)
 
     **[Quickstart](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/quickstart)**
