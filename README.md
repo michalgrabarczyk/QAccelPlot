@@ -186,10 +186,15 @@ ctest --test-dir build --output-on-failure
 
 Planned before 1.0:
 
-- Heatmaps.
-- SVG export.
-- Per-axis pan and zoom limits.
-- Touch panning and pinch zoom.
+- [x] Gaps for invalid data (`NaN`, `±Inf`, non-positive log values).
+- [x] Point clouds with colormaps and color bars.
+- [x] Bar charts and histograms.
+- [x] Bands, error bars, and step lines.
+- [x] Data inspection: crosshair, tooltips, and selection.
+- [x] Heatmaps.
+- [x] Image export.
+- [ ] SVG export.
+- [ ] Touch panning and pinch zoom.
 
 ---
 
