@@ -64,6 +64,7 @@ See [Getting started](getting-started.md) for the full build and data setup.
 - **[Performance](performance.md)** — Data paths, worker handoff, and benchmarking.
 - **[Performance comparison](performance-comparison.md)** — Benchmark setup and results.
 - **[Cookbook](cookbook/index.md)** — Recipes for common tasks.
+- **[Example gallery](examples.md)** — Screenshots of every runnable example.
 - **[FAQ](faq.md)** — Licensing, threading, and compatibility.
 - **[Troubleshooting](troubleshooting.md)** — Blank curves, build errors, and stutter.
 - **[Versioning](versioning.md)** — Release numbers, pinning, and documentation versions.

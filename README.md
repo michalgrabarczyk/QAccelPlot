@@ -102,37 +102,22 @@ For CMake integration, see
 
 ---
 
-## 🎨 Example Showcase
+## 🎨 Examples
 
-Explore runnable applications in the [`examples/`](examples/) directory:
+```sh
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DQACCELPLOT_BUILD_EXAMPLES=ON
+cmake --build build --config Release
+```
 
-| Category | Example | Description |
-| :--- | :--- | :--- |
-| Showcases | **[Cosmic Pulsar](examples/showcases/pulsar/)** | Animated 80-ridge CP 1919 waterfall; dense antialiased lines fed from a worker thread. |
-| Showcases | **[Performance](examples/showcases/performance/)** | Performance lab: stream up to 10M points, rectangles, bars, or heatmap cells per tab and compare the cost of series count, ingestion API, and rendering options. |
-| Start | **[Quickstart](examples/quickstart/)** | Minimal plot setup. |
-| Plot types | **[Bar Chart](examples/plot_types/bar_chart/)** | Grouped monthly revenue with a horizontal toggle, profit bars colored against a target baseline, and animated updates. |
-| Plot types | **[Histogram](examples/plot_types/histogram/)** | Sensor noise in equal bins, and request latencies in logarithmic bins or as density in one bin per axis tick. |
-| Plot types | **[Bands](examples/plot_types/bands/)** | Forecast with nested prediction intervals, and a rolling mean ± 2σ band over a simulated sensor signal. |
-| Plot types | **[Error Bars](examples/plot_types/error_bars/)** | Calibration measurements with asymmetric reading errors and reference errors along X, animated between samples with morph and draw transitions, and error bars on grouped bars. |
-| Plot types | **[Step Lines](examples/plot_types/step_lines/)** | Hourly prices drawn with each step mode, and a live heater set point held as steps over the measured temperature, read with an interpolating crosshair. |
-| Plot types | **[Parametric Curves](examples/plot_types/parametric_curves/)** | Spiral, Lissajous figure, spirograph, and Van der Pol phase portrait: curves that loop and cross themselves. |
-| Plot types | **[Heatmap](examples/plot_types/heatmap/)** | Two-source wave interference on a 400 × 300 grid, keyed by a histogram of the cells in view, with colormap presets, an interactive color bar, and a hover readout. |
-| Plot types | **[Point Cloud](examples/plot_types/point_cloud/)** | 200K-point scatter colored by value through a Colormap preset, with a hover tooltip, rectangle zoom, and morph and draw transitions between datasets. |
-| Plot types | **[State Timeline](examples/plot_types/state_timeline/)** | Two weeks of machine states in one RectangleSeries, colored by category, over full-height maintenance windows. |
-| Styling | **[Line Styles](examples/styling/line_styles/)** | Dash patterns, line weights, and antialiasing. |
-| Styling | **[Markers](examples/styling/markers/)** | Every marker shape, filled and hollow; click one to draw a scatter plot with it. |
-| Styling | **[Gradients](examples/styling/gradients/)** | Gradient area fills and strokes with presets, direction, and baseline. |
-| Styling | **[Transitions](examples/styling/transitions/)** | Morph and draw animations between datasets. |
-| Styling | **[Theming](examples/styling/theming/)** | Plot, axis, grid, legend, and series colors bound to the dark or light palette. |
-| Axes | **[Tick Formats](examples/axes/tick_formats/)** | Category, logarithmic, and date/time tick labels. |
-| Axes | **[Multiple Axes](examples/axes/multiple_axes/)** | Dual wavelength/frequency scale, multi-rate time axes, and ECG panels sharing one time axis. |
-| Data | **[Realtime](examples/data/realtime/)** | Scrolling vibration signal in a 20-second window, updated every frame. |
-| Data | **[Missing Data](examples/data/missing_data/)** | NaN, ±Inf, and log-invalid data points drawn as gaps or connected. |
-| Data | **[Export](examples/data/export/)** | Save a plot as PNG, JPEG, WebP, or TIFF at a chosen scale and background, or copy it to the clipboard. |
-| Interaction | **[Annotations](examples/interaction/annotations/)** | QML overlays anchored to data coordinates. |
-| Interaction | **[Measurement Tools](examples/interaction/measurement_tools/)** | Distance ruler, angle tool, rectangular selection, and point markers. |
-| Interaction | **[Data Inspection](examples/interaction/data_inspection/)** | Crosshair, per-series tooltip, and region selection with statistics over one million data points. |
+- **[Quickstart](examples/quickstart/)**: a minimal plot.
+- **[Realtime](examples/data/realtime/)**: a scrolling signal updated every frame.
+- **[Performance Lab](examples/showcases/performance/)**: stream up to 10M points and compare
+  the cost of series count, data path, and rendering options.
+- **[Vibration Monitoring](examples/showcases/vibration_monitoring/)**: the dashboard at the top
+  of this page.
+
+Every example with a screenshot:
+[Example gallery](https://michalgrabarczyk.github.io/QAccelPlot/main/examples/).
 
 ---
 
@@ -191,6 +176,7 @@ ctest --test-dir build --output-on-failure
 - 🏗️ **[Concepts](https://michalgrabarczyk.github.io/QAccelPlot/concepts/)** — Axes, series, gaps, overlays, and threading.
 - ⚡ **[Performance Guide](https://michalgrabarczyk.github.io/QAccelPlot/performance/)** — Data paths, worker handoff, and benchmarking.
 - 🍳 **[Cookbook](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/)** — Real-time data, multiple axes, styling, and tools.
+- 🎨 **[Example gallery](https://michalgrabarczyk.github.io/QAccelPlot/main/examples/)** — Screenshots of every runnable example.
 - ❓ **[FAQ](https://michalgrabarczyk.github.io/QAccelPlot/faq/)** — Threading, licensing, and backends.
 - 📚 **[API Reference](https://michalgrabarczyk.github.io/QAccelPlot/api/)** — Classes, properties, and methods.
 
