@@ -22,7 +22,7 @@ level-of-detail (LOD) reduction.
     <img src="docs/guide/assets/vibration_monitoring_light.gif" alt="Vibration monitoring dashboard rendered by QAccelPlot: eight streaming waveforms, RMS bars, a spectrum with a bearing-fault peak, and a spectrogram, zooming down to single samples" width="896" />
   </picture>
   <br />
-  <sub><a href="examples/showcases/vibration_monitoring/">Vibration Monitoring example</a>: 2M samples replaced every frame, recorded with its <code>--record</code> option</sub>
+  <sub><a href="examples/showcases/vibration_monitoring/">Vibration Monitoring example</a>: 2M samples replaced every frame</sub>
 </div>
 
 ## ⚡ Highlights
@@ -46,6 +46,34 @@ markers, gradients), and how the data is passed in. See the
 [Performance guide](https://michalgrabarczyk.github.io/QAccelPlot/performance/)
 for what each option costs and
 [figures measured on a reference system](https://michalgrabarczyk.github.io/QAccelPlot/main/performance/#what-to-expect).
+
+---
+
+## 🎨 Examples
+
+Browse examples in the
+[example gallery](https://michalgrabarczyk.github.io/QAccelPlot/main/examples/).
+
+- **[Quickstart](examples/quickstart/)**: a minimal plot.
+- **[Realtime](examples/data/realtime/)**: a scrolling signal updated every frame.
+- **[Performance Lab](examples/showcases/performance/)**: stream up to 10M points and compare
+  performance across settings.
+- **[Vibration Monitoring](examples/showcases/vibration_monitoring/)**: stream eight accelerometer
+  channels with spectrum, spectrogram, and RMS panels.
+
+Build them with `-DQACCELPLOT_BUILD_EXAMPLES=ON` (see Building from Source).
+
+---
+
+## 📖 Documentation
+
+- 🚀 **[Getting Started](https://michalgrabarczyk.github.io/QAccelPlot/getting-started/)** — CMake integration and a first plot.
+- 🏗️ **[Concepts](https://michalgrabarczyk.github.io/QAccelPlot/concepts/)** — Axes, series, gaps, overlays, and threading.
+- ⚡ **[Performance Guide](https://michalgrabarczyk.github.io/QAccelPlot/performance/)** — Data paths, worker handoff, and benchmarking.
+- 🍳 **[Cookbook](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/)** — Short recipes for common tasks, each linked to a runnable example.
+- 🎨 **[Example gallery](https://michalgrabarczyk.github.io/QAccelPlot/main/examples/)** — Every example at a glance, grouped by topic.
+- ❓ **[FAQ](https://michalgrabarczyk.github.io/QAccelPlot/faq/)** — Threading, licensing, and backends.
+- 📚 **[API Reference](https://michalgrabarczyk.github.io/QAccelPlot/api/)** — Classes, properties, and methods.
 
 ---
 
@@ -102,25 +130,6 @@ For CMake integration, see
 
 ---
 
-## 🎨 Examples
-
-```sh
-cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DQACCELPLOT_BUILD_EXAMPLES=ON
-cmake --build build --config Release
-```
-
-- **[Quickstart](examples/quickstart/)**: a minimal plot.
-- **[Realtime](examples/data/realtime/)**: a scrolling signal updated every frame.
-- **[Performance Lab](examples/showcases/performance/)**: stream up to 10M points and compare
-  the cost of series count, data path, and rendering options.
-- **[Vibration Monitoring](examples/showcases/vibration_monitoring/)**: the dashboard at the top
-  of this page.
-
-Every example with a screenshot:
-[Example gallery](https://michalgrabarczyk.github.io/QAccelPlot/main/examples/).
-
----
-
 ## 🧪 Testing
 
 - **[Unit tests](.github/workflows/ci.yml)** with GCC and Clang, and
@@ -167,18 +176,6 @@ ctest --test-dir build --output-on-failure
 | `QACCELPLOT_BUILD_VISUAL_TESTS` | `OFF` | Screenshot and visual validation tests. Requires examples and tests. |
 | `QACCELPLOT_FORCE_ASSERTS` | `OFF` | Keeps `Q_ASSERT` active in Release builds. CI turns it on. |
 | `QACCELPLOT_WARNINGS_AS_ERRORS` | `OFF` | Builds with `-Wall -Wextra -Werror`, or `/W4 /WX` on MSVC. CI turns it on for one job per compiler. |
-
----
-
-## 📖 Documentation
-
-- 🚀 **[Getting Started](https://michalgrabarczyk.github.io/QAccelPlot/getting-started/)** — CMake integration and a first plot.
-- 🏗️ **[Concepts](https://michalgrabarczyk.github.io/QAccelPlot/concepts/)** — Axes, series, gaps, overlays, and threading.
-- ⚡ **[Performance Guide](https://michalgrabarczyk.github.io/QAccelPlot/performance/)** — Data paths, worker handoff, and benchmarking.
-- 🍳 **[Cookbook](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/)** — Real-time data, multiple axes, styling, and tools.
-- 🎨 **[Example gallery](https://michalgrabarczyk.github.io/QAccelPlot/main/examples/)** — Screenshots of every runnable example.
-- ❓ **[FAQ](https://michalgrabarczyk.github.io/QAccelPlot/faq/)** — Threading, licensing, and backends.
-- 📚 **[API Reference](https://michalgrabarczyk.github.io/QAccelPlot/api/)** — Classes, properties, and methods.
 
 ---
 
