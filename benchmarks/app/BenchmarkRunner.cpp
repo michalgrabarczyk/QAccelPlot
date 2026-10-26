@@ -12,6 +12,7 @@
 #include <QDebug>
 #include <QMetaObject>
 #include <QOpenGLFunctions>
+#include <QQuickGraphicsDevice>
 #include <QQuickRenderTarget>
 #include <QSGRendererInterface>
 #include <QSysInfo>
@@ -58,6 +59,8 @@ BenchmarkRunner::BenchmarkRunner(QObject* parent)
     offscreenSurface_->create();
 
     context_->makeCurrent(offscreenSurface_);
+    // Without this, Qt Quick renders with a context of its own that cannot see fbo_'s texture.
+    window_->setGraphicsDevice(QQuickGraphicsDevice::fromOpenGLContext(context_));
     renderControl_->initialize();
 
     fbo_ = new QOpenGLFramebufferObject(window_->size(), QOpenGLFramebufferObject::CombinedDepthStencil);
@@ -256,6 +259,9 @@ void BenchmarkRunner::render()
 
     renderControl_->render();
     renderControl_->endFrame();
+    // OpenGL offscreen frames only flush. Wait for the GPU, as the other QRhi backends do, so the
+    // frame time includes drawing and GPU-bound scenarios cannot queue frames without limit.
+    context_->functions()->glFinish();
 
     metrics_.endFrame(static_cast<int64_t>(currentPointCount_) * static_cast<int64_t>(curves_.size()));
     context_->doneCurrent();

@@ -23,10 +23,14 @@ class Grid;
 ///
 /// Draws grid lines at the tick values from \c AxisTickPainter::computeTickValues(), the same values
 /// the axis places its tick marks at, so both stay aligned under all zoom levels, including log scale.
+///
+/// Keeps two child geometry nodes, sub-grid first and main grid second, for its whole lifetime and
+/// updates them in place. A hidden layer keeps its node with no vertices. Adding or removing nodes
+/// would make the Qt Quick renderer rebuild all batches and re-upload every series' vertex data.
 class GridNode : public QSGNode {
 public:
-    /// \brief Constructs an empty GridNode.
-    explicit GridNode() = default;
+    /// \brief Constructs a GridNode with empty sub-grid and main grid children.
+    explicit GridNode();
 
     /// \brief Recomputes and updates all grid geometry from the supplied configuration objects.
     /// \param grid Grid configuration (line widths, visibility flags, colors).
@@ -46,9 +50,12 @@ private:
         std::function<QRectF(qreal dataValue, qreal halfWidth)> makeRect;
     };
 
+    void collectGridLines(QVector<QRectF>& mainRects, QVector<QRectF>& subRects, const Grid* grid, const Axis* xAxis, const Axis* yAxis) const;
     void collectAxisGridLines(QVector<QRectF>& mainRects, QVector<QRectF>& subRects, const Grid* grid, const GridLineCollectionParams& p) const;
 
     QRectF plotRect_;
+    QSGGeometryNode* subGridNode_;
+    QSGGeometryNode* mainGridNode_;
 };
 
 } // namespace QAccelPlot
