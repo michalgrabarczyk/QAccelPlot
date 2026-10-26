@@ -17,9 +17,12 @@ level-of-detail (LOD) reduction.
 ---
 
 <div align="center">
-  <img src="docs/guide/assets/pulsar_resonance_portrait.gif" alt="Portrait Cosmic Pulsar CP 1919 animated 3D waterfall rendered by QAccelPlot" height="851" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/guide/assets/vibration_monitoring_dark.gif" />
+    <img src="docs/guide/assets/vibration_monitoring_light.gif" alt="Vibration monitoring dashboard rendered by QAccelPlot: eight streaming waveforms, RMS bars, a spectrum with a bearing-fault peak, and a spectrogram, zooming down to single samples" width="896" />
+  </picture>
   <br />
-  <sub><a href="examples/showcases/pulsar/">Explore the Cosmic Pulsar example</a></sub>
+  <sub><a href="examples/showcases/vibration_monitoring/">Vibration Monitoring example</a>: 2M samples replaced every frame, recorded with its <code>--record</code> option</sub>
 </div>
 
 ## ⚡ Highlights
