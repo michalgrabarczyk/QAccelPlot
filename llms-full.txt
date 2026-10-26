@@ -17,7 +17,7 @@ frame.
 ### Key capabilities
 
 - **Throughput** — about 4.5M points replaced and drawn per frame at 60 FPS on the
-  [reference system](https://michalgrabarczyk.github.io/QAccelPlot/performance-comparison/), without downsampling
+  [reference system](https://michalgrabarczyk.github.io/QAccelPlot/performance/#what-to-expect), without downsampling
 - **Data paths** — QML points, double vectors, moved `float` buffers, and
   worker-thread `postData()`
 - **Interaction** — pan, cursor-centered, per-axis, and rectangle zoom, rescale,
@@ -63,7 +63,6 @@ See [Getting started](https://michalgrabarczyk.github.io/QAccelPlot/getting-star
 - **[Getting started](https://michalgrabarczyk.github.io/QAccelPlot/getting-started/)** — CMake integration and a first plot.
 - **[Concepts](https://michalgrabarczyk.github.io/QAccelPlot/concepts/)** — Axes, series, gaps, overlays, and threading.
 - **[Performance](https://michalgrabarczyk.github.io/QAccelPlot/performance/)** — Data paths, worker handoff, and benchmarking.
-- **[Performance comparison](https://michalgrabarczyk.github.io/QAccelPlot/performance-comparison/)** — Benchmark setup and results.
 - **[Cookbook](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/)** — Recipes for common tasks.
 - **[Example gallery](https://michalgrabarczyk.github.io/QAccelPlot/examples/)** — Screenshots of every runnable example.
 - **[FAQ](https://michalgrabarczyk.github.io/QAccelPlot/faq/)** — Licensing, threading, and compatibility.
@@ -491,8 +490,7 @@ Use [`LineCurve::postData()`][post-data] or a queued call. See
 
 Throughput depends on point count, update rate, data conversion, range scans,
 series count, line style, effects, window size, graphics backend, and refresh
-rate. Measure a workload that matches your application. For cross-library
-numbers, see the [performance comparison](https://michalgrabarczyk.github.io/QAccelPlot/performance-comparison/).
+rate. Measure a workload that matches your application.
 
 ## What to expect
 
@@ -723,20 +721,10 @@ Scenarios are defined in
 
 # FAQ
 
-## How does QAccelPlot differ from QCustomPlot or Qt Graphs?
-
-| | QAccelPlot | Qt Graphs | QCustomPlot |
-| --- | --- | --- | --- |
-| UI framework | Qt Quick | Qt Quick | Qt Widgets |
-| Rendering | Custom Scene Graph shaders | Qt Scene Graph | `QPainter`, optional OpenGL |
-| Points replaced per frame at 60 FPS\* | ~8M | ~13K | ~2.75M (OpenGL) |
-
-\* Single curve on the [reference system](https://michalgrabarczyk.github.io/QAccelPlot/performance-comparison/).
-
 ## How many data points can QAccelPlot handle?
 
 About 4.5M points replaced and drawn every frame at 60 FPS on the
-[reference system](https://michalgrabarczyk.github.io/QAccelPlot/performance-comparison/). Throughput drops with more
+[reference system](https://michalgrabarczyk.github.io/QAccelPlot/performance/#what-to-expect). Throughput drops with more
 series, markers, gradients, transitions, larger windows, and slower GPUs.
 Measure your workload with the included
 [benchmarks](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/benchmarks).

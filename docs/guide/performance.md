@@ -11,8 +11,7 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 
 Throughput depends on point count, update rate, data conversion, range scans,
 series count, line style, effects, window size, graphics backend, and refresh
-rate. Measure a workload that matches your application. For cross-library
-numbers, see the [performance comparison](performance-comparison.md).
+rate. Measure a workload that matches your application.
 
 ## What to expect
 

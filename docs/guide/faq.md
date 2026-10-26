@@ -1,5 +1,5 @@
 ---
-description: "Frequently asked questions about QAccelPlot licensing, performance, threading, Qt compatibility, and differences from other Qt plotting libraries."
+description: "Frequently asked questions about QAccelPlot licensing, performance, threading, and Qt compatibility."
 ---
 
 <!--
@@ -9,20 +9,10 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 
 # FAQ
 
-## How does QAccelPlot differ from QCustomPlot or Qt Graphs?
-
-| | QAccelPlot | Qt Graphs | QCustomPlot |
-| --- | --- | --- | --- |
-| UI framework | Qt Quick | Qt Quick | Qt Widgets |
-| Rendering | Custom Scene Graph shaders | Qt Scene Graph | `QPainter`, optional OpenGL |
-| Points replaced per frame at 60 FPS\* | ~8M | ~13K | ~2.75M (OpenGL) |
-
-\* Single curve on the [reference system](performance-comparison.md).
-
 ## How many data points can QAccelPlot handle?
 
 About 4.5M points replaced and drawn every frame at 60 FPS on the
-[reference system](performance-comparison.md). Throughput drops with more
+[reference system](performance.md#what-to-expect). Throughput drops with more
 series, markers, gradients, transitions, larger windows, and slower GPUs.
 Measure your workload with the included
 [benchmarks](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/benchmarks).
