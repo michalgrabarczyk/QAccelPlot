@@ -21,7 +21,7 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 
 ## How many data points can QAccelPlot handle?
 
-About 8M points replaced and drawn every frame at 60 FPS on the
+About 4.5M points replaced and drawn every frame at 60 FPS on the
 [reference system](performance-comparison.md). Throughput drops with more
 series, markers, gradients, transitions, larger windows, and slower GPUs.
 Measure your workload with the included

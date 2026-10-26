@@ -15,7 +15,7 @@ frame.
 
 ### Key capabilities
 
-- **Throughput** — about 8M points replaced and drawn per frame at 60 FPS on the
+- **Throughput** — about 4.5M points replaced and drawn per frame at 60 FPS on the
   [reference system](performance-comparison.md), without downsampling
 - **Data paths** — QML points, double vectors, moved `float` buffers, and
   worker-thread `postData()`
