@@ -39,6 +39,27 @@ QList<qreal> verticalLineCenters(const QSGNode& node, const QColor& color)
     return centers;
 }
 
+// Returns the number of grid layers (main and sub-grid) that draw at least one line.
+int drawnLayerCount(const QSGNode& node)
+{
+    auto count = 0;
+    for (auto* child = node.firstChild(); child != nullptr; child = child->nextSibling()) {
+        if (static_cast<const QSGGeometryNode*>(child)->geometry()->vertexCount() > 0) {
+            ++count;
+        }
+    }
+    return count;
+}
+
+QList<QSGNode*> childNodes(const QSGNode& node)
+{
+    auto children = QList<QSGNode*>{};
+    for (auto* child = node.firstChild(); child != nullptr; child = child->nextSibling()) {
+        children.append(child);
+    }
+    return children;
+}
+
 QList<qreal> pixelPositions(const QAccelPlot::Axis& axis, const QList<qreal>& values, const QRectF& plotRect)
 {
     auto pixels = QList<qreal>{};
@@ -73,6 +94,7 @@ private slots:
     void collapsedRangeProducesNoGrid();
     void gridLinesMatchAxisTicks_data();
     void gridLinesMatchAxisTicks();
+    void panningUpdatesChildNodesInPlace();
 };
 
 void GridNodeTest::logTickControls_data()
@@ -99,7 +121,7 @@ void GridNodeTest::logTickControls()
     auto grid = QAccelPlot::Grid{};
     auto node = QAccelPlot::GridNode{};
     node.update(&grid, &axis, nullptr, QRectF{0, 0, 100, 100});
-    QCOMPARE(node.childCount(), majorCount <= 0 ? 0 : minorCount <= 0 ? 1 : 2);
+    QCOMPARE(drawnLayerCount(node), majorCount <= 0 ? 0 : minorCount <= 0 ? 1 : 2);
 }
 
 void GridNodeTest::disabledTicksProduceNoGrid_data()
@@ -121,10 +143,10 @@ void GridNodeTest::disabledTicksProduceNoGrid()
 
     node.update(&grid, &axis, nullptr, QRectF{0, 0, 100, 100});
 
-    QCOMPARE(node.childCount(), 0);
+    QCOMPARE(drawnLayerCount(node), 0);
     axis.ticker()->setTickCount(5);
     node.update(&grid, &axis, nullptr, QRectF{0, 0, 100, 100});
-    QVERIFY(node.childCount() > 0);
+    QVERIFY(drawnLayerCount(node) > 0);
 }
 
 void GridNodeTest::hiddenGridClearsGeometry()
@@ -133,13 +155,13 @@ void GridNodeTest::hiddenGridClearsGeometry()
     auto grid = QAccelPlot::Grid{};
     auto node = QAccelPlot::GridNode{};
     node.update(&grid, &axis, nullptr, QRectF{0, 0, 100, 100});
-    QVERIFY(node.childCount() > 0);
+    QVERIFY(drawnLayerCount(node) > 0);
 
     grid.setGridVisible(false);
     grid.setSubGridVisible(false);
     node.update(&grid, &axis, nullptr, QRectF{0, 0, 100, 100});
 
-    QCOMPARE(node.childCount(), 0);
+    QCOMPARE(drawnLayerCount(node), 0);
 }
 
 void GridNodeTest::collapsedRangeProducesNoGrid_data()
@@ -158,7 +180,7 @@ void GridNodeTest::collapsedRangeProducesNoGrid()
     auto grid = QAccelPlot::Grid{};
     auto node = QAccelPlot::GridNode{};
     node.update(&grid, &axis, nullptr, QRectF{0, 0, 100, 100});
-    QCOMPARE(node.childCount(), 0);
+    QCOMPARE(drawnLayerCount(node), 0);
 }
 
 void GridNodeTest::gridLinesMatchAxisTicks_data()
@@ -207,6 +229,32 @@ void GridNodeTest::gridLinesMatchAxisTicks()
     }
     comparePositions(verticalLineCenters(node, Qt::red), pixelPositions(axis, majorValues, plotRect));
     comparePositions(verticalLineCenters(node, Qt::blue), pixelPositions(axis, ticks.subtickValues, plotRect));
+}
+
+// Adding or removing scene graph nodes makes Qt Quick rebuild every batch and re-upload all
+// series vertex data, so panning must reuse the grid's child nodes.
+void GridNodeTest::panningUpdatesChildNodesInPlace()
+{
+    auto axis = QAccelPlot::Axis{};
+    axis.setViewportMax(100.0);
+    auto grid = QAccelPlot::Grid{};
+    grid.setGridColor(Qt::red);
+    const auto plotRect = QRectF{0, 0, 1000, 100};
+    auto node = QAccelPlot::GridNode{};
+    node.update(&grid, &axis, nullptr, plotRect);
+    const auto children = childNodes(node);
+    const auto linesBefore = verticalLineCenters(node, Qt::red);
+
+    axis.setViewportMin(3.0);
+    axis.setViewportMax(103.0);
+    node.update(&grid, &axis, nullptr, plotRect);
+    QCOMPARE(childNodes(node), children);
+    QVERIFY(verticalLineCenters(node, Qt::red) != linesBefore);
+
+    grid.setGridVisible(false);
+    grid.setSubGridVisible(false);
+    node.update(&grid, &axis, nullptr, plotRect);
+    QCOMPARE(childNodes(node), children);
 }
 
 QTEST_MAIN(GridNodeTest)

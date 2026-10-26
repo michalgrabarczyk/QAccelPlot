@@ -24,6 +24,7 @@
 #include <QOpenGLContext>
 #include <QOpenGLFramebufferObject>
 #include <QOpenGLFunctions>
+#include <QQuickGraphicsDevice>
 #include <QQuickRenderControl>
 #include <QQuickRenderTarget>
 #include <QQuickWindow>
@@ -65,6 +66,8 @@ public:
         offscreenSurface_->create();
 
         context_->makeCurrent(offscreenSurface_);
+        // Without this, Qt Quick renders with a context of its own that cannot see fbo_'s texture.
+        window_->setGraphicsDevice(QQuickGraphicsDevice::fromOpenGLContext(context_));
         renderControl_->initialize();
 
         // Create FBO for rendering
@@ -160,6 +163,9 @@ private slots:
 
         renderControl_->render();
         renderControl_->endFrame();
+        // OpenGL offscreen frames only flush. Wait for the GPU, as the other QRhi backends do, so the
+        // frame time includes drawing and GPU-bound scenarios cannot queue frames without limit.
+        context_->functions()->glFinish();
 
         metrics_.endFrame(static_cast<int64_t>(currentPointCount_) * static_cast<int64_t>(series_.size()));
 

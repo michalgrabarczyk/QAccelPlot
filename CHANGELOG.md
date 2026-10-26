@@ -73,6 +73,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   records beyond their GPU capacity, which are not drawn.
 - `Colormap.stops` reads bound `GradientStop`s after their bindings are
   evaluated, and follows later changes to stops declared in the list.
+- Panning and zooming no longer re-upload every series' vertex data each
+  frame: the grid updates its scene graph nodes in place.
+- The benchmarks render into their offscreen target and wait for the GPU each
+  frame, so GPU-bound scenarios report their real frame time.
 
 ## [0.4.0] — 2026-10-16
 
