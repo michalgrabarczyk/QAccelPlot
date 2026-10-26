@@ -66,6 +66,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - `SeriesInspection.supported`. A query that does not apply to a series returns
   `Inspection.Unsupported`.
+- The `showcases/pulsar` example.
 
 ### Fixed
 

@@ -11,8 +11,33 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 
 Throughput depends on point count, update rate, data conversion, range scans,
 series count, line style, effects, window size, graphics backend, and refresh
-rate. Measure a workload that matches your application. For cross-library
-numbers, see the [performance comparison](performance-comparison.md).
+rate. Measure a workload that matches your application.
+
+## What to expect
+
+Frame rates from the [included benchmarks](#included-benchmarks):
+
+| Workload | Points | FPS |
+| --- | --- | --- |
+| Replace a `LineCurve`'s data every frame with `setDataF(const float*, count)` | 1M | 255 |
+| | 2M | 135 |
+| | 5M | 55 |
+| | 10M | 28 |
+| Replace the data of five `LineCurve`s every frame | 5 × 1M | 55 |
+| Pan over a `LineCurve` whose data does not change | 1M | 640 |
+| | 5M | 185 |
+
+Replacing data runs at about 275M points per second, roughly 4.5M points per
+frame at 60 FPS. FPS is not capped by the display: each frame is timed from the
+data or viewport update until the GPU finishes rendering it.
+
+| Item | Value |
+| --- | --- |
+| GPU | NVIDIA GeForce GTX 970, driver 560.94 |
+| CPU | AMD Ryzen 9 5900X |
+| OS | Windows 10 Pro 22H2 |
+| Qt | 6.11.2, OpenGL, `QACCELPLOT_USE_QT_PRIVATE_API=ON` |
+| Render size | 1920 × 1080 offscreen, default series styling |
 
 ## Select the data path
 
