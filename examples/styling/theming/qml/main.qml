@@ -49,7 +49,10 @@ Window {
 
         ExampleHeader {
             title: "Theming"
-            description: "Every plot color is a property. Bind them to QAccelPlot.Colors.dark or QAccelPlot.Colors.light, or to your own palette. Unset colors default to the dark palette."
+            subtitle: "Every plot color is a property, bound here to QAccelPlot.Colors.dark or QAccelPlot.Colors.light."
+            interactions: [
+                "Toggle <b>Dark theme</b> to switch every color between the two palettes"
+            ]
             colorPalette: window.colorPalette
 
             Switch {

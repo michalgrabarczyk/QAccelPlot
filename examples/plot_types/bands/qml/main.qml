@@ -32,7 +32,11 @@ Window {
 
         ExampleHeader {
             title: "Bands"
-            description: "BandSeries fills the area between a low and a high value at each X, with optional edge lines. Draw the center line with a LineCurve."
+            subtitle: "BandSeries fills the area between a low and a high value at each X, with optional edge lines."
+            interactions: [
+                "Hover a band on <b>Forecast</b> to highlight it and read its range",
+                "Toggle <b>Raw samples</b> and <b>Band edges</b> on <b>Rolling statistics</b>"
+            ]
         }
 
         ExamplePages {

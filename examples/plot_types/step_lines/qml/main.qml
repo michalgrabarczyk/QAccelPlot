@@ -32,7 +32,12 @@ Window {
 
         ExampleHeader {
             title: "Step lines"
-            description: "LineCurve.stepMode draws a line as steps: each value holds until the line jumps to the next one. The fill, dash pattern, hover, and inspection follow the steps."
+            subtitle: "LineCurve.stepMode draws a line as steps: each value holds until the line jumps to the next one."
+            interactions: [
+                "Toggle <b>Markers</b>, <b>Fill</b>, and <b>Dashed</b> on <b>Step modes</b>; the fill and dashes follow the steps",
+                "Hover the plot on <b>Live set point</b> to read the value each step holds",
+                "Check <b>Pause</b> to stop the live data"
+            ]
         }
 
         ExamplePages {

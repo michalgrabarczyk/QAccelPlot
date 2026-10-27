@@ -127,7 +127,12 @@ Window {
 
         ExampleHeader {
             title: "Terrain cross-section measurements"
-            description: "Drag a measurement or its handles. All axes use meters, so angle values are measured in data space."
+            subtitle: "Rulers, angles, points, and regions on a terrain cross-section with all axes in meters."
+            interactions: [
+                "Click <b>Add ruler</b>, <b>Add angle</b>, <b>Add point</b>, or <b>Add region</b> to place a tool",
+                "Drag a tool or its handles to measure; angles are measured in data space",
+                "Click a tool to select it, then <b>Delete selected</b> to remove it, or <b>Clear</b> to remove all"
+            ]
         }
 
         RowLayout {

@@ -87,7 +87,18 @@ Window {
 
         ExampleHeader {
             title: "Bar chart"
-            description: "Grouped revenue bars and profit bars colored against a target. Switch the year to animate them; hover a profit bar to read it."
+            subtitle: "Grouped revenue bars, and profit bars colored against a target."
+            interactions: [
+                "Click <b>Show 2025</b> to animate the bars to the other year with the chosen transition",
+                "Hover a profit bar to read it",
+                "Drag <b>Profit target</b> to recolor the profit bars against it",
+                "Check <b>Horizontal</b> or <b>Outlines</b>, or drag <b>Group width</b>"
+            ]
+        }
+
+        RowLayout {
+            Layout.fillWidth: true
+            spacing: 8
 
             Button {
                 text: "Show " + window.yearNames[1 - window.year]

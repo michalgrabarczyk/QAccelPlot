@@ -59,7 +59,11 @@ Window {
 
         ExampleHeader {
             title: "Transitions"
-            description: "Click Morph or Draw to animate the curve between two waveform shapes. Adjust the duration and easing to compare the transitions."
+            subtitle: "MorphTransition and DrawTransition animate a curve between two waveform shapes."
+            interactions: [
+                "Click <b>Morph</b> or <b>Draw</b> to animate the curve to the other shape",
+                "Drag <b>Duration</b> and choose an easing curve to compare the transitions"
+            ]
         }
 
         RowLayout {

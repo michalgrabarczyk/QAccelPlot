@@ -64,7 +64,11 @@ Window {
 
         ExampleHeader {
             title: "Missing data"
-            description: "Telemetry often contains missing or invalid samples. NaN, ±Inf, and non-positive values on a log axis are invalid: Break leaves a gap, Connect joins the neighboring valid samples. Invalid samples never draw markers and are excluded from auto-ranging."
+            subtitle: "Telemetry with NaN, ±Inf, and log-invalid samples, which never draw markers or affect auto-ranging."
+            interactions: [
+                "Set <b>NaN gap mode</b> to <b>Break</b> to leave a gap, or <b>Connect</b> to join the valid neighbors",
+                "Drag <b>Line width</b> to see where the gaps start and end"
+            ]
         }
 
         RowLayout {

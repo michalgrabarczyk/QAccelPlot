@@ -40,7 +40,10 @@ Window {
 
         ExampleHeader {
             title: "Realtime vibration sensor"
-            description: "A scrolling curve synchronized to rendered frames while retaining a fixed twenty-second window."
+            subtitle: "A vibration signal scrolling through a fixed 20-second window, updated every rendered frame."
+            interactions: [
+                "Click <b>Pause</b> to freeze the signal, and <b>Resume</b> to continue"
+            ]
 
             Button {
                 text: root.updatesRunning ? "Pause" : "Resume"

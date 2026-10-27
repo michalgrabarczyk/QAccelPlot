@@ -58,7 +58,12 @@ Window {
 
         ExampleHeader {
             title: "Gradients"
-            description: "Upper plot: a home imports power below 0 kW and exports surplus solar power above it. Compare filling from the chart minimum with filling from the meaningful 0 kW baseline. Lower plot: a gradient stroke on battery temperature during a charge cycle, using the same settings."
+            subtitle: "A gradient fill on a home's power imports and solar exports, and a gradient stroke on battery temperature."
+            interactions: [
+                "Set <b>Baseline</b> to <b>Grid balance (0 kW)</b> to fill imports and exports from zero",
+                "Choose a <b>Preset</b> and <b>Direction</b>, or check <b>Reversed</b>",
+                "Drag <b>Fill opacity</b> and <b>Vertical maximum</b> to shape the fill"
+            ]
         }
 
         RowLayout {

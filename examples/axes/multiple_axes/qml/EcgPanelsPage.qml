@@ -34,6 +34,7 @@ Item {
             color: root.colorPalette.textSecondary
             wrapMode: Text.WordWrap
             Layout.fillWidth: true
+            Layout.topMargin: 4
             Layout.bottomMargin: 4
         }
 
