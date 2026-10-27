@@ -32,7 +32,13 @@ Window {
 
         ExampleHeader {
             title: "Error bars"
-            description: "ErrorBarSeries draws a line from a low to a high bound at each data point, capped at both ends. Draw the values with a PointCloud, LineCurve, or BarSeries."
+            subtitle: "ErrorBarSeries draws a capped line from a low to a high bound at each data point."
+            interactions: [
+                "Hover a point or an error bar on <b>Measurements</b> to read the measurement",
+                "Click <b>Morph</b> or <b>Draw</b> to animate to a new sample",
+                "Drag <b>Cap length</b> and <b>Line width</b>, or uncheck <b>Reference errors</b>",
+                "Check <b>Horizontal</b> on <b>Grouped bars</b> to turn the bars and error bars sideways"
+            ]
         }
 
         ExamplePages {

@@ -280,3 +280,17 @@ README, CHANGELOG, and example descriptions.
   about future behavior.
 - When updating docs, edit the existing text rather than appending new
   paragraphs that overlap with it.
+
+### Example headers
+
+Each example describes itself with `ExampleHeader`:
+
+- `title`: the example name.
+- `subtitle`: one sentence saying what the example shows. Name the main type
+  when the example is about it.
+- `interactions`: at most four bullets, each one line at the default window
+  size, saying what you can do. Start with a verb, use sentence case, and end
+  without a period. Bold buttons, tabs, and keys with `<b>…</b>`. Name the tab
+  when a bullet applies to one tab only. Leave out default pan, zoom, and reset
+  unless they behave differently; leave out the list when there is nothing
+  else to do.

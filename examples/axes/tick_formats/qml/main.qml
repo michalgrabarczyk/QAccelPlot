@@ -32,7 +32,11 @@ Window {
 
         ExampleHeader {
             title: "Tick formats"
-            description: "Format numeric coordinates as time, logarithmic powers, or named categories without changing the underlying series data."
+            subtitle: "Numeric coordinates labeled as dates and times, powers of ten, or named categories."
+            interactions: [
+                "Choose a <b>Label format</b> on <b>Date and time</b>",
+                "Toggle <b>Logarithmic axis</b> on <b>Logarithmic</b> to compare it with a linear scale"
+            ]
         }
 
         ExamplePages {

@@ -67,7 +67,11 @@ Window {
 
         ExampleHeader {
             title: "Histogram"
-            description: "Histograms of sensor noise and request latencies. Change the bin count, or align the latency bins with the axis ticks."
+            subtitle: "Histograms of sensor noise in equal bins and of request latencies in logarithmic bins."
+            interactions: [
+                "Drag <b>Bins</b> to change the bin count",
+                "Check <b>Bins on ticks</b> to align the latency bins with the axis ticks"
+            ]
 
             CheckBox {
                 id: tickBinsCheck

@@ -71,7 +71,11 @@ Window {
 
         ExampleHeader {
             title: "Process telemetry annotations"
-            description: "Peak, valley, event marker, and warning range stay attached to data while you pan or zoom. Hover the event marker or warning range."
+            subtitle: "Peak, valley, event marker, and warning range anchored to data coordinates."
+            interactions: [
+                "Pan or zoom; the annotations stay attached to their data",
+                "Hover the event marker or the warning range to highlight it"
+            ]
         }
 
         QAccelPlot.Plot {

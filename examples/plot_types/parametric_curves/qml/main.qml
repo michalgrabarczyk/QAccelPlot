@@ -267,7 +267,13 @@ Window {
 
         ExampleHeader {
             title: "Parametric curves"
-            description: "LineCurve connects samples in the order they are given, so x does not have to increase: curves can loop, spiral, and cross themselves. Hover a curve to highlight it. Double-click the phase portrait to start a new trajectory there."
+            subtitle: "LineCurve joins samples in the order they are given, so curves can loop, spiral, and cross themselves."
+            interactions: [
+                "Hover a curve to highlight it",
+                "Use the controls above each plot to reshape its curve",
+                "Double-click the phase portrait to start a new trajectory there; <b>Reset</b> clears them",
+                "Click <b>Replay drawing</b> to draw every curve again"
+            ]
 
             Button {
                 text: "Replay drawing"

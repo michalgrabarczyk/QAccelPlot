@@ -11,12 +11,16 @@ import QtQuick.Controls.Material
 import QtQuick.Layouts
 import QAccelPlot as QAccelPlot
 
-// Title and description; child items are placed to the right of the text.
+// Bold title, a one-sentence subtitle saying what the example shows, and up to
+// four one-line bullets saying what you can do with it. Child items are placed
+// to the right of the text.
 RowLayout {
     id: root
 
     property alias title: titleLabel.text
-    property alias description: descriptionLabel.text
+    property alias subtitle: subtitleLabel.text
+    // Array of strings, one per bullet. Bold control and key names with <b>.
+    property var interactions: []
     property QtObject colorPalette: QAccelPlot.Colors.dark
 
     Layout.fillWidth: true
@@ -24,6 +28,7 @@ RowLayout {
 
     ColumnLayout {
         Layout.fillWidth: true
+        Layout.alignment: Qt.AlignTop
         spacing: 1
 
         Label {
@@ -34,11 +39,32 @@ RowLayout {
         }
 
         Label {
-            id: descriptionLabel
+            id: subtitleLabel
             visible: text !== ""
-            color: root.colorPalette.textSecondary
+            color: root.colorPalette.text
             wrapMode: Text.WordWrap
             Layout.fillWidth: true
+        }
+
+        ColumnLayout {
+            visible: root.interactions.length > 0
+            spacing: 1
+            Layout.topMargin: 3
+            Layout.fillWidth: true
+
+            Repeater {
+                model: root.interactions
+
+                Label {
+                    required property string modelData
+
+                    text: "•  " + modelData
+                    textFormat: Text.StyledText
+                    color: root.colorPalette.textSecondary
+                    wrapMode: Text.WordWrap
+                    Layout.fillWidth: true
+                }
+            }
         }
     }
 }

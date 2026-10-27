@@ -60,7 +60,10 @@ Window {
 
         ExampleHeader {
             title: "Line styles"
-            description: "Dash patterns and line weights on the same fixed data. The antialiasing feather softens line edges by the given width."
+            subtitle: "Dash patterns and line weights on the same fixed data."
+            interactions: [
+                "Toggle <b>Antialiasing</b>, and drag <b>Feather</b> to soften the line edges by that width"
+            ]
         }
 
         RowLayout {

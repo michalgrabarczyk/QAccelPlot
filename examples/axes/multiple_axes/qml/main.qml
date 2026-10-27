@@ -31,6 +31,11 @@ Window {
 
         ExampleHeader {
             title: "Multiple axes"
+            subtitle: "Extra axes on one plot, and several plots that share one time axis."
+            interactions: [
+                "Pan or zoom either axis on <b>Dual scale</b>; the other axis follows",
+                "Pan or zoom the lower panel on <b>Shared time</b> to move all three panels"
+            ]
         }
 
         ExamplePages {

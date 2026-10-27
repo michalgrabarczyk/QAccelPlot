@@ -34,7 +34,13 @@ Window {
 
         ExampleHeader {
             title: "Data inspection"
-            description: "Two noisy signals, one million samples in total. The tooltip shows the minimum … maximum and count of the samples under the cursor, or the nearest sample alone. Shift + drag selects a region; Escape clears it."
+            subtitle: "Two noisy signals, one million samples in total, with a crosshair, a tooltip, and region selection."
+            interactions: [
+                "Hover to read the minimum … maximum and count of the samples under the cursor",
+                "Uncheck <b>Min … max under the cursor</b> to read the nearest sample alone",
+                "Choose how <b>Inspect</b> finds samples: by X, by Y, or the nearest point",
+                "Shift + drag to select a region shaped by <b>Select</b> and read its statistics; <b>Escape</b> clears it"
+            ]
         }
 
         RowLayout {

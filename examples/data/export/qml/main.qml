@@ -62,7 +62,13 @@ Window {
 
         ExampleHeader {
             title: "Export"
-            description: "PlotExporter saves a plot as a raster image or copies it to the clipboard. Scale sets the image pixels per logical pixel; Screen matches the display. A transparent background leaves out the plot and axes area colors. Quality applies to lossy formats such as JPEG and WebP."
+            subtitle: "PlotExporter saves a plot as a raster image or copies it to the clipboard."
+            interactions: [
+                "Click <b>Save as…</b> to save the plot as an image, or <b>Copy image</b> to copy it",
+                "Set <b>Scale</b> to the image pixels per logical pixel; <b>Screen</b> matches the display",
+                "Check <b>Transparent background</b> to leave out the plot and axes area colors",
+                "Drag <b>Quality</b> to set the compression of lossy formats such as JPEG and WebP"
+            ]
         }
 
         RowLayout {

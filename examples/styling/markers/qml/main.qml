@@ -97,7 +97,12 @@ Window {
 
         ExampleHeader {
             title: "Markers"
-            description: "Click a shape in the gallery to draw the scatter cloud with it. Lower the opacity to see where overlapping markers pile up."
+            subtitle: "Every marker shape, filled and hollow, and a scatter cloud drawn with the selected one."
+            interactions: [
+                "Click a shape in the gallery to draw the scatter cloud with it",
+                "Lower <b>Opacity</b> to see where overlapping markers pile up",
+                "Drag <b>Size</b> and <b>Outline</b>, or toggle <b>Antialiasing</b>"
+            ]
         }
 
         RowLayout {

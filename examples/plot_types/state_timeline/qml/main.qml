@@ -49,7 +49,17 @@ Window {
 
         ExampleHeader {
             title: "State timeline"
-            description: "Two weeks of machine states in one RectangleSeries, colored by category. Full-height maintenance windows sit underneath. Short alarms keep a minimum width when zoomed out; hover a state to read it."
+            subtitle: "Two weeks of machine states in one RectangleSeries, colored by category, over maintenance windows."
+            interactions: [
+                "Hover a state to read it",
+                "Drag <b>Minimum width</b> to set how narrow short alarms get when zoomed out",
+                "Toggle <b>Outlines</b> or the full-height <b>Maintenance</b> windows"
+            ]
+        }
+
+        RowLayout {
+            Layout.fillWidth: true
+            spacing: 8
 
             Repeater {
                 model: window.stateNames
