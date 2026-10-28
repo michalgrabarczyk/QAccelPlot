@@ -1962,7 +1962,7 @@
   <code>LegendEntry</code>, and <code>LegendModel</code> lists the entries of the visible series that
   have one, such as <code>Plot.legendModel</code>.</li>
 <li>A <code>HeatmapSeries</code> tab in the <code>showcases/performance</code> example, streaming a
-  scrolling spectrogram of up to 10M cells.</li>
+  scrolling spectrogram of up to 100M cells.</li>
 <li>Colormapped bars: <code>BarSeries.colormap</code> colors each bar by its value or, with
   <code>colorSource: BarSeries.Position</code>, by its position or bin. The Heatmap
   example keys its interference pattern with a histogram of the cells in view.</li>
@@ -2004,6 +2004,8 @@
 <li>Data transitions run on Qt's animation clock, like QML animations, so an
   installed <code>QAnimationDriver</code> can step them frame by frame. A <code>duration</code> of 0
   ends at the next frame.</li>
+<li>The <code>showcases/performance</code> example presents without vsync, so the refresh
+  rate no longer caps display FPS.</li>
 </ul>
 <h3 id="removed">Removed<a class="headerlink" href="#removed" title="Permanent link">&para;</a></h3>
 <ul>
