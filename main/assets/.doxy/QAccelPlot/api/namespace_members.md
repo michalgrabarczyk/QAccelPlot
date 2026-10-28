@@ -20,6 +20,7 @@
 
 * **dataTextureHeight** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **dataTextureItemCapacity** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **dataTextureUploadTotals** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **distanceToInterval** ([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
@@ -93,6 +94,8 @@
 ## r
 
 * **recordCapacity** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **recordDataTextureUpload** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **resetDataTextureUploadTotals** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **readEffectStops** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **readGradientStopList** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **readGradientStops** ([**QAccelPlot**](namespaceQAccelPlot.md))

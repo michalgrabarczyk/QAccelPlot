@@ -1080,6 +1080,10 @@
     <member refid="classQAccelPlot_1_1DataTextureMaterial_1ab3956754bb359cdee269e210cff6c157" kind="function"><name>vertexIndexAttributeSet</name></member>
     <member refid="classQAccelPlot_1_1DataTextureMaterial_1a7cd48b95da2721520a594dae33147990" kind="function"><name>compareExtra</name></member>
   </compound>
+  <compound refid="structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals" kind="struct"><name>QAccelPlot::Internal::DataTextureUploadTotals</name>
+    <member refid="structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals_1ae6c9279f338a9036cdf966c2d117ea6b" kind="variable"><name>count</name></member>
+    <member refid="structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals_1ad9d96dab53de2e8bccce5c5c068ec59f" kind="variable"><name>bytes</name></member>
+  </compound>
   <compound refid="classQAccelPlot_1_1DataTransition" kind="class"><name>QAccelPlot::DataTransition</name>
     <member refid="classQAccelPlot_1_1DataTransition_1aaa85f2edef24b72eb568690609ab60fa" kind="property"><name>duration</name></member>
     <member refid="classQAccelPlot_1_1DataTransition_1aaa1bed54eccf52c687a98295269c3d7c" kind="property"><name>easing</name></member>
@@ -3621,6 +3625,9 @@
     <member refid="DataTextureLayout_8hpp_1a5c264763c864fb6d047f69120859f093" kind="function"><name>dataTextureHeight</name></member>
     <member refid="DataTextureLayout_8hpp_1a05b5caf9207764121231f1e6a2660b03" kind="function"><name>dataTextureItemCapacity</name></member>
     <member refid="DataTextureUpload_8hpp_1a34c4e72c0d34cdd9856c3cf49319b322" kind="function"><name>uploadDataTexture</name></member>
+    <member refid="DataTextureUploadTotals_8hpp_1a862cbd7d070a0d9d7e73b4dc377910b3" kind="function"><name>recordDataTextureUpload</name></member>
+    <member refid="DataTextureUploadTotals_8hpp_1a3a2e0e8f73c92f4cb8070f22e5bb2640" kind="function"><name>dataTextureUploadTotals</name></member>
+    <member refid="DataTextureUploadTotals_8hpp_1a82583261f1298c7c55f6325b11880b63" kind="function"><name>resetDataTextureUploadTotals</name></member>
     <member refid="RectUniforms_8hpp_1a6a5cabe3df31d51d17aa599d49ccfbcc" kind="function"><name>writeRectUniforms</name></member>
     <member refid="RectGeometry_8hpp_1afd040a5c9d2313b9e7f773a54bcf9c5b" kind="function"><name>edgePixel</name></member>
     <member refid="RectGeometry_8hpp_1a8afc11e4c2e9ed57eaef244241915d44" kind="function"><name>widenedSpan</name></member>
@@ -3772,6 +3779,8 @@
   <compound refid="DataTextureLayout_8hpp" kind="file"><name>DataTextureLayout.hpp</name>
   </compound>
   <compound refid="DataTextureUpload_8hpp" kind="file"><name>DataTextureUpload.hpp</name>
+  </compound>
+  <compound refid="DataTextureUploadTotals_8hpp" kind="file"><name>DataTextureUploadTotals.hpp</name>
   </compound>
   <compound refid="RectUniforms_8hpp" kind="file"><name>RectUniforms.hpp</name>
   </compound>

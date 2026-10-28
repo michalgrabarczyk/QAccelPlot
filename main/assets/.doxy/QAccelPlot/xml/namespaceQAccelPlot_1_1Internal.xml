@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="namespaceQAccelPlot_1_1Internal" kind="namespace" language="C++">
     <compoundname>QAccelPlot::Internal</compoundname>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals" prot="public">QAccelPlot::Internal::DataTextureUploadTotals</innerclass>
     <innerclass refid="structQAccelPlot_1_1Internal_1_1GrabSize" prot="public">QAccelPlot::Internal::GrabSize</innerclass>
     <innerclass refid="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension" prot="public">QAccelPlot::Internal::HeatmapGridDimension</innerclass>
     <innerclass refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping" prot="public">QAccelPlot::Internal::HeatmapShaderMapping</innerclass>
@@ -303,6 +304,55 @@
         <inbodydescription>
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureUpload.hpp" line="21" column="6" declfile="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureUpload.hpp" declline="21" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="DataTextureUploadTotals_8hpp_1a862cbd7d070a0d9d7e73b4dc377910b3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::recordDataTextureUpload</definition>
+        <argsstring>(std::int64_t bytes)</argsstring>
+        <name>recordDataTextureUpload</name>
+        <qualifiedname>QAccelPlot::Internal::recordDataTextureUpload</qualifiedname>
+        <param>
+          <type>std::int64_t</type>
+          <declname>bytes</declname>
+        </param>
+        <briefdescription>
+<para>Adds one upload of <emphasis>bytes</emphasis> to the totals. Thread-safe. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureUploadTotals.hpp" line="23" column="6" declfile="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureUploadTotals.hpp" declline="23" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="DataTextureUploadTotals_8hpp_1a3a2e0e8f73c92f4cb8070f22e5bb2640" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals" kindref="compound">DataTextureUploadTotals</ref></type>
+        <definition>DataTextureUploadTotals QAccelPlot::Internal::dataTextureUploadTotals</definition>
+        <argsstring>()</argsstring>
+        <name>dataTextureUploadTotals</name>
+        <qualifiedname>QAccelPlot::Internal::dataTextureUploadTotals</qualifiedname>
+        <briefdescription>
+<para>Returns the totals since the last reset. Thread-safe. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureUploadTotals.hpp" line="26" column="25" declfile="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureUploadTotals.hpp" declline="26" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="DataTextureUploadTotals_8hpp_1a82583261f1298c7c55f6325b11880b63" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::resetDataTextureUploadTotals</definition>
+        <argsstring>()</argsstring>
+        <name>resetDataTextureUploadTotals</name>
+        <qualifiedname>QAccelPlot::Internal::resetDataTextureUploadTotals</qualifiedname>
+        <briefdescription>
+<para>Sets the totals back to zero. Thread-safe. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureUploadTotals.hpp" line="29" column="6" declfile="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureUploadTotals.hpp" declline="29" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="RectUniforms_8hpp_1a6a5cabe3df31d51d17aa599d49ccfbcc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>

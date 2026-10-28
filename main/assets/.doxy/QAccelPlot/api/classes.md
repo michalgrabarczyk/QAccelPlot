@@ -97,6 +97,8 @@
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**DataTextureUploadTotals**](structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * [**DataTransition**](classQAccelPlot_1_1DataTransition.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**DateTimeTickLabelFormatter**](classQAccelPlot_1_1DateTimeTickLabelFormatter.md)
