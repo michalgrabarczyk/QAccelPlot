@@ -56,6 +56,38 @@ qt_add_shaders(QAccelPlot "shaders"
         ${QACCELPLOT_SHADER_FILES}
 )
 
+# Older Qt rebuilds a .qsb only when its .vert/.frag changes, not when a .glsl
+# it #includes does. Add the includes, followed transitively, as dependencies.
+# The shader sources are configure dependencies so new #include lines are seen.
+function(qaccelplot_add_shader_include_dependencies)
+    set(include_regex "^[ \t]*#[ \t]*include[ \t]*\"([^\"]+)\"")
+    foreach(shader IN LISTS ARGN)
+        set(includes "")
+        set(pending "${CMAKE_CURRENT_SOURCE_DIR}/${shader}")
+        while(pending)
+            list(POP_FRONT pending current)
+            set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS "${current}")
+            file(STRINGS "${current}" include_lines REGEX "${include_regex}")
+            get_filename_component(current_dir "${current}" DIRECTORY)
+            foreach(line IN LISTS include_lines)
+                string(REGEX MATCH "${include_regex}" include_match "${line}")
+                get_filename_component(include_path "${current_dir}/${CMAKE_MATCH_1}" ABSOLUTE)
+                if(NOT include_path IN_LIST includes)
+                    list(APPEND includes "${include_path}")
+                    list(APPEND pending "${include_path}")
+                endif()
+            endforeach()
+        endwhile()
+        if(includes)
+            add_custom_command(OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/.qsb/${shader}.qsb"
+                APPEND DEPENDS ${includes}
+            )
+        endif()
+    endforeach()
+endfunction()
+
+qaccelplot_add_shader_include_dependencies(${QACCELPLOT_SHADER_FILES})
+
 foreach(QML_FILE ${QACCELPLOT_QML_FILES})
     get_filename_component(QML_FILENAME ${QML_FILE} NAME)
     set_source_files_properties(${QML_FILE}
