@@ -132,14 +132,9 @@ For CMake integration, see
 
 ## 🧪 Testing
 
-- **[Unit tests](.github/workflows/ci.yml)** with GCC and Clang, and
-  **[code coverage](https://michalgrabarczyk.github.io/QAccelPlot/coverage/)**
-  of the library sources.
-- **[Performance benchmarks](.github/workflows/benchmark.yml)**: data-ingestion
-  and rendering regressions.
-- **[Test](.github/workflows/build-and-test.yml)**: unit tests and
-  a screenshot of every example on Qt 6.2, 6.8, and 6.11 with OpenGL,
-  OpenGL ES, Vulkan, Direct3D 11/12, and Metal.
+[Unit tests](.github/workflows/build-and-test.yml) run on Qt 6.2, 6.8, and
+6.11 across Linux, Windows, and macOS, with OpenGL, OpenGL ES, Vulkan,
+Direct3D 11/12, and Metal.
 
 ---
 

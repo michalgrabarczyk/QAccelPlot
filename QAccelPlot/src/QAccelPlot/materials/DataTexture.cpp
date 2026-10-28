@@ -9,6 +9,7 @@
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/materials/internal/DataTextureLayout.hpp"
 #include "QAccelPlot/materials/internal/DataTextureUpload.hpp"
+#include "QAccelPlot/materials/internal/DataTextureUploadTotals.hpp"
 
 #include <QColorSpace>
 
@@ -72,6 +73,7 @@ void DataTexture::upload(QQuickWindow* window, const float* data, const int floa
     }
 
     Internal::uploadDataTexture(texture_, window, imageBuffer_);
+    Internal::recordDataTextureUpload(static_cast<std::int64_t>(dataBytes));
 }
 
 QSGTexture* DataTexture::texture() const
