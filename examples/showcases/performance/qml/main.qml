@@ -111,7 +111,7 @@ Window {
 
             ExampleHeader {
                 title: window.activeCount.toLocaleString(Qt.locale("en_US"), "f", 0) + " live " + window.activeSettings.noun
-                subtitle: "Display FPS counts frames presented to the screen. Data Update Rate shows how many new datasets are applied to the plot each second."
+                subtitle: "Vsync is off, so Display FPS counts every rendered frame and can exceed the refresh rate. Data Update Rate shows how many new datasets are applied to the plot each second."
             }
 
             GridLayout {
@@ -124,7 +124,7 @@ Window {
                         {
                             label: "DISPLAY FPS",
                             value: window.fps.toString(),
-                            detail: "frames presented / second"
+                            detail: "frames rendered / second"
                         },
                         {
                             label: "DATA UPDATE RATE",

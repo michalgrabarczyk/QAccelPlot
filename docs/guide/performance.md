@@ -9,35 +9,12 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 
 # Performance
 
-Throughput depends on point count, update rate, data conversion, range scans,
-series count, line style, effects, window size, graphics backend, and refresh
-rate. Measure a workload that matches your application.
-
-## What to expect
-
-Frame rates from the [included benchmarks](#included-benchmarks):
-
-| Workload | Points | FPS |
-| --- | --- | --- |
-| Replace a `LineCurve`'s data every frame with `setDataF(const float*, count)` | 1M | 255 |
-| | 2M | 135 |
-| | 5M | 55 |
-| | 10M | 28 |
-| Replace the data of five `LineCurve`s every frame | 5 × 1M | 55 |
-| Pan over a `LineCurve` whose data does not change | 1M | 640 |
-| | 5M | 185 |
-
-Replacing data runs at about 275M points per second, roughly 4.5M points per
-frame at 60 FPS. FPS is not capped by the display: each frame is timed from the
-data or viewport update until the GPU finishes rendering it.
-
-| Item | Value |
-| --- | --- |
-| GPU | NVIDIA GeForce GTX 970, driver 560.94 |
-| CPU | AMD Ryzen 9 5900X |
-| OS | Windows 10 Pro 22H2 |
-| Qt | 6.11.2, OpenGL, `QACCELPLOT_USE_QT_PRIVATE_API=ON` |
-| Render size | 1920 × 1080 offscreen, default series styling |
+Typically 1–10M points can be replaced and drawn every frame at 60 FPS; above
+that, frames stop being smooth. Where a plot lands in that range depends on
+point count, update rate, data conversion, range scans, series count, line
+style, effects, window size, graphics backend, and refresh rate. Measure a
+workload that matches your application, for example in the
+[Performance Lab](#performance-lab).
 
 ## Select the data path
 
@@ -164,13 +141,15 @@ on `QACCELPLOT_USE_QT_PRIVATE_API`:
 No private Qt types appear in public headers or ABI. Gradient textures always
 use the public path.
 
-Benchmark both modes with your workload, or configure the
-[included benchmarks](#included-benchmarks) once with each value.
+Compare both modes with your workload, or build the
+[Performance Lab](#performance-lab) once with each value.
 
 ## Benchmarking
 
 - Build QAccelPlot and the application in Release mode, and warm up shaders,
   allocations, and caches before recording.
+- Turn vsync off with `QSurfaceFormat::setSwapInterval(0)` on the default
+  format before creating the window; otherwise FPS stops at the refresh rate.
 - Record presented frames ([`QQuickWindow::frameSwapped`][frame-swapped]), not
   timer callbacks, and report the frame-time distribution as well as the
   average.
@@ -184,41 +163,17 @@ Benchmark both modes with your workload, or configure the
 [`examples/showcases/performance`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/showcases/performance)
 streams a `LineCurve`, a `PointCloud`, a `RectangleSeries`, a `BarSeries`, and
 a `HeatmapSeries`, one per tab, with options for record and series count, ingestion API, hover,
-and rendering. Change one option at a time, at a record count that keeps
-display FPS below the refresh rate. The lab reports:
+and rendering. Change one option at a time. The lab renders with vsync off, so
+its frame rate is not limited by the display; on Qt 6.2 and 6.3 its frame
+driver runs on a 16 ms timer, which limits it to about 60 FPS. The lab reports:
 
-- **Display FPS** — frames presented to the screen.
+- **Display FPS** — frames rendered per second.
 - **Data Update Rate** (Hz) — new datasets applied to the plot per second,
   including worker-side generation.
 - **Peak update gap** — the longest interval between two dataset applications
   in the last reporting period.
 - **Throughput** — points, rectangles, bars, or heatmap cells updated per
   second.
-
-### Included benchmarks
-
-- Frame time runs from just before the data or viewport update until
-  `QQuickRenderControl::endFrame()` returns: data copy, scene-graph sync,
-  texture staging, rendering, command submission, and GPU completion. Data
-  generation is excluded.
-- Live scenarios cover 1M, 2M, 5M, and 10M points; static scenarios
-  pan the viewport over one fixed buffer.
-- Multi-curve throughput counts points across all curves.
-- Separate executables measure CPU ingestion and vertex-cache building without
-  rendering.
-
-Build them with:
-
-```sh
-cmake -S . -B build -DCMAKE_BUILD_TYPE=Release \
-  -DQACCELPLOT_BUILD_BENCHMARKS=ON \
-  -DQACCELPLOT_BUILD_EXAMPLES=OFF \
-  -DQACCELPLOT_BUILD_TESTS=OFF
-cmake --build build --config Release
-```
-
-Scenarios are defined in
-[`benchmarks/common/BenchmarkScenario.cpp`](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/benchmarks/common/BenchmarkScenario.cpp).
 
 [set-data-points]: api/classQAccelPlot_1_1LineCurve.md#function-setdata-18
 [set-data-vectors]: api/classQAccelPlot_1_1LineCurve.md#function-setdata-28

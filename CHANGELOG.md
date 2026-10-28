@@ -61,6 +61,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Data transitions run on Qt's animation clock, like QML animations, so an
   installed `QAnimationDriver` can step them frame by frame. A `duration` of 0
   ends at the next frame.
+- The Performance Lab renders with vsync off, so Display FPS can exceed the
+  refresh rate.
 
 ### Removed
 
@@ -70,6 +72,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - The CI benchmark workflow: its timings on shared runners varied more than
   its alert threshold. A unit test now counts scene graph rebuilds and data
   uploads per frame instead.
+- The `benchmarks/` directory and the `QACCELPLOT_BUILD_BENCHMARKS` option.
+  Measure frame rates with the Performance Lab.
 
 ### Fixed
 

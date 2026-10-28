@@ -11,11 +11,12 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 
 ## How many data points can QAccelPlot handle?
 
-About 4.5M points replaced and drawn every frame at 60 FPS on the
-[reference system](performance.md#what-to-expect). Throughput drops with more
-series, markers, gradients, transitions, larger windows, and slower GPUs.
-Measure your workload with the included
-[benchmarks](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/benchmarks).
+About 1–10M data points updated and drawn every frame at 60 FPS, depending on
+the GPU, series type, and styling. Above that, frames stop being smooth.
+Throughput drops with more series, markers, gradients, transitions, larger
+windows, and slower GPUs. Run the
+[Performance Lab](performance.md#performance-lab) to see what your hardware
+does.
 
 ## What is the fastest way to supply data?
 

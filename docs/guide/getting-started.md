@@ -66,7 +66,7 @@ qt_finalize_executable(MyPlotApp)
 - `QAccelPlot::QAccelPlot` links the library and its static QML plugin.
   `qt_import_qml_plugins()` must run before `qt_finalize_executable()`.
 - `ShaderTools` compiles the curve shaders at build time.
-- As a subproject, QAccelPlot's examples, tests, benchmarks, and install rules
+- As a subproject, QAccelPlot's examples, tests, and install rules
   default to off.
 
 ??? note "Windows: launching from Explorer"

@@ -39,13 +39,13 @@ level-of-detail (LOD) reduction.
 ## 📊 Performance
 
 QAccelPlot draws every sample, with no downsampling or level-of-detail
-reduction. Millions of points can be replaced and drawn every frame at 60 FPS.
+reduction. About 1–10M points can be replaced and drawn every frame at 60 FPS.
 
 Exact performance depends on the GPU, the series type, the styling (line width,
 markers, gradients), and how the data is passed in. See the
 [Performance guide](https://michalgrabarczyk.github.io/QAccelPlot/performance/)
-for what each option costs and
-[figures measured on a reference system](https://michalgrabarczyk.github.io/QAccelPlot/main/performance/#what-to-expect).
+for what each option costs, and run the
+[Performance Lab](examples/showcases/performance/) to measure your hardware.
 
 ---
 

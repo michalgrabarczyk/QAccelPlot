@@ -84,7 +84,7 @@ Include:
 - OS, compiler, architecture, GPU, and driver.
 - Active Qt Quick graphics API.
 - Release or Debug configuration.
-- Logs, screenshots, or benchmark JSON where relevant.
+- Logs, screenshots, or Performance Lab readings where relevant.
 
 Report through [GitHub Issues](https://github.com/michalgrabarczyk/QAccelPlot/issues).
 
