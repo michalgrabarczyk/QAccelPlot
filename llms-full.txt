@@ -628,8 +628,8 @@ Compare both modes with your workload, or build the
 [`examples/showcases/performance`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/showcases/performance)
 streams a `LineCurve`, a `PointCloud`, a `RectangleSeries`, a `BarSeries`, and
 a `HeatmapSeries`, one per tab, with options for record and series count, ingestion API, hover,
-and rendering. Change one option at a time, at a record count that keeps
-display FPS below the refresh rate. The lab reports:
+and rendering. It presents without vsync, so the display's refresh rate does
+not cap display FPS. Change one option at a time. The lab reports:
 
 - **Display FPS** — frames presented to the screen.
 - **Data Update Rate** (Hz) — new datasets applied to the plot per second,

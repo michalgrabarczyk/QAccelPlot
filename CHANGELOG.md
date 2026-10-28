@@ -19,7 +19,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `LegendEntry`, and `LegendModel` lists the entries of the visible series that
   have one, such as `Plot.legendModel`.
 - A `HeatmapSeries` tab in the `showcases/performance` example, streaming a
-  scrolling spectrogram of up to 10M cells.
+  scrolling spectrogram of up to 100M cells.
 - Colormapped bars: `BarSeries.colormap` colors each bar by its value or, with
   `colorSource: BarSeries.Position`, by its position or bin. The Heatmap
   example keys its interference pattern with a histogram of the cells in view.
@@ -61,6 +61,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Data transitions run on Qt's animation clock, like QML animations, so an
   installed `QAnimationDriver` can step them frame by frame. A `duration` of 0
   ends at the next frame.
+- The `showcases/performance` example presents without vsync, so the refresh
+  rate no longer caps display FPS.
 
 ### Removed
 
@@ -85,7 +87,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   frame, so GPU-bound scenarios report their real frame time.
 - Incremental builds recompile a shader when a `.glsl` file it includes
   changes. Stale shaders could fail to link on OpenGL and draw no curves.
-
 ## [0.4.0] — 2026-10-16
 
 ### Added

@@ -36,8 +36,8 @@ Each executable is named after its example, for example
 
     **[Performance Lab](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/showcases/performance)**
 
-    Stream up to 10M points, rectangles, bars, or heatmap cells per tab and compare the cost of
-    series count, ingestion API, and rendering options.
+    Stream up to 10M points, rectangles, or bars, or 100M heatmap cells, per tab and compare the
+    cost of series count, ingestion API, and rendering options.
 
 -   ![Quickstart](assets/examples/quickstart.webp)
 

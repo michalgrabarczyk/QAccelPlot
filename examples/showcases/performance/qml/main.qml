@@ -25,8 +25,6 @@ Window {
     property int updateRate: 60
     property real longestDataGapMs: 0
     readonly property string activePage: pages.currentName
-    readonly property int maximumCount: 10000000
-    readonly property var countPresets: [1000, 10000, 100000, 300000, 500000, 1000000, 2000000, 5000000, 10000000]
     readonly property QtObject activeSettings: activePage === "pointCloud" ? pointCloudSettings : activePage === "rectangleSeries" ? rectangleSeriesSettings : activePage === "barSeries" ? barSeriesSettings : activePage === "heatmapSeries" ? heatmapSeriesSettings : lineCurveSettings
     readonly property int activeCount: activeSettings.count
     readonly property real throughputMillions: activeCount * updateRate / 1000000

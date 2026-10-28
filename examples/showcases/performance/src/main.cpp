@@ -15,6 +15,7 @@
 #include <QObject>
 #include <QQmlApplicationEngine>
 #include <QQuickWindow>
+#include <QSurfaceFormat>
 #include <QTimer>
 
 #include <atomic>
@@ -24,6 +25,15 @@ using QAccelPlotExample::DataDeliveryMetrics;
 using QAccelPlotExample::steadyNanoseconds;
 
 namespace {
+
+// Presents without waiting for vsync, so the display's refresh rate does not cap the measured
+// frame rate. Must run before QGuiApplication.
+void disableVSync()
+{
+    auto format = QSurfaceFormat::defaultFormat();
+    format.setSwapInterval(0);
+    QSurfaceFormat::setDefaultFormat(format);
+}
 
 struct FrameMetrics {
     std::atomic<int> presentedFrames{0};
@@ -78,6 +88,7 @@ int main(int argc, char* argv[])
 {
     QLocale::setDefault(QLocale::English);
     QAccelPlotExample::configureGraphicsApi();
+    disableVSync();
 
     QGuiApplication app(argc, argv);
 
