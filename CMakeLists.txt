@@ -29,7 +29,6 @@ option(QACCELPLOT_BUILD_EXAMPLES "Build the QAccelPlot example applications" ${_
 option(QACCELPLOT_INSTALL        "Generate install targets for QAccelPlot"   ${_QACCELPLOT_DEFAULT})
 option(QACCELPLOT_DEPLOY_EXAMPLES "Deploy Qt runtime files beside Windows examples" ON)
 option(QACCELPLOT_BUILD_TESTS "Build QAccelPlot unit tests" ${_QACCELPLOT_DEFAULT})
-option(QACCELPLOT_BUILD_BENCHMARKS "Build QAccelPlot benchmarks" ${_QACCELPLOT_DEFAULT})
 option(QACCELPLOT_BUILD_VISUAL_TESTS "Register screenshot and visual validation tests" OFF)
 option(QACCELPLOT_FORCE_ASSERTS "Keep Q_ASSERT active in every build type" OFF)
 option(QACCELPLOT_WARNINGS_AS_ERRORS "Raise the warning level and treat warnings as errors" OFF)
@@ -145,16 +144,6 @@ if(QACCELPLOT_BUILD_TESTS)
     if(QACCELPLOT_BUILD_EXAMPLES)
         add_subdirectory(examples/test)
     endif()
-    if(QACCELPLOT_BUILD_BENCHMARKS)
-        add_subdirectory(benchmarks/test)
-    endif()
-endif()
-
-# ---------------------------------------------------------------------------
-# Benchmarks (opt-in)
-# ---------------------------------------------------------------------------
-if(QACCELPLOT_BUILD_BENCHMARKS)
-    add_subdirectory(benchmarks)
 endif()
 
 # ---------------------------------------------------------------------------

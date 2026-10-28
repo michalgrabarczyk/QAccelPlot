@@ -31,11 +31,6 @@ cmake -S . -B build -DQACCELPLOT_BUILD_TESTS=ON
 cmake --build build --config Release
 ctest --test-dir build --output-on-failure
 
-# With benchmarks
-cmake -S . -B build -DCMAKE_BUILD_TYPE=Release \
-  -DQACCELPLOT_BUILD_BENCHMARKS=ON
-cmake --build build --config Release
-
 # API documentation (requires Doxygen)
 cmake -S . -B build -DQACCELPLOT_BUILD_DOCS=ON
 cmake --build build --target qaccelplot_docs
@@ -116,7 +111,6 @@ QAccelPlot/
   `data/`, `interaction/`, and `showcases/`. Each example directory is named
   after its target in snake_case (`QAccelPlotExampleTickFormats` →
   `axes/tick_formats/`).
-- `benchmarks/` — Performance measurement scenarios and harness
 - `docs/` — MkDocs guide source + Doxygen configuration
 - `qml/` — Top-level QML types (Plot wrapper, Legend)
 - `scripts/` — Build and CI helper scripts
@@ -132,7 +126,7 @@ QAccelPlot/
 - Keep `.hpp` / `.cpp` pairs for every class; headers organized in
   subdirectories under `src/QAccelPlot/`. Include library headers with the
   `QAccelPlot/` prefix: `"QAccelPlot/series/LineCurve.hpp"` inside `QAccelPlot/`,
-  `<QAccelPlot/series/LineCurve.hpp>` in examples and benchmarks.
+  `<QAccelPlot/series/LineCurve.hpp>` in examples.
 - Follow Qt's signal/slot naming: `fooChanged()` signal paired with
   `setFoo()` setter.
 - Prefer `qreal` for geometric values exposed to QML; use `float` for

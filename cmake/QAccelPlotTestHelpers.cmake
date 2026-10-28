@@ -5,7 +5,7 @@
 # This file is also available under a separate commercial license.
 # See COMMERCIAL-LICENSING.md for contact information.
 #
-# Shared test-creation helpers used by QAccelPlot/, examples/, and benchmarks/.
+# Shared test-creation helpers used by QAccelPlot/ and examples/.
 #
 find_package(Qt6 REQUIRED COMPONENTS Test)
 

@@ -15,8 +15,8 @@ frame.
 
 ### Key capabilities
 
-- **Throughput** — about 4.5M points replaced and drawn per frame at 60 FPS on the
-  [reference system](performance.md#what-to-expect), without downsampling
+- **Throughput** — 1–10M points replaced and drawn every frame at 60 FPS,
+  without downsampling
 - **Data paths** — QML points, double vectors, moved `float` buffers, and
   worker-thread `postData()`
 - **Interaction** — pan, cursor-centered, per-axis, and rectangle zoom, rescale,
@@ -61,7 +61,7 @@ See [Getting started](getting-started.md) for the full build and data setup.
 
 - **[Getting started](getting-started.md)** — CMake integration and a first plot.
 - **[Concepts](concepts.md)** — Axes, series, gaps, overlays, and threading.
-- **[Performance](performance.md)** — Data paths, worker handoff, and benchmarking.
+- **[Performance](performance.md)** — Data paths, worker handoff, and the Performance Lab.
 - **[Cookbook](cookbook/index.md)** — Recipes for common tasks.
 - **[Example gallery](examples.md)** — Screenshots of every runnable example.
 - **[FAQ](faq.md)** — Licensing, threading, and compatibility.

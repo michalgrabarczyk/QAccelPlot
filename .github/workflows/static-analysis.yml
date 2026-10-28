@@ -96,7 +96,6 @@ jobs:
           -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
           -DQACCELPLOT_BUILD_TESTS=OFF
           -DQACCELPLOT_BUILD_EXAMPLES=OFF
-          -DQACCELPLOT_BUILD_BENCHMARKS=OFF
 
       # Building the library produces the moc, QML type registration, and
       # shader outputs that the analyzed sources include.

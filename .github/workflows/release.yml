@@ -79,7 +79,6 @@ jobs:
           -DCMAKE_BUILD_TYPE=Release
           -DQACCELPLOT_BUILD_TESTS=ON
           -DQACCELPLOT_BUILD_EXAMPLES=ON
-          -DQACCELPLOT_BUILD_BENCHMARKS=OFF
           -DQACCELPLOT_INSTALL=OFF
 
       - name: Build library, examples, and tests
