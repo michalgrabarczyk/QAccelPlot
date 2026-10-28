@@ -44,8 +44,9 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
   bins, as data for a `BarSeries`.
 - [`DataAnchor`](api/classQAccelPlot_1_1DataAnchor.md) — QML overlays at data
   coordinates.
-- [`PlotMouseEvent`](api/classQAccelPlot_1_1PlotMouseEvent.md) — mouse
-  positions in plot and data coordinates.
+- [`PlotMouseEvent`](api/classQAccelPlot_1_1PlotMouseEvent.md) — the mouse
+  event of `PlotView`'s mouse signals, in item pixels; `accept()` skips the
+  built-in pan, rectangle zoom, or rescale.
 - [`LegendModel`](api/classQAccelPlot_1_1LegendModel.md) — legend entries of the
   visible series that have one, each a [`LegendEntry`](api/structQAccelPlot_1_1LegendEntry.md).
 - [`SeriesInspection`](api/classQAccelPlot_1_1SeriesInspection.md) — per-series

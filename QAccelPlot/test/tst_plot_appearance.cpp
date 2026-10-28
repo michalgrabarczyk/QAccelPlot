@@ -48,6 +48,7 @@ private slots:
     void acceptedReleaseEndsDrag();
     void horizontalOnlyWheelScrollDoesNotZoom();
     void mouseMovedFiresWhileHoveringWithoutButton();
+    void mouseMovedReportsHeldButtons();
     void mouseMovedDoesNotFireTwiceWhileDragging();
     void tickOverlapChangeTriggersRelayout();
     void labelOverflowChangeTriggersRelayout();
@@ -453,6 +454,26 @@ void TestPlotAppearance::mouseMovedFiresWhileHoveringWithoutButton()
 
     QCOMPARE(movedX, 40.0);
     QCOMPARE(movedButtons, static_cast<int>(Qt::NoButton));
+}
+
+void TestPlotAppearance::mouseMovedReportsHeldButtons()
+{
+    auto plot = TestablePlot{};
+    plot.setSize({200.0, 100.0});
+
+    auto button = Qt::MouseButton{Qt::LeftButton};
+    auto buttons = Qt::MouseButtons{};
+    connect(&plot, &QAccelPlot::QAccelPlot::mouseMoved, [&](QAccelPlot::PlotMouseEvent* event) {
+        button = event->button();
+        buttons = event->buttons();
+    });
+
+    const auto pos = QPointF{75.0, 50.0};
+    auto move = QMouseEvent{QEvent::MouseMove, pos, pos, pos, Qt::NoButton, Qt::LeftButton | Qt::RightButton, Qt::NoModifier};
+    plot.mouseMoveEvent(&move);
+
+    QCOMPARE(button, Qt::NoButton);
+    QCOMPARE(buttons, Qt::LeftButton | Qt::RightButton);
 }
 
 void TestPlotAppearance::mouseMovedDoesNotFireTwiceWhileDragging()

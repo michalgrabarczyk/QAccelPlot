@@ -451,7 +451,7 @@ void QAccelPlot::mousePressEvent(QMouseEvent* event)
     touchPointer_ = event->pointingDevice() && event->pointingDevice()->type() == QInputDevice::DeviceType::TouchScreen;
     touchPressed_ = touchPointer_;
     setPointer(event->position());
-    mousePressEvent_.reset(event->button(), event->position().x(), event->position().y(), event->modifiers());
+    mousePressEvent_.reset(*event);
     emit mousePressed(&mousePressEvent_);
     if (mousePressEvent_.isAccepted()) {
         return;
@@ -495,7 +495,7 @@ void QAccelPlot::hoverMoveEvent(QHoverEvent* event)
         return;
     }
 
-    mouseMoveEvent_.reset(Qt::NoButton, event->position().x(), event->position().y(), event->modifiers());
+    mouseMoveEvent_.reset(*event);
     emit mouseMoved(&mouseMoveEvent_);
     if (mouseMoveEvent_.isAccepted()) {
         event->accept();
@@ -521,7 +521,7 @@ void QAccelPlot::mouseMoveEvent(QMouseEvent* event)
     if (!touchPointer_ || event->buttons() != Qt::NoButton) {
         setPointer(event->position());
     }
-    mouseMoveEvent_.reset(static_cast<Qt::MouseButton>(static_cast<int>(event->buttons())), event->position().x(), event->position().y(), event->modifiers());
+    mouseMoveEvent_.reset(*event);
     emit mouseMoved(&mouseMoveEvent_);
     if (mouseMoveEvent_.isAccepted()) {
         return;
@@ -559,7 +559,7 @@ void QAccelPlot::mouseReleaseEvent(QMouseEvent* event)
 {
     touchPressed_ = false;
     const auto endedDrag = event->button() == Qt::LeftButton && dragMode_ != DragMode::Idle;
-    mouseReleaseEvent_.reset(event->button(), event->position().x(), event->position().y(), event->modifiers());
+    mouseReleaseEvent_.reset(*event);
     emit mouseReleased(&mouseReleaseEvent_);
     if (event->button() == Qt::LeftButton) {
         auto selection = QRectF{};
@@ -601,7 +601,7 @@ void QAccelPlot::focusOutEvent(QFocusEvent* event)
 void QAccelPlot::mouseDoubleClickEvent(QMouseEvent* event)
 {
     cancelRectangleSelection();
-    mouseDoubleClickEvent_.reset(event->button(), event->position().x(), event->position().y(), event->modifiers());
+    mouseDoubleClickEvent_.reset(*event);
     emit mouseDoubleClicked(&mouseDoubleClickEvent_);
     if (mouseDoubleClickEvent_.isAccepted()) {
         return;

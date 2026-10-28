@@ -2801,8 +2801,9 @@ Complete source: [`examples/data/export`](https://github.com/michalgrabarczyk/QA
   bins, as data for a `BarSeries`.
 - [`DataAnchor`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1DataAnchor/) — QML overlays at data
   coordinates.
-- [`PlotMouseEvent`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1PlotMouseEvent/) — mouse
-  positions in plot and data coordinates.
+- [`PlotMouseEvent`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1PlotMouseEvent/) — the mouse
+  event of `PlotView`'s mouse signals, in item pixels; `accept()` skips the
+  built-in pan, rectangle zoom, or rescale.
 - [`LegendModel`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1LegendModel/) — legend entries of the
   visible series that have one, each a [`LegendEntry`](https://michalgrabarczyk.github.io/QAccelPlot/api/structQAccelPlot_1_1LegendEntry/).
 - [`SeriesInspection`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1SeriesInspection/) — per-series

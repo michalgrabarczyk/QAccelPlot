@@ -7,6 +7,8 @@
 //
 #include "QAccelPlot/PlotMouseEvent.hpp"
 
+#include <QSinglePointEvent>
+
 namespace QAccelPlot {
 
 PlotMouseEvent::PlotMouseEvent(QObject* parent)
@@ -14,18 +16,14 @@ PlotMouseEvent::PlotMouseEvent(QObject* parent)
 {
 }
 
-void PlotMouseEvent::reset(const Qt::MouseButton button, const qreal x, const qreal y, const Qt::KeyboardModifiers modifiers)
-{
-    button_ = button;
-    x_ = x;
-    y_ = y;
-    modifiers_ = modifiers;
-    accepted_ = false;
-}
-
 Qt::MouseButton PlotMouseEvent::button() const
 {
     return button_;
+}
+
+Qt::MouseButtons PlotMouseEvent::buttons() const
+{
+    return buttons_;
 }
 
 qreal PlotMouseEvent::x() const
@@ -61,6 +59,16 @@ void PlotMouseEvent::ignore()
 void PlotMouseEvent::setAccepted(bool accepted)
 {
     accepted_ = accepted;
+}
+
+void PlotMouseEvent::reset(const QSinglePointEvent& event)
+{
+    button_ = event.button();
+    buttons_ = event.buttons();
+    x_ = event.position().x();
+    y_ = event.position().y();
+    modifiers_ = event.modifiers();
+    accepted_ = false;
 }
 
 } // namespace QAccelPlot
