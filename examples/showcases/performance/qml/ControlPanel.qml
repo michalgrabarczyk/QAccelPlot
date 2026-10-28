@@ -49,7 +49,7 @@ ScrollView {
             text: root.settings.count.toString()
             validator: IntValidator {
                 bottom: 1
-                top: root.window.maximumCount
+                top: root.settings.maximumCount
             }
             Layout.fillWidth: true
             onEditingFinished: root.settings.count = parseInt(text) || 1000
@@ -60,7 +60,7 @@ ScrollView {
             Layout.fillWidth: true
 
             Repeater {
-                model: root.window.countPresets
+                model: root.settings.countPresets
 
                 delegate: Button {
                     required property var modelData
@@ -72,7 +72,7 @@ ScrollView {
         }
 
         Label {
-            text: "Up to " + root.countLabel(root.window.maximumCount) + " " + root.settings.noun + ". Only the visible tab generates data."
+            text: "Up to " + root.countLabel(root.settings.maximumCount) + " " + root.settings.noun + ". Only the visible tab generates data."
             color: root.colorPalette.textMuted
             wrapMode: Text.WordWrap
             Layout.fillWidth: true

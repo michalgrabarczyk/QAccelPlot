@@ -13,6 +13,10 @@ QtObject {
     property string noun: "points"
     // Total number of records across the series of the page.
     property int count: 1000000
+    // Largest count the count field accepts.
+    property int maximumCount: 10000000
+    // Counts offered as buttons.
+    property var countPresets: [1000, 10000, 100000, 300000, 500000, 1000000, 2000000, 5000000, 10000000]
     // Number of series the records are split across.
     property int seriesCount: 1
     // Series API that receives the records; a name known to ingestionFromName() in Ingestion.cpp.
