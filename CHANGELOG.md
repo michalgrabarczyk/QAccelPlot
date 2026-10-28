@@ -61,8 +61,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Data transitions run on Qt's animation clock, like QML animations, so an
   installed `QAnimationDriver` can step them frame by frame. A `duration` of 0
   ends at the next frame.
-- The Performance Lab renders with vsync off, so Display FPS can exceed the
-  refresh rate.
 
 ### Removed
 

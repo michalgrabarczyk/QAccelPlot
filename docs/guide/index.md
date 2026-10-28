@@ -61,7 +61,7 @@ See [Getting started](getting-started.md) for the full build and data setup.
 
 - **[Getting started](getting-started.md)** — CMake integration and a first plot.
 - **[Concepts](concepts.md)** — Axes, series, gaps, overlays, and threading.
-- **[Performance](performance.md)** — Data paths, worker handoff, and benchmarking.
+- **[Performance](performance.md)** — Data paths, worker handoff, and the Performance Lab.
 - **[Cookbook](cookbook/index.md)** — Recipes for common tasks.
 - **[Example gallery](examples.md)** — Screenshots of every runnable example.
 - **[FAQ](faq.md)** — Licensing, threading, and compatibility.

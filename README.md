@@ -69,7 +69,7 @@ Build them with `-DQACCELPLOT_BUILD_EXAMPLES=ON` (see Building from Source).
 
 - 🚀 **[Getting Started](https://michalgrabarczyk.github.io/QAccelPlot/getting-started/)** — CMake integration and a first plot.
 - 🏗️ **[Concepts](https://michalgrabarczyk.github.io/QAccelPlot/concepts/)** — Axes, series, gaps, overlays, and threading.
-- ⚡ **[Performance Guide](https://michalgrabarczyk.github.io/QAccelPlot/performance/)** — Data paths, worker handoff, and benchmarking.
+- ⚡ **[Performance Guide](https://michalgrabarczyk.github.io/QAccelPlot/performance/)** — Data paths, worker handoff, and the Performance Lab.
 - 🍳 **[Cookbook](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/)** — Short recipes for common tasks, each linked to a runnable example.
 - 🎨 **[Example gallery](https://michalgrabarczyk.github.io/QAccelPlot/main/examples/)** — Every example at a glance, grouped by topic.
 - ❓ **[FAQ](https://michalgrabarczyk.github.io/QAccelPlot/faq/)** — Threading, licensing, and backends.

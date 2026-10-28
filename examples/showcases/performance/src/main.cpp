@@ -15,7 +15,6 @@
 #include <QObject>
 #include <QQmlApplicationEngine>
 #include <QQuickWindow>
-#include <QSurfaceFormat>
 #include <QTimer>
 
 #include <atomic>
@@ -25,16 +24,6 @@ using QAccelPlotExample::DataDeliveryMetrics;
 using QAccelPlotExample::steadyNanoseconds;
 
 namespace {
-
-/// \brief Presents frames without waiting for the display, so Display FPS can exceed the refresh rate.
-///
-/// Must run before the window is created: Qt Quick chooses vsync when it creates the swap chain.
-void disableVsync()
-{
-    auto format = QSurfaceFormat::defaultFormat();
-    format.setSwapInterval(0);
-    QSurfaceFormat::setDefaultFormat(format);
-}
 
 struct FrameMetrics {
     std::atomic<int> presentedFrames{0};
@@ -89,7 +78,6 @@ int main(int argc, char* argv[])
 {
     QLocale::setDefault(QLocale::English);
     QAccelPlotExample::configureGraphicsApi();
-    disableVsync();
 
     QGuiApplication app(argc, argv);
 

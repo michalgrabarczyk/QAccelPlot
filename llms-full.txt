@@ -62,7 +62,7 @@ See [Getting started](https://michalgrabarczyk.github.io/QAccelPlot/getting-star
 
 - **[Getting started](https://michalgrabarczyk.github.io/QAccelPlot/getting-started/)** — CMake integration and a first plot.
 - **[Concepts](https://michalgrabarczyk.github.io/QAccelPlot/concepts/)** — Axes, series, gaps, overlays, and threading.
-- **[Performance](https://michalgrabarczyk.github.io/QAccelPlot/performance/)** — Data paths, worker handoff, and benchmarking.
+- **[Performance](https://michalgrabarczyk.github.io/QAccelPlot/performance/)** — Data paths, worker handoff, and the Performance Lab.
 - **[Cookbook](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/)** — Recipes for common tasks.
 - **[Example gallery](https://michalgrabarczyk.github.io/QAccelPlot/examples/)** — Screenshots of every runnable example.
 - **[FAQ](https://michalgrabarczyk.github.io/QAccelPlot/faq/)** — Licensing, threading, and compatibility.
@@ -623,30 +623,15 @@ use the public path.
 Compare both modes with your workload, or build the
 [Performance Lab](#performance-lab) once with each value.
 
-## Benchmarking
-
-- Build QAccelPlot and the application in Release mode, and warm up shaders,
-  allocations, and caches before recording.
-- Turn vsync off with `QSurfaceFormat::setSwapInterval(0)` on the default
-  format before creating the window; otherwise FPS stops at the refresh rate.
-- Record presented frames ([`QQuickWindow::frameSwapped`][frame-swapped]), not
-  timer callbacks, and report the frame-time distribution as well as the
-  average.
-- For streamed data, also report how many new datasets are applied per second:
-  several presented frames can show the same dataset.
-- Record the Qt version, OS, GPU, driver, graphics API, resolution, and device
-  pixel ratio with the result.
-
-### Performance Lab
+## Performance Lab
 
 [`examples/showcases/performance`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/showcases/performance)
 streams a `LineCurve`, a `PointCloud`, a `RectangleSeries`, a `BarSeries`, and
 a `HeatmapSeries`, one per tab, with options for record and series count, ingestion API, hover,
-and rendering. Change one option at a time. The lab renders with vsync off, so
-its frame rate is not limited by the display; on Qt 6.2 and 6.3 its frame
-driver runs on a 16 ms timer, which limits it to about 60 FPS. The lab reports:
+and rendering. Change one option at a time, at a record count that keeps
+display FPS below the refresh rate. The lab reports:
 
-- **Display FPS** — frames rendered per second.
+- **Display FPS** — frames presented to the screen.
 - **Data Update Rate** (Hz) — new datasets applied to the plot per second,
   including worker-side generation.
 - **Peak update gap** — the longest interval between two dataset applications
@@ -667,7 +652,6 @@ driver runs on a 16 ms timer, which limits it to about 60 FPS. The lab reports:
 [post-data-double]: api/classQAccelPlot_1_1LineCurve.md#function-postdata-12
 [data-min]: api/classQAccelPlot_1_1Axis.md#property-datamin-12
 [data-max]: api/classQAccelPlot_1_1Axis.md#property-datamax-12
-[frame-swapped]: https://doc.qt.io/qt-6/qquickwindow.html#frameSwapped
 
 
 ---
