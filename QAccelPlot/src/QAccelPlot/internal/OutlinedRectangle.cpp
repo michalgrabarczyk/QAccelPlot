@@ -6,6 +6,7 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #include "QAccelPlot/internal/OutlinedRectangle.hpp"
+#include "QAccelPlot/MathUtils.hpp"
 
 #include <QQuickWindow>
 #include <QSGRectangleNode>
@@ -22,13 +23,14 @@ OutlinedRectangle::OutlinedRectangle(QQuickItem* parent)
     setAcceptedMouseButtons(Qt::NoButton);
 }
 
-void OutlinedRectangle::setColors(const QColor& fill, const QColor& border)
+void OutlinedRectangle::setStyle(const QColor& fill, const QColor& borderColor, const qreal borderWidth)
 {
-    if (fill_ == fill && border_ == border) {
+    if (fill_ == fill && border_ == borderColor && nearlyEqual(borderWidth_, borderWidth)) {
         return;
     }
     fill_ = fill;
-    border_ = border;
+    border_ = borderColor;
+    borderWidth_ = borderWidth;
     update();
 }
 
@@ -40,7 +42,7 @@ QSGNode* OutlinedRectangle::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeDat
             root->appendChildNode(window()->createRectangleNode());
         }
     }
-    const auto outline = std::min({qreal{1}, width() / 2, height() / 2});
+    const auto outline = std::min({borderWidth_, width() / 2, height() / 2});
     const auto rects = std::array<QRectF, 5>{QRectF{outline, outline, width() - 2 * outline, height() - 2 * outline}, QRectF{0, 0, width(), outline},
         QRectF{0, height() - outline, width(), outline}, QRectF{0, outline, outline, height() - 2 * outline},
         QRectF{width() - outline, outline, outline, height() - 2 * outline}};

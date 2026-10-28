@@ -247,11 +247,11 @@ void ColorBarTest::defaults()
     QCOMPARE(bar.series(), nullptr);
     QCOMPARE(bar.orientation(), Qt::Vertical);
     QCOMPARE(bar.barThickness(), 12.0);
-    QCOMPARE(bar.borderWidth(), 1.0);
+    QCOMPARE(bar.border()->width(), 1.0);
     QCOMPARE(bar.labelPadding(), 6.0);
     QCOMPARE(bar.tickLabelWidth(), 16.0);
     QCOMPARE(bar.labelColor(), ColorPalette::dark().axisLine);
-    QCOMPARE(bar.borderColor(), ColorPalette::dark().axisLine);
+    QCOMPARE(bar.border()->color(), ColorPalette::dark().axisLine);
     QCOMPARE(bar.ticker()->tickLengthIn(), 0.0);
     QCOMPARE(bar.ticker()->tickLengthOut(), 4.0);
     QCOMPARE(bar.ticker()->subtickLengthIn(), 0.0);
@@ -269,12 +269,12 @@ void ColorBarTest::negativeSizesAreClamped()
 {
     auto bar = ColorBar{};
     bar.setBarThickness(-3.0);
-    bar.setBorderWidth(-1.0);
+    bar.border()->setWidth(-1.0);
     bar.setLabelPadding(-2.0);
     bar.setTickLabelWidth(-5.0);
 
     QCOMPARE(bar.barThickness(), 0.0);
-    QCOMPARE(bar.borderWidth(), 0.0);
+    QCOMPARE(bar.border()->width(), 0.0);
     QCOMPARE(bar.labelPadding(), 0.0);
     QCOMPARE(bar.tickLabelWidth(), 0.0);
 }
@@ -471,7 +471,7 @@ void ColorBarTest::tickLabelsAreClippedToTickLabelWidth()
 void ColorBarTest::drawsTitleBesideTickLabels()
 {
     auto scene = Scene{Qt::Vertical, QSize{100, 200}};
-    scene.bar.setBorderWidth(0.0);
+    scene.bar.border()->setWidth(0.0);
     QVERIFY(!scene.render().isNull());
     const auto titleColumn = static_cast<int>(scene.bar.implicitWidth());
 
@@ -584,7 +584,7 @@ void ColorBarTest::qmlBorderColorFollowsHovered()
 
         QAccelPlot.ColorBar {
             interactive: true
-            borderColor: hovered ? "#00ff00" : "#ff0000"
+            border.color: hovered ? "#00ff00" : "#ff0000"
         }
     )",
         QUrl{});
@@ -592,15 +592,15 @@ void ColorBarTest::qmlBorderColorFollowsHovered()
     QVERIFY2(root, qPrintable(component.errorString()));
     auto* const bar = qobject_cast<ColorBar*>(root.get());
     QVERIFY(bar);
-    QCOMPARE(bar->borderColor(), QColor{"#ff0000"});
+    QCOMPARE(bar->border()->color(), QColor{"#ff0000"});
 
     auto enter = QAccelPlotTest::hoverEvent(QEvent::HoverEnter, QPointF{6.0, 100.0}, QPointF{6.0, 100.0});
     QCoreApplication::sendEvent(bar, &enter);
-    QCOMPARE(bar->borderColor(), QColor{"#00ff00"});
+    QCOMPARE(bar->border()->color(), QColor{"#00ff00"});
 
     auto leave = QAccelPlotTest::hoverEvent(QEvent::HoverLeave, {}, {});
     QCoreApplication::sendEvent(bar, &leave);
-    QCOMPARE(bar->borderColor(), QColor{"#ff0000"});
+    QCOMPARE(bar->border()->color(), QColor{"#ff0000"});
 }
 
 void ColorBarTest::leavingInteractiveModeClearsHover()

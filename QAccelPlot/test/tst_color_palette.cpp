@@ -86,13 +86,13 @@ void TestColorPalette::cppDefaultsUseDarkPalette()
     QCOMPARE(plot.plotAreaColor(), palette.plotArea);
     QCOMPARE(plot.axesAreaColor(), palette.axesArea);
     QCOMPARE(plot.rectangleZoom()->fillColor(), palette.rectangleZoomFill);
-    QCOMPARE(plot.rectangleZoom()->borderColor(), palette.rectangleZoomBorder);
+    QCOMPARE(plot.rectangleZoom()->border()->color(), palette.rectangleZoomBorder);
     QCOMPARE(plot.grid()->gridColor(), palette.grid);
     QCOMPARE(plot.grid()->subGridColor(), palette.subGrid);
 
     const QAccelPlot::SelectionTool selection;
     QCOMPARE(selection.fillColor(), palette.selectionFill);
-    QCOMPARE(selection.borderColor(), palette.selectionBorder);
+    QCOMPARE(selection.border()->color(), palette.selectionBorder);
 
     const QAccelPlot::LineCurve curve;
     QCOMPARE(curve.color(), palette.seriesPrimary);

@@ -56,7 +56,7 @@ QAccelPlot.%1 {
     grid.subGridVisible: false
     rectangleZoom.enabled: true
     rectangleZoom.fillColor: "#8000ff00"
-    rectangleZoom.borderColor: "red"
+    rectangleZoom.border.color: "red"
 
     xAxis: QAccelPlot.Axis { viewportMin: 0; viewportMax: 100 }
     yAxis: QAccelPlot.Axis { viewportMin: -10; viewportMax: 10 }
@@ -141,10 +141,16 @@ void TestRectangleZoomRendering::overlayAboveSeriesBelowLegend()
     QVERIFY(nearColor(pixel(image, window, {rect.right() + 5, center.y()}), QColor(32, 32, 32)));
 
     plot->rectangleZoom()->setFillColor(QColor(255, 0, 0, 128));
-    plot->rectangleZoom()->setBorderColor(Qt::yellow);
+    plot->rectangleZoom()->border()->setColor(Qt::yellow);
     image = window.grabWindow();
     QVERIFY(nearColor(pixel(image, window, center), QColor(128, 0, 127)));
     QVERIFY(nearColor(pixel(image, window, {start.x() + 0.4, center.y()}), Qt::yellow));
+    QVERIFY(nearColor(pixel(image, window, {start.x() + 3, center.y()}), QColor(128, 0, 127)));
+
+    plot->rectangleZoom()->border()->setWidth(4);
+    image = window.grabWindow();
+    QVERIFY(nearColor(pixel(image, window, {start.x() + 3, center.y()}), Qt::yellow));
+    QVERIFY(nearColor(pixel(image, window, center), QColor(128, 0, 127)));
 
     auto escape = QKeyEvent{QEvent::KeyPress, Qt::Key_Escape, Qt::NoModifier};
     QCoreApplication::sendEvent(plot, &escape);

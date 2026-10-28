@@ -70,8 +70,8 @@ void TestPlotAppearance::border_defaultsToDisabled()
 void TestPlotAppearance::border_clampsNegativeWidth()
 {
     QAccelPlot::QAccelPlot plot;
-    QSignalSpy widthChanged(plot.border(), &QAccelPlot::PlotBorder::widthChanged);
-    QSignalSpy colorChanged(plot.border(), &QAccelPlot::PlotBorder::colorChanged);
+    QSignalSpy widthChanged(plot.border(), &QAccelPlot::Border::widthChanged);
+    QSignalSpy colorChanged(plot.border(), &QAccelPlot::Border::colorChanged);
 
     plot.border()->setWidth(-2.0);
     QCOMPARE(plot.border()->width(), 0.0);

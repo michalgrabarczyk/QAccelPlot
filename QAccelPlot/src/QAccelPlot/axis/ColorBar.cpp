@@ -109,6 +109,8 @@ ColorBar::ColorBar(QQuickItem* parent)
     for (const auto signal : tickerSignals) {
         connect(ticker_, signal, this, &ColorBar::invalidate);
     }
+    connect(border_, &Border::colorChanged, this, [this]() { update(); });
+    connect(border_, &Border::widthChanged, this, &ColorBar::invalidate);
     invalidate();
 }
 
@@ -220,35 +222,9 @@ void ColorBar::setBarThickness(const qreal thickness)
     invalidate();
 }
 
-QColor ColorBar::borderColor() const
+Border* ColorBar::border() const
 {
-    return borderColor_;
-}
-
-void ColorBar::setBorderColor(const QColor& color)
-{
-    if (borderColor_ == color) {
-        return;
-    }
-    borderColor_ = color;
-    emit borderColorChanged();
-    update();
-}
-
-qreal ColorBar::borderWidth() const
-{
-    return borderWidth_;
-}
-
-void ColorBar::setBorderWidth(const qreal width)
-{
-    const auto clampedWidth = std::max(qreal{0.0}, width);
-    if (nearlyEqual(borderWidth_, clampedWidth)) {
-        return;
-    }
-    borderWidth_ = clampedWidth;
-    emit borderWidthChanged();
-    invalidate();
+    return border_;
 }
 
 qreal ColorBar::tickLabelWidth() const
@@ -571,7 +547,7 @@ ColorBar::Layout ColorBar::computeLayout() const
 
 qreal ColorBar::endInset() const
 {
-    const auto lineInset = std::max(borderWidth_, ticker_->tickWidth()) / 2.0;
+    const auto lineInset = std::max(border_->width(), ticker_->tickWidth()) / 2.0;
     if (orientation_ == Qt::Vertical) {
         return std::max(lineInset, tickLabelHeight() / 2.0);
     }
@@ -617,13 +593,14 @@ void ColorBar::paintStrip(QPainter* painter) const
     }
     painter->fillRect(strip, gradient);
 
-    if (borderWidth_ > 0.0) {
-        auto pen = QPen{borderColor_};
-        pen.setWidthF(borderWidth_);
+    const auto borderWidth = border_->width();
+    if (borderWidth > 0.0) {
+        auto pen = QPen{border_->color()};
+        pen.setWidthF(borderWidth);
         pen.setJoinStyle(Qt::MiterJoin);
         painter->setPen(pen);
         painter->setBrush(Qt::NoBrush);
-        const auto half = borderWidth_ / 2.0;
+        const auto half = borderWidth / 2.0;
         painter->drawRect(strip.adjusted(half, half, -half, -half));
     }
 }

@@ -112,8 +112,8 @@ BarSeries::BarSeries(QQuickItem* parent)
     supportHover();
     setAcceptedMouseButtons(Qt::NoButton);
     setLegendSymbol(LegendSymbol::Fill);
-    connect(border_, &RectangleBorder::widthChanged, this, &QQuickItem::update);
-    connect(border_, &RectangleBorder::colorChanged, this, &QQuickItem::update);
+    connect(border_, &Border::widthChanged, this, &QQuickItem::update);
+    connect(border_, &Border::colorChanged, this, &QQuickItem::update);
     connect(transition_.get(), &TransitionRunner::frameDue, this, &BarSeries::advanceTransition);
     connect(transition_.get(), &TransitionRunner::interrupted, this, &BarSeries::endTransition);
     connect(transition_.get(), &TransitionRunner::transitionDestroyed, this, &BarSeries::transitionChanged);
@@ -256,7 +256,7 @@ void BarSeries::setColorSource(const ColorSource source)
     update();
 }
 
-RectangleBorder* BarSeries::border() const
+Border* BarSeries::border() const
 {
     return border_;
 }

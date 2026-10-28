@@ -17,10 +17,11 @@ RectangleZoomOverlay::RectangleZoomOverlay(QQuickItem* parent, PlotRectangleZoom
     setZ(0.5);
     connect(configuration_, &PlotRectangleZoom::activeChanged, this, &RectangleZoomOverlay::syncSelection);
     connect(configuration_, &PlotRectangleZoom::selectionRectChanged, this, &RectangleZoomOverlay::syncSelection);
-    connect(configuration_, &PlotRectangleZoom::fillColorChanged, this, &RectangleZoomOverlay::syncColors);
-    connect(configuration_, &PlotRectangleZoom::borderColorChanged, this, &RectangleZoomOverlay::syncColors);
+    connect(configuration_, &PlotRectangleZoom::fillColorChanged, this, &RectangleZoomOverlay::syncStyle);
+    connect(configuration_->border(), &Border::colorChanged, this, &RectangleZoomOverlay::syncStyle);
+    connect(configuration_->border(), &Border::widthChanged, this, &RectangleZoomOverlay::syncStyle);
     syncSelection();
-    syncColors();
+    syncStyle();
 }
 
 void RectangleZoomOverlay::syncSelection()
@@ -32,9 +33,9 @@ void RectangleZoomOverlay::syncSelection()
     update();
 }
 
-void RectangleZoomOverlay::syncColors()
+void RectangleZoomOverlay::syncStyle()
 {
-    setColors(configuration_->fillColor(), configuration_->borderColor());
+    setStyle(configuration_->fillColor(), configuration_->border()->color(), configuration_->border()->width());
 }
 
 } // namespace QAccelPlot

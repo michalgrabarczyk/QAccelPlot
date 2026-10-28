@@ -138,7 +138,8 @@ void TestRectangleZoom::configuration()
     QCOMPARE(config.modifiers(), Qt::KeyboardModifiers{Qt::ControlModifier});
     QCOMPARE(config.minimumSize(), 6.0);
     QCOMPARE(config.fillColor(), QAccelPlot::ColorPalette::dark().rectangleZoomFill);
-    QCOMPARE(config.borderColor(), QAccelPlot::ColorPalette::dark().rectangleZoomBorder);
+    QCOMPARE(config.border()->color(), QAccelPlot::ColorPalette::dark().rectangleZoomBorder);
+    QCOMPARE(config.border()->width(), 1.0);
     QVERIFY(!config.active());
     QVERIFY(config.selectionRect().isEmpty());
     const auto* metaObject = config.metaObject();
@@ -149,7 +150,6 @@ void TestRectangleZoom::configuration()
     auto sizeSpy = QSignalSpy{&config, &QAccelPlot::PlotRectangleZoom::minimumSizeChanged};
     auto modifiersSpy = QSignalSpy{&config, &QAccelPlot::PlotRectangleZoom::modifiersChanged};
     auto fillSpy = QSignalSpy{&config, &QAccelPlot::PlotRectangleZoom::fillColorChanged};
-    auto borderSpy = QSignalSpy{&config, &QAccelPlot::PlotRectangleZoom::borderColorChanged};
     config.setEnabled(true);
     config.setEnabled(true);
     config.setMinimumSize(-1);
@@ -160,13 +160,10 @@ void TestRectangleZoom::configuration()
     config.setModifiers(Qt::ShiftModifier);
     config.setFillColor(Qt::red);
     config.setFillColor(Qt::red);
-    config.setBorderColor(Qt::green);
-    config.setBorderColor(Qt::green);
     QCOMPARE(enabledSpy.count(), 1);
     QCOMPARE(sizeSpy.count(), 1);
     QCOMPARE(modifiersSpy.count(), 1);
     QCOMPARE(fillSpy.count(), 1);
-    QCOMPARE(borderSpy.count(), 1);
     QCOMPARE(config.minimumSize(), 0.0);
 }
 

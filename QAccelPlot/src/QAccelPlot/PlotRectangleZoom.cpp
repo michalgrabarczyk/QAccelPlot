@@ -77,18 +77,9 @@ void PlotRectangleZoom::setFillColor(const QColor& value)
     emit fillColorChanged();
 }
 
-QColor PlotRectangleZoom::borderColor() const
+Border* PlotRectangleZoom::border() const
 {
-    return borderColor_;
-}
-
-void PlotRectangleZoom::setBorderColor(const QColor& value)
-{
-    if (borderColor_ == value) {
-        return;
-    }
-    borderColor_ = value;
-    emit borderColorChanged();
+    return border_;
 }
 
 bool PlotRectangleZoom::active() const

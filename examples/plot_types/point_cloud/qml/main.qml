@@ -95,7 +95,7 @@ Window {
 
             rectangleZoom.enabled: true
             rectangleZoom.fillColor: window.colorPalette.rectangleZoomFill
-            rectangleZoom.borderColor: window.colorPalette.rectangleZoomBorder
+            rectangleZoom.border.color: window.colorPalette.rectangleZoomBorder
 
             xAxis: ExampleAxis {
                 viewportMin: -3.2
@@ -164,7 +164,7 @@ Window {
                         interactive: true
                         label: "Step length"
                         labelColor: colorPalette.axisLabel
-                        borderColor: hovered ? colorPalette.hover : colorPalette.axisLine
+                        border.color: hovered ? colorPalette.hover : colorPalette.axisLine
                         ticker.tickColor: colorPalette.tick
                         ticker.tickLabelColor: colorPalette.axisTickLabel
                         ticker.tickCount: 8

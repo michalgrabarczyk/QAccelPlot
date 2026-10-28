@@ -45,7 +45,7 @@ Item {
             interactive: true
             label: overlay.barLabel
             labelColor: colorPalette.axisLabel
-            borderColor: hovered ? colorPalette.hover : colorPalette.axisLine
+            border.color: hovered ? colorPalette.hover : colorPalette.axisLine
             ticker.tickColor: colorPalette.tick
             ticker.tickLabelColor: colorPalette.axisTickLabel
             ticker.tickCount: 8

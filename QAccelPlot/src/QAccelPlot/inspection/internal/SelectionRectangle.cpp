@@ -21,7 +21,8 @@ SelectionRectangle::SelectionRectangle(SelectionTool& tool)
     connect(&tool_, &SelectionTool::plotChanged, this, &SelectionRectangle::attach);
     connect(&tool_, &SelectionTool::pixelRectChanged, this, &SelectionRectangle::sync);
     connect(&tool_, &SelectionTool::fillColorChanged, this, &SelectionRectangle::sync);
-    connect(&tool_, &SelectionTool::borderColorChanged, this, &SelectionRectangle::sync);
+    connect(tool_.border(), &Border::colorChanged, this, &SelectionRectangle::sync);
+    connect(tool_.border(), &Border::widthChanged, this, &SelectionRectangle::sync);
     connect(&tool_, &SelectionTool::rectangleVisibleChanged, this, &SelectionRectangle::sync);
     attach();
 }
@@ -51,7 +52,7 @@ void SelectionRectangle::sync()
     setSize(area.size());
     rectangle_->setPosition(rect.topLeft() - area.topLeft());
     rectangle_->setSize(rect.size());
-    rectangle_->setColors(tool_.fillColor(), tool_.borderColor());
+    rectangle_->setStyle(tool_.fillColor(), tool_.border()->color(), tool_.border()->width());
 }
 
 } // namespace QAccelPlot
