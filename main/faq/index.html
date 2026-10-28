@@ -1586,11 +1586,12 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 
 <h1 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h1>
 <h2 id="how-many-data-points-can-qaccelplot-handle">How many data points can QAccelPlot handle?<a class="headerlink" href="#how-many-data-points-can-qaccelplot-handle" title="Permanent link">&para;</a></h2>
-<p>About 4.5M points replaced and drawn every frame at 60 FPS on the
-<a href="../performance/#what-to-expect">reference system</a>. Throughput drops with more
-series, markers, gradients, transitions, larger windows, and slower GPUs.
-Measure your workload with the included
-<a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/benchmarks">benchmarks</a>.</p>
+<p>About 1–10M data points updated and drawn every frame at 60 FPS, depending on
+the GPU, series type, and styling. Above that, frames stop being smooth.
+Throughput drops with more series, markers, gradients, transitions, larger
+windows, and slower GPUs. Run the
+<a href="../performance/#performance-lab">Performance Lab</a> to see what your hardware
+does.</p>
 <h2 id="what-is-the-fastest-way-to-supply-data">What is the fastest way to supply data?<a class="headerlink" href="#what-is-the-fastest-way-to-supply-data" title="Permanent link">&para;</a></h2>
 <p>Move an interleaved float buffer with
 <a href="../api/classQAccelPlot_1_1LineCurve/#function-setdataf-26"><code>setDataF(std::vector&lt;float&gt;&amp;&amp;, int)</code></a>.
