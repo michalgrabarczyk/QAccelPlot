@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2026-10-28 21:34:44</td>
+      <td>2026-10-29 06:44:14</td>
     </tr>
   </table>
 </div>
@@ -40,8 +40,8 @@
     </tr>
     <tr>
       <th scope="row">Lines:</th>
-      <td>32</td>
-      <td>32</td>
+      <td>33</td>
+      <td>33</td>
       <td class="coverage-high">100.0%</td>
     </tr>
     <tr>
@@ -52,9 +52,9 @@
     </tr>
     <tr>
       <th scope="row">Branches:</th>
-      <td>43</td>
-      <td>72</td>
-      <td class="coverage-low">59.7%</td>
+      <td>49</td>
+      <td>84</td>
+      <td class="coverage-low">58.3%</td>
     </tr>
   </table>
 </div>
@@ -70,9 +70,9 @@
       <th>Call count</th>
       <th>Block coverage</th>
     </tr>
-    <tr><td><a href="#l15">QAccelPlot::SelectionRectangle::SelectionRectangle(QAccelPlot::SelectionTool&amp;) (line 15)</a></td><td>called 14 times</td><td>56.0%</td></tr>
-    <tr><td><a href="#l29">QAccelPlot::SelectionRectangle::attach() (line 29)</a></td><td>called 28 times</td><td>79.0%</td></tr>
-    <tr><td><a href="#l41">QAccelPlot::SelectionRectangle::sync() (line 41)</a></td><td>called 97 times</td><td>78.0%</td></tr>
+    <tr><td><a href="#l15">QAccelPlot::SelectionRectangle::SelectionRectangle(QAccelPlot::SelectionTool&amp;) (line 15)</a></td><td>called 14 times</td><td>58.0%</td></tr>
+    <tr><td><a href="#l30">QAccelPlot::SelectionRectangle::attach() (line 30)</a></td><td>called 28 times</td><td>79.0%</td></tr>
+    <tr><td><a href="#l42">QAccelPlot::SelectionRectangle::sync() (line 42)</a></td><td>called 97 times</td><td>80.0%</td></tr>
   </table>
 </details>
 
@@ -297,29 +297,33 @@
       <td class="lineno"><a id="l24" href="#l24">24</a></td>
       <td class="linebranch">
         <details class="linebranchDetails">
-          <summary class="linebranchSummary">1/2</summary>
+          <summary class="linebranchSummary">2/4</summary>
           <div class="linebranchContents">
             <div class="takenBranch">&check; Branch 1 taken 14 times.</div>
             <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
+            <div class="takenBranch">&check; Branch 4 taken 14 times.</div>
+            <div class="notTakenBranch">&cross; Branch 5 not taken.</div>
           </div>
         </details>
       </td>
       <td class="linecount partialCoveredLine">14</td>
-      <td class="src partialCoveredLine"><span class="w">    </span><span class="n">connect</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tool_</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">borderColorChanged</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">SelectionRectangle</span><span class="o">::</span><span class="n">sync</span><span class="p">);</span></td>
+      <td class="src partialCoveredLine"><span class="w">    </span><span class="n">connect</span><span class="p">(</span><span class="n">tool_</span><span class="p">.</span><span class="n">border</span><span class="p">(),</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Border</span><span class="o">::</span><span class="n">colorChanged</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">SelectionRectangle</span><span class="o">::</span><span class="n">sync</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l25" href="#l25">25</a></td>
       <td class="linebranch">
         <details class="linebranchDetails">
-          <summary class="linebranchSummary">1/2</summary>
+          <summary class="linebranchSummary">2/4</summary>
           <div class="linebranchContents">
             <div class="takenBranch">&check; Branch 1 taken 14 times.</div>
             <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
+            <div class="takenBranch">&check; Branch 4 taken 14 times.</div>
+            <div class="notTakenBranch">&cross; Branch 5 not taken.</div>
           </div>
         </details>
       </td>
       <td class="linecount partialCoveredLine">14</td>
-      <td class="src partialCoveredLine"><span class="w">    </span><span class="n">connect</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tool_</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">rectangleVisibleChanged</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">SelectionRectangle</span><span class="o">::</span><span class="n">sync</span><span class="p">);</span></td>
+      <td class="src partialCoveredLine"><span class="w">    </span><span class="n">connect</span><span class="p">(</span><span class="n">tool_</span><span class="p">.</span><span class="n">border</span><span class="p">(),</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Border</span><span class="o">::</span><span class="n">widthChanged</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">SelectionRectangle</span><span class="o">::</span><span class="n">sync</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l26" href="#l26">26</a></td>
@@ -333,45 +337,59 @@
         </details>
       </td>
       <td class="linecount partialCoveredLine">14</td>
-      <td class="src partialCoveredLine"><span class="w">    </span><span class="n">attach</span><span class="p">();</span></td>
+      <td class="src partialCoveredLine"><span class="w">    </span><span class="n">connect</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tool_</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">rectangleVisibleChanged</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">SelectionRectangle</span><span class="o">::</span><span class="n">sync</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l27" href="#l27">27</a></td>
+      <td class="linebranch">
+        <details class="linebranchDetails">
+          <summary class="linebranchSummary">1/2</summary>
+          <div class="linebranchContents">
+            <div class="takenBranch">&check; Branch 1 taken 14 times.</div>
+            <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
+          </div>
+        </details>
+      </td>
+      <td class="linecount partialCoveredLine">14</td>
+      <td class="src partialCoveredLine"><span class="w">    </span><span class="n">attach</span><span class="p">();</span></td>
+    </tr>
+    <tr class="source-line">
+      <td class="lineno"><a id="l28" href="#l28">28</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">14</td>
       <td class="src coveredLine"><span class="p">}</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l28" href="#l28">28</a></td>
+      <td class="lineno"><a id="l29" href="#l29">29</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l29" href="#l29">29</a></td>
+      <td class="lineno"><a id="l30" href="#l30">30</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">28</td>
       <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="nf">SelectionRectangle::attach</span><span class="p">()</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l30" href="#l30">30</a></td>
+      <td class="lineno"><a id="l31" href="#l31">31</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l31" href="#l31">31</a></td>
+      <td class="lineno"><a id="l32" href="#l32">32</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">28</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">*</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tool_</span><span class="p">.</span><span class="n">plot</span><span class="p">();</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l32" href="#l32">32</a></td>
+      <td class="lineno"><a id="l33" href="#l33">33</a></td>
       <td class="linebranch">
         <details class="linebranchDetails">
           <summary class="linebranchSummary">2/2</summary>
@@ -385,14 +403,14 @@
       <td class="src coveredLine"><span class="w">    </span><span class="k">auto</span><span class="o">*</span><span class="w"> </span><span class="n">overlay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">plot</span><span class="o">-&gt;</span><span class="n">overlay</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="nb">nullptr</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l33" href="#l33">33</a></td>
+      <td class="lineno"><a id="l34" href="#l34">34</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">28</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">setParentItem</span><span class="p">(</span><span class="n">overlay</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l34" href="#l34">34</a></td>
+      <td class="lineno"><a id="l35" href="#l35">35</a></td>
       <td class="linebranch">
         <details class="linebranchDetails">
           <summary class="linebranchSummary">9/12</summary>
@@ -416,14 +434,14 @@
       <td class="src partialCoveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">overlay</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">overlay</span><span class="o">-&gt;</span><span class="n">childItems</span><span class="p">().</span><span class="n">constFirst</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">this</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l35" href="#l35">35</a></td>
+      <td class="lineno"><a id="l36" href="#l36">36</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="w">        </span><span class="c1">// A selection is a backdrop for the other overlays, such as an inspector's tooltip.</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l36" href="#l36">36</a></td>
+      <td class="lineno"><a id="l37" href="#l37">37</a></td>
       <td class="linebranch">
         <details class="linebranchDetails">
           <summary class="linebranchSummary">2/4</summary>
@@ -439,60 +457,46 @@
       <td class="src partialCoveredLine"><span class="w">        </span><span class="n">stackBefore</span><span class="p">(</span><span class="n">overlay</span><span class="o">-&gt;</span><span class="n">childItems</span><span class="p">().</span><span class="n">constFirst</span><span class="p">());</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l37" href="#l37">37</a></td>
+      <td class="lineno"><a id="l38" href="#l38">38</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="w">    </span><span class="p">}</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l38" href="#l38">38</a></td>
+      <td class="lineno"><a id="l39" href="#l39">39</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">28</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">sync</span><span class="p">();</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l39" href="#l39">39</a></td>
+      <td class="lineno"><a id="l40" href="#l40">40</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">28</td>
       <td class="src coveredLine"><span class="p">}</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l40" href="#l40">40</a></td>
+      <td class="lineno"><a id="l41" href="#l41">41</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l41" href="#l41">41</a></td>
+      <td class="lineno"><a id="l42" href="#l42">42</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">97</td>
       <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="nf">SelectionRectangle::sync</span><span class="p">()</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l42" href="#l42">42</a></td>
+      <td class="lineno"><a id="l43" href="#l43">43</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="p">{</span></td>
-    </tr>
-    <tr class="source-line">
-      <td class="lineno"><a id="l43" href="#l43">43</a></td>
-      <td class="linebranch">
-        <details class="linebranchDetails">
-          <summary class="linebranchSummary">1/2</summary>
-          <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 1 taken 97 times.</div>
-            <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
-          </div>
-        </details>
-      </td>
-      <td class="linecount partialCoveredLine">97</td>
-      <td class="src partialCoveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">*</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tool_</span><span class="p">.</span><span class="n">plot</span><span class="p">();</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l44" href="#l44">44</a></td>
@@ -506,10 +510,24 @@
         </details>
       </td>
       <td class="linecount partialCoveredLine">97</td>
-      <td class="src partialCoveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">rect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tool_</span><span class="p">.</span><span class="n">pixelRect</span><span class="p">();</span></td>
+      <td class="src partialCoveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">*</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tool_</span><span class="p">.</span><span class="n">plot</span><span class="p">();</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l45" href="#l45">45</a></td>
+      <td class="linebranch">
+        <details class="linebranchDetails">
+          <summary class="linebranchSummary">1/2</summary>
+          <div class="linebranchContents">
+            <div class="takenBranch">&check; Branch 1 taken 97 times.</div>
+            <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
+          </div>
+        </details>
+      </td>
+      <td class="linecount partialCoveredLine">97</td>
+      <td class="src partialCoveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">rect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tool_</span><span class="p">.</span><span class="n">pixelRect</span><span class="p">();</span></td>
+    </tr>
+    <tr class="source-line">
+      <td class="lineno"><a id="l46" href="#l46">46</a></td>
       <td class="linebranch">
         <details class="linebranchDetails">
           <summary class="linebranchSummary">8/10</summary>
@@ -531,7 +549,7 @@
       <td class="src partialCoveredLine"><span class="w">    </span><span class="n">setVisible</span><span class="p">(</span><span class="n">plot</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">tool_</span><span class="p">.</span><span class="n">rectangleVisible</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">rect</span><span class="p">.</span><span class="n">isEmpty</span><span class="p">());</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l46" href="#l46">46</a></td>
+      <td class="lineno"><a id="l47" href="#l47">47</a></td>
       <td class="linebranch">
         <details class="linebranchDetails">
           <summary class="linebranchSummary">2/2</summary>
@@ -545,21 +563,21 @@
       <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">plot</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l47" href="#l47">47</a></td>
+      <td class="lineno"><a id="l48" href="#l48">48</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">17</td>
       <td class="src coveredLine"><span class="w">        </span><span class="k">return</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l48" href="#l48">48</a></td>
+      <td class="lineno"><a id="l49" href="#l49">49</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="w">    </span><span class="p">}</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l49" href="#l49">49</a></td>
+      <td class="lineno"><a id="l50" href="#l50">50</a></td>
       <td class="linebranch">
         <details class="linebranchDetails">
           <summary class="linebranchSummary">1/2</summary>
@@ -573,7 +591,7 @@
       <td class="src partialCoveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">area</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot</span><span class="o">-&gt;</span><span class="n">plotRect</span><span class="p">();</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l50" href="#l50">50</a></td>
+      <td class="lineno"><a id="l51" href="#l51">51</a></td>
       <td class="linebranch">
         <details class="linebranchDetails">
           <summary class="linebranchSummary">1/2</summary>
@@ -587,7 +605,7 @@
       <td class="src partialCoveredLine"><span class="w">    </span><span class="n">setPosition</span><span class="p">(</span><span class="n">area</span><span class="p">.</span><span class="n">topLeft</span><span class="p">());</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l51" href="#l51">51</a></td>
+      <td class="lineno"><a id="l52" href="#l52">52</a></td>
       <td class="linebranch">
         <details class="linebranchDetails">
           <summary class="linebranchSummary">1/2</summary>
@@ -601,7 +619,7 @@
       <td class="src partialCoveredLine"><span class="w">    </span><span class="n">setSize</span><span class="p">(</span><span class="n">area</span><span class="p">.</span><span class="n">size</span><span class="p">());</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l52" href="#l52">52</a></td>
+      <td class="lineno"><a id="l53" href="#l53">53</a></td>
       <td class="linebranch">
         <details class="linebranchDetails">
           <summary class="linebranchSummary">1/2</summary>
@@ -615,7 +633,7 @@
       <td class="src partialCoveredLine"><span class="w">    </span><span class="n">rectangle_</span><span class="o">-&gt;</span><span class="n">setPosition</span><span class="p">(</span><span class="n">rect</span><span class="p">.</span><span class="n">topLeft</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">area</span><span class="p">.</span><span class="n">topLeft</span><span class="p">());</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l53" href="#l53">53</a></td>
+      <td class="lineno"><a id="l54" href="#l54">54</a></td>
       <td class="linebranch">
         <details class="linebranchDetails">
           <summary class="linebranchSummary">1/2</summary>
@@ -629,10 +647,10 @@
       <td class="src partialCoveredLine"><span class="w">    </span><span class="n">rectangle_</span><span class="o">-&gt;</span><span class="n">setSize</span><span class="p">(</span><span class="n">rect</span><span class="p">.</span><span class="n">size</span><span class="p">());</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l54" href="#l54">54</a></td>
+      <td class="lineno"><a id="l55" href="#l55">55</a></td>
       <td class="linebranch">
         <details class="linebranchDetails">
-          <summary class="linebranchSummary">3/6</summary>
+          <summary class="linebranchSummary">6/12</summary>
           <div class="linebranchContents">
             <div class="takenBranch">&check; Branch 1 taken 80 times.</div>
             <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
@@ -640,35 +658,41 @@
             <div class="notTakenBranch">&cross; Branch 5 not taken.</div>
             <div class="takenBranch">&check; Branch 7 taken 80 times.</div>
             <div class="notTakenBranch">&cross; Branch 8 not taken.</div>
+            <div class="takenBranch">&check; Branch 10 taken 80 times.</div>
+            <div class="notTakenBranch">&cross; Branch 11 not taken.</div>
+            <div class="takenBranch">&check; Branch 13 taken 80 times.</div>
+            <div class="notTakenBranch">&cross; Branch 14 not taken.</div>
+            <div class="takenBranch">&check; Branch 16 taken 80 times.</div>
+            <div class="notTakenBranch">&cross; Branch 17 not taken.</div>
           </div>
         </details>
       </td>
       <td class="linecount partialCoveredLine">80</td>
-      <td class="src partialCoveredLine"><span class="w">    </span><span class="n">rectangle_</span><span class="o">-&gt;</span><span class="n">setColors</span><span class="p">(</span><span class="n">tool_</span><span class="p">.</span><span class="n">fillColor</span><span class="p">(),</span><span class="w"> </span><span class="n">tool_</span><span class="p">.</span><span class="n">borderColor</span><span class="p">());</span></td>
-    </tr>
-    <tr class="source-line">
-      <td class="lineno"><a id="l55" href="#l55">55</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="p">}</span></td>
+      <td class="src partialCoveredLine"><span class="w">    </span><span class="n">rectangle_</span><span class="o">-&gt;</span><span class="n">setStyle</span><span class="p">(</span><span class="n">tool_</span><span class="p">.</span><span class="n">fillColor</span><span class="p">(),</span><span class="w"> </span><span class="n">tool_</span><span class="p">.</span><span class="n">border</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">color</span><span class="p">(),</span><span class="w"> </span><span class="n">tool_</span><span class="p">.</span><span class="n">border</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">width</span><span class="p">());</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l56" href="#l56">56</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "></td>
+      <td class="src "><span class="p">}</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l57" href="#l57">57</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="p">}</span><span class="w"> </span><span class="c1">// namespace QAccelPlot</span></td>
+      <td class="src "></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l58" href="#l58">58</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linecount "></td>
+      <td class="src "><span class="p">}</span><span class="w"> </span><span class="c1">// namespace QAccelPlot</span></td>
+    </tr>
+    <tr class="source-line">
+      <td class="lineno"><a id="l59" href="#l59">59</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
