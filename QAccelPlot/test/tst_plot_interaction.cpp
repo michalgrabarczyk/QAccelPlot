@@ -132,7 +132,7 @@ private slots:
     void pointer_staysAtTouchAfterRelease();
     void escapeAndGrabLoss_areReported();
 
-    void plotMouseEvent_resetClearsAcceptance();
+    void plotMouseEvent_eachEventStartsUnaccepted();
 };
 
 void TestPlotInteraction::wheelMagnitudeIsIndependentOfEventCount_data()
@@ -685,19 +685,29 @@ void TestPlotInteraction::escapeAndGrabLoss_areReported()
     QCOMPARE(grabLosses.count(), 1);
 }
 
-void TestPlotInteraction::plotMouseEvent_resetClearsAcceptance()
+void TestPlotInteraction::plotMouseEvent_eachEventStartsUnaccepted()
 {
-    auto event = QAccelPlot::PlotMouseEvent{};
-    event.accept();
-    QVERIFY(event.isAccepted());
+    auto plot = TestablePlot{};
+    plot.setSize({300.0, 200.0});
+    auto acceptedOnEntry = QList<bool>{};
+    const QAccelPlot::PlotMouseEvent* last = nullptr;
+    connect(&plot, &QAccelPlot::QAccelPlot::mousePressed, [&](QAccelPlot::PlotMouseEvent* event) {
+        acceptedOnEntry.append(event->isAccepted());
+        last = event;
+        event->accept();
+    });
 
-    event.reset(Qt::RightButton, 12.5, -3.0, Qt::ShiftModifier);
+    const auto pos = QPointF{12.5, 30.0};
+    auto press = QMouseEvent{QEvent::MouseButtonPress, pos, pos, pos, Qt::RightButton, Qt::RightButton, Qt::ShiftModifier};
+    plot.mousePressEvent(&press);
+    plot.mousePressEvent(&press);
 
-    QVERIFY(!event.isAccepted());
-    QCOMPARE(event.button(), Qt::RightButton);
-    QCOMPARE(event.x(), 12.5);
-    QCOMPARE(event.y(), -3.0);
-    QCOMPARE(event.modifiers(), Qt::KeyboardModifiers{Qt::ShiftModifier});
+    QCOMPARE(acceptedOnEntry, (QList<bool>{false, false}));
+    QCOMPARE(last->button(), Qt::RightButton);
+    QCOMPARE(last->buttons(), Qt::MouseButtons{Qt::RightButton});
+    QCOMPARE(last->x(), 12.5);
+    QCOMPARE(last->y(), 30.0);
+    QCOMPARE(last->modifiers(), Qt::KeyboardModifiers{Qt::ShiftModifier});
 }
 
 QTEST_MAIN(TestPlotInteraction)

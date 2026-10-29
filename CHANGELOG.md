@@ -44,6 +44,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- `PlotMouseEvent.button` is `Qt.NoButton` for a move instead of the held
+  buttons cast into one value; the new `buttons` holds them. `reset()` is no
+  longer public.
 - Renamed `PlotInspector.position` to `crosshairPosition`, and
   `positionChanged()` to `crosshairPositionChanged()`.
 - Outlines use one `border` grouped property with `color` and `width`.
