@@ -1434,6 +1434,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#property-buttons-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property buttons
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#property-modifiers-12" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1517,6 +1528,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#function-buttons-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function buttons
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-ignore" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1543,17 +1565,6 @@
     <span class="md-ellipsis">
       
         function modifiers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#function-reset" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        function reset
       
     </span>
   </a>
@@ -1644,7 +1655,11 @@
 </tr>
 <tr>
 <td style="text-align: right;">property Qt::MouseButton</td>
-<td style="text-align: left;"><a href="./#property-button-12"><strong>button</strong></a>  <br><em>The mouse button that caused the event. A move reports the buttons held down, combined.</em></td>
+<td style="text-align: left;"><a href="./#property-button-12"><strong>button</strong></a>  <br><em>The mouse button that caused the event;</em> <code>Qt.NoButton</code> <em>for a move.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property Qt::MouseButtons</td>
+<td style="text-align: left;"><a href="./#property-buttons-12"><strong>buttons</strong></a>  <br><em>The mouse buttons held down during the event.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property Qt::KeyboardModifiers</td>
@@ -1679,7 +1694,11 @@
 </tr>
 <tr>
 <td style="text-align: right;">Qt::MouseButton</td>
-<td style="text-align: left;"><a href="#function-button-22"><strong>button</strong></a> () const<br><em>Returns the mouse button that caused the event; for a move, the buttons held down, combined.</em></td>
+<td style="text-align: left;"><a href="#function-button-22"><strong>button</strong></a> () const<br><em>Returns the mouse button that caused the event;</em> <code>Qt::NoButton</code> <em>for a move.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">Qt::MouseButtons</td>
+<td style="text-align: left;"><a href="#function-buttons-22"><strong>buttons</strong></a> () const<br><em>Returns the mouse buttons held down during the event.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">Q_INVOKABLE void</td>
@@ -1692,10 +1711,6 @@
 <tr>
 <td style="text-align: right;">Qt::KeyboardModifiers</td>
 <td style="text-align: left;"><a href="#function-modifiers-22"><strong>modifiers</strong></a> () const<br><em>Returns the active keyboard modifiers at the time of the event.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-reset"><strong>reset</strong></a> (Qt::MouseButton button, qreal x, qreal y, Qt::KeyboardModifiers modifiers) <br><em>Resets the event data for a new event. Called by</em> <a href="../classQAccelPlot_1_1QAccelPlot/"><em><strong>QAccelPlot</strong></em></a> <em>before emitting mouse signals.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -1723,95 +1738,96 @@
 <hr>
 
 <h3 id="property-button-12">property button<a class="headerlink" href="#property-button-12" title="Permanent link">&para;</a></h3>
-<p><em>The mouse button that caused the event. A move reports the buttons held down, combined.</em> 
+<p><em>The mouse button that caused the event;</em> <code>Qt.NoButton</code> <em>for a move.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">Qt</span><span class="o">::</span><span class="n">MouseButton</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="o">::</span><span class="n">button</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-buttons-12">property buttons<a class="headerlink" href="#property-buttons-12" title="Permanent link">&para;</a></h3>
+<p><em>The mouse buttons held down during the event.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">Qt</span><span class="o">::</span><span class="n">MouseButtons</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="o">::</span><span class="n">buttons</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="property-modifiers-12">property modifiers<a class="headerlink" href="#property-modifiers-12" title="Permanent link">&para;</a></h3>
 <p><em>Active keyboard modifiers at the time of the event.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">Qt</span><span class="o">::</span><span class="n">KeyboardModifiers</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="o">::</span><span class="n">modifiers</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">Qt</span><span class="o">::</span><span class="n">KeyboardModifiers</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="o">::</span><span class="n">modifiers</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="property-x-12">property x<a class="headerlink" href="#property-x-12" title="Permanent link">&para;</a></h3>
 <p><em>Item-local pixel X coordinate of the event.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="o">::</span><span class="n">x</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="o">::</span><span class="n">x</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="property-y-12">property y<a class="headerlink" href="#property-y-12" title="Permanent link">&para;</a></h3>
 <p><em>Item-local pixel Y coordinate of the event.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="o">::</span><span class="n">y</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="o">::</span><span class="n">y</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-plotmouseevent">function PlotMouseEvent<a class="headerlink" href="#function-plotmouseevent" title="Permanent link">&para;</a></h3>
 <p><em>Constructs a</em> <a href="./"><em><strong>PlotMouseEvent</strong></em></a> <em>with an optional</em><code>parent</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">explicit</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="n">QObject</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">parent</span><span class="o">=</span><span class="nb">nullptr</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">explicit</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="n">QObject</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">parent</span><span class="o">=</span><span class="nb">nullptr</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-accept">function accept<a class="headerlink" href="#function-accept" title="Permanent link">&para;</a></h3>
 <p><em>Accepts the event, suppressing the plot's built-in handling.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="o">::</span><span class="n">accept</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="o">::</span><span class="n">accept</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-button-22">function button<a class="headerlink" href="#function-button-22" title="Permanent link">&para;</a></h3>
-<p><em>Returns the mouse button that caused the event; for a move, the buttons held down, combined.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">Qt</span><span class="o">::</span><span class="n">MouseButton</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="o">::</span><span class="n">button</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<p><em>Returns the mouse button that caused the event;</em> <code>Qt::NoButton</code> <em>for a move.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">Qt</span><span class="o">::</span><span class="n">MouseButton</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="o">::</span><span class="n">button</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-buttons-22">function buttons<a class="headerlink" href="#function-buttons-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the mouse buttons held down during the event.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">Qt</span><span class="o">::</span><span class="n">MouseButtons</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="o">::</span><span class="n">buttons</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-ignore">function ignore<a class="headerlink" href="#function-ignore" title="Permanent link">&para;</a></h3>
 <p><em>Ignores the event, allowing the plot's built-in handling to proceed.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="o">::</span><span class="n">ignore</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="o">::</span><span class="n">ignore</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-isaccepted">function isAccepted<a class="headerlink" href="#function-isaccepted" title="Permanent link">&para;</a></h3>
 <p><em>Returns true if the event has been accepted by a handler.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="o">::</span><span class="n">isAccepted</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="o">::</span><span class="n">isAccepted</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-modifiers-22">function modifiers<a class="headerlink" href="#function-modifiers-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the active keyboard modifiers at the time of the event.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">Qt</span><span class="o">::</span><span class="n">KeyboardModifiers</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="o">::</span><span class="n">modifiers</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-reset">function reset<a class="headerlink" href="#function-reset" title="Permanent link">&para;</a></h3>
-<p><em>Resets the event data for a new event. Called by</em> <a href="../classQAccelPlot_1_1QAccelPlot/"><em><strong>QAccelPlot</strong></em></a> <em>before emitting mouse signals.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="o">::</span><span class="n">reset</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="n">Qt</span><span class="o">::</span><span class="n">MouseButton</span><span class="w"> </span><span class="n">button</span><span class="p">,</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">x</span><span class="p">,</span>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">y</span><span class="p">,</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">    </span><span class="n">Qt</span><span class="o">::</span><span class="n">KeyboardModifiers</span><span class="w"> </span><span class="n">modifiers</span>
-<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">Qt</span><span class="o">::</span><span class="n">KeyboardModifiers</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="o">::</span><span class="n">modifiers</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setaccepted">function setAccepted<a class="headerlink" href="#function-setaccepted" title="Permanent link">&para;</a></h3>
 <p><em>Sets whether the event is accepted. Equivalent to</em> <code>accept()</code> <em>if</em><code>accepted</code> <em>is true, or</em><code>ignore()</code> <em>if false.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="o">::</span><span class="n">setAccepted</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">accepted</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="o">::</span><span class="n">setAccepted</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">accepted</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-x-22">function x<a class="headerlink" href="#function-x-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the item-local pixel X coordinate of the event.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="o">::</span><span class="n">x</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="o">::</span><span class="n">x</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-y-22">function y<a class="headerlink" href="#function-y-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the item-local pixel Y coordinate of the event.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="o">::</span><span class="n">y</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotMouseEvent</span><span class="o">::</span><span class="n">y</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 

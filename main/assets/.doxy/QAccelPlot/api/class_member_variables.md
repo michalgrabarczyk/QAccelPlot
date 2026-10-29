@@ -50,6 +50,7 @@
 * **borderWidth\_** ([**QAccelPlot::OutlinedRectangle**](classQAccelPlot_1_1OutlinedRectangle.md))
 * **busy\_** ([**QAccelPlot::PlotExporter**](classQAccelPlot_1_1PlotExporter.md))
 * **button\_** ([**QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md), [**QAccelPlot::SelectionTool**](classQAccelPlot_1_1SelectionTool.md))
+* **buttons\_** ([**QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md))
 * **blocks\_** ([**QAccelPlot::SourceInspection**](classQAccelPlot_1_1SourceInspection.md))
 * **boundedX\_** ([**QAccelPlot::SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md))
 * **boundedY\_** ([**QAccelPlot::SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md))

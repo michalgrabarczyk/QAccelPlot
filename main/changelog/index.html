@@ -1987,6 +1987,9 @@
 </ul>
 <h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
 <ul>
+<li><code>PlotMouseEvent.button</code> is <code>Qt.NoButton</code> for a move instead of the held
+  buttons cast into one value; the new <code>buttons</code> holds them. <code>reset()</code> is no
+  longer public.</li>
 <li>Renamed <code>PlotInspector.position</code> to <code>crosshairPosition</code>, and
   <code>positionChanged()</code> to <code>crosshairPositionChanged()</code>.</li>
 <li>Outlines use one <code>border</code> grouped property with <code>color</code> and <code>width</code>.
