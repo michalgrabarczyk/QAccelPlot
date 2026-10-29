@@ -7,6 +7,7 @@
 //
 #pragma once
 
+#include "QAccelPlot/Border.hpp"
 #include "QAccelPlot/PlotDragRect.hpp"
 #include "QAccelPlot/QAccelPlot.hpp"
 #include "QAccelPlot/inspection/InspectionRowModel.hpp"
@@ -47,8 +48,8 @@ class SelectionTool : public QObject {
     Q_PROPERTY(qreal minimumSize READ minimumSize WRITE setMinimumSize NOTIFY minimumSizeChanged)
     /// \brief Fill color of the rectangle. Default: \c Colors.dark.selectionFill.
     Q_PROPERTY(QColor fillColor READ fillColor WRITE setFillColor NOTIFY fillColorChanged)
-    /// \brief Outline color of the rectangle. Default: \c Colors.dark.selectionBorder.
-    Q_PROPERTY(QColor borderColor READ borderColor WRITE setBorderColor NOTIFY borderColorChanged)
+    /// \brief Outline inside the rectangle's edges. Default: \c Colors.dark.selectionBorder, width 1.
+    Q_PROPERTY(::QAccelPlot::Border* border READ border CONSTANT)
     /// \brief Draws the gesture and the selected region. Disable it to draw \c pixelRect yourself. Default: true.
     Q_PROPERTY(bool rectangleVisible READ rectangleVisible WRITE setRectangleVisible NOTIFY rectangleVisibleChanged)
     /// \brief True while a gesture is in progress.
@@ -116,10 +117,8 @@ public:
     QColor fillColor() const;
     /// \brief Sets the rectangle's fill color.
     void setFillColor(const QColor& color);
-    /// \brief Returns the rectangle's outline color.
-    QColor borderColor() const;
-    /// \brief Sets the rectangle's outline color.
-    void setBorderColor(const QColor& color);
+    /// \brief Returns the rectangle's outline settings. The object is owned by the tool.
+    Border* border() const;
     /// \brief Returns whether the tool draws its rectangle.
     bool rectangleVisible() const;
     /// \brief Shows or hides the tool's rectangle.
@@ -167,8 +166,6 @@ signals:
     void minimumSizeChanged();
     /// \brief Emitted when the fillColor property changes.
     void fillColorChanged();
-    /// \brief Emitted when the borderColor property changes.
-    void borderColorChanged();
     /// \brief Emitted when the rectangleVisible property changes.
     void rectangleVisibleChanged();
     /// \brief Emitted when a gesture starts or ends.
@@ -212,7 +209,7 @@ private:
     Qt::KeyboardModifiers modifiers_{Qt::ShiftModifier};
     qreal minimumSize_{6.0};
     QColor fillColor_{ColorPalette::dark().selectionFill};
-    QColor borderColor_{ColorPalette::dark().selectionBorder};
+    Border* border_{new Border{ColorPalette::dark().selectionBorder, 1.0, this}};
     bool rectangleVisible_{true};
     PlotDragRect drag_;
     bool hasSelection_{false};

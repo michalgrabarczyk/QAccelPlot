@@ -66,8 +66,8 @@ RectangleSeries::RectangleSeries(QQuickItem* parent)
     supportHover();
     setAcceptedMouseButtons(Qt::NoButton);
     setLegendSymbol(LegendSymbol::Fill);
-    connect(border_, &RectangleBorder::widthChanged, this, &QQuickItem::update);
-    connect(border_, &RectangleBorder::colorChanged, this, &QQuickItem::update);
+    connect(border_, &Border::widthChanged, this, &QQuickItem::update);
+    connect(border_, &Border::colorChanged, this, &QQuickItem::update);
     connect(this, &RectangleSeries::colorChanged, this, &PlotSeries::legendEntryChanged);
 }
 
@@ -109,7 +109,7 @@ void RectangleSeries::setCategoryColors(const QList<QColor>& colors)
     update();
 }
 
-RectangleBorder* RectangleSeries::border() const
+Border* RectangleSeries::border() const
 {
     return border_;
 }

@@ -12,13 +12,13 @@
 
 namespace QAccelPlot {
 
-/// \brief Item that fills its bounds and outlines them with a line of one logical pixel.
+/// \brief Item that fills its bounds and outlines them inside its edges.
 class OutlinedRectangle : public QQuickItem {
 public:
     explicit OutlinedRectangle(QQuickItem* parent = nullptr);
 
-    /// \brief Sets the \a fill and \a border colors.
-    void setColors(const QColor& fill, const QColor& border);
+    /// \brief Sets the \a fill color and an outline of \a borderColor, \a borderWidth logical pixels wide.
+    void setStyle(const QColor& fill, const QColor& borderColor, qreal borderWidth);
 
 protected:
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*) override;
@@ -26,6 +26,7 @@ protected:
 private:
     QColor fill_;
     QColor border_;
+    qreal borderWidth_{0.0};
 };
 
 } // namespace QAccelPlot

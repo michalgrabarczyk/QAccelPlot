@@ -5,24 +5,26 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "QAccelPlot/PlotBorder.hpp"
+#include "QAccelPlot/Border.hpp"
 #include "QAccelPlot/MathUtils.hpp"
 
 #include <algorithm>
 
 namespace QAccelPlot {
 
-PlotBorder::PlotBorder(QObject* parent)
+Border::Border(const QColor& color, const qreal width, QObject* parent)
     : QObject(parent)
+    , color_(color)
+    , width_(std::max(qreal{0.0}, width))
 {
 }
 
-QColor PlotBorder::color() const
+QColor Border::color() const
 {
     return color_;
 }
 
-void PlotBorder::setColor(const QColor& color)
+void Border::setColor(const QColor& color)
 {
     if (color_ == color) {
         return;
@@ -31,12 +33,12 @@ void PlotBorder::setColor(const QColor& color)
     emit colorChanged();
 }
 
-qreal PlotBorder::width() const
+qreal Border::width() const
 {
     return width_;
 }
 
-void PlotBorder::setWidth(const qreal width)
+void Border::setWidth(const qreal width)
 {
     const auto clampedWidth = std::max(qreal{0.0}, width);
     if (nearlyEqual(width_, clampedWidth)) {

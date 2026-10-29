@@ -7,7 +7,7 @@
 //
 #pragma once
 
-#include "QAccelPlot/PlotBorder.hpp"
+#include "QAccelPlot/Border.hpp"
 #include "QAccelPlot/PlotDragRect.hpp"
 #include "QAccelPlot/PlotMouseEvent.hpp"
 #include "QAccelPlot/PlotRectangleZoom.hpp"
@@ -72,8 +72,8 @@ class QAccelPlot : public QQuickItem {
     Q_PROPERTY(QColor plotAreaColor READ plotAreaColor WRITE setPlotAreaColor NOTIFY plotAreaColorChanged)
     /// \brief Background color of the axes surround area. Default: \c Colors.dark.axesArea.
     Q_PROPERTY(QColor axesAreaColor READ axesAreaColor WRITE setAxesAreaColor NOTIFY axesAreaColorChanged)
-    /// \brief Decorative frame configuration for the plot area.
-    Q_PROPERTY(PlotBorder* border READ border CONSTANT)
+    /// \brief Frame inside the plot area's edges, e.g. <tt>border.width: 2</tt>. Default: transparent, width 0.
+    Q_PROPERTY(Border* border READ border CONSTANT)
     /// \brief Rectangle zoom configuration and selection state.
     Q_PROPERTY(PlotRectangleZoom* rectangleZoom READ rectangleZoom CONSTANT)
     /// \brief Read-only constant: grid configuration object.
@@ -161,8 +161,8 @@ public:
     /// \brief Sets the axes surround background color to \a c.
     void setAxesAreaColor(const QColor& c);
 
-    /// \brief Returns the decorative plot-frame configuration object.
-    PlotBorder* border() const;
+    /// \brief Returns the plot-area frame settings. The object is owned by the plot.
+    Border* border() const;
 
     /// \brief Returns the rectangle zoom configuration object.
     PlotRectangleZoom* rectangleZoom() const;
@@ -289,7 +289,7 @@ private:
     // One exporter captures the plot at a time: the capture changes how the plot renders.
     bool exporting_{false};
     bool transparentBackground_{false};
-    PlotBorder* border_{nullptr};
+    Border* border_{nullptr};
     PlotRectangleZoom* rectangleZoom_{nullptr};
     RectangleZoomOverlay* rectangleZoomOverlay_{nullptr};
     QQuickItem* overlay_{nullptr};

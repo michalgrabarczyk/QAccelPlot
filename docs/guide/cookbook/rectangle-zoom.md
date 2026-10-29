@@ -28,9 +28,9 @@ QAccelPlot.Plot {
   `Qt.NoModifier` for unmodified dragging. A
   [`SelectionTool`](data-inspection.md#selection) uses Shift + left drag by
   default; if both are set to the same gesture, the `SelectionTool` takes it.
-- `rectangleZoom.fillColor` and `borderColor` default to the dark palette's
+- `rectangleZoom.fillColor` and `border.color` default to the dark palette's
   `rectangleZoomFill` and `rectangleZoomBorder`. Bind them to `Colors.light`
-  for a light theme.
+  for a light theme. `border.width` is 1 by default.
 
 For a custom tool, call [`zoomToRect()`][zoom-to-rect] with item-local pixels:
 

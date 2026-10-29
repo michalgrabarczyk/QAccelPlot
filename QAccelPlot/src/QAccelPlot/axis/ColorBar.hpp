@@ -7,6 +7,7 @@
 //
 #pragma once
 
+#include "QAccelPlot/Border.hpp"
 #include "QAccelPlot/axis/AxisTicker.hpp"
 #include "QAccelPlot/axis/AxisTicks.hpp"
 #include "QAccelPlot/effects/GradientColorTypes.hpp"
@@ -75,10 +76,8 @@ class ColorBar : public QQuickPaintedItem {
     Q_PROPERTY(qreal labelPadding READ labelPadding WRITE setLabelPadding NOTIFY labelPaddingChanged)
     /// \brief Thickness in pixels of the color strip across the ramp direction. Default: 12.
     Q_PROPERTY(qreal barThickness READ barThickness WRITE setBarThickness NOTIFY barThicknessChanged)
-    /// \brief Color of the outline around the strip. Default: \c Colors.dark.axisLine.
-    Q_PROPERTY(QColor borderColor READ borderColor WRITE setBorderColor NOTIFY borderColorChanged)
-    /// \brief Width in pixels of the outline around the strip. 0 draws no outline. Default: 1.
-    Q_PROPERTY(qreal borderWidth READ borderWidth WRITE setBorderWidth NOTIFY borderWidthChanged)
+    /// \brief Outline inside the strip's edges, e.g. <tt>border.width: 2</tt>. Default: \c Colors.dark.axisLine, width 1.
+    Q_PROPERTY(Border* border READ border CONSTANT)
     /// \brief Width in pixels reserved for the tick labels of a vertical bar. Default: 16.
     ///
     /// The width is fixed, so the implicit width and the title stay in place while the labels
@@ -139,15 +138,8 @@ public:
     /// \brief Sets the strip thickness to \a thickness pixels. Negative values are clamped to 0.
     void setBarThickness(qreal thickness);
 
-    /// \brief Returns the strip outline color.
-    QColor borderColor() const;
-    /// \brief Sets the strip outline color to \a color.
-    void setBorderColor(const QColor& color);
-
-    /// \brief Returns the strip outline width in pixels.
-    qreal borderWidth() const;
-    /// \brief Sets the strip outline width to \a width pixels. Negative values are clamped to 0.
-    void setBorderWidth(qreal width);
+    /// \brief Returns the strip outline settings. The object is owned by the bar.
+    Border* border() const;
 
     /// \brief Returns the width reserved for tick labels in pixels.
     qreal tickLabelWidth() const;
@@ -201,10 +193,6 @@ signals:
     void labelPaddingChanged();
     /// \brief Emitted when the barThickness property changes.
     void barThicknessChanged();
-    /// \brief Emitted when the borderColor property changes.
-    void borderColorChanged();
-    /// \brief Emitted when the borderWidth property changes.
-    void borderWidthChanged();
     /// \brief Emitted when the tickLabelWidth property changes.
     void tickLabelWidthChanged();
     /// \brief Emitted when the interactive property changes.
@@ -275,8 +263,7 @@ private:
     QColor labelColor_{ColorPalette::dark().axisLine};
     qreal labelPadding_{6.0};
     qreal barThickness_{12.0};
-    QColor borderColor_{ColorPalette::dark().axisLine};
-    qreal borderWidth_{1.0};
+    Border* border_{new Border{ColorPalette::dark().axisLine, 1.0, this}};
     qreal tickLabelWidth_{16.0};
     bool interactive_{false};
     qreal zoomScaleFactor_{0.9};

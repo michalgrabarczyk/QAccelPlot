@@ -61,7 +61,7 @@ QAccelPlot/
 │   └── QAccelPlot/
 │       ├── QAccelPlot.hpp/.cpp   — PlotView: main plot canvas item
 │       ├── PlotMouseEvent.*      — Custom mouse event type
-│       ├── PlotBorder.*          — Plot frame decoration
+│       ├── Border.*              — Outline color and width (border grouped property)
 │       ├── MathUtils.hpp         — Math utilities
 │       ├── QAccelPlotLogging.*   — Qt logging category
 │       ├── annotations/          — DataAnchor (attach QML items to data coords)
@@ -87,7 +87,6 @@ QAccelPlot/
 │       ├── series/               — LineCurve, PointCloud, HeatmapSeries, RectangleSeries, BarSeries, BandSeries,
 │       │                           PlotSeries, ColormappedSeries (colormap and value range base),
 │       │                           ErrorBarSeries,
-│       │                           RectangleBorder (border grouped property),
 │       │                           BandEdges (edges grouped property),
 │       │                           LineCurveVertexCache, RectVertexCache,
 │       │                           LineCurveGaps (gaps grouped property),

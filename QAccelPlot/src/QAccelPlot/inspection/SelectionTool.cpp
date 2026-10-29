@@ -181,18 +181,9 @@ void SelectionTool::setFillColor(const QColor& color)
     emit fillColorChanged();
 }
 
-QColor SelectionTool::borderColor() const
+Border* SelectionTool::border() const
 {
-    return borderColor_;
-}
-
-void SelectionTool::setBorderColor(const QColor& color)
-{
-    if (borderColor_ == color) {
-        return;
-    }
-    borderColor_ = color;
-    emit borderColorChanged();
+    return border_;
 }
 
 bool SelectionTool::rectangleVisible() const

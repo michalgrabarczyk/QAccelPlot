@@ -7,9 +7,9 @@
 //
 #pragma once
 
+#include "QAccelPlot/Border.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
 #include "QAccelPlot/series/RectVertexCache.hpp"
-#include "QAccelPlot/series/RectangleBorder.hpp"
 #include "QAccelPlot/series/SpatialGrid.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 
@@ -61,8 +61,10 @@ class RectangleSeries : public PlotSeries {
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
     /// \brief Fill colors indexed by each rectangle's \c category. Default: empty.
     Q_PROPERTY(QList<QColor> categoryColors READ categoryColors WRITE setCategoryColors NOTIFY categoryColorsChanged)
-    /// \brief Grouped outline settings, e.g. <tt>border.width</tt> and <tt>border.color</tt>. No outline by default.
-    Q_PROPERTY(RectangleBorder* border READ border CONSTANT)
+    /// \brief Outline inside each rectangle's edges, e.g. <tt>border.width: 1</tt>. Default: black, width 0.
+    ///
+    /// On rectangles too small for two outlines, the outline narrows so at least 1 px of fill stays visible.
+    Q_PROPERTY(Border* border READ border CONSTANT)
     /// \brief Fill color of the rectangle under the cursor. Default: an invalid color, no highlight.
     Q_PROPERTY(QColor hoverColor READ hoverColor WRITE setHoverColor NOTIFY hoverColorChanged)
     /// \brief Minimum drawn width in pixels, so narrow rectangles stay visible when zoomed out. Default: 1.
@@ -93,7 +95,7 @@ public:
     void setCategoryColors(const QList<QColor>& colors);
 
     /// \brief Returns the grouped outline settings. The object is owned by the series.
-    RectangleBorder* border() const;
+    Border* border() const;
 
     /// \brief Returns the fill color of the hovered rectangle.
     QColor hoverColor() const;
@@ -232,7 +234,7 @@ private:
 
     QColor color_;
     QList<QColor> categoryColors_;
-    RectangleBorder* border_{new RectangleBorder{this}};
+    Border* border_{new Border{Qt::black, 0.0, this}};
     QColor hoverColor_;
     qreal minimumWidth_{1.0};
     qreal minimumHeight_{1.0};

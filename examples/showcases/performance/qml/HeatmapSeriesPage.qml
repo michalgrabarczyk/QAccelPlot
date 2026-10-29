@@ -81,7 +81,7 @@ QAccelPlot.Plot {
             interactive: true
             label: "level"
             labelColor: QAccelPlot.Colors.dark.axisLabel
-            borderColor: hovered ? QAccelPlot.Colors.dark.hover : QAccelPlot.Colors.dark.axisLine
+            border.color: hovered ? QAccelPlot.Colors.dark.hover : QAccelPlot.Colors.dark.axisLine
             ticker.tickColor: QAccelPlot.Colors.dark.tick
             ticker.tickLabelColor: QAccelPlot.Colors.dark.axisTickLabel
         }

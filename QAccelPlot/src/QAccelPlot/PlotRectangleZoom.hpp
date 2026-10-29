@@ -7,6 +7,7 @@
 //
 #pragma once
 
+#include "QAccelPlot/Border.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 
 #include <QColor>
@@ -30,8 +31,8 @@ class PlotRectangleZoom : public QObject {
     Q_PROPERTY(qreal minimumSize READ minimumSize WRITE setMinimumSize NOTIFY minimumSizeChanged)
     /// \brief Selection fill color. Default: Colors.dark.rectangleZoomFill.
     Q_PROPERTY(QColor fillColor READ fillColor WRITE setFillColor NOTIFY fillColorChanged)
-    /// \brief Selection outline color. Default: Colors.dark.rectangleZoomBorder.
-    Q_PROPERTY(QColor borderColor READ borderColor WRITE setBorderColor NOTIFY borderColorChanged)
+    /// \brief Selection outline inside the rectangle's edges. Default: Colors.dark.rectangleZoomBorder, width 1.
+    Q_PROPERTY(Border* border READ border CONSTANT)
     /// \brief Whether a rectangle selection is in progress.
     Q_PROPERTY(bool active READ active NOTIFY activeChanged)
     /// \brief Selection rectangle in plot item-local logical pixels; empty when inactive.
@@ -61,10 +62,8 @@ public:
     /// \brief Sets the selection fill color.
     void setFillColor(const QColor& value);
 
-    /// \brief Returns the selection outline color.
-    QColor borderColor() const;
-    /// \brief Sets the color of the one-logical-pixel selection outline.
-    void setBorderColor(const QColor& value);
+    /// \brief Returns the selection outline settings. The object is owned by this configuration.
+    Border* border() const;
 
     /// \brief Returns whether selection is in progress.
     bool active() const;
@@ -80,8 +79,6 @@ signals:
     void minimumSizeChanged();
     /// \brief Emitted when fillColor changes.
     void fillColorChanged();
-    /// \brief Emitted when borderColor changes.
-    void borderColorChanged();
     /// \brief Emitted when selection starts or ends.
     void activeChanged();
     /// \brief Emitted when the selection rectangle changes.
@@ -95,7 +92,7 @@ private:
     Qt::KeyboardModifiers modifiers_{Qt::ControlModifier};
     qreal minimumSize_{6.0};
     QColor fillColor_{ColorPalette::dark().rectangleZoomFill};
-    QColor borderColor_{ColorPalette::dark().rectangleZoomBorder};
+    Border* border_{new Border{ColorPalette::dark().rectangleZoomBorder, 1.0, this}};
     bool active_{false};
     QRectF selectionRect_;
 };

@@ -46,6 +46,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - Renamed `PlotInspector.position` to `crosshairPosition`, and
   `positionChanged()` to `crosshairPositionChanged()`.
+- Outlines use one `border` grouped property with `color` and `width`.
+  `PlotView.rectangleZoom.borderColor`, `SelectionTool.borderColor`, and
+  `ColorBar.borderColor`/`borderWidth` are now `border.color`/`border.width`.
+  The rectangle zoom and selection outlines can now be wider than 1 px. In C++,
+  `PlotBorder` and `RectangleBorder` are now `Border`
+  (`<QAccelPlot/Border.hpp>`).
 - `ColorBar.series` takes any `ColormappedSeries`, the new base of `PointCloud`,
   `HeatmapSeries`, and `BarSeries`. In C++, `ColorBar::series()` returns a
   `ColormappedSeries*`.

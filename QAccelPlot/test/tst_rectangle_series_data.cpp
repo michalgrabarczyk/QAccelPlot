@@ -476,8 +476,8 @@ void RectangleSeriesDataTest::borderSettingsClampAndNotify()
     auto* border = rectangles.border();
     QCOMPARE(border->width(), 0.0);
     QCOMPARE(border->color(), QColor{Qt::black});
-    auto widthSpy = QSignalSpy{border, &RectangleBorder::widthChanged};
-    auto colorSpy = QSignalSpy{border, &RectangleBorder::colorChanged};
+    auto widthSpy = QSignalSpy{border, &Border::widthChanged};
+    auto colorSpy = QSignalSpy{border, &Border::colorChanged};
 
     border->setWidth(2.0);
     border->setWidth(2.0);

@@ -80,7 +80,7 @@ QAccelPlot::QAccelPlot(QQuickItem* parent)
     setFlag(ItemAcceptsInputMethod, false);
     setFocus(true);
     grid_ = new Grid(this);
-    border_ = new PlotBorder(this);
+    border_ = new Border(Qt::transparent, 0.0, this);
     rectangleZoom_ = new PlotRectangleZoom(this);
     rectangleZoomOverlay_ = new RectangleZoomOverlay(this, rectangleZoom_);
     overlay_ = new QQuickItem(this);
@@ -98,8 +98,8 @@ QAccelPlot::QAccelPlot(QQuickItem* parent)
     connect(grid_, &Grid::gridVerticalLinesVisibleChanged, this, &QAccelPlot::update);
     connect(grid_, &Grid::subGridHorizontalLinesVisibleChanged, this, &QAccelPlot::update);
     connect(grid_, &Grid::subGridVerticalLinesVisibleChanged, this, &QAccelPlot::update);
-    connect(border_, &PlotBorder::colorChanged, this, &QAccelPlot::update);
-    connect(border_, &PlotBorder::widthChanged, this, &QAccelPlot::update);
+    connect(border_, &Border::colorChanged, this, &QAccelPlot::update);
+    connect(border_, &Border::widthChanged, this, &QAccelPlot::update);
 }
 
 QAccelPlot::~QAccelPlot()
@@ -372,7 +372,7 @@ void QAccelPlot::setAxesAreaColor(const QColor& c)
     update();
 }
 
-PlotBorder* QAccelPlot::border() const
+Border* QAccelPlot::border() const
 {
     return border_;
 }

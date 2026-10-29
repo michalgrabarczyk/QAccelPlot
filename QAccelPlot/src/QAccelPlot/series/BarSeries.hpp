@@ -7,9 +7,9 @@
 //
 #pragma once
 
+#include "QAccelPlot/Border.hpp"
 #include "QAccelPlot/series/ColormappedSeries.hpp"
 #include "QAccelPlot/series/RectVertexCache.hpp"
-#include "QAccelPlot/series/RectangleBorder.hpp"
 #include "QAccelPlot/series/SpatialGrid.hpp"
 #include "QAccelPlot/transitions/DataTransition.hpp"
 
@@ -106,8 +106,10 @@ class BarSeries : public ColormappedSeries {
     Q_PROPERTY(QList<QColor> categoryColors READ categoryColors WRITE setCategoryColors NOTIFY categoryColorsChanged)
     /// \brief What the \c colormap maps to a bar's color. Default: \c Value.
     Q_PROPERTY(ColorSource colorSource READ colorSource WRITE setColorSource NOTIFY colorSourceChanged)
-    /// \brief Grouped outline settings, e.g. <tt>border.width</tt> and <tt>border.color</tt>. No outline by default.
-    Q_PROPERTY(RectangleBorder* border READ border CONSTANT)
+    /// \brief Outline inside each bar's edges, e.g. <tt>border.width: 1</tt>. Default: black, width 0.
+    ///
+    /// On bars too small for two outlines, the outline narrows so at least 1 px of fill stays visible.
+    Q_PROPERTY(Border* border READ border CONSTANT)
     /// \brief Fill color of the bar under the cursor. Default: an invalid color, no highlight.
     Q_PROPERTY(QColor hoverColor READ hoverColor WRITE setHoverColor NOTIFY hoverColorChanged)
     /// \brief Optional data transition animation applied when new data arrives.
@@ -171,7 +173,7 @@ public:
     void setColorSource(ColorSource source);
 
     /// \brief Returns the grouped outline settings. The object is owned by the series.
-    RectangleBorder* border() const;
+    Border* border() const;
 
     /// \brief Returns the fill color of the hovered bar.
     QColor hoverColor() const;
@@ -364,7 +366,7 @@ private:
     QColor color_;
     QList<QColor> categoryColors_;
     ColorSource colorSource_{ColorSource::Value};
-    RectangleBorder* border_{new RectangleBorder{this}};
+    Border* border_{new Border{Qt::black, 0.0, this}};
     QColor hoverColor_;
     int hoveredIndex_{-1};
     std::unique_ptr<TransitionRunner> transition_;
