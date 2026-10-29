@@ -2291,8 +2291,8 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;">property <a href="../classQAccelPlot_1_1RectangleBorder/"><strong>RectangleBorder</strong></a> *</td>
-<td style="text-align: left;"><a href="./#property-border-12"><strong>border</strong></a>  <br><em>Grouped outline settings, e.g.</em> <code>border.width</code> <em>and</em><code>border.color</code> <em>. No outline by default.</em></td>
+<td style="text-align: right;">property <a href="../classQAccelPlot_1_1Border/"><strong>Border</strong></a> *</td>
+<td style="text-align: left;"><a href="./#property-border-12"><strong>border</strong></a>  <br><em>Outline inside each rectangle's edges, e.g.</em> <code>border.width: 1</code> <em>. Default: black, width 0.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property QList&lt; QColor &gt;</td>
@@ -2465,7 +2465,7 @@
 <td style="text-align: left;"><a href="#function-rectangleseries"><strong>RectangleSeries</strong></a> (QQuickItem * parent=nullptr) <br><em>Constructs a</em> <a href="./"><em><strong>RectangleSeries</strong></em></a> <em>with the given__parent</em> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classQAccelPlot_1_1RectangleBorder/"><strong>RectangleBorder</strong></a> *</td>
+<td style="text-align: right;"><a href="../classQAccelPlot_1_1Border/"><strong>Border</strong></a> *</td>
 <td style="text-align: left;"><a href="#function-border-22"><strong>border</strong></a> () const<br><em>Returns the grouped outline settings. The object is owned by the series.</em></td>
 </tr>
 <tr>
@@ -2975,9 +2975,10 @@
 <p><strong>See also:</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>LineCurve</strong></a>, <a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> </p>
 <h2 id="public-properties-documentation">Public Properties Documentation<a class="headerlink" href="#public-properties-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="property-border-12">property border<a class="headerlink" href="#property-border-12" title="Permanent link">&para;</a></h3>
-<p><em>Grouped outline settings, e.g.</em> <code>border.width</code> <em>and</em><code>border.color</code> <em>. No outline by default.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">RectangleBorder</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">border</span><span class="p">;</span>
+<p><em>Outline inside each rectangle's edges, e.g.</em> <code>border.width: 1</code> <em>. Default: black, width 0.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">Border</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">border</span><span class="p">;</span>
 </code></pre></div></p>
+<p>On rectangles too small for two outlines, the outline narrows so at least 1 px of fill stays visible. </p>
 <hr>
 
 <h3 id="property-categorycolors-12">property categoryColors<a class="headerlink" href="#property-categorycolors-12" title="Permanent link">&para;</a></h3>
@@ -3075,7 +3076,7 @@
 
 <h3 id="function-border-22">function border<a class="headerlink" href="#function-border-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the grouped outline settings. The object is owned by the series.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">RectangleBorder</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">border</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">Border</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">border</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 

@@ -65,7 +65,7 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 | property bool | [**active**](classQAccelPlot_1_1PlotRectangleZoom.md#property-active-12)  <br>_Whether a rectangle selection is in progress._  |
-| property QColor | [**borderColor**](classQAccelPlot_1_1PlotRectangleZoom.md#property-bordercolor-12)  <br>_Selection outline color. Default: Colors.dark.rectangleZoomBorder._  |
+| property [**Border**](classQAccelPlot_1_1Border.md) \* | [**border**](classQAccelPlot_1_1PlotRectangleZoom.md#property-border-12)  <br>_Selection outline inside the rectangle's edges. Default: Colors.dark.rectangleZoomBorder, width 1._  |
 | property QML\_ANONYMOUSbool | [**enabled**](classQAccelPlot_1_1PlotRectangleZoom.md#property-enabled-12)  <br>_Enables rectangle selection with the left mouse button. Default: false._  |
 | property QColor | [**fillColor**](classQAccelPlot_1_1PlotRectangleZoom.md#property-fillcolor-12)  <br>_Selection fill color. Default: Colors.dark.rectangleZoomFill._  |
 | property qreal | [**minimumSize**](classQAccelPlot_1_1PlotRectangleZoom.md#property-minimumsize-12)  <br>_Minimum selection width and height in logical pixels. Default: 6; clamped to zero or greater._  |
@@ -80,7 +80,6 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 | signal void | [**activeChanged**](classQAccelPlot_1_1PlotRectangleZoom.md#signal-activechanged)  <br>_Emitted when selection starts or ends._  |
-| signal void | [**borderColorChanged**](classQAccelPlot_1_1PlotRectangleZoom.md#signal-bordercolorchanged)  <br>_Emitted when borderColor changes._  |
 | signal void | [**enabledChanged**](classQAccelPlot_1_1PlotRectangleZoom.md#signal-enabledchanged)  <br>_Emitted when enabled changes._  |
 | signal void | [**fillColorChanged**](classQAccelPlot_1_1PlotRectangleZoom.md#signal-fillcolorchanged)  <br>_Emitted when fillColor changes._  |
 | signal void | [**minimumSizeChanged**](classQAccelPlot_1_1PlotRectangleZoom.md#signal-minimumsizechanged)  <br>_Emitted when minimumSize changes._  |
@@ -96,13 +95,12 @@ flowchart TB
 | ---: | :--- |
 |   | [**PlotRectangleZoom**](#function-plotrectanglezoom) (QObject \* parent=nullptr) <br>_Constructs configuration owned by the given parent._  |
 |  bool | [**active**](#function-active-22) () const<br>_Returns whether selection is in progress._  |
-|  QColor | [**borderColor**](#function-bordercolor-22) () const<br>_Returns the selection outline color._  |
+|  [**Border**](classQAccelPlot_1_1Border.md) \* | [**border**](#function-border-22) () const<br>_Returns the selection outline settings. The object is owned by this configuration._  |
 |  bool | [**enabled**](#function-enabled-22) () const<br>_Returns whether rectangle selection is enabled._  |
 |  QColor | [**fillColor**](#function-fillcolor-22) () const<br>_Returns the selection fill color._  |
 |  qreal | [**minimumSize**](#function-minimumsize-22) () const<br>_Returns the minimum selection width and height in logical pixels._  |
 |  Qt::KeyboardModifiers | [**modifiers**](#function-modifiers-22) () const<br>_Returns the required keyboard modifiers._  |
 |  QRectF | [**selectionRect**](#function-selectionrect-22) () const<br>_Returns the current item-local selection rectangle._  |
-|  void | [**setBorderColor**](#function-setbordercolor) (const QColor & value) <br>_Sets the color of the one-logical-pixel selection outline._  |
 |  void | [**setEnabled**](#function-setenabled) (bool value) <br>_Enables or disables rectangle selection; changing this setting cancels an active selection._  |
 |  void | [**setFillColor**](#function-setfillcolor) (const QColor & value) <br>_Sets the selection fill color._  |
 |  void | [**setMinimumSize**](#function-setminimumsize) (qreal value) <br>_Sets the minimum size, clamping negative values to zero and ignoring nonfinite values._  |
@@ -156,11 +154,11 @@ bool QAccelPlot::PlotRectangleZoom::active;
 
 
 
-### property borderColor {#property-bordercolor-12}
+### property border {#property-border-12}
 
-_Selection outline color. Default: Colors.dark.rectangleZoomBorder._ 
+_Selection outline inside the rectangle's edges. Default: Colors.dark.rectangleZoomBorder, width 1._ 
 ```C++
-QColor QAccelPlot::PlotRectangleZoom::borderColor;
+Border* QAccelPlot::PlotRectangleZoom::border;
 ```
 
 
@@ -253,21 +251,6 @@ QRectF QAccelPlot::PlotRectangleZoom::selectionRect;
 _Emitted when selection starts or ends._ 
 ```C++
 void QAccelPlot::PlotRectangleZoom::activeChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
-### signal borderColorChanged {#signal-bordercolorchanged}
-
-_Emitted when borderColor changes._ 
-```C++
-void QAccelPlot::PlotRectangleZoom::borderColorChanged;
 ```
 
 
@@ -387,11 +370,11 @@ bool QAccelPlot::PlotRectangleZoom::active () const
 
 
 
-### function borderColor {#function-bordercolor-22}
+### function border {#function-border-22}
 
-_Returns the selection outline color._ 
+_Returns the selection outline settings. The object is owned by this configuration._ 
 ```C++
-QColor QAccelPlot::PlotRectangleZoom::borderColor () const
+Border * QAccelPlot::PlotRectangleZoom::border () const
 ```
 
 
@@ -467,23 +450,6 @@ Qt::KeyboardModifiers QAccelPlot::PlotRectangleZoom::modifiers () const
 _Returns the current item-local selection rectangle._ 
 ```C++
 QRectF QAccelPlot::PlotRectangleZoom::selectionRect () const
-```
-
-
-
-
-<hr>
-
-
-
-
-### function setBorderColor {#function-setbordercolor}
-
-_Sets the color of the one-logical-pixel selection outline._ 
-```C++
-void QAccelPlot::PlotRectangleZoom::setBorderColor (
-    const QColor & value
-) 
 ```
 
 

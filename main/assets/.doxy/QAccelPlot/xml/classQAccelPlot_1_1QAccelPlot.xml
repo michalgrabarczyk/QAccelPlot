@@ -191,15 +191,15 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/QAccelPlot.hpp" line="74" column="5" bodyfile="QAccelPlot/src/QAccelPlot/QAccelPlot.hpp" bodystart="74" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="classQAccelPlot_1_1QAccelPlot_1a9b8c5a70da4c55fdb8cb432b02a0dedc" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type><ref refid="classQAccelPlot_1_1PlotBorder" kindref="compound">PlotBorder</ref> *</type>
-        <definition>PlotBorder* QAccelPlot::QAccelPlot::border</definition>
+      <memberdef kind="property" id="classQAccelPlot_1_1QAccelPlot_1a767f5665a1291359807b78bdbc226ad8" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1Border" kindref="compound">Border</ref> *</type>
+        <definition>Border* QAccelPlot::QAccelPlot::border</definition>
         <argsstring></argsstring>
         <name>border</name>
         <qualifiedname>QAccelPlot::QAccelPlot::border</qualifiedname>
         <read>border</read>
         <briefdescription>
-<para>Decorative frame configuration for the plot area. </para>
+<para>Frame inside the plot area&apos;s edges, e.g. <computeroutput>border.width: 2</computeroutput>. Default: transparent, width 0. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -650,9 +650,9 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/QAccelPlot.hpp" line="291" column="10" bodyfile="QAccelPlot/src/QAccelPlot/QAccelPlot.hpp" bodystart="291" bodyend="291"/>
       </memberdef>
-      <memberdef kind="variable" id="classQAccelPlot_1_1QAccelPlot_1a81fdcf2fadb7f60beedfdff116cac735" prot="private" static="no" mutable="no">
-        <type><ref refid="classQAccelPlot_1_1PlotBorder" kindref="compound">PlotBorder</ref> *</type>
-        <definition>PlotBorder* QAccelPlot::QAccelPlot::border_</definition>
+      <memberdef kind="variable" id="classQAccelPlot_1_1QAccelPlot_1a7361bb1c3cb61d219e27b0481ccc259b" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1Border" kindref="compound">Border</ref> *</type>
+        <definition>Border* QAccelPlot::QAccelPlot::border_</definition>
         <argsstring></argsstring>
         <name>border_</name>
         <qualifiedname>QAccelPlot::QAccelPlot::border_</qualifiedname>
@@ -663,7 +663,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/QAccelPlot.hpp" line="292" column="16" bodyfile="QAccelPlot/src/QAccelPlot/QAccelPlot.hpp" bodystart="292" bodyend="292"/>
+        <location file="QAccelPlot/src/QAccelPlot/QAccelPlot.hpp" line="292" column="12" bodyfile="QAccelPlot/src/QAccelPlot/QAccelPlot.hpp" bodystart="292" bodyend="292"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1QAccelPlot_1af07b6f88a5b66893aa098c3fd95f5cba" prot="private" static="no" mutable="no">
         <type><ref refid="classQAccelPlot_1_1PlotRectangleZoom" kindref="compound">PlotRectangleZoom</ref> *</type>
@@ -1222,20 +1222,20 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/QAccelPlot.hpp" line="162" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1QAccelPlot_1a6351ba86660dd6dd1bd65ca5d9962b01" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classQAccelPlot_1_1PlotBorder" kindref="compound">PlotBorder</ref> *</type>
-        <definition>PlotBorder * QAccelPlot::QAccelPlot::border</definition>
+      <memberdef kind="function" id="classQAccelPlot_1_1QAccelPlot_1ab9178057461d1dd2a79f57c870a2dfcd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1Border" kindref="compound">Border</ref> *</type>
+        <definition>Border * QAccelPlot::QAccelPlot::border</definition>
         <argsstring>() const</argsstring>
         <name>border</name>
         <qualifiedname>QAccelPlot::QAccelPlot::border</qualifiedname>
         <briefdescription>
-<para>Returns the decorative plot-frame configuration object. </para>
+<para>Returns the plot-area frame settings. The object is owned by the plot. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/QAccelPlot.hpp" line="165" column="16"/>
+        <location file="QAccelPlot/src/QAccelPlot/QAccelPlot.hpp" line="165" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1QAccelPlot_1a862faea069c043a0e8451b93b91f7f9d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classQAccelPlot_1_1PlotRectangleZoom" kindref="compound">PlotRectangleZoom</ref> *</type>
@@ -2060,9 +2060,9 @@
       <member refid="classQAccelPlot_1_1QAccelPlot_1a886ab2c7d0c58bf1d3bb24deda783194" prot="public" virt="non-virtual"><scope>QAccelPlot::QAccelPlot</scope><name>axesAreaColorChanged</name></member>
       <member refid="classQAccelPlot_1_1QAccelPlot_1af7b3c5171c5c0f634e44338cf6c64796" prot="private" virt="non-virtual"><scope>QAccelPlot::QAccelPlot</scope><name>axisDestroyed</name></member>
       <member refid="classQAccelPlot_1_1QAccelPlot_1a5ca2cd36d0d56e93c7eace5e8873e756" prot="private" virt="non-virtual"><scope>QAccelPlot::QAccelPlot</scope><name>beginExport</name></member>
-      <member refid="classQAccelPlot_1_1QAccelPlot_1a9b8c5a70da4c55fdb8cb432b02a0dedc" prot="public" virt="non-virtual"><scope>QAccelPlot::QAccelPlot</scope><name>border</name></member>
-      <member refid="classQAccelPlot_1_1QAccelPlot_1a6351ba86660dd6dd1bd65ca5d9962b01" prot="public" virt="non-virtual"><scope>QAccelPlot::QAccelPlot</scope><name>border</name></member>
-      <member refid="classQAccelPlot_1_1QAccelPlot_1a81fdcf2fadb7f60beedfdff116cac735" prot="private" virt="non-virtual"><scope>QAccelPlot::QAccelPlot</scope><name>border_</name></member>
+      <member refid="classQAccelPlot_1_1QAccelPlot_1a767f5665a1291359807b78bdbc226ad8" prot="public" virt="non-virtual"><scope>QAccelPlot::QAccelPlot</scope><name>border</name></member>
+      <member refid="classQAccelPlot_1_1QAccelPlot_1ab9178057461d1dd2a79f57c870a2dfcd" prot="public" virt="non-virtual"><scope>QAccelPlot::QAccelPlot</scope><name>border</name></member>
+      <member refid="classQAccelPlot_1_1QAccelPlot_1a7361bb1c3cb61d219e27b0481ccc259b" prot="private" virt="non-virtual"><scope>QAccelPlot::QAccelPlot</scope><name>border_</name></member>
       <member refid="classQAccelPlot_1_1QAccelPlot_1a68beec6552fb35816d9e825381e50107" prot="private" virt="non-virtual"><scope>QAccelPlot::QAccelPlot</scope><name>cancelRectangleSelection</name></member>
       <member refid="classQAccelPlot_1_1QAccelPlot_1a9bf9cbbc3ff84bb57e8f4f9dd11804ef" prot="private" virt="non-virtual"><scope>QAccelPlot::QAccelPlot</scope><name>clearExtraAxes</name></member>
       <member refid="classQAccelPlot_1_1QAccelPlot_1a8cdef0927cabf4eb960e061099fadc01" prot="private" virt="non-virtual"><scope>QAccelPlot::QAccelPlot</scope><name>connectAxis</name></member>

@@ -88,7 +88,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 | Type | Name |
 | ---: | :--- |
-| property [**RectangleBorder**](classQAccelPlot_1_1RectangleBorder.md) \* | [**border**](classQAccelPlot_1_1RectangleSeries.md#property-border-12)  <br>_Grouped outline settings, e.g._ `border.width` _and_`border.color` _. No outline by default._ |
+| property [**Border**](classQAccelPlot_1_1Border.md) \* | [**border**](classQAccelPlot_1_1RectangleSeries.md#property-border-12)  <br>_Outline inside each rectangle's edges, e.g._ `border.width: 1` _. Default: black, width 0._ |
 | property QList&lt; QColor &gt; | [**categoryColors**](classQAccelPlot_1_1RectangleSeries.md#property-categorycolors-12)  <br>_Fill colors indexed by each rectangle's_ `category` _. Default: empty._ |
 | property QColor | [**color**](classQAccelPlot_1_1RectangleSeries.md#property-color-12)  <br>_Fill color of rectangles without a category color. Default:_ `Colors.dark.seriesPrimary` _with alpha 50._ |
 | property int | [**count**](classQAccelPlot_1_1RectangleSeries.md#property-count-12)  <br>_Read-only: number of rectangles currently loaded._  |
@@ -156,7 +156,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | Type | Name |
 | ---: | :--- |
 |   | [**RectangleSeries**](#function-rectangleseries) (QQuickItem \* parent=nullptr) <br>_Constructs a_ [_**RectangleSeries**_](classQAccelPlot_1_1RectangleSeries.md) _with the given__parent_ _._ |
-|  [**RectangleBorder**](classQAccelPlot_1_1RectangleBorder.md) \* | [**border**](#function-border-22) () const<br>_Returns the grouped outline settings. The object is owned by the series._  |
+|  [**Border**](classQAccelPlot_1_1Border.md) \* | [**border**](#function-border-22) () const<br>_Returns the grouped outline settings. The object is owned by the series._  |
 |  QList&lt; QColor &gt; | [**categoryColors**](#function-categorycolors-22) () const<br>_Returns the fill colors indexed by category._  |
 | virtual Q\_INVOKABLE void | [**clearData**](#function-cleardata) () override<br>_Removes all rectangles._  |
 |  QColor | [**color**](#function-color-22) () const<br>_Returns the rectangle fill color._  |
@@ -385,13 +385,17 @@ Up to 16,777,216 (2^24) rectangles are drawn correctly. The shader indexes recta
 
 ### property border {#property-border-12}
 
-_Grouped outline settings, e.g._ `border.width` _and_`border.color` _. No outline by default._
+_Outline inside each rectangle's edges, e.g._ `border.width: 1` _. Default: black, width 0._
 ```C++
-RectangleBorder* QAccelPlot::RectangleSeries::border;
+Border* QAccelPlot::RectangleSeries::border;
 ```
 
 
 
+On rectangles too small for two outlines, the outline narrows so at least 1 px of fill stays visible. 
+
+
+        
 
 <hr>
 
@@ -637,7 +641,7 @@ explicit QAccelPlot::RectangleSeries::RectangleSeries (
 
 _Returns the grouped outline settings. The object is owned by the series._ 
 ```C++
-RectangleBorder * QAccelPlot::RectangleSeries::border () const
+Border * QAccelPlot::RectangleSeries::border () const
 ```
 
 

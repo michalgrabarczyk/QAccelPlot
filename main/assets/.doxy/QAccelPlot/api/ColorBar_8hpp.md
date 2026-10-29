@@ -17,6 +17,7 @@
 
 
 
+* `#include "QAccelPlot/Border.hpp"`
 * `#include "QAccelPlot/axis/AxisTicker.hpp"`
 * `#include "QAccelPlot/axis/AxisTicks.hpp"`
 * `#include "QAccelPlot/effects/GradientColorTypes.hpp"`

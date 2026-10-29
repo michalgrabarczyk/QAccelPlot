@@ -17,6 +17,7 @@
 
 
 
+* `#include "QAccelPlot/Border.hpp"`
 * `#include "QAccelPlot/PlotDragRect.hpp"`
 * `#include "QAccelPlot/QAccelPlot.hpp"`
 * `#include "QAccelPlot/inspection/InspectionRowModel.hpp"`

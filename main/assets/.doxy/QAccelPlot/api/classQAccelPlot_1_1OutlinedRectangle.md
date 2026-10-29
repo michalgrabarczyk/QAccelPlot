@@ -15,7 +15,7 @@
 
 
 
-_Item that fills its bounds and outlines them with a line of one logical pixel._ 
+_Item that fills its bounds and outlines them inside its edges._ 
 
 * `#include <OutlinedRectangle.hpp>`
 
@@ -78,7 +78,7 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 |   | [**OutlinedRectangle**](#function-outlinedrectangle) (QQuickItem \* parent=nullptr) <br> |
-|  void | [**setColors**](#function-setcolors) (const QColor & fill, const QColor & border) <br>_Sets the_ _fill_ _and__border_ _colors._ |
+|  void | [**setStyle**](#function-setstyle) (const QColor & fill, const QColor & borderColor, qreal borderWidth) <br>_Sets the_ _fill_ _color and an outline of__borderColor_ _,__borderWidth_ _logical pixels wide._ |
 
 
 
@@ -134,13 +134,14 @@ explicit QAccelPlot::OutlinedRectangle::OutlinedRectangle (
 
 
 
-### function setColors {#function-setcolors}
+### function setStyle {#function-setstyle}
 
-_Sets the_ _fill_ _and__border_ _colors._
+_Sets the_ _fill_ _color and an outline of__borderColor_ _,__borderWidth_ _logical pixels wide._
 ```C++
-void QAccelPlot::OutlinedRectangle::setColors (
+void QAccelPlot::OutlinedRectangle::setStyle (
     const QColor & fill,
-    const QColor & border
+    const QColor & borderColor,
+    qreal borderWidth
 ) 
 ```
 

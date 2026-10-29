@@ -17,6 +17,7 @@
 
 
 
+* `#include "QAccelPlot/Border.hpp"`
 * `#include "QAccelPlot/theme/ColorPalette.hpp"`
 * `#include <QColor>`
 * `#include <QObject>`

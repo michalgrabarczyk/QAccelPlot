@@ -17,7 +17,7 @@
 //
 #pragma once
 
-#include "QAccelPlot/PlotBorder.hpp"
+#include "QAccelPlot/Border.hpp"
 #include "QAccelPlot/PlotDragRect.hpp"
 #include "QAccelPlot/PlotMouseEvent.hpp"
 #include "QAccelPlot/PlotRectangleZoom.hpp"
@@ -55,7 +55,7 @@ class QAccelPlot : public QQuickItem {
     Q_PROPERTY(QRectF plotRect READ plotRect NOTIFY plotRectChanged)
     Q_PROPERTY(QColor plotAreaColor READ plotAreaColor WRITE setPlotAreaColor NOTIFY plotAreaColorChanged)
     Q_PROPERTY(QColor axesAreaColor READ axesAreaColor WRITE setAxesAreaColor NOTIFY axesAreaColorChanged)
-    Q_PROPERTY(PlotBorder* border READ border CONSTANT)
+    Q_PROPERTY(Border* border READ border CONSTANT)
     Q_PROPERTY(PlotRectangleZoom* rectangleZoom READ rectangleZoom CONSTANT)
     Q_PROPERTY(Grid* grid READ grid CONSTANT)
     Q_PROPERTY(QList<PlotSeries*> series READ series NOTIFY seriesChanged)
@@ -105,7 +105,7 @@ public:
     QColor axesAreaColor() const;
     void setAxesAreaColor(const QColor& c);
 
-    PlotBorder* border() const;
+    Border* border() const;
 
     PlotRectangleZoom* rectangleZoom() const;
 
@@ -206,7 +206,7 @@ private:
     // One exporter captures the plot at a time: the capture changes how the plot renders.
     bool exporting_{false};
     bool transparentBackground_{false};
-    PlotBorder* border_{nullptr};
+    Border* border_{nullptr};
     PlotRectangleZoom* rectangleZoom_{nullptr};
     RectangleZoomOverlay* rectangleZoomOverlay_{nullptr};
     QQuickItem* overlay_{nullptr};

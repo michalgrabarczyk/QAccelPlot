@@ -17,6 +17,7 @@
 //
 #pragma once
 
+#include "QAccelPlot/Border.hpp"
 #include "QAccelPlot/PlotDragRect.hpp"
 #include "QAccelPlot/QAccelPlot.hpp"
 #include "QAccelPlot/inspection/InspectionRowModel.hpp"
@@ -39,7 +40,7 @@ class SelectionTool : public QObject {
     Q_PROPERTY(Qt::KeyboardModifiers modifiers READ modifiers WRITE setModifiers NOTIFY modifiersChanged)
     Q_PROPERTY(qreal minimumSize READ minimumSize WRITE setMinimumSize NOTIFY minimumSizeChanged)
     Q_PROPERTY(QColor fillColor READ fillColor WRITE setFillColor NOTIFY fillColorChanged)
-    Q_PROPERTY(QColor borderColor READ borderColor WRITE setBorderColor NOTIFY borderColorChanged)
+    Q_PROPERTY(::QAccelPlot::Border* border READ border CONSTANT)
     Q_PROPERTY(bool rectangleVisible READ rectangleVisible WRITE setRectangleVisible NOTIFY rectangleVisibleChanged)
     Q_PROPERTY(bool selecting READ selecting NOTIFY selectingChanged)
     Q_PROPERTY(bool hasSelection READ hasSelection NOTIFY selectionChanged)
@@ -79,8 +80,7 @@ public:
     void setMinimumSize(qreal size);
     QColor fillColor() const;
     void setFillColor(const QColor& color);
-    QColor borderColor() const;
-    void setBorderColor(const QColor& color);
+    Border* border() const;
     bool rectangleVisible() const;
     void setRectangleVisible(bool visible);
     bool selecting() const;
@@ -106,7 +106,6 @@ signals:
     void modifiersChanged();
     void minimumSizeChanged();
     void fillColorChanged();
-    void borderColorChanged();
     void rectangleVisibleChanged();
     void selectingChanged();
     void selectionChanged();
@@ -145,7 +144,7 @@ private:
     Qt::KeyboardModifiers modifiers_{Qt::ShiftModifier};
     qreal minimumSize_{6.0};
     QColor fillColor_{ColorPalette::dark().selectionFill};
-    QColor borderColor_{ColorPalette::dark().selectionBorder};
+    Border* border_{new Border{ColorPalette::dark().selectionBorder, 1.0, this}};
     bool rectangleVisible_{true};
     PlotDragRect drag_;
     bool hasSelection_{false};

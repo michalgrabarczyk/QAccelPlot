@@ -112,7 +112,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | property qreal | [**barOffset**](classQAccelPlot_1_1BarSeries.md#property-baroffset-12)  <br>_Shift of every bar along the position axis in data units, e.g. for grouped bars. Default: 0._  |
 | property qreal | [**barWidth**](classQAccelPlot_1_1BarSeries.md#property-barwidth-12)  <br>_Bar width in position-axis data units. Default: 0.8. Clamped to at least 0._  |
 | property qreal | [**baselineValue**](classQAccelPlot_1_1BarSeries.md#property-baselinevalue-12)  <br>_Value the bars start from. Default: 0._  |
-| property [**RectangleBorder**](classQAccelPlot_1_1RectangleBorder.md) \* | [**border**](classQAccelPlot_1_1BarSeries.md#property-border-12)  <br>_Grouped outline settings, e.g._ `border.width` _and_`border.color` _. No outline by default._ |
+| property [**Border**](classQAccelPlot_1_1Border.md) \* | [**border**](classQAccelPlot_1_1BarSeries.md#property-border-12)  <br>_Outline inside each bar's edges, e.g._ `border.width: 1` _. Default: black, width 0._ |
 | property QList&lt; QColor &gt; | [**categoryColors**](classQAccelPlot_1_1BarSeries.md#property-categorycolors-12)  <br>_Fill colors indexed by each bar's_ `category` _. Default: empty._ |
 | property QColor | [**color**](classQAccelPlot_1_1BarSeries.md#property-color-12)  <br>_Fill color of bars without a category color. Default:_ `Colors.dark.seriesPrimary` _._ |
 | property [**ColorSource**](classQAccelPlot_1_1BarSeries.md#enum-colorsource) | [**colorSource**](classQAccelPlot_1_1BarSeries.md#property-colorsource-12)  <br>_What the_ `colormap` _maps to a bar's color. Default:_`Value` _._ |
@@ -217,7 +217,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  qreal | [**barOffset**](#function-baroffset-22) () const<br>_Returns the shift of every bar along the position axis in data units._  |
 |  qreal | [**barWidth**](#function-barwidth-22) () const<br>_Returns the bar width in position-axis data units._  |
 |  qreal | [**baselineValue**](#function-baselinevalue-22) () const<br>_Returns the value the bars start from._  |
-|  [**RectangleBorder**](classQAccelPlot_1_1RectangleBorder.md) \* | [**border**](#function-border-22) () const<br>_Returns the grouped outline settings. The object is owned by the series._  |
+|  [**Border**](classQAccelPlot_1_1Border.md) \* | [**border**](#function-border-22) () const<br>_Returns the grouped outline settings. The object is owned by the series._  |
 |  QList&lt; QColor &gt; | [**categoryColors**](#function-categorycolors-22) () const<br>_Returns the fill colors indexed by category._  |
 | virtual Q\_INVOKABLE void | [**clearData**](#function-cleardata) () override<br>_Removes all bars._  |
 |  QColor | [**color**](#function-color-22) () const<br>_Returns the bar fill color._  |
@@ -608,13 +608,17 @@ qreal QAccelPlot::BarSeries::baselineValue;
 
 ### property border {#property-border-12}
 
-_Grouped outline settings, e.g._ `border.width` _and_`border.color` _. No outline by default._
+_Outline inside each bar's edges, e.g._ `border.width: 1` _. Default: black, width 0._
 ```C++
-RectangleBorder* QAccelPlot::BarSeries::border;
+Border* QAccelPlot::BarSeries::border;
 ```
 
 
 
+On bars too small for two outlines, the outline narrows so at least 1 px of fill stays visible. 
+
+
+        
 
 <hr>
 
@@ -1044,7 +1048,7 @@ qreal QAccelPlot::BarSeries::baselineValue () const
 
 _Returns the grouped outline settings. The object is owned by the series._ 
 ```C++
-RectangleBorder * QAccelPlot::BarSeries::border () const
+Border * QAccelPlot::BarSeries::border () const
 ```
 
 

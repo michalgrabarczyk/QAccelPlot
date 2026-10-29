@@ -1412,10 +1412,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#function-setcolors" class="md-nav__link">
+  <a href="#function-setstyle" class="md-nav__link">
     <span class="md-ellipsis">
       
-        function setColors
+        function setStyle
       
     </span>
   </a>
@@ -1474,7 +1474,7 @@
 
 <h1 id="class-qaccelplotoutlinedrectangle">Class QAccelPlot::OutlinedRectangle<a class="headerlink" href="#class-qaccelplotoutlinedrectangle" title="Permanent link">&para;</a></h1>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="./"><strong>OutlinedRectangle</strong></a></p>
-<p><em>Item that fills its bounds and outlines them with a line of one logical pixel.</em> </p>
+<p><em>Item that fills its bounds and outlines them inside its edges.</em> </p>
 <ul>
 <li><code>#include &lt;OutlinedRectangle.hpp&gt;</code></li>
 </ul>
@@ -1506,7 +1506,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setcolors"><strong>setColors</strong></a> (const QColor &amp; fill, const QColor &amp; border) <br><em>Sets the</em> <em>fill</em> <em>and__border</em> <em>colors.</em></td>
+<td style="text-align: left;"><a href="#function-setstyle"><strong>setStyle</strong></a> (const QColor &amp; fill, const QColor &amp; borderColor, qreal borderWidth) <br><em>Sets the</em> <em>fill</em> <em>color and an outline of__borderColor</em> _,_<em>borderWidth</em> <em>logical pixels wide.</em></td>
 </tr>
 </tbody>
 </table>
@@ -1533,12 +1533,13 @@
 </code></pre></div>
 <hr>
 
-<h3 id="function-setcolors">function setColors<a class="headerlink" href="#function-setcolors" title="Permanent link">&para;</a></h3>
-<p><em>Sets the</em> <em>fill</em> <em>and__border</em> <em>colors.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">OutlinedRectangle</span><span class="o">::</span><span class="n">setColors</span><span class="w"> </span><span class="p">(</span>
+<h3 id="function-setstyle">function setStyle<a class="headerlink" href="#function-setstyle" title="Permanent link">&para;</a></h3>
+<p><em>Sets the</em> <em>fill</em> <em>color and an outline of__borderColor</em> _,_<em>borderWidth</em> <em>logical pixels wide.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">OutlinedRectangle</span><span class="o">::</span><span class="n">setStyle</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">fill</span><span class="p">,</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">border</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">)</span><span class="w"> </span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">borderColor</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">borderWidth</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 <h2 id="protected-functions-documentation">Protected Functions Documentation<a class="headerlink" href="#protected-functions-documentation" title="Permanent link">&para;</a></h2>

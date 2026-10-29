@@ -45,7 +45,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| class | [**OutlinedRectangle**](classQAccelPlot_1_1OutlinedRectangle.md) <br>_Item that fills its bounds and outlines them with a line of one logical pixel._  |
+| class | [**OutlinedRectangle**](classQAccelPlot_1_1OutlinedRectangle.md) <br>_Item that fills its bounds and outlines them inside its edges._  |
 
 
 

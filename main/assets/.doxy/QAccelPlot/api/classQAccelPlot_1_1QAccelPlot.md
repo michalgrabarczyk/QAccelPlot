@@ -65,7 +65,7 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 | property QColor | [**axesAreaColor**](classQAccelPlot_1_1QAccelPlot.md#property-axesareacolor-12)  <br>_Background color of the axes surround area. Default:_ `Colors.dark.axesArea` _._ |
-| property [**PlotBorder**](classQAccelPlot_1_1PlotBorder.md) \* | [**border**](classQAccelPlot_1_1QAccelPlot.md#property-border-12)  <br>_Decorative frame configuration for the plot area._  |
+| property [**Border**](classQAccelPlot_1_1Border.md) \* | [**border**](classQAccelPlot_1_1QAccelPlot.md#property-border-12)  <br>_Frame inside the plot area's edges, e.g._ `border.width: 2` _. Default: transparent, width 0._ |
 | property QQmlListProperty&lt; [**Axis**](classQAccelPlot_1_1Axis.md) &gt; | [**extraAxes**](classQAccelPlot_1_1QAccelPlot.md#property-extraaxes-12)  <br>_Additional axes beyond the primary four; each extra axis must supply its own side._  |
 | property [**Grid**](classQAccelPlot_1_1Grid.md) \* | [**grid**](classQAccelPlot_1_1QAccelPlot.md#property-grid-12)  <br>_Read-only constant: grid configuration object._  |
 | property QQuickItem \* | [**overlay**](classQAccelPlot_1_1QAccelPlot.md#property-overlay-12)  <br>_Read-only constant: item that fills the plot and is stacked above the series, the zoom rectangle, and the_ `Plot` _legend._ |
@@ -114,7 +114,7 @@ flowchart TB
 | ---: | :--- |
 |   | [**QAccelPlot**](#function-qaccelplot) (QQuickItem \* parent=nullptr) <br>_Constructs a PlotView with the given_ _parent_ _._ |
 |  QColor | [**axesAreaColor**](#function-axesareacolor-22) () const<br>_Returns the axes surround background color._  |
-|  [**PlotBorder**](classQAccelPlot_1_1PlotBorder.md) \* | [**border**](#function-border-22) () const<br>_Returns the decorative plot-frame configuration object._  |
+|  [**Border**](classQAccelPlot_1_1Border.md) \* | [**border**](#function-border-22) () const<br>_Returns the plot-area frame settings. The object is owned by the plot._  |
 |  Q\_INVOKABLE qreal | [**dataToPixelX**](#function-datatopixelx) (qreal dataValue) const<br>_Converts a horizontal data-space value to an item-local pixel X coordinate._  |
 |  Q\_INVOKABLE qreal | [**dataToPixelY**](#function-datatopixely) (qreal dataValue) const<br>_Converts a vertical data-space value to an item-local pixel Y coordinate._  |
 |  QQmlListProperty&lt; [**Axis**](classQAccelPlot_1_1Axis.md) &gt; | [**extraAxes**](#function-extraaxes-22) () <br>_Returns the QML list property for extra axes._  |
@@ -226,9 +226,9 @@ QColor QAccelPlot::QAccelPlot::axesAreaColor;
 
 ### property border {#property-border-12}
 
-_Decorative frame configuration for the plot area._ 
+_Frame inside the plot area's edges, e.g._ `border.width: 2` _. Default: transparent, width 0._
 ```C++
-PlotBorder* QAccelPlot::QAccelPlot::border;
+Border* QAccelPlot::QAccelPlot::border;
 ```
 
 
@@ -735,9 +735,9 @@ QColor QAccelPlot::QAccelPlot::axesAreaColor () const
 
 ### function border {#function-border-22}
 
-_Returns the decorative plot-frame configuration object._ 
+_Returns the plot-area frame settings. The object is owned by the plot._ 
 ```C++
-PlotBorder * QAccelPlot::QAccelPlot::border () const
+Border * QAccelPlot::QAccelPlot::border () const
 ```
 
 

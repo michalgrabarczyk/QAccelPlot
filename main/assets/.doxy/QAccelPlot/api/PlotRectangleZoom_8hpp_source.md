@@ -17,6 +17,7 @@
 //
 #pragma once
 
+#include "QAccelPlot/Border.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 
 #include <QColor>
@@ -35,7 +36,7 @@ class PlotRectangleZoom : public QObject {
     Q_PROPERTY(Qt::KeyboardModifiers modifiers READ modifiers WRITE setModifiers NOTIFY modifiersChanged)
     Q_PROPERTY(qreal minimumSize READ minimumSize WRITE setMinimumSize NOTIFY minimumSizeChanged)
     Q_PROPERTY(QColor fillColor READ fillColor WRITE setFillColor NOTIFY fillColorChanged)
-    Q_PROPERTY(QColor borderColor READ borderColor WRITE setBorderColor NOTIFY borderColorChanged)
+    Q_PROPERTY(Border* border READ border CONSTANT)
     Q_PROPERTY(bool active READ active NOTIFY activeChanged)
     Q_PROPERTY(QRectF selectionRect READ selectionRect NOTIFY selectionRectChanged)
 
@@ -54,8 +55,7 @@ public:
     QColor fillColor() const;
     void setFillColor(const QColor& value);
 
-    QColor borderColor() const;
-    void setBorderColor(const QColor& value);
+    Border* border() const;
 
     bool active() const;
     QRectF selectionRect() const;
@@ -65,7 +65,6 @@ signals:
     void modifiersChanged();
     void minimumSizeChanged();
     void fillColorChanged();
-    void borderColorChanged();
     void activeChanged();
     void selectionRectChanged();
 
@@ -77,7 +76,7 @@ private:
     Qt::KeyboardModifiers modifiers_{Qt::ControlModifier};
     qreal minimumSize_{6.0};
     QColor fillColor_{ColorPalette::dark().rectangleZoomFill};
-    QColor borderColor_{ColorPalette::dark().rectangleZoomBorder};
+    Border* border_{new Border{ColorPalette::dark().rectangleZoomBorder, 1.0, this}};
     bool active_{false};
     QRectF selectionRect_;
 };

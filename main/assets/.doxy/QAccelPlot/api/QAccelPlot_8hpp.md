@@ -17,7 +17,7 @@
 
 
 
-* `#include "QAccelPlot/PlotBorder.hpp"`
+* `#include "QAccelPlot/Border.hpp"`
 * `#include "QAccelPlot/PlotDragRect.hpp"`
 * `#include "QAccelPlot/PlotMouseEvent.hpp"`
 * `#include "QAccelPlot/PlotRectangleZoom.hpp"`

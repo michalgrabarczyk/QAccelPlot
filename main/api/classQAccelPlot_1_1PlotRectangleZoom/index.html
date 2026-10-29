@@ -1423,10 +1423,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#property-bordercolor-12" class="md-nav__link">
+  <a href="#property-border-12" class="md-nav__link">
     <span class="md-ellipsis">
       
-        property borderColor
+        property border
       
     </span>
   </a>
@@ -1510,17 +1510,6 @@
     <span class="md-ellipsis">
       
         signal activeChanged
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#signal-bordercolorchanged" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        signal borderColorChanged
       
     </span>
   </a>
@@ -1622,10 +1611,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#function-bordercolor-22" class="md-nav__link">
+  <a href="#function-border-22" class="md-nav__link">
     <span class="md-ellipsis">
       
-        function borderColor
+        function border
       
     </span>
   </a>
@@ -1681,17 +1670,6 @@
     <span class="md-ellipsis">
       
         function selectionRect
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#function-setbordercolor" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        function setBorderColor
       
     </span>
   </a>
@@ -1792,8 +1770,8 @@
 <td style="text-align: left;"><a href="./#property-active-12"><strong>active</strong></a>  <br><em>Whether a rectangle selection is in progress.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">property QColor</td>
-<td style="text-align: left;"><a href="./#property-bordercolor-12"><strong>borderColor</strong></a>  <br><em>Selection outline color. Default: Colors.dark.rectangleZoomBorder.</em></td>
+<td style="text-align: right;">property <a href="../classQAccelPlot_1_1Border/"><strong>Border</strong></a> *</td>
+<td style="text-align: left;"><a href="./#property-border-12"><strong>border</strong></a>  <br><em>Selection outline inside the rectangle's edges. Default: Colors.dark.rectangleZoomBorder, width 1.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property QML_ANONYMOUSbool</td>
@@ -1829,10 +1807,6 @@
 <tr>
 <td style="text-align: right;">signal void</td>
 <td style="text-align: left;"><a href="./#signal-activechanged"><strong>activeChanged</strong></a>  <br><em>Emitted when selection starts or ends.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">signal void</td>
-<td style="text-align: left;"><a href="./#signal-bordercolorchanged"><strong>borderColorChanged</strong></a>  <br><em>Emitted when borderColor changes.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">signal void</td>
@@ -1874,8 +1848,8 @@
 <td style="text-align: left;"><a href="#function-active-22"><strong>active</strong></a> () const<br><em>Returns whether selection is in progress.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">QColor</td>
-<td style="text-align: left;"><a href="#function-bordercolor-22"><strong>borderColor</strong></a> () const<br><em>Returns the selection outline color.</em></td>
+<td style="text-align: right;"><a href="../classQAccelPlot_1_1Border/"><strong>Border</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-border-22"><strong>border</strong></a> () const<br><em>Returns the selection outline settings. The object is owned by this configuration.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>
@@ -1896,10 +1870,6 @@
 <tr>
 <td style="text-align: right;">QRectF</td>
 <td style="text-align: left;"><a href="#function-selectionrect-22"><strong>selectionRect</strong></a> () const<br><em>Returns the current item-local selection rectangle.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setbordercolor"><strong>setBorderColor</strong></a> (const QColor &amp; value) <br><em>Sets the color of the one-logical-pixel selection outline.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -1926,9 +1896,9 @@
 </code></pre></div></p>
 <hr>
 
-<h3 id="property-bordercolor-12">property borderColor<a class="headerlink" href="#property-bordercolor-12" title="Permanent link">&para;</a></h3>
-<p><em>Selection outline color. Default: Colors.dark.rectangleZoomBorder.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">borderColor</span><span class="p">;</span>
+<h3 id="property-border-12">property border<a class="headerlink" href="#property-border-12" title="Permanent link">&para;</a></h3>
+<p><em>Selection outline inside the rectangle's edges. Default: Colors.dark.rectangleZoomBorder, width 1.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">Border</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">border</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
@@ -1968,129 +1938,115 @@
 </code></pre></div></p>
 <hr>
 
-<h3 id="signal-bordercolorchanged">signal borderColorChanged<a class="headerlink" href="#signal-bordercolorchanged" title="Permanent link">&para;</a></h3>
-<p><em>Emitted when borderColor changes.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">borderColorChanged</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
 <h3 id="signal-enabledchanged">signal enabledChanged<a class="headerlink" href="#signal-enabledchanged" title="Permanent link">&para;</a></h3>
 <p><em>Emitted when enabled changes.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">enabledChanged</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">enabledChanged</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="signal-fillcolorchanged">signal fillColorChanged<a class="headerlink" href="#signal-fillcolorchanged" title="Permanent link">&para;</a></h3>
 <p><em>Emitted when fillColor changes.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">fillColorChanged</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">fillColorChanged</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="signal-minimumsizechanged">signal minimumSizeChanged<a class="headerlink" href="#signal-minimumsizechanged" title="Permanent link">&para;</a></h3>
 <p><em>Emitted when minimumSize changes.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">minimumSizeChanged</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">minimumSizeChanged</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="signal-modifierschanged">signal modifiersChanged<a class="headerlink" href="#signal-modifierschanged" title="Permanent link">&para;</a></h3>
 <p><em>Emitted when modifiers changes.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">modifiersChanged</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">modifiersChanged</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="signal-selectionrectchanged">signal selectionRectChanged<a class="headerlink" href="#signal-selectionrectchanged" title="Permanent link">&para;</a></h3>
 <p><em>Emitted when the selection rectangle changes.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">selectionRectChanged</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">selectionRectChanged</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-plotrectanglezoom">function PlotRectangleZoom<a class="headerlink" href="#function-plotrectanglezoom" title="Permanent link">&para;</a></h3>
 <p><em>Constructs configuration owned by the given parent.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">explicit</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="n">QObject</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">parent</span><span class="o">=</span><span class="nb">nullptr</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">explicit</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="n">QObject</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">parent</span><span class="o">=</span><span class="nb">nullptr</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-active-22">function active<a class="headerlink" href="#function-active-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns whether selection is in progress.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">active</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">active</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
-<h3 id="function-bordercolor-22">function borderColor<a class="headerlink" href="#function-bordercolor-22" title="Permanent link">&para;</a></h3>
-<p><em>Returns the selection outline color.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">borderColor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<h3 id="function-border-22">function border<a class="headerlink" href="#function-border-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the selection outline settings. The object is owned by this configuration.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">Border</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">border</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-enabled-22">function enabled<a class="headerlink" href="#function-enabled-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns whether rectangle selection is enabled.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">enabled</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">enabled</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-fillcolor-22">function fillColor<a class="headerlink" href="#function-fillcolor-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the selection fill color.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">fillColor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">fillColor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-minimumsize-22">function minimumSize<a class="headerlink" href="#function-minimumsize-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the minimum selection width and height in logical pixels.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">minimumSize</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">minimumSize</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-modifiers-22">function modifiers<a class="headerlink" href="#function-modifiers-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the required keyboard modifiers.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">Qt</span><span class="o">::</span><span class="n">KeyboardModifiers</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">modifiers</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">Qt</span><span class="o">::</span><span class="n">KeyboardModifiers</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">modifiers</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-selectionrect-22">function selectionRect<a class="headerlink" href="#function-selectionrect-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the current item-local selection rectangle.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">QRectF</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">selectionRect</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-setbordercolor">function setBorderColor<a class="headerlink" href="#function-setbordercolor" title="Permanent link">&para;</a></h3>
-<p><em>Sets the color of the one-logical-pixel selection outline.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">setBorderColor</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span>
-<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">QRectF</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">selectionRect</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setenabled">function setEnabled<a class="headerlink" href="#function-setenabled" title="Permanent link">&para;</a></h3>
 <p><em>Enables or disables rectangle selection; changing this setting cancels an active selection.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">setEnabled</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">value</span>
-<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">setEnabled</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">value</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setfillcolor">function setFillColor<a class="headerlink" href="#function-setfillcolor" title="Permanent link">&para;</a></h3>
 <p><em>Sets the selection fill color.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">setFillColor</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span>
-<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">setFillColor</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setminimumsize">function setMinimumSize<a class="headerlink" href="#function-setminimumsize" title="Permanent link">&para;</a></h3>
 <p><em>Sets the minimum size, clamping negative values to zero and ignoring nonfinite values.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">setMinimumSize</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span>
-<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">setMinimumSize</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setmodifiers">function setModifiers<a class="headerlink" href="#function-setmodifiers" title="Permanent link">&para;</a></h3>
 <p><em>Sets the exact keyboard modifiers required at press time; Qt::NoModifier allows unmodified dragging.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">setModifiers</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">    </span><span class="n">Qt</span><span class="o">::</span><span class="n">KeyboardModifiers</span><span class="w"> </span><span class="n">value</span>
-<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotRectangleZoom</span><span class="o">::</span><span class="n">setModifiers</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">    </span><span class="n">Qt</span><span class="o">::</span><span class="n">KeyboardModifiers</span><span class="w"> </span><span class="n">value</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 

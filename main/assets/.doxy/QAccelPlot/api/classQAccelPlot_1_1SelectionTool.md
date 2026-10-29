@@ -69,7 +69,7 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-| property QColor | [**borderColor**](classQAccelPlot_1_1SelectionTool.md#property-bordercolor-12)  <br>_Outline color of the rectangle. Default:_ `Colors.dark.selectionBorder` _._ |
+| property [**QAccelPlot::Border**](classQAccelPlot_1_1Border.md) \* | [**border**](classQAccelPlot_1_1SelectionTool.md#property-border-12)  <br>_Outline inside the rectangle's edges. Default:_ `Colors.dark.selectionBorder` _, width 1._ |
 | property Qt::MouseButton | [**button**](classQAccelPlot_1_1SelectionTool.md#property-button-12)  <br>_Mouse button that starts a gesture. Default: Qt.LeftButton._  |
 | property bool | [**enabled**](classQAccelPlot_1_1SelectionTool.md#property-enabled-12)  <br>_Enables gestures; disabling cancels a gesture in progress and keeps the selection. Default: true._  |
 | property QColor | [**fillColor**](classQAccelPlot_1_1SelectionTool.md#property-fillcolor-12)  <br>_Fill color of the rectangle. Default:_ `Colors.dark.selectionFill` _._ |
@@ -96,7 +96,6 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-| signal void | [**borderColorChanged**](classQAccelPlot_1_1SelectionTool.md#signal-bordercolorchanged)  <br>_Emitted when the borderColor property changes._  |
 | signal void | [**buttonChanged**](classQAccelPlot_1_1SelectionTool.md#signal-buttonchanged)  <br>_Emitted when the button property changes._  |
 | signal void | [**completed**](classQAccelPlot_1_1SelectionTool.md#signal-completed)  <br>_Emitted when a gesture selected a region. Rows of series that are still preparing follow later._  |
 | signal void | [**enabledChanged**](classQAccelPlot_1_1SelectionTool.md#signal-enabledchanged)  <br>_Emitted when the enabled property changes._  |
@@ -120,7 +119,7 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 |   | [**SelectionTool**](#function-selectiontool) (QObject \* parent=nullptr) <br>_Constructs a tool without a plot._  |
-|  QColor | [**borderColor**](#function-bordercolor-22) () const<br>_Returns the rectangle's outline color._  |
+|  [**Border**](classQAccelPlot_1_1Border.md) \* | [**border**](#function-border-22) () const<br>_Returns the rectangle's outline settings. The object is owned by the tool._  |
 |  Qt::MouseButton | [**button**](#function-button-22) () const<br>_Returns the mouse button that starts a gesture._  |
 |  Q\_INVOKABLE void | [**clear**](#function-clear) () <br>_Cancels a gesture in progress and clears the selection._  |
 |  bool | [**enabled**](#function-enabled-22) () const<br>_Returns whether gestures are enabled._  |
@@ -136,7 +135,6 @@ flowchart TB
 |  bool | [**rectangleVisible**](#function-rectanglevisible-22) () const<br>_Returns whether the tool draws its rectangle._  |
 |  Q\_INVOKABLE bool | [**select**](#function-select) (qreal xMin, qreal xMax, qreal yMin, qreal yMax) <br>_Selects the region with the given limits; returns false when a limit is NaN._  |
 |  bool | [**selecting**](#function-selecting-22) () const<br>_Returns true while a gesture is in progress._  |
-|  void | [**setBorderColor**](#function-setbordercolor) (const QColor & color) <br>_Sets the rectangle's outline color._  |
 |  void | [**setButton**](#function-setbutton) (Qt::MouseButton button) <br>_Sets the mouse button that starts a gesture._  |
 |  void | [**setEnabled**](#function-setenabled) (bool enabled) <br>_Enables or disables gestures._  |
 |  void | [**setFillColor**](#function-setfillcolor) (const QColor & color) <br>_Sets the rectangle's fill color._  |
@@ -221,11 +219,11 @@ enum QAccelPlot::SelectionTool::Mode {
 
 
 
-### property borderColor {#property-bordercolor-12}
+### property border {#property-border-12}
 
-_Outline color of the rectangle. Default:_ `Colors.dark.selectionBorder` _._
+_Outline inside the rectangle's edges. Default:_ `Colors.dark.selectionBorder` _, width 1._
 ```C++
-QColor QAccelPlot::SelectionTool::borderColor;
+QAccelPlot::Border* QAccelPlot::SelectionTool::border;
 ```
 
 
@@ -508,21 +506,6 @@ qreal QAccelPlot::SelectionTool::yMin;
 
 
 
-### signal borderColorChanged {#signal-bordercolorchanged}
-
-_Emitted when the borderColor property changes._ 
-```C++
-void QAccelPlot::SelectionTool::borderColorChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
 ### signal buttonChanged {#signal-buttonchanged}
 
 _Emitted when the button property changes._ 
@@ -752,11 +735,11 @@ explicit QAccelPlot::SelectionTool::SelectionTool (
 
 
 
-### function borderColor {#function-bordercolor-22}
+### function border {#function-border-22}
 
-_Returns the rectangle's outline color._ 
+_Returns the rectangle's outline settings. The object is owned by the tool._ 
 ```C++
-QColor QAccelPlot::SelectionTool::borderColor () const
+Border * QAccelPlot::SelectionTool::border () const
 ```
 
 
@@ -991,23 +974,6 @@ Q_INVOKABLE bool QAccelPlot::SelectionTool::select (
 _Returns true while a gesture is in progress._ 
 ```C++
 bool QAccelPlot::SelectionTool::selecting () const
-```
-
-
-
-
-<hr>
-
-
-
-
-### function setBorderColor {#function-setbordercolor}
-
-_Sets the rectangle's outline color._ 
-```C++
-void QAccelPlot::SelectionTool::setBorderColor (
-    const QColor & color
-) 
 ```
 
 

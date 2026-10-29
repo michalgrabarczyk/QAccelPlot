@@ -17,9 +17,9 @@
 //
 #pragma once
 
+#include "QAccelPlot/Border.hpp"
 #include "QAccelPlot/series/ColormappedSeries.hpp"
 #include "QAccelPlot/series/RectVertexCache.hpp"
-#include "QAccelPlot/series/RectangleBorder.hpp"
 #include "QAccelPlot/series/SpatialGrid.hpp"
 #include "QAccelPlot/transitions/DataTransition.hpp"
 
@@ -51,7 +51,7 @@ class BarSeries : public ColormappedSeries {
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
     Q_PROPERTY(QList<QColor> categoryColors READ categoryColors WRITE setCategoryColors NOTIFY categoryColorsChanged)
     Q_PROPERTY(ColorSource colorSource READ colorSource WRITE setColorSource NOTIFY colorSourceChanged)
-    Q_PROPERTY(RectangleBorder* border READ border CONSTANT)
+    Q_PROPERTY(Border* border READ border CONSTANT)
     Q_PROPERTY(QColor hoverColor READ hoverColor WRITE setHoverColor NOTIFY hoverColorChanged)
     Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
     Q_PROPERTY(int count READ count NOTIFY countChanged)
@@ -92,7 +92,7 @@ public:
     ColorSource colorSource() const;
     void setColorSource(ColorSource source);
 
-    RectangleBorder* border() const;
+    Border* border() const;
 
     QColor hoverColor() const;
     void setHoverColor(const QColor& color);
@@ -232,7 +232,7 @@ private:
     QColor color_;
     QList<QColor> categoryColors_;
     ColorSource colorSource_{ColorSource::Value};
-    RectangleBorder* border_{new RectangleBorder{this}};
+    Border* border_{new Border{Qt::black, 0.0, this}};
     QColor hoverColor_;
     int hoveredIndex_{-1};
     std::unique_ptr<TransitionRunner> transition_;

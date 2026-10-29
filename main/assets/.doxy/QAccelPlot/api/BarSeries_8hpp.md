@@ -17,9 +17,9 @@
 
 
 
+* `#include "QAccelPlot/Border.hpp"`
 * `#include "QAccelPlot/series/ColormappedSeries.hpp"`
 * `#include "QAccelPlot/series/RectVertexCache.hpp"`
-* `#include "QAccelPlot/series/RectangleBorder.hpp"`
 * `#include "QAccelPlot/series/SpatialGrid.hpp"`
 * `#include "QAccelPlot/transitions/DataTransition.hpp"`
 * `#include <QtQml/qqmlregistration.h>`

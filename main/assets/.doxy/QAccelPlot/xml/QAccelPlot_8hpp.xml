@@ -2,7 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="QAccelPlot_8hpp" kind="file" language="C++">
     <compoundname>QAccelPlot.hpp</compoundname>
-    <includes refid="PlotBorder_8hpp" local="yes">QAccelPlot/PlotBorder.hpp</includes>
+    <includes refid="Border_8hpp" local="yes">QAccelPlot/Border.hpp</includes>
     <includes refid="PlotDragRect_8hpp" local="yes">QAccelPlot/PlotDragRect.hpp</includes>
     <includes refid="PlotMouseEvent_8hpp" local="yes">QAccelPlot/PlotMouseEvent.hpp</includes>
     <includes refid="PlotRectangleZoom_8hpp" local="yes">QAccelPlot/PlotRectangleZoom.hpp</includes>
@@ -77,7 +77,7 @@
 <codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="9"><highlight class="normal"></highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/PlotBorder.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/Border.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/PlotDragRect.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/PlotMouseEvent.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/PlotRectangleZoom.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
@@ -115,7 +115,7 @@
 <codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QRectF<sp/>plotRect<sp/>READ<sp/>plotRect<sp/>NOTIFY<sp/>plotRectChanged)</highlight></codeline>
 <codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>plotAreaColor<sp/>READ<sp/>plotAreaColor<sp/>WRITE<sp/>setPlotAreaColor<sp/>NOTIFY<sp/>plotAreaColorChanged)</highlight></codeline>
 <codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>axesAreaColor<sp/>READ<sp/>axesAreaColor<sp/>WRITE<sp/>setAxesAreaColor<sp/>NOTIFY<sp/>axesAreaColorChanged)</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(<ref refid="classQAccelPlot_1_1PlotBorder" kindref="compound">PlotBorder</ref>*<sp/>border<sp/>READ<sp/>border<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(<ref refid="classQAccelPlot_1_1Border" kindref="compound">Border</ref>*<sp/>border<sp/>READ<sp/>border<sp/>CONSTANT)</highlight></codeline>
 <codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(<ref refid="classQAccelPlot_1_1PlotRectangleZoom" kindref="compound">PlotRectangleZoom</ref>*<sp/>rectangleZoom<sp/>READ<sp/>rectangleZoom<sp/>CONSTANT)</highlight></codeline>
 <codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(<ref refid="classQAccelPlot_1_1Grid" kindref="compound">Grid</ref>*<sp/>grid<sp/>READ<sp/>grid<sp/>CONSTANT)</highlight></codeline>
 <codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QList&lt;PlotSeries*&gt;<sp/>series<sp/>READ<sp/>series<sp/>NOTIFY<sp/>seriesChanged)</highlight></codeline>
@@ -165,7 +165,7 @@
 <codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>axesAreaColor()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setAxesAreaColor(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QColor&amp;<sp/>c);</highlight></codeline>
 <codeline lineno="163"><highlight class="normal"></highlight></codeline>
-<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotBorder" kindref="compound">PlotBorder</ref>*<sp/>border()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Border" kindref="compound">Border</ref>*<sp/>border()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="166"><highlight class="normal"></highlight></codeline>
 <codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom" kindref="compound">PlotRectangleZoom</ref>*<sp/>rectangleZoom()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="169"><highlight class="normal"></highlight></codeline>
@@ -266,7 +266,7 @@
 <codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>One<sp/>exporter<sp/>captures<sp/>the<sp/>plot<sp/>at<sp/>a<sp/>time:<sp/>the<sp/>capture<sp/>changes<sp/>how<sp/>the<sp/>plot<sp/>renders.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>exporting_{</highlight><highlight class="keyword">false</highlight><highlight class="normal">};</highlight></codeline>
 <codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>transparentBackground_{</highlight><highlight class="keyword">false</highlight><highlight class="normal">};</highlight></codeline>
-<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotBorder" kindref="compound">PlotBorder</ref>*<sp/>border_{</highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">};</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Border" kindref="compound">Border</ref>*<sp/>border_{</highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">};</highlight></codeline>
 <codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom" kindref="compound">PlotRectangleZoom</ref>*<sp/>rectangleZoom_{</highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">};</highlight></codeline>
 <codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1RectangleZoomOverlay" kindref="compound">RectangleZoomOverlay</ref>*<sp/>rectangleZoomOverlay_{</highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">};</highlight></codeline>
 <codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/>QQuickItem*<sp/>overlay_{</highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">};</highlight></codeline>

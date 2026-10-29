@@ -105,7 +105,7 @@ See [QAccelPlot::OutlinedRectangle](classQAccelPlot_1_1OutlinedRectangle.md)
 | Type | Name |
 | ---: | :--- |
 |   | [**OutlinedRectangle**](classQAccelPlot_1_1OutlinedRectangle.md#function-outlinedrectangle) (QQuickItem \* parent=nullptr) <br> |
-|  void | [**setColors**](classQAccelPlot_1_1OutlinedRectangle.md#function-setcolors) (const QColor & fill, const QColor & border) <br>_Sets the_ _fill_ _and__border_ _colors._ |
+|  void | [**setStyle**](classQAccelPlot_1_1OutlinedRectangle.md#function-setstyle) (const QColor & fill, const QColor & borderColor, qreal borderWidth) <br>_Sets the_ _fill_ _color and an outline of__borderColor_ _,__borderWidth_ _logical pixels wide._ |
 
 
 

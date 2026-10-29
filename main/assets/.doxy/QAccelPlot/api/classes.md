@@ -43,6 +43,8 @@
 * [**BarSeries**](classQAccelPlot_1_1BarSeries.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**Block**](structQAccelPlot_1_1SourceInspection_1_1Block.md)
+* [**Border**](classQAccelPlot_1_1Border.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
 ## c
@@ -280,8 +282,6 @@
 ([**QAccelPlot::AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md))
 * [**Params**](structQAccelPlot_1_1AxisTickPainter_1_1Params.md)
 ([**QAccelPlot::AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md))
-* [**PlotBorder**](classQAccelPlot_1_1PlotBorder.md)
-([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**PlotDragRect**](classQAccelPlot_1_1PlotDragRect.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**PlotExporter**](classQAccelPlot_1_1PlotExporter.md)
@@ -319,8 +319,6 @@
 
 ## r
 
-* [**RectangleBorder**](classQAccelPlot_1_1RectangleBorder.md)
-([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**RectangleZoomOverlay**](classQAccelPlot_1_1RectangleZoomOverlay.md)

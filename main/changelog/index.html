@@ -1989,6 +1989,12 @@
 <ul>
 <li>Renamed <code>PlotInspector.position</code> to <code>crosshairPosition</code>, and
   <code>positionChanged()</code> to <code>crosshairPositionChanged()</code>.</li>
+<li>Outlines use one <code>border</code> grouped property with <code>color</code> and <code>width</code>.
+  <code>PlotView.rectangleZoom.borderColor</code>, <code>SelectionTool.borderColor</code>, and
+  <code>ColorBar.borderColor</code>/<code>borderWidth</code> are now <code>border.color</code>/<code>border.width</code>.
+  The rectangle zoom and selection outlines can now be wider than 1 px. In C++,
+  <code>PlotBorder</code> and <code>RectangleBorder</code> are now <code>Border</code>
+  (<code>&lt;QAccelPlot/Border.hpp&gt;</code>).</li>
 <li><code>ColorBar.series</code> takes any <code>ColormappedSeries</code>, the new base of <code>PointCloud</code>,
   <code>HeatmapSeries</code>, and <code>BarSeries</code>. In C++, <code>ColorBar::series()</code> returns a
   <code>ColormappedSeries*</code>.</li>

@@ -17,9 +17,9 @@
 //
 #pragma once
 
+#include "QAccelPlot/Border.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
 #include "QAccelPlot/series/RectVertexCache.hpp"
-#include "QAccelPlot/series/RectangleBorder.hpp"
 #include "QAccelPlot/series/SpatialGrid.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 
@@ -50,7 +50,7 @@ class RectangleSeries : public PlotSeries {
     
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
     Q_PROPERTY(QList<QColor> categoryColors READ categoryColors WRITE setCategoryColors NOTIFY categoryColorsChanged)
-    Q_PROPERTY(RectangleBorder* border READ border CONSTANT)
+    Q_PROPERTY(Border* border READ border CONSTANT)
     Q_PROPERTY(QColor hoverColor READ hoverColor WRITE setHoverColor NOTIFY hoverColorChanged)
     Q_PROPERTY(qreal minimumWidth READ minimumWidth WRITE setMinimumWidth NOTIFY minimumWidthChanged)
     Q_PROPERTY(qreal minimumHeight READ minimumHeight WRITE setMinimumHeight NOTIFY minimumHeightChanged)
@@ -67,7 +67,7 @@ public:
     QList<QColor> categoryColors() const;
     void setCategoryColors(const QList<QColor>& colors);
 
-    RectangleBorder* border() const;
+    Border* border() const;
 
     QColor hoverColor() const;
     void setHoverColor(const QColor& color);
@@ -166,7 +166,7 @@ private:
 
     QColor color_;
     QList<QColor> categoryColors_;
-    RectangleBorder* border_{new RectangleBorder{this}};
+    Border* border_{new Border{Qt::black, 0.0, this}};
     QColor hoverColor_;
     qreal minimumWidth_{1.0};
     qreal minimumHeight_{1.0};

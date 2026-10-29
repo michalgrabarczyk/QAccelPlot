@@ -65,8 +65,7 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 | property qreal | [**barThickness**](classQAccelPlot_1_1ColorBar.md#property-barthickness-12)  <br>_Thickness in pixels of the color strip across the ramp direction. Default: 12._  |
-| property QColor | [**borderColor**](classQAccelPlot_1_1ColorBar.md#property-bordercolor-12)  <br>_Color of the outline around the strip. Default:_ `Colors.dark.axisLine` _._ |
-| property qreal | [**borderWidth**](classQAccelPlot_1_1ColorBar.md#property-borderwidth-12)  <br>_Width in pixels of the outline around the strip. 0 draws no outline. Default: 1._  |
+| property [**Border**](classQAccelPlot_1_1Border.md) \* | [**border**](classQAccelPlot_1_1ColorBar.md#property-border-12)  <br>_Outline inside the strip's edges, e.g._ `border.width: 2` _. Default:_`Colors.dark.axisLine` _, width 1._ |
 | property bool | [**hovered**](classQAccelPlot_1_1ColorBar.md#property-hovered-12)  <br>_Read-only:_ `true` _while the mouse cursor is over the bar. Reported only while_`interactive` _is set._ |
 | property bool | [**interactive**](classQAccelPlot_1_1ColorBar.md#property-interactive-12)  <br>_Whether dragging, the mouse wheel, and double-clicking change the colormap's value range. Default:_ `false` _._ |
 | property QString | [**label**](classQAccelPlot_1_1ColorBar.md#property-label-12)  <br>_Optional title drawn beside the tick labels. Default: empty._  |
@@ -87,8 +86,6 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 | signal void | [**barThicknessChanged**](classQAccelPlot_1_1ColorBar.md#signal-barthicknesschanged)  <br>_Emitted when the barThickness property changes._  |
-| signal void | [**borderColorChanged**](classQAccelPlot_1_1ColorBar.md#signal-bordercolorchanged)  <br>_Emitted when the borderColor property changes._  |
-| signal void | [**borderWidthChanged**](classQAccelPlot_1_1ColorBar.md#signal-borderwidthchanged)  <br>_Emitted when the borderWidth property changes._  |
 | signal void | [**hoveredChanged**](classQAccelPlot_1_1ColorBar.md#signal-hoveredchanged)  <br>_Emitted when the hovered property changes._  |
 | signal void | [**interactiveChanged**](classQAccelPlot_1_1ColorBar.md#signal-interactivechanged)  <br>_Emitted when the interactive property changes._  |
 | signal void | [**labelChanged**](classQAccelPlot_1_1ColorBar.md#signal-labelchanged)  <br>_Emitted when the label property changes._  |
@@ -109,8 +106,7 @@ flowchart TB
 | ---: | :--- |
 |   | [**ColorBar**](#function-colorbar) (QQuickItem \* parent=nullptr) <br>_Constructs a_ [_**ColorBar**_](classQAccelPlot_1_1ColorBar.md) _with the given__parent_ _._ |
 |  qreal | [**barThickness**](#function-barthickness-22) () const<br>_Returns the strip thickness in pixels._  |
-|  QColor | [**borderColor**](#function-bordercolor-22) () const<br>_Returns the strip outline color._  |
-|  qreal | [**borderWidth**](#function-borderwidth-22) () const<br>_Returns the strip outline width in pixels._  |
+|  [**Border**](classQAccelPlot_1_1Border.md) \* | [**border**](#function-border-22) () const<br>_Returns the strip outline settings. The object is owned by the bar._  |
 |  bool | [**hovered**](#function-hovered-22) () const<br>_Returns_ `true` _while the mouse cursor is over an interactive bar._ |
 |  bool | [**interactive**](#function-interactive-22) () const<br>_Returns whether the gestures that change the colormap's value range are enabled._  |
 |  QString | [**label**](#function-label-22) () const<br>_Returns the title._  |
@@ -123,8 +119,6 @@ flowchart TB
 |  Q\_INVOKABLE void | [**rescaleToData**](#function-rescaletodata) () <br>_Unsets the colormap's_ `min` _and_`max` _, so the range is resolved from the data again._ |
 |  [**ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md) \* | [**series**](#function-series-22) () const<br>_Returns the series whose colormap is shown, or_ `nullptr` _._ |
 |  void | [**setBarThickness**](#function-setbarthickness) (qreal thickness) <br>_Sets the strip thickness to_ _thickness_ _pixels. Negative values are clamped to 0._ |
-|  void | [**setBorderColor**](#function-setbordercolor) (const QColor & color) <br>_Sets the strip outline color to_ _color_ _._ |
-|  void | [**setBorderWidth**](#function-setborderwidth) (qreal width) <br>_Sets the strip outline width to_ _width_ _pixels. Negative values are clamped to 0._ |
 |  void | [**setInteractive**](#function-setinteractive) (bool interactive) <br>_Sets whether the gestures that change the colormap's value range are enabled to_ _interactive_ _._ |
 |  void | [**setLabel**](#function-setlabel) (const QString & label) <br>_Sets the title to_ _label_ _._ |
 |  void | [**setLabelColor**](#function-setlabelcolor) (const QColor & color) <br>_Sets the title color to_ _color_ _._ |
@@ -235,26 +229,11 @@ qreal QAccelPlot::ColorBar::barThickness;
 
 
 
-### property borderColor {#property-bordercolor-12}
+### property border {#property-border-12}
 
-_Color of the outline around the strip. Default:_ `Colors.dark.axisLine` _._
+_Outline inside the strip's edges, e.g._ `border.width: 2` _. Default:_`Colors.dark.axisLine` _, width 1._
 ```C++
-QColor QAccelPlot::ColorBar::borderColor;
-```
-
-
-
-
-<hr>
-
-
-
-
-### property borderWidth {#property-borderwidth-12}
-
-_Width in pixels of the outline around the strip. 0 draws no outline. Default: 1._ 
-```C++
-qreal QAccelPlot::ColorBar::borderWidth;
+Border* QAccelPlot::ColorBar::border;
 ```
 
 
@@ -463,36 +442,6 @@ void QAccelPlot::ColorBar::barThicknessChanged;
 
 
 
-### signal borderColorChanged {#signal-bordercolorchanged}
-
-_Emitted when the borderColor property changes._ 
-```C++
-void QAccelPlot::ColorBar::borderColorChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
-### signal borderWidthChanged {#signal-borderwidthchanged}
-
-_Emitted when the borderWidth property changes._ 
-```C++
-void QAccelPlot::ColorBar::borderWidthChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
 ### signal hoveredChanged {#signal-hoveredchanged}
 
 _Emitted when the hovered property changes._ 
@@ -677,26 +626,11 @@ qreal QAccelPlot::ColorBar::barThickness () const
 
 
 
-### function borderColor {#function-bordercolor-22}
+### function border {#function-border-22}
 
-_Returns the strip outline color._ 
+_Returns the strip outline settings. The object is owned by the bar._ 
 ```C++
-QColor QAccelPlot::ColorBar::borderColor () const
-```
-
-
-
-
-<hr>
-
-
-
-
-### function borderWidth {#function-borderwidth-22}
-
-_Returns the strip outline width in pixels._ 
-```C++
-qreal QAccelPlot::ColorBar::borderWidth () const
+Border * QAccelPlot::ColorBar::border () const
 ```
 
 
@@ -887,40 +821,6 @@ _Sets the strip thickness to_ _thickness_ _pixels. Negative values are clamped t
 ```C++
 void QAccelPlot::ColorBar::setBarThickness (
     qreal thickness
-) 
-```
-
-
-
-
-<hr>
-
-
-
-
-### function setBorderColor {#function-setbordercolor}
-
-_Sets the strip outline color to_ _color_ _._
-```C++
-void QAccelPlot::ColorBar::setBorderColor (
-    const QColor & color
-) 
-```
-
-
-
-
-<hr>
-
-
-
-
-### function setBorderWidth {#function-setborderwidth}
-
-_Sets the strip outline width to_ _width_ _pixels. Negative values are clamped to 0._
-```C++
-void QAccelPlot::ColorBar::setBorderWidth (
-    qreal width
 ) 
 ```
 

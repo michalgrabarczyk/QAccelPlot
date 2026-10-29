@@ -29,7 +29,7 @@ public:
 
 private:
     void syncSelection();
-    void syncColors();
+    void syncStyle();
 
     PlotRectangleZoom* configuration_;
 };
