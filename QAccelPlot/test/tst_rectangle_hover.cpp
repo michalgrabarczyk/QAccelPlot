@@ -209,24 +209,29 @@ void RectangleHoverTest::hoverEventsTrackRectangleUnderCursor()
     auto rectangles = HoverableRectangles{};
     setOverlappingRectangles(rectangles, axes);
     auto hoveredSpy = QSignalSpy{&rectangles, &QAccelPlot::RectangleSeries::hoveredIndexChanged};
+    auto hoveredChangedSpy = QSignalSpy{&rectangles, &QAccelPlot::PlotSeries::hoveredChanged};
     const auto hover = [](const QEvent::Type type, const QPointF& position) { return QAccelPlotTest::hoverEvent(type, position, position); };
 
     auto enter = hover(QEvent::HoverEnter, {50.0, 350.0});
     rectangles.hoverEnterEvent(&enter);
     QCOMPARE(rectangles.hoveredIndex(), 0);
+    QVERIFY(rectangles.hovered());
     auto moveToTop = hover(QEvent::HoverMove, {150.0, 250.0});
     rectangles.hoverMoveEvent(&moveToTop);
     QCOMPARE(rectangles.hoveredIndex(), 1);
     auto moveOutside = hover(QEvent::HoverMove, {350.0, 50.0});
     rectangles.hoverMoveEvent(&moveOutside);
     QCOMPARE(rectangles.hoveredIndex(), -1);
+    QVERIFY(!rectangles.hovered());
     auto moveBack = hover(QEvent::HoverMove, {250.0, 150.0});
     rectangles.hoverMoveEvent(&moveBack);
     auto leave = hover(QEvent::HoverLeave, {250.0, 150.0});
     rectangles.hoverLeaveEvent(&leave);
 
     QCOMPARE(rectangles.hoveredIndex(), -1);
+    QVERIFY(!rectangles.hovered());
     QCOMPARE(hoveredSpy.count(), 5);
+    QCOMPARE(hoveredChangedSpy.count(), 4);
 }
 
 void RectangleHoverTest::removingHoveredRectangleClearsHover()

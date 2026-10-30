@@ -31,7 +31,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   animated by `MorphTransition` and `DrawTransition`. Includes an Error Bars
   example.
 - `PlotSeries.hoverEnabled` turns hover off for one series and leaves it to the
-  series beneath.
+  series beneath. `hovered` moved to `PlotSeries`, so `PointCloud`,
+  `BarSeries`, `RectangleSeries`, and `ErrorBarSeries` report it too.
 - `PlotSeries.count` on every series, including `LineCurve` (points) and
   `HeatmapSeries` (cells, `columns` × `rows`).
 - Step lines via `LineCurve.stepMode` (`Before`, `After`, or `Center`): the
@@ -95,6 +96,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - `LineCurve`, `BarSeries`, `RectangleSeries`, and `BandSeries` no longer hover
   records beyond their GPU capacity, which are not drawn.
+- Changing `PointCloud.hoverRadius` or `ErrorBarSeries.hoverRadius` updates
+  `hoveredIndex` without waiting for the mouse to move.
 - `Colormap.stops` reads bound `GradientStop`s after their bindings are
   evaluated, and follows later changes to stops declared in the list.
 - Panning and zooming no longer re-upload every series' vertex data each

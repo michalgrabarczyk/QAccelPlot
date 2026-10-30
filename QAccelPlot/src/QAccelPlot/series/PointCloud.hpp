@@ -76,7 +76,7 @@ class PointCloud : public ColormappedSeries {
     Q_PROPERTY(bool antialiasingEnabled READ antialiasingEnabled WRITE setAntialiasingEnabled NOTIFY antialiasingEnabledChanged)
     /// \brief Anti-aliasing feather width in pixels, clamped to [0, 10]. Default: 1.
     Q_PROPERTY(qreal antialiasingFeather READ antialiasingFeather WRITE setAntialiasingFeather NOTIFY antialiasingFeatherChanged)
-    /// \brief Pick radius in pixels used for hover detection. Default: 6.
+    /// \brief Pick distance in pixels from a point's center; 0 disables hover. Default: 6.
     Q_PROPERTY(qreal hoverRadius READ hoverRadius WRITE setHoverRadius NOTIFY hoverRadiusChanged)
     /// \brief Optional data transition animation applied when new data arrives.
     Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
@@ -107,9 +107,9 @@ public:
     /// \brief Sets the anti-aliasing feather width to \a feather pixels.
     void setAntialiasingFeather(qreal feather);
 
-    /// \brief Returns the hover pick radius in pixels.
+    /// \brief Returns the hover pick distance in pixels.
     qreal hoverRadius() const;
-    /// \brief Sets the hover pick radius to \a radius pixels. Negative values are clamped to 0.
+    /// \brief Sets the hover pick distance to \a radius pixels. Negative values are clamped to 0.
     void setHoverRadius(qreal radius);
 
     /// \brief Returns the active data transition, or \c nullptr if none.

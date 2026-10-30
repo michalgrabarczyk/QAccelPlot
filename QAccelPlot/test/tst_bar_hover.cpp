@@ -198,6 +198,7 @@ void BarHoverTest::hoverEventsTrackBarUnderCursor()
     auto bars = HoverableBars{};
     setBars(bars, axes);
     auto spy = QSignalSpy{&bars, &QAccelPlot::BarSeries::hoveredIndexChanged};
+    auto hoveredSpy = QSignalSpy{&bars, &QAccelPlot::PlotSeries::hoveredChanged};
 
     const auto hover = [&bars](const QEvent::Type type, const QPointF& position) {
         auto event = QAccelPlotTest::hoverEvent(type, position, position);
@@ -211,18 +212,23 @@ void BarHoverTest::hoverEventsTrackBarUnderCursor()
     };
     hover(QEvent::HoverEnter, axes.pixel(1.0, 1.5));
     QCOMPARE(bars.hoveredIndex(), 0);
+    QVERIFY(bars.hovered());
     hover(QEvent::HoverMove, axes.pixel(3.0, 2.5));
     QCOMPARE(bars.hoveredIndex(), 1);
     hover(QEvent::HoverMove, axes.pixel(2.0, 3.5));
     QCOMPARE(bars.hoveredIndex(), -1);
+    QVERIFY(!bars.hovered());
     hover(QEvent::HoverMove, axes.pixel(3.0, 2.5));
     hover(QEvent::HoverLeave, axes.pixel(3.0, 2.5));
     QCOMPARE(bars.hoveredIndex(), -1);
+    QVERIFY(!bars.hovered());
     QCOMPARE(spy.count(), 5);
+    QCOMPARE(hoveredSpy.count(), 4);
 
     hover(QEvent::HoverMove, axes.pixel(3.0, 2.5));
     bars.setData(std::vector<double>{1.0, 2.0}, 1);
     QCOMPARE(bars.hoveredIndex(), -1);
+    QVERIFY(!bars.hovered());
 }
 
 void BarHoverTest::disablingHoverClearsHoveredBar()
@@ -240,6 +246,7 @@ void BarHoverTest::disablingHoverClearsHoveredBar()
     QCOMPARE(spy.count(), 1);
     QVERIFY(!bars.acceptHoverEvents());
     QCOMPARE(bars.hoveredIndex(), -1);
+    QVERIFY(!bars.hovered());
 
     bars.setHoverEnabled(true);
     QVERIFY(bars.acceptHoverEvents());

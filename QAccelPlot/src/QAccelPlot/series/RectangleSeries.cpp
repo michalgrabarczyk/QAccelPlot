@@ -387,6 +387,7 @@ void RectangleSeries::setHoveredIndex(const int index)
         return;
     }
     hoveredIndex_ = index;
+    setHovered(index >= 0);
     emit hoveredIndexChanged();
     if (hoverColor_.isValid()) {
         update();

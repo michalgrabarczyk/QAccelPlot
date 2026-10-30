@@ -264,6 +264,8 @@ void ErrorBarSeries::setHoverRadius(const qreal radius)
     }
     hoverRadius_ = clamped;
     emit hoverRadiusChanged();
+    // Marks the item dirty so the window re-delivers hover at the cursor and updates hoveredIndex.
+    update();
 }
 
 DataTransition* ErrorBarSeries::transition() const
@@ -611,6 +613,7 @@ void ErrorBarSeries::setHoveredIndex(const int index)
         return;
     }
     hoveredIndex_ = index;
+    setHovered(index >= 0);
     emit hoveredIndexChanged();
     update();
 }
