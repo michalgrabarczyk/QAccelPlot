@@ -13,7 +13,7 @@
 
 namespace QAccelPlot {
 
-SeriesMarker::SeriesMarker(const PlotSeries::MarkerShape shape, const qreal size, const NoneShape noneShape, QObject* parent)
+SeriesMarker::SeriesMarker(const MarkerShape shape, const qreal size, const NoneShape noneShape, QObject* parent)
     : QObject(parent)
     , shape_(shape)
     , size_(size)
@@ -21,14 +21,14 @@ SeriesMarker::SeriesMarker(const PlotSeries::MarkerShape shape, const qreal size
 {
 }
 
-PlotSeries::MarkerShape SeriesMarker::shape() const
+MarkerShape SeriesMarker::shape() const
 {
     return shape_;
 }
 
-void SeriesMarker::setShape(const PlotSeries::MarkerShape shape)
+void SeriesMarker::setShape(const MarkerShape shape)
 {
-    if (shape == PlotSeries::MarkerShape::None && noneShape_ == NoneShape::Rejected) {
+    if (shape == MarkerShape::None && noneShape_ == NoneShape::Rejected) {
         const auto* owner = parent() ? parent()->metaObject()->className() : "Series";
         qCWarning(lcQAccelPlot).nospace() << owner << " marker.shape does not accept None; keeping " << static_cast<int>(shape_);
         return;

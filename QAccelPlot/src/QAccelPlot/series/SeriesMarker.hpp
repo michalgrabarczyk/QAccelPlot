@@ -7,7 +7,7 @@
 //
 #pragma once
 
-#include "QAccelPlot/series/PlotSeries.hpp"
+#include "QAccelPlot/series/MarkerShape.hpp"
 
 #include <QObject>
 
@@ -16,7 +16,7 @@ namespace QAccelPlot {
 /// \brief Controls the markers a series draws at its data points.
 ///
 /// Accessible via the \c marker CONSTANT grouped property of \c LineCurve and \c PointCloud, for example
-/// <tt>marker.shape: QAccelPlot.LineCurve.Diamond</tt>. Defaults depend on the owning series.
+/// <tt>marker.shape: QAccelPlot.MarkerShape.Diamond</tt>. Defaults depend on the owning series.
 ///
 /// \sa LineCurve, PointCloud
 class SeriesMarker : public QObject {
@@ -25,7 +25,7 @@ class SeriesMarker : public QObject {
 
     /// \brief Shape drawn at each data point. Series that always draw markers, such as \c PointCloud, ignore
     /// \c MarkerShape.None and log a warning. Default: \c None on \c LineCurve, \c Circle on \c PointCloud.
-    Q_PROPERTY(PlotSeries::MarkerShape shape READ shape WRITE setShape NOTIFY shapeChanged)
+    Q_PROPERTY(MarkerShape shape READ shape WRITE setShape NOTIFY shapeChanged)
     /// \brief Radius of each marker in pixels, clamped to at least 0. Default: 4 on \c LineCurve, 3 on \c PointCloud.
     Q_PROPERTY(qreal size READ size WRITE setSize NOTIFY sizeChanged)
     /// \brief Whether closed marker shapes are filled. When \c false they are drawn as outlines of \c strokeWidth
@@ -41,12 +41,12 @@ public:
     enum class NoneShape { Accepted, Rejected };
 
     /// \brief Constructs a SeriesMarker with the default \a shape and \a size, owned by \a parent.
-    SeriesMarker(PlotSeries::MarkerShape shape, qreal size, NoneShape noneShape, QObject* parent);
+    SeriesMarker(MarkerShape shape, qreal size, NoneShape noneShape, QObject* parent);
 
     /// \brief Returns the marker shape.
-    PlotSeries::MarkerShape shape() const;
+    MarkerShape shape() const;
     /// \brief Sets the marker shape to \a shape. \c MarkerShape.None is ignored when the series rejects it.
-    void setShape(PlotSeries::MarkerShape shape);
+    void setShape(MarkerShape shape);
 
     /// \brief Returns the marker radius in pixels.
     qreal size() const;
@@ -74,7 +74,7 @@ signals:
     void strokeWidthChanged();
 
 private:
-    PlotSeries::MarkerShape shape_;
+    MarkerShape shape_;
     qreal size_;
     NoneShape noneShape_;
     bool filled_{true};

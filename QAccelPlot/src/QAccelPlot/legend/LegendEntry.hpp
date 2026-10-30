@@ -8,6 +8,7 @@
 #pragma once
 
 #include "QAccelPlot/linestyles/LineStyle.hpp"
+#include "QAccelPlot/series/MarkerShape.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
 
 #include <QColor>
@@ -33,7 +34,7 @@ struct LegendEntry {
     /// \brief Line style, or null for a solid line. Owned by the series.
     Q_PROPERTY(::QAccelPlot::LineStyle* lineStyle MEMBER lineStyle CONSTANT)
     /// \brief Marker shape; \c None draws no marker.
-    Q_PROPERTY(::QAccelPlot::PlotSeries::MarkerShape markerShape MEMBER markerShape CONSTANT)
+    Q_PROPERTY(::QAccelPlot::MarkerShape markerShape MEMBER markerShape CONSTANT)
     /// \brief Marker size in pixels.
     Q_PROPERTY(qreal markerSize MEMBER markerSize CONSTANT)
     /// \brief Whether the marker is filled.
@@ -46,16 +47,16 @@ struct LegendEntry {
     Q_PROPERTY(qreal antialiasingFeather MEMBER antialiasingFeather CONSTANT)
 
 public:
-    PlotSeries::LegendSymbol symbol{PlotSeries::LegendSymbol::Line};    ///< \brief Symbol style.
-    QColor color;                                                       ///< \brief Line, marker, or fill color.
-    qreal lineWidth{1.0};                                               ///< \brief Line width in pixels.
-    LineStyle* lineStyle{nullptr};                                      ///< \brief Line style, or null for solid.
-    PlotSeries::MarkerShape markerShape{PlotSeries::MarkerShape::None}; ///< \brief Marker shape.
-    qreal markerSize{0.0};                                              ///< \brief Marker size in pixels.
-    bool markerFilled{true};                                            ///< \brief Whether the marker is filled.
-    qreal markerStrokeWidth{1.0};                                       ///< \brief Hollow marker outline width.
-    bool antialiasingEnabled{true};                                     ///< \brief Whether anti-aliasing is on.
-    qreal antialiasingFeather{1.0};                                     ///< \brief Anti-aliasing feather width.
+    PlotSeries::LegendSymbol symbol{PlotSeries::LegendSymbol::Line}; ///< \brief Symbol style.
+    QColor color;                                                    ///< \brief Line, marker, or fill color.
+    qreal lineWidth{1.0};                                            ///< \brief Line width in pixels.
+    LineStyle* lineStyle{nullptr};                                   ///< \brief Line style, or null for solid.
+    MarkerShape markerShape{MarkerShape::None};                      ///< \brief Marker shape.
+    qreal markerSize{0.0};                                           ///< \brief Marker size in pixels.
+    bool markerFilled{true};                                         ///< \brief Whether the marker is filled.
+    qreal markerStrokeWidth{1.0};                                    ///< \brief Hollow marker outline width.
+    bool antialiasingEnabled{true};                                  ///< \brief Whether anti-aliasing is on.
+    qreal antialiasingFeather{1.0};                                  ///< \brief Anti-aliasing feather width.
 };
 
 } // namespace QAccelPlot

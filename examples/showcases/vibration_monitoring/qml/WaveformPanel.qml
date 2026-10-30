@@ -141,7 +141,7 @@ DashboardPanel {
                 color: panel.channelColor(index)
                 lineWidth: 1
                 hoverEnabled: false
-                marker.shape: panel.samplesVisible && index === panel.inspectedChannel ? QAccelPlot.LineCurve.Circle : QAccelPlot.LineCurve.None
+                marker.shape: panel.samplesVisible && index === panel.inspectedChannel ? QAccelPlot.MarkerShape.Circle : QAccelPlot.MarkerShape.None
                 marker.size: 2.5
             }
         }

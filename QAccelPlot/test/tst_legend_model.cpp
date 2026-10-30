@@ -122,7 +122,7 @@ void LegendModelTest::lineCurveEntryDescribesLineAndMarker()
     curve.setLineWidth(3.0);
     curve.setLineStyle(&dash);
     curve.setAntialiasingEnabled(false);
-    curve.marker()->setShape(PlotSeries::MarkerShape::Diamond);
+    curve.marker()->setShape(MarkerShape::Diamond);
     curve.marker()->setSize(5.0);
     curve.marker()->setFilled(false);
     curve.marker()->setStrokeWidth(2.0);
@@ -133,7 +133,7 @@ void LegendModelTest::lineCurveEntryDescribesLineAndMarker()
     QCOMPARE(entry->color, QColor{Qt::green});
     QCOMPARE(entry->lineWidth, 3.0);
     QCOMPARE(entry->lineStyle, &dash);
-    QCOMPARE(entry->markerShape, PlotSeries::MarkerShape::Diamond);
+    QCOMPARE(entry->markerShape, MarkerShape::Diamond);
     QCOMPARE(entry->markerSize, 5.0);
     QVERIFY(!entry->markerFilled);
     QCOMPARE(entry->markerStrokeWidth, 2.0);
@@ -148,7 +148,7 @@ void LegendModelTest::pointCloudAndBarEntriesUseTheirSymbol()
     QVERIFY(cloudEntry);
     QCOMPARE(cloudEntry->symbol, PlotSeries::LegendSymbol::Marker);
     QCOMPARE(cloudEntry->color, QColor{Qt::blue});
-    QCOMPARE(cloudEntry->markerShape, PlotSeries::MarkerShape::Circle);
+    QCOMPARE(cloudEntry->markerShape, MarkerShape::Circle);
 
     auto bars = BarSeries{};
     bars.setColor(Qt::yellow);

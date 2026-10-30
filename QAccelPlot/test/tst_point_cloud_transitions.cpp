@@ -516,7 +516,7 @@ std::unique_ptr<PointCloud> PointCloudTransitionsTest::addCloud(const QColor& co
     cloud->setYAxis(scene_.yAxis.get());
     cloud->setPlotRect({0, 0, kSize, kSize});
     cloud->setColor(color);
-    cloud->marker()->setShape(PlotSeries::MarkerShape::Square);
+    cloud->marker()->setShape(MarkerShape::Square);
     cloud->marker()->setSize(6.0);
     return cloud;
 }

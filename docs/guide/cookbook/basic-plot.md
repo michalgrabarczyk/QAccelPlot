@@ -50,7 +50,7 @@ QAccelPlot.Plot {
         color: "dodgerblue"
         lineWidth: 2
         lineStyle: QAccelPlot.DashLine { pattern: [8, 5] }
-        marker.shape: QAccelPlot.LineCurve.Diamond
+        marker.shape: QAccelPlot.MarkerShape.Diamond
         marker.size: 7
     }
 }

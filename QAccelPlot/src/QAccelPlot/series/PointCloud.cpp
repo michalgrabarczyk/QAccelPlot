@@ -38,7 +38,7 @@ namespace {
 // Cost of indexing one point, measured on a desktop CPU and assumed until a build has been timed.
 constexpr auto kAssumedIndexCostPerPoint = std::chrono::nanoseconds{15};
 
-// The shape integers come from PlotSeries::MarkerShape, shared with LineCurve markers and the
+// The shape integers come from MarkerShape, shared with LineCurve markers and the
 // point_shapes.glsl shader include, which selects a shape by the value minus one.
 
 constexpr auto kPositionStride = 2;

@@ -463,7 +463,7 @@ void LineCurveGapsTest::connectModeBridgesFloatDataWhenATransitionStarts()
 void LineCurveGapsTest::markerHitTestSkipsInvalidSamples()
 {
     auto fixture = HitTestFixture{};
-    fixture.curve.marker()->setShape(LineCurve::MarkerShape::Circle);
+    fixture.curve.marker()->setShape(MarkerShape::Circle);
     fixture.curve.marker()->setSize(6.0);
     fixture.yAxis.setViewportMin(1.0);
     fixture.yAxis.setViewportMax(100.0);

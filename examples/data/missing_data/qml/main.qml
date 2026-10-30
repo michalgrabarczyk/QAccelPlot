@@ -164,7 +164,7 @@ Window {
                     color: colorPalette.seriesSecondary
                     lineWidth: window.lineWidth
                     gaps.nanMode: window.activeNanGapMode
-                    marker.shape: QAccelPlot.LineCurve.Circle
+                    marker.shape: QAccelPlot.MarkerShape.Circle
                     marker.size: 6
                     Component.onCompleted: {
                         const points = window.pressurePoints().filter((point, index) => index % 3 === 0 || !isFinite(point.y));

@@ -90,19 +90,19 @@ ColumnLayout {
         choices: [
             {
                 text: "None",
-                value: QAccelPlot.LineCurve.None
+                value: QAccelPlot.MarkerShape.None
             },
             {
                 text: "Circle",
-                value: QAccelPlot.LineCurve.Circle
+                value: QAccelPlot.MarkerShape.Circle
             },
             {
                 text: "Star",
-                value: QAccelPlot.LineCurve.Star
+                value: QAccelPlot.MarkerShape.Star
             },
             {
                 text: "Pixel",
-                value: QAccelPlot.LineCurve.Pixel
+                value: QAccelPlot.MarkerShape.Pixel
             }
         ]
         value: root.settings.markerShape

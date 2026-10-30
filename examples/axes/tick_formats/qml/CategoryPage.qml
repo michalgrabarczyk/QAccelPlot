@@ -55,7 +55,7 @@ Item {
                 yAxis: plot.yAxis
                 color: root.colorPalette.seriesSecondary
                 lineWidth: 3
-                marker.shape: QAccelPlot.LineCurve.Diamond
+                marker.shape: QAccelPlot.MarkerShape.Diamond
                 marker.size: 8
                 antialiasingEnabled: true
 

@@ -96,7 +96,7 @@ PlotView {
     PointCloud {
         xAxis: plot.x2Axis
         yAxis: plot.y2Axis
-        marker.shape: PointCloud.Circle
+        marker.shape: MarkerShape.Circle
         marker.size: 12
         colormap: Colormap {}
         Component.onCompleted: {
@@ -133,7 +133,7 @@ PlotView {
         xAxis: plot.xAxis
         yAxis: plot.yAxis
         color: "red"
-        marker.shape: PointCloud.Square
+        marker.shape: MarkerShape.Square
         marker.size: 6
         antialiasingEnabled: false
         Component.onCompleted: setData([Qt.point(1, 2), Qt.point(3, 2), Qt.point(5, 2), Qt.point(7, 2)])
@@ -144,7 +144,7 @@ PlotView {
         xAxis: plot.xAxis
         yAxis: plot.yAxis
         color: "cyan"
-        marker.shape: PointCloud.Square
+        marker.shape: MarkerShape.Square
         marker.size: 6
         antialiasingEnabled: false
         Component.onCompleted: {

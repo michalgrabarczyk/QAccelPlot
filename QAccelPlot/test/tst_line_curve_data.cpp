@@ -280,7 +280,7 @@ void LineCurveDataTest::stoppedTransitionBeforeFirstFrame()
     QFETCH(TransitionStopMode, stopMode);
     auto curve = LineCurve{};
     curve.setLineStyle(nullptr);
-    curve.marker()->setShape(LineCurve::MarkerShape::Circle);
+    curve.marker()->setShape(MarkerShape::Circle);
     auto transition = std::make_unique<MorphTransition>();
     curve.setTransition(transition.get());
     curve.setDataF(makeData(2), 2);
@@ -483,7 +483,7 @@ void LineCurveDataTest::lineAndMarkerCurveContainsLineAndMarkers()
     curve.setXAxis(&xAxis);
     curve.setYAxis(&yAxis);
     curve.setPlotRect({0, 0, 100, 100});
-    curve.marker()->setShape(LineCurve::MarkerShape::Circle);
+    curve.marker()->setShape(MarkerShape::Circle);
     curve.setData(QList<QPointF>{{0.1, 0.5}, {0.9, 0.5}});
 
     const auto& item = static_cast<const QQuickItem&>(curve);
@@ -518,7 +518,7 @@ void LineCurveDataTest::hoverRadiusLimitsLineHitTest()
     QVERIFY(!item.contains({50, 50}));
     QVERIFY(!item.contains({10, 50}));
 
-    curve.marker()->setShape(LineCurve::MarkerShape::Circle);
+    curve.marker()->setShape(MarkerShape::Circle);
     QVERIFY(item.contains({10, 50}));
     QVERIFY(!item.contains({50, 50}));
 }

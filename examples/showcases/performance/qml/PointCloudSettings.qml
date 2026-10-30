@@ -15,7 +15,7 @@ PageSettings {
     property bool autoColorRange: false
     // Share of the points whose X is NaN.
     property real invalidFraction: 0
-    property int markerShape: QAccelPlot.PointCloud.Circle
+    property int markerShape: QAccelPlot.MarkerShape.Circle
     property real markerSize: 2
     property bool markerFilled: true
     // Outline width of hollow markers.

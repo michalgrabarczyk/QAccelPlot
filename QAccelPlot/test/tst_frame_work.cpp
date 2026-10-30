@@ -310,7 +310,7 @@ void addSeriesRows()
     };
     row("LineCurve", "LineCurve", {}, Layout::XY, false);
     row("LineCurve steps", "LineCurve", QStringLiteral("stepMode: StepMode.After"), Layout::XY, false);
-    row("LineCurve markers", "LineCurve", QStringLiteral("marker.shape: LineCurve.Circle"), Layout::XY, false);
+    row("LineCurve markers", "LineCurve", QStringLiteral("marker.shape: MarkerShape.Circle"), Layout::XY, false);
     row("LineCurve dash", "LineCurve", QStringLiteral("lineStyle: DashLine { pattern: [6, 4] }"), Layout::XY, true);
     row("PointCloud", "PointCloud", {}, Layout::XY, false);
     row("RectangleSeries", "RectangleSeries", {}, Layout::Rectangle, false);

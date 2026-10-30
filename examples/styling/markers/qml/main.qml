@@ -29,21 +29,21 @@ Window {
     })
 
     readonly property var shapes: [
-        { name: "Circle", shape: QAccelPlot.LineCurve.Circle },
-        { name: "Square", shape: QAccelPlot.LineCurve.Square },
-        { name: "Diamond", shape: QAccelPlot.LineCurve.Diamond },
-        { name: "TriangleUp", shape: QAccelPlot.LineCurve.TriangleUp },
-        { name: "TriangleDown", shape: QAccelPlot.LineCurve.TriangleDown },
-        { name: "TriangleLeft", shape: QAccelPlot.LineCurve.TriangleLeft },
-        { name: "TriangleRight", shape: QAccelPlot.LineCurve.TriangleRight },
-        { name: "Pentagon", shape: QAccelPlot.LineCurve.Pentagon },
-        { name: "Hexagon", shape: QAccelPlot.LineCurve.Hexagon },
-        { name: "Star", shape: QAccelPlot.LineCurve.Star },
-        { name: "Cross", shape: QAccelPlot.LineCurve.Cross },
-        { name: "XCross", shape: QAccelPlot.LineCurve.XCross },
-        { name: "Asterisk", shape: QAccelPlot.LineCurve.Asterisk },
-        { name: "HLine", shape: QAccelPlot.LineCurve.HLine },
-        { name: "VLine", shape: QAccelPlot.LineCurve.VLine }
+        { name: "Circle", shape: QAccelPlot.MarkerShape.Circle },
+        { name: "Square", shape: QAccelPlot.MarkerShape.Square },
+        { name: "Diamond", shape: QAccelPlot.MarkerShape.Diamond },
+        { name: "TriangleUp", shape: QAccelPlot.MarkerShape.TriangleUp },
+        { name: "TriangleDown", shape: QAccelPlot.MarkerShape.TriangleDown },
+        { name: "TriangleLeft", shape: QAccelPlot.MarkerShape.TriangleLeft },
+        { name: "TriangleRight", shape: QAccelPlot.MarkerShape.TriangleRight },
+        { name: "Pentagon", shape: QAccelPlot.MarkerShape.Pentagon },
+        { name: "Hexagon", shape: QAccelPlot.MarkerShape.Hexagon },
+        { name: "Star", shape: QAccelPlot.MarkerShape.Star },
+        { name: "Cross", shape: QAccelPlot.MarkerShape.Cross },
+        { name: "XCross", shape: QAccelPlot.MarkerShape.XCross },
+        { name: "Asterisk", shape: QAccelPlot.MarkerShape.Asterisk },
+        { name: "HLine", shape: QAccelPlot.MarkerShape.HLine },
+        { name: "VLine", shape: QAccelPlot.MarkerShape.VLine }
     ]
 
     // One gallery cell per shape and fill style: shapes run left to right, filled above hollow.
@@ -300,7 +300,7 @@ Window {
                     yAxis: galleryPlot.yAxis
                     color: colorPalette.seriesSecondary
                     lineStyle: QAccelPlot.NoLine {}
-                    marker.shape: QAccelPlot.LineCurve.Square
+                    marker.shape: QAccelPlot.MarkerShape.Square
                     marker.filled: false
                     marker.size: window.markerSize + 8
                     marker.strokeWidth: 2

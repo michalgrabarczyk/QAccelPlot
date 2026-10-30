@@ -624,7 +624,7 @@ Window {
                         xAxis: vanDerPolPlot.xAxis
                         yAxis: vanDerPolPlot.yAxis
                         color: window.colorPalette.text
-                        marker.shape: QAccelPlot.PointCloud.Circle
+                        marker.shape: QAccelPlot.MarkerShape.Circle
                         marker.size: 4
                     }
 

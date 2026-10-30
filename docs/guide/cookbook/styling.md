@@ -40,7 +40,7 @@ QAccelPlot.LineCurve {
     lineStyle: QAccelPlot.DashLine {
         pattern: [14, 5, 3, 5]
     }
-    marker.shape: QAccelPlot.LineCurve.Diamond
+    marker.shape: QAccelPlot.MarkerShape.Diamond
     marker.size: 5
     antialiasingEnabled: true
     antialiasingFeather: 1
@@ -113,7 +113,7 @@ properties.
 ```qml
 QAccelPlot.LineCurve {
     lineStyle: QAccelPlot.NoLine {}
-    marker.shape: QAccelPlot.LineCurve.Circle
+    marker.shape: QAccelPlot.MarkerShape.Circle
     marker.size: 4
     marker.filled: false
     marker.strokeWidth: 1

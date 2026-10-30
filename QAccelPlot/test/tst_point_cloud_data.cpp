@@ -110,7 +110,7 @@ void PointCloudDataTest::defaults()
     QCOMPARE(cloud.hoveredIndex(), -1);
     QVERIFY(cloud.marker());
     QCOMPARE(cloud.marker()->parent(), &cloud);
-    QCOMPARE(cloud.marker()->shape(), PlotSeries::MarkerShape::Circle);
+    QCOMPARE(cloud.marker()->shape(), MarkerShape::Circle);
     QCOMPARE(cloud.marker()->size(), 3.0);
     QVERIFY(cloud.marker()->filled());
     QCOMPARE(cloud.marker()->strokeWidth(), 1.0);
@@ -576,8 +576,8 @@ void PointCloudDataTest::propertySettersClampAndNotify()
     QCOMPARE(cloud.antialiasingFeather(), 10.0);
     QCOMPARE(featherSpy.count(), 1);
 
-    marker->setShape(PlotSeries::MarkerShape::Cross);
-    marker->setShape(PlotSeries::MarkerShape::Cross);
+    marker->setShape(MarkerShape::Cross);
+    marker->setShape(MarkerShape::Cross);
     QCOMPARE(shapeSpy.count(), 1);
 
     cloud.setHoverRadius(-1.0);

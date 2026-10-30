@@ -108,7 +108,7 @@ Item {
                             stepMode: cell.modelData.mode
                             color: root.colorPalette.seriesPrimary
                             lineWidth: 2
-                            marker.shape: markersCheck.checked ? QAccelPlot.LineCurve.Circle : QAccelPlot.LineCurve.None
+                            marker.shape: markersCheck.checked ? QAccelPlot.MarkerShape.Circle : QAccelPlot.MarkerShape.None
                             marker.size: 3.5
                             lineStyle: QAccelPlot.DashLine {
                                 pattern: dashCheck.checked ? [8, 4] : []
