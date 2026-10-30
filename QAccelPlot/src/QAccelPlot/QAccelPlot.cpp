@@ -13,6 +13,7 @@
 #include "QAccelPlot/axis/internal/RangeGesture.hpp"
 #include "QAccelPlot/grid/Grid.hpp"
 #include "QAccelPlot/grid/GridNode.hpp"
+#include "QAccelPlot/internal/PointerTracker.hpp"
 #include "QAccelPlot/internal/RectangleZoomOverlay.hpp"
 
 #include <QCoreApplication>
@@ -26,6 +27,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <optional>
 
 namespace QAccelPlot {
 
@@ -85,6 +87,7 @@ QAccelPlot::QAccelPlot(QQuickItem* parent)
     rectangleZoomOverlay_ = new RectangleZoomOverlay(this, rectangleZoom_);
     overlay_ = new QQuickItem(this);
     overlay_->setZ(kOverlayZ);
+    pointer_ = new Internal::PointerTracker(this);
     connect(rectangleZoom_, &PlotRectangleZoom::enabledChanged, this, &QAccelPlot::cancelRectangleSelection);
     connect(this, &QQuickItem::visibleChanged, this, &QAccelPlot::cancelRectangleSelection);
     connect(this, &QQuickItem::enabledChanged, this, &QAccelPlot::cancelRectangleSelection);
@@ -200,16 +203,6 @@ void QAccelPlot::rescaleAllAxes()
     for (const auto axis : extraAxes_) {
         axis->rescaleToData();
     }
-}
-
-QPointF QAccelPlot::pointerPosition() const
-{
-    return lastPointerPos_;
-}
-
-bool QAccelPlot::pointerInside() const
-{
-    return pointerPos_ && plotRect_.contains(*pointerPos_);
 }
 
 Axis* QAccelPlot::xAxis() const
@@ -448,9 +441,7 @@ void QAccelPlot::wheelEvent(QWheelEvent* event)
 
 void QAccelPlot::mousePressEvent(QMouseEvent* event)
 {
-    touchPointer_ = event->pointingDevice() && event->pointingDevice()->type() == QInputDevice::DeviceType::TouchScreen;
-    touchPressed_ = touchPointer_;
-    setPointer(event->position());
+    pointer_->press(*event);
     mousePressEvent_.reset(*event);
     emit mousePressed(&mousePressEvent_);
     if (mousePressEvent_.isAccepted()) {
@@ -478,18 +469,13 @@ void QAccelPlot::mousePressEvent(QMouseEvent* event)
 
 void QAccelPlot::hoverEnterEvent(QHoverEvent* event)
 {
-    // A touch in progress also produces hover events at the finger; a later one comes from the mouse.
-    if (!touchPressed_) {
-        touchPointer_ = false;
-        setPointer(event->position());
-    }
+    pointer_->hoverEnter(*event);
     QQuickItem::hoverEnterEvent(event);
 }
 
 void QAccelPlot::hoverMoveEvent(QHoverEvent* event)
 {
-    touchPointer_ = false;
-    setPointer(event->position());
+    pointer_->hoverMove(*event);
     if (dragMode_ != DragMode::Idle) {
         QQuickItem::hoverMoveEvent(event);
         return;
@@ -507,20 +493,13 @@ void QAccelPlot::hoverMoveEvent(QHoverEvent* event)
 
 void QAccelPlot::hoverLeaveEvent(QHoverEvent* event)
 {
-    // A touch has no hover: the pointer stays where the finger was until the next tap or mouse movement.
-    if (!touchPointer_) {
-        pointerPos_.reset();
-        emit pointerChanged();
-    }
+    pointer_->hoverLeave();
     QQuickItem::hoverLeaveEvent(event);
 }
 
 void QAccelPlot::mouseMoveEvent(QMouseEvent* event)
 {
-    // After a touch is released, Qt Quick sends a button-less move to the mouse cursor's old position.
-    if (!touchPointer_ || event->buttons() != Qt::NoButton) {
-        setPointer(event->position());
-    }
+    pointer_->mouseMove(*event);
     mouseMoveEvent_.reset(*event);
     emit mouseMoved(&mouseMoveEvent_);
     if (mouseMoveEvent_.isAccepted()) {
@@ -557,7 +536,7 @@ void QAccelPlot::mouseMoveEvent(QMouseEvent* event)
 
 void QAccelPlot::mouseReleaseEvent(QMouseEvent* event)
 {
-    touchPressed_ = false;
+    pointer_->release();
     const auto endedDrag = event->button() == Qt::LeftButton && dragMode_ != DragMode::Idle;
     mouseReleaseEvent_.reset(*event);
     emit mouseReleased(&mouseReleaseEvent_);
@@ -585,7 +564,7 @@ void QAccelPlot::mouseReleaseEvent(QMouseEvent* event)
 
 void QAccelPlot::mouseUngrabEvent()
 {
-    touchPressed_ = false;
+    pointer_->release();
     cancelRectangleSelection();
     dragMode_ = DragMode::Idle;
     emit pointerGrabLost();
@@ -624,19 +603,20 @@ void QAccelPlot::keyPressEvent(QKeyEvent* event)
         event->accept();
         return;
     }
-    if (!pointerPos_) {
+    const auto pointer = pointer_->position();
+    if (!pointer) {
         QQuickItem::keyPressEvent(event);
         return;
     }
 
     for (const auto axis : {xAxis_, yAxis_, x2Axis_, y2Axis_}) {
-        if (tryForwardKeyEventToAxis(axis, *pointerPos_, event) && event->isAccepted()) {
+        if (tryForwardKeyEventToAxis(axis, *pointer, event) && event->isAccepted()) {
             return;
         }
     }
 
     for (Axis* axis : extraAxes_) {
-        if (tryForwardKeyEventToAxis(axis, *pointerPos_, event) && event->isAccepted()) {
+        if (tryForwardKeyEventToAxis(axis, *pointer, event) && event->isAccepted()) {
             return;
         }
     }
@@ -1079,11 +1059,9 @@ void QAccelPlot::layoutAxes()
     }
 }
 
-void QAccelPlot::setPointer(const QPointF& position)
+const Internal::PointerTracker& QAccelPlot::pointer() const
 {
-    pointerPos_ = position;
-    lastPointerPos_ = position;
-    emit pointerChanged();
+    return *pointer_;
 }
 
 void QAccelPlot::registerSeries(QQuickItem* item)
