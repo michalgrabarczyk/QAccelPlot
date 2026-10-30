@@ -34,7 +34,7 @@ public:
     mutable std::function<void()> action;
 
 protected:
-    QString doFormat(const qreal value, const qreal /*step*/) const override
+    QString doFormat(const qreal value, [[maybe_unused]] const qreal step) const override
     {
         if (action) {
             std::exchange(action, {})();

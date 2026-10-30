@@ -161,11 +161,6 @@ void RectangleSeries::setMinimumHeight(const qreal height)
     update();
 }
 
-int RectangleSeries::count() const
-{
-    return dataPoints().count();
-}
-
 int RectangleSeries::hoveredIndex() const
 {
     return hoveredIndex_;
@@ -345,7 +340,7 @@ void RectangleSeries::applyFloatData(std::vector<float>&& data, std::vector<int>
     notifyDataPointsChanged(DataChange::Replaced, previousCount);
 }
 
-void RectangleSeries::onDataPointsChanged(const DataChange /*change*/, const int previousCount)
+void RectangleSeries::onDataPointsChanged([[maybe_unused]] const DataChange change, const int previousCount)
 {
     // Vertex colors depend on the categories, but not on the coordinates.
     if (count() != previousCount || vertexCacheHasCategories_ || hasCategories()) {
@@ -356,9 +351,6 @@ void RectangleSeries::onDataPointsChanged(const DataChange /*change*/, const int
     lastHitTest_.reset();
     if (hoveredIndex_ >= count()) {
         setHoveredIndex(-1);
-    }
-    if (previousCount != count()) {
-        emit countChanged();
     }
 }
 

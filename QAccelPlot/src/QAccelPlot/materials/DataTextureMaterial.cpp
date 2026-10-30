@@ -157,7 +157,7 @@ QSGTexture* DataTextureMaterial::sampledTexture() const
     return dataTexture ? dataTexture->texture() : nullptr;
 }
 
-int DataTextureMaterial::compareExtra(const QSGMaterial* /*other*/) const
+int DataTextureMaterial::compareExtra([[maybe_unused]] const QSGMaterial* other) const
 {
     return 0;
 }

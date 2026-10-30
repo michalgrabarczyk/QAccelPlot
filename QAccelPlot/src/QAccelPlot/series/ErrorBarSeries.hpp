@@ -110,8 +110,6 @@ class ErrorBarSeries : public PlotSeries {
     Q_PROPERTY(qreal hoverRadius READ hoverRadius WRITE setHoverRadius NOTIFY hoverRadiusChanged)
     /// \brief Optional data transition animation applied when new data arrives.
     Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
-    /// \brief Read-only: number of data points currently loaded.
-    Q_PROPERTY(int count READ count NOTIFY countChanged)
     /// \brief Read-only: index of the error bar under the cursor, or -1 when none.
     Q_PROPERTY(int hoveredIndex READ hoveredIndex NOTIFY hoveredIndexChanged)
 
@@ -161,8 +159,6 @@ public:
     /// \brief Sets the data transition to \a transition.
     void setTransition(DataTransition* transition);
 
-    /// \brief Returns the number of data points currently loaded.
-    int count() const;
     /// \brief Returns the index of the hovered error bar, or -1 if none.
     int hoveredIndex() const;
 
@@ -227,8 +223,6 @@ signals:
     void hoverRadiusChanged();
     /// \brief Emitted when the transition property changes.
     void transitionChanged();
-    /// \brief Emitted when the data point count changes.
-    void countChanged();
     /// \brief Emitted when the hovered error bar changes.
     void hoveredIndexChanged();
 

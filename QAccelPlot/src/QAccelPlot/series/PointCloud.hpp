@@ -80,8 +80,6 @@ class PointCloud : public ColormappedSeries {
     Q_PROPERTY(qreal hoverRadius READ hoverRadius WRITE setHoverRadius NOTIFY hoverRadiusChanged)
     /// \brief Optional data transition animation applied when new data arrives.
     Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
-    /// \brief Read-only: number of points currently stored, including invalid ones.
-    Q_PROPERTY(int count READ count NOTIFY countChanged)
     /// \brief Read-only: index of the valid point nearest the pointer within \c hoverRadius, or -1 when none.
     Q_PROPERTY(int hoveredIndex READ hoveredIndex NOTIFY hoveredIndexChanged)
 
@@ -119,8 +117,6 @@ public:
     /// \brief Sets the data transition to \a transition.
     void setTransition(DataTransition* transition);
 
-    /// \brief Returns the number of stored points.
-    int count() const;
     /// \brief Returns the index of the hovered point, or -1.
     int hoveredIndex() const;
 
@@ -168,8 +164,6 @@ signals:
     void hoverRadiusChanged();
     /// \brief Emitted when the transition property changes.
     void transitionChanged();
-    /// \brief Emitted when the number of points changes.
-    void countChanged();
     /// \brief Emitted when the hovered point changes.
     void hoveredIndexChanged();
 

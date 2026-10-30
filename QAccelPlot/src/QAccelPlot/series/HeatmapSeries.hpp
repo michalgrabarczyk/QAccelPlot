@@ -124,6 +124,8 @@ public:
 
     /// \brief Returns the number of complete rows.
     int rows() const;
+    /// \brief Returns the number of cells, \c columns × \c rows.
+    int count() const override;
 
     /// \brief Returns the left grid edge, or NaN when unset.
     qreal xMin() const;

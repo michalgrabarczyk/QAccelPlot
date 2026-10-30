@@ -89,7 +89,7 @@ void GradientTexture::upload(QQuickWindow* window, const std::vector<GradientSto
     stops_ = stops;
 }
 
-void GradientTexture::commit(QSGMaterialShader::RenderState& state, const int binding, QSGTexture** texture)
+void GradientTexture::commit(QSGMaterialShader::RenderState& state, QSGTexture** texture)
 {
     if (!texture_) {
         *texture = nullptr;
@@ -103,7 +103,6 @@ void GradientTexture::commit(QSGMaterialShader::RenderState& state, const int bi
     }
     texture_->commitTextureOperations(rhi, updates);
     *texture = texture_;
-    Q_UNUSED(binding)
 }
 
 qint64 GradientTexture::comparisonKey() const

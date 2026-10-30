@@ -32,6 +32,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   example.
 - `PlotSeries.hoverEnabled` turns hover off for one series and leaves it to the
   series beneath.
+- `PlotSeries.count` on every series, including `LineCurve` (points) and
+  `HeatmapSeries` (cells, `columns` × `rows`).
 - Step lines via `LineCurve.stepMode` (`Before`, `After`, or `Center`): the
   fill, dash pattern, hover, and interpolated inspection follow the steps.
   Includes a Step Lines example.

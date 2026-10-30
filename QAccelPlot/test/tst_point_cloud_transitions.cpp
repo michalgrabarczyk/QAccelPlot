@@ -49,7 +49,8 @@ public:
     }
 
 protected:
-    void interpolate(double /*easedProgress*/, const DataTransition::Dataset& from, const DataTransition::Dataset& to, DataTransition::Dataset& out) override
+    void interpolate(
+        [[maybe_unused]] double easedProgress, const DataTransition::Dataset& from, const DataTransition::Dataset& to, DataTransition::Dataset& out) override
     {
         Transition::interpolate(progress_, from, to, out);
     }

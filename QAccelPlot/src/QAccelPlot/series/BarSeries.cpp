@@ -288,11 +288,6 @@ void BarSeries::setTransition(DataTransition* transition)
     }
 }
 
-int BarSeries::count() const
-{
-    return dataPoints().count();
-}
-
 int BarSeries::hoveredIndex() const
 {
     return hoveredIndex_;
@@ -658,7 +653,7 @@ void BarSeries::setDataFFromArray(const float* data, const int barCount)
     notifyDataPointsChanged(DataChange::Replaced, previousCount);
 }
 
-void BarSeries::onDataPointsChanged(const DataChange /*change*/, const int previousCount)
+void BarSeries::onDataPointsChanged([[maybe_unused]] const DataChange change, const int previousCount)
 {
     // Vertex colors depend on the categories, but not on the coordinates.
     if (count() != previousCount || vertexCacheHasCategories_ || hasCategories()) {
@@ -667,9 +662,6 @@ void BarSeries::onDataPointsChanged(const DataChange /*change*/, const int previ
     spatialGridValid_ = false;
     if (hoveredIndex_ >= count()) {
         setHoveredIndex(-1);
-    }
-    if (previousCount != count()) {
-        emit countChanged();
     }
     updateValueRange();
 }

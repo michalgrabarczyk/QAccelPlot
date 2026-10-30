@@ -453,10 +453,8 @@ bool LineCurve::inspectionAvailable() const
     return !transition_->pending();
 }
 
-QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updatePaintNodeData)
+QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, [[maybe_unused]] UpdatePaintNodeData* updatePaintNodeData)
 {
-    Q_UNUSED(updatePaintNodeData)
-
     if (!Internal::supportsCustomShaderRendering(window())) {
         static bool warned = false;
         if (!warned) {
@@ -677,7 +675,7 @@ void LineCurve::onAxisScaleChanged()
     update();
 }
 
-void LineCurve::onDataPointsChanged(const DataChange change, const int /*previousCount*/)
+void LineCurve::onDataPointsChanged(const DataChange change, [[maybe_unused]] const int previousCount)
 {
     if (change == DataChange::Appended) {
         invalidateData();

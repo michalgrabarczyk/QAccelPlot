@@ -189,11 +189,6 @@ void PointCloud::setTransition(DataTransition* transition)
     }
 }
 
-int PointCloud::count() const
-{
-    return dataPoints().count();
-}
-
 int PointCloud::hoveredIndex() const
 {
     return hoveredIndex_;
@@ -368,10 +363,8 @@ InspectionSource PointCloud::inspectionSource() const
     return source;
 }
 
-QSGNode* PointCloud::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updatePaintNodeData)
+QSGNode* PointCloud::updatePaintNode(QSGNode* oldNode, [[maybe_unused]] UpdatePaintNodeData* updatePaintNodeData)
 {
-    Q_UNUSED(updatePaintNodeData)
-
     auto* window = this->window();
     if (!Internal::supportsCustomShaderRendering(window)) {
         static auto warned = false;
@@ -543,15 +536,12 @@ void PointCloud::onAxisScaleChanged()
     update();
 }
 
-void PointCloud::onDataPointsChanged(const DataChange /*change*/, const int previousCount)
+void PointCloud::onDataPointsChanged([[maybe_unused]] const DataChange change, [[maybe_unused]] const int previousCount)
 {
     invalidateSpatialIndex();
     updateValueRange();
     if (hoveredIndex_ >= count()) {
         setHoveredIndex(-1);
-    }
-    if (previousCount != count()) {
-        emit countChanged();
     }
 }
 

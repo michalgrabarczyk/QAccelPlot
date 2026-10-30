@@ -81,6 +81,12 @@ class PlotSeries : public QQuickItem {
     Q_PROPERTY(quint64 dataRevision READ dataRevision NOTIFY dataRevisionChanged)
     /// \brief Read-only constant: data queries for this series.
     Q_PROPERTY(::QAccelPlot::SeriesInspection* inspection READ inspection CONSTANT)
+    /// \brief Read-only: number of records stored, including invalid ones.
+    ///
+    /// A record is one data point of the layout in the class description: a point of a \c LineCurve
+    /// or \c PointCloud, a rectangle, a bar, a band sample, an error bar, or a heatmap cell. A
+    /// \c HeatmapSeries counts \c columns × \c rows cells, without an incomplete last row.
+    Q_PROPERTY(int count READ count NOTIFY countChanged)
 
 public:
     /// \brief Supported default legend symbols.
@@ -140,6 +146,8 @@ public:
     quint64 dataRevision() const;
     /// \brief Returns the data queries for this series; created on first use and owned by the series.
     SeriesInspection* inspection() const;
+    /// \brief Returns the number of records stored. The default is the number of stored data points.
+    virtual int count() const;
 
     QString name() const;
     void setName(const QString& name);
@@ -204,6 +212,8 @@ public:
 signals:
     /// \brief Emitted when the dataRevision property changes.
     void dataRevisionChanged();
+    /// \brief Emitted when the number of records changes.
+    void countChanged();
     void nameChanged();
     void xAxisChanged();
     void yAxisChanged();
@@ -275,7 +285,7 @@ protected:
     bool validateDataSize(std::size_t valueCount, int count, bool floatData, int valuesPerDataPoint = 0) const;
     /// \brief Appends one double data point and widens the data ranges by its valid coordinates.
     void appendDataPoint(const double* coordinates);
-    /// \brief Finishes a change of the data points: data ranges, \c onDataPointsChanged(), data queries, and a repaint.
+    /// \brief Finishes a change of the data points: data ranges, \c onDataPointsChanged(), \c countChanged(), data queries, and a repaint.
     void notifyDataPointsChanged(DataChange change, int previousCount);
     /// \brief Called after the data points changed, before the data queries are refreshed. The default does nothing.
     virtual void onDataPointsChanged(DataChange change, int previousCount);

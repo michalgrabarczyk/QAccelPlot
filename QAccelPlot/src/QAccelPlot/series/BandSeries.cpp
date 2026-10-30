@@ -149,11 +149,6 @@ BandEdges* BandSeries::edges() const
     return edges_;
 }
 
-int BandSeries::count() const
-{
-    return dataPoints().count();
-}
-
 bool BandSeries::hovered() const
 {
     return hovered_;
@@ -247,7 +242,7 @@ InspectionRecord BandSeries::inspectionRecordAt(const QPointF& position) const
     return result;
 }
 
-QSGNode* BandSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* /*updatePaintNodeData*/)
+QSGNode* BandSeries::updatePaintNode(QSGNode* oldNode, [[maybe_unused]] UpdatePaintNodeData* updatePaintNodeData)
 {
     if (!Internal::supportsCustomShaderRendering(window())) {
         static auto warned = false;
@@ -332,15 +327,12 @@ void BandSeries::onAxisRangeChanged()
     refreshHovered();
 }
 
-void BandSeries::onDataPointsChanged(const DataChange change, const int previousCount)
+void BandSeries::onDataPointsChanged(const DataChange change, [[maybe_unused]] const int previousCount)
 {
     if (change == DataChange::Replaced) {
         updateXAscending();
     }
     refreshHovered();
-    if (dataPoints().count() != previousCount) {
-        emit countChanged();
-    }
 }
 
 void BandSeries::applyInterleavedData(std::vector<double>&& data)

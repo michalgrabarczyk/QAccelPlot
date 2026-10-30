@@ -30,7 +30,7 @@ public:
     using PlotSeries::setData;
     using PlotSeries::setDataF;
 
-    void applyDataPoints(DataPointInput&& /*input*/) override
+    void applyDataPoints([[maybe_unused]] DataPointInput&& input) override
     {
         invalidateDataRanges();
     }
