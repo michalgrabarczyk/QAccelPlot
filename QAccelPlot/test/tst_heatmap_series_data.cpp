@@ -462,8 +462,8 @@ void HeatmapSeriesDataTest::recordAtPositionOnLogAxes()
     // Column 1 is centered at its geometric center, data 10^1.5, which is pixel 50.
     const auto dataPoint = rig.heatmap.inspection()->dataPointAtPosition({36.0, 95.0});
     QCOMPARE(dataPoint.index, 1);
-    QCOMPARE(dataPoint.position.x(), std::pow(10.0, 1.5));
-    QCOMPARE(dataPoint.pixelPosition.x(), 50.0);
+    QCOMPARE(dataPoint.x, std::pow(10.0, 1.5));
+    QCOMPARE(dataPoint.pixelX, 50.0);
 
     // Linear cells on a log axis: columns 0..300, 300..600, 600..900. Pixel 80 is data 251, pixel 85 is 355.
     rig.heatmap.setXSpacing(HeatmapSeries::Spacing::Linear);
@@ -618,8 +618,10 @@ void HeatmapSeriesDataTest::dataPointAtPositionReportsTheCellCenter()
     QCOMPARE(dataPoint.status, InspectionStatus::Ready);
     QCOMPARE(dataPoint.dataRevision, rig.heatmap.dataRevision());
     QCOMPARE(dataPoint.index, 4);
-    QCOMPARE(dataPoint.position, QPointF(5.0, 7.5));
-    QCOMPARE(dataPoint.pixelPosition, QPointF(50.0, 25.0));
+    QCOMPARE(dataPoint.x, 5.0);
+    QCOMPARE(dataPoint.y, 7.5);
+    QCOMPARE(dataPoint.pixelX, 50.0);
+    QCOMPARE(dataPoint.pixelY, 25.0);
     QCOMPARE(dataPoint.value, 5.0);
     QCOMPARE(dataPoint.distance, std::hypot(2.0, 3.0));
     QVERIFY(!dataPoint.interpolated);

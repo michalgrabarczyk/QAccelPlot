@@ -102,8 +102,8 @@ public:
     Q_INVOKABLE ::QAccelPlot::InspectionRecord recordAtPosition(const QPointF& position) const;
     /// \brief Returns the record drawn at the series-local \a position as a data point, such as the heatmap cell under it.
     ///
-    /// \c Unsupported for series that do not draw data points as areas. The coordinates and
-    /// \c pixelPosition of a match are the record's center, and \c distance is measured from \a position to it.
+    /// \c Unsupported for series that do not draw data points as areas. The data and pixel coordinates
+    /// of a match are the record's center, and \c distance is measured from \a position to it.
     Q_INVOKABLE ::QAccelPlot::InspectionDataPoint dataPointAtPosition(const QPointF& position) const;
 
 signals:

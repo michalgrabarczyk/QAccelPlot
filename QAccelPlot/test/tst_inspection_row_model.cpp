@@ -24,7 +24,8 @@ InspectionRow rowFor(PlotSeries* series, const int index)
     row.series = series;
     row.dataPoint.status = InspectionStatus::Ready;
     row.dataPoint.index = index;
-    row.dataPoint.position = {1.5, 2.5};
+    row.dataPoint.x = 1.5;
+    row.dataPoint.y = 2.5;
     row.xText = QStringLiteral("1.5");
     return row;
 }

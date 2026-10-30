@@ -325,10 +325,12 @@ InspectionDataPoint HeatmapSeries::inspectionDataPointAt(const QPointF& position
     const auto center = cellCenter(row, column);
     result.status = InspectionStatus::Ready;
     result.index = row * columns_ + column;
-    result.position = center;
+    result.x = center.x();
+    result.y = center.y();
     result.value = valueAt(row, column);
-    result.pixelPosition = QPointF{xAxis()->coordToPixel(center.x(), width()), yAxis()->coordToPixel(center.y(), height())};
-    result.distance = QLineF{position, result.pixelPosition}.length();
+    result.pixelX = xAxis()->coordToPixel(center.x(), width());
+    result.pixelY = yAxis()->coordToPixel(center.y(), height());
+    result.distance = QLineF{position, QPointF{result.pixelX, result.pixelY}}.length();
     return result;
 }
 

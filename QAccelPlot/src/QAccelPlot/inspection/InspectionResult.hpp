@@ -9,7 +9,6 @@
 
 #include <QList>
 #include <QObject>
-#include <QPointF>
 #include <QVariantMap>
 #if __has_include(<QtQmlIntegration/qqmlintegration.h>)
 #include <QtQmlIntegration/qqmlintegration.h>
@@ -43,6 +42,10 @@ Q_ENUM_NS(Status)
 using InspectionStatus = InspectionNS::Status;
 
 /// \brief One XY source data point returned by an inspection query.
+///
+/// \c x and \c y are in the units of the series' axes. \c pixelX and \c pixelY place the same point
+/// in series-local logical pixels, measured from the top left of the plot area; map them with
+/// \c series.mapToItem() for another item.
 struct InspectionDataPoint {
     Q_GADGET
     QML_ANONYMOUS
@@ -54,14 +57,16 @@ struct InspectionDataPoint {
     Q_PROPERTY(quint64 dataRevision MEMBER dataRevision CONSTANT)
     /// \brief Source index, counting invalid records; -1 when nothing matched.
     Q_PROPERTY(int index MEMBER index CONSTANT)
-    /// \brief Data-space X coordinate.
-    Q_PROPERTY(qreal x READ x CONSTANT)
-    /// \brief Data-space Y coordinate.
-    Q_PROPERTY(qreal y READ y CONSTANT)
-    /// \brief Optional per-point scalar; NaN when the series has none.
+    /// \brief X in data units.
+    Q_PROPERTY(qreal x MEMBER x CONSTANT)
+    /// \brief Y in data units.
+    Q_PROPERTY(qreal y MEMBER y CONSTANT)
+    /// \brief Colormap value of a \c PointCloud point or a heatmap cell; NaN for other series and for interpolated points.
     Q_PROPERTY(qreal value MEMBER value CONSTANT)
-    /// \brief Series-local position in logical pixels.
-    Q_PROPERTY(QPointF pixelPosition MEMBER pixelPosition CONSTANT)
+    /// \brief X in series-local logical pixels; NaN for an invalid record.
+    Q_PROPERTY(qreal pixelX MEMBER pixelX CONSTANT)
+    /// \brief Y in series-local logical pixels; NaN for an invalid record.
+    Q_PROPERTY(qreal pixelY MEMBER pixelY CONSTANT)
     /// \brief Distance from the query position in logical pixels.
     Q_PROPERTY(qreal distance MEMBER distance CONSTANT)
     /// \brief True when the coordinates are interpolated between two data points; index is then the data point whose value is shown.
@@ -70,21 +75,19 @@ struct InspectionDataPoint {
     Q_PROPERTY(bool interpolated MEMBER interpolated CONSTANT)
 
 public:
-    InspectionStatus status{InspectionStatus::NoMatch};                                                      ///< \brief Query outcome.
-    quint64 dataRevision{0};                                                                                 ///< \brief Data revision.
-    int index{-1};                                                                                           ///< \brief Source index.
-    QPointF position{std::numeric_limits<qreal>::quiet_NaN(), std::numeric_limits<qreal>::quiet_NaN()};      ///< \brief Data-space XY.
-    QPointF pixelPosition{std::numeric_limits<qreal>::quiet_NaN(), std::numeric_limits<qreal>::quiet_NaN()}; ///< \brief Series-local pixels.
-    qreal distance{std::numeric_limits<qreal>::quiet_NaN()};                                                 ///< \brief Pixel distance.
-    qreal value{std::numeric_limits<qreal>::quiet_NaN()};                                                    ///< \brief Optional scalar.
-    bool interpolated{false};                                                                                ///< \brief Interpolated point.
+    InspectionStatus status{InspectionStatus::NoMatch};      ///< \brief Query outcome.
+    quint64 dataRevision{0};                                 ///< \brief Data revision.
+    int index{-1};                                           ///< \brief Source index.
+    qreal x{std::numeric_limits<qreal>::quiet_NaN()};        ///< \brief X in data units.
+    qreal y{std::numeric_limits<qreal>::quiet_NaN()};        ///< \brief Y in data units.
+    qreal value{std::numeric_limits<qreal>::quiet_NaN()};    ///< \brief Colormap value.
+    qreal pixelX{std::numeric_limits<qreal>::quiet_NaN()};   ///< \brief X in series-local pixels.
+    qreal pixelY{std::numeric_limits<qreal>::quiet_NaN()};   ///< \brief Y in series-local pixels.
+    qreal distance{std::numeric_limits<qreal>::quiet_NaN()}; ///< \brief Pixel distance.
+    bool interpolated{false};                                ///< \brief Interpolated point.
 
     /// \brief Returns true when status is \c Ready.
     bool valid() const;
-    /// \brief Returns the data-space X coordinate.
-    qreal x() const;
-    /// \brief Returns the data-space Y coordinate.
-    qreal y() const;
 };
 
 /// \brief Data-point-weighted Y statistics over the valid data points inside a region.

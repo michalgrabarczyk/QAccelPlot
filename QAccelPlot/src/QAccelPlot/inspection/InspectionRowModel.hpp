@@ -19,7 +19,8 @@ namespace QAccelPlot {
 struct InspectionRow {
     QPointer<PlotSeries> series;   ///< \brief Series the row describes.
     InspectionDataPoint dataPoint; ///< \brief Data point at the cursor; invalid for selection rows.
-    QPointF pixelPosition;         ///< \brief Data point position in plot-local logical pixels.
+    qreal pixelX{0.0};             ///< \brief Data point X in plot-local logical pixels.
+    qreal pixelY{0.0};             ///< \brief Data point Y in plot-local logical pixels.
     QString xText;                 ///< \brief Data point X formatted by the series' X axis.
     QString yText;                 ///< \brief Data point Y formatted by the series' Y axis.
     QString valueText;             ///< \brief Data point value with up to six significant digits; empty when it is NaN.
@@ -37,10 +38,13 @@ struct InspectionRow {
 /// delegates are reused.
 ///
 /// Roles: \c series, \c seriesName, \c seriesColor, \c valid, \c dataPointStatus, \c dataPointIndex,
-/// \c dataPointX, \c dataPointY, \c dataPointValue, \c xText, \c yText, \c valueText, \c pixelPosition, \c distance,
-/// \c interpolated, \c hasSummary, \c summaryStatus, \c summaryCount, \c minimum, \c maximum,
+/// \c dataPointX, \c dataPointY, \c dataPointValue, \c xText, \c yText, \c valueText, \c pixelX, \c pixelY,
+/// \c distance, \c interpolated, \c hasSummary, \c summaryStatus, \c summaryCount, \c minimum, \c maximum,
 /// \c mean, \c standardDeviation, \c minimumIndex, \c maximumIndex, \c minimumText,
 /// \c maximumText, and \c meanText.
+///
+/// \c pixelX and \c pixelY are in plot-local logical pixels, unlike the series-local
+/// \c InspectionDataPoint::pixelX and \c InspectionDataPoint::pixelY.
 class InspectionRowModel : public QAbstractListModel {
     Q_OBJECT
     QML_ANONYMOUS
@@ -62,7 +66,8 @@ public:
         XTextRole,
         YTextRole,
         ValueTextRole,
-        PixelPositionRole,
+        PixelXRole,
+        PixelYRole,
         DistanceRole,
         InterpolatedRole,
         HasSummaryRole,
