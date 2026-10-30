@@ -57,16 +57,12 @@ class SeriesInspection : public QObject {
     /// Bar, rectangle, band, and heatmap series are \c Ready while available; the queries that do not
     /// apply to them return \c Unsupported. \c Unsupported only for a series that answers no query.
     Q_PROPERTY(::QAccelPlot::InspectionNS::Status status READ status NOTIFY statusChanged)
-    /// \brief Largest page returned by \c indices().
-    Q_PROPERTY(int maximumPageSize READ maximumPageSize CONSTANT)
 
 public:
     ~SeriesInspection() override;
 
     /// \brief Returns the readiness for data point queries.
     InspectionStatus status() const;
-    /// \brief Returns the largest page returned by \c indices().
-    int maximumPageSize() const;
 
     /// \brief Returns the bytes held by query caches and indexes, excluding the series' own data.
     Q_INVOKABLE quint64 indexBytes() const;
@@ -90,6 +86,10 @@ public:
     /// \brief Returns Y statistics of the valid data points whose X lies in the interval.
     Q_INVOKABLE ::QAccelPlot::InspectionSummary summarizeRange(qreal xMin, qreal xMax);
     /// \brief Returns up to \a limit source indices inside the region, skipping the first \a offset matches.
+    ///
+    /// \a limit must be positive and is capped at 4096, the default; the page's \c limit reports the
+    /// size used. Request the next page with \a offset advanced by the length of \c indices while
+    /// \c hasMore is true.
     ///
     /// A nonzero \a expectedRevision that differs from the series' \c dataRevision returns
     /// \c Stale, so pages of one traversal never mix indices of different data.

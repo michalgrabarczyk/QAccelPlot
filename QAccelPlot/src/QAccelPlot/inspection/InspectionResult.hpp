@@ -172,7 +172,7 @@ struct InspectionPage {
     Q_PROPERTY(int total MEMBER total CONSTANT)
     /// \brief Number of matches skipped before this page.
     Q_PROPERTY(int offset MEMBER offset CONSTANT)
-    /// \brief Effective page size after clamping to the maximum.
+    /// \brief Page size used: the requested limit, capped at 4096.
     Q_PROPERTY(int limit MEMBER limit CONSTANT)
     /// \brief True when matches remain after this page.
     Q_PROPERTY(bool hasMore MEMBER hasMore CONSTANT)

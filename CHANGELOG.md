@@ -93,6 +93,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - `SeriesInspection.supported`. A query that does not apply to a series returns
   `Inspection.Unsupported`.
+- `SeriesInspection.maximumPageSize`. `indices()` caps `limit` at 4096 and
+  each page reports the size used in `limit`.
 - `PlotView.pointerPosition`, `pointerInside`, and `pointerChanged()`. Use
   `PlotInspector.cursorPixelX`, `cursorPixelY`, and `active`, or a
   `HoverHandler`.
