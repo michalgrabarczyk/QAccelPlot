@@ -411,11 +411,13 @@ void PointCloudDataTest::hoverEventsTrackPointUnderCursor()
     // Pixel positions: (20, 90), (100, 50).
     cloud.setDataF(std::vector<float>{10.0f, 10.0f, 50.0f, 50.0f}, 2);
     auto hoveredSpy = QSignalSpy{&cloud, &PointCloud::hoveredIndexChanged};
+    auto hoveredChangedSpy = QSignalSpy{&cloud, &PointCloud::hoveredChanged};
     const auto hover = [](const QEvent::Type type, const QPointF& position) { return QAccelPlotTest::hoverEvent(type, position, position); };
 
     auto enter = hover(QEvent::HoverEnter, {21.0, 90.0});
     cloud.hoverEnterEvent(&enter);
     QCOMPARE(cloud.hoveredIndex(), 0);
+    QVERIFY(cloud.hovered());
     auto move = hover(QEvent::HoverMove, {100.0, 51.0});
     cloud.hoverMoveEvent(&move);
     QCOMPARE(cloud.hoveredIndex(), 1);
@@ -425,7 +427,9 @@ void PointCloudDataTest::hoverEventsTrackPointUnderCursor()
     cloud.hoverLeaveEvent(&leave);
 
     QCOMPARE(cloud.hoveredIndex(), -1);
+    QVERIFY(!cloud.hovered());
     QCOMPARE(hoveredSpy.count(), 3);
+    QCOMPARE(hoveredChangedSpy.count(), 2);
 }
 
 void PointCloudDataTest::pointIndexAtFindsNearestPointWithinRadius()

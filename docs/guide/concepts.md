@@ -55,19 +55,14 @@ JavaScript callback.
 ## Series
 
 `PlotSeries` holds properties shared by all series: name, axes, plot rectangle,
-legend symbol, `hoverEnabled`, and `count`, the number of stored records. `legendEntry()` describes how a legend draws the series;
-`LegendModel` lists the entries of the visible series that have one. Only the
-topmost series under the mouse pointer is hovered; `hoverEnabled: false` leaves
-hover to the series beneath.
+legend symbol, `hoverEnabled`, `hovered`, and `count`, the number of stored records. `legendEntry()` describes how a legend draws the series;
+`LegendModel` lists the entries of the visible series that have one.
 
 `LineCurve` renders lines, markers, line styles, gradients, and fills. It
 accepts data from QML or C++ buffers, as doubles or as interleaved floats.
-It reports `hovered` within `hoverRadius` pixels of the line or over a marker.
-Set `hoverRadius: 0` on a line drawn over another series to leave hover to the
-series beneath.
 
 `PointCloud` renders unconnected points as markers, colored uniformly or by a
-per-point value through a `Colormap`. It reports the hovered point index.
+per-point value through a `Colormap`.
 
 `HeatmapSeries` renders a uniform grid of values as cells colored through a
 `Colormap`, placed by the outer edges of the grid. `PointCloud` and
@@ -84,13 +79,29 @@ stores `(x, y, low, high)` quadruples and does not draw the values.
 
 `RectangleSeries` renders many data-space rectangles in one item, such as event
 spans and state timelines. Infinite edges reach the plot edge, and a
-per-rectangle category selects the fill color. It reports the hovered
-rectangle index.
+per-rectangle category selects the fill color.
 
 `BarSeries` renders bar charts from (position, value) pairs. `barWidth`,
 `barOffset`, and `baselineValue` shape the bars in the shader, and
 `orientation` selects vertical or horizontal bars. Ranged bars carry their
 own extent as (from, to, value), e.g. the bins of a histogram.
+
+### Hover
+
+Only the topmost series under the mouse pointer is hovered. Every series except
+`HeatmapSeries` reports `hovered`; `hoverEnabled: false` leaves hover to the
+series beneath. The other hover properties depend on what the series draws:
+
+| Series | Hovered over | `hoveredIndex` | `hoverRadius` | `hoverColor` |
+| --- | --- | --- | --- | --- |
+| `LineCurve` | The line within `hoverRadius`, a marker within its size | — | 10 | — (drawn lighter) |
+| `PointCloud` | The nearest point within `hoverRadius` of its center | Yes | 6 | — |
+| `ErrorBarSeries` | The nearest error bar within `hoverRadius` | Yes | 6 | `Colors.dark.hover` |
+| `BarSeries`, `RectangleSeries` | A bar or rectangle | Yes | — | No highlight |
+| `BandSeries` | The band or an edge line | — | — | — |
+
+The `hoverRadius` and `hoverColor` columns give the defaults. `hoverRadius: 0`
+on a line drawn over another series leaves hover to the series beneath.
 
 ## Invalid data points and gaps
 

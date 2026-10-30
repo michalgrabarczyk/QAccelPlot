@@ -74,8 +74,13 @@ class PlotSeries : public QQuickItem {
     ///
     /// When \c false, the series is never hovered and hover reaches the series beneath it.
     /// \c QACCELPLOT_HOVER_ENABLED=0 turns hover off for every series regardless of this property.
-    /// Series without hover feedback, such as \c HeatmapSeries, ignore it.
+    /// \c HeatmapSeries has no hover and ignores it.
     Q_PROPERTY(bool hoverEnabled READ hoverEnabled WRITE setHoverEnabled NOTIFY hoverEnabledChanged)
+    /// \brief Read-only: \c true while the mouse cursor is over the series.
+    ///
+    /// Only the topmost series under the cursor is hovered. A series with a \c hoveredIndex is hovered
+    /// while that index is not -1. A \c HeatmapSeries is never hovered.
+    Q_PROPERTY(bool hovered READ hovered NOTIFY hoveredChanged)
 
     /// \brief Revision incremented by every accepted change of the series' records.
     Q_PROPERTY(quint64 dataRevision READ dataRevision NOTIFY dataRevisionChanged)
@@ -171,6 +176,8 @@ public:
     ///
     /// Turning hover off while the series is hovered clears its hover state at once.
     void setHoverEnabled(bool enabled);
+    /// \brief Returns whether the mouse cursor is over the series.
+    bool hovered() const;
 
     /// \brief Returns how a legend draws the series, or \c std::nullopt for no legend entry. Default: no entry.
     ///
@@ -221,6 +228,8 @@ signals:
     void legendSymbolChanged();
     /// \brief Emitted when the hoverEnabled property changes.
     void hoverEnabledChanged();
+    /// \brief Emitted when the hovered property changes.
+    void hoveredChanged();
     /// \brief Emitted when the result of \c legendEntry() changes.
     void legendEntryChanged();
 
@@ -358,8 +367,10 @@ protected:
     /// \brief Makes the series accept hover events while \c hoverEnabled is \c true.
     ///
     /// Call from the constructor of a series that reacts to the cursor. Its \c hoverLeaveEvent()
-    /// must clear the hover state, as turning \c hoverEnabled off calls it.
+    /// must clear the hover state, \c hovered included, as turning \c hoverEnabled off calls it.
     void supportHover();
+    /// \brief Sets the hovered property to \a hovered. Called by the hover handling of a series.
+    void setHovered(bool hovered);
     /// \brief Withholds hover events from a series beneath another series under the cursor.
     ///
     /// Series ignore hover events so that the plot receives them too. Qt Quick 6.3 and newer stop
@@ -387,6 +398,7 @@ private:
 
     bool hoverSupported_{false};
     bool hoverEnabled_{true};
+    bool hovered_{false};
     bool hoverDelivered_{false};
     quint64 dataRevision_{0};
     mutable SeriesInspection* inspection_{nullptr};

@@ -236,11 +236,6 @@ void LineCurve::setLineWidth(qreal w)
     update();
 }
 
-bool LineCurve::hovered() const
-{
-    return hovered_;
-}
-
 qreal LineCurve::hoverRadius() const
 {
     return hoverRadius_;
@@ -546,7 +541,7 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, [[maybe_unused]] UpdatePai
     QSGNode* pointNode = nullptr;
 
     if (hasLine) {
-        const auto lineParams = LineCurveRenderParams{window(), renderData(), sourceDataView(), drawnPointCount, dataChanged, color_, hovered_, lineWidth_,
+        const auto lineParams = LineCurveRenderParams{window(), renderData(), sourceDataView(), drawnPointCount, dataChanged, color_, hovered(), lineWidth_,
             domainMin, domainMax, viewportSize, xAxis(), yAxis(), xAxis()->logScale(), yAxis()->logScale(), antialiasingEnabled_, antialiasingFeather_,
             renderGradientPayload, gradientFillPayload, hasPoints ? nullptr : cache, lineStyle_, stepMode_};
         lineNode = lineRenderer_.paint(lineOldNode, lineParams);
@@ -557,7 +552,7 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, [[maybe_unused]] UpdatePai
         // Markers draw the points the line already uploaded.
         const auto pointParams
             = PointCurveRenderParams{window(), renderData(), drawnPointCount, dataChanged, hasLine ? LineCurveLineRenderer::dataTexture(lineNode) : nullptr,
-                color_, hovered_, marker_->size(), domainMin, domainMax, viewportSize, xAxis()->logScale(), yAxis()->logScale(), antialiasingEnabled_,
+                color_, hovered(), marker_->size(), domainMin, domainMax, viewportSize, xAxis()->logScale(), yAxis()->logScale(), antialiasingEnabled_,
                 antialiasingFeather_, renderGradientPayload, hasLine ? nullptr : cache, shapeType, marker_->strokeWidth(), marker_->filled()};
         pointNode = pointRenderer_.paint(pointOldNode, pointParams);
     }
@@ -601,9 +596,8 @@ void LineCurve::itemChange(const ItemChange change, const ItemChangeData& value)
 
 void LineCurve::hoverEnterEvent(QHoverEvent* event)
 {
-    hovered_ = true;
-    emit hoveredChanged();
-    // Color changes via hovered_ are handled by the material uniform (effectiveColor);
+    setHovered(true);
+    // Color changes via hovered are handled by the material uniform (effectiveColor);
     // no vertex rebuild is needed since per-vertex RGBA is only used with gradient effects.
     update();
     QQuickItem::hoverEnterEvent(event);
@@ -611,9 +605,8 @@ void LineCurve::hoverEnterEvent(QHoverEvent* event)
 
 void LineCurve::hoverLeaveEvent(QHoverEvent* event)
 {
-    if (hovered_) {
-        hovered_ = false;
-        emit hoveredChanged();
+    if (hovered()) {
+        setHovered(false);
         update();
     }
     QQuickItem::hoverLeaveEvent(event);

@@ -61,8 +61,6 @@ class BandSeries : public PlotSeries {
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
     /// \brief Grouped edge line settings, e.g. <tt>edges.width</tt> and <tt>edges.lineStyle</tt>. No edge lines by default.
     Q_PROPERTY(BandEdges* edges READ edges CONSTANT)
-    /// \brief Read-only: \c true while the mouse cursor is inside the band.
-    Q_PROPERTY(bool hovered READ hovered NOTIFY hoveredChanged)
 
 public:
     /// \brief Constructs a BandSeries with the given \a parent.
@@ -75,9 +73,6 @@ public:
 
     /// \brief Returns the grouped edge line settings. The object is owned by the series.
     BandEdges* edges() const;
-
-    /// \brief Returns \c true while the cursor is inside the band.
-    bool hovered() const;
 
     /// \brief Appends the data point (\a x, \a low, \a high). Triggers a redraw.
     Q_INVOKABLE void appendData(qreal x, qreal low, qreal high);
@@ -110,8 +105,6 @@ public:
 signals:
     /// \brief Emitted when the color property changes.
     void colorChanged();
-    /// \brief Emitted when the hovered property changes.
-    void hoveredChanged();
 
 protected:
     /// \cond INTERNAL
@@ -158,7 +151,6 @@ private:
     std::optional<Span> spanAt(qreal x, int dataPointCount) const;
     bool edgesVisible() const;
     QColor edgeColor() const;
-    void setHovered(bool hovered);
     // Re-tests the last hover position after the data or the axes moved under the cursor.
     void refreshHovered();
     // Follows edits of the current edge line style, such as a new dash pattern.
@@ -170,7 +162,6 @@ private:
 
     QColor color_;
     BandEdges* edges_{new BandEdges{this}};
-    bool hovered_{false};
     // Cursor position while hover events arrive, in item coordinates.
     std::optional<QPointF> hoverPosition_;
     // Render revision of the data points last uploaded to the GPU.

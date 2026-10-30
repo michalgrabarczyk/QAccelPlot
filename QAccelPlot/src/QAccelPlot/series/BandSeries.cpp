@@ -149,11 +149,6 @@ BandEdges* BandSeries::edges() const
     return edges_;
 }
 
-bool BandSeries::hovered() const
-{
-    return hovered_;
-}
-
 void BandSeries::appendData(const qreal x, const qreal low, const qreal high)
 {
     const auto dataPointCount = dataPoints().count();
@@ -421,15 +416,6 @@ QColor BandSeries::edgeColor() const
     auto color = color_;
     color.setAlpha(255);
     return color;
-}
-
-void BandSeries::setHovered(const bool hovered)
-{
-    if (hovered_ == hovered) {
-        return;
-    }
-    hovered_ = hovered;
-    emit hoveredChanged();
 }
 
 void BandSeries::refreshHovered()

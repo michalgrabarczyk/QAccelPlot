@@ -254,6 +254,11 @@ void PlotSeries::setHoverEnabled(const bool enabled)
     emit hoverEnabledChanged();
 }
 
+bool PlotSeries::hovered() const
+{
+    return hovered_;
+}
+
 std::optional<LegendEntry> PlotSeries::legendEntry() const
 {
     return std::nullopt;
@@ -641,6 +646,15 @@ void PlotSeries::supportHover()
 {
     hoverSupported_ = true;
     updateAcceptHoverEvents();
+}
+
+void PlotSeries::setHovered(const bool hovered)
+{
+    if (hovered_ == hovered) {
+        return;
+    }
+    hovered_ = hovered;
+    emit hoveredChanged();
 }
 
 bool PlotSeries::event(QEvent* event)

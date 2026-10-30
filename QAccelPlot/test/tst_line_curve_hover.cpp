@@ -48,6 +48,48 @@ PlotView {
 }
 )";
 
+// One series with a record at data (5, 5) and hoverRadius 4.
+constexpr auto kRadiusScene = R"(
+import QtQuick
+import QAccelPlot
+
+PlotView {
+    id: plot
+    width: 400
+    height: 300
+
+    xAxis: Axis { viewportMin: 0; viewportMax: 10 }
+    yAxis: Axis { viewportMin: 0; viewportMax: 10 }
+
+    %1 {
+        objectName: "series"
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        hoverRadius: 4
+        Component.onCompleted: %2
+    }
+}
+)";
+
+std::unique_ptr<QObject> createScene(QQmlEngine& engine, const QByteArray& source, QQuickWindow& window)
+{
+    auto component = QQmlComponent{&engine};
+    component.setData(source, QUrl{});
+    auto root = std::unique_ptr<QObject>{component.create()};
+    auto* plot = qobject_cast<QAccelPlot*>(root.get());
+    if (!plot) {
+        qWarning() << component.errorString();
+        return nullptr;
+    }
+    plot->setParentItem(window.contentItem());
+    QAccelPlotTest::moveAwayFromCursor(window);
+    window.show();
+    if (!QTest::qWaitForWindowExposed(&window)) {
+        return nullptr;
+    }
+    return root;
+}
+
 } // namespace
 
 class LineCurveHoverTest : public QObject {
@@ -55,6 +97,8 @@ class LineCurveHoverTest : public QObject {
 
 private slots:
     void zeroHoverRadiusPassesHoverToSeriesBeneath();
+    void hoverRadiusChangeUpdatesHoveredIndex_data();
+    void hoverRadiusChangeUpdatesHoveredIndex();
 };
 
 void LineCurveHoverTest::zeroHoverRadiusPassesHoverToSeriesBeneath()
@@ -93,6 +137,43 @@ void LineCurveHoverTest::zeroHoverRadiusPassesHoverToSeriesBeneath()
     line->setProperty("hoverRadius", 10.0);
     QTRY_VERIFY(line->property("hovered").toBool());
     QCOMPARE(band->property("hoveredIndex").toInt(), -1);
+}
+
+void LineCurveHoverTest::hoverRadiusChangeUpdatesHoveredIndex_data()
+{
+    QTest::addColumn<QString>("type");
+    QTest::addColumn<QString>("setData");
+    QTest::newRow("PointCloud") << QStringLiteral("PointCloud") << QStringLiteral("setData([Qt.point(5, 5)])");
+    QTest::newRow("ErrorBarSeries") << QStringLiteral("ErrorBarSeries") << QStringLiteral("setData([5], [5], [3], [7])");
+}
+
+void LineCurveHoverTest::hoverRadiusChangeUpdatesHoveredIndex()
+{
+    QFETCH(QString, type);
+    QFETCH(QString, setData);
+    auto window = QQuickWindow{};
+    window.resize(400, 300);
+    auto engine = QQmlEngine{};
+    const auto root = createScene(engine, QString::fromLatin1(kRadiusScene).arg(type, setData).toUtf8(), window);
+    QVERIFY(root);
+    auto* plot = qobject_cast<QAccelPlot*>(root.get());
+    auto* series = plot->findChild<QQuickItem*>(QStringLiteral("series"));
+    QVERIFY(series);
+
+    // Qt drops a move to the global position of the previous row's last move.
+    QTest::mouseMove(&window, QPoint{1, 1});
+    // 10 pixels right of the record.
+    QTest::mouseMove(&window, QPoint{qRound(plot->dataToPixelX(5.0)) + 10, qRound(plot->dataToPixelY(5.0))});
+    QCOMPARE(series->property("hoveredIndex").toInt(), -1);
+
+    // The cursor stays put: the change alone picks the record.
+    series->setProperty("hoverRadius", 14.0);
+    QTRY_COMPARE(series->property("hoveredIndex").toInt(), 0);
+    QVERIFY(series->property("hovered").toBool());
+
+    series->setProperty("hoverRadius", 4.0);
+    QTRY_COMPARE(series->property("hoveredIndex").toInt(), -1);
+    QVERIFY(!series->property("hovered").toBool());
 }
 
 } // namespace QAccelPlot

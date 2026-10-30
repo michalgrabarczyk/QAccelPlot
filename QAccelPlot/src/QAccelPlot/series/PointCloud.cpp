@@ -175,6 +175,8 @@ void PointCloud::setHoverRadius(const qreal radius)
     }
     hoverRadius_ = clamped;
     emit hoverRadiusChanged();
+    // Marks the item dirty so the window re-delivers hover at the cursor and updates hoveredIndex.
+    update();
 }
 
 DataTransition* PointCloud::transition() const
@@ -573,6 +575,7 @@ void PointCloud::setHoveredIndex(const int index)
         return;
     }
     hoveredIndex_ = index;
+    setHovered(index >= 0);
     emit hoveredIndexChanged();
 }
 

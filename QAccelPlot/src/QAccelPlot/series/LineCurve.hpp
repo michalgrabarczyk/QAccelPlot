@@ -78,9 +78,7 @@ class LineCurve : public PlotSeries {
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
     /// \brief Line stroke width in pixels. Default: 1.
     Q_PROPERTY(qreal lineWidth READ lineWidth WRITE setLineWidth NOTIFY lineWidthChanged)
-    /// \brief Read-only: \c true while the mouse cursor is over the curve.
-    Q_PROPERTY(bool hovered READ hovered NOTIFY hoveredChanged)
-    /// \brief Pick radius in pixels around the line used for hover detection; 0 disables line hover. Default: 10.
+    /// \brief Pick distance in pixels from the line; 0 disables line hover. Markers are picked within their size. Default: 10.
     Q_PROPERTY(qreal hoverRadius READ hoverRadius WRITE setHoverRadius NOTIFY hoverRadiusChanged)
     /// \brief Optional data transition animation applied when new data arrives.
     Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
@@ -115,12 +113,9 @@ public:
     /// \brief Sets the line stroke width to \a w pixels.
     void setLineWidth(qreal w);
 
-    /// \brief Returns \c true if the cursor is currently over the curve.
-    bool hovered() const;
-
-    /// \brief Returns the line hover pick radius in pixels.
+    /// \brief Returns the hover pick distance from the line in pixels.
     qreal hoverRadius() const;
-    /// \brief Sets the line hover pick radius to \a radius pixels. Negative values are clamped to 0.
+    /// \brief Sets the hover pick distance from the line to \a radius pixels. Negative values are clamped to 0.
     /// Marker hit testing is unaffected.
     void setHoverRadius(qreal radius);
 
@@ -199,8 +194,6 @@ signals:
     void colorChanged();
     /// \brief Emitted when the lineWidth property changes.
     void lineWidthChanged();
-    /// \brief Emitted when the hovered property changes.
-    void hoveredChanged();
     /// \brief Emitted when the hoverRadius property changes.
     void hoverRadiusChanged();
     /// \brief Emitted when the transition property changes.
@@ -261,7 +254,6 @@ private:
 
     QColor color_{ColorPalette::dark().seriesPrimary};
     qreal lineWidth_{1.0};
-    bool hovered_{false};
     qreal hoverRadius_{10.0};
     // While its run is pending, the frames are the store's drawn points; the stored points are its target.
     std::unique_ptr<TransitionRunner> transition_;

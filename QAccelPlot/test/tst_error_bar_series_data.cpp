@@ -314,26 +314,32 @@ void ErrorBarSeriesDataTest::hoverEventsTrackErrorBarUnderCursor()
     auto& bars = fixture.bars;
     bars.setData(QList<qreal>{2, 8}, QList<qreal>{5, 5}, QList<qreal>{3, 3}, QList<qreal>{7, 7});
     auto spy = QSignalSpy{&bars, &ErrorBarSeries::hoveredIndexChanged};
+    auto hoveredSpy = QSignalSpy{&bars, &ErrorBarSeries::hoveredChanged};
 
     fixture.hover(QEvent::HoverEnter, fixture.pixel(2, 5));
     QCOMPARE(bars.hoveredIndex(), 0);
+    QVERIFY(bars.hovered());
     fixture.hover(QEvent::HoverMove, fixture.pixel(8, 4));
     QCOMPARE(bars.hoveredIndex(), 1);
     fixture.hover(QEvent::HoverMove, fixture.pixel(5, 5));
     QCOMPARE(bars.hoveredIndex(), -1);
+    QVERIFY(!bars.hovered());
     fixture.hover(QEvent::HoverMove, fixture.pixel(8, 4));
     fixture.hover(QEvent::HoverLeave, fixture.pixel(8, 4));
     QCOMPARE(bars.hoveredIndex(), -1);
     QCOMPARE(spy.count(), 5);
+    QCOMPARE(hoveredSpy.count(), 4);
 
     fixture.hover(QEvent::HoverEnter, fixture.pixel(8, 4));
     bars.setData(QList<qreal>{2}, QList<qreal>{5}, QList<qreal>{3}, QList<qreal>{7});
     QCOMPARE(bars.hoveredIndex(), -1);
+    QVERIFY(!bars.hovered());
 
     fixture.hover(QEvent::HoverEnter, fixture.pixel(2, 5));
     QCOMPARE(bars.hoveredIndex(), 0);
     bars.setHoverEnabled(false);
     QCOMPARE(bars.hoveredIndex(), -1);
+    QVERIFY(!bars.hovered());
     QVERIFY(!bars.acceptHoverEvents());
 }
 
