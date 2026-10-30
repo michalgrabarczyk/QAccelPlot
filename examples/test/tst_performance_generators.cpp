@@ -70,8 +70,6 @@ private slots:
     void doublePrecisionMovesRecordsToDoubles();
     void ingestionNamesSelectThePrecision();
     void sineLookupTracksSine();
-    void sineSendsVertexCacheOnlyAfterCountChanges();
-    void sineSendsNoVertexCacheWhileItIsOff();
     void sineGapsReplaceTheRequestedShare();
     void galaxyRotatesEachBand();
     void galaxyValuesFollowPoints();
@@ -190,40 +188,6 @@ void PerformanceGeneratorsTest::sineLookupTracksSine()
     }
     QCOMPARE(part.floats[part.floats.size() - 2], SineWaveGenerator::kDomainWidth);
     QVERIFY2(maximumError < 0.002, qPrintable(QStringLiteral("Maximum sine lookup error was %1").arg(maximumError, 0, 'g', 8)));
-}
-
-void PerformanceGeneratorsTest::sineSendsVertexCacheOnlyAfterCountChanges()
-{
-    auto generator = SineWaveGenerator{};
-    auto batch = SineWaveBatch{};
-    generator.generate(batch, parametersFor<SineWaveParameters>(100), 0.0);
-    QVERIFY(!batch.parts.front().vertexCache.empty());
-
-    generator.generate(batch, parametersFor<SineWaveParameters>(100), 1.0);
-    QVERIFY(batch.parts.front().vertexCache.empty());
-
-    generator.generate(batch, parametersFor<SineWaveParameters>(200), 1.0);
-    QVERIFY(!batch.parts.front().vertexCache.empty());
-
-    // Splitting the same points across more curves changes every curve's point count.
-    generator.generate(batch, parametersFor<SineWaveParameters>(200, 2), 1.0);
-    QVERIFY(!batch.parts.front().vertexCache.empty());
-    QVERIFY(!batch.parts.back().vertexCache.empty());
-}
-
-void PerformanceGeneratorsTest::sineSendsNoVertexCacheWhileItIsOff()
-{
-    auto generator = SineWaveGenerator{};
-    auto batch = SineWaveBatch{};
-    auto parameters = parametersFor<SineWaveParameters>(100);
-    parameters.vertexCache = false;
-    generator.generate(batch, parameters, 0.0);
-    QVERIFY(batch.parts.front().vertexCache.empty());
-
-    // Turning the caches back on sends one, although the count is unchanged.
-    parameters.vertexCache = true;
-    generator.generate(batch, parameters, 0.0);
-    QVERIFY(!batch.parts.front().vertexCache.empty());
 }
 
 void PerformanceGeneratorsTest::sineGapsReplaceTheRequestedShare()

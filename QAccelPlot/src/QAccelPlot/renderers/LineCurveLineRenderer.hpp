@@ -20,6 +20,7 @@
 #include <QSGNode>
 #include <QVector2D>
 
+#include <cstddef>
 #include <memory>
 #include <vector>
 
@@ -71,11 +72,15 @@ struct FillSamples {
 /// vertex caches assembled on the main thread for reduced render-thread stalls.
 class LineCurveLineRenderer {
 public:
-    /// \brief Pre-builds the vertex buffer of a line drawn with \a stepMode into \a cache on the calling thread (main thread safe).
+    /// \brief Returns the vertex cache bytes per data point of a line drawn with \a stepMode.
+    static std::size_t vertexCacheBytesPerPoint(StepMode stepMode);
+
+    /// \brief Writes the vertices of data points [\a firstPoint, \a pointCount) of a line drawn with \a stepMode into \a cache.
     ///
+    /// \a cache holds vertexCacheBytesPerPoint() bytes for each of \a pointCount data points. A vertex depends only on its
+    /// data point index and step corner, never on data values, so the vertices before \a firstPoint stay valid.
     /// Writes neutral RGBA (1,1,1,1); solid and gradient shaders obtain their colors from their materials.
-    /// A curve rejects a cache whose step mode needs a different number of vertices per data point than its own.
-    void buildVertexCache(const std::vector<float>& data, int pointCount, std::vector<char>& cache, StepMode stepMode = StepMode::None) const;
+    static void writeVertexCache(std::vector<char>& cache, int firstPoint, int pointCount, StepMode stepMode);
 
     /// \brief Returns \c true if \a point lies within \a params.hitThreshold pixels of the curve.
     bool contains(const QPointF& point, const CurveHitTestParams& params) const;

@@ -59,11 +59,12 @@ const QSGGeometry::AttributeSet& vertexAttributes();
 /// \brief Returns a triangle-strip node with \a vertexCount line vertices that owns \a material.
 QSGGeometryNode* createNode(int vertexCount, QSGMaterial* material);
 
-/// \brief Writes two ribbon vertices per path point for \a pointCount data points of \a cornerCount path points each into \a vertices.
+/// \brief Writes two ribbon vertices per path point for data points [\a firstPoint, \a pointCount) of \a cornerCount path points each into \a vertices.
 ///
+/// \a vertices holds the vertices of all \a pointCount data points; those before \a firstPoint are left unchanged.
 /// \a arcLengths holds cumulative lengths of the leading path points, or is empty for solid lines. Path points
 /// past its end, such as vertices reserved for appended data, repeat its last length.
-void writeVertices(LineVertex* vertices, int pointCount, int cornerCount, const QColor& color, const std::vector<float>& arcLengths);
+void writeVertices(LineVertex* vertices, int pointCount, int cornerCount, const QColor& color, const std::vector<float>& arcLengths, int firstPoint = 0);
 
 /// \brief Copies \a uniforms into \a material.
 void applyUniforms(LineMaterial& material, const Uniforms& uniforms);

@@ -9,44 +9,19 @@
 
 #include <QAccelPlot/series/LineCurve.hpp>
 
-#include <QString>
-
-#include <utility>
-
 namespace QAccelPlotExample {
-namespace {
-
-// A curve takes a prebuilt vertex cache only for a solid line without markers or gradient effects.
-bool takesVertexCache(const PageScene& scene)
-{
-    return scene.setting("lineStyle").toString() == QLatin1String("solid")
-        && scene.setting("markerShape").toInt() == static_cast<int>(QAccelPlot::MarkerShape::None)
-        && scene.setting("effect").toString() == QLatin1String("none");
-}
-
-} // namespace
 
 SineWaveParameters LineCurveFeed::parameters(const PageScene& scene, const CommonOptions& options)
 {
     auto parameters = SineWaveParameters{};
     parameters.dataset = datasetParameters(options);
     parameters.gapFraction = scene.setting("gapFraction").toFloat();
-    parameters.vertexCache = takesVertexCache(scene);
     return parameters;
 }
 
 void LineCurveFeed::apply(QAccelPlot::LineCurve& curve, SineWavePart& part, const CommonOptions& options)
 {
-    // Only the float setters take a prebuilt vertex cache.
-    if (part.vertexCache.empty()) {
-        applyRecords(curve, part, options.ingestion);
-    } else if (options.ingestion == Ingestion::FloatMove) {
-        curve.setDataFWithCache(std::move(part.floats), part.count, std::move(part.vertexCache));
-    } else if (options.ingestion == Ingestion::FloatCopy) {
-        curve.setDataFWithCache(part.floats.data(), part.count, std::move(part.vertexCache));
-    } else {
-        applyRecords(curve, part, options.ingestion);
-    }
+    applyRecords(curve, part, options.ingestion);
 }
 
 } // namespace QAccelPlotExample

@@ -7,34 +7,25 @@
 //
 #include "QAccelPlot/series/LineCurveVertexCache.hpp"
 
-#include <utility>
+#include <algorithm>
 
 namespace QAccelPlot {
 
-bool LineCurveVertexCache::install(std::vector<char>&& bytes, const Layout layout, const int pointCount, const std::size_t expectedSize)
+void LineCurveVertexCache::update(const Layout layout, const int pointCount, const std::size_t bytesPerPoint, const Writer& writer)
 {
-    if (bytes.empty() || expectedSize == 0 || bytes.size() != expectedSize || layout == Layout::None || pointCount <= 0) {
-        clear();
-        return false;
-    }
-
-    bytes_ = std::move(bytes);
-    layout_ = layout;
-    pointCount_ = pointCount;
-    valid_ = true;
-    return true;
-}
-
-void LineCurveVertexCache::rebuild(const Layout layout, const int pointCount, const Builder& builder)
-{
-    invalidate();
-    builder(bytes_);
-    if (bytes_.empty() || layout == Layout::None || pointCount <= 0) {
+    if (layout == Layout::None || pointCount <= 0 || bytesPerPoint == 0) {
+        invalidate();
         return;
     }
 
+    const auto keptPoints = (valid_ && layout_ == layout && bytesPerPoint_ == bytesPerPoint) ? std::min(pointCount_, pointCount) : 0;
+    bytes_.resize(static_cast<std::size_t>(pointCount) * bytesPerPoint);
+    if (keptPoints < pointCount) {
+        writer(bytes_, keptPoints);
+    }
     layout_ = layout;
     pointCount_ = pointCount;
+    bytesPerPoint_ = bytesPerPoint;
     valid_ = true;
 }
 
@@ -48,6 +39,7 @@ void LineCurveVertexCache::invalidate() noexcept
     valid_ = false;
     layout_ = Layout::None;
     pointCount_ = 0;
+    bytesPerPoint_ = 0;
 }
 
 void LineCurveVertexCache::clear() noexcept

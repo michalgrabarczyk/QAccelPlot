@@ -57,25 +57,7 @@ void SineWaveGenerator::generate(Batch& batch, const Parameters& parameters, con
     }
 
     insertGaps(batch.parts, pointCount, parameters.gapFraction);
-    updateVertexCaches(batch, parameters);
     applyPrecision(batch.parts, parameters.dataset);
-}
-
-void SineWaveGenerator::updateVertexCaches(Batch& batch, const Parameters& parameters)
-{
-    // A vertex cache depends only on the point count, and a curve keeps it while the count is unchanged.
-    const auto& dataset = parameters.dataset;
-    const auto rebuild = parameters.vertexCache && (dataset.count != vertexCachePointCount_ || dataset.seriesCount != vertexCacheSeriesCount_);
-    for (auto& part : batch.parts) {
-        if (rebuild && part.count >= 2) {
-            lineRenderer_.buildVertexCache(part.floats, part.count, part.vertexCache);
-        } else {
-            part.vertexCache.clear();
-        }
-    }
-    // Forgets the caches while they are off, so they are sent again once they are back on.
-    vertexCachePointCount_ = parameters.vertexCache ? dataset.count : 0;
-    vertexCacheSeriesCount_ = parameters.vertexCache ? dataset.seriesCount : 0;
 }
 
 } // namespace QAccelPlotExample

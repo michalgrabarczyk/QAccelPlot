@@ -38,12 +38,8 @@ floats.
 The table shows `LineCurve`. Every series has `setData()`,
 `setDataF()`, and `postData()` overloads for its own record layout.
 
-[`setDataFWithCache()`][set-data-f-with-cache] also accepts a
-prebuilt vertex cache, so vertex assembly can move off the UI and render
-threads. It ties application code to renderer details; use it only when
-measurements justify it. The cache must match the current point count and
-renderer layout, otherwise it is rejected and normal vertex assembly runs. For
-a step line, build it with `buildVertexCache(data, count, cache, stepMode)`.
+A `LineCurve` builds its own vertex buffer. Updates with the same point count
+reuse it, and a growing point count writes vertices only for the added points.
 
 ## Data ranges are computed on demand
 
@@ -165,7 +161,6 @@ not cap display FPS. Change one option at a time. The lab reports:
 [set-data-moved]: api/classQAccelPlot_1_1LineCurve.md#function-setdata-48
 [set-data-f-copy]: api/classQAccelPlot_1_1LineCurve.md#function-setdataf-16
 [set-data-f-moved]: api/classQAccelPlot_1_1LineCurve.md#function-setdataf-26
-[set-data-f-with-cache]: api/classQAccelPlot_1_1LineCurve.md#function-setdatafwithcache-12
 [append-data]: api/classQAccelPlot_1_1LineCurve.md#function-appenddata
 [rescale-to-data]: api/classQAccelPlot_1_1Axis.md#function-rescaletodata
 [auto-rescale]: api/classQAccelPlot_1_1Axis.md#property-autorescale-12

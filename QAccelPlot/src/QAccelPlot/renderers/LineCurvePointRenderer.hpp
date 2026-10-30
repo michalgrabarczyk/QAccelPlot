@@ -15,6 +15,7 @@
 #include <QSGNode>
 #include <QVector2D>
 
+#include <cstddef>
 #include <memory>
 #include <vector>
 
@@ -65,10 +66,13 @@ public:
     /// \brief Number of vertices drawn per marker.
     static constexpr int kVerticesPerPoint{6};
 
-    /// \brief Pre-builds the vertex buffer of \a pointCount markers into \a cache on the calling thread (main thread safe).
+    /// \brief Vertex cache bytes per marker.
+    static constexpr std::size_t kVertexCacheBytesPerPoint{kVerticesPerPoint * sizeof(PointVertex)};
+
+    /// \brief Writes the vertices of markers [\a firstPoint, \a pointCount) into \a cache, which holds \c kVertexCacheBytesPerPoint bytes per marker.
     ///
-    /// The cache depends only on \a pointCount; \a data is not read.
-    void buildVertexCache(const std::vector<float>& data, int pointCount, std::vector<char>& cache) const;
+    /// Marker vertices hold no data, so the vertices before \a firstPoint stay valid.
+    static void writeVertexCache(std::vector<char>& cache, int firstPoint, int pointCount);
 
     /// \brief Returns \c true if \a point lies within \a params.hitThreshold pixels of any marker.
     bool contains(const QPointF& point, const CurveHitTestParams& params) const;

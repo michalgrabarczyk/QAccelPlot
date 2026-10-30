@@ -54,15 +54,17 @@ QSGGeometryNode* createNode(const int vertexCount, QSGMaterial* material)
     return node;
 }
 
-void writeVertices(LineVertex* vertices, const int pointCount, const int cornerCount, const QColor& color, const std::vector<float>& arcLengths)
+void writeVertices(
+    LineVertex* vertices, const int pointCount, const int cornerCount, const QColor& color, const std::vector<float>& arcLengths, const int firstPoint)
 {
     // Hoist the color conversion out of the per-vertex loop.
     const auto r = static_cast<unsigned char>(color.red());
     const auto g = static_cast<unsigned char>(color.green());
     const auto b = static_cast<unsigned char>(color.blue());
     const auto a = static_cast<unsigned char>(color.alpha());
-    auto pathIndex = std::size_t{0};
-    for (auto index = 0; index < pointCount; ++index) {
+    const auto start = std::max(firstPoint, 0);
+    auto pathIndex = static_cast<std::size_t>(start) * static_cast<std::size_t>(cornerCount);
+    for (auto index = start; index < pointCount; ++index) {
         const auto id = static_cast<float>(index);
         for (auto corner = 0; corner < cornerCount; ++corner, ++pathIndex) {
             const auto lengthIndex = std::min(pathIndex, arcLengths.size() - 1);

@@ -307,10 +307,11 @@ void LineCurveStepsTest::lastDataPointHasNoStep()
 
 void LineCurveStepsTest::verticesEncodeCorners()
 {
-    const auto data = std::vector<float>{1, 2, 5, 8, 9, 4};
-    auto cache = std::vector<char>{};
-    LineCurveLineRenderer{}.buildVertexCache(data, 3, cache, StepMode::Center);
-    QCOMPARE(cache.size(), 3 * 3 * 2 * sizeof(LineVertex));
+    QCOMPARE(LineCurveLineRenderer::vertexCacheBytesPerPoint(StepMode::Center), 3 * 2 * sizeof(LineVertex));
+    auto cache = std::vector<char>(3 * LineCurveLineRenderer::vertexCacheBytesPerPoint(StepMode::Center));
+    // Writing the leading point, then the rest, gives the vertices of one full write.
+    LineCurveLineRenderer::writeVertexCache(cache, 0, 1, StepMode::Center);
+    LineCurveLineRenderer::writeVertexCache(cache, 1, 3, StepMode::Center);
     const auto* vertices = reinterpret_cast<const LineVertex*>(cache.data());
     for (auto vertex = 0; vertex < 18; ++vertex) {
         const auto path = vertex / 2;
@@ -420,36 +421,54 @@ void LineCurveStepsTest::vertexCacheMatchesCornerCount()
     curve.setXAxis(&axes.xAxis);
     curve.setYAxis(&axes.yAxis);
     curve.setPlotRect({0, 0, 100, 100});
-    curve.setStepMode(StepMode::After);
-    const auto data = std::vector<float>{1, 2, 5, 8, 9, 4};
-    // Distinguish uploaded caches from ones the curve builds itself by reversing their bytes.
-    const auto reversedCache = [](const std::vector<float>& points, const StepMode mode) {
-        auto cache = std::vector<char>{};
-        LineCurveLineRenderer{}.buildVertexCache(points, static_cast<int>(points.size() / 2), cache, mode);
-        std::reverse(cache.begin(), cache.end());
+    const auto expectedVertices = [](const int pointCount, const StepMode mode) {
+        auto cache = std::vector<char>(static_cast<std::size_t>(pointCount) * LineCurveLineRenderer::vertexCacheBytesPerPoint(mode));
+        LineCurveLineRenderer::writeVertexCache(cache, 0, pointCount, mode);
         return cache;
     };
+    // Vertices written on the render thread carry the line color, which the solid line shader ignores.
     const auto lineVerticesMatch = [](const QSGNode* root, const std::vector<char>& cache) {
         const auto* geometry = static_cast<const QSGGeometryNode*>(root->lastChild())->geometry();
-        return static_cast<std::size_t>(geometry->vertexCount() * geometry->sizeOfVertex()) == cache.size()
-            && std::memcmp(geometry->vertexData(), cache.data(), cache.size()) == 0;
+        if (static_cast<std::size_t>(geometry->vertexCount()) * sizeof(LineVertex) != cache.size()) {
+            return false;
+        }
+        const auto* actual = static_cast<const LineVertex*>(geometry->vertexData());
+        const auto* expected = reinterpret_cast<const LineVertex*>(cache.data());
+        return std::equal(
+            actual, actual + geometry->vertexCount(), expected, [](const LineVertex& a, const LineVertex& b) { return a.id == b.id && a.side == b.side; });
+    };
+    const auto points = [](const int count) {
+        auto data = std::vector<float>(static_cast<std::size_t>(count) * 2);
+        for (auto i = 0; i < count; ++i) {
+            data[static_cast<std::size_t>(i) * 2] = static_cast<float>(i);
+            data[static_cast<std::size_t>(i) * 2 + 1] = static_cast<float>(i % 2);
+        }
+        return data;
     };
 
-    // Before and After share their vertices.
-    const auto beforeCache = reversedCache(data, StepMode::Before);
-    curve.setDataFWithCache(std::vector<float>(data), 3, std::vector<char>(beforeCache));
+    // Each step mode change or count change, alone or together, gives the vertices of the new corner count.
+    curve.setStepMode(StepMode::After);
+    curve.setDataF(points(3), 3);
     auto node = std::unique_ptr<QSGNode>{curve.updatePaintNode(nullptr, nullptr)};
     QVERIFY(node);
-    QVERIFY(lineVerticesMatch(node.get(), beforeCache));
+    QVERIFY(lineVerticesMatch(node.get(), expectedVertices(3, StepMode::After)));
 
-    // A cache without steps has half the vertices, so the curve builds its own.
-    const auto fourPoints = std::vector<float>{1, 2, 5, 8, 7, 3, 9, 4};
-    QTest::ignoreMessage(QtWarningMsg, "Ignoring vertex cache with 128 bytes; expected 256");
-    curve.setDataFWithCache(std::vector<float>(fourPoints), 4, reversedCache(fourPoints, StepMode::None));
+    curve.setStepMode(StepMode::Center);
+    curve.setDataF(points(4), 4);
     node.reset(curve.updatePaintNode(node.release(), nullptr));
-    const auto* geometry = static_cast<const QSGGeometryNode*>(node->lastChild())->geometry();
-    QCOMPARE(geometry->vertexCount(), 16);
-    QCOMPARE(static_cast<const LineVertex*>(geometry->vertexData())[2].side, 2.0f);
+    QVERIFY(lineVerticesMatch(node.get(), expectedVertices(4, StepMode::Center)));
+
+    curve.setDataF(points(6), 6);
+    node.reset(curve.updatePaintNode(node.release(), nullptr));
+    QVERIFY(lineVerticesMatch(node.get(), expectedVertices(6, StepMode::Center)));
+
+    curve.setStepMode(StepMode::None);
+    node.reset(curve.updatePaintNode(node.release(), nullptr));
+    QVERIFY(lineVerticesMatch(node.get(), expectedVertices(6, StepMode::None)));
+
+    curve.setDataF(points(7), 7);
+    node.reset(curve.updatePaintNode(node.release(), nullptr));
+    QVERIFY(lineVerticesMatch(node.get(), expectedVertices(7, StepMode::None)));
 }
 
 void LineCurveStepsTest::linesDrawSteps()

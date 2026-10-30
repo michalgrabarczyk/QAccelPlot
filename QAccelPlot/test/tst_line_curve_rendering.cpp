@@ -17,8 +17,10 @@
 #include <QtTest/QtTest>
 
 #include <algorithm>
+#include <cstddef>
 #include <cstring>
 #include <memory>
+#include <vector>
 
 namespace {
 class RenderableCurve final : public QAccelPlot::LineCurve {
@@ -31,9 +33,9 @@ class LineCurveRenderingTest : public QObject {
     Q_OBJECT
 private slots:
     void markersSurviveSinglePointDatasets();
-    void prebuiltVertexCacheIsUploaded();
+    void lineVerticesFollowPointCount();
     void gradientDataRangeIsCurveExtent();
-    void markerCacheSurvivesSameSizeDataUpdates();
+    void markerVerticesFollowPointCount();
 };
 
 void LineCurveRenderingTest::markersSurviveSinglePointDatasets()
@@ -66,7 +68,7 @@ void LineCurveRenderingTest::markersSurviveSinglePointDatasets()
     QVERIFY(!node);
 }
 
-void LineCurveRenderingTest::prebuiltVertexCacheIsUploaded()
+void LineCurveRenderingTest::lineVerticesFollowPointCount()
 {
     auto window = QQuickWindow{};
     if (window.rendererInterface()->graphicsApi() == QSGRendererInterface::Software) {
@@ -79,11 +81,10 @@ void LineCurveRenderingTest::prebuiltVertexCacheIsUploaded()
     curve.setXAxis(&xAxis);
     curve.setYAxis(&yAxis);
     curve.setPlotRect({0, 0, 100, 100});
-    // Distinguish uploaded caches from ones the curve would build itself by reversing their bytes.
-    const auto reversedCache = [](const std::vector<float>& data, const int pointCount) {
-        auto cache = std::vector<char>{};
-        QAccelPlot::LineCurveLineRenderer{}.buildVertexCache(data, pointCount, cache);
-        std::reverse(cache.begin(), cache.end());
+    const auto expectedVertices = [](const int pointCount) {
+        auto cache
+            = std::vector<char>(static_cast<std::size_t>(pointCount) * QAccelPlot::LineCurveLineRenderer::vertexCacheBytesPerPoint(QAccelPlot::StepMode::None));
+        QAccelPlot::LineCurveLineRenderer::writeVertexCache(cache, 0, pointCount, QAccelPlot::StepMode::None);
         return cache;
     };
     const auto lineVerticesMatch = [](const QSGNode* root, const std::vector<char>& cache) {
@@ -92,19 +93,14 @@ void LineCurveRenderingTest::prebuiltVertexCacheIsUploaded()
             && std::memcmp(geometry->vertexData(), cache.data(), cache.size()) == 0;
     };
 
-    const auto threePoints = std::vector<float>{0.0f, 0.1f, 0.5f, 0.9f, 1.0f, 0.2f};
-    const auto threePointCache = reversedCache(threePoints, 3);
-    curve.setDataFWithCache(std::vector<float>(threePoints), 3, std::vector<char>(threePointCache));
-    auto node = std::unique_ptr<QSGNode>{curve.updatePaintNode(nullptr, nullptr)};
-    QVERIFY(node);
-    QVERIFY(lineVerticesMatch(node.get(), threePointCache));
-
-    // Line vertices depend only on the point count, so a new count re-uploads the cache.
-    const auto fourPoints = std::vector<float>{0.0f, 0.1f, 0.3f, 0.9f, 0.6f, 0.2f, 1.0f, 0.5f};
-    const auto fourPointCache = reversedCache(fourPoints, 4);
-    curve.setDataFWithCache(fourPoints.data(), 4, std::vector<char>(fourPointCache));
-    node.reset(curve.updatePaintNode(node.release(), nullptr));
-    QVERIFY(lineVerticesMatch(node.get(), fourPointCache));
+    // The curve extends its vertex cache when the point count grows and trims it when the count shrinks.
+    auto node = std::unique_ptr<QSGNode>{};
+    for (const auto count : {3, 5, 5, 2, 4}) {
+        curve.setDataF(std::vector<float>(static_cast<std::size_t>(count) * 2, 0.5f), count);
+        node.reset(curve.updatePaintNode(node.release(), nullptr));
+        QVERIFY(node);
+        QVERIFY(lineVerticesMatch(node.get(), expectedVertices(count)));
+    }
 }
 
 void LineCurveRenderingTest::gradientDataRangeIsCurveExtent()
@@ -145,7 +141,7 @@ void LineCurveRenderingTest::gradientDataRangeIsCurveExtent()
     QCOMPARE(material->gradientValueMax - material->gradientValueMin, 1.0f);
 }
 
-void LineCurveRenderingTest::markerCacheSurvivesSameSizeDataUpdates()
+void LineCurveRenderingTest::markerVerticesFollowPointCount()
 {
     auto window = QQuickWindow{};
     if (window.rendererInterface()->graphicsApi() == QSGRendererInterface::Software) {
@@ -161,18 +157,17 @@ void LineCurveRenderingTest::markerCacheSurvivesSameSizeDataUpdates()
     curve.setLineStyle(nullptr);
     curve.marker()->setShape(QAccelPlot::MarkerShape::Circle);
 
-    // A marked cache tells an uploaded cache apart from the zeroed one the curve would build itself.
-    constexpr auto kPointCount = 3;
-    const auto markedCache = std::vector<char>(kPointCount * QAccelPlot::LineCurvePointRenderer::kVerticesPerPoint * sizeof(QAccelPlot::PointVertex), 0x5a);
-    curve.setDataFWithCache(std::vector<float>(kPointCount * 2, 0.5f), kPointCount, std::vector<char>(markedCache));
-    // Marker vertices hold no positions, so new data of the same size keeps the cache.
-    curve.setDataF(std::vector<float>(kPointCount * 2, 0.25f), kPointCount);
-
-    const auto node = std::unique_ptr<QSGNode>{curve.updatePaintNode(nullptr, nullptr)};
-    QVERIFY(node);
-    const auto* geometry = static_cast<const QSGGeometryNode*>(node.get())->geometry();
-    QCOMPARE(static_cast<std::size_t>(geometry->vertexCount() * geometry->sizeOfVertex()), markedCache.size());
-    QVERIFY(std::memcmp(geometry->vertexData(), markedCache.data(), markedCache.size()) == 0);
+    auto node = std::unique_ptr<QSGNode>{};
+    for (const auto count : {3, 3, 5, 2}) {
+        curve.setDataF(std::vector<float>(static_cast<std::size_t>(count) * 2, 0.5f), count);
+        node.reset(curve.updatePaintNode(node.release(), nullptr));
+        QVERIFY(node);
+        const auto* geometry = static_cast<const QSGGeometryNode*>(node.get())->geometry();
+        QCOMPARE(geometry->vertexCount(), count * QAccelPlot::LineCurvePointRenderer::kVerticesPerPoint);
+        const auto* bytes = static_cast<const char*>(geometry->vertexData());
+        const auto byteCount = static_cast<std::size_t>(geometry->vertexCount() * geometry->sizeOfVertex());
+        QVERIFY(std::all_of(bytes, bytes + byteCount, [](const char byte) { return byte == 0; }));
+    }
 }
 
 QTEST_MAIN(LineCurveRenderingTest)
