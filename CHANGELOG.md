@@ -80,6 +80,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `PlotView.pointerPosition`, `pointerInside`, and `pointerChanged()`. Use
   `PlotInspector.cursorPixelX`, `cursorPixelY`, and `active`, or a
   `HoverHandler`.
+- `PointCloud.hasValues`. `valueAt()` returns NaN when no values are stored.
+  `countChanged()` now fires only when the number of points changes.
 - The `showcases/pulsar` example.
 - The CI benchmark workflow: its timings on shared runners varied more than
   its alert threshold. A unit test now counts scene graph rebuilds and data
