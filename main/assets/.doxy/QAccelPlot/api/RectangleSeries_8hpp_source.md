@@ -19,7 +19,6 @@
 
 #include "QAccelPlot/Border.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
-#include "QAccelPlot/series/RectVertexCache.hpp"
 #include "QAccelPlot/series/SpatialGrid.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 
@@ -40,6 +39,7 @@ namespace QAccelPlot {
 
 namespace Internal {
 class HoverIndexBudget;
+class RectVertexCache;
 }
 class RectMaterial;
 
@@ -171,7 +171,7 @@ private:
     // Render revision of the rectangles last uploaded to the GPU.
     std::uint64_t uploadedRevision_{0};
     // Vertex colors are category colors when categories are set; otherwise \c color is a uniform.
-    RectVertexCache vertexCache_;
+    std::unique_ptr<Internal::RectVertexCache> vertexCache_;
     // Whether the vertex cache holds category colors.
     bool vertexCacheHasCategories_{false};
     // Built once scanning the same data has cost as much as the build, so streaming skips it.

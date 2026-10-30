@@ -97,6 +97,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
         * **class** [**HoverIndexBudget**](classQAccelPlot_1_1Internal_1_1HoverIndexBudget.md) _Decides when queried data is worth a hover index._     
         * **class** [**PointerTracker**](classQAccelPlot_1_1Internal_1_1PointerTracker.md) _Tracks the pointer over a plot from the plot's mouse and hover events._     
         * **struct** [**RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md) _Mirrors the std140 uniform block of rect.vert._     
+        * **class** [**RectVertexCache**](classQAccelPlot_1_1Internal_1_1RectVertexCache.md) _Vertices of a series that draws each rectangle as a quad positioned from a data texture._     
         * **class** [**ScopedPaintedItemTextures**](classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures.md) _Rasterizes the painted items under a root item at a capture scale until destroyed._     
         * **struct** [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) _Bounds of an axis viewport or a colormap value range._     
     * **struct** [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md) _How a legend draws one series: its symbol, color, line, and marker._     
@@ -141,7 +142,6 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **struct** [**PointVertex**](structQAccelPlot_1_1PointVertex.md) _Placeholder vertex of a marker quad, shared with the main thread for vertex caches._     
     * **class** [**QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) _The main plot canvas QML item — hosts axes, curves, and a grid._     
     * **class** [**RectMaterial**](classQAccelPlot_1_1RectMaterial.md) _QSGMaterial for rectangle series rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with a rect-count uniform._    
-    * **class** [**RectVertexCache**](classQAccelPlot_1_1RectVertexCache.md) _Vertices of a series that draws each rectangle as a quad positioned from a data texture._     
     * **class** [**RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md) _A hardware-accelerated QML item that renders a large list of axis-aligned rectangles._     
     * **class** [**RectangleZoomOverlay**](classQAccelPlot_1_1RectangleZoomOverlay.md)     
     * **class** [**SelectionRectangle**](classQAccelPlot_1_1SelectionRectangle.md) _Draws the gesture or the selected region of a_ [_**SelectionTool**_](classQAccelPlot_1_1SelectionTool.md) _, clipped to the plot area._    
@@ -170,12 +170,12 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
 * **struct** [**Extent**](structQAccelPlot_1_1HeatmapSeries_1_1Extent.md) [_**Grid**_](classQAccelPlot_1_1Grid.md) _edges. In_`edges_` _an unset edge is NaN;_`resolvedExtent()` _resolves it to index space._    
 * **struct** [**Job**](structQAccelPlot_1_1InspectionCache_1_1Job.md)     
 * **struct** [**Node**](structQAccelPlot_1_1InspectionIndex_1_1Node.md)     
+* **struct** [**Vertex**](structQAccelPlot_1_1Internal_1_1RectVertexCache_1_1Vertex.md)     
 * **struct** [**SavedTexture**](structQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1_1SavedTexture.md)     
 * **struct** [**FillSampleCache**](structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache.md)     
 * **struct** [**HoverQuery**](structQAccelPlot_1_1PointCloud_1_1HoverQuery.md) _A hover query in the spatial index's coordinates. With the data, it decides the answer._     
 * **struct** [**Points**](structQAccelPlot_1_1PointCloud_1_1Points.md) _Points of_ `stride` _doubles each: (x, y), or (x, y, value)._    
 * **struct** [**IndexedPoint**](structQAccelPlot_1_1PointSpatialIndex_1_1IndexedPoint.md)     
-* **struct** [**Vertex**](structQAccelPlot_1_1RectVertexCache_1_1Vertex.md)     
 * **struct** [**HitTestInputs**](structQAccelPlot_1_1RectangleSeries_1_1HitTestInputs.md)     
 * **struct** [**Region**](structQAccelPlot_1_1SelectionTool_1_1Region.md)     
 * **struct** [**Block**](structQAccelPlot_1_1SourceInspection_1_1Block.md)     

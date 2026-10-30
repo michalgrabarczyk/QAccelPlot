@@ -244,9 +244,9 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="240" column="19" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="240" bodyend="240"/>
       </memberdef>
-      <memberdef kind="variable" id="classQAccelPlot_1_1RectangleSeries_1ae1d9e7f48009de6f311f7994deba5b9e" prot="private" static="no" mutable="no">
-        <type><ref refid="classQAccelPlot_1_1RectVertexCache" kindref="compound">RectVertexCache</ref></type>
-        <definition>RectVertexCache QAccelPlot::RectangleSeries::vertexCache_</definition>
+      <memberdef kind="variable" id="classQAccelPlot_1_1RectangleSeries_1abc038f4fe57fbc6f771d875724d18aaa" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; <ref refid="classQAccelPlot_1_1Internal_1_1RectVertexCache" kindref="compound">Internal::RectVertexCache</ref> &gt;</type>
+        <definition>std::unique_ptr&lt;Internal::RectVertexCache&gt; QAccelPlot::RectangleSeries::vertexCache_</definition>
         <argsstring></argsstring>
         <name>vertexCache_</name>
         <qualifiedname>QAccelPlot::RectangleSeries::vertexCache_</qualifiedname>
@@ -1789,7 +1789,7 @@
       <member refid="classQAccelPlot_1_1RectangleSeries_1ac480f0ea73396ff32faf7afb7f8e8f4c" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>validateCategories</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a6c7c2ca488f737cd30ee447439441682" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>validateDataSize</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1ac9c532c2c9fec18c4aa53252cda99b9c" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>validateRawDataArguments</name></member>
-      <member refid="classQAccelPlot_1_1RectangleSeries_1ae1d9e7f48009de6f311f7994deba5b9e" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>vertexCache_</name></member>
+      <member refid="classQAccelPlot_1_1RectangleSeries_1abc038f4fe57fbc6f771d875724d18aaa" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>vertexCache_</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a948f13f5b87af05e249789a451493e1e" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>vertexCacheHasCategories_</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a250150d8eaea44c2608375839747b2b2" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>xAxis</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1afb85ad640494dbeaa616493a1bd4b966" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>xAxis</name></member>

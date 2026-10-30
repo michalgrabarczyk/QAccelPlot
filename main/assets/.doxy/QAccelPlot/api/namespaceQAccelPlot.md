@@ -148,7 +148,6 @@
 | struct | [**PointVertex**](structQAccelPlot_1_1PointVertex.md) <br>_Placeholder vertex of a marker quad, shared with the main thread for vertex caches._  |
 | class | [**QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) <br>_The main plot canvas QML item — hosts axes, curves, and a grid._  |
 | class | [**RectMaterial**](classQAccelPlot_1_1RectMaterial.md) <br>_QSGMaterial for rectangle series rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with a rect-count uniform._ |
-| class | [**RectVertexCache**](classQAccelPlot_1_1RectVertexCache.md) <br>_Vertices of a series that draws each rectangle as a quad positioned from a data texture._  |
 | class | [**RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md) <br>_A hardware-accelerated QML item that renders a large list of axis-aligned rectangles._  |
 | class | [**RectangleZoomOverlay**](classQAccelPlot_1_1RectangleZoomOverlay.md) <br> |
 | class | [**SelectionRectangle**](classQAccelPlot_1_1SelectionRectangle.md) <br>_Draws the gesture or the selected region of a_ [_**SelectionTool**_](classQAccelPlot_1_1SelectionTool.md) _, clipped to the plot area._ |

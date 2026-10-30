@@ -16,7 +16,7 @@
 * **antialiasingFeather\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
 * **antialiasingEnabled** ([**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md), [**QAccelPlot::LineMaterial**](classQAccelPlot_1_1LineMaterial.md), [**QAccelPlot::LineStroke::Uniforms**](structQAccelPlot_1_1LineStroke_1_1Uniforms.md), [**QAccelPlot::PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md), [**QAccelPlot::PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md), [**QAccelPlot::PointMaterial**](classQAccelPlot_1_1PointMaterial.md))
 * **antialiasingFeather** ([**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md), [**QAccelPlot::LineMaterial**](classQAccelPlot_1_1LineMaterial.md), [**QAccelPlot::LineStroke::Uniforms**](structQAccelPlot_1_1LineStroke_1_1Uniforms.md), [**QAccelPlot::PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md), [**QAccelPlot::PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md), [**QAccelPlot::PointMaterial**](classQAccelPlot_1_1PointMaterial.md))
-* **a** ([**QAccelPlot::LineVertex**](structQAccelPlot_1_1LineVertex.md), [**QAccelPlot::RectVertexCache::Vertex**](structQAccelPlot_1_1RectVertexCache_1_1Vertex.md))
+* **a** ([**QAccelPlot::LineVertex**](structQAccelPlot_1_1LineVertex.md), [**QAccelPlot::Internal::RectVertexCache::Vertex**](structQAccelPlot_1_1Internal_1_1RectVertexCache_1_1Vertex.md))
 * **arcLength** ([**QAccelPlot::LineVertex**](structQAccelPlot_1_1LineVertex.md))
 * **active\_** ([**QAccelPlot::PlotDragRect**](classQAccelPlot_1_1PlotDragRect.md), [**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md), [**QAccelPlot::PlotRectangleZoom**](classQAccelPlot_1_1PlotRectangleZoom.md))
 * **accepted\_** ([**QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md))
@@ -47,7 +47,7 @@
 * **borderWidth** ([**QAccelPlot::Internal::RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md), [**QAccelPlot::RectMaterial**](classQAccelPlot_1_1RectMaterial.md))
 * **bytesPerPoint\_** ([**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md))
 * **bytes\_** ([**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md))
-* **b** ([**QAccelPlot::LineVertex**](structQAccelPlot_1_1LineVertex.md), [**QAccelPlot::RectVertexCache::Vertex**](structQAccelPlot_1_1RectVertexCache_1_1Vertex.md))
+* **b** ([**QAccelPlot::LineVertex**](structQAccelPlot_1_1LineVertex.md), [**QAccelPlot::Internal::RectVertexCache::Vertex**](structQAccelPlot_1_1Internal_1_1RectVertexCache_1_1Vertex.md))
 * **borderWidth\_** ([**QAccelPlot::OutlinedRectangle**](classQAccelPlot_1_1OutlinedRectangle.md))
 * **busy\_** ([**QAccelPlot::PlotExporter**](classQAccelPlot_1_1PlotExporter.md))
 * **button\_** ([**QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md), [**QAccelPlot::SelectionTool**](classQAccelPlot_1_1SelectionTool.md))
@@ -112,7 +112,7 @@
 * **cols\_** ([**QAccelPlot::SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md))
 * **categories** ([**QAccelPlot::BarSeries::Bars**](structQAccelPlot_1_1BarSeries_1_1Bars.md))
 * **cancelled** ([**QAccelPlot::InspectionCache::Job**](structQAccelPlot_1_1InspectionCache_1_1Job.md))
-* **corner** ([**QAccelPlot::RectVertexCache::Vertex**](structQAccelPlot_1_1RectVertexCache_1_1Vertex.md))
+* **corner** ([**QAccelPlot::Internal::RectVertexCache::Vertex**](structQAccelPlot_1_1Internal_1_1RectVertexCache_1_1Vertex.md))
 * **computed** ([**QAccelPlot::SourceInspection::Block**](structQAccelPlot_1_1SourceInspection_1_1Block.md))
 
 
@@ -226,7 +226,7 @@
 * **gaps\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **gradientFillPayload** ([**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md))
 * **gradientPayload** ([**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md), [**QAccelPlot::PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md))
-* **g** ([**QAccelPlot::LineVertex**](structQAccelPlot_1_1LineVertex.md), [**QAccelPlot::RectVertexCache::Vertex**](structQAccelPlot_1_1RectVertexCache_1_1Vertex.md))
+* **g** ([**QAccelPlot::LineVertex**](structQAccelPlot_1_1LineVertex.md), [**QAccelPlot::Internal::RectVertexCache::Vertex**](structQAccelPlot_1_1Internal_1_1RectVertexCache_1_1Vertex.md))
 * **gridNode\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **grid\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **gridLinesVisible** ([**QAccelPlot::GridNode::GridLineCollectionParams**](structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams.md))
@@ -262,7 +262,7 @@
 ## i
 
 * **isDragging\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
-* **id** ([**QAccelPlot::BandMaterial::Vertex**](structQAccelPlot_1_1BandMaterial_1_1Vertex.md), [**QAccelPlot::LineVertex**](structQAccelPlot_1_1LineVertex.md), [**QAccelPlot::RectVertexCache::Vertex**](structQAccelPlot_1_1RectVertexCache_1_1Vertex.md))
+* **id** ([**QAccelPlot::BandMaterial::Vertex**](structQAccelPlot_1_1BandMaterial_1_1Vertex.md), [**QAccelPlot::LineVertex**](structQAccelPlot_1_1LineVertex.md), [**QAccelPlot::Internal::RectVertexCache::Vertex**](structQAccelPlot_1_1Internal_1_1RectVertexCache_1_1Vertex.md))
 * **interactive\_** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **isPrecise\_** ([**QAccelPlot::DataPointStore**](classQAccelPlot_1_1DataPointStore.md))
 * **imageBuffer\_** ([**QAccelPlot::DataTexture**](classQAccelPlot_1_1DataTexture.md))
@@ -289,10 +289,10 @@
 ## k
 
 * **kVerticesPerErrorBar** ([**QAccelPlot::ErrorBarMaterial**](classQAccelPlot_1_1ErrorBarMaterial.md))
+* **kBytesPerRect** ([**QAccelPlot::Internal::RectVertexCache**](classQAccelPlot_1_1Internal_1_1RectVertexCache.md))
+* **kVerticesPerRect** ([**QAccelPlot::Internal::RectVertexCache**](classQAccelPlot_1_1Internal_1_1RectVertexCache.md))
 * **kVertexCacheBytesPerPoint** ([**QAccelPlot::LineCurvePointRenderer**](classQAccelPlot_1_1LineCurvePointRenderer.md))
 * **kVerticesPerPoint** ([**QAccelPlot::LineCurvePointRenderer**](classQAccelPlot_1_1LineCurvePointRenderer.md))
-* **kBytesPerRect** ([**QAccelPlot::RectVertexCache**](classQAccelPlot_1_1RectVertexCache.md))
-* **kVerticesPerRect** ([**QAccelPlot::RectVertexCache**](classQAccelPlot_1_1RectVertexCache.md))
 
 
 ## l
@@ -474,7 +474,7 @@
 * **requested\_** ([**QAccelPlot::InspectionCache**](classQAccelPlot_1_1InspectionCache.md))
 * **rate** ([**QAccelPlot::Internal::HeatmapShaderMapping**](structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping.md))
 * **rectCount** ([**QAccelPlot::Internal::RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md), [**QAccelPlot::RectMaterial**](classQAccelPlot_1_1RectMaterial.md))
-* **r** ([**QAccelPlot::LineVertex**](structQAccelPlot_1_1LineVertex.md), [**QAccelPlot::RectVertexCache::Vertex**](structQAccelPlot_1_1RectVertexCache_1_1Vertex.md))
+* **r** ([**QAccelPlot::LineVertex**](structQAccelPlot_1_1LineVertex.md), [**QAccelPlot::Internal::RectVertexCache::Vertex**](structQAccelPlot_1_1Internal_1_1RectVertexCache_1_1Vertex.md))
 * **radius\_** ([**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md))
 * **refreshing\_** ([**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md))
 * **renderCapacity\_** ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
@@ -623,11 +623,11 @@
 * **values\_** ([**QAccelPlot::HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md), [**QAccelPlot::Histogram**](classQAccelPlot_1_1Histogram.md))
 * **valueText** ([**QAccelPlot::InspectionRow**](structQAccelPlot_1_1InspectionRow.md))
 * **valueStride** ([**QAccelPlot::InspectionSource**](structQAccelPlot_1_1InspectionSource.md))
+* **valid\_** ([**QAccelPlot::Internal::RectVertexCache**](classQAccelPlot_1_1Internal_1_1RectVertexCache.md), [**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md))
+* **vertices\_** ([**QAccelPlot::Internal::RectVertexCache**](classQAccelPlot_1_1Internal_1_1RectVertexCache.md))
 * **vertexCacheRevision\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **vertexCache** ([**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md), [**QAccelPlot::PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md))
-* **valid\_** ([**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md), [**QAccelPlot::RectVertexCache**](classQAccelPlot_1_1RectVertexCache.md))
 * **validCount\_** ([**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md))
-* **vertices\_** ([**QAccelPlot::RectVertexCache**](classQAccelPlot_1_1RectVertexCache.md))
 
 
 ## w

@@ -1393,6 +1393,7 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1InspectionCache_1_1Host/"><strong>QAccelPlot::InspectionCache::Host</strong></a> <em>Series-side callbacks; all are invoked on the series' thread.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1InspectionIndex/"><strong>QAccelPlot::InspectionIndex</strong></a> <em>Immutable k-d tree over the valid data points of a series, with their order along each axis.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1HoverIndexBudget/"><strong>QAccelPlot::Internal::HoverIndexBudget</strong></a> <em>Decides when queried data is worth a hover index.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1RectVertexCache/"><strong>QAccelPlot::Internal::RectVertexCache</strong></a> <em>Vertices of a series that draws each rectangle as a quad positioned from a data texture.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures/"><strong>QAccelPlot::Internal::ScopedPaintedItemTextures</strong></a> <em>Rasterizes the painted items under a root item at a capture scale until destroyed.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurveLineRenderer/"><strong>QAccelPlot::LineCurveLineRenderer</strong></a> <em>Internal renderer responsible for building and updating QSGNode line geometry for a</em> <a href="../classQAccelPlot_1_1LineCurve/"><em><strong>LineCurve</strong></em></a> <em>.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurvePointRenderer/"><strong>QAccelPlot::LineCurvePointRenderer</strong></a> <em>Internal renderer responsible for building and updating QSGNode marker geometry for a</em> <a href="../classQAccelPlot_1_1LineCurve/"><em><strong>LineCurve</strong></em></a> <em>.</em></li>
@@ -1400,7 +1401,6 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1OverlayChildren/"><strong>QAccelPlot::OverlayChildren</strong></a> <em>Objects declared inside an inspection tool in QML.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotDragRect/"><strong>QAccelPlot::PlotDragRect</strong></a> <em>Rectangle dragged out inside the plot area, shared by rectangle zoom and data selection.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PointSpatialIndex/"><strong>QAccelPlot::PointSpatialIndex</strong></a> <em>Uniform-grid spatial index for nearest-point queries over large point sets.</em> </li>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1RectVertexCache/"><strong>QAccelPlot::RectVertexCache</strong></a> <em>Vertices of a series that draws each rectangle as a quad positioned from a data texture.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1SourceInspection/"><strong>QAccelPlot::SourceInspection</strong></a> <em>Inspection queries that read a series' own buffer whose records are ordered along one axis.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1SpatialGrid/"><strong>QAccelPlot::SpatialGrid</strong></a> <em>Uniform-grid spatial index with bounded per-rectangle storage.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1AxisMapping/"><strong>QAccelPlot::AxisMapping</strong></a> <em>Snapshot of an axis viewport that maps between data values and pixel positions.</em> </li>
@@ -1474,12 +1474,12 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1HeatmapSeries_1_1Extent/"><strong>QAccelPlot::HeatmapSeries::Extent</strong></a> <a href="../classQAccelPlot_1_1Grid/"><em><strong>Grid</strong></em></a> <em>edges. In</em><code>edges_</code> <em>an unset edge is NaN;</em><code>resolvedExtent()</code> <em>resolves it to index space.</em></li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionCache_1_1Job/"><strong>QAccelPlot::InspectionCache::Job</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionIndex_1_1Node/"><strong>QAccelPlot::InspectionIndex::Node</strong></a> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1RectVertexCache_1_1Vertex/"><strong>QAccelPlot::Internal::RectVertexCache::Vertex</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1_1SavedTexture/"><strong>QAccelPlot::Internal::ScopedPaintedItemTextures::SavedTexture</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache/"><strong>QAccelPlot::LineCurveLineRenderer::FillSampleCache</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointCloud_1_1HoverQuery/"><strong>QAccelPlot::PointCloud::HoverQuery</strong></a> <em>A hover query in the spatial index's coordinates. With the data, it decides the answer.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointCloud_1_1Points/"><strong>QAccelPlot::PointCloud::Points</strong></a> <em>Points of</em> <code>stride</code> <em>doubles each: (x, y), or (x, y, value).</em></li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointSpatialIndex_1_1IndexedPoint/"><strong>QAccelPlot::PointSpatialIndex::IndexedPoint</strong></a> </li>
-<li><strong>struct</strong> <a href="../structQAccelPlot_1_1RectVertexCache_1_1Vertex/"><strong>QAccelPlot::RectVertexCache::Vertex</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1RectangleSeries_1_1HitTestInputs/"><strong>QAccelPlot::RectangleSeries::HitTestInputs</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1SelectionTool_1_1Region/"><strong>QAccelPlot::SelectionTool::Region</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1SourceInspection_1_1Block/"><strong>QAccelPlot::SourceInspection::Block</strong></a> </li>

@@ -14,6 +14,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **class** [**QAccelPlot::InspectionCache::Host**](classQAccelPlot_1_1InspectionCache_1_1Host.md) _Series-side callbacks; all are invoked on the series' thread._ 
 * **class** [**QAccelPlot::InspectionIndex**](classQAccelPlot_1_1InspectionIndex.md) _Immutable k-d tree over the valid data points of a series, with their order along each axis._ 
 * **class** [**QAccelPlot::Internal::HoverIndexBudget**](classQAccelPlot_1_1Internal_1_1HoverIndexBudget.md) _Decides when queried data is worth a hover index._ 
+* **class** [**QAccelPlot::Internal::RectVertexCache**](classQAccelPlot_1_1Internal_1_1RectVertexCache.md) _Vertices of a series that draws each rectangle as a quad positioned from a data texture._ 
 * **class** [**QAccelPlot::Internal::ScopedPaintedItemTextures**](classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures.md) _Rasterizes the painted items under a root item at a capture scale until destroyed._ 
 * **class** [**QAccelPlot::LineCurveLineRenderer**](classQAccelPlot_1_1LineCurveLineRenderer.md) _Internal renderer responsible for building and updating QSGNode line geometry for a_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _._
 * **class** [**QAccelPlot::LineCurvePointRenderer**](classQAccelPlot_1_1LineCurvePointRenderer.md) _Internal renderer responsible for building and updating QSGNode marker geometry for a_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _._
@@ -21,7 +22,6 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **class** [**QAccelPlot::OverlayChildren**](classQAccelPlot_1_1OverlayChildren.md) _Objects declared inside an inspection tool in QML._ 
 * **class** [**QAccelPlot::PlotDragRect**](classQAccelPlot_1_1PlotDragRect.md) _Rectangle dragged out inside the plot area, shared by rectangle zoom and data selection._ 
 * **class** [**QAccelPlot::PointSpatialIndex**](classQAccelPlot_1_1PointSpatialIndex.md) _Uniform-grid spatial index for nearest-point queries over large point sets._ 
-* **class** [**QAccelPlot::RectVertexCache**](classQAccelPlot_1_1RectVertexCache.md) _Vertices of a series that draws each rectangle as a quad positioned from a data texture._ 
 * **class** [**QAccelPlot::SourceInspection**](classQAccelPlot_1_1SourceInspection.md) _Inspection queries that read a series' own buffer whose records are ordered along one axis._ 
 * **class** [**QAccelPlot::SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md) _Uniform-grid spatial index with bounded per-rectangle storage._ 
 * **struct** [**QAccelPlot::AxisMapping**](structQAccelPlot_1_1AxisMapping.md) _Snapshot of an axis viewport that maps between data values and pixel positions._ 
@@ -95,12 +95,12 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **struct** [**QAccelPlot::HeatmapSeries::Extent**](structQAccelPlot_1_1HeatmapSeries_1_1Extent.md) [_**Grid**_](classQAccelPlot_1_1Grid.md) _edges. In_`edges_` _an unset edge is NaN;_`resolvedExtent()` _resolves it to index space._
 * **struct** [**QAccelPlot::InspectionCache::Job**](structQAccelPlot_1_1InspectionCache_1_1Job.md) 
 * **struct** [**QAccelPlot::InspectionIndex::Node**](structQAccelPlot_1_1InspectionIndex_1_1Node.md) 
+* **struct** [**QAccelPlot::Internal::RectVertexCache::Vertex**](structQAccelPlot_1_1Internal_1_1RectVertexCache_1_1Vertex.md) 
 * **struct** [**QAccelPlot::Internal::ScopedPaintedItemTextures::SavedTexture**](structQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1_1SavedTexture.md) 
 * **struct** [**QAccelPlot::LineCurveLineRenderer::FillSampleCache**](structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache.md) 
 * **struct** [**QAccelPlot::PointCloud::HoverQuery**](structQAccelPlot_1_1PointCloud_1_1HoverQuery.md) _A hover query in the spatial index's coordinates. With the data, it decides the answer._ 
 * **struct** [**QAccelPlot::PointCloud::Points**](structQAccelPlot_1_1PointCloud_1_1Points.md) _Points of_ `stride` _doubles each: (x, y), or (x, y, value)._
 * **struct** [**QAccelPlot::PointSpatialIndex::IndexedPoint**](structQAccelPlot_1_1PointSpatialIndex_1_1IndexedPoint.md) 
-* **struct** [**QAccelPlot::RectVertexCache::Vertex**](structQAccelPlot_1_1RectVertexCache_1_1Vertex.md) 
 * **struct** [**QAccelPlot::RectangleSeries::HitTestInputs**](structQAccelPlot_1_1RectangleSeries_1_1HitTestInputs.md) 
 * **struct** [**QAccelPlot::SelectionTool::Region**](structQAccelPlot_1_1SelectionTool_1_1Region.md) 
 * **struct** [**QAccelPlot::SourceInspection::Block**](structQAccelPlot_1_1SourceInspection_1_1Block.md) 

@@ -439,7 +439,7 @@
     <member refid="classQAccelPlot_1_1BarSeries_1a88858025dbc0b5bbf25161c35b093c36" kind="variable"><name>transitionCategories_</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a790ba56862896119bc42502ed7eb2dfd" kind="variable"><name>frameBuffer_</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a28f7316a65638f3f1203e3f646a1f9be" kind="variable"><name>uploadedRevision_</name></member>
-    <member refid="classQAccelPlot_1_1BarSeries_1acb65a544d8bb4d9b10cac23c627741e2" kind="variable"><name>vertexCache_</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a30c15425f82ff326594d53725fd56ef7" kind="variable"><name>vertexCache_</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1abebf99c32189e63d23a9e1079f661e9f" kind="variable"><name>vertexCacheHasCategories_</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a170b8ba59db0a03ad0bc4bfa23564942" kind="variable"><name>hitRects_</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1af4f1f26daf31caa0cdcc29985993f8fd" kind="variable"><name>spatialGrid_</name></member>
@@ -2999,7 +2999,7 @@
     <member refid="classQAccelPlot_1_1RectangleSeries_1ab08438ab8eee0a6112f9aed187c00b72" kind="variable"><name>minimumHeight_</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a03812984154d495371aee06df39555d9" kind="variable"><name>hoveredIndex_</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a8e0cd30fd463999a2c7dfcbbcae951dd" kind="variable"><name>uploadedRevision_</name></member>
-    <member refid="classQAccelPlot_1_1RectangleSeries_1ae1d9e7f48009de6f311f7994deba5b9e" kind="variable"><name>vertexCache_</name></member>
+    <member refid="classQAccelPlot_1_1RectangleSeries_1abc038f4fe57fbc6f771d875724d18aaa" kind="variable"><name>vertexCache_</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a948f13f5b87af05e249789a451493e1e" kind="variable"><name>vertexCacheHasCategories_</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1af5049bf1e5303db95d91a4d7102eca30" kind="variable"><name>spatialGrid_</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1ab33e61712236103b639574e9cbb75a56" kind="variable"><name>spatialGridValid_</name></member>
@@ -3107,17 +3107,17 @@
     <member refid="structQAccelPlot_1_1Internal_1_1RectUbo_1a406b0268f3c3cd8b7cb8e1886c983d60" kind="variable"><name>hoveredIndex</name></member>
     <member refid="structQAccelPlot_1_1Internal_1_1RectUbo_1adf4d4efab1620dddffaa7096157ba5a7" kind="variable"><name>antialiasing</name></member>
   </compound>
-  <compound refid="classQAccelPlot_1_1RectVertexCache" kind="class"><name>QAccelPlot::RectVertexCache</name>
-    <member refid="classQAccelPlot_1_1RectVertexCache_1a8d546cf185675bca84e5f9b211281fac" kind="typedef"><name>ColorFunction</name></member>
-    <member refid="classQAccelPlot_1_1RectVertexCache_1a0cd4556b9e641bbf961dadf69b917956" kind="variable"><name>kVerticesPerRect</name></member>
-    <member refid="classQAccelPlot_1_1RectVertexCache_1a01d8ec06dbc0714ca16736dae6ea25f8" kind="variable"><name>kBytesPerRect</name></member>
-    <member refid="classQAccelPlot_1_1RectVertexCache_1a1e5e546cc89053dbc9e62449b26af94c" kind="variable"><name>vertices_</name></member>
-    <member refid="classQAccelPlot_1_1RectVertexCache_1afef2696381a3113cd97c63d95803d532" kind="variable"><name>valid_</name></member>
-    <member refid="classQAccelPlot_1_1RectVertexCache_1a03ca37af27c1e19d93a50697a87ed3ac" kind="function"><name>rebuild</name></member>
-    <member refid="classQAccelPlot_1_1RectVertexCache_1a4d596dc0582830e64c62e55d67cc61a9" kind="function"><name>invalidate</name></member>
-    <member refid="classQAccelPlot_1_1RectVertexCache_1ac9717e82830e3415b2d938b2ce8aeda4" kind="function"><name>valid</name></member>
-    <member refid="classQAccelPlot_1_1RectVertexCache_1a842852ecc0e3b719daf45f5a062128fb" kind="function"><name>vertexCount</name></member>
-    <member refid="classQAccelPlot_1_1RectVertexCache_1a2c6f2537f724e4a595e6cd38c440acc7" kind="function"><name>copyTo</name></member>
+  <compound refid="classQAccelPlot_1_1Internal_1_1RectVertexCache" kind="class"><name>QAccelPlot::Internal::RectVertexCache</name>
+    <member refid="classQAccelPlot_1_1Internal_1_1RectVertexCache_1a4ed646d17c24bbbf5f0515767e6ff01d" kind="typedef"><name>ColorFunction</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1RectVertexCache_1a35c27fa76eca2ac2378399070a8f73d4" kind="variable"><name>kVerticesPerRect</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1RectVertexCache_1a2154209ab99cb93e6bb43cd0fb7f9b45" kind="variable"><name>kBytesPerRect</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1RectVertexCache_1a7fb8d531b5eca2bde962a0e3bd75b938" kind="variable"><name>vertices_</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1RectVertexCache_1a01a8f7f39fb1d7a1b596996e23659548" kind="variable"><name>valid_</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1RectVertexCache_1a813c0c358b7e4bfdebe56ef309739461" kind="function"><name>rebuild</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1RectVertexCache_1aad649205080d7fba0a755e44ec5ad0be" kind="function"><name>invalidate</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1RectVertexCache_1ab34d5f7589be16cbad1bab022a71ce4c" kind="function"><name>valid</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1RectVertexCache_1af49c999cddfab0319c06b81b929cdfad" kind="function"><name>vertexCount</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1RectVertexCache_1aff89e929047d7cc2e5708f3e856ac1fc" kind="function"><name>copyTo</name></member>
   </compound>
   <compound refid="structQAccelPlot_1_1SelectionTool_1_1Region" kind="struct"><name>QAccelPlot::SelectionTool::Region</name>
     <member refid="structQAccelPlot_1_1SelectionTool_1_1Region_1a26f2ac955c765daffe86aa727b327750" kind="variable"><name>xMin</name></member>
@@ -3482,13 +3482,13 @@
     <member refid="structQAccelPlot_1_1BandMaterial_1_1Vertex_1a9ee095d7a6c9706758b1f3752d5d4e7f" kind="variable"><name>id</name></member>
     <member refid="structQAccelPlot_1_1BandMaterial_1_1Vertex_1a306223b99024ae7c12603687e7ad011c" kind="variable"><name>edge</name></member>
   </compound>
-  <compound refid="structQAccelPlot_1_1RectVertexCache_1_1Vertex" kind="struct"><name>QAccelPlot::RectVertexCache::Vertex</name>
-    <member refid="structQAccelPlot_1_1RectVertexCache_1_1Vertex_1a66ac3d0957d91589b217b48093335b3a" kind="variable"><name>id</name></member>
-    <member refid="structQAccelPlot_1_1RectVertexCache_1_1Vertex_1ad84ed5f60d4a3640b17dde6b6aed3340" kind="variable"><name>corner</name></member>
-    <member refid="structQAccelPlot_1_1RectVertexCache_1_1Vertex_1a7684f43f4c1e8f53e033e53a2b124f8f" kind="variable"><name>r</name></member>
-    <member refid="structQAccelPlot_1_1RectVertexCache_1_1Vertex_1a810299f8540cbbe74017025225aa13d3" kind="variable"><name>g</name></member>
-    <member refid="structQAccelPlot_1_1RectVertexCache_1_1Vertex_1a4a955791eeb252ce73adf188198fe9ab" kind="variable"><name>b</name></member>
-    <member refid="structQAccelPlot_1_1RectVertexCache_1_1Vertex_1a8bb6f8d011270fb062315a981f43b293" kind="variable"><name>a</name></member>
+  <compound refid="structQAccelPlot_1_1Internal_1_1RectVertexCache_1_1Vertex" kind="struct"><name>QAccelPlot::Internal::RectVertexCache::Vertex</name>
+    <member refid="structQAccelPlot_1_1Internal_1_1RectVertexCache_1_1Vertex_1a072f0841a7e7c166c17a88134dd6498f" kind="variable"><name>id</name></member>
+    <member refid="structQAccelPlot_1_1Internal_1_1RectVertexCache_1_1Vertex_1a672a305fdf409d2b7665e95dab29a725" kind="variable"><name>corner</name></member>
+    <member refid="structQAccelPlot_1_1Internal_1_1RectVertexCache_1_1Vertex_1a8d89ea226732a2d555aae86444afac14" kind="variable"><name>r</name></member>
+    <member refid="structQAccelPlot_1_1Internal_1_1RectVertexCache_1_1Vertex_1aa5aca57a3e4b88ee096ac398a7b9d4bb" kind="variable"><name>g</name></member>
+    <member refid="structQAccelPlot_1_1Internal_1_1RectVertexCache_1_1Vertex_1a1e654321d7944eea8bab96e4f8874362" kind="variable"><name>b</name></member>
+    <member refid="structQAccelPlot_1_1Internal_1_1RectVertexCache_1_1Vertex_1ae08a8b06213678f73eb83ea297f035c4" kind="variable"><name>a</name></member>
   </compound>
   <compound refid="structQAccelPlot_1_1DataPointStore_1_1View" kind="struct"><name>QAccelPlot::DataPointStore::View</name>
     <member refid="structQAccelPlot_1_1DataPointStore_1_1View_1a5b60d3eac02c57fe20c27571e33ca165" kind="variable"><name>precise</name></member>
@@ -3804,6 +3804,8 @@
   </compound>
   <compound refid="RectGeometry_8hpp" kind="file"><name>RectGeometry.hpp</name>
   </compound>
+  <compound refid="RectVertexCache_8hpp" kind="file"><name>RectVertexCache.hpp</name>
+  </compound>
   <compound refid="SeriesSupport_8hpp" kind="file"><name>SeriesSupport.hpp</name>
   </compound>
   <compound refid="StepPath_8hpp" kind="file"><name>StepPath.hpp</name>
@@ -3825,8 +3827,6 @@
   <compound refid="PointSpatialIndex_8hpp" kind="file"><name>PointSpatialIndex.hpp</name>
   </compound>
   <compound refid="RectangleSeries_8hpp" kind="file"><name>RectangleSeries.hpp</name>
-  </compound>
-  <compound refid="RectVertexCache_8hpp" kind="file"><name>RectVertexCache.hpp</name>
   </compound>
   <compound refid="SeriesMarker_8hpp" kind="file"><name>SeriesMarker.hpp</name>
   </compound>

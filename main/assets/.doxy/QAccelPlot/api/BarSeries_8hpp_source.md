@@ -19,7 +19,6 @@
 
 #include "QAccelPlot/Border.hpp"
 #include "QAccelPlot/series/ColormappedSeries.hpp"
-#include "QAccelPlot/series/RectVertexCache.hpp"
 #include "QAccelPlot/series/SpatialGrid.hpp"
 #include "QAccelPlot/transitions/DataTransition.hpp"
 
@@ -35,6 +34,9 @@
 
 namespace QAccelPlot {
 
+namespace Internal {
+class RectVertexCache;
+}
 class BarMaterial;
 class TransitionRunner;
 
@@ -241,7 +243,7 @@ private:
     // Render revision of the bars last uploaded to the GPU.
     std::uint64_t uploadedRevision_{0};
     // Vertex colors are category colors when categories are set; otherwise \c color is a uniform.
-    RectVertexCache vertexCache_;
+    std::unique_ptr<Internal::RectVertexCache> vertexCache_;
     // Whether the vertex cache holds category colors.
     bool vertexCacheHasCategories_{false};
     // Built on the first hit test after a data or geometry change, so streaming without hover skips it.

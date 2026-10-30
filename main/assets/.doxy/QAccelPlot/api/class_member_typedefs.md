@@ -6,7 +6,7 @@
 ## c
 
 * **CostPerRecord** ([**QAccelPlot::Internal::HoverIndexBudget**](classQAccelPlot_1_1Internal_1_1HoverIndexBudget.md))
-* **ColorFunction** ([**QAccelPlot::RectVertexCache**](classQAccelPlot_1_1RectVertexCache.md))
+* **ColorFunction** ([**QAccelPlot::Internal::RectVertexCache**](classQAccelPlot_1_1Internal_1_1RectVertexCache.md))
 
 
 ## m

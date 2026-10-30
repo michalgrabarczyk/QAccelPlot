@@ -45,6 +45,7 @@
 | class | [**HoverIndexBudget**](classQAccelPlot_1_1Internal_1_1HoverIndexBudget.md) <br>_Decides when queried data is worth a hover index._  |
 | class | [**PointerTracker**](classQAccelPlot_1_1Internal_1_1PointerTracker.md) <br>_Tracks the pointer over a plot from the plot's mouse and hover events._  |
 | struct | [**RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md) <br>_Mirrors the std140 uniform block of rect.vert._  |
+| class | [**RectVertexCache**](classQAccelPlot_1_1Internal_1_1RectVertexCache.md) <br>_Vertices of a series that draws each rectangle as a quad positioned from a data texture._  |
 | class | [**ScopedPaintedItemTextures**](classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures.md) <br>_Rasterizes the painted items under a root item at a capture scale until destroyed._  |
 | struct | [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) <br>_Bounds of an axis viewport or a colormap value range._  |
 

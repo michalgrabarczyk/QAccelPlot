@@ -1817,6 +1817,7 @@
 <li><strong>coord</strong> (<a href="../structQAccelPlot_1_1InspectionMetric/"><strong>QAccelPlot::InspectionMetric</strong></a>)</li>
 <li><strong>coordinate</strong> (<a href="../structQAccelPlot_1_1InspectionSource/"><strong>QAccelPlot::InspectionSource</strong></a>, <a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a>)</li>
 <li><strong>cellCoordinate</strong> (<a href="../structQAccelPlot_1_1Internal_1_1HeatmapGridDimension/"><strong>QAccelPlot::Internal::HeatmapGridDimension</strong></a>)</li>
+<li><strong>copyTo</strong> (<a href="../classQAccelPlot_1_1Internal_1_1RectVertexCache/"><strong>QAccelPlot::Internal::RectVertexCache</strong></a>)</li>
 <li><strong>cancelRunningTransition</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>)</li>
 <li><strong>clearEffects</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>)</li>
 <li><strong>connectAnimationTicks</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>)</li>
@@ -1843,7 +1844,6 @@
 <li><strong>clearExtraAxes</strong> (<a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
 <li><strong>connectAxis</strong> (<a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
 <li><strong>connectAxisSignals</strong> (<a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
-<li><strong>copyTo</strong> (<a href="../classQAccelPlot_1_1RectVertexCache/"><strong>QAccelPlot::RectVertexCache</strong></a>)</li>
 <li><strong>cancelGesture</strong> (<a href="../classQAccelPlot_1_1SelectionTool/"><strong>QAccelPlot::SelectionTool</strong></a>)</li>
 <li><strong>coverage</strong> (<a href="../classQAccelPlot_1_1SourceInspection/"><strong>QAccelPlot::SourceInspection</strong></a>)</li>
 <li><strong>cellIndex</strong> (<a href="../classQAccelPlot_1_1SpatialGrid/"><strong>QAccelPlot::SpatialGrid</strong></a>)</li>
@@ -2027,7 +2027,7 @@
 <li><strong>inspectionRecordAt</strong> (<a href="../classQAccelPlot_1_1BarSeries/"><strong>QAccelPlot::BarSeries</strong></a>, <a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>, <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>, <a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a>)</li>
 <li><strong>isHorizontal</strong> (<a href="../classQAccelPlot_1_1BarSeries/"><strong>QAccelPlot::BarSeries</strong></a>, <a href="../classQAccelPlot_1_1ErrorBarSeries/"><strong>QAccelPlot::ErrorBarSeries</strong></a>)</li>
 <li><strong>interactive</strong> (<a href="../classQAccelPlot_1_1ColorBar/"><strong>QAccelPlot::ColorBar</strong></a>)</li>
-<li><strong>invalidate</strong> (<a href="../classQAccelPlot_1_1ColorBar/"><strong>QAccelPlot::ColorBar</strong></a>, <a href="../classQAccelPlot_1_1InspectionCache/"><strong>QAccelPlot::InspectionCache</strong></a>, <a href="../classQAccelPlot_1_1LineCurveVertexCache/"><strong>QAccelPlot::LineCurveVertexCache</strong></a>, <a href="../classQAccelPlot_1_1RectVertexCache/"><strong>QAccelPlot::RectVertexCache</strong></a>)</li>
+<li><strong>invalidate</strong> (<a href="../classQAccelPlot_1_1ColorBar/"><strong>QAccelPlot::ColorBar</strong></a>, <a href="../classQAccelPlot_1_1InspectionCache/"><strong>QAccelPlot::InspectionCache</strong></a>, <a href="../classQAccelPlot_1_1Internal_1_1RectVertexCache/"><strong>QAccelPlot::Internal::RectVertexCache</strong></a>, <a href="../classQAccelPlot_1_1LineCurveVertexCache/"><strong>QAccelPlot::LineCurveVertexCache</strong></a>)</li>
 <li><strong>invalidateRender</strong> (<a href="../classQAccelPlot_1_1DataPointStore/"><strong>QAccelPlot::DataPointStore</strong></a>)</li>
 <li><strong>isPrecise</strong> (<a href="../classQAccelPlot_1_1DataPointStore/"><strong>QAccelPlot::DataPointStore</strong></a>)</li>
 <li><strong>interpolate</strong> (<a href="../classQAccelPlot_1_1DataTransition/"><strong>QAccelPlot::DataTransition</strong></a>, <a href="../classQAccelPlot_1_1DrawTransition/"><strong>QAccelPlot::DrawTransition</strong></a>, <a href="../classQAccelPlot_1_1MorphTransition/"><strong>QAccelPlot::MorphTransition</strong></a>, <a href="../classQAccelPlot_1_1PlotInspector/"><strong>QAccelPlot::PlotInspector</strong></a>, <a href="../classQAccelPlot_1_1SeriesInspection/"><strong>QAccelPlot::SeriesInspection</strong></a>)</li>
@@ -2287,6 +2287,7 @@
 <li><strong>rowCount</strong> (<a href="../classQAccelPlot_1_1InspectionRowModel/"><strong>QAccelPlot::InspectionRowModel</strong></a>, <a href="../classQAccelPlot_1_1LegendModel/"><strong>QAccelPlot::LegendModel</strong></a>, <a href="../classQAccelPlot_1_1PointSpatialIndex/"><strong>QAccelPlot::PointSpatialIndex</strong></a>)</li>
 <li><strong>reset</strong> (<a href="../classQAccelPlot_1_1Internal_1_1HoverIndexBudget/"><strong>QAccelPlot::Internal::HoverIndexBudget</strong></a>, <a href="../classQAccelPlot_1_1PlotMouseEvent/"><strong>QAccelPlot::PlotMouseEvent</strong></a>, <a href="../classQAccelPlot_1_1SourceInspection/"><strong>QAccelPlot::SourceInspection</strong></a>)</li>
 <li><strong>release</strong> (<a href="../classQAccelPlot_1_1Internal_1_1PointerTracker/"><strong>QAccelPlot::Internal::PointerTracker</strong></a>, <a href="../classQAccelPlot_1_1SelectionTool/"><strong>QAccelPlot::SelectionTool</strong></a>)</li>
+<li><strong>rebuild</strong> (<a href="../classQAccelPlot_1_1Internal_1_1RectVertexCache/"><strong>QAccelPlot::Internal::RectVertexCache</strong></a>)</li>
 <li><strong>resize</strong> (<a href="../classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures/"><strong>QAccelPlot::Internal::ScopedPaintedItemTextures</strong></a>)</li>
 <li><strong>refreshRows</strong> (<a href="../classQAccelPlot_1_1LegendModel/"><strong>QAccelPlot::LegendModel</strong></a>, <a href="../classQAccelPlot_1_1SelectionTool/"><strong>QAccelPlot::SelectionTool</strong></a>)</li>
 <li><strong>rebuildChunks</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>)</li>
@@ -2306,7 +2307,6 @@
 <li><strong>registerSeries</strong> (<a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
 <li><strong>rescaleAllAxes</strong> (<a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
 <li><strong>RectMaterial</strong> (<a href="../classQAccelPlot_1_1RectMaterial/"><strong>QAccelPlot::RectMaterial</strong></a>)</li>
-<li><strong>rebuild</strong> (<a href="../classQAccelPlot_1_1RectVertexCache/"><strong>QAccelPlot::RectVertexCache</strong></a>)</li>
 <li><strong>RectangleSeries</strong> (<a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a>)</li>
 <li><strong>rectangleAt</strong> (<a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a>)</li>
 <li><strong>rectangleColor</strong> (<a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a>)</li>
@@ -2663,14 +2663,14 @@
 <li><strong>validateShape</strong> (<a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>)</li>
 <li><strong>valueList</strong> (<a href="../classQAccelPlot_1_1Histogram/"><strong>QAccelPlot::Histogram</strong></a>)</li>
 <li><strong>values</strong> (<a href="../classQAccelPlot_1_1Histogram/"><strong>QAccelPlot::Histogram</strong></a>)</li>
-<li><strong>valid</strong> (<a href="../structQAccelPlot_1_1InspectionBracket/"><strong>QAccelPlot::InspectionBracket</strong></a>, <a href="../structQAccelPlot_1_1InspectionDataPoint/"><strong>QAccelPlot::InspectionDataPoint</strong></a>, <a href="../structQAccelPlot_1_1InspectionPage/"><strong>QAccelPlot::InspectionPage</strong></a>, <a href="../structQAccelPlot_1_1InspectionRecord/"><strong>QAccelPlot::InspectionRecord</strong></a>, <a href="../structQAccelPlot_1_1InspectionSource/"><strong>QAccelPlot::InspectionSource</strong></a>, <a href="../structQAccelPlot_1_1InspectionSummary/"><strong>QAccelPlot::InspectionSummary</strong></a>, <a href="../classQAccelPlot_1_1LineCurveVertexCache/"><strong>QAccelPlot::LineCurveVertexCache</strong></a>, <a href="../classQAccelPlot_1_1RectVertexCache/"><strong>QAccelPlot::RectVertexCache</strong></a>)</li>
+<li><strong>valid</strong> (<a href="../structQAccelPlot_1_1InspectionBracket/"><strong>QAccelPlot::InspectionBracket</strong></a>, <a href="../structQAccelPlot_1_1InspectionDataPoint/"><strong>QAccelPlot::InspectionDataPoint</strong></a>, <a href="../structQAccelPlot_1_1InspectionPage/"><strong>QAccelPlot::InspectionPage</strong></a>, <a href="../structQAccelPlot_1_1InspectionRecord/"><strong>QAccelPlot::InspectionRecord</strong></a>, <a href="../structQAccelPlot_1_1InspectionSource/"><strong>QAccelPlot::InspectionSource</strong></a>, <a href="../structQAccelPlot_1_1InspectionSummary/"><strong>QAccelPlot::InspectionSummary</strong></a>, <a href="../classQAccelPlot_1_1Internal_1_1RectVertexCache/"><strong>QAccelPlot::Internal::RectVertexCache</strong></a>, <a href="../classQAccelPlot_1_1LineCurveVertexCache/"><strong>QAccelPlot::LineCurveVertexCache</strong></a>)</li>
+<li><strong>vertexCount</strong> (<a href="../classQAccelPlot_1_1Internal_1_1RectVertexCache/"><strong>QAccelPlot::Internal::RectVertexCache</strong></a>)</li>
 <li><strong>vertexCacheBytesPerPoint</strong> (<a href="../classQAccelPlot_1_1LineCurveLineRenderer/"><strong>QAccelPlot::LineCurveLineRenderer</strong></a>)</li>
 <li><strong>validCount</strong> (<a href="../classQAccelPlot_1_1PlotInspector/"><strong>QAccelPlot::PlotInspector</strong></a>)</li>
 <li><strong>validateDataSize</strong> (<a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>)</li>
 <li><strong>validateRawDataArguments</strong> (<a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>)</li>
 <li><strong>validateValues</strong> (<a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a>)</li>
 <li><strong>validPointCount</strong> (<a href="../classQAccelPlot_1_1PointSpatialIndex/"><strong>QAccelPlot::PointSpatialIndex</strong></a>)</li>
-<li><strong>vertexCount</strong> (<a href="../classQAccelPlot_1_1RectVertexCache/"><strong>QAccelPlot::RectVertexCache</strong></a>)</li>
 <li><strong>validateCategories</strong> (<a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a>)</li>
 <li><strong>visitBlock</strong> (<a href="../classQAccelPlot_1_1SourceInspection/"><strong>QAccelPlot::SourceInspection</strong></a>)</li>
 </ul>

@@ -1490,6 +1490,7 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1HoverIndexBudget/"><strong>HoverIndexBudget</strong></a> <em>Decides when queried data is worth a hover index.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1PointerTracker/"><strong>PointerTracker</strong></a> <em>Tracks the pointer over a plot from the plot's mouse and hover events.</em>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1RectUbo/"><strong>RectUbo</strong></a> <em>Mirrors the std140 uniform block of rect.vert.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1RectVertexCache/"><strong>RectVertexCache</strong></a> <em>Vertices of a series that draws each rectangle as a quad positioned from a data texture.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures/"><strong>ScopedPaintedItemTextures</strong></a> <em>Rasterizes the painted items under a root item at a capture scale until destroyed.</em>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1ValueRange/"><strong>ValueRange</strong></a> <em>Bounds of an axis viewport or a colormap value range.</em>     </li>
 </ul>
@@ -1542,7 +1543,6 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointVertex/"><strong>PointVertex</strong></a> <em>Placeholder vertex of a marker quad, shared with the main thread for vertex caches.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot</strong></a> <em>The main plot canvas QML item — hosts axes, curves, and a grid.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectMaterial/"><strong>RectMaterial</strong></a> <em>QSGMaterial for rectangle series rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with a rect-count uniform.</em>    </li>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1RectVertexCache/"><strong>RectVertexCache</strong></a> <em>Vertices of a series that draws each rectangle as a quad positioned from a data texture.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectangleSeries/"><strong>RectangleSeries</strong></a> <em>A hardware-accelerated QML item that renders a large list of axis-aligned rectangles.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectangleZoomOverlay/"><strong>RectangleZoomOverlay</strong></a>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1SelectionRectangle/"><strong>SelectionRectangle</strong></a> <em>Draws the gesture or the selected region of a</em> <a href="../classQAccelPlot_1_1SelectionTool/"><em><strong>SelectionTool</strong></em></a> <em>, clipped to the plot area.</em>    </li>
@@ -1573,12 +1573,12 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1HeatmapSeries_1_1Extent/"><strong>Extent</strong></a> <a href="../classQAccelPlot_1_1Grid/"><em><strong>Grid</strong></em></a> <em>edges. In</em><code>edges_</code> <em>an unset edge is NaN;</em><code>resolvedExtent()</code> <em>resolves it to index space.</em>    </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionCache_1_1Job/"><strong>Job</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionIndex_1_1Node/"><strong>Node</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1RectVertexCache_1_1Vertex/"><strong>Vertex</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1_1SavedTexture/"><strong>SavedTexture</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache/"><strong>FillSampleCache</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointCloud_1_1HoverQuery/"><strong>HoverQuery</strong></a> <em>A hover query in the spatial index's coordinates. With the data, it decides the answer.</em>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointCloud_1_1Points/"><strong>Points</strong></a> <em>Points of</em> <code>stride</code> <em>doubles each: (x, y), or (x, y, value).</em>    </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointSpatialIndex_1_1IndexedPoint/"><strong>IndexedPoint</strong></a>     </li>
-<li><strong>struct</strong> <a href="../structQAccelPlot_1_1RectVertexCache_1_1Vertex/"><strong>Vertex</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1RectangleSeries_1_1HitTestInputs/"><strong>HitTestInputs</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1SelectionTool_1_1Region/"><strong>Region</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1SourceInspection_1_1Block/"><strong>Block</strong></a>     </li>
