@@ -19,6 +19,7 @@
 #include <QtTest/QtTest>
 
 #include <algorithm>
+#include <cmath>
 #include <cstdlib>
 #include <initializer_list>
 #include <memory>
@@ -283,7 +284,7 @@ void PointCloudTransitionsTest::removedValuesApplyAtOnce()
 
     scene_.cloud->setData(std::vector<double>{8.0, 8.0}, 1);
 
-    QVERIFY(!scene_.cloud->hasValues());
+    QVERIFY(std::isnan(scene_.cloud->valueAt(0)));
     QTRY_VERIFY(shows({{5.0, 5.0, Qt::red}, {8.0, 8.0, Qt::black}}));
     scene_.cloud->setTransition(nullptr);
 }
@@ -303,7 +304,7 @@ void PointCloudTransitionsTest::setValuesAnimates()
     QTRY_VERIFY(shows({{5.0, 5.0, kGray}}));
 
     scene_.cloud->setValues({});
-    QVERIFY(!scene_.cloud->hasValues());
+    QVERIFY(std::isnan(scene_.cloud->valueAt(0)));
     QTRY_VERIFY(shows({{5.0, 5.0, Qt::red}}));
     scene_.cloud->setTransition(nullptr);
 }

@@ -194,11 +194,6 @@ int PointCloud::count() const
     return dataPoints().count();
 }
 
-bool PointCloud::hasValues() const
-{
-    return dataPoints().hasAttributes();
-}
-
 int PointCloud::hoveredIndex() const
 {
     return hoveredIndex_;
@@ -465,6 +460,11 @@ void PointCloud::hoverLeaveEvent(QHoverEvent* event)
     QQuickItem::hoverLeaveEvent(event);
 }
 
+bool PointCloud::hasValues() const
+{
+    return dataPoints().hasAttributes();
+}
+
 bool PointCloud::validateValues(const std::size_t valueCount, const int pointCount) const
 {
     if (valueCount != 0 && valueCount != static_cast<std::size_t>(pointCount)) {
@@ -550,8 +550,7 @@ void PointCloud::onDataPointsChanged(const DataChange /*change*/, const int prev
     if (hoveredIndex_ >= count()) {
         setHoveredIndex(-1);
     }
-    if (previousCount != count() || reportedHasValues_ != hasValues()) {
-        reportedHasValues_ = hasValues();
+    if (previousCount != count()) {
         emit countChanged();
     }
 }

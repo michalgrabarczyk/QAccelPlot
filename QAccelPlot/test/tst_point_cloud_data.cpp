@@ -59,7 +59,7 @@ private slots:
     void defaults();
     void hoverEnvironmentControlsAcceptance();
     void invalidValuesAreRejected();
-    void countChangedTracksCountAndValuePresence();
+    void countChangedTracksCountOnly();
     void dataRangesSkipNonFinitePoints();
     void dataRangesFollowLogarithmicAxes();
     void dataBoundsReplaceTheRangeScan();
@@ -108,7 +108,6 @@ void PointCloudDataTest::defaults()
     const auto cloud = PointCloud{};
     QCOMPARE(cloud.count(), 0);
     QCOMPARE(cloud.hoveredIndex(), -1);
-    QVERIFY(!cloud.hasValues());
     QVERIFY(cloud.marker());
     QCOMPARE(cloud.marker()->parent(), &cloud);
     QCOMPARE(cloud.marker()->shape(), PlotSeries::MarkerShape::Circle);
@@ -156,12 +155,12 @@ void PointCloudDataTest::invalidValuesAreRejected()
     cloud.setValues({1.0, 2.0, 3.0});
 
     QCOMPARE(cloud.count(), 1);
-    QVERIFY(!cloud.hasValues());
+    QVERIFY(std::isnan(cloud.valueAt(0)));
     QCOMPARE(countSpy.count(), 0);
     QCOMPARE(cloud.pointAt(0), QPointF(1.0, 2.0));
 }
 
-void PointCloudDataTest::countChangedTracksCountAndValuePresence()
+void PointCloudDataTest::countChangedTracksCountOnly()
 {
     auto cloud = PointCloud{};
     auto countSpy = QSignalSpy{&cloud, &PointCloud::countChanged};
@@ -169,19 +168,19 @@ void PointCloudDataTest::countChangedTracksCountAndValuePresence()
     cloud.setDataF(std::vector<float>{0.0f, 0.0f, 1.0f, 1.0f}, 2);
     QCOMPARE(countSpy.count(), 1);
 
-    // Same count, same value presence: streaming updates must not re-emit.
+    // Same count: streaming updates and value changes must not re-emit.
     cloud.setDataF(std::vector<float>{2.0f, 2.0f, 3.0f, 3.0f}, 2);
     QCOMPARE(countSpy.count(), 1);
 
     cloud.setDataF(std::vector<float>{2.0f, 2.0f, 3.0f, 3.0f}, std::vector<float>{0.5f, 0.7f}, 2);
-    QCOMPARE(countSpy.count(), 2);
-    QVERIFY(cloud.hasValues());
+    QCOMPARE(countSpy.count(), 1);
+    QCOMPARE(cloud.valueAt(1), qreal{0.7f});
 
     const float raw[] = {1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f};
     cloud.setDataF(raw, 3);
-    QCOMPARE(countSpy.count(), 3);
+    QCOMPARE(countSpy.count(), 2);
     QCOMPARE(cloud.count(), 3);
-    QVERIFY(!cloud.hasValues());
+    QVERIFY(std::isnan(cloud.valueAt(0)));
     QCOMPARE(cloud.pointAt(2), QPointF(5.0, 6.0));
 }
 
@@ -284,20 +283,19 @@ void PointCloudDataTest::setValuesExpandsAndClearsInPlace()
     auto countSpy = QSignalSpy{&cloud, &PointCloud::countChanged};
 
     cloud.setValues({0.25, 0.5, 0.75});
-    QVERIFY(cloud.hasValues());
-    QCOMPARE(countSpy.count(), 1);
+    QCOMPARE(countSpy.count(), 0);
     QCOMPARE(cloud.pointAt(0), QPointF(1.0, 2.0));
     QCOMPARE(cloud.pointAt(2), QPointF(5.0, 6.0));
     QCOMPARE(cloud.valueAt(1), 0.5);
 
     cloud.setValues({1.0, 2.0, 3.0});
-    QCOMPARE(countSpy.count(), 1);
+    QCOMPARE(countSpy.count(), 0);
     QCOMPARE(cloud.valueAt(2), 3.0);
     QCOMPARE(cloud.pointAt(1), QPointF(3.0, 4.0));
 
     cloud.setValues({});
-    QVERIFY(!cloud.hasValues());
-    QCOMPARE(countSpy.count(), 2);
+    QVERIFY(std::isnan(cloud.valueAt(0)));
+    QCOMPARE(countSpy.count(), 0);
     QCOMPARE(cloud.pointAt(0), QPointF(1.0, 2.0));
     QCOMPARE(cloud.pointAt(2), QPointF(5.0, 6.0));
 }
@@ -324,7 +322,6 @@ void PointCloudDataTest::clearDataResetsState()
 
     cloud.clearData();
     QCOMPARE(cloud.count(), 0);
-    QVERIFY(!cloud.hasValues());
     QCOMPARE(countSpy.count(), 1);
     QCOMPARE(cloud.pointIndexAt(QPointF(10.0, 10.0)), -1);
 }
@@ -341,7 +338,7 @@ void PointCloudDataTest::postDataIsAppliedFromWorkerThread()
     // Queued: nothing is applied until the event loop runs.
     QCOMPARE(cloud.count(), 0);
     QTRY_COMPARE(cloud.count(), 3);
-    QVERIFY(!cloud.hasValues());
+    QVERIFY(std::isnan(cloud.valueAt(0)));
     QCOMPARE(cloud.pointAt(2), QPointF(9.0, 10.0));
 }
 
@@ -356,7 +353,7 @@ void PointCloudDataTest::postedDoubleDataIsApplied()
 
     QCOMPARE(cloud.count(), 0);
     QTRY_COMPARE(cloud.count(), 3);
-    QVERIFY(!cloud.hasValues());
+    QVERIFY(std::isnan(cloud.valueAt(0)));
     QCOMPARE(cloud.pointAt(2), QPointF(9.0, 10.0));
 }
 
@@ -370,7 +367,6 @@ void PointCloudDataTest::doubleVectorDataKeepsValues()
     cloud.setData(std::vector<double>{1.0, 2.0, 3.0, 4.0}, std::vector<float>{0.5f, 1.5f}, 2);
 
     QCOMPARE(cloud.count(), 2);
-    QVERIFY(cloud.hasValues());
     QCOMPARE(cloud.valueAt(1), 1.5);
     QCOMPARE(axes.x.dataMax(), 3.0);
 }
@@ -394,7 +390,7 @@ void PointCloudDataTest::overloadsAcceptPositionsWithoutValues()
     const auto raw = std::vector<float>{5.0f, 6.0f};
     cloud.setDataF(raw.data(), 1);
     QCOMPARE(cloud.pointAt(0), QPointF(5.0, 6.0));
-    QVERIFY(!cloud.hasValues());
+    QVERIFY(std::isnan(cloud.valueAt(0)));
     QCOMPARE(xAxis.dataMax(), 5.0);
 
     cloud.setDataF(static_cast<const float*>(nullptr), 0);
@@ -639,14 +635,12 @@ void PointCloudDataTest::doubleDataSurvivesLogScaleChange()
     cloud.setData(std::vector<double>{10.0, 100.0, 20.0, 200.0}, std::vector<float>{1.0f, 2.0f}, 2);
 
     QCOMPARE(cloud.count(), 2);
-    QVERIFY(cloud.hasValues());
     QCOMPARE(cloud.valueAt(1), 2.0);
 
     // A log axis must not be origin-shifted; the values must survive the rebuild.
     yAxis.setLogScale(true);
     QCOMPARE(cloud.pointAt(1), QPointF(20.0, 200.0));
     QCOMPARE(cloud.valueAt(1), 2.0);
-    QVERIFY(cloud.hasValues());
 }
 
 void PointCloudDataTest::dataTextureCapacityFollowsTextureHeight()

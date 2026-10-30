@@ -82,9 +82,7 @@ class PointCloud : public ColormappedSeries {
     Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
     /// \brief Read-only: number of points currently stored, including invalid ones.
     Q_PROPERTY(int count READ count NOTIFY countChanged)
-    /// \brief Read-only: \c true when per-point values are stored.
-    Q_PROPERTY(bool hasValues READ hasValues NOTIFY countChanged)
-    /// \brief Read-only: index of the point under the cursor, or -1 when none.
+    /// \brief Read-only: index of the valid point nearest the pointer within \c hoverRadius, or -1 when none.
     Q_PROPERTY(int hoveredIndex READ hoveredIndex NOTIFY hoveredIndexChanged)
 
 public:
@@ -123,8 +121,6 @@ public:
 
     /// \brief Returns the number of stored points.
     int count() const;
-    /// \brief Returns \c true when per-point values are stored.
-    bool hasValues() const;
     /// \brief Returns the index of the hovered point, or -1.
     int hoveredIndex() const;
 
@@ -172,7 +168,7 @@ signals:
     void hoverRadiusChanged();
     /// \brief Emitted when the transition property changes.
     void transitionChanged();
-    /// \brief Emitted when the number of points or the presence of values changes.
+    /// \brief Emitted when the number of points changes.
     void countChanged();
     /// \brief Emitted when the hovered point changes.
     void hoveredIndexChanged();
@@ -204,6 +200,7 @@ private:
         int stride{2};
     };
 
+    bool hasValues() const;
     bool validateValues(std::size_t valueCount, int pointCount) const;
     void applyData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
     /// \brief Replaces the points with float data, without a transition.
@@ -254,8 +251,6 @@ private:
     // The previous transition frame, reused for the next one.
     std::vector<double> frameBuffer_;
 
-    // hasValues() as countChanged() last reported it.
-    bool reportedHasValues_{false};
     // Render revision of the data points last uploaded to the GPU.
     std::uint64_t uploadedRevision_{0};
 
