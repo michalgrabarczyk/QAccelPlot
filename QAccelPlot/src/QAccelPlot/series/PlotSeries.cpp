@@ -489,7 +489,7 @@ void PlotSeries::notifyDataPointsChanged(const DataChange change, const int prev
     update();
 }
 
-void PlotSeries::onDataPointsChanged(const DataChange /*change*/, const int /*previousCount*/)
+void PlotSeries::onDataPointsChanged([[maybe_unused]] const DataChange change, [[maybe_unused]] const int previousCount)
 {
 }
 
@@ -524,14 +524,14 @@ bool PlotSeries::recordInspectionSupported() const
     return false;
 }
 
-InspectionRecord PlotSeries::inspectionRecord(const int /*index*/) const
+InspectionRecord PlotSeries::inspectionRecord([[maybe_unused]] const int index) const
 {
     auto result = InspectionRecord{};
     result.status = InspectionStatus::Unsupported;
     return result;
 }
 
-InspectionRecord PlotSeries::inspectionRecordAt(const QPointF& /*position*/) const
+InspectionRecord PlotSeries::inspectionRecordAt([[maybe_unused]] const QPointF& position) const
 {
     auto result = InspectionRecord{};
     result.status = InspectionStatus::Unsupported;
@@ -543,7 +543,7 @@ bool PlotSeries::positionInspectionSupported() const
     return false;
 }
 
-InspectionDataPoint PlotSeries::inspectionDataPointAt(const QPointF& /*position*/) const
+InspectionDataPoint PlotSeries::inspectionDataPointAt([[maybe_unused]] const QPointF& position) const
 {
     auto result = InspectionDataPoint{};
     result.status = InspectionStatus::Unsupported;

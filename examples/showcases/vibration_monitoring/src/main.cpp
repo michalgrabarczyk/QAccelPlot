@@ -71,7 +71,7 @@ int main(int argc, char* argv[])
 
     if (recording) {
         const auto prepareFrame
-            = [&monitor](int /*frameIndex*/, const double seconds, const std::function<void()>& ready) { monitor.showFrameAt(seconds, ready); };
+            = [&monitor]([[maybe_unused]] int frameIndex, const double seconds, const std::function<void()>& ready) { monitor.showFrameAt(seconds, ready); };
         if (!QAccelPlotExample::startFrameRecording(app, window, *recording, prepareFrame)) {
             return EXIT_FAILURE;
         }

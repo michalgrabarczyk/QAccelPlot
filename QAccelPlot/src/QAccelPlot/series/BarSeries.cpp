@@ -653,7 +653,7 @@ void BarSeries::setDataFFromArray(const float* data, const int barCount)
     notifyDataPointsChanged(DataChange::Replaced, previousCount);
 }
 
-void BarSeries::onDataPointsChanged(const DataChange /*change*/, const int previousCount)
+void BarSeries::onDataPointsChanged([[maybe_unused]] const DataChange change, const int previousCount)
 {
     // Vertex colors depend on the categories, but not on the coordinates.
     if (count() != previousCount || vertexCacheHasCategories_ || hasCategories()) {

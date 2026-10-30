@@ -39,9 +39,8 @@ public:
         setShaderFileName(FragmentStage, QString::fromLatin1(":/qaccelplot/shaders/band.frag.qsb"));
     }
 
-    bool updateUniformData(RenderState& state, QSGMaterial* newMaterial, QSGMaterial* oldMaterial) override
+    bool updateUniformData(RenderState& state, QSGMaterial* newMaterial, [[maybe_unused]] QSGMaterial* oldMaterial) override
     {
-        Q_UNUSED(oldMaterial)
         QByteArray* buf = state.uniformData();
         if (!buf || buf->size() < static_cast<int>(sizeof(BandUbo))) {
             return false;
@@ -70,7 +69,7 @@ public:
         return true;
     }
 
-    void updateSampledImage(RenderState& state, int binding, QSGTexture** texture, QSGMaterial* newMaterial, QSGMaterial* /*oldMaterial*/) override
+    void updateSampledImage(RenderState& state, int binding, QSGTexture** texture, QSGMaterial* newMaterial, [[maybe_unused]] QSGMaterial* oldMaterial) override
     {
         if (binding == 1) {
             auto* mat = static_cast<BandMaterial*>(newMaterial);

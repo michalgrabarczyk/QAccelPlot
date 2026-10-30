@@ -340,7 +340,7 @@ void RectangleSeries::applyFloatData(std::vector<float>&& data, std::vector<int>
     notifyDataPointsChanged(DataChange::Replaced, previousCount);
 }
 
-void RectangleSeries::onDataPointsChanged(const DataChange /*change*/, const int previousCount)
+void RectangleSeries::onDataPointsChanged([[maybe_unused]] const DataChange change, const int previousCount)
 {
     // Vertex colors depend on the categories, but not on the coordinates.
     if (count() != previousCount || vertexCacheHasCategories_ || hasCategories()) {

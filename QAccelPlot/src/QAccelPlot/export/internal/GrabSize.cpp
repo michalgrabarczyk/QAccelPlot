@@ -35,10 +35,9 @@ int targetLength(const int pixels, const qreal devicePixelRatio)
 
 } // namespace
 
-GrabSize grabSizeFor(const QSize& pixels, const qreal devicePixelRatio)
+GrabSize grabSizeFor(const QSize& pixels, [[maybe_unused]] const qreal devicePixelRatio)
 {
 #if QT_VERSION < QT_VERSION_CHECK(6, 3, 0)
-    Q_UNUSED(devicePixelRatio)
     return {pixels, pixels};
 #else
     const auto target = QSize(targetLength(pixels.width(), devicePixelRatio), targetLength(pixels.height(), devicePixelRatio));

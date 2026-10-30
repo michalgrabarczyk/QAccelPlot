@@ -29,9 +29,8 @@ public:
         setShaderFileName(FragmentStage, QString::fromLatin1(":/qaccelplot/shaders/gradient_fill.frag.qsb"));
     }
 
-    bool updateUniformData(RenderState& state, QSGMaterial* newMaterial, QSGMaterial* oldMaterial) override
+    bool updateUniformData(RenderState& state, QSGMaterial* newMaterial, [[maybe_unused]] QSGMaterial* oldMaterial) override
     {
-        Q_UNUSED(oldMaterial)
         auto* buffer = state.uniformData();
         if (!buffer || buffer->size() < static_cast<int>(sizeof(GradientFillUbo))) {
             return false;
@@ -46,11 +45,10 @@ public:
         return true;
     }
 
-    void updateSampledImage(RenderState& state, int binding, QSGTexture** texture, QSGMaterial* newMaterial, QSGMaterial* oldMaterial) override
+    void updateSampledImage(RenderState& state, int binding, QSGTexture** texture, QSGMaterial* newMaterial, [[maybe_unused]] QSGMaterial* oldMaterial) override
     {
-        Q_UNUSED(oldMaterial)
         if (binding == 1) {
-            static_cast<GradientFillMaterial*>(newMaterial)->gradientTexture.commit(state, binding, texture);
+            static_cast<GradientFillMaterial*>(newMaterial)->gradientTexture.commit(state, texture);
         }
     }
 };

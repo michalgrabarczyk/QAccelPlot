@@ -33,8 +33,8 @@ public:
 
     /// \brief Updates the 256-sample texture when \a stops changed.
     void upload(QQuickWindow* window, const std::vector<GradientStopData>& stops);
-    /// \brief Commits the texture to the requested shader sampler binding.
-    void commit(QSGMaterialShader::RenderState& state, int binding, QSGTexture** texture);
+    /// \brief Commits the texture for the sampler being updated.
+    void commit(QSGMaterialShader::RenderState& state, QSGTexture** texture);
     /// \brief Returns the scene-graph comparison key for the uploaded texture, or zero when no texture exists.
     qint64 comparisonKey() const;
 

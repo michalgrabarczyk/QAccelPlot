@@ -30,7 +30,7 @@ namespace {
 
 constexpr auto kFallbackMaxTextureSize = 8192;
 
-int gpuMaxTextureSize(QQuickWindow* window)
+int gpuMaxTextureSize([[maybe_unused]] QQuickWindow* window)
 {
 #if QACCELPLOT_CAN_QUERY_RHI
     if (auto* rendererInterface = window ? window->rendererInterface() : nullptr) {
@@ -39,8 +39,6 @@ int gpuMaxTextureSize(QQuickWindow* window)
             return rhi->resourceLimit(QRhi::TextureSizeMax);
         }
     }
-#else
-    Q_UNUSED(window)
 #endif
     return kFallbackMaxTextureSize;
 }

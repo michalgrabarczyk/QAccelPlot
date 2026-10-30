@@ -242,7 +242,7 @@ InspectionRecord BandSeries::inspectionRecordAt(const QPointF& position) const
     return result;
 }
 
-QSGNode* BandSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* /*updatePaintNodeData*/)
+QSGNode* BandSeries::updatePaintNode(QSGNode* oldNode, [[maybe_unused]] UpdatePaintNodeData* updatePaintNodeData)
 {
     if (!Internal::supportsCustomShaderRendering(window())) {
         static auto warned = false;
@@ -327,7 +327,7 @@ void BandSeries::onAxisRangeChanged()
     refreshHovered();
 }
 
-void BandSeries::onDataPointsChanged(const DataChange change, const int /*previousCount*/)
+void BandSeries::onDataPointsChanged(const DataChange change, [[maybe_unused]] const int previousCount)
 {
     if (change == DataChange::Replaced) {
         updateXAscending();

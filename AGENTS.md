@@ -136,6 +136,9 @@ QAccelPlot/
   `double v{};`.
 - Always use braces `{ }` after `if`, `for`, and `while` bodies, even for
   single-statement bodies.
+- Mark an unused parameter `[[maybe_unused]]` and keep its name; don't comment
+  the name out or use `Q_UNUSED`. Remove the parameter instead when no
+  override, signal, or shared signature requires it.
 - Always run `clang-format` after making changes to `.cpp` or `.hpp` files.
   The Static analysis CI workflow checks them with clang-format 19.
 - Library sources must pass `clang-tidy` with the repository `.clang-tidy`

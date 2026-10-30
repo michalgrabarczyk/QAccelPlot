@@ -404,7 +404,7 @@ InspectionRecord ErrorBarSeries::inspectionRecordAt(const QPointF& position) con
     return index < 0 ? InspectionRecord{} : inspectionRecord(index);
 }
 
-QSGNode* ErrorBarSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* /*updatePaintNodeData*/)
+QSGNode* ErrorBarSeries::updatePaintNode(QSGNode* oldNode, [[maybe_unused]] UpdatePaintNodeData* updatePaintNodeData)
 {
     auto* window = this->window();
     updateRenderCapacity(Internal::recordCapacity(window, kStride, kVertexBytesPerErrorBar), count());
@@ -475,7 +475,7 @@ void ErrorBarSeries::onAxisScaleChanged()
     update();
 }
 
-void ErrorBarSeries::onDataPointsChanged(const DataChange /*change*/, const int /*previousCount*/)
+void ErrorBarSeries::onDataPointsChanged([[maybe_unused]] const DataChange change, [[maybe_unused]] const int previousCount)
 {
     spatialGridValid_ = false;
     if (hoveredIndex_ >= count()) {

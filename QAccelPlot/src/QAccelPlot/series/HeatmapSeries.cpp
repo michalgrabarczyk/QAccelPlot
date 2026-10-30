@@ -215,10 +215,8 @@ void HeatmapSeries::clearData()
     storeValues({}, columns_);
 }
 
-QSGNode* HeatmapSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updatePaintNodeData)
+QSGNode* HeatmapSeries::updatePaintNode(QSGNode* oldNode, [[maybe_unused]] UpdatePaintNodeData* updatePaintNodeData)
 {
-    Q_UNUSED(updatePaintNodeData)
-
     auto* window = this->window();
     if (!Internal::supportsCustomShaderRendering(window)) {
         static auto warned = false;

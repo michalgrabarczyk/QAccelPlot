@@ -120,7 +120,7 @@ void LegendModel::unwatchSeries(PlotSeries* series)
     }
 }
 
-void LegendModel::onSeriesDestroyed(QObject* /*series*/)
+void LegendModel::onSeriesDestroyed()
 {
     // The destroyed series' pointers are already null.
     series_.removeAll(QPointer<PlotSeries>{});

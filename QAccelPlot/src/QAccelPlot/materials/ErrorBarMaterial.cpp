@@ -43,7 +43,7 @@ public:
         setShaderFileName(FragmentStage, QString::fromLatin1(":/qaccelplot/shaders/error_bar.frag.qsb"));
     }
 
-    bool updateUniformData(RenderState& state, QSGMaterial* newMaterial, QSGMaterial* /*oldMaterial*/) override
+    bool updateUniformData(RenderState& state, QSGMaterial* newMaterial, [[maybe_unused]] QSGMaterial* oldMaterial) override
     {
         auto* buf = state.uniformData();
         if (!buf || buf->size() < static_cast<int>(sizeof(ErrorBarUbo))) {
@@ -67,7 +67,7 @@ public:
         return true;
     }
 
-    void updateSampledImage(RenderState& state, int binding, QSGTexture** texture, QSGMaterial* newMaterial, QSGMaterial* /*oldMaterial*/) override
+    void updateSampledImage(RenderState& state, int binding, QSGTexture** texture, QSGMaterial* newMaterial, [[maybe_unused]] QSGMaterial* oldMaterial) override
     {
         const auto* mat = static_cast<const ErrorBarMaterial*>(newMaterial);
         DataTextureMaterial::commitTexture(state, binding, texture, mat->dataTexture.get());

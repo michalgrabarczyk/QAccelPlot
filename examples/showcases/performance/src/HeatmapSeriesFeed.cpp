@@ -13,7 +13,7 @@
 
 namespace QAccelPlotExample {
 
-SpectrogramParameters HeatmapSeriesFeed::parameters(const PageScene& /*scene*/, const CommonOptions& options)
+SpectrogramParameters HeatmapSeriesFeed::parameters([[maybe_unused]] const PageScene& scene, const CommonOptions& options)
 {
     auto parameters = SpectrogramParameters{};
     parameters.dataset = datasetParameters(options);

@@ -76,7 +76,7 @@ signals:
 private:
     void watchSeries(PlotSeries* series) const;
     void unwatchSeries(PlotSeries* series);
-    void onSeriesDestroyed(QObject* series);
+    void onSeriesDestroyed();
     /// \brief Recomputes the rows: resets the model when the listed rows change, and reports changed data otherwise.
     void refreshRows();
 

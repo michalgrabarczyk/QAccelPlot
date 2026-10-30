@@ -26,7 +26,7 @@ public:
     }
 
 protected:
-    void updateCurrentTime(int /*currentTime*/) override
+    void updateCurrentTime([[maybe_unused]] int currentTime) override
     {
     }
 };

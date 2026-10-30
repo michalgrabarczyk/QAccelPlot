@@ -18,7 +18,7 @@ DrawTransition::DrawTransition(QObject* parent)
 {
 }
 
-void DrawTransition::interpolate(const double easedProgress, const Dataset& /*from*/, const Dataset& to, Dataset& out)
+void DrawTransition::interpolate(const double easedProgress, [[maybe_unused]] const Dataset& from, const Dataset& to, Dataset& out)
 {
     out.count = std::clamp(static_cast<int>(std::ceil(to.count * easedProgress)), std::min(to.count, 1), to.count);
     out.values.assign(to.values.begin(), to.values.begin() + static_cast<std::ptrdiff_t>(out.count) * to.stride);
