@@ -1719,12 +1719,8 @@ and rebase the GPU buffer so nearby values stay distinct. The <code>F</code> API
 floats.</p>
 <p>The table shows <code>LineCurve</code>. Every series has <code>setData()</code>,
 <code>setDataF()</code>, and <code>postData()</code> overloads for its own record layout.</p>
-<p><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafwithcache-12"><code>setDataFWithCache()</code></a> also accepts a
-prebuilt vertex cache, so vertex assembly can move off the UI and render
-threads. It ties application code to renderer details; use it only when
-measurements justify it. The cache must match the current point count and
-renderer layout, otherwise it is rejected and normal vertex assembly runs. For
-a step line, build it with <code>buildVertexCache(data, count, cache, stepMode)</code>.</p>
+<p>A <code>LineCurve</code> builds its own vertex buffer. Updates with the same point count
+reuse it, and a growing point count writes vertices only for the added points.</p>
 <h2 id="data-ranges-are-computed-on-demand">Data ranges are computed on demand<a class="headerlink" href="#data-ranges-are-computed-on-demand" title="Permanent link">&para;</a></h2>
 <p>No setter scans the data for its range. After an update, a series scans its
 records the first time something reads the range:</p>

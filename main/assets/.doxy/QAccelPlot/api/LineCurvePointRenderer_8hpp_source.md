@@ -25,6 +25,7 @@
 #include <QSGNode>
 #include <QVector2D>
 
+#include <cstddef>
 #include <memory>
 #include <vector>
 
@@ -65,7 +66,9 @@ class LineCurvePointRenderer {
 public:
     static constexpr int kVerticesPerPoint{6};
 
-    void buildVertexCache(const std::vector<float>& data, int pointCount, std::vector<char>& cache) const;
+    static constexpr std::size_t kVertexCacheBytesPerPoint{kVerticesPerPoint * sizeof(PointVertex)};
+
+    static void writeVertexCache(std::vector<char>& cache, int firstPoint, int pointCount);
 
     bool contains(const QPointF& point, const CurveHitTestParams& params) const;
 

@@ -2000,7 +2000,6 @@
     <member refid="classQAccelPlot_1_1LineCurve_1ae35fc52543bbee90dc5769acd249f752" kind="variable"><name>hoverRadius_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a5a52a33848144ccf26bbff1fb25a1914" kind="variable"><name>transition_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a943de97e88d932792766b48979203a29" kind="variable"><name>frameBuffer_</name></member>
-    <member refid="classQAccelPlot_1_1LineCurve_1a916e2026322ffa20083789abe151f434" kind="variable"><name>pendingVertexCache_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a8e430803797ca65db407a90e40837211" kind="variable"><name>animationTickWindow_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a9cf2522f5761103fac1ad7c89a084c8f" kind="variable"><name>lineStyle_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a8e759cb4b7ee1ce29a1513155c86338a" kind="variable"><name>antialiasingFeather_</name></member>
@@ -2039,8 +2038,6 @@
     <member refid="classQAccelPlot_1_1LineCurve_1acc4aaa04bfb63170079842c8b9b10f62" kind="function"><name>appendData</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1acf9463cc9f4c0e0eb7cc9d053b7e7114" kind="function"><name>setData</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1aad067a9b84289a5c73637905cbc61a69" kind="function"><name>setData</name></member>
-    <member refid="classQAccelPlot_1_1LineCurve_1a5fcda9da44cc89a1c493353baaa79cbf" kind="function"><name>setDataFWithCache</name></member>
-    <member refid="classQAccelPlot_1_1LineCurve_1adf75a3d1fba07c9f382b0170973ceaa2" kind="function"><name>setDataFWithCache</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1ad6683a1132bd0eaae9a4c7cb7b07ae37" kind="function"><name>clearData</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a93e7cff8e144e1ec4edb9e9be11f315e" kind="function"><name>legendEntry</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1acbf8fb06d9d8ca2a5ab3a0c4e060a4b4" kind="function"><name>postData</name></member>
@@ -2080,9 +2077,7 @@
     <member refid="classQAccelPlot_1_1LineCurve_1aa95c715a268a9807a462839e01482a78" kind="function"><name>sourceDataView</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a6333fa59663ad2c43e62bf1bc3425ede" kind="function"><name>renderPointCount</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1aa02993dd005fbf06d0aabe616a0a7298" kind="function"><name>refreshVertexCacheForDataChange</name></member>
-    <member refid="classQAccelPlot_1_1LineCurve_1a5872dc1615b0de82634c08bbfaeaf406" kind="function"><name>installVertexCache</name></member>
-    <member refid="classQAccelPlot_1_1LineCurve_1acffac7ccd8ece21ba780bc47d6fc1e18" kind="function"><name>expectedVertexCacheSize</name></member>
-    <member refid="classQAccelPlot_1_1LineCurve_1ac5fdcadbe0c8426d70b7667b3ea9162a" kind="function"><name>rebuildVertexCache</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1ab73cccf268ef5553eea0ee21582076b4" kind="function"><name>updateVertexCache</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1aeb1c19300493df7e2146d2786aa242bf" kind="function"><name>rebuildChunks</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a0273989b02da49bd0e3e725c6105c4c4" kind="function"><name>invalidateVertices</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a31cc6b7acceb31032ef7a59e07b6561a" kind="function"><name>invalidateData</name></member>
@@ -2117,10 +2112,11 @@
   </compound>
   <compound refid="classQAccelPlot_1_1LineCurveLineRenderer" kind="class"><name>QAccelPlot::LineCurveLineRenderer</name>
     <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1aa99d416e318386cbd8e05b097059a2f5" kind="variable"><name>fillSampleCache_</name></member>
-    <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1ae5f3f9782fc9ae8df2da2ce08e3603c0" kind="function"><name>buildVertexCache</name></member>
+    <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1ab51aecd357af75811fa6cbb8b7386384" kind="function"><name>vertexCacheBytesPerPoint</name></member>
+    <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1af7de8cf2c144f7a2b5589b97f6ed1af5" kind="function"><name>writeVertexCache</name></member>
+    <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1ab63d17c7f37f32b08df0d4eeb1a3184a" kind="function"><name>dataTexture</name></member>
     <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1a17184b26756ffd86f96dcdf75bb64261" kind="function"><name>contains</name></member>
     <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1af7080fe3330b521649272adbb02774d2" kind="function"><name>paint</name></member>
-    <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1ab63d17c7f37f32b08df0d4eeb1a3184a" kind="function"><name>dataTexture</name></member>
     <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1aad2aeb6202a3f49358ebef70f7984a74" kind="function"><name>updateFillGeometry</name></member>
     <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1a1b52a3889372e19d879605bba2fc3cc9" kind="function"><name>fillSamples</name></member>
     <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1abdb98a8664940d4af7055b827f0cdc6a" kind="function"><name>updateLineMaterial</name></member>
@@ -2130,7 +2126,8 @@
   </compound>
   <compound refid="classQAccelPlot_1_1LineCurvePointRenderer" kind="class"><name>QAccelPlot::LineCurvePointRenderer</name>
     <member refid="classQAccelPlot_1_1LineCurvePointRenderer_1afa3b3e044ac5e0485d43f1f22a7015c9" kind="variable"><name>kVerticesPerPoint</name></member>
-    <member refid="classQAccelPlot_1_1LineCurvePointRenderer_1aeec69e3fbde7288e816628524bbf17da" kind="function"><name>buildVertexCache</name></member>
+    <member refid="classQAccelPlot_1_1LineCurvePointRenderer_1a5d24c4fdfd3c22624a0463abb68ff258" kind="variable"><name>kVertexCacheBytesPerPoint</name></member>
+    <member refid="classQAccelPlot_1_1LineCurvePointRenderer_1aa77ef3c8552b5477d5383c5d758290db" kind="function"><name>writeVertexCache</name></member>
     <member refid="classQAccelPlot_1_1LineCurvePointRenderer_1af95a1d6fb2fd390603024cef6a15d5d5" kind="function"><name>contains</name></member>
     <member refid="classQAccelPlot_1_1LineCurvePointRenderer_1a938ef71f14fe97ae9eee935fc4ceef52" kind="function"><name>paint</name></member>
   </compound>
@@ -2163,13 +2160,13 @@
     <member refid="classQAccelPlot_1_1LineCurveVertexCache_1a5d6071fcad71f0c11c8c69bf75e50110a6adf97f83acf6453d4a6a4b1070f3754" kind="enumvalue"><name>None</name></member>
     <member refid="classQAccelPlot_1_1LineCurveVertexCache_1a5d6071fcad71f0c11c8c69bf75e50110a4803e6b9e63dabf04de980788d6a13c4" kind="enumvalue"><name>Line</name></member>
     <member refid="classQAccelPlot_1_1LineCurveVertexCache_1a5d6071fcad71f0c11c8c69bf75e50110a75dd5f1160a3f02b6fae89c54361a1b3" kind="enumvalue"><name>Points</name></member>
-    <member refid="classQAccelPlot_1_1LineCurveVertexCache_1afae18dc0c61d860d70795d31064ab125" kind="typedef"><name>Builder</name></member>
+    <member refid="classQAccelPlot_1_1LineCurveVertexCache_1a71b4ef493ce3403bc63b66914b5f1308" kind="typedef"><name>Writer</name></member>
     <member refid="classQAccelPlot_1_1LineCurveVertexCache_1a307a22803b7438b0959ebc5e4a3bb9fd" kind="variable"><name>bytes_</name></member>
     <member refid="classQAccelPlot_1_1LineCurveVertexCache_1a40d7258ae57ebcf1f5abc599ce1861b1" kind="variable"><name>valid_</name></member>
     <member refid="classQAccelPlot_1_1LineCurveVertexCache_1a785a347479d658c31b9d801afad0f453" kind="variable"><name>layout_</name></member>
     <member refid="classQAccelPlot_1_1LineCurveVertexCache_1ac90e5bc777d8c3dc227470fa91e3d50f" kind="variable"><name>pointCount_</name></member>
-    <member refid="classQAccelPlot_1_1LineCurveVertexCache_1a12e7efd8fbd4b50d616c0189f52bff44" kind="function"><name>install</name></member>
-    <member refid="classQAccelPlot_1_1LineCurveVertexCache_1a9723e5a2902701f179aa003c1b327905" kind="function"><name>rebuild</name></member>
+    <member refid="classQAccelPlot_1_1LineCurveVertexCache_1abc7633362c7cfe3898e9040a921b4b49" kind="variable"><name>bytesPerPoint_</name></member>
+    <member refid="classQAccelPlot_1_1LineCurveVertexCache_1a55f9db42b4d25a601c1681810b636496" kind="function"><name>update</name></member>
     <member refid="classQAccelPlot_1_1LineCurveVertexCache_1a0f2757d13dc532cdffa6d4389a21304b" kind="function"><name>isReusableForDataChange</name></member>
     <member refid="classQAccelPlot_1_1LineCurveVertexCache_1a823419e4b3e0a68159a68f0574c0656a" kind="function"><name>invalidate</name></member>
     <member refid="classQAccelPlot_1_1LineCurveVertexCache_1a1f0861655060cca4820bb5a801a449f9" kind="function"><name>clear</name></member>
@@ -3597,7 +3594,7 @@
   <compound refid="namespaceQAccelPlot_1_1LineStroke" kind="namespace"><name>QAccelPlot::LineStroke</name>
     <member refid="namespaceQAccelPlot_1_1LineStroke_1a355af60129939c4834fa6809a060e42e" kind="function"><name>vertexAttributes</name></member>
     <member refid="namespaceQAccelPlot_1_1LineStroke_1ad34be219c368025674bc07494320b820" kind="function"><name>createNode</name></member>
-    <member refid="namespaceQAccelPlot_1_1LineStroke_1a9ef03f551509110edd4ad16ab0ecd133" kind="function"><name>writeVertices</name></member>
+    <member refid="namespaceQAccelPlot_1_1LineStroke_1a9ccb145bf6ec5bc56fa8308e1ff15c15" kind="function"><name>writeVertices</name></member>
     <member refid="namespaceQAccelPlot_1_1LineStroke_1a7af6559bbaacc22fb8a3919a13bed452" kind="function"><name>applyUniforms</name></member>
     <member refid="namespaceQAccelPlot_1_1LineStroke_1af2fc7665b16774aa448d7292f7fcc541" kind="function"><name>arcLengths</name></member>
   </compound>

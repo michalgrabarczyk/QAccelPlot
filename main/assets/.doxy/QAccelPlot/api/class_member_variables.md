@@ -45,6 +45,7 @@
 * **buildCostPerRecord\_** ([**QAccelPlot::Internal::HoverIndexBudget**](classQAccelPlot_1_1Internal_1_1HoverIndexBudget.md))
 * **borderColor** ([**QAccelPlot::Internal::RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md), [**QAccelPlot::RectMaterial**](classQAccelPlot_1_1RectMaterial.md))
 * **borderWidth** ([**QAccelPlot::Internal::RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md), [**QAccelPlot::RectMaterial**](classQAccelPlot_1_1RectMaterial.md))
+* **bytesPerPoint\_** ([**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md))
 * **bytes\_** ([**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md))
 * **b** ([**QAccelPlot::LineVertex**](structQAccelPlot_1_1LineVertex.md), [**QAccelPlot::RectVertexCache::Vertex**](structQAccelPlot_1_1RectVertexCache_1_1Vertex.md))
 * **borderWidth\_** ([**QAccelPlot::OutlinedRectangle**](classQAccelPlot_1_1OutlinedRectangle.md))
@@ -288,6 +289,7 @@
 ## k
 
 * **kVerticesPerErrorBar** ([**QAccelPlot::ErrorBarMaterial**](classQAccelPlot_1_1ErrorBarMaterial.md))
+* **kVertexCacheBytesPerPoint** ([**QAccelPlot::LineCurvePointRenderer**](classQAccelPlot_1_1LineCurvePointRenderer.md))
 * **kVerticesPerPoint** ([**QAccelPlot::LineCurvePointRenderer**](classQAccelPlot_1_1LineCurvePointRenderer.md))
 * **kBytesPerRect** ([**QAccelPlot::RectVertexCache**](classQAccelPlot_1_1RectVertexCache.md))
 * **kVerticesPerRect** ([**QAccelPlot::RectVertexCache**](classQAccelPlot_1_1RectVertexCache.md))
@@ -431,7 +433,6 @@
 * **points\_** ([**QAccelPlot::InspectionIndex**](classQAccelPlot_1_1InspectionIndex.md), [**QAccelPlot::PointSpatialIndex**](classQAccelPlot_1_1PointSpatialIndex.md))
 * **pixelPosition** ([**QAccelPlot::InspectionRow**](structQAccelPlot_1_1InspectionRow.md))
 * **position\_** ([**QAccelPlot::Internal::PointerTracker**](classQAccelPlot_1_1Internal_1_1PointerTracker.md))
-* **pendingVertexCache\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **pointRenderer\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **pointCount\_** ([**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md))
 * **plot\_** ([**QAccelPlot::PlotExporter**](classQAccelPlot_1_1PlotExporter.md), [**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md), [**QAccelPlot::SelectionTool**](classQAccelPlot_1_1SelectionTool.md))

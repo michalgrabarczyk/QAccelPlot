@@ -97,8 +97,6 @@ public:
     using PlotSeries::postData;
     using PlotSeries::setData;
     using PlotSeries::setDataF;
-    void setDataFWithCache(std::vector<float>&& data, int pointCount, std::vector<char>&& vertexCache);
-    void setDataFWithCache(const float* xyInterleaved, int pointCount, std::vector<char>&& vertexCache);
     Q_INVOKABLE void clearData() override;
     std::optional<LegendEntry> legendEntry() const override;
 
@@ -150,11 +148,8 @@ private:
     // when NanGapMode::Connect has removed invalid data points.
     int renderPointCount() const;
     void refreshVertexCacheForDataChange();
-    void installVertexCache(std::vector<char>&& vertexCache);
-    std::size_t expectedVertexCacheSize() const;
-    // Rebuilds vertexCache_ from the current GPU-ready data and color on the calling thread.
-    // Used after color/hover changes when no new data is arriving.
-    void rebuildVertexCache();
+    // Sizes vertexCache_ for the render points, writing only the points it does not hold yet.
+    void updateVertexCache();
     void rebuildChunks() const;
     void invalidateVertices();
     void invalidateData();
@@ -175,8 +170,6 @@ private:
     std::unique_ptr<TransitionRunner> transition_;
     // The previous transition frame, reused for the next one.
     std::vector<double> frameBuffer_;
-    // A vertex cache passed with the data, installed once the data points changed.
-    std::optional<std::vector<char>> pendingVertexCache_;
     QPointer<QQuickWindow> animationTickWindow_;
     QPointer<LineStyle> lineStyle_{new SolidLine{this}};
     qreal antialiasingFeather_{1.0};

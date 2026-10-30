@@ -1378,6 +1378,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#public-static-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Static Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#detailed-description" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1399,6 +1410,17 @@
   
     <nav class="md-nav" aria-label="Public Static Attributes Documentation">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#variable-kvertexcachebytesperpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable kVertexCacheBytesPerPoint
+      
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#variable-kverticesperpoint" class="md-nav__link">
@@ -1429,17 +1451,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#function-buildvertexcache" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        function buildVertexCache
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#function-contains" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1455,6 +1466,34 @@
     <span class="md-ellipsis">
       
         function paint
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-static-functions-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Static Functions Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Static Functions Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#function-writevertexcache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function writeVertexCache
       
     </span>
   </a>
@@ -1499,6 +1538,10 @@
 </thead>
 <tbody>
 <tr>
+<td style="text-align: right;">constexpr std::size_t</td>
+<td style="text-align: left;"><a href="#variable-kvertexcachebytesperpoint"><strong>kVertexCacheBytesPerPoint</strong></a>   = <code>{[**kVerticesPerPoint**](classQAccelPlot_1_1LineCurvePointRenderer.md#variable-kverticesperpoint) \* sizeof([**PointVertex**](structQAccelPlot_1_1PointVertex.md))}</code><br><em>Vertex cache bytes per marker.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">constexpr int</td>
 <td style="text-align: left;"><a href="#variable-kverticesperpoint"><strong>kVerticesPerPoint</strong></a>   = <code>{6}</code><br><em>Number of vertices drawn per marker.</em></td>
 </tr>
@@ -1514,10 +1557,6 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-buildvertexcache"><strong>buildVertexCache</strong></a> (const std::vector&lt; float &gt; &amp; data, int pointCount, std::vector&lt; char &gt; &amp; cache) const<br><em>Pre-builds the vertex buffer of</em> <em>pointCount</em> <em>markers into__cache</em> <em>on the calling thread (main thread safe).</em></td>
-</tr>
-<tr>
 <td style="text-align: right;">bool</td>
 <td style="text-align: left;"><a href="#function-contains"><strong>contains</strong></a> (const QPointF &amp; point, const <a href="../structQAccelPlot_1_1CurveHitTestParams/"><strong>CurveHitTestParams</strong></a> &amp; params) const<br><em>Returns</em> <code>true</code> <em>if__point</em> <em>lies within__params.hitThreshold</em> <em>pixels of any marker.</em></td>
 </tr>
@@ -1527,26 +1566,36 @@
 </tr>
 </tbody>
 </table>
+<h2 id="public-static-functions">Public Static Functions<a class="headerlink" href="#public-static-functions" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-writevertexcache"><strong>writeVertexCache</strong></a> (std::vector&lt; char &gt; &amp; cache, int firstPoint, int pointCount) <br><em>Writes the vertices of markers [</em> <em>firstPoint</em> _,_<em>pointCount</em> <em>) into__cache</em> <em>, which holds</em><code>kVertexCacheBytesPerPoint</code> <em>bytes per marker.</em></td>
+</tr>
+</tbody>
+</table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
 <p>Renders per-point markers as two triangles per point. The vertex buffer depends only on the point count, so data updates of the same size only upload the data texture. </p>
 <h2 id="public-static-attributes-documentation">Public Static Attributes Documentation<a class="headerlink" href="#public-static-attributes-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="variable-kvertexcachebytesperpoint">variable kVertexCacheBytesPerPoint<a class="headerlink" href="#variable-kvertexcachebytesperpoint" title="Permanent link">&para;</a></h3>
+<p><em>Vertex cache bytes per marker.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurvePointRenderer</span><span class="o">::</span><span class="n">kVertexCacheBytesPerPoint</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="variable-kverticesperpoint">variable kVerticesPerPoint<a class="headerlink" href="#variable-kverticesperpoint" title="Permanent link">&para;</a></h3>
 <p><em>Number of vertices drawn per marker.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurvePointRenderer</span><span class="o">::</span><span class="n">kVerticesPerPoint</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurvePointRenderer</span><span class="o">::</span><span class="n">kVerticesPerPoint</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="function-buildvertexcache">function buildVertexCache<a class="headerlink" href="#function-buildvertexcache" title="Permanent link">&para;</a></h3>
-<p><em>Pre-builds the vertex buffer of</em> <em>pointCount</em> <em>markers into__cache</em> <em>on the calling thread (main thread safe).</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurvePointRenderer</span><span class="o">::</span><span class="n">buildVertexCache</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span><span class="p">,</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">cache</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
-</code></pre></div></p>
-<p>The cache depends only on <em>pointCount</em>; <em>data</em> is not read. </p>
-<hr>
-
 <h3 id="function-contains">function contains<a class="headerlink" href="#function-contains" title="Permanent link">&para;</a></h3>
 <p><em>Returns</em> <code>true</code> <em>if__point</em> <em>lies within__params.hitThreshold</em> <em>pixels of any marker.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurvePointRenderer</span><span class="o">::</span><span class="n">contains</span><span class="w"> </span><span class="p">(</span>
@@ -1564,6 +1613,17 @@
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <p>The vertex buffer is written only when the point count changes, from <em>params.vertexCache</em> when it matches. </p>
+<hr>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation<a class="headerlink" href="#public-static-functions-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="function-writevertexcache">function writeVertexCache<a class="headerlink" href="#function-writevertexcache" title="Permanent link">&para;</a></h3>
+<p><em>Writes the vertices of markers [</em> <em>firstPoint</em> _,_<em>pointCount</em> <em>) into__cache</em> <em>, which holds</em><code>kVertexCacheBytesPerPoint</code> <em>bytes per marker.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurvePointRenderer</span><span class="o">::</span><span class="n">writeVertexCache</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">cache</span><span class="p">,</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">firstPoint</span><span class="p">,</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<p>Marker vertices hold no data, so the vertices before <em>firstPoint</em> stay valid. </p>
 <hr>
 
 <hr />

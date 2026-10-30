@@ -30,6 +30,7 @@
 #include <QSGNode>
 #include <QVector2D>
 
+#include <cstddef>
 #include <memory>
 #include <vector>
 
@@ -73,7 +74,9 @@ struct FillSamples {
 
 class LineCurveLineRenderer {
 public:
-    void buildVertexCache(const std::vector<float>& data, int pointCount, std::vector<char>& cache, StepMode stepMode = StepMode::None) const;
+    static std::size_t vertexCacheBytesPerPoint(StepMode stepMode);
+
+    static void writeVertexCache(std::vector<char>& cache, int firstPoint, int pointCount, StepMode stepMode);
 
     bool contains(const QPointF& point, const CurveHitTestParams& params) const;
 

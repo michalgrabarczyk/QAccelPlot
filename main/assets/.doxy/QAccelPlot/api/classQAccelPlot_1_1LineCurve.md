@@ -186,8 +186,6 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  void | [**setDataF**](#function-setdataf-24) (std::vector&lt; float &gt; && data, int count) <br>_Replaces the series data by moving an interleaved float buffer._  |
 |  void | [**setDataF**](#function-setdataf-34) (const float \* data, int count, const [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) & bounds) <br>_Like_ `setDataF` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._ |
 |  void | [**setDataF**](#function-setdataf-44) (std::vector&lt; float &gt; && data, int count, const [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) & bounds) <br>_Like_ `setDataF` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._ |
-|  void | [**setDataFWithCache**](#function-setdatafwithcache-12) (std::vector&lt; float &gt; && data, int pointCount, std::vector&lt; char &gt; && vertexCache) <br>_Like_ `setDataF(vector)` _but also accepts a pre-built__vertexCache_ _, bypassing main-thread rebuild._ |
-|  void | [**setDataFWithCache**](#function-setdatafwithcache-22) (const float \* xyInterleaved, int pointCount, std::vector&lt; char &gt; && vertexCache) <br>_Like_ `setDataFWithCache(vector)` _but copies from a raw interleaved float array._ |
 |  void | [**setHoverRadius**](#function-sethoverradius) (qreal radius) <br>_Sets the hover pick distance from the line to_ _radius_ _pixels. Negative values are clamped to 0. Marker hit testing is unaffected._ |
 |  void | [**setLineStyle**](#function-setlinestyle) ([**LineStyle**](classQAccelPlot_1_1LineStyle.md) \* style) <br>_Sets the line style to_ _style_ _._ |
 |  void | [**setLineWidth**](#function-setlinewidth) (qreal w) <br>_Sets the line stroke width to_ _w_ _pixels._ |
@@ -1106,44 +1104,6 @@ void QAccelPlot::LineCurve::setDataF (
     std::vector< float > && data,
     int count,
     const DataBounds & bounds
-) 
-```
-
-
-
-
-<hr>
-
-
-
-
-### function setDataFWithCache {#function-setdatafwithcache-12}
-
-_Like_ `setDataF(vector)` _but also accepts a pre-built__vertexCache_ _, bypassing main-thread rebuild._
-```C++
-void QAccelPlot::LineCurve::setDataFWithCache (
-    std::vector< float > && data,
-    int pointCount,
-    std::vector< char > && vertexCache
-) 
-```
-
-
-
-
-<hr>
-
-
-
-
-### function setDataFWithCache {#function-setdatafwithcache-22}
-
-_Like_ `setDataFWithCache(vector)` _but copies from a raw interleaved float array._
-```C++
-void QAccelPlot::LineCurve::setDataFWithCache (
-    const float * xyInterleaved,
-    int pointCount,
-    std::vector< char > && vertexCache
 ) 
 ```
 

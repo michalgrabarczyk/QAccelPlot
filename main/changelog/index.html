@@ -2024,6 +2024,8 @@
   Streaming eight 512K-point curves takes about a quarter of the UI-thread time.</li>
 <li><code>LineCurve</code> markers read their positions from the GPU data texture, so data
   updates no longer rebuild a vertex buffer per marker.</li>
+<li>When a <code>LineCurve</code> point count grows, only the added points' vertices are
+  written.</li>
 <li>Data transitions run on Qt's animation clock, like QML animations, so an
   installed <code>QAnimationDriver</code> can step them frame by frame. A <code>duration</code> of 0
   ends at the next frame.</li>
@@ -2039,6 +2041,8 @@
   <code>HoverHandler</code>.</li>
 <li><code>PointCloud.hasValues</code>. <code>valueAt()</code> returns NaN when no values are stored.
   <code>countChanged()</code> now fires only when the number of points changes.</li>
+<li><code>LineCurve::setDataFWithCache()</code> and the renderers' <code>buildVertexCache()</code>. Use
+  <code>setDataF()</code> or <code>postData()</code>; the curve builds its own vertex cache.</li>
 <li>The <code>showcases/pulsar</code> example.</li>
 <li>The CI benchmark workflow: its timings on shared runners varied more than
   its alert threshold. A unit test now counts scene graph rebuilds and data

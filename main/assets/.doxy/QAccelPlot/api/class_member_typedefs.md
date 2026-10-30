@@ -3,11 +3,6 @@
 
 
 
-## b
-
-* **Builder** ([**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md))
-
-
 ## c
 
 * **CostPerRecord** ([**QAccelPlot::Internal::HoverIndexBudget**](classQAccelPlot_1_1Internal_1_1HoverIndexBudget.md))
@@ -17,6 +12,11 @@
 ## m
 
 * **MapToPosition** ([**QAccelPlot::AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md))
+
+
+## w
+
+* **Writer** ([**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md))
 
 
 
