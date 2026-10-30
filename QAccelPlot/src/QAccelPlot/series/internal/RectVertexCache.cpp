@@ -5,13 +5,13 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "QAccelPlot/series/RectVertexCache.hpp"
+#include "QAccelPlot/series/internal/RectVertexCache.hpp"
 
 #include <QSGGeometry>
 
 #include <cstring>
 
-namespace QAccelPlot {
+namespace QAccelPlot::Internal {
 
 void RectVertexCache::rebuild(const int rectCount, const ColorFunction& colorAt)
 {
@@ -59,4 +59,4 @@ void RectVertexCache::copyTo(QSGGeometry& geometry) const
     }
 }
 
-} // namespace QAccelPlot
+} // namespace QAccelPlot::Internal

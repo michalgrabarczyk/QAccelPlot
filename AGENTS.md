@@ -88,12 +88,14 @@ QAccelPlot/
 │       │                           PlotSeries, ColormappedSeries (colormap and value range base),
 │       │                           ErrorBarSeries,
 │       │                           BandEdges (edges grouped property),
-│       │                           LineCurveVertexCache, RectVertexCache,
+│       │                           LineCurveVertexCache,
 │       │                           LineCurveGaps (gaps grouped property),
 │       │                           StepMode (how a line joins data points),
 │       │                           MarkerShape, SeriesMarker (marker grouped property),
 │       │                           LineCurveGapFilter (invalid-sample contract),
-│       │                           SpatialGrid, PointSpatialIndex (hover hit testing)
+│       │                           SpatialGrid, PointSpatialIndex (hover hit testing),
+│       │                           internal/ (rectangle vertices and geometry, step paths,
+│       │                           heatmap grids, hover index budget, shared series helpers)
 │       ├── theme/                — ColorPalette (light/dark palette values), Colors QML singleton
 │       └── transitions/          — DataTransition, DrawTransition, MorphTransition,
 │                                   TransitionRunner (drives a transition for one item)

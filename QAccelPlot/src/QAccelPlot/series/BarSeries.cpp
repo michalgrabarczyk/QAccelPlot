@@ -13,6 +13,7 @@
 #include "QAccelPlot/materials/BarMaterial.hpp"
 #include "QAccelPlot/materials/DataTextureMaterial.hpp"
 #include "QAccelPlot/series/internal/RectGeometry.hpp"
+#include "QAccelPlot/series/internal/RectVertexCache.hpp"
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 #include "QAccelPlot/transitions/TransitionRunner.hpp"
@@ -107,6 +108,7 @@ BarSeries::BarSeries(QQuickItem* parent)
     : ColormappedSeries(barLayout(Qt::Vertical, false), DataPointWording{"data bar", "bars", "values", "values"}, parent)
     , color_(ColorPalette::dark().seriesPrimary)
     , transition_(std::make_unique<TransitionRunner>(this))
+    , vertexCache_(std::make_unique<Internal::RectVertexCache>())
 {
     setFlag(ItemHasContents, true);
     supportHover();
@@ -216,7 +218,7 @@ void BarSeries::setColor(const QColor& color)
     }
     color_ = color;
     if (!drawnCategories().empty()) {
-        vertexCache_.invalidate();
+        vertexCache_->invalidate();
     }
     emit colorChanged();
     update();
@@ -234,7 +236,7 @@ void BarSeries::setCategoryColors(const QList<QColor>& colors)
     }
     categoryColors_ = colors;
     if (!drawnCategories().empty()) {
-        vertexCache_.invalidate();
+        vertexCache_->invalidate();
     }
     emit categoryColorsChanged();
     update();
@@ -405,7 +407,7 @@ void BarSeries::setCategories(const QList<int>& categories)
     if (animating()) {
         transitionCategories_ = transitionCategories(transitionCategories_, drawnBarCount());
     }
-    vertexCache_.invalidate();
+    vertexCache_->invalidate();
     inspectionDataChanged();
     update();
 }
@@ -480,7 +482,7 @@ QSGNode* BarSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
 {
     auto* window = this->window();
     const auto drawnCount = drawnBarCount();
-    const auto capacity = Internal::recordCapacity(window, valuesPerBar(), RectVertexCache::kBytesPerRect);
+    const auto capacity = Internal::recordCapacity(window, valuesPerBar(), Internal::RectVertexCache::kBytesPerRect);
     updateRenderCapacity(capacity, drawnCount);
     if (drawnCount <= 0 || !xAxis() || !yAxis() || plotRect().isEmpty() || !window) {
         return releaseNode(oldNode);
@@ -510,12 +512,12 @@ QSGNode* BarSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
     const auto renderCount = std::min(drawnCount, capacity);
 
     // Vertices hold only ids and category colors, so coordinate changes don't rebuild them.
-    const auto rebuildVertices = !vertexCache_.valid() || vertexCache_.vertexCount() != renderCount * RectVertexCache::kVerticesPerRect;
+    const auto rebuildVertices = !vertexCache_->valid() || vertexCache_->vertexCount() != renderCount * Internal::RectVertexCache::kVerticesPerRect;
     if (rebuildVertices) {
         buildVertexCache(renderCount);
     }
     if (rebuildVertices || nodeRecreated) {
-        vertexCache_.copyTo(*node->geometry());
+        vertexCache_->copyTo(*node->geometry());
         node->markDirty(QSGNode::DirtyGeometry);
     }
 
@@ -657,7 +659,7 @@ void BarSeries::onDataPointsChanged([[maybe_unused]] const DataChange change, co
 {
     // Vertex colors depend on the categories, but not on the coordinates.
     if (count() != previousCount || vertexCacheHasCategories_ || hasCategories()) {
-        vertexCache_.invalidate();
+        vertexCache_->invalidate();
     }
     spatialGridValid_ = false;
     if (hoveredIndex_ >= count()) {
@@ -765,7 +767,7 @@ void BarSeries::startTransition(Bars&& drawn)
     appendRestingBars(drawn.values, stored, drawn.count, transitionBarCount, stride, baselineValue_);
 
     transitionCategories_ = transitionCategories(drawn.categories, transitionBarCount);
-    vertexCache_.invalidate();
+    vertexCache_->invalidate();
     transition_->start(drawn.values, transitionBarCount, std::move(target), transitionBarCount, stride);
     frameBuffer_ = dataPoints().setDrawn(std::move(drawn.values), transitionBarCount);
 }
@@ -795,7 +797,7 @@ void BarSeries::endTransition()
     dataPoints().clearDrawn();
     transitionCategories_.clear();
     frameBuffer_ = std::vector<double>{};
-    vertexCache_.invalidate();
+    vertexCache_->invalidate();
     update();
 }
 
@@ -979,11 +981,11 @@ void BarSeries::ensureSpatialGrid() const
 
 void BarSeries::buildVertexCache(const int barCount)
 {
-    auto colorAt = RectVertexCache::ColorFunction{};
+    auto colorAt = Internal::RectVertexCache::ColorFunction{};
     if (!drawnCategories().empty()) {
         colorAt = [this](const int index) { return barColor(index); };
     }
-    vertexCache_.rebuild(barCount, colorAt);
+    vertexCache_->rebuild(barCount, colorAt);
     vertexCacheHasCategories_ = !drawnCategories().empty();
 }
 
