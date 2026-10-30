@@ -145,6 +145,7 @@ ErrorBarSeries::ErrorBarSeries(QQuickItem* parent)
     , transition_(std::make_unique<TransitionRunner>(this))
 {
     setFlag(ItemHasContents, true);
+    setAntialiasing(true);
     supportHover();
     setAcceptedMouseButtons(Qt::NoButton);
     connect(transition_.get(), &TransitionRunner::frameDue, this, &ErrorBarSeries::advanceTransition);
@@ -678,6 +679,7 @@ void ErrorBarSeries::updateMaterial(ErrorBarMaterial& material, const int drawnC
     material.offset = static_cast<float>(offset_);
     material.horizontal = isHorizontal() ? 1.0f : 0.0f;
     material.errorBarCount = static_cast<float>(drawnCount);
+    material.antialiasing = antialiasing() ? 1.0f : 0.0f;
 }
 
 } // namespace QAccelPlot

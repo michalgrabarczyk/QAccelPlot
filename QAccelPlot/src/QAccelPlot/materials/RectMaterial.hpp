@@ -28,6 +28,7 @@ public:
     QColor borderColor{Qt::black};      ///< \brief Outline color.
     QColor hoverColor{Qt::transparent}; ///< \brief Fill color of the highlighted rectangle.
     float hoveredIndex{-1.0f};          ///< \brief Index of the highlighted rectangle, or -1 for none.
+    float antialiasing{0.0f};           ///< \brief 1.0 to smooth the rectangle and outline edges.
 
 protected:
     /// \brief Compares the rectangle-specific uniforms after the base-class comparison succeeds.

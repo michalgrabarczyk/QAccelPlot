@@ -49,6 +49,7 @@ void writeRectUniforms(RectUbo& ubo, const QSGMaterialShader::RenderState& state
     ubo.opacity = state.opacity();
     ubo.borderWidth = material.borderWidth;
     ubo.hoveredIndex = material.hoveredIndex;
+    ubo.antialiasing = material.antialiasing;
 }
 
 } // namespace QAccelPlot::Internal

@@ -17,6 +17,7 @@ layout(location = 0) out vec4 v_color;
 layout(location = 1) out vec4 v_edgeDistance;
 layout(location = 2) out vec4 v_borderColor;
 layout(location = 3) out float v_borderWidth;
+layout(location = 4) flat out float v_antialiasing;
 
 // Must match BarUbo in BarMaterial.cpp: the rect.vert block followed by the bar geometry and colormap.
 layout(std140, binding = 0) uniform buf {
@@ -35,16 +36,17 @@ layout(std140, binding = 0) uniform buf {
     float opacity;        // 160-163: inherited item opacity
     float borderWidth;    // 164-167: outline width in pixels
     float hoveredIndex;   // 168-171: -1 when no bar is highlighted
-    float barWidth;       // 172-175: position-axis data units
-    float barOffset;      // 176-179: position-axis data units
-    float baseline;       // 180-183: value-axis data units, may be -Inf
-    float horizontal;     // 184-187: 1 when positions lie on the Y axis
-    float ranged;         // 188-191: 1 when a bar is (from, to, value) instead of (position, value)
-    float colorSource;    // 192-195: 0 no colormap, 1 the value, 2 the position is mapped
-    float valueMin;       // 196-199: value at colormap position 0
-    float valueMax;       // 200-203: value at colormap position 1
-    float valueOrigin;    // 204-207: added to the data before the log normalization
-    float valueLogScale;  // 208-211: 1 to normalize in log10
+    float antialiasing;   // 172-175: 1 to smooth the edges
+    float barWidth;       // 176-179: position-axis data units
+    float barOffset;      // 180-183: position-axis data units
+    float baseline;       // 184-187: value-axis data units, may be -Inf
+    float horizontal;     // 188-191: 1 when positions lie on the Y axis
+    float ranged;         // 192-195: 1 when a bar is (from, to, value) instead of (position, value)
+    float colorSource;    // 196-199: 0 no colormap, 1 the value, 2 the position is mapped
+    float valueMin;       // 200-203: value at colormap position 0
+    float valueMax;       // 204-207: value at colormap position 1
+    float valueOrigin;    // 208-211: added to the data before the log normalization
+    float valueLogScale;  // 212-215: 1 to normalize in log10
 } ubuf;
 
 layout(binding = 1) uniform sampler2D dataSampler;
@@ -153,6 +155,7 @@ void main() {
     v_color = barFillColor(index);
     v_borderColor = vec4(ubuf.borderColor.rgb, ubuf.borderColor.a * ubuf.opacity);
     v_borderWidth = ubuf.borderWidth;
+    v_antialiasing = ubuf.antialiasing;
 
     uint startBits;
     uint endBits;

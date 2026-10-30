@@ -119,6 +119,7 @@ BandSeries::BandSeries(QQuickItem* parent)
     , color_(defaultBandColor())
 {
     setFlag(ItemHasContents, true);
+    setAntialiasing(true);
     supportHover();
     setAcceptedMouseButtons(Qt::NoButton);
     setLegendSymbol(LegendSymbol::Fill);
@@ -485,7 +486,7 @@ QSGGeometryNode* BandSeries::paintEdge(QSGGeometryNode* oldNode, const BandEdgeR
     points.count = count;
     const auto* style = edges_->lineStyle();
     const auto uniforms = LineStroke::Uniforms{edgeColor(), edges_->width(), view.domainMin, view.domainMax, view.viewportSize, logScaleX(), logScaleY(), count,
-        true, 1.0, style ? style->dashParameters() : DashParameters{}};
+        antialiasing(), 1.0, style ? style->dashParameters() : DashParameters{}};
     return renderer.paint(oldNode, BandEdgeRenderParams{dataTexture, points, uniforms, xAxis(), yAxis(), dataChanged, view.reservedCount});
 }
 

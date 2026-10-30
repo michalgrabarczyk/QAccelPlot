@@ -82,6 +82,9 @@ int RectMaterial::compareExtra(const QSGMaterial* other) const
     if (hoveredIndex != m->hoveredIndex) {
         return hoveredIndex < m->hoveredIndex ? -1 : 1;
     }
+    if (antialiasing != m->antialiasing) {
+        return antialiasing < m->antialiasing ? -1 : 1;
+    }
     return 0;
 }
 

@@ -59,7 +59,6 @@ Item {
                 yAxis: leadOnePlot.yAxis
                 color: root.colorPalette.seriesTertiary
                 lineWidth: 2
-                antialiasingEnabled: true
                 Component.onCompleted: {
                     const points = [];
                     for (let i = 0; i <= root.sampleCount; ++i) {
@@ -92,7 +91,6 @@ Item {
                 yAxis: leadTwoPlot.yAxis
                 color: root.colorPalette.seriesRose
                 lineWidth: 2
-                antialiasingEnabled: true
                 Component.onCompleted: {
                     const points = [];
                     for (let i = 0; i <= root.sampleCount; ++i) {
@@ -132,7 +130,6 @@ Item {
                 yAxis: respirationPlot.yAxis
                 color: root.colorPalette.seriesCyan
                 lineWidth: 2
-                antialiasingEnabled: true
                 Component.onCompleted: {
                     const points = [];
                     for (let i = 0; i <= root.sampleCount; ++i) {

@@ -135,7 +135,7 @@ PlotView {
         color: "red"
         marker.shape: MarkerShape.Square
         marker.size: 6
-        antialiasingEnabled: false
+        antialiasing: false
         Component.onCompleted: setData([Qt.point(1, 2), Qt.point(3, 2), Qt.point(5, 2), Qt.point(7, 2)])
     }
 
@@ -146,7 +146,7 @@ PlotView {
         color: "cyan"
         marker.shape: MarkerShape.Square
         marker.size: 6
-        antialiasingEnabled: false
+        antialiasing: false
         Component.onCompleted: {
             setData([Qt.point(2, 8), Qt.point(4, 8), Qt.point(6, 8), Qt.point(8, 8)]);
             setValues([1, 2, 3, 4]);

@@ -514,6 +514,7 @@ void RectangleSeries::updateMaterial(RectMaterial& material, const int drawnCoun
     material.borderColor = border_->color();
     material.hoverColor = hoverColor_.isValid() ? hoverColor_ : QColor{Qt::transparent};
     material.hoveredIndex = hoverColor_.isValid() ? static_cast<float>(hoveredIndex_) : -1.0f;
+    material.antialiasing = antialiasing() ? 1.0f : 0.0f;
 }
 
 bool RectangleSeries::spatialGridReady() const

@@ -49,6 +49,9 @@ class TransitionRunner;
 /// with one outside \c categoryColors, use \c color. For grouped bars, use one series per group
 /// with a narrower \c barWidth and a different \c barOffset.
 ///
+/// Set \c antialiasing to smooth edges that fall between pixels. It is off by default because
+/// bars that touch, such as histogram bins, then show faint seams.
+///
 /// \par Colormap
 /// Assign a \c colormap to color each bar by \c colorSource: its \c value, or its \c position. The
 /// position of a ranged bar is the middle of its edges as the colormap's \c norm places them, and

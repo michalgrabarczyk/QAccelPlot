@@ -35,9 +35,10 @@ struct RectUbo {
     float opacity;         // 160–163
     float borderWidth;     // 164–167
     float hoveredIndex;    // 168–171
+    float antialiasing;    // 172–175
 };
 
-static_assert(sizeof(RectUbo) == 172);
+static_assert(sizeof(RectUbo) == 176);
 
 /// \brief Fills \a ubo from \a material and the matrix and opacity of the render \a state.
 void writeRectUniforms(RectUbo& ubo, const QSGMaterialShader::RenderState& state, const RectMaterial& material);

@@ -87,6 +87,7 @@ void BarSeriesDataTest::defaultsMatchDocumentation()
     QCOMPARE(bars.barOffset(), 0.0);
     QCOMPARE(bars.baselineValue(), 0.0);
     QCOMPARE(bars.minimumWidth(), 1.0);
+    QVERIFY(!bars.antialiasing());
     QVERIFY(!bars.hoverColor().isValid());
     QCOMPARE(bars.legendSymbol(), PlotSeries::LegendSymbol::Fill);
     QCOMPARE(bars.count(), 0);

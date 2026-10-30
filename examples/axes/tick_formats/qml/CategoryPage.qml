@@ -57,7 +57,6 @@ Item {
                 lineWidth: 3
                 marker.shape: QAccelPlot.MarkerShape.Diamond
                 marker.size: 8
-                antialiasingEnabled: true
 
                 Component.onCompleted: setData([Qt.point(0, 34), Qt.point(1, 32), Qt.point(2, 36), Qt.point(3, 35), Qt.point(4, 39), Qt.point(5, 51), Qt.point(6, 46)])
             }

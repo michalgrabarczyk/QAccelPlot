@@ -21,20 +21,20 @@ namespace {
 
 // Mirrors the std140 block in bar.vert: the rect.vert block followed by the bar geometry and colormap.
 struct BarUbo {
-    Internal::RectUbo rect; // 0–171
-    float barWidth;         // 172–175
-    float barOffset;        // 176–179
-    float baseline;         // 180–183
-    float horizontal;       // 184–187
-    float ranged;           // 188–191
-    float colorSource;      // 192–195
-    float valueMin;         // 196–199
-    float valueMax;         // 200–203
-    float valueOrigin;      // 204–207
-    float valueLogScale;    // 208–211
+    Internal::RectUbo rect; // 0–175
+    float barWidth;         // 176–179
+    float barOffset;        // 180–183
+    float baseline;         // 184–187
+    float horizontal;       // 188–191
+    float ranged;           // 192–195
+    float colorSource;      // 196–199
+    float valueMin;         // 200–203
+    float valueMax;         // 204–207
+    float valueOrigin;      // 208–211
+    float valueLogScale;    // 212–215
 };
 
-static_assert(sizeof(BarUbo) == 212);
+static_assert(sizeof(BarUbo) == 216);
 
 class BarShader : public QSGMaterialShader {
 public:

@@ -279,7 +279,6 @@ Window {
                 yAxis: plot.yAxis
                 color: colorPalette.seriesPrimary
                 lineWidth: hovered ? 4 : 3
-                antialiasingEnabled: true
             }
         }
     }

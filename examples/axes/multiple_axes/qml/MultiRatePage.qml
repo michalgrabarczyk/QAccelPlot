@@ -77,7 +77,6 @@ Item {
                 name: "Slow settling response"
                 color: root.colorPalette.seriesPrimary
                 lineWidth: 3
-                antialiasingEnabled: true
 
                 Component.onCompleted: {
                     const points = [];
@@ -96,7 +95,6 @@ Item {
                 name: "Fast damped chirp"
                 color: root.colorPalette.seriesSecondary
                 lineWidth: 3
-                antialiasingEnabled: true
 
                 Component.onCompleted: {
                     const points = [];

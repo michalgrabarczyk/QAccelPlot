@@ -52,7 +52,7 @@ Item {
             xAxis: xAxis
             yAxis: yAxis
             color: "white"
-            antialiasingEnabled: false
+            antialiasing: false
             marker.shape: MarkerShape.Square
             marker.size: 12
             Component.onCompleted: setData([Qt.point(0.4, 0.5), Qt.point(0.6, 0.5)])
@@ -65,7 +65,7 @@ Item {
             yAxis: yAxis
             color: "white"
             lineWidth: 8
-            antialiasingEnabled: false
+            antialiasing: false
             Component.onCompleted: setData([Qt.point(1.1, 0.5), Qt.point(1.9, 0.5)])
         }
 
@@ -75,7 +75,7 @@ Item {
             xAxis: xAxis
             yAxis: yAxis
             color: "white"
-            antialiasingEnabled: false
+            antialiasing: false
             lineStyle: NoLine {}
             marker.shape: MarkerShape.Square
             marker.size: 12
@@ -88,7 +88,7 @@ Item {
             xAxis: xAxis
             yAxis: yAxis
             lineWidth: 8
-            antialiasingEnabled: false
+            antialiasing: false
             effects: GradientStroke {
                 gradient: Gradient {
                     GradientStop { position: 0; color: "white" }

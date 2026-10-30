@@ -111,6 +111,11 @@ void LegendModelTest::entryChangesUpdateTheRow()
     QCOMPARE(entryAt(model, 0).markerSize, 9.0);
     QCOMPARE(entryAt(model, 0).symbol, PlotSeries::LegendSymbol::Fill);
     QCOMPARE(model.data(model.index(0), LegendModel::NameRole).toString(), QStringLiteral("renamed"));
+
+    QVERIFY(entryAt(model, 0).antialiasing);
+    curve.setAntialiasing(false);
+    QCOMPARE(changes.count(), 5);
+    QVERIFY(!entryAt(model, 0).antialiasing);
     QCOMPARE(resets.count(), 0);
 }
 
@@ -121,7 +126,7 @@ void LegendModelTest::lineCurveEntryDescribesLineAndMarker()
     curve.setColor(Qt::green);
     curve.setLineWidth(3.0);
     curve.setLineStyle(&dash);
-    curve.setAntialiasingEnabled(false);
+    curve.setAntialiasing(false);
     curve.marker()->setShape(MarkerShape::Diamond);
     curve.marker()->setSize(5.0);
     curve.marker()->setFilled(false);
@@ -137,7 +142,7 @@ void LegendModelTest::lineCurveEntryDescribesLineAndMarker()
     QCOMPARE(entry->markerSize, 5.0);
     QVERIFY(!entry->markerFilled);
     QCOMPARE(entry->markerStrokeWidth, 2.0);
-    QVERIFY(!entry->antialiasingEnabled);
+    QVERIFY(!entry->antialiasing);
 }
 
 void LegendModelTest::pointCloudAndBarEntriesUseTheirSymbol()

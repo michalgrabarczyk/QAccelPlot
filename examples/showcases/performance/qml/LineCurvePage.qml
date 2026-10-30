@@ -47,7 +47,7 @@ QAccelPlot.Plot {
             marker.shape: plot.settings.markerShape
             marker.size: plot.settings.markerSize
             effects: plot.settings.effect === "stroke" ? [gradientStroke] : plot.settings.effect === "fill" ? [gradientFill] : []
-            antialiasingEnabled: plot.settings.antialiasing
+            antialiasing: plot.settings.antialiasing
             antialiasingFeather: plot.settings.antialiasingFeather
             gaps.nanMode: plot.settings.connectGaps ? QAccelPlot.NanGapMode.Connect : QAccelPlot.NanGapMode.Break
 

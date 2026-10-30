@@ -86,7 +86,7 @@ QAccelPlot.Plot {
             marker.size: plot.settings.markerSize
             marker.filled: plot.settings.markerFilled
             marker.strokeWidth: plot.settings.markerStrokeWidth
-            antialiasingEnabled: plot.settings.antialiasing
+            antialiasing: plot.settings.antialiasing
             opacity: plot.pointOpacity
             colormap: galaxyColormap
         }

@@ -89,6 +89,8 @@ PlotSeries::PlotSeries(DataPointStore::Layout layout, DataPointWording wording, 
 {
     setClip(true);
     connect(this, &PlotSeries::legendSymbolChanged, this, &PlotSeries::legendEntryChanged);
+    // resetAntialiasing() does not mark the item dirty.
+    connect(this, &QQuickItem::antialiasingChanged, this, &QQuickItem::update);
 }
 
 PlotSeries::~PlotSeries()

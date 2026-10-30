@@ -26,7 +26,7 @@ Item {
     readonly property bool curveMarkerFilled: entry.markerFilled
     readonly property real curveMarkerStrokeWidth: entry.markerStrokeWidth
     readonly property real curveLineWidth: Math.max(0, entry.lineWidth)
-    readonly property bool curveAntialiasingEnabled: entry.antialiasingEnabled
+    readonly property bool curveAntialiasing: entry.antialiasing
     readonly property real curveAntialiasingFeather: entry.antialiasingFeather
     readonly property bool hasMarker: curveMarker !== MarkerShape.None
     // A single pixel is hard to see in a legend, so Pixel markers are shown as a small dot.
@@ -86,7 +86,7 @@ Item {
         color: root.curveColor
         lineWidth: root.curveLineWidth
         lineStyle: root.curveLineStyle || defaultLineStyle
-        antialiasingEnabled: root.curveAntialiasingEnabled
+        antialiasing: root.curveAntialiasing
         antialiasingFeather: root.curveAntialiasingFeather
 
         Component.onCompleted: setData([Qt.point(0, 0.5), Qt.point(1, 0.5)])
@@ -106,7 +106,7 @@ Item {
         marker.size: root.sampleMarkerSize
         marker.filled: root.curveMarkerFilled
         marker.strokeWidth: root.curveMarkerStrokeWidth
-        antialiasingEnabled: root.curveAntialiasingEnabled
+        antialiasing: root.curveAntialiasing
         antialiasingFeather: root.curveAntialiasingFeather
 
         Component.onCompleted: setData([Qt.point(0.5, 0.5)])

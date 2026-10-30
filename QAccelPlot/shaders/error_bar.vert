@@ -17,6 +17,7 @@ layout(location = 0) out vec4 v_color;
 // Pixel distances to the two edges across the part, then to the two edges along it; negative in
 // the antialiasing margin outside the part.
 layout(location = 1) out vec4 v_edgeDistance;
+layout(location = 2) flat out float v_antialiasing;
 
 // Must match ErrorBarUbo in ErrorBarMaterial.cpp.
 layout(std140, binding = 0) uniform buf {
@@ -36,6 +37,7 @@ layout(std140, binding = 0) uniform buf {
     float offset;         // 148-151: data units across the bounds
     float horizontal;     // 152-155: 1 when the bounds lie on the X axis
     float errorBarCount;  // 156-159
+    float antialiasing;   // 160-163: 1 to smooth the edges
 } ubuf;
 
 layout(binding = 1) uniform sampler2D dataSampler;
@@ -52,6 +54,7 @@ const float kFeather = 1.0;
 void cull() {
     v_color = vec4(0.0);
     v_edgeDistance = vec4(0.0);
+    v_antialiasing = 0.0;
     gl_Position = kCulledClipPosition;
 }
 
@@ -139,9 +142,11 @@ void main() {
     // Corners of two triangles: (0,0), (1,0), (0,1) and (1,0), (1,1), (0,1).
     bool high0 = corner == 1 || corner == 3 || corner == 4;
     bool high1 = corner == 2 || corner == 4 || corner == 5;
-    float u = high0 ? acrossSpan.y + kFeather : acrossSpan.x - kFeather;
-    float v = high1 ? alongSpan.y + kFeather : alongSpan.x - kFeather;
+    float margin = ubuf.antialiasing > 0.5 ? kFeather : 0.0;
+    float u = high0 ? acrossSpan.y + margin : acrossSpan.x - margin;
+    float v = high1 ? alongSpan.y + margin : alongSpan.x - margin;
     v_edgeDistance = vec4(u - acrossSpan.x, acrossSpan.y - u, v - alongSpan.x, alongSpan.y - v);
+    v_antialiasing = ubuf.antialiasing;
 
     v_color = index == int(ubuf.hoveredIndex) ? ubuf.hoverColor : ubuf.color;
     v_color.a *= ubuf.opacity;

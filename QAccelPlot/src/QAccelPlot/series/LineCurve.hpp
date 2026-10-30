@@ -84,9 +84,7 @@ class LineCurve : public PlotSeries {
     Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
     /// \brief Line style (SolidLine, DashLine, or NoLine). Default: SolidLine.
     Q_PROPERTY(LineStyle* lineStyle READ lineStyle WRITE setLineStyle NOTIFY lineStyleChanged)
-    /// \brief Whether GPU-side anti-aliasing is applied to lines and markers. Default: \c true.
-    Q_PROPERTY(bool antialiasingEnabled READ antialiasingEnabled WRITE setAntialiasingEnabled NOTIFY antialiasingEnabledChanged)
-    /// \brief Anti-aliasing feather width in pixels. Has effect only when \c antialiasingEnabled is \c true. Default: 1.
+    /// \brief Antialiasing feather width in pixels, clamped to [0, 10]. Has effect only when the inherited \c antialiasing is \c true. Default: 1.
     Q_PROPERTY(qreal antialiasingFeather READ antialiasingFeather WRITE setAntialiasingFeather NOTIFY antialiasingFeatherChanged)
     /// \brief List of visual effects (e.g. GradientFill, GradientStroke) applied to this curve.
     Q_PROPERTY(QQmlListProperty<LineCurveEffect> effects READ effects)
@@ -129,14 +127,9 @@ public:
     /// \brief Sets the line style to \a style.
     void setLineStyle(LineStyle* style);
 
-    /// \brief Returns \c true when GPU anti-aliasing is enabled.
-    bool antialiasingEnabled() const;
-    /// \brief Sets anti-aliasing to \a enabled.
-    void setAntialiasingEnabled(bool enabled);
-
-    /// \brief Returns the anti-aliasing feather width.
+    /// \brief Returns the antialiasing feather width in pixels.
     qreal antialiasingFeather() const;
-    /// \brief Sets the anti-aliasing feather width to \a feather pixels. Has effect only when \c antialiasingEnabled is \c true.
+    /// \brief Sets the antialiasing feather width to \a feather pixels, clamped to [0, 10].
     void setAntialiasingFeather(qreal feather);
 
     /// \brief Returns the QML list property for attached visual effects.
@@ -200,8 +193,6 @@ signals:
     void transitionChanged();
     /// \brief Emitted when the lineStyle property changes.
     void lineStyleChanged();
-    /// \brief Emitted when the antialiasingEnabled property changes.
-    void antialiasingEnabledChanged();
     /// \brief Emitted when the antialiasingFeather property changes.
     void antialiasingFeatherChanged();
     /// \brief Emitted when the stepMode property changes.
@@ -263,7 +254,6 @@ private:
     std::optional<std::vector<char>> pendingVertexCache_;
     QPointer<QQuickWindow> animationTickWindow_;
     QPointer<LineStyle> lineStyle_{new SolidLine{this}};
-    bool antialiasingEnabled_{true};
     qreal antialiasingFeather_{1.0};
     bool styleChanged_{false};
     LineCurveGaps* gaps_{new LineCurveGaps{this}};

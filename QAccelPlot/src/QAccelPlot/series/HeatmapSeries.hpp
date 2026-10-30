@@ -75,9 +75,9 @@ class HeatmapMaterial;
 /// under \c Log spacing, \c recordAt() returns \c Unavailable and no position matches a cell.
 ///
 /// \par Limits
-/// Each pixel takes the color of the cell under its center, without interpolation. A grid with an
-/// infinite edge draws nothing. A grid of more than 16,777,216 (2^24)
-/// columns or rows, or of more cells than the GPU data texture holds, about 67 million for an
+/// Each pixel takes the color of the cell under its center, without interpolation, and
+/// \c antialiasing has no effect. A grid with an infinite edge draws nothing. A grid of more
+/// than 16,777,216 (2^24) columns or rows, or of more cells than the GPU data texture holds, about 67 million for an
 /// 8192-pixel texture limit, draws nothing and logs a warning.
 ///
 /// \sa ColormappedSeries, Colormap, ColorBar, PlotSeries

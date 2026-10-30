@@ -8,6 +8,7 @@
 #include "HoverEvents.hpp"
 #include "QAccelPlot/QAccelPlot.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/series/PlotSeries.hpp"
 
 #include <QGuiApplication>
 #include <QImage>
@@ -18,6 +19,7 @@
 #include <QtTest/QtTest>
 
 #include <memory>
+#include <vector>
 
 namespace QAccelPlot {
 
@@ -131,6 +133,16 @@ constexpr auto kHoverScene = R"(
 // NaN rectangles, which are not drawn, except a red one at index 600 and a blue one at index 2500.
 // Their data texture floats 2400 and 10000 lie in rows 0 and 1 of the 8192-wide texture, but
 // in rows 1 and 4 of a 2048-wide one, so a width mismatch between C++ and the shader loses them.
+constexpr auto kAntialiasingScene = R"(
+    RectangleSeries {
+        objectName: "smoothed"
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        color: "red"
+    }
+}
+)";
+
 constexpr auto kWideTextureScene = R"(
     RectangleSeries {
         xAxis: plot.xAxis
@@ -234,6 +246,7 @@ private slots:
     void borderOutlinesEachRectangle();
     void hoverColorHighlightsHoveredRectangle();
     void rectanglesBeyondFirstTextureRowsAreDrawn();
+    void antialiasingCoversFractionalEdgePixels();
 };
 
 void RectangleSeriesRenderingTest::coordinateHelpersIgnoreOffscreenOtherAxis()
@@ -459,6 +472,36 @@ void RectangleSeriesRenderingTest::rectanglesBeyondFirstTextureRowsAreDrawn()
     QVERIFY(isColor(image.pixelColor(scene.pixel(2.0, 2.0)), Qt::red));
     QVERIFY(isColor(image.pixelColor(scene.pixel(7.0, 7.0)), Qt::blue));
     QVERIFY(isColor(image.pixelColor(scene.pixel(5.0, 5.0)), Qt::black));
+}
+
+void RectangleSeriesRenderingTest::antialiasingCoversFractionalEdgePixels()
+{
+    auto scene = SceneWindow{kAntialiasingScene};
+    if (scene.isSoftware()) {
+        QSKIP("Custom materials require a hardware scene graph backend");
+    }
+    auto* plot = scene.plot();
+    QVERIFY2(plot, qPrintable(scene.error()));
+    QVERIFY(QTest::qWaitForWindowExposed(&scene.window()));
+    auto* rectangles = plot->findChild<PlotSeries*>(QStringLiteral("smoothed"));
+    QVERIFY(rectangles);
+    QVERIFY(!rectangles->antialiasing());
+
+    // The left edge lies a quarter pixel right of the center of column `edge`.
+    const auto edge = qFloor(plot->dataToPixelX(3.0));
+    rectangles->setData(std::vector<double>{plot->pixelToDataX(edge + 0.75), 2.0, plot->pixelToDataX(edge + 40.75), 8.0}, 1);
+    const auto y = scene.pixelY(5.0);
+
+    auto image = scene.grab();
+    QVERIFY(image.pixelColor(edge, y).red() < 10);
+    QVERIFY(isColor(image.pixelColor(edge + 1, y), Qt::red));
+
+    rectangles->setAntialiasing(true);
+    image = scene.grab();
+    const auto covered = image.pixelColor(edge, y).red();
+    QVERIFY2(covered > 30 && covered < 110, qPrintable(QStringLiteral("red %1 for a quarter-covered pixel").arg(covered)));
+    QVERIFY(isColor(image.pixelColor(edge + 1, y), Qt::red));
+    QVERIFY(image.pixelColor(edge - 1, y).red() < 10);
 }
 
 } // namespace QAccelPlot

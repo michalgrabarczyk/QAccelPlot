@@ -43,8 +43,6 @@ constexpr auto kAssumedIndexCostPerPoint = std::chrono::nanoseconds{15};
 
 constexpr auto kPositionStride = 2;
 constexpr auto kVerticesPerPoint = 6;
-constexpr auto kMinFeather = qreal{0.0};
-constexpr auto kMaxFeather = qreal{10.0};
 constexpr auto kNaN = std::numeric_limits<qreal>::quiet_NaN();
 
 // Number of points of stride floats each that the GPU data texture holds.
@@ -89,6 +87,7 @@ PointCloud::PointCloud(QQuickItem* parent)
     , spatialIndexBudget_(std::make_unique<Internal::HoverIndexBudget>(kAssumedIndexCostPerPoint))
 {
     setFlag(ItemHasContents, true);
+    setAntialiasing(true);
     supportHover();
     setAcceptedMouseButtons(Qt::NoButton);
     setLegendSymbol(LegendSymbol::Marker);
@@ -97,9 +96,10 @@ PointCloud::PointCloud(QQuickItem* parent)
         connect(marker_, signal, this, &QQuickItem::update);
         connect(marker_, signal, this, &PlotSeries::legendEntryChanged);
     }
-    for (const auto signal : {&PointCloud::colorChanged, &PointCloud::antialiasingEnabledChanged, &PointCloud::antialiasingFeatherChanged}) {
+    for (const auto signal : {&PointCloud::colorChanged, &PointCloud::antialiasingFeatherChanged}) {
         connect(this, signal, this, &PlotSeries::legendEntryChanged);
     }
+    connect(this, &QQuickItem::antialiasingChanged, this, &PlotSeries::legendEntryChanged);
     connect(transition_.get(), &TransitionRunner::frameDue, this, &PointCloud::advanceTransition);
     connect(transition_.get(), &TransitionRunner::interrupted, this, &PointCloud::endTransition);
     connect(transition_.get(), &TransitionRunner::transitionDestroyed, this, &PointCloud::transitionChanged);
@@ -131,21 +131,6 @@ SeriesMarker* PointCloud::marker() const
     return marker_;
 }
 
-bool PointCloud::antialiasingEnabled() const
-{
-    return antialiasingEnabled_;
-}
-
-void PointCloud::setAntialiasingEnabled(const bool enabled)
-{
-    if (antialiasingEnabled_ == enabled) {
-        return;
-    }
-    antialiasingEnabled_ = enabled;
-    emit antialiasingEnabledChanged();
-    update();
-}
-
 qreal PointCloud::antialiasingFeather() const
 {
     return antialiasingFeather_;
@@ -153,7 +138,7 @@ qreal PointCloud::antialiasingFeather() const
 
 void PointCloud::setAntialiasingFeather(const qreal feather)
 {
-    const auto clamped = std::clamp(feather, kMinFeather, kMaxFeather);
+    const auto clamped = Internal::clampAntialiasingFeather(feather);
     if (nearlyEqual(antialiasingFeather_, clamped)) {
         return;
     }
@@ -294,7 +279,7 @@ std::optional<LegendEntry> PointCloud::legendEntry() const
     entry.markerSize = marker_->size();
     entry.markerFilled = marker_->filled();
     entry.markerStrokeWidth = marker_->strokeWidth();
-    entry.antialiasingEnabled = antialiasingEnabled_;
+    entry.antialiasing = antialiasing();
     entry.antialiasingFeather = antialiasingFeather_;
     return entry;
 }
@@ -426,7 +411,7 @@ QSGNode* PointCloud::updatePaintNode(QSGNode* oldNode, [[maybe_unused]] UpdatePa
     material->markerSize = static_cast<float>(marker_->size());
     material->markerFilled = marker_->filled() ? 1.0f : 0.0f;
     material->markerStrokeWidth = static_cast<float>(marker_->strokeWidth());
-    material->antialiasingEnabled = antialiasingEnabled_ ? 1.0f : 0.0f;
+    material->antialiasingEnabled = antialiasing() ? 1.0f : 0.0f;
     material->antialiasingFeather = static_cast<float>(antialiasingFeather_);
     material->valueMin = static_cast<float>(dataValueMin());
     material->valueMax = static_cast<float>(dataValueMax());
