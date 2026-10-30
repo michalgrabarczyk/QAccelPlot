@@ -20,7 +20,7 @@ namespace {
 bool takesVertexCache(const PageScene& scene)
 {
     return scene.setting("lineStyle").toString() == QLatin1String("solid")
-        && scene.setting("markerShape").toInt() == static_cast<int>(QAccelPlot::PlotSeries::MarkerShape::None)
+        && scene.setting("markerShape").toInt() == static_cast<int>(QAccelPlot::MarkerShape::None)
         && scene.setting("effect").toString() == QLatin1String("none");
 }
 

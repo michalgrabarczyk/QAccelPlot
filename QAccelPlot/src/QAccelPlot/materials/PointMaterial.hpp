@@ -30,7 +30,7 @@ public:
     float markerSize{4.0f};          ///< \brief Marker radius in pixels.
     float antialiasingEnabled{1.0f}; ///< \brief 1.0 when GPU anti-aliasing is active.
     float antialiasingFeather{1.0f}; ///< \brief Anti-aliasing feather width in pixels.
-    int shapeType{0};                ///< \brief Marker shape: \c PlotSeries::MarkerShape value minus one (0 = Circle).
+    int shapeType{0};                ///< \brief Marker shape: \c MarkerShape value minus one (0 = Circle).
     float markerStrokeWidth{1.0f};   ///< \brief Outline width in pixels for hollow markers.
     float markerFilled{1.0f};        ///< \brief 1.0 for filled markers, 0.0 for hollow outlines.
     float gradientDirection{0.0f};   ///< \brief 0.0 for a horizontal gradient, 1.0 for a vertical one.

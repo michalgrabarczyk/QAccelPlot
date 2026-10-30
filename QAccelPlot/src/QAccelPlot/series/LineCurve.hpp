@@ -46,7 +46,7 @@ class TransitionRunner;
 ///
 /// \par Markers
 /// Markers are configured through the \c marker grouped property, for example
-/// <tt>marker.shape: QAccelPlot.LineCurve.Circle</tt>. No markers are drawn by default.
+/// <tt>marker.shape: QAccelPlot.MarkerShape.Circle</tt>. No markers are drawn by default.
 ///
 /// \par Effects
 /// Visual effects (gradient stroke, gradient fill) are attached via the \c effects list property.

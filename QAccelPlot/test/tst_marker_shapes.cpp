@@ -26,7 +26,7 @@ namespace QAccelPlot {
 
 namespace {
 
-using Shape = PlotSeries::MarkerShape;
+using Shape = MarkerShape;
 
 // A single white marker is drawn on black at the centre of a kCurveSize px curve, i.e. at pixel
 // corner (kCentre, kCentre). Offsets below address the pixel (kCentre + dx, kCentre + dy) in the
@@ -146,6 +146,7 @@ class MarkerShapesTest : public QObject {
 
 private slots:
     void shapeIndicesMatchShaders();
+    void markerShapeResolvesFromQml();
     void lineCurveMarkerDefaultsAndNotifies();
     void lineCurveMarkerGroupBindsFromQml();
     void legendSymbolFollowsMarkerSettings();
@@ -175,14 +176,23 @@ void MarkerShapesTest::shapeIndicesMatchShaders()
     for (const auto& [shape, value] : expected) {
         QCOMPARE(static_cast<int>(shape), value);
     }
+}
 
-    // The enum lives on PlotSeries, but both series must still expose it through their own
-    // meta-object: that is how QML resolves LineCurve.Circle and PointCloud.Circle.
-    for (const auto* meta : {&LineCurve::staticMetaObject, &PointCloud::staticMetaObject}) {
-        const auto index = meta->indexOfEnumerator("MarkerShape");
-        QVERIFY(index >= 0);
-        QCOMPARE(meta->enumerator(index).keyToValue("Pentagon"), static_cast<int>(Shape::Pentagon));
-    }
+void MarkerShapesTest::markerShapeResolvesFromQml()
+{
+    auto engine = QQmlEngine{};
+    auto component = QQmlComponent{&engine};
+    component.setData("import QtQuick\n"
+                      "import QAccelPlot as QAccelPlot\n"
+                      "QtObject {\n"
+                      "    property int pentagon: QAccelPlot.MarkerShape.Pentagon\n"
+                      "    property int none: QAccelPlot.MarkerShape.None\n"
+                      "}\n",
+        QUrl{});
+    const auto root = std::unique_ptr<QObject>{component.create()};
+    QVERIFY2(root, qPrintable(component.errorString()));
+    QCOMPARE(root->property("pentagon").toInt(), static_cast<int>(Shape::Pentagon));
+    QCOMPARE(root->property("none").toInt(), static_cast<int>(Shape::None));
 }
 
 void MarkerShapesTest::lineCurveMarkerDefaultsAndNotifies()
@@ -231,7 +241,7 @@ void MarkerShapesTest::lineCurveMarkerGroupBindsFromQml()
     component.setData("import QtQuick\n"
                       "import QAccelPlot\n"
                       "LineCurve {\n"
-                      "    marker.shape: LineCurve.Diamond\n"
+                      "    marker.shape: MarkerShape.Diamond\n"
                       "    marker.size: 7\n"
                       "    marker.filled: false\n"
                       "    marker.strokeWidth: 2\n"
@@ -261,14 +271,14 @@ void MarkerShapesTest::legendSymbolFollowsMarkerSettings()
                       "    property alias cloud: cloud\n"
                       "    LineCurve {\n"
                       "        id: curve\n"
-                      "        marker.shape: LineCurve.Hexagon\n"
+                      "        marker.shape: MarkerShape.Hexagon\n"
                       "        marker.size: 6\n"
                       "        marker.filled: false\n"
                       "        marker.strokeWidth: 2\n"
                       "    }\n"
                       "    PointCloud {\n"
                       "        id: cloud\n"
-                      "        marker.shape: PointCloud.Square\n"
+                      "        marker.shape: MarkerShape.Square\n"
                       "        marker.size: 5\n"
                       "        marker.filled: false\n"
                       "        marker.strokeWidth: 1.5\n"
@@ -507,7 +517,7 @@ void MarkerShapesTest::gradientStrokeColorsMarkersBetweenStops()
                       "    xAxis: Axis { orientation: Qt.Horizontal; viewportMin: 0; viewportMax: 1 }\n"
                       "    yAxis: Axis { orientation: Qt.Vertical; viewportMin: 0; viewportMax: 1 }\n"
                       "    lineStyle: NoLine {}\n"
-                      "    marker.shape: LineCurve.Square\n"
+                      "    marker.shape: MarkerShape.Square\n"
                       "    marker.size: 8\n"
                       "    antialiasingEnabled: false\n"
                       "    effects: GradientStroke {\n"
@@ -561,7 +571,7 @@ void MarkerShapesTest::verticalGradientPutsTopMarkerAtFirstStop()
                       "    xAxis: Axis { orientation: Qt.Horizontal; viewportMin: 0; viewportMax: 1 }\n"
                       "    yAxis: Axis { orientation: Qt.Vertical; viewportMin: 0; viewportMax: 1 }\n"
                       "    lineStyle: NoLine {}\n"
-                      "    marker.shape: LineCurve.Square\n"
+                      "    marker.shape: MarkerShape.Square\n"
                       "    marker.size: 4\n"
                       "    antialiasingEnabled: false\n"
                       "    effects: GradientStroke {\n"

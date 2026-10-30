@@ -107,7 +107,7 @@ for example in streaming-only views.
 ### Other rendering costs
 
 - Markers add geometry and fragment work per visible point. Fragment work grows
-  with marker size; `LineCurve.Pixel` markers shade one pixel per point and
+  with marker size; `MarkerShape.Pixel` markers shade one pixel per point and
   suit very dense scatter plots.
 - A `PointCloud` or `HeatmapSeries` whose `Colormap` leaves `min` or `max` unset scans every value
   on each data update to resolve the range. Set both when the bounds of

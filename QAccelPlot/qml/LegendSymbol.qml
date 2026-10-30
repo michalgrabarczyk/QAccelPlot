@@ -28,10 +28,10 @@ Item {
     readonly property real curveLineWidth: Math.max(0, entry.lineWidth)
     readonly property bool curveAntialiasingEnabled: entry.antialiasingEnabled
     readonly property real curveAntialiasingFeather: entry.antialiasingFeather
-    readonly property bool hasMarker: curveMarker !== LineCurve.None
+    readonly property bool hasMarker: curveMarker !== MarkerShape.None
     // A single pixel is hard to see in a legend, so Pixel markers are shown as a small dot.
-    readonly property bool pixelMarker: curveMarker === LineCurve.Pixel
-    readonly property int sampleMarker: pixelMarker ? LineCurve.Circle : curveMarker
+    readonly property bool pixelMarker: curveMarker === MarkerShape.Pixel
+    readonly property int sampleMarker: pixelMarker ? MarkerShape.Circle : curveMarker
     readonly property real sampleMarkerSize: pixelMarker ? 1.5 : curveMarkerSize
 
     width: Math.max(requestedWidth, hasMarker ? sampleMarkerSize * 2 + 2 : 0)

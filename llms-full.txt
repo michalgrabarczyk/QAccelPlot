@@ -597,7 +597,7 @@ for example in streaming-only views.
 ### Other rendering costs
 
 - Markers add geometry and fragment work per visible point. Fragment work grows
-  with marker size; `LineCurve.Pixel` markers shade one pixel per point and
+  with marker size; `MarkerShape.Pixel` markers shade one pixel per point and
   suit very dense scatter plots.
 - A `PointCloud` or `HeatmapSeries` whose `Colormap` leaves `min` or `max` unset scans every value
   on each data update to resolve the range. Set both when the bounds of
@@ -888,7 +888,7 @@ QAccelPlot.Plot {
         color: "dodgerblue"
         lineWidth: 2
         lineStyle: QAccelPlot.DashLine { pattern: [8, 5] }
-        marker.shape: QAccelPlot.LineCurve.Diamond
+        marker.shape: QAccelPlot.MarkerShape.Diamond
         marker.size: 7
     }
 }
@@ -1245,7 +1245,7 @@ QAccelPlot.LineCurve {
     lineStyle: QAccelPlot.DashLine {
         pattern: [14, 5, 3, 5]
     }
-    marker.shape: QAccelPlot.LineCurve.Diamond
+    marker.shape: QAccelPlot.MarkerShape.Diamond
     marker.size: 5
     antialiasingEnabled: true
     antialiasingFeather: 1
@@ -1318,7 +1318,7 @@ properties.
 ```qml
 QAccelPlot.LineCurve {
     lineStyle: QAccelPlot.NoLine {}
-    marker.shape: QAccelPlot.LineCurve.Circle
+    marker.shape: QAccelPlot.MarkerShape.Circle
     marker.size: 4
     marker.filled: false
     marker.strokeWidth: 1
@@ -1778,7 +1778,7 @@ QAccelPlot.Plot {
         xAxis: plot.xAxis
         yAxis: plot.yAxis
         color: "#8065b5ff"
-        marker.shape: QAccelPlot.PointCloud.Circle
+        marker.shape: QAccelPlot.MarkerShape.Circle
         marker.size: 2
 
         Component.onCompleted: setData([Qt.point(-2, 1), Qt.point(3, 4), Qt.point(1, -3)])

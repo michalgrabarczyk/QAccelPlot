@@ -53,7 +53,7 @@ Item {
             yAxis: yAxis
             color: "white"
             antialiasingEnabled: false
-            marker.shape: PointCloud.Square
+            marker.shape: MarkerShape.Square
             marker.size: 12
             Component.onCompleted: setData([Qt.point(0.4, 0.5), Qt.point(0.6, 0.5)])
         }
@@ -77,7 +77,7 @@ Item {
             color: "white"
             antialiasingEnabled: false
             lineStyle: NoLine {}
-            marker.shape: LineCurve.Square
+            marker.shape: MarkerShape.Square
             marker.size: 12
             Component.onCompleted: setData([Qt.point(2.5, 0.5)])
         }

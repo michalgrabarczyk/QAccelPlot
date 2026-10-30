@@ -115,7 +115,7 @@ Window {
                 objectName: "cloud"
                 xAxis: plot.xAxis
                 yAxis: plot.yAxis
-                marker.shape: QAccelPlot.PointCloud.Circle
+                marker.shape: QAccelPlot.MarkerShape.Circle
                 marker.size: markerSizeSlider.value
                 opacity: opacitySlider.value
                 colormap: QAccelPlot.Colormap {

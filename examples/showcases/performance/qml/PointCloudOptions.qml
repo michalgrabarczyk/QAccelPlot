@@ -69,19 +69,19 @@ ColumnLayout {
         choices: [
             {
                 text: "Circle",
-                value: QAccelPlot.PointCloud.Circle
+                value: QAccelPlot.MarkerShape.Circle
             },
             {
                 text: "Square",
-                value: QAccelPlot.PointCloud.Square
+                value: QAccelPlot.MarkerShape.Square
             },
             {
                 text: "Star",
-                value: QAccelPlot.PointCloud.Star
+                value: QAccelPlot.MarkerShape.Star
             },
             {
                 text: "Pixel",
-                value: QAccelPlot.PointCloud.Pixel
+                value: QAccelPlot.MarkerShape.Pixel
             }
         ]
         value: root.settings.markerShape

@@ -28,7 +28,7 @@ QAccelPlot.Plot {
         xAxis: plot.xAxis
         yAxis: plot.yAxis
         color: "#8065b5ff"
-        marker.shape: QAccelPlot.PointCloud.Circle
+        marker.shape: QAccelPlot.MarkerShape.Circle
         marker.size: 2
 
         Component.onCompleted: setData([Qt.point(-2, 1), Qt.point(3, 4), Qt.point(1, -3)])

@@ -49,7 +49,7 @@ void LineCurveRenderingTest::markersSurviveSinglePointDatasets()
     curve.setXAxis(&xAxis);
     curve.setYAxis(&yAxis);
     curve.setPlotRect({0, 0, 100, 100});
-    curve.marker()->setShape(QAccelPlot::LineCurve::MarkerShape::Circle);
+    curve.marker()->setShape(QAccelPlot::MarkerShape::Circle);
     auto node = std::unique_ptr<QSGNode>{};
 
     for (const auto count : {1, 2, 1}) {
@@ -123,7 +123,7 @@ void LineCurveRenderingTest::gradientDataRangeIsCurveExtent()
     curve.setYAxis(&yAxis);
     curve.setPlotRect({0, 0, 100, 100});
     curve.setLineStyle(nullptr);
-    curve.marker()->setShape(QAccelPlot::LineCurve::MarkerShape::Square);
+    curve.marker()->setShape(QAccelPlot::MarkerShape::Square);
     auto* stroke = new QAccelPlot::GradientStroke(&curve);
     stroke->setDirection(Qt::Vertical);
     stroke->setColormap(&colormap);
@@ -159,7 +159,7 @@ void LineCurveRenderingTest::markerCacheSurvivesSameSizeDataUpdates()
     curve.setYAxis(&yAxis);
     curve.setPlotRect({0, 0, 100, 100});
     curve.setLineStyle(nullptr);
-    curve.marker()->setShape(QAccelPlot::LineCurve::MarkerShape::Circle);
+    curve.marker()->setShape(QAccelPlot::MarkerShape::Circle);
 
     // A marked cache tells an uploaded cache apart from the zeroed one the curve would build itself.
     constexpr auto kPointCount = 3;

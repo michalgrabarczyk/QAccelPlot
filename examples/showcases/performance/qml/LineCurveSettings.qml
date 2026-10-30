@@ -16,7 +16,7 @@ PageSettings {
     property real lineWidth: 3
     // "solid", "dash", or "none".
     property string lineStyle: "solid"
-    property int markerShape: QAccelPlot.LineCurve.None
+    property int markerShape: QAccelPlot.MarkerShape.None
     property real markerSize: 4
     // "none", "stroke", or "fill".
     property string effect: "none"

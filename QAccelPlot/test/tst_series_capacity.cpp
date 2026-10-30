@@ -175,7 +175,7 @@ void SeriesCapacityTest::linePointsBeyondCapacityAreNotDrawnOrHovered()
     QVERIFY(item.contains({50, 25}));
     QVERIFY(!item.contains({50, 75}));
 
-    curve.marker()->setShape(PlotSeries::MarkerShape::Circle);
+    curve.marker()->setShape(MarkerShape::Circle);
     curve.setHoverRadius(0.0);
     QVERIFY(item.contains({50, 25}));
     QVERIFY(!item.contains({50, 75}));

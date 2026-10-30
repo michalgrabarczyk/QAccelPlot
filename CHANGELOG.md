@@ -47,6 +47,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- Marker shapes are a standalone `MarkerShape` enum instead of a
+  `PlotSeries` enum. Replace `LineCurve.Diamond` or `PointCloud.Circle` with
+  `MarkerShape.Diamond` or `MarkerShape.Circle` in QML, and
+  `PlotSeries::MarkerShape` with `MarkerShape`
+  (`<QAccelPlot/series/MarkerShape.hpp>`) in C++. Values are unchanged.
 - `PlotMouseEvent.button` is `Qt.NoButton` for a move instead of the held
   buttons cast into one value; the new `buttons` holds them. `reset()` is no
   longer public.

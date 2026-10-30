@@ -91,6 +91,7 @@ QAccelPlot/
 │       │                           LineCurveVertexCache, RectVertexCache,
 │       │                           LineCurveGaps (gaps grouped property),
 │       │                           StepMode (how a line joins data points),
+│       │                           MarkerShape, SeriesMarker (marker grouped property),
 │       │                           LineCurveGapFilter (invalid-sample contract),
 │       │                           SpatialGrid, PointSpatialIndex (hover hit testing)
 │       ├── theme/                — ColorPalette (light/dark palette values), Colors QML singleton
