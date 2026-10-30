@@ -72,8 +72,6 @@ flowchart TB
 | property qreal | [**padding**](classQAccelPlot_1_1QAccelPlot.md#property-padding-12)  <br>_Uniform padding in pixels between the plot area and the canvas edge. Default: 24._  |
 | property QColor | [**plotAreaColor**](classQAccelPlot_1_1QAccelPlot.md#property-plotareacolor-12)  <br>_Background color of the plot data area. Default:_ `Colors.dark.plotArea` _._ |
 | property QRectF | [**plotRect**](classQAccelPlot_1_1QAccelPlot.md#property-plotrect-12)  <br>_Read-only: plot area rectangle in item-local pixel coordinates._  |
-| property bool | [**pointerInside**](classQAccelPlot_1_1QAccelPlot.md#property-pointerinside-12)  <br>_Whether the observed pointer is inside the data area._  |
-| property QPointF | [**pointerPosition**](classQAccelPlot_1_1QAccelPlot.md#property-pointerposition-12)  <br>_Last observed pointer position in plot-local logical pixels. It is kept after the pointer leaves; check_ `pointerInside` _._ |
 | property [**PlotRectangleZoom**](classQAccelPlot_1_1PlotRectangleZoom.md) \* | [**rectangleZoom**](classQAccelPlot_1_1QAccelPlot.md#property-rectanglezoom-12)  <br>_Rectangle zoom configuration and selection state._  |
 | property QList&lt; [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) \* &gt; | [**series**](classQAccelPlot_1_1QAccelPlot.md#property-series-12)  <br>_Read-only: all registered plot series._  |
 | property [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**x2Axis**](classQAccelPlot_1_1QAccelPlot.md#property-x2axis-12)  <br>_Optional secondary horizontal axis; assigning it sets its side to_ `Axis.Top` _._ |
@@ -97,7 +95,6 @@ flowchart TB
 | signal void | [**paddingChanged**](classQAccelPlot_1_1QAccelPlot.md#signal-paddingchanged)  <br>_Emitted when the padding property changes._  |
 | signal void | [**plotAreaColorChanged**](classQAccelPlot_1_1QAccelPlot.md#signal-plotareacolorchanged)  <br>_Emitted when the plotAreaColor property changes._  |
 | signal void | [**plotRectChanged**](classQAccelPlot_1_1QAccelPlot.md#signal-plotrectchanged)  <br>_Emitted when the plotRect changes (axis layout recalculated)._  |
-| signal void | [**pointerChanged**](classQAccelPlot_1_1QAccelPlot.md#signal-pointerchanged)  <br>_Emitted when the plot observes pointer motion or pointer exit._  |
 | signal void | [**pointerGrabLost**](classQAccelPlot_1_1QAccelPlot.md#signal-pointergrablost)  <br>_Emitted when the plot loses its mouse grab during a drag._  |
 | signal void | [**seriesChanged**](classQAccelPlot_1_1QAccelPlot.md#signal-serieschanged)  <br>_Emitted when the set of registered plot series changes._  |
 | signal void | [**x2AxisChanged**](classQAccelPlot_1_1QAccelPlot.md#signal-x2axischanged)  <br>_Emitted when the x2Axis property changes._  |
@@ -126,8 +123,6 @@ flowchart TB
 |  Q\_INVOKABLE qreal | [**pixelToDataY**](#function-pixeltodatay) (qreal pixelY) const<br>_Converts an item-local pixel Y coordinate to a vertical data-space value._  |
 |  QColor | [**plotAreaColor**](#function-plotareacolor-22) () const<br>_Returns the plot area background color._  |
 |  QRectF | [**plotRect**](#function-plotrect-22) () const<br>_Returns the current plot area rectangle in item-local coordinates._  |
-|  bool | [**pointerInside**](#function-pointerinside-22) () const<br>_Returns true while the observed pointer is inside plotRect._  |
-|  QPointF | [**pointerPosition**](#function-pointerposition-22) () const<br>_Returns the last observed plot-local pointer position; the origin before the first pointer event._  |
 |  [**PlotRectangleZoom**](classQAccelPlot_1_1PlotRectangleZoom.md) \* | [**rectangleZoom**](#function-rectanglezoom-22) () const<br>_Returns the rectangle zoom configuration object._  |
 |  Q\_INVOKABLE void | [**rescaleAllAxes**](#function-rescaleallaxes) () <br>_Calls_ `Axis::rescaleToData()` _on all attached axes._ |
 |  QList&lt; [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) \* &gt; | [**series**](#function-series-22) () const<br>_Returns all plot-series children currently registered with this canvas._  |
@@ -327,40 +322,6 @@ QRectF QAccelPlot::QAccelPlot::plotRect;
 
 
 
-
-<hr>
-
-
-
-
-### property pointerInside {#property-pointerinside-12}
-
-_Whether the observed pointer is inside the data area._ 
-```C++
-bool QAccelPlot::QAccelPlot::pointerInside;
-```
-
-
-
-
-<hr>
-
-
-
-
-### property pointerPosition {#property-pointerposition-12}
-
-_Last observed pointer position in plot-local logical pixels. It is kept after the pointer leaves; check_ `pointerInside` _._
-```C++
-QPointF QAccelPlot::QAccelPlot::pointerPosition;
-```
-
-
-
-A touch places the pointer where the finger is and leaves it there after the release. 
-
-
-        
 
 <hr>
 
@@ -584,21 +545,6 @@ void QAccelPlot::QAccelPlot::plotAreaColorChanged;
 _Emitted when the plotRect changes (axis layout recalculated)._ 
 ```C++
 void QAccelPlot::QAccelPlot::plotRectChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
-### signal pointerChanged {#signal-pointerchanged}
-
-_Emitted when the plot observes pointer motion or pointer exit._ 
-```C++
-void QAccelPlot::QAccelPlot::pointerChanged;
 ```
 
 
@@ -914,36 +860,6 @@ QColor QAccelPlot::QAccelPlot::plotAreaColor () const
 _Returns the current plot area rectangle in item-local coordinates._ 
 ```C++
 QRectF QAccelPlot::QAccelPlot::plotRect () const
-```
-
-
-
-
-<hr>
-
-
-
-
-### function pointerInside {#function-pointerinside-22}
-
-_Returns true while the observed pointer is inside plotRect._ 
-```C++
-bool QAccelPlot::QAccelPlot::pointerInside () const
-```
-
-
-
-
-<hr>
-
-
-
-
-### function pointerPosition {#function-pointerposition-22}
-
-_Returns the last observed plot-local pointer position; the origin before the first pointer event._ 
-```C++
-QPointF QAccelPlot::QAccelPlot::pointerPosition () const
 ```
 
 

@@ -302,6 +302,8 @@
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**PointerTracker**](classQAccelPlot_1_1Internal_1_1PointerTracker.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * [**PointMaterial**](classQAccelPlot_1_1PointMaterial.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**Points**](structQAccelPlot_1_1PointCloud_1_1Points.md)

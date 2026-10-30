@@ -2020,6 +2020,9 @@
 <ul>
 <li><code>SeriesInspection.supported</code>. A query that does not apply to a series returns
   <code>Inspection.Unsupported</code>.</li>
+<li><code>PlotView.pointerPosition</code>, <code>pointerInside</code>, and <code>pointerChanged()</code>. Use
+  <code>PlotInspector.cursorPixelX</code>, <code>cursorPixelY</code>, and <code>active</code>, or a
+  <code>HoverHandler</code>.</li>
 <li>The <code>showcases/pulsar</code> example.</li>
 <li>The CI benchmark workflow: its timings on shared runners varied more than
   its alert threshold. A unit test now counts scene graph rebuilds and data

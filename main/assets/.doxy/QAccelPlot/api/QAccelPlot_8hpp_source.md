@@ -33,13 +33,16 @@
 #include <QQuickItem>
 #include <QRectF>
 
-#include <optional>
-
 namespace QAccelPlot {
 
 class GridNode;
 class PlotExporter;
+class PlotInspector;
 class RectangleZoomOverlay;
+
+namespace Internal {
+class PointerTracker;
+} // namespace Internal
 
 class QAccelPlot : public QQuickItem {
     Q_OBJECT
@@ -61,10 +64,6 @@ class QAccelPlot : public QQuickItem {
     Q_PROPERTY(QList<PlotSeries*> series READ series NOTIFY seriesChanged)
     Q_PROPERTY(QQuickItem* overlay READ overlay CONSTANT)
 
-    
-    Q_PROPERTY(QPointF pointerPosition READ pointerPosition NOTIFY pointerChanged)
-    Q_PROPERTY(bool pointerInside READ pointerInside NOTIFY pointerChanged)
-
 public:
     explicit QAccelPlot(QQuickItem* parent = nullptr);
     ~QAccelPlot() override;
@@ -76,9 +75,6 @@ public:
     Q_INVOKABLE bool isInsidePlotArea(qreal x, qreal y) const;
     Q_INVOKABLE bool zoomToRect(const QRectF& rect);
     Q_INVOKABLE void rescaleAllAxes();
-
-    QPointF pointerPosition() const;
-    bool pointerInside() const;
 
     Axis* xAxis() const;
     void setXAxis(Axis* axis);
@@ -116,7 +112,6 @@ public:
     QQuickItem* overlay() const;
 
 signals:
-    void pointerChanged();
     void escapePressed();
     void pointerGrabLost();
     void xAxisChanged();
@@ -151,6 +146,7 @@ protected:
 
 private:
     friend class PlotExporter;
+    friend class PlotInspector;
 
     enum class DragMode { Idle, Pan, RectangleZoom };
     bool isAxisRegistered(Axis* axis) const;
@@ -173,7 +169,8 @@ private:
     void updateRectangleSelection(const QPointF& pos);
     void cancelRectangleSelection();
     void layoutAxes();
-    void setPointer(const QPointF& position);
+    // Returns the pointer over the plot, for PlotInspector.
+    const Internal::PointerTracker& pointer() const;
     void registerSeries(QQuickItem* item);
     // Marks the plot as captured by a PlotExporter, drawing both background areas transparent when \a transparentBackground.
     void beginExport(bool transparentBackground);
@@ -189,12 +186,8 @@ private:
     DragMode dragMode_{DragMode::Idle};
     PlotDragRect zoomDrag_;
     QPointF lastMousePos_;
-    // Last pointer position over the plot; key events go to the axis under it.
-    std::optional<QPointF> pointerPos_;
-    QPointF lastPointerPos_;
-    // True while the pointer was last placed by a touch, which keeps it in place after the release.
-    bool touchPointer_{false};
-    bool touchPressed_{false};
+    // Key events go to the axis under the pointer.
+    Internal::PointerTracker* pointer_{nullptr};
     PlotMouseEvent mousePressEvent_{this};
     PlotMouseEvent mouseReleaseEvent_{this};
     PlotMouseEvent mouseDoubleClickEvent_{this};

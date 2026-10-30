@@ -324,7 +324,6 @@
 * **legendSymbol\_** ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
 * **lastHoverIndex\_** ([**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
 * **lastHoverQuery\_** ([**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
-* **lastPointerPos\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **lastHitIndex\_** ([**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md))
 * **lastHitTest\_** ([**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md))
 * **largeItems\_** ([**QAccelPlot::SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md))
@@ -431,6 +430,7 @@
 * **position** ([**QAccelPlot::GradientStopData**](structQAccelPlot_1_1GradientStopData.md), [**QAccelPlot::InspectionDataPoint**](structQAccelPlot_1_1InspectionDataPoint.md), [**QAccelPlot::ErrorBarSeries::DataBar**](structQAccelPlot_1_1ErrorBarSeries_1_1DataBar.md), [**QAccelPlot::RectangleSeries::HitTestInputs**](structQAccelPlot_1_1RectangleSeries_1_1HitTestInputs.md))
 * **points\_** ([**QAccelPlot::InspectionIndex**](classQAccelPlot_1_1InspectionIndex.md), [**QAccelPlot::PointSpatialIndex**](classQAccelPlot_1_1PointSpatialIndex.md))
 * **pixelPosition** ([**QAccelPlot::InspectionRow**](structQAccelPlot_1_1InspectionRow.md))
+* **position\_** ([**QAccelPlot::Internal::PointerTracker**](classQAccelPlot_1_1Internal_1_1PointerTracker.md))
 * **pendingVertexCache\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **pointRenderer\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **pointCount\_** ([**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md))
@@ -443,7 +443,7 @@
 * **padding** ([**QAccelPlot::PointVertex**](structQAccelPlot_1_1PointVertex.md))
 * **padding\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **plotAreaColor\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
-* **pointerPos\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
+* **pointer\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 
 
 ## q
@@ -578,11 +578,11 @@
 * **timer\_** ([**QAccelPlot::InspectionCache**](classQAccelPlot_1_1InspectionCache.md))
 * **target** ([**QAccelPlot::Internal::GrabSize**](structQAccelPlot_1_1Internal_1_1GrabSize.md))
 * **to** ([**QAccelPlot::Internal::HeatmapGridDimension**](structQAccelPlot_1_1Internal_1_1HeatmapGridDimension.md))
+* **touchPointer\_** ([**QAccelPlot::Internal::PointerTracker**](classQAccelPlot_1_1Internal_1_1PointerTracker.md))
+* **touchPressed\_** ([**QAccelPlot::Internal::PointerTracker**](classQAccelPlot_1_1Internal_1_1PointerTracker.md))
 * **toolProperty\_** ([**QAccelPlot::OverlayChildren**](classQAccelPlot_1_1OverlayChildren.md))
 * **tool\_** ([**QAccelPlot::OverlayChildren**](classQAccelPlot_1_1OverlayChildren.md), [**QAccelPlot::SelectionRectangle**](classQAccelPlot_1_1SelectionRectangle.md))
 * **transparentBackground\_** ([**QAccelPlot::PlotExporter**](classQAccelPlot_1_1PlotExporter.md), [**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
-* **touchPointer\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
-* **touchPressed\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **tickLabel\_** ([**QAccelPlot::TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md))
 * **tickArea** ([**QAccelPlot::ColorBar::Layout**](structQAccelPlot_1_1ColorBar_1_1Layout.md))
 * **tickClip** ([**QAccelPlot::ColorBar::Layout**](structQAccelPlot_1_1ColorBar_1_1Layout.md))

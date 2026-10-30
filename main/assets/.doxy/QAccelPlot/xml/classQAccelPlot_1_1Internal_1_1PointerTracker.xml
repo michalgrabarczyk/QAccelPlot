@@ -1,0 +1,278 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1Internal_1_1PointerTracker" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>QAccelPlot::Internal::PointerTracker</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
+    <includes local="no">PointerTracker.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1PointerTracker_1a283e82c64cb20c736d4df332a70207cb" prot="private" static="no" mutable="no">
+        <type>std::optional&lt; QPointF &gt;</type>
+        <definition>std::optional&lt;QPointF&gt; QAccelPlot::Internal::PointerTracker::position_</definition>
+        <argsstring></argsstring>
+        <name>position_</name>
+        <qualifiedname>QAccelPlot::Internal::PointerTracker::position_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/PointerTracker.hpp" line="53" column="19" bodyfile="QAccelPlot/src/QAccelPlot/internal/PointerTracker.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1PointerTracker_1acaa9a05889b9a212c2676235da1d854b" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::PointerTracker::touchPointer_</definition>
+        <argsstring></argsstring>
+        <name>touchPointer_</name>
+        <qualifiedname>QAccelPlot::Internal::PointerTracker::touchPointer_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/PointerTracker.hpp" line="55" column="10" bodyfile="QAccelPlot/src/QAccelPlot/internal/PointerTracker.hpp" bodystart="55" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1PointerTracker_1acd3671f0f178fd88ae5b1bf140ec75f6" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::PointerTracker::touchPressed_</definition>
+        <argsstring></argsstring>
+        <name>touchPressed_</name>
+        <qualifiedname>QAccelPlot::Internal::PointerTracker::touchPressed_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/PointerTracker.hpp" line="56" column="10" bodyfile="QAccelPlot/src/QAccelPlot/internal/PointerTracker.hpp" bodystart="56" bodyend="56"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1PointerTracker_1af5286b76c9d050278fb34e7da66fc612" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::Internal::PointerTracker::PointerTracker</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>PointerTracker</name>
+        <qualifiedname>QAccelPlot::Internal::PointerTracker::PointerTracker</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a tracker owned by <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/PointerTracker.hpp" line="28" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1PointerTracker_1aa9210b8969e41628d2dd4d7e7739e033" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::optional&lt; QPointF &gt;</type>
+        <definition>std::optional&lt; QPointF &gt; QAccelPlot::Internal::PointerTracker::position</definition>
+        <argsstring>() const</argsstring>
+        <name>position</name>
+        <qualifiedname>QAccelPlot::Internal::PointerTracker::position</qualifiedname>
+        <briefdescription>
+<para>Returns the pointer position in plot-local logical pixels, or nothing while no pointer is over the plot. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/PointerTracker.hpp" line="31" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1PointerTracker_1a0f57fbb829a22e264707f64b3695d113" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::PointerTracker::press</definition>
+        <argsstring>(const QMouseEvent &amp;event)</argsstring>
+        <name>press</name>
+        <qualifiedname>QAccelPlot::Internal::PointerTracker::press</qualifiedname>
+        <param>
+          <type>const QMouseEvent &amp;</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+<para>Places the pointer at a mouse or touch press. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/PointerTracker.hpp" line="34" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1PointerTracker_1a0c195983ddfcaf2c1e90971fcda17767" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::PointerTracker::release</definition>
+        <argsstring>()</argsstring>
+        <name>release</name>
+        <qualifiedname>QAccelPlot::Internal::PointerTracker::release</qualifiedname>
+        <briefdescription>
+<para>Ends a press, on release or when the plot loses its grab. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/PointerTracker.hpp" line="36" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1PointerTracker_1ad7a658fe5324629a7f4565b4e1a5cf57" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::PointerTracker::hoverEnter</definition>
+        <argsstring>(const QHoverEvent &amp;event)</argsstring>
+        <name>hoverEnter</name>
+        <qualifiedname>QAccelPlot::Internal::PointerTracker::hoverEnter</qualifiedname>
+        <param>
+          <type>const QHoverEvent &amp;</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+<para>Places the pointer where the hover enters, unless a touch is in progress. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/PointerTracker.hpp" line="38" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1PointerTracker_1a5150961888ba3cd67b45f3a1068eb768" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::PointerTracker::hoverMove</definition>
+        <argsstring>(const QHoverEvent &amp;event)</argsstring>
+        <name>hoverMove</name>
+        <qualifiedname>QAccelPlot::Internal::PointerTracker::hoverMove</qualifiedname>
+        <param>
+          <type>const QHoverEvent &amp;</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+<para>Places the pointer at a hover move, which always comes from the mouse. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/PointerTracker.hpp" line="40" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1PointerTracker_1a70cb476596067a97fb0ce0860df4b4e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::PointerTracker::hoverLeave</definition>
+        <argsstring>()</argsstring>
+        <name>hoverLeave</name>
+        <qualifiedname>QAccelPlot::Internal::PointerTracker::hoverLeave</qualifiedname>
+        <briefdescription>
+<para>Removes the pointer when the mouse leaves; a touch pointer stays. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/PointerTracker.hpp" line="42" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1PointerTracker_1ae5e7ed2028e63856310d2236944035f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::PointerTracker::mouseMove</definition>
+        <argsstring>(const QMouseEvent &amp;event)</argsstring>
+        <name>mouseMove</name>
+        <qualifiedname>QAccelPlot::Internal::PointerTracker::mouseMove</qualifiedname>
+        <param>
+          <type>const QMouseEvent &amp;</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+<para>Places the pointer at a move, except the button-less move Qt Quick sends after a touch release. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/PointerTracker.hpp" line="44" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1Internal_1_1PointerTracker_1a2fda74ce9864e01355b1f15be15fb331" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::PointerTracker::changed</definition>
+        <argsstring>()</argsstring>
+        <name>changed</name>
+        <qualifiedname>QAccelPlot::Internal::PointerTracker::changed</qualifiedname>
+        <briefdescription>
+<para>Emitted when the pointer moves, appears, or leaves. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/PointerTracker.hpp" line="48" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1PointerTracker_1aa10289599adaf6cca448e41d6c5d91a3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::PointerTracker::setPosition</definition>
+        <argsstring>(const QPointF &amp;position)</argsstring>
+        <name>setPosition</name>
+        <qualifiedname>QAccelPlot::Internal::PointerTracker::setPosition</qualifiedname>
+        <param>
+          <type>const QPointF &amp;</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/PointerTracker.hpp" line="51" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Tracks the pointer over a plot from the plot&apos;s mouse and hover events. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>A touch places the pointer where the finger is and leaves it there after the release, until the next tap or mouse movement. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::Internal::PointerTracker</label>
+        <link refid="classQAccelPlot_1_1Internal_1_1PointerTracker"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::Internal::PointerTracker</label>
+        <link refid="classQAccelPlot_1_1Internal_1_1PointerTracker"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/internal/PointerTracker.hpp" line="23" column="1" bodyfile="QAccelPlot/src/QAccelPlot/internal/PointerTracker.hpp" bodystart="23" bodyend="57"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1Internal_1_1PointerTracker_1a2fda74ce9864e01355b1f15be15fb331" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::PointerTracker</scope><name>changed</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1PointerTracker_1ad7a658fe5324629a7f4565b4e1a5cf57" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::PointerTracker</scope><name>hoverEnter</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1PointerTracker_1a70cb476596067a97fb0ce0860df4b4e8" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::PointerTracker</scope><name>hoverLeave</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1PointerTracker_1a5150961888ba3cd67b45f3a1068eb768" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::PointerTracker</scope><name>hoverMove</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1PointerTracker_1ae5e7ed2028e63856310d2236944035f6" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::PointerTracker</scope><name>mouseMove</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1PointerTracker_1af5286b76c9d050278fb34e7da66fc612" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::PointerTracker</scope><name>PointerTracker</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1PointerTracker_1aa9210b8969e41628d2dd4d7e7739e033" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::PointerTracker</scope><name>position</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1PointerTracker_1a283e82c64cb20c736d4df332a70207cb" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::PointerTracker</scope><name>position_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1PointerTracker_1a0f57fbb829a22e264707f64b3695d113" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::PointerTracker</scope><name>press</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1PointerTracker_1a0c195983ddfcaf2c1e90971fcda17767" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::PointerTracker</scope><name>release</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1PointerTracker_1aa10289599adaf6cca448e41d6c5d91a3" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::PointerTracker</scope><name>setPosition</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1PointerTracker_1acaa9a05889b9a212c2676235da1d854b" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::PointerTracker</scope><name>touchPointer_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1PointerTracker_1acd3671f0f178fd88ae5b1bf140ec75f6" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::PointerTracker</scope><name>touchPressed_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

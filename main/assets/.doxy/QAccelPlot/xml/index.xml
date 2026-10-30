@@ -2844,6 +2844,21 @@
     <member refid="structQAccelPlot_1_1PointCurveRenderParams_1a97c7dfa326594956775a80e1d8f8eefb" kind="variable"><name>markerStrokeWidth</name></member>
     <member refid="structQAccelPlot_1_1PointCurveRenderParams_1a53be39fcb259900620ff26254b5e6632" kind="variable"><name>markerFilled</name></member>
   </compound>
+  <compound refid="classQAccelPlot_1_1Internal_1_1PointerTracker" kind="class"><name>QAccelPlot::Internal::PointerTracker</name>
+    <member refid="classQAccelPlot_1_1Internal_1_1PointerTracker_1a283e82c64cb20c736d4df332a70207cb" kind="variable"><name>position_</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1PointerTracker_1acaa9a05889b9a212c2676235da1d854b" kind="variable"><name>touchPointer_</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1PointerTracker_1acd3671f0f178fd88ae5b1bf140ec75f6" kind="variable"><name>touchPressed_</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1PointerTracker_1af5286b76c9d050278fb34e7da66fc612" kind="function"><name>PointerTracker</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1PointerTracker_1aa9210b8969e41628d2dd4d7e7739e033" kind="function"><name>position</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1PointerTracker_1a0f57fbb829a22e264707f64b3695d113" kind="function"><name>press</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1PointerTracker_1a0c195983ddfcaf2c1e90971fcda17767" kind="function"><name>release</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1PointerTracker_1ad7a658fe5324629a7f4565b4e1a5cf57" kind="function"><name>hoverEnter</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1PointerTracker_1a5150961888ba3cd67b45f3a1068eb768" kind="function"><name>hoverMove</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1PointerTracker_1a70cb476596067a97fb0ce0860df4b4e8" kind="function"><name>hoverLeave</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1PointerTracker_1ae5e7ed2028e63856310d2236944035f6" kind="function"><name>mouseMove</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1PointerTracker_1a2fda74ce9864e01355b1f15be15fb331" kind="signal"><name>changed</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1PointerTracker_1aa10289599adaf6cca448e41d6c5d91a3" kind="function"><name>setPosition</name></member>
+  </compound>
   <compound refid="classQAccelPlot_1_1PointMaterial" kind="class"><name>QAccelPlot::PointMaterial</name>
     <member refid="classQAccelPlot_1_1PointMaterial_1a04dc2fdee93d946fb012a039e6c3e70a" kind="variable"><name>markerSize</name></member>
     <member refid="classQAccelPlot_1_1PointMaterial_1abe060e2bc02514aa736ba97698f090d7" kind="variable"><name>antialiasingEnabled</name></member>
@@ -2915,9 +2930,8 @@
     <member refid="classQAccelPlot_1_1QAccelPlot_1aee3b8ea78a3ff2dd79e256fb34f5fdcc" kind="property"><name>grid</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a4e47d828812b5d9e14d95a330b97af86" kind="property"><name>series</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1ad1fe7eee5296218dbe505ec6d32b4a9c" kind="property"><name>overlay</name></member>
-    <member refid="classQAccelPlot_1_1QAccelPlot_1a8677e556ae18cb5e0f832e7ccda96f97" kind="property"><name>pointerPosition</name></member>
-    <member refid="classQAccelPlot_1_1QAccelPlot_1a147d3e65df0237f268c18d919ce9dc60" kind="property"><name>pointerInside</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1adc767458968edf2bc7e51059be6c87f7" kind="friend"><name>PlotExporter</name></member>
+    <member refid="classQAccelPlot_1_1QAccelPlot_1a6ba44ce88f709c8909df1881e5711f0d" kind="friend"><name>PlotInspector</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a042639652fc89c740494bcc07d9fac89" kind="variable"><name>xAxis_</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1af68fbc2cddcc0c09ed33d0dfb8024813" kind="variable"><name>yAxis_</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a36f3ed1e4ecbd3e948454af11d6bf801" kind="variable"><name>x2Axis_</name></member>
@@ -2926,10 +2940,7 @@
     <member refid="classQAccelPlot_1_1QAccelPlot_1a9ce0d30af7885262e22aa37e7de743ca" kind="variable"><name>dragMode_</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1aebbbb9bd3518a344c01ba2656bda5689" kind="variable"><name>zoomDrag_</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a3d26259c01f743c6a58d24ae56fd62e3" kind="variable"><name>lastMousePos_</name></member>
-    <member refid="classQAccelPlot_1_1QAccelPlot_1af75f5113f4ae187bf9eae986ebdd55ca" kind="variable"><name>pointerPos_</name></member>
-    <member refid="classQAccelPlot_1_1QAccelPlot_1a04a55581584ce658588a28af2dde208e" kind="variable"><name>lastPointerPos_</name></member>
-    <member refid="classQAccelPlot_1_1QAccelPlot_1a32755cc20ea2cf79bf48c466442d9ba4" kind="variable"><name>touchPointer_</name></member>
-    <member refid="classQAccelPlot_1_1QAccelPlot_1a0c57c0aae7f7f00b87b7bfc7c78c8245" kind="variable"><name>touchPressed_</name></member>
+    <member refid="classQAccelPlot_1_1QAccelPlot_1abc8c3565d53639792c9e742741ae903e" kind="variable"><name>pointer_</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1aa995f65b929dc8a46d8908feef47eed1" kind="variable"><name>mousePressEvent_</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a8d84e189f0a669787b78abbb9227b8af" kind="variable"><name>mouseReleaseEvent_</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a31ab79d193c6642371724698796e1c86" kind="variable"><name>mouseDoubleClickEvent_</name></member>
@@ -2956,8 +2967,6 @@
     <member refid="classQAccelPlot_1_1QAccelPlot_1a4d3dc663c405407222f8e1dcac3294f2" kind="function"><name>isInsidePlotArea</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a74e35cafbbf3445e2d213a27543a4cac" kind="function"><name>zoomToRect</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a6ab962feb97d0bfccb268ac54bce8c77" kind="function"><name>rescaleAllAxes</name></member>
-    <member refid="classQAccelPlot_1_1QAccelPlot_1a80d4fb98b491fd2addbae22dbff22865" kind="function"><name>pointerPosition</name></member>
-    <member refid="classQAccelPlot_1_1QAccelPlot_1a548153239b8d67736000838d87693899" kind="function"><name>pointerInside</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a0700efddb41845fd85ee085199e56572" kind="function"><name>xAxis</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a04c7d9c183237eefc8d2ce040a1f613d" kind="function"><name>setXAxis</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a63c870858ecfd22c0130f18942b91350" kind="function"><name>yAxis</name></member>
@@ -2979,7 +2988,6 @@
     <member refid="classQAccelPlot_1_1QAccelPlot_1a55e4559da3179562d56343b6fcc15d5b" kind="function"><name>grid</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1abb5fb379a8cc0ed2b6ab8457e794c2b0" kind="function"><name>series</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a0def33ddf8e7d372fa71a9a3e00c408d" kind="function"><name>overlay</name></member>
-    <member refid="classQAccelPlot_1_1QAccelPlot_1ab2ffdcd32b5f787f289a609a61a33dd9" kind="signal"><name>pointerChanged</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a8b0d327146ef3f198764a45d1628610b" kind="signal"><name>escapePressed</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1ad381363561353962c7cdbe0a3297df25" kind="signal"><name>pointerGrabLost</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a81c80d8ed507b8f4456062fed281e323" kind="signal"><name>xAxisChanged</name></member>
@@ -3010,7 +3018,7 @@
     <member refid="classQAccelPlot_1_1QAccelPlot_1a48f7da523fab1fe3a27571d6627efd5e" kind="function"><name>updateRectangleSelection</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a68beec6552fb35816d9e825381e50107" kind="function"><name>cancelRectangleSelection</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1aa51ddf9954f678a3f7fe89b60e0451eb" kind="function"><name>layoutAxes</name></member>
-    <member refid="classQAccelPlot_1_1QAccelPlot_1a97fc746db3167810354f7d7e2f59bf03" kind="function"><name>setPointer</name></member>
+    <member refid="classQAccelPlot_1_1QAccelPlot_1a3a2aa197a8c57f166b8363734289188e" kind="function"><name>pointer</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a27ff9c96189d70f1e50d454455c0bbf5" kind="function"><name>registerSeries</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a5ca2cd36d0d56e93c7eace5e8873e756" kind="function"><name>beginExport</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a5dfc8ddb775ac05ad90d6465ad000aa2" kind="function"><name>endExport</name></member>
@@ -3724,6 +3732,8 @@
   <compound refid="SeriesInspection_8hpp" kind="file"><name>SeriesInspection.hpp</name>
   </compound>
   <compound refid="OutlinedRectangle_8hpp" kind="file"><name>OutlinedRectangle.hpp</name>
+  </compound>
+  <compound refid="PointerTracker_8hpp" kind="file"><name>PointerTracker.hpp</name>
   </compound>
   <compound refid="RectangleZoomOverlay_8hpp" kind="file"><name>RectangleZoomOverlay.hpp</name>
   </compound>

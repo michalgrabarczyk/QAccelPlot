@@ -138,6 +138,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
     * **class** [**QAccelPlot::Grid**](classQAccelPlot_1_1Grid.md) _Configuration object that controls the appearance of the plot grid._ 
     * **class** [**QAccelPlot::HistogramFactory**](classQAccelPlot_1_1HistogramFactory.md) _QML singleton_ `Histogram` _that creates_[_**Histogram**_](classQAccelPlot_1_1Histogram.md) _values from JavaScript arrays._
     * **class** [**QAccelPlot::InspectionCache**](classQAccelPlot_1_1InspectionCache.md) _Builds an_ `InspectionIndex` _on a worker thread from a snapshot of a series' records._
+    * **class** [**QAccelPlot::Internal::PointerTracker**](classQAccelPlot_1_1Internal_1_1PointerTracker.md) _Tracks the pointer over a plot from the plot's mouse and hover events._ 
     * **class** [**QAccelPlot::LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md) _Abstract base class for visual effects applied to a_ `LineCurve` _._    
         * **class** [**QAccelPlot::GradientFill**](classQAccelPlot_1_1GradientFill.md) _A_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _effect that fills the area under the curve with a color gradient._
         * **class** [**QAccelPlot::GradientStroke**](classQAccelPlot_1_1GradientStroke.md) _A_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _effect that replaces the solid line color with a color gradient._
