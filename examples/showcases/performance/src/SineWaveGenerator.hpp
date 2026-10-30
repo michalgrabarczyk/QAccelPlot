@@ -9,17 +9,12 @@
 
 #include "DatasetParts.hpp"
 
-#include <QAccelPlot/renderers/LineCurveLineRenderer.hpp>
-
 #include <vector>
 
 namespace QAccelPlotExample {
 
 /// \brief One curve's share of a LineCurve dataset: interleaved XY pairs.
-struct SineWavePart : SeriesPart {
-    /// \brief Prebuilt line vertex cache; empty unless the curve's point count changed.
-    std::vector<char> vertexCache;
-};
+using SineWavePart = SeriesPart;
 
 /// \brief One LineCurve dataset, split into consecutive stretches of the wave.
 struct SineWaveBatch {
@@ -31,8 +26,6 @@ struct SineWaveParameters {
     DatasetParameters dataset;
     /// \brief Share of the samples whose Y is NaN, spread over \c SineWaveGenerator::kGapCount runs.
     float gapFraction{0.0f};
-    /// \brief Whether prebuilt vertex caches accompany the points. Only a solid line without markers or effects takes one.
-    bool vertexCache{true};
 };
 
 /// \brief Generates a scrolling sine wave for one or more LineCurves.
@@ -57,13 +50,6 @@ public:
 
     /// \brief Fills \a batch with the wave described by \a parameters at \a timeSeconds.
     void generate(Batch& batch, const Parameters& parameters, double timeSeconds);
-
-private:
-    void updateVertexCaches(Batch& batch, const Parameters& parameters);
-
-    QAccelPlot::LineCurveLineRenderer lineRenderer_;
-    int vertexCachePointCount_{0};
-    int vertexCacheSeriesCount_{0};
 };
 
 } // namespace QAccelPlotExample

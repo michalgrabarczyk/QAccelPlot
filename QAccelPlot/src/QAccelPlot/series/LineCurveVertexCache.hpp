@@ -16,27 +16,24 @@ namespace QAccelPlot {
 /// \brief Owns a LineCurve's pre-built vertex bytes and the metadata required to use them safely.
 ///
 /// A cache is valid only for the vertex layout and point count recorded when it
-/// was installed or rebuilt. Invalidating a cache preserves its allocation for
-/// reuse; clearing it also releases the stored bytes.
+/// was last updated. A vertex depends only on its point index, so an update to a
+/// new point count keeps the cached points and writes only the added ones.
+/// Invalidating a cache preserves its allocation for reuse; clearing it also
+/// releases the stored bytes.
 class LineCurveVertexCache final {
 public:
     /// \brief Renderer geometry represented by the cached bytes.
     enum class Layout { None, Line, Points };
 
-    /// \brief Function that writes a complete cache into the supplied reusable byte buffer.
-    using Builder = std::function<void(std::vector<char>&)>;
+    /// \brief Function that writes the vertices of the points from \a firstPoint on into \a bytes, which is sized for all points.
+    using Writer = std::function<void(std::vector<char>& bytes, int firstPoint)>;
 
-    /// \brief Installs externally built cache \a bytes.
+    /// \brief Sizes the cache for \a pointCount points of \a bytesPerPoint bytes and writes the points it lacks with \a writer.
     ///
-    /// Returns \c true when the byte count matches \a expectedSize and the
-    /// supplied metadata describes a usable cache. On failure, the cache is cleared.
-    [[nodiscard]] bool install(std::vector<char>&& bytes, Layout layout, int pointCount, std::size_t expectedSize);
-
-    /// \brief Rebuilds the cache with \a builder while retaining reusable allocation capacity.
-    ///
-    /// The rebuilt cache is valid only when the builder produces bytes and the
-    /// supplied \a layout and \a pointCount are usable.
-    void rebuild(Layout layout, int pointCount, const Builder& builder);
+    /// A valid cache with the same \a layout and \a bytesPerPoint keeps its points, so \a writer writes only
+    /// the points past its previous point count, or none. Otherwise \a writer writes all points.
+    /// A \a layout of \c None, or a zero \a pointCount or \a bytesPerPoint, invalidates the cache.
+    void update(Layout layout, int pointCount, std::size_t bytesPerPoint, const Writer& writer);
 
     /// \brief Returns whether this cache can survive a data change with the requested layout.
     ///
@@ -70,6 +67,7 @@ private:
     bool valid_{false};
     Layout layout_{Layout::None};
     int pointCount_{0};
+    std::size_t bytesPerPoint_{0};
 };
 
 } // namespace QAccelPlot

@@ -16,6 +16,8 @@
 #include <QPointer>
 #include <QtTest/QtTest>
 
+#include <algorithm>
+#include <cstddef>
 #include <limits>
 #include <vector>
 
@@ -30,14 +32,11 @@ public:
 
 private slots:
     void hoverEnvironmentControlsAcceptance();
-    void compatibleLineCacheCanBeReused();
-    void incompatibleCacheCannotBeReused();
-    void emptyCacheClearsCachedState();
-    void invalidCacheIsRejected();
-    void invalidCachedDataIsRejected();
+    void cacheUpdateWritesOnlyAddedPoints();
+    void cacheUpdateRewritesChangedLayout();
+    void cacheIsReusableOnlyForItsLayoutAndCount();
+    void emptyCacheUpdateInvalidates();
     void rawUpdateHonorsTransition();
-    void cachedUpdatesHonorTransition();
-    void mismatchedVertexCacheIsIgnored();
     void destroyedTransitionClearsReference();
     void replacedTransitionDestructionDoesNotNotify();
     void stoppedTransitionBeforeFirstFrame_data();
@@ -87,12 +86,20 @@ public:
     using LineCurve::hoverLeaveEvent;
 };
 
-std::vector<char> makeLineCache(const std::vector<float>& data, const int pointCount)
-{
-    auto cache = std::vector<char>{};
-    LineCurveLineRenderer{}.buildVertexCache(data, pointCount, cache);
-    return cache;
-}
+// Records the first point of every write and fills the written points with \a mark.
+struct RecordingWriter {
+    std::size_t bytesPerPoint;
+    char mark;
+    std::vector<int> firstPoints;
+
+    LineCurveVertexCache::Writer writer()
+    {
+        return [this](std::vector<char>& bytes, const int firstPoint) {
+            firstPoints.push_back(firstPoint);
+            std::fill(bytes.begin() + static_cast<std::ptrdiff_t>(static_cast<std::size_t>(firstPoint) * bytesPerPoint), bytes.end(), mark);
+        };
+    }
+};
 
 } // namespace
 
@@ -117,75 +124,90 @@ void LineCurveDataTest::hoverEnvironmentControlsAcceptance()
     QVERIFY(!hoverDisabledCurve.acceptHoverEvents());
 }
 
-void LineCurveDataTest::compatibleLineCacheCanBeReused()
+void LineCurveDataTest::cacheUpdateWritesOnlyAddedPoints()
 {
-    auto data = makeData(4);
-    const auto expectedCache = makeLineCache(data, 4);
+    constexpr auto kBytesPerPoint = std::size_t{4};
     auto cache = LineCurveVertexCache{};
+    auto first = RecordingWriter{kBytesPerPoint, 'a', {}};
+    cache.update(LineCurveVertexCache::Layout::Line, 3, kBytesPerPoint, first.writer());
+    QCOMPARE(first.firstPoints, std::vector<int>{0});
+    QVERIFY(cache.bytes() == std::vector<char>(12, 'a'));
 
-    QVERIFY(cache.install(std::vector<char>(expectedCache), LineCurveVertexCache::Layout::Line, 4, expectedCache.size()));
-    QVERIFY(cache.isReusableForDataChange(LineCurveVertexCache::Layout::Line, 4));
-    QVERIFY(cache.bytes() == expectedCache);
+    auto grown = RecordingWriter{kBytesPerPoint, 'b', {}};
+    cache.update(LineCurveVertexCache::Layout::Line, 5, kBytesPerPoint, grown.writer());
+    QCOMPARE(grown.firstPoints, std::vector<int>{3});
+    auto expected = std::vector<char>(12, 'a');
+    expected.resize(20, 'b');
+    QVERIFY(cache.bytes() == expected);
+
+    auto same = RecordingWriter{kBytesPerPoint, 'c', {}};
+    cache.update(LineCurveVertexCache::Layout::Line, 5, kBytesPerPoint, same.writer());
+    QVERIFY(same.firstPoints.empty());
+
+    auto shrunk = RecordingWriter{kBytesPerPoint, 'd', {}};
+    cache.update(LineCurveVertexCache::Layout::Line, 2, kBytesPerPoint, shrunk.writer());
+    QVERIFY(shrunk.firstPoints.empty());
+    QVERIFY(cache.bytes() == std::vector<char>(8, 'a'));
+    QVERIFY(cache.valid());
+    QCOMPARE(cache.pointCount(), 2);
 }
 
-void LineCurveDataTest::incompatibleCacheCannotBeReused()
+void LineCurveDataTest::cacheUpdateRewritesChangedLayout()
 {
-    auto data = makeData(6);
-    const auto bytes = makeLineCache(data, 6);
     auto cache = LineCurveVertexCache{};
-    QVERIFY(cache.install(std::vector<char>(bytes), LineCurveVertexCache::Layout::Line, 6, bytes.size()));
+    auto line = RecordingWriter{4, 'a', {}};
+    cache.update(LineCurveVertexCache::Layout::Line, 3, 4, line.writer());
 
+    // A different vertex size, such as another step corner count, rewrites every point.
+    auto steps = RecordingWriter{8, 'b', {}};
+    cache.update(LineCurveVertexCache::Layout::Line, 4, 8, steps.writer());
+    QCOMPARE(steps.firstPoints, std::vector<int>{0});
+    QVERIFY(cache.bytes() == std::vector<char>(32, 'b'));
+
+    auto points = RecordingWriter{8, 'c', {}};
+    cache.update(LineCurveVertexCache::Layout::Points, 4, 8, points.writer());
+    QCOMPARE(points.firstPoints, std::vector<int>{0});
+    QVERIFY(cache.layout() == LineCurveVertexCache::Layout::Points);
+
+    cache.invalidate();
+    auto afterInvalidate = RecordingWriter{8, 'd', {}};
+    cache.update(LineCurveVertexCache::Layout::Points, 5, 8, afterInvalidate.writer());
+    QCOMPARE(afterInvalidate.firstPoints, std::vector<int>{0});
+}
+
+void LineCurveDataTest::cacheIsReusableOnlyForItsLayoutAndCount()
+{
+    auto cache = LineCurveVertexCache{};
+    auto writer = RecordingWriter{4, 'a', {}};
+    cache.update(LineCurveVertexCache::Layout::Line, 6, 4, writer.writer());
+
+    QVERIFY(cache.isReusableForDataChange(LineCurveVertexCache::Layout::Line, 6));
     QVERIFY(!cache.isReusableForDataChange(LineCurveVertexCache::Layout::Line, 3));
     QVERIFY(!cache.isReusableForDataChange(LineCurveVertexCache::Layout::Points, 6));
-
-    cache.rebuild(LineCurveVertexCache::Layout::Points, 3, [](std::vector<char>& rebuiltBytes) { rebuiltBytes.assign(12, 'p'); });
-    QVERIFY(cache.valid());
-    QVERIFY(cache.layout() == LineCurveVertexCache::Layout::Points);
-    QCOMPARE(cache.pointCount(), 3);
-    QCOMPARE(cache.bytes().size(), std::size_t{12});
+    QVERIFY(!cache.isReusableForDataChange(LineCurveVertexCache::Layout::None, 6));
 }
 
-void LineCurveDataTest::emptyCacheClearsCachedState()
+void LineCurveDataTest::emptyCacheUpdateInvalidates()
 {
-    auto data = makeData(4);
-    auto bytes = makeLineCache(data, 4);
-    const auto expectedSize = bytes.size();
     auto cache = LineCurveVertexCache{};
-    QVERIFY(cache.install(std::move(bytes), LineCurveVertexCache::Layout::Line, 4, expectedSize));
+    auto writer = RecordingWriter{4, 'a', {}};
+    cache.update(LineCurveVertexCache::Layout::Line, 4, 4, writer.writer());
     QVERIFY(cache.valid());
 
-    QVERIFY(!cache.install({}, LineCurveVertexCache::Layout::Line, 4, expectedSize));
-
+    cache.update(LineCurveVertexCache::Layout::Line, 0, 4, writer.writer());
     QVERIFY(!cache.valid());
+    QVERIFY(!cache.data());
     QVERIFY(cache.layout() == LineCurveVertexCache::Layout::None);
     QCOMPARE(cache.pointCount(), 0);
-    QVERIFY(cache.bytes().empty());
-}
+    QCOMPARE(writer.firstPoints, std::vector<int>{0});
 
-void LineCurveDataTest::invalidCacheIsRejected()
-{
-    auto cache = LineCurveVertexCache{};
-    auto bytes = std::vector<char>(7);
-
-    QVERIFY(!cache.install(std::move(bytes), LineCurveVertexCache::Layout::Line, 4, 8));
+    cache.update(LineCurveVertexCache::Layout::None, 4, 4, writer.writer());
     QVERIFY(!cache.valid());
+    cache.update(LineCurveVertexCache::Layout::Line, 4, 0, writer.writer());
+    QVERIFY(!cache.valid());
+
+    cache.clear();
     QVERIFY(cache.bytes().empty());
-}
-
-void LineCurveDataTest::invalidCachedDataIsRejected()
-{
-    auto curve = LineCurve{};
-    auto dataSpy = QSignalSpy{&curve, &PlotSeries::dataRevisionChanged};
-
-    curve.setDataF(makeData(2), 2);
-    QCOMPARE(dataSpy.count(), 1);
-
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("LineCurve received .* floats for 3 points.*"));
-    curve.setDataFWithCache(makeData(2), 3, {});
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("LineCurve received a null data pointer.*"));
-    curve.setDataFWithCache(nullptr, 3, {});
-
-    QCOMPARE(dataSpy.count(), 1);
 }
 
 void LineCurveDataTest::rawUpdateHonorsTransition()
@@ -203,38 +225,6 @@ void LineCurveDataTest::rawUpdateHonorsTransition()
     curve.setDataF(second.data(), 3);
 
     QVERIFY(transition.running());
-}
-
-void LineCurveDataTest::cachedUpdatesHonorTransition()
-{
-    auto curve = LineCurve{};
-    auto transition = MorphTransition{&curve};
-    curve.setTransition(&transition);
-
-    curve.setDataFWithCache(makeData(2), 2, {});
-    QVERIFY(transition.running());
-
-    transition.cancel();
-    auto raw = makeData(3, 8.0f);
-    curve.setDataFWithCache(raw.data(), 3, {});
-    QVERIFY(transition.running());
-}
-
-void LineCurveDataTest::mismatchedVertexCacheIsIgnored()
-{
-    auto xAxis = Axis{};
-    auto curve = LineCurve{};
-    curve.setXAxis(&xAxis);
-
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("Ignoring vertex cache with 3 bytes; expected \\d+"));
-    curve.setDataFWithCache(makeData(4), 4, std::vector<char>(3));
-    QCOMPARE(xAxis.dataMax(), 3.0);
-    auto raw = makeData(5);
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("Ignoring vertex cache with 5 bytes; expected \\d+"));
-    curve.setDataFWithCache(raw.data(), 5, std::vector<char>(5));
-
-    // The data is accepted without the cache.
-    QCOMPARE(xAxis.dataMax(), 4.0);
 }
 
 void LineCurveDataTest::destroyedTransitionClearsReference()

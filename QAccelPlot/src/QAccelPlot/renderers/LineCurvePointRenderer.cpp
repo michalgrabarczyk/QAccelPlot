@@ -73,9 +73,13 @@ void updatePointMaterial(PointMaterial& material, const PointCurveRenderParams& 
 
 } // namespace
 
-void LineCurvePointRenderer::buildVertexCache([[maybe_unused]] const std::vector<float>& data, const int pointCount, std::vector<char>& cache) const
+void LineCurvePointRenderer::writeVertexCache(std::vector<char>& cache, const int firstPoint, const int pointCount)
 {
-    cache.assign(static_cast<std::size_t>(std::max(pointCount, 0)) * kVerticesPerPoint * sizeof(PointVertex), 0);
+    const auto begin = static_cast<std::size_t>(std::max(firstPoint, 0)) * kVertexCacheBytesPerPoint;
+    const auto end = static_cast<std::size_t>(std::max(pointCount, 0)) * kVertexCacheBytesPerPoint;
+    if (begin < end) {
+        std::fill(cache.begin() + static_cast<std::ptrdiff_t>(begin), cache.begin() + static_cast<std::ptrdiff_t>(end), char{0});
+    }
 }
 
 bool LineCurvePointRenderer::contains(const QPointF& point, const CurveHitTestParams& params) const

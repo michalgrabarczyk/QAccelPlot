@@ -233,15 +233,16 @@ QSGNode* ensureLineRootNode(QSGNode* oldNode, const int strokeVertexCount, const
 
 } // namespace
 
-void LineCurveLineRenderer::buildVertexCache(
-    [[maybe_unused]] const std::vector<float>& data, const int pointCount, std::vector<char>& cache, const StepMode stepMode) const
+std::size_t LineCurveLineRenderer::vertexCacheBytesPerPoint(const StepMode stepMode)
 {
-    const auto cornerCount = Internal::stepCornerCount(stepMode);
-    const auto byteSize = static_cast<std::size_t>(pointCount) * static_cast<std::size_t>(cornerCount) * 2 * sizeof(LineVertex);
-    cache.resize(byteSize);
+    return static_cast<std::size_t>(Internal::stepCornerCount(stepMode)) * 2 * sizeof(LineVertex);
+}
+
+void LineCurveLineRenderer::writeVertexCache(std::vector<char>& cache, const int firstPoint, const int pointCount, const StepMode stepMode)
+{
     // Neutral RGBA: the shader uses the material color uniform (useVertexColor == 0) for
     // non-gradient rendering, so per-vertex color is irrelevant in that path.
-    LineStroke::writeVertices(reinterpret_cast<LineVertex*>(cache.data()), pointCount, cornerCount, Qt::white, {});
+    LineStroke::writeVertices(reinterpret_cast<LineVertex*>(cache.data()), pointCount, Internal::stepCornerCount(stepMode), Qt::white, {}, firstPoint);
 }
 
 bool LineCurveLineRenderer::contains(const QPointF& point, const CurveHitTestParams& params) const

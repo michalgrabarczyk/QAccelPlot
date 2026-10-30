@@ -368,28 +368,6 @@ void LineCurve::setData(const std::vector<double>& xs, const std::vector<double>
     applyNewData(std::move(newData), newCount);
 }
 
-void LineCurve::setDataFWithCache(std::vector<float>&& data, const int pointCount, std::vector<char>&& vertexCache)
-{
-    if (!validateDataSize(data.size(), pointCount, true)) {
-        return;
-    }
-    if (!transition_->enabled()) {
-        pendingVertexCache_ = std::move(vertexCache);
-    }
-    applyNewData(std::move(data), pointCount);
-}
-
-void LineCurve::setDataFWithCache(const float* xyInterleaved, const int pointCount, std::vector<char>&& vertexCache)
-{
-    if (!validateRawDataArguments(xyInterleaved, pointCount)) {
-        return;
-    }
-    if (!transition_->enabled()) {
-        pendingVertexCache_ = std::move(vertexCache);
-    }
-    applyFloatArray(xyInterleaved, pointCount);
-}
-
 void LineCurve::clearData()
 {
     const auto previousCount = dataPoints().count();
@@ -659,11 +637,6 @@ void LineCurve::onDataPointsChanged(const DataChange change, [[maybe_unused]] co
         return;
     }
     dataChanged_ = true;
-    if (pendingVertexCache_) {
-        chunksValid_ = false;
-        installVertexCache(*std::exchange(pendingVertexCache_, std::nullopt));
-        return;
-    }
     refreshVertexCacheForDataChange();
     chunksValid_ = false;
     // A curve that accepts hover pre-builds its chunk AABBs, so that hover hit-tests never block
@@ -873,64 +846,26 @@ void LineCurve::refreshVertexCacheForDataChange()
         return;
     }
 
-    rebuildVertexCache();
+    updateVertexCache();
 }
 
-std::size_t LineCurve::expectedVertexCacheSize() const
-{
-    if (renderPointCount() <= 0) {
-        return 0;
-    }
-    const auto hasLine = lineStyle_ && lineStyle_->showLine();
-    const auto hasPoints = marker_->shape() != MarkerShape::None;
-    const auto isDash = hasLine && lineStyle_->dashParameters().enabled;
-    if (hasGradientEffect() || isDash || (hasLine && hasPoints)) {
-        return 0;
-    }
-    if (hasLine && renderPointCount() >= 2) {
-        return static_cast<std::size_t>(renderPointCount()) * static_cast<std::size_t>(Internal::stepCornerCount(stepMode_)) * 2 * sizeof(LineVertex);
-    }
-    if (hasPoints) {
-        return static_cast<std::size_t>(renderPointCount()) * static_cast<std::size_t>(kMarkerVertexBytesPerPoint);
-    }
-    return 0;
-}
-
-void LineCurve::installVertexCache(std::vector<char>&& vertexCache)
-{
-    if (renderPointCount() != dataPoints().count()) {
-        // Externally built caches describe the uncompacted data points. Connect mode
-        // removed invalid data points, so the cache is rebuilt for the compacted data.
-        vertexCache_.invalidate();
-        refreshVertexCacheForDataChange();
-        return;
-    }
-
-    const auto expectedSize = expectedVertexCacheSize();
-    const auto actualSize = vertexCache.size();
-    if (!vertexCache.empty() && actualSize != expectedSize) {
-        qCWarning(lcQAccelPlot) << "Ignoring vertex cache with" << actualSize << "bytes; expected" << expectedSize;
-    }
-
-    const auto layout = (lineStyle_ && lineStyle_->showLine()) ? LineCurveVertexCache::Layout::Line : LineCurveVertexCache::Layout::Points;
-    (void)vertexCache_.install(std::move(vertexCache), layout, renderPointCount(), expectedSize);
-    vertexCacheRevision_ = dataPoints().renderRevision();
-}
-
-void LineCurve::rebuildVertexCache()
+void LineCurve::updateVertexCache()
 {
     if (hasGradientEffect() || transition_->active() || renderPointCount() == 0) {
         vertexCache_.invalidate();
         return;
     }
+    const auto pointCount = renderPointCount();
     const auto isDash = lineStyle_ && lineStyle_->showLine() && lineStyle_->dashParameters().enabled;
     // A cache of more points than the curve draws would not be used.
-    if (lineStyle_ && lineStyle_->showLine() && !isDash && renderPointCount() >= 2 && renderPointCount() <= kMaxLinePoints) {
-        vertexCache_.rebuild(LineCurveVertexCache::Layout::Line, renderPointCount(),
-            [this](std::vector<char>& bytes) { lineRenderer_.buildVertexCache(renderData(), renderPointCount(), bytes, stepMode_); });
-    } else if (marker_->shape() != MarkerShape::None && renderPointCount() >= 1 && renderPointCount() <= kMaxMarkerPoints) {
-        vertexCache_.rebuild(LineCurveVertexCache::Layout::Points, renderPointCount(),
-            [this](std::vector<char>& bytes) { pointRenderer_.buildVertexCache(renderData(), renderPointCount(), bytes); });
+    if (lineStyle_ && lineStyle_->showLine() && !isDash && pointCount >= 2 && pointCount <= kMaxLinePoints) {
+        const auto stepMode = stepMode_;
+        vertexCache_.update(LineCurveVertexCache::Layout::Line, pointCount, LineCurveLineRenderer::vertexCacheBytesPerPoint(stepMode),
+            [pointCount, stepMode](
+                std::vector<char>& bytes, const int firstPoint) { LineCurveLineRenderer::writeVertexCache(bytes, firstPoint, pointCount, stepMode); });
+    } else if (marker_->shape() != MarkerShape::None && pointCount >= 1 && pointCount <= kMaxMarkerPoints) {
+        vertexCache_.update(LineCurveVertexCache::Layout::Points, pointCount, LineCurvePointRenderer::kVertexCacheBytesPerPoint,
+            [pointCount](std::vector<char>& bytes, const int firstPoint) { LineCurvePointRenderer::writeVertexCache(bytes, firstPoint, pointCount); });
     } else {
         vertexCache_.invalidate();
     }
