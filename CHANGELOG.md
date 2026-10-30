@@ -106,6 +106,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   uploads per frame instead.
 - The `benchmarks/` directory and the `QACCELPLOT_BUILD_BENCHMARKS` option.
   Measure frame rates with the Performance Lab.
+- `RectVertexCache` from the public headers. It was an internal helper of
+  `BarSeries` and `RectangleSeries`.
 
 ### Fixed
 

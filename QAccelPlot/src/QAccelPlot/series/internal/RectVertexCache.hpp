@@ -14,7 +14,7 @@
 
 class QSGGeometry;
 
-namespace QAccelPlot {
+namespace QAccelPlot::Internal {
 
 /// \brief Vertices of a series that draws each rectangle as a quad positioned from a data texture.
 ///
@@ -62,4 +62,4 @@ private:
     bool valid_{false};
 };
 
-} // namespace QAccelPlot
+} // namespace QAccelPlot::Internal

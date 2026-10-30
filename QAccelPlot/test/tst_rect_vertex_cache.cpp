@@ -6,7 +6,7 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #include "QAccelPlot/materials/DataTextureMaterial.hpp"
-#include "QAccelPlot/series/RectVertexCache.hpp"
+#include "QAccelPlot/series/internal/RectVertexCache.hpp"
 
 #include <QSGGeometry>
 #include <QtTest/QtTest>
@@ -15,6 +15,8 @@
 #include <memory>
 
 namespace QAccelPlot {
+
+using Internal::RectVertexCache;
 
 class RectVertexCacheTest : public QObject {
     Q_OBJECT

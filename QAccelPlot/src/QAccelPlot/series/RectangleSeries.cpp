@@ -14,6 +14,7 @@
 #include "QAccelPlot/materials/RectMaterial.hpp"
 #include "QAccelPlot/series/internal/HoverIndexBudget.hpp"
 #include "QAccelPlot/series/internal/RectGeometry.hpp"
+#include "QAccelPlot/series/internal/RectVertexCache.hpp"
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
 
 #include <QSGGeometry>
@@ -60,6 +61,7 @@ DataPointStore::Layout rectangleLayout()
 RectangleSeries::RectangleSeries(QQuickItem* parent)
     : PlotSeries(rectangleLayout(), DataPointWording{"data rectangle", "rectangles", "coordinates", "coordinates"}, parent)
     , color_(defaultRectangleColor())
+    , vertexCache_(std::make_unique<Internal::RectVertexCache>())
     , spatialGridBudget_(std::make_unique<Internal::HoverIndexBudget>(kAssumedIndexCostPerRectangle))
 {
     setFlag(ItemHasContents, true);
@@ -85,7 +87,7 @@ void RectangleSeries::setColor(const QColor& color)
     }
     color_ = color;
     if (hasCategories()) {
-        vertexCache_.invalidate();
+        vertexCache_->invalidate();
     }
     emit colorChanged();
     update();
@@ -103,7 +105,7 @@ void RectangleSeries::setCategoryColors(const QList<QColor>& colors)
     }
     categoryColors_ = colors;
     if (hasCategories()) {
-        vertexCache_.invalidate();
+        vertexCache_->invalidate();
     }
     emit categoryColorsChanged();
     update();
@@ -250,7 +252,7 @@ void RectangleSeries::setCategories(const QList<int>& categories)
         return;
     }
     dataPoints().setCategories(std::vector<int>(categories.cbegin(), categories.cend()));
-    vertexCache_.invalidate();
+    vertexCache_->invalidate();
     inspectionDataChanged();
     update();
 }
@@ -344,7 +346,7 @@ void RectangleSeries::onDataPointsChanged([[maybe_unused]] const DataChange chan
 {
     // Vertex colors depend on the categories, but not on the coordinates.
     if (count() != previousCount || vertexCacheHasCategories_ || hasCategories()) {
-        vertexCache_.invalidate();
+        vertexCache_->invalidate();
     }
     spatialGridValid_ = false;
     spatialGridBudget_->reset();
@@ -397,7 +399,7 @@ void RectangleSeries::setHoveredIndex(const int index)
 QSGNode* RectangleSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
 {
     auto* window = this->window();
-    const auto capacity = Internal::recordCapacity(window, kValuesPerRectangle, RectVertexCache::kBytesPerRect);
+    const auto capacity = Internal::recordCapacity(window, kValuesPerRectangle, Internal::RectVertexCache::kBytesPerRect);
     if (capacity != renderCapacity_) {
         lastHitTest_.reset();
     }
@@ -432,18 +434,18 @@ QSGNode* RectangleSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*
     RectMaterial* material = nullptr;
     const auto nodeRecreated = !node;
     const auto drawnCount = std::min(count(), capacity);
-    if (vertexCache_.vertexCount() != drawnCount * RectVertexCache::kVerticesPerRect) {
-        vertexCache_.invalidate();
+    if (vertexCache_->vertexCount() != drawnCount * Internal::RectVertexCache::kVerticesPerRect) {
+        vertexCache_->invalidate();
     }
 
     if (!node) {
-        if (!vertexCache_.valid()) {
+        if (!vertexCache_->valid()) {
             buildVertexCache(drawnCount);
         }
 
         auto* geometry = new QSGGeometry(DataTextureMaterial::attributeSet(), 0);
         geometry->setDrawingMode(QSGGeometry::DrawTriangles);
-        vertexCache_.copyTo(*geometry);
+        vertexCache_->copyTo(*geometry);
 
         material = new RectMaterial;
         node = new QSGGeometryNode;
@@ -456,9 +458,9 @@ QSGNode* RectangleSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*
         material = static_cast<RectMaterial*>(node->material());
 
         // Vertices hold only ids and category colors, so coordinate changes don't rebuild them.
-        if (!vertexCache_.valid()) {
+        if (!vertexCache_->valid()) {
             buildVertexCache(drawnCount);
-            vertexCache_.copyTo(*node->geometry());
+            vertexCache_->copyTo(*node->geometry());
             node->markDirty(QSGNode::DirtyGeometry);
         }
     }
@@ -575,11 +577,11 @@ int RectangleSeries::topmostRectangleAt(const QPointF& position) const
 
 void RectangleSeries::buildVertexCache(const int rectCount)
 {
-    auto colorAt = RectVertexCache::ColorFunction{};
+    auto colorAt = Internal::RectVertexCache::ColorFunction{};
     if (hasCategories()) {
         colorAt = [this](const int index) { return rectangleColor(index); };
     }
-    vertexCache_.rebuild(rectCount, colorAt);
+    vertexCache_->rebuild(rectCount, colorAt);
     vertexCacheHasCategories_ = hasCategories();
 }
 
