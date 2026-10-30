@@ -17,7 +17,9 @@
 
 namespace QAccelPlot {
 
+namespace Internal {
 class OverlayChildren;
+} // namespace Internal
 
 /// \brief Inspects the visible XY series and heatmaps of a plot at a cursor and publishes one model row per series.
 ///
@@ -284,7 +286,7 @@ private:
     QString cursorYText_;
     int validCount_{0};
     InspectionRowModel* model_;
-    std::unique_ptr<OverlayChildren> children_;
+    std::unique_ptr<Internal::OverlayChildren> children_;
 };
 
 } // namespace QAccelPlot

@@ -289,7 +289,7 @@ protected:
     /// \brief Refreshes the data queries after record validity changed without a data change, such as an axis scale switch.
     void invalidateInspection();
     /// \brief Returns a view of the XY records that data point queries search. The default has none.
-    virtual InspectionSource inspectionSource() const;
+    virtual Internal::InspectionSource inspectionSource() const;
     /// \brief Returns false while the records are ambiguous, such as during a data transition. Default: true.
     virtual bool inspectionAvailable() const;
     /// \brief Returns whether \c inspectionRecord() and \c inspectionRecordAt() answer for this series. Default: false.

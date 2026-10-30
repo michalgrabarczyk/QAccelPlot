@@ -516,7 +516,7 @@ void PlotSeries::invalidateInspection()
     }
 }
 
-InspectionSource PlotSeries::inspectionSource() const
+Internal::InspectionSource PlotSeries::inspectionSource() const
 {
     return {};
 }

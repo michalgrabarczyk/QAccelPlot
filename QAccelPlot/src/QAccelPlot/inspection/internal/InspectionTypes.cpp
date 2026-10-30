@@ -13,7 +13,7 @@
 #include <cmath>
 #include <cstddef>
 
-namespace QAccelPlot {
+namespace QAccelPlot::Internal {
 
 bool InspectionSource::supported() const noexcept
 {
@@ -131,4 +131,4 @@ double distanceToInterval(const double position, const double a, const double b)
     return std::clamp(position, std::min(a, b), std::max(a, b)) - position;
 }
 
-} // namespace QAccelPlot
+} // namespace QAccelPlot::Internal

@@ -12,7 +12,7 @@
 
 #include <algorithm>
 
-namespace QAccelPlot {
+namespace QAccelPlot::Internal {
 namespace {
 
 constexpr auto kPollIntervalMs = int{8};
@@ -145,4 +145,4 @@ void InspectionCache::launch()
     timer_.start(kPollIntervalMs);
 }
 
-} // namespace QAccelPlot
+} // namespace QAccelPlot::Internal

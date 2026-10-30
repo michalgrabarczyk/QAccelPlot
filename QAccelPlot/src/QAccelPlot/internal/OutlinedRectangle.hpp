@@ -10,7 +10,7 @@
 #include <QColor>
 #include <QQuickItem>
 
-namespace QAccelPlot {
+namespace QAccelPlot::Internal {
 
 /// \brief Item that fills its bounds and outlines them inside its edges.
 class OutlinedRectangle : public QQuickItem {
@@ -29,4 +29,4 @@ private:
     qreal borderWidth_{0.0};
 };
 
-} // namespace QAccelPlot
+} // namespace QAccelPlot::Internal

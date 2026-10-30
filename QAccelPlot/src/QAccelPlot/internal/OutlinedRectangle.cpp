@@ -14,7 +14,7 @@
 #include <algorithm>
 #include <array>
 
-namespace QAccelPlot {
+namespace QAccelPlot::Internal {
 
 OutlinedRectangle::OutlinedRectangle(QQuickItem* parent)
     : QQuickItem(parent)
@@ -56,4 +56,4 @@ QSGNode* OutlinedRectangle::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeDat
     return root;
 }
 
-} // namespace QAccelPlot
+} // namespace QAccelPlot::Internal

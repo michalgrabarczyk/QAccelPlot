@@ -12,7 +12,7 @@
 #include <cmath>
 #include <numeric>
 
-namespace QAccelPlot {
+namespace QAccelPlot::Internal {
 namespace {
 
 constexpr auto kLeafSize = int{32};
@@ -296,4 +296,4 @@ double InspectionIndex::mappedY(const double value) const
     return logY_ ? std::log10(value) : value;
 }
 
-} // namespace QAccelPlot
+} // namespace QAccelPlot::Internal

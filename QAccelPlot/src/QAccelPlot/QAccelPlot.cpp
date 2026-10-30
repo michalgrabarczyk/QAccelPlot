@@ -84,7 +84,7 @@ QAccelPlot::QAccelPlot(QQuickItem* parent)
     grid_ = new Grid(this);
     border_ = new Border(Qt::transparent, 0.0, this);
     rectangleZoom_ = new PlotRectangleZoom(this);
-    rectangleZoomOverlay_ = new RectangleZoomOverlay(this, rectangleZoom_);
+    rectangleZoomOverlay_ = new Internal::RectangleZoomOverlay(this, rectangleZoom_);
     overlay_ = new QQuickItem(this);
     overlay_->setZ(kOverlayZ);
     pointer_ = new Internal::PointerTracker(this);

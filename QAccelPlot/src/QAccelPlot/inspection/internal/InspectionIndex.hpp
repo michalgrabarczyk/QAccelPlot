@@ -14,7 +14,7 @@
 #include <atomic>
 #include <vector>
 
-namespace QAccelPlot {
+namespace QAccelPlot::Internal {
 
 /// \brief Immutable k-d tree over the valid data points of a series, with their order along each axis.
 class InspectionIndex {
@@ -66,4 +66,4 @@ private:
     std::vector<Node> nodes_;
 };
 
-} // namespace QAccelPlot
+} // namespace QAccelPlot::Internal

@@ -93,7 +93,7 @@ PlotInspector::PlotInspector(QObject* parent)
     , pinnedX_(kNaN)
     , pinnedY_(kNaN)
     , model_(new InspectionRowModel(this))
-    , children_(std::make_unique<OverlayChildren>(*this, QVariant::fromValue(this), "inspector"))
+    , children_(std::make_unique<Internal::OverlayChildren>(*this, QVariant::fromValue(this), "inspector"))
 {
 }
 
@@ -421,7 +421,7 @@ void PlotInspector::stepCursor(const int steps)
     }
     const auto direction = steps > 0 ? 1 : -1;
     for (const auto& row : model_->rows()) {
-        if (!row.series || !row.dataPoint.valid() || row.series->inspection()->matching() != InspectionMatching::Nearest) {
+        if (!row.series || !row.dataPoint.valid() || row.series->inspection()->matching() != Internal::InspectionMatching::Nearest) {
             continue;
         }
         auto* inspection = row.series->inspection();
@@ -522,7 +522,7 @@ void PlotInspector::connectSeries(PlotSeries* series)
 bool PlotInspector::inspects(PlotSeries* series) const
 {
     return series->isVisible() && series->opacity() > 0 && (included_.isEmpty() || included_.contains(series)) && !excluded_.contains(series)
-        && series->inspection()->matching() != InspectionMatching::None;
+        && series->inspection()->matching() != Internal::InspectionMatching::None;
 }
 
 QList<PlotSeries*> PlotInspector::inspectedSeries() const
@@ -649,7 +649,7 @@ QList<PlotInspector::Query> PlotInspector::queryRows(const QPointF& cursor) cons
 InspectionDataPoint PlotInspector::matchDataPoint(PlotSeries& series, const Mode mode, const QPointF& cursor, const QPointF& local) const
 {
     auto& inspection = *series.inspection();
-    if (inspection.matching() == InspectionMatching::Nearest) {
+    if (inspection.matching() == Internal::InspectionMatching::Nearest) {
         return mode == NearestXY ? inspection.nearest(local, radius_) : dataPointAlong(inspection, mode, local);
     }
     if (std::isfinite(cursor.x()) && std::isfinite(cursor.y())) {
@@ -738,7 +738,7 @@ QPointF PlotInspector::snappedPosition(const QList<Query>& queries, const QPoint
         return cursor;
     }
     // Only the coordinates the row was matched by are snapped; a cell is matched by both.
-    if (closest->series->inspection()->matching() == InspectionMatching::Containing) {
+    if (closest->series->inspection()->matching() == Internal::InspectionMatching::Containing) {
         return closest->pixelPosition;
     }
     const auto mode = effectiveMode(cursor);

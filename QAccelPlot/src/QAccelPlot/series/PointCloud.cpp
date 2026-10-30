@@ -332,10 +332,10 @@ bool PointCloud::contains(const QPointF& point) const
     return boundingRect().contains(point) && pointIndexAt(point) >= 0;
 }
 
-InspectionSource PointCloud::inspectionSource() const
+Internal::InspectionSource PointCloud::inspectionSource() const
 {
     const auto points = dataPoints().view();
-    auto source = InspectionSource{};
+    auto source = Internal::InspectionSource{};
     source.count = points.count;
     source.logX = logScaleX();
     source.logY = logScaleY();

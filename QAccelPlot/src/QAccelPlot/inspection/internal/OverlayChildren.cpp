@@ -9,7 +9,7 @@
 
 #include <utility>
 
-namespace QAccelPlot {
+namespace QAccelPlot::Internal {
 
 OverlayChildren::OverlayChildren(QObject& owner, QVariant tool, const char* toolProperty)
     : owner_(owner)
@@ -74,4 +74,4 @@ void OverlayChildren::restack()
     }
 }
 
-} // namespace QAccelPlot
+} // namespace QAccelPlot::Internal

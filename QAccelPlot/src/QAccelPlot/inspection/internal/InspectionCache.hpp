@@ -14,7 +14,7 @@
 
 #include <memory>
 
-namespace QAccelPlot {
+namespace QAccelPlot::Internal {
 
 /// \brief Builds an \c InspectionIndex on a worker thread from a snapshot of a series' records.
 class InspectionCache : public QObject {
@@ -58,4 +58,4 @@ private:
     std::unique_ptr<InspectionIndex> index_;
 };
 
-} // namespace QAccelPlot
+} // namespace QAccelPlot::Internal

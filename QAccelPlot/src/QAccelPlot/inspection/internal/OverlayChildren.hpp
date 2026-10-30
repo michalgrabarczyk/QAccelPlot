@@ -13,7 +13,7 @@
 #include <QQuickItem>
 #include <QVariant>
 
-namespace QAccelPlot {
+namespace QAccelPlot::Internal {
 
 /// \brief Objects declared inside an inspection tool in QML.
 ///
@@ -42,4 +42,4 @@ private:
     QList<QPointer<QObject>> objects_;
 };
 
-} // namespace QAccelPlot
+} // namespace QAccelPlot::Internal

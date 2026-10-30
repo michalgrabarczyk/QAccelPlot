@@ -12,7 +12,7 @@
 #include <algorithm>
 #include <cmath>
 
-namespace QAccelPlot {
+namespace QAccelPlot::Internal {
 namespace {
 
 constexpr auto kBlockSize = int{512};
@@ -370,4 +370,4 @@ void collect(const InspectionSource& source, const InspectionBounds& bounds, int
 
 } // namespace InspectionScan
 
-} // namespace QAccelPlot
+} // namespace QAccelPlot::Internal
