@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2026-10-30 11:46:24</td>
+      <td>2026-10-30 12:18:18</td>
     </tr>
   </table>
 </div>
@@ -357,7 +357,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">68</td>
-      <td class="src coveredLine"><span class="n">GrabSize</span><span class="w"> </span><span class="nf">grabSizeFor</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">QSize</span><span class="o">&amp;</span><span class="w"> </span><span class="n">pixels</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">devicePixelRatio</span><span class="p">)</span></td>
+      <td class="src coveredLine"><span class="n">GrabSize</span><span class="w"> </span><span class="nf">grabSizeFor</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">QSize</span><span class="o">&amp;</span><span class="w"> </span><span class="n">pixels</span><span class="p">,</span><span class="w"> </span><span class="p">[[</span><span class="na">maybe_unused</span><span class="p">]]</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">devicePixelRatio</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l39" href="#l39">39</a></td>
@@ -378,24 +378,17 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="w">    </span><span class="n">Q_UNUSED</span><span class="p">(</span><span class="n">devicePixelRatio</span><span class="p">)</span></td>
+      <td class="src "><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="n">pixels</span><span class="p">,</span><span class="w"> </span><span class="n">pixels</span><span class="p">};</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l42" href="#l42">42</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="n">pixels</span><span class="p">,</span><span class="w"> </span><span class="n">pixels</span><span class="p">};</span></td>
-    </tr>
-    <tr class="source-line">
-      <td class="lineno"><a id="l43" href="#l43">43</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount "></td>
       <td class="src "><span class="cp">#else</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l44" href="#l44">44</a></td>
+      <td class="lineno"><a id="l43" href="#l43">43</a></td>
       <td class="linebranch">
         <details class="linebranchDetails">
           <summary class="linebranchSummary">2/4</summary>
@@ -411,42 +404,42 @@
       <td class="src partialCoveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">QSize</span><span class="p">(</span><span class="n">targetLength</span><span class="p">(</span><span class="n">pixels</span><span class="p">.</span><span class="n">width</span><span class="p">(),</span><span class="w"> </span><span class="n">devicePixelRatio</span><span class="p">),</span><span class="w"> </span><span class="n">targetLength</span><span class="p">(</span><span class="n">pixels</span><span class="p">.</span><span class="n">height</span><span class="p">(),</span><span class="w"> </span><span class="n">devicePixelRatio</span><span class="p">));</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l45" href="#l45">45</a></td>
+      <td class="lineno"><a id="l44" href="#l44">44</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">136</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="n">QSize</span><span class="p">(</span><span class="n">renderedLength</span><span class="p">(</span><span class="n">target</span><span class="p">.</span><span class="n">width</span><span class="p">(),</span><span class="w"> </span><span class="n">devicePixelRatio</span><span class="p">),</span><span class="w"> </span><span class="n">renderedLength</span><span class="p">(</span><span class="n">target</span><span class="p">.</span><span class="n">height</span><span class="p">(),</span><span class="w"> </span><span class="n">devicePixelRatio</span><span class="p">))};</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l46" href="#l46">46</a></td>
+      <td class="lineno"><a id="l45" href="#l45">45</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="cp">#endif</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l47" href="#l47">47</a></td>
+      <td class="lineno"><a id="l46" href="#l46">46</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="p">}</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l48" href="#l48">48</a></td>
+      <td class="lineno"><a id="l47" href="#l47">47</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l49" href="#l49">49</a></td>
+      <td class="lineno"><a id="l48" href="#l48">48</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="p">}</span><span class="w"> </span><span class="c1">// namespace QAccelPlot::Internal</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l50" href="#l50">50</a></td>
+      <td class="lineno"><a id="l49" href="#l49">49</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
