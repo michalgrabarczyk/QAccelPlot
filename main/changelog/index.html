@@ -1974,7 +1974,8 @@
   animated by <code>MorphTransition</code> and <code>DrawTransition</code>. Includes an Error Bars
   example.</li>
 <li><code>PlotSeries.hoverEnabled</code> turns hover off for one series and leaves it to the
-  series beneath.</li>
+  series beneath. <code>hovered</code> moved to <code>PlotSeries</code>, so <code>PointCloud</code>,
+  <code>BarSeries</code>, <code>RectangleSeries</code>, and <code>ErrorBarSeries</code> report it too.</li>
 <li><code>PlotSeries.count</code> on every series, including <code>LineCurve</code> (points) and
   <code>HeatmapSeries</code> (cells, <code>columns</code> × <code>rows</code>).</li>
 <li>Step lines via <code>LineCurve.stepMode</code> (<code>Before</code>, <code>After</code>, or <code>Center</code>): the
@@ -2038,6 +2039,8 @@
 <ul>
 <li><code>LineCurve</code>, <code>BarSeries</code>, <code>RectangleSeries</code>, and <code>BandSeries</code> no longer hover
   records beyond their GPU capacity, which are not drawn.</li>
+<li>Changing <code>PointCloud.hoverRadius</code> or <code>ErrorBarSeries.hoverRadius</code> updates
+  <code>hoveredIndex</code> without waiting for the mouse to move.</li>
 <li><code>Colormap.stops</code> reads bound <code>GradientStop</code>s after their bindings are
   evaluated, and follows later changes to stops declared in the list.</li>
 <li>Panning and zooming no longer re-upload every series' vertex data each

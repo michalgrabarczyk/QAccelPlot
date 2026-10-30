@@ -83,7 +83,7 @@
         <read>hoverRadius</read>
         <write>setHoverRadius</write>
         <briefdescription>
-<para>Pick radius in pixels used for hover detection. Default: 6. </para>
+<para>Pick distance in pixels from a point&apos;s center; 0 disables hover. Default: 6. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -507,7 +507,7 @@
         <name>hoverRadius</name>
         <qualifiedname>QAccelPlot::PointCloud::hoverRadius</qualifiedname>
         <briefdescription>
-<para>Returns the hover pick radius in pixels. </para>
+<para>Returns the hover pick distance in pixels. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -526,7 +526,7 @@
           <declname>radius</declname>
         </param>
         <briefdescription>
-<para>Sets the hover pick radius to <emphasis>radius</emphasis> pixels. Negative values are clamped to 0. </para>
+<para>Sets the hover pick distance to <emphasis>radius</emphasis> pixels. Negative values are clamped to 0. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -1703,6 +1703,9 @@
       <member refid="classQAccelPlot_1_1PointCloud_1ae69297fbaf3cb71d681241abf377de1c" prot="private" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>finishValueChange</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1a94a62a9ebc787f1d8b3fa1c78e95a669" prot="private" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>frameBuffer_</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1a08ede2666d5ef51c06995bb9eadc20a5" prot="private" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>hasValues</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a2d17eca751f181d61dab1ad6ab95936c" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>hovered</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a1edf0373b587b3f3373048e4d0b707ed" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>hovered</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ac9f85caffff66a6a9afc05fbb79ca321" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>hoveredChanged</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1af34bcbc6a6bbb24fb56116ccbdeeb9be" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>hoveredIndex</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1a44b5e55fc5d478c652dbc4979d62d163" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>hoveredIndex</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1ae675afc6f71e938d1b857f62b9705d0b" prot="private" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>hoveredIndex_</name></member>
@@ -1783,6 +1786,7 @@
       <member refid="classQAccelPlot_1_1PointCloud_1a1180d75ce402fbf92fd7d95a4d0acda4" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>setDataF</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1ab0d977683b1b06807842ade3c6011a3a" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>setDataF</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1a795dc3374e83da98b6a471bb55f51fbd" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>setDataF</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1adb4f416b8f3104004eb4611b4d0b7f85" prot="protected" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>setHovered</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1a92742d9da9e925e2dc7394dc39356db9" prot="private" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>setHoveredIndex</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a085c9270fc300894598ebe442e2d019c" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>setHoverEnabled</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1aa5297e28f99a3278cac34ea8babead06" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>setHoverRadius</name></member>

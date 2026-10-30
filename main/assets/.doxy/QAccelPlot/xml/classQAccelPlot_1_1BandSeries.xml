@@ -40,22 +40,6 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="63" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="63" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="classQAccelPlot_1_1BandSeries_1a76ccf21e898905ee80a38e3d56b5bf36" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type>bool</type>
-        <definition>bool QAccelPlot::BandSeries::hovered</definition>
-        <argsstring></argsstring>
-        <name>hovered</name>
-        <qualifiedname>QAccelPlot::BandSeries::hovered</qualifiedname>
-        <read>hovered</read>
-        <briefdescription>
-<para>Read-only: <computeroutput>true</computeroutput> while the mouse cursor is inside the band. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="65" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="65" bodyend="-1"/>
-      </memberdef>
     </sectiondef>
     <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classQAccelPlot_1_1BandSeries_1ab1eebc84171a3e9db4f63757be1a4d0e" prot="private" static="no" mutable="no">
@@ -70,7 +54,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="171" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="171" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="163" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="163" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1BandSeries_1ad65655de23663d552d8001bc5e1239ee" prot="private" static="no" mutable="no">
         <type><ref refid="classQAccelPlot_1_1BandEdges" kindref="compound">BandEdges</ref> *</type>
@@ -85,22 +69,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="172" column="15" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="172" bodyend="172"/>
-      </memberdef>
-      <memberdef kind="variable" id="classQAccelPlot_1_1BandSeries_1abad5b3fddbca9de784d9e2a94b234f08" prot="private" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool QAccelPlot::BandSeries::hovered_</definition>
-        <argsstring></argsstring>
-        <name>hovered_</name>
-        <qualifiedname>QAccelPlot::BandSeries::hovered_</qualifiedname>
-        <initializer>{false}</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="173" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="173" bodyend="173"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="164" column="15" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="164" bodyend="164"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1BandSeries_1a55387aa9462bf91305d0c1a07ba034ba" prot="private" static="no" mutable="no">
         <type>std::optional&lt; QPointF &gt;</type>
@@ -114,7 +83,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="175" column="19" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="175" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="166" column="19" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="166" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1BandSeries_1ac8f12b454dd9335f3391b23113d8b86b" prot="private" static="no" mutable="no">
         <type>std::uint64_t</type>
@@ -129,7 +98,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="177" column="19" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="177" bodyend="177"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="168" column="19" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="168" bodyend="168"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1BandSeries_1acdc236e583ef48a89d599da6862819cf" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -144,7 +113,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="178" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="178" bodyend="178"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="169" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="169" bodyend="169"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1BandSeries_1a49226e4f98fc907d5d01468ceab59ad7" prot="private" static="no" mutable="no">
         <type>QMetaObject::Connection</type>
@@ -158,7 +127,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="179" column="29" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="179" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="170" column="29" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="170" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1BandSeries_1a142dc099ba3584b48447cbf844dd6afb" prot="private" static="no" mutable="no">
         <type><ref refid="classQAccelPlot_1_1BandEdgeRenderer" kindref="compound">BandEdgeRenderer</ref></type>
@@ -173,7 +142,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="180" column="22" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="180" bodyend="180"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="171" column="22" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="171" bodyend="171"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1BandSeries_1a16a3307ab9fd168e24106277940391af" prot="private" static="no" mutable="no">
         <type><ref refid="classQAccelPlot_1_1BandEdgeRenderer" kindref="compound">BandEdgeRenderer</ref></type>
@@ -188,7 +157,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="181" column="22" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="181" bodyend="181"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="172" column="22" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="172" bodyend="172"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -210,7 +179,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="69" column="14"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="67" column="14"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a5029ee1e64f35da828d7aeedfdbd53aa" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QColor</type>
@@ -225,7 +194,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="72" column="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="70" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a54137fab272e9f0d0496be1621e765af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -244,7 +213,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="74" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="72" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1ae0e528fee6e8dabd6ba59caed143a035" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classQAccelPlot_1_1BandEdges" kindref="compound">BandEdges</ref> *</type>
@@ -259,22 +228,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="77" column="15"/>
-      </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a53e512264a5635b1a854583055d43357" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>bool</type>
-        <definition>bool QAccelPlot::BandSeries::hovered</definition>
-        <argsstring>() const</argsstring>
-        <name>hovered</name>
-        <qualifiedname>QAccelPlot::BandSeries::hovered</qualifiedname>
-        <briefdescription>
-<para>Returns <computeroutput>true</computeroutput> while the cursor is inside the band. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="80" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="75" column="15"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1ab84e2a7342e0897019acd04feec3ee07" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE void</type>
@@ -301,7 +255,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="83" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="78" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a6e0c16437a366d139d0710e64a1c24f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE void</type>
@@ -328,7 +282,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="85" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="80" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a31a4e8edb95db554a1a4b3d4701d3f81" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -355,7 +309,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="87" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="82" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a8eeea05a3a47c2baef2e99d2fa7355a3" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>Q_INVOKABLE void</type>
@@ -371,7 +325,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="92" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="87" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a4c58d52692df3b79bed467bb426a2bca" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type>std::optional&lt; <ref refid="structQAccelPlot_1_1LegendEntry" kindref="compound">LegendEntry</ref> &gt;</type>
@@ -387,7 +341,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="94" column="19"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="89" column="19"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a967f4dedc566ec6ad83df050f6e19074" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE QVariantMap</type>
@@ -407,7 +361,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="102" column="29"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="97" column="29"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1ace163317a0b6958987975b03cdba4422" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -427,7 +381,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="108" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="103" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a5615889cceabfee35f5e3e2dbd25f455" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -451,7 +405,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="89" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="84" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1af143a846c63372800995a0bd4f058598" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -474,7 +428,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="89" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="84" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a683165ce25c4f4a2f0cf3a36852c3721" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -501,7 +455,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="89" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="84" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1ad10aa7307918305c127eb0b98c962484" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -528,7 +482,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="89" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="84" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1aa3475ca31d506b1b1c28ea586d61402e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -551,7 +505,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="90" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="85" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a1180d75ce402fbf92fd7d95a4d0acda4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -574,7 +528,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="90" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="85" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1ab0d977683b1b06807842ade3c6011a3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -601,7 +555,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="90" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="85" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a795dc3374e83da98b6a471bb55f51fbd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -628,7 +582,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="90" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="85" column="5"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="signal">
@@ -645,22 +599,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="112" column="10"/>
-      </memberdef>
-      <memberdef kind="signal" id="classQAccelPlot_1_1BandSeries_1a1da551c6ad4df58cf1dea6cdb7c378ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void QAccelPlot::BandSeries::hoveredChanged</definition>
-        <argsstring>()</argsstring>
-        <name>hoveredChanged</name>
-        <qualifiedname>QAccelPlot::BandSeries::hoveredChanged</qualifiedname>
-        <briefdescription>
-<para>Emitted when the hovered property changes. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="114" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="107" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="protected-func">
@@ -678,7 +617,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="127" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="120" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a8c09abc5ec9b899f713a66e6ff279a5c" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -694,7 +633,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="129" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="122" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1aba9b8caed6a6a60c7dbb09371f307634" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -718,7 +657,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="131" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="124" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
@@ -738,7 +677,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="152" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="145" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a65679ecfeb587f3c2af33671eff5ddb2" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -760,7 +699,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="154" column="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="147" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a903a5ed8a8fb7d468c0e36f7a52c5a26" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -778,7 +717,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="155" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="148" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1ae9e33e2f1dbbab8e88612c7bcee6f725" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -792,7 +731,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="156" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="149" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a695ff6c69bdcaca2317c8e05c8ea29ef" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::optional&lt; Span &gt;</type>
@@ -814,7 +753,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="158" column="19"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="151" column="19"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1aca01896bb218e6d9fb343d8c663ad02d" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -828,7 +767,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="159" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="152" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1aadcf29035cd7ddd7bb3d65ea334d7275" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QColor</type>
@@ -842,25 +781,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="160" column="12"/>
-      </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1aa1c6d746f6392c26dbbdfa106e951129" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void QAccelPlot::BandSeries::setHovered</definition>
-        <argsstring>(bool hovered)</argsstring>
-        <name>setHovered</name>
-        <qualifiedname>QAccelPlot::BandSeries::setHovered</qualifiedname>
-        <param>
-          <type>bool</type>
-          <declname>hovered</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="161" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="153" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1aa080b4b3822be01b8414e58a54e8a1c0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -874,7 +795,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="163" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="155" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a14444e0fd914f8d9f8f88c73600bea05" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -888,7 +809,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="165" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="157" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a7cfe200400550705cb2c15a103e88d9f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>RenderView</type>
@@ -902,7 +823,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="166" column="16"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="158" column="16"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1ab79d15f0ef9274611e6a40427ca7d906" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -928,7 +849,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="167" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="159" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a5ddcd606a643f4d38bb2c28c2a4a7077" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QSGGeometryNode *</type>
@@ -962,7 +883,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="168" column="21"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="160" column="21"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -1015,7 +936,7 @@
         <label>QQuickItem</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="56" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="56" bodyend="182"/>
+    <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="56" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="56" bodyend="173"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1BandSeries_1ab84e2a7342e0897019acd04feec3ee07" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>appendData</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1afb31a972c88456df230348f4e3794ab5" prot="protected" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>appendDataPoint</name></member>
@@ -1050,10 +971,9 @@
       <member refid="classQAccelPlot_1_1PlotSeries_1a9c39c6af8c52c7efd9b75935c4d69110" prot="protected" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>event</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1ab4c3a9f96024e2929e8122ac37cb69d3" prot="protected" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>extendXDataRange</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a8b6aac884387c8f8471b1eaab5557872" prot="protected" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>extendYDataRange</name></member>
-      <member refid="classQAccelPlot_1_1BandSeries_1a76ccf21e898905ee80a38e3d56b5bf36" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>hovered</name></member>
-      <member refid="classQAccelPlot_1_1BandSeries_1a53e512264a5635b1a854583055d43357" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>hovered</name></member>
-      <member refid="classQAccelPlot_1_1BandSeries_1abad5b3fddbca9de784d9e2a94b234f08" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>hovered_</name></member>
-      <member refid="classQAccelPlot_1_1BandSeries_1a1da551c6ad4df58cf1dea6cdb7c378ab" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>hoveredChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a2d17eca751f181d61dab1ad6ab95936c" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>hovered</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a1edf0373b587b3f3373048e4d0b707ed" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>hovered</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ac9f85caffff66a6a9afc05fbb79ca321" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>hoveredChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a053ad70c74d104b5083006e44698ece1" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>hoverEnabled</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a1061620ba946d66043941e81e0a85ebb" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>hoverEnabled</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a4e3f4fcdbad0963b70f29169d4026a0a" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>hoverEnabledChanged</name></member>
@@ -1112,7 +1032,7 @@
       <member refid="classQAccelPlot_1_1BandSeries_1a1180d75ce402fbf92fd7d95a4d0acda4" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>setDataF</name></member>
       <member refid="classQAccelPlot_1_1BandSeries_1ab0d977683b1b06807842ade3c6011a3a" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>setDataF</name></member>
       <member refid="classQAccelPlot_1_1BandSeries_1a795dc3374e83da98b6a471bb55f51fbd" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>setDataF</name></member>
-      <member refid="classQAccelPlot_1_1BandSeries_1aa1c6d746f6392c26dbbdfa106e951129" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>setHovered</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1adb4f416b8f3104004eb4611b4d0b7f85" prot="protected" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>setHovered</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a085c9270fc300894598ebe442e2d019c" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>setHoverEnabled</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a75695e62b548ccf79a1fe9c1f477a502" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>setLegendSymbol</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a239ef82d18c15985a337307cbc7872b4" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>setName</name></member>

@@ -2275,7 +2275,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">property qreal</td>
-<td style="text-align: left;"><a href="./#property-hoverradius-12"><strong>hoverRadius</strong></a>  <br><em>Pick radius in pixels used for hover detection. Default: 6.</em></td>
+<td style="text-align: left;"><a href="./#property-hoverradius-12"><strong>hoverRadius</strong></a>  <br><em>Pick distance in pixels from a point's center; 0 disables hover. Default: 6.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property int</td>
@@ -2336,6 +2336,10 @@
 <tr>
 <td style="text-align: right;">property bool</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-hoverenabled-12"><strong>hoverEnabled</strong></a>  <br><em>Whether the series reacts to the mouse cursor. Default:</em> <code>true</code> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property bool</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-hovered-12"><strong>hovered</strong></a>  <br><em>Read-only:</em> <code>true</code> <em>while the mouse cursor is over the series.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property <a href="../classQAccelPlot_1_1SeriesInspection/"><strong>QAccelPlot::SeriesInspection</strong></a> *</td>
@@ -2442,6 +2446,10 @@
 </tr>
 <tr>
 <td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#signal-hoveredchanged"><strong>hoveredChanged</strong></a>  <br><em>Emitted when the hovered property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#signal-legendentrychanged"><strong>legendEntryChanged</strong></a>  <br><em>Emitted when the result of</em> <code>legendEntry()</code> <em>changes.</em></td>
 </tr>
 <tr>
@@ -2501,7 +2509,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">qreal</td>
-<td style="text-align: left;"><a href="#function-hoverradius-22"><strong>hoverRadius</strong></a> () const<br><em>Returns the hover pick radius in pixels.</em></td>
+<td style="text-align: left;"><a href="#function-hoverradius-22"><strong>hoverRadius</strong></a> () const<br><em>Returns the hover pick distance in pixels.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">int</td>
@@ -2597,7 +2605,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-sethoverradius"><strong>setHoverRadius</strong></a> (qreal radius) <br><em>Sets the hover pick radius to</em> <em>radius</em> <em>pixels. Negative values are clamped to 0.</em></td>
+<td style="text-align: left;"><a href="#function-sethoverradius"><strong>setHoverRadius</strong></a> (qreal radius) <br><em>Sets the hover pick distance to</em> <em>radius</em> <em>pixels. Negative values are clamped to 0.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -2678,6 +2686,10 @@
 <tr>
 <td style="text-align: right;">bool</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-hoverenabled-22"><strong>hoverEnabled</strong></a> () const<br><em>Returns whether the series reacts to the mouse cursor.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-hovered-22"><strong>hovered</strong></a> () const<br><em>Returns whether the mouse cursor is over the series.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classQAccelPlot_1_1SeriesInspection/"><strong>SeriesInspection</strong></a> *</td>
@@ -3000,6 +3012,10 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-sethovered"><strong>setHovered</strong></a> (bool hovered) <br><em>Sets the hovered property to</em> <em>hovered</em> <em>. Called by the hover handling of a series.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-storedatapoints"><strong>storeDataPoints</strong></a> (<a href="../structQAccelPlot_1_1PlotSeries_1_1DataPointInput/"><strong>DataPointInput</strong></a> &amp;&amp; input) <br><em>Stores</em> <em>input</em> <em>as the data points and finishes the change.</em></td>
 </tr>
 <tr>
@@ -3053,7 +3069,7 @@
 <hr>
 
 <h3 id="property-hoverradius-12">property hoverRadius<a class="headerlink" href="#property-hoverradius-12" title="Permanent link">&para;</a></h3>
-<p><em>Pick radius in pixels used for hover detection. Default: 6.</em> 
+<p><em>Pick distance in pixels from a point's center; 0 disables hover. Default: 6.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">hoverRadius</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
@@ -3155,7 +3171,7 @@
 <hr>
 
 <h3 id="function-hoverradius-22">function hoverRadius<a class="headerlink" href="#function-hoverradius-22" title="Permanent link">&para;</a></h3>
-<p><em>Returns the hover pick radius in pixels.</em> 
+<p><em>Returns the hover pick distance in pixels.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">hoverRadius</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
@@ -3363,7 +3379,7 @@
 <hr>
 
 <h3 id="function-sethoverradius">function setHoverRadius<a class="headerlink" href="#function-sethoverradius" title="Permanent link">&para;</a></h3>
-<p><em>Sets the hover pick radius to</em> <em>radius</em> <em>pixels. Negative values are clamped to 0.</em>
+<p><em>Sets the hover pick distance to</em> <em>radius</em> <em>pixels. Negative values are clamped to 0.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setHoverRadius</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">radius</span>
 <a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a><span class="p">)</span><span class="w"> </span>

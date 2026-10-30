@@ -51,7 +51,6 @@ class LineCurve : public PlotSeries {
     
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
     Q_PROPERTY(qreal lineWidth READ lineWidth WRITE setLineWidth NOTIFY lineWidthChanged)
-    Q_PROPERTY(bool hovered READ hovered NOTIFY hoveredChanged)
     Q_PROPERTY(qreal hoverRadius READ hoverRadius WRITE setHoverRadius NOTIFY hoverRadiusChanged)
     Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
     Q_PROPERTY(LineStyle* lineStyle READ lineStyle WRITE setLineStyle NOTIFY lineStyleChanged)
@@ -71,8 +70,6 @@ public:
 
     qreal lineWidth() const;
     void setLineWidth(qreal w);
-
-    bool hovered() const;
 
     qreal hoverRadius() const;
     void setHoverRadius(qreal radius);
@@ -124,7 +121,6 @@ protected:
 signals:
     void colorChanged();
     void lineWidthChanged();
-    void hoveredChanged();
     void hoverRadiusChanged();
     void transitionChanged();
     void lineStyleChanged();
@@ -179,7 +175,6 @@ private:
 
     QColor color_{ColorPalette::dark().seriesPrimary};
     qreal lineWidth_{1.0};
-    bool hovered_{false};
     qreal hoverRadius_{10.0};
     // While its run is pending, the frames are the store's drawn points; the stored points are its target.
     std::unique_ptr<TransitionRunner> transition_;

@@ -52,6 +52,7 @@ class PlotSeries : public QQuickItem {
     Q_PROPERTY(QRectF plotRect READ plotRect WRITE setPlotRect NOTIFY plotRectChanged)
     Q_PROPERTY(LegendSymbol legendSymbol READ legendSymbol WRITE setLegendSymbol NOTIFY legendSymbolChanged)
     Q_PROPERTY(bool hoverEnabled READ hoverEnabled WRITE setHoverEnabled NOTIFY hoverEnabledChanged)
+    Q_PROPERTY(bool hovered READ hovered NOTIFY hoveredChanged)
 
     
     Q_PROPERTY(quint64 dataRevision READ dataRevision NOTIFY dataRevisionChanged)
@@ -121,6 +122,7 @@ public:
 
     bool hoverEnabled() const;
     void setHoverEnabled(bool enabled);
+    bool hovered() const;
 
     virtual std::optional<LegendEntry> legendEntry() const;
 
@@ -148,6 +150,7 @@ signals:
     void plotRectChanged();
     void legendSymbolChanged();
     void hoverEnabledChanged();
+    void hoveredChanged();
     void legendEntryChanged();
 
 protected:
@@ -219,6 +222,7 @@ protected:
     };
     void updateRenderCapacity(int capacity, int recordCount, CapacityOverflow overflow = CapacityOverflow::DropsExcess);
     void supportHover();
+    void setHovered(bool hovered);
     bool event(QEvent* event) override;
 
     int renderCapacity_{std::numeric_limits<int>::max()};
@@ -239,6 +243,7 @@ private:
 
     bool hoverSupported_{false};
     bool hoverEnabled_{true};
+    bool hovered_{false};
     bool hoverDelivered_{false};
     quint64 dataRevision_{0};
     mutable SeriesInspection* inspection_{nullptr};

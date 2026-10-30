@@ -341,10 +341,8 @@
   <compound refid="classQAccelPlot_1_1BandSeries" kind="class"><name>QAccelPlot::BandSeries</name>
     <member refid="classQAccelPlot_1_1BandSeries_1a3d9da792a29d7d1f641a9bc578eb7592" kind="property"><name>color</name></member>
     <member refid="classQAccelPlot_1_1BandSeries_1adda2de3bf8a1105952a6095a24b88354" kind="property"><name>edges</name></member>
-    <member refid="classQAccelPlot_1_1BandSeries_1a76ccf21e898905ee80a38e3d56b5bf36" kind="property"><name>hovered</name></member>
     <member refid="classQAccelPlot_1_1BandSeries_1ab1eebc84171a3e9db4f63757be1a4d0e" kind="variable"><name>color_</name></member>
     <member refid="classQAccelPlot_1_1BandSeries_1ad65655de23663d552d8001bc5e1239ee" kind="variable"><name>edges_</name></member>
-    <member refid="classQAccelPlot_1_1BandSeries_1abad5b3fddbca9de784d9e2a94b234f08" kind="variable"><name>hovered_</name></member>
     <member refid="classQAccelPlot_1_1BandSeries_1a55387aa9462bf91305d0c1a07ba034ba" kind="variable"><name>hoverPosition_</name></member>
     <member refid="classQAccelPlot_1_1BandSeries_1ac8f12b454dd9335f3391b23113d8b86b" kind="variable"><name>uploadedRevision_</name></member>
     <member refid="classQAccelPlot_1_1BandSeries_1acdc236e583ef48a89d599da6862819cf" kind="variable"><name>xAscending_</name></member>
@@ -355,7 +353,6 @@
     <member refid="classQAccelPlot_1_1BandSeries_1a5029ee1e64f35da828d7aeedfdbd53aa" kind="function"><name>color</name></member>
     <member refid="classQAccelPlot_1_1BandSeries_1a54137fab272e9f0d0496be1621e765af" kind="function"><name>setColor</name></member>
     <member refid="classQAccelPlot_1_1BandSeries_1ae0e528fee6e8dabd6ba59caed143a035" kind="function"><name>edges</name></member>
-    <member refid="classQAccelPlot_1_1BandSeries_1a53e512264a5635b1a854583055d43357" kind="function"><name>hovered</name></member>
     <member refid="classQAccelPlot_1_1BandSeries_1ab84e2a7342e0897019acd04feec3ee07" kind="function"><name>appendData</name></member>
     <member refid="classQAccelPlot_1_1BandSeries_1a6e0c16437a366d139d0710e64a1c24f6" kind="function"><name>setData</name></member>
     <member refid="classQAccelPlot_1_1BandSeries_1a31a4e8edb95db554a1a4b3d4701d3f81" kind="function"><name>setData</name></member>
@@ -372,7 +369,6 @@
     <member refid="classQAccelPlot_1_1BandSeries_1ab0d977683b1b06807842ade3c6011a3a" kind="function"><name>setDataF</name></member>
     <member refid="classQAccelPlot_1_1BandSeries_1a795dc3374e83da98b6a471bb55f51fbd" kind="function"><name>setDataF</name></member>
     <member refid="classQAccelPlot_1_1BandSeries_1a4f917e1de66370fdf75f1e4cd77430d1" kind="signal"><name>colorChanged</name></member>
-    <member refid="classQAccelPlot_1_1BandSeries_1a1da551c6ad4df58cf1dea6cdb7c378ab" kind="signal"><name>hoveredChanged</name></member>
     <member refid="classQAccelPlot_1_1BandSeries_1a245ab4687ed8dc2e9010894db070b951" kind="function"><name>onAxisScaleChanged</name></member>
     <member refid="classQAccelPlot_1_1BandSeries_1a8c09abc5ec9b899f713a66e6ff279a5c" kind="function"><name>onAxisRangeChanged</name></member>
     <member refid="classQAccelPlot_1_1BandSeries_1aba9b8caed6a6a60c7dbb09371f307634" kind="function"><name>onDataPointsChanged</name></member>
@@ -383,7 +379,6 @@
     <member refid="classQAccelPlot_1_1BandSeries_1a695ff6c69bdcaca2317c8e05c8ea29ef" kind="function"><name>spanAt</name></member>
     <member refid="classQAccelPlot_1_1BandSeries_1aca01896bb218e6d9fb343d8c663ad02d" kind="function"><name>edgesVisible</name></member>
     <member refid="classQAccelPlot_1_1BandSeries_1aadcf29035cd7ddd7bb3d65ea334d7275" kind="function"><name>edgeColor</name></member>
-    <member refid="classQAccelPlot_1_1BandSeries_1aa1c6d746f6392c26dbbdfa106e951129" kind="function"><name>setHovered</name></member>
     <member refid="classQAccelPlot_1_1BandSeries_1aa080b4b3822be01b8414e58a54e8a1c0" kind="function"><name>refreshHovered</name></member>
     <member refid="classQAccelPlot_1_1BandSeries_1a14444e0fd914f8d9f8f88c73600bea05" kind="function"><name>onEdgeLineStyleChanged</name></member>
     <member refid="classQAccelPlot_1_1BandSeries_1a7cfe200400550705cb2c15a103e88d9f" kind="function"><name>renderView</name></member>
@@ -1991,7 +1986,6 @@
   <compound refid="classQAccelPlot_1_1LineCurve" kind="class"><name>QAccelPlot::LineCurve</name>
     <member refid="classQAccelPlot_1_1LineCurve_1a6de2f4c6f817b272c89400ae79be709f" kind="property"><name>color</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a8b4ed25a18930e331ca527bbe5042ae1" kind="property"><name>lineWidth</name></member>
-    <member refid="classQAccelPlot_1_1LineCurve_1a0eaa9a95ac71afbc392f9ea417cca6ad" kind="property"><name>hovered</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1ae27a0030edffbff177e491b1cb344358" kind="property"><name>hoverRadius</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1aeec8b6c794c1bba729633ca946965577" kind="property"><name>transition</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a863125bdb2d67fc4d4094a74f9f577cf" kind="property"><name>lineStyle</name></member>
@@ -2003,7 +1997,6 @@
     <member refid="classQAccelPlot_1_1LineCurve_1a36e3ab79648d6df5522c4b0d6bfea83f" kind="property"><name>stepMode</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1aedcc3b0602b15ac7e34317cdaf5af93a" kind="variable"><name>color_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1ae46bb43854c8650cd1e7c95e0750fd38" kind="variable"><name>lineWidth_</name></member>
-    <member refid="classQAccelPlot_1_1LineCurve_1aaf9e303776ac5d6b31058e6580959d44" kind="variable"><name>hovered_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1ae35fc52543bbee90dc5769acd249f752" kind="variable"><name>hoverRadius_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a5a52a33848144ccf26bbff1fb25a1914" kind="variable"><name>transition_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a943de97e88d932792766b48979203a29" kind="variable"><name>frameBuffer_</name></member>
@@ -2031,7 +2024,6 @@
     <member refid="classQAccelPlot_1_1LineCurve_1adde3a2b4b580868777dc03add814a1db" kind="function"><name>setColor</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1ad994fcbd64368c3bf92c14b7c56df7ce" kind="function"><name>lineWidth</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a0b6cc43cfb928538d12b40cfd3f1756c" kind="function"><name>setLineWidth</name></member>
-    <member refid="classQAccelPlot_1_1LineCurve_1afb02e47fcf5869ff3a5529a1ca64f949" kind="function"><name>hovered</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a1381ed7edc4ba7cdec68612c3277ad1d" kind="function"><name>hoverRadius</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a90e5132df7becbc0c563104a7da7b305" kind="function"><name>setHoverRadius</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a97a26eac493441521e95480577472374" kind="function"><name>transition</name></member>
@@ -2070,7 +2062,6 @@
     <member refid="classQAccelPlot_1_1LineCurve_1ad88615d4b1590c81fcef9f249db033db" kind="function"><name>onDataPointsChanged</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a4be39a929b65a00809eefda7a47ab3d6" kind="signal"><name>colorChanged</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a05f59aacd68555f119845d3a5cae263e" kind="signal"><name>lineWidthChanged</name></member>
-    <member refid="classQAccelPlot_1_1LineCurve_1aa17f0d933c2734d5e25d5006722ca5e9" kind="signal"><name>hoveredChanged</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1ac7ae8ceeb42e98ad23e5ae2f0e3bf0e9" kind="signal"><name>hoverRadiusChanged</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1ae7ec73e4c67f6f204b6a0e34bc72cda4" kind="signal"><name>transitionChanged</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a888793f4978ae28e97af934c09ee4ccf" kind="signal"><name>lineStyleChanged</name></member>
@@ -2597,6 +2588,7 @@
     <member refid="classQAccelPlot_1_1PlotSeries_1aef0398b7a4f807870dd88a326c0e7d0d" kind="property"><name>plotRect</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1ada3d9fd14934647c0f31870184f5eff5" kind="property"><name>legendSymbol</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a053ad70c74d104b5083006e44698ece1" kind="property"><name>hoverEnabled</name></member>
+    <member refid="classQAccelPlot_1_1PlotSeries_1a2d17eca751f181d61dab1ad6ab95936c" kind="property"><name>hovered</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a74c197e04386613b694bd8a63963c479" kind="property"><name>dataRevision</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a2a23af3683416afeea98697c66616cea" kind="property"><name>inspection</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a53e3980416791cdfa11e95ddf45f51a6" kind="property"><name>count</name></member>
@@ -2605,6 +2597,7 @@
     <member refid="classQAccelPlot_1_1PlotSeries_1a42b492337423f662f507c45a51d509c3" kind="friend"><name>SeriesInspection</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1af6f92ce1126990d2a4fcebb7a67814b4" kind="variable"><name>hoverSupported_</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1af122f5cc3abf6129432743ac08a583be" kind="variable"><name>hoverEnabled_</name></member>
+    <member refid="classQAccelPlot_1_1PlotSeries_1a9b03737c0eb620d870db27a457aa8386" kind="variable"><name>hovered_</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a24ac110aeb244c93cb67592fd019de22" kind="variable"><name>hoverDelivered_</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1aedb760180e9085019c482fc3486c5222" kind="variable"><name>dataRevision_</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a2abb726bf878eed8dad217273f2ebe29" kind="variable"><name>inspection_</name></member>
@@ -2638,6 +2631,7 @@
     <member refid="classQAccelPlot_1_1PlotSeries_1a75695e62b548ccf79a1fe9c1f477a502" kind="function"><name>setLegendSymbol</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a1061620ba946d66043941e81e0a85ebb" kind="function"><name>hoverEnabled</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a085c9270fc300894598ebe442e2d019c" kind="function"><name>setHoverEnabled</name></member>
+    <member refid="classQAccelPlot_1_1PlotSeries_1a1edf0373b587b3f3373048e4d0b707ed" kind="function"><name>hovered</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a4e5a53df93bf478ae4b3f2f53ee4ff37" kind="function"><name>legendEntry</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a5615889cceabfee35f5e3e2dbd25f455" kind="function"><name>setData</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1af143a846c63372800995a0bd4f058598" kind="function"><name>setData</name></member>
@@ -2660,6 +2654,7 @@
     <member refid="classQAccelPlot_1_1PlotSeries_1a9d58451724a7e0b06d7f04aeba101856" kind="signal"><name>plotRectChanged</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a2b88cb6eac8d12cf02b6daf37460150e" kind="signal"><name>legendSymbolChanged</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a4e3f4fcdbad0963b70f29169d4026a0a" kind="signal"><name>hoverEnabledChanged</name></member>
+    <member refid="classQAccelPlot_1_1PlotSeries_1ac9f85caffff66a6a9afc05fbb79ca321" kind="signal"><name>hoveredChanged</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a1dbdd720bb06d07672267cfc603b932b" kind="signal"><name>legendEntryChanged</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a041d4bdadcfef0b798f785ec9c65d933" kind="function"><name>PlotSeries</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1ac760dabf61aac4bad4cc5e93ad4dae43" kind="function"><name>applyDataPoints</name></member>
@@ -2692,6 +2687,7 @@
     <member refid="classQAccelPlot_1_1PlotSeries_1a956e8eb1ca7398b6b5f8022225d6edf7" kind="function"><name>resolvePlotRect</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1ae657768ad16fcf2b26eac4ce2f6cfd75" kind="function"><name>updateRenderCapacity</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1aa443c35379a9aa2df5da14a5b87a7417" kind="function"><name>supportHover</name></member>
+    <member refid="classQAccelPlot_1_1PlotSeries_1adb4f416b8f3104004eb4611b4d0b7f85" kind="function"><name>setHovered</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a9c39c6af8c52c7efd9b75935c4d69110" kind="function"><name>event</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a5aef16fd955235c2f193caec0de09531" kind="function"><name>handleAxisScaleChanged</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1ac5ef1ea39e8141b53e7efb58d45d20f6" kind="function"><name>handleAxisRangeChanged</name></member>

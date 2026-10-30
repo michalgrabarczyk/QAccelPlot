@@ -112,6 +112,7 @@ flowchart TB
 | property int | [**count**](classQAccelPlot_1_1PlotSeries.md#property-count-12)  <br>_Read-only: number of records stored, including invalid ones._  |
 | property quint64 | [**dataRevision**](classQAccelPlot_1_1PlotSeries.md#property-datarevision-12)  <br>_Revision incremented by every accepted change of the series' records._  |
 | property bool | [**hoverEnabled**](classQAccelPlot_1_1PlotSeries.md#property-hoverenabled-12)  <br>_Whether the series reacts to the mouse cursor. Default:_ `true` _._ |
+| property bool | [**hovered**](classQAccelPlot_1_1PlotSeries.md#property-hovered-12)  <br>_Read-only:_ `true` _while the mouse cursor is over the series._ |
 | property [**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) \* | [**inspection**](classQAccelPlot_1_1PlotSeries.md#property-inspection-12)  <br>_Read-only constant: data queries for this series._  |
 | property [**LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol) | [**legendSymbol**](classQAccelPlot_1_1PlotSeries.md#property-legendsymbol-12)  <br>_Symbol style requested from the default legend._  |
 | property QString | [**name**](classQAccelPlot_1_1PlotSeries.md#property-name-12)  <br>_Identifying name used by the default legend._  |
@@ -129,6 +130,7 @@ flowchart TB
 | signal void | [**countChanged**](classQAccelPlot_1_1PlotSeries.md#signal-countchanged)  <br>_Emitted when the number of records changes._  |
 | signal void | [**dataRevisionChanged**](classQAccelPlot_1_1PlotSeries.md#signal-datarevisionchanged)  <br>_Emitted when the dataRevision property changes._  |
 | signal void | [**hoverEnabledChanged**](classQAccelPlot_1_1PlotSeries.md#signal-hoverenabledchanged)  <br>_Emitted when the hoverEnabled property changes._  |
+| signal void | [**hoveredChanged**](classQAccelPlot_1_1PlotSeries.md#signal-hoveredchanged)  <br>_Emitted when the hovered property changes._  |
 | signal void | [**legendEntryChanged**](classQAccelPlot_1_1PlotSeries.md#signal-legendentrychanged)  <br>_Emitted when the result of_ `legendEntry()` _changes._ |
 | signal void | [**legendSymbolChanged**](classQAccelPlot_1_1PlotSeries.md#signal-legendsymbolchanged)  <br> |
 | signal void | [**nameChanged**](classQAccelPlot_1_1PlotSeries.md#signal-namechanged)  <br> |
@@ -148,6 +150,7 @@ flowchart TB
 | virtual int | [**count**](#function-count-22) () const<br>_Returns the number of records stored. The default is the number of stored data points._  |
 |  quint64 | [**dataRevision**](#function-datarevision-22) () const<br>_Returns the current data revision._  |
 |  bool | [**hoverEnabled**](#function-hoverenabled-22) () const<br>_Returns whether the series reacts to the mouse cursor._  |
+|  bool | [**hovered**](#function-hovered-22) () const<br>_Returns whether the mouse cursor is over the series._  |
 |  [**SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) \* | [**inspection**](#function-inspection-22) () const<br>_Returns the data queries for this series; created on first use and owned by the series._  |
 | virtual std::optional&lt; [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md) &gt; | [**legendEntry**](#function-legendentry) () const<br>_Returns how a legend draws the series, or_ `std::nullopt` _for no legend entry. Default: no entry._ |
 |  [**LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol) | [**legendSymbol**](#function-legendsymbol-22) () const<br> |
@@ -241,6 +244,7 @@ flowchart TB
 | virtual bool | [**positionInspectionSupported**](#function-positioninspectionsupported) () const<br>_Returns whether_ `inspectionDataPointAt()` _matches records drawn as areas, such as heatmap cells. Default: false._ |
 | virtual bool | [**recordInspectionSupported**](#function-recordinspectionsupported) () const<br>_Returns whether_ `inspectionRecord()` _and_`inspectionRecordAt()` _answer for this series. Default: false._ |
 |  QRectF | [**resolvePlotRect**](#function-resolveplotrect) () const<br>_Returns the plot area to render into:_ `plotRect` _when set, otherwise the item's current size._ |
+|  void | [**setHovered**](#function-sethovered) (bool hovered) <br>_Sets the hovered property to_ _hovered_ _. Called by the hover handling of a series._ |
 |  void | [**storeDataPoints**](#function-storedatapoints) ([**DataPointInput**](structQAccelPlot_1_1PlotSeries_1_1DataPointInput.md) && input) <br>_Stores_ _input_ _as the data points and finishes the change._ |
 |  void | [**supportHover**](#function-supporthover) () <br>_Makes the series accept hover events while_ `hoverEnabled` _is_`true` _._ |
 |  void | [**updateRenderCapacity**](#function-updaterendercapacity) (int capacity, int recordCount, [**CapacityOverflow**](classQAccelPlot_1_1PlotSeries.md#enum-capacityoverflow) overflow=CapacityOverflow::DropsExcess) <br>_Stores_ _capacity_ _, the number of records the GPU buffers hold, and warns when__recordCount_ _newly exceeds it._ |
@@ -396,7 +400,26 @@ bool QAccelPlot::PlotSeries::hoverEnabled;
 
 
 
-When `false`, the series is never hovered and hover reaches the series beneath it. `QACCELPLOT_HOVER_ENABLED=0` turns hover off for every series regardless of this property. Series without hover feedback, such as `HeatmapSeries`, ignore it. 
+When `false`, the series is never hovered and hover reaches the series beneath it. `QACCELPLOT_HOVER_ENABLED=0` turns hover off for every series regardless of this property. `HeatmapSeries` has no hover and ignores it. 
+
+
+        
+
+<hr>
+
+
+
+
+### property hovered {#property-hovered-12}
+
+_Read-only:_ `true` _while the mouse cursor is over the series._
+```C++
+bool QAccelPlot::PlotSeries::hovered;
+```
+
+
+
+Only the topmost series under the cursor is hovered. A series with a `hoveredIndex` is hovered while that index is not -1. A `HeatmapSeries` is never hovered. 
 
 
         
@@ -533,6 +556,21 @@ void QAccelPlot::PlotSeries::dataRevisionChanged;
 _Emitted when the hoverEnabled property changes._ 
 ```C++
 void QAccelPlot::PlotSeries::hoverEnabledChanged;
+```
+
+
+
+
+<hr>
+
+
+
+
+### signal hoveredChanged {#signal-hoveredchanged}
+
+_Emitted when the hovered property changes._ 
+```C++
+void QAccelPlot::PlotSeries::hoveredChanged;
 ```
 
 
@@ -696,6 +734,21 @@ quint64 QAccelPlot::PlotSeries::dataRevision () const
 _Returns whether the series reacts to the mouse cursor._ 
 ```C++
 bool QAccelPlot::PlotSeries::hoverEnabled () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function hovered {#function-hovered-22}
+
+_Returns whether the mouse cursor is over the series._ 
+```C++
+bool QAccelPlot::PlotSeries::hovered () const
 ```
 
 
@@ -1685,6 +1738,23 @@ Safe to call from `updatePaintNode()`; it never modifies the item.
 
 
 
+### function setHovered {#function-sethovered}
+
+_Sets the hovered property to_ _hovered_ _. Called by the hover handling of a series._
+```C++
+void QAccelPlot::PlotSeries::setHovered (
+    bool hovered
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function storeDataPoints {#function-storedatapoints}
 
 _Stores_ _input_ _as the data points and finishes the change._
@@ -1711,7 +1781,7 @@ void QAccelPlot::PlotSeries::supportHover ()
 
 
 
-Call from the constructor of a series that reacts to the cursor. Its `hoverLeaveEvent()` must clear the hover state, as turning `hoverEnabled` off calls it. 
+Call from the constructor of a series that reacts to the cursor. Its `hoverLeaveEvent()` must clear the hover state, `hovered` included, as turning `hoverEnabled` off calls it. 
 
 
         
