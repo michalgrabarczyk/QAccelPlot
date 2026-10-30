@@ -7,8 +7,8 @@
 //
 // Shared quad geometry for vertex shaders that draw one rectangle per data item.
 // Requires: a `ubuf` uniform block with color, hoverColor, domainMin, domainMax,
-// viewportSize, minimumSize, logScaleX, logScaleY, useVertexColor, opacity and
-// hoveredIndex members, followed by an include of math_utils.glsl.
+// viewportSize, minimumSize, logScaleX, logScaleY, useVertexColor, opacity, hoveredIndex and
+// antialiasing members, followed by an include of math_utils.glsl.
 
 // Corner UVs for 2-triangle quad (CCW winding):
 //   Triangle 1: (0,0), (1,0), (0,1)
@@ -62,11 +62,18 @@ void rectPixelSpans(uint x1Bits, uint y1Bits, uint x2Bits, uint y2Bits, out vec2
                      (1.0 - viewportFraction(y2Bits, dMin.y, dMax.y, logY)) * size.y, ubuf.minimumSize.y);
 }
 
+// Pixels the quad extends past each edge with antialiasing, so edge pixels get partial coverage.
+const float kRectAntialiasingMargin = 0.5;
+
 // Returns the item-local position of quad corner `corner` (0-5) of the rectangle spanning
 // pixel spans xs and ys, and its pixel distances to the left, right, top, and bottom edges.
+// With antialiasing, the quad extends past the rectangle, where the distances are negative.
 vec2 rectVertex(vec2 xs, vec2 ys, int corner, out vec4 edgeDistance) {
     vec2 uv = cornerUV(corner);
-    vec2 p = vec2(uv.x < 0.5 ? xs.x : xs.y, uv.y < 0.5 ? ys.x : ys.y);
+    float margin = ubuf.antialiasing > 0.5 ? kRectAntialiasingMargin : 0.0;
+    vec2 lo = vec2(min(xs.x, xs.y), min(ys.x, ys.y)) - margin;
+    vec2 hi = vec2(max(xs.x, xs.y), max(ys.x, ys.y)) + margin;
+    vec2 p = vec2(uv.x < 0.5 ? lo.x : hi.x, uv.y < 0.5 ? lo.y : hi.y);
     edgeDistance = vec4(p.x - min(xs.x, xs.y), max(xs.x, xs.y) - p.x,
                         p.y - min(ys.x, ys.y), max(ys.x, ys.y) - p.y);
     return p;

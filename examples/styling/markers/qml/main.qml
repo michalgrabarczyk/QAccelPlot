@@ -216,7 +216,7 @@ Window {
                     marker.filled: window.selectedFilled
                     marker.size: window.markerSize
                     marker.strokeWidth: window.markerStrokeWidth
-                    antialiasingEnabled: window.antialiasingEnabled
+                    antialiasing: window.antialiasingEnabled
                     Component.onCompleted: setData(window.spiralCloud(4000, 7))
                 }
             }
@@ -288,7 +288,7 @@ Window {
                         marker.filled: modelData.filled
                         marker.size: window.markerSize
                         marker.strokeWidth: window.markerStrokeWidth
-                        antialiasingEnabled: window.antialiasingEnabled
+                        antialiasing: window.antialiasingEnabled
                         Component.onCompleted: setData([Qt.point(modelData.x, modelData.y)])
                     }
                 }
@@ -304,7 +304,7 @@ Window {
                     marker.filled: false
                     marker.size: window.markerSize + 8
                     marker.strokeWidth: 2
-                    antialiasingEnabled: window.antialiasingEnabled
+                    antialiasing: window.antialiasingEnabled
                     onCellChanged: setData([cell])
                     Component.onCompleted: setData([cell])
                 }

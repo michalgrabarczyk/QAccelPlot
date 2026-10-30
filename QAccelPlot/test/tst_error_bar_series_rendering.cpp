@@ -6,6 +6,7 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #include "QAccelPlot/QAccelPlot.hpp"
+#include "QAccelPlot/series/PlotSeries.hpp"
 #include "WindowPlacement.hpp"
 
 #include <QImage>
@@ -16,6 +17,7 @@
 #include <QtTest/QtTest>
 
 #include <memory>
+#include <vector>
 
 namespace QAccelPlot {
 
@@ -93,6 +95,18 @@ constexpr auto kHoverScene = R"(
 }
 )";
 
+constexpr auto kAntialiasingScene = R"(
+    ErrorBarSeries {
+        objectName: "smoothed"
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        color: "red"
+        lineWidth: 1
+        capLength: 0
+    }
+}
+)";
+
 // Shows a PlotView built from kScenePrefix and \a sceneBody in a 400 × 300 window.
 class SceneWindow {
 public:
@@ -163,6 +177,7 @@ class ErrorBarSeriesRenderingTest : public QObject {
 private slots:
     void errorBarsDrawLinesAndCaps();
     void hoverReachesErrorBarsBeneathMarkers();
+    void antialiasingCoversFractionalEdgePixels();
 };
 
 void ErrorBarSeriesRenderingTest::errorBarsDrawLinesAndCaps()
@@ -225,6 +240,38 @@ void ErrorBarSeriesRenderingTest::hoverReachesErrorBarsBeneathMarkers()
         return;
     }
     QTRY_VERIFY(isColor(scene.grab().pixelColor(scene.pixel(5.0, 3.0)), Qt::white));
+}
+
+void ErrorBarSeriesRenderingTest::antialiasingCoversFractionalEdgePixels()
+{
+    auto scene = SceneWindow{kAntialiasingScene};
+    if (scene.isSoftware()) {
+        QSKIP("Custom materials require a hardware scene graph backend");
+    }
+    auto* plot = scene.plot();
+    QVERIFY2(plot, qPrintable(scene.error()));
+    QVERIFY(QTest::qWaitForWindowExposed(&scene.window()));
+    auto* errorBars = plot->findChild<PlotSeries*>(QStringLiteral("smoothed"));
+    QVERIFY(errorBars);
+    QVERIFY(errorBars->antialiasing());
+
+    // The 1 px line spans from a quarter pixel right of the center of column `edge` to a quarter
+    // pixel right of the center of the next column.
+    const auto edge = qFloor(plot->dataToPixelX(3.0));
+    errorBars->setData(std::vector<double>{plot->pixelToDataX(edge + 0.75), 5.0, 2.0, 8.0}, 1);
+    const auto y = scene.pixel(0.0, 5.0).y();
+
+    auto image = scene.grab();
+    if (image.devicePixelRatio() != 1.0) {
+        QSKIP("Pixel coverage checks need one device pixel per logical pixel");
+    }
+    const auto covered = image.pixelColor(edge + 1, y).red();
+    QVERIFY2(covered > 30 && covered < 110, qPrintable(QStringLiteral("red %1 for a quarter-covered pixel").arg(covered)));
+
+    errorBars->setAntialiasing(false);
+    image = scene.grab();
+    QVERIFY(image.pixelColor(edge + 1, y).red() < 10);
+    QVERIFY(image.pixelColor(edge, y).red() > 245);
 }
 
 } // namespace QAccelPlot

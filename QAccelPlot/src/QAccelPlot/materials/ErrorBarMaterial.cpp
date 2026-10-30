@@ -30,10 +30,11 @@ struct ErrorBarUbo {
     float offset;        // 148–151
     float horizontal;    // 152–155
     float errorBarCount; // 156–159
+    float antialiasing;  // 160–163
 };
 
 static_assert(offsetof(ErrorBarUbo, hoverColor) == 128);
-static_assert(sizeof(ErrorBarUbo) == 160);
+static_assert(sizeof(ErrorBarUbo) == 164);
 
 class ErrorBarShader : public QSGMaterialShader {
 public:
@@ -63,6 +64,7 @@ public:
         ubo.offset = mat->offset;
         ubo.horizontal = mat->horizontal;
         ubo.errorBarCount = mat->errorBarCount;
+        ubo.antialiasing = mat->antialiasing;
         memcpy(buf->data(), &ubo, sizeof(ubo));
         return true;
     }
@@ -107,8 +109,8 @@ int ErrorBarMaterial::compareExtra(const QSGMaterial* other) const
     if (hoverColor != m->hoverColor) {
         return hoverColor.rgba() < m->hoverColor.rgba() ? -1 : 1;
     }
-    const auto mine = std::array<float, 6>{hoveredIndex, lineWidth, capLength, offset, horizontal, errorBarCount};
-    const auto theirs = std::array<float, 6>{m->hoveredIndex, m->lineWidth, m->capLength, m->offset, m->horizontal, m->errorBarCount};
+    const auto mine = std::array<float, 7>{hoveredIndex, lineWidth, capLength, offset, horizontal, errorBarCount, antialiasing};
+    const auto theirs = std::array<float, 7>{m->hoveredIndex, m->lineWidth, m->capLength, m->offset, m->horizontal, m->errorBarCount, m->antialiasing};
     for (std::size_t i = 0; i < mine.size(); ++i) {
         if (mine[i] != theirs[i]) {
             return mine[i] < theirs[i] ? -1 : 1;

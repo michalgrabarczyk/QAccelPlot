@@ -19,6 +19,7 @@
 #include <QtTest/QtTest>
 
 #include <memory>
+#include <vector>
 
 namespace QAccelPlot {
 
@@ -152,6 +153,16 @@ constexpr auto kColormapScene = R"(
 }
 )";
 
+constexpr auto kAntialiasingScene = R"(
+    BarSeries {
+        objectName: "smoothed"
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        color: "red"
+    }
+}
+)";
+
 // Ranged bars over x 0..0.8 and 1..100 colored by position under a blue-to-red log colormap from 1 to 100.
 constexpr auto kLogColormapScene = R"(
     BarSeries {
@@ -267,6 +278,7 @@ private slots:
     void colormapColorsBarsByPosition();
     void logColormapPlacesRangedBarsByTheirMiddle();
     void rangedBarsWithTheirMiddleBeyondTheRangeTakeItsEnd();
+    void antialiasingCoversFractionalEdgePixels();
 };
 
 void BarSeriesRenderingTest::verticalBarsSpanFromBaselineToValue()
@@ -534,6 +546,37 @@ void BarSeriesRenderingTest::rangedBarsWithTheirMiddleBeyondTheRangeTakeItsEnd()
     // The middles 15 and +Inf lie beyond the range, so neither bar takes a color from inside it.
     QVERIFY(isColor(image.pixelColor(scene.pixel(1.5, 1.5)), Qt::red));
     QVERIFY(isColor(image.pixelColor(scene.pixel(5.0, 6.0)), Qt::red));
+}
+
+void BarSeriesRenderingTest::antialiasingCoversFractionalEdgePixels()
+{
+    auto scene = SceneWindow{kAntialiasingScene};
+    if (scene.isSoftware()) {
+        QSKIP("Custom materials require a hardware scene graph backend");
+    }
+    auto* plot = scene.plot();
+    QVERIFY2(plot, qPrintable(scene.error()));
+    QVERIFY(QTest::qWaitForWindowExposed(&scene.window()));
+    auto* bars = plot->findChild<BarSeries*>(QStringLiteral("smoothed"));
+    QVERIFY(bars);
+
+    // The left edge lies a quarter pixel right of the center of column `edge`.
+    const auto edge = qFloor(plot->dataToPixelX(3.0));
+    const auto left = plot->pixelToDataX(edge + 0.75);
+    const auto right = plot->pixelToDataX(edge + 40.75);
+    bars->setBarWidth(right - left);
+    static_cast<PlotSeries*>(bars)->setData(std::vector<double>{0.5 * (left + right), 8.0}, 1);
+    const auto y = scene.pixel(0.0, 5.0).y();
+
+    auto image = scene.grab();
+    QVERIFY(image.pixelColor(edge, y).red() < 10);
+    QVERIFY(isColor(image.pixelColor(edge + 1, y), Qt::red));
+
+    bars->setAntialiasing(true);
+    image = scene.grab();
+    const auto covered = image.pixelColor(edge, y).red();
+    QVERIFY2(covered > 30 && covered < 110, qPrintable(QStringLiteral("red %1 for a quarter-covered pixel").arg(covered)));
+    QVERIFY(isColor(image.pixelColor(edge + 1, y), Qt::red));
 }
 
 } // namespace QAccelPlot

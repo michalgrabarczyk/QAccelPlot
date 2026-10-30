@@ -177,6 +177,7 @@ LineCurve::LineCurve(QQuickItem* parent)
     , transition_(std::make_unique<TransitionRunner>(this))
 {
     setFlag(ItemHasContents, true);
+    setAntialiasing(true);
     supportHover();
     connect(gaps_, &LineCurveGaps::nanModeChanged, this, &LineCurve::onNanGapModeChanged);
     connect(marker_, &SeriesMarker::shapeChanged, this, &LineCurve::onMarkerShapeChanged);
@@ -190,10 +191,10 @@ LineCurve::LineCurve(QQuickItem* parent)
     connect(transition_.get(), &TransitionRunner::frameDue, this, &LineCurve::advanceTransition);
     connect(transition_.get(), &TransitionRunner::interrupted, this, &LineCurve::finishTransition);
     connect(transition_.get(), &TransitionRunner::transitionDestroyed, this, &LineCurve::onTransitionDestroyed);
-    for (const auto signal : {&LineCurve::colorChanged, &LineCurve::lineWidthChanged, &LineCurve::lineStyleChanged, &LineCurve::antialiasingEnabledChanged,
-             &LineCurve::antialiasingFeatherChanged}) {
+    for (const auto signal : {&LineCurve::colorChanged, &LineCurve::lineWidthChanged, &LineCurve::lineStyleChanged, &LineCurve::antialiasingFeatherChanged}) {
         connect(this, signal, this, &PlotSeries::legendEntryChanged);
     }
+    connect(this, &QQuickItem::antialiasingChanged, this, &PlotSeries::legendEntryChanged);
     for (const auto signal : {&SeriesMarker::shapeChanged, &SeriesMarker::sizeChanged, &SeriesMarker::filledChanged, &SeriesMarker::strokeWidthChanged}) {
         connect(marker_, signal, this, &PlotSeries::legendEntryChanged);
     }
@@ -290,31 +291,14 @@ void LineCurve::setLineStyle(LineStyle* style)
     update();
 }
 
-bool LineCurve::antialiasingEnabled() const
-{
-    return antialiasingEnabled_;
-}
-
-void LineCurve::setAntialiasingEnabled(const bool enabled)
-{
-    if (antialiasingEnabled_ == enabled) {
-        return;
-    }
-    antialiasingEnabled_ = enabled;
-    emit antialiasingEnabledChanged();
-    update();
-}
-
 qreal LineCurve::antialiasingFeather() const
 {
     return antialiasingFeather_;
 }
 
-void LineCurve::setAntialiasingFeather(qreal feather)
+void LineCurve::setAntialiasingFeather(const qreal feather)
 {
-    constexpr static auto kMinFeather = qreal{0.0};
-    constexpr static auto kMaxFeather = qreal{10.0};
-    const auto clamped = std::clamp(feather, kMinFeather, kMaxFeather);
+    const auto clamped = Internal::clampAntialiasingFeather(feather);
     if (nearlyEqual(antialiasingFeather_, clamped)) {
         return;
     }
@@ -425,7 +409,7 @@ std::optional<LegendEntry> LineCurve::legendEntry() const
     entry.markerSize = marker_->size();
     entry.markerFilled = marker_->filled();
     entry.markerStrokeWidth = marker_->strokeWidth();
-    entry.antialiasingEnabled = antialiasingEnabled();
+    entry.antialiasing = antialiasing();
     entry.antialiasingFeather = antialiasingFeather();
     return entry;
 }
@@ -542,7 +526,7 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, [[maybe_unused]] UpdatePai
 
     if (hasLine) {
         const auto lineParams = LineCurveRenderParams{window(), renderData(), sourceDataView(), drawnPointCount, dataChanged, color_, hovered(), lineWidth_,
-            domainMin, domainMax, viewportSize, xAxis(), yAxis(), xAxis()->logScale(), yAxis()->logScale(), antialiasingEnabled_, antialiasingFeather_,
+            domainMin, domainMax, viewportSize, xAxis(), yAxis(), xAxis()->logScale(), yAxis()->logScale(), antialiasing(), antialiasingFeather_,
             renderGradientPayload, gradientFillPayload, hasPoints ? nullptr : cache, lineStyle_, stepMode_};
         lineNode = lineRenderer_.paint(lineOldNode, lineParams);
     }
@@ -552,7 +536,7 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, [[maybe_unused]] UpdatePai
         // Markers draw the points the line already uploaded.
         const auto pointParams
             = PointCurveRenderParams{window(), renderData(), drawnPointCount, dataChanged, hasLine ? LineCurveLineRenderer::dataTexture(lineNode) : nullptr,
-                color_, hovered(), marker_->size(), domainMin, domainMax, viewportSize, xAxis()->logScale(), yAxis()->logScale(), antialiasingEnabled_,
+                color_, hovered(), marker_->size(), domainMin, domainMax, viewportSize, xAxis()->logScale(), yAxis()->logScale(), antialiasing(),
                 antialiasingFeather_, renderGradientPayload, hasLine ? nullptr : cache, shapeType, marker_->strokeWidth(), marker_->filled()};
         pointNode = pointRenderer_.paint(pointOldNode, pointParams);
     }

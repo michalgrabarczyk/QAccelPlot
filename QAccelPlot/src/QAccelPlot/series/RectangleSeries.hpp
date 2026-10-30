@@ -48,6 +48,9 @@ class RectMaterial;
 /// Each rectangle can carry a \c category, an index into \c categoryColors. Rectangles without a
 /// category, or with one outside \c categoryColors, use \c color.
 ///
+/// Set \c antialiasing to smooth edges that fall between pixels. It is off by default because
+/// rectangles that touch then show faint seams.
+///
 /// \par Limits
 /// Up to 16,777,216 (2^24) rectangles are drawn correctly. The shader indexes rectangles in single
 /// precision, and at that count the data texture reaches 8192 rows, the size every GPU supports.

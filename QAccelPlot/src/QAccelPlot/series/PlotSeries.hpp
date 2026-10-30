@@ -54,6 +54,17 @@ struct LegendEntry;
 /// \c columns per row. Series-specific setters take other layouts, such as point values,
 /// categories, or ranged bars.
 ///
+/// Series smooth their edges with the inherited \c antialiasing property. \c HeatmapSeries ignores it.
+///
+/// | Series             | Default \c antialiasing | Smoothed edges              |
+/// | ------------------ | ----------------------- | --------------------------- |
+/// | \c LineCurve       | \c true                 | lines and markers           |
+/// | \c PointCloud      | \c true                 | markers                     |
+/// | \c BandSeries      | \c true                 | edge lines                  |
+/// | \c ErrorBarSeries  | \c true                 | lines and caps              |
+/// | \c RectangleSeries | \c false                | rectangles and their border |
+/// | \c BarSeries       | \c false                | bars and their border       |
+///
 /// \sa LineCurve, PointCloud, RectangleSeries, BarSeries, BandSeries, ErrorBarSeries, HeatmapSeries, QAccelPlot
 class PlotSeries : public QQuickItem {
     Q_OBJECT

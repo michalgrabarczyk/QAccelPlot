@@ -73,4 +73,11 @@ int recordCapacity(QQuickWindow* window, const int floatsPerRecord, const int ve
     return static_cast<int>(std::min({textureRecords, geometryRecords, kMaxExactVertexId}));
 }
 
+qreal clampAntialiasingFeather(const qreal feather)
+{
+    constexpr auto kMinFeather = qreal{0.0};
+    constexpr auto kMaxFeather = qreal{10.0};
+    return std::clamp(feather, kMinFeather, kMaxFeather);
+}
+
 } // namespace QAccelPlot::Internal

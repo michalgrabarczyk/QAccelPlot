@@ -921,6 +921,7 @@ void BarSeries::updateMaterial(BarMaterial& material, const int renderCount) con
     material.borderColor = border_->color();
     material.hoverColor = hoverColor_.isValid() ? hoverColor_ : QColor{Qt::transparent};
     material.hoveredIndex = hoverColor_.isValid() ? static_cast<float>(hoveredIndex_) : -1.0f;
+    material.antialiasing = antialiasing() ? 1.0f : 0.0f;
     material.barWidth = static_cast<float>(barWidth_);
     material.barOffset = static_cast<float>(barOffset_);
     material.baseline = static_cast<float>(baselineValue_ - (horizontal ? originX : originY));

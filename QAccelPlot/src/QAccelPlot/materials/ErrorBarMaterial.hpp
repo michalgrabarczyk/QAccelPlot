@@ -40,6 +40,7 @@ public:
     float offset{0.0f};                 ///< \brief Shift of every error bar across its bounds, in data units.
     float horizontal{0.0f};             ///< \brief 1.0 when the bounds lie on the X axis (float for std140 UBO compatibility).
     float errorBarCount{0.0f};          ///< \brief Number of error bars drawn; vertices beyond them are culled.
+    float antialiasing{1.0f};           ///< \brief 1.0 to smooth the edges of the lines and caps.
 
 protected:
     /// \brief Compares the error-bar-specific uniforms after the base-class comparison succeeds.

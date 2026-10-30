@@ -114,6 +114,8 @@ void PointCloudDataTest::defaults()
     QCOMPARE(cloud.marker()->size(), 3.0);
     QVERIFY(cloud.marker()->filled());
     QCOMPARE(cloud.marker()->strokeWidth(), 1.0);
+    QVERIFY(cloud.antialiasing());
+    QCOMPARE(cloud.antialiasingFeather(), 1.0);
     QVERIFY(cloud.colormap() == nullptr);
     QCOMPARE(cloud.legendSymbol(), PlotSeries::LegendSymbol::Marker);
     QCOMPARE(cloud.dataValueMin(), 0.0);

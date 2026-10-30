@@ -72,9 +72,7 @@ class PointCloud : public ColormappedSeries {
     /// defaults to \c Circle and does not accept \c None, because a cloud always draws markers; <tt>marker.size</tt>
     /// defaults to 3.
     Q_PROPERTY(SeriesMarker* marker READ marker CONSTANT)
-    /// \brief Whether GPU-side anti-aliasing is applied to markers. Default: \c true.
-    Q_PROPERTY(bool antialiasingEnabled READ antialiasingEnabled WRITE setAntialiasingEnabled NOTIFY antialiasingEnabledChanged)
-    /// \brief Anti-aliasing feather width in pixels, clamped to [0, 10]. Default: 1.
+    /// \brief Antialiasing feather width in pixels, clamped to [0, 10]. Has effect only when the inherited \c antialiasing is \c true. Default: 1.
     Q_PROPERTY(qreal antialiasingFeather READ antialiasingFeather WRITE setAntialiasingFeather NOTIFY antialiasingFeatherChanged)
     /// \brief Pick distance in pixels from a point's center; 0 disables hover. Default: 6.
     Q_PROPERTY(qreal hoverRadius READ hoverRadius WRITE setHoverRadius NOTIFY hoverRadiusChanged)
@@ -97,14 +95,9 @@ public:
     /// \brief Returns the grouped marker settings. The object is owned by the cloud.
     SeriesMarker* marker() const;
 
-    /// \brief Returns \c true when GPU anti-aliasing is enabled.
-    bool antialiasingEnabled() const;
-    /// \brief Sets anti-aliasing to \a enabled.
-    void setAntialiasingEnabled(bool enabled);
-
-    /// \brief Returns the anti-aliasing feather width.
+    /// \brief Returns the antialiasing feather width in pixels.
     qreal antialiasingFeather() const;
-    /// \brief Sets the anti-aliasing feather width to \a feather pixels.
+    /// \brief Sets the antialiasing feather width to \a feather pixels, clamped to [0, 10].
     void setAntialiasingFeather(qreal feather);
 
     /// \brief Returns the hover pick distance in pixels.
@@ -156,8 +149,6 @@ public:
 signals:
     /// \brief Emitted when the color property changes.
     void colorChanged();
-    /// \brief Emitted when the antialiasingEnabled property changes.
-    void antialiasingEnabledChanged();
     /// \brief Emitted when the antialiasingFeather property changes.
     void antialiasingFeatherChanged();
     /// \brief Emitted when the hoverRadius property changes.
@@ -237,7 +228,6 @@ private:
 
     QColor color_{ColorPalette::dark().seriesPrimary};
     SeriesMarker* marker_{new SeriesMarker{MarkerShape::Circle, 3.0, SeriesMarker::NoneShape::Rejected, this}};
-    bool antialiasingEnabled_{true};
     qreal antialiasingFeather_{1.0};
     qreal hoverRadius_{6.0};
     int hoveredIndex_{-1};

@@ -145,7 +145,7 @@ void RenderOriginPrecisionTest::lineCurveMarkersKeepMillisecondPrecision()
     curve.setYAxis(yAxis_.get());
     curve.setPlotRect({0, 0, kWidth, kHeight});
     curve.setColor(Qt::white);
-    curve.setAntialiasingEnabled(false);
+    curve.setAntialiasing(false);
     curve.setLineStyle(nullptr);
     curve.marker()->setShape(MarkerShape::Square);
     curve.marker()->setSize(2);
@@ -162,7 +162,7 @@ void RenderOriginPrecisionTest::lineCurveKeepsPrecisionAfterPanning()
     curve.setYAxis(yAxis_.get());
     curve.setPlotRect({0, 0, kWidth, kHeight});
     curve.setColor(Qt::white);
-    curve.setAntialiasingEnabled(false);
+    curve.setAntialiasing(false);
     curve.setLineStyle(nullptr);
     curve.marker()->setShape(MarkerShape::Square);
     curve.marker()->setSize(2);
@@ -184,7 +184,7 @@ void RenderOriginPrecisionTest::pointCloudKeepsMillisecondPrecision()
     cloud.setYAxis(yAxis_.get());
     cloud.setPlotRect({0, 0, kWidth, kHeight});
     cloud.setColor(Qt::white);
-    cloud.setAntialiasingEnabled(false);
+    cloud.setAntialiasing(false);
     cloud.marker()->setShape(MarkerShape::Square);
     cloud.marker()->setSize(2);
     cloud.setData(yearOfSamples(), kMarkerCount + 1);
@@ -200,7 +200,7 @@ void RenderOriginPrecisionTest::pointCloudKeepsPrecisionAfterPanning()
     cloud.setYAxis(yAxis_.get());
     cloud.setPlotRect({0, 0, kWidth, kHeight});
     cloud.setColor(Qt::white);
-    cloud.setAntialiasingEnabled(false);
+    cloud.setAntialiasing(false);
     cloud.marker()->setShape(MarkerShape::Square);
     cloud.marker()->setSize(2);
     xAxis_->setViewportMin(kYearStart);

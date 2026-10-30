@@ -8,6 +8,7 @@
 #include "QAccelPlot/materials/BandEdgeMaterial.hpp"
 #include "QAccelPlot/materials/BarMaterial.hpp"
 #include "QAccelPlot/materials/DataTextureMaterial.hpp"
+#include "QAccelPlot/materials/ErrorBarMaterial.hpp"
 #include "QAccelPlot/materials/LineMaterial.hpp"
 #include "QAccelPlot/materials/PointCloudMaterial.hpp"
 #include "QAccelPlot/materials/PointMaterial.hpp"
@@ -76,6 +77,7 @@ private slots:
     void pointCloudMaterialsCompareMarkerAndColorUniforms();
     void pointCloudMaterialsCompareDataTextureIdentity();
     void barMaterialsCompareRectangleAndBarUniforms();
+    void errorBarMaterialsCompareAntialiasing();
 };
 
 void MaterialComparisonTest::identicalLineMaterialsCompareEqual()
@@ -270,6 +272,22 @@ void MaterialComparisonTest::barMaterialsCompareRectangleAndBarUniforms()
     auto horizontal = BarMaterial{};
     horizontal.horizontal = 1.0f;
     QVERIFY(left.compare(&horizontal) != 0);
+
+    auto antialiased = BarMaterial{};
+    antialiased.antialiasing = 1.0f;
+    QVERIFY(left.compare(&antialiased) != 0);
+    QVERIFY(antialiased.compare(&left) == -left.compare(&antialiased));
+}
+
+void MaterialComparisonTest::errorBarMaterialsCompareAntialiasing()
+{
+    const auto left = ErrorBarMaterial{};
+    QCOMPARE(left.compare(&left), 0);
+
+    auto aliased = ErrorBarMaterial{};
+    aliased.antialiasing = 0.0f;
+    QVERIFY(left.compare(&aliased) != 0);
+    QVERIFY(aliased.compare(&left) == -left.compare(&aliased));
 }
 
 } // namespace QAccelPlot

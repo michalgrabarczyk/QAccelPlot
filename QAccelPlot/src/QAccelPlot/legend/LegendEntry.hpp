@@ -41,9 +41,9 @@ struct LegendEntry {
     Q_PROPERTY(bool markerFilled MEMBER markerFilled CONSTANT)
     /// \brief Outline width in pixels of a hollow marker.
     Q_PROPERTY(qreal markerStrokeWidth MEMBER markerStrokeWidth CONSTANT)
-    /// \brief Whether the line and marker are anti-aliased.
-    Q_PROPERTY(bool antialiasingEnabled MEMBER antialiasingEnabled CONSTANT)
-    /// \brief Anti-aliasing feather width in pixels.
+    /// \brief Whether the line and marker are antialiased.
+    Q_PROPERTY(bool antialiasing MEMBER antialiasing CONSTANT)
+    /// \brief Antialiasing feather width in pixels.
     Q_PROPERTY(qreal antialiasingFeather MEMBER antialiasingFeather CONSTANT)
 
 public:
@@ -55,8 +55,8 @@ public:
     qreal markerSize{0.0};                                           ///< \brief Marker size in pixels.
     bool markerFilled{true};                                         ///< \brief Whether the marker is filled.
     qreal markerStrokeWidth{1.0};                                    ///< \brief Hollow marker outline width.
-    bool antialiasingEnabled{true};                                  ///< \brief Whether anti-aliasing is on.
-    qreal antialiasingFeather{1.0};                                  ///< \brief Anti-aliasing feather width.
+    bool antialiasing{true};                                         ///< \brief Whether antialiasing is on.
+    qreal antialiasingFeather{1.0};                                  ///< \brief Antialiasing feather width.
 };
 
 } // namespace QAccelPlot

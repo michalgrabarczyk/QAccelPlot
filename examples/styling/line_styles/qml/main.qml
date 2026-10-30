@@ -49,7 +49,7 @@ Window {
     }
 
     component StyledCurve: QAccelPlot.LineCurve {
-        antialiasingEnabled: window.antialiasingEnabled
+        antialiasing: window.antialiasingEnabled
         antialiasingFeather: window.antialiasingFeather
     }
 

@@ -35,6 +35,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `BarSeries`, `RectangleSeries`, and `ErrorBarSeries` report it too.
 - `PlotSeries.count` on every series, including `LineCurve` (points) and
   `HeatmapSeries` (cells, `columns` × `rows`).
+- `antialiasing: true` smooths `RectangleSeries` and `BarSeries` edges. It is
+  off by default.
 - Step lines via `LineCurve.stepMode` (`Before`, `After`, or `Center`): the
   fill, dash pattern, hover, and interpolated inspection follow the steps.
   Includes a Step Lines example.
@@ -57,6 +59,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   longer public.
 - Renamed `PlotInspector.position` to `crosshairPosition`, and
   `positionChanged()` to `crosshairPositionChanged()`.
+- Series use the `antialiasing` property inherited from `Item`.
+  `LineCurve.antialiasingEnabled`, `PointCloud.antialiasingEnabled`, and
+  `LegendEntry.antialiasingEnabled` are now `antialiasing`. `BandSeries` edge
+  lines and `ErrorBarSeries` follow it too.
 - Outlines use one `border` grouped property with `color` and `width`.
   `PlotView.rectangleZoom.borderColor`, `SelectionTool.borderColor`, and
   `ColorBar.borderColor`/`borderWidth` are now `border.color`/`border.width`.

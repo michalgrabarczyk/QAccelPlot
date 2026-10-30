@@ -72,7 +72,6 @@ Item {
                 yAxis: plot.yAxis
                 color: root.colorPalette.seriesTertiary
                 lineWidth: 3
-                antialiasingEnabled: true
 
                 Component.onCompleted: {
                     const points = [];

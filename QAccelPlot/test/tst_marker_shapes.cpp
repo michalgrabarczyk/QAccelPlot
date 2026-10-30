@@ -73,7 +73,7 @@ RenderResult renderMarker(const MarkerStyle& style)
     curve.marker()->setFilled(style.filled);
     curve.marker()->setStrokeWidth(style.strokeWidth);
     // Hard edges make every sampled pixel either fully inside or fully outside.
-    curve.setAntialiasingEnabled(false);
+    curve.setAntialiasing(false);
     curve.setData(std::vector<double>{0.5}, std::vector<double>{0.5});
 
     window.show();
@@ -110,7 +110,7 @@ RenderResult renderPointCloudMarker(const MarkerStyle& style)
     cloud.marker()->setSize(style.size);
     cloud.marker()->setFilled(style.filled);
     cloud.marker()->setStrokeWidth(style.strokeWidth);
-    cloud.setAntialiasingEnabled(false);
+    cloud.setAntialiasing(false);
     cloud.setDataF(std::vector<float>{0.5f, 0.5f}, 1);
 
     window.show();
@@ -519,7 +519,7 @@ void MarkerShapesTest::gradientStrokeColorsMarkersBetweenStops()
                       "    lineStyle: NoLine {}\n"
                       "    marker.shape: MarkerShape.Square\n"
                       "    marker.size: 8\n"
-                      "    antialiasingEnabled: false\n"
+                      "    antialiasing: false\n"
                       "    effects: GradientStroke {\n"
                       "        direction: Qt.Horizontal\n"
                       "        valueMinSource: GradientValueSource.Fixed; valueMin: 0\n"
@@ -573,7 +573,7 @@ void MarkerShapesTest::verticalGradientPutsTopMarkerAtFirstStop()
                       "    lineStyle: NoLine {}\n"
                       "    marker.shape: MarkerShape.Square\n"
                       "    marker.size: 4\n"
-                      "    antialiasingEnabled: false\n"
+                      "    antialiasing: false\n"
                       "    effects: GradientStroke {\n"
                       "        direction: Qt.Vertical\n"
                       "        valueMinSource: GradientValueSource.Fixed; valueMin: 0\n"
@@ -642,7 +642,7 @@ void MarkerShapesTest::markersFollowSameSizeDataUpdates()
     curve.setColor(Qt::white);
     curve.marker()->setShape(Shape::Square);
     curve.marker()->setSize(6.0);
-    curve.setAntialiasingEnabled(false);
+    curve.setAntialiasing(false);
     // Markers at pixels (16, 16) and (48, 48), joined by a line along the main diagonal.
     curve.setData(std::vector<double>{0.25, 0.75}, std::vector<double>{0.75, 0.25});
 

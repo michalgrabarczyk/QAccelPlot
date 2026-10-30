@@ -13,12 +13,13 @@ layout(location = 1) in float corner; // 0-5: which vertex of the two-triangle q
 layout(location = 2) in vec4 vertexColor;
 
 layout(location = 0) out vec4 v_color;
-// Pixel distances to the left, right, top, and bottom edges, for the outline.
+// Pixel distances to the left, right, top, and bottom edges, for the outline and antialiasing.
 layout(location = 1) out vec4 v_edgeDistance;
 // The outline settings pass through varyings, so only this stage declares ubuf: shader
 // compilers trim unused trailing block members per stage, and OpenGL rejects blocks that differ.
 layout(location = 2) out vec4 v_borderColor;
 layout(location = 3) out float v_borderWidth;
+layout(location = 4) flat out float v_antialiasing;
 
 // Must match RectUbo in materials/internal/RectUniforms.hpp.
 layout(std140, binding = 0) uniform buf {
@@ -37,6 +38,7 @@ layout(std140, binding = 0) uniform buf {
     float opacity;        // 160-163: inherited item opacity
     float borderWidth;    // 164-167: outline width in pixels
     float hoveredIndex;   // 168-171: -1 when no rectangle is highlighted
+    float antialiasing;   // 172-175: 1 to smooth the edges
 } ubuf;
 
 layout(binding = 1) uniform sampler2D dataSampler;
@@ -50,6 +52,7 @@ void main() {
     v_color = rectFillColor(index, vertexColor);
     v_borderColor = vec4(ubuf.borderColor.rgb, ubuf.borderColor.a * ubuf.opacity);
     v_borderWidth = ubuf.borderWidth;
+    v_antialiasing = ubuf.antialiasing;
 
     int base = index * 4;
     uint x1Bits = fetchFloatBits(base);

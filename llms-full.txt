@@ -1247,8 +1247,6 @@ QAccelPlot.LineCurve {
     }
     marker.shape: QAccelPlot.MarkerShape.Diamond
     marker.size: 5
-    antialiasingEnabled: true
-    antialiasingFeather: 1
 }
 ```
 
@@ -1257,6 +1255,30 @@ Line styles are `QAccelPlot.SolidLine`, `QAccelPlot.DashLine`, and
 Marker settings are grouped under `marker`: `shape`, `size`, `filled`, and
 `strokeWidth`.
 A dash pattern lists alternating on/off lengths in pixels.
+
+## Antialiasing
+
+Series smooth their edges with the `antialiasing` property every `Item` has.
+`HeatmapSeries` ignores it.
+
+| Series | Default | Smoothed edges |
+| --- | --- | --- |
+| `LineCurve` | `true` | lines and markers |
+| `PointCloud` | `true` | markers |
+| `BandSeries` | `true` | edge lines |
+| `ErrorBarSeries` | `true` | lines and caps |
+| `RectangleSeries`, `BarSeries` | `false` | rectangles and their border |
+
+Rectangles and bars that touch, such as histogram bins, show faint seams with
+`antialiasing: true`. `LineCurve` and `PointCloud` also take
+`antialiasingFeather`, the width of the edge ramp in pixels (0 to 10,
+default 1).
+
+```qml
+QAccelPlot.LineCurve {
+    antialiasing: false // hard, pixel-aligned edges
+}
+```
 
 ## Step lines
 
@@ -1326,7 +1348,7 @@ QAccelPlot.LineCurve {
 ```
 
 `Pixel` draws each data point as one logical pixel and ignores `marker.size` and
-anti-aliasing. Use it with a semi-transparent color for scatter plots with
+antialiasing. Use it with a semi-transparent color for scatter plots with
 hundreds of thousands of points, where overlapping points build up density.
 Hover still detects a `Pixel` marker within 3 px.
 

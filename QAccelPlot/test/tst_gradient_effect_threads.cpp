@@ -159,7 +159,7 @@ public:
         curve->setPlotRect({0, 0, kSize, kSize});
         curve->setColor(Qt::white);
         curve->setLineWidth(8);
-        curve->setAntialiasingEnabled(false);
+        curve->setAntialiasing(false);
         stroke->setGradient(&strokeGradient);
         fill->setGradient(&fillGradient);
         fill->setOpacity(1.0);

@@ -33,4 +33,7 @@ int maxTextureSize(QQuickWindow* window);
 /// float holds exactly, and by \c QSGGeometry, which sizes its vertex buffer in \c int bytes.
 int recordCapacity(QQuickWindow* window, int floatsPerRecord, int vertexBytesPerRecord);
 
+/// \brief Returns \a feather clamped to the [0, 10] pixel range of the series' \c antialiasingFeather properties.
+qreal clampAntialiasingFeather(qreal feather);
+
 } // namespace QAccelPlot::Internal
