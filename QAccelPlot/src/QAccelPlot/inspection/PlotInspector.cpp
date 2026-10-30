@@ -10,6 +10,7 @@
 #include "QAccelPlot/axis/AxisTicker.hpp"
 #include "QAccelPlot/inspection/internal/InspectionTypes.hpp"
 #include "QAccelPlot/inspection/internal/OverlayChildren.hpp"
+#include "QAccelPlot/internal/PointerTracker.hpp"
 
 #include <QLocale>
 #include <QScopedValueRollback>
@@ -478,7 +479,7 @@ void PlotInspector::reconnect()
     if (!plot_ || !enabled_) {
         return;
     }
-    connections_.push_back(connect(plot_, &::QAccelPlot::QAccelPlot::pointerChanged, this, &PlotInspector::schedule));
+    connections_.push_back(connect(&plot_->pointer(), &Internal::PointerTracker::changed, this, &PlotInspector::schedule));
     connections_.push_back(connect(plot_, &::QAccelPlot::QAccelPlot::plotRectChanged, this, &PlotInspector::schedule));
     connections_.push_back(connect(plot_, &::QAccelPlot::QAccelPlot::xAxisChanged, this, &PlotInspector::reconnect));
     connections_.push_back(connect(plot_, &::QAccelPlot::QAccelPlot::yAxisChanged, this, &PlotInspector::reconnect));
@@ -558,7 +559,8 @@ std::optional<QPointF> PlotInspector::activeCursor() const
         return std::nullopt;
     }
     if (followPointer_) {
-        return plot_->pointerInside() ? std::optional{plot_->pointerPosition()} : std::nullopt;
+        const auto pointer = plot_->pointer().position();
+        return pointer && plot_->plotRect().contains(*pointer) ? pointer : std::nullopt;
     }
     const auto area = plot_->plotRect();
     const auto pixel = pinnedPixel();

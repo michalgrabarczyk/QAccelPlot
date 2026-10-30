@@ -129,7 +129,8 @@ thread. Pixel arguments are series-local logical pixels: map a plot-local
 position with `series.mapFromItem(plot, position)`.
 
 ```qml
-const dataPoint = curve.inspection.nearestByX(curve.mapFromItem(plotView, plotView.pointerPosition).x)
+const position = curve.mapFromItem(plotView, inspector.cursorPixelX, inspector.cursorPixelY)
+const dataPoint = curve.inspection.nearestByX(position.x)
 if (dataPoint.valid)
     console.log(dataPoint.index, dataPoint.x, dataPoint.y)
 ```

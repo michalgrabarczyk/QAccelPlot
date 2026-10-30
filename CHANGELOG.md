@@ -77,6 +77,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - `SeriesInspection.supported`. A query that does not apply to a series returns
   `Inspection.Unsupported`.
+- `PlotView.pointerPosition`, `pointerInside`, and `pointerChanged()`. Use
+  `PlotInspector.cursorPixelX`, `cursorPixelY`, and `active`, or a
+  `HoverHandler`.
 - The `showcases/pulsar` example.
 - The CI benchmark workflow: its timings on shared runners varied more than
   its alert threshold. A unit test now counts scene graph rebuilds and data

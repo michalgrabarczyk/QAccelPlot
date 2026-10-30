@@ -23,13 +23,16 @@
 #include <QQuickItem>
 #include <QRectF>
 
-#include <optional>
-
 namespace QAccelPlot {
 
 class GridNode;
 class PlotExporter;
+class PlotInspector;
 class RectangleZoomOverlay;
+
+namespace Internal {
+class PointerTracker;
+} // namespace Internal
 
 /// \brief The main plot canvas QML item — hosts axes, curves, and a grid.
 ///
@@ -85,13 +88,6 @@ class QAccelPlot : public QQuickItem {
     /// \c Crosshair, \c InspectionMarkers, \c InspectionTooltip, and the rectangle of a \c SelectionTool are its children.
     Q_PROPERTY(QQuickItem* overlay READ overlay CONSTANT)
 
-    /// \brief Last observed pointer position in plot-local logical pixels. It is kept after the pointer leaves; check \c pointerInside.
-    ///
-    /// A touch places the pointer where the finger is and leaves it there after the release.
-    Q_PROPERTY(QPointF pointerPosition READ pointerPosition NOTIFY pointerChanged)
-    /// \brief Whether the observed pointer is inside the data area.
-    Q_PROPERTY(bool pointerInside READ pointerInside NOTIFY pointerChanged)
-
 public:
     /// \brief Constructs a PlotView with the given \a parent.
     explicit QAccelPlot(QQuickItem* parent = nullptr);
@@ -114,11 +110,6 @@ public:
     Q_INVOKABLE bool zoomToRect(const QRectF& rect);
     /// \brief Calls \c Axis::rescaleToData() on all attached axes.
     Q_INVOKABLE void rescaleAllAxes();
-
-    /// \brief Returns the last observed plot-local pointer position; the origin before the first pointer event.
-    QPointF pointerPosition() const;
-    /// \brief Returns true while the observed pointer is inside plotRect.
-    bool pointerInside() const;
 
     /// \brief Returns the primary horizontal axis.
     Axis* xAxis() const;
@@ -177,8 +168,6 @@ public:
     QQuickItem* overlay() const;
 
 signals:
-    /// \brief Emitted when the plot observes pointer motion or pointer exit.
-    void pointerChanged();
     /// \brief Emitted when Escape is pressed while the plot has focus, so that tools can cancel their gestures.
     void escapePressed();
     /// \brief Emitted when the plot loses its mouse grab during a drag.
@@ -234,6 +223,7 @@ protected:
 
 private:
     friend class PlotExporter;
+    friend class PlotInspector;
 
     enum class DragMode { Idle, Pan, RectangleZoom };
     bool isAxisRegistered(Axis* axis) const;
@@ -256,7 +246,8 @@ private:
     void updateRectangleSelection(const QPointF& pos);
     void cancelRectangleSelection();
     void layoutAxes();
-    void setPointer(const QPointF& position);
+    // Returns the pointer over the plot, for PlotInspector.
+    const Internal::PointerTracker& pointer() const;
     void registerSeries(QQuickItem* item);
     // Marks the plot as captured by a PlotExporter, drawing both background areas transparent when \a transparentBackground.
     void beginExport(bool transparentBackground);
@@ -272,12 +263,8 @@ private:
     DragMode dragMode_{DragMode::Idle};
     PlotDragRect zoomDrag_;
     QPointF lastMousePos_;
-    // Last pointer position over the plot; key events go to the axis under it.
-    std::optional<QPointF> pointerPos_;
-    QPointF lastPointerPos_;
-    // True while the pointer was last placed by a touch, which keeps it in place after the release.
-    bool touchPointer_{false};
-    bool touchPressed_{false};
+    // Key events go to the axis under the pointer.
+    Internal::PointerTracker* pointer_{nullptr};
     PlotMouseEvent mousePressEvent_{this};
     PlotMouseEvent mouseReleaseEvent_{this};
     PlotMouseEvent mouseDoubleClickEvent_{this};
