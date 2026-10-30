@@ -41,6 +41,7 @@ public:
     float offset{0.0f};                 
     float horizontal{0.0f};             
     float errorBarCount{0.0f};          
+    float antialiasing{1.0f};           
 
 protected:
     int compareExtra(const QSGMaterial* other) const override;

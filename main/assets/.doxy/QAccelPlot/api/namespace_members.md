@@ -13,6 +13,7 @@
 ## c
 
 * **collect** ([**QAccelPlot::InspectionScan**](namespaceQAccelPlot_1_1InspectionScan.md))
+* **clampAntialiasingFeather** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **createNode** ([**QAccelPlot::LineStroke**](namespaceQAccelPlot_1_1LineStroke.md))
 
 

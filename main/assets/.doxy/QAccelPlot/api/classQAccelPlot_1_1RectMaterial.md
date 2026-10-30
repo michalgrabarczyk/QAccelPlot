@@ -69,6 +69,7 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
+|  float | [**antialiasing**](#variable-antialiasing)   = `{0.0f}`<br>_1.0 to smooth the rectangle and outline edges._  |
 |  QColor | [**borderColor**](#variable-bordercolor)   = `{Qt::black}`<br>_Outline color._  |
 |  float | [**borderWidth**](#variable-borderwidth)   = `{0.0f}`<br>_Outline width in pixels, drawn inside each rectangle._  |
 |  QColor | [**hoverColor**](#variable-hovercolor)   = `{Qt::transparent}`<br>_Fill color of the highlighted rectangle._  |
@@ -219,6 +220,21 @@ See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 
 ## Public Attributes Documentation
 
+
+
+
+
+### variable antialiasing {#variable-antialiasing}
+
+_1.0 to smooth the rectangle and outline edges._ 
+```C++
+float QAccelPlot::RectMaterial::antialiasing;
+```
+
+
+
+
+<hr>
 
 
 

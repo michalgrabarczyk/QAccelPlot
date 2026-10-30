@@ -90,23 +90,6 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="86" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="86" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="classQAccelPlot_1_1LineCurve_1a1da9117bed1da3c96d4a157efc8b3167" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type>bool</type>
-        <definition>bool QAccelPlot::LineCurve::antialiasingEnabled</definition>
-        <argsstring></argsstring>
-        <name>antialiasingEnabled</name>
-        <qualifiedname>QAccelPlot::LineCurve::antialiasingEnabled</qualifiedname>
-        <read>antialiasingEnabled</read>
-        <write>setAntialiasingEnabled</write>
-        <briefdescription>
-<para>Whether GPU-side anti-aliasing is applied to lines and markers. Default: <computeroutput>true</computeroutput>. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="88" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="88" bodyend="-1"/>
-      </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1LineCurve_1a594b68738aed9de45ac09bab369342b2" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>qreal</type>
         <definition>qreal QAccelPlot::LineCurve::antialiasingFeather</definition>
@@ -116,13 +99,13 @@
         <read>antialiasingFeather</read>
         <write>setAntialiasingFeather</write>
         <briefdescription>
-<para>Anti-aliasing feather width in pixels. Has effect only when <computeroutput>antialiasingEnabled</computeroutput> is <computeroutput>true</computeroutput>. Default: 1. </para>
+<para>Antialiasing feather width in pixels, clamped to [0, 10]. Has effect only when the inherited <computeroutput>antialiasing</computeroutput> is <computeroutput>true</computeroutput>. Default: 1. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="90" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="90" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="88" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="88" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1LineCurve_1afd2dc2f55a0ebc51ce212ea522342c0e" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>QQmlListProperty&lt; <ref refid="classQAccelPlot_1_1LineCurveEffect" kindref="compound">LineCurveEffect</ref> &gt;</type>
@@ -138,7 +121,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="92" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="92" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="90" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="90" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1LineCurve_1a304e3f9be82a9fea7cb84b0c55068d9c" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type><ref refid="classQAccelPlot_1_1LineCurveGaps" kindref="compound">LineCurveGaps</ref> *</type>
@@ -154,7 +137,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="94" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="94" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="92" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="92" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1LineCurve_1a93749015bedc2e340dd7585326857558" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type><ref refid="classQAccelPlot_1_1SeriesMarker" kindref="compound">SeriesMarker</ref> *</type>
@@ -170,7 +153,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="96" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="96" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="94" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="94" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1LineCurve_1a36e3ab79648d6df5522c4b0d6bfea83f" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type><ref refid="namespaceQAccelPlot_1_1StepModeNS_1af348af83845fdf1f08b475737f62a7cd" kindref="member">StepMode</ref></type>
@@ -187,7 +170,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="98" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="98" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="96" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="96" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-attrib">
@@ -204,7 +187,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="255" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="255" bodyend="255"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="246" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="246" bodyend="246"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1LineCurve_1ae46bb43854c8650cd1e7c95e0750fd38" prot="private" static="no" mutable="no">
         <type>qreal</type>
@@ -219,7 +202,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="256" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="256" bodyend="256"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="247" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="247" bodyend="247"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1LineCurve_1ae35fc52543bbee90dc5769acd249f752" prot="private" static="no" mutable="no">
         <type>qreal</type>
@@ -234,7 +217,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="257" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="257" bodyend="257"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="248" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="248" bodyend="248"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1LineCurve_1a5a52a33848144ccf26bbff1fb25a1914" prot="private" static="no" mutable="no">
         <type>std::unique_ptr&lt; <ref refid="classQAccelPlot_1_1TransitionRunner" kindref="compound">TransitionRunner</ref> &gt;</type>
@@ -248,7 +231,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="259" column="21" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="259" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="250" column="21" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="250" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1LineCurve_1a943de97e88d932792766b48979203a29" prot="private" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -262,7 +245,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="261" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="261" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="252" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="252" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1LineCurve_1a916e2026322ffa20083789abe151f434" prot="private" static="no" mutable="no">
         <type>std::optional&lt; std::vector&lt; char &gt; &gt;</type>
@@ -276,7 +259,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="263" column="19" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="263" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="254" column="19" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="254" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1LineCurve_1a8e430803797ca65db407a90e40837211" prot="private" static="no" mutable="no">
         <type>QPointer&lt; QQuickWindow &gt;</type>
@@ -290,7 +273,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="264" column="14" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="264" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="255" column="14" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="255" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1LineCurve_1a9cf2522f5761103fac1ad7c89a084c8f" prot="private" static="no" mutable="no">
         <type>QPointer&lt; <ref refid="classQAccelPlot_1_1LineStyle" kindref="compound">LineStyle</ref> &gt;</type>
@@ -305,22 +288,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="265" column="14" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="265" bodyend="265"/>
-      </memberdef>
-      <memberdef kind="variable" id="classQAccelPlot_1_1LineCurve_1a16fa4890c3b65b5f73b5d0832f8c7480" prot="private" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool QAccelPlot::LineCurve::antialiasingEnabled_</definition>
-        <argsstring></argsstring>
-        <name>antialiasingEnabled_</name>
-        <qualifiedname>QAccelPlot::LineCurve::antialiasingEnabled_</qualifiedname>
-        <initializer>{true}</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="266" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="266" bodyend="266"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="256" column="14" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="256" bodyend="256"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1LineCurve_1a8e759cb4b7ee1ce29a1513155c86338a" prot="private" static="no" mutable="no">
         <type>qreal</type>
@@ -335,7 +303,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="267" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="267" bodyend="267"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="257" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="257" bodyend="257"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1LineCurve_1ac552a150914bc2baa2315c2f1fbb9b1e" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -350,7 +318,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="268" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="268" bodyend="268"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="258" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="258" bodyend="258"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1LineCurve_1a0cea9b141c185d364d04d73e37aee689" prot="private" static="no" mutable="no">
         <type><ref refid="classQAccelPlot_1_1LineCurveGaps" kindref="compound">LineCurveGaps</ref> *</type>
@@ -365,7 +333,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="269" column="19" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="269" bodyend="269"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="259" column="19" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="259" bodyend="259"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1LineCurve_1a4386542c038915acfd34c436fc920c2f" prot="private" static="no" mutable="no">
         <type><ref refid="classQAccelPlot_1_1SeriesMarker" kindref="compound">SeriesMarker</ref> *</type>
@@ -380,7 +348,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="270" column="18" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="270" bodyend="270"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="260" column="18" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="260" bodyend="260"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1LineCurve_1a049677423cfd8ade391a6000cf0bbf09" prot="private" static="no" mutable="no">
         <type><ref refid="namespaceQAccelPlot_1_1StepModeNS_1af348af83845fdf1f08b475737f62a7cd" kindref="member">StepMode</ref></type>
@@ -395,7 +363,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="271" column="14" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="271" bodyend="271"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="261" column="14" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="261" bodyend="261"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1LineCurve_1ad095b422bfe38fb89b934874ce1244e8" prot="private" static="no" mutable="no">
         <type>QList&lt; <ref refid="classQAccelPlot_1_1LineCurveEffect" kindref="compound">LineCurveEffect</ref> * &gt;</type>
@@ -409,7 +377,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="272" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="272" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="262" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="262" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1LineCurve_1acf924165805a2eedb08666d81d9eb034" prot="private" static="no" mutable="no">
         <type><ref refid="classQAccelPlot_1_1LineCurveLineRenderer" kindref="compound">LineCurveLineRenderer</ref></type>
@@ -423,7 +391,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="273" column="27" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="273" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="263" column="27" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="263" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1LineCurve_1adce498a4ff6dec862279c366c82d3ecf" prot="private" static="no" mutable="no">
         <type><ref refid="classQAccelPlot_1_1LineCurvePointRenderer" kindref="compound">LineCurvePointRenderer</ref></type>
@@ -437,7 +405,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="274" column="28" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="274" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="264" column="28" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="264" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1LineCurve_1af91ad584daa39dc94c68dd2a5fa66fa7" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -452,7 +420,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="279" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="279" bodyend="279"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="269" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="269" bodyend="269"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1LineCurve_1ad0963b5f760741b04a01b467790bee0a" prot="private" static="no" mutable="no">
         <type>std::uint64_t</type>
@@ -467,7 +435,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="281" column="19" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="281" bodyend="281"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="271" column="19" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="271" bodyend="271"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1LineCurve_1a16cfe75ac702635354451f0eb77cd62f" prot="private" static="no" mutable="no">
         <type>std::uint64_t</type>
@@ -482,7 +450,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="283" column="19" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="283" bodyend="283"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="273" column="19" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="273" bodyend="273"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1LineCurve_1a2dd218212bf318d888cf41ec49bb46ee" prot="private" static="no" mutable="no">
         <type><ref refid="classQAccelPlot_1_1LineCurveVertexCache" kindref="compound">LineCurveVertexCache</ref></type>
@@ -496,7 +464,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="287" column="26" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="287" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="277" column="26" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="277" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1LineCurve_1a116e085b17dc4314f7faa1a04eb27d2a" prot="private" static="no" mutable="yes">
         <type>std::vector&lt; <ref refid="structQAccelPlot_1_1CurveChunk" kindref="compound">CurveChunk</ref> &gt;</type>
@@ -510,7 +478,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="293" column="25" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="293" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="283" column="25" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="283" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1LineCurve_1a24c236eba2c692749c4aa43d99afd742" prot="private" static="no" mutable="yes">
         <type>bool</type>
@@ -525,7 +493,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="294" column="18" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="294" bodyend="294"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="284" column="18" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="284" bodyend="284"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -547,7 +515,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="102" column="14"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="100" column="14"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1aa5a84254048055e12aed6bb2ed9c4206" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -562,7 +530,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="104" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="102" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a3a402a001bee52f8caa9bb823bd93752" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QColor</type>
@@ -577,7 +545,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="107" column="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="105" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1adde3a2b4b580868777dc03add814a1db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -596,7 +564,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="109" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="107" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1ad994fcbd64368c3bf92c14b7c56df7ce" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -611,7 +579,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="112" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="110" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a0b6cc43cfb928538d12b40cfd3f1756c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -630,7 +598,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="114" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="112" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a1381ed7edc4ba7cdec68612c3277ad1d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -645,7 +613,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="117" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="115" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a90e5132df7becbc0c563104a7da7b305" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -664,7 +632,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="120" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="118" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a97a26eac493441521e95480577472374" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classQAccelPlot_1_1DataTransition" kindref="compound">DataTransition</ref> *</type>
@@ -679,7 +647,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="123" column="20"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="121" column="20"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1afcf118021661a7823b0112e42e7c93a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -698,7 +666,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="125" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="123" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a7181db3120c6a1b884ae3e321ddf37bc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classQAccelPlot_1_1LineStyle" kindref="compound">LineStyle</ref> *</type>
@@ -713,7 +681,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="128" column="15"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="126" column="15"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a869fd8132a4e956efe33910168aec807" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -732,41 +700,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="130" column="10"/>
-      </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a6a9270ca8de40dc035b5fdd84968a92a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>bool</type>
-        <definition>bool QAccelPlot::LineCurve::antialiasingEnabled</definition>
-        <argsstring>() const</argsstring>
-        <name>antialiasingEnabled</name>
-        <qualifiedname>QAccelPlot::LineCurve::antialiasingEnabled</qualifiedname>
-        <briefdescription>
-<para>Returns <computeroutput>true</computeroutput> when GPU anti-aliasing is enabled. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="133" column="10"/>
-      </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1aad51817c07fd5800afe9d748b0c7f442" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void QAccelPlot::LineCurve::setAntialiasingEnabled</definition>
-        <argsstring>(bool enabled)</argsstring>
-        <name>setAntialiasingEnabled</name>
-        <qualifiedname>QAccelPlot::LineCurve::setAntialiasingEnabled</qualifiedname>
-        <param>
-          <type>bool</type>
-          <declname>enabled</declname>
-        </param>
-        <briefdescription>
-<para>Sets anti-aliasing to <emphasis>enabled</emphasis>. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="135" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="128" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a431483d45b1336bfd642f76eb8ffe157" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -775,13 +709,13 @@
         <name>antialiasingFeather</name>
         <qualifiedname>QAccelPlot::LineCurve::antialiasingFeather</qualifiedname>
         <briefdescription>
-<para>Returns the anti-aliasing feather width. </para>
+<para>Returns the antialiasing feather width in pixels. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="138" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="131" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a9537d8e99ebe30b00a19a339529b5959" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -794,13 +728,13 @@
           <declname>feather</declname>
         </param>
         <briefdescription>
-<para>Sets the anti-aliasing feather width to <emphasis>feather</emphasis> pixels. Has effect only when <computeroutput>antialiasingEnabled</computeroutput> is <computeroutput>true</computeroutput>. </para>
+<para>Sets the antialiasing feather width to <emphasis>feather</emphasis> pixels, clamped to [0, 10]. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="140" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="133" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a7bd8ef4b7beb4a6bc054eecba5a5d3b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>QQmlListProperty&lt; <ref refid="classQAccelPlot_1_1LineCurveEffect" kindref="compound">LineCurveEffect</ref> &gt;</type>
@@ -815,7 +749,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="143" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="136" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a7e81c6340766beef529e410f693f1337" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classQAccelPlot_1_1LineCurveGaps" kindref="compound">LineCurveGaps</ref> *</type>
@@ -830,7 +764,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="146" column="19"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="139" column="19"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a999644a6f7ee789a9ca8ee0c420fbc92" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classQAccelPlot_1_1SeriesMarker" kindref="compound">SeriesMarker</ref> *</type>
@@ -845,7 +779,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="149" column="18"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="142" column="18"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1ad990a3be3d76e09fd2677fc8fa2ae223" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="namespaceQAccelPlot_1_1StepModeNS_1af348af83845fdf1f08b475737f62a7cd" kindref="member">StepMode</ref></type>
@@ -860,7 +794,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="152" column="14"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="145" column="14"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a7531888983f6389c1fe31ae5464787c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -879,7 +813,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="154" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="147" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1acc4aaa04bfb63170079842c8b9b10f62" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE void</type>
@@ -902,7 +836,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="157" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="150" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1acf9463cc9f4c0e0eb7cc9d053b7e7114" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE void</type>
@@ -921,7 +855,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="159" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="152" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1aad067a9b84289a5c73637905cbc61a69" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -944,7 +878,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="161" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="154" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a5fcda9da44cc89a1c493353baaa79cbf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -971,7 +905,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="166" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="159" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1adf75a3d1fba07c9f382b0170973ceaa2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -998,7 +932,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="168" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="161" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1ad6683a1132bd0eaae9a4c7cb7b07ae37" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>Q_INVOKABLE void</type>
@@ -1014,7 +948,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="170" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="163" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a93e7cff8e144e1ec4edb9e9be11f315e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type>std::optional&lt; <ref refid="structQAccelPlot_1_1LegendEntry" kindref="compound">LegendEntry</ref> &gt;</type>
@@ -1030,7 +964,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="172" column="19"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="165" column="19"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1acbf8fb06d9d8ca2a5ab3a0c4e060a4b4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1053,7 +987,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="162" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="155" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1aad3e05b7da4d8c16ca53819017e7b6e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1076,7 +1010,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="162" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="155" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a5615889cceabfee35f5e3e2dbd25f455" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1100,7 +1034,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="163" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="156" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1af143a846c63372800995a0bd4f058598" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1123,7 +1057,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="163" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="156" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a683165ce25c4f4a2f0cf3a36852c3721" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1150,7 +1084,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="163" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="156" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1ad10aa7307918305c127eb0b98c962484" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1177,7 +1111,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="163" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="156" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1aa3475ca31d506b1b1c28ea586d61402e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1200,7 +1134,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="164" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="157" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a1180d75ce402fbf92fd7d95a4d0acda4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1223,7 +1157,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="164" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="157" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1ab0d977683b1b06807842ade3c6011a3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1250,7 +1184,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="164" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="157" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a795dc3374e83da98b6a471bb55f51fbd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1277,7 +1211,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="164" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="157" column="5"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="protected-func">
@@ -1298,7 +1232,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="184" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="177" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a8bffc05647647d37d0d6ec8b1f5bf77a" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -1318,7 +1252,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="186" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="179" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a81600a34c7dd5c5970431b1a1a3ab2e8" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -1334,7 +1268,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="188" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="181" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1ad88615d4b1590c81fcef9f249db033db" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -1358,7 +1292,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="190" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="183" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="signal">
@@ -1375,7 +1309,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="194" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="187" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1LineCurve_1a05f59aacd68555f119845d3a5cae263e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1390,7 +1324,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="196" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="189" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1LineCurve_1ac7ae8ceeb42e98ad23e5ae2f0e3bf0e9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1405,7 +1339,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="198" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="191" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1LineCurve_1ae7ec73e4c67f6f204b6a0e34bc72cda4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1420,7 +1354,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="200" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="193" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1LineCurve_1a888793f4978ae28e97af934c09ee4ccf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1435,22 +1369,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="202" column="10"/>
-      </memberdef>
-      <memberdef kind="signal" id="classQAccelPlot_1_1LineCurve_1adeb1c85fe5606e9ddd1513af329a4c40" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void QAccelPlot::LineCurve::antialiasingEnabledChanged</definition>
-        <argsstring>()</argsstring>
-        <name>antialiasingEnabledChanged</name>
-        <qualifiedname>QAccelPlot::LineCurve::antialiasingEnabledChanged</qualifiedname>
-        <briefdescription>
-<para>Emitted when the antialiasingEnabled property changes. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="204" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="195" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1LineCurve_1abd7343d8d2679fae990517629a395134" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1465,7 +1384,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="206" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="197" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1LineCurve_1a8a1b04593a18769cb7199df95b37d697" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1480,7 +1399,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="208" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="199" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
@@ -1496,7 +1415,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="211" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="202" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1aa37cd6e308baa0caf70d89328d3632dd" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1510,7 +1429,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="212" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="203" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a78010918673eb08bcc452b7ff0dcc4b2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1524,7 +1443,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="213" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="204" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a87b6fb68dac4d84bc3cb5f0fdf7ce57b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1538,7 +1457,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="214" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="205" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a48bdf57083a9e8fd213c85cd4d2f36bb" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1552,7 +1471,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="215" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="206" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1aeb78384844d07268e0a6ef032f1f2071" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -1566,7 +1485,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="222" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="213" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a24845103565c8152a4ed5a9b8ded8588" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structQAccelPlot_1_1GradientColorPayload" kindref="compound">GradientColorPayload</ref></type>
@@ -1580,7 +1499,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="223" column="26"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="214" column="26"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1ac5c0cf8db24ffc1735f61a0ac9c71c01" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structQAccelPlot_1_1GradientFillPayload" kindref="compound">GradientFillPayload</ref></type>
@@ -1594,7 +1513,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="224" column="25"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="215" column="25"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a58128cbaede9eae5e069f04373741063" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::pair&lt; qreal, qreal &gt;</type>
@@ -1612,7 +1531,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="225" column="15"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="216" column="15"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a2e1bf33a8d92d2effb22040d8953dd6c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1634,7 +1553,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="227" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="218" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a3708fd7315379c245e852f85957717d8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1656,7 +1575,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="228" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="219" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a20711b33e2b3d3e2bdcaf431558061b3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1678,7 +1597,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="230" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="221" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a1da9b965cc317b70bc5cb0dc0e37ed9b" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>const std::vector&lt; float &gt; &amp;</type>
@@ -1692,7 +1611,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="231" column="23"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="222" column="23"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1aa95c715a268a9807a462839e01482a78" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structQAccelPlot_1_1CurveDataView" kindref="compound">CurveDataView</ref></type>
@@ -1706,7 +1625,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="232" column="19"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="223" column="19"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a6333fa59663ad2c43e62bf1bc3425ede" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -1720,7 +1639,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="235" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="226" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1aa02993dd005fbf06d0aabe616a0a7298" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1734,7 +1653,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="236" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="227" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a5872dc1615b0de82634c08bbfaeaf406" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1752,7 +1671,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="237" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="228" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1acffac7ccd8ece21ba780bc47d6fc1e18" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::size_t</type>
@@ -1766,7 +1685,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="238" column="17"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="229" column="17"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1ac5fdcadbe0c8426d70b7667b3ea9162a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1780,7 +1699,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="241" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="232" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1aeb1c19300493df7e2146d2786aa242bf" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1794,7 +1713,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="242" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="233" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a0273989b02da49bd0e3e725c6105c4c4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1808,7 +1727,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="243" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="234" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a31cc6b7acceb31032ef7a59e07b6561a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1822,7 +1741,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="244" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="235" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a3bd8ad34ea074373d7b8b4f17b479c5d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1836,7 +1755,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="245" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="236" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1ae137b097e2885ae37c8d7d7f90744691" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1850,7 +1769,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="247" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="238" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1aed309fadea9c5ad77b510c5833fa6fe4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1872,7 +1791,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="249" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="240" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a753913803b91862c837f9622f2ff9d06" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1890,7 +1809,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="251" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="242" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a45aff54708a91655240183e26d9df816" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1904,7 +1823,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="252" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="243" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a5ee58218fb7c9241824f5cb4da023cbc" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1918,7 +1837,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="253" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="244" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-static-func">
@@ -1942,7 +1861,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="217" column="17"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="208" column="17"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1aaee2ba5b3d12616f80eae65bab9b37e4" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>qsizetype</type>
@@ -1960,7 +1879,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="218" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="209" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a5bfa3ca7939f740c497285c0cb56b757" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classQAccelPlot_1_1LineCurveEffect" kindref="compound">LineCurveEffect</ref> *</type>
@@ -1982,7 +1901,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="219" column="28"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="210" column="28"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a15742497ea635c02c43bb098cebcf4b5" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2000,7 +1919,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="220" column="17"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="211" column="17"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -2056,14 +1975,10 @@
         <label>QQuickItem</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="73" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="73" bodyend="295"/>
+    <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="73" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" bodystart="73" bodyend="285"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1LineCurve_1a5ee58218fb7c9241824f5cb4da023cbc" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>advanceTransition</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1a8e430803797ca65db407a90e40837211" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>animationTickWindow_</name></member>
-      <member refid="classQAccelPlot_1_1LineCurve_1a1da9117bed1da3c96d4a157efc8b3167" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>antialiasingEnabled</name></member>
-      <member refid="classQAccelPlot_1_1LineCurve_1a6a9270ca8de40dc035b5fdd84968a92a" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>antialiasingEnabled</name></member>
-      <member refid="classQAccelPlot_1_1LineCurve_1a16fa4890c3b65b5f73b5d0832f8c7480" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>antialiasingEnabled_</name></member>
-      <member refid="classQAccelPlot_1_1LineCurve_1adeb1c85fe5606e9ddd1513af329a4c40" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>antialiasingEnabledChanged</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1a594b68738aed9de45ac09bab369342b2" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>antialiasingFeather</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1a431483d45b1336bfd642f76eb8ffe157" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>antialiasingFeather</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1a8e759cb4b7ee1ce29a1513155c86338a" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>antialiasingFeather_</name></member>
@@ -2193,7 +2108,6 @@
       <member refid="classQAccelPlot_1_1LineCurve_1a24845103565c8152a4ed5a9b8ded8588" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>resolveGradientColorPayload</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1ac5c0cf8db24ffc1735f61a0ac9c71c01" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>resolveGradientFillPayload</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a956e8eb1ca7398b6b5f8022225d6edf7" prot="protected" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>resolvePlotRect</name></member>
-      <member refid="classQAccelPlot_1_1LineCurve_1aad51817c07fd5800afe9d748b0c7f442" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>setAntialiasingEnabled</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1a9537d8e99ebe30b00a19a339529b5959" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>setAntialiasingFeather</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1adde3a2b4b580868777dc03add814a1db" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>setColor</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1acf9463cc9f4c0e0eb7cc9d053b7e7114" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>setData</name></member>

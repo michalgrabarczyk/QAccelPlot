@@ -102,6 +102,22 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/materials/RectMaterial.hpp" line="30" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/RectMaterial.hpp" bodystart="30" bodyend="30"/>
       </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1RectMaterial_1acdaa7365d37a6a3b62745156c550d04f" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::RectMaterial::antialiasing</definition>
+        <argsstring></argsstring>
+        <name>antialiasing</name>
+        <qualifiedname>QAccelPlot::RectMaterial::antialiasing</qualifiedname>
+        <initializer>{0.0f}</initializer>
+        <briefdescription>
+<para>1.0 to smooth the rectangle and outline edges. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/RectMaterial.hpp" line="31" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/RectMaterial.hpp" bodystart="31" bodyend="31"/>
+      </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
       <memberdef kind="function" id="classQAccelPlot_1_1RectMaterial_1ad5f9dd17a7fb8c372266245f8107b100" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -172,7 +188,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/RectMaterial.hpp" line="34" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/RectMaterial.hpp" line="35" column="9"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -220,8 +236,9 @@
         <label>QSGMaterial</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/materials/RectMaterial.hpp" line="15" column="1" bodyfile="QAccelPlot/src/QAccelPlot/materials/RectMaterial.hpp" bodystart="15" bodyend="35"/>
+    <location file="QAccelPlot/src/QAccelPlot/materials/RectMaterial.hpp" line="15" column="1" bodyfile="QAccelPlot/src/QAccelPlot/materials/RectMaterial.hpp" bodystart="15" bodyend="36"/>
     <listofallmembers>
+      <member refid="classQAccelPlot_1_1RectMaterial_1acdaa7365d37a6a3b62745156c550d04f" prot="public" virt="non-virtual"><scope>QAccelPlot::RectMaterial</scope><name>antialiasing</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1ac078fe555ea028d1a7aa0d2b3d5d4a25" prot="public" virt="non-virtual"><scope>QAccelPlot::RectMaterial</scope><name>attributeSet</name></member>
       <member refid="classQAccelPlot_1_1RectMaterial_1aded43fc5644be7a0210f2d54a1513de1" prot="public" virt="non-virtual"><scope>QAccelPlot::RectMaterial</scope><name>borderColor</name></member>
       <member refid="classQAccelPlot_1_1RectMaterial_1a7d1b3c0ec82e4851ccc53fc0547f3152" prot="public" virt="non-virtual"><scope>QAccelPlot::RectMaterial</scope><name>borderWidth</name></member>

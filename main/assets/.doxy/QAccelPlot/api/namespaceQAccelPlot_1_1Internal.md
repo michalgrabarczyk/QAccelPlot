@@ -78,6 +78,7 @@
 
 | Type | Name |
 | ---: | :--- |
+|  qreal | [**clampAntialiasingFeather**](#function-clampantialiasingfeather) (qreal feather) <br>_Returns_ _feather_ _clamped to the [0, 10] pixel range of the series'_`antialiasingFeather` _properties._ |
 |  constexpr int | [**dataTextureHeight**](#function-datatextureheight) (const int floatCount) <br>_Returns the number of data texture rows needed to store_ _floatCount_ _floats._ |
 |  constexpr qint64 | [**dataTextureItemCapacity**](#function-datatextureitemcapacity) (const int maxHeight, const int floatsPerItem) <br>_Returns how many items of_ _floatsPerItem_ _floats fit in a data texture at most__maxHeight_ _rows tall._ |
 |  [**DataTextureUploadTotals**](structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals.md) | [**dataTextureUploadTotals**](#function-datatextureuploadtotals) () <br>_Returns the totals since the last reset. Thread-safe._  |
@@ -153,6 +154,23 @@ data\_texture.glsl reads the width from the bound texture, so this is the only d
 <hr>
 ## Public Functions Documentation
 
+
+
+
+
+### function clampAntialiasingFeather {#function-clampantialiasingfeather}
+
+_Returns_ _feather_ _clamped to the [0, 10] pixel range of the series'_`antialiasingFeather` _properties._
+```C++
+qreal QAccelPlot::Internal::clampAntialiasingFeather (
+    qreal feather
+) 
+```
+
+
+
+
+<hr>
 
 
 

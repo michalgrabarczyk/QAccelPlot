@@ -91,6 +91,7 @@ See [QAccelPlot::RectMaterial](classQAccelPlot_1_1RectMaterial.md)
 
 | Type | Name |
 | ---: | :--- |
+|  float | [**antialiasing**](classQAccelPlot_1_1RectMaterial.md#variable-antialiasing)   = `{0.0f}`<br>_1.0 to smooth the rectangle and outline edges._  |
 |  QColor | [**borderColor**](classQAccelPlot_1_1RectMaterial.md#variable-bordercolor)   = `{Qt::black}`<br>_Outline color._  |
 |  float | [**borderWidth**](classQAccelPlot_1_1RectMaterial.md#variable-borderwidth)   = `{0.0f}`<br>_Outline width in pixels, drawn inside each rectangle._  |
 |  QColor | [**hoverColor**](classQAccelPlot_1_1RectMaterial.md#variable-hovercolor)   = `{Qt::transparent}`<br>_Fill color of the highlighted rectangle._  |

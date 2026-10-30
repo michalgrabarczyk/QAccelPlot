@@ -1489,6 +1489,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#variable-antialiasing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable antialiasing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#variable-caplength" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1750,6 +1761,10 @@
 <tbody>
 <tr>
 <td style="text-align: right;">float</td>
+<td style="text-align: left;"><a href="#variable-antialiasing"><strong>antialiasing</strong></a>   = <code>{1.0f}</code><br><em>1.0 to smooth the edges of the lines and caps.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">float</td>
 <td style="text-align: left;"><a href="#variable-caplength"><strong>capLength</strong></a>   = <code>{8.0f}</code><br><em>Length of the caps in pixels; 0 draws none.</em></td>
 </tr>
 <tr>
@@ -1969,85 +1984,91 @@
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
 <p>Each error bar takes <code>kVerticesPerErrorBar</code> vertices: two triangles each for the line and the two caps. The shader derives the error bar, part, and corner from the vertex index. </p>
 <h2 id="public-attributes-documentation">Public Attributes Documentation<a class="headerlink" href="#public-attributes-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="variable-antialiasing">variable antialiasing<a class="headerlink" href="#variable-antialiasing" title="Permanent link">&para;</a></h3>
+<p><em>1.0 to smooth the edges of the lines and caps.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ErrorBarMaterial</span><span class="o">::</span><span class="n">antialiasing</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="variable-caplength">variable capLength<a class="headerlink" href="#variable-caplength" title="Permanent link">&para;</a></h3>
 <p><em>Length of the caps in pixels; 0 draws none.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ErrorBarMaterial</span><span class="o">::</span><span class="n">capLength</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ErrorBarMaterial</span><span class="o">::</span><span class="n">capLength</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-errorbarcount">variable errorBarCount<a class="headerlink" href="#variable-errorbarcount" title="Permanent link">&para;</a></h3>
 <p><em>Number of error bars drawn; vertices beyond them are culled.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ErrorBarMaterial</span><span class="o">::</span><span class="n">errorBarCount</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ErrorBarMaterial</span><span class="o">::</span><span class="n">errorBarCount</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-horizontal">variable horizontal<a class="headerlink" href="#variable-horizontal" title="Permanent link">&para;</a></h3>
 <p><em>1.0 when the bounds lie on the X axis (float for std140 UBO compatibility).</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ErrorBarMaterial</span><span class="o">::</span><span class="n">horizontal</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ErrorBarMaterial</span><span class="o">::</span><span class="n">horizontal</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-hovercolor">variable hoverColor<a class="headerlink" href="#variable-hovercolor" title="Permanent link">&para;</a></h3>
 <p><em>Color of the highlighted error bar.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ErrorBarMaterial</span><span class="o">::</span><span class="n">hoverColor</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ErrorBarMaterial</span><span class="o">::</span><span class="n">hoverColor</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-hoveredindex">variable hoveredIndex<a class="headerlink" href="#variable-hoveredindex" title="Permanent link">&para;</a></h3>
 <p><em>Index of the highlighted error bar, or -1 for none.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ErrorBarMaterial</span><span class="o">::</span><span class="n">hoveredIndex</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ErrorBarMaterial</span><span class="o">::</span><span class="n">hoveredIndex</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-linewidth">variable lineWidth<a class="headerlink" href="#variable-linewidth" title="Permanent link">&para;</a></h3>
 <p><em>Width of the lines and caps in pixels.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ErrorBarMaterial</span><span class="o">::</span><span class="n">lineWidth</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ErrorBarMaterial</span><span class="o">::</span><span class="n">lineWidth</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-offset">variable offset<a class="headerlink" href="#variable-offset" title="Permanent link">&para;</a></h3>
 <p><em>Shift of every error bar across its bounds, in data units.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ErrorBarMaterial</span><span class="o">::</span><span class="n">offset</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ErrorBarMaterial</span><span class="o">::</span><span class="n">offset</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 <h2 id="public-static-attributes-documentation">Public Static Attributes Documentation<a class="headerlink" href="#public-static-attributes-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="variable-kverticespererrorbar">variable kVerticesPerErrorBar<a class="headerlink" href="#variable-kverticespererrorbar" title="Permanent link">&para;</a></h3>
 <p><em>Vertices per error bar: a quad of two triangles for the line and for each cap.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ErrorBarMaterial</span><span class="o">::</span><span class="n">kVerticesPerErrorBar</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ErrorBarMaterial</span><span class="o">::</span><span class="n">kVerticesPerErrorBar</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-errorbarmaterial">function ErrorBarMaterial<a class="headerlink" href="#function-errorbarmaterial" title="Permanent link">&para;</a></h3>
 <p><em>Constructs an</em> <a href="./"><em><strong>ErrorBarMaterial</strong></em></a> <em>with default uniform values.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ErrorBarMaterial</span><span class="o">::</span><span class="n">ErrorBarMaterial</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ErrorBarMaterial</span><span class="o">::</span><span class="n">ErrorBarMaterial</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-createshader">function createShader<a class="headerlink" href="#function-createshader" title="Permanent link">&para;</a></h3>
 <p><em>Creates and returns the error bar shader program.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">QSGMaterialShader</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ErrorBarMaterial</span><span class="o">::</span><span class="n">createShader</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="n">QSGRendererInterface</span><span class="o">::</span><span class="n">RenderMode</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">QSGMaterialShader</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ErrorBarMaterial</span><span class="o">::</span><span class="n">createShader</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="n">QSGRendererInterface</span><span class="o">::</span><span class="n">RenderMode</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-type">function type<a class="headerlink" href="#function-type" title="Permanent link">&para;</a></h3>
 <p><em>Returns the unique material type identifier for this class.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">QSGMaterialType</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ErrorBarMaterial</span><span class="o">::</span><span class="n">type</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">QSGMaterialType</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ErrorBarMaterial</span><span class="o">::</span><span class="n">type</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 <h2 id="public-static-functions-documentation">Public Static Functions Documentation<a class="headerlink" href="#public-static-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-attributeset">function attributeSet<a class="headerlink" href="#function-attributeset" title="Permanent link">&para;</a></h3>
 <p><em>Returns the vertex attribute set: a 4-byte placeholder the shader ignores.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">QSGGeometry</span><span class="o">::</span><span class="n">AttributeSet</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ErrorBarMaterial</span><span class="o">::</span><span class="n">attributeSet</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">QSGGeometry</span><span class="o">::</span><span class="n">AttributeSet</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ErrorBarMaterial</span><span class="o">::</span><span class="n">attributeSet</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 <h2 id="protected-functions-documentation">Protected Functions Documentation<a class="headerlink" href="#protected-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-compareextra">function compareExtra<a class="headerlink" href="#function-compareextra" title="Permanent link">&para;</a></h3>
 <p><em>Compares the error-bar-specific uniforms after the base-class comparison succeeds.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ErrorBarMaterial</span><span class="o">::</span><span class="n">compareExtra</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QSGMaterial</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">other</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">ErrorBarMaterial</span><span class="o">::</span><span class="n">compareExtra</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QSGMaterial</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">other</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1DataTextureMaterial/#function-compareextra"><em>QAccelPlot::DataTextureMaterial::compareExtra</em></a></p>
 <hr>

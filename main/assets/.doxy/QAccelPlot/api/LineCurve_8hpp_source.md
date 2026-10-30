@@ -54,7 +54,6 @@ class LineCurve : public PlotSeries {
     Q_PROPERTY(qreal hoverRadius READ hoverRadius WRITE setHoverRadius NOTIFY hoverRadiusChanged)
     Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
     Q_PROPERTY(LineStyle* lineStyle READ lineStyle WRITE setLineStyle NOTIFY lineStyleChanged)
-    Q_PROPERTY(bool antialiasingEnabled READ antialiasingEnabled WRITE setAntialiasingEnabled NOTIFY antialiasingEnabledChanged)
     Q_PROPERTY(qreal antialiasingFeather READ antialiasingFeather WRITE setAntialiasingFeather NOTIFY antialiasingFeatherChanged)
     Q_PROPERTY(QQmlListProperty<LineCurveEffect> effects READ effects)
     Q_PROPERTY(LineCurveGaps* gaps READ gaps CONSTANT)
@@ -79,9 +78,6 @@ public:
 
     LineStyle* lineStyle() const;
     void setLineStyle(LineStyle* style);
-
-    bool antialiasingEnabled() const;
-    void setAntialiasingEnabled(bool enabled);
 
     qreal antialiasingFeather() const;
     void setAntialiasingFeather(qreal feather);
@@ -124,7 +120,6 @@ signals:
     void hoverRadiusChanged();
     void transitionChanged();
     void lineStyleChanged();
-    void antialiasingEnabledChanged();
     void antialiasingFeatherChanged();
     void stepModeChanged();
 
@@ -184,7 +179,6 @@ private:
     std::optional<std::vector<char>> pendingVertexCache_;
     QPointer<QQuickWindow> animationTickWindow_;
     QPointer<LineStyle> lineStyle_{new SolidLine{this}};
-    bool antialiasingEnabled_{true};
     qreal antialiasingFeather_{1.0};
     bool styleChanged_{false};
     LineCurveGaps* gaps_{new LineCurveGaps{this}};

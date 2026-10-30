@@ -1390,6 +1390,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#variable-antialiasing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable antialiasing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#variable-bordercolor" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1593,6 +1604,10 @@
 <tbody>
 <tr>
 <td style="text-align: right;">float</td>
+<td style="text-align: left;"><a href="#variable-antialiasing"><strong>antialiasing</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">float</td>
 <td style="text-align: left;"><a href="#variable-bordercolor"><strong>borderColor</strong></a>  <br></td>
 </tr>
 <tr>
@@ -1656,78 +1671,83 @@
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
 <p>Members are ordered by alignment (mat4, vec4, vec2, float), so every offset is already aligned and the block needs no padding. </p>
 <h2 id="public-attributes-documentation">Public Attributes Documentation<a class="headerlink" href="#public-attributes-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="variable-antialiasing">variable antialiasing<a class="headerlink" href="#variable-antialiasing" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">RectUbo</span><span class="o">::</span><span class="n">antialiasing</span><span class="p">;</span>
+</code></pre></div>
+<hr>
+
 <h3 id="variable-bordercolor">variable borderColor<a class="headerlink" href="#variable-bordercolor" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">RectUbo</span><span class="o">::</span><span class="n">borderColor</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">RectUbo</span><span class="o">::</span><span class="n">borderColor</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
 </code></pre></div>
 <hr>
 
 <h3 id="variable-borderwidth">variable borderWidth<a class="headerlink" href="#variable-borderwidth" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">RectUbo</span><span class="o">::</span><span class="n">borderWidth</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">RectUbo</span><span class="o">::</span><span class="n">borderWidth</span><span class="p">;</span>
 </code></pre></div>
 <hr>
 
 <h3 id="variable-color">variable color<a class="headerlink" href="#variable-color" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">RectUbo</span><span class="o">::</span><span class="n">color</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">RectUbo</span><span class="o">::</span><span class="n">color</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
 </code></pre></div>
 <hr>
 
 <h3 id="variable-domainmax">variable domainMax<a class="headerlink" href="#variable-domainmax" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">RectUbo</span><span class="o">::</span><span class="n">domainMax</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">RectUbo</span><span class="o">::</span><span class="n">domainMax</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
 </code></pre></div>
 <hr>
 
 <h3 id="variable-domainmin">variable domainMin<a class="headerlink" href="#variable-domainmin" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">RectUbo</span><span class="o">::</span><span class="n">domainMin</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">RectUbo</span><span class="o">::</span><span class="n">domainMin</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
 </code></pre></div>
 <hr>
 
 <h3 id="variable-hovercolor">variable hoverColor<a class="headerlink" href="#variable-hovercolor" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">RectUbo</span><span class="o">::</span><span class="n">hoverColor</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">RectUbo</span><span class="o">::</span><span class="n">hoverColor</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
 </code></pre></div>
 <hr>
 
 <h3 id="variable-hoveredindex">variable hoveredIndex<a class="headerlink" href="#variable-hoveredindex" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">RectUbo</span><span class="o">::</span><span class="n">hoveredIndex</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">RectUbo</span><span class="o">::</span><span class="n">hoveredIndex</span><span class="p">;</span>
 </code></pre></div>
 <hr>
 
 <h3 id="variable-logscalex">variable logScaleX<a class="headerlink" href="#variable-logscalex" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">RectUbo</span><span class="o">::</span><span class="n">logScaleX</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">RectUbo</span><span class="o">::</span><span class="n">logScaleX</span><span class="p">;</span>
 </code></pre></div>
 <hr>
 
 <h3 id="variable-logscaley">variable logScaleY<a class="headerlink" href="#variable-logscaley" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">RectUbo</span><span class="o">::</span><span class="n">logScaleY</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">RectUbo</span><span class="o">::</span><span class="n">logScaleY</span><span class="p">;</span>
 </code></pre></div>
 <hr>
 
 <h3 id="variable-matrix">variable matrix<a class="headerlink" href="#variable-matrix" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">RectUbo</span><span class="o">::</span><span class="n">matrix</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">RectUbo</span><span class="o">::</span><span class="n">matrix</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span>
 </code></pre></div>
 <hr>
 
 <h3 id="variable-minimumsize">variable minimumSize<a class="headerlink" href="#variable-minimumsize" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">RectUbo</span><span class="o">::</span><span class="n">minimumSize</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">RectUbo</span><span class="o">::</span><span class="n">minimumSize</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
 </code></pre></div>
 <hr>
 
 <h3 id="variable-opacity">variable opacity<a class="headerlink" href="#variable-opacity" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">RectUbo</span><span class="o">::</span><span class="n">opacity</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">RectUbo</span><span class="o">::</span><span class="n">opacity</span><span class="p">;</span>
 </code></pre></div>
 <hr>
 
 <h3 id="variable-rectcount">variable rectCount<a class="headerlink" href="#variable-rectcount" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">RectUbo</span><span class="o">::</span><span class="n">rectCount</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">RectUbo</span><span class="o">::</span><span class="n">rectCount</span><span class="p">;</span>
 </code></pre></div>
 <hr>
 
 <h3 id="variable-usevertexcolor">variable useVertexColor<a class="headerlink" href="#variable-usevertexcolor" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">RectUbo</span><span class="o">::</span><span class="n">useVertexColor</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">RectUbo</span><span class="o">::</span><span class="n">useVertexColor</span><span class="p">;</span>
 </code></pre></div>
 <hr>
 
 <h3 id="variable-viewportsize">variable viewportSize<a class="headerlink" href="#variable-viewportsize" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">RectUbo</span><span class="o">::</span><span class="n">viewportSize</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">RectUbo</span><span class="o">::</span><span class="n">viewportSize</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
 </code></pre></div>
 <hr>
 

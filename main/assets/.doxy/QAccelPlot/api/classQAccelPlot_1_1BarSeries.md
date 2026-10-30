@@ -489,6 +489,9 @@ A ranged bar is a (from, to, value) triple that spans from `from` to `to` along 
 Each bar can carry a `category`, an index into `categoryColors`. Bars without a category, or with one outside `categoryColors`, use `color`. For grouped bars, use one series per group with a narrower `barWidth` and a different `barOffset`.
 
 
+Set `antialiasing` to smooth edges that fall between pixels. It is off by default because bars that touch, such as histogram bins, then show faint seams.
+
+
 
 
 **

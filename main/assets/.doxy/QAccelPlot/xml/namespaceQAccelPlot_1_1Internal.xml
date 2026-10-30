@@ -380,7 +380,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/internal/RectUniforms.hpp" line="43" column="6" declfile="QAccelPlot/src/QAccelPlot/materials/internal/RectUniforms.hpp" declline="43" declcolumn="6"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/RectUniforms.hpp" line="44" column="6" declfile="QAccelPlot/src/QAccelPlot/materials/internal/RectUniforms.hpp" declline="44" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="RectGeometry_8hpp_1afd040a5c9d2313b9e7f773a54bcf9c5b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -519,6 +519,25 @@
         <inbodydescription>
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="34" column="5" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="34" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="SeriesSupport_8hpp_1a4d22277096776b7ab88ec04d5a44ae88" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Internal::clampAntialiasingFeather</definition>
+        <argsstring>(qreal feather)</argsstring>
+        <name>clampAntialiasingFeather</name>
+        <qualifiedname>QAccelPlot::Internal::clampAntialiasingFeather</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>feather</declname>
+        </param>
+        <briefdescription>
+<para>Returns <emphasis>feather</emphasis> clamped to the [0, 10] pixel range of the series&apos; <computeroutput>antialiasingFeather</computeroutput> properties. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="37" column="7" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="37" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="StepPath_8hpp_1a6f2f7ff4a80785b5d31e9313e7434119" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>int</type>

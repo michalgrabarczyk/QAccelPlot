@@ -46,7 +46,6 @@ class PointCloud : public ColormappedSeries {
     
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
     Q_PROPERTY(SeriesMarker* marker READ marker CONSTANT)
-    Q_PROPERTY(bool antialiasingEnabled READ antialiasingEnabled WRITE setAntialiasingEnabled NOTIFY antialiasingEnabledChanged)
     Q_PROPERTY(qreal antialiasingFeather READ antialiasingFeather WRITE setAntialiasingFeather NOTIFY antialiasingFeatherChanged)
     Q_PROPERTY(qreal hoverRadius READ hoverRadius WRITE setHoverRadius NOTIFY hoverRadiusChanged)
     Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
@@ -60,9 +59,6 @@ public:
     void setColor(const QColor& color);
 
     SeriesMarker* marker() const;
-
-    bool antialiasingEnabled() const;
-    void setAntialiasingEnabled(bool enabled);
 
     qreal antialiasingFeather() const;
     void setAntialiasingFeather(qreal feather);
@@ -95,7 +91,6 @@ public:
 
 signals:
     void colorChanged();
-    void antialiasingEnabledChanged();
     void antialiasingFeatherChanged();
     void hoverRadiusChanged();
     void transitionChanged();
@@ -153,7 +148,6 @@ private:
 
     QColor color_{ColorPalette::dark().seriesPrimary};
     SeriesMarker* marker_{new SeriesMarker{MarkerShape::Circle, 3.0, SeriesMarker::NoneShape::Rejected, this}};
-    bool antialiasingEnabled_{true};
     qreal antialiasingFeather_{1.0};
     qreal hoverRadius_{6.0};
     int hoveredIndex_{-1};

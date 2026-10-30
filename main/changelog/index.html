@@ -1978,6 +1978,8 @@
   <code>BarSeries</code>, <code>RectangleSeries</code>, and <code>ErrorBarSeries</code> report it too.</li>
 <li><code>PlotSeries.count</code> on every series, including <code>LineCurve</code> (points) and
   <code>HeatmapSeries</code> (cells, <code>columns</code> × <code>rows</code>).</li>
+<li><code>antialiasing: true</code> smooths <code>RectangleSeries</code> and <code>BarSeries</code> edges. It is
+  off by default.</li>
 <li>Step lines via <code>LineCurve.stepMode</code> (<code>Before</code>, <code>After</code>, or <code>Center</code>): the
   fill, dash pattern, hover, and interpolated inspection follow the steps.
   Includes a Step Lines example.</li>
@@ -2000,6 +2002,10 @@
   longer public.</li>
 <li>Renamed <code>PlotInspector.position</code> to <code>crosshairPosition</code>, and
   <code>positionChanged()</code> to <code>crosshairPositionChanged()</code>.</li>
+<li>Series use the <code>antialiasing</code> property inherited from <code>Item</code>.
+  <code>LineCurve.antialiasingEnabled</code>, <code>PointCloud.antialiasingEnabled</code>, and
+  <code>LegendEntry.antialiasingEnabled</code> are now <code>antialiasing</code>. <code>BandSeries</code> edge
+  lines and <code>ErrorBarSeries</code> follow it too.</li>
 <li>Outlines use one <code>border</code> grouped property with <code>color</code> and <code>width</code>.
   <code>PlotView.rectangleZoom.borderColor</code>, <code>SelectionTool.borderColor</code>, and
   <code>ColorBar.borderColor</code>/<code>borderWidth</code> are now <code>border.color</code>/<code>border.width</code>.

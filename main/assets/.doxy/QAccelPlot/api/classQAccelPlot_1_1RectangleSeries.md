@@ -365,6 +365,9 @@ An infinite edge extends the rectangle to the plot edge, e.g. `y1` = -Infinity a
 Each rectangle can carry a `category`, an index into `categoryColors`. Rectangles without a category, or with one outside `categoryColors`, use `color`.
 
 
+Set `antialiasing` to smooth edges that fall between pixels. It is off by default because rectangles that touch then show faint seams.
+
+
 
 
 **

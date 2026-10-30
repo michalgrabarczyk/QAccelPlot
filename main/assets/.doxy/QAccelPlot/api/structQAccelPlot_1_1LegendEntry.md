@@ -60,8 +60,8 @@ _How a legend draws one series: its symbol, color, line, and marker._ [More...](
 
 | Type | Name |
 | ---: | :--- |
-| property bool | [**antialiasingEnabled**](structQAccelPlot_1_1LegendEntry.md#property-antialiasingenabled)  <br>_Whether the line and marker are anti-aliased._  |
-| property qreal | [**antialiasingFeather**](structQAccelPlot_1_1LegendEntry.md#property-antialiasingfeather)  <br>_Anti-aliasing feather width in pixels._  |
+| property bool | [**antialiasing**](structQAccelPlot_1_1LegendEntry.md#property-antialiasing)  <br>_Whether the line and marker are antialiased._  |
+| property qreal | [**antialiasingFeather**](structQAccelPlot_1_1LegendEntry.md#property-antialiasingfeather)  <br>_Antialiasing feather width in pixels._  |
 | property QColor | [**color**](structQAccelPlot_1_1LegendEntry.md#property-color)  <br>_Color of the line, marker, or fill._  |
 | property [**QAccelPlot::LineStyle**](classQAccelPlot_1_1LineStyle.md) \* | [**lineStyle**](structQAccelPlot_1_1LegendEntry.md#property-linestyle-12)  <br>_Line style, or null for a solid line. Owned by the series._  |
 | property qreal | [**lineWidth**](structQAccelPlot_1_1LegendEntry.md#property-linewidth)  <br>_Line width in pixels._  |
@@ -172,16 +172,16 @@ PlotSeries::LegendSymbol QAccelPlot::LegendEntry::symbol;
 
 
 
-### property antialiasingEnabled {#property-antialiasingenabled}
+### property antialiasing {#property-antialiasing}
 
-_Whether the line and marker are anti-aliased._ 
+_Whether the line and marker are antialiased._ 
 ```C++
-bool QAccelPlot::LegendEntry::antialiasingEnabled;
+bool QAccelPlot::LegendEntry::antialiasing;
 ```
 
 
 
-Whether anti-aliasing is on. 
+Whether antialiasing is on. 
 
 
         
@@ -193,14 +193,14 @@ Whether anti-aliasing is on.
 
 ### property antialiasingFeather {#property-antialiasingfeather}
 
-_Anti-aliasing feather width in pixels._ 
+_Antialiasing feather width in pixels._ 
 ```C++
 qreal QAccelPlot::LegendEntry::antialiasingFeather;
 ```
 
 
 
-Anti-aliasing feather width. 
+Antialiasing feather width. 
 
 
         

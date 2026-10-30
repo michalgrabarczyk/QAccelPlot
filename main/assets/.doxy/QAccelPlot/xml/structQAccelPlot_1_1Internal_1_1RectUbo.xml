@@ -214,6 +214,20 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/materials/internal/RectUniforms.hpp" line="37" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/internal/RectUniforms.hpp" bodystart="37" bodyend="-1"/>
       </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1RectUbo_1adf4d4efab1620dddffaa7096157ba5a7" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::Internal::RectUbo::antialiasing</definition>
+        <argsstring></argsstring>
+        <name>antialiasing</name>
+        <qualifiedname>QAccelPlot::Internal::RectUbo::antialiasing</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/RectUniforms.hpp" line="38" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/internal/RectUniforms.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
     </sectiondef>
     <briefdescription>
 <para>Mirrors the std140 uniform block of rect.vert. </para>
@@ -221,8 +235,9 @@
     <detaileddescription>
 <para>Members are ordered by alignment (mat4, vec4, vec2, float), so every offset is already aligned and the block needs no padding. </para>
     </detaileddescription>
-    <location file="QAccelPlot/src/QAccelPlot/materials/internal/RectUniforms.hpp" line="22" column="1" bodyfile="QAccelPlot/src/QAccelPlot/materials/internal/RectUniforms.hpp" bodystart="22" bodyend="38"/>
+    <location file="QAccelPlot/src/QAccelPlot/materials/internal/RectUniforms.hpp" line="22" column="1" bodyfile="QAccelPlot/src/QAccelPlot/materials/internal/RectUniforms.hpp" bodystart="22" bodyend="39"/>
     <listofallmembers>
+      <member refid="structQAccelPlot_1_1Internal_1_1RectUbo_1adf4d4efab1620dddffaa7096157ba5a7" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::RectUbo</scope><name>antialiasing</name></member>
       <member refid="structQAccelPlot_1_1Internal_1_1RectUbo_1af9be462d3a85ed36b1099c9586d01016" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::RectUbo</scope><name>borderColor</name></member>
       <member refid="structQAccelPlot_1_1Internal_1_1RectUbo_1a40da6fd045a8cd19506619847deb08bf" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::RectUbo</scope><name>borderWidth</name></member>
       <member refid="structQAccelPlot_1_1Internal_1_1RectUbo_1a860e60a4d74cf4fd362572466f32e524" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::RectUbo</scope><name>color</name></member>

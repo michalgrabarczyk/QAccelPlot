@@ -87,8 +87,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 | Type | Name |
 | ---: | :--- |
-| property bool | [**antialiasingEnabled**](classQAccelPlot_1_1LineCurve.md#property-antialiasingenabled-12)  <br>_Whether GPU-side anti-aliasing is applied to lines and markers. Default:_ `true` _._ |
-| property qreal | [**antialiasingFeather**](classQAccelPlot_1_1LineCurve.md#property-antialiasingfeather-12)  <br>_Anti-aliasing feather width in pixels. Has effect only when_ `antialiasingEnabled` _is_`true` _. Default: 1._ |
+| property qreal | [**antialiasingFeather**](classQAccelPlot_1_1LineCurve.md#property-antialiasingfeather-12)  <br>_Antialiasing feather width in pixels, clamped to [0, 10]. Has effect only when the inherited_ `antialiasing` _is_`true` _. Default: 1._ |
 | property QColor | [**color**](classQAccelPlot_1_1LineCurve.md#property-color-12)  <br>_Base line color. Default:_ `Colors.dark.seriesPrimary` _._ |
 | property QQmlListProperty&lt; [**LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md) &gt; | [**effects**](classQAccelPlot_1_1LineCurve.md#property-effects-12)  <br>_List of visual effects (e.g._ [_**GradientFill**_](classQAccelPlot_1_1GradientFill.md) _,_[_**GradientStroke**_](classQAccelPlot_1_1GradientStroke.md) _) applied to this curve._ |
 | property [**LineCurveGaps**](classQAccelPlot_1_1LineCurveGaps.md) \* | [**gaps**](classQAccelPlot_1_1LineCurve.md#property-gaps-12)  <br>_Grouped gap-rendering settings, e.g._ `gaps.nanMode` _._ |
@@ -126,7 +125,6 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 | Type | Name |
 | ---: | :--- |
-| signal void | [**antialiasingEnabledChanged**](classQAccelPlot_1_1LineCurve.md#signal-antialiasingenabledchanged)  <br>_Emitted when the antialiasingEnabled property changes._  |
 | signal void | [**antialiasingFeatherChanged**](classQAccelPlot_1_1LineCurve.md#signal-antialiasingfeatherchanged)  <br>_Emitted when the antialiasingFeather property changes._  |
 | signal void | [**colorChanged**](classQAccelPlot_1_1LineCurve.md#signal-colorchanged)  <br>_Emitted when the color property changes._  |
 | signal void | [**hoverRadiusChanged**](classQAccelPlot_1_1LineCurve.md#signal-hoverradiuschanged)  <br>_Emitted when the hoverRadius property changes._  |
@@ -163,8 +161,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | Type | Name |
 | ---: | :--- |
 |   | [**LineCurve**](#function-linecurve) (QQuickItem \* parent=nullptr) <br>_Constructs a_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _with the given__parent_ _._ |
-|  bool | [**antialiasingEnabled**](#function-antialiasingenabled-22) () const<br>_Returns_ `true` _when GPU anti-aliasing is enabled._ |
-|  qreal | [**antialiasingFeather**](#function-antialiasingfeather-22) () const<br>_Returns the anti-aliasing feather width._  |
+|  qreal | [**antialiasingFeather**](#function-antialiasingfeather-22) () const<br>_Returns the antialiasing feather width in pixels._  |
 |  Q\_INVOKABLE void | [**appendData**](#function-appenddata) (qreal x, qreal y) <br>_Appends a single data point (_ _x_ _,__y_ _) to the curve. Triggers a redraw._ |
 | virtual Q\_INVOKABLE void | [**clearData**](#function-cleardata) () override<br>_Removes all data points from the curve._  |
 |  QColor | [**color**](#function-color-22) () const<br>_Returns the base line color._  |
@@ -177,8 +174,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  [**SeriesMarker**](classQAccelPlot_1_1SeriesMarker.md) \* | [**marker**](#function-marker-22) () const<br>_Returns the grouped marker settings. The object is owned by the curve._  |
 |  void | [**postData**](#function-postdata-12) (std::vector&lt; double &gt; && data, int count) <br>_Queues a moved double buffer for assignment on the series' thread._  |
 |  void | [**postData**](#function-postdata-22) (std::vector&lt; float &gt; && data, int count) <br>_Queues a moved float buffer for assignment on the series' thread._  |
-|  void | [**setAntialiasingEnabled**](#function-setantialiasingenabled) (bool enabled) <br>_Sets anti-aliasing to_ _enabled_ _._ |
-|  void | [**setAntialiasingFeather**](#function-setantialiasingfeather) (qreal feather) <br>_Sets the anti-aliasing feather width to_ _feather_ _pixels. Has effect only when_`antialiasingEnabled` _is_`true` _._ |
+|  void | [**setAntialiasingFeather**](#function-setantialiasingfeather) (qreal feather) <br>_Sets the antialiasing feather width to_ _feather_ _pixels, clamped to [0, 10]._ |
 |  void | [**setColor**](#function-setcolor) (const QColor & c) <br>_Sets the line color to_ _c_ _._ |
 |  Q\_INVOKABLE void | [**setData**](#function-setdata-16) (const QList&lt; QPointF &gt; & data) <br>_Replaces the curve data with_ _data_ _(a list of QPointF values)._ |
 |  void | [**setData**](#function-setdata-26) (const std::vector&lt; double &gt; & xs, const std::vector&lt; double &gt; & ys) <br>_Sets data from separate X and Y vectors. If sizes don't match, the shorter length is used._  |
@@ -416,24 +412,9 @@ A data point is invalid when its X or Y coordinate is NaN or ±Inf, or is not st
 
 
 
-### property antialiasingEnabled {#property-antialiasingenabled-12}
-
-_Whether GPU-side anti-aliasing is applied to lines and markers. Default:_ `true` _._
-```C++
-bool QAccelPlot::LineCurve::antialiasingEnabled;
-```
-
-
-
-
-<hr>
-
-
-
-
 ### property antialiasingFeather {#property-antialiasingfeather-12}
 
-_Anti-aliasing feather width in pixels. Has effect only when_ `antialiasingEnabled` _is_`true` _. Default: 1._
+_Antialiasing feather width in pixels, clamped to [0, 10]. Has effect only when the inherited_ `antialiasing` _is_`true` _. Default: 1._
 ```C++
 qreal QAccelPlot::LineCurve::antialiasingFeather;
 ```
@@ -583,21 +564,6 @@ DataTransition* QAccelPlot::LineCurve::transition;
 
 
 
-### signal antialiasingEnabledChanged {#signal-antialiasingenabledchanged}
-
-_Emitted when the antialiasingEnabled property changes._ 
-```C++
-void QAccelPlot::LineCurve::antialiasingEnabledChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
 ### signal antialiasingFeatherChanged {#signal-antialiasingfeatherchanged}
 
 _Emitted when the antialiasingFeather property changes._ 
@@ -722,24 +688,9 @@ explicit QAccelPlot::LineCurve::LineCurve (
 
 
 
-### function antialiasingEnabled {#function-antialiasingenabled-22}
-
-_Returns_ `true` _when GPU anti-aliasing is enabled._
-```C++
-bool QAccelPlot::LineCurve::antialiasingEnabled () const
-```
-
-
-
-
-<hr>
-
-
-
-
 ### function antialiasingFeather {#function-antialiasingfeather-22}
 
-_Returns the anti-aliasing feather width._ 
+_Returns the antialiasing feather width in pixels._ 
 ```C++
 qreal QAccelPlot::LineCurve::antialiasingFeather () const
 ```
@@ -945,26 +896,9 @@ void QAccelPlot::LineCurve::postData (
 
 
 
-### function setAntialiasingEnabled {#function-setantialiasingenabled}
-
-_Sets anti-aliasing to_ _enabled_ _._
-```C++
-void QAccelPlot::LineCurve::setAntialiasingEnabled (
-    bool enabled
-) 
-```
-
-
-
-
-<hr>
-
-
-
-
 ### function setAntialiasingFeather {#function-setantialiasingfeather}
 
-_Sets the anti-aliasing feather width to_ _feather_ _pixels. Has effect only when_`antialiasingEnabled` _is_`true` _._
+_Sets the antialiasing feather width to_ _feather_ _pixels, clamped to [0, 10]._
 ```C++
 void QAccelPlot::LineCurve::setAntialiasingFeather (
     qreal feather

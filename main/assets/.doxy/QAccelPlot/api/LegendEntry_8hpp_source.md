@@ -37,7 +37,7 @@ struct LegendEntry {
     Q_PROPERTY(qreal markerSize MEMBER markerSize CONSTANT)
     Q_PROPERTY(bool markerFilled MEMBER markerFilled CONSTANT)
     Q_PROPERTY(qreal markerStrokeWidth MEMBER markerStrokeWidth CONSTANT)
-    Q_PROPERTY(bool antialiasingEnabled MEMBER antialiasingEnabled CONSTANT)
+    Q_PROPERTY(bool antialiasing MEMBER antialiasing CONSTANT)
     Q_PROPERTY(qreal antialiasingFeather MEMBER antialiasingFeather CONSTANT)
 
 public:
@@ -49,7 +49,7 @@ public:
     qreal markerSize{0.0};                                           
     bool markerFilled{true};                                         
     qreal markerStrokeWidth{1.0};                                    
-    bool antialiasingEnabled{true};                                  
+    bool antialiasing{true};                                         
     qreal antialiasingFeather{1.0};                                  
 };
 

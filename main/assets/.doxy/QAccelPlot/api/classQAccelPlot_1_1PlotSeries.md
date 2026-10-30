@@ -281,6 +281,24 @@ flowchart TB
 The buffer holds _count_ times that many values. A `HeatmapSeries` takes its cells row by row, `columns` per row. Series-specific setters take other layouts, such as point values, categories, or ranged bars.
 
 
+Series smooth their edges with the inherited `antialiasing` property. `HeatmapSeries` ignores it.
+
+
+
+|Series   |Default `antialiasing`   |Smoothed edges    |
+|-----|-----|-----|
+|`LineCurve`   |`true`   |lines and markers    |
+|`PointCloud`   |`true`   |markers    |
+|`BandSeries`   |`true`   |edge lines    |
+|`ErrorBarSeries`   |`true`   |lines and caps    |
+|`RectangleSeries`   |`false`   |rectangles and their border    |
+|`BarSeries`   |`false`   |bars and their border   |
+
+
+
+
+
+
 
 
 **See also:** [**LineCurve**](classQAccelPlot_1_1LineCurve.md), [**PointCloud**](classQAccelPlot_1_1PointCloud.md), [**RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md), [**BarSeries**](classQAccelPlot_1_1BarSeries.md), [**BandSeries**](classQAccelPlot_1_1BandSeries.md), [**ErrorBarSeries**](classQAccelPlot_1_1ErrorBarSeries.md), [**HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md), [**QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) 

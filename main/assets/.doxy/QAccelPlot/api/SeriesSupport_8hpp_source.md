@@ -31,6 +31,8 @@ int maxTextureSize(QQuickWindow* window);
 
 int recordCapacity(QQuickWindow* window, int floatsPerRecord, int vertexBytesPerRecord);
 
+qreal clampAntialiasingFeather(qreal feather);
+
 } // namespace QAccelPlot::Internal
 ```
 

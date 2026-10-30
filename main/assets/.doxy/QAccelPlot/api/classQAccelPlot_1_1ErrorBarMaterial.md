@@ -64,6 +64,7 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
+|  float | [**antialiasing**](#variable-antialiasing)   = `{1.0f}`<br>_1.0 to smooth the edges of the lines and caps._  |
 |  float | [**capLength**](#variable-caplength)   = `{8.0f}`<br>_Length of the caps in pixels; 0 draws none._  |
 |  float | [**errorBarCount**](#variable-errorbarcount)   = `{0.0f}`<br>_Number of error bars drawn; vertices beyond them are culled._  |
 |  float | [**horizontal**](#variable-horizontal)   = `{0.0f}`<br>_1.0 when the bounds lie on the X axis (float for std140 UBO compatibility)._  |
@@ -232,6 +233,21 @@ Each error bar takes `kVerticesPerErrorBar` vertices: two triangles each for the
     
 ## Public Attributes Documentation
 
+
+
+
+
+### variable antialiasing {#variable-antialiasing}
+
+_1.0 to smooth the edges of the lines and caps._ 
+```C++
+float QAccelPlot::ErrorBarMaterial::antialiasing;
+```
+
+
+
+
+<hr>
 
 
 

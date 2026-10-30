@@ -103,8 +103,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 | Type | Name |
 | ---: | :--- |
-| property bool | [**antialiasingEnabled**](classQAccelPlot_1_1PointCloud.md#property-antialiasingenabled-12)  <br>_Whether GPU-side anti-aliasing is applied to markers. Default:_ `true` _._ |
-| property qreal | [**antialiasingFeather**](classQAccelPlot_1_1PointCloud.md#property-antialiasingfeather-12)  <br>_Anti-aliasing feather width in pixels, clamped to [0, 10]. Default: 1._  |
+| property qreal | [**antialiasingFeather**](classQAccelPlot_1_1PointCloud.md#property-antialiasingfeather-12)  <br>_Antialiasing feather width in pixels, clamped to [0, 10]. Has effect only when the inherited_ `antialiasing` _is_`true` _. Default: 1._ |
 | property QColor | [**color**](classQAccelPlot_1_1PointCloud.md#property-color-12)  <br>_Uniform marker color, also used by the legend. Default:_ `Colors.dark.seriesPrimary` _._ |
 | property qreal | [**hoverRadius**](classQAccelPlot_1_1PointCloud.md#property-hoverradius-12)  <br>_Pick distance in pixels from a point's center; 0 disables hover. Default: 6._  |
 | property int | [**hoveredIndex**](classQAccelPlot_1_1PointCloud.md#property-hoveredindex-12)  <br>_Read-only: index of the valid point nearest the pointer within_ `hoverRadius` _, or -1 when none._ |
@@ -151,7 +150,6 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 | Type | Name |
 | ---: | :--- |
-| signal void | [**antialiasingEnabledChanged**](classQAccelPlot_1_1PointCloud.md#signal-antialiasingenabledchanged)  <br>_Emitted when the antialiasingEnabled property changes._  |
 | signal void | [**antialiasingFeatherChanged**](classQAccelPlot_1_1PointCloud.md#signal-antialiasingfeatherchanged)  <br>_Emitted when the antialiasingFeather property changes._  |
 | signal void | [**colorChanged**](classQAccelPlot_1_1PointCloud.md#signal-colorchanged)  <br>_Emitted when the color property changes._  |
 | signal void | [**hoverRadiusChanged**](classQAccelPlot_1_1PointCloud.md#signal-hoverradiuschanged)  <br>_Emitted when the hoverRadius property changes._  |
@@ -198,8 +196,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | Type | Name |
 | ---: | :--- |
 |   | [**PointCloud**](#function-pointcloud) (QQuickItem \* parent=nullptr) <br>_Constructs a_ [_**PointCloud**_](classQAccelPlot_1_1PointCloud.md) _with the given__parent_ _._ |
-|  bool | [**antialiasingEnabled**](#function-antialiasingenabled-22) () const<br>_Returns_ `true` _when GPU anti-aliasing is enabled._ |
-|  qreal | [**antialiasingFeather**](#function-antialiasingfeather-22) () const<br>_Returns the anti-aliasing feather width._  |
+|  qreal | [**antialiasingFeather**](#function-antialiasingfeather-22) () const<br>_Returns the antialiasing feather width in pixels._  |
 | virtual Q\_INVOKABLE void | [**clearData**](#function-cleardata) () override<br>_Removes all points and values._  |
 |  QColor | [**color**](#function-color-22) () const<br>_Returns the uniform marker color._  |
 |  bool | [**contains**](#function-contains) (const QPointF & point) override const<br>_Returns_ `true` _when a valid point lies within_`hoverRadius` _of item position__point_ _._ |
@@ -213,8 +210,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  void | [**postData**](#function-postdata-24) (std::vector&lt; float &gt; && xyInterleaved, std::vector&lt; float &gt; && values, int pointCount) <br>_Thread-safe: queues_ `setDataF` _(__xyInterleaved_ _,__values_ _,__pointCount_ _) to the item's thread._ |
 |  void | [**postData**](#function-postdata-34) (std::vector&lt; double &gt; && data, int count) <br>_Queues a moved double buffer for assignment on the series' thread._  |
 |  void | [**postData**](#function-postdata-44) (std::vector&lt; float &gt; && data, int count) <br>_Queues a moved float buffer for assignment on the series' thread._  |
-|  void | [**setAntialiasingEnabled**](#function-setantialiasingenabled) (bool enabled) <br>_Sets anti-aliasing to_ _enabled_ _._ |
-|  void | [**setAntialiasingFeather**](#function-setantialiasingfeather) (qreal feather) <br>_Sets the anti-aliasing feather width to_ _feather_ _pixels._ |
+|  void | [**setAntialiasingFeather**](#function-setantialiasingfeather) (qreal feather) <br>_Sets the antialiasing feather width to_ _feather_ _pixels, clamped to [0, 10]._ |
 |  void | [**setColor**](#function-setcolor) (const QColor & color) <br>_Sets the uniform marker color to_ _color_ _._ |
 |  Q\_INVOKABLE void | [**setData**](#function-setdata-16) (const QList&lt; QPointF &gt; & points) <br>_Replaces all points with_ _points_ _and clears per-point values._ |
 |  void | [**setData**](#function-setdata-26) (std::vector&lt; double &gt; && xyInterleaved, std::vector&lt; float &gt; && values, int pointCount) <br>_Sets double-precision positions and per-point_ _values_ _(empty, or exactly__pointCount_ _floats)._ |
@@ -484,24 +480,9 @@ Coordinates are single precision. The number of renderable points is bounded by 
 
 
 
-### property antialiasingEnabled {#property-antialiasingenabled-12}
-
-_Whether GPU-side anti-aliasing is applied to markers. Default:_ `true` _._
-```C++
-bool QAccelPlot::PointCloud::antialiasingEnabled;
-```
-
-
-
-
-<hr>
-
-
-
-
 ### property antialiasingFeather {#property-antialiasingfeather-12}
 
-_Anti-aliasing feather width in pixels, clamped to [0, 10]. Default: 1._ 
+_Antialiasing feather width in pixels, clamped to [0, 10]. Has effect only when the inherited_ `antialiasing` _is_`true` _. Default: 1._
 ```C++
 qreal QAccelPlot::PointCloud::antialiasingFeather;
 ```
@@ -587,21 +568,6 @@ DataTransition* QAccelPlot::PointCloud::transition;
 <hr>
 ## Public Signals Documentation
 
-
-
-
-
-### signal antialiasingEnabledChanged {#signal-antialiasingenabledchanged}
-
-_Emitted when the antialiasingEnabled property changes._ 
-```C++
-void QAccelPlot::PointCloud::antialiasingEnabledChanged;
-```
-
-
-
-
-<hr>
 
 
 
@@ -700,24 +666,9 @@ explicit QAccelPlot::PointCloud::PointCloud (
 
 
 
-### function antialiasingEnabled {#function-antialiasingenabled-22}
-
-_Returns_ `true` _when GPU anti-aliasing is enabled._
-```C++
-bool QAccelPlot::PointCloud::antialiasingEnabled () const
-```
-
-
-
-
-<hr>
-
-
-
-
 ### function antialiasingFeather {#function-antialiasingfeather-22}
 
-_Returns the anti-aliasing feather width._ 
+_Returns the antialiasing feather width in pixels._ 
 ```C++
 qreal QAccelPlot::PointCloud::antialiasingFeather () const
 ```
@@ -953,26 +904,9 @@ void QAccelPlot::PointCloud::postData (
 
 
 
-### function setAntialiasingEnabled {#function-setantialiasingenabled}
-
-_Sets anti-aliasing to_ _enabled_ _._
-```C++
-void QAccelPlot::PointCloud::setAntialiasingEnabled (
-    bool enabled
-) 
-```
-
-
-
-
-<hr>
-
-
-
-
 ### function setAntialiasingFeather {#function-setantialiasingfeather}
 
-_Sets the anti-aliasing feather width to_ _feather_ _pixels._
+_Sets the antialiasing feather width to_ _feather_ _pixels, clamped to [0, 10]._
 ```C++
 void QAccelPlot::PointCloud::setAntialiasingFeather (
     qreal feather

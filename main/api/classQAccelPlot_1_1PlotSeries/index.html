@@ -3144,6 +3144,48 @@
 </tbody>
 </table>
 <p>The buffer holds <em>count</em> times that many values. A <code>HeatmapSeries</code> takes its cells row by row, <code>columns</code> per row. Series-specific setters take other layouts, such as point values, categories, or ranged bars.</p>
+<p>Series smooth their edges with the inherited <code>antialiasing</code> property. <code>HeatmapSeries</code> ignores it.</p>
+<table>
+<thead>
+<tr>
+<th>Series</th>
+<th>Default <code>antialiasing</code></th>
+<th>Smoothed edges</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LineCurve</code></td>
+<td><code>true</code></td>
+<td>lines and markers</td>
+</tr>
+<tr>
+<td><code>PointCloud</code></td>
+<td><code>true</code></td>
+<td>markers</td>
+</tr>
+<tr>
+<td><code>BandSeries</code></td>
+<td><code>true</code></td>
+<td>edge lines</td>
+</tr>
+<tr>
+<td><code>ErrorBarSeries</code></td>
+<td><code>true</code></td>
+<td>lines and caps</td>
+</tr>
+<tr>
+<td><code>RectangleSeries</code></td>
+<td><code>false</code></td>
+<td>rectangles and their border</td>
+</tr>
+<tr>
+<td><code>BarSeries</code></td>
+<td><code>false</code></td>
+<td>bars and their border</td>
+</tr>
+</tbody>
+</table>
 <p><strong>See also:</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>LineCurve</strong></a>, <a href="../classQAccelPlot_1_1PointCloud/"><strong>PointCloud</strong></a>, <a href="../classQAccelPlot_1_1RectangleSeries/"><strong>RectangleSeries</strong></a>, <a href="../classQAccelPlot_1_1BarSeries/"><strong>BarSeries</strong></a>, <a href="../classQAccelPlot_1_1BandSeries/"><strong>BandSeries</strong></a>, <a href="../classQAccelPlot_1_1ErrorBarSeries/"><strong>ErrorBarSeries</strong></a>, <a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>HeatmapSeries</strong></a>, <a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot</strong></a> </p>
 <h2 id="public-types-documentation">Public Types Documentation<a class="headerlink" href="#public-types-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="enum-legendsymbol">enum LegendSymbol<a class="headerlink" href="#enum-legendsymbol" title="Permanent link">&para;</a></h3>
