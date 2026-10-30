@@ -61,8 +61,6 @@ class BandSeries : public PlotSeries {
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
     /// \brief Grouped edge line settings, e.g. <tt>edges.width</tt> and <tt>edges.lineStyle</tt>. No edge lines by default.
     Q_PROPERTY(BandEdges* edges READ edges CONSTANT)
-    /// \brief Read-only: number of data points currently loaded.
-    Q_PROPERTY(int count READ count NOTIFY countChanged)
     /// \brief Read-only: \c true while the mouse cursor is inside the band.
     Q_PROPERTY(bool hovered READ hovered NOTIFY hoveredChanged)
 
@@ -77,9 +75,6 @@ public:
 
     /// \brief Returns the grouped edge line settings. The object is owned by the series.
     BandEdges* edges() const;
-
-    /// \brief Returns the number of data points currently loaded.
-    int count() const;
 
     /// \brief Returns \c true while the cursor is inside the band.
     bool hovered() const;
@@ -115,8 +110,6 @@ public:
 signals:
     /// \brief Emitted when the color property changes.
     void colorChanged();
-    /// \brief Emitted when the data point count changes.
-    void countChanged();
     /// \brief Emitted when the hovered property changes.
     void hoveredChanged();
 

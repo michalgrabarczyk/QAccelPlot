@@ -189,11 +189,6 @@ void PointCloud::setTransition(DataTransition* transition)
     }
 }
 
-int PointCloud::count() const
-{
-    return dataPoints().count();
-}
-
 int PointCloud::hoveredIndex() const
 {
     return hoveredIndex_;
@@ -543,15 +538,12 @@ void PointCloud::onAxisScaleChanged()
     update();
 }
 
-void PointCloud::onDataPointsChanged(const DataChange /*change*/, const int previousCount)
+void PointCloud::onDataPointsChanged(const DataChange /*change*/, const int /*previousCount*/)
 {
     invalidateSpatialIndex();
     updateValueRange();
     if (hoveredIndex_ >= count()) {
         setHoveredIndex(-1);
-    }
-    if (previousCount != count()) {
-        emit countChanged();
     }
 }
 

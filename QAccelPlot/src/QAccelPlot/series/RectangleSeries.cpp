@@ -161,11 +161,6 @@ void RectangleSeries::setMinimumHeight(const qreal height)
     update();
 }
 
-int RectangleSeries::count() const
-{
-    return dataPoints().count();
-}
-
 int RectangleSeries::hoveredIndex() const
 {
     return hoveredIndex_;
@@ -356,9 +351,6 @@ void RectangleSeries::onDataPointsChanged(const DataChange /*change*/, const int
     lastHitTest_.reset();
     if (hoveredIndex_ >= count()) {
         setHoveredIndex(-1);
-    }
-    if (previousCount != count()) {
-        emit countChanged();
     }
 }
 

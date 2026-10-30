@@ -288,11 +288,6 @@ void BarSeries::setTransition(DataTransition* transition)
     }
 }
 
-int BarSeries::count() const
-{
-    return dataPoints().count();
-}
-
 int BarSeries::hoveredIndex() const
 {
     return hoveredIndex_;
@@ -667,9 +662,6 @@ void BarSeries::onDataPointsChanged(const DataChange /*change*/, const int previ
     spatialGridValid_ = false;
     if (hoveredIndex_ >= count()) {
         setHoveredIndex(-1);
-    }
-    if (previousCount != count()) {
-        emit countChanged();
     }
     updateValueRange();
 }

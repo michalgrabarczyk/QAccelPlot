@@ -64,6 +64,7 @@ private slots:
     void plotSeriesSettersRejectIncompleteRows();
     void dataBoundsReplaceTheEdgesUntilTheNextChange();
     void changingColumnsReshapesTheValues();
+    void countIsTheCellCount();
     void shapeSignalsSeeTheNewState();
     void boundSignalsSeeTheNewState();
     void postedValuesAreAppliedFromWorkerThread();
@@ -248,6 +249,30 @@ void HeatmapSeriesDataTest::changingColumnsReshapesTheValues()
     heatmap.setColumns(3);
     QCOMPARE(heatmap.rows(), 2);
     QCOMPARE(heatmap.valueAt(1, 2), 6.0);
+}
+
+void HeatmapSeriesDataTest::countIsTheCellCount()
+{
+    auto heatmap = HeatmapSeries{};
+    auto countSpy = QSignalSpy{&heatmap, &PlotSeries::countChanged};
+
+    heatmap.setValues(sixValues(), 3, 2);
+    QCOMPARE(heatmap.count(), 6);
+    QCOMPARE(heatmap.property("count").toInt(), 6);
+    QCOMPARE(countSpy.count(), 1);
+
+    heatmap.setColumns(2);
+    QCOMPARE(heatmap.count(), 6);
+    QCOMPARE(countSpy.count(), 1);
+
+    // The incomplete last row is not counted.
+    heatmap.setColumns(4);
+    QCOMPARE(heatmap.count(), 4);
+    QCOMPARE(countSpy.count(), 2);
+
+    heatmap.clearData();
+    QCOMPARE(heatmap.count(), 0);
+    QCOMPARE(countSpy.count(), 3);
 }
 
 void HeatmapSeriesDataTest::shapeSignalsSeeTheNewState()

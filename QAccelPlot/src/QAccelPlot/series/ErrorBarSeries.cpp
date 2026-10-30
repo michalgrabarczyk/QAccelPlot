@@ -278,11 +278,6 @@ void ErrorBarSeries::setTransition(DataTransition* transition)
     }
 }
 
-int ErrorBarSeries::count() const
-{
-    return dataPoints().count();
-}
-
 int ErrorBarSeries::hoveredIndex() const
 {
     return hoveredIndex_;
@@ -480,14 +475,11 @@ void ErrorBarSeries::onAxisScaleChanged()
     update();
 }
 
-void ErrorBarSeries::onDataPointsChanged(const DataChange /*change*/, const int previousCount)
+void ErrorBarSeries::onDataPointsChanged(const DataChange /*change*/, const int /*previousCount*/)
 {
     spatialGridValid_ = false;
     if (hoveredIndex_ >= count()) {
         setHoveredIndex(-1);
-    }
-    if (previousCount != count()) {
-        emit countChanged();
     }
 }
 

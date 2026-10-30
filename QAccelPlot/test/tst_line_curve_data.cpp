@@ -66,6 +66,7 @@ private slots:
     void appendedPointsReportSameRangeAsBulkAssignment();
     void appendDataAfterClearRebuildsRangeFromScratch();
     void appendDataIgnoresNonFiniteCoordinates();
+    void countTracksStoredPoints();
 };
 
 namespace {
@@ -727,6 +728,29 @@ void LineCurveDataTest::appendDataIgnoresNonFiniteCoordinates()
 
     QCOMPARE(xAxis.dataMin(), 1.0);
     QCOMPARE(xAxis.dataMax(), 3.0);
+}
+
+void LineCurveDataTest::countTracksStoredPoints()
+{
+    auto curve = LineCurve{};
+    auto countSpy = QSignalSpy{&curve, &PlotSeries::countChanged};
+
+    curve.setDataF(makeData(3), 3);
+    QCOMPARE(curve.count(), 3);
+    QCOMPARE(curve.property("count").toInt(), 3);
+    QCOMPARE(countSpy.count(), 1);
+
+    curve.setDataF(makeData(3, 1.0f), 3);
+    QCOMPARE(countSpy.count(), 1);
+
+    curve.appendData(std::numeric_limits<qreal>::quiet_NaN(), 1.0);
+    QCOMPARE(curve.count(), 4);
+    QCOMPARE(countSpy.count(), 2);
+
+    curve.clearData();
+    curve.clearData();
+    QCOMPARE(curve.count(), 0);
+    QCOMPARE(countSpy.count(), 3);
 }
 
 } // namespace QAccelPlot

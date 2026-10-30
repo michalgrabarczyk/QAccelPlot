@@ -149,11 +149,6 @@ BandEdges* BandSeries::edges() const
     return edges_;
 }
 
-int BandSeries::count() const
-{
-    return dataPoints().count();
-}
-
 bool BandSeries::hovered() const
 {
     return hovered_;
@@ -332,15 +327,12 @@ void BandSeries::onAxisRangeChanged()
     refreshHovered();
 }
 
-void BandSeries::onDataPointsChanged(const DataChange change, const int previousCount)
+void BandSeries::onDataPointsChanged(const DataChange change, const int /*previousCount*/)
 {
     if (change == DataChange::Replaced) {
         updateXAscending();
     }
     refreshHovered();
-    if (dataPoints().count() != previousCount) {
-        emit countChanged();
-    }
 }
 
 void BandSeries::applyInterleavedData(std::vector<double>&& data)

@@ -103,6 +103,11 @@ int HeatmapSeries::rows() const
     return rows_;
 }
 
+int HeatmapSeries::count() const
+{
+    return cellCount();
+}
+
 qreal HeatmapSeries::xMin() const
 {
     return edges_.xMin;
@@ -417,6 +422,7 @@ void HeatmapSeries::storeValues(std::vector<float>&& values, const int columns)
 
 void HeatmapSeries::applyShape(const int columns)
 {
+    const auto previousCount = cellCount();
     const auto previousColumns = std::exchange(columns_, columns);
     const auto rows = columns_ > 0 ? static_cast<int>(values_.size() / static_cast<std::size_t>(columns_)) : 0;
     const auto previousRows = std::exchange(rows_, rows);
@@ -429,6 +435,9 @@ void HeatmapSeries::applyShape(const int columns)
     }
     if (rows_ != previousRows) {
         emit rowsChanged();
+    }
+    if (cellCount() != previousCount) {
+        emit countChanged();
     }
     update();
 }

@@ -114,8 +114,6 @@ class BarSeries : public ColormappedSeries {
     Q_PROPERTY(QColor hoverColor READ hoverColor WRITE setHoverColor NOTIFY hoverColorChanged)
     /// \brief Optional data transition animation applied when new data arrives.
     Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
-    /// \brief Read-only: number of bars currently loaded.
-    Q_PROPERTY(int count READ count NOTIFY countChanged)
     /// \brief Read-only: index of the bar under the cursor, or -1 when none.
     Q_PROPERTY(int hoveredIndex READ hoveredIndex NOTIFY hoveredIndexChanged)
 
@@ -185,8 +183,6 @@ public:
     /// \brief Sets the data transition to \a transition.
     void setTransition(DataTransition* transition);
 
-    /// \brief Returns the number of bars currently loaded.
-    int count() const;
     /// \brief Returns the index of the hovered bar, or -1 if none.
     int hoveredIndex() const;
 
@@ -264,8 +260,6 @@ signals:
     void hoverColorChanged();
     /// \brief Emitted when the transition property changes.
     void transitionChanged();
-    /// \brief Emitted when the bar count changes.
-    void countChanged();
     /// \brief Emitted when the hovered bar index changes.
     void hoveredIndexChanged();
 

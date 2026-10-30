@@ -119,6 +119,11 @@ SeriesInspection* PlotSeries::inspection() const
     return inspection_;
 }
 
+int PlotSeries::count() const
+{
+    return dataPoints_.count();
+}
+
 QString PlotSeries::name() const
 {
     return name_;
@@ -477,6 +482,9 @@ void PlotSeries::notifyDataPointsChanged(const DataChange change, const int prev
         invalidateDataRanges();
     }
     onDataPointsChanged(change, previousCount);
+    if (dataPoints_.count() != previousCount) {
+        emit countChanged();
+    }
     inspectionDataChanged(change);
     update();
 }

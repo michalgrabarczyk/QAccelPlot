@@ -73,8 +73,6 @@ class RectangleSeries : public PlotSeries {
     Q_PROPERTY(qreal minimumWidth READ minimumWidth WRITE setMinimumWidth NOTIFY minimumWidthChanged)
     /// \brief Minimum drawn height in pixels, like \c minimumWidth. Default: 1.
     Q_PROPERTY(qreal minimumHeight READ minimumHeight WRITE setMinimumHeight NOTIFY minimumHeightChanged)
-    /// \brief Read-only: number of rectangles currently loaded.
-    Q_PROPERTY(int count READ count NOTIFY countChanged)
     /// \brief Read-only: index of the rectangle under the cursor, or -1 when none.
     Q_PROPERTY(int hoveredIndex READ hoveredIndex NOTIFY hoveredIndexChanged)
 
@@ -112,8 +110,6 @@ public:
     /// \brief Sets the minimum drawn height to \a height pixels. Negative values are clamped to 0.
     void setMinimumHeight(qreal height);
 
-    /// \brief Returns the number of rectangles currently loaded.
-    int count() const;
     /// \brief Returns the index of the hovered rectangle, or -1 if none.
     int hoveredIndex() const;
 
@@ -174,8 +170,6 @@ signals:
     void minimumWidthChanged();
     /// \brief Emitted when the minimumHeight property changes.
     void minimumHeightChanged();
-    /// \brief Emitted when the rectangle count changes.
-    void countChanged();
     /// \brief Emitted when the hovered rectangle index changes.
     void hoveredIndexChanged();
 
