@@ -72,6 +72,7 @@
 
 ## m
 
+* **MarkerShape** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **Mode** ([**QAccelPlot::GradientFillBaselineNS**](namespaceQAccelPlot_1_1GradientFillBaselineNS.md), [**QAccelPlot::NanGapModeNS**](namespaceQAccelPlot_1_1NanGapModeNS.md), [**QAccelPlot::StepModeNS**](namespaceQAccelPlot_1_1StepModeNS.md))
 * **maxTextureSize** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
@@ -113,6 +114,7 @@
 * **stepCorner** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **stepCornerCount** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **supportsCustomShaderRendering** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **Shape** ([**QAccelPlot::MarkerShapeNS**](namespaceQAccelPlot_1_1MarkerShapeNS.md))
 * **StepMode** ([**QAccelPlot**](namespaceQAccelPlot.md))
 
 

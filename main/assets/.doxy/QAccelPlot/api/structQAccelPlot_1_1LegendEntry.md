@@ -46,7 +46,7 @@ _How a legend draws one series: its symbol, color, line, and marker._ [More...](
 | Type | Name |
 | ---: | :--- |
 |  [**LineStyle**](classQAccelPlot_1_1LineStyle.md) \* | [**lineStyle**](#variable-linestyle-22)   = `{nullptr}`<br>_Line style, or null for solid._  |
-|  [**PlotSeries::MarkerShape**](classQAccelPlot_1_1PlotSeries.md#enum-markershape) | [**markerShape**](#variable-markershape-22)   = `{PlotSeries::MarkerShape::None}`<br>_Marker shape._  |
+|  [**MarkerShape**](namespaceQAccelPlot_1_1MarkerShapeNS.md#enum-shape) | [**markerShape**](#variable-markershape-22)   = `{MarkerShape::None}`<br>_Marker shape._  |
 |  [**PlotSeries::LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol) | [**symbol**](#variable-symbol-22)   = `{PlotSeries::LegendSymbol::Line}`<br>_Symbol style._  |
 
 
@@ -66,7 +66,7 @@ _How a legend draws one series: its symbol, color, line, and marker._ [More...](
 | property [**QAccelPlot::LineStyle**](classQAccelPlot_1_1LineStyle.md) \* | [**lineStyle**](structQAccelPlot_1_1LegendEntry.md#property-linestyle-12)  <br>_Line style, or null for a solid line. Owned by the series._  |
 | property qreal | [**lineWidth**](structQAccelPlot_1_1LegendEntry.md#property-linewidth)  <br>_Line width in pixels._  |
 | property bool | [**markerFilled**](structQAccelPlot_1_1LegendEntry.md#property-markerfilled)  <br>_Whether the marker is filled._  |
-| property [**QAccelPlot::PlotSeries::MarkerShape**](classQAccelPlot_1_1PlotSeries.md#enum-markershape) | [**markerShape**](structQAccelPlot_1_1LegendEntry.md#property-markershape-12)  <br>_Marker shape;_ `None` _draws no marker._ |
+| property [**QAccelPlot::MarkerShape**](namespaceQAccelPlot_1_1MarkerShapeNS.md#enum-shape) | [**markerShape**](structQAccelPlot_1_1LegendEntry.md#property-markershape-12)  <br>_Marker shape;_ `None` _draws no marker._ |
 | property qreal | [**markerSize**](structQAccelPlot_1_1LegendEntry.md#property-markersize)  <br>_Marker size in pixels._  |
 | property qreal | [**markerStrokeWidth**](structQAccelPlot_1_1LegendEntry.md#property-markerstrokewidth)  <br>_Outline width in pixels of a hollow marker._  |
 | property QML\_ANONYMOUSQAccelPlot::PlotSeries::LegendSymbol | [**symbol**](structQAccelPlot_1_1LegendEntry.md#property-symbol-12)  <br>_Symbol style._  |
@@ -144,7 +144,7 @@ LineStyle* QAccelPlot::LegendEntry::lineStyle;
 
 _Marker shape._ 
 ```C++
-PlotSeries::MarkerShape QAccelPlot::LegendEntry::markerShape;
+MarkerShape QAccelPlot::LegendEntry::markerShape;
 ```
 
 
@@ -278,7 +278,7 @@ bool QAccelPlot::LegendEntry::markerFilled;
 
 _Marker shape;_ `None` _draws no marker._
 ```C++
-QAccelPlot::PlotSeries::MarkerShape QAccelPlot::LegendEntry::markerShape;
+QAccelPlot::MarkerShape QAccelPlot::LegendEntry::markerShape;
 ```
 
 

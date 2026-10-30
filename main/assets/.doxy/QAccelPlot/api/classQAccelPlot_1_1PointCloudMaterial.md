@@ -70,7 +70,7 @@ flowchart TB
 |  float | [**markerFilled**](#variable-markerfilled)   = `{1.0f}`<br>_1.0 for filled markers, 0.0 for hollow outlines._  |
 |  float | [**markerSize**](#variable-markersize)   = `{3.0f}`<br>_Marker radius in pixels._  |
 |  float | [**markerStrokeWidth**](#variable-markerstrokewidth)   = `{1.0f}`<br>_Outline width in pixels for hollow markers._  |
-|  int | [**shapeType**](#variable-shapetype)   = `{0}`<br>_Marker shape:_ `PlotSeries::MarkerShape` _value minus one (0 = Circle)._ |
+|  int | [**shapeType**](#variable-shapetype)   = `{0}`<br>_Marker shape:_ `MarkerShape` _value minus one (0 = Circle)._ |
 |  float | [**stride**](#variable-stride)   = `{2.0f}`<br>_Floats per point in the data texture: 2 (x, y) or 3 (x, y, value)._  |
 |  float | [**valueLogScale**](#variable-valuelogscale)   = `{0.0f}`<br>_1.0 to place values on the ramp in log10 instead of linearly._  |
 |  float | [**valueMax**](#variable-valuemax)   = `{1.0f}`<br>_Value mapped to colormap position 1._  |
@@ -346,7 +346,7 @@ float QAccelPlot::PointCloudMaterial::markerStrokeWidth;
 
 ### variable shapeType {#variable-shapetype}
 
-_Marker shape:_ `PlotSeries::MarkerShape` _value minus one (0 = Circle)._
+_Marker shape:_ `MarkerShape` _value minus one (0 = Circle)._
 ```C++
 int QAccelPlot::PointCloudMaterial::shapeType;
 ```

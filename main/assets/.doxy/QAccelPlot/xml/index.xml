@@ -1950,7 +1950,7 @@
     <member refid="structQAccelPlot_1_1LegendEntry_1add88ed743f9ae26708ca5b69dd7fe1c6" kind="property"><name>color</name></member>
     <member refid="structQAccelPlot_1_1LegendEntry_1ae16cda2d7b3d8342192357a92cff6992" kind="property"><name>lineWidth</name></member>
     <member refid="structQAccelPlot_1_1LegendEntry_1a012e79829b2eb2fb1676c091185ce433" kind="property"><name>lineStyle</name></member>
-    <member refid="structQAccelPlot_1_1LegendEntry_1abca171344c631f0623feeb81be5660fb" kind="property"><name>markerShape</name></member>
+    <member refid="structQAccelPlot_1_1LegendEntry_1a038d7720c31e418fea3b9c8fd87037fd" kind="property"><name>markerShape</name></member>
     <member refid="structQAccelPlot_1_1LegendEntry_1a79747b9594f64f093ceea4391f2e0991" kind="property"><name>markerSize</name></member>
     <member refid="structQAccelPlot_1_1LegendEntry_1af00e03e8e4f28981493e9a89016893b0" kind="property"><name>markerFilled</name></member>
     <member refid="structQAccelPlot_1_1LegendEntry_1ab4900281705f82ddbba3f7dbcb5557f0" kind="property"><name>markerStrokeWidth</name></member>
@@ -1958,7 +1958,7 @@
     <member refid="structQAccelPlot_1_1LegendEntry_1af420c8714795ad5dd236894872e93390" kind="property"><name>antialiasingFeather</name></member>
     <member refid="structQAccelPlot_1_1LegendEntry_1a760add19503952cbbb1506c1ca023ada" kind="variable"><name>symbol</name></member>
     <member refid="structQAccelPlot_1_1LegendEntry_1ab6cf2a690101f27902087c485083f535" kind="variable"><name>lineStyle</name></member>
-    <member refid="structQAccelPlot_1_1LegendEntry_1af3c0d3d94cbe7b2d62f47f7cb700fe49" kind="variable"><name>markerShape</name></member>
+    <member refid="structQAccelPlot_1_1LegendEntry_1a57a60253c4eb48d4cea7c959270b42b6" kind="variable"><name>markerShape</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1LegendModel" kind="class"><name>QAccelPlot::LegendModel</name>
     <member refid="classQAccelPlot_1_1LegendModel_1a82e1c0fb48ff48fbb0bc9779b1e3865e" kind="enum"><name>Role</name></member>
@@ -2558,24 +2558,6 @@
     <member refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849ea4803e6b9e63dabf04de980788d6a13c4" kind="enumvalue"><name>Line</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849eadb3e3f51c9107e26c9bccf9a188ce2ed" kind="enumvalue"><name>Fill</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849ea0235c996b43b3799573658df41ef82f2" kind="enumvalue"><name>Marker</name></member>
-    <member refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619" kind="enum"><name>MarkerShape</name></member>
-    <member refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619a6adf97f83acf6453d4a6a4b1070f3754" kind="enumvalue"><name>None</name></member>
-    <member refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619a30954d90085f6eaaf5817917fc5fecb3" kind="enumvalue"><name>Circle</name></member>
-    <member refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619aceb46ca115d05c51aa5a16a8867c3304" kind="enumvalue"><name>Square</name></member>
-    <member refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619a8f7671185d590914ac21c7511767b699" kind="enumvalue"><name>Diamond</name></member>
-    <member refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619acc8b4d708cd6657a142e0ed0861e22e5" kind="enumvalue"><name>TriangleUp</name></member>
-    <member refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619a84d5dab02246a5db0018fac6251bfeb8" kind="enumvalue"><name>TriangleDown</name></member>
-    <member refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619ae5df3626957bbdaa6de4e3e7190b36c1" kind="enumvalue"><name>TriangleLeft</name></member>
-    <member refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619a9bb547f4cfe205fae637ac29a274f591" kind="enumvalue"><name>TriangleRight</name></member>
-    <member refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619ae76b449b9fc8536af7557ffa6321d269" kind="enumvalue"><name>Cross</name></member>
-    <member refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619a727d820d1768aaa0b26040a70fc1028f" kind="enumvalue"><name>XCross</name></member>
-    <member refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619a88e50bb9a298238d324d31ffb592bcc1" kind="enumvalue"><name>HLine</name></member>
-    <member refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619a942204a00bd4ab062d02663e70ff3762" kind="enumvalue"><name>VLine</name></member>
-    <member refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619a26f93e6e68e28a698377e941cb59f29a" kind="enumvalue"><name>Star</name></member>
-    <member refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619a9c8ae0945940e5baec5a93c4c8ec869e" kind="enumvalue"><name>Asterisk</name></member>
-    <member refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619a08822b3ae4e2aede0afe08abe600e9c0" kind="enumvalue"><name>Pixel</name></member>
-    <member refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619a125e13c182697c5a282e4de6d7999eb0" kind="enumvalue"><name>Hexagon</name></member>
-    <member refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619a09fcf42bcab804addc759acce8ec9051" kind="enumvalue"><name>Pentagon</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a7f2b4290f315a7c3d22b7982763b8bc8" kind="enum"><name>DataChange</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a7f2b4290f315a7c3d22b7982763b8bc8ab3f23170be598de0771ac94684114f94" kind="enumvalue"><name>Replaced</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a7f2b4290f315a7c3d22b7982763b8bc8a3da4dcc41ce276abc52ef0713c8aacb7" kind="enumvalue"><name>Appended</name></member>
@@ -3344,18 +3326,18 @@
     <member refid="classQAccelPlot_1_1SeriesMarker_1a5ca5f50687b737db61497817c6ac3f9b" kind="enum"><name>NoneShape</name></member>
     <member refid="classQAccelPlot_1_1SeriesMarker_1a5ca5f50687b737db61497817c6ac3f9ba382ab522931673c11e398ead1b7b1678" kind="enumvalue"><name>Accepted</name></member>
     <member refid="classQAccelPlot_1_1SeriesMarker_1a5ca5f50687b737db61497817c6ac3f9bad37b1f6c0512e2118cee17fea015b699" kind="enumvalue"><name>Rejected</name></member>
-    <member refid="classQAccelPlot_1_1SeriesMarker_1ac548c78f9c0be75b6502646a667adfe9" kind="property"><name>shape</name></member>
+    <member refid="classQAccelPlot_1_1SeriesMarker_1af94a667f647419ef5689b42c3721dbc0" kind="property"><name>shape</name></member>
     <member refid="classQAccelPlot_1_1SeriesMarker_1ab5a3599b69fd4d255271d00c6df80b3c" kind="property"><name>size</name></member>
     <member refid="classQAccelPlot_1_1SeriesMarker_1a878db6250b53645878188f63496c7383" kind="property"><name>filled</name></member>
     <member refid="classQAccelPlot_1_1SeriesMarker_1a5d17fef6fda199e26c9b81e795f9c8bb" kind="property"><name>strokeWidth</name></member>
-    <member refid="classQAccelPlot_1_1SeriesMarker_1a3a3fa9029191f13c298647052bc0d3ba" kind="variable"><name>shape_</name></member>
+    <member refid="classQAccelPlot_1_1SeriesMarker_1a36efde1ea4aa2511eab3c58cf07181eb" kind="variable"><name>shape_</name></member>
     <member refid="classQAccelPlot_1_1SeriesMarker_1af2716b7177ea5ed1ec87993860846019" kind="variable"><name>size_</name></member>
     <member refid="classQAccelPlot_1_1SeriesMarker_1a2794d2b7fdd0d261af39e39637929630" kind="variable"><name>noneShape_</name></member>
     <member refid="classQAccelPlot_1_1SeriesMarker_1abcb8e09e403376d2860f080c059574b4" kind="variable"><name>filled_</name></member>
     <member refid="classQAccelPlot_1_1SeriesMarker_1a78d73d5cd94fa60abf777e083399bc9a" kind="variable"><name>strokeWidth_</name></member>
-    <member refid="classQAccelPlot_1_1SeriesMarker_1a55c2fca196bada79a38b7e969a566b3f" kind="function"><name>SeriesMarker</name></member>
-    <member refid="classQAccelPlot_1_1SeriesMarker_1a43fa299986344e714fa9b5ec99581017" kind="function"><name>shape</name></member>
-    <member refid="classQAccelPlot_1_1SeriesMarker_1a476615dd293b9cf9390dbc87b4a196ac" kind="function"><name>setShape</name></member>
+    <member refid="classQAccelPlot_1_1SeriesMarker_1a1108ed5b402366860ccee353db4fe02d" kind="function"><name>SeriesMarker</name></member>
+    <member refid="classQAccelPlot_1_1SeriesMarker_1af50fc10a5999943bb2578dc02b0b1c8b" kind="function"><name>shape</name></member>
+    <member refid="classQAccelPlot_1_1SeriesMarker_1af99eaacabb25905ff302f8759672f203" kind="function"><name>setShape</name></member>
     <member refid="classQAccelPlot_1_1SeriesMarker_1acb32354f96ccb22f4c282c50c2e308e6" kind="function"><name>size</name></member>
     <member refid="classQAccelPlot_1_1SeriesMarker_1a13d63615c84553e42607fa7791dca791" kind="function"><name>setSize</name></member>
     <member refid="classQAccelPlot_1_1SeriesMarker_1a05bf880c4db982e7d4813e511724e907" kind="function"><name>filled</name></member>
@@ -3541,6 +3523,7 @@
     <member refid="GradientColorTypes_8hpp_1a4e9f64212036d6f4c354c451ba2fc45e" kind="typedef"><name>GradientValueSource</name></member>
     <member refid="InspectionResult_8hpp_1a5f4b24dcd6ebda62dd105e6e3fad0ff8" kind="typedef"><name>InspectionStatus</name></member>
     <member refid="LineCurveGaps_8hpp_1a11817d21a4214c355f999476b958e020" kind="typedef"><name>NanGapMode</name></member>
+    <member refid="MarkerShape_8hpp_1a703f19bd1a910af789702e3350bfa6f5" kind="typedef"><name>MarkerShape</name></member>
     <member refid="StepMode_8hpp_1a701d066e167f1caad8be578e0750f7b1" kind="typedef"><name>StepMode</name></member>
     <member refid="LineStyle_8hpp_1a44595e259edb178d9a8c42317ab2cff7" kind="variable"><name>kMaxDashPatternSize</name></member>
     <member refid="MathUtils_8hpp_1a5d7d51876775f2a846a29ae3032b7f1e" kind="variable"><name>kNearlyEqualEpsilon</name></member>
@@ -3623,6 +3606,26 @@
     <member refid="namespaceQAccelPlot_1_1LineStroke_1a9ef03f551509110edd4ad16ab0ecd133" kind="function"><name>writeVertices</name></member>
     <member refid="namespaceQAccelPlot_1_1LineStroke_1a7af6559bbaacc22fb8a3919a13bed452" kind="function"><name>applyUniforms</name></member>
     <member refid="namespaceQAccelPlot_1_1LineStroke_1af2fc7665b16774aa448d7292f7fcc541" kind="function"><name>arcLengths</name></member>
+  </compound>
+  <compound refid="namespaceQAccelPlot_1_1MarkerShapeNS" kind="namespace"><name>QAccelPlot::MarkerShapeNS</name>
+    <member refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fd" kind="enum"><name>Shape</name></member>
+    <member refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fda6adf97f83acf6453d4a6a4b1070f3754" kind="enumvalue"><name>None</name></member>
+    <member refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fda30954d90085f6eaaf5817917fc5fecb3" kind="enumvalue"><name>Circle</name></member>
+    <member refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fdaceb46ca115d05c51aa5a16a8867c3304" kind="enumvalue"><name>Square</name></member>
+    <member refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fda8f7671185d590914ac21c7511767b699" kind="enumvalue"><name>Diamond</name></member>
+    <member refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fdacc8b4d708cd6657a142e0ed0861e22e5" kind="enumvalue"><name>TriangleUp</name></member>
+    <member refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fda84d5dab02246a5db0018fac6251bfeb8" kind="enumvalue"><name>TriangleDown</name></member>
+    <member refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fdae5df3626957bbdaa6de4e3e7190b36c1" kind="enumvalue"><name>TriangleLeft</name></member>
+    <member refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fda9bb547f4cfe205fae637ac29a274f591" kind="enumvalue"><name>TriangleRight</name></member>
+    <member refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fdae76b449b9fc8536af7557ffa6321d269" kind="enumvalue"><name>Cross</name></member>
+    <member refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fda727d820d1768aaa0b26040a70fc1028f" kind="enumvalue"><name>XCross</name></member>
+    <member refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fda88e50bb9a298238d324d31ffb592bcc1" kind="enumvalue"><name>HLine</name></member>
+    <member refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fda942204a00bd4ab062d02663e70ff3762" kind="enumvalue"><name>VLine</name></member>
+    <member refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fda26f93e6e68e28a698377e941cb59f29a" kind="enumvalue"><name>Star</name></member>
+    <member refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fda9c8ae0945940e5baec5a93c4c8ec869e" kind="enumvalue"><name>Asterisk</name></member>
+    <member refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fda08822b3ae4e2aede0afe08abe600e9c0" kind="enumvalue"><name>Pixel</name></member>
+    <member refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fda125e13c182697c5a282e4de6d7999eb0" kind="enumvalue"><name>Hexagon</name></member>
+    <member refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fda09fcf42bcab804addc759acce8ec9051" kind="enumvalue"><name>Pentagon</name></member>
   </compound>
   <compound refid="namespaceQAccelPlot_1_1NanGapModeNS" kind="namespace"><name>QAccelPlot::NanGapModeNS</name>
     <member refid="namespaceQAccelPlot_1_1NanGapModeNS_1a7bc1561c858ec08f1c94fbc418062732" kind="enum"><name>Mode</name></member>
@@ -3821,6 +3824,8 @@
   <compound refid="LineCurveGaps_8hpp" kind="file"><name>LineCurveGaps.hpp</name>
   </compound>
   <compound refid="LineCurveVertexCache_8hpp" kind="file"><name>LineCurveVertexCache.hpp</name>
+  </compound>
+  <compound refid="MarkerShape_8hpp" kind="file"><name>MarkerShape.hpp</name>
   </compound>
   <compound refid="PlotSeries_8hpp" kind="file"><name>PlotSeries.hpp</name>
   </compound>

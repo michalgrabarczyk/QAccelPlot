@@ -18,6 +18,7 @@
 #pragma once
 
 #include "QAccelPlot/linestyles/LineStyle.hpp"
+#include "QAccelPlot/series/MarkerShape.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
 
 #include <QColor>
@@ -32,7 +33,7 @@ struct LegendEntry {
     Q_PROPERTY(QColor color MEMBER color CONSTANT)
     Q_PROPERTY(qreal lineWidth MEMBER lineWidth CONSTANT)
     Q_PROPERTY(::QAccelPlot::LineStyle* lineStyle MEMBER lineStyle CONSTANT)
-    Q_PROPERTY(::QAccelPlot::PlotSeries::MarkerShape markerShape MEMBER markerShape CONSTANT)
+    Q_PROPERTY(::QAccelPlot::MarkerShape markerShape MEMBER markerShape CONSTANT)
     Q_PROPERTY(qreal markerSize MEMBER markerSize CONSTANT)
     Q_PROPERTY(bool markerFilled MEMBER markerFilled CONSTANT)
     Q_PROPERTY(qreal markerStrokeWidth MEMBER markerStrokeWidth CONSTANT)
@@ -40,16 +41,16 @@ struct LegendEntry {
     Q_PROPERTY(qreal antialiasingFeather MEMBER antialiasingFeather CONSTANT)
 
 public:
-    PlotSeries::LegendSymbol symbol{PlotSeries::LegendSymbol::Line};    
-    QColor color;                                                       
-    qreal lineWidth{1.0};                                               
-    LineStyle* lineStyle{nullptr};                                      
-    PlotSeries::MarkerShape markerShape{PlotSeries::MarkerShape::None}; 
-    qreal markerSize{0.0};                                              
-    bool markerFilled{true};                                            
-    qreal markerStrokeWidth{1.0};                                       
-    bool antialiasingEnabled{true};                                     
-    qreal antialiasingFeather{1.0};                                     
+    PlotSeries::LegendSymbol symbol{PlotSeries::LegendSymbol::Line}; 
+    QColor color;                                                    
+    qreal lineWidth{1.0};                                            
+    LineStyle* lineStyle{nullptr};                                   
+    MarkerShape markerShape{MarkerShape::None};                      
+    qreal markerSize{0.0};                                           
+    bool markerFilled{true};                                         
+    qreal markerStrokeWidth{1.0};                                    
+    bool antialiasingEnabled{true};                                  
+    qreal antialiasingFeather{1.0};                                  
 };
 
 } // namespace QAccelPlot

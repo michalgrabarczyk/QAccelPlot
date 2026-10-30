@@ -373,7 +373,7 @@
         <argsstring></argsstring>
         <name>marker_</name>
         <qualifiedname>QAccelPlot::LineCurve::marker_</qualifiedname>
-        <initializer>{new <ref refid="classQAccelPlot_1_1SeriesMarker" kindref="compound">SeriesMarker</ref>{<ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619a6adf97f83acf6453d4a6a4b1070f3754" kindref="member">MarkerShape::None</ref>, 4.0, SeriesMarker::NoneShape::Accepted, this}}</initializer>
+        <initializer>{new <ref refid="classQAccelPlot_1_1SeriesMarker" kindref="compound">SeriesMarker</ref>{MarkerShape::None, 4.0, SeriesMarker::NoneShape::Accepted, this}}</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -2008,7 +2008,7 @@
     </briefdescription>
     <detaileddescription>
 <para>The <computeroutput><ref refid="classQAccelPlot_1_1LineCurve_1acf9463cc9f4c0e0eb7cc9d053b7e7114" kindref="member">setData()</ref></computeroutput> overloads retain double-precision coordinates, including large timestamp values. Methods whose names end in <computeroutput>F</computeroutput> store interleaved float XY pairs <computeroutput>[x0, y0, x1, y1, …]</computeroutput>. For maximum throughput prefer <computeroutput><ref refid="classQAccelPlot_1_1LineCurve_1a1180d75ce402fbf92fd7d95a4d0acda4" kindref="member">setDataF(std::vector&lt;float&gt;&amp;&amp;, int)</ref></computeroutput> or <computeroutput><ref refid="classQAccelPlot_1_1LineCurve_1aad3e05b7da4d8c16ca53819017e7b6e0" kindref="member">postData(std::vector&lt;float&gt;&amp;&amp;, int)</ref></computeroutput>, which move an already-interleaved float buffer with zero allocation and no type conversion. <computeroutput><ref refid="classQAccelPlot_1_1LineCurve_1acbf8fb06d9d8ca2a5ab3a0c4e060a4b4" kindref="member">postData(std::vector&lt;double&gt;&amp;&amp;, int)</ref></computeroutput> hands off a double-precision buffer from a worker thread instead. The curve is rendered on the Qt Scene Graph render thread using GPU-side data textures, making it suitable for real-time plots with millions of points.</para>
-<para><simplesect kind="par"><title>Markers</title><para>Markers are configured through the <computeroutput>marker</computeroutput> grouped property, for example <computeroutput>marker.shape: <ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619a30954d90085f6eaaf5817917fc5fecb3" kindref="member">QAccelPlot.LineCurve.Circle</ref></computeroutput>. No markers are drawn by default.</para>
+<para><simplesect kind="par"><title>Markers</title><para>Markers are configured through the <computeroutput>marker</computeroutput> grouped property, for example <computeroutput>marker.shape: QAccelPlot.MarkerShape.Circle</computeroutput>. No markers are drawn by default.</para>
 </simplesect>
 <simplesect kind="par"><title>Effects</title><para>Visual effects (gradient stroke, gradient fill) are attached via the <computeroutput>effects</computeroutput> list property.</para>
 </simplesect>
@@ -2140,9 +2140,9 @@
       <member refid="classQAccelPlot_1_1LineCurve_1a0273989b02da49bd0e3e725c6105c4c4" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>invalidateVertices</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1a93e7cff8e144e1ec4edb9e9be11f315e" prot="public" virt="virtual"><scope>QAccelPlot::LineCurve</scope><name>legendEntry</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a1dbdd720bb06d07672267cfc603b932b" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>legendEntryChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>LegendSymbol</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1ada3d9fd14934647c0f31870184f5eff5" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>legendSymbol</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a37f1fe5cb9f339d593147cd47b75d180" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>legendSymbol</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>LegendSymbol</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a2b88cb6eac8d12cf02b6daf37460150e" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>legendSymbolChanged</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1af8b02c2b82f56224992bb90ac7a6f3f6" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>LineCurve</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1acf924165805a2eedb08666d81d9eb034" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>lineRenderer_</name></member>
@@ -2159,7 +2159,6 @@
       <member refid="classQAccelPlot_1_1LineCurve_1a93749015bedc2e340dd7585326857558" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>marker</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1a999644a6f7ee789a9ca8ee0c420fbc92" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>marker</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1a4386542c038915acfd34c436fc920c2f" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>marker_</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>MarkerShape</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a71b82b1a4372d71c848a3a09c59b20b0" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>name</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1abfa3199d6097eb55cf17697eff2be090" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>name</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1acd842870d90a7ece81859be06effe0a7" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>nameChanged</name></member>

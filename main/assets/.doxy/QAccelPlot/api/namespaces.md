@@ -12,6 +12,7 @@ Here is a list of all namespaces with brief descriptions:
     * **namespace** [**Internal**](namespaceQAccelPlot_1_1Internal.md)     
     * **namespace** [**LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md) _Stateless helpers implementing the invalid-data-point contract shared by_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _subsystems._    
     * **namespace** [**LineStroke**](namespaceQAccelPlot_1_1LineStroke.md) _Building blocks for the line ribbon drawn by the line shaders, shared by the line renderers._     
+    * **namespace** [**MarkerShapeNS**](namespaceQAccelPlot_1_1MarkerShapeNS.md) _Namespace exposing the_ `MarkerShape` _enum to QML._    
     * **namespace** [**NanGapModeNS**](namespaceQAccelPlot_1_1NanGapModeNS.md) _Namespace exposing the_ `NanGapMode` _enum to QML._    
     * **namespace** [**StepModeNS**](namespaceQAccelPlot_1_1StepModeNS.md) _Namespace exposing the_ `StepMode` _enum to QML._    
 

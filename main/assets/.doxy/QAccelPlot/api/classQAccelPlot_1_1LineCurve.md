@@ -61,7 +61,6 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | Type | Name |
 | ---: | :--- |
 | enum  | [**LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol)  <br>_Supported default legend symbols._  |
-| enum  | [**MarkerShape**](classQAccelPlot_1_1PlotSeries.md#enum-markershape)  <br>_Marker shapes shared by every series that draws markers._  |
 
 
 
@@ -369,7 +368,7 @@ The `setData()` overloads retain double-precision coordinates, including large t
 **
 **
 
-Markers are configured through the `marker` grouped property, for example `marker.shape:  QAccelPlot.LineCurve.Circle`. No markers are drawn by default.
+Markers are configured through the `marker` grouped property, for example `marker.shape: QAccelPlot.MarkerShape.Circle`. No markers are drawn by default.
 
 
 

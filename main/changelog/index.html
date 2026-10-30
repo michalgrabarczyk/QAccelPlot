@@ -1990,6 +1990,11 @@
 </ul>
 <h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
 <ul>
+<li>Marker shapes are a standalone <code>MarkerShape</code> enum instead of a
+  <code>PlotSeries</code> enum. Replace <code>LineCurve.Diamond</code> or <code>PointCloud.Circle</code> with
+  <code>MarkerShape.Diamond</code> or <code>MarkerShape.Circle</code> in QML, and
+  <code>PlotSeries::MarkerShape</code> with <code>MarkerShape</code>
+  (<code>&lt;QAccelPlot/series/MarkerShape.hpp&gt;</code>) in C++. Values are unchanged.</li>
 <li><code>PlotMouseEvent.button</code> is <code>Qt.NoButton</code> for a move instead of the held
   buttons cast into one value; the new <code>buttons</code> holds them. <code>reset()</code> is no
   longer public.</li>

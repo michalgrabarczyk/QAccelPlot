@@ -31,7 +31,6 @@
 ## m
 
 * **Mode** ([**QAccelPlot::Internal::HeatmapShaderMapping**](structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping.md), [**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md), [**QAccelPlot::SelectionTool**](classQAccelPlot_1_1SelectionTool.md))
-* **MarkerShape** ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
 
 
 ## n

@@ -64,28 +64,6 @@ public:
     Q_ENUM(LegendSymbol)
 
     
-    enum class MarkerShape {
-        None,          
-        Circle,        
-        Square,        
-        Diamond,       
-        TriangleUp,    
-        TriangleDown,  
-        TriangleLeft,  
-        TriangleRight, 
-        Cross,         
-        XCross,        
-        HLine,         
-        VLine,         
-        Star,          
-        Asterisk,      
-        Pixel,         
-        Hexagon,       
-        Pentagon       
-    };
-    Q_ENUM(MarkerShape)
-
-    
     struct DataExtent {
         qreal min; 
         qreal max; 

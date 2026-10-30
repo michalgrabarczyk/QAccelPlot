@@ -43,6 +43,7 @@
 | namespace | [**Internal**](namespaceQAccelPlot_1_1Internal.md) <br> |
 | namespace | [**LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md) <br>_Stateless helpers implementing the invalid-data-point contract shared by_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _subsystems._ |
 | namespace | [**LineStroke**](namespaceQAccelPlot_1_1LineStroke.md) <br>_Building blocks for the line ribbon drawn by the line shaders, shared by the line renderers._  |
+| namespace | [**MarkerShapeNS**](namespaceQAccelPlot_1_1MarkerShapeNS.md) <br>_Namespace exposing the_ `MarkerShape` _enum to QML._ |
 | namespace | [**NanGapModeNS**](namespaceQAccelPlot_1_1NanGapModeNS.md) <br>_Namespace exposing the_ `NanGapMode` _enum to QML._ |
 | namespace | [**StepModeNS**](namespaceQAccelPlot_1_1StepModeNS.md) <br>_Namespace exposing the_ `StepMode` _enum to QML._ |
 
@@ -172,6 +173,7 @@
 | enum  | [**InspectionAxis**](#enum-inspectionaxis)  <br>_Data dimension a query measures along, or along which a series' records are ordered._  |
 | enum  | [**InspectionMatching**](#enum-inspectionmatching)  <br>_How_ `PlotInspector` _and_`SelectionTool` _match a series' data points to a position._ |
 | typedef [**InspectionNS::Status**](namespaceQAccelPlot_1_1InspectionNS.md#enum-status) | [**InspectionStatus**](#typedef-inspectionstatus)  <br> |
+| typedef [**MarkerShapeNS::Shape**](namespaceQAccelPlot_1_1MarkerShapeNS.md#enum-shape) | [**MarkerShape**](#typedef-markershape)  <br> |
 | typedef [**NanGapModeNS::Mode**](namespaceQAccelPlot_1_1NanGapModeNS.md#enum-mode) | [**NanGapMode**](#typedef-nangapmode)  <br> |
 | typedef [**StepModeNS::Mode**](namespaceQAccelPlot_1_1StepModeNS.md#enum-mode) | [**StepMode**](#typedef-stepmode)  <br> |
 
@@ -318,6 +320,20 @@ enum QAccelPlot::InspectionMatching {
 
 ```C++
 using QAccelPlot::InspectionStatus = typedef InspectionNS::Status;
+```
+
+
+
+
+<hr>
+
+
+
+
+### typedef MarkerShape {#typedef-markershape}
+
+```C++
+using QAccelPlot::MarkerShape = typedef MarkerShapeNS::Shape;
 ```
 
 

@@ -119,6 +119,7 @@
     <innernamespace refid="namespaceQAccelPlot_1_1Internal">QAccelPlot::Internal</innernamespace>
     <innernamespace refid="namespaceQAccelPlot_1_1LineCurveGapFilter">QAccelPlot::LineCurveGapFilter</innernamespace>
     <innernamespace refid="namespaceQAccelPlot_1_1LineStroke">QAccelPlot::LineStroke</innernamespace>
+    <innernamespace refid="namespaceQAccelPlot_1_1MarkerShapeNS">QAccelPlot::MarkerShapeNS</innernamespace>
     <innernamespace refid="namespaceQAccelPlot_1_1NanGapModeNS">QAccelPlot::NanGapModeNS</innernamespace>
     <innernamespace refid="namespaceQAccelPlot_1_1StepModeNS">QAccelPlot::StepModeNS</innernamespace>
     <sectiondef kind="enum">
@@ -243,6 +244,20 @@
         <inbodydescription>
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/LineCurveGaps.hpp" line="28" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurveGaps.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="MarkerShape_8hpp_1a703f19bd1a910af789702e3350bfa6f5" prot="public" static="no">
+        <type><ref refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fd" kindref="member">MarkerShapeNS::Shape</ref></type>
+        <definition>using QAccelPlot::MarkerShape = typedef MarkerShapeNS::Shape</definition>
+        <argsstring></argsstring>
+        <name>MarkerShape</name>
+        <qualifiedname>QAccelPlot::MarkerShape</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/MarkerShape.hpp" line="47" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/MarkerShape.hpp" bodystart="47" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="StepMode_8hpp_1a701d066e167f1caad8be578e0750f7b1" prot="public" static="no">
         <type><ref refid="namespaceQAccelPlot_1_1StepModeNS_1af348af83845fdf1f08b475737f62a7cd" kindref="member">StepModeNS::Mode</ref></type>

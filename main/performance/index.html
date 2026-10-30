@@ -1808,7 +1808,7 @@ for example in streaming-only views.</p>
 <h3 id="other-rendering-costs">Other rendering costs<a class="headerlink" href="#other-rendering-costs" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Markers add geometry and fragment work per visible point. Fragment work grows
-  with marker size; <code>LineCurve.Pixel</code> markers shade one pixel per point and
+  with marker size; <code>MarkerShape.Pixel</code> markers shade one pixel per point and
   suit very dense scatter plots.</li>
 <li>A <code>PointCloud</code> or <code>HeatmapSeries</code> whose <code>Colormap</code> leaves <code>min</code> or <code>max</code> unset scans every value
   on each data update to resolve the range. Set both when the bounds of

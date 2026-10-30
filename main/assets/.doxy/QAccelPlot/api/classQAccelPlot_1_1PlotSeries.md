@@ -92,7 +92,6 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 | enum  | [**LegendSymbol**](#enum-legendsymbol)  <br>_Supported default legend symbols._  |
-| enum  | [**MarkerShape**](#enum-markershape)  <br>_Marker shapes shared by every series that draws markers._  |
 
 
 
@@ -309,43 +308,6 @@ enum QAccelPlot::PlotSeries::LegendSymbol {
 
 
 `Line` draws the series line style and marker, `Fill` a filled swatch, and `Marker` only the series marker shape (used by unconnected series such as `PointCloud`). 
-
-
-        
-
-<hr>
-
-
-
-
-### enum MarkerShape {#enum-markershape}
-
-_Marker shapes shared by every series that draws markers._ 
-```C++
-enum QAccelPlot::PlotSeries::MarkerShape {
-    None,
-    Circle,
-    Square,
-    Diamond,
-    TriangleUp,
-    TriangleDown,
-    TriangleLeft,
-    TriangleRight,
-    Cross,
-    XCross,
-    HLine,
-    VLine,
-    Star,
-    Asterisk,
-    Pixel,
-    Hexagon,
-    Pentagon
-};
-```
-
-
-
-Every shape except `Pixel` fits within a square whose half-width is the marker size. The shaders select a shape by this value minus one, so append new shapes at the end and never reorder or insert. Series that always draw markers, such as `PointCloud`, do not accept `None`. 
 
 
         

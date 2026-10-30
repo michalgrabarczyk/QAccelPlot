@@ -70,7 +70,7 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 | property bool | [**filled**](classQAccelPlot_1_1SeriesMarker.md#property-filled-12)  <br>_Whether closed marker shapes are filled. When_ `false` _they are drawn as outlines of_`strokeWidth` _inside the shape's edge. Line-like shapes (_`Cross` _,_`XCross` _,_`Asterisk` _,_`HLine` _,_`VLine` _) and_`Pixel` _are unaffected. Default:_`true` _._ |
-| property QML\_ANONYMOUSPlotSeries::MarkerShape | [**shape**](classQAccelPlot_1_1SeriesMarker.md#property-shape-12)  <br>_Shape drawn at each data point. Series that always draw markers, such as_ `PointCloud` _, ignore_`MarkerShape.None` _and log a warning. Default:_`None` _on_`LineCurve` _,_`Circle` _on_`PointCloud` _._ |
+| property QML\_ANONYMOUSMarkerShape | [**shape**](classQAccelPlot_1_1SeriesMarker.md#property-shape-12)  <br>_Shape drawn at each data point. Series that always draw markers, such as_ `PointCloud` _, ignore_`MarkerShape.None` _and log a warning. Default:_`None` _on_`LineCurve` _,_`Circle` _on_`PointCloud` _._ |
 | property qreal | [**size**](classQAccelPlot_1_1SeriesMarker.md#property-size-12)  <br>_Radius of each marker in pixels, clamped to at least 0. Default: 4 on_ `LineCurve` _, 3 on_`PointCloud` _._ |
 | property qreal | [**strokeWidth**](classQAccelPlot_1_1SeriesMarker.md#property-strokewidth-12)  <br>_Outline width in pixels of hollow markers, clamped to at least 0. Has effect only when_ `filled` _is_`false` _. Default: 1._ |
 
@@ -93,13 +93,13 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-|   | [**SeriesMarker**](#function-seriesmarker) ([**PlotSeries::MarkerShape**](classQAccelPlot_1_1PlotSeries.md#enum-markershape) shape, qreal size, [**NoneShape**](classQAccelPlot_1_1SeriesMarker.md#enum-noneshape) noneShape, QObject \* parent) <br>_Constructs a_ [_**SeriesMarker**_](classQAccelPlot_1_1SeriesMarker.md) _with the default__shape_ _and__size_ _, owned by__parent_ _._ |
+|   | [**SeriesMarker**](#function-seriesmarker) ([**MarkerShape**](namespaceQAccelPlot_1_1MarkerShapeNS.md#enum-shape) shape, qreal size, [**NoneShape**](classQAccelPlot_1_1SeriesMarker.md#enum-noneshape) noneShape, QObject \* parent) <br>_Constructs a_ [_**SeriesMarker**_](classQAccelPlot_1_1SeriesMarker.md) _with the default__shape_ _and__size_ _, owned by__parent_ _._ |
 |  bool | [**filled**](#function-filled-22) () const<br>_Returns_ `true` _if closed marker shapes are filled._ |
 |  void | [**setFilled**](#function-setfilled) (bool filled) <br>_Sets whether closed marker shapes are filled (_ _filled_ _) or drawn as outlines._ |
-|  void | [**setShape**](#function-setshape) ([**PlotSeries::MarkerShape**](classQAccelPlot_1_1PlotSeries.md#enum-markershape) shape) <br>_Sets the marker shape to_ _shape_ _._`MarkerShape.None` _is ignored when the series rejects it._ |
+|  void | [**setShape**](#function-setshape) ([**MarkerShape**](namespaceQAccelPlot_1_1MarkerShapeNS.md#enum-shape) shape) <br>_Sets the marker shape to_ _shape_ _._`MarkerShape.None` _is ignored when the series rejects it._ |
 |  void | [**setSize**](#function-setsize) (qreal size) <br>_Sets the marker radius to_ _size_ _pixels. Negative values are clamped to 0._ |
 |  void | [**setStrokeWidth**](#function-setstrokewidth) (qreal width) <br>_Sets the outline width of hollow markers to_ _width_ _pixels. Negative values are clamped to 0._ |
-|  [**PlotSeries::MarkerShape**](classQAccelPlot_1_1PlotSeries.md#enum-markershape) | [**shape**](#function-shape-22) () const<br>_Returns the marker shape._  |
+|  [**MarkerShape**](namespaceQAccelPlot_1_1MarkerShapeNS.md#enum-shape) | [**shape**](#function-shape-22) () const<br>_Returns the marker shape._  |
 |  qreal | [**size**](#function-size-22) () const<br>_Returns the marker radius in pixels._  |
 |  qreal | [**strokeWidth**](#function-strokewidth-22) () const<br>_Returns the outline width of hollow markers in pixels._  |
 
@@ -133,7 +133,7 @@ flowchart TB
 ## Detailed Description
 
 
-Accessible via the `marker` CONSTANT grouped property of `LineCurve` and `PointCloud`, for example `marker.shape:  QAccelPlot.LineCurve.Diamond`. Defaults depend on the owning series.
+Accessible via the `marker` CONSTANT grouped property of `LineCurve` and `PointCloud`, for example `marker.shape: QAccelPlot.MarkerShape.Diamond`. Defaults depend on the owning series.
 
 
 
@@ -188,7 +188,7 @@ bool QAccelPlot::SeriesMarker::filled;
 
 _Shape drawn at each data point. Series that always draw markers, such as_ `PointCloud` _, ignore_`MarkerShape.None` _and log a warning. Default:_`None` _on_`LineCurve` _,_`Circle` _on_`PointCloud` _._
 ```C++
-QML_ANONYMOUSPlotSeries::MarkerShape QAccelPlot::SeriesMarker::shape;
+QML_ANONYMOUSMarkerShape QAccelPlot::SeriesMarker::shape;
 ```
 
 
@@ -298,7 +298,7 @@ void QAccelPlot::SeriesMarker::strokeWidthChanged;
 _Constructs a_ [_**SeriesMarker**_](classQAccelPlot_1_1SeriesMarker.md) _with the default__shape_ _and__size_ _, owned by__parent_ _._
 ```C++
 QAccelPlot::SeriesMarker::SeriesMarker (
-    PlotSeries::MarkerShape shape,
+    MarkerShape shape,
     qreal size,
     NoneShape noneShape,
     QObject * parent
@@ -350,7 +350,7 @@ void QAccelPlot::SeriesMarker::setFilled (
 _Sets the marker shape to_ _shape_ _._`MarkerShape.None` _is ignored when the series rejects it._
 ```C++
 void QAccelPlot::SeriesMarker::setShape (
-    PlotSeries::MarkerShape shape
+    MarkerShape shape
 ) 
 ```
 
@@ -400,7 +400,7 @@ void QAccelPlot::SeriesMarker::setStrokeWidth (
 
 _Returns the marker shape._ 
 ```C++
-PlotSeries::MarkerShape QAccelPlot::SeriesMarker::shape () const
+MarkerShape QAccelPlot::SeriesMarker::shape () const
 ```
 
 

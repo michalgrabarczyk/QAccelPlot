@@ -2286,10 +2286,6 @@
 <td style="text-align: right;">enum</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#enum-legendsymbol"><strong>LegendSymbol</strong></a>  <br><em>Supported default legend symbols.</em></td>
 </tr>
-<tr>
-<td style="text-align: right;">enum</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#enum-markershape"><strong>MarkerShape</strong></a>  <br><em>Marker shapes shared by every series that draws markers.</em></td>
-</tr>
 </tbody>
 </table>
 <h2 id="public-properties">Public Properties<a class="headerlink" href="#public-properties" title="Permanent link">&para;</a></h2>
@@ -3012,7 +3008,7 @@
 <p>The <code>setData()</code> overloads retain double-precision coordinates, including large timestamp values. Methods whose names end in <code>F</code> store interleaved float XY pairs <code>[x0, y0, x1, y1, …]</code>. For maximum throughput prefer <code>setDataF(std::vector&lt;float&gt;&amp;&amp;, int)</code> or <code>postData(std::vector&lt;float&gt;&amp;&amp;, int)</code>, which move an already-interleaved float buffer with zero allocation and no type conversion. <code>postData(std::vector&lt;double&gt;&amp;&amp;, int)</code> hands off a double-precision buffer from a worker thread instead. The curve is rendered on the Qt Scene Graph render thread using GPU-side data textures, making it suitable for real-time plots with millions of points.</p>
 <p>**
 **</p>
-<p>Markers are configured through the <code>marker</code> grouped property, for example <code>marker.shape:  QAccelPlot.LineCurve.Circle</code>. No markers are drawn by default.</p>
+<p>Markers are configured through the <code>marker</code> grouped property, for example <code>marker.shape: QAccelPlot.MarkerShape.Circle</code>. No markers are drawn by default.</p>
 <p>**
 **</p>
 <p>Visual effects (gradient stroke, gradient fill) are attached via the <code>effects</code> list property.</p>

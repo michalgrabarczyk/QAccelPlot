@@ -18,6 +18,7 @@
 
 
 * `#include "QAccelPlot/linestyles/LineStyle.hpp"`
+* `#include "QAccelPlot/series/MarkerShape.hpp"`
 * `#include "QAccelPlot/series/PlotSeries.hpp"`
 * `#include <QColor>`
 * `#include <QObject>`

@@ -112,6 +112,7 @@ Here is a list of all files with brief descriptions:
                 * **file** [**LineCurveGapFilter.hpp**](LineCurveGapFilter_8hpp.md)     
                 * **file** [**LineCurveGaps.hpp**](LineCurveGaps_8hpp.md)     
                 * **file** [**LineCurveVertexCache.hpp**](LineCurveVertexCache_8hpp.md)     
+                * **file** [**MarkerShape.hpp**](MarkerShape_8hpp.md)     
                 * **file** [**PlotSeries.hpp**](PlotSeries_8hpp.md)     
                 * **file** [**PointCloud.hpp**](PointCloud_8hpp.md)     
                 * **file** [**PointSpatialIndex.hpp**](PointSpatialIndex_8hpp.md)     

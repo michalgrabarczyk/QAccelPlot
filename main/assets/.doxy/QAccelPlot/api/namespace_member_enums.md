@@ -18,6 +18,7 @@
 
 * **Source** ([**QAccelPlot::GradientValueSourceNS**](namespaceQAccelPlot_1_1GradientValueSourceNS.md))
 * **Status** ([**QAccelPlot::InspectionNS**](namespaceQAccelPlot_1_1InspectionNS.md))
+* **Shape** ([**QAccelPlot::MarkerShapeNS**](namespaceQAccelPlot_1_1MarkerShapeNS.md))
 
 
 
