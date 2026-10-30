@@ -50,7 +50,6 @@ class PointCloud : public ColormappedSeries {
     Q_PROPERTY(qreal antialiasingFeather READ antialiasingFeather WRITE setAntialiasingFeather NOTIFY antialiasingFeatherChanged)
     Q_PROPERTY(qreal hoverRadius READ hoverRadius WRITE setHoverRadius NOTIFY hoverRadiusChanged)
     Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
-    Q_PROPERTY(int count READ count NOTIFY countChanged)
     Q_PROPERTY(int hoveredIndex READ hoveredIndex NOTIFY hoveredIndexChanged)
 
 public:
@@ -74,7 +73,6 @@ public:
     DataTransition* transition() const;
     void setTransition(DataTransition* transition);
 
-    int count() const;
     int hoveredIndex() const;
 
     Q_INVOKABLE void setData(const QList<QPointF>& points);
@@ -101,7 +99,6 @@ signals:
     void antialiasingFeatherChanged();
     void hoverRadiusChanged();
     void transitionChanged();
-    void countChanged();
     void hoveredIndexChanged();
 
 protected:

@@ -1837,6 +1837,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#function-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function count
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-postvalues" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2318,6 +2329,10 @@
 </thead>
 <tbody>
 <tr>
+<td style="text-align: right;">property int</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-count-12"><strong>count</strong></a>  <br><em>Read-only: number of records stored, including invalid ones.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">property quint64</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-datarevision-12"><strong>dataRevision</strong></a>  <br><em>Revision incremented by every accepted change of the series' records.</em></td>
 </tr>
@@ -2426,6 +2441,10 @@
 <tbody>
 <tr>
 <td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#signal-countchanged"><strong>countChanged</strong></a>  <br><em>Emitted when the number of records changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#signal-datarevisionchanged"><strong>dataRevisionChanged</strong></a>  <br><em>Emitted when the dataRevision property changes.</em></td>
 </tr>
 <tr>
@@ -2478,6 +2497,10 @@
 <tr>
 <td style="text-align: right;">int</td>
 <td style="text-align: left;"><a href="#function-columns-22"><strong>columns</strong></a> () const<br><em>Returns the number of cells per row.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual int</td>
+<td style="text-align: left;"><a href="#function-count"><strong>count</strong></a> () override const<br><em>Returns the number of cells,</em> <code>columns</code> <em>×</em><code>rows</code> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -2598,6 +2621,10 @@
 <tr>
 <td style="text-align: right;">virtual void</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-cleardata"><strong>clearData</strong></a> () <br><em>Removes all data points from the series.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual int</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-count-22"><strong>count</strong></a> () const<br><em>Returns the number of records stored. The default is the number of stored data points.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">quint64</td>
@@ -2924,7 +2951,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-notifydatapointschanged"><strong>notifyDataPointsChanged</strong></a> (<a href="../classQAccelPlot_1_1PlotSeries/#enum-datachange"><strong>DataChange</strong></a> change, int previousCount) <br><em>Finishes a change of the data points: data ranges,</em> <code>onDataPointsChanged()</code> <em>, data queries, and a repaint.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-notifydatapointschanged"><strong>notifyDataPointsChanged</strong></a> (<a href="../classQAccelPlot_1_1PlotSeries/#enum-datachange"><strong>DataChange</strong></a> change, int previousCount) <br><em>Finishes a change of the data points: data ranges,</em> <code>onDataPointsChanged()</code> <em>,</em><code>countChanged()</code> <em>, data queries, and a repaint.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual void</td>
@@ -3126,217 +3153,224 @@
 </code></pre></div></p>
 <hr>
 
+<h3 id="function-count">function count<a class="headerlink" href="#function-count" title="Permanent link">&para;</a></h3>
+<p><em>Returns the number of cells,</em> <code>columns</code> <em>×</em><code>rows</code> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">count</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-count-22"><em>QAccelPlot::PlotSeries::count</em></a></p>
+<hr>
+
 <h3 id="function-postvalues">function postValues<a class="headerlink" href="#function-postvalues" title="Permanent link">&para;</a></h3>
 <p><em>Thread-safe: queues</em> <code>setValues</code> _(_<em>values</em> _,_<em>columns</em> _,_<em>rows</em> <em>) to the item's thread.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">postValues</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">,</span>
-<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">columns</span><span class="p">,</span>
-<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">rows</span>
-<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">postValues</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">,</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">columns</span><span class="p">,</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">rows</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-rows-22">function rows<a class="headerlink" href="#function-rows-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the number of complete rows.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">rows</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">rows</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setcolumns">function setColumns<a class="headerlink" href="#function-setcolumns" title="Permanent link">&para;</a></h3>
 <p><em>Sets the number of cells per row to</em> <em>columns</em> <em>. Negative values are clamped to 0.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">setColumns</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">columns</span>
-<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">setColumns</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">columns</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setvalues-12">function setValues<a class="headerlink" href="#function-setvalues-12" title="Permanent link">&para;</a></h3>
 <p><em>Replaces the grid with</em> <em>values</em> _, row by row,_<em>columns</em> <em>per row.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">setValues</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QList</span><span class="o">&lt;</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">,</span>
-<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">columns</span>
-<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">setValues</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QList</span><span class="o">&lt;</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">,</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">columns</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <p>The number of values must be a multiple of <em>columns</em>. An empty list clears the values and keeps <code>columns</code>. Sets <code>columns</code> without removing a binding on it, so do not bind <code>columns</code> while using this function. </p>
 <hr>
 
 <h3 id="function-setvalues-22">function setValues<a class="headerlink" href="#function-setvalues-22" title="Permanent link">&para;</a></h3>
 <p><em>Replaces the grid with</em> <em>columns</em> <em>by__rows</em> <em>values moved from__values</em> <em>, row by row.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">setValues</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">,</span>
-<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">columns</span><span class="p">,</span>
-<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">rows</span>
-<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">setValues</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">,</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">columns</span><span class="p">,</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">rows</span>
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setxmax">function setXMax<a class="headerlink" href="#function-setxmax" title="Permanent link">&para;</a></h3>
 <p><em>Sets the right grid edge to</em> <em>value</em> <em>. NaN unsets it.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">setXMax</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span>
-<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-setxmin">function setXMin<a class="headerlink" href="#function-setxmin" title="Permanent link">&para;</a></h3>
-<p><em>Sets the left grid edge to</em> <em>value</em> <em>. NaN unsets it.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">setXMin</span><span class="w"> </span><span class="p">(</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">setXMax</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span>
 <a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
+<h3 id="function-setxmin">function setXMin<a class="headerlink" href="#function-setxmin" title="Permanent link">&para;</a></h3>
+<p><em>Sets the left grid edge to</em> <em>value</em> <em>. NaN unsets it.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">setXMin</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="function-setxspacing">function setXSpacing<a class="headerlink" href="#function-setxspacing" title="Permanent link">&para;</a></h3>
 <p><em>Sets how the columns are spaced to</em> <em>spacing</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">setXSpacing</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">    </span><span class="n">Spacing</span><span class="w"> </span><span class="n">spacing</span>
-<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">setXSpacing</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="w">    </span><span class="n">Spacing</span><span class="w"> </span><span class="n">spacing</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setymax">function setYMax<a class="headerlink" href="#function-setymax" title="Permanent link">&para;</a></h3>
 <p><em>Sets the top grid edge to</em> <em>value</em> <em>. NaN unsets it.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">setYMax</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span>
-<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-setymin">function setYMin<a class="headerlink" href="#function-setymin" title="Permanent link">&para;</a></h3>
-<p><em>Sets the bottom grid edge to</em> <em>value</em> <em>. NaN unsets it.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">setYMin</span><span class="w"> </span><span class="p">(</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">setYMax</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span>
 <a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
+<h3 id="function-setymin">function setYMin<a class="headerlink" href="#function-setymin" title="Permanent link">&para;</a></h3>
+<p><em>Sets the bottom grid edge to</em> <em>value</em> <em>. NaN unsets it.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">setYMin</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="function-setyspacing">function setYSpacing<a class="headerlink" href="#function-setyspacing" title="Permanent link">&para;</a></h3>
 <p><em>Sets how the rows are spaced to</em> <em>spacing</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">setYSpacing</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="w">    </span><span class="n">Spacing</span><span class="w"> </span><span class="n">spacing</span>
-<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">setYSpacing</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="w">    </span><span class="n">Spacing</span><span class="w"> </span><span class="n">spacing</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-valueat">function valueAt<a class="headerlink" href="#function-valueat" title="Permanent link">&para;</a></h3>
 <p><em>Returns the value of the cell at</em> <em>row</em> <em>and__column</em> <em>, or NaN when it is outside the grid.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">valueAt</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="p">,</span>
-<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">column</span>
-<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">valueAt</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="p">,</span>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">column</span>
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-xmax-22">function xMax<a class="headerlink" href="#function-xmax-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the right grid edge, or NaN when unset.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">xMax</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">xMax</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-xmin-22">function xMin<a class="headerlink" href="#function-xmin-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the left grid edge, or NaN when unset.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">xMin</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">xMin</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-xspacing-22">function xSpacing<a class="headerlink" href="#function-xspacing-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns how the columns are spaced.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="n">Spacing</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">xSpacing</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="n">Spacing</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">xSpacing</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-ymax-22">function yMax<a class="headerlink" href="#function-ymax-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the top grid edge, or NaN when unset.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">yMax</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">yMax</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-ymin-22">function yMin<a class="headerlink" href="#function-ymin-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the bottom grid edge, or NaN when unset.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">yMin</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">yMin</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-yspacing-22">function ySpacing<a class="headerlink" href="#function-yspacing-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns how the rows are spaced.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="n">Spacing</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">ySpacing</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="n">Spacing</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">ySpacing</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 <h2 id="protected-functions-documentation">Protected Functions Documentation<a class="headerlink" href="#protected-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-applydatapoints">function applyDataPoints<a class="headerlink" href="#function-applydatapoints" title="Permanent link">&para;</a></h3>
 <p><em>Stores the cell values passed to the</em> <code>PlotSeries</code> <em>setters, keeping</em><code>columns</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">applyDataPoints</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="w">    </span><span class="n">DataPointInput</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">input</span>
-<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">applyDataPoints</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="w">    </span><span class="n">DataPointInput</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">input</span>
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-applydatapoints"><em>QAccelPlot::PlotSeries::applyDataPoints</em></a></p>
 <hr>
 
 <h3 id="function-computedataranges">function computeDataRanges<a class="headerlink" href="#function-computedataranges" title="Permanent link">&para;</a></h3>
 <p><em>Returns the grid edges in each dimension; on a log axis from the first cell edge above zero.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">DataRanges</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">computeDataRanges</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">DataRanges</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">computeDataRanges</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-computedataranges"><em>QAccelPlot::PlotSeries::computeDataRanges</em></a></p>
 <hr>
 
 <h3 id="function-datapointvaluecount">function dataPointValueCount<a class="headerlink" href="#function-datapointvaluecount" title="Permanent link">&para;</a></h3>
 <p><em>Returns 1: the</em> <code>PlotSeries</code> <em>setters take one value per cell.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">dataPointValueCount</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">dataPointValueCount</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-datapointvaluecount"><em>QAccelPlot::PlotSeries::dataPointValueCount</em></a></p>
 <hr>
 
 <h3 id="function-inspectiondatapointat">function inspectionDataPointAt<a class="headerlink" href="#function-inspectiondatapointat" title="Permanent link">&para;</a></h3>
 <p><em>Returns the cell drawn at the series-local</em> <em>position</em> <em>as a data point at its center.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">InspectionDataPoint</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">inspectionDataPointAt</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">position</span>
-<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">InspectionDataPoint</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">inspectionDataPointAt</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">position</span>
+<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-inspectiondatapointat"><em>QAccelPlot::PlotSeries::inspectionDataPointAt</em></a></p>
 <hr>
 
 <h3 id="function-inspectionrecord">function inspectionRecord<a class="headerlink" href="#function-inspectionrecord" title="Permanent link">&para;</a></h3>
 <p><em>Returns the cell record at</em> <em>index</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">InspectionRecord</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">inspectionRecord</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span>
-<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">InspectionRecord</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">inspectionRecord</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span>
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-inspectionrecord"><em>QAccelPlot::PlotSeries::inspectionRecord</em></a></p>
 <hr>
 
 <h3 id="function-inspectionrecordat">function inspectionRecordAt<a class="headerlink" href="#function-inspectionrecordat" title="Permanent link">&para;</a></h3>
 <p><em>Returns the record of the cell drawn at the series-local</em> <em>position</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">InspectionRecord</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">inspectionRecordAt</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">position</span>
-<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">InspectionRecord</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">inspectionRecordAt</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">position</span>
+<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-inspectionrecordat"><em>QAccelPlot::PlotSeries::inspectionRecordAt</em></a></p>
 <hr>
 
 <h3 id="function-onaxisscalechanged">function onAxisScaleChanged<a class="headerlink" href="#function-onaxisscalechanged" title="Permanent link">&para;</a></h3>
 <p><em>Repaints, because the mapping from pixels to cells depends on the axis scale.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">onAxisScaleChanged</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">onAxisScaleChanged</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-onaxisscalechanged"><em>QAccelPlot::PlotSeries::onAxisScaleChanged</em></a></p>
 <hr>
 
 <h3 id="function-positioninspectionsupported">function positionInspectionSupported<a class="headerlink" href="#function-positioninspectionsupported" title="Permanent link">&para;</a></h3>
 <p><em>Returns true: cells are matched by position.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">positionInspectionSupported</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">positionInspectionSupported</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-positioninspectionsupported"><em>QAccelPlot::PlotSeries::positionInspectionSupported</em></a></p>
 <hr>
 
 <h3 id="function-recordinspectionsupported">function recordInspectionSupported<a class="headerlink" href="#function-recordinspectionsupported" title="Permanent link">&para;</a></h3>
 <p><em>Returns true: cells are inspected as records.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">recordInspectionSupported</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">recordInspectionSupported</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-recordinspectionsupported"><em>QAccelPlot::PlotSeries::recordInspectionSupported</em></a></p>
 <hr>
 
 <h3 id="function-scanvaluerange">function scanValueRange<a class="headerlink" href="#function-scanvaluerange" title="Permanent link">&para;</a></h3>
 <p><em>Returns the span of the finite cell values.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="w"> </span><span class="n">ValueSpan</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">scanValueRange</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="w"> </span><span class="n">ValueSpan</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">HeatmapSeries</span><span class="o">::</span><span class="n">scanValueRange</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1ColormappedSeries/#function-scanvaluerange"><em>QAccelPlot::ColormappedSeries::scanValueRange</em></a></p>
 <hr>

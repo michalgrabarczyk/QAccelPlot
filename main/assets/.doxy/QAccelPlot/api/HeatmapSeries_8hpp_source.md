@@ -64,6 +64,7 @@ public:
     void setColumns(int columns);
 
     int rows() const;
+    int count() const override;
 
     qreal xMin() const;
     void setXMin(qreal value);

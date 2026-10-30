@@ -44,7 +44,6 @@ class BandSeries : public PlotSeries {
     
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
     Q_PROPERTY(BandEdges* edges READ edges CONSTANT)
-    Q_PROPERTY(int count READ count NOTIFY countChanged)
     Q_PROPERTY(bool hovered READ hovered NOTIFY hoveredChanged)
 
 public:
@@ -54,8 +53,6 @@ public:
     void setColor(const QColor& color);
 
     BandEdges* edges() const;
-
-    int count() const;
 
     bool hovered() const;
 
@@ -74,7 +71,6 @@ public:
 
 signals:
     void colorChanged();
-    void countChanged();
     void hoveredChanged();
 
 protected:

@@ -357,7 +357,7 @@ JavaScript callback.
 ## Series
 
 `PlotSeries` holds properties shared by all series: name, axes, plot rectangle,
-legend symbol, and `hoverEnabled`. `legendEntry()` describes how a legend draws the series;
+legend symbol, `hoverEnabled`, and `count`, the number of stored records. `legendEntry()` describes how a legend draws the series;
 `LegendModel` lists the entries of the visible series that have one. Only the
 topmost series under the mouse pointer is hovered; `hoverEnabled: false` leaves
 hover to the series beneath.

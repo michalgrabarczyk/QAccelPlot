@@ -56,7 +56,6 @@ class ErrorBarSeries : public PlotSeries {
     Q_PROPERTY(QColor hoverColor READ hoverColor WRITE setHoverColor NOTIFY hoverColorChanged)
     Q_PROPERTY(qreal hoverRadius READ hoverRadius WRITE setHoverRadius NOTIFY hoverRadiusChanged)
     Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
-    Q_PROPERTY(int count READ count NOTIFY countChanged)
     Q_PROPERTY(int hoveredIndex READ hoveredIndex NOTIFY hoveredIndexChanged)
 
 public:
@@ -87,7 +86,6 @@ public:
     DataTransition* transition() const;
     void setTransition(DataTransition* transition);
 
-    int count() const;
     int hoveredIndex() const;
 
     Q_INVOKABLE void appendData(qreal x, qreal y, qreal low, qreal high);
@@ -119,7 +117,6 @@ signals:
     void hoverColorChanged();
     void hoverRadiusChanged();
     void transitionChanged();
-    void countChanged();
     void hoveredIndexChanged();
 
 protected:

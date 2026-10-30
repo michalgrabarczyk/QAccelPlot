@@ -58,7 +58,7 @@ signals:
 private:
     void watchSeries(PlotSeries* series) const;
     void unwatchSeries(PlotSeries* series);
-    void onSeriesDestroyed(QObject* series);
+    void onSeriesDestroyed();
     void refreshRows();
 
     QList<QPointer<PlotSeries>> series_;

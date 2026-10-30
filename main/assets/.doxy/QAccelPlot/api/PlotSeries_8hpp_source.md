@@ -56,6 +56,7 @@ class PlotSeries : public QQuickItem {
     
     Q_PROPERTY(quint64 dataRevision READ dataRevision NOTIFY dataRevisionChanged)
     Q_PROPERTY(::QAccelPlot::SeriesInspection* inspection READ inspection CONSTANT)
+    Q_PROPERTY(int count READ count NOTIFY countChanged)
 
 public:
     enum class LegendSymbol { Line, Fill, Marker };
@@ -101,6 +102,7 @@ public:
 
     quint64 dataRevision() const;
     SeriesInspection* inspection() const;
+    virtual int count() const;
 
     QString name() const;
     void setName(const QString& name);
@@ -139,6 +141,7 @@ public:
 
 signals:
     void dataRevisionChanged();
+    void countChanged();
     void nameChanged();
     void xAxisChanged();
     void yAxisChanged();

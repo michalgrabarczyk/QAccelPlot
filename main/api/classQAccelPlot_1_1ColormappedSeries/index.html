@@ -1811,6 +1811,10 @@
 </thead>
 <tbody>
 <tr>
+<td style="text-align: right;">property int</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-count-12"><strong>count</strong></a>  <br><em>Read-only: number of records stored, including invalid ones.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">property quint64</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-datarevision-12"><strong>dataRevision</strong></a>  <br><em>Revision incremented by every accepted change of the series' records.</em></td>
 </tr>
@@ -1873,6 +1877,10 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#signal-countchanged"><strong>countChanged</strong></a>  <br><em>Emitted when the number of records changes.</em></td>
+</tr>
 <tr>
 <td style="text-align: right;">signal void</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#signal-datarevisionchanged"><strong>dataRevisionChanged</strong></a>  <br><em>Emitted when the dataRevision property changes.</em></td>
@@ -1951,6 +1959,10 @@
 <tr>
 <td style="text-align: right;">virtual void</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-cleardata"><strong>clearData</strong></a> () <br><em>Removes all data points from the series.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual int</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-count-22"><strong>count</strong></a> () const<br><em>Returns the number of records stored. The default is the number of stored data points.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">quint64</td>
@@ -2225,7 +2237,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-notifydatapointschanged"><strong>notifyDataPointsChanged</strong></a> (<a href="../classQAccelPlot_1_1PlotSeries/#enum-datachange"><strong>DataChange</strong></a> change, int previousCount) <br><em>Finishes a change of the data points: data ranges,</em> <code>onDataPointsChanged()</code> <em>, data queries, and a repaint.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-notifydatapointschanged"><strong>notifyDataPointsChanged</strong></a> (<a href="../classQAccelPlot_1_1PlotSeries/#enum-datachange"><strong>DataChange</strong></a> change, int previousCount) <br><em>Finishes a change of the data points: data ranges,</em> <code>onDataPointsChanged()</code> <em>,</em><code>countChanged()</code> <em>, data queries, and a repaint.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual void</td>

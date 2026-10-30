@@ -90,7 +90,6 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | ---: | :--- |
 | property qreal | [**capLength**](classQAccelPlot_1_1ErrorBarSeries.md#property-caplength-12)  <br>_Length in pixels of the caps across the error bar, clamped to at least 0; 0 hides them. Default: 8._  |
 | property QColor | [**color**](classQAccelPlot_1_1ErrorBarSeries.md#property-color-12)  <br>_Line color. Default:_ `Colors.dark.seriesPrimary` _._ |
-| property int | [**count**](classQAccelPlot_1_1ErrorBarSeries.md#property-count-12)  <br>_Read-only: number of data points currently loaded._  |
 | property QColor | [**hoverColor**](classQAccelPlot_1_1ErrorBarSeries.md#property-hovercolor-12)  <br>_Color of the hovered error bar. Default:_ `Colors.dark.hover` _; an invalid color draws it in_`color` _._ |
 | property qreal | [**hoverRadius**](classQAccelPlot_1_1ErrorBarSeries.md#property-hoverradius-12)  <br>_Pick distance in pixels from an error bar or its caps, clamped to at least 0. Default: 6._  |
 | property int | [**hoveredIndex**](classQAccelPlot_1_1ErrorBarSeries.md#property-hoveredindex-12)  <br>_Read-only: index of the error bar under the cursor, or -1 when none._  |
@@ -106,6 +105,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 | Type | Name |
 | ---: | :--- |
+| property int | [**count**](classQAccelPlot_1_1PlotSeries.md#property-count-12)  <br>_Read-only: number of records stored, including invalid ones._  |
 | property quint64 | [**dataRevision**](classQAccelPlot_1_1PlotSeries.md#property-datarevision-12)  <br>_Revision incremented by every accepted change of the series' records._  |
 | property bool | [**hoverEnabled**](classQAccelPlot_1_1PlotSeries.md#property-hoverenabled-12)  <br>_Whether the series reacts to the mouse cursor. Default:_ `true` _._ |
 | property [**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) \* | [**inspection**](classQAccelPlot_1_1PlotSeries.md#property-inspection-12)  <br>_Read-only constant: data queries for this series._  |
@@ -126,7 +126,6 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | ---: | :--- |
 | signal void | [**capLengthChanged**](classQAccelPlot_1_1ErrorBarSeries.md#signal-caplengthchanged)  <br>_Emitted when the capLength property changes._  |
 | signal void | [**colorChanged**](classQAccelPlot_1_1ErrorBarSeries.md#signal-colorchanged)  <br>_Emitted when the color property changes._  |
-| signal void | [**countChanged**](classQAccelPlot_1_1ErrorBarSeries.md#signal-countchanged)  <br>_Emitted when the data point count changes._  |
 | signal void | [**hoverColorChanged**](classQAccelPlot_1_1ErrorBarSeries.md#signal-hovercolorchanged)  <br>_Emitted when the hoverColor property changes._  |
 | signal void | [**hoverRadiusChanged**](classQAccelPlot_1_1ErrorBarSeries.md#signal-hoverradiuschanged)  <br>_Emitted when the hoverRadius property changes._  |
 | signal void | [**hoveredIndexChanged**](classQAccelPlot_1_1ErrorBarSeries.md#signal-hoveredindexchanged)  <br>_Emitted when the hovered error bar changes._  |
@@ -142,6 +141,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 | Type | Name |
 | ---: | :--- |
+| signal void | [**countChanged**](classQAccelPlot_1_1PlotSeries.md#signal-countchanged)  <br>_Emitted when the number of records changes._  |
 | signal void | [**dataRevisionChanged**](classQAccelPlot_1_1PlotSeries.md#signal-datarevisionchanged)  <br>_Emitted when the dataRevision property changes._  |
 | signal void | [**hoverEnabledChanged**](classQAccelPlot_1_1PlotSeries.md#signal-hoverenabledchanged)  <br>_Emitted when the hoverEnabled property changes._  |
 | signal void | [**legendEntryChanged**](classQAccelPlot_1_1PlotSeries.md#signal-legendentrychanged)  <br>_Emitted when the result of_ `legendEntry()` _changes._ |
@@ -168,7 +168,6 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | virtual Q\_INVOKABLE void | [**clearData**](#function-cleardata) () override<br>_Removes all data points._  |
 |  QColor | [**color**](#function-color-22) () const<br>_Returns the line color._  |
 |  bool | [**contains**](#function-contains) (const QPointF & point) override const<br>_Returns_ `true` _when an error bar lies within_`hoverRadius` _of item position__point_ _._ |
-|  int | [**count**](#function-count-22) () const<br>_Returns the number of data points currently loaded._  |
 |  Q\_INVOKABLE QVariantMap | [**errorBarAt**](#function-errorbarat) (int index) const<br>_Returns data point_ _index_ _as an object with_`x` _,_`y` _,_`low` _, and_`high` _properties, or an empty object when out of range._ |
 |  Q\_INVOKABLE int | [**errorBarIndexAt**](#function-errorbarindexat) (const QPointF & position) const<br>_Returns the index of the error bar within_ `hoverRadius` _of item position__position_ _, or -1._ |
 |  QColor | [**hoverColor**](#function-hovercolor-22) () const<br>_Returns the color of the hovered error bar._  |
@@ -211,6 +210,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | ---: | :--- |
 |   | [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md#function-plotseries-12) (QQuickItem \* parent=nullptr) <br> |
 | virtual void | [**clearData**](classQAccelPlot_1_1PlotSeries.md#function-cleardata) () <br>_Removes all data points from the series._  |
+| virtual int | [**count**](classQAccelPlot_1_1PlotSeries.md#function-count-22) () const<br>_Returns the number of records stored. The default is the number of stored data points._  |
 |  quint64 | [**dataRevision**](classQAccelPlot_1_1PlotSeries.md#function-datarevision-22) () const<br>_Returns the current data revision._  |
 |  bool | [**hoverEnabled**](classQAccelPlot_1_1PlotSeries.md#function-hoverenabled-22) () const<br>_Returns whether the series reacts to the mouse cursor._  |
 |  [**SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) \* | [**inspection**](classQAccelPlot_1_1PlotSeries.md#function-inspection-22) () const<br>_Returns the data queries for this series; created on first use and owned by the series._  |
@@ -336,7 +336,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  void | [**invalidateInspection**](classQAccelPlot_1_1PlotSeries.md#function-invalidateinspection) () <br>_Refreshes the data queries after record validity changed without a data change, such as an axis scale switch._  |
 |  bool | [**logScaleX**](classQAccelPlot_1_1PlotSeries.md#function-logscalex) () const<br>_Returns whether the horizontal axis is logarithmic; false without an axis._  |
 |  bool | [**logScaleY**](classQAccelPlot_1_1PlotSeries.md#function-logscaley) () const<br>_Returns whether the vertical axis is logarithmic; false without an axis._  |
-|  void | [**notifyDataPointsChanged**](classQAccelPlot_1_1PlotSeries.md#function-notifydatapointschanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change, int previousCount) <br>_Finishes a change of the data points: data ranges,_ `onDataPointsChanged()` _, data queries, and a repaint._ |
+|  void | [**notifyDataPointsChanged**](classQAccelPlot_1_1PlotSeries.md#function-notifydatapointschanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change, int previousCount) <br>_Finishes a change of the data points: data ranges,_ `onDataPointsChanged()` _,_`countChanged()` _, data queries, and a repaint._ |
 | virtual void | [**onAxisRangeChanged**](classQAccelPlot_1_1PlotSeries.md#function-onaxisrangechanged) () <br>_Called when the viewport of a bound axis changes. The default implementation schedules a repaint._  |
 | virtual void | [**onAxisScaleChanged**](classQAccelPlot_1_1PlotSeries.md#function-onaxisscalechanged) () <br>_Called when a bound axis switches between linear and logarithmic scale, or a different axis is bound._  |
 | virtual void | [**onDataPointsChanged**](classQAccelPlot_1_1PlotSeries.md#function-ondatapointschanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change, int previousCount) <br>_Called after the data points changed, before the data queries are refreshed. The default does nothing._  |
@@ -445,21 +445,6 @@ qreal QAccelPlot::ErrorBarSeries::capLength;
 _Line color. Default:_ `Colors.dark.seriesPrimary` _._
 ```C++
 QColor QAccelPlot::ErrorBarSeries::color;
-```
-
-
-
-
-<hr>
-
-
-
-
-### property count {#property-count-12}
-
-_Read-only: number of data points currently loaded._ 
-```C++
-int QAccelPlot::ErrorBarSeries::count;
 ```
 
 
@@ -601,21 +586,6 @@ void QAccelPlot::ErrorBarSeries::capLengthChanged;
 _Emitted when the color property changes._ 
 ```C++
 void QAccelPlot::ErrorBarSeries::colorChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
-### signal countChanged {#signal-countchanged}
-
-_Emitted when the data point count changes._ 
-```C++
-void QAccelPlot::ErrorBarSeries::countChanged;
 ```
 
 
@@ -875,21 +845,6 @@ Hover delivery uses this test, so stacked series underneath still receive hover 
 
 
         
-
-<hr>
-
-
-
-
-### function count {#function-count-22}
-
-_Returns the number of data points currently loaded._ 
-```C++
-int QAccelPlot::ErrorBarSeries::count () const
-```
-
-
-
 
 <hr>
 

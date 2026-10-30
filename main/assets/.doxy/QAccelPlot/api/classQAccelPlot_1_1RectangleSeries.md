@@ -91,7 +91,6 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | property [**Border**](classQAccelPlot_1_1Border.md) \* | [**border**](classQAccelPlot_1_1RectangleSeries.md#property-border-12)  <br>_Outline inside each rectangle's edges, e.g._ `border.width: 1` _. Default: black, width 0._ |
 | property QList&lt; QColor &gt; | [**categoryColors**](classQAccelPlot_1_1RectangleSeries.md#property-categorycolors-12)  <br>_Fill colors indexed by each rectangle's_ `category` _. Default: empty._ |
 | property QColor | [**color**](classQAccelPlot_1_1RectangleSeries.md#property-color-12)  <br>_Fill color of rectangles without a category color. Default:_ `Colors.dark.seriesPrimary` _with alpha 50._ |
-| property int | [**count**](classQAccelPlot_1_1RectangleSeries.md#property-count-12)  <br>_Read-only: number of rectangles currently loaded._  |
 | property QColor | [**hoverColor**](classQAccelPlot_1_1RectangleSeries.md#property-hovercolor-12)  <br>_Fill color of the rectangle under the cursor. Default: an invalid color, no highlight._  |
 | property int | [**hoveredIndex**](classQAccelPlot_1_1RectangleSeries.md#property-hoveredindex-12)  <br>_Read-only: index of the rectangle under the cursor, or -1 when none._  |
 | property qreal | [**minimumHeight**](classQAccelPlot_1_1RectangleSeries.md#property-minimumheight-12)  <br>_Minimum drawn height in pixels, like_ `minimumWidth` _. Default: 1._ |
@@ -104,6 +103,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 | Type | Name |
 | ---: | :--- |
+| property int | [**count**](classQAccelPlot_1_1PlotSeries.md#property-count-12)  <br>_Read-only: number of records stored, including invalid ones._  |
 | property quint64 | [**dataRevision**](classQAccelPlot_1_1PlotSeries.md#property-datarevision-12)  <br>_Revision incremented by every accepted change of the series' records._  |
 | property bool | [**hoverEnabled**](classQAccelPlot_1_1PlotSeries.md#property-hoverenabled-12)  <br>_Whether the series reacts to the mouse cursor. Default:_ `true` _._ |
 | property [**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) \* | [**inspection**](classQAccelPlot_1_1PlotSeries.md#property-inspection-12)  <br>_Read-only constant: data queries for this series._  |
@@ -124,7 +124,6 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | ---: | :--- |
 | signal void | [**categoryColorsChanged**](classQAccelPlot_1_1RectangleSeries.md#signal-categorycolorschanged)  <br>_Emitted when the categoryColors property changes._  |
 | signal void | [**colorChanged**](classQAccelPlot_1_1RectangleSeries.md#signal-colorchanged)  <br>_Emitted when the color property changes._  |
-| signal void | [**countChanged**](classQAccelPlot_1_1RectangleSeries.md#signal-countchanged)  <br>_Emitted when the rectangle count changes._  |
 | signal void | [**hoverColorChanged**](classQAccelPlot_1_1RectangleSeries.md#signal-hovercolorchanged)  <br>_Emitted when the hoverColor property changes._  |
 | signal void | [**hoveredIndexChanged**](classQAccelPlot_1_1RectangleSeries.md#signal-hoveredindexchanged)  <br>_Emitted when the hovered rectangle index changes._  |
 | signal void | [**minimumHeightChanged**](classQAccelPlot_1_1RectangleSeries.md#signal-minimumheightchanged)  <br>_Emitted when the minimumHeight property changes._  |
@@ -137,6 +136,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 | Type | Name |
 | ---: | :--- |
+| signal void | [**countChanged**](classQAccelPlot_1_1PlotSeries.md#signal-countchanged)  <br>_Emitted when the number of records changes._  |
 | signal void | [**dataRevisionChanged**](classQAccelPlot_1_1PlotSeries.md#signal-datarevisionchanged)  <br>_Emitted when the dataRevision property changes._  |
 | signal void | [**hoverEnabledChanged**](classQAccelPlot_1_1PlotSeries.md#signal-hoverenabledchanged)  <br>_Emitted when the hoverEnabled property changes._  |
 | signal void | [**legendEntryChanged**](classQAccelPlot_1_1PlotSeries.md#signal-legendentrychanged)  <br>_Emitted when the result of_ `legendEntry()` _changes._ |
@@ -161,7 +161,6 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | virtual Q\_INVOKABLE void | [**clearData**](#function-cleardata) () override<br>_Removes all rectangles._  |
 |  QColor | [**color**](#function-color-22) () const<br>_Returns the rectangle fill color._  |
 |  bool | [**contains**](#function-contains) (const QPointF & point) override const<br>_Returns_ `true` _when a rectangle lies under item position__point_ _._ |
-|  int | [**count**](#function-count-22) () const<br>_Returns the number of rectangles currently loaded._  |
 |  QColor | [**hoverColor**](#function-hovercolor-22) () const<br>_Returns the fill color of the hovered rectangle._  |
 |  int | [**hoveredIndex**](#function-hoveredindex-22) () const<br>_Returns the index of the hovered rectangle, or -1 if none._  |
 | virtual std::optional&lt; [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md) &gt; | [**legendEntry**](#function-legendentry) () override const<br>_Returns the legend entry: the symbol and color of the rectangles._  |
@@ -201,6 +200,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | ---: | :--- |
 |   | [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md#function-plotseries-12) (QQuickItem \* parent=nullptr) <br> |
 | virtual void | [**clearData**](classQAccelPlot_1_1PlotSeries.md#function-cleardata) () <br>_Removes all data points from the series._  |
+| virtual int | [**count**](classQAccelPlot_1_1PlotSeries.md#function-count-22) () const<br>_Returns the number of records stored. The default is the number of stored data points._  |
 |  quint64 | [**dataRevision**](classQAccelPlot_1_1PlotSeries.md#function-datarevision-22) () const<br>_Returns the current data revision._  |
 |  bool | [**hoverEnabled**](classQAccelPlot_1_1PlotSeries.md#function-hoverenabled-22) () const<br>_Returns whether the series reacts to the mouse cursor._  |
 |  [**SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) \* | [**inspection**](classQAccelPlot_1_1PlotSeries.md#function-inspection-22) () const<br>_Returns the data queries for this series; created on first use and owned by the series._  |
@@ -332,7 +332,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  void | [**invalidateInspection**](classQAccelPlot_1_1PlotSeries.md#function-invalidateinspection) () <br>_Refreshes the data queries after record validity changed without a data change, such as an axis scale switch._  |
 |  bool | [**logScaleX**](classQAccelPlot_1_1PlotSeries.md#function-logscalex) () const<br>_Returns whether the horizontal axis is logarithmic; false without an axis._  |
 |  bool | [**logScaleY**](classQAccelPlot_1_1PlotSeries.md#function-logscaley) () const<br>_Returns whether the vertical axis is logarithmic; false without an axis._  |
-|  void | [**notifyDataPointsChanged**](classQAccelPlot_1_1PlotSeries.md#function-notifydatapointschanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change, int previousCount) <br>_Finishes a change of the data points: data ranges,_ `onDataPointsChanged()` _, data queries, and a repaint._ |
+|  void | [**notifyDataPointsChanged**](classQAccelPlot_1_1PlotSeries.md#function-notifydatapointschanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change, int previousCount) <br>_Finishes a change of the data points: data ranges,_ `onDataPointsChanged()` _,_`countChanged()` _, data queries, and a repaint._ |
 | virtual void | [**onAxisRangeChanged**](classQAccelPlot_1_1PlotSeries.md#function-onaxisrangechanged) () <br>_Called when the viewport of a bound axis changes. The default implementation schedules a repaint._  |
 | virtual void | [**onAxisScaleChanged**](classQAccelPlot_1_1PlotSeries.md#function-onaxisscalechanged) () <br>_Called when a bound axis switches between linear and logarithmic scale, or a different axis is bound._  |
 | virtual void | [**onDataPointsChanged**](classQAccelPlot_1_1PlotSeries.md#function-ondatapointschanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change, int previousCount) <br>_Called after the data points changed, before the data queries are refreshed. The default does nothing._  |
@@ -432,21 +432,6 @@ QColor QAccelPlot::RectangleSeries::color;
 
 
 
-### property count {#property-count-12}
-
-_Read-only: number of rectangles currently loaded._ 
-```C++
-int QAccelPlot::RectangleSeries::count;
-```
-
-
-
-
-<hr>
-
-
-
-
 ### property hoverColor {#property-hovercolor-12}
 
 _Fill color of the rectangle under the cursor. Default: an invalid color, no highlight._ 
@@ -533,21 +518,6 @@ void QAccelPlot::RectangleSeries::categoryColorsChanged;
 _Emitted when the color property changes._ 
 ```C++
 void QAccelPlot::RectangleSeries::colorChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
-### signal countChanged {#signal-countchanged}
-
-_Emitted when the rectangle count changes._ 
-```C++
-void QAccelPlot::RectangleSeries::countChanged;
 ```
 
 
@@ -714,21 +684,6 @@ Hover delivery uses this test, so stacked series underneath still receive hover 
 
 
         
-
-<hr>
-
-
-
-
-### function count {#function-count-22}
-
-_Returns the number of rectangles currently loaded._ 
-```C++
-int QAccelPlot::RectangleSeries::count () const
-```
-
-
-
 
 <hr>
 

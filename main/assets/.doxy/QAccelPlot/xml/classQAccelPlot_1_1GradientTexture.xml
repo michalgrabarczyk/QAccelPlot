@@ -134,10 +134,10 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/materials/GradientTexture.hpp" line="35" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1GradientTexture_1a7bcb2e27e711d318d86fde9378742809" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientTexture_1ae7729e983eb3b3cc520bd6f856007323" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void QAccelPlot::GradientTexture::commit</definition>
-        <argsstring>(QSGMaterialShader::RenderState &amp;state, int binding, QSGTexture **texture)</argsstring>
+        <argsstring>(QSGMaterialShader::RenderState &amp;state, QSGTexture **texture)</argsstring>
         <name>commit</name>
         <qualifiedname>QAccelPlot::GradientTexture::commit</qualifiedname>
         <param>
@@ -145,15 +145,11 @@
           <declname>state</declname>
         </param>
         <param>
-          <type>int</type>
-          <declname>binding</declname>
-        </param>
-        <param>
           <type>QSGTexture **</type>
           <declname>texture</declname>
         </param>
         <briefdescription>
-<para>Commits the texture to the requested shader sampler binding. </para>
+<para>Commits the texture for the sampler being updated. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -221,7 +217,7 @@
     </detaileddescription>
     <location file="QAccelPlot/src/QAccelPlot/materials/GradientTexture.hpp" line="23" column="1" bodyfile="QAccelPlot/src/QAccelPlot/materials/GradientTexture.hpp" bodystart="23" bodyend="47"/>
     <listofallmembers>
-      <member refid="classQAccelPlot_1_1GradientTexture_1a7bcb2e27e711d318d86fde9378742809" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientTexture</scope><name>commit</name></member>
+      <member refid="classQAccelPlot_1_1GradientTexture_1ae7729e983eb3b3cc520bd6f856007323" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientTexture</scope><name>commit</name></member>
       <member refid="classQAccelPlot_1_1GradientTexture_1ad26c8fc3b6962552a63719161388722c" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientTexture</scope><name>comparisonKey</name></member>
       <member refid="classQAccelPlot_1_1GradientTexture_1aba3a0072f70ceea50abafa77deb92425" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientTexture</scope><name>GradientTexture</name></member>
       <member refid="classQAccelPlot_1_1GradientTexture_1a51d71f30e0c46dc80470204804d81625" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientTexture</scope><name>GradientTexture</name></member>

@@ -54,7 +54,6 @@ class RectangleSeries : public PlotSeries {
     Q_PROPERTY(QColor hoverColor READ hoverColor WRITE setHoverColor NOTIFY hoverColorChanged)
     Q_PROPERTY(qreal minimumWidth READ minimumWidth WRITE setMinimumWidth NOTIFY minimumWidthChanged)
     Q_PROPERTY(qreal minimumHeight READ minimumHeight WRITE setMinimumHeight NOTIFY minimumHeightChanged)
-    Q_PROPERTY(int count READ count NOTIFY countChanged)
     Q_PROPERTY(int hoveredIndex READ hoveredIndex NOTIFY hoveredIndexChanged)
 
 public:
@@ -78,7 +77,6 @@ public:
     qreal minimumHeight() const;
     void setMinimumHeight(qreal height);
 
-    int count() const;
     int hoveredIndex() const;
 
     Q_INVOKABLE void setData(const QVariantList& rects);
@@ -113,7 +111,6 @@ signals:
     void hoverColorChanged();
     void minimumWidthChanged();
     void minimumHeightChanged();
-    void countChanged();
     void hoveredIndexChanged();
 
 protected:

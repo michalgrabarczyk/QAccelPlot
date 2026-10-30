@@ -54,7 +54,6 @@ class BarSeries : public ColormappedSeries {
     Q_PROPERTY(Border* border READ border CONSTANT)
     Q_PROPERTY(QColor hoverColor READ hoverColor WRITE setHoverColor NOTIFY hoverColorChanged)
     Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
-    Q_PROPERTY(int count READ count NOTIFY countChanged)
     Q_PROPERTY(int hoveredIndex READ hoveredIndex NOTIFY hoveredIndexChanged)
 
 public:
@@ -100,7 +99,6 @@ public:
     DataTransition* transition() const;
     void setTransition(DataTransition* transition);
 
-    int count() const;
     int hoveredIndex() const;
 
     Q_INVOKABLE void setData(const QVariantList& bars);
@@ -142,7 +140,6 @@ signals:
     void colorSourceChanged();
     void hoverColorChanged();
     void transitionChanged();
-    void countChanged();
     void hoveredIndexChanged();
 
 protected:

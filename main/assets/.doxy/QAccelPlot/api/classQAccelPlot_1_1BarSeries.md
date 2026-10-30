@@ -116,7 +116,6 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | property QList&lt; QColor &gt; | [**categoryColors**](classQAccelPlot_1_1BarSeries.md#property-categorycolors-12)  <br>_Fill colors indexed by each bar's_ `category` _. Default: empty._ |
 | property QColor | [**color**](classQAccelPlot_1_1BarSeries.md#property-color-12)  <br>_Fill color of bars without a category color. Default:_ `Colors.dark.seriesPrimary` _._ |
 | property [**ColorSource**](classQAccelPlot_1_1BarSeries.md#enum-colorsource) | [**colorSource**](classQAccelPlot_1_1BarSeries.md#property-colorsource-12)  <br>_What the_ `colormap` _maps to a bar's color. Default:_`Value` _._ |
-| property int | [**count**](classQAccelPlot_1_1BarSeries.md#property-count-12)  <br>_Read-only: number of bars currently loaded._  |
 | property QColor | [**hoverColor**](classQAccelPlot_1_1BarSeries.md#property-hovercolor-12)  <br>_Fill color of the bar under the cursor. Default: an invalid color, no highlight._  |
 | property int | [**hoveredIndex**](classQAccelPlot_1_1BarSeries.md#property-hoveredindex-12)  <br>_Read-only: index of the bar under the cursor, or -1 when none._  |
 | property qreal | [**minimumWidth**](classQAccelPlot_1_1BarSeries.md#property-minimumwidth-12)  <br>_Minimum drawn bar width in pixels, so bars stay visible when zoomed out. Default: 1. Clamped to at least 0._  |
@@ -141,6 +140,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 | Type | Name |
 | ---: | :--- |
+| property int | [**count**](classQAccelPlot_1_1PlotSeries.md#property-count-12)  <br>_Read-only: number of records stored, including invalid ones._  |
 | property quint64 | [**dataRevision**](classQAccelPlot_1_1PlotSeries.md#property-datarevision-12)  <br>_Revision incremented by every accepted change of the series' records._  |
 | property bool | [**hoverEnabled**](classQAccelPlot_1_1PlotSeries.md#property-hoverenabled-12)  <br>_Whether the series reacts to the mouse cursor. Default:_ `true` _._ |
 | property [**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) \* | [**inspection**](classQAccelPlot_1_1PlotSeries.md#property-inspection-12)  <br>_Read-only constant: data queries for this series._  |
@@ -167,7 +167,6 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | signal void | [**categoryColorsChanged**](classQAccelPlot_1_1BarSeries.md#signal-categorycolorschanged)  <br>_Emitted when the categoryColors property changes._  |
 | signal void | [**colorChanged**](classQAccelPlot_1_1BarSeries.md#signal-colorchanged)  <br>_Emitted when the color property changes._  |
 | signal void | [**colorSourceChanged**](classQAccelPlot_1_1BarSeries.md#signal-colorsourcechanged)  <br>_Emitted when the colorSource property changes._  |
-| signal void | [**countChanged**](classQAccelPlot_1_1BarSeries.md#signal-countchanged)  <br>_Emitted when the bar count changes._  |
 | signal void | [**hoverColorChanged**](classQAccelPlot_1_1BarSeries.md#signal-hovercolorchanged)  <br>_Emitted when the hoverColor property changes._  |
 | signal void | [**hoveredIndexChanged**](classQAccelPlot_1_1BarSeries.md#signal-hoveredindexchanged)  <br>_Emitted when the hovered bar index changes._  |
 | signal void | [**minimumWidthChanged**](classQAccelPlot_1_1BarSeries.md#signal-minimumwidthchanged)  <br>_Emitted when the minimumWidth property changes._  |
@@ -191,6 +190,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 | Type | Name |
 | ---: | :--- |
+| signal void | [**countChanged**](classQAccelPlot_1_1PlotSeries.md#signal-countchanged)  <br>_Emitted when the number of records changes._  |
 | signal void | [**dataRevisionChanged**](classQAccelPlot_1_1PlotSeries.md#signal-datarevisionchanged)  <br>_Emitted when the dataRevision property changes._  |
 | signal void | [**hoverEnabledChanged**](classQAccelPlot_1_1PlotSeries.md#signal-hoverenabledchanged)  <br>_Emitted when the hoverEnabled property changes._  |
 | signal void | [**legendEntryChanged**](classQAccelPlot_1_1PlotSeries.md#signal-legendentrychanged)  <br>_Emitted when the result of_ `legendEntry()` _changes._ |
@@ -223,7 +223,6 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  QColor | [**color**](#function-color-22) () const<br>_Returns the bar fill color._  |
 |  [**ColorSource**](classQAccelPlot_1_1BarSeries.md#enum-colorsource) | [**colorSource**](#function-colorsource-22) () const<br>_Returns what the colormap maps to a bar's color._  |
 |  bool | [**contains**](#function-contains) (const QPointF & point) override const<br>_Returns_ `true` _when a bar lies under item position__point_ _._ |
-|  int | [**count**](#function-count-22) () const<br>_Returns the number of bars currently loaded._  |
 |  QColor | [**hoverColor**](#function-hovercolor-22) () const<br>_Returns the fill color of the hovered bar._  |
 |  int | [**hoveredIndex**](#function-hoveredindex-22) () const<br>_Returns the index of the hovered bar, or -1 if none._  |
 | virtual std::optional&lt; [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md) &gt; | [**legendEntry**](#function-legendentry) () override const<br>_Returns the legend entry: the symbol and color of the bars._  |
@@ -282,6 +281,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | ---: | :--- |
 |   | [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md#function-plotseries-12) (QQuickItem \* parent=nullptr) <br> |
 | virtual void | [**clearData**](classQAccelPlot_1_1PlotSeries.md#function-cleardata) () <br>_Removes all data points from the series._  |
+| virtual int | [**count**](classQAccelPlot_1_1PlotSeries.md#function-count-22) () const<br>_Returns the number of records stored. The default is the number of stored data points._  |
 |  quint64 | [**dataRevision**](classQAccelPlot_1_1PlotSeries.md#function-datarevision-22) () const<br>_Returns the current data revision._  |
 |  bool | [**hoverEnabled**](classQAccelPlot_1_1PlotSeries.md#function-hoverenabled-22) () const<br>_Returns whether the series reacts to the mouse cursor._  |
 |  [**SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) \* | [**inspection**](classQAccelPlot_1_1PlotSeries.md#function-inspection-22) () const<br>_Returns the data queries for this series; created on first use and owned by the series._  |
@@ -451,7 +451,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  void | [**invalidateInspection**](classQAccelPlot_1_1PlotSeries.md#function-invalidateinspection) () <br>_Refreshes the data queries after record validity changed without a data change, such as an axis scale switch._  |
 |  bool | [**logScaleX**](classQAccelPlot_1_1PlotSeries.md#function-logscalex) () const<br>_Returns whether the horizontal axis is logarithmic; false without an axis._  |
 |  bool | [**logScaleY**](classQAccelPlot_1_1PlotSeries.md#function-logscaley) () const<br>_Returns whether the vertical axis is logarithmic; false without an axis._  |
-|  void | [**notifyDataPointsChanged**](classQAccelPlot_1_1PlotSeries.md#function-notifydatapointschanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change, int previousCount) <br>_Finishes a change of the data points: data ranges,_ `onDataPointsChanged()` _, data queries, and a repaint._ |
+|  void | [**notifyDataPointsChanged**](classQAccelPlot_1_1PlotSeries.md#function-notifydatapointschanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change, int previousCount) <br>_Finishes a change of the data points: data ranges,_ `onDataPointsChanged()` _,_`countChanged()` _, data queries, and a repaint._ |
 | virtual void | [**onAxisRangeChanged**](classQAccelPlot_1_1PlotSeries.md#function-onaxisrangechanged) () <br>_Called when the viewport of a bound axis changes. The default implementation schedules a repaint._  |
 | virtual void | [**onAxisScaleChanged**](classQAccelPlot_1_1PlotSeries.md#function-onaxisscalechanged) () <br>_Called when a bound axis switches between linear and logarithmic scale, or a different axis is bound._  |
 | virtual void | [**onDataPointsChanged**](classQAccelPlot_1_1PlotSeries.md#function-ondatapointschanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change, int previousCount) <br>_Called after the data points changed, before the data queries are refreshed. The default does nothing._  |
@@ -670,21 +670,6 @@ ColorSource QAccelPlot::BarSeries::colorSource;
 
 
 
-### property count {#property-count-12}
-
-_Read-only: number of bars currently loaded._ 
-```C++
-int QAccelPlot::BarSeries::count;
-```
-
-
-
-
-<hr>
-
-
-
-
 ### property hoverColor {#property-hovercolor-12}
 
 _Fill color of the bar under the cursor. Default: an invalid color, no highlight._ 
@@ -842,21 +827,6 @@ void QAccelPlot::BarSeries::colorChanged;
 _Emitted when the colorSource property changes._ 
 ```C++
 void QAccelPlot::BarSeries::colorSourceChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
-### signal countChanged {#signal-countchanged}
-
-_Emitted when the bar count changes._ 
-```C++
-void QAccelPlot::BarSeries::countChanged;
 ```
 
 
@@ -1136,21 +1106,6 @@ Hover delivery uses this test, so stacked series underneath still receive hover 
 
 
         
-
-<hr>
-
-
-
-
-### function count {#function-count-22}
-
-_Returns the number of bars currently loaded._ 
-```C++
-int QAccelPlot::BarSeries::count () const
-```
-
-
-
 
 <hr>
 

@@ -63,7 +63,7 @@ _Cached one-dimensional texture used by gradient materials._
 | ---: | :--- |
 |   | [**GradientTexture**](#function-gradienttexture-12) () = default<br> |
 |   | [**GradientTexture**](#function-gradienttexture-22) (const [**GradientTexture**](classQAccelPlot_1_1GradientTexture.md) &) = delete<br> |
-|  void | [**commit**](#function-commit) (QSGMaterialShader::RenderState & state, int binding, QSGTexture \*\* texture) <br>_Commits the texture to the requested shader sampler binding._  |
+|  void | [**commit**](#function-commit) (QSGMaterialShader::RenderState & state, QSGTexture \*\* texture) <br>_Commits the texture for the sampler being updated._  |
 |  qint64 | [**comparisonKey**](#function-comparisonkey) () const<br>_Returns the scene-graph comparison key for the uploaded texture, or zero when no texture exists._  |
 |  [**GradientTexture**](classQAccelPlot_1_1GradientTexture.md) & | [**operator=**](#function-operator) (const [**GradientTexture**](classQAccelPlot_1_1GradientTexture.md) &) = delete<br> |
 |  void | [**upload**](#function-upload) (QQuickWindow \* window, const std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; & stops) <br>_Updates the 256-sample texture when_ _stops_ _changed._ |
@@ -139,11 +139,10 @@ QAccelPlot::GradientTexture::GradientTexture (
 
 ### function commit {#function-commit}
 
-_Commits the texture to the requested shader sampler binding._ 
+_Commits the texture for the sampler being updated._ 
 ```C++
 void QAccelPlot::GradientTexture::commit (
     QSGMaterialShader::RenderState & state,
-    int binding,
     QSGTexture ** texture
 ) 
 ```
