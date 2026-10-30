@@ -5,7 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "QAccelPlot/QAccelPlot.hpp"
+#include "QAccelPlot/PlotView.hpp"
 #include "QAccelPlot/annotations/DataAnchor.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/axis/AxisTicker.hpp"
@@ -62,7 +62,7 @@ const std::map<QString, Factory>& factories()
         {QStringLiteral("Grid"), make<Grid>()},
         {QStringLiteral("LineCurve"), make<LineCurve>()},
         {QStringLiteral("MorphTransition"), make<MorphTransition>()},
-        {QStringLiteral("PlotView"), make<QAccelPlot>()},
+        {QStringLiteral("PlotView"), make<PlotView>()},
         {QStringLiteral("RectangleSeries"), make<RectangleSeries>()},
         {QStringLiteral("TextTickLabelFormatter"), make<TextTickLabelFormatter>()},
     };

@@ -53,7 +53,7 @@ class RectangleZoomOverlay;
 /// \endcode
 ///
 /// \sa Axis, LineCurve, Grid
-class QAccelPlot : public QQuickItem {
+class PlotView : public QQuickItem {
     Q_OBJECT
     QML_NAMED_ELEMENT(PlotView)
 
@@ -90,9 +90,9 @@ class QAccelPlot : public QQuickItem {
 
 public:
     /// \brief Constructs a PlotView with the given \a parent.
-    explicit QAccelPlot(QQuickItem* parent = nullptr);
+    explicit PlotView(QQuickItem* parent = nullptr);
     /// \brief Destroys the plot after disconnecting attached axis signals.
-    ~QAccelPlot() override;
+    ~PlotView() override;
 
     /// \brief Converts a horizontal data-space value to an item-local pixel X coordinate.
     Q_INVOKABLE qreal dataToPixelX(qreal dataValue) const;
@@ -192,16 +192,16 @@ signals:
     void seriesChanged();
     /// \brief Emitted when a mouse button is pressed over the plot.
     /// Call \c event->accept() to consume the event and suppress built-in handling (drag start).
-    void mousePressed(::QAccelPlot::PlotMouseEvent* event);
+    void mousePressed(PlotMouseEvent* event);
     /// \brief Emitted when a mouse button is released over the plot.
     /// Call \c event->accept() to consume further built-in handling. A left-button release always ends an active drag.
-    void mouseReleased(::QAccelPlot::PlotMouseEvent* event);
+    void mouseReleased(PlotMouseEvent* event);
     /// \brief Emitted when a mouse button is double-clicked over the plot.
     /// Call \c event->accept() to consume the event and suppress built-in handling (rescale all axes).
-    void mouseDoubleClicked(::QAccelPlot::PlotMouseEvent* event);
+    void mouseDoubleClicked(PlotMouseEvent* event);
     /// \brief Emitted when the mouse is moved over the plot.
     /// Call \c event->accept() to consume the event and suppress built-in handling (panning or selection updates).
-    void mouseMoved(::QAccelPlot::PlotMouseEvent* event);
+    void mouseMoved(PlotMouseEvent* event);
 
 protected:
     /// \cond INTERNAL

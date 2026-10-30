@@ -103,7 +103,7 @@ public:
     ///
     /// The bin areas sum to 1, so bins of different widths and data sets of different sizes are
     /// comparable. Returns the histogram unchanged when it already holds densities.
-    Q_INVOKABLE ::QAccelPlot::Histogram density() const;
+    Q_INVOKABLE Histogram density() const;
 
     /// \brief Returns \c binCount() interleaved (from, to, value) bars, one per bin, for \c BarSeries::setRangedData().
     std::vector<double> barData() const;

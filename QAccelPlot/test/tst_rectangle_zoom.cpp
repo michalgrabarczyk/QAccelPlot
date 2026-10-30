@@ -5,7 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "QAccelPlot/QAccelPlot.hpp"
+#include "QAccelPlot/PlotView.hpp"
 
 #include <QFocusEvent>
 #include <QKeyEvent>
@@ -21,16 +21,16 @@
 
 namespace {
 
-class TestablePlot final : public QAccelPlot::QAccelPlot {
+class TestablePlot final : public QAccelPlot::PlotView {
 public:
-    using QAccelPlot::QAccelPlot::focusOutEvent;
-    using QAccelPlot::QAccelPlot::keyPressEvent;
-    using QAccelPlot::QAccelPlot::mouseDoubleClickEvent;
-    using QAccelPlot::QAccelPlot::mouseMoveEvent;
-    using QAccelPlot::QAccelPlot::mousePressEvent;
-    using QAccelPlot::QAccelPlot::mouseReleaseEvent;
-    using QAccelPlot::QAccelPlot::mouseUngrabEvent;
-    using QAccelPlot::QAccelPlot::wheelEvent;
+    using QAccelPlot::PlotView::focusOutEvent;
+    using QAccelPlot::PlotView::keyPressEvent;
+    using QAccelPlot::PlotView::mouseDoubleClickEvent;
+    using QAccelPlot::PlotView::mouseMoveEvent;
+    using QAccelPlot::PlotView::mousePressEvent;
+    using QAccelPlot::PlotView::mouseReleaseEvent;
+    using QAccelPlot::PlotView::mouseUngrabEvent;
+    using QAccelPlot::PlotView::wheelEvent;
 };
 
 void setRange(QAccelPlot::Axis* axis, const qreal min, const qreal max)
@@ -366,18 +366,18 @@ void TestRectangleZoom::pressOutsidePlotDoesNotSelect()
 void TestRectangleZoom::acceptedEvents()
 {
     auto f = Fixture{};
-    auto acceptPress = connect(&f.plot, &QAccelPlot::QAccelPlot::mousePressed, [](QAccelPlot::PlotMouseEvent* e) { e->accept(); });
+    auto acceptPress = connect(&f.plot, &QAccelPlot::PlotView::mousePressed, [](QAccelPlot::PlotMouseEvent* e) { e->accept(); });
     press(f, f.point(0.25, 0.25));
     QVERIFY(!f.plot.rectangleZoom()->active());
     disconnect(acceptPress);
     press(f, f.point(0.25, 0.25));
     const auto initial = f.plot.rectangleZoom()->selectionRect();
-    auto acceptMove = connect(&f.plot, &QAccelPlot::QAccelPlot::mouseMoved, [](QAccelPlot::PlotMouseEvent* e) { e->accept(); });
+    auto acceptMove = connect(&f.plot, &QAccelPlot::PlotView::mouseMoved, [](QAccelPlot::PlotMouseEvent* e) { e->accept(); });
     move(f, f.point(0.75, 0.75));
     QCOMPARE(f.plot.rectangleZoom()->selectionRect(), initial);
     disconnect(acceptMove);
     move(f, f.point(0.75, 0.75));
-    connect(&f.plot, &QAccelPlot::QAccelPlot::mouseReleased, [](QAccelPlot::PlotMouseEvent* e) { e->accept(); });
+    connect(&f.plot, &QAccelPlot::PlotView::mouseReleased, [](QAccelPlot::PlotMouseEvent* e) { e->accept(); });
     release(f, f.point(0.75, 0.75));
     QVERIFY(!f.plot.rectangleZoom()->active());
     QVERIFY(f.plot.rectangleZoom()->selectionRect().isEmpty());

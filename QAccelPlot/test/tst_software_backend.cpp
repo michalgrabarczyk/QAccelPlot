@@ -5,7 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "QAccelPlot/QAccelPlot.hpp"
+#include "QAccelPlot/PlotView.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/export/PlotExporter.hpp"
 #include "QAccelPlot/series/BandSeries.hpp"
@@ -79,7 +79,7 @@ void SoftwareBackendTest::exportFails()
 {
     auto window = QQuickWindow{};
     window.resize(kSize, kSize);
-    auto plot = QAccelPlot{};
+    auto plot = PlotView{};
     plot.setSize({kSize, kSize});
     plot.setParentItem(window.contentItem());
     window.show();

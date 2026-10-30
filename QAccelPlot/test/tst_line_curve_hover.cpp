@@ -5,7 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "QAccelPlot/QAccelPlot.hpp"
+#include "QAccelPlot/PlotView.hpp"
 #include "WindowPlacement.hpp"
 
 #include <QQmlComponent>
@@ -76,7 +76,7 @@ std::unique_ptr<QObject> createScene(QQmlEngine& engine, const QByteArray& sourc
     auto component = QQmlComponent{&engine};
     component.setData(source, QUrl{});
     auto root = std::unique_ptr<QObject>{component.create()};
-    auto* plot = qobject_cast<QAccelPlot*>(root.get());
+    auto* plot = qobject_cast<PlotView*>(root.get());
     if (!plot) {
         qWarning() << component.errorString();
         return nullptr;
@@ -109,7 +109,7 @@ void LineCurveHoverTest::zeroHoverRadiusPassesHoverToSeriesBeneath()
     auto component = QQmlComponent{&engine};
     component.setData(kScene, QUrl{});
     const auto root = std::unique_ptr<QObject>{component.create()};
-    auto* plot = qobject_cast<QAccelPlot*>(root.get());
+    auto* plot = qobject_cast<PlotView*>(root.get());
     QVERIFY2(plot, qPrintable(component.errorString()));
     plot->setParentItem(window.contentItem());
     QAccelPlotTest::moveAwayFromCursor(window);
@@ -156,7 +156,7 @@ void LineCurveHoverTest::hoverRadiusChangeUpdatesHoveredIndex()
     auto engine = QQmlEngine{};
     const auto root = createScene(engine, QString::fromLatin1(kRadiusScene).arg(type, setData).toUtf8(), window);
     QVERIFY(root);
-    auto* plot = qobject_cast<QAccelPlot*>(root.get());
+    auto* plot = qobject_cast<PlotView*>(root.get());
     auto* series = plot->findChild<QQuickItem*>(QStringLiteral("series"));
     QVERIFY(series);
 

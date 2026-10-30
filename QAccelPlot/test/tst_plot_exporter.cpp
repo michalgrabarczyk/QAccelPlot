@@ -5,7 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "QAccelPlot/QAccelPlot.hpp"
+#include "QAccelPlot/PlotView.hpp"
 #include "QAccelPlot/export/PlotExporter.hpp"
 #include "QAccelPlot/export/internal/GrabSize.hpp"
 
@@ -105,7 +105,7 @@ private:
     std::unique_ptr<QQuickWindow> window_;
     std::unique_ptr<QQmlEngine> engine_;
     std::unique_ptr<QObject> root_;
-    QAccelPlot* plot_{nullptr};
+    PlotView* plot_{nullptr};
     qreal devicePixelRatio_{1.0};
 };
 
@@ -122,7 +122,7 @@ void PlotExporterTest::init()
     component.setData(kScene, QUrl{});
     root_.reset(component.create());
     QVERIFY2(root_, qPrintable(component.errorString()));
-    plot_ = qobject_cast<QAccelPlot*>(root_.get());
+    plot_ = qobject_cast<PlotView*>(root_.get());
     QVERIFY(plot_);
     plot_->setParentItem(window_->contentItem());
     window_->show();
@@ -215,8 +215,8 @@ void PlotExporterTest::failsWithoutPlot()
 void PlotExporterTest::clearsPlotWhenItIsDestroyed()
 {
     auto exporter = PlotExporter{};
-    auto replaced = std::make_unique<QAccelPlot>();
-    auto plot = std::make_unique<QAccelPlot>();
+    auto replaced = std::make_unique<PlotView>();
+    auto plot = std::make_unique<PlotView>();
     exporter.setPlot(replaced.get());
     exporter.setPlot(plot.get());
     auto plotChanges = QSignalSpy{&exporter, &PlotExporter::plotChanged};
@@ -353,8 +353,8 @@ void PlotExporterTest::leavesOutBackgroundsOnlyForTheCapture()
     auto exporter = PlotExporter{};
     exporter.setPlot(plot_);
     exporter.setTransparentBackground(true);
-    auto axesColorChanges = QSignalSpy{plot_, &QAccelPlot::axesAreaColorChanged};
-    auto plotColorChanges = QSignalSpy{plot_, &QAccelPlot::plotAreaColorChanged};
+    auto axesColorChanges = QSignalSpy{plot_, &PlotView::axesAreaColorChanged};
+    auto plotColorChanges = QSignalSpy{plot_, &PlotView::plotAreaColorChanged};
     const auto image = grab(exporter);
     QVERIFY(!image.isNull());
     QCOMPARE(image.pixelColor(2, 2).alpha(), 0);

@@ -56,7 +56,7 @@ class SeriesInspection : public QObject {
     ///
     /// Bar, rectangle, band, and heatmap series are \c Ready while available; the queries that do not
     /// apply to them return \c Unsupported. \c Unsupported only for a series that answers no query.
-    Q_PROPERTY(::QAccelPlot::InspectionNS::Status status READ status NOTIFY statusChanged)
+    Q_PROPERTY(InspectionNS::Status status READ status NOTIFY statusChanged)
 
 public:
     ~SeriesInspection() override;
@@ -70,21 +70,21 @@ public:
     Q_INVOKABLE void prepare();
 
     /// \brief Returns the record at \a index; \c NoMatch with its raw coordinates when the record is invalid.
-    Q_INVOKABLE ::QAccelPlot::InspectionDataPoint dataPointAt(int index) const;
+    Q_INVOKABLE InspectionDataPoint dataPointAt(int index) const;
     /// \brief Returns the valid data point nearest to \a position within \a radius pixels on screen.
-    Q_INVOKABLE ::QAccelPlot::InspectionDataPoint nearest(const QPointF& position, qreal radius = 10);
+    Q_INVOKABLE InspectionDataPoint nearest(const QPointF& position, qreal radius = 10);
     /// \brief Returns the valid data point nearest to \a pixelX horizontally, within \a radius pixels.
-    Q_INVOKABLE ::QAccelPlot::InspectionDataPoint nearestByX(qreal pixelX, qreal radius = std::numeric_limits<qreal>::infinity());
+    Q_INVOKABLE InspectionDataPoint nearestByX(qreal pixelX, qreal radius = std::numeric_limits<qreal>::infinity());
     /// \brief Returns the valid data point nearest to \a pixelY vertically, within \a radius pixels.
-    Q_INVOKABLE ::QAccelPlot::InspectionDataPoint nearestByY(qreal pixelY, qreal radius = std::numeric_limits<qreal>::infinity());
+    Q_INVOKABLE InspectionDataPoint nearestByY(qreal pixelY, qreal radius = std::numeric_limits<qreal>::infinity());
     /// \brief Returns the valid data points on either side of \a pixelX and the point between them.
-    Q_INVOKABLE ::QAccelPlot::InspectionBracket bracketByX(qreal pixelX);
+    Q_INVOKABLE InspectionBracket bracketByX(qreal pixelX);
     /// \brief Returns the valid data points whose Y is on either side of \a pixelY and the point between them.
-    Q_INVOKABLE ::QAccelPlot::InspectionBracket bracketByY(qreal pixelY);
+    Q_INVOKABLE InspectionBracket bracketByY(qreal pixelY);
     /// \brief Returns Y statistics of the valid data points inside the region.
-    Q_INVOKABLE ::QAccelPlot::InspectionSummary summarize(qreal xMin, qreal xMax, qreal yMin, qreal yMax);
+    Q_INVOKABLE InspectionSummary summarize(qreal xMin, qreal xMax, qreal yMin, qreal yMax);
     /// \brief Returns Y statistics of the valid data points whose X lies in the interval.
-    Q_INVOKABLE ::QAccelPlot::InspectionSummary summarizeRange(qreal xMin, qreal xMax);
+    Q_INVOKABLE InspectionSummary summarizeRange(qreal xMin, qreal xMax);
     /// \brief Returns up to \a limit source indices inside the region, skipping the first \a offset matches.
     ///
     /// \a limit must be positive and is capped at 4096, the default; the page's \c limit reports the
@@ -93,18 +93,17 @@ public:
     ///
     /// A nonzero \a expectedRevision that differs from the series' \c dataRevision returns
     /// \c Stale, so pages of one traversal never mix indices of different data.
-    Q_INVOKABLE ::QAccelPlot::InspectionPage indices(
-        qreal xMin, qreal xMax, qreal yMin, qreal yMax, int offset = 0, int limit = 4096, quint64 expectedRevision = 0);
+    Q_INVOKABLE InspectionPage indices(qreal xMin, qreal xMax, qreal yMin, qreal yMax, int offset = 0, int limit = 4096, quint64 expectedRevision = 0);
 
     /// \brief Returns the native record at \a index of a bar, rectangle, or band series.
-    Q_INVOKABLE ::QAccelPlot::InspectionRecord recordAt(int index) const;
+    Q_INVOKABLE InspectionRecord recordAt(int index) const;
     /// \brief Returns the native record drawn at the series-local \a position.
-    Q_INVOKABLE ::QAccelPlot::InspectionRecord recordAtPosition(const QPointF& position) const;
+    Q_INVOKABLE InspectionRecord recordAtPosition(const QPointF& position) const;
     /// \brief Returns the record drawn at the series-local \a position as a data point, such as the heatmap cell under it.
     ///
     /// \c Unsupported for series that do not draw data points as areas. The data and pixel coordinates
     /// of a match are the record's center, and \c distance is measured from \a position to it.
-    Q_INVOKABLE ::QAccelPlot::InspectionDataPoint dataPointAtPosition(const QPointF& position) const;
+    Q_INVOKABLE InspectionDataPoint dataPointAtPosition(const QPointF& position) const;
 
 signals:
     /// \brief Emitted when the readiness may have changed: after a data change, and when an index is ready.

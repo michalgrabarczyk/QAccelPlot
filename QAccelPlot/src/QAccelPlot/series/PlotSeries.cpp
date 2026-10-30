@@ -96,7 +96,7 @@ PlotSeries::PlotSeries(DataPointStore::Layout layout, DataPointWording wording, 
 PlotSeries::~PlotSeries()
 {
     // Leave the plot while this is still a PlotSeries. ~QQuickItem would do it later, when the
-    // observers of QAccelPlot::seriesChanged() can no longer use their pointers to this series.
+    // observers of PlotView::seriesChanged() can no longer use their pointers to this series.
     setParentItem(nullptr);
 
     if (xAxis_) {

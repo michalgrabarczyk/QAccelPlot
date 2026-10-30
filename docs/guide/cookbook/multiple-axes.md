@@ -65,7 +65,7 @@ QAccelPlot.Plot {
 
 ## Extra axes
 
-Use [`extraAxes`](../api/classQAccelPlot_1_1QAccelPlot.md#property-extraaxes-12)
+Use [`extraAxes`](../api/classQAccelPlot_1_1PlotView.md#property-extraaxes-12)
 for more than two axes in one orientation. They are laid out in declaration
 order: horizontal axes stack below the primary X axis, vertical axes stack from
 the plot's left edge inward.
@@ -103,5 +103,5 @@ QAccelPlot.Plot {
 
 Complete source: [`examples/axes/multiple_axes`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/axes/multiple_axes)
 
-[x2-axis]: ../api/classQAccelPlot_1_1QAccelPlot.md#property-x2axis-12
-[y2-axis]: ../api/classQAccelPlot_1_1QAccelPlot.md#property-y2axis-12
+[x2-axis]: ../api/classQAccelPlot_1_1PlotView.md#property-x2axis-12
+[y2-axis]: ../api/classQAccelPlot_1_1PlotView.md#property-y2axis-12

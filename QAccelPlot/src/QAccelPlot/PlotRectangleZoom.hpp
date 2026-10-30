@@ -17,7 +17,7 @@
 
 namespace QAccelPlot {
 
-class QAccelPlot;
+class PlotView;
 
 /// \brief Rectangle zoom configuration and selection state exposed by PlotView.
 class PlotRectangleZoom : public QObject {
@@ -85,7 +85,7 @@ signals:
     void selectionRectChanged();
 
 private:
-    friend class QAccelPlot;
+    friend class PlotView;
     void setSelection(bool active, const QRectF& rect);
 
     bool enabled_{false};

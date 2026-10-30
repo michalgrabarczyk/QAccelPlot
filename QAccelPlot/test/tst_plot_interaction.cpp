@@ -7,7 +7,7 @@
 //
 #include "HoverEvents.hpp"
 #include "QAccelPlot/PlotMouseEvent.hpp"
-#include "QAccelPlot/QAccelPlot.hpp"
+#include "QAccelPlot/PlotView.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/inspection/PlotInspector.hpp"
 
@@ -24,18 +24,18 @@
 
 namespace {
 
-class TestablePlot final : public QAccelPlot::QAccelPlot {
+class TestablePlot final : public QAccelPlot::PlotView {
 public:
-    using QAccelPlot::QAccelPlot::hoverEnterEvent;
-    using QAccelPlot::QAccelPlot::hoverLeaveEvent;
-    using QAccelPlot::QAccelPlot::hoverMoveEvent;
-    using QAccelPlot::QAccelPlot::keyPressEvent;
-    using QAccelPlot::QAccelPlot::mouseDoubleClickEvent;
-    using QAccelPlot::QAccelPlot::mouseMoveEvent;
-    using QAccelPlot::QAccelPlot::mousePressEvent;
-    using QAccelPlot::QAccelPlot::mouseReleaseEvent;
-    using QAccelPlot::QAccelPlot::mouseUngrabEvent;
-    using QAccelPlot::QAccelPlot::wheelEvent;
+    using QAccelPlot::PlotView::hoverEnterEvent;
+    using QAccelPlot::PlotView::hoverLeaveEvent;
+    using QAccelPlot::PlotView::hoverMoveEvent;
+    using QAccelPlot::PlotView::keyPressEvent;
+    using QAccelPlot::PlotView::mouseDoubleClickEvent;
+    using QAccelPlot::PlotView::mouseMoveEvent;
+    using QAccelPlot::PlotView::mousePressEvent;
+    using QAccelPlot::PlotView::mouseReleaseEvent;
+    using QAccelPlot::PlotView::mouseUngrabEvent;
+    using QAccelPlot::PlotView::wheelEvent;
 };
 
 class TestableAxis final : public QAccelPlot::Axis {
@@ -371,7 +371,7 @@ void TestPlotInteraction::acceptedPressDoesNotStartDrag()
     auto* xAxis = new QAccelPlot::Axis{&plot};
     plot.setXAxis(xAxis);
     setViewport(xAxis, 0.0, 100.0);
-    connect(&plot, &QAccelPlot::QAccelPlot::mousePressed, [](QAccelPlot::PlotMouseEvent* event) { event->accept(); });
+    connect(&plot, &QAccelPlot::PlotView::mousePressed, [](QAccelPlot::PlotMouseEvent* event) { event->accept(); });
 
     const auto start = plot.plotRect().center();
     drag(plot, start, start + QPointF{50.0, 0.0});
@@ -412,7 +412,7 @@ void TestPlotInteraction::acceptedDoubleClickDoesNotRescale()
     plot.setXAxis(xAxis);
     setViewport(xAxis, 0.0, 100.0);
     xAxis->setDataRange(5.0, 25.0);
-    connect(&plot, &QAccelPlot::QAccelPlot::mouseDoubleClicked, [](QAccelPlot::PlotMouseEvent* event) { event->accept(); });
+    connect(&plot, &QAccelPlot::PlotView::mouseDoubleClicked, [](QAccelPlot::PlotMouseEvent* event) { event->accept(); });
 
     const auto pos = plot.plotRect().center();
     auto doubleClick = mouseEvent(QEvent::MouseButtonDblClick, pos, Qt::LeftButton, Qt::LeftButton);
@@ -424,7 +424,7 @@ void TestPlotInteraction::acceptedDoubleClickDoesNotRescale()
 
 void TestPlotInteraction::rescaleAllAxes_fitsEveryAxisToData()
 {
-    auto plot = QAccelPlot::QAccelPlot{};
+    auto plot = QAccelPlot::PlotView{};
     plot.setSize({300.0, 200.0});
     auto* yAxis = new QAccelPlot::Axis{&plot};
     auto* extraAxis = new QAccelPlot::Axis{&plot, QAccelPlot::Axis::Right};
@@ -683,8 +683,8 @@ void TestPlotInteraction::escapeAndGrabLoss_areReported()
 {
     auto plot = TestablePlot{};
     plot.setSize({400.0, 300.0});
-    auto escapes = QSignalSpy{&plot, &QAccelPlot::QAccelPlot::escapePressed};
-    auto grabLosses = QSignalSpy{&plot, &QAccelPlot::QAccelPlot::pointerGrabLost};
+    auto escapes = QSignalSpy{&plot, &QAccelPlot::PlotView::escapePressed};
+    auto grabLosses = QSignalSpy{&plot, &QAccelPlot::PlotView::pointerGrabLost};
 
     auto other = QKeyEvent{QEvent::KeyPress, Qt::Key_A, Qt::NoModifier, QStringLiteral("a")};
     plot.keyPressEvent(&other);
@@ -703,7 +703,7 @@ void TestPlotInteraction::plotMouseEvent_eachEventStartsUnaccepted()
     plot.setSize({300.0, 200.0});
     auto acceptedOnEntry = QList<bool>{};
     const QAccelPlot::PlotMouseEvent* last = nullptr;
-    connect(&plot, &QAccelPlot::QAccelPlot::mousePressed, [&](QAccelPlot::PlotMouseEvent* event) {
+    connect(&plot, &QAccelPlot::PlotView::mousePressed, [&](QAccelPlot::PlotMouseEvent* event) {
         acceptedOnEntry.append(event->isAccepted());
         last = event;
         event->accept();

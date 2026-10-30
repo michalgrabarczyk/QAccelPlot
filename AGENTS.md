@@ -46,7 +46,7 @@ Quick component is loaded. Configure with
 
 ## Architecture
 
-Each visual element (`QAccelPlot`, `LineCurve`, etc.) inherits from
+Each visual element (`PlotView`, `LineCurve`, etc.) inherits from
 `QQuickItem` and overrides `updatePaintNode` to build a QSG node tree.
 Non-visual QML types (`Axis`, `Grid`, `AbstractPlotAnnotation`, etc.) inherit
 from `QObject`. Shader files are pre-compiled to `.qsb` format (via Qt Shader
@@ -59,7 +59,7 @@ background thread; the main thread swaps in pre-computed buffers.
 QAccelPlot/
 ├── src/                          — Include root (#include <QAccelPlot/...>)
 │   └── QAccelPlot/
-│       ├── QAccelPlot.hpp/.cpp   — PlotView: main plot canvas item
+│       ├── PlotView.*            — Main plot canvas item
 │       ├── PlotMouseEvent.*      — Custom mouse event type
 │       ├── Border.*              — Outline color and width (border grouped property)
 │       ├── MathUtils.hpp         — Math utilities
@@ -127,6 +127,10 @@ QAccelPlot/
 - Declare Qt properties with the full
   `Q_PROPERTY(Type name READ getter WRITE setter NOTIFY signal)` pattern.
 - Register QML elements with `QML_NAMED_ELEMENT(ClassName)` in the class body.
+- Inside `namespace QAccelPlot`, write library types unqualified, including in
+  `Q_PROPERTY`, `Q_INVOKABLE`, and signal signatures (`Axis*`,
+  `InspectionNS::Status`); moc and QML resolve them. Don't name a class
+  `QAccelPlot`: it would hide the namespace and force `::QAccelPlot::` prefixes.
 - Keep `.hpp` / `.cpp` pairs for every class; headers organized in
   subdirectories under `src/QAccelPlot/`. Include library headers with the
   `QAccelPlot/` prefix: `"QAccelPlot/series/LineCurve.hpp"` inside `QAccelPlot/`,

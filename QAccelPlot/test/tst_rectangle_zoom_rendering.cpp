@@ -5,7 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "QAccelPlot/QAccelPlot.hpp"
+#include "QAccelPlot/PlotView.hpp"
 
 #include <QImage>
 #include <QKeyEvent>
@@ -114,7 +114,7 @@ void TestRectangleZoomRendering::overlayAboveSeriesBelowLegend()
     component.setData(QString::fromLatin1(kScene).arg(type, legend).toUtf8(), QUrl{});
     const auto root = std::unique_ptr<QObject>{component.create()};
     QVERIFY2(root, qPrintable(component.errorString()));
-    auto* plot = qobject_cast<QAccelPlot::QAccelPlot*>(root.get());
+    auto* plot = qobject_cast<QAccelPlot::PlotView*>(root.get());
     QVERIFY(plot);
     plot->setParentItem(window.contentItem());
     window.show();

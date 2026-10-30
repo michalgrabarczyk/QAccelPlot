@@ -141,11 +141,11 @@ Complete sources:
 - [`examples/interaction/measurement_tools`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/interaction/measurement_tools)
 - [`examples/plot_types/state_timeline`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/state_timeline)
 
-[plot-rect]: ../api/classQAccelPlot_1_1QAccelPlot.md#property-plotrect-12
-[data-to-pixel-x]: ../api/classQAccelPlot_1_1QAccelPlot.md#function-datatopixelx
-[data-to-pixel-y]: ../api/classQAccelPlot_1_1QAccelPlot.md#function-datatopixely
-[pixel-to-data-x]: ../api/classQAccelPlot_1_1QAccelPlot.md#function-pixeltodatax
-[pixel-to-data-y]: ../api/classQAccelPlot_1_1QAccelPlot.md#function-pixeltodatay
+[plot-rect]: ../api/classQAccelPlot_1_1PlotView.md#property-plotrect-12
+[data-to-pixel-x]: ../api/classQAccelPlot_1_1PlotView.md#function-datatopixelx
+[data-to-pixel-y]: ../api/classQAccelPlot_1_1PlotView.md#function-datatopixely
+[pixel-to-data-x]: ../api/classQAccelPlot_1_1PlotView.md#function-pixeltodatax
+[pixel-to-data-y]: ../api/classQAccelPlot_1_1PlotView.md#function-pixeltodatay
 [data-anchor]: ../api/classQAccelPlot_1_1DataAnchor.md
 [rectangle-series]: ../api/classQAccelPlot_1_1RectangleSeries.md
 [rectangle-series-set-data]: ../api/classQAccelPlot_1_1RectangleSeries.md#function-setdata-18

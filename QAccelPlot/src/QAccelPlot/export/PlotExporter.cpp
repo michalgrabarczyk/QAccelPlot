@@ -97,7 +97,7 @@ void releaseGrab(const QSharedPointer<QQuickItemGrabResult>& grab, const QObject
 
 // Options are copied when the request starts, so property changes do not affect it.
 struct PlotExporter::Capture {
-    Capture(const Operation operation, QString path, QByteArray format, const int quality, const qreal dpi, ::QAccelPlot::QAccelPlot* plot, const qreal scale)
+    Capture(const Operation operation, QString path, QByteArray format, const int quality, const qreal dpi, PlotView* plot, const qreal scale)
         : operation(operation)
         , path(std::move(path))
         , format(std::move(format))
@@ -114,7 +114,7 @@ struct PlotExporter::Capture {
     QByteArray format;
     int quality;
     qreal dpi;
-    QPointer<::QAccelPlot::QAccelPlot> plot;
+    QPointer<PlotView> plot;
     // A QWindow: hiding it from ~QWindow can end the capture after the QQuickWindow part is gone.
     QPointer<QWindow> window;
     Internal::ScopedPaintedItemTextures textures;
@@ -138,12 +138,12 @@ PlotExporter::~PlotExporter()
     endCapture();
 }
 
-::QAccelPlot::QAccelPlot* PlotExporter::plot() const
+PlotView* PlotExporter::plot() const
 {
     return plot_;
 }
 
-void PlotExporter::setPlot(::QAccelPlot::QAccelPlot* plot)
+void PlotExporter::setPlot(PlotView* plot)
 {
     if (plot_ == plot) {
         return;

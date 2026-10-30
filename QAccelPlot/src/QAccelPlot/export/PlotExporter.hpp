@@ -7,7 +7,7 @@
 //
 #pragma once
 
-#include "QAccelPlot/QAccelPlot.hpp"
+#include "QAccelPlot/PlotView.hpp"
 
 #include <QFutureWatcher>
 #include <QImage>
@@ -49,7 +49,7 @@ class PlotExporter : public QObject {
     Q_OBJECT
     QML_NAMED_ELEMENT(PlotExporter)
     /// \brief Plot to export; null once the plot is destroyed.
-    Q_PROPERTY(::QAccelPlot::QAccelPlot* plot READ plot WRITE setPlot NOTIFY plotChanged)
+    Q_PROPERTY(PlotView* plot READ plot WRITE setPlot NOTIFY plotChanged)
     /// \brief Image pixels per logical pixel; 0 uses the window's device pixel ratio. Default: 0.
     ///
     /// At a device pixel ratio other than 1, Qt 6.3 and later cannot render every image size, so
@@ -85,9 +85,9 @@ public:
     PlotExporter& operator=(PlotExporter&&) = delete;
 
     /// \brief Returns the plot to export.
-    ::QAccelPlot::QAccelPlot* plot() const;
+    PlotView* plot() const;
     /// \brief Sets the plot to export; a request in progress keeps its plot.
-    void setPlot(::QAccelPlot::QAccelPlot* plot);
+    void setPlot(PlotView* plot);
     /// \brief Returns the image pixels per logical pixel; 0 means the window's device pixel ratio.
     qreal scale() const;
     /// \brief Sets the image pixels per logical pixel; negative and nonfinite values are ignored with a warning.
@@ -156,7 +156,7 @@ private:
     void finish(bool ok, const QString& path, const QString& error);
     void setBusy(bool busy);
 
-    QPointer<::QAccelPlot::QAccelPlot> plot_;
+    QPointer<PlotView> plot_;
     qreal scale_{0.0};
     int quality_{-1};
     qreal dpi_{0.0};

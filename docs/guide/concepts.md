@@ -168,7 +168,7 @@ Produce data on a worker thread if needed, but never mutate UI objects from it.
 Use [`LineCurve::postData()`][post-data] or a queued call. See
 [Background data production](cookbook/background-data.md).
 
-[plot-rect]: api/classQAccelPlot_1_1QAccelPlot.md#property-plotrect-12
+[plot-rect]: api/classQAccelPlot_1_1PlotView.md#property-plotrect-12
 [viewport-min]: api/classQAccelPlot_1_1Axis.md#property-viewportmin-12
 [viewport-max]: api/classQAccelPlot_1_1Axis.md#property-viewportmax-12
 [data-min]: api/classQAccelPlot_1_1Axis.md#property-datamin-12
@@ -177,15 +177,15 @@ Use [`LineCurve::postData()`][post-data] or a queued call. See
 [auto-rescale]: api/classQAccelPlot_1_1Axis.md#property-autorescale-12
 [series-x-axis]: api/classQAccelPlot_1_1PlotSeries.md#property-xaxis-12
 [series-y-axis]: api/classQAccelPlot_1_1PlotSeries.md#property-yaxis-12
-[plot-x-axis]: api/classQAccelPlot_1_1QAccelPlot.md#property-xaxis-12
-[plot-y-axis]: api/classQAccelPlot_1_1QAccelPlot.md#property-yaxis-12
-[plot-x2-axis]: api/classQAccelPlot_1_1QAccelPlot.md#property-x2axis-12
-[plot-y2-axis]: api/classQAccelPlot_1_1QAccelPlot.md#property-y2axis-12
-[extra-axes]: api/classQAccelPlot_1_1QAccelPlot.md#property-extraaxes-12
-[data-to-pixel-x]: api/classQAccelPlot_1_1QAccelPlot.md#function-datatopixelx
-[data-to-pixel-y]: api/classQAccelPlot_1_1QAccelPlot.md#function-datatopixely
-[pixel-to-data-x]: api/classQAccelPlot_1_1QAccelPlot.md#function-pixeltodatax
-[pixel-to-data-y]: api/classQAccelPlot_1_1QAccelPlot.md#function-pixeltodatay
-[is-inside-plot-area]: api/classQAccelPlot_1_1QAccelPlot.md#function-isinsideplotarea
+[plot-x-axis]: api/classQAccelPlot_1_1PlotView.md#property-xaxis-12
+[plot-y-axis]: api/classQAccelPlot_1_1PlotView.md#property-yaxis-12
+[plot-x2-axis]: api/classQAccelPlot_1_1PlotView.md#property-x2axis-12
+[plot-y2-axis]: api/classQAccelPlot_1_1PlotView.md#property-y2axis-12
+[extra-axes]: api/classQAccelPlot_1_1PlotView.md#property-extraaxes-12
+[data-to-pixel-x]: api/classQAccelPlot_1_1PlotView.md#function-datatopixelx
+[data-to-pixel-y]: api/classQAccelPlot_1_1PlotView.md#function-datatopixely
+[pixel-to-data-x]: api/classQAccelPlot_1_1PlotView.md#function-pixeltodatax
+[pixel-to-data-y]: api/classQAccelPlot_1_1PlotView.md#function-pixeltodatay
+[is-inside-plot-area]: api/classQAccelPlot_1_1PlotView.md#function-isinsideplotarea
 [post-data]: api/classQAccelPlot_1_1LineCurve.md#function-postdata-22
 [line-curve]: api/classQAccelPlot_1_1LineCurve.md

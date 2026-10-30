@@ -5,7 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "QAccelPlot/QAccelPlot.hpp"
+#include "QAccelPlot/PlotView.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/inspection/SelectionTool.hpp"
 #include "QAccelPlot/series/BarSeries.hpp"
@@ -82,7 +82,7 @@ void TestColorPalette::cppDefaultsUseDarkPalette()
     QCOMPARE(axis.ticker()->tickColor(), palette.tick);
     QCOMPARE(axis.ticker()->subtickColor(), palette.subtick);
 
-    const QAccelPlot::QAccelPlot plot;
+    const QAccelPlot::PlotView plot;
     QCOMPARE(plot.plotAreaColor(), palette.plotArea);
     QCOMPARE(plot.axesAreaColor(), palette.axesArea);
     QCOMPARE(plot.rectangleZoom()->fillColor(), palette.rectangleZoomFill);

@@ -9,7 +9,7 @@
 
 #include "QAccelPlot/Border.hpp"
 #include "QAccelPlot/PlotDragRect.hpp"
-#include "QAccelPlot/QAccelPlot.hpp"
+#include "QAccelPlot/PlotView.hpp"
 #include "QAccelPlot/inspection/InspectionRowModel.hpp"
 
 #include <limits>
@@ -33,11 +33,11 @@ class SelectionTool : public QObject {
     Q_OBJECT
     QML_NAMED_ELEMENT(SelectionTool)
     /// \brief Plot receiving the selection gestures.
-    Q_PROPERTY(::QAccelPlot::QAccelPlot* plot READ plot WRITE setPlot NOTIFY plotChanged)
+    Q_PROPERTY(PlotView* plot READ plot WRITE setPlot NOTIFY plotChanged)
     /// \brief Axis the X limits refer to; unset uses the plot's primary X axis.
-    Q_PROPERTY(::QAccelPlot::Axis* xAxis READ xAxis WRITE setXAxis NOTIFY xAxisChanged)
+    Q_PROPERTY(Axis* xAxis READ xAxis WRITE setXAxis NOTIFY xAxisChanged)
     /// \brief Axis the Y limits refer to; unset uses the plot's primary Y axis.
-    Q_PROPERTY(::QAccelPlot::Axis* yAxis READ yAxis WRITE setYAxis NOTIFY yAxisChanged)
+    Q_PROPERTY(Axis* yAxis READ yAxis WRITE setYAxis NOTIFY yAxisChanged)
     /// \brief Enables gestures; disabling cancels a gesture in progress and keeps the selection. Default: true.
     Q_PROPERTY(bool enabled READ enabled WRITE setEnabled NOTIFY enabledChanged)
     /// \brief Region a gesture selects: a box, an X range, or a Y range. Default: Box.
@@ -51,7 +51,7 @@ class SelectionTool : public QObject {
     /// \brief Fill color of the rectangle. Default: \c Colors.dark.selectionFill.
     Q_PROPERTY(QColor fillColor READ fillColor WRITE setFillColor NOTIFY fillColorChanged)
     /// \brief Outline inside the rectangle's edges. Default: \c Colors.dark.selectionBorder, width 1.
-    Q_PROPERTY(::QAccelPlot::Border* border READ border CONSTANT)
+    Q_PROPERTY(Border* border READ border CONSTANT)
     /// \brief Draws the gesture and the selected region. Disable it to draw \c pixelRect yourself. Default: true.
     Q_PROPERTY(bool rectangleVisible READ rectangleVisible WRITE setRectangleVisible NOTIFY rectangleVisibleChanged)
     /// \brief True while a gesture is in progress.
@@ -69,7 +69,7 @@ class SelectionTool : public QObject {
     /// \brief Upper Y limit of the selection; Infinity when unbounded, NaN without a selection.
     Q_PROPERTY(qreal yMax READ yMax NOTIFY selectionChanged)
     /// \brief Read-only constant: one row of region statistics per selected series.
-    Q_PROPERTY(::QAccelPlot::InspectionRowModel* model READ model CONSTANT)
+    Q_PROPERTY(InspectionRowModel* model READ model CONSTANT)
 
 public:
     /// \brief Region selected by a gesture.
@@ -84,9 +84,9 @@ public:
     explicit SelectionTool(QObject* parent = nullptr);
 
     /// \brief Returns the attached plot.
-    ::QAccelPlot::QAccelPlot* plot() const;
+    PlotView* plot() const;
     /// \brief Attaches to \a plot and clears the selection.
-    void setPlot(::QAccelPlot::QAccelPlot* plot);
+    void setPlot(PlotView* plot);
     /// \brief Returns the axis the X limits refer to.
     Axis* xAxis() const;
     /// \brief Sets the X axis and clears the selection; null uses the plot's primary X axis.
@@ -147,7 +147,7 @@ public:
     /// \brief Returns one page of \a series' source indices inside the selection, against its current data.
     ///
     /// Pages like \c SeriesInspection::indices(): \a limit must be positive and is capped at 4096.
-    Q_INVOKABLE ::QAccelPlot::InspectionPage indices(::QAccelPlot::PlotSeries* series, int offset = 0, int limit = 4096);
+    Q_INVOKABLE InspectionPage indices(PlotSeries* series, int offset = 0, int limit = 4096);
     /// \brief Cancels a gesture in progress and clears the selection.
     Q_INVOKABLE void clear();
 
@@ -204,7 +204,7 @@ private:
     QRectF regionRect() const;
     Region regionFromGesture(const QRectF& pixels) const;
 
-    QPointer<::QAccelPlot::QAccelPlot> plot_;
+    QPointer<PlotView> plot_;
     QPointer<Axis> xAxis_;
     QPointer<Axis> yAxis_;
     bool enabled_{true};

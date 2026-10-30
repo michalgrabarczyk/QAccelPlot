@@ -26,15 +26,15 @@ struct LegendEntry {
     Q_GADGET
     QML_ANONYMOUS
     /// \brief Symbol style.
-    Q_PROPERTY(::QAccelPlot::PlotSeries::LegendSymbol symbol MEMBER symbol CONSTANT)
+    Q_PROPERTY(PlotSeries::LegendSymbol symbol MEMBER symbol CONSTANT)
     /// \brief Color of the line, marker, or fill.
     Q_PROPERTY(QColor color MEMBER color CONSTANT)
     /// \brief Line width in pixels.
     Q_PROPERTY(qreal lineWidth MEMBER lineWidth CONSTANT)
     /// \brief Line style, or null for a solid line. Owned by the series.
-    Q_PROPERTY(::QAccelPlot::LineStyle* lineStyle MEMBER lineStyle CONSTANT)
+    Q_PROPERTY(LineStyle* lineStyle MEMBER lineStyle CONSTANT)
     /// \brief Marker shape; \c None draws no marker.
-    Q_PROPERTY(::QAccelPlot::MarkerShape markerShape MEMBER markerShape CONSTANT)
+    Q_PROPERTY(MarkerShape markerShape MEMBER markerShape CONSTANT)
     /// \brief Marker size in pixels.
     Q_PROPERTY(qreal markerSize MEMBER markerSize CONSTANT)
     /// \brief Whether the marker is filled.

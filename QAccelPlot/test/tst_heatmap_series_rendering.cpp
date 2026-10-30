@@ -5,7 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "QAccelPlot/QAccelPlot.hpp"
+#include "QAccelPlot/PlotView.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/effects/Colormap.hpp"
 #include "QAccelPlot/series/HeatmapSeries.hpp"
@@ -77,7 +77,7 @@ public:
         window_.resize(400, 300);
         component_.setData(kScene, QUrl{});
         root_.reset(component_.create());
-        plot_ = qobject_cast<QAccelPlot*>(root_.get());
+        plot_ = qobject_cast<PlotView*>(root_.get());
         if (plot_) {
             plot_->setParentItem(window_.contentItem());
             window_.show();
@@ -99,7 +99,7 @@ public:
         return window_;
     }
 
-    QAccelPlot* plot() const
+    PlotView* plot() const
     {
         return plot_;
     }
@@ -124,7 +124,7 @@ private:
     QQmlEngine engine_;
     QQmlComponent component_{&engine_};
     std::unique_ptr<QObject> root_;
-    QAccelPlot* plot_{nullptr};
+    PlotView* plot_{nullptr};
 };
 
 // Columns and visible cells of highCellIndicesStayExactInMixedMappings().

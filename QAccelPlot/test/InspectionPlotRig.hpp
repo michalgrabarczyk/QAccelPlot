@@ -7,7 +7,7 @@
 //
 #pragma once
 
-#include <QAccelPlot/QAccelPlot.hpp>
+#include <QAccelPlot/PlotView.hpp>
 #include <QAccelPlot/series/LineCurve.hpp>
 
 #include <vector>
@@ -18,15 +18,15 @@ namespace InspectionTest {
 using namespace QAccelPlot;
 
 // Exposes the event handlers of PlotView, so tests can deliver events without a window.
-class InspectionPlot : public ::QAccelPlot::QAccelPlot {
+class InspectionPlot : public QAccelPlot::PlotView {
 public:
-    using ::QAccelPlot::QAccelPlot::hoverLeaveEvent;
-    using ::QAccelPlot::QAccelPlot::hoverMoveEvent;
-    using ::QAccelPlot::QAccelPlot::keyPressEvent;
-    using ::QAccelPlot::QAccelPlot::mouseMoveEvent;
-    using ::QAccelPlot::QAccelPlot::mousePressEvent;
-    using ::QAccelPlot::QAccelPlot::mouseReleaseEvent;
-    using ::QAccelPlot::QAccelPlot::mouseUngrabEvent;
+    using QAccelPlot::PlotView::hoverLeaveEvent;
+    using QAccelPlot::PlotView::hoverMoveEvent;
+    using QAccelPlot::PlotView::keyPressEvent;
+    using QAccelPlot::PlotView::mouseMoveEvent;
+    using QAccelPlot::PlotView::mousePressEvent;
+    using QAccelPlot::PlotView::mouseReleaseEvent;
+    using QAccelPlot::PlotView::mouseUngrabEvent;
 };
 
 // A windowless plot with primary axes and helpers to drive its pointer.

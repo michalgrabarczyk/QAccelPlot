@@ -50,7 +50,7 @@ struct InspectionDataPoint {
     Q_GADGET
     QML_ANONYMOUS
     /// \brief Query outcome.
-    Q_PROPERTY(::QAccelPlot::InspectionNS::Status status MEMBER status CONSTANT)
+    Q_PROPERTY(InspectionNS::Status status MEMBER status CONSTANT)
     /// \brief True when status is \c Ready.
     Q_PROPERTY(bool valid READ valid CONSTANT)
     /// \brief Data revision the query ran against.
@@ -95,7 +95,7 @@ struct InspectionSummary {
     Q_GADGET
     QML_ANONYMOUS
     /// \brief Query outcome; \c NoMatch for an empty region.
-    Q_PROPERTY(::QAccelPlot::InspectionNS::Status status MEMBER status CONSTANT)
+    Q_PROPERTY(InspectionNS::Status status MEMBER status CONSTANT)
     /// \brief True when status is \c Ready.
     Q_PROPERTY(bool valid READ valid CONSTANT)
     /// \brief Data revision the query ran against.
@@ -135,19 +135,19 @@ struct InspectionBracket {
     Q_GADGET
     QML_ANONYMOUS
     /// \brief \c Ready when at least one neighbor exists.
-    Q_PROPERTY(::QAccelPlot::InspectionNS::Status status MEMBER status CONSTANT)
+    Q_PROPERTY(InspectionNS::Status status MEMBER status CONSTANT)
     /// \brief True when status is \c Ready.
     Q_PROPERTY(bool valid READ valid CONSTANT)
     /// \brief Data revision the query ran against.
     Q_PROPERTY(quint64 dataRevision MEMBER dataRevision CONSTANT)
     /// \brief Valid data point with the largest coordinate at or below the position; invalid when there is none.
-    Q_PROPERTY(::QAccelPlot::InspectionDataPoint left MEMBER left CONSTANT)
+    Q_PROPERTY(InspectionDataPoint left MEMBER left CONSTANT)
     /// \brief Valid data point with the smallest coordinate above the position; invalid when there is none.
-    Q_PROPERTY(::QAccelPlot::InspectionDataPoint right MEMBER right CONSTANT)
+    Q_PROPERTY(InspectionDataPoint right MEMBER right CONSTANT)
     /// \brief True when both neighbors exist and their source indices are consecutive.
     Q_PROPERTY(bool adjacent MEMBER adjacent CONSTANT)
     /// \brief Point on the line between adjacent neighbors: the straight on-screen segment, or the steps of a step line; invalid otherwise.
-    Q_PROPERTY(::QAccelPlot::InspectionDataPoint interpolated MEMBER interpolated CONSTANT)
+    Q_PROPERTY(InspectionDataPoint interpolated MEMBER interpolated CONSTANT)
 
 public:
     InspectionStatus status{InspectionStatus::NoMatch}; ///< \brief Query outcome.
@@ -166,7 +166,7 @@ struct InspectionPage {
     Q_GADGET
     QML_ANONYMOUS
     /// \brief Query outcome; \c Ready also for an empty page of a matching region.
-    Q_PROPERTY(::QAccelPlot::InspectionNS::Status status MEMBER status CONSTANT)
+    Q_PROPERTY(InspectionNS::Status status MEMBER status CONSTANT)
     /// \brief True when status is \c Ready.
     Q_PROPERTY(bool valid READ valid CONSTANT)
     /// \brief Data revision the indices refer to.
@@ -203,7 +203,7 @@ struct InspectionRecord {
     Q_GADGET
     QML_ANONYMOUS
     /// \brief Query outcome.
-    Q_PROPERTY(::QAccelPlot::InspectionNS::Status status MEMBER status CONSTANT)
+    Q_PROPERTY(InspectionNS::Status status MEMBER status CONSTANT)
     /// \brief True when status is \c Ready.
     Q_PROPERTY(bool valid READ valid CONSTANT)
     /// \brief Data revision the query ran against.
