@@ -51,7 +51,6 @@ class PointCloud : public ColormappedSeries {
     Q_PROPERTY(qreal hoverRadius READ hoverRadius WRITE setHoverRadius NOTIFY hoverRadiusChanged)
     Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
     Q_PROPERTY(int count READ count NOTIFY countChanged)
-    Q_PROPERTY(bool hasValues READ hasValues NOTIFY countChanged)
     Q_PROPERTY(int hoveredIndex READ hoveredIndex NOTIFY hoveredIndexChanged)
 
 public:
@@ -76,7 +75,6 @@ public:
     void setTransition(DataTransition* transition);
 
     int count() const;
-    bool hasValues() const;
     int hoveredIndex() const;
 
     Q_INVOKABLE void setData(const QList<QPointF>& points);
@@ -126,6 +124,7 @@ private:
         int stride{2};
     };
 
+    bool hasValues() const;
     bool validateValues(std::size_t valueCount, int pointCount) const;
     void applyData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
     void applyFloatData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
@@ -165,8 +164,6 @@ private:
     // The previous transition frame, reused for the next one.
     std::vector<double> frameBuffer_;
 
-    // hasValues() as countChanged() last reported it.
-    bool reportedHasValues_{false};
     // Render revision of the data points last uploaded to the GPU.
     std::uint64_t uploadedRevision_{0};
 

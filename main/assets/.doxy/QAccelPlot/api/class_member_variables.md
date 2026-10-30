@@ -477,7 +477,6 @@
 * **radius\_** ([**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md))
 * **refreshing\_** ([**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md))
 * **renderCapacity\_** ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
-* **reportedHasValues\_** ([**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
 * **rectangleZoomOverlay\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **rectangleZoom\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **rectangle\_** ([**QAccelPlot::SelectionRectangle**](classQAccelPlot_1_1SelectionRectangle.md), [**QAccelPlot::SelectionTool**](classQAccelPlot_1_1SelectionTool.md))

@@ -124,22 +124,6 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="84" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="84" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="classQAccelPlot_1_1PointCloud_1ab8989dd9a7dd06f89a359a66b4f4ebff" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type>bool</type>
-        <definition>bool QAccelPlot::PointCloud::hasValues</definition>
-        <argsstring></argsstring>
-        <name>hasValues</name>
-        <qualifiedname>QAccelPlot::PointCloud::hasValues</qualifiedname>
-        <read>hasValues</read>
-        <briefdescription>
-<para>Read-only: <computeroutput>true</computeroutput> when per-point values are stored. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="86" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="86" bodyend="-1"/>
-      </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1PointCloud_1af34bcbc6a6bbb24fb56116ccbdeeb9be" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>int</type>
         <definition>int QAccelPlot::PointCloud::hoveredIndex</definition>
@@ -148,13 +132,13 @@
         <qualifiedname>QAccelPlot::PointCloud::hoveredIndex</qualifiedname>
         <read>hoveredIndex</read>
         <briefdescription>
-<para>Read-only: index of the point under the cursor, or -1 when none. </para>
+<para>Read-only: index of the valid point nearest the pointer within <computeroutput>hoverRadius</computeroutput>, or -1 when none. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="88" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="88" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="86" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="86" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-attrib">
@@ -171,7 +155,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="247" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="247" bodyend="247"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="244" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="244" bodyend="244"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1PointCloud_1a822d60e46036546f1f90c8569ab93858" prot="private" static="no" mutable="no">
         <type><ref refid="classQAccelPlot_1_1SeriesMarker" kindref="compound">SeriesMarker</ref> *</type>
@@ -186,7 +170,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="248" column="18" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="248" bodyend="248"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="245" column="18" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="245" bodyend="245"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1PointCloud_1a10b4107bd3b75c5d30c318a97920a229" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -201,7 +185,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="249" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="249" bodyend="249"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="246" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="246" bodyend="246"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1PointCloud_1aa0f835b2844f13994753d6a5490be044" prot="private" static="no" mutable="no">
         <type>qreal</type>
@@ -216,7 +200,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="250" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="250" bodyend="250"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="247" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="247" bodyend="247"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1PointCloud_1a0b42684ec23bb720e245c2e225e6d643" prot="private" static="no" mutable="no">
         <type>qreal</type>
@@ -231,7 +215,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="251" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="251" bodyend="251"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="248" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="248" bodyend="248"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1PointCloud_1ae675afc6f71e938d1b857f62b9705d0b" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -246,7 +230,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="252" column="9" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="252" bodyend="252"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="249" column="9" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="249" bodyend="249"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1PointCloud_1a88fdaeb6803ae6065e81b8efb0d251dc" prot="private" static="no" mutable="no">
         <type>std::unique_ptr&lt; <ref refid="classQAccelPlot_1_1TransitionRunner" kindref="compound">TransitionRunner</ref> &gt;</type>
@@ -260,7 +244,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="253" column="21" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="253" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="250" column="21" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="250" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1PointCloud_1a94a62a9ebc787f1d8b3fa1c78e95a669" prot="private" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -274,22 +258,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="255" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="255" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classQAccelPlot_1_1PointCloud_1aace33ec25bc55d4d0c033909c164f47c" prot="private" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool QAccelPlot::PointCloud::reportedHasValues_</definition>
-        <argsstring></argsstring>
-        <name>reportedHasValues_</name>
-        <qualifiedname>QAccelPlot::PointCloud::reportedHasValues_</qualifiedname>
-        <initializer>{false}</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="258" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="258" bodyend="258"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="252" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="252" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1PointCloud_1a08576e864dd31f3b8b680d046a26a8ce" prot="private" static="no" mutable="no">
         <type>std::uint64_t</type>
@@ -304,7 +273,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="260" column="19" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="260" bodyend="260"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="255" column="19" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="255" bodyend="255"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1PointCloud_1a42499fdd03596b6179c6605b18429408" prot="private" static="no" mutable="yes">
         <type><ref refid="classQAccelPlot_1_1PointSpatialIndex" kindref="compound">PointSpatialIndex</ref></type>
@@ -318,7 +287,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="262" column="31" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="262" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="257" column="31" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="257" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1PointCloud_1a1c81fe4e4bbacf7ef2a726bd877a1595" prot="private" static="no" mutable="yes">
         <type>bool</type>
@@ -333,7 +302,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="263" column="18" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="263" bodyend="263"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="258" column="18" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="258" bodyend="258"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1PointCloud_1a1aceacac5898df34fc7a6526e6452b04" prot="private" static="no" mutable="yes">
         <type>std::uint64_t</type>
@@ -348,7 +317,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="265" column="27" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="265" bodyend="265"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="260" column="27" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="260" bodyend="260"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1PointCloud_1aea57bda0aacc8688a186a31dc7cc9e86" prot="private" static="no" mutable="no">
         <type>std::unique_ptr&lt; <ref refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget" kindref="compound">Internal::HoverIndexBudget</ref> &gt;</type>
@@ -362,7 +331,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="266" column="21" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="266" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="261" column="21" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="261" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1PointCloud_1ad1049b66d981e9ad4f5191843148e964" prot="private" static="no" mutable="yes">
         <type>std::optional&lt; HoverQuery &gt;</type>
@@ -376,7 +345,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="269" column="27" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="269" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="264" column="27" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="264" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1PointCloud_1a3e818cfa638e1233cdc795f6b33acf7d" prot="private" static="no" mutable="yes">
         <type>int</type>
@@ -391,7 +360,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="270" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="270" bodyend="270"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="265" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="265" bodyend="265"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -413,7 +382,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="92" column="14"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="90" column="14"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a4293493391e4cb4f67401982c3c684e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -428,7 +397,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="94" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="92" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a94ff119e27df5d9b1e7c3b56c4da07ea" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QColor</type>
@@ -443,7 +412,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="97" column="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="95" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a25bbd2b145c6eb1bd9bd4e79bf6dce25" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -462,7 +431,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="99" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="97" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a2df04fe4b70283212f6934c8d961a9a2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classQAccelPlot_1_1SeriesMarker" kindref="compound">SeriesMarker</ref> *</type>
@@ -477,7 +446,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="102" column="18"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="100" column="18"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a647b1f263ba4ee38945cf8c495918f29" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -492,7 +461,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="105" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="103" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1ab6daa72acc6fdf463e265bb4488442d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -511,7 +480,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="107" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="105" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a45e5332ad92d494d2e02f28b0413556a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -526,7 +495,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="110" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="108" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1ae3e8aabe9cb1fcfa3a80c71f602061a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -545,7 +514,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="112" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="110" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a4927f09bf1cbdb981d546ca05568730e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -560,7 +529,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="115" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="113" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1aa5297e28f99a3278cac34ea8babead06" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -579,7 +548,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="117" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="115" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1aaf2b6db466037cd8b2f2f00a48bcd044" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classQAccelPlot_1_1DataTransition" kindref="compound">DataTransition</ref> *</type>
@@ -594,7 +563,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="120" column="20"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="118" column="20"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a3800e081dda31276d163404f0190ab8a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -613,7 +582,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="122" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="120" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a7ae691f4d303db6336e0300060c62fa9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -628,22 +597,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="125" column="9"/>
-      </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a08ede2666d5ef51c06995bb9eadc20a5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>bool</type>
-        <definition>bool QAccelPlot::PointCloud::hasValues</definition>
-        <argsstring>() const</argsstring>
-        <name>hasValues</name>
-        <qualifiedname>QAccelPlot::PointCloud::hasValues</qualifiedname>
-        <briefdescription>
-<para>Returns <computeroutput>true</computeroutput> when per-point values are stored. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="127" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="123" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a44b5e55fc5d478c652dbc4979d62d163" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -658,7 +612,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="129" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="125" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1ad47d2cc0b658940c884b8f444edd18d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE void</type>
@@ -677,7 +631,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="132" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="128" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1ae3454b004bfd167b804a2b25ed64ba12" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE void</type>
@@ -696,7 +650,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="134" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="130" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a10f02cf4c7a9680f49605850ba2c4d29" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE QPointF</type>
@@ -715,7 +669,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="136" column="25"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="132" column="25"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1ac923485b66aa207b95ab790209f9fdc4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE qreal</type>
@@ -734,7 +688,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="138" column="23"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="134" column="23"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a6b832a941a050ecd402d7ae70e00d8af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -761,7 +715,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="141" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="137" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a7a518695b76d7dcf5bccae0efa4fc50b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -788,7 +742,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="143" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="139" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1ae4c10b12baaef1662956fa918b390128" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -815,7 +769,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="148" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="144" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a7edd7b0179cbbaa27c9ecadaa5d87390" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -842,7 +796,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="150" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="146" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1aa5205181b8e2333a3ca4e633adb1c160" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>Q_INVOKABLE void</type>
@@ -858,7 +812,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="152" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="148" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a5aa655aa86c9f0b1059a677985bdbe75" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type>std::optional&lt; <ref refid="structQAccelPlot_1_1LegendEntry" kindref="compound">LegendEntry</ref> &gt;</type>
@@ -874,7 +828,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="154" column="19"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="150" column="19"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a9117af696764fed41e8f19d0e38ab4e8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -893,7 +847,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="157" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="153" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a5e6f1b2626c2c168b597cd57c2e2ccac" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -913,7 +867,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="162" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="158" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1acbf8fb06d9d8ca2a5ab3a0c4e060a4b4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -936,7 +890,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="144" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="140" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1aad3e05b7da4d8c16ca53819017e7b6e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -959,7 +913,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="144" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="140" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a5615889cceabfee35f5e3e2dbd25f455" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -983,7 +937,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="145" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="141" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1af143a846c63372800995a0bd4f058598" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1006,7 +960,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="145" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="141" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a683165ce25c4f4a2f0cf3a36852c3721" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1033,7 +987,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="145" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="141" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1ad10aa7307918305c127eb0b98c962484" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1060,7 +1014,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="145" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="141" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1aa3475ca31d506b1b1c28ea586d61402e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1083,7 +1037,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="146" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="142" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a1180d75ce402fbf92fd7d95a4d0acda4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1106,7 +1060,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="146" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="142" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1ab0d977683b1b06807842ade3c6011a3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1133,7 +1087,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="146" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="142" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a795dc3374e83da98b6a471bb55f51fbd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1160,7 +1114,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="146" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="142" column="5"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="signal">
@@ -1177,7 +1131,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="166" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="162" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1PointCloud_1a73d3f93967024265ab07949f42cb45c0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1192,7 +1146,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="168" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="164" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1PointCloud_1a540a55d471b9b1a858d90d5d1eccfbd2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1207,7 +1161,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="170" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="166" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1PointCloud_1aea50d23675849a6aa3025f8026488769" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1222,7 +1176,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="172" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="168" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1PointCloud_1adb00c7dac2cb5bfb42b99dd44f14af35" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1237,7 +1191,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="174" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="170" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1PointCloud_1a4b0aa9917e895b57b5da4495a360e1ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1246,13 +1200,13 @@
         <name>countChanged</name>
         <qualifiedname>QAccelPlot::PointCloud::countChanged</qualifiedname>
         <briefdescription>
-<para>Emitted when the number of points or the presence of values changes. </para>
+<para>Emitted when the number of points changes. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="176" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="172" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1PointCloud_1a76242f92d2aedf45d9226a8057b57644" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1267,7 +1221,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="178" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="174" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="protected-func">
@@ -1289,7 +1243,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="191" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="187" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a7c2ecabe80870f75863ba1705b4f82cb" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -1305,7 +1259,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="193" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="189" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1af2a8483764f73e4d266d1f669348ef40" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -1329,7 +1283,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="195" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="191" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a8d0f77d90255e670a1200969deeb6535" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type>std::optional&lt; <ref refid="structQAccelPlot_1_1ColormappedSeries_1_1ValueSpan" kindref="compound">ValueSpan</ref> &gt;</type>
@@ -1345,10 +1299,24 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="197" column="19"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="193" column="19"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a08ede2666d5ef51c06995bb9eadc20a5" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PointCloud::hasValues</definition>
+        <argsstring>() const</argsstring>
+        <name>hasValues</name>
+        <qualifiedname>QAccelPlot::PointCloud::hasValues</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="203" column="10"/>
+      </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a8158b3b0c19709dc6dbb029bef8bf15b" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
         <definition>bool QAccelPlot::PointCloud::validateValues</definition>
@@ -1369,7 +1337,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="207" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="204" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a2fe50df8d683c596c10fdf82caf35907" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1395,7 +1363,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="208" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="205" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a9955c16e68d4e4dce85063404d6008b3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1422,7 +1390,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="210" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="207" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1af0757e9834af259d929231d6d7495a2d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1448,7 +1416,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="211" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="208" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1ae69297fbaf3cb71d681241abf377de1c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1467,7 +1435,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="213" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="210" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a92742d9da9e925e2dc7394dc39356db9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1485,7 +1453,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="214" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="211" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1ad1aed60e9356e823c4dc5b4626c1b3db" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -1500,7 +1468,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="216" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="213" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1aa597feebf4c17132f12964685f18d025" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1514,7 +1482,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="217" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="214" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a7c8e358f879c91160d85c3a4e065262f" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -1533,7 +1501,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="219" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="216" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a4c23e0924b73e64c794dafdd40424a95" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -1551,7 +1519,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="232" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="229" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1abebd6016af661da2b17af8d18e8e3724" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1570,7 +1538,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="234" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="231" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a249341c8502c6b43e6dfa1f1b0dc5f10" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; double &gt;</type>
@@ -1585,7 +1553,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="236" column="17"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="233" column="17"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a1ea83c3d9a4c723074c88acba0ca9d49" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Points</type>
@@ -1600,7 +1568,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="238" column="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="235" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a60b2601d43310b5f7308afff0b72ed8b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1619,7 +1587,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="240" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="237" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1af138fcfdfd37fc45106a7be4b7dd28cd" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1633,7 +1601,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="241" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="238" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a0444634c59f1e2b8653e6ac8df408ea7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1648,7 +1616,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="243" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="240" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PointCloud_1a666c617e1b03b9473066098808a78d7d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1663,7 +1631,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="245" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="242" column="10"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -1728,7 +1696,7 @@
         <label>QQuickItem</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="65" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="65" bodyend="271"/>
+    <location file="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" line="65" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/PointCloud.hpp" bodystart="65" bodyend="266"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1PointCloud_1af138fcfdfd37fc45106a7be4b7dd28cd" prot="private" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>advanceTransition</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1abebd6016af661da2b17af8d18e8e3724" prot="private" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>animateValues</name></member>
@@ -1780,8 +1748,7 @@
       <member refid="classQAccelPlot_1_1PlotSeries_1a8b6aac884387c8f8471b1eaab5557872" prot="protected" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>extendYDataRange</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1ae69297fbaf3cb71d681241abf377de1c" prot="private" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>finishValueChange</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1a94a62a9ebc787f1d8b3fa1c78e95a669" prot="private" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>frameBuffer_</name></member>
-      <member refid="classQAccelPlot_1_1PointCloud_1ab8989dd9a7dd06f89a359a66b4f4ebff" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>hasValues</name></member>
-      <member refid="classQAccelPlot_1_1PointCloud_1a08ede2666d5ef51c06995bb9eadc20a5" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>hasValues</name></member>
+      <member refid="classQAccelPlot_1_1PointCloud_1a08ede2666d5ef51c06995bb9eadc20a5" prot="private" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>hasValues</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1af34bcbc6a6bbb24fb56116ccbdeeb9be" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>hoveredIndex</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1a44b5e55fc5d478c652dbc4979d62d163" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>hoveredIndex</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1ae675afc6f71e938d1b857f62b9705d0b" prot="private" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>hoveredIndex_</name></member>
@@ -1845,7 +1812,6 @@
       <member refid="classQAccelPlot_1_1PointCloud_1aad3e05b7da4d8c16ca53819017e7b6e0" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>postData</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a11565c208e7f6c2615d367e96b133fd9" prot="protected" virt="virtual"><scope>QAccelPlot::PointCloud</scope><name>recordInspectionSupported</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1af46b6cad22a7db687f5b6a93c960abd4" prot="protected" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>renderCapacity_</name></member>
-      <member refid="classQAccelPlot_1_1PointCloud_1aace33ec25bc55d4d0c033909c164f47c" prot="private" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>reportedHasValues_</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a956e8eb1ca7398b6b5f8022225d6edf7" prot="protected" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>resolvePlotRect</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1a8d0f77d90255e670a1200969deeb6535" prot="protected" virt="virtual"><scope>QAccelPlot::PointCloud</scope><name>scanValueRange</name></member>
       <member refid="classQAccelPlot_1_1PointCloud_1ab6daa72acc6fdf463e265bb4488442d0" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCloud</scope><name>setAntialiasingEnabled</name></member>

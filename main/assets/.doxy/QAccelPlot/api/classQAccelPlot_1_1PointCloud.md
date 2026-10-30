@@ -108,9 +108,8 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | property qreal | [**antialiasingFeather**](classQAccelPlot_1_1PointCloud.md#property-antialiasingfeather-12)  <br>_Anti-aliasing feather width in pixels, clamped to [0, 10]. Default: 1._  |
 | property QColor | [**color**](classQAccelPlot_1_1PointCloud.md#property-color-12)  <br>_Uniform marker color, also used by the legend. Default:_ `Colors.dark.seriesPrimary` _._ |
 | property int | [**count**](classQAccelPlot_1_1PointCloud.md#property-count-12)  <br>_Read-only: number of points currently stored, including invalid ones._  |
-| property bool | [**hasValues**](classQAccelPlot_1_1PointCloud.md#property-hasvalues-12)  <br>_Read-only:_ `true` _when per-point values are stored._ |
 | property qreal | [**hoverRadius**](classQAccelPlot_1_1PointCloud.md#property-hoverradius-12)  <br>_Pick radius in pixels used for hover detection. Default: 6._  |
-| property int | [**hoveredIndex**](classQAccelPlot_1_1PointCloud.md#property-hoveredindex-12)  <br>_Read-only: index of the point under the cursor, or -1 when none._  |
+| property int | [**hoveredIndex**](classQAccelPlot_1_1PointCloud.md#property-hoveredindex-12)  <br>_Read-only: index of the valid point nearest the pointer within_ `hoverRadius` _, or -1 when none._ |
 | property [**SeriesMarker**](classQAccelPlot_1_1SeriesMarker.md) \* | [**marker**](classQAccelPlot_1_1PointCloud.md#property-marker-12)  <br>_Grouped marker settings, e.g._ `marker.shape` _and_`marker.size` _._`marker.shape` _defaults to_`Circle` _and does not accept_`None` _, because a cloud always draws markers;_`marker.size` _defaults to 3._ |
 | property [**DataTransition**](classQAccelPlot_1_1DataTransition.md) \* | [**transition**](classQAccelPlot_1_1PointCloud.md#property-transition-12)  <br>_Optional data transition animation applied when new data arrives._  |
 
@@ -155,7 +154,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | signal void | [**antialiasingEnabledChanged**](classQAccelPlot_1_1PointCloud.md#signal-antialiasingenabledchanged)  <br>_Emitted when the antialiasingEnabled property changes._  |
 | signal void | [**antialiasingFeatherChanged**](classQAccelPlot_1_1PointCloud.md#signal-antialiasingfeatherchanged)  <br>_Emitted when the antialiasingFeather property changes._  |
 | signal void | [**colorChanged**](classQAccelPlot_1_1PointCloud.md#signal-colorchanged)  <br>_Emitted when the color property changes._  |
-| signal void | [**countChanged**](classQAccelPlot_1_1PointCloud.md#signal-countchanged)  <br>_Emitted when the number of points or the presence of values changes._  |
+| signal void | [**countChanged**](classQAccelPlot_1_1PointCloud.md#signal-countchanged)  <br>_Emitted when the number of points changes._  |
 | signal void | [**hoverRadiusChanged**](classQAccelPlot_1_1PointCloud.md#signal-hoverradiuschanged)  <br>_Emitted when the hoverRadius property changes._  |
 | signal void | [**hoveredIndexChanged**](classQAccelPlot_1_1PointCloud.md#signal-hoveredindexchanged)  <br>_Emitted when the hovered point changes._  |
 | signal void | [**transitionChanged**](classQAccelPlot_1_1PointCloud.md#signal-transitionchanged)  <br>_Emitted when the transition property changes._  |
@@ -204,7 +203,6 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  QColor | [**color**](#function-color-22) () const<br>_Returns the uniform marker color._  |
 |  bool | [**contains**](#function-contains) (const QPointF & point) override const<br>_Returns_ `true` _when a valid point lies within_`hoverRadius` _of item position__point_ _._ |
 |  int | [**count**](#function-count-22) () const<br>_Returns the number of stored points._  |
-|  bool | [**hasValues**](#function-hasvalues-22) () const<br>_Returns_ `true` _when per-point values are stored._ |
 |  qreal | [**hoverRadius**](#function-hoverradius-22) () const<br>_Returns the hover pick radius in pixels._  |
 |  int | [**hoveredIndex**](#function-hoveredindex-22) () const<br>_Returns the index of the hovered point, or -1._  |
 | virtual std::optional&lt; [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md) &gt; | [**legendEntry**](#function-legendentry) () override const<br>_Returns the legend entry: the symbol, color, and marker of the points._  |
@@ -543,21 +541,6 @@ int QAccelPlot::PointCloud::count;
 
 
 
-### property hasValues {#property-hasvalues-12}
-
-_Read-only:_ `true` _when per-point values are stored._
-```C++
-bool QAccelPlot::PointCloud::hasValues;
-```
-
-
-
-
-<hr>
-
-
-
-
 ### property hoverRadius {#property-hoverradius-12}
 
 _Pick radius in pixels used for hover detection. Default: 6._ 
@@ -575,7 +558,7 @@ qreal QAccelPlot::PointCloud::hoverRadius;
 
 ### property hoveredIndex {#property-hoveredindex-12}
 
-_Read-only: index of the point under the cursor, or -1 when none._ 
+_Read-only: index of the valid point nearest the pointer within_ `hoverRadius` _, or -1 when none._
 ```C++
 int QAccelPlot::PointCloud::hoveredIndex;
 ```
@@ -667,7 +650,7 @@ void QAccelPlot::PointCloud::colorChanged;
 
 ### signal countChanged {#signal-countchanged}
 
-_Emitted when the number of points or the presence of values changes._ 
+_Emitted when the number of points changes._ 
 ```C++
 void QAccelPlot::PointCloud::countChanged;
 ```
@@ -832,21 +815,6 @@ Hover delivery uses this test, so stacked series underneath still receive hover 
 _Returns the number of stored points._ 
 ```C++
 int QAccelPlot::PointCloud::count () const
-```
-
-
-
-
-<hr>
-
-
-
-
-### function hasValues {#function-hasvalues-22}
-
-_Returns_ `true` _when per-point values are stored._
-```C++
-bool QAccelPlot::PointCloud::hasValues () const
 ```
 
 
