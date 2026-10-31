@@ -189,7 +189,36 @@ must match exactly and a shorter drag only clears the selection.
 - `select(xMin, xMax, yMin, yMax)` sets the region from code; `clear()` removes
   it. `selectionChanged` reports a new or cleared region, `completed` a
   finished gesture.
-- Set `rectangleVisible: false` to draw `pixelRect` yourself.
+- The tool draws the gesture and the region with `fillColor` and `border`.
+
+To draw them yourself, set `visible: false` and bind an overlay item to
+`selectionRect`: the gesture or region in plot pixels, empty without either.
+Gestures and the selection keep working.
+
+```qml
+QAccelPlot.SelectionTool {
+    id: selection
+    plot: plotView
+    visible: false
+}
+
+Rectangle {
+    parent: plotView.overlay
+    x: selection.selectionRect.x
+    y: selection.selectionRect.y
+    width: selection.selectionRect.width
+    height: selection.selectionRect.height
+    visible: width > 0 && height > 0
+    radius: 4
+    color: "transparent"
+    border.color: "orange"
+}
+```
+
+`selectionRect` follows panning and zooming and extends past
+`plotView.plotRect` when the region is partly out of view. To keep your item
+inside the plot area, put it in an `Item` with `clip: true` that covers
+`plotRect`.
 
 Complete source: [`examples/interaction/data_inspection`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/interaction/data_inspection)
 

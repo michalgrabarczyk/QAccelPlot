@@ -17,6 +17,7 @@ RectangleZoomOverlay::RectangleZoomOverlay(QQuickItem* parent, PlotRectangleZoom
     setZ(0.5);
     connect(configuration_, &PlotRectangleZoom::activeChanged, this, &RectangleZoomOverlay::syncSelection);
     connect(configuration_, &PlotRectangleZoom::selectionRectChanged, this, &RectangleZoomOverlay::syncSelection);
+    connect(configuration_, &PlotRectangleZoom::visibleChanged, this, &RectangleZoomOverlay::syncSelection);
     connect(configuration_, &PlotRectangleZoom::fillColorChanged, this, &RectangleZoomOverlay::syncStyle);
     connect(configuration_->border(), &Border::colorChanged, this, &RectangleZoomOverlay::syncStyle);
     connect(configuration_->border(), &Border::widthChanged, this, &RectangleZoomOverlay::syncStyle);
@@ -29,7 +30,7 @@ void RectangleZoomOverlay::syncSelection()
     const auto rect = configuration_->selectionRect();
     setPosition(rect.topLeft());
     setSize(rect.size());
-    setVisible(configuration_->active() && !rect.isEmpty());
+    setVisible(configuration_->isVisible() && configuration_->active() && !rect.isEmpty());
     update();
 }
 

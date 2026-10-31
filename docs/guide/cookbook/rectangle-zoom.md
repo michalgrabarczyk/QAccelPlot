@@ -31,6 +31,10 @@ QAccelPlot.Plot {
 - `rectangleZoom.fillColor` and `border.color` default to the dark palette's
   `rectangleZoomFill` and `rectangleZoomBorder`. Bind them to `Colors.light`
   for a light theme. `border.width` is 1 by default.
+- To draw the selection yourself, set `rectangleZoom.visible: false` and bind
+  an item in `plot.overlay` to `rectangleZoom.selectionRect`, which is empty
+  while no selection is in progress. See
+  [Selection](data-inspection.md#selection) for an example.
 
 For a custom tool, call [`zoomToRect()`][zoom-to-rect] with item-local pixels:
 

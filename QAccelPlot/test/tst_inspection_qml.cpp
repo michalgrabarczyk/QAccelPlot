@@ -62,7 +62,7 @@ void TestInspectionQml::queriesRowsAndSelection()
                 });
                 return [root.overlay.parent === root, root.overlay.z > curve.z, root.overlay.z > root.legend.z,
                     root.overlay.width === root.width, root.overlay.height === root.height, crosshair.inspector === inspector,
-                    tool.rectangleVisible, root.overlay.children.length].concat(order).join("|");
+                    tool.visible, root.overlay.children.length].concat(order).join("|");
             }
             function queries() {
                 const inspection = curve.inspection;

@@ -33,9 +33,15 @@ class PlotRectangleZoom : public QObject {
     Q_PROPERTY(QColor fillColor READ fillColor WRITE setFillColor NOTIFY fillColorChanged)
     /// \brief Selection outline inside the rectangle's edges. Default: Colors.dark.rectangleZoomBorder, width 1.
     Q_PROPERTY(Border* border READ border CONSTANT)
+    /// \brief Draws the selection with \c fillColor and \c border. Default: true.
+    ///
+    /// Zooming works either way. Set it to false to draw \c selectionRect with your own item.
+    Q_PROPERTY(bool visible READ isVisible WRITE setVisible NOTIFY visibleChanged)
     /// \brief Whether a rectangle selection is in progress.
     Q_PROPERTY(bool active READ active NOTIFY activeChanged)
-    /// \brief Selection rectangle in plot item-local logical pixels; empty when inactive.
+    /// \brief Selection rectangle in the plot's coordinates, in logical pixels; empty when inactive.
+    ///
+    /// The plot's \c overlay shares these coordinates, so an item there can bind to it directly.
     Q_PROPERTY(QRectF selectionRect READ selectionRect NOTIFY selectionRectChanged)
 
 public:
@@ -65,9 +71,14 @@ public:
     /// \brief Returns the selection outline settings. The object is owned by this configuration.
     Border* border() const;
 
+    /// \brief Returns whether the plot draws the selection.
+    bool isVisible() const;
+    /// \brief Shows or hides the drawn selection without affecting zooming.
+    void setVisible(bool value);
+
     /// \brief Returns whether selection is in progress.
     bool active() const;
-    /// \brief Returns the current item-local selection rectangle.
+    /// \brief Returns the current selection rectangle in the plot's coordinates.
     QRectF selectionRect() const;
 
 signals:
@@ -79,6 +90,8 @@ signals:
     void minimumSizeChanged();
     /// \brief Emitted when fillColor changes.
     void fillColorChanged();
+    /// \brief Emitted when visible changes.
+    void visibleChanged();
     /// \brief Emitted when selection starts or ends.
     void activeChanged();
     /// \brief Emitted when the selection rectangle changes.
@@ -93,6 +106,7 @@ private:
     qreal minimumSize_{6.0};
     QColor fillColor_{ColorPalette::dark().rectangleZoomFill};
     Border* border_{new Border{ColorPalette::dark().rectangleZoomBorder, 1.0, this}};
+    bool visible_{true};
     bool active_{false};
     QRectF selectionRect_;
 };

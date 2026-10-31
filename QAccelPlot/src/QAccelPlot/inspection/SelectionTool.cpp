@@ -186,18 +186,18 @@ Border* SelectionTool::border() const
     return border_;
 }
 
-bool SelectionTool::rectangleVisible() const
+bool SelectionTool::isVisible() const
 {
-    return rectangleVisible_;
+    return visible_;
 }
 
-void SelectionTool::setRectangleVisible(const bool visible)
+void SelectionTool::setVisible(const bool visible)
 {
-    if (rectangleVisible_ == visible) {
+    if (visible_ == visible) {
         return;
     }
-    rectangleVisible_ = visible;
-    emit rectangleVisibleChanged();
+    visible_ = visible;
+    emit visibleChanged();
 }
 
 bool SelectionTool::selecting() const
@@ -210,7 +210,7 @@ bool SelectionTool::hasSelection() const
     return hasSelection_;
 }
 
-QRectF SelectionTool::pixelRect() const
+QRectF SelectionTool::selectionRect() const
 {
     if (!plot_) {
         return {};
@@ -277,7 +277,7 @@ void SelectionTool::clear()
     region_ = {};
     model_->setRows({});
     emit selectionChanged();
-    emit pixelRectChanged();
+    emit selectionRectChanged();
 }
 
 void SelectionTool::reconnect()
@@ -308,7 +308,7 @@ void SelectionTool::reconnect()
     connections_.push_back(connect(plot_, &QObject::destroyed, this, &SelectionTool::reconnect));
     connections_.push_back(connect(plot_, &PlotView::plotRectChanged, this, [this] {
         cancelGesture();
-        emit pixelRectChanged();
+        emit selectionRectChanged();
     }));
     connections_.push_back(connect(plot_, &PlotView::seriesChanged, this, [this] {
         model_->retainSeries(plot_ ? plot_->series() : QList<PlotSeries*>{});
@@ -318,8 +318,8 @@ void SelectionTool::reconnect()
     for (auto* axis : {xAxis(), yAxis()}) {
         if (axis) {
             connections_.push_back(connect(axis, &QObject::destroyed, this, &SelectionTool::resetAxes));
-            connections_.push_back(connect(axis, &Axis::rangeChanged, this, &SelectionTool::pixelRectChanged));
-            connections_.push_back(connect(axis, &Axis::logScaleChanged, this, &SelectionTool::pixelRectChanged));
+            connections_.push_back(connect(axis, &Axis::rangeChanged, this, &SelectionTool::selectionRectChanged));
+            connections_.push_back(connect(axis, &Axis::logScaleChanged, this, &SelectionTool::selectionRectChanged));
         }
     }
     const auto series = plot_->series();
@@ -364,7 +364,7 @@ void SelectionTool::press(PlotMouseEvent* event)
     plot_->setFocus(true);
     event->accept();
     emit selectingChanged();
-    emit pixelRectChanged();
+    emit selectionRectChanged();
 }
 
 void SelectionTool::move(PlotMouseEvent* event)
@@ -374,7 +374,7 @@ void SelectionTool::move(PlotMouseEvent* event)
     }
     drag_.moveTo({event->x(), event->y()}, plot_->plotRect());
     event->accept();
-    emit pixelRectChanged();
+    emit selectionRectChanged();
 }
 
 void SelectionTool::release(PlotMouseEvent* event)
@@ -389,7 +389,7 @@ void SelectionTool::release(PlotMouseEvent* event)
     event->accept();
     emit selectingChanged();
     if (!selects || std::isnan(region.xMin) || std::isnan(region.xMax) || std::isnan(region.yMin) || std::isnan(region.yMax)) {
-        emit pixelRectChanged();
+        emit selectionRectChanged();
         return;
     }
     setRegion(region);
@@ -403,7 +403,7 @@ void SelectionTool::cancelGesture()
     }
     drag_.end();
     emit selectingChanged();
-    emit pixelRectChanged();
+    emit selectionRectChanged();
 }
 
 void SelectionTool::setRegion(const Region& region)
@@ -412,7 +412,7 @@ void SelectionTool::setRegion(const Region& region)
     hasSelection_ = true;
     refreshRows();
     emit selectionChanged();
-    emit pixelRectChanged();
+    emit selectionRectChanged();
 }
 
 void SelectionTool::refreshRows()
