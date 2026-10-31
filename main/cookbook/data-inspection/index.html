@@ -1810,8 +1810,33 @@ must match exactly and a shorter drag only clears the selection.</p>
 <li><code>select(xMin, xMax, yMin, yMax)</code> sets the region from code; <code>clear()</code> removes
   it. <code>selectionChanged</code> reports a new or cleared region, <code>completed</code> a
   finished gesture.</li>
-<li>Set <code>rectangleVisible: false</code> to draw <code>pixelRect</code> yourself.</li>
+<li>The tool draws the gesture and the region with <code>fillColor</code> and <code>border</code>.</li>
 </ul>
+<p>To draw them yourself, set <code>visible: false</code> and bind an overlay item to
+<code>selectionRect</code>: the gesture or region in plot pixels, empty without either.
+Gestures and the selection keep working.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">SelectionTool</span> <span class="p">{</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="kd">id: selection</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="k">plot:</span> <span class="nx">plotView</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="k">visible:</span> <span class="kc">false</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">}</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="nx">Rectangle</span> <span class="p">{</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="k">parent:</span> <span class="nx">plotView</span><span class="p">.</span><span class="nx">overlay</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="k">x:</span> <span class="nx">selection</span><span class="p">.</span><span class="nx">selectionRect</span><span class="p">.</span><span class="nx">x</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="k">y:</span> <span class="nx">selection</span><span class="p">.</span><span class="nx">selectionRect</span><span class="p">.</span><span class="nx">y</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>    <span class="k">width:</span> <span class="nx">selection</span><span class="p">.</span><span class="nx">selectionRect</span><span class="p">.</span><span class="nx">width</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>    <span class="k">height:</span> <span class="nx">selection</span><span class="p">.</span><span class="nx">selectionRect</span><span class="p">.</span><span class="nx">height</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>    <span class="k">visible:</span> <span class="nx">width</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">height</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>    <span class="k">radius:</span> <span class="mi">4</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>    <span class="k">color:</span> <span class="s2">"transparent"</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>    <span class="k">border.color:</span> <span class="s2">"orange"</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="p">}</span>
+</code></pre></div>
+<p><code>selectionRect</code> follows panning and zooming and extends past
+<code>plotView.plotRect</code> when the region is partly out of view. To keep your item
+inside the plot area, put it in an <code>Item</code> with <code>clip: true</code> that covers
+<code>plotRect</code>.</p>
 <p>Complete source: <a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/interaction/data_inspection"><code>examples/interaction/data_inspection</code></a></p>
 
 

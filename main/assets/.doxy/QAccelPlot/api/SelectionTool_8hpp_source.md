@@ -43,10 +43,10 @@ class SelectionTool : public QObject {
     Q_PROPERTY(qreal minimumSize READ minimumSize WRITE setMinimumSize NOTIFY minimumSizeChanged)
     Q_PROPERTY(QColor fillColor READ fillColor WRITE setFillColor NOTIFY fillColorChanged)
     Q_PROPERTY(Border* border READ border CONSTANT)
-    Q_PROPERTY(bool rectangleVisible READ rectangleVisible WRITE setRectangleVisible NOTIFY rectangleVisibleChanged)
+    Q_PROPERTY(bool visible READ isVisible WRITE setVisible NOTIFY visibleChanged)
     Q_PROPERTY(bool selecting READ selecting NOTIFY selectingChanged)
     Q_PROPERTY(bool hasSelection READ hasSelection NOTIFY selectionChanged)
-    Q_PROPERTY(QRectF pixelRect READ pixelRect NOTIFY pixelRectChanged)
+    Q_PROPERTY(QRectF selectionRect READ selectionRect NOTIFY selectionRectChanged)
     Q_PROPERTY(qreal xMin READ xMin NOTIFY selectionChanged)
     Q_PROPERTY(qreal xMax READ xMax NOTIFY selectionChanged)
     Q_PROPERTY(qreal yMin READ yMin NOTIFY selectionChanged)
@@ -83,11 +83,11 @@ public:
     QColor fillColor() const;
     void setFillColor(const QColor& color);
     Border* border() const;
-    bool rectangleVisible() const;
-    void setRectangleVisible(bool visible);
+    bool isVisible() const;
+    void setVisible(bool visible);
     bool selecting() const;
     bool hasSelection() const;
-    QRectF pixelRect() const;
+    QRectF selectionRect() const;
     qreal xMin() const;
     qreal xMax() const;
     qreal yMin() const;
@@ -108,10 +108,10 @@ signals:
     void modifiersChanged();
     void minimumSizeChanged();
     void fillColorChanged();
-    void rectangleVisibleChanged();
+    void visibleChanged();
     void selectingChanged();
     void selectionChanged();
-    void pixelRectChanged();
+    void selectionRectChanged();
     void completed();
 
 private:
@@ -147,7 +147,7 @@ private:
     qreal minimumSize_{6.0};
     QColor fillColor_{ColorPalette::dark().selectionFill};
     Border* border_{new Border{ColorPalette::dark().selectionBorder, 1.0, this}};
-    bool rectangleVisible_{true};
+    bool visible_{true};
     PlotDragRect drag_;
     bool hasSelection_{false};
     Region region_;

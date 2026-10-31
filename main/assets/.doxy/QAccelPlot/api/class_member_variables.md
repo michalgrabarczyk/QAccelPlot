@@ -480,7 +480,6 @@
 * **renderCapacity\_** ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
 * **rectangleZoomOverlay\_** ([**QAccelPlot::PlotView**](classQAccelPlot_1_1PlotView.md))
 * **rectangleZoom\_** ([**QAccelPlot::PlotView**](classQAccelPlot_1_1PlotView.md))
-* **rectangleVisible\_** ([**QAccelPlot::SelectionTool**](classQAccelPlot_1_1SelectionTool.md))
 * **region\_** ([**QAccelPlot::SelectionTool**](classQAccelPlot_1_1SelectionTool.md))
 * **rowsGeneration\_** ([**QAccelPlot::SelectionTool**](classQAccelPlot_1_1SelectionTool.md))
 * **run\_** ([**QAccelPlot::TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md))
@@ -627,6 +626,7 @@
 * **vertexCacheRevision\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **vertexCache** ([**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md), [**QAccelPlot::PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md))
 * **validCount\_** ([**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md))
+* **visible\_** ([**QAccelPlot::PlotRectangleZoom**](classQAccelPlot_1_1PlotRectangleZoom.md), [**QAccelPlot::SelectionTool**](classQAccelPlot_1_1SelectionTool.md))
 
 
 ## w

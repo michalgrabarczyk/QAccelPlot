@@ -37,6 +37,7 @@ class PlotRectangleZoom : public QObject {
     Q_PROPERTY(qreal minimumSize READ minimumSize WRITE setMinimumSize NOTIFY minimumSizeChanged)
     Q_PROPERTY(QColor fillColor READ fillColor WRITE setFillColor NOTIFY fillColorChanged)
     Q_PROPERTY(Border* border READ border CONSTANT)
+    Q_PROPERTY(bool visible READ isVisible WRITE setVisible NOTIFY visibleChanged)
     Q_PROPERTY(bool active READ active NOTIFY activeChanged)
     Q_PROPERTY(QRectF selectionRect READ selectionRect NOTIFY selectionRectChanged)
 
@@ -57,6 +58,9 @@ public:
 
     Border* border() const;
 
+    bool isVisible() const;
+    void setVisible(bool value);
+
     bool active() const;
     QRectF selectionRect() const;
 
@@ -65,6 +69,7 @@ signals:
     void modifiersChanged();
     void minimumSizeChanged();
     void fillColorChanged();
+    void visibleChanged();
     void activeChanged();
     void selectionRectChanged();
 
@@ -77,6 +82,7 @@ private:
     qreal minimumSize_{6.0};
     QColor fillColor_{ColorPalette::dark().rectangleZoomFill};
     Border* border_{new Border{ColorPalette::dark().rectangleZoomBorder, 1.0, this}};
+    bool visible_{true};
     bool active_{false};
     QRectF selectionRect_;
 };

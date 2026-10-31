@@ -1561,17 +1561,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#property-pixelrect-12" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        property pixelRect
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#property-plot-12" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1583,10 +1572,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#property-rectanglevisible-12" class="md-nav__link">
+  <a href="#property-selecting-12" class="md-nav__link">
     <span class="md-ellipsis">
       
-        property rectangleVisible
+        property selecting
       
     </span>
   </a>
@@ -1594,10 +1583,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#property-selecting-12" class="md-nav__link">
+  <a href="#property-selectionrect-12" class="md-nav__link">
     <span class="md-ellipsis">
       
-        property selecting
+        property selectionRect
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-visible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property visible
       
     </span>
   </a>
@@ -1765,32 +1765,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#signal-pixelrectchanged" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        signal pixelRectChanged
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#signal-plotchanged" class="md-nav__link">
     <span class="md-ellipsis">
       
         signal plotChanged
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#signal-rectanglevisiblechanged" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        signal rectangleVisibleChanged
       
     </span>
   </a>
@@ -1813,6 +1791,28 @@
     <span class="md-ellipsis">
       
         signal selectionChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-selectionrectchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal selectionRectChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-visiblechanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal visibleChanged
       
     </span>
   </a>
@@ -1947,6 +1947,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#function-isvisible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function isVisible
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-minimumsize-22" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1991,32 +2002,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#function-pixelrect-22" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        function pixelRect
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#function-plot-22" class="md-nav__link">
     <span class="md-ellipsis">
       
         function plot
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#function-rectanglevisible-22" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        function rectangleVisible
       
     </span>
   </a>
@@ -2039,6 +2028,17 @@
     <span class="md-ellipsis">
       
         function selecting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-selectionrect-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function selectionRect
       
     </span>
   </a>
@@ -2123,10 +2123,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#function-setrectanglevisible" class="md-nav__link">
+  <a href="#function-setvisible" class="md-nav__link">
     <span class="md-ellipsis">
       
-        function setRectangleVisible
+        function setVisible
       
     </span>
   </a>
@@ -2318,20 +2318,20 @@
 <td style="text-align: left;"><a href="./#property-modifiers-12"><strong>modifiers</strong></a>  <br><em>Exact Qt::KeyboardModifiers required at press time. Default: Qt.ShiftModifier.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">property QRectF</td>
-<td style="text-align: left;"><a href="./#property-pixelrect-12"><strong>pixelRect</strong></a>  <br><em>Gesture or selected region in plot-local logical pixels; empty without either.</em></td>
-</tr>
-<tr>
 <td style="text-align: right;">property <a href="../classQAccelPlot_1_1PlotView/"><strong>PlotView</strong></a> *</td>
 <td style="text-align: left;"><a href="./#property-plot-12"><strong>plot</strong></a>  <br><em>Plot receiving the selection gestures.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property bool</td>
-<td style="text-align: left;"><a href="./#property-rectanglevisible-12"><strong>rectangleVisible</strong></a>  <br><em>Draws the gesture and the selected region. Disable it to draw</em> <code>pixelRect</code> <em>yourself. Default: true.</em></td>
+<td style="text-align: left;"><a href="./#property-selecting-12"><strong>selecting</strong></a>  <br><em>True while a gesture is in progress.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property QRectF</td>
+<td style="text-align: left;"><a href="./#property-selectionrect-12"><strong>selectionRect</strong></a>  <br><em>Gesture or selected region in the plot's coordinates, in logical pixels; empty without either.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property bool</td>
-<td style="text-align: left;"><a href="./#property-selecting-12"><strong>selecting</strong></a>  <br><em>True while a gesture is in progress.</em></td>
+<td style="text-align: left;"><a href="./#property-visible"><strong>visible</strong></a>  <br><em>Draws the gesture and the selected region with</em> <code>fillColor</code> <em>and</em><code>border</code> <em>. Default: true.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property <a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> *</td>
@@ -2398,15 +2398,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">signal void</td>
-<td style="text-align: left;"><a href="./#signal-pixelrectchanged"><strong>pixelRectChanged</strong></a>  <br><em>Emitted when the pixelRect property changes.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">signal void</td>
 <td style="text-align: left;"><a href="./#signal-plotchanged"><strong>plotChanged</strong></a>  <br><em>Emitted when the plot property changes.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">signal void</td>
-<td style="text-align: left;"><a href="./#signal-rectanglevisiblechanged"><strong>rectangleVisibleChanged</strong></a>  <br><em>Emitted when the rectangleVisible property changes.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">signal void</td>
@@ -2415,6 +2407,14 @@
 <tr>
 <td style="text-align: right;">signal void</td>
 <td style="text-align: left;"><a href="./#signal-selectionchanged"><strong>selectionChanged</strong></a>  <br><em>Emitted when the selected region is set, changed, or cleared.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-selectionrectchanged"><strong>selectionRectChanged</strong></a>  <br><em>Emitted when the selectionRect property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-visiblechanged"><strong>visibleChanged</strong></a>  <br><em>Emitted when the visible property changes.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">signal void</td>
@@ -2468,6 +2468,10 @@
 <td style="text-align: left;"><a href="#function-indices"><strong>indices</strong></a> (<a href="../classQAccelPlot_1_1PlotSeries/"><strong>PlotSeries</strong></a> * series, int offset=0, int limit=4096) <br><em>Returns one page of</em> <em>series'</em> <em>source indices inside the selection, against its current data.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-isvisible"><strong>isVisible</strong></a> () const<br><em>Returns whether the tool draws the gesture and the selected region.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">qreal</td>
 <td style="text-align: left;"><a href="#function-minimumsize-22"><strong>minimumSize</strong></a> () const<br><em>Returns the smallest selecting gesture in logical pixels.</em></td>
 </tr>
@@ -2484,16 +2488,8 @@
 <td style="text-align: left;"><a href="#function-modifiers-22"><strong>modifiers</strong></a> () const<br><em>Returns the required keyboard modifiers.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">QRectF</td>
-<td style="text-align: left;"><a href="#function-pixelrect-22"><strong>pixelRect</strong></a> () const<br><em>Returns the gesture or selected region in plot-local logical pixels.</em></td>
-</tr>
-<tr>
 <td style="text-align: right;"><a href="../classQAccelPlot_1_1PlotView/"><strong>PlotView</strong></a> *</td>
 <td style="text-align: left;"><a href="#function-plot-22"><strong>plot</strong></a> () const<br><em>Returns the attached plot.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">bool</td>
-<td style="text-align: left;"><a href="#function-rectanglevisible-22"><strong>rectangleVisible</strong></a> () const<br><em>Returns whether the tool draws its rectangle.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">Q_INVOKABLE bool</td>
@@ -2502,6 +2498,10 @@
 <tr>
 <td style="text-align: right;">bool</td>
 <td style="text-align: left;"><a href="#function-selecting-22"><strong>selecting</strong></a> () const<br><em>Returns true while a gesture is in progress.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">QRectF</td>
+<td style="text-align: left;"><a href="#function-selectionrect-22"><strong>selectionRect</strong></a> () const<br><em>Returns the gesture or selected region in the plot's coordinates, in logical pixels.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -2533,7 +2533,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setrectanglevisible"><strong>setRectangleVisible</strong></a> (bool visible) <br><em>Shows or hides the tool's rectangle.</em></td>
+<td style="text-align: left;"><a href="#function-setvisible"><strong>setVisible</strong></a> (bool visible) <br><em>Shows or hides the tool's drawing without affecting gestures or the selection.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -2570,7 +2570,7 @@
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
-<p>The tool draws the gesture and the selected region in the plot's overlay, below the overlay's other children. The region is kept in data coordinates, so it follows panning and zooming and survives data updates: the model rows are recomputed whenever a series changes. An infinite limit leaves that side of the region unbounded, as a range selection does for its other dimension.</p>
+<p>The tool draws the gesture and the selected region in the plot's overlay, below the overlay's other children. To draw them yourself, set <code>visible</code> to false and bind an overlay item to <code>selectionRect</code>. The region is kept in data coordinates, so it follows panning and zooming and survives data updates: the model rows are recomputed whenever a series changes. An infinite limit leaves that side of the region unbounded, as a range selection does for its other dimension.</p>
 <p><strong>See also:</strong> <a href="../classQAccelPlot_1_1SeriesInspection/"><strong>SeriesInspection</strong></a>, <a href="../classQAccelPlot_1_1InspectionRowModel/"><strong>InspectionRowModel</strong></a> </p>
 <h2 id="public-types-documentation">Public Types Documentation<a class="headerlink" href="#public-types-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="enum-mode">enum Mode<a class="headerlink" href="#enum-mode" title="Permanent link">&para;</a></h3>
@@ -2637,28 +2637,30 @@
 </code></pre></div></p>
 <hr>
 
-<h3 id="property-pixelrect-12">property pixelRect<a class="headerlink" href="#property-pixelrect-12" title="Permanent link">&para;</a></h3>
-<p><em>Gesture or selected region in plot-local logical pixels; empty without either.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">QRectF</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">pixelRect</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
 <h3 id="property-plot-12">property plot<a class="headerlink" href="#property-plot-12" title="Permanent link">&para;</a></h3>
 <p><em>Plot receiving the selection gestures.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">PlotView</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">plot</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="property-rectanglevisible-12">property rectangleVisible<a class="headerlink" href="#property-rectanglevisible-12" title="Permanent link">&para;</a></h3>
-<p><em>Draws the gesture and the selected region. Disable it to draw</em> <code>pixelRect</code> <em>yourself. Default: true.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">rectangleVisible</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">PlotView</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">plot</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="property-selecting-12">property selecting<a class="headerlink" href="#property-selecting-12" title="Permanent link">&para;</a></h3>
 <p><em>True while a gesture is in progress.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">selecting</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">selecting</span><span class="p">;</span>
 </code></pre></div></p>
+<hr>
+
+<h3 id="property-selectionrect-12">property selectionRect<a class="headerlink" href="#property-selectionrect-12" title="Permanent link">&para;</a></h3>
+<p><em>Gesture or selected region in the plot's coordinates, in logical pixels; empty without either.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">QRectF</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">selectionRect</span><span class="p">;</span>
+</code></pre></div></p>
+<p>This is the rectangle the tool draws. It follows panning and zooming, and an unbounded side lies on the plot-area edge. It extends past <code>plotRect</code> when the region is partly out of view; the tool clips its drawing to the plot area. The plot's <code>overlay</code> shares these coordinates, so an item there can bind to it directly. </p>
+<hr>
+
+<h3 id="property-visible">property visible<a class="headerlink" href="#property-visible" title="Permanent link">&para;</a></h3>
+<p><em>Draws the gesture and the selected region with</em> <code>fillColor</code> <em>and</em><code>border</code> <em>. Default: true.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">visible</span><span class="p">;</span>
+</code></pre></div></p>
+<p>Gestures and the selection work either way. Set it to false to draw <code>selectionRect</code> with your own item. </p>
 <hr>
 
 <h3 id="property-xaxis-12">property xAxis<a class="headerlink" href="#property-xaxis-12" title="Permanent link">&para;</a></h3>
@@ -2739,33 +2741,33 @@
 </code></pre></div></p>
 <hr>
 
-<h3 id="signal-pixelrectchanged">signal pixelRectChanged<a class="headerlink" href="#signal-pixelrectchanged" title="Permanent link">&para;</a></h3>
-<p><em>Emitted when the pixelRect property changes.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">pixelRectChanged</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
 <h3 id="signal-plotchanged">signal plotChanged<a class="headerlink" href="#signal-plotchanged" title="Permanent link">&para;</a></h3>
 <p><em>Emitted when the plot property changes.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">plotChanged</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="signal-rectanglevisiblechanged">signal rectangleVisibleChanged<a class="headerlink" href="#signal-rectanglevisiblechanged" title="Permanent link">&para;</a></h3>
-<p><em>Emitted when the rectangleVisible property changes.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">rectangleVisibleChanged</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">plotChanged</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="signal-selectingchanged">signal selectingChanged<a class="headerlink" href="#signal-selectingchanged" title="Permanent link">&para;</a></h3>
 <p><em>Emitted when a gesture starts or ends.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">selectingChanged</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">selectingChanged</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="signal-selectionchanged">signal selectionChanged<a class="headerlink" href="#signal-selectionchanged" title="Permanent link">&para;</a></h3>
 <p><em>Emitted when the selected region is set, changed, or cleared.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">selectionChanged</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">selectionChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-selectionrectchanged">signal selectionRectChanged<a class="headerlink" href="#signal-selectionrectchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the selectionRect property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">selectionRectChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-visiblechanged">signal visibleChanged<a class="headerlink" href="#signal-visiblechanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the visible property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">visibleChanged</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
@@ -2836,33 +2838,33 @@
 <p>Pages like <code>SeriesInspection::indices()</code>: <em>limit</em> must be positive and is capped at 4096. </p>
 <hr>
 
+<h3 id="function-isvisible">function isVisible<a class="headerlink" href="#function-isvisible" title="Permanent link">&para;</a></h3>
+<p><em>Returns whether the tool draws the gesture and the selected region.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">isVisible</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="function-minimumsize-22">function minimumSize<a class="headerlink" href="#function-minimumsize-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the smallest selecting gesture in logical pixels.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">minimumSize</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">minimumSize</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-mode-22">function mode<a class="headerlink" href="#function-mode-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the region a gesture selects.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="n">Mode</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">mode</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="n">Mode</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">mode</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-model-22">function model<a class="headerlink" href="#function-model-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the model of per-series region statistics.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="n">InspectionRowModel</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">model</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="n">InspectionRowModel</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">model</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-modifiers-22">function modifiers<a class="headerlink" href="#function-modifiers-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the required keyboard modifiers.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="n">Qt</span><span class="o">::</span><span class="n">KeyboardModifiers</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">modifiers</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-pixelrect-22">function pixelRect<a class="headerlink" href="#function-pixelrect-22" title="Permanent link">&para;</a></h3>
-<p><em>Returns the gesture or selected region in plot-local logical pixels.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="n">QRectF</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">pixelRect</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="n">Qt</span><span class="o">::</span><span class="n">KeyboardModifiers</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">modifiers</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
@@ -2872,26 +2874,26 @@
 </code></pre></div></p>
 <hr>
 
-<h3 id="function-rectanglevisible-22">function rectangleVisible<a class="headerlink" href="#function-rectanglevisible-22" title="Permanent link">&para;</a></h3>
-<p><em>Returns whether the tool draws its rectangle.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">rectangleVisible</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</code></pre></div></p>
-<hr>
-
 <h3 id="function-select">function select<a class="headerlink" href="#function-select" title="Permanent link">&para;</a></h3>
 <p><em>Selects the region with the given limits; returns false when a limit is NaN.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">select</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">xMin</span><span class="p">,</span>
-<a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">xMax</span><span class="p">,</span>
-<a id="__codelineno-49-4" name="__codelineno-49-4" href="#__codelineno-49-4"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">yMin</span><span class="p">,</span>
-<a id="__codelineno-49-5" name="__codelineno-49-5" href="#__codelineno-49-5"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">yMax</span>
-<a id="__codelineno-49-6" name="__codelineno-49-6" href="#__codelineno-49-6"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">select</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">xMin</span><span class="p">,</span>
+<a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">xMax</span><span class="p">,</span>
+<a id="__codelineno-48-4" name="__codelineno-48-4" href="#__codelineno-48-4"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">yMin</span><span class="p">,</span>
+<a id="__codelineno-48-5" name="__codelineno-48-5" href="#__codelineno-48-5"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">yMax</span>
+<a id="__codelineno-48-6" name="__codelineno-48-6" href="#__codelineno-48-6"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-selecting-22">function selecting<a class="headerlink" href="#function-selecting-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns true while a gesture is in progress.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">selecting</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">selecting</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-selectionrect-22">function selectionRect<a class="headerlink" href="#function-selectionrect-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the gesture or selected region in the plot's coordinates, in logical pixels.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="n">QRectF</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">selectionRect</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
@@ -2951,9 +2953,9 @@
 </code></pre></div></p>
 <hr>
 
-<h3 id="function-setrectanglevisible">function setRectangleVisible<a class="headerlink" href="#function-setrectanglevisible" title="Permanent link">&para;</a></h3>
-<p><em>Shows or hides the tool's rectangle.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setRectangleVisible</span><span class="w"> </span><span class="p">(</span>
+<h3 id="function-setvisible">function setVisible<a class="headerlink" href="#function-setvisible" title="Permanent link">&para;</a></h3>
+<p><em>Shows or hides the tool's drawing without affecting gestures or the selection.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setVisible</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">visible</span>
 <a id="__codelineno-58-3" name="__codelineno-58-3" href="#__codelineno-58-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>

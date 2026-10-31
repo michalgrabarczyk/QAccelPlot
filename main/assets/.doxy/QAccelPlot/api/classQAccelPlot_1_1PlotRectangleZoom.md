@@ -70,7 +70,8 @@ flowchart TB
 | property QColor | [**fillColor**](classQAccelPlot_1_1PlotRectangleZoom.md#property-fillcolor-12)  <br>_Selection fill color. Default: Colors.dark.rectangleZoomFill._  |
 | property qreal | [**minimumSize**](classQAccelPlot_1_1PlotRectangleZoom.md#property-minimumsize-12)  <br>_Minimum selection width and height in logical pixels. Default: 6; clamped to zero or greater._  |
 | property Qt::KeyboardModifiers | [**modifiers**](classQAccelPlot_1_1PlotRectangleZoom.md#property-modifiers-12)  <br>_Required Qt::KeyboardModifiers for starting selection. Default: Qt::ControlModifier._  |
-| property QRectF | [**selectionRect**](classQAccelPlot_1_1PlotRectangleZoom.md#property-selectionrect-12)  <br>_Selection rectangle in plot item-local logical pixels; empty when inactive._  |
+| property QRectF | [**selectionRect**](classQAccelPlot_1_1PlotRectangleZoom.md#property-selectionrect-12)  <br>_Selection rectangle in the plot's coordinates, in logical pixels; empty when inactive._  |
+| property bool | [**visible**](classQAccelPlot_1_1PlotRectangleZoom.md#property-visible)  <br>_Draws the selection with_ `fillColor` _and_`border` _. Default: true._ |
 
 
 
@@ -85,6 +86,7 @@ flowchart TB
 | signal void | [**minimumSizeChanged**](classQAccelPlot_1_1PlotRectangleZoom.md#signal-minimumsizechanged)  <br>_Emitted when minimumSize changes._  |
 | signal void | [**modifiersChanged**](classQAccelPlot_1_1PlotRectangleZoom.md#signal-modifierschanged)  <br>_Emitted when modifiers changes._  |
 | signal void | [**selectionRectChanged**](classQAccelPlot_1_1PlotRectangleZoom.md#signal-selectionrectchanged)  <br>_Emitted when the selection rectangle changes._  |
+| signal void | [**visibleChanged**](classQAccelPlot_1_1PlotRectangleZoom.md#signal-visiblechanged)  <br>_Emitted when visible changes._  |
 
 
 
@@ -98,13 +100,15 @@ flowchart TB
 |  [**Border**](classQAccelPlot_1_1Border.md) \* | [**border**](#function-border-22) () const<br>_Returns the selection outline settings. The object is owned by this configuration._  |
 |  bool | [**enabled**](#function-enabled-22) () const<br>_Returns whether rectangle selection is enabled._  |
 |  QColor | [**fillColor**](#function-fillcolor-22) () const<br>_Returns the selection fill color._  |
+|  bool | [**isVisible**](#function-isvisible) () const<br>_Returns whether the plot draws the selection._  |
 |  qreal | [**minimumSize**](#function-minimumsize-22) () const<br>_Returns the minimum selection width and height in logical pixels._  |
 |  Qt::KeyboardModifiers | [**modifiers**](#function-modifiers-22) () const<br>_Returns the required keyboard modifiers._  |
-|  QRectF | [**selectionRect**](#function-selectionrect-22) () const<br>_Returns the current item-local selection rectangle._  |
+|  QRectF | [**selectionRect**](#function-selectionrect-22) () const<br>_Returns the current selection rectangle in the plot's coordinates._  |
 |  void | [**setEnabled**](#function-setenabled) (bool value) <br>_Enables or disables rectangle selection; changing this setting cancels an active selection._  |
 |  void | [**setFillColor**](#function-setfillcolor) (const QColor & value) <br>_Sets the selection fill color._  |
 |  void | [**setMinimumSize**](#function-setminimumsize) (qreal value) <br>_Sets the minimum size, clamping negative values to zero and ignoring nonfinite values._  |
 |  void | [**setModifiers**](#function-setmodifiers) (Qt::KeyboardModifiers value) <br>_Sets the exact keyboard modifiers required at press time; Qt::NoModifier allows unmodified dragging._  |
+|  void | [**setVisible**](#function-setvisible) (bool value) <br>_Shows or hides the drawn selection without affecting zooming._  |
 
 
 
@@ -231,13 +235,36 @@ Qt::KeyboardModifiers QAccelPlot::PlotRectangleZoom::modifiers;
 
 ### property selectionRect {#property-selectionrect-12}
 
-_Selection rectangle in plot item-local logical pixels; empty when inactive._ 
+_Selection rectangle in the plot's coordinates, in logical pixels; empty when inactive._ 
 ```C++
 QRectF QAccelPlot::PlotRectangleZoom::selectionRect;
 ```
 
 
 
+The plot's `overlay` shares these coordinates, so an item there can bind to it directly. 
+
+
+        
+
+<hr>
+
+
+
+
+### property visible {#property-visible}
+
+_Draws the selection with_ `fillColor` _and_`border` _. Default: true._
+```C++
+bool QAccelPlot::PlotRectangleZoom::visible;
+```
+
+
+
+Zooming works either way. Set it to false to draw `selectionRect` with your own item. 
+
+
+        
 
 <hr>
 ## Public Signals Documentation
@@ -332,6 +359,21 @@ void QAccelPlot::PlotRectangleZoom::selectionRectChanged;
 
 
 <hr>
+
+
+
+
+### signal visibleChanged {#signal-visiblechanged}
+
+_Emitted when visible changes._ 
+```C++
+void QAccelPlot::PlotRectangleZoom::visibleChanged;
+```
+
+
+
+
+<hr>
 ## Public Functions Documentation
 
 
@@ -415,6 +457,21 @@ QColor QAccelPlot::PlotRectangleZoom::fillColor () const
 
 
 
+### function isVisible {#function-isvisible}
+
+_Returns whether the plot draws the selection._ 
+```C++
+bool QAccelPlot::PlotRectangleZoom::isVisible () const
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function minimumSize {#function-minimumsize-22}
 
 _Returns the minimum selection width and height in logical pixels._ 
@@ -447,7 +504,7 @@ Qt::KeyboardModifiers QAccelPlot::PlotRectangleZoom::modifiers () const
 
 ### function selectionRect {#function-selectionrect-22}
 
-_Returns the current item-local selection rectangle._ 
+_Returns the current selection rectangle in the plot's coordinates._ 
 ```C++
 QRectF QAccelPlot::PlotRectangleZoom::selectionRect () const
 ```
@@ -517,6 +574,23 @@ _Sets the exact keyboard modifiers required at press time; Qt::NoModifier allows
 ```C++
 void QAccelPlot::PlotRectangleZoom::setModifiers (
     Qt::KeyboardModifiers value
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setVisible {#function-setvisible}
+
+_Shows or hides the drawn selection without affecting zooming._ 
+```C++
+void QAccelPlot::PlotRectangleZoom::setVisible (
+    bool value
 ) 
 ```
 

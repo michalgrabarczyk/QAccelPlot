@@ -1408,6 +1408,10 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 <li><code>rectangleZoom.fillColor</code> and <code>border.color</code> default to the dark palette's
   <code>rectangleZoomFill</code> and <code>rectangleZoomBorder</code>. Bind them to <code>Colors.light</code>
   for a light theme. <code>border.width</code> is 1 by default.</li>
+<li>To draw the selection yourself, set <code>rectangleZoom.visible: false</code> and bind
+  an item in <code>plot.overlay</code> to <code>rectangleZoom.selectionRect</code>, which is empty
+  while no selection is in progress. See
+  <a href="../data-inspection/#selection">Selection</a> for an example.</li>
 </ul>
 <p>For a custom tool, call <a href="../../api/classQAccelPlot_1_1PlotView/#function-zoomtorect"><code>zoomToRect()</code></a> with item-local pixels:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kr">const</span> <span class="nx">applied</span> <span class="o">=</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">zoomToRect</span><span class="p">(</span><span class="nx">Qt</span><span class="p">.</span><span class="nx">rect</span><span class="p">(</span><span class="nx">left</span><span class="p">,</span> <span class="nx">top</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">))</span>

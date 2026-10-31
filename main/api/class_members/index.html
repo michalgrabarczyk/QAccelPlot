@@ -2281,6 +2281,7 @@
 <li><strong>interpolate_</strong> (<a href="../classQAccelPlot_1_1PlotInspector/"><strong>QAccelPlot::PlotInspector</strong></a>)</li>
 <li><strong>ignore</strong> (<a href="../classQAccelPlot_1_1PlotMouseEvent/"><strong>QAccelPlot::PlotMouseEvent</strong></a>)</li>
 <li><strong>isAccepted</strong> (<a href="../classQAccelPlot_1_1PlotMouseEvent/"><strong>QAccelPlot::PlotMouseEvent</strong></a>)</li>
+<li><strong>isVisible</strong> (<a href="../classQAccelPlot_1_1PlotRectangleZoom/"><strong>QAccelPlot::PlotRectangleZoom</strong></a>, <a href="../classQAccelPlot_1_1SelectionTool/"><strong>QAccelPlot::SelectionTool</strong></a>)</li>
 <li><strong>inspection</strong> (<a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>)</li>
 <li><strong>inspectionAvailable</strong> (<a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>)</li>
 <li><strong>inspectionDataChanged</strong> (<a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>)</li>
@@ -2601,7 +2602,6 @@
 <li><strong>pointIndexAt</strong> (<a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a>)</li>
 <li><strong>PointCloudMaterial</strong> (<a href="../classQAccelPlot_1_1PointCloudMaterial/"><strong>QAccelPlot::PointCloudMaterial</strong></a>)</li>
 <li><strong>PointMaterial</strong> (<a href="../classQAccelPlot_1_1PointMaterial/"><strong>QAccelPlot::PointMaterial</strong></a>)</li>
-<li><strong>pixelRect</strong> (<a href="../classQAccelPlot_1_1SelectionTool/"><strong>QAccelPlot::SelectionTool</strong></a>)</li>
 <li><strong>prepare</strong> (<a href="../classQAccelPlot_1_1SeriesInspection/"><strong>QAccelPlot::SeriesInspection</strong></a>)</li>
 </ul>
 <h2 id="q">q<a class="headerlink" href="#q" title="Permanent link">&para;</a></h2>
@@ -2701,8 +2701,6 @@
 <li><strong>rectangleAt</strong> (<a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a>)</li>
 <li><strong>rectangleColor</strong> (<a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a>)</li>
 <li><strong>rectangleIndexAt</strong> (<a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a>)</li>
-<li><strong>rectangleVisible</strong> (<a href="../classQAccelPlot_1_1SelectionTool/"><strong>QAccelPlot::SelectionTool</strong></a>)</li>
-<li><strong>rectangleVisible_</strong> (<a href="../classQAccelPlot_1_1SelectionTool/"><strong>QAccelPlot::SelectionTool</strong></a>)</li>
 <li><strong>regionFromGesture</strong> (<a href="../classQAccelPlot_1_1SelectionTool/"><strong>QAccelPlot::SelectionTool</strong></a>)</li>
 <li><strong>regionRect</strong> (<a href="../classQAccelPlot_1_1SelectionTool/"><strong>QAccelPlot::SelectionTool</strong></a>)</li>
 <li><strong>region_</strong> (<a href="../classQAccelPlot_1_1SelectionTool/"><strong>QAccelPlot::SelectionTool</strong></a>)</li>
@@ -2964,12 +2962,13 @@
 <li><strong>summaryRadius</strong> (<a href="../classQAccelPlot_1_1PlotInspector/"><strong>QAccelPlot::PlotInspector</strong></a>)</li>
 <li><strong>summaryRadius_</strong> (<a href="../classQAccelPlot_1_1PlotInspector/"><strong>QAccelPlot::PlotInspector</strong></a>)</li>
 <li><strong>setAccepted</strong> (<a href="../classQAccelPlot_1_1PlotMouseEvent/"><strong>QAccelPlot::PlotMouseEvent</strong></a>)</li>
-<li><strong>selectionRect</strong> (<a href="../classQAccelPlot_1_1PlotRectangleZoom/"><strong>QAccelPlot::PlotRectangleZoom</strong></a>)</li>
+<li><strong>selectionRect</strong> (<a href="../classQAccelPlot_1_1PlotRectangleZoom/"><strong>QAccelPlot::PlotRectangleZoom</strong></a>, <a href="../classQAccelPlot_1_1SelectionTool/"><strong>QAccelPlot::SelectionTool</strong></a>)</li>
 <li><strong>selectionRect_</strong> (<a href="../classQAccelPlot_1_1PlotRectangleZoom/"><strong>QAccelPlot::PlotRectangleZoom</strong></a>)</li>
 <li><strong>setFillColor</strong> (<a href="../classQAccelPlot_1_1PlotRectangleZoom/"><strong>QAccelPlot::PlotRectangleZoom</strong></a>, <a href="../classQAccelPlot_1_1SelectionTool/"><strong>QAccelPlot::SelectionTool</strong></a>)</li>
 <li><strong>setMinimumSize</strong> (<a href="../classQAccelPlot_1_1PlotRectangleZoom/"><strong>QAccelPlot::PlotRectangleZoom</strong></a>, <a href="../classQAccelPlot_1_1SelectionTool/"><strong>QAccelPlot::SelectionTool</strong></a>)</li>
 <li><strong>setModifiers</strong> (<a href="../classQAccelPlot_1_1PlotRectangleZoom/"><strong>QAccelPlot::PlotRectangleZoom</strong></a>, <a href="../classQAccelPlot_1_1SelectionTool/"><strong>QAccelPlot::SelectionTool</strong></a>)</li>
 <li><strong>setSelection</strong> (<a href="../classQAccelPlot_1_1PlotRectangleZoom/"><strong>QAccelPlot::PlotRectangleZoom</strong></a>)</li>
+<li><strong>setVisible</strong> (<a href="../classQAccelPlot_1_1PlotRectangleZoom/"><strong>QAccelPlot::PlotRectangleZoom</strong></a>, <a href="../classQAccelPlot_1_1SelectionTool/"><strong>QAccelPlot::SelectionTool</strong></a>)</li>
 <li><strong>setHoverEnabled</strong> (<a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>)</li>
 <li><strong>setLegendSymbol</strong> (<a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>)</li>
 <li><strong>setName</strong> (<a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>)</li>
@@ -2994,7 +2993,6 @@
 <li><strong>selecting</strong> (<a href="../classQAccelPlot_1_1SelectionTool/"><strong>QAccelPlot::SelectionTool</strong></a>)</li>
 <li><strong>selects</strong> (<a href="../classQAccelPlot_1_1SelectionTool/"><strong>QAccelPlot::SelectionTool</strong></a>)</li>
 <li><strong>setButton</strong> (<a href="../classQAccelPlot_1_1SelectionTool/"><strong>QAccelPlot::SelectionTool</strong></a>)</li>
-<li><strong>setRectangleVisible</strong> (<a href="../classQAccelPlot_1_1SelectionTool/"><strong>QAccelPlot::SelectionTool</strong></a>)</li>
 <li><strong>setRegion</strong> (<a href="../classQAccelPlot_1_1SelectionTool/"><strong>QAccelPlot::SelectionTool</strong></a>)</li>
 <li><strong>SeriesInspection</strong> (<a href="../classQAccelPlot_1_1SeriesInspection/"><strong>QAccelPlot::SeriesInspection</strong></a>)</li>
 <li><strong>sourceChanged</strong> (<a href="../classQAccelPlot_1_1SeriesInspection/"><strong>QAccelPlot::SeriesInspection</strong></a>)</li>
@@ -3177,6 +3175,7 @@
 <li><strong>vertexCache</strong> (<a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a>, <a href="../structQAccelPlot_1_1PointCurveRenderParams/"><strong>QAccelPlot::PointCurveRenderParams</strong></a>)</li>
 <li><strong>validCount</strong> (<a href="../classQAccelPlot_1_1PlotInspector/"><strong>QAccelPlot::PlotInspector</strong></a>)</li>
 <li><strong>validCount_</strong> (<a href="../classQAccelPlot_1_1PlotInspector/"><strong>QAccelPlot::PlotInspector</strong></a>)</li>
+<li><strong>visible_</strong> (<a href="../classQAccelPlot_1_1PlotRectangleZoom/"><strong>QAccelPlot::PlotRectangleZoom</strong></a>, <a href="../classQAccelPlot_1_1SelectionTool/"><strong>QAccelPlot::SelectionTool</strong></a>)</li>
 <li><strong>validateDataSize</strong> (<a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>)</li>
 <li><strong>validateRawDataArguments</strong> (<a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>)</li>
 <li><strong>validateValues</strong> (<a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a>)</li>

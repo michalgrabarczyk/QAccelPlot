@@ -1983,6 +1983,8 @@
 <li>Step lines via <code>LineCurve.stepMode</code> (<code>Before</code>, <code>After</code>, or <code>Center</code>): the
   fill, dash pattern, hover, and interpolated inspection follow the steps.
   Includes a Step Lines example.</li>
+<li><code>PlotView.rectangleZoom.visible: false</code> hides the drawn zoom rectangle, so
+  you can draw <code>selectionRect</code> yourself.</li>
 <li><code>PlotInspector.cursorPixelX</code> and <code>cursorPixelY</code> place the cursor in
   plot-local pixels; it stays on those pixels when the axes pan or zoom.</li>
 <li>A Vibration Monitoring showcase: eight accelerometer channels streamed live,
@@ -2010,6 +2012,10 @@
   the inspection row role <code>pixelPosition</code> (plot-local) with <code>pixelX</code> and
   <code>pixelY</code>. In C++, <code>InspectionDataPoint::position</code> and <code>x()</code>/<code>y()</code> are now the
   <code>x</code> and <code>y</code> members.</li>
+<li>Renamed <code>SelectionTool.rectangleVisible</code> to <code>visible</code> and <code>pixelRect</code> to
+  <code>selectionRect</code>, matching <code>PlotView.rectangleZoom</code>. Signals and C++
+  accessors follow: <code>visibleChanged()</code>, <code>isVisible()</code>, <code>setVisible()</code>,
+  <code>selectionRect()</code>, <code>selectionRectChanged()</code>.</li>
 <li>Series use the <code>antialiasing</code> property inherited from <code>Item</code>.
   <code>LineCurve.antialiasingEnabled</code>, <code>PointCloud.antialiasingEnabled</code>, and
   <code>LegendEntry.antialiasingEnabled</code> are now <code>antialiasing</code>. <code>BandSeries</code> edge
