@@ -16,6 +16,7 @@
 #include <QWheelEvent>
 #include <QtTest/QtTest>
 
+#include <algorithm>
 #include <cmath>
 #include <limits>
 
@@ -119,6 +120,7 @@ private slots:
     void dragDirections_data();
     void dragDirections();
     void disabledFeaturePreservesPan();
+    void hiddenSelectionStillZooms();
     void configuredModifiersAndFrozenGesture();
     void pressOutsidePlotDoesNotSelect();
     void acceptedEvents();
@@ -140,6 +142,7 @@ void TestRectangleZoom::configuration()
     QCOMPARE(config.fillColor(), QAccelPlot::ColorPalette::dark().rectangleZoomFill);
     QCOMPARE(config.border()->color(), QAccelPlot::ColorPalette::dark().rectangleZoomBorder);
     QCOMPARE(config.border()->width(), 1.0);
+    QVERIFY(config.isVisible());
     QVERIFY(!config.active());
     QVERIFY(config.selectionRect().isEmpty());
     const auto* metaObject = config.metaObject();
@@ -329,6 +332,29 @@ void TestRectangleZoom::disabledFeaturePreservesPan()
     compareRange(f.x, -25, 75);
     compareRange(f.y, -5, 15);
     QVERIFY(!f.plot.rectangleZoom()->active());
+}
+
+void TestRectangleZoom::hiddenSelectionStillZooms()
+{
+    auto f = Fixture{};
+    const auto visibleItems = [&f] {
+        const auto children = f.plot.childItems();
+        return std::count_if(children.cbegin(), children.cend(), [](const QQuickItem* item) { return item->isVisible(); });
+    };
+    const auto idle = visibleItems();
+    press(f, f.selection().topLeft());
+    move(f, f.selection().bottomRight());
+    QCOMPARE(visibleItems(), idle + 1);
+
+    auto visibleSpy = QSignalSpy{f.plot.rectangleZoom(), &QAccelPlot::PlotRectangleZoom::visibleChanged};
+    f.plot.rectangleZoom()->setVisible(false);
+    f.plot.rectangleZoom()->setVisible(false);
+    QCOMPARE(visibleSpy.count(), 1);
+    QCOMPARE(visibleItems(), idle);
+    QCOMPARE(f.plot.rectangleZoom()->selectionRect(), f.selection());
+    release(f, f.selection().bottomRight());
+    compareRange(f.x, 25, 75);
+    compareRange(f.y, -5, 5);
 }
 
 void TestRectangleZoom::configuredModifiersAndFrozenGesture()

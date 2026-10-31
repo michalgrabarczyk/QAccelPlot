@@ -40,6 +40,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Step lines via `LineCurve.stepMode` (`Before`, `After`, or `Center`): the
   fill, dash pattern, hover, and interpolated inspection follow the steps.
   Includes a Step Lines example.
+- `PlotView.rectangleZoom.visible: false` hides the drawn zoom rectangle, so
+  you can draw `selectionRect` yourself.
 - `PlotInspector.cursorPixelX` and `cursorPixelY` place the cursor in
   plot-local pixels; it stays on those pixels when the axes pan or zoom.
 - A Vibration Monitoring showcase: eight accelerometer channels streamed live,
@@ -67,6 +69,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   the inspection row role `pixelPosition` (plot-local) with `pixelX` and
   `pixelY`. In C++, `InspectionDataPoint::position` and `x()`/`y()` are now the
   `x` and `y` members.
+- Renamed `SelectionTool.rectangleVisible` to `visible` and `pixelRect` to
+  `selectionRect`, matching `PlotView.rectangleZoom`. Signals and C++
+  accessors follow: `visibleChanged()`, `isVisible()`, `setVisible()`,
+  `selectionRect()`, `selectionRectChanged()`.
 - Series use the `antialiasing` property inherited from `Item`.
   `LineCurve.antialiasingEnabled`, `PointCloud.antialiasingEnabled`, and
   `LegendEntry.antialiasingEnabled` are now `antialiasing`. `BandSeries` edge

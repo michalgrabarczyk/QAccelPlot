@@ -82,6 +82,20 @@ Border* PlotRectangleZoom::border() const
     return border_;
 }
 
+bool PlotRectangleZoom::isVisible() const
+{
+    return visible_;
+}
+
+void PlotRectangleZoom::setVisible(const bool value)
+{
+    if (visible_ == value) {
+        return;
+    }
+    visible_ = value;
+    emit visibleChanged();
+}
+
 bool PlotRectangleZoom::active() const
 {
     return active_;

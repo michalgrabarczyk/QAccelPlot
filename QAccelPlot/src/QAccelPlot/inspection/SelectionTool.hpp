@@ -23,7 +23,8 @@ class SelectionRectangle;
 /// \brief Selects a data-space region by dragging, without changing the plot viewport.
 ///
 /// The tool draws the gesture and the selected region in the plot's overlay, below the overlay's
-/// other children.
+/// other children. To draw them yourself, set \c visible to false and bind an overlay item to
+/// \c selectionRect.
 /// The region is kept in data coordinates, so it follows panning and zooming and survives data
 /// updates: the model rows are recomputed whenever a series changes. An infinite limit leaves
 /// that side of the region unbounded, as a range selection does for its other dimension.
@@ -52,14 +53,20 @@ class SelectionTool : public QObject {
     Q_PROPERTY(QColor fillColor READ fillColor WRITE setFillColor NOTIFY fillColorChanged)
     /// \brief Outline inside the rectangle's edges. Default: \c Colors.dark.selectionBorder, width 1.
     Q_PROPERTY(Border* border READ border CONSTANT)
-    /// \brief Draws the gesture and the selected region. Disable it to draw \c pixelRect yourself. Default: true.
-    Q_PROPERTY(bool rectangleVisible READ rectangleVisible WRITE setRectangleVisible NOTIFY rectangleVisibleChanged)
+    /// \brief Draws the gesture and the selected region with \c fillColor and \c border. Default: true.
+    ///
+    /// Gestures and the selection work either way. Set it to false to draw \c selectionRect with your own item.
+    Q_PROPERTY(bool visible READ isVisible WRITE setVisible NOTIFY visibleChanged)
     /// \brief True while a gesture is in progress.
     Q_PROPERTY(bool selecting READ selecting NOTIFY selectingChanged)
     /// \brief True while a region is selected.
     Q_PROPERTY(bool hasSelection READ hasSelection NOTIFY selectionChanged)
-    /// \brief Gesture or selected region in plot-local logical pixels; empty without either.
-    Q_PROPERTY(QRectF pixelRect READ pixelRect NOTIFY pixelRectChanged)
+    /// \brief Gesture or selected region in the plot's coordinates, in logical pixels; empty without either.
+    ///
+    /// This is the rectangle the tool draws. It follows panning and zooming, and an unbounded side lies on the
+    /// plot-area edge. It extends past \c plotRect when the region is partly out of view; the tool clips its drawing
+    /// to the plot area. The plot's \c overlay shares these coordinates, so an item there can bind to it directly.
+    Q_PROPERTY(QRectF selectionRect READ selectionRect NOTIFY selectionRectChanged)
     /// \brief Lower X limit of the selection; -Infinity when unbounded, NaN without a selection.
     Q_PROPERTY(qreal xMin READ xMin NOTIFY selectionChanged)
     /// \brief Upper X limit of the selection; Infinity when unbounded, NaN without a selection.
@@ -121,16 +128,16 @@ public:
     void setFillColor(const QColor& color);
     /// \brief Returns the rectangle's outline settings. The object is owned by the tool.
     Border* border() const;
-    /// \brief Returns whether the tool draws its rectangle.
-    bool rectangleVisible() const;
-    /// \brief Shows or hides the tool's rectangle.
-    void setRectangleVisible(bool visible);
+    /// \brief Returns whether the tool draws the gesture and the selected region.
+    bool isVisible() const;
+    /// \brief Shows or hides the tool's drawing without affecting gestures or the selection.
+    void setVisible(bool visible);
     /// \brief Returns true while a gesture is in progress.
     bool selecting() const;
     /// \brief Returns true while a region is selected.
     bool hasSelection() const;
-    /// \brief Returns the gesture or selected region in plot-local logical pixels.
-    QRectF pixelRect() const;
+    /// \brief Returns the gesture or selected region in the plot's coordinates, in logical pixels.
+    QRectF selectionRect() const;
     /// \brief Returns the lower X limit of the selection.
     qreal xMin() const;
     /// \brief Returns the upper X limit of the selection.
@@ -170,14 +177,14 @@ signals:
     void minimumSizeChanged();
     /// \brief Emitted when the fillColor property changes.
     void fillColorChanged();
-    /// \brief Emitted when the rectangleVisible property changes.
-    void rectangleVisibleChanged();
+    /// \brief Emitted when the visible property changes.
+    void visibleChanged();
     /// \brief Emitted when a gesture starts or ends.
     void selectingChanged();
     /// \brief Emitted when the selected region is set, changed, or cleared.
     void selectionChanged();
-    /// \brief Emitted when the pixelRect property changes.
-    void pixelRectChanged();
+    /// \brief Emitted when the selectionRect property changes.
+    void selectionRectChanged();
     /// \brief Emitted when a gesture selected a region. Rows of series that are still preparing follow later.
     void completed();
 
@@ -214,7 +221,7 @@ private:
     qreal minimumSize_{6.0};
     QColor fillColor_{ColorPalette::dark().selectionFill};
     Border* border_{new Border{ColorPalette::dark().selectionBorder, 1.0, this}};
-    bool rectangleVisible_{true};
+    bool visible_{true};
     PlotDragRect drag_;
     bool hasSelection_{false};
     Region region_;

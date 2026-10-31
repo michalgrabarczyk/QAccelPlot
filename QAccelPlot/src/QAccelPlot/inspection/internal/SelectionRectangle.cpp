@@ -19,11 +19,11 @@ SelectionRectangle::SelectionRectangle(SelectionTool& tool)
     setParent(&tool);
     setClip(true);
     connect(&tool_, &SelectionTool::plotChanged, this, &SelectionRectangle::attach);
-    connect(&tool_, &SelectionTool::pixelRectChanged, this, &SelectionRectangle::sync);
+    connect(&tool_, &SelectionTool::selectionRectChanged, this, &SelectionRectangle::sync);
     connect(&tool_, &SelectionTool::fillColorChanged, this, &SelectionRectangle::sync);
     connect(tool_.border(), &Border::colorChanged, this, &SelectionRectangle::sync);
     connect(tool_.border(), &Border::widthChanged, this, &SelectionRectangle::sync);
-    connect(&tool_, &SelectionTool::rectangleVisibleChanged, this, &SelectionRectangle::sync);
+    connect(&tool_, &SelectionTool::visibleChanged, this, &SelectionRectangle::sync);
     attach();
 }
 
@@ -42,8 +42,8 @@ void SelectionRectangle::attach()
 void SelectionRectangle::sync()
 {
     const auto* plot = tool_.plot();
-    const auto rect = tool_.pixelRect();
-    setVisible(plot && tool_.rectangleVisible() && !rect.isEmpty());
+    const auto rect = tool_.selectionRect();
+    setVisible(plot && tool_.isVisible() && !rect.isEmpty());
     if (!plot) {
         return;
     }

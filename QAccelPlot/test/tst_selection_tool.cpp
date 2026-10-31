@@ -143,7 +143,7 @@ void TestSelectionTool::gesture()
     QVERIFY(tool.selecting());
     auto move = QMouseEvent{QEvent::MouseMove, last, last, Qt::NoButton, Qt::LeftButton, Qt::ShiftModifier};
     rig.plot.mouseMoveEvent(&move);
-    QCOMPARE(tool.pixelRect(), (QRectF{first, last}.normalized()));
+    QCOMPARE(tool.selectionRect(), (QRectF{first, last}.normalized()));
     auto release = QMouseEvent{QEvent::MouseButtonRelease, last, last, Qt::LeftButton, Qt::NoButton, Qt::ShiftModifier};
     rig.plot.mouseReleaseEvent(&release);
     QCOMPARE(rig.x.viewportMin(), 0.0);
@@ -270,14 +270,14 @@ void TestSelectionTool::ranges()
     QCOMPARE(tool.indices(primary).total, 3);
 
     // The overlay spans the plot height and keeps doing so when Y is panned.
-    QCOMPARE(tool.pixelRect().top(), area.top());
-    QCOMPARE(tool.pixelRect().height(), area.height());
-    auto rect = QSignalSpy{&tool, &SelectionTool::pixelRectChanged};
+    QCOMPARE(tool.selectionRect().top(), area.top());
+    QCOMPARE(tool.selectionRect().height(), area.height());
+    auto rect = QSignalSpy{&tool, &SelectionTool::selectionRectChanged};
     rig.y.setViewportMin(5);
     rig.y.setViewportMax(15);
     QVERIFY(rect.count() > 0);
-    QCOMPARE(tool.pixelRect().top(), area.top());
-    QCOMPARE(tool.pixelRect().height(), area.height());
+    QCOMPARE(tool.selectionRect().top(), area.top());
+    QCOMPARE(tool.selectionRect().height(), area.height());
 
     // A range gesture only has to be long enough along its own axis.
     rig.drag(rig.pixel(3, 8), rig.pixel(3, 8) + QPointF{2, 50});
@@ -285,7 +285,7 @@ void TestSelectionTool::ranges()
     tool.setMode(SelectionTool::YRange);
     rig.drag(rig.pixel(3, 14), rig.pixel(3, 14) + QPointF{2, 50});
     QVERIFY(std::isinf(tool.xMin()) && std::isinf(tool.xMax()));
-    QCOMPARE(tool.pixelRect().width(), area.width());
+    QCOMPARE(tool.selectionRect().width(), area.width());
     QCOMPARE(tool.model()->count(), 1);
     QCOMPARE(tool.model()->get(0).value("series").value<PlotSeries*>(), primary);
 }
@@ -321,7 +321,7 @@ void TestSelectionTool::boxAndCode()
     QVERIFY(!tool.select(kNaN, 1, 0, 1));
     tool.clear();
     QVERIFY(!tool.hasSelection());
-    QCOMPARE(tool.pixelRect(), QRectF{});
+    QCOMPARE(tool.selectionRect(), QRectF{});
 
     // Limits refer to the selection axes, so changing them drops the selection.
     QVERIFY(tool.select(4, 6, 0, 10));
@@ -360,10 +360,10 @@ void TestSelectionTool::followsData()
     QCOMPARE(tool.model()->get(0).value("summaryCount").toInt(), 1);
 
     // Panning moves the overlay with the data.
-    const auto before = tool.pixelRect();
+    const auto before = tool.selectionRect();
     rig.x.setViewportMin(1);
     rig.x.setViewportMax(11);
-    QVERIFY(tool.pixelRect().left() < before.left());
+    QVERIFY(tool.selectionRect().left() < before.left());
 
     // Series joining or leaving the plot update the rows.
     auto* second = rig.addCurve({2, 1, 3, 1, 4, 1});
@@ -397,19 +397,19 @@ void TestSelectionTool::rectangle()
     QVERIFY(item->clip());
     QCOMPARE(QRectF(item->position(), item->size()), rig.plot.plotRect());
     auto* drawn = item->childItems().constFirst();
-    QCOMPARE(QRectF(item->position() + drawn->position(), drawn->size()), tool->pixelRect());
+    QCOMPARE(QRectF(item->position() + drawn->position(), drawn->size()), tool->selectionRect());
 
     // Panning moves the drawn region with the data.
     rig.x.setViewportMin(3);
     rig.x.setViewportMax(13);
-    QCOMPARE(item->position().x() + drawn->position().x(), tool->pixelRect().x());
+    QCOMPARE(item->position().x() + drawn->position().x(), tool->selectionRect().x());
     QVERIFY(drawn->position().x() < 0);
 
-    auto visibility = QSignalSpy{tool.get(), &SelectionTool::rectangleVisibleChanged};
-    tool->setRectangleVisible(false);
+    auto visibility = QSignalSpy{tool.get(), &SelectionTool::visibleChanged};
+    tool->setVisible(false);
     QCOMPARE(visibility.count(), 1);
     QVERIFY(!item->isVisible());
-    tool->setRectangleVisible(true);
+    tool->setVisible(true);
     QVERIFY(item->isVisible());
     tool->clear();
     QVERIFY(!item->isVisible());
