@@ -42,13 +42,14 @@
 | Type | Name |
 | ---: | :--- |
 | namespace | [**QAccelPlot**](namespaceQAccelPlot.md) <br> |
+| namespace | [**Internal**](namespaceQAccelPlot_1_1Internal.md) <br> |
 
 
 ## Classes
 
 | Type | Name |
 | ---: | :--- |
-| class | [**OverlayChildren**](classQAccelPlot_1_1OverlayChildren.md) <br>_Objects declared inside an inspection tool in QML._  |
+| class | [**OverlayChildren**](classQAccelPlot_1_1Internal_1_1OverlayChildren.md) <br>_Objects declared inside an inspection tool in QML._  |
 
 
 

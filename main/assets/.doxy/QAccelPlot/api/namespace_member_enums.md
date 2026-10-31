@@ -5,8 +5,8 @@
 
 ## i
 
-* **InspectionAxis** ([**QAccelPlot**](namespaceQAccelPlot.md))
-* **InspectionMatching** ([**QAccelPlot**](namespaceQAccelPlot.md))
+* **InspectionAxis** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **InspectionMatching** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
 
 ## m

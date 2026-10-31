@@ -20,7 +20,7 @@
 #include <QColor>
 #include <QQuickItem>
 
-namespace QAccelPlot {
+namespace QAccelPlot::Internal {
 
 class OutlinedRectangle : public QQuickItem {
 public:
@@ -37,7 +37,7 @@ private:
     qreal borderWidth_{0.0};
 };
 
-} // namespace QAccelPlot
+} // namespace QAccelPlot::Internal
 ```
 
 

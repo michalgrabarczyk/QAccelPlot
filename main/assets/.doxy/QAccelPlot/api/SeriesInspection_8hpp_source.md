@@ -30,10 +30,13 @@
 namespace QAccelPlot {
 
 class PlotSeries;
+
+namespace Internal {
 enum class InspectionAxis;
 enum class InspectionMatching;
 struct InspectionMetric;
 struct InspectionSource;
+} // namespace Internal
 
 class SeriesInspection : public QObject {
     Q_OBJECT
@@ -75,20 +78,20 @@ private:
     struct Private;
 
     explicit SeriesInspection(PlotSeries& series);
-    InspectionMatching matching() const;
+    Internal::InspectionMatching matching() const;
     void sourceChanged(bool appended);
     void sourceInvalidated();
     // Returns Ready when a query can run now: one along the given axis, or an on-screen or region query otherwise.
     // A series that is not ordered as the query needs requests its index and reports Preparing until it is built.
-    InspectionStatus acquire(const InspectionSource& source, std::optional<InspectionAxis> along);
-    std::optional<InspectionMetric> metric() const;
-    InspectionDataPoint nearestAlong(InspectionAxis axis, qreal pixel, qreal radius);
-    InspectionBracket bracketAlong(InspectionAxis axis, qreal pixel);
-    InspectionDataPoint makeDataPoint(const InspectionSource& source, int index, qreal distance) const;
+    InspectionStatus acquire(const Internal::InspectionSource& source, std::optional<Internal::InspectionAxis> along);
+    std::optional<Internal::InspectionMetric> metric() const;
+    InspectionDataPoint nearestAlong(Internal::InspectionAxis axis, qreal pixel, qreal radius);
+    InspectionBracket bracketAlong(Internal::InspectionAxis axis, qreal pixel);
+    InspectionDataPoint makeDataPoint(const Internal::InspectionSource& source, int index, qreal distance) const;
     // Interpolates along the line drawn with stepMode between left and right: the straight on-screen segment, which
     // also follows logarithmic axes, or the steps. A step point belongs to the data point whose step or riser it is on.
-    InspectionDataPoint interpolate(const InspectionMetric& metric, InspectionAxis axis, const InspectionDataPoint& left, const InspectionDataPoint& right,
-        qreal pixel, StepMode stepMode) const;
+    InspectionDataPoint interpolate(const Internal::InspectionMetric& metric, Internal::InspectionAxis axis, const InspectionDataPoint& left,
+        const InspectionDataPoint& right, qreal pixel, StepMode stepMode) const;
 
     PlotSeries& series_;
     std::unique_ptr<Private> d_;

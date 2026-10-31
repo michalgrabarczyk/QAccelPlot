@@ -39,13 +39,14 @@
 | Type | Name |
 | ---: | :--- |
 | namespace | [**QAccelPlot**](namespaceQAccelPlot.md) <br> |
+| namespace | [**Internal**](namespaceQAccelPlot_1_1Internal.md) <br> |
 
 
 ## Classes
 
 | Type | Name |
 | ---: | :--- |
-| class | [**OutlinedRectangle**](classQAccelPlot_1_1OutlinedRectangle.md) <br>_Item that fills its bounds and outlines them inside its edges._  |
+| class | [**OutlinedRectangle**](classQAccelPlot_1_1Internal_1_1OutlinedRectangle.md) <br>_Item that fills its bounds and outlines them inside its edges._  |
 
 
 

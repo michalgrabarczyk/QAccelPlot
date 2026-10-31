@@ -6,8 +6,8 @@
 ## c
 
 * **ColorSource** ([**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md))
+* **Coverage** ([**QAccelPlot::Internal::SourceInspection**](classQAccelPlot_1_1Internal_1_1SourceInspection.md))
 * **CapacityOverflow** ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
-* **Coverage** ([**QAccelPlot::SourceInspection**](classQAccelPlot_1_1SourceInspection.md))
 
 
 ## d

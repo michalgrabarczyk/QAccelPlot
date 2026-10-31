@@ -101,7 +101,7 @@ public:
     std::optional<LegendEntry> legendEntry() const override;
 
 protected:
-    InspectionSource inspectionSource() const override;
+    Internal::InspectionSource inspectionSource() const override;
     bool inspectionAvailable() const override;
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updatePaintNodeData) override;
     void itemChange(ItemChange change, const ItemChangeData& value) override;

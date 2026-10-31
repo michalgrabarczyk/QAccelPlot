@@ -24,7 +24,7 @@
 #include <atomic>
 #include <vector>
 
-namespace QAccelPlot {
+namespace QAccelPlot::Internal {
 
 class InspectionIndex {
 public:
@@ -72,7 +72,7 @@ private:
     std::vector<Node> nodes_;
 };
 
-} // namespace QAccelPlot
+} // namespace QAccelPlot::Internal
 ```
 
 

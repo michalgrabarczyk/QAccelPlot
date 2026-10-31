@@ -27,7 +27,9 @@
 
 namespace QAccelPlot {
 
+namespace Internal {
 class OverlayChildren;
+} // namespace Internal
 
 class PlotInspector : public QObject {
     Q_OBJECT
@@ -189,7 +191,7 @@ private:
     QString cursorYText_;
     int validCount_{0};
     InspectionRowModel* model_;
-    std::unique_ptr<OverlayChildren> children_;
+    std::unique_ptr<Internal::OverlayChildren> children_;
 };
 
 } // namespace QAccelPlot

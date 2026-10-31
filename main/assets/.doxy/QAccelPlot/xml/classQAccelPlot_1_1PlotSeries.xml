@@ -1683,9 +1683,9 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="290" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1ae2ba190d0642e569bf6a300bbf2573e5" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
-        <type><ref refid="structQAccelPlot_1_1InspectionSource" kindref="compound">InspectionSource</ref></type>
-        <definition>virtual InspectionSource QAccelPlot::PlotSeries::inspectionSource</definition>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1abeaff71c0af0468b6923e90324d15ca8" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="structQAccelPlot_1_1Internal_1_1InspectionSource" kindref="compound">Internal::InspectionSource</ref></type>
+        <definition>virtual Internal::InspectionSource QAccelPlot::PlotSeries::inspectionSource</definition>
         <argsstring>() const</argsstring>
         <name>inspectionSource</name>
         <qualifiedname>QAccelPlot::PlotSeries::inspectionSource</qualifiedname>
@@ -1696,7 +1696,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="292" column="30"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="292" column="40"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a32638eb7718d210d95fa70351696441d" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type>bool</type>
@@ -2353,7 +2353,7 @@
       <member refid="classQAccelPlot_1_1PlotSeries_1aa12ee9f8a4fb237b8cf8789ae1a9df7e" prot="protected" virt="virtual"><scope>QAccelPlot::PlotSeries</scope><name>inspectionDataPointAt</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a9f822a232d100806927a0a34f0ca1a5e" prot="protected" virt="virtual"><scope>QAccelPlot::PlotSeries</scope><name>inspectionRecord</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a56c10df5cbc0648557caa5d40153ace8" prot="protected" virt="virtual"><scope>QAccelPlot::PlotSeries</scope><name>inspectionRecordAt</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1ae2ba190d0642e569bf6a300bbf2573e5" prot="protected" virt="virtual"><scope>QAccelPlot::PlotSeries</scope><name>inspectionSource</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1abeaff71c0af0468b6923e90324d15ca8" prot="protected" virt="virtual"><scope>QAccelPlot::PlotSeries</scope><name>inspectionSource</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a6d479055f9c3acfd2be5befa8cf6d1a8" prot="protected" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>invalidateDataRanges</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a5d56c6f054d6dba8b905f0cb49e188d7" prot="protected" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>invalidateInspection</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a4e5a53df93bf478ae4b3f2f53ee4ff37" prot="public" virt="virtual"><scope>QAccelPlot::PlotSeries</scope><name>legendEntry</name></member>

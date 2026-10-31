@@ -174,7 +174,7 @@ protected:
 
     void inspectionDataChanged(DataChange change = DataChange::Replaced);
     void invalidateInspection();
-    virtual InspectionSource inspectionSource() const;
+    virtual Internal::InspectionSource inspectionSource() const;
     virtual bool inspectionAvailable() const;
     virtual bool recordInspectionSupported() const;
     virtual InspectionRecord inspectionRecord(int index) const;

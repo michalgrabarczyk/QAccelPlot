@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1Internal_1_1OutlinedRectangle" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::OutlinedRectangle</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QQuickItem</basecompoundref>
+    <derivedcompoundref refid="classQAccelPlot_1_1Internal_1_1RectangleZoomOverlay" prot="public" virt="non-virtual">QAccelPlot::Internal::RectangleZoomOverlay</derivedcompoundref>
+    <includes local="no">OutlinedRectangle.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1OutlinedRectangle_1ae48332e5c264d67f3485eb352298ab2c" prot="private" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::Internal::OutlinedRectangle::fill_</definition>
+        <argsstring></argsstring>
+        <name>fill_</name>
+        <qualifiedname>QAccelPlot::Internal::OutlinedRectangle::fill_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/OutlinedRectangle.hpp" line="27" column="12" bodyfile="QAccelPlot/src/QAccelPlot/internal/OutlinedRectangle.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1OutlinedRectangle_1afa2b88156a0f9258c28bc7877fd4e1fb" prot="private" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::Internal::OutlinedRectangle::border_</definition>
+        <argsstring></argsstring>
+        <name>border_</name>
+        <qualifiedname>QAccelPlot::Internal::OutlinedRectangle::border_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/OutlinedRectangle.hpp" line="28" column="12" bodyfile="QAccelPlot/src/QAccelPlot/internal/OutlinedRectangle.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1OutlinedRectangle_1a9c5ffa0252141d176c0b1b54a2a363b2" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Internal::OutlinedRectangle::borderWidth_</definition>
+        <argsstring></argsstring>
+        <name>borderWidth_</name>
+        <qualifiedname>QAccelPlot::Internal::OutlinedRectangle::borderWidth_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/OutlinedRectangle.hpp" line="29" column="11" bodyfile="QAccelPlot/src/QAccelPlot/internal/OutlinedRectangle.hpp" bodystart="29" bodyend="29"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1OutlinedRectangle_1ae87800ba8f3e1c8dad95658c88ea6d9a" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::Internal::OutlinedRectangle::OutlinedRectangle</definition>
+        <argsstring>(QQuickItem *parent=nullptr)</argsstring>
+        <name>OutlinedRectangle</name>
+        <qualifiedname>QAccelPlot::Internal::OutlinedRectangle::OutlinedRectangle</qualifiedname>
+        <param>
+          <type>QQuickItem *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/OutlinedRectangle.hpp" line="18" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1OutlinedRectangle_1a995a04beaeef9c558df718b88abe224a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::OutlinedRectangle::setStyle</definition>
+        <argsstring>(const QColor &amp;fill, const QColor &amp;borderColor, qreal borderWidth)</argsstring>
+        <name>setStyle</name>
+        <qualifiedname>QAccelPlot::Internal::OutlinedRectangle::setStyle</qualifiedname>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>fill</declname>
+        </param>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>borderColor</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>borderWidth</declname>
+        </param>
+        <briefdescription>
+<para>Sets the <emphasis>fill</emphasis> color and an outline of <emphasis>borderColor</emphasis>, <emphasis>borderWidth</emphasis> logical pixels wide. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/OutlinedRectangle.hpp" line="21" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1OutlinedRectangle_1a6af308d9b08f462b558e9b67d43c584f" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QSGNode *</type>
+        <definition>QSGNode * QAccelPlot::Internal::OutlinedRectangle::updatePaintNode</definition>
+        <argsstring>(QSGNode *oldNode, UpdatePaintNodeData *) override</argsstring>
+        <name>updatePaintNode</name>
+        <qualifiedname>QAccelPlot::Internal::OutlinedRectangle::updatePaintNode</qualifiedname>
+        <param>
+          <type>QSGNode *</type>
+          <declname>oldNode</declname>
+        </param>
+        <param>
+          <type>UpdatePaintNodeData *</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/OutlinedRectangle.hpp" line="24" column="13"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Item that fills its bounds and outlines them inside its edges. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::Internal::OutlinedRectangle</label>
+        <link refid="classQAccelPlot_1_1Internal_1_1OutlinedRectangle"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QAccelPlot::Internal::RectangleZoomOverlay</label>
+        <link refid="classQAccelPlot_1_1Internal_1_1RectangleZoomOverlay"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QQuickItem</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::Internal::OutlinedRectangle</label>
+        <link refid="classQAccelPlot_1_1Internal_1_1OutlinedRectangle"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QQuickItem</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/internal/OutlinedRectangle.hpp" line="16" column="1" bodyfile="QAccelPlot/src/QAccelPlot/internal/OutlinedRectangle.hpp" bodystart="16" bodyend="30"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1Internal_1_1OutlinedRectangle_1afa2b88156a0f9258c28bc7877fd4e1fb" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::OutlinedRectangle</scope><name>border_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1OutlinedRectangle_1a9c5ffa0252141d176c0b1b54a2a363b2" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::OutlinedRectangle</scope><name>borderWidth_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1OutlinedRectangle_1ae48332e5c264d67f3485eb352298ab2c" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::OutlinedRectangle</scope><name>fill_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1OutlinedRectangle_1ae87800ba8f3e1c8dad95658c88ea6d9a" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::OutlinedRectangle</scope><name>OutlinedRectangle</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1OutlinedRectangle_1a995a04beaeef9c558df718b88abe224a" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::OutlinedRectangle</scope><name>setStyle</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1OutlinedRectangle_1a6af308d9b08f462b558e9b67d43c584f" prot="protected" virt="non-virtual"><scope>QAccelPlot::Internal::OutlinedRectangle</scope><name>updatePaintNode</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

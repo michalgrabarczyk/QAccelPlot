@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1Internal_1_1SummaryAccumulator" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::SummaryAccumulator</compoundname>
+    <includes local="no">InspectionTypes.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1SummaryAccumulator_1ac901afa2ed1b5aec7c26a758b5eba65d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::SummaryAccumulator::count</definition>
+        <argsstring></argsstring>
+        <name>count</name>
+        <qualifiedname>QAccelPlot::Internal::SummaryAccumulator::count</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="95" column="9" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="95" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1SummaryAccumulator_1aa8010d9dbde9f9e6dd48dfec20b58b89" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::SummaryAccumulator::minimumIndex</definition>
+        <argsstring></argsstring>
+        <name>minimumIndex</name>
+        <qualifiedname>QAccelPlot::Internal::SummaryAccumulator::minimumIndex</qualifiedname>
+        <initializer>{-1}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="96" column="9" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="96" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1SummaryAccumulator_1a07fa8dac949cf6e5ca5830790cc01c49" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::SummaryAccumulator::maximumIndex</definition>
+        <argsstring></argsstring>
+        <name>maximumIndex</name>
+        <qualifiedname>QAccelPlot::Internal::SummaryAccumulator::maximumIndex</qualifiedname>
+        <initializer>{-1}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="97" column="9" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="97" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1SummaryAccumulator_1afeb8ae411a4392cefd3b2e0b1bdfc74d" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::SummaryAccumulator::minimum</definition>
+        <argsstring></argsstring>
+        <name>minimum</name>
+        <qualifiedname>QAccelPlot::Internal::SummaryAccumulator::minimum</qualifiedname>
+        <initializer>{std::numeric_limits&lt;double&gt;::quiet_NaN()}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="98" column="12" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="98" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1SummaryAccumulator_1a291927c0a305db8bfa8f2e3ab5100d0d" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::SummaryAccumulator::maximum</definition>
+        <argsstring></argsstring>
+        <name>maximum</name>
+        <qualifiedname>QAccelPlot::Internal::SummaryAccumulator::maximum</qualifiedname>
+        <initializer>{std::numeric_limits&lt;double&gt;::quiet_NaN()}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="99" column="12" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="99" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1SummaryAccumulator_1a13a82290add5c7495d76204fd79f9f1d" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::SummaryAccumulator::mean</definition>
+        <argsstring></argsstring>
+        <name>mean</name>
+        <qualifiedname>QAccelPlot::Internal::SummaryAccumulator::mean</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="100" column="12" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="100" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1SummaryAccumulator_1af7b6d50661724cad528008770cddd6ff" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::SummaryAccumulator::m2</definition>
+        <argsstring></argsstring>
+        <name>m2</name>
+        <qualifiedname>QAccelPlot::Internal::SummaryAccumulator::m2</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="101" column="12" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="101" bodyend="101"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structQAccelPlot_1_1Internal_1_1SummaryAccumulator_1ae18b5ab01e2e8cb635197f4d601adcea" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::SummaryAccumulator::add</definition>
+        <argsstring>(double y, int index) noexcept</argsstring>
+        <name>add</name>
+        <qualifiedname>QAccelPlot::Internal::SummaryAccumulator::add</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="103" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="structQAccelPlot_1_1Internal_1_1SummaryAccumulator_1a3612c5b557b7c9007da614325f909db3" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::SummaryAccumulator::merge</definition>
+        <argsstring>(const SummaryAccumulator &amp;other) noexcept</argsstring>
+        <name>merge</name>
+        <qualifiedname>QAccelPlot::Internal::SummaryAccumulator::merge</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1SummaryAccumulator" kindref="compound">SummaryAccumulator</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="104" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="structQAccelPlot_1_1Internal_1_1SummaryAccumulator_1a797e0d80b953df4731d39d1944fdf09b" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::SummaryAccumulator::standardDeviation</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>standardDeviation</name>
+        <qualifiedname>QAccelPlot::Internal::SummaryAccumulator::standardDeviation</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="105" column="13"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Running data-point-weighted Y statistics that can be merged across disjoint data point sets. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="94" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="94" bodyend="106"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1Internal_1_1SummaryAccumulator_1ae18b5ab01e2e8cb635197f4d601adcea" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::SummaryAccumulator</scope><name>add</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1SummaryAccumulator_1ac901afa2ed1b5aec7c26a758b5eba65d" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::SummaryAccumulator</scope><name>count</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1SummaryAccumulator_1af7b6d50661724cad528008770cddd6ff" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::SummaryAccumulator</scope><name>m2</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1SummaryAccumulator_1a291927c0a305db8bfa8f2e3ab5100d0d" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::SummaryAccumulator</scope><name>maximum</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1SummaryAccumulator_1a07fa8dac949cf6e5ca5830790cc01c49" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::SummaryAccumulator</scope><name>maximumIndex</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1SummaryAccumulator_1a13a82290add5c7495d76204fd79f9f1d" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::SummaryAccumulator</scope><name>mean</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1SummaryAccumulator_1a3612c5b557b7c9007da614325f909db3" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::SummaryAccumulator</scope><name>merge</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1SummaryAccumulator_1afeb8ae411a4392cefd3b2e0b1bdfc74d" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::SummaryAccumulator</scope><name>minimum</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1SummaryAccumulator_1aa8010d9dbde9f9e6dd48dfec20b58b89" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::SummaryAccumulator</scope><name>minimumIndex</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1SummaryAccumulator_1a797e0d80b953df4731d39d1944fdf09b" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::SummaryAccumulator</scope><name>standardDeviation</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

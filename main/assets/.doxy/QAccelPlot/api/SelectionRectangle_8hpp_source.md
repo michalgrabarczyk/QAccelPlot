@@ -20,9 +20,12 @@
 #include <QQuickItem>
 
 namespace QAccelPlot {
+class SelectionTool;
+} // namespace QAccelPlot
+
+namespace QAccelPlot::Internal {
 
 class OutlinedRectangle;
-class SelectionTool;
 
 class SelectionRectangle final : public QQuickItem {
 public:
@@ -36,7 +39,7 @@ private:
     OutlinedRectangle* rectangle_;
 };
 
-} // namespace QAccelPlot
+} // namespace QAccelPlot::Internal
 ```
 
 

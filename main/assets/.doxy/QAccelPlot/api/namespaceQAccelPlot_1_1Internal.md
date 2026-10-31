@@ -32,6 +32,11 @@
 
 
 
+## Namespaces
+
+| Type | Name |
+| ---: | :--- |
+| namespace | [**InspectionScan**](namespaceQAccelPlot_1_1Internal_1_1InspectionScan.md) <br>_Inspection queries that scan every record; used for small series that are not ordered along the queried axis._  |
 
 
 ## Classes
@@ -43,13 +48,32 @@
 | struct | [**HeatmapGridDimension**](structQAccelPlot_1_1Internal_1_1HeatmapGridDimension.md) <br>_One dimension of a heatmap grid:_ `count` _cells between the edges_`from` _and_`to` _._ |
 | struct | [**HeatmapShaderMapping**](structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping.md) <br>_How heatmap.frag maps an item-local pixel position_ _p_ _to a fractional cell coordinate along one dimension._ |
 | class | [**HoverIndexBudget**](classQAccelPlot_1_1Internal_1_1HoverIndexBudget.md) <br>_Decides when queried data is worth a hover index._  |
+| struct | [**InspectionBounds**](structQAccelPlot_1_1Internal_1_1InspectionBounds.md) <br>_Inclusive data-space region; infinite limits leave a dimension unbounded._  |
+| class | [**InspectionCache**](classQAccelPlot_1_1Internal_1_1InspectionCache.md) <br>_Builds an_ `InspectionIndex` _on a worker thread from a snapshot of a series' records._ |
+| struct | [**InspectionHit**](structQAccelPlot_1_1Internal_1_1InspectionHit.md) <br>_Nearest-data-point result: source index and pixel distance, or index -1._  |
+| class | [**InspectionIndex**](classQAccelPlot_1_1Internal_1_1InspectionIndex.md) <br>_Immutable k-d tree over the valid data points of a series, with their order along each axis._  |
+| struct | [**InspectionMetric**](structQAccelPlot_1_1Internal_1_1InspectionMetric.md) <br>_Pixel mapping of a series' plot area, used to measure on-screen distances._  |
+| struct | [**InspectionNeighbors**](structQAccelPlot_1_1Internal_1_1InspectionNeighbors.md) <br>_Source indices of the valid data points on either side of an X value, or -1._  |
+| struct | [**InspectionSource**](structQAccelPlot_1_1Internal_1_1InspectionSource.md) <br>_Read-only view over the XY records a series exposes to inspection queries._  |
+| class | [**OutlinedRectangle**](classQAccelPlot_1_1Internal_1_1OutlinedRectangle.md) <br>_Item that fills its bounds and outlines them inside its edges._  |
+| class | [**OverlayChildren**](classQAccelPlot_1_1Internal_1_1OverlayChildren.md) <br>_Objects declared inside an inspection tool in QML._  |
 | class | [**PointerTracker**](classQAccelPlot_1_1Internal_1_1PointerTracker.md) <br>_Tracks the pointer over a plot from the plot's mouse and hover events._  |
 | struct | [**RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md) <br>_Mirrors the std140 uniform block of rect.vert._  |
 | class | [**RectVertexCache**](classQAccelPlot_1_1Internal_1_1RectVertexCache.md) <br>_Vertices of a series that draws each rectangle as a quad positioned from a data texture._  |
+| class | [**RectangleZoomOverlay**](classQAccelPlot_1_1Internal_1_1RectangleZoomOverlay.md) <br> |
 | class | [**ScopedPaintedItemTextures**](classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures.md) <br>_Rasterizes the painted items under a root item at a capture scale until destroyed._  |
+| class | [**SelectionRectangle**](classQAccelPlot_1_1Internal_1_1SelectionRectangle.md) <br>_Draws the gesture or the selected region of a_ [_**SelectionTool**_](classQAccelPlot_1_1SelectionTool.md) _, clipped to the plot area._ |
+| class | [**SourceInspection**](classQAccelPlot_1_1Internal_1_1SourceInspection.md) <br>_Inspection queries that read a series' own buffer whose records are ordered along one axis._  |
+| struct | [**SummaryAccumulator**](structQAccelPlot_1_1Internal_1_1SummaryAccumulator.md) <br>_Running data-point-weighted Y statistics that can be merged across disjoint data point sets._  |
 | struct | [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) <br>_Bounds of an axis viewport or a colormap value range._  |
 
 
+## Public Types
+
+| Type | Name |
+| ---: | :--- |
+| enum  | [**InspectionAxis**](#enum-inspectionaxis)  <br>_Data dimension a query measures along, or along which a series' records are ordered._  |
+| enum  | [**InspectionMatching**](#enum-inspectionmatching)  <br>_How_ `PlotInspector` _and_`SelectionTool` _match a series' data points to a position._ |
 
 
 
@@ -83,6 +107,7 @@
 |  constexpr int | [**dataTextureHeight**](#function-datatextureheight) (const int floatCount) <br>_Returns the number of data texture rows needed to store_ _floatCount_ _floats._ |
 |  constexpr qint64 | [**dataTextureItemCapacity**](#function-datatextureitemcapacity) (const int maxHeight, const int floatsPerItem) <br>_Returns how many items of_ _floatsPerItem_ _floats fit in a data texture at most__maxHeight_ _rows tall._ |
 |  [**DataTextureUploadTotals**](structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals.md) | [**dataTextureUploadTotals**](#function-datatextureuploadtotals) () <br>_Returns the totals since the last reset. Thread-safe._  |
+|  double | [**distanceToInterval**](#function-distancetointerval) (double position, double a, double b) noexcept<br>_Returns the signed distance from_ _position_ _to the closed interval between__a_ _and__b_ _._ |
 |  qreal | [**edgePixel**](#function-edgepixel) (double value, const [**Axis**](classQAccelPlot_1_1Axis.md) & axis, qreal length) <br>_Maps rectangle edge_ _value_ _on__axis_ _to item pixels along an item side__length_ _pixels long._ |
 |  [**GrabSize**](structQAccelPlot_1_1Internal_1_1GrabSize.md) | [**grabSizeFor**](#function-grabsizefor) (const QSize & pixels, qreal devicePixelRatio) <br>_Returns the grab whose image is closest to_ _pixels_ _in a window at__devicePixelRatio_ _._ |
 |  bool | [**hoverEnabled**](#function-hoverenabled) () <br>_Returns whether series accept hover events:_ `false` _only when_`QACCELPLOT_HOVER_ENABLED` _is 0._ |
@@ -132,6 +157,45 @@
 
 
 
+## Public Types Documentation
+
+
+
+
+
+### enum InspectionAxis {#enum-inspectionaxis}
+
+_Data dimension a query measures along, or along which a series' records are ordered._ 
+```C++
+enum QAccelPlot::Internal::InspectionAxis {
+    X,
+    Y
+};
+```
+
+
+
+
+<hr>
+
+
+
+
+### enum InspectionMatching {#enum-inspectionmatching}
+
+_How_ `PlotInspector` _and_`SelectionTool` _match a series' data points to a position._
+```C++
+enum QAccelPlot::Internal::InspectionMatching {
+    None,
+    Nearest,
+    Containing
+};
+```
+
+
+
+
+<hr>
 ## Public Attributes Documentation
 
 
@@ -216,6 +280,25 @@ constexpr qint64 QAccelPlot::Internal::dataTextureItemCapacity (
 _Returns the totals since the last reset. Thread-safe._ 
 ```C++
 DataTextureUploadTotals QAccelPlot::Internal::dataTextureUploadTotals () 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function distanceToInterval {#function-distancetointerval}
+
+_Returns the signed distance from_ _position_ _to the closed interval between__a_ _and__b_ _._
+```C++
+double QAccelPlot::Internal::distanceToInterval (
+    double position,
+    double a,
+    double b
+) noexcept
 ```
 
 

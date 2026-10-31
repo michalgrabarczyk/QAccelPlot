@@ -12,7 +12,7 @@
 
 ## c
 
-* **collect** ([**QAccelPlot::InspectionScan**](namespaceQAccelPlot_1_1InspectionScan.md))
+* **collect** ([**QAccelPlot::Internal::InspectionScan**](namespaceQAccelPlot_1_1Internal_1_1InspectionScan.md))
 * **clampAntialiasingFeather** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **createNode** ([**QAccelPlot::LineStroke**](namespaceQAccelPlot_1_1LineStroke.md))
 
@@ -22,7 +22,7 @@
 * **dataTextureHeight** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **dataTextureItemCapacity** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **dataTextureUploadTotals** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
-* **distanceToInterval** ([**QAccelPlot**](namespaceQAccelPlot.md))
+* **distanceToInterval** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
 
 ## e
@@ -49,9 +49,9 @@
 
 ## i
 
-* **InspectionAxis** ([**QAccelPlot**](namespaceQAccelPlot.md))
-* **InspectionMatching** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **InspectionStatus** ([**QAccelPlot**](namespaceQAccelPlot.md))
+* **InspectionAxis** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **InspectionMatching** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **imageFormatForPath** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **isValidPoint** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
 * **isEmptyChunk** ([**QAccelPlot**](namespaceQAccelPlot.md))
@@ -81,9 +81,9 @@
 ## n
 
 * **NanGapMode** ([**QAccelPlot**](namespaceQAccelPlot.md))
-* **nearest** ([**QAccelPlot::InspectionScan**](namespaceQAccelPlot_1_1InspectionScan.md))
-* **nearestAlong** ([**QAccelPlot::InspectionScan**](namespaceQAccelPlot_1_1InspectionScan.md))
-* **neighbors** ([**QAccelPlot::InspectionScan**](namespaceQAccelPlot_1_1InspectionScan.md))
+* **nearest** ([**QAccelPlot::Internal::InspectionScan**](namespaceQAccelPlot_1_1Internal_1_1InspectionScan.md))
+* **nearestAlong** ([**QAccelPlot::Internal::InspectionScan**](namespaceQAccelPlot_1_1Internal_1_1InspectionScan.md))
+* **neighbors** ([**QAccelPlot::Internal::InspectionScan**](namespaceQAccelPlot_1_1Internal_1_1InspectionScan.md))
 * **nearlyEqual** ([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
@@ -110,7 +110,7 @@
 
 * **Source** ([**QAccelPlot::GradientValueSourceNS**](namespaceQAccelPlot_1_1GradientValueSourceNS.md))
 * **Status** ([**QAccelPlot::InspectionNS**](namespaceQAccelPlot_1_1InspectionNS.md))
-* **summarize** ([**QAccelPlot::InspectionScan**](namespaceQAccelPlot_1_1InspectionScan.md))
+* **summarize** ([**QAccelPlot::Internal::InspectionScan**](namespaceQAccelPlot_1_1Internal_1_1InspectionScan.md))
 * **setImageResolution** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **stepCorner** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **stepCornerCount** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))

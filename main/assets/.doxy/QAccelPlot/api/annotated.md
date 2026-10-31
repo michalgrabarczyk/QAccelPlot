@@ -71,23 +71,13 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **class** [**HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md) _A hardware-accelerated QML item that draws a grid of values as colored cells._     
     * **class** [**Histogram**](classQAccelPlot_1_1Histogram.md) _Samples counted into bins, convertible to_ `BarSeries` _data._    
     * **class** [**HistogramFactory**](classQAccelPlot_1_1HistogramFactory.md) _QML singleton_ `Histogram` _that creates_[_**Histogram**_](classQAccelPlot_1_1Histogram.md) _values from JavaScript arrays._    
-    * **struct** [**InspectionBounds**](structQAccelPlot_1_1InspectionBounds.md) _Inclusive data-space region; infinite limits leave a dimension unbounded._     
     * **struct** [**InspectionBracket**](structQAccelPlot_1_1InspectionBracket.md) _The valid data points on either side of a position on one axis._     
-    * **class** [**InspectionCache**](classQAccelPlot_1_1InspectionCache.md) _Builds an_ `InspectionIndex` _on a worker thread from a snapshot of a series' records._    
-        * **class** [**Host**](classQAccelPlot_1_1InspectionCache_1_1Host.md) _Series-side callbacks; all are invoked on the series' thread._     
     * **struct** [**InspectionDataPoint**](structQAccelPlot_1_1InspectionDataPoint.md) _One XY source data point returned by an inspection query._     
-    * **struct** [**InspectionHit**](structQAccelPlot_1_1InspectionHit.md) _Nearest-data-point result: source index and pixel distance, or index -1._     
-    * **class** [**InspectionIndex**](classQAccelPlot_1_1InspectionIndex.md) _Immutable k-d tree over the valid data points of a series, with their order along each axis._     
-        * **struct** [**Point**](structQAccelPlot_1_1InspectionIndex_1_1Point.md)     
-    * **struct** [**InspectionMetric**](structQAccelPlot_1_1InspectionMetric.md) _Pixel mapping of a series' plot area, used to measure on-screen distances._     
     * **namespace** [**InspectionNS**](namespaceQAccelPlot_1_1InspectionNS.md) _Namespace exposing the inspection_ `Status` _enum to QML as_`Inspection` _._    
-    * **struct** [**InspectionNeighbors**](structQAccelPlot_1_1InspectionNeighbors.md) _Source indices of the valid data points on either side of an X value, or -1._     
     * **struct** [**InspectionPage**](structQAccelPlot_1_1InspectionPage.md) _One page of source indices inside a region._     
     * **struct** [**InspectionRecord**](structQAccelPlot_1_1InspectionRecord.md) _A native record of a series that is not a plain XY series, such as a bar, rectangle, or band._     
     * **struct** [**InspectionRow**](structQAccelPlot_1_1InspectionRow.md) _Inspection result of one series, as shown by one row of an_ `InspectionRowModel` _._    
     * **class** [**InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md) _List model with one stable row per inspected series._     
-    * **namespace** [**InspectionScan**](namespaceQAccelPlot_1_1InspectionScan.md) _Inspection queries that scan every record; used for small series that are not ordered along the queried axis._     
-    * **struct** [**InspectionSource**](structQAccelPlot_1_1InspectionSource.md) _Read-only view over the XY records a series exposes to inspection queries._     
     * **struct** [**InspectionSummary**](structQAccelPlot_1_1InspectionSummary.md) _Data-point-weighted Y statistics over the valid data points inside a region._     
     * **namespace** [**Internal**](namespaceQAccelPlot_1_1Internal.md)     
         * **struct** [**DataTextureUploadTotals**](structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals.md) _How many data textures were uploaded since the last reset, and how many bytes they held._     
@@ -95,10 +85,26 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
         * **struct** [**HeatmapGridDimension**](structQAccelPlot_1_1Internal_1_1HeatmapGridDimension.md) _One dimension of a heatmap grid:_ `count` _cells between the edges_`from` _and_`to` _._    
         * **struct** [**HeatmapShaderMapping**](structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping.md) _How heatmap.frag maps an item-local pixel position_ _p_ _to a fractional cell coordinate along one dimension._    
         * **class** [**HoverIndexBudget**](classQAccelPlot_1_1Internal_1_1HoverIndexBudget.md) _Decides when queried data is worth a hover index._     
+        * **struct** [**InspectionBounds**](structQAccelPlot_1_1Internal_1_1InspectionBounds.md) _Inclusive data-space region; infinite limits leave a dimension unbounded._     
+        * **class** [**InspectionCache**](classQAccelPlot_1_1Internal_1_1InspectionCache.md) _Builds an_ `InspectionIndex` _on a worker thread from a snapshot of a series' records._    
+            * **class** [**Host**](classQAccelPlot_1_1Internal_1_1InspectionCache_1_1Host.md) _Series-side callbacks; all are invoked on the series' thread._     
+        * **struct** [**InspectionHit**](structQAccelPlot_1_1Internal_1_1InspectionHit.md) _Nearest-data-point result: source index and pixel distance, or index -1._     
+        * **class** [**InspectionIndex**](classQAccelPlot_1_1Internal_1_1InspectionIndex.md) _Immutable k-d tree over the valid data points of a series, with their order along each axis._     
+            * **struct** [**Point**](structQAccelPlot_1_1Internal_1_1InspectionIndex_1_1Point.md)     
+        * **struct** [**InspectionMetric**](structQAccelPlot_1_1Internal_1_1InspectionMetric.md) _Pixel mapping of a series' plot area, used to measure on-screen distances._     
+        * **struct** [**InspectionNeighbors**](structQAccelPlot_1_1Internal_1_1InspectionNeighbors.md) _Source indices of the valid data points on either side of an X value, or -1._     
+        * **namespace** [**InspectionScan**](namespaceQAccelPlot_1_1Internal_1_1InspectionScan.md) _Inspection queries that scan every record; used for small series that are not ordered along the queried axis._     
+        * **struct** [**InspectionSource**](structQAccelPlot_1_1Internal_1_1InspectionSource.md) _Read-only view over the XY records a series exposes to inspection queries._     
+        * **class** [**OutlinedRectangle**](classQAccelPlot_1_1Internal_1_1OutlinedRectangle.md) _Item that fills its bounds and outlines them inside its edges._     
+        * **class** [**OverlayChildren**](classQAccelPlot_1_1Internal_1_1OverlayChildren.md) _Objects declared inside an inspection tool in QML._     
         * **class** [**PointerTracker**](classQAccelPlot_1_1Internal_1_1PointerTracker.md) _Tracks the pointer over a plot from the plot's mouse and hover events._     
         * **struct** [**RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md) _Mirrors the std140 uniform block of rect.vert._     
         * **class** [**RectVertexCache**](classQAccelPlot_1_1Internal_1_1RectVertexCache.md) _Vertices of a series that draws each rectangle as a quad positioned from a data texture._     
+        * **class** [**RectangleZoomOverlay**](classQAccelPlot_1_1Internal_1_1RectangleZoomOverlay.md)     
         * **class** [**ScopedPaintedItemTextures**](classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures.md) _Rasterizes the painted items under a root item at a capture scale until destroyed._     
+        * **class** [**SelectionRectangle**](classQAccelPlot_1_1Internal_1_1SelectionRectangle.md) _Draws the gesture or the selected region of a_ [_**SelectionTool**_](classQAccelPlot_1_1SelectionTool.md) _, clipped to the plot area._    
+        * **class** [**SourceInspection**](classQAccelPlot_1_1Internal_1_1SourceInspection.md) _Inspection queries that read a series' own buffer whose records are ordered along one axis._     
+        * **struct** [**SummaryAccumulator**](structQAccelPlot_1_1Internal_1_1SummaryAccumulator.md) _Running data-point-weighted Y statistics that can be merged across disjoint data point sets._     
         * **struct** [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) _Bounds of an axis viewport or a colormap value range._     
     * **struct** [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md) _How a legend draws one series: its symbol, color, line, and marker._     
     * **class** [**LegendModel**](classQAccelPlot_1_1LegendModel.md) _List model of the legend entries of a list of series._     
@@ -120,8 +126,6 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **namespace** [**NanGapModeNS**](namespaceQAccelPlot_1_1NanGapModeNS.md) _Namespace exposing the_ `NanGapMode` _enum to QML._    
     * **class** [**NoLine**](classQAccelPlot_1_1NoLine.md) _A line style that suppresses line rendering entirely, leaving only markers visible._     
     * **class** [**NumericTickLabelFormatter**](classQAccelPlot_1_1NumericTickLabelFormatter.md) _The default tick label formatter — produces numeric labels with automatic decimal precision._     
-    * **class** [**OutlinedRectangle**](classQAccelPlot_1_1OutlinedRectangle.md) _Item that fills its bounds and outlines them inside its edges._     
-    * **class** [**OverlayChildren**](classQAccelPlot_1_1OverlayChildren.md) _Objects declared inside an inspection tool in QML._     
     * **class** [**PlotDragRect**](classQAccelPlot_1_1PlotDragRect.md) _Rectangle dragged out inside the plot area, shared by rectangle zoom and data selection._     
     * **class** [**PlotExporter**](classQAccelPlot_1_1PlotExporter.md) _Exports a plot as a raster image: to a file, to the clipboard, or as a_ `QImage` _._    
     * **class** [**PlotInspector**](classQAccelPlot_1_1PlotInspector.md) _Inspects the visible XY series and heatmaps of a plot at a cursor and publishes one model row per series._     
@@ -143,16 +147,12 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **class** [**QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) _The main plot canvas QML item — hosts axes, curves, and a grid._     
     * **class** [**RectMaterial**](classQAccelPlot_1_1RectMaterial.md) _QSGMaterial for rectangle series rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with a rect-count uniform._    
     * **class** [**RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md) _A hardware-accelerated QML item that renders a large list of axis-aligned rectangles._     
-    * **class** [**RectangleZoomOverlay**](classQAccelPlot_1_1RectangleZoomOverlay.md)     
-    * **class** [**SelectionRectangle**](classQAccelPlot_1_1SelectionRectangle.md) _Draws the gesture or the selected region of a_ [_**SelectionTool**_](classQAccelPlot_1_1SelectionTool.md) _, clipped to the plot area._    
     * **class** [**SelectionTool**](classQAccelPlot_1_1SelectionTool.md) _Selects a data-space region by dragging, without changing the plot viewport._     
     * **class** [**SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) _Data queries for one series: nearest data points, brackets, region statistics, and index pages._     
     * **class** [**SeriesMarker**](classQAccelPlot_1_1SeriesMarker.md) _Controls the markers a series draws at its data points._     
     * **class** [**SolidLine**](classQAccelPlot_1_1SolidLine.md) _The default line style — renders a continuous solid line with no gaps._     
-    * **class** [**SourceInspection**](classQAccelPlot_1_1SourceInspection.md) _Inspection queries that read a series' own buffer whose records are ordered along one axis._     
     * **class** [**SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md) _Uniform-grid spatial index with bounded per-rectangle storage._     
     * **namespace** [**StepModeNS**](namespaceQAccelPlot_1_1StepModeNS.md) _Namespace exposing the_ `StepMode` _enum to QML._    
-    * **struct** [**SummaryAccumulator**](structQAccelPlot_1_1SummaryAccumulator.md) _Running data-point-weighted Y statistics that can be merged across disjoint data point sets._     
     * **class** [**TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md) _A tick label formatter that maps integer tick indices to a user-supplied list of strings._     
     * **class** [**TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md) _Abstract base class for tick label formatters._     
     * **class** [**TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md) _Runs the_ `DataTransition` _assigned to one item, such as a custom series._    
@@ -168,16 +168,16 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
 * **struct** [**DataBar**](structQAccelPlot_1_1ErrorBarSeries_1_1DataBar.md)     
 * **struct** [**GridLineCollectionParams**](structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams.md)     
 * **struct** [**Extent**](structQAccelPlot_1_1HeatmapSeries_1_1Extent.md) [_**Grid**_](classQAccelPlot_1_1Grid.md) _edges. In_`edges_` _an unset edge is NaN;_`resolvedExtent()` _resolves it to index space._    
-* **struct** [**Job**](structQAccelPlot_1_1InspectionCache_1_1Job.md)     
-* **struct** [**Node**](structQAccelPlot_1_1InspectionIndex_1_1Node.md)     
+* **struct** [**Job**](structQAccelPlot_1_1Internal_1_1InspectionCache_1_1Job.md)     
+* **struct** [**Node**](structQAccelPlot_1_1Internal_1_1InspectionIndex_1_1Node.md)     
 * **struct** [**Vertex**](structQAccelPlot_1_1Internal_1_1RectVertexCache_1_1Vertex.md)     
 * **struct** [**SavedTexture**](structQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1_1SavedTexture.md)     
+* **struct** [**Block**](structQAccelPlot_1_1Internal_1_1SourceInspection_1_1Block.md)     
 * **struct** [**FillSampleCache**](structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache.md)     
 * **struct** [**HoverQuery**](structQAccelPlot_1_1PointCloud_1_1HoverQuery.md) _A hover query in the spatial index's coordinates. With the data, it decides the answer._     
 * **struct** [**Points**](structQAccelPlot_1_1PointCloud_1_1Points.md) _Points of_ `stride` _doubles each: (x, y), or (x, y, value)._    
 * **struct** [**IndexedPoint**](structQAccelPlot_1_1PointSpatialIndex_1_1IndexedPoint.md)     
 * **struct** [**HitTestInputs**](structQAccelPlot_1_1RectangleSeries_1_1HitTestInputs.md)     
 * **struct** [**Region**](structQAccelPlot_1_1SelectionTool_1_1Region.md)     
-* **struct** [**Block**](structQAccelPlot_1_1SourceInspection_1_1Block.md)     
 * **struct** [**ItemBounds**](structQAccelPlot_1_1SpatialGrid_1_1ItemBounds.md)     
 

@@ -97,7 +97,7 @@ signals:
     void hoveredIndexChanged();
 
 protected:
-    InspectionSource inspectionSource() const override;
+    Internal::InspectionSource inspectionSource() const override;
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updatePaintNodeData) override;
     void hoverEnterEvent(QHoverEvent* event) override;
     void hoverMoveEvent(QHoverEvent* event) override;

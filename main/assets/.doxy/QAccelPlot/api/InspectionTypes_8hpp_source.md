@@ -24,7 +24,7 @@
 
 #include <limits>
 
-namespace QAccelPlot {
+namespace QAccelPlot::Internal {
 
 enum class InspectionAxis { X, Y };
 
@@ -102,7 +102,7 @@ struct SummaryAccumulator {
 
 [[nodiscard]] double distanceToInterval(double position, double a, double b) noexcept;
 
-} // namespace QAccelPlot
+} // namespace QAccelPlot::Internal
 ```
 
 

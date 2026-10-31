@@ -38,10 +38,10 @@ namespace QAccelPlot {
 class GridNode;
 class PlotExporter;
 class PlotInspector;
-class RectangleZoomOverlay;
 
 namespace Internal {
 class PointerTracker;
+class RectangleZoomOverlay;
 } // namespace Internal
 
 class QAccelPlot : public QQuickItem {
@@ -201,7 +201,7 @@ private:
     bool transparentBackground_{false};
     Border* border_{nullptr};
     PlotRectangleZoom* rectangleZoom_{nullptr};
-    RectangleZoomOverlay* rectangleZoomOverlay_{nullptr};
+    Internal::RectangleZoomOverlay* rectangleZoomOverlay_{nullptr};
     QQuickItem* overlay_{nullptr};
     Grid* grid_{nullptr};
     GridNode* gridNode_{nullptr};

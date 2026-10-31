@@ -42,7 +42,7 @@
 * [**Bars**](structQAccelPlot_1_1BarSeries_1_1Bars.md)
 * [**BarSeries**](classQAccelPlot_1_1BarSeries.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
-* [**Block**](structQAccelPlot_1_1SourceInspection_1_1Block.md)
+* [**Block**](structQAccelPlot_1_1Internal_1_1SourceInspection_1_1Block.md)
 * [**Border**](classQAccelPlot_1_1Border.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 
@@ -173,8 +173,8 @@
 * [**HistogramFactory**](classQAccelPlot_1_1HistogramFactory.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**HitTestInputs**](structQAccelPlot_1_1RectangleSeries_1_1HitTestInputs.md)
-* [**Host**](classQAccelPlot_1_1InspectionCache_1_1Host.md)
-([**QAccelPlot::InspectionCache**](classQAccelPlot_1_1InspectionCache.md))
+* [**Host**](classQAccelPlot_1_1Internal_1_1InspectionCache_1_1Host.md)
+([**QAccelPlot::Internal::InspectionCache**](classQAccelPlot_1_1Internal_1_1InspectionCache.md))
 * [**HoverIndexBudget**](classQAccelPlot_1_1Internal_1_1HoverIndexBudget.md)
 ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * [**HoverQuery**](structQAccelPlot_1_1PointCloud_1_1HoverQuery.md)
@@ -183,22 +183,22 @@
 ## i
 
 * [**IndexedPoint**](structQAccelPlot_1_1PointSpatialIndex_1_1IndexedPoint.md)
-* [**InspectionBounds**](structQAccelPlot_1_1InspectionBounds.md)
-([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**InspectionBounds**](structQAccelPlot_1_1Internal_1_1InspectionBounds.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * [**InspectionBracket**](structQAccelPlot_1_1InspectionBracket.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
-* [**InspectionCache**](classQAccelPlot_1_1InspectionCache.md)
-([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**InspectionCache**](classQAccelPlot_1_1Internal_1_1InspectionCache.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * [**InspectionDataPoint**](structQAccelPlot_1_1InspectionDataPoint.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
-* [**InspectionHit**](structQAccelPlot_1_1InspectionHit.md)
-([**QAccelPlot**](namespaceQAccelPlot.md))
-* [**InspectionIndex**](classQAccelPlot_1_1InspectionIndex.md)
-([**QAccelPlot**](namespaceQAccelPlot.md))
-* [**InspectionMetric**](structQAccelPlot_1_1InspectionMetric.md)
-([**QAccelPlot**](namespaceQAccelPlot.md))
-* [**InspectionNeighbors**](structQAccelPlot_1_1InspectionNeighbors.md)
-([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**InspectionHit**](structQAccelPlot_1_1Internal_1_1InspectionHit.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* [**InspectionIndex**](classQAccelPlot_1_1Internal_1_1InspectionIndex.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* [**InspectionMetric**](structQAccelPlot_1_1Internal_1_1InspectionMetric.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* [**InspectionNeighbors**](structQAccelPlot_1_1Internal_1_1InspectionNeighbors.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * [**InspectionPage**](structQAccelPlot_1_1InspectionPage.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**InspectionRecord**](structQAccelPlot_1_1InspectionRecord.md)
@@ -207,8 +207,8 @@
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
-* [**InspectionSource**](structQAccelPlot_1_1InspectionSource.md)
-([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**InspectionSource**](structQAccelPlot_1_1Internal_1_1InspectionSource.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * [**InspectionSummary**](structQAccelPlot_1_1InspectionSummary.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**ItemBounds**](structQAccelPlot_1_1SpatialGrid_1_1ItemBounds.md)
@@ -216,7 +216,7 @@
 
 ## j
 
-* [**Job**](structQAccelPlot_1_1InspectionCache_1_1Job.md)
+* [**Job**](structQAccelPlot_1_1Internal_1_1InspectionCache_1_1Job.md)
 
 
 ## l
@@ -260,7 +260,7 @@
 
 ## n
 
-* [**Node**](structQAccelPlot_1_1InspectionIndex_1_1Node.md)
+* [**Node**](structQAccelPlot_1_1Internal_1_1InspectionIndex_1_1Node.md)
 * [**NoLine**](classQAccelPlot_1_1NoLine.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**NumericTickLabelFormatter**](classQAccelPlot_1_1NumericTickLabelFormatter.md)
@@ -270,10 +270,10 @@
 ## o
 
 * [**Origin**](structQAccelPlot_1_1DataPointStore_1_1Origin.md)
-* [**OutlinedRectangle**](classQAccelPlot_1_1OutlinedRectangle.md)
-([**QAccelPlot**](namespaceQAccelPlot.md))
-* [**OverlayChildren**](classQAccelPlot_1_1OverlayChildren.md)
-([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**OutlinedRectangle**](classQAccelPlot_1_1Internal_1_1OutlinedRectangle.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* [**OverlayChildren**](classQAccelPlot_1_1Internal_1_1OverlayChildren.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
 
 ## p
@@ -294,8 +294,8 @@
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
-* [**Point**](structQAccelPlot_1_1InspectionIndex_1_1Point.md)
-([**QAccelPlot::InspectionIndex**](classQAccelPlot_1_1InspectionIndex.md))
+* [**Point**](structQAccelPlot_1_1Internal_1_1InspectionIndex_1_1Point.md)
+([**QAccelPlot::Internal::InspectionIndex**](classQAccelPlot_1_1Internal_1_1InspectionIndex.md))
 * [**PointCloud**](classQAccelPlot_1_1PointCloud.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md)
@@ -323,8 +323,8 @@
 
 * [**RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
-* [**RectangleZoomOverlay**](classQAccelPlot_1_1RectangleZoomOverlay.md)
-([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**RectangleZoomOverlay**](classQAccelPlot_1_1Internal_1_1RectangleZoomOverlay.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * [**RectMaterial**](classQAccelPlot_1_1RectMaterial.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md)
@@ -342,8 +342,8 @@
 * [**SavedTexture**](structQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1_1SavedTexture.md)
 * [**ScopedPaintedItemTextures**](classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures.md)
 ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
-* [**SelectionRectangle**](classQAccelPlot_1_1SelectionRectangle.md)
-([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**SelectionRectangle**](classQAccelPlot_1_1Internal_1_1SelectionRectangle.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * [**SelectionTool**](classQAccelPlot_1_1SelectionTool.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md)
@@ -352,13 +352,13 @@
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**SolidLine**](classQAccelPlot_1_1SolidLine.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
-* [**SourceInspection**](classQAccelPlot_1_1SourceInspection.md)
-([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**SourceInspection**](classQAccelPlot_1_1Internal_1_1SourceInspection.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * [**Span**](structQAccelPlot_1_1BandSeries_1_1Span.md)
 * [**SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
-* [**SummaryAccumulator**](structQAccelPlot_1_1SummaryAccumulator.md)
-([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**SummaryAccumulator**](structQAccelPlot_1_1Internal_1_1SummaryAccumulator.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
 
 ## t

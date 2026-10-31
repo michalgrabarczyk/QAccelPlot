@@ -26,7 +26,9 @@
 
 namespace QAccelPlot {
 
+namespace Internal {
 class SelectionRectangle;
+} // namespace Internal
 
 class SelectionTool : public QObject {
     Q_OBJECT
@@ -153,7 +155,7 @@ private:
     InspectionRowModel* model_;
     QList<QMetaObject::Connection> connections_;
     // Owned as a QObject child.
-    SelectionRectangle* rectangle_;
+    Internal::SelectionRectangle* rectangle_;
 };
 
 } // namespace QAccelPlot
