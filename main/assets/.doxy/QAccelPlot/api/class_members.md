@@ -793,7 +793,6 @@
 * **move** ([**QAccelPlot::SelectionTool**](classQAccelPlot_1_1SelectionTool.md))
 * **makeDataPoint** ([**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md))
 * **matching** ([**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md))
-* **maximumPageSize** ([**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md))
 * **metric** ([**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md))
 * **maxX\_** ([**QAccelPlot::SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md))
 * **maxY\_** ([**QAccelPlot::SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md))

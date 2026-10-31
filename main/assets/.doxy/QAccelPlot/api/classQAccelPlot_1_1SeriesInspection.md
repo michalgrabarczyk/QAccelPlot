@@ -64,7 +64,6 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-| property int | [**maximumPageSize**](classQAccelPlot_1_1SeriesInspection.md#property-maximumpagesize-12)  <br>_Largest page returned by_ `indices()` _._ |
 | property QML\_ANONYMOUSQAccelPlot::InspectionNS::Status | [**status**](classQAccelPlot_1_1SeriesInspection.md#property-status-12)  <br>_Readiness for data point queries:_ `Ready` _,_`Idle` _,_`Preparing` _,_`Unsupported` _, or_`Unavailable` _._ |
 
 
@@ -89,7 +88,6 @@ flowchart TB
 |  Q\_INVOKABLE::QAccelPlot::InspectionDataPoint | [**dataPointAtPosition**](#function-datapointatposition) (const QPointF & position) const<br>_Returns the record drawn at the series-local_ _position_ _as a data point, such as the heatmap cell under it._ |
 |  Q\_INVOKABLE quint64 | [**indexBytes**](#function-indexbytes) () const<br>_Returns the bytes held by query caches and indexes, excluding the series' own data._  |
 |  Q\_INVOKABLE::QAccelPlot::InspectionPage | [**indices**](#function-indices) (qreal xMin, qreal xMax, qreal yMin, qreal yMax, int offset=0, int limit=4096, quint64 expectedRevision=0) <br>_Returns up to_ _limit_ _source indices inside the region, skipping the first__offset_ _matches._ |
-|  int | [**maximumPageSize**](#function-maximumpagesize-22) () const<br>_Returns the largest page returned by_ `indices()` _._ |
 |  Q\_INVOKABLE::QAccelPlot::InspectionDataPoint | [**nearest**](#function-nearest) (const QPointF & position, qreal radius=10) <br>_Returns the valid data point nearest to_ _position_ _within__radius_ _pixels on screen._ |
 |  Q\_INVOKABLE::QAccelPlot::InspectionDataPoint | [**nearestByX**](#function-nearestbyx) (qreal pixelX, qreal radius=std::numeric\_limits&lt; qreal &gt;::infinity()) <br>_Returns the valid data point nearest to_ _pixelX_ _horizontally, within__radius_ _pixels._ |
 |  Q\_INVOKABLE::QAccelPlot::InspectionDataPoint | [**nearestByY**](#function-nearestbyy) (qreal pixelY, qreal radius=std::numeric\_limits&lt; qreal &gt;::infinity()) <br>_Returns the valid data point nearest to_ _pixelY_ _vertically, within__radius_ _pixels._ |
@@ -149,21 +147,6 @@ Queries cover every stored data point, also outside the viewport, and match data
     
 ## Public Properties Documentation
 
-
-
-
-
-### property maximumPageSize {#property-maximumpagesize-12}
-
-_Largest page returned by_ `indices()` _._
-```C++
-int QAccelPlot::SeriesInspection::maximumPageSize;
-```
-
-
-
-
-<hr>
 
 
 
@@ -310,25 +293,13 @@ Q_INVOKABLE::QAccelPlot::InspectionPage QAccelPlot::SeriesInspection::indices (
 
 
 
+_limit_ must be positive and is capped at 4096, the default; the page's `limit` reports the size used. Request the next page with _offset_ advanced by the length of `indices` while `hasMore` is true.
+
+
 A nonzero _expectedRevision_ that differs from the series' `dataRevision` returns `Stale`, so pages of one traversal never mix indices of different data. 
 
 
         
-
-<hr>
-
-
-
-
-### function maximumPageSize {#function-maximumpagesize-22}
-
-_Returns the largest page returned by_ `indices()` _._
-```C++
-int QAccelPlot::SeriesInspection::maximumPageSize () const
-```
-
-
-
 
 <hr>
 

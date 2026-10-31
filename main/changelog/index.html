@@ -2036,6 +2036,8 @@
 <ul>
 <li><code>SeriesInspection.supported</code>. A query that does not apply to a series returns
   <code>Inspection.Unsupported</code>.</li>
+<li><code>SeriesInspection.maximumPageSize</code>. <code>indices()</code> caps <code>limit</code> at 4096 and
+  each page reports the size used in <code>limit</code>.</li>
 <li><code>PlotView.pointerPosition</code>, <code>pointerInside</code>, and <code>pointerChanged()</code>. Use
   <code>PlotInspector.cursorPixelX</code>, <code>cursorPixelY</code>, and <code>active</code>, or a
   <code>HoverHandler</code>.</li>

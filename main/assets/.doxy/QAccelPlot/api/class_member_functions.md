@@ -489,7 +489,6 @@
 * **move** ([**QAccelPlot::SelectionTool**](classQAccelPlot_1_1SelectionTool.md))
 * **makeDataPoint** ([**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md))
 * **matching** ([**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md))
-* **maximumPageSize** ([**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md))
 * **metric** ([**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md))
 * **minimumTickStep** ([**QAccelPlot::TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md), [**QAccelPlot::TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md))
 

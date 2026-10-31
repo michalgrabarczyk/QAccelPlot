@@ -838,6 +838,10 @@ Q_INVOKABLE::QAccelPlot::InspectionPage QAccelPlot::SelectionTool::indices (
 
 
 
+Pages like `SeriesInspection::indices()`: _limit_ must be positive and is capped at 4096. 
+
+
+        
 
 <hr>
 

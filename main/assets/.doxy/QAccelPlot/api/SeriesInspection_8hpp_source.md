@@ -42,13 +42,11 @@ class SeriesInspection : public QObject {
     Q_OBJECT
     QML_ANONYMOUS
     Q_PROPERTY(::QAccelPlot::InspectionNS::Status status READ status NOTIFY statusChanged)
-    Q_PROPERTY(int maximumPageSize READ maximumPageSize CONSTANT)
 
 public:
     ~SeriesInspection() override;
 
     InspectionStatus status() const;
-    int maximumPageSize() const;
 
     Q_INVOKABLE quint64 indexBytes() const;
     Q_INVOKABLE void prepare();

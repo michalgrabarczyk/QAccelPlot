@@ -22,22 +22,6 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="59" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" bodystart="59" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="classQAccelPlot_1_1SeriesInspection_1a646347feccfa19ab97ac49f4257f4575" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type>int</type>
-        <definition>int QAccelPlot::SeriesInspection::maximumPageSize</definition>
-        <argsstring></argsstring>
-        <name>maximumPageSize</name>
-        <qualifiedname>QAccelPlot::SeriesInspection::maximumPageSize</qualifiedname>
-        <read>maximumPageSize</read>
-        <briefdescription>
-<para>Largest page returned by <computeroutput><ref refid="classQAccelPlot_1_1SeriesInspection_1abe2a3b291d365904f0b9122c4dd5e513" kindref="member">indices()</ref></computeroutput>. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="61" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" bodystart="61" bodyend="-1"/>
-      </memberdef>
     </sectiondef>
     <sectiondef kind="friend">
       <memberdef kind="friend" id="classQAccelPlot_1_1SeriesInspection_1aa9a8749c8792deb1a5bb343ba9166177" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -135,7 +119,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="64" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="62" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a2633680d73410b55c759c01c80275790" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="namespaceQAccelPlot_1_1InspectionNS_1af88a65809f202f2780f8465c0eb7c2d1" kindref="member">InspectionStatus</ref></type>
@@ -150,22 +134,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="67" column="22"/>
-      </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a6884b6ff01c4dbf666ec479d2a94cc64" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>int</type>
-        <definition>int QAccelPlot::SeriesInspection::maximumPageSize</definition>
-        <argsstring>() const</argsstring>
-        <name>maximumPageSize</name>
-        <qualifiedname>QAccelPlot::SeriesInspection::maximumPageSize</qualifiedname>
-        <briefdescription>
-<para>Returns the largest page returned by <computeroutput><ref refid="classQAccelPlot_1_1SeriesInspection_1abe2a3b291d365904f0b9122c4dd5e513" kindref="member">indices()</ref></computeroutput>. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="69" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="65" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a3627b72b648d5c43484aa353f4baf175" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE quint64</type>
@@ -180,7 +149,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="72" column="25"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="68" column="25"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1af733a754d185f80c5943eaf9b44c835d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE void</type>
@@ -195,7 +164,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="74" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="70" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1aab609b651416815938b9dfc9be7cf018" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE::QAccelPlot::InspectionDataPoint</type>
@@ -214,7 +183,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="77" column="51"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="73" column="51"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a1ba378b414db643689ba806fea85f0d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE::QAccelPlot::InspectionDataPoint</type>
@@ -238,7 +207,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="79" column="51"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="75" column="51"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1afeb4023f26f2aab1014602190fdbfa75" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE::QAccelPlot::InspectionDataPoint</type>
@@ -262,7 +231,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="81" column="51"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="77" column="51"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1aeb00771afe212d67708cd33ffaf4c60f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE::QAccelPlot::InspectionDataPoint</type>
@@ -286,7 +255,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="83" column="51"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="79" column="51"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a9f93471b27990ff1d42fe2e04b3a0d13" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE::QAccelPlot::InspectionBracket</type>
@@ -305,7 +274,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="85" column="49"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="81" column="49"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1aff3d4ab2fc1115df3328438800c2579e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE::QAccelPlot::InspectionBracket</type>
@@ -324,7 +293,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="87" column="49"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="83" column="49"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a9714e86d9537a6c125c427f0701c1d66" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE::QAccelPlot::InspectionSummary</type>
@@ -355,7 +324,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="89" column="49"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="85" column="49"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a0d8b9397539e1f636e34f3bce216568d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE::QAccelPlot::InspectionSummary</type>
@@ -378,7 +347,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="91" column="49"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="87" column="49"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1abe2a3b291d365904f0b9122c4dd5e513" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE::QAccelPlot::InspectionPage</type>
@@ -421,6 +390,7 @@
 <para>Returns up to <emphasis>limit</emphasis> source indices inside the region, skipping the first <emphasis>offset</emphasis> matches. </para>
         </briefdescription>
         <detaileddescription>
+<para><emphasis>limit</emphasis> must be positive and is capped at 4096, the default; the page&apos;s <computeroutput>limit</computeroutput> reports the size used. Request the next page with <emphasis>offset</emphasis> advanced by the length of <computeroutput>indices</computeroutput> while <computeroutput>hasMore</computeroutput> is true.</para>
 <para>A nonzero <emphasis>expectedRevision</emphasis> that differs from the series&apos; <computeroutput>dataRevision</computeroutput> returns <computeroutput>Stale</computeroutput>, so pages of one traversal never mix indices of different data. </para>
         </detaileddescription>
         <inbodydescription>
@@ -764,8 +734,6 @@
       <member refid="classQAccelPlot_1_1SeriesInspection_1aa391b250626dab10c81feb165184f7c9" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>interpolate</name></member>
       <member refid="classQAccelPlot_1_1SeriesInspection_1a5ae13e29cd5ca857a9599c9218cd3121" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>makeDataPoint</name></member>
       <member refid="classQAccelPlot_1_1SeriesInspection_1ad504e948b1928e463b38bfeb061f2e78" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>matching</name></member>
-      <member refid="classQAccelPlot_1_1SeriesInspection_1a646347feccfa19ab97ac49f4257f4575" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>maximumPageSize</name></member>
-      <member refid="classQAccelPlot_1_1SeriesInspection_1a6884b6ff01c4dbf666ec479d2a94cc64" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>maximumPageSize</name></member>
       <member refid="classQAccelPlot_1_1SeriesInspection_1a02081edfbb8db04d24581c33a8e69bd9" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>metric</name></member>
       <member refid="classQAccelPlot_1_1SeriesInspection_1a1ba378b414db643689ba806fea85f0d4" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>nearest</name></member>
       <member refid="classQAccelPlot_1_1SeriesInspection_1adc9b57f9260d29c8fc4c2c9b3eae9d7d" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>nearestAlong</name></member>
