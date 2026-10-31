@@ -50,7 +50,8 @@ _Inspection result of one series, as shown by one row of an_ `InspectionRowModel
 |  QString | [**maximumText**](#variable-maximumtext)  <br>_Summary maximum formatted by the series' Y axis._  |
 |  QString | [**meanText**](#variable-meantext)  <br>_Summary mean formatted by the series' Y axis._  |
 |  QString | [**minimumText**](#variable-minimumtext)  <br>_Summary minimum formatted by the series' Y axis._  |
-|  QPointF | [**pixelPosition**](#variable-pixelposition)  <br>_Data point position in plot-local logical pixels._  |
+|  qreal | [**pixelX**](#variable-pixelx)   = `{0.0}`<br>_Data point X in plot-local logical pixels._  |
+|  qreal | [**pixelY**](#variable-pixely)   = `{0.0}`<br>_Data point Y in plot-local logical pixels._  |
 |  QPointer&lt; [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) &gt; | [**series**](#variable-series)  <br>_Series the row describes._  |
 |  [**InspectionSummary**](structQAccelPlot_1_1InspectionSummary.md) | [**summary**](#variable-summary)  <br>_Region statistics._  |
 |  QString | [**valueText**](#variable-valuetext)  <br>_Data point value with up to six significant digits; empty when it is NaN._  |
@@ -181,11 +182,26 @@ QString QAccelPlot::InspectionRow::minimumText;
 
 
 
-### variable pixelPosition {#variable-pixelposition}
+### variable pixelX {#variable-pixelx}
 
-_Data point position in plot-local logical pixels._ 
+_Data point X in plot-local logical pixels._ 
 ```C++
-QPointF QAccelPlot::InspectionRow::pixelPosition;
+qreal QAccelPlot::InspectionRow::pixelX;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable pixelY {#variable-pixely}
+
+_Data point Y in plot-local logical pixels._ 
+```C++
+qreal QAccelPlot::InspectionRow::pixelY;
 ```
 
 

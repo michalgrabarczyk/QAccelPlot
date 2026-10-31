@@ -1389,6 +1389,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#detailed-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#public-attributes-documentation" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1399,17 +1410,6 @@
   
     <nav class="md-nav" aria-label="Public Attributes Documentation">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#variable-position" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        variable position
-      
-    </span>
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#variable-status-22" class="md-nav__link">
@@ -1484,10 +1484,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#property-pixelposition" class="md-nav__link">
+  <a href="#property-pixelx" class="md-nav__link">
     <span class="md-ellipsis">
       
-        property pixelPosition
+        property pixelX
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-pixely" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property pixelY
       
     </span>
   </a>
@@ -1528,7 +1539,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#property-x-12" class="md-nav__link">
+  <a href="#property-x" class="md-nav__link">
     <span class="md-ellipsis">
       
         property x
@@ -1539,7 +1550,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#property-y-12" class="md-nav__link">
+  <a href="#property-y" class="md-nav__link">
     <span class="md-ellipsis">
       
         property y
@@ -1577,28 +1588,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#function-x-22" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        function x
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#function-y-22" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        function y
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1623,7 +1612,7 @@
 
 <h1 id="struct-qaccelplotinspectiondatapoint">Struct QAccelPlot::InspectionDataPoint<a class="headerlink" href="#struct-qaccelplotinspectiondatapoint" title="Permanent link">&para;</a></h1>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="./"><strong>InspectionDataPoint</strong></a></p>
-<p><em>One XY source data point returned by an inspection query.</em> </p>
+<p><em>One XY source data point returned by an inspection query.</em> <a href="#detailed-description">More...</a></p>
 <ul>
 <li><code>#include &lt;InspectionResult.hpp&gt;</code></li>
 </ul>
@@ -1636,10 +1625,6 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align: right;">QPointF</td>
-<td style="text-align: left;"><a href="#variable-position"><strong>position</strong></a>   = <code>{std::numeric\_limits&amp;lt;qreal&amp;gt;::quiet\_NaN(), std::numeric\_limits&amp;lt;qreal&amp;gt;::quiet\_NaN()}</code><br><em>Data-space XY.</em></td>
-</tr>
 <tr>
 <td style="text-align: right;"><a href="../namespaceQAccelPlot_1_1InspectionNS/#enum-status"><strong>InspectionStatus</strong></a></td>
 <td style="text-align: left;"><a href="#variable-status-22"><strong>status</strong></a>   = <code>{InspectionStatus::NoMatch}</code><br><em>Query outcome.</em></td>
@@ -1672,8 +1657,12 @@
 <td style="text-align: left;"><a href="./#property-interpolated"><strong>interpolated</strong></a>  <br><em>True when the coordinates are interpolated between two data points; index is then the data point whose value is shown.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">property QPointF</td>
-<td style="text-align: left;"><a href="./#property-pixelposition"><strong>pixelPosition</strong></a>  <br><em>Series-local position in logical pixels.</em></td>
+<td style="text-align: right;">property qreal</td>
+<td style="text-align: left;"><a href="./#property-pixelx"><strong>pixelX</strong></a>  <br><em>X in series-local logical pixels; NaN for an invalid record.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property qreal</td>
+<td style="text-align: left;"><a href="./#property-pixely"><strong>pixelY</strong></a>  <br><em>Y in series-local logical pixels; NaN for an invalid record.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property QML_ANONYMOUSQAccelPlot::InspectionNS::Status</td>
@@ -1685,15 +1674,15 @@
 </tr>
 <tr>
 <td style="text-align: right;">property qreal</td>
-<td style="text-align: left;"><a href="./#property-value"><strong>value</strong></a>  <br><em>Optional per-point scalar; NaN when the series has none.</em></td>
+<td style="text-align: left;"><a href="./#property-value"><strong>value</strong></a>  <br><a href="../classQAccelPlot_1_1Colormap/"><em><strong>Colormap</strong></em></a> <em>value of a</em><code>PointCloud</code> <em>point or a heatmap cell; NaN for other series and for interpolated points.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property qreal</td>
-<td style="text-align: left;"><a href="./#property-x-12"><strong>x</strong></a>  <br><em>Data-space X coordinate.</em></td>
+<td style="text-align: left;"><a href="./#property-x"><strong>x</strong></a>  <br><em>X in data units.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property qreal</td>
-<td style="text-align: left;"><a href="./#property-y-12"><strong>y</strong></a>  <br><em>Data-space Y coordinate.</em></td>
+<td style="text-align: left;"><a href="./#property-y"><strong>y</strong></a>  <br><em>Y in data units.</em></td>
 </tr>
 </tbody>
 </table>
@@ -1710,63 +1699,58 @@
 <td style="text-align: right;">bool</td>
 <td style="text-align: left;"><a href="#function-valid-22"><strong>valid</strong></a> () const<br><em>Returns true when status is</em> <code>Ready</code> <em>.</em></td>
 </tr>
-<tr>
-<td style="text-align: right;">qreal</td>
-<td style="text-align: left;"><a href="#function-x-22"><strong>x</strong></a> () const<br><em>Returns the data-space X coordinate.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">qreal</td>
-<td style="text-align: left;"><a href="#function-y-22"><strong>y</strong></a> () const<br><em>Returns the data-space Y coordinate.</em></td>
-</tr>
 </tbody>
 </table>
+<h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
+<p><code>x</code> and <code>y</code> are in the units of the series' axes. <code>pixelX</code> and <code>pixelY</code> place the same point in series-local logical pixels, measured from the top left of the plot area; map them with <code>series.mapToItem()</code> for another item. </p>
 <h2 id="public-attributes-documentation">Public Attributes Documentation<a class="headerlink" href="#public-attributes-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="variable-position">variable position<a class="headerlink" href="#variable-position" title="Permanent link">&para;</a></h3>
-<p><em>Data-space XY.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">QPointF</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionDataPoint</span><span class="o">::</span><span class="n">position</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
 <h3 id="variable-status-22">variable status<a class="headerlink" href="#variable-status-22" title="Permanent link">&para;</a></h3>
 <p><em>Query outcome.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">InspectionStatus</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionDataPoint</span><span class="o">::</span><span class="n">status</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">InspectionStatus</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionDataPoint</span><span class="o">::</span><span class="n">status</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 <h2 id="public-properties-documentation">Public Properties Documentation<a class="headerlink" href="#public-properties-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="property-datarevision">property dataRevision<a class="headerlink" href="#property-datarevision" title="Permanent link">&para;</a></h3>
 <p><em>Data revision the query ran against.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">quint64</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionDataPoint</span><span class="o">::</span><span class="n">dataRevision</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">quint64</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionDataPoint</span><span class="o">::</span><span class="n">dataRevision</span><span class="p">;</span>
 </code></pre></div></p>
 <p>Data revision. </p>
 <hr>
 
 <h3 id="property-distance">property distance<a class="headerlink" href="#property-distance" title="Permanent link">&para;</a></h3>
 <p><em>Distance from the query position in logical pixels.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionDataPoint</span><span class="o">::</span><span class="n">distance</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionDataPoint</span><span class="o">::</span><span class="n">distance</span><span class="p">;</span>
 </code></pre></div></p>
 <p>Pixel distance. </p>
 <hr>
 
 <h3 id="property-index">property index<a class="headerlink" href="#property-index" title="Permanent link">&para;</a></h3>
 <p><em>Source index, counting invalid records; -1 when nothing matched.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionDataPoint</span><span class="o">::</span><span class="n">index</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionDataPoint</span><span class="o">::</span><span class="n">index</span><span class="p">;</span>
 </code></pre></div></p>
 <p>Source index. </p>
 <hr>
 
 <h3 id="property-interpolated">property interpolated<a class="headerlink" href="#property-interpolated" title="Permanent link">&para;</a></h3>
 <p><em>True when the coordinates are interpolated between two data points; index is then the data point whose value is shown.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionDataPoint</span><span class="o">::</span><span class="n">interpolated</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionDataPoint</span><span class="o">::</span><span class="n">interpolated</span><span class="p">;</span>
 </code></pre></div></p>
 <p>Interpolated point.</p>
 <p>That is the left neighbor, or on a step line the data point whose step or riser holds the point. </p>
 <hr>
 
-<h3 id="property-pixelposition">property pixelPosition<a class="headerlink" href="#property-pixelposition" title="Permanent link">&para;</a></h3>
-<p><em>Series-local position in logical pixels.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">QPointF</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionDataPoint</span><span class="o">::</span><span class="n">pixelPosition</span><span class="p">;</span>
+<h3 id="property-pixelx">property pixelX<a class="headerlink" href="#property-pixelx" title="Permanent link">&para;</a></h3>
+<p><em>X in series-local logical pixels; NaN for an invalid record.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionDataPoint</span><span class="o">::</span><span class="n">pixelX</span><span class="p">;</span>
 </code></pre></div></p>
-<p>Series-local pixels. </p>
+<p>X in series-local pixels. </p>
+<hr>
+
+<h3 id="property-pixely">property pixelY<a class="headerlink" href="#property-pixely" title="Permanent link">&para;</a></h3>
+<p><em>Y in series-local logical pixels; NaN for an invalid record.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionDataPoint</span><span class="o">::</span><span class="n">pixelY</span><span class="p">;</span>
+</code></pre></div></p>
+<p>Y in series-local pixels. </p>
 <hr>
 
 <h3 id="property-status-12">property status<a class="headerlink" href="#property-status-12" title="Permanent link">&para;</a></h3>
@@ -1782,20 +1766,20 @@
 <hr>
 
 <h3 id="property-value">property value<a class="headerlink" href="#property-value" title="Permanent link">&para;</a></h3>
-<p><em>Optional per-point scalar; NaN when the series has none.</em> 
+<p><a href="../classQAccelPlot_1_1Colormap/"><em><strong>Colormap</strong></em></a> <em>value of a</em><code>PointCloud</code> <em>point or a heatmap cell; NaN for other series and for interpolated points.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionDataPoint</span><span class="o">::</span><span class="n">value</span><span class="p">;</span>
 </code></pre></div></p>
-<p>Optional scalar. </p>
+<p><a href="../classQAccelPlot_1_1Colormap/"><strong>Colormap</strong></a> value. </p>
 <hr>
 
-<h3 id="property-x-12">property x<a class="headerlink" href="#property-x-12" title="Permanent link">&para;</a></h3>
-<p><em>Data-space X coordinate.</em> 
+<h3 id="property-x">property x<a class="headerlink" href="#property-x" title="Permanent link">&para;</a></h3>
+<p><em>X in data units.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionDataPoint</span><span class="o">::</span><span class="n">x</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
-<h3 id="property-y-12">property y<a class="headerlink" href="#property-y-12" title="Permanent link">&para;</a></h3>
-<p><em>Data-space Y coordinate.</em> 
+<h3 id="property-y">property y<a class="headerlink" href="#property-y" title="Permanent link">&para;</a></h3>
+<p><em>Y in data units.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionDataPoint</span><span class="o">::</span><span class="n">y</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
@@ -1803,18 +1787,6 @@
 <h3 id="function-valid-22">function valid<a class="headerlink" href="#function-valid-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns true when status is</em> <code>Ready</code> <em>.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionDataPoint</span><span class="o">::</span><span class="n">valid</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-x-22">function x<a class="headerlink" href="#function-x-22" title="Permanent link">&para;</a></h3>
-<p><em>Returns the data-space X coordinate.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionDataPoint</span><span class="o">::</span><span class="n">x</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-y-22">function y<a class="headerlink" href="#function-y-22" title="Permanent link">&para;</a></h3>
-<p><em>Returns the data-space Y coordinate.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionDataPoint</span><span class="o">::</span><span class="n">y</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 

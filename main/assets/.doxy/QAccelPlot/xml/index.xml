@@ -1755,14 +1755,12 @@
     <member refid="structQAccelPlot_1_1InspectionDataPoint_1a1bafb10ee9ac808ffcd70e34465a4a03" kind="property"><name>x</name></member>
     <member refid="structQAccelPlot_1_1InspectionDataPoint_1a8eeb059b93ff44b0522a44b0228605b0" kind="property"><name>y</name></member>
     <member refid="structQAccelPlot_1_1InspectionDataPoint_1abdd80aa53a7832edcb518ea9180d5407" kind="property"><name>value</name></member>
-    <member refid="structQAccelPlot_1_1InspectionDataPoint_1a1c729fe053e26805450311346b7db7f8" kind="property"><name>pixelPosition</name></member>
+    <member refid="structQAccelPlot_1_1InspectionDataPoint_1af506057ef04de608450794fe2c3efb75" kind="property"><name>pixelX</name></member>
+    <member refid="structQAccelPlot_1_1InspectionDataPoint_1aea5fca469891f7d6a7757bbac2ca8511" kind="property"><name>pixelY</name></member>
     <member refid="structQAccelPlot_1_1InspectionDataPoint_1a6eeff45082b8921ec685b1e2d4af3182" kind="property"><name>distance</name></member>
     <member refid="structQAccelPlot_1_1InspectionDataPoint_1a7b65826e72233a8c9cdfb2d3134abd34" kind="property"><name>interpolated</name></member>
     <member refid="structQAccelPlot_1_1InspectionDataPoint_1aa1e4c972fd9d6afaf56220aae5b89f06" kind="variable"><name>status</name></member>
-    <member refid="structQAccelPlot_1_1InspectionDataPoint_1a482830ba6d2ff1afe2a49921b3be3c53" kind="variable"><name>position</name></member>
     <member refid="structQAccelPlot_1_1InspectionDataPoint_1aa54b7cf70cec237b760ecf72aace30bf" kind="function"><name>valid</name></member>
-    <member refid="structQAccelPlot_1_1InspectionDataPoint_1a7b88c8a3434d70fc5ab171833a78a12a" kind="function"><name>x</name></member>
-    <member refid="structQAccelPlot_1_1InspectionDataPoint_1ae7cca1e6aa900a04e3bdcdd87ae90ce7" kind="function"><name>y</name></member>
   </compound>
   <compound refid="structQAccelPlot_1_1Internal_1_1InspectionHit" kind="struct"><name>QAccelPlot::Internal::InspectionHit</name>
     <member refid="structQAccelPlot_1_1Internal_1_1InspectionHit_1a677ad6f40b54ad825bc816e781300868" kind="variable"><name>index</name></member>
@@ -1832,7 +1830,8 @@
   <compound refid="structQAccelPlot_1_1InspectionRow" kind="struct"><name>QAccelPlot::InspectionRow</name>
     <member refid="structQAccelPlot_1_1InspectionRow_1aa4c0cf1c4bb303a450369adcfe68ff18" kind="variable"><name>series</name></member>
     <member refid="structQAccelPlot_1_1InspectionRow_1a92655604f6da6916aaa87edcdcec30f9" kind="variable"><name>dataPoint</name></member>
-    <member refid="structQAccelPlot_1_1InspectionRow_1a9ce0fd110b30c5b9303d85810bc4a719" kind="variable"><name>pixelPosition</name></member>
+    <member refid="structQAccelPlot_1_1InspectionRow_1ae51aac5415f864869922b3654c055b73" kind="variable"><name>pixelX</name></member>
+    <member refid="structQAccelPlot_1_1InspectionRow_1a9ecb29fe511b894fc32119860fc34709" kind="variable"><name>pixelY</name></member>
     <member refid="structQAccelPlot_1_1InspectionRow_1a5fdb7eadbbf34ae2b08e186e908b9918" kind="variable"><name>xText</name></member>
     <member refid="structQAccelPlot_1_1InspectionRow_1afba61f3055fdf3e4cb46520c22fc0af0" kind="variable"><name>yText</name></member>
     <member refid="structQAccelPlot_1_1InspectionRow_1a13d158afaa19d6edb1c3919bb41ce42a" kind="variable"><name>valueText</name></member>
@@ -1856,7 +1855,8 @@
     <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3a175d3848e5214aa7376713538d6f38bd" kind="enumvalue"><name>XTextRole</name></member>
     <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3acfe5eca9695e6403095cbcca370d1054" kind="enumvalue"><name>YTextRole</name></member>
     <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3ad34ba25de58f3f95e8086406457ed377" kind="enumvalue"><name>ValueTextRole</name></member>
-    <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3ab288997d67e0abfdfad5b35ff8d1b732" kind="enumvalue"><name>PixelPositionRole</name></member>
+    <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3a3e76b377d763bbde112a4fc37263afc5" kind="enumvalue"><name>PixelXRole</name></member>
+    <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3adad59f4f62aaa8ba922d12de94657ddd" kind="enumvalue"><name>PixelYRole</name></member>
     <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3a294d55edb524e5625a9d8a4dd692d14f" kind="enumvalue"><name>DistanceRole</name></member>
     <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3ae65e72339b42ad568d620061766f34d2" kind="enumvalue"><name>InterpolatedRole</name></member>
     <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3ae4ca03e035cdf4b96650a32479f3ca38" kind="enumvalue"><name>HasSummaryRole</name></member>

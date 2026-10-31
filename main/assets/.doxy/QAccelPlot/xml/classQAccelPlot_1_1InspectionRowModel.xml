@@ -94,8 +94,15 @@
           <detaileddescription>
           </detaileddescription>
         </enumvalue>
-        <enumvalue id="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3ab288997d67e0abfdfad5b35ff8d1b732" prot="public">
-          <name>PixelPositionRole</name>
+        <enumvalue id="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3a3e76b377d763bbde112a4fc37263afc5" prot="public">
+          <name>PixelXRole</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3adad59f4f62aaa8ba922d12de94657ddd" prot="public">
+          <name>PixelYRole</name>
           <briefdescription>
           </briefdescription>
           <detaileddescription>
@@ -206,7 +213,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="52" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" bodystart="52" bodyend="80"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="56" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" bodystart="56" bodyend="85"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="property">
@@ -224,7 +231,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="48" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" bodystart="48" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="52" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" bodystart="52" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-attrib">
@@ -240,7 +247,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="114" column="11" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" bodystart="114" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="119" column="11" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" bodystart="119" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -262,7 +269,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="83" column="14"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="88" column="14"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1InspectionRowModel_1a2207d6afb50c891947441828c0123668" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -282,7 +289,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="86" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="91" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1InspectionRowModel_1adf2fc7400cfca6e04065cc84bb375cec" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QVariant</type>
@@ -305,7 +312,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="88" column="14"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="93" column="14"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1InspectionRowModel_1ae7b419c9f7a653e1002a02c7c8320926" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QHash&lt; int, QByteArray &gt;</type>
@@ -320,7 +327,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="90" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="95" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1InspectionRowModel_1af0a49ecb9f978fbd958ba0177ae546c8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -335,7 +342,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="93" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="98" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1InspectionRowModel_1a3b0d1e854adab3eaaa21cb16868d0231" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE QVariantMap</type>
@@ -354,7 +361,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="95" column="29"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="100" column="29"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1InspectionRowModel_1a737e929a49b65a6c43f417bea2b5b32c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>const QList&lt; <ref refid="structQAccelPlot_1_1InspectionRow" kindref="compound">InspectionRow</ref> &gt; &amp;</type>
@@ -369,7 +376,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="98" column="17"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="103" column="17"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1InspectionRowModel_1afdfc37e74e7b449604b30cdabf6000e9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -388,7 +395,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="100" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="105" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1InspectionRowModel_1a7049e6aa4dce547efdc9f2518052c025" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -407,7 +414,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="102" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="107" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="signal">
@@ -424,7 +431,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="106" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="111" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
@@ -440,7 +447,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="109" column="17"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="114" column="17"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1InspectionRowModel_1a4893c14dc6fec2a0993d19c8cd46f9f1" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -458,7 +465,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="110" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="115" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1InspectionRowModel_1a5b911cd24f7f2ba35b68e99f2dea4ef3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -476,7 +483,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="111" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="116" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1InspectionRowModel_1a9864c1c284b34ff7b475c162ba9e8ce3" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -494,7 +501,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="112" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="117" column="10"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -502,7 +509,8 @@
     </briefdescription>
     <detaileddescription>
 <para>Provided by <computeroutput><ref refid="classQAccelPlot_1_1PlotInspector_1a0bfc971d317ca5e10284c4345b03d147" kindref="member">PlotInspector::model</ref></computeroutput> and <computeroutput><ref refid="classQAccelPlot_1_1SelectionTool_1a5137b8c4cf816f58dd7582b83c5217f0" kindref="member">SelectionTool::model</ref></computeroutput>. Rows are added and removed only when the set of inspected series changes; cursor movement updates rows in place, so delegates are reused.</para>
-<para>Roles: <computeroutput>series</computeroutput>, <computeroutput>seriesName</computeroutput>, <computeroutput>seriesColor</computeroutput>, <computeroutput>valid</computeroutput>, <computeroutput>dataPointStatus</computeroutput>, <computeroutput>dataPointIndex</computeroutput>, <computeroutput>dataPointX</computeroutput>, <computeroutput>dataPointY</computeroutput>, <computeroutput>dataPointValue</computeroutput>, <computeroutput>xText</computeroutput>, <computeroutput>yText</computeroutput>, <computeroutput>valueText</computeroutput>, <computeroutput>pixelPosition</computeroutput>, <computeroutput>distance</computeroutput>, <computeroutput>interpolated</computeroutput>, <computeroutput>hasSummary</computeroutput>, <computeroutput>summaryStatus</computeroutput>, <computeroutput>summaryCount</computeroutput>, <computeroutput>minimum</computeroutput>, <computeroutput>maximum</computeroutput>, <computeroutput>mean</computeroutput>, <computeroutput>standardDeviation</computeroutput>, <computeroutput>minimumIndex</computeroutput>, <computeroutput>maximumIndex</computeroutput>, <computeroutput>minimumText</computeroutput>, <computeroutput>maximumText</computeroutput>, and <computeroutput>meanText</computeroutput>. </para>
+<para>Roles: <computeroutput>series</computeroutput>, <computeroutput>seriesName</computeroutput>, <computeroutput>seriesColor</computeroutput>, <computeroutput>valid</computeroutput>, <computeroutput>dataPointStatus</computeroutput>, <computeroutput>dataPointIndex</computeroutput>, <computeroutput>dataPointX</computeroutput>, <computeroutput>dataPointY</computeroutput>, <computeroutput>dataPointValue</computeroutput>, <computeroutput>xText</computeroutput>, <computeroutput>yText</computeroutput>, <computeroutput>valueText</computeroutput>, <computeroutput>pixelX</computeroutput>, <computeroutput>pixelY</computeroutput>, <computeroutput>distance</computeroutput>, <computeroutput>interpolated</computeroutput>, <computeroutput>hasSummary</computeroutput>, <computeroutput>summaryStatus</computeroutput>, <computeroutput>summaryCount</computeroutput>, <computeroutput>minimum</computeroutput>, <computeroutput>maximum</computeroutput>, <computeroutput>mean</computeroutput>, <computeroutput>standardDeviation</computeroutput>, <computeroutput>minimumIndex</computeroutput>, <computeroutput>maximumIndex</computeroutput>, <computeroutput>minimumText</computeroutput>, <computeroutput>maximumText</computeroutput>, and <computeroutput>meanText</computeroutput>.</para>
+<para><computeroutput>pixelX</computeroutput> and <computeroutput>pixelY</computeroutput> are in plot-local logical pixels, unlike the series-local <computeroutput><ref refid="structQAccelPlot_1_1InspectionDataPoint_1af506057ef04de608450794fe2c3efb75" kindref="member">InspectionDataPoint::pixelX</ref></computeroutput> and <computeroutput><ref refid="structQAccelPlot_1_1InspectionDataPoint_1aea5fca469891f7d6a7757bbac2ca8511" kindref="member">InspectionDataPoint::pixelY</ref></computeroutput>. </para>
     </detaileddescription>
     <inheritancegraph>
       <node id="2">
@@ -526,7 +534,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="44" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" bodystart="44" bodyend="115"/>
+    <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="48" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" bodystart="48" bodyend="120"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1InspectionRowModel_1a709dd5c753772e2e477eae8f7d6038d0" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>count</name></member>
       <member refid="classQAccelPlot_1_1InspectionRowModel_1af0a49ecb9f978fbd958ba0177ae546c8" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>count</name></member>
@@ -550,7 +558,8 @@
       <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3a97f4e38070ce47f3a50bfda29b9298f4" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>MinimumIndexRole</name></member>
       <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3af53c75e3b2a8f96347464dd04118a875" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>MinimumRole</name></member>
       <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3ac0f00e93dbfdde59d8f71e8d0d56b10d" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>MinimumTextRole</name></member>
-      <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3ab288997d67e0abfdfad5b35ff8d1b732" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>PixelPositionRole</name></member>
+      <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3a3e76b377d763bbde112a4fc37263afc5" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>PixelXRole</name></member>
+      <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3adad59f4f62aaa8ba922d12de94657ddd" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>PixelYRole</name></member>
       <member refid="classQAccelPlot_1_1InspectionRowModel_1a7049e6aa4dce547efdc9f2518052c025" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>retainSeries</name></member>
       <member refid="classQAccelPlot_1_1InspectionRowModel_1a473b3e1987bbc2d5b02d72de0cd0b0f3" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>Role</name></member>
       <member refid="classQAccelPlot_1_1InspectionRowModel_1ae7b419c9f7a653e1002a02c7c8320926" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRowModel</scope><name>roleNames</name></member>

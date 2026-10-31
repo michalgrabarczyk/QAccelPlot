@@ -251,7 +251,7 @@ Q_INVOKABLE::QAccelPlot::InspectionDataPoint QAccelPlot::SeriesInspection::dataP
 
 
 
-`Unsupported` for series that do not draw data points as areas. The coordinates and `pixelPosition` of a match are the record's center, and `distance` is measured from _position_ to it. 
+`Unsupported` for series that do not draw data points as areas. The data and pixel coordinates of a match are the record's center, and `distance` is measured from _position_ to it. 
 
 
         

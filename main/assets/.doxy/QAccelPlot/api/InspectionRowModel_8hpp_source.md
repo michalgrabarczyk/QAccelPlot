@@ -28,7 +28,8 @@ namespace QAccelPlot {
 struct InspectionRow {
     QPointer<PlotSeries> series;   
     InspectionDataPoint dataPoint; 
-    QPointF pixelPosition;         
+    qreal pixelX{0.0};             
+    qreal pixelY{0.0};             
     QString xText;                 
     QString yText;                 
     QString valueText;             
@@ -58,7 +59,8 @@ public:
         XTextRole,
         YTextRole,
         ValueTextRole,
-        PixelPositionRole,
+        PixelXRole,
+        PixelYRole,
         DistanceRole,
         InterpolatedRole,
         HasSummaryRole,

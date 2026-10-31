@@ -19,7 +19,6 @@
 
 #include <QList>
 #include <QObject>
-#include <QPointF>
 #include <QVariantMap>
 #if __has_include(<QtQmlIntegration/qqmlintegration.h>)
 #include <QtQmlIntegration/qqmlintegration.h>
@@ -58,26 +57,27 @@ struct InspectionDataPoint {
     Q_PROPERTY(bool valid READ valid CONSTANT)
     Q_PROPERTY(quint64 dataRevision MEMBER dataRevision CONSTANT)
     Q_PROPERTY(int index MEMBER index CONSTANT)
-    Q_PROPERTY(qreal x READ x CONSTANT)
-    Q_PROPERTY(qreal y READ y CONSTANT)
+    Q_PROPERTY(qreal x MEMBER x CONSTANT)
+    Q_PROPERTY(qreal y MEMBER y CONSTANT)
     Q_PROPERTY(qreal value MEMBER value CONSTANT)
-    Q_PROPERTY(QPointF pixelPosition MEMBER pixelPosition CONSTANT)
+    Q_PROPERTY(qreal pixelX MEMBER pixelX CONSTANT)
+    Q_PROPERTY(qreal pixelY MEMBER pixelY CONSTANT)
     Q_PROPERTY(qreal distance MEMBER distance CONSTANT)
     Q_PROPERTY(bool interpolated MEMBER interpolated CONSTANT)
 
 public:
-    InspectionStatus status{InspectionStatus::NoMatch};                                                      
-    quint64 dataRevision{0};                                                                                 
-    int index{-1};                                                                                           
-    QPointF position{std::numeric_limits<qreal>::quiet_NaN(), std::numeric_limits<qreal>::quiet_NaN()};      
-    QPointF pixelPosition{std::numeric_limits<qreal>::quiet_NaN(), std::numeric_limits<qreal>::quiet_NaN()}; 
-    qreal distance{std::numeric_limits<qreal>::quiet_NaN()};                                                 
-    qreal value{std::numeric_limits<qreal>::quiet_NaN()};                                                    
-    bool interpolated{false};                                                                                
+    InspectionStatus status{InspectionStatus::NoMatch};      
+    quint64 dataRevision{0};                                 
+    int index{-1};                                           
+    qreal x{std::numeric_limits<qreal>::quiet_NaN()};        
+    qreal y{std::numeric_limits<qreal>::quiet_NaN()};        
+    qreal value{std::numeric_limits<qreal>::quiet_NaN()};    
+    qreal pixelX{std::numeric_limits<qreal>::quiet_NaN()};   
+    qreal pixelY{std::numeric_limits<qreal>::quiet_NaN()};   
+    qreal distance{std::numeric_limits<qreal>::quiet_NaN()}; 
+    bool interpolated{false};                                
 
     bool valid() const;
-    qreal x() const;
-    qreal y() const;
 };
 
 struct InspectionSummary {

@@ -1746,7 +1746,8 @@
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
 <p>Provided by <code>PlotInspector::model</code> and <code>SelectionTool::model</code>. Rows are added and removed only when the set of inspected series changes; cursor movement updates rows in place, so delegates are reused.</p>
-<p>Roles: <code>series</code>, <code>seriesName</code>, <code>seriesColor</code>, <code>valid</code>, <code>dataPointStatus</code>, <code>dataPointIndex</code>, <code>dataPointX</code>, <code>dataPointY</code>, <code>dataPointValue</code>, <code>xText</code>, <code>yText</code>, <code>valueText</code>, <code>pixelPosition</code>, <code>distance</code>, <code>interpolated</code>, <code>hasSummary</code>, <code>summaryStatus</code>, <code>summaryCount</code>, <code>minimum</code>, <code>maximum</code>, <code>mean</code>, <code>standardDeviation</code>, <code>minimumIndex</code>, <code>maximumIndex</code>, <code>minimumText</code>, <code>maximumText</code>, and <code>meanText</code>. </p>
+<p>Roles: <code>series</code>, <code>seriesName</code>, <code>seriesColor</code>, <code>valid</code>, <code>dataPointStatus</code>, <code>dataPointIndex</code>, <code>dataPointX</code>, <code>dataPointY</code>, <code>dataPointValue</code>, <code>xText</code>, <code>yText</code>, <code>valueText</code>, <code>pixelX</code>, <code>pixelY</code>, <code>distance</code>, <code>interpolated</code>, <code>hasSummary</code>, <code>summaryStatus</code>, <code>summaryCount</code>, <code>minimum</code>, <code>maximum</code>, <code>mean</code>, <code>standardDeviation</code>, <code>minimumIndex</code>, <code>maximumIndex</code>, <code>minimumText</code>, <code>maximumText</code>, and <code>meanText</code>.</p>
+<p><code>pixelX</code> and <code>pixelY</code> are in plot-local logical pixels, unlike the series-local <code>InspectionDataPoint::pixelX</code> and <code>InspectionDataPoint::pixelY</code>. </p>
 <h2 id="public-types-documentation">Public Types Documentation<a class="headerlink" href="#public-types-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="enum-role">enum Role<a class="headerlink" href="#enum-role" title="Permanent link">&para;</a></h3>
 <p><em>Data roles; the QML role names are listed in the class description.</em> 
@@ -1763,22 +1764,23 @@
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="n">XTextRole</span><span class="p">,</span>
 <a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="n">YTextRole</span><span class="p">,</span>
 <a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="n">ValueTextRole</span><span class="p">,</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="n">PixelPositionRole</span><span class="p">,</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="n">DistanceRole</span><span class="p">,</span>
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="n">InterpolatedRole</span><span class="p">,</span>
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="n">HasSummaryRole</span><span class="p">,</span>
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="n">SummaryStatusRole</span><span class="p">,</span>
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">    </span><span class="n">SummaryCountRole</span><span class="p">,</span>
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="n">MinimumRole</span><span class="p">,</span>
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="n">MaximumRole</span><span class="p">,</span>
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="n">MeanRole</span><span class="p">,</span>
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="n">StandardDeviationRole</span><span class="p">,</span>
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="n">MinimumIndexRole</span><span class="p">,</span>
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">    </span><span class="n">MaximumIndexRole</span><span class="p">,</span>
-<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span><span class="n">MinimumTextRole</span><span class="p">,</span>
-<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">    </span><span class="n">MaximumTextRole</span><span class="p">,</span>
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">    </span><span class="n">MeanTextRole</span>
-<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="p">};</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="n">PixelXRole</span><span class="p">,</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="n">PixelYRole</span><span class="p">,</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="n">DistanceRole</span><span class="p">,</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="n">InterpolatedRole</span><span class="p">,</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="n">HasSummaryRole</span><span class="p">,</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">    </span><span class="n">SummaryStatusRole</span><span class="p">,</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="n">SummaryCountRole</span><span class="p">,</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="n">MinimumRole</span><span class="p">,</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="n">MaximumRole</span><span class="p">,</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="n">MeanRole</span><span class="p">,</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="n">StandardDeviationRole</span><span class="p">,</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">    </span><span class="n">MinimumIndexRole</span><span class="p">,</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span><span class="n">MaximumIndexRole</span><span class="p">,</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">    </span><span class="n">MinimumTextRole</span><span class="p">,</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">    </span><span class="n">MaximumTextRole</span><span class="p">,</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">    </span><span class="n">MeanTextRole</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="p">};</span>
 </code></pre></div></p>
 <hr>
 <h2 id="public-properties-documentation">Public Properties Documentation<a class="headerlink" href="#public-properties-documentation" title="Permanent link">&para;</a></h2>

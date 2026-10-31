@@ -1051,7 +1051,7 @@
 
 ## x
 
-* **x** ([**QAccelPlot::CurveDataView**](structQAccelPlot_1_1CurveDataView.md), [**QAccelPlot::InspectionDataPoint**](structQAccelPlot_1_1InspectionDataPoint.md), [**QAccelPlot::Internal::InspectionSource**](structQAccelPlot_1_1Internal_1_1InspectionSource.md), [**QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md))
+* **x** ([**QAccelPlot::CurveDataView**](structQAccelPlot_1_1CurveDataView.md), [**QAccelPlot::Internal::InspectionSource**](structQAccelPlot_1_1Internal_1_1InspectionSource.md), [**QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md))
 * **xAxis** ([**QAccelPlot::DataAnchor**](classQAccelPlot_1_1DataAnchor.md), [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md), [**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md), [**QAccelPlot::SelectionTool**](classQAccelPlot_1_1SelectionTool.md))
 * **xDimension** ([**QAccelPlot::HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md))
 * **xMax** ([**QAccelPlot::HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md), [**QAccelPlot::SelectionTool**](classQAccelPlot_1_1SelectionTool.md))
@@ -1063,7 +1063,7 @@
 
 ## y
 
-* **y** ([**QAccelPlot::CurveDataView**](structQAccelPlot_1_1CurveDataView.md), [**QAccelPlot::InspectionDataPoint**](structQAccelPlot_1_1InspectionDataPoint.md), [**QAccelPlot::Internal::InspectionSource**](structQAccelPlot_1_1Internal_1_1InspectionSource.md), [**QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md))
+* **y** ([**QAccelPlot::CurveDataView**](structQAccelPlot_1_1CurveDataView.md), [**QAccelPlot::Internal::InspectionSource**](structQAccelPlot_1_1Internal_1_1InspectionSource.md), [**QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md))
 * **yAxis** ([**QAccelPlot::DataAnchor**](classQAccelPlot_1_1DataAnchor.md), [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md), [**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md), [**QAccelPlot::SelectionTool**](classQAccelPlot_1_1SelectionTool.md))
 * **yDimension** ([**QAccelPlot::HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md))
 * **yMax** ([**QAccelPlot::HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md), [**QAccelPlot::SelectionTool**](classQAccelPlot_1_1SelectionTool.md))

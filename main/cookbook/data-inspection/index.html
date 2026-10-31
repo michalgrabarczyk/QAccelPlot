@@ -1678,7 +1678,8 @@ and declare the roles it uses as required properties:</p>
 use the axis' tick formatter at a precision that follows the zoom level.
 <code>valueText</code> holds the value of a heatmap cell or a colored <code>PointCloud</code> point
 with up to six significant digits; the default row shows it after the
-coordinates.</p>
+coordinates. <code>pixelX</code> and <code>pixelY</code> place the matched data point in plot-local
+pixels, like <code>cursorPixelX</code> and <code>cursorPixelY</code>.</p>
 <h3 id="cursor-from-code">Cursor from code<a class="headerlink" href="#cursor-from-code" title="Permanent link">&para;</a></h3>
 <p>Set <code>followPointer: false</code> and write <code>cursorX</code>, <code>cursorY</code>, or both to place the
 cursor in data coordinates. With one coordinate, series are matched along that
@@ -1715,6 +1716,10 @@ position with <code>series.mapFromItem(plot, position)</code>.</p>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">if</span> <span class="p">(</span><span class="nx">dataPoint</span><span class="p">.</span><span class="nx">valid</span><span class="p">)</span>
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dataPoint</span><span class="p">.</span><span class="nx">index</span><span class="p">,</span> <span class="nx">dataPoint</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">dataPoint</span><span class="p">.</span><span class="nx">y</span><span class="p">)</span>
 </code></pre></div>
+<p>A data point has <code>x</code> and <code>y</code> in data units and <code>pixelX</code> and <code>pixelY</code> in
+series-local pixels, the frame of the query arguments. <code>value</code> is the colormap
+value of a <code>PointCloud</code> point or a heatmap cell, and NaN for other series and
+interpolated points.</p>
 <table>
 <thead>
 <tr>
