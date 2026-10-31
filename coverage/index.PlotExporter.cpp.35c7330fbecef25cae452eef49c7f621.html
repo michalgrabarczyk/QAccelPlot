@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2026-10-31 13:14:29</td>
+      <td>2026-10-31 13:41:04</td>
     </tr>
   </table>
 </div>
@@ -79,7 +79,7 @@
     <tr><td><a href="#l87">QAccelPlot::(anonymous namespace)::releaseGrab(QSharedPointer&lt;QQuickItemGrabResult&gt; const&amp;, QObject const*, bool)::{lambda()#1}::operator()() const (line 87)</a></td><td>called 28 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l61">QAccelPlot::(anonymous namespace)::shownWindow(QQuickWindow*) (line 61)</a></td><td>called 63 times</td><td>83.0%</td></tr>
     <tr><td><a href="#l52">QAccelPlot::(anonymous namespace)::textureLimitError(QSizeF const&amp;, int) (line 52)</a></td><td>called 2 times</td><td>56.0%</td></tr>
-    <tr><td><a href="#l100">QAccelPlot::PlotExporter::Capture::Capture(QAccelPlot::PlotExporter::Operation, QString, QByteArray, int, double, QAccelPlot::QAccelPlot*, double) (line 100)</a></td><td>called 28 times</td><td>56.0%</td></tr>
+    <tr><td><a href="#l100">QAccelPlot::PlotExporter::Capture::Capture(QAccelPlot::PlotExporter::Operation, QString, QByteArray, int, double, QAccelPlot::PlotView*, double) (line 100)</a></td><td>called 28 times</td><td>56.0%</td></tr>
     <tr><td><a href="#l127">QAccelPlot::PlotExporter::PlotExporter(QObject*) (line 127)</a></td><td>called 37 times</td><td>45.0%</td></tr>
     <tr><td><a href="#l130">QAccelPlot::PlotExporter::PlotExporter(QObject*)::{lambda()#1}::operator()() const (line 130)</a></td><td>called 6 times</td><td>75.0%</td></tr>
     <tr><td><a href="#l375">QAccelPlot::PlotExporter::abortCapture(QString const&amp;) (line 375)</a></td><td>called 4 times</td><td>78.0%</td></tr>
@@ -101,7 +101,7 @@
     <tr><td><a href="#l161">QAccelPlot::PlotExporter::scale() const (line 161)</a></td><td>called 4 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l422">QAccelPlot::PlotExporter::setBusy(bool) (line 422)</a></td><td>called 56 times</td><td>75.0%</td></tr>
     <tr><td><a href="#l202">QAccelPlot::PlotExporter::setDpi(double) (line 202)</a></td><td>called 6 times</td><td>79.0%</td></tr>
-    <tr><td><a href="#l146">QAccelPlot::PlotExporter::setPlot(QAccelPlot::QAccelPlot*) (line 146)</a></td><td>called 35 times</td><td>89.0%</td></tr>
+    <tr><td><a href="#l146">QAccelPlot::PlotExporter::setPlot(QAccelPlot::PlotView*) (line 146)</a></td><td>called 35 times</td><td>89.0%</td></tr>
     <tr><td><a href="#l184">QAccelPlot::PlotExporter::setQuality(int) (line 184)</a></td><td>called 8 times</td><td>79.0%</td></tr>
     <tr><td><a href="#l166">QAccelPlot::PlotExporter::setScale(double) (line 166)</a></td><td>called 14 times</td><td>79.0%</td></tr>
     <tr><td><a href="#l220">QAccelPlot::PlotExporter::setTransparentBackground(bool) (line 220)</a></td><td>called 10 times</td><td>75.0%</td></tr>
@@ -943,7 +943,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">28</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="n">Capture</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Operation</span><span class="w"> </span><span class="n">operation</span><span class="p">,</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">QByteArray</span><span class="w"> </span><span class="n">format</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">quality</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">dpi</span><span class="p">,</span><span class="w"> </span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">*</span><span class="w"> </span><span class="n">plot</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">scale</span><span class="p">)</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="n">Capture</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Operation</span><span class="w"> </span><span class="n">operation</span><span class="p">,</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">QByteArray</span><span class="w"> </span><span class="n">format</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">quality</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">dpi</span><span class="p">,</span><span class="w"> </span><span class="n">PlotView</span><span class="o">*</span><span class="w"> </span><span class="n">plot</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">scale</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l101" href="#l101">101</a></td>
@@ -1091,7 +1091,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="w">    </span><span class="n">QPointer</span><span class="o">&lt;::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">&gt;</span><span class="w"> </span><span class="n">plot</span><span class="p">;</span></td>
+      <td class="src "><span class="w">    </span><span class="n">QPointer</span><span class="o">&lt;</span><span class="n">PlotView</span><span class="o">&gt;</span><span class="w"> </span><span class="n">plot</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l118" href="#l118">118</a></td>
@@ -1287,7 +1287,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">4</td>
-      <td class="src coveredLine"><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">*</span><span class="w"> </span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">plot</span><span class="p">()</span><span class="w"> </span><span class="k">const</span></td>
+      <td class="src coveredLine"><span class="n">PlotView</span><span class="o">*</span><span class="w"> </span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">plot</span><span class="p">()</span><span class="w"> </span><span class="k">const</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l142" href="#l142">142</a></td>
@@ -1322,7 +1322,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">35</td>
-      <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">setPlot</span><span class="p">(</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">*</span><span class="w"> </span><span class="n">plot</span><span class="p">)</span></td>
+      <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">setPlot</span><span class="p">(</span><span class="n">PlotView</span><span class="o">*</span><span class="w"> </span><span class="n">plot</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l147" href="#l147">147</a></td>
