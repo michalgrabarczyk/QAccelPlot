@@ -33,12 +33,13 @@ Item {
 
         Rectangle {
             required property bool valid
-            required property point pixelPosition
+            required property real pixelX
+            required property real pixelY
             required property color seriesColor
 
             visible: valid
-            x: valid ? pixelPosition.x - root.x - width / 2 : 0
-            y: valid ? pixelPosition.y - root.y - height / 2 : 0
+            x: valid ? pixelX - root.x - width / 2 : 0
+            y: valid ? pixelY - root.y - height / 2 : 0
             width: root.size
             height: root.size
             radius: root.size / 2

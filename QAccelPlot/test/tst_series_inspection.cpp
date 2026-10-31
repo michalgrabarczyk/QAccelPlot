@@ -71,7 +71,8 @@ void compareAgainstScan(PointCloud& cloud, const std::vector<double>& data, cons
         auto nearestYDistance = kInfinity;
         auto inside = 0;
         for (auto i = 0; i < count; ++i) {
-            const auto pixel = inspection->dataPointAt(i).pixelPosition;
+            const auto point = inspection->dataPointAt(i);
+            const auto pixel = QPointF{point.pixelX, point.pixelY};
             const auto distance = std::hypot(pixel.x() - position.x(), pixel.y() - position.y());
             if (distance <= nearestDistance) {
                 nearestDistance = distance;
@@ -133,11 +134,11 @@ void TestSeriesInspection::precisionAndGaps()
     QCOMPARE(inspection->status(), InspectionStatus::Ready);
     QCOMPARE(inspection->indexBytes(), quint64{0});
     QCOMPARE(inspection->dataPointAt(2).index, 2);
-    QCOMPARE(inspection->dataPointAt(2).x(), 1e12 + .5);
+    QCOMPARE(inspection->dataPointAt(2).x, 1e12 + .5);
     const auto gap = inspection->dataPointAt(1);
     QCOMPARE(gap.status, InspectionStatus::NoMatch);
-    QCOMPARE(gap.x(), 1e12 + .25);
-    QVERIFY(std::isnan(gap.y()));
+    QCOMPARE(gap.x, 1e12 + .25);
+    QVERIFY(std::isnan(gap.y));
     QCOMPARE(inspection->dataPointAt(4).status, InspectionStatus::InvalidArgument);
     // Equal distances resolve to the highest index.
     QCOMPARE(inspection->nearestByX(500, 0).index, 3);
@@ -235,13 +236,13 @@ void TestSeriesInspection::bracketEnds()
         auto* inspection = cloud.inspection();
         const auto xAt = [&](const double dataX, const bool left) {
             const auto bracket = inspection->bracketByX(x.coordToPixel(dataX, 400));
-            return left ? bracket.left.x() : bracket.right.x();
+            return left ? bracket.left.x : bracket.right.x;
         };
         // Before the first sample only a right neighbor exists.
         const auto before = inspection->bracketByX(x.coordToPixel(0.5, 400));
         QVERIFY(before.valid());
         QVERIFY(!before.left.valid());
-        QCOMPARE(before.right.x(), 1.0);
+        QCOMPARE(before.right.x, 1.0);
         // A sample exactly under the cursor is the left neighbor, at both ends alike.
         QCOMPARE(xAt(1.0, true), 1.0);
         QCOMPARE(xAt(1.0, false), 2.0);
@@ -252,7 +253,7 @@ void TestSeriesInspection::bracketEnds()
         QVERIFY(last.valid());
         QVERIFY(!last.right.valid());
         const auto after = inspection->bracketByX(x.coordToPixel(3.5, 400));
-        QCOMPARE(after.left.x(), 3.0);
+        QCOMPARE(after.left.x, 3.0);
         QVERIFY(!after.right.valid());
     }
     auto empty = PointCloud{};
@@ -275,13 +276,13 @@ void TestSeriesInspection::interpolation()
     QVERIFY(bracket.interpolated.valid());
     QVERIFY(bracket.interpolated.interpolated);
     QCOMPARE(bracket.interpolated.index, 0);
-    QCOMPARE(bracket.interpolated.x(), 3.0);
-    QCOMPARE(bracket.interpolated.y(), 505.0);
+    QCOMPARE(bracket.interpolated.x, 3.0);
+    QCOMPARE(bracket.interpolated.y, 505.0);
     // On a logarithmic axis the drawn segment is straight in log space.
     y.setLogScale(true);
     bracket = inspection->bracketByX(300);
-    QVERIFY(std::abs(bracket.interpolated.y() - 100.0) < 1e-9);
-    QCOMPARE(bracket.interpolated.pixelPosition.x(), 300.0);
+    QVERIFY(std::abs(bracket.interpolated.y - 100.0) < 1e-9);
+    QCOMPARE(bracket.interpolated.pixelX, 300.0);
 }
 
 void TestSeriesInspection::stepInterpolation()
@@ -298,30 +299,31 @@ void TestSeriesInspection::stepInterpolation()
     // Along X the readout is the value the step holds, and index is the data point holding it.
     curve.setStepMode(StepMode::After);
     QCOMPARE(alongX(3).index, 0);
-    QCOMPARE(alongX(3).y(), 1.0);
-    QCOMPARE(alongX(3).x(), 3.0);
-    QCOMPARE(alongX(3).pixelPosition, QPointF(300, 90));
+    QCOMPARE(alongX(3).y, 1.0);
+    QCOMPARE(alongX(3).x, 3.0);
+    QCOMPARE(alongX(3).pixelX, 300.0);
+    QCOMPARE(alongX(3).pixelY, 90.0);
     curve.setStepMode(StepMode::Before);
     QCOMPARE(alongX(3).index, 1);
-    QCOMPARE(alongX(3).y(), 9.0);
+    QCOMPARE(alongX(3).y, 9.0);
     QCOMPARE(alongX(2).index, 0);
-    QCOMPARE(alongX(2).y(), 1.0);
+    QCOMPARE(alongX(2).y, 1.0);
     curve.setStepMode(StepMode::Center);
     QCOMPARE(alongX(2.9).index, 0);
-    QCOMPARE(alongX(2.9).y(), 1.0);
+    QCOMPARE(alongX(2.9).y, 1.0);
     QCOMPARE(alongX(3.1).index, 1);
-    QCOMPARE(alongX(3.1).y(), 9.0);
+    QCOMPARE(alongX(3.1).y, 9.0);
 
     // Along Y the readout is on the riser between the two values.
     curve.setStepMode(StepMode::After);
     QCOMPARE(alongY(4).index, 1);
-    QCOMPARE(alongY(4).x(), 4.0);
+    QCOMPARE(alongY(4).x, 4.0);
     curve.setStepMode(StepMode::Before);
     QCOMPARE(alongY(4).index, 0);
-    QCOMPARE(alongY(4).x(), 2.0);
+    QCOMPARE(alongY(4).x, 2.0);
     curve.setStepMode(StepMode::Center);
     QCOMPARE(alongY(4).index, 0);
-    QVERIFY(std::abs(alongY(4).x() - 3.0) < 1e-9);
+    QVERIFY(std::abs(alongY(4).x - 3.0) < 1e-9);
     QCOMPARE(alongY(6).index, 1);
 
     // A centered step on a log X axis changes value halfway on screen, at the geometric mean.
@@ -330,8 +332,8 @@ void TestSeriesInspection::stepInterpolation()
     x.setViewportMax(100);
     curve.setData(std::vector<double>{2, 1, 50, 9}, 2);
     const auto pixelOf = [](const qreal dataX) { return std::log10(dataX) / 2 * 1000; };
-    QCOMPARE(inspection->bracketByX(pixelOf(9)).interpolated.y(), 1.0);
-    QCOMPARE(inspection->bracketByX(pixelOf(11)).interpolated.y(), 9.0);
+    QCOMPARE(inspection->bracketByX(pixelOf(9)).interpolated.y, 1.0);
+    QCOMPARE(inspection->bracketByX(pixelOf(11)).interpolated.y, 9.0);
 }
 
 void TestSeriesInspection::argumentsAndAxisLifetime()
@@ -350,7 +352,7 @@ void TestSeriesInspection::argumentsAndAxisLifetime()
     const auto miss = inspection->nearest({50, 50}, 0);
     QCOMPARE(miss.status, InspectionStatus::NoMatch);
     QCOMPARE(miss.index, -1);
-    QVERIFY(std::isnan(miss.x()) && std::isnan(miss.distance));
+    QVERIFY(std::isnan(miss.x) && std::isnan(miss.distance));
     x->setLogScale(true);
     QCOMPARE(inspection->summarizeRange(-2, 2).count, 1);
     // Without an X axis pixel queries cannot run, but data-space queries still do.
@@ -379,7 +381,8 @@ void TestSeriesInspection::transition()
     QCOMPARE(inspection->summarizeRange(0, 10).status, InspectionStatus::Unavailable);
     animation.cancel();
     QCOMPARE(inspection->status(), InspectionStatus::Ready);
-    QCOMPARE(inspection->dataPointAt(1).position, QPointF(3, 4));
+    QCOMPARE(inspection->dataPointAt(1).x, 3.0);
+    QCOMPARE(inspection->dataPointAt(1).y, 4.0);
     QCOMPARE(inspection->summarizeRange(0, 10).count, 2);
 }
 
@@ -465,7 +468,8 @@ void TestSeriesInspection::zeroRadiusMapping()
         x.setLogScale(logarithmic);
         y.setLogScale(logarithmic);
         for (auto index = 0; index < 3; ++index) {
-            const auto position = cloud.inspection()->dataPointAt(index).pixelPosition;
+            const auto point = cloud.inspection()->dataPointAt(index);
+            const auto position = QPointF{point.pixelX, point.pixelY};
             QCOMPARE(cloud.inspection()->nearest(position, 0).index, index);
             QCOMPARE(cloud.inspection()->nearestByX(position.x(), 0).index, index);
         }
@@ -532,11 +536,12 @@ void TestSeriesInspection::orderedAlongY()
     QCOMPARE(bracket.right.index, 40001);
     QVERIFY(bracket.adjacent);
     QVERIFY(bracket.interpolated.valid());
-    QVERIFY(std::abs(bracket.interpolated.y() - 40000.5) < 1e-6);
-    QVERIFY(std::abs(bracket.interpolated.x() - (std::sin(400.0) + std::sin(400.01)) / 2) < 1e-6);
+    QVERIFY(std::abs(bracket.interpolated.y - 40000.5) < 1e-6);
+    QVERIFY(std::abs(bracket.interpolated.x - (std::sin(400.0) + std::sin(400.01)) / 2) < 1e-6);
     QVERIFY(!inspection->bracketByY(pixelY(-5)).left.valid());
     QVERIFY(!inspection->bracketByY(pixelY(count + 5.0)).right.valid());
-    const auto target = inspection->dataPointAt(70000).pixelPosition;
+    const auto point = inspection->dataPointAt(70000);
+    const auto target = QPointF{point.pixelX, point.pixelY};
     QCOMPARE(inspection->nearest(target, 0).index, 70000);
     QCOMPARE(inspection->summarize(-kInfinity, kInfinity, 1000, 1999).count, 1000);
     QCOMPARE(inspection->summarize(0, kInfinity, 0, 313).count, 314);
@@ -580,7 +585,7 @@ void TestSeriesInspection::queriesAcrossTheOrder()
         compareAgainstScan(cloud, data, count);
         const auto bracket = inspection->bracketByY(100);
         QVERIFY(bracket.left.valid() && bracket.right.valid());
-        QVERIFY(bracket.left.y() <= 0.0 && bracket.right.y() > 0.0);
+        QVERIFY(bracket.left.y <= 0.0 && bracket.right.y > 0.0);
     }
 }
 

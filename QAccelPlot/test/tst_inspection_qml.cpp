@@ -75,11 +75,15 @@ void TestInspectionQml::queriesRowsAndSelection()
                 return [inspection.status === QAccelPlot.Inspection.Ready, dataPoint.valid, dataPoint.status === QAccelPlot.Inspection.Ready,
                     dataPoint.index, dataPoint.y, bracket.left.index, bracket.interpolated.y.toFixed(6), summary.count, summary.mean, page.total,
                     page.indices.length, page.indices[0], root.xAxis.formatValue(dataPoint.x, curve.width), byY.index, bracketY.left.index,
-                    QAccelPlot.PlotInspector.NearestY].join("|");
+                    QAccelPlot.PlotInspector.NearestY, (dataPoint.pixelX / curve.width).toFixed(2), (dataPoint.pixelY / curve.height).toFixed(2),
+                    isNaN(dataPoint.value)].join("|");
             }
             function rows() {
                 const row = inspector.model.get(0);
-                return [inspector.model.count, row.seriesName, row.valid, row.dataPointIndex, row.yText].join("|");
+                const local = curve.inspection.dataPointAt(row.dataPointIndex);
+                const plotLocal = curve.mapToItem(root, Qt.point(local.pixelX, local.pixelY));
+                return [inspector.model.count, row.seriesName, row.valid, row.dataPointIndex, row.yText, row.pixelX === plotLocal.x,
+                    row.pixelY === plotLocal.y].join("|");
             }
             function selection() {
                 tool.select(0, 5, -Infinity, Infinity);
@@ -101,9 +105,9 @@ void TestInspectionQml::queriesRowsAndSelection()
         return result.toString();
     };
     QTRY_VERIFY(curve->width() > 0);
-    QCOMPARE(call("queries"), QStringLiteral("true|true|true|1|6|0|3.000000|3|4|3|2|1|4.000|1|2|1"));
+    QCOMPARE(call("queries"), QStringLiteral("true|true|true|1|6|0|3.000000|3|4|3|2|1|4.000|1|2|1|0.40|0.40|true"));
     QTRY_COMPARE(inspector->validCount(), 1);
-    QCOMPARE(call("rows"), QStringLiteral("1|A|true|1|6.000"));
+    QCOMPARE(call("rows"), QStringLiteral("1|A|true|1|6.000|true|true"));
     QCOMPARE(call("selection"), QStringLiteral("true|true|2|2"));
     QCOMPARE(call("layers"), QStringLiteral("true|true|true|true|true|true|true|4|1|2|3"));
 }

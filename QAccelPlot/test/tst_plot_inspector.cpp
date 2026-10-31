@@ -157,7 +157,8 @@ void TestPlotInspector::rows()
     // Texts follow the pixel resolution instead of the tick step.
     QCOMPARE(row.value("yText").toString(), QStringLiteral("3.142"));
     QCOMPARE(row.value("xText").toString(), QStringLiteral("1.000"));
-    QCOMPARE(row.value("pixelPosition").toPointF(), rig.pixel(1, 3.14159));
+    QCOMPARE(row.value("pixelX").toDouble(), rig.pixel(1, 3.14159).x());
+    QCOMPARE(row.value("pixelY").toDouble(), rig.pixel(1, 3.14159).y());
     QCOMPARE(resets.count(), 1);
 
     // Moving the cursor updates the row in place.
@@ -555,7 +556,8 @@ void TestPlotInspector::heatmapCells()
         QCOMPARE(row.value("xText").toString(), QStringLiteral("6.000"));
         QCOMPARE(row.value("yText").toString(), QStringLiteral("2.500"));
         QCOMPARE(row.value("valueText").toString(), QStringLiteral("1.25"));
-        QCOMPARE(row.value("pixelPosition").toPointF(), rig.pixel(6, 2.5));
+        QCOMPARE(row.value("pixelX").toDouble(), rig.pixel(6, 2.5).x());
+        QCOMPARE(row.value("pixelY").toDouble(), rig.pixel(6, 2.5).y());
     }
     // Rows without a value have no value text.
     QCOMPARE(rowOf(curve).value("valueText").toString(), QString{});

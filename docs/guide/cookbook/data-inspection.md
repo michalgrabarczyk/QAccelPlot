@@ -83,7 +83,8 @@ QAccelPlot.InspectionTooltip {
 use the axis' tick formatter at a precision that follows the zoom level.
 `valueText` holds the value of a heatmap cell or a colored `PointCloud` point
 with up to six significant digits; the default row shows it after the
-coordinates.
+coordinates. `pixelX` and `pixelY` place the matched data point in plot-local
+pixels, like `cursorPixelX` and `cursorPixelY`.
 
 ### Cursor from code
 
@@ -134,6 +135,11 @@ const dataPoint = curve.inspection.nearestByX(position.x)
 if (dataPoint.valid)
     console.log(dataPoint.index, dataPoint.x, dataPoint.y)
 ```
+
+A data point has `x` and `y` in data units and `pixelX` and `pixelY` in
+series-local pixels, the frame of the query arguments. `value` is the colormap
+value of a `PointCloud` point or a heatmap cell, and NaN for other series and
+interpolated points.
 
 | Query | Methods |
 | --- | --- |

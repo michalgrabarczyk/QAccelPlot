@@ -42,9 +42,9 @@ QVariant dataPointData(const InspectionRow& row, const int role)
     case InspectionRowModel::DataPointIndexRole:
         return row.dataPoint.index;
     case InspectionRowModel::DataPointXRole:
-        return row.dataPoint.x();
+        return row.dataPoint.x;
     case InspectionRowModel::DataPointYRole:
-        return row.dataPoint.y();
+        return row.dataPoint.y;
     case InspectionRowModel::DataPointValueRole:
         return row.dataPoint.value;
     case InspectionRowModel::XTextRole:
@@ -53,8 +53,10 @@ QVariant dataPointData(const InspectionRow& row, const int role)
         return row.yText;
     case InspectionRowModel::ValueTextRole:
         return row.valueText;
-    case InspectionRowModel::PixelPositionRole:
-        return row.pixelPosition;
+    case InspectionRowModel::PixelXRole:
+        return row.pixelX;
+    case InspectionRowModel::PixelYRole:
+        return row.pixelY;
     case InspectionRowModel::DistanceRole:
         return row.dataPoint.distance;
     case InspectionRowModel::InterpolatedRole:
@@ -130,9 +132,9 @@ QHash<int, QByteArray> InspectionRowModel::roleNames() const
 {
     return {{SeriesRole, "series"}, {SeriesNameRole, "seriesName"}, {SeriesColorRole, "seriesColor"}, {ValidRole, "valid"},
         {DataPointStatusRole, "dataPointStatus"}, {DataPointIndexRole, "dataPointIndex"}, {DataPointXRole, "dataPointX"}, {DataPointYRole, "dataPointY"},
-        {DataPointValueRole, "dataPointValue"}, {XTextRole, "xText"}, {YTextRole, "yText"}, {ValueTextRole, "valueText"}, {PixelPositionRole, "pixelPosition"},
-        {DistanceRole, "distance"}, {InterpolatedRole, "interpolated"}, {HasSummaryRole, "hasSummary"}, {SummaryStatusRole, "summaryStatus"},
-        {SummaryCountRole, "summaryCount"}, {MinimumRole, "minimum"}, {MaximumRole, "maximum"}, {MeanRole, "mean"},
+        {DataPointValueRole, "dataPointValue"}, {XTextRole, "xText"}, {YTextRole, "yText"}, {ValueTextRole, "valueText"}, {PixelXRole, "pixelX"},
+        {PixelYRole, "pixelY"}, {DistanceRole, "distance"}, {InterpolatedRole, "interpolated"}, {HasSummaryRole, "hasSummary"},
+        {SummaryStatusRole, "summaryStatus"}, {SummaryCountRole, "summaryCount"}, {MinimumRole, "minimum"}, {MaximumRole, "maximum"}, {MeanRole, "mean"},
         {StandardDeviationRole, "standardDeviation"}, {MinimumIndexRole, "minimumIndex"}, {MaximumIndexRole, "maximumIndex"}, {MinimumTextRole, "minimumText"},
         {MaximumTextRole, "maximumText"}, {MeanTextRole, "meanText"}};
 }

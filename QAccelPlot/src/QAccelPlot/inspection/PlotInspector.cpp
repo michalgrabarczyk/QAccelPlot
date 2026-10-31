@@ -439,7 +439,7 @@ void PlotInspector::stepCursor(const int steps)
                 break;
             }
         }
-        const auto pixel = row.series->mapToItem(plot_, target.pixelPosition);
+        const auto pixel = row.series->mapToItem(plot_, QPointF{target.pixelX, target.pixelY});
         if (followPointer_) {
             followPointer_ = false;
             emit followPointerChanged();
@@ -588,7 +588,7 @@ int PlotInspector::lowerNeighborIndex(SeriesInspection& inspection, const Inspec
 {
     const auto cursor = activeCursor();
     const auto byY = (cursor ? effectiveMode(*cursor) : mode_) == NearestY;
-    const auto bracket = byY ? inspection.bracketByY(dataPoint.pixelPosition.y()) : inspection.bracketByX(dataPoint.pixelPosition.x());
+    const auto bracket = byY ? inspection.bracketByY(dataPoint.pixelY) : inspection.bracketByX(dataPoint.pixelX);
     return bracket.left.valid() ? bracket.left.index : dataPoint.index;
 }
 
@@ -635,7 +635,9 @@ QList<PlotInspector::Query> PlotInspector::queryRows(const QPointF& cursor) cons
         const auto local = series->mapFromItem(plot_, point);
         query.row.dataPoint = matchDataPoint(*series, mode, cursor, local);
         if (query.row.dataPoint.valid()) {
-            query.row.pixelPosition = series->mapToItem(plot_, query.row.dataPoint.pixelPosition);
+            const auto pixel = series->mapToItem(plot_, QPointF{query.row.dataPoint.pixelX, query.row.dataPoint.pixelY});
+            query.row.pixelX = pixel.x();
+            query.row.pixelY = pixel.y();
         }
         if (summaries_) {
             query.row.hasSummary = true;
@@ -702,8 +704,8 @@ void PlotInspector::formatRows(QList<Query>& queries) const
     for (auto& query : queries) {
         auto& row = query.row;
         if (row.dataPoint.valid()) {
-            row.xText = format(query.xAxis, row.dataPoint.x(), query.size.width());
-            row.yText = format(query.yAxis, row.dataPoint.y(), query.size.height());
+            row.xText = format(query.xAxis, row.dataPoint.x, query.size.width());
+            row.yText = format(query.yAxis, row.dataPoint.y, query.size.height());
             row.valueText = std::isfinite(row.dataPoint.value) ? QLocale{}.toString(row.dataPoint.value, 'g', 6) : QString{};
         }
         if (row.summary.valid()) {
@@ -739,10 +741,10 @@ QPointF PlotInspector::snappedPosition(const QList<Query>& queries, const QPoint
     }
     // Only the coordinates the row was matched by are snapped; a cell is matched by both.
     if (closest->series->inspection()->matching() == Internal::InspectionMatching::Containing) {
-        return closest->pixelPosition;
+        return {closest->pixelX, closest->pixelY};
     }
     const auto mode = effectiveMode(cursor);
-    return {mode == NearestY ? cursor.x() : closest->pixelPosition.x(), mode == NearestX ? cursor.y() : closest->pixelPosition.y()};
+    return {mode == NearestY ? cursor.x() : closest->pixelX, mode == NearestX ? cursor.y() : closest->pixelY};
 }
 
 void PlotInspector::publish(const State& state)

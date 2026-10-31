@@ -530,11 +530,13 @@ InspectionDataPoint SeriesInspection::makeDataPoint(const Internal::InspectionSo
     }
     result.status = InspectionStatus::Ready;
     result.index = index;
-    result.position = {source.x(index), source.y(index)};
+    result.x = source.x(index);
+    result.y = source.y(index);
     result.value = source.value(index);
     result.distance = distance;
     if (const auto mapping = metric(); mapping && source.valid(index)) {
-        result.pixelPosition = {mapping->pixelX(result.position.x()), mapping->pixelY(result.position.y())};
+        result.pixelX = mapping->pixelX(result.x);
+        result.pixelY = mapping->pixelY(result.y);
     }
     return result;
 }
@@ -546,33 +548,35 @@ InspectionDataPoint SeriesInspection::interpolate(const Internal::InspectionMetr
     result.dataRevision = left.dataRevision;
     const auto alongX = axis == Internal::InspectionAxis::X;
     const auto acrossAxis = alongX ? Internal::InspectionAxis::Y : Internal::InspectionAxis::X;
-    const auto pixelAlong = [alongX](const QPointF& position) { return alongX ? position.x() : position.y(); };
-    const auto pixelAcross = [alongX](const QPointF& position) { return alongX ? position.y() : position.x(); };
-    const auto from = pixelAlong(left.pixelPosition);
-    const auto span = pixelAlong(right.pixelPosition) - from;
+    const auto pixelAlong = [alongX](const InspectionDataPoint& point) { return alongX ? point.pixelX : point.pixelY; };
+    const auto pixelAcross = [alongX](const InspectionDataPoint& point) { return alongX ? point.pixelY : point.pixelX; };
+    const auto from = pixelAlong(left);
+    const auto span = pixelAlong(right) - from;
     if (!std::isfinite(span) || span == 0.0) {
         return result;
     }
     const auto ratio = std::clamp((pixel - from) / span, 0.0, 1.0);
-    auto across = pixelAcross(left.pixelPosition) + ratio * (pixelAcross(right.pixelPosition) - pixelAcross(left.pixelPosition));
+    auto across = pixelAcross(left) + ratio * (pixelAcross(right) - pixelAcross(left));
     auto acrossCoordinate = std::optional<double>{};
     result.index = left.index;
     if (stepMode != StepMode::None) {
         const auto step = stepPointBetween(stepMode, alongX, ratio);
         const auto& acrossPoint = step.acrossFromRight ? right : left;
         result.index = step.ownedByRight ? right.index : left.index;
-        across = step.acrossBetween ? (pixelAcross(left.pixelPosition) + pixelAcross(right.pixelPosition)) * 0.5 : pixelAcross(acrossPoint.pixelPosition);
+        across = step.acrossBetween ? (pixelAcross(left) + pixelAcross(right)) * 0.5 : pixelAcross(acrossPoint);
         if (!step.acrossBetween) {
-            acrossCoordinate = alongX ? acrossPoint.position.y() : acrossPoint.position.x();
+            acrossCoordinate = alongX ? acrossPoint.y : acrossPoint.x;
         }
     }
     result.status = InspectionStatus::Ready;
     result.interpolated = true;
     result.distance = 0.0;
-    result.pixelPosition = alongX ? QPointF{pixel, across} : QPointF{across, pixel};
+    result.pixelX = alongX ? pixel : across;
+    result.pixelY = alongX ? across : pixel;
     const auto alongCoordinate = metric.coord(axis, pixel);
     const auto acrossValue = acrossCoordinate.value_or(metric.coord(acrossAxis, across));
-    result.position = alongX ? QPointF{alongCoordinate, acrossValue} : QPointF{acrossValue, alongCoordinate};
+    result.x = alongX ? alongCoordinate : acrossValue;
+    result.y = alongX ? acrossValue : alongCoordinate;
     return result;
 }
 

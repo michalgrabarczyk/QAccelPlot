@@ -14,16 +14,6 @@ bool InspectionDataPoint::valid() const
     return status == InspectionStatus::Ready;
 }
 
-qreal InspectionDataPoint::x() const
-{
-    return position.x();
-}
-
-qreal InspectionDataPoint::y() const
-{
-    return position.y();
-}
-
 bool InspectionSummary::valid() const
 {
     return status == InspectionStatus::Ready;

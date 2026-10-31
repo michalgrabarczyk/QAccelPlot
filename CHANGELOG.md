@@ -59,6 +59,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   longer public.
 - Renamed `PlotInspector.position` to `crosshairPosition`, and
   `positionChanged()` to `crosshairPositionChanged()`.
+- Inspection data points place a point as `x`, `y` (data units) and `pixelX`,
+  `pixelY` (series-local pixels). Replace `pixelPosition.x` with `pixelX`, and
+  the inspection row role `pixelPosition` (plot-local) with `pixelX` and
+  `pixelY`. In C++, `InspectionDataPoint::position` and `x()`/`y()` are now the
+  `x` and `y` members.
 - Series use the `antialiasing` property inherited from `Item`.
   `LineCurve.antialiasingEnabled`, `PointCloud.antialiasingEnabled`, and
   `LegendEntry.antialiasingEnabled` are now `antialiasing`. `BandSeries` edge
