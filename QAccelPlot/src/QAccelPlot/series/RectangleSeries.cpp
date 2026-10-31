@@ -242,7 +242,11 @@ std::optional<LegendEntry> RectangleSeries::legendEntry() const
 
 QList<LegendEntry> RectangleSeries::legendEntries() const
 {
-    return categories_->table().empty() ? PlotSeries::legendEntries() : categories_->table().legendEntries(*legendEntry());
+    const auto seriesEntry = legendEntry();
+    if (!seriesEntry || categories_->table().empty()) {
+        return PlotSeries::legendEntries();
+    }
+    return categories_->table().legendEntries(*seriesEntry);
 }
 
 void RectangleSeries::setDataPointCategories(const QVariantList& categories)

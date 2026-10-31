@@ -395,10 +395,11 @@ std::optional<LegendEntry> BarSeries::legendEntry() const
 
 QList<LegendEntry> BarSeries::legendEntries() const
 {
-    if (categories_->table().empty() || colormap()) {
+    const auto seriesEntry = legendEntry();
+    if (!seriesEntry || categories_->table().empty() || colormap()) {
         return PlotSeries::legendEntries();
     }
-    return categories_->table().legendEntries(*legendEntry());
+    return categories_->table().legendEntries(*seriesEntry);
 }
 
 void BarSeries::setDataPointCategories(const QVariantList& categories)
