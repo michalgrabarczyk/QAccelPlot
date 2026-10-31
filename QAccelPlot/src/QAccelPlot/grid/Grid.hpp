@@ -25,7 +25,7 @@ class Grid : public QObject {
     Q_OBJECT
     QML_ANONYMOUS
     /// \brief Width in pixels of the major grid lines. Default: 2.
-    Q_PROPERTY(qreal lineWidth READ lineWidth WRITE setLineWidth NOTIFY lineWidthChanged)
+    Q_PROPERTY(qreal gridLineWidth READ gridLineWidth WRITE setGridLineWidth NOTIFY gridLineWidthChanged)
     /// \brief Width in pixels of the sub-grid lines. Default: 1.
     Q_PROPERTY(qreal subGridLineWidth READ subGridLineWidth WRITE setSubGridLineWidth NOTIFY subGridLineWidthChanged)
     /// \brief Color of the major grid lines. Default: \c Colors.dark.grid.
@@ -51,9 +51,9 @@ public:
     explicit Grid(QObject* parent = nullptr);
 
     /// \brief Returns the major grid line width.
-    qreal lineWidth() const;
+    qreal gridLineWidth() const;
     /// \brief Sets the major grid line width to \a w.
-    void setLineWidth(qreal w);
+    void setGridLineWidth(qreal w);
 
     /// \brief Returns the sub-grid line width.
     qreal subGridLineWidth() const;
@@ -101,8 +101,8 @@ public:
     void setSubGridVerticalLinesVisible(bool on);
 
 signals:
-    /// \brief Emitted when the lineWidth property changes.
-    void lineWidthChanged();
+    /// \brief Emitted when the gridLineWidth property changes.
+    void gridLineWidthChanged();
     /// \brief Emitted when the subGridLineWidth property changes.
     void subGridLineWidthChanged();
     /// \brief Emitted when the gridColor property changes.
@@ -123,7 +123,7 @@ signals:
     void subGridVerticalLinesVisibleChanged();
 
 private:
-    qreal lineWidth_{2.0};
+    qreal gridLineWidth_{2.0};
     qreal subGridLineWidth_{1.0};
     QColor gridColor_{ColorPalette::dark().grid};
     QColor subGridColor_{ColorPalette::dark().subGrid};

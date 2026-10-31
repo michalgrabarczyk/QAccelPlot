@@ -126,7 +126,7 @@ void GridNode::collectAxisGridLines(QVector<QRectF>& mainRects, QVector<QRectF>&
     const auto ticks = AxisTickPainter::computeTickValues(p.axis->viewportMin(), p.axis->viewportMax(), p.axis->logScale(), p.axis->ticker());
     if (p.gridLinesVisible) {
         for (const auto value : ticks.majorValues) {
-            mainRects.append(p.makeRect(value, grid->lineWidth() / 2.0));
+            mainRects.append(p.makeRect(value, grid->gridLineWidth() / 2.0));
         }
     }
     if (p.subGridLinesVisible) {
