@@ -357,7 +357,7 @@ void ColorBarTest::drawsLogTicks()
 {
     auto scene = Scene{Qt::Vertical, QSize{100, 200}};
     scene.bar.ticker()->setTickColor(Qt::green);
-    scene.colormap.setNorm(Colormap::Normalization::Log);
+    scene.colormap.setLogScale(true);
     scene.colormap.setMin(1.0);
     scene.colormap.setMax(1000.0);
     const auto image = scene.render();
@@ -377,7 +377,7 @@ void ColorBarTest::followsColormapChanges()
     scene.render();
     QCOMPARE(scene.bar.valueToPixel(1.0, 100.0), 50.0);
 
-    scene.colormap.setNorm(Colormap::Normalization::Log);
+    scene.colormap.setLogScale(true);
     scene.colormap.setMin(1.0);
     scene.colormap.setMax(100.0);
     scene.render();
@@ -532,7 +532,7 @@ void ColorBarTest::pixelToValueInvertsValueToPixel()
     QCOMPARE(scene.bar.pixelToValue(10.0, 0.0), 2.0);
 
     scene.bar.setOrientation(Qt::Horizontal);
-    scene.colormap.setNorm(Colormap::Normalization::Log);
+    scene.colormap.setLogScale(true);
     scene.colormap.setRange(1.0, 100.0);
     scene.render();
     QCOMPARE_NEAR(scene.bar.pixelToValue(50.0, 100.0), 10.0);
@@ -657,7 +657,7 @@ void ColorBarTest::dragPinsDataResolvedRange()
 void ColorBarTest::dragOnLogColormapPansInLogSpace()
 {
     auto scene = InteractiveScene{Qt::Horizontal};
-    scene.colormap.setNorm(Colormap::Normalization::Log);
+    scene.colormap.setLogScale(true);
     scene.colormap.setRange(1.0, 100.0);
 
     // Half of two decades is one decade.
@@ -692,7 +692,7 @@ void ColorBarTest::wheelMagnitudeIsIndependentOfEventCount()
     QFETCH(bool, logarithmic);
     auto scene = InteractiveScene{Qt::Horizontal};
     if (logarithmic) {
-        scene.colormap.setNorm(Colormap::Normalization::Log);
+        scene.colormap.setLogScale(true);
     }
     scene.colormap.setRange(1.0, 1000.0);
     QVERIFY(wheel(scene.bar, scene.center(), delta));
@@ -735,7 +735,7 @@ void ColorBarTest::wheelOutUndoesWheelIn()
 void ColorBarTest::wheelOnLogColormapZoomsInLogSpace()
 {
     auto scene = InteractiveScene{Qt::Horizontal};
-    scene.colormap.setNorm(Colormap::Normalization::Log);
+    scene.colormap.setLogScale(true);
     scene.colormap.setRange(1.0, 10000.0);
     scene.bar.setZoomScaleFactor(0.5);
 

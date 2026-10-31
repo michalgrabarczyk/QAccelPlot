@@ -56,12 +56,13 @@ class TransitionRunner;
 ///
 /// \par Colormap
 /// Assign a \c colormap to color each bar by \c colorSource: its \c value, or its \c position. The
-/// position of a ranged bar is the middle of its edges as the colormap's \c norm places them, and
+/// position of a ranged bar is the middle of its edges as the colormap places them, and
 /// \c barOffset does not apply. A colormap with at least two stops overrides \c color and
 /// \c categoryColors, and \c hoverColor still marks the hovered bar. Values outside the value range
-/// take the color at its nearer end. A bar whose source the norm cannot map, such as a non-positive
-/// one under \c Log, keeps \c color or its category color. Under \c Log, an unset bound resolved
-/// from such a bar is not positive, so every bar keeps its color; set \c Colormap::min above zero.
+/// take the color at its nearer end. A bar whose source the colormap cannot map, such as a
+/// non-positive one under \c Colormap::logScale, keeps \c color or its category color. Under
+/// \c logScale, an unset bound resolved from such a bar is not positive, so every bar keeps its
+/// color; set \c Colormap::min above zero.
 /// Bars can be histogram bins colored by their bin, with a \c ColorBar or the position axis as the
 /// key:
 ///

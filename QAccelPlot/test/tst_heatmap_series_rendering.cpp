@@ -258,7 +258,7 @@ void HeatmapSeriesRenderingTest::logNormLeavesNonPositiveCellsTransparent()
 {
     auto* colormap = scene_->heatmap()->colormap();
     colormap->setRange(1.0, 2.0);
-    colormap->setNorm(Colormap::Normalization::Log);
+    colormap->setLogScale(true);
     const auto image = scene_->grab();
     QVERIFY(isColor(image.pixelColor(scene_->pixel(3.5, 3.5)), Qt::black));
     QVERIFY(isColor(image.pixelColor(scene_->pixel(6.5, 3.5)), Qt::blue));

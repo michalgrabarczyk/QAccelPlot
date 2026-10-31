@@ -942,7 +942,7 @@ void BarSeries::updateColormapUniforms(BarMaterial& material, QQuickWindow* wind
 
     // Linear normalization shifts the range by the render origin in double precision. A log one
     // needs the absolute value, so the shader adds the origin back first.
-    const auto logScale = mapped && colormap()->norm() == Colormap::Normalization::Log;
+    const auto logScale = mapped && colormap()->logScale();
     const auto origin = dataPoints().renderOrigin(byValue == isHorizontal() ? Dimension::X : Dimension::Y);
     const auto shift = logScale ? 0.0 : origin;
     material.valueMin = static_cast<float>(dataValueMin() - shift);

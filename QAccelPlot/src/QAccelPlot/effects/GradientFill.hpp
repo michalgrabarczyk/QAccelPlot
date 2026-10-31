@@ -35,7 +35,7 @@ class GradientFill : public LineCurveEffect {
     Q_PROPERTY(QObject* gradient READ gradient WRITE setGradient NOTIFY gradientChanged)
     /// \brief Colormap supplying the color stops. Overrides \c gradient when set.
     ///
-    /// Only the ramp is used. \c Colormap::min, \c Colormap::max, and \c Colormap::norm are ignored;
+    /// Only the ramp is used. \c Colormap::min, \c Colormap::max, and \c Colormap::logScale are ignored;
     /// \c valueMin and \c valueMax place the ramp instead.
     Q_PROPERTY(Colormap* colormap READ colormap WRITE setColormap NOTIFY colormapChanged)
     /// \brief How the gradient normalization minimum is determined; see \c GradientValueSource.

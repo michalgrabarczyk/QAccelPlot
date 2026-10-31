@@ -112,7 +112,7 @@ void PropertyNotificationsTest::writeNotifiesOnceAndRoundTrips_data()
     row("ColorBar", "interactive", true);
     row("ColorBar", "zoomScaleFactor", 0.5);
 
-    row("Colormap", "norm", QVariant::fromValue(Colormap::Normalization::Log));
+    row("Colormap", "logScale", true);
 
     row("DataAnchor", "dataX1", 1.5);
     row("DataAnchor", "dataY1", 2.5);
