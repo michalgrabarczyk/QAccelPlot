@@ -70,7 +70,7 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 | property int | [**count**](classQAccelPlot_1_1LegendModel.md#property-count-12)  <br>_Read-only: number of rows._  |
-| property QList&lt;[**::QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md) \* &gt; | [**series**](classQAccelPlot_1_1LegendModel.md#property-series-12)  <br>_Series to list, in legend order. Default: empty._  |
+| property QList&lt; [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) \* &gt; | [**series**](classQAccelPlot_1_1LegendModel.md#property-series-12)  <br>_Series to list, in legend order. Default: empty._  |
 
 
 
@@ -196,7 +196,7 @@ int QAccelPlot::LegendModel::count;
 
 _Series to list, in legend order. Default: empty._ 
 ```C++
-QList<::QAccelPlot::PlotSeries*> QAccelPlot::LegendModel::series;
+QList<PlotSeries*> QAccelPlot::LegendModel::series;
 ```
 
 

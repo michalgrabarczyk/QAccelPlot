@@ -56,7 +56,7 @@ class PlotSeries : public QQuickItem {
 
     
     Q_PROPERTY(quint64 dataRevision READ dataRevision NOTIFY dataRevisionChanged)
-    Q_PROPERTY(::QAccelPlot::SeriesInspection* inspection READ inspection CONSTANT)
+    Q_PROPERTY(SeriesInspection* inspection READ inspection CONSTANT)
     Q_PROPERTY(int count READ count NOTIFY countChanged)
 
 public:

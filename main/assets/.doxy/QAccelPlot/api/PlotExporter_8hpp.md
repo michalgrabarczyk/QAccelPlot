@@ -17,7 +17,7 @@
 
 
 
-* `#include "QAccelPlot/QAccelPlot.hpp"`
+* `#include "QAccelPlot/PlotView.hpp"`
 * `#include <QFutureWatcher>`
 * `#include <QImage>`
 * `#include <QObject>`

@@ -53,7 +53,7 @@ using InspectionStatus = InspectionNS::Status;
 struct InspectionDataPoint {
     Q_GADGET
     QML_ANONYMOUS
-    Q_PROPERTY(::QAccelPlot::InspectionNS::Status status MEMBER status CONSTANT)
+    Q_PROPERTY(InspectionNS::Status status MEMBER status CONSTANT)
     Q_PROPERTY(bool valid READ valid CONSTANT)
     Q_PROPERTY(quint64 dataRevision MEMBER dataRevision CONSTANT)
     Q_PROPERTY(int index MEMBER index CONSTANT)
@@ -83,7 +83,7 @@ public:
 struct InspectionSummary {
     Q_GADGET
     QML_ANONYMOUS
-    Q_PROPERTY(::QAccelPlot::InspectionNS::Status status MEMBER status CONSTANT)
+    Q_PROPERTY(InspectionNS::Status status MEMBER status CONSTANT)
     Q_PROPERTY(bool valid READ valid CONSTANT)
     Q_PROPERTY(quint64 dataRevision MEMBER dataRevision CONSTANT)
     Q_PROPERTY(int count MEMBER count CONSTANT)
@@ -111,13 +111,13 @@ public:
 struct InspectionBracket {
     Q_GADGET
     QML_ANONYMOUS
-    Q_PROPERTY(::QAccelPlot::InspectionNS::Status status MEMBER status CONSTANT)
+    Q_PROPERTY(InspectionNS::Status status MEMBER status CONSTANT)
     Q_PROPERTY(bool valid READ valid CONSTANT)
     Q_PROPERTY(quint64 dataRevision MEMBER dataRevision CONSTANT)
-    Q_PROPERTY(::QAccelPlot::InspectionDataPoint left MEMBER left CONSTANT)
-    Q_PROPERTY(::QAccelPlot::InspectionDataPoint right MEMBER right CONSTANT)
+    Q_PROPERTY(InspectionDataPoint left MEMBER left CONSTANT)
+    Q_PROPERTY(InspectionDataPoint right MEMBER right CONSTANT)
     Q_PROPERTY(bool adjacent MEMBER adjacent CONSTANT)
-    Q_PROPERTY(::QAccelPlot::InspectionDataPoint interpolated MEMBER interpolated CONSTANT)
+    Q_PROPERTY(InspectionDataPoint interpolated MEMBER interpolated CONSTANT)
 
 public:
     InspectionStatus status{InspectionStatus::NoMatch}; 
@@ -133,7 +133,7 @@ public:
 struct InspectionPage {
     Q_GADGET
     QML_ANONYMOUS
-    Q_PROPERTY(::QAccelPlot::InspectionNS::Status status MEMBER status CONSTANT)
+    Q_PROPERTY(InspectionNS::Status status MEMBER status CONSTANT)
     Q_PROPERTY(bool valid READ valid CONSTANT)
     Q_PROPERTY(quint64 dataRevision MEMBER dataRevision CONSTANT)
     Q_PROPERTY(int total MEMBER total CONSTANT)
@@ -159,7 +159,7 @@ public:
 struct InspectionRecord {
     Q_GADGET
     QML_ANONYMOUS
-    Q_PROPERTY(::QAccelPlot::InspectionNS::Status status MEMBER status CONSTANT)
+    Q_PROPERTY(InspectionNS::Status status MEMBER status CONSTANT)
     Q_PROPERTY(bool valid READ valid CONSTANT)
     Q_PROPERTY(quint64 dataRevision MEMBER dataRevision CONSTANT)
     Q_PROPERTY(int index MEMBER index CONSTANT)

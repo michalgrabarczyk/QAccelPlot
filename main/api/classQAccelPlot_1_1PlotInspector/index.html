@@ -2485,11 +2485,11 @@
 <td style="text-align: left;"><a href="./#property-mode-12"><strong>mode</strong></a>  <br><code>NearestX</code> <em>and</em><code>NearestY</code> <em>report each series at the cursor's X or Y;</em><code>NearestXY</code> <em>picks by on-screen distance. Default: NearestX.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">property <a href="../classQAccelPlot_1_1InspectionRowModel/"><strong>QAccelPlot::InspectionRowModel</strong></a> *</td>
+<td style="text-align: right;">property <a href="../classQAccelPlot_1_1InspectionRowModel/"><strong>InspectionRowModel</strong></a> *</td>
 <td style="text-align: left;"><a href="./#property-model-12"><strong>model</strong></a>  <br><em>Read-only constant: one row per inspected series.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">property <a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a> *</td>
+<td style="text-align: right;">property <a href="../classQAccelPlot_1_1PlotView/"><strong>PlotView</strong></a> *</td>
 <td style="text-align: left;"><a href="./#property-plot-12"><strong>plot</strong></a>  <br><em>Plot whose series are inspected.</em></td>
 </tr>
 <tr>
@@ -2667,7 +2667,7 @@
 <td style="text-align: left;"><a href="#function-model-22"><strong>model</strong></a> () const<br><em>Returns the row model.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classQAccelPlot_1_1QAccelPlot/"><strong>::QAccelPlot::QAccelPlot</strong></a> *</td>
+<td style="text-align: right;"><a href="../classQAccelPlot_1_1PlotView/"><strong>PlotView</strong></a> *</td>
 <td style="text-align: left;"><a href="#function-plot-22"><strong>plot</strong></a> () const<br><em>Returns the inspected plot.</em></td>
 </tr>
 <tr>
@@ -2720,7 +2720,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setplot"><strong>setPlot</strong></a> (<a href="../classQAccelPlot_1_1QAccelPlot/"><strong>::QAccelPlot::QAccelPlot</strong></a> * plot) <br><em>Sets the inspected plot.</em></td>
+<td style="text-align: left;"><a href="#function-setplot"><strong>setPlot</strong></a> (<a href="../classQAccelPlot_1_1PlotView/"><strong>PlotView</strong></a> * plot) <br><em>Sets the inspected plot.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -2875,13 +2875,13 @@
 
 <h3 id="property-model-12">property model<a class="headerlink" href="#property-model-12" title="Permanent link">&para;</a></h3>
 <p><em>Read-only constant: one row per inspected series.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionRowModel</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotInspector</span><span class="o">::</span><span class="n">model</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">InspectionRowModel</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotInspector</span><span class="o">::</span><span class="n">model</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="property-plot-12">property plot<a class="headerlink" href="#property-plot-12" title="Permanent link">&para;</a></h3>
 <p><em>Plot whose series are inspected.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotInspector</span><span class="o">::</span><span class="n">plot</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">PlotView</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotInspector</span><span class="o">::</span><span class="n">plot</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
@@ -3117,7 +3117,7 @@
 
 <h3 id="function-plot-22">function plot<a class="headerlink" href="#function-plot-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the inspected plot.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotInspector</span><span class="o">::</span><span class="n">plot</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="n">PlotView</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotInspector</span><span class="o">::</span><span class="n">plot</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
@@ -3216,7 +3216,7 @@
 <h3 id="function-setplot">function setPlot<a class="headerlink" href="#function-setplot" title="Permanent link">&para;</a></h3>
 <p><em>Sets the inspected plot.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotInspector</span><span class="o">::</span><span class="n">setPlot</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-69-2" name="__codelineno-69-2" href="#__codelineno-69-2"></a><span class="w">    </span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">plot</span>
+<a id="__codelineno-69-2" name="__codelineno-69-2" href="#__codelineno-69-2"></a><span class="w">    </span><span class="n">PlotView</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">plot</span>
 <a id="__codelineno-69-3" name="__codelineno-69-3" href="#__codelineno-69-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>

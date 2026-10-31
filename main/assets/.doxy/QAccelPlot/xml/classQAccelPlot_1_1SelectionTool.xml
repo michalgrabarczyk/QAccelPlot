@@ -45,9 +45,9 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="property">
-      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1a4ae38bb3b21c4d4ea7e1a9c77a438663" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type><ref refid="classQAccelPlot_1_1QAccelPlot" kindref="compound">QAccelPlot::QAccelPlot</ref> *</type>
-        <definition>QAccelPlot::QAccelPlot* QAccelPlot::SelectionTool::plot</definition>
+      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1ae19b44fd287efb2c19605a3bf7ee41e3" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1PlotView" kindref="compound">PlotView</ref> *</type>
+        <definition>PlotView* QAccelPlot::SelectionTool::plot</definition>
         <argsstring></argsstring>
         <name>plot</name>
         <qualifiedname>QAccelPlot::SelectionTool::plot</qualifiedname>
@@ -62,9 +62,9 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="36" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="36" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1acc851b184f120b04d378076eb043d30f" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type><ref refid="classQAccelPlot_1_1Axis" kindref="compound">QAccelPlot::Axis</ref> *</type>
-        <definition>QAccelPlot::Axis* QAccelPlot::SelectionTool::xAxis</definition>
+      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1ae1950aaec89cff8d7627ddbd747cc0c1" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
+        <definition>Axis* QAccelPlot::SelectionTool::xAxis</definition>
         <argsstring></argsstring>
         <name>xAxis</name>
         <qualifiedname>QAccelPlot::SelectionTool::xAxis</qualifiedname>
@@ -79,9 +79,9 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="38" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="38" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1a80e34f498bbde1d2f11b22b7c77d5f7c" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type><ref refid="classQAccelPlot_1_1Axis" kindref="compound">QAccelPlot::Axis</ref> *</type>
-        <definition>QAccelPlot::Axis* QAccelPlot::SelectionTool::yAxis</definition>
+      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1ac91a3cfd6d81c384316cd50189e332d6" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
+        <definition>Axis* QAccelPlot::SelectionTool::yAxis</definition>
         <argsstring></argsstring>
         <name>yAxis</name>
         <qualifiedname>QAccelPlot::SelectionTool::yAxis</qualifiedname>
@@ -198,9 +198,9 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="52" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="52" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1abdc7fd46ad9292ea541de395dbdc9302" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type><ref refid="classQAccelPlot_1_1Border" kindref="compound">QAccelPlot::Border</ref> *</type>
-        <definition>QAccelPlot::Border* QAccelPlot::SelectionTool::border</definition>
+      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1ad7eb70b3b5e8bf9437597036a087e0f5" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1Border" kindref="compound">Border</ref> *</type>
+        <definition>Border* QAccelPlot::SelectionTool::border</definition>
         <argsstring></argsstring>
         <name>border</name>
         <qualifiedname>QAccelPlot::SelectionTool::border</qualifiedname>
@@ -343,9 +343,9 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="70" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="70" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1a5137b8c4cf816f58dd7582b83c5217f0" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type><ref refid="classQAccelPlot_1_1InspectionRowModel" kindref="compound">QAccelPlot::InspectionRowModel</ref> *</type>
-        <definition>QAccelPlot::InspectionRowModel* QAccelPlot::SelectionTool::model</definition>
+      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1aded9a71953426557d45e9b0abf187a63" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1InspectionRowModel" kindref="compound">InspectionRowModel</ref> *</type>
+        <definition>InspectionRowModel* QAccelPlot::SelectionTool::model</definition>
         <argsstring></argsstring>
         <name>model</name>
         <qualifiedname>QAccelPlot::SelectionTool::model</qualifiedname>
@@ -361,9 +361,9 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1a5c4dbcb62d9b482497a4ebc12f88678a" prot="private" static="no" mutable="no">
-        <type>QPointer&lt;<ref refid="classQAccelPlot_1_1QAccelPlot" kindref="compound">::QAccelPlot::QAccelPlot</ref> &gt;</type>
-        <definition>QPointer&lt;::QAccelPlot::QAccelPlot&gt; QAccelPlot::SelectionTool::plot_</definition>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1abcabd818493d8239fe6c611aa6088d46" prot="private" static="no" mutable="no">
+        <type>QPointer&lt; <ref refid="classQAccelPlot_1_1PlotView" kindref="compound">PlotView</ref> &gt;</type>
+        <definition>QPointer&lt;PlotView&gt; QAccelPlot::SelectionTool::plot_</definition>
         <argsstring></argsstring>
         <name>plot_</name>
         <qualifiedname>QAccelPlot::SelectionTool::plot_</qualifiedname>
@@ -645,9 +645,9 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="84" column="14"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a1388233f5936d16c748a181712cd52df" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classQAccelPlot_1_1QAccelPlot" kindref="compound">::QAccelPlot::QAccelPlot</ref> *</type>
-        <definition>::QAccelPlot::QAccelPlot * QAccelPlot::SelectionTool::plot</definition>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a2ed11651961750c11e8a1b8c77b7195e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1PlotView" kindref="compound">PlotView</ref> *</type>
+        <definition>PlotView * QAccelPlot::SelectionTool::plot</definition>
         <argsstring>() const</argsstring>
         <name>plot</name>
         <qualifiedname>QAccelPlot::SelectionTool::plot</qualifiedname>
@@ -658,16 +658,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="87" column="30"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="87" column="14"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a99106dbee9ec99c02e49357ebc627508" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1afc19c71aa0f32c933f122180d0224c97" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void QAccelPlot::SelectionTool::setPlot</definition>
-        <argsstring>(::QAccelPlot::QAccelPlot *plot)</argsstring>
+        <argsstring>(PlotView *plot)</argsstring>
         <name>setPlot</name>
         <qualifiedname>QAccelPlot::SelectionTool::setPlot</qualifiedname>
         <param>
-          <type><ref refid="classQAccelPlot_1_1QAccelPlot" kindref="compound">::QAccelPlot::QAccelPlot</ref> *</type>
+          <type><ref refid="classQAccelPlot_1_1PlotView" kindref="compound">PlotView</ref> *</type>
           <declname>plot</declname>
         </param>
         <briefdescription>
@@ -1151,14 +1151,14 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="146" column="22"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a8bc1b672c659a59434d03c5477f6ecc1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>Q_INVOKABLE::QAccelPlot::InspectionPage</type>
-        <definition>Q_INVOKABLE::QAccelPlot::InspectionPage QAccelPlot::SelectionTool::indices</definition>
-        <argsstring>(::QAccelPlot::PlotSeries *series, int offset=0, int limit=4096)</argsstring>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1abd00f8d9bbf7c08099f3293f36771526" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE <ref refid="structQAccelPlot_1_1InspectionPage" kindref="compound">InspectionPage</ref></type>
+        <definition>Q_INVOKABLE InspectionPage QAccelPlot::SelectionTool::indices</definition>
+        <argsstring>(PlotSeries *series, int offset=0, int limit=4096)</argsstring>
         <name>indices</name>
         <qualifiedname>QAccelPlot::SelectionTool::indices</qualifiedname>
         <param>
-          <type><ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">::QAccelPlot::PlotSeries</ref> *</type>
+          <type><ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> *</type>
           <declname>series</declname>
         </param>
         <param>
@@ -1175,11 +1175,11 @@
 <para>Returns one page of <emphasis>series&apos;</emphasis> source indices inside the selection, against its current data. </para>
         </briefdescription>
         <detaileddescription>
-<para>Pages like <computeroutput><ref refid="classQAccelPlot_1_1SeriesInspection_1abe2a3b291d365904f0b9122c4dd5e513" kindref="member">SeriesInspection::indices()</ref></computeroutput>: <emphasis>limit</emphasis> must be positive and is capped at 4096. </para>
+<para>Pages like <computeroutput><ref refid="classQAccelPlot_1_1SeriesInspection_1a659847fde0575672ccf3135f28db4530" kindref="member">SeriesInspection::indices()</ref></computeroutput>: <emphasis>limit</emphasis> must be positive and is capped at 4096. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="150" column="46"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="150" column="32"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a0bc4ff93e10ea2926c25ed2b6179945a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE void</type>
@@ -1654,7 +1654,7 @@
     </collaborationgraph>
     <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="32" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="32" bodyend="226"/>
     <listofallmembers>
-      <member refid="classQAccelPlot_1_1SelectionTool_1abdc7fd46ad9292ea541de395dbdc9302" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>border</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1ad7eb70b3b5e8bf9437597036a087e0f5" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>border</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1af26a24e70645b341d8f74493bafdc927" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>border</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1a987eb23110e400340765c861e9ca6898" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>border_</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1a2dda320d5bf84b04d53e4db8494db210a3498513b91f73b69e8a91a07d73589f3" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>Box</name></member>
@@ -1680,7 +1680,7 @@
       <member refid="classQAccelPlot_1_1SelectionTool_1ac8ed072f4effda73f0bce43ce07ca3ea" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>hasSelection</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1adb4eb5ca47a763ef84018db864fed5ca" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>hasSelection</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1ac278407ceaae4f08e4f71e734928e9b3" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>hasSelection_</name></member>
-      <member refid="classQAccelPlot_1_1SelectionTool_1a8bc1b672c659a59434d03c5477f6ecc1" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>indices</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1abd00f8d9bbf7c08099f3293f36771526" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>indices</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1ab2a52fce00d063792b21ced9c9ee3823" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>minimumSize</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1a1f2ca3022d26b8fca3aebec958a1eb6e" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>minimumSize</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1add6ebc8920d08d7b4e9459b2d1cc68b3" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>minimumSize_</name></member>
@@ -1690,7 +1690,7 @@
       <member refid="classQAccelPlot_1_1SelectionTool_1a2dda320d5bf84b04d53e4db8494db210" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>Mode</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1a9a4a9b2931c3d40861d091805813b1e1" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>mode_</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1a2c89e39a28d9143aa6f48728b8d534bd" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>modeChanged</name></member>
-      <member refid="classQAccelPlot_1_1SelectionTool_1a5137b8c4cf816f58dd7582b83c5217f0" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>model</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1aded9a71953426557d45e9b0abf187a63" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>model</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1ab63cf648a53671b4e9f589d9bc933c36" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>model</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1ad6b343d989482400e3f9f17ad4ec57c2" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>model_</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1ac27e10ef1e49ac9b47ab8a7f83e4274d" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>modifiers</name></member>
@@ -1701,9 +1701,9 @@
       <member refid="classQAccelPlot_1_1SelectionTool_1a2a5bba858d000c6f352043cec6b841a5" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>pixelRect</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1a7520d60e1034e7931f82820cbf57a1b0" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>pixelRect</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1a6ff8070c6f6dabe479a14532932c7d4d" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>pixelRectChanged</name></member>
-      <member refid="classQAccelPlot_1_1SelectionTool_1a4ae38bb3b21c4d4ea7e1a9c77a438663" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>plot</name></member>
-      <member refid="classQAccelPlot_1_1SelectionTool_1a1388233f5936d16c748a181712cd52df" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>plot</name></member>
-      <member refid="classQAccelPlot_1_1SelectionTool_1a5c4dbcb62d9b482497a4ebc12f88678a" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>plot_</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1ae19b44fd287efb2c19605a3bf7ee41e3" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>plot</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a2ed11651961750c11e8a1b8c77b7195e" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>plot</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1abcabd818493d8239fe6c611aa6088d46" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>plot_</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1a32d29dbb2b31102707903117c0859a49" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>plotChanged</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1ad929cdb25c3a78258df83585b7554523" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>press</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1ad176023a6d8c0af120901637d11c1d64" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>reconnect</name></member>
@@ -1732,12 +1732,12 @@
       <member refid="classQAccelPlot_1_1SelectionTool_1ac34edcabbc3d600a08db159eb7a2c3db" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setMinimumSize</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1afa44124a282a30d5c1611bbfdaa01692" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setMode</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1af125c2737ad6f40e673b1d9f544d6232" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setModifiers</name></member>
-      <member refid="classQAccelPlot_1_1SelectionTool_1a99106dbee9ec99c02e49357ebc627508" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setPlot</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1afc19c71aa0f32c933f122180d0224c97" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setPlot</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1accc2e2ccedb486ad93218a3faa653e38" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setRectangleVisible</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1ad06cc72e6981d2e6462a0f6eaca1635f" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setRegion</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1a28f8e946a4918806e20f8c3c77cb1b14" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setXAxis</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1ab113f1337c795e0da3e659321f8a0408" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setYAxis</name></member>
-      <member refid="classQAccelPlot_1_1SelectionTool_1acc851b184f120b04d378076eb043d30f" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>xAxis</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1ae1950aaec89cff8d7627ddbd747cc0c1" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>xAxis</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1a77dfd27eae51f99ccebb1c84da3f8073" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>xAxis</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1ad40a471038124a3e4d35736c69bbd93f" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>xAxis_</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1ad8e6b506d7004ecf37aac7ed7b3749b9" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>xAxisChanged</name></member>
@@ -1746,7 +1746,7 @@
       <member refid="classQAccelPlot_1_1SelectionTool_1a8fdc5236a73617ded36fcccb7964ba8d" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>xMin</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1a408a13332806a1f9d9feff7df476a3bc" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>xMin</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1a2dda320d5bf84b04d53e4db8494db210abd137f0128a26649552b86e6778cc93d" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>XRange</name></member>
-      <member refid="classQAccelPlot_1_1SelectionTool_1a80e34f498bbde1d2f11b22b7c77d5f7c" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>yAxis</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1ac91a3cfd6d81c384316cd50189e332d6" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>yAxis</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1a82686d8fa57a7ea198de40dfaaaea895" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>yAxis</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1a89fc2147e7d3821d7710eb32b4429228" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>yAxis_</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1a5f719b79093a704075e6777edce14082" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>yAxisChanged</name></member>

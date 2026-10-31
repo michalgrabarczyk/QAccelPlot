@@ -157,7 +157,7 @@ flowchart TB
 ## Detailed Description
 
 
-This is the single source of truth for [**QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md)'s color theme. C++ property defaults use `ColorPalette::dark()`; QML accesses both palettes as `Colors.light` and `Colors.dark`. All properties are read-only.
+This is the single source of truth for QAccelPlot's color theme. C++ property defaults use `ColorPalette::dark()`; QML accesses both palettes as `Colors.light` and `Colors.dark`. All properties are read-only.
 
 
 

@@ -15,7 +15,7 @@
 
 
 
-_QML singleton exposing_ [_**QAccelPlot**_](classQAccelPlot_1_1QAccelPlot.md) _'s built-in color palettes._[More...](#detailed-description)
+_QML singleton exposing QAccelPlot's built-in color palettes._ [More...](#detailed-description)
 
 * `#include <Colors.hpp>`
 

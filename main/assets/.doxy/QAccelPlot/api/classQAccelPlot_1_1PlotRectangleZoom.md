@@ -15,7 +15,7 @@
 
 
 
-_Rectangle zoom configuration and selection state exposed by PlotView._ 
+_Rectangle zoom configuration and selection state exposed by_ [_**PlotView**_](classQAccelPlot_1_1PlotView.md) _._
 
 * `#include <PlotRectangleZoom.hpp>`
 

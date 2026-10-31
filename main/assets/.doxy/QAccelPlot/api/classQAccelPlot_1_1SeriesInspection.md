@@ -64,7 +64,7 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-| property QML\_ANONYMOUSQAccelPlot::InspectionNS::Status | [**status**](classQAccelPlot_1_1SeriesInspection.md#property-status-12)  <br>_Readiness for data point queries:_ `Ready` _,_`Idle` _,_`Preparing` _,_`Unsupported` _, or_`Unavailable` _._ |
+| property QML\_ANONYMOUSInspectionNS::Status | [**status**](classQAccelPlot_1_1SeriesInspection.md#property-status-12)  <br>_Readiness for data point queries:_ `Ready` _,_`Idle` _,_`Preparing` _,_`Unsupported` _, or_`Unavailable` _._ |
 
 
 
@@ -82,21 +82,21 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-|  Q\_INVOKABLE::QAccelPlot::InspectionBracket | [**bracketByX**](#function-bracketbyx) (qreal pixelX) <br>_Returns the valid data points on either side of_ _pixelX_ _and the point between them._ |
-|  Q\_INVOKABLE::QAccelPlot::InspectionBracket | [**bracketByY**](#function-bracketbyy) (qreal pixelY) <br>_Returns the valid data points whose Y is on either side of_ _pixelY_ _and the point between them._ |
-|  Q\_INVOKABLE::QAccelPlot::InspectionDataPoint | [**dataPointAt**](#function-datapointat) (int index) const<br>_Returns the record at_ _index_ _;_`NoMatch` _with its raw coordinates when the record is invalid._ |
-|  Q\_INVOKABLE::QAccelPlot::InspectionDataPoint | [**dataPointAtPosition**](#function-datapointatposition) (const QPointF & position) const<br>_Returns the record drawn at the series-local_ _position_ _as a data point, such as the heatmap cell under it._ |
+|  Q\_INVOKABLE [**InspectionBracket**](structQAccelPlot_1_1InspectionBracket.md) | [**bracketByX**](#function-bracketbyx) (qreal pixelX) <br>_Returns the valid data points on either side of_ _pixelX_ _and the point between them._ |
+|  Q\_INVOKABLE [**InspectionBracket**](structQAccelPlot_1_1InspectionBracket.md) | [**bracketByY**](#function-bracketbyy) (qreal pixelY) <br>_Returns the valid data points whose Y is on either side of_ _pixelY_ _and the point between them._ |
+|  Q\_INVOKABLE [**InspectionDataPoint**](structQAccelPlot_1_1InspectionDataPoint.md) | [**dataPointAt**](#function-datapointat) (int index) const<br>_Returns the record at_ _index_ _;_`NoMatch` _with its raw coordinates when the record is invalid._ |
+|  Q\_INVOKABLE [**InspectionDataPoint**](structQAccelPlot_1_1InspectionDataPoint.md) | [**dataPointAtPosition**](#function-datapointatposition) (const QPointF & position) const<br>_Returns the record drawn at the series-local_ _position_ _as a data point, such as the heatmap cell under it._ |
 |  Q\_INVOKABLE quint64 | [**indexBytes**](#function-indexbytes) () const<br>_Returns the bytes held by query caches and indexes, excluding the series' own data._  |
-|  Q\_INVOKABLE::QAccelPlot::InspectionPage | [**indices**](#function-indices) (qreal xMin, qreal xMax, qreal yMin, qreal yMax, int offset=0, int limit=4096, quint64 expectedRevision=0) <br>_Returns up to_ _limit_ _source indices inside the region, skipping the first__offset_ _matches._ |
-|  Q\_INVOKABLE::QAccelPlot::InspectionDataPoint | [**nearest**](#function-nearest) (const QPointF & position, qreal radius=10) <br>_Returns the valid data point nearest to_ _position_ _within__radius_ _pixels on screen._ |
-|  Q\_INVOKABLE::QAccelPlot::InspectionDataPoint | [**nearestByX**](#function-nearestbyx) (qreal pixelX, qreal radius=std::numeric\_limits&lt; qreal &gt;::infinity()) <br>_Returns the valid data point nearest to_ _pixelX_ _horizontally, within__radius_ _pixels._ |
-|  Q\_INVOKABLE::QAccelPlot::InspectionDataPoint | [**nearestByY**](#function-nearestbyy) (qreal pixelY, qreal radius=std::numeric\_limits&lt; qreal &gt;::infinity()) <br>_Returns the valid data point nearest to_ _pixelY_ _vertically, within__radius_ _pixels._ |
+|  Q\_INVOKABLE [**InspectionPage**](structQAccelPlot_1_1InspectionPage.md) | [**indices**](#function-indices) (qreal xMin, qreal xMax, qreal yMin, qreal yMax, int offset=0, int limit=4096, quint64 expectedRevision=0) <br>_Returns up to_ _limit_ _source indices inside the region, skipping the first__offset_ _matches._ |
+|  Q\_INVOKABLE [**InspectionDataPoint**](structQAccelPlot_1_1InspectionDataPoint.md) | [**nearest**](#function-nearest) (const QPointF & position, qreal radius=10) <br>_Returns the valid data point nearest to_ _position_ _within__radius_ _pixels on screen._ |
+|  Q\_INVOKABLE [**InspectionDataPoint**](structQAccelPlot_1_1InspectionDataPoint.md) | [**nearestByX**](#function-nearestbyx) (qreal pixelX, qreal radius=std::numeric\_limits&lt; qreal &gt;::infinity()) <br>_Returns the valid data point nearest to_ _pixelX_ _horizontally, within__radius_ _pixels._ |
+|  Q\_INVOKABLE [**InspectionDataPoint**](structQAccelPlot_1_1InspectionDataPoint.md) | [**nearestByY**](#function-nearestbyy) (qreal pixelY, qreal radius=std::numeric\_limits&lt; qreal &gt;::infinity()) <br>_Returns the valid data point nearest to_ _pixelY_ _vertically, within__radius_ _pixels._ |
 |  Q\_INVOKABLE void | [**prepare**](#function-prepare) () <br>_Starts building a query index when the series needs one; otherwise does nothing._  |
-|  Q\_INVOKABLE::QAccelPlot::InspectionRecord | [**recordAt**](#function-recordat) (int index) const<br>_Returns the native record at_ _index_ _of a bar, rectangle, or band series._ |
-|  Q\_INVOKABLE::QAccelPlot::InspectionRecord | [**recordAtPosition**](#function-recordatposition) (const QPointF & position) const<br>_Returns the native record drawn at the series-local_ _position_ _._ |
+|  Q\_INVOKABLE [**InspectionRecord**](structQAccelPlot_1_1InspectionRecord.md) | [**recordAt**](#function-recordat) (int index) const<br>_Returns the native record at_ _index_ _of a bar, rectangle, or band series._ |
+|  Q\_INVOKABLE [**InspectionRecord**](structQAccelPlot_1_1InspectionRecord.md) | [**recordAtPosition**](#function-recordatposition) (const QPointF & position) const<br>_Returns the native record drawn at the series-local_ _position_ _._ |
 |  [**InspectionStatus**](namespaceQAccelPlot_1_1InspectionNS.md#enum-status) | [**status**](#function-status-22) () const<br>_Returns the readiness for data point queries._  |
-|  Q\_INVOKABLE::QAccelPlot::InspectionSummary | [**summarize**](#function-summarize) (qreal xMin, qreal xMax, qreal yMin, qreal yMax) <br>_Returns Y statistics of the valid data points inside the region._  |
-|  Q\_INVOKABLE::QAccelPlot::InspectionSummary | [**summarizeRange**](#function-summarizerange) (qreal xMin, qreal xMax) <br>_Returns Y statistics of the valid data points whose X lies in the interval._  |
+|  Q\_INVOKABLE [**InspectionSummary**](structQAccelPlot_1_1InspectionSummary.md) | [**summarize**](#function-summarize) (qreal xMin, qreal xMax, qreal yMin, qreal yMax) <br>_Returns Y statistics of the valid data points inside the region._  |
+|  Q\_INVOKABLE [**InspectionSummary**](structQAccelPlot_1_1InspectionSummary.md) | [**summarizeRange**](#function-summarizerange) (qreal xMin, qreal xMax) <br>_Returns Y statistics of the valid data points whose X lies in the interval._  |
 |   | [**~SeriesInspection**](#function-seriesinspection) () override<br> |
 
 
@@ -155,7 +155,7 @@ Queries cover every stored data point, also outside the viewport, and match data
 
 _Readiness for data point queries:_ `Ready` _,_`Idle` _,_`Preparing` _,_`Unsupported` _, or_`Unavailable` _._
 ```C++
-QML_ANONYMOUSQAccelPlot::InspectionNS::Status QAccelPlot::SeriesInspection::status;
+QML_ANONYMOUSInspectionNS::Status QAccelPlot::SeriesInspection::status;
 ```
 
 
@@ -193,7 +193,7 @@ void QAccelPlot::SeriesInspection::statusChanged;
 
 _Returns the valid data points on either side of_ _pixelX_ _and the point between them._
 ```C++
-Q_INVOKABLE::QAccelPlot::InspectionBracket QAccelPlot::SeriesInspection::bracketByX (
+Q_INVOKABLE InspectionBracket QAccelPlot::SeriesInspection::bracketByX (
     qreal pixelX
 ) 
 ```
@@ -210,7 +210,7 @@ Q_INVOKABLE::QAccelPlot::InspectionBracket QAccelPlot::SeriesInspection::bracket
 
 _Returns the valid data points whose Y is on either side of_ _pixelY_ _and the point between them._
 ```C++
-Q_INVOKABLE::QAccelPlot::InspectionBracket QAccelPlot::SeriesInspection::bracketByY (
+Q_INVOKABLE InspectionBracket QAccelPlot::SeriesInspection::bracketByY (
     qreal pixelY
 ) 
 ```
@@ -227,7 +227,7 @@ Q_INVOKABLE::QAccelPlot::InspectionBracket QAccelPlot::SeriesInspection::bracket
 
 _Returns the record at_ _index_ _;_`NoMatch` _with its raw coordinates when the record is invalid._
 ```C++
-Q_INVOKABLE::QAccelPlot::InspectionDataPoint QAccelPlot::SeriesInspection::dataPointAt (
+Q_INVOKABLE InspectionDataPoint QAccelPlot::SeriesInspection::dataPointAt (
     int index
 ) const
 ```
@@ -244,7 +244,7 @@ Q_INVOKABLE::QAccelPlot::InspectionDataPoint QAccelPlot::SeriesInspection::dataP
 
 _Returns the record drawn at the series-local_ _position_ _as a data point, such as the heatmap cell under it._
 ```C++
-Q_INVOKABLE::QAccelPlot::InspectionDataPoint QAccelPlot::SeriesInspection::dataPointAtPosition (
+Q_INVOKABLE InspectionDataPoint QAccelPlot::SeriesInspection::dataPointAtPosition (
     const QPointF & position
 ) const
 ```
@@ -280,7 +280,7 @@ Q_INVOKABLE quint64 QAccelPlot::SeriesInspection::indexBytes () const
 
 _Returns up to_ _limit_ _source indices inside the region, skipping the first__offset_ _matches._
 ```C++
-Q_INVOKABLE::QAccelPlot::InspectionPage QAccelPlot::SeriesInspection::indices (
+Q_INVOKABLE InspectionPage QAccelPlot::SeriesInspection::indices (
     qreal xMin,
     qreal xMax,
     qreal yMin,
@@ -310,7 +310,7 @@ A nonzero _expectedRevision_ that differs from the series' `dataRevision` return
 
 _Returns the valid data point nearest to_ _position_ _within__radius_ _pixels on screen._
 ```C++
-Q_INVOKABLE::QAccelPlot::InspectionDataPoint QAccelPlot::SeriesInspection::nearest (
+Q_INVOKABLE InspectionDataPoint QAccelPlot::SeriesInspection::nearest (
     const QPointF & position,
     qreal radius=10
 ) 
@@ -328,7 +328,7 @@ Q_INVOKABLE::QAccelPlot::InspectionDataPoint QAccelPlot::SeriesInspection::neare
 
 _Returns the valid data point nearest to_ _pixelX_ _horizontally, within__radius_ _pixels._
 ```C++
-Q_INVOKABLE::QAccelPlot::InspectionDataPoint QAccelPlot::SeriesInspection::nearestByX (
+Q_INVOKABLE InspectionDataPoint QAccelPlot::SeriesInspection::nearestByX (
     qreal pixelX,
     qreal radius=std::numeric_limits< qreal >::infinity()
 ) 
@@ -346,7 +346,7 @@ Q_INVOKABLE::QAccelPlot::InspectionDataPoint QAccelPlot::SeriesInspection::neare
 
 _Returns the valid data point nearest to_ _pixelY_ _vertically, within__radius_ _pixels._
 ```C++
-Q_INVOKABLE::QAccelPlot::InspectionDataPoint QAccelPlot::SeriesInspection::nearestByY (
+Q_INVOKABLE InspectionDataPoint QAccelPlot::SeriesInspection::nearestByY (
     qreal pixelY,
     qreal radius=std::numeric_limits< qreal >::infinity()
 ) 
@@ -379,7 +379,7 @@ Q_INVOKABLE void QAccelPlot::SeriesInspection::prepare ()
 
 _Returns the native record at_ _index_ _of a bar, rectangle, or band series._
 ```C++
-Q_INVOKABLE::QAccelPlot::InspectionRecord QAccelPlot::SeriesInspection::recordAt (
+Q_INVOKABLE InspectionRecord QAccelPlot::SeriesInspection::recordAt (
     int index
 ) const
 ```
@@ -396,7 +396,7 @@ Q_INVOKABLE::QAccelPlot::InspectionRecord QAccelPlot::SeriesInspection::recordAt
 
 _Returns the native record drawn at the series-local_ _position_ _._
 ```C++
-Q_INVOKABLE::QAccelPlot::InspectionRecord QAccelPlot::SeriesInspection::recordAtPosition (
+Q_INVOKABLE InspectionRecord QAccelPlot::SeriesInspection::recordAtPosition (
     const QPointF & position
 ) const
 ```
@@ -428,7 +428,7 @@ InspectionStatus QAccelPlot::SeriesInspection::status () const
 
 _Returns Y statistics of the valid data points inside the region._ 
 ```C++
-Q_INVOKABLE::QAccelPlot::InspectionSummary QAccelPlot::SeriesInspection::summarize (
+Q_INVOKABLE InspectionSummary QAccelPlot::SeriesInspection::summarize (
     qreal xMin,
     qreal xMax,
     qreal yMin,
@@ -448,7 +448,7 @@ Q_INVOKABLE::QAccelPlot::InspectionSummary QAccelPlot::SeriesInspection::summari
 
 _Returns Y statistics of the valid data points whose X lies in the interval._ 
 ```C++
-Q_INVOKABLE::QAccelPlot::InspectionSummary QAccelPlot::SeriesInspection::summarizeRange (
+Q_INVOKABLE InspectionSummary QAccelPlot::SeriesInspection::summarizeRange (
     qreal xMin,
     qreal xMax
 ) 

@@ -49,7 +49,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| class | [**PlotRectangleZoom**](classQAccelPlot_1_1PlotRectangleZoom.md) <br>_Rectangle zoom configuration and selection state exposed by PlotView._  |
+| class | [**PlotRectangleZoom**](classQAccelPlot_1_1PlotRectangleZoom.md) <br>_Rectangle zoom configuration and selection state exposed by_ [_**PlotView**_](classQAccelPlot_1_1PlotView.md) _._ |
 
 
 

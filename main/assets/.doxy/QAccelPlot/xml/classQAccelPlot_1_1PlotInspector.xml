@@ -61,9 +61,9 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="48" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="48" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="classQAccelPlot_1_1PlotInspector_1a10da6ee8ca871b0ab0ee2edee2478c93" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type><ref refid="classQAccelPlot_1_1QAccelPlot" kindref="compound">QAccelPlot::QAccelPlot</ref> *</type>
-        <definition>QAccelPlot::QAccelPlot* QAccelPlot::PlotInspector::plot</definition>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotInspector_1abff7afec07c633dc6f8b682ac0221cf1" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1PlotView" kindref="compound">PlotView</ref> *</type>
+        <definition>PlotView* QAccelPlot::PlotInspector::plot</definition>
         <argsstring></argsstring>
         <name>plot</name>
         <qualifiedname>QAccelPlot::PlotInspector::plot</qualifiedname>
@@ -382,9 +382,9 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="93" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="93" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="classQAccelPlot_1_1PlotInspector_1a0bfc971d317ca5e10284c4345b03d147" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type><ref refid="classQAccelPlot_1_1InspectionRowModel" kindref="compound">QAccelPlot::InspectionRowModel</ref> *</type>
-        <definition>QAccelPlot::InspectionRowModel* QAccelPlot::PlotInspector::model</definition>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotInspector_1afb2d8d60435d56e49e125083ad88223d" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1InspectionRowModel" kindref="compound">InspectionRowModel</ref> *</type>
+        <definition>InspectionRowModel* QAccelPlot::PlotInspector::model</definition>
         <argsstring></argsstring>
         <name>model</name>
         <qualifiedname>QAccelPlot::PlotInspector::model</qualifiedname>
@@ -416,9 +416,9 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="classQAccelPlot_1_1PlotInspector_1a310a99588c1b33bd5ee35c4e269128a6" prot="private" static="no" mutable="no">
-        <type>QPointer&lt;<ref refid="classQAccelPlot_1_1QAccelPlot" kindref="compound">::QAccelPlot::QAccelPlot</ref> &gt;</type>
-        <definition>QPointer&lt;::QAccelPlot::QAccelPlot&gt; QAccelPlot::PlotInspector::plot_</definition>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotInspector_1ab843c0ec837d8eb5ffb3b3d6765f00bd" prot="private" static="no" mutable="no">
+        <type>QPointer&lt; <ref refid="classQAccelPlot_1_1PlotView" kindref="compound">PlotView</ref> &gt;</type>
+        <definition>QPointer&lt;PlotView&gt; QAccelPlot::PlotInspector::plot_</definition>
         <argsstring></argsstring>
         <name>plot_</name>
         <qualifiedname>QAccelPlot::PlotInspector::plot_</qualifiedname>
@@ -874,9 +874,9 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="114" column="22"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a6a086692e4a225352045f87c2bd645ea" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classQAccelPlot_1_1QAccelPlot" kindref="compound">::QAccelPlot::QAccelPlot</ref> *</type>
-        <definition>::QAccelPlot::QAccelPlot * QAccelPlot::PlotInspector::plot</definition>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1ac2a1bbcc58220df7098e9ba8853fe70b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1PlotView" kindref="compound">PlotView</ref> *</type>
+        <definition>PlotView * QAccelPlot::PlotInspector::plot</definition>
         <argsstring>() const</argsstring>
         <name>plot</name>
         <qualifiedname>QAccelPlot::PlotInspector::plot</qualifiedname>
@@ -887,16 +887,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="117" column="30"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="117" column="14"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a72cc790c9430a46f1dba380f132f6415" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1aac6aaff24e79ed6c1cadb16cb9e40c88" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void QAccelPlot::PlotInspector::setPlot</definition>
-        <argsstring>(::QAccelPlot::QAccelPlot *plot)</argsstring>
+        <argsstring>(PlotView *plot)</argsstring>
         <name>setPlot</name>
         <qualifiedname>QAccelPlot::PlotInspector::setPlot</qualifiedname>
         <param>
-          <type><ref refid="classQAccelPlot_1_1QAccelPlot" kindref="compound">::QAccelPlot::QAccelPlot</ref> *</type>
+          <type><ref refid="classQAccelPlot_1_1PlotView" kindref="compound">PlotView</ref> *</type>
           <declname>plot</declname>
         </param>
         <briefdescription>
@@ -2227,7 +2227,7 @@
       <member refid="classQAccelPlot_1_1PlotInspector_1abce6e3e87608cfa715f2e3700a3e55b1" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>Mode</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1a5032c0547a13598fcbd5c50d78e79494" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>mode_</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1a62a946de0085495ff93d94f889157ed5" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>modeChanged</name></member>
-      <member refid="classQAccelPlot_1_1PlotInspector_1a0bfc971d317ca5e10284c4345b03d147" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>model</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1afb2d8d60435d56e49e125083ad88223d" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>model</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1ad537a369f42d56da4462adc0d86ac187" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>model</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1aa6408351ee4276e5360758ba03a6d2f8" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>model_</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1abce6e3e87608cfa715f2e3700a3e55b1a95e01bf4eb76a2ccd2efe7f5991f87ff" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>NearestX</name></member>
@@ -2240,9 +2240,9 @@
       <member refid="classQAccelPlot_1_1PlotInspector_1ac47c318d7c7dd31dcad42c32f1efbb8a" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>pinnedXInPixels_</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1ad46c27f6446bd717cb965f940e074ac0" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>pinnedY_</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1acd611e65e239d538a85a4fa8961930e0" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>pinnedYInPixels_</name></member>
-      <member refid="classQAccelPlot_1_1PlotInspector_1a10da6ee8ca871b0ab0ee2edee2478c93" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>plot</name></member>
-      <member refid="classQAccelPlot_1_1PlotInspector_1a6a086692e4a225352045f87c2bd645ea" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>plot</name></member>
-      <member refid="classQAccelPlot_1_1PlotInspector_1a310a99588c1b33bd5ee35c4e269128a6" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>plot_</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1abff7afec07c633dc6f8b682ac0221cf1" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>plot</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1ac2a1bbcc58220df7098e9ba8853fe70b" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>plot</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1ab843c0ec837d8eb5ffb3b3d6765f00bd" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>plot_</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1af1d2396c9a3ca7826f7676f66ebc98f9" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>plotChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1a0c6f9457f166204f3b22a0e819a47390" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>PlotInspector</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1aeb979565f4ca5fcf036c9f81027c4d4a" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>publish</name></member>
@@ -2266,7 +2266,7 @@
       <member refid="classQAccelPlot_1_1PlotInspector_1ad5e8a5715299054c64fac0d7d8c6d0a2" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>setIncludedSeries</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1aa87487520573a6b2e7dfd470fe009491" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>setInterpolate</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1ac0e37a9f3b1e17844f46857a25e77848" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>setMode</name></member>
-      <member refid="classQAccelPlot_1_1PlotInspector_1a72cc790c9430a46f1dba380f132f6415" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>setPlot</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1aac6aaff24e79ed6c1cadb16cb9e40c88" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>setPlot</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1aab2c72559b550c3720f3c0b9dafb6a60" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>setRadius</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1a6f723368bf3e9a71da3af47bfa6c5679" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>setSnapToDataPoint</name></member>
       <member refid="classQAccelPlot_1_1PlotInspector_1a1720d10a8019f11768413d3268dc2945" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>setSummaries</name></member>

@@ -29,7 +29,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **class** [**Colormap**](classQAccelPlot_1_1Colormap.md) _Maps data values to colors: a color ramp plus the rule that places a value on it._     
     * **class** [**ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md) _Base class for series that color their data points by value through a_ `Colormap` _._    
         * **struct** [**ValueSpan**](structQAccelPlot_1_1ColormappedSeries_1_1ValueSpan.md) _Smallest and largest finite value of a series._     
-    * **class** [**Colors**](classQAccelPlot_1_1Colors.md) _QML singleton exposing_ [_**QAccelPlot**_](classQAccelPlot_1_1QAccelPlot.md) _'s built-in color palettes._    
+    * **class** [**Colors**](classQAccelPlot_1_1Colors.md) _QML singleton exposing QAccelPlot's built-in color palettes._     
     * **struct** [**CurveChunk**](structQAccelPlot_1_1CurveChunk.md) _Axis-aligned bounding box (AABB) for a contiguous block of curve points, used for hit-test culling._     
     * **struct** [**CurveDataView**](structQAccelPlot_1_1CurveDataView.md) _Read-only view over either interleaved float or double curve coordinates._     
     * **struct** [**CurveHitTestParams**](structQAccelPlot_1_1CurveHitTestParams.md) _All inputs required for a_ `contains()` _hit-test, bundled to reduce parameter count._    
@@ -130,13 +130,14 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **class** [**PlotExporter**](classQAccelPlot_1_1PlotExporter.md) _Exports a plot as a raster image: to a file, to the clipboard, or as a_ `QImage` _._    
     * **class** [**PlotInspector**](classQAccelPlot_1_1PlotInspector.md) _Inspects the visible XY series and heatmaps of a plot at a cursor and publishes one model row per series._     
     * **class** [**PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md) _Carries mouse event data for the mouse signals._     
-    * **class** [**PlotRectangleZoom**](classQAccelPlot_1_1PlotRectangleZoom.md) _Rectangle zoom configuration and selection state exposed by PlotView._     
+    * **class** [**PlotRectangleZoom**](classQAccelPlot_1_1PlotRectangleZoom.md) _Rectangle zoom configuration and selection state exposed by_ [_**PlotView**_](classQAccelPlot_1_1PlotView.md) _._    
     * **class** [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) _Common QML item contract for data series hosted by_ `PlotView` _._    
         * **struct** [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) _Extents of a data update that the caller already knows._     
         * **struct** [**DataExtent**](structQAccelPlot_1_1PlotSeries_1_1DataExtent.md) _Extent of the valid coordinates in one dimension._     
         * **struct** [**DataPointInput**](structQAccelPlot_1_1PlotSeries_1_1DataPointInput.md) _Data points passed to_ `setData()` _or_`setDataF()` _, already checked._    
         * **struct** [**DataPointWording**](structQAccelPlot_1_1PlotSeries_1_1DataPointWording.md) _Words used in the warnings about rejected data arguments._     
         * **struct** [**DataRanges**](structQAccelPlot_1_1PlotSeries_1_1DataRanges.md) _Extents of a series in both dimensions._     
+    * **class** [**PlotView**](classQAccelPlot_1_1PlotView.md) _The main plot canvas QML item — hosts axes, curves, and a grid._     
     * **class** [**PointCloud**](classQAccelPlot_1_1PointCloud.md) _A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers._     
     * **class** [**PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md) _QSGMaterial for_ `PointCloud` _rendering._    
     * **struct** [**PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md) _Input parameters for_ [_**LineCurvePointRenderer::paint()**_](classQAccelPlot_1_1LineCurvePointRenderer.md#function-paint) _, assembled on the main thread._    
@@ -144,7 +145,6 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **class** [**PointSpatialIndex**](classQAccelPlot_1_1PointSpatialIndex.md) _Uniform-grid spatial index for nearest-point queries over large point sets._     
         * **struct** [**Mapping**](structQAccelPlot_1_1PointSpatialIndex_1_1Mapping.md) _Coordinate mapping applied before indexing._     
     * **struct** [**PointVertex**](structQAccelPlot_1_1PointVertex.md) _Placeholder vertex of a marker quad, shared with the main thread for vertex caches._     
-    * **class** [**QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) _The main plot canvas QML item — hosts axes, curves, and a grid._     
     * **class** [**RectMaterial**](classQAccelPlot_1_1RectMaterial.md) _QSGMaterial for rectangle series rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with a rect-count uniform._    
     * **class** [**RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md) _A hardware-accelerated QML item that renders a large list of axis-aligned rectangles._     
     * **class** [**SelectionTool**](classQAccelPlot_1_1SelectionTool.md) _Selects a data-space region by dragging, without changing the plot viewport._     

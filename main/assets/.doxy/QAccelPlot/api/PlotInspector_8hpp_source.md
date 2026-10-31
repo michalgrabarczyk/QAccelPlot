@@ -17,7 +17,7 @@
 //
 #pragma once
 
-#include "QAccelPlot/QAccelPlot.hpp"
+#include "QAccelPlot/PlotView.hpp"
 #include "QAccelPlot/inspection/InspectionRowModel.hpp"
 
 #include <QQmlListProperty>
@@ -36,7 +36,7 @@ class PlotInspector : public QObject {
     QML_NAMED_ELEMENT(PlotInspector)
     Q_CLASSINFO("DefaultProperty", "data")
     Q_PROPERTY(QQmlListProperty<QObject> data READ data)
-    Q_PROPERTY(::QAccelPlot::QAccelPlot* plot READ plot WRITE setPlot NOTIFY plotChanged)
+    Q_PROPERTY(PlotView* plot READ plot WRITE setPlot NOTIFY plotChanged)
     Q_PROPERTY(bool enabled READ enabled WRITE setEnabled NOTIFY enabledChanged)
     Q_PROPERTY(Mode mode READ mode WRITE setMode NOTIFY modeChanged)
     Q_PROPERTY(qreal radius READ radius WRITE setRadius NOTIFY radiusChanged)
@@ -55,7 +55,7 @@ class PlotInspector : public QObject {
     Q_PROPERTY(QString cursorYText READ cursorYText NOTIFY cursorChanged)
     Q_PROPERTY(bool active READ active NOTIFY activeChanged)
     Q_PROPERTY(QPointF crosshairPosition READ crosshairPosition NOTIFY crosshairPositionChanged)
-    Q_PROPERTY(::QAccelPlot::InspectionRowModel* model READ model CONSTANT)
+    Q_PROPERTY(InspectionRowModel* model READ model CONSTANT)
     Q_PROPERTY(int validCount READ validCount NOTIFY validCountChanged)
 
 public:
@@ -72,8 +72,8 @@ public:
 
     QQmlListProperty<QObject> data();
 
-    ::QAccelPlot::QAccelPlot* plot() const;
-    void setPlot(::QAccelPlot::QAccelPlot* plot);
+    PlotView* plot() const;
+    void setPlot(PlotView* plot);
     bool enabled() const;
     void setEnabled(bool enabled);
     Mode mode() const;
@@ -163,7 +163,7 @@ private:
     QPointF snappedPosition(const QList<Query>& queries, const QPointF& cursor) const;
     void publish(const State& state);
 
-    QPointer<::QAccelPlot::QAccelPlot> plot_;
+    QPointer<PlotView> plot_;
     bool enabled_{true};
     Mode mode_{NearestX};
     qreal radius_{16};

@@ -1401,28 +1401,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#variable-linestyle-22" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        variable lineStyle
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#variable-markershape-22" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        variable markerShape
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#variable-symbol-22" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1484,7 +1462,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#property-linestyle-12" class="md-nav__link">
+  <a href="#property-linestyle" class="md-nav__link">
     <span class="md-ellipsis">
       
         property lineStyle
@@ -1517,7 +1495,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#property-markershape-12" class="md-nav__link">
+  <a href="#property-markershape" class="md-nav__link">
     <span class="md-ellipsis">
       
         property markerShape
@@ -1598,14 +1576,6 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"><a href="../classQAccelPlot_1_1LineStyle/"><strong>LineStyle</strong></a> *</td>
-<td style="text-align: left;"><a href="#variable-linestyle-22"><strong>lineStyle</strong></a>   = <code>{nullptr}</code><br><em>Line style, or null for solid.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;"><a href="../namespaceQAccelPlot_1_1MarkerShapeNS/#enum-shape"><strong>MarkerShape</strong></a></td>
-<td style="text-align: left;"><a href="#variable-markershape-22"><strong>markerShape</strong></a>   = <code>{MarkerShape::None}</code><br><em>Marker shape.</em></td>
-</tr>
-<tr>
 <td style="text-align: right;"><a href="../classQAccelPlot_1_1PlotSeries/#enum-legendsymbol"><strong>PlotSeries::LegendSymbol</strong></a></td>
 <td style="text-align: left;"><a href="#variable-symbol-22"><strong>symbol</strong></a>   = <code>{PlotSeries::LegendSymbol::Line}</code><br><em>Symbol style.</em></td>
 </tr>
@@ -1633,8 +1603,8 @@
 <td style="text-align: left;"><a href="./#property-color"><strong>color</strong></a>  <br><em>Color of the line, marker, or fill.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">property <a href="../classQAccelPlot_1_1LineStyle/"><strong>QAccelPlot::LineStyle</strong></a> *</td>
-<td style="text-align: left;"><a href="./#property-linestyle-12"><strong>lineStyle</strong></a>  <br><em>Line style, or null for a solid line. Owned by the series.</em></td>
+<td style="text-align: right;">property <a href="../classQAccelPlot_1_1LineStyle/"><strong>LineStyle</strong></a> *</td>
+<td style="text-align: left;"><a href="./#property-linestyle"><strong>lineStyle</strong></a>  <br><em>Line style, or null for a solid line. Owned by the series.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property qreal</td>
@@ -1645,8 +1615,8 @@
 <td style="text-align: left;"><a href="./#property-markerfilled"><strong>markerFilled</strong></a>  <br><em>Whether the marker is filled.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">property <a href="../namespaceQAccelPlot_1_1MarkerShapeNS/#enum-shape"><strong>QAccelPlot::MarkerShape</strong></a></td>
-<td style="text-align: left;"><a href="./#property-markershape-12"><strong>markerShape</strong></a>  <br><em>Marker shape;</em> <code>None</code> <em>draws no marker.</em></td>
+<td style="text-align: right;">property <a href="../namespaceQAccelPlot_1_1MarkerShapeNS/#enum-shape"><strong>MarkerShape</strong></a></td>
+<td style="text-align: left;"><a href="./#property-markershape"><strong>markerShape</strong></a>  <br><em>Marker shape;</em> <code>None</code> <em>draws no marker.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property qreal</td>
@@ -1657,7 +1627,7 @@
 <td style="text-align: left;"><a href="./#property-markerstrokewidth"><strong>markerStrokeWidth</strong></a>  <br><em>Outline width in pixels of a hollow marker.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">property QML_ANONYMOUSQAccelPlot::PlotSeries::LegendSymbol</td>
+<td style="text-align: right;">property QML_ANONYMOUSPlotSeries::LegendSymbol</td>
 <td style="text-align: left;"><a href="./#property-symbol-12"><strong>symbol</strong></a>  <br><em>Symbol style.</em></td>
 </tr>
 </tbody>
@@ -1666,85 +1636,75 @@
 <p>Returned by <code>PlotSeries::legendEntry()</code> and exposed by <code>LegendModel</code> as the <code>entry</code> role. The line fields apply to the <code>Line</code> symbol and the marker fields to <code>Line</code> and <code>Marker</code>.</p>
 <p><strong>See also:</strong> <a href="../classQAccelPlot_1_1LegendModel/"><strong>LegendModel</strong></a>, <a href="../classQAccelPlot_1_1PlotSeries/#function-legendentry"><strong>PlotSeries::legendEntry()</strong></a> </p>
 <h2 id="public-attributes-documentation">Public Attributes Documentation<a class="headerlink" href="#public-attributes-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="variable-linestyle-22">variable lineStyle<a class="headerlink" href="#variable-linestyle-22" title="Permanent link">&para;</a></h3>
-<p><em>Line style, or null for solid.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">LineStyle</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">lineStyle</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="variable-markershape-22">variable markerShape<a class="headerlink" href="#variable-markershape-22" title="Permanent link">&para;</a></h3>
-<p><em>Marker shape.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">MarkerShape</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">markerShape</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
 <h3 id="variable-symbol-22">variable symbol<a class="headerlink" href="#variable-symbol-22" title="Permanent link">&para;</a></h3>
 <p><em>Symbol style.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">PlotSeries</span><span class="o">::</span><span class="n">LegendSymbol</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">symbol</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">PlotSeries</span><span class="o">::</span><span class="n">LegendSymbol</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">symbol</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 <h2 id="public-properties-documentation">Public Properties Documentation<a class="headerlink" href="#public-properties-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="property-antialiasing">property antialiasing<a class="headerlink" href="#property-antialiasing" title="Permanent link">&para;</a></h3>
 <p><em>Whether the line and marker are antialiased.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">antialiasing</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">antialiasing</span><span class="p">;</span>
 </code></pre></div></p>
 <p>Whether antialiasing is on. </p>
 <hr>
 
 <h3 id="property-antialiasingfeather">property antialiasingFeather<a class="headerlink" href="#property-antialiasingfeather" title="Permanent link">&para;</a></h3>
 <p><em>Antialiasing feather width in pixels.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">antialiasingFeather</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">antialiasingFeather</span><span class="p">;</span>
 </code></pre></div></p>
 <p>Antialiasing feather width. </p>
 <hr>
 
 <h3 id="property-color">property color<a class="headerlink" href="#property-color" title="Permanent link">&para;</a></h3>
 <p><em>Color of the line, marker, or fill.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">color</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">color</span><span class="p">;</span>
 </code></pre></div></p>
 <p>Line, marker, or fill color. </p>
 <hr>
 
-<h3 id="property-linestyle-12">property lineStyle<a class="headerlink" href="#property-linestyle-12" title="Permanent link">&para;</a></h3>
+<h3 id="property-linestyle">property lineStyle<a class="headerlink" href="#property-linestyle" title="Permanent link">&para;</a></h3>
 <p><em>Line style, or null for a solid line. Owned by the series.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineStyle</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">lineStyle</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">LineStyle</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">lineStyle</span><span class="p">;</span>
 </code></pre></div></p>
+<p>Line style, or null for solid. </p>
 <hr>
 
 <h3 id="property-linewidth">property lineWidth<a class="headerlink" href="#property-linewidth" title="Permanent link">&para;</a></h3>
 <p><em>Line width in pixels.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">lineWidth</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">lineWidth</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="property-markerfilled">property markerFilled<a class="headerlink" href="#property-markerfilled" title="Permanent link">&para;</a></h3>
 <p><em>Whether the marker is filled.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">markerFilled</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">markerFilled</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
-<h3 id="property-markershape-12">property markerShape<a class="headerlink" href="#property-markershape-12" title="Permanent link">&para;</a></h3>
+<h3 id="property-markershape">property markerShape<a class="headerlink" href="#property-markershape" title="Permanent link">&para;</a></h3>
 <p><em>Marker shape;</em> <code>None</code> <em>draws no marker.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">MarkerShape</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">markerShape</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">MarkerShape</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">markerShape</span><span class="p">;</span>
 </code></pre></div></p>
+<p>Marker shape. </p>
 <hr>
 
 <h3 id="property-markersize">property markerSize<a class="headerlink" href="#property-markersize" title="Permanent link">&para;</a></h3>
 <p><em>Marker size in pixels.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">markerSize</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">markerSize</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="property-markerstrokewidth">property markerStrokeWidth<a class="headerlink" href="#property-markerstrokewidth" title="Permanent link">&para;</a></h3>
 <p><em>Outline width in pixels of a hollow marker.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">markerStrokeWidth</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">markerStrokeWidth</span><span class="p">;</span>
 </code></pre></div></p>
 <p>Hollow marker outline width. </p>
 <hr>
 
 <h3 id="property-symbol-12">property symbol<a class="headerlink" href="#property-symbol-12" title="Permanent link">&para;</a></h3>
 <p><em>Symbol style.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">QML_ANONYMOUSQAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">LegendSymbol</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">symbol</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">QML_ANONYMOUSPlotSeries</span><span class="o">::</span><span class="n">LegendSymbol</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">symbol</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 

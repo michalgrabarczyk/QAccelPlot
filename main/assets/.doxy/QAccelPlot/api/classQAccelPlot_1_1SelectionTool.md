@@ -69,23 +69,23 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-| property [**QAccelPlot::Border**](classQAccelPlot_1_1Border.md) \* | [**border**](classQAccelPlot_1_1SelectionTool.md#property-border-12)  <br>_Outline inside the rectangle's edges. Default:_ `Colors.dark.selectionBorder` _, width 1._ |
+| property [**Border**](classQAccelPlot_1_1Border.md) \* | [**border**](classQAccelPlot_1_1SelectionTool.md#property-border-12)  <br>_Outline inside the rectangle's edges. Default:_ `Colors.dark.selectionBorder` _, width 1._ |
 | property Qt::MouseButton | [**button**](classQAccelPlot_1_1SelectionTool.md#property-button-12)  <br>_Mouse button that starts a gesture. Default: Qt.LeftButton._  |
 | property bool | [**enabled**](classQAccelPlot_1_1SelectionTool.md#property-enabled-12)  <br>_Enables gestures; disabling cancels a gesture in progress and keeps the selection. Default: true._  |
 | property QColor | [**fillColor**](classQAccelPlot_1_1SelectionTool.md#property-fillcolor-12)  <br>_Fill color of the rectangle. Default:_ `Colors.dark.selectionFill` _._ |
 | property bool | [**hasSelection**](classQAccelPlot_1_1SelectionTool.md#property-hasselection-12)  <br>_True while a region is selected._  |
 | property qreal | [**minimumSize**](classQAccelPlot_1_1SelectionTool.md#property-minimumsize-12)  <br>_Smallest gesture in logical pixels that selects; a smaller one only clears the selection. Default: 6._  |
 | property [**Mode**](classQAccelPlot_1_1SelectionTool.md#enum-mode) | [**mode**](classQAccelPlot_1_1SelectionTool.md#property-mode-12)  <br>_Region a gesture selects: a box, an X range, or a Y range. Default: Box._  |
-| property [**QAccelPlot::InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md) \* | [**model**](classQAccelPlot_1_1SelectionTool.md#property-model-12)  <br>_Read-only constant: one row of region statistics per selected series._  |
+| property [**InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md) \* | [**model**](classQAccelPlot_1_1SelectionTool.md#property-model-12)  <br>_Read-only constant: one row of region statistics per selected series._  |
 | property Qt::KeyboardModifiers | [**modifiers**](classQAccelPlot_1_1SelectionTool.md#property-modifiers-12)  <br>_Exact Qt::KeyboardModifiers required at press time. Default: Qt.ShiftModifier._  |
 | property QRectF | [**pixelRect**](classQAccelPlot_1_1SelectionTool.md#property-pixelrect-12)  <br>_Gesture or selected region in plot-local logical pixels; empty without either._  |
-| property [**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) \* | [**plot**](classQAccelPlot_1_1SelectionTool.md#property-plot-12)  <br>_Plot receiving the selection gestures._  |
+| property [**PlotView**](classQAccelPlot_1_1PlotView.md) \* | [**plot**](classQAccelPlot_1_1SelectionTool.md#property-plot-12)  <br>_Plot receiving the selection gestures._  |
 | property bool | [**rectangleVisible**](classQAccelPlot_1_1SelectionTool.md#property-rectanglevisible-12)  <br>_Draws the gesture and the selected region. Disable it to draw_ `pixelRect` _yourself. Default: true._ |
 | property bool | [**selecting**](classQAccelPlot_1_1SelectionTool.md#property-selecting-12)  <br>_True while a gesture is in progress._  |
-| property [**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md) \* | [**xAxis**](classQAccelPlot_1_1SelectionTool.md#property-xaxis-12)  <br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _the X limits refer to; unset uses the plot's primary X axis._ |
+| property [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**xAxis**](classQAccelPlot_1_1SelectionTool.md#property-xaxis-12)  <br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _the X limits refer to; unset uses the plot's primary X axis._ |
 | property qreal | [**xMax**](classQAccelPlot_1_1SelectionTool.md#property-xmax-12)  <br>_Upper X limit of the selection; Infinity when unbounded, NaN without a selection._  |
 | property qreal | [**xMin**](classQAccelPlot_1_1SelectionTool.md#property-xmin-12)  <br>_Lower X limit of the selection; -Infinity when unbounded, NaN without a selection._  |
-| property [**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md) \* | [**yAxis**](classQAccelPlot_1_1SelectionTool.md#property-yaxis-12)  <br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _the Y limits refer to; unset uses the plot's primary Y axis._ |
+| property [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**yAxis**](classQAccelPlot_1_1SelectionTool.md#property-yaxis-12)  <br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _the Y limits refer to; unset uses the plot's primary Y axis._ |
 | property qreal | [**yMax**](classQAccelPlot_1_1SelectionTool.md#property-ymax-12)  <br>_Upper Y limit of the selection; Infinity when unbounded, NaN without a selection._  |
 | property qreal | [**yMin**](classQAccelPlot_1_1SelectionTool.md#property-ymin-12)  <br>_Lower Y limit of the selection; -Infinity when unbounded, NaN without a selection._  |
 
@@ -125,13 +125,13 @@ flowchart TB
 |  bool | [**enabled**](#function-enabled-22) () const<br>_Returns whether gestures are enabled._  |
 |  QColor | [**fillColor**](#function-fillcolor-22) () const<br>_Returns the rectangle's fill color._  |
 |  bool | [**hasSelection**](#function-hasselection-22) () const<br>_Returns true while a region is selected._  |
-|  Q\_INVOKABLE::QAccelPlot::InspectionPage | [**indices**](#function-indices) ([**::QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md) \* series, int offset=0, int limit=4096) <br>_Returns one page of_ _series'_ _source indices inside the selection, against its current data._ |
+|  Q\_INVOKABLE [**InspectionPage**](structQAccelPlot_1_1InspectionPage.md) | [**indices**](#function-indices) ([**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) \* series, int offset=0, int limit=4096) <br>_Returns one page of_ _series'_ _source indices inside the selection, against its current data._ |
 |  qreal | [**minimumSize**](#function-minimumsize-22) () const<br>_Returns the smallest selecting gesture in logical pixels._  |
 |  [**Mode**](classQAccelPlot_1_1SelectionTool.md#enum-mode) | [**mode**](#function-mode-22) () const<br>_Returns the region a gesture selects._  |
 |  [**InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md) \* | [**model**](#function-model-22) () const<br>_Returns the model of per-series region statistics._  |
 |  Qt::KeyboardModifiers | [**modifiers**](#function-modifiers-22) () const<br>_Returns the required keyboard modifiers._  |
 |  QRectF | [**pixelRect**](#function-pixelrect-22) () const<br>_Returns the gesture or selected region in plot-local logical pixels._  |
-|  [**::QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) \* | [**plot**](#function-plot-22) () const<br>_Returns the attached plot._  |
+|  [**PlotView**](classQAccelPlot_1_1PlotView.md) \* | [**plot**](#function-plot-22) () const<br>_Returns the attached plot._  |
 |  bool | [**rectangleVisible**](#function-rectanglevisible-22) () const<br>_Returns whether the tool draws its rectangle._  |
 |  Q\_INVOKABLE bool | [**select**](#function-select) (qreal xMin, qreal xMax, qreal yMin, qreal yMax) <br>_Selects the region with the given limits; returns false when a limit is NaN._  |
 |  bool | [**selecting**](#function-selecting-22) () const<br>_Returns true while a gesture is in progress._  |
@@ -141,7 +141,7 @@ flowchart TB
 |  void | [**setMinimumSize**](#function-setminimumsize) (qreal size) <br>_Sets the smallest selecting gesture, clamping negative values to zero and ignoring nonfinite values._  |
 |  void | [**setMode**](#function-setmode) ([**Mode**](classQAccelPlot_1_1SelectionTool.md#enum-mode) mode) <br>_Sets the region a gesture selects and cancels a gesture in progress._  |
 |  void | [**setModifiers**](#function-setmodifiers) (Qt::KeyboardModifiers modifiers) <br>_Sets the exact keyboard modifiers required at press time._  |
-|  void | [**setPlot**](#function-setplot) ([**::QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) \* plot) <br>_Attaches to_ _plot_ _and clears the selection._ |
+|  void | [**setPlot**](#function-setplot) ([**PlotView**](classQAccelPlot_1_1PlotView.md) \* plot) <br>_Attaches to_ _plot_ _and clears the selection._ |
 |  void | [**setRectangleVisible**](#function-setrectanglevisible) (bool visible) <br>_Shows or hides the tool's rectangle._  |
 |  void | [**setXAxis**](#function-setxaxis) ([**Axis**](classQAccelPlot_1_1Axis.md) \* axis) <br>_Sets the X axis and clears the selection; null uses the plot's primary X axis._  |
 |  void | [**setYAxis**](#function-setyaxis) ([**Axis**](classQAccelPlot_1_1Axis.md) \* axis) <br>_Sets the Y axis and clears the selection; null uses the plot's primary Y axis._  |
@@ -223,7 +223,7 @@ enum QAccelPlot::SelectionTool::Mode {
 
 _Outline inside the rectangle's edges. Default:_ `Colors.dark.selectionBorder` _, width 1._
 ```C++
-QAccelPlot::Border* QAccelPlot::SelectionTool::border;
+Border* QAccelPlot::SelectionTool::border;
 ```
 
 
@@ -328,7 +328,7 @@ Mode QAccelPlot::SelectionTool::mode;
 
 _Read-only constant: one row of region statistics per selected series._ 
 ```C++
-QAccelPlot::InspectionRowModel* QAccelPlot::SelectionTool::model;
+InspectionRowModel* QAccelPlot::SelectionTool::model;
 ```
 
 
@@ -373,7 +373,7 @@ QRectF QAccelPlot::SelectionTool::pixelRect;
 
 _Plot receiving the selection gestures._ 
 ```C++
-QAccelPlot::QAccelPlot* QAccelPlot::SelectionTool::plot;
+PlotView* QAccelPlot::SelectionTool::plot;
 ```
 
 
@@ -418,7 +418,7 @@ bool QAccelPlot::SelectionTool::selecting;
 
 [_**Axis**_](classQAccelPlot_1_1Axis.md) _the X limits refer to; unset uses the plot's primary X axis._
 ```C++
-QAccelPlot::Axis* QAccelPlot::SelectionTool::xAxis;
+Axis* QAccelPlot::SelectionTool::xAxis;
 ```
 
 
@@ -463,7 +463,7 @@ qreal QAccelPlot::SelectionTool::xMin;
 
 [_**Axis**_](classQAccelPlot_1_1Axis.md) _the Y limits refer to; unset uses the plot's primary Y axis._
 ```C++
-QAccelPlot::Axis* QAccelPlot::SelectionTool::yAxis;
+Axis* QAccelPlot::SelectionTool::yAxis;
 ```
 
 
@@ -829,8 +829,8 @@ bool QAccelPlot::SelectionTool::hasSelection () const
 
 _Returns one page of_ _series'_ _source indices inside the selection, against its current data._
 ```C++
-Q_INVOKABLE::QAccelPlot::InspectionPage QAccelPlot::SelectionTool::indices (
-    ::QAccelPlot::PlotSeries * series,
+Q_INVOKABLE InspectionPage QAccelPlot::SelectionTool::indices (
+    PlotSeries * series,
     int offset=0,
     int limit=4096
 ) 
@@ -927,7 +927,7 @@ QRectF QAccelPlot::SelectionTool::pixelRect () const
 
 _Returns the attached plot._ 
 ```C++
-::QAccelPlot::QAccelPlot * QAccelPlot::SelectionTool::plot () const
+PlotView * QAccelPlot::SelectionTool::plot () const
 ```
 
 
@@ -1095,7 +1095,7 @@ void QAccelPlot::SelectionTool::setModifiers (
 _Attaches to_ _plot_ _and clears the selection._
 ```C++
 void QAccelPlot::SelectionTool::setPlot (
-    ::QAccelPlot::QAccelPlot * plot
+    PlotView * plot
 ) 
 ```
 

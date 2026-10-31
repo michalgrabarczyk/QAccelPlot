@@ -17,7 +17,7 @@
 
 
 
-* `#include "QAccelPlot/QAccelPlot.hpp"`
+* `#include "QAccelPlot/PlotView.hpp"`
 * `#include "QAccelPlot/inspection/InspectionRowModel.hpp"`
 * `#include <QQmlListProperty>`
 * `#include <memory>`

@@ -30,7 +30,7 @@ class LegendModel : public QAbstractListModel {
     QML_NAMED_ELEMENT(LegendModel)
 
     
-    Q_PROPERTY(QList<::QAccelPlot::PlotSeries*> series READ series WRITE setSeries NOTIFY seriesChanged)
+    Q_PROPERTY(QList<PlotSeries*> series READ series WRITE setSeries NOTIFY seriesChanged)
     Q_PROPERTY(int count READ count NOTIFY countChanged)
 
 public:

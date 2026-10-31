@@ -66,7 +66,7 @@ flowchart TB
 | ---: | :--- |
 | property bool | [**busy**](classQAccelPlot_1_1PlotExporter.md#property-busy-12)  <br>_True from a request until its_ `finished()` _signal._ |
 | property qreal | [**dpi**](classQAccelPlot_1_1PlotExporter.md#property-dpi-12)  <br>_Resolution stored in saved files, in dots per inch; 0 stores 96 times the effective scale. Default: 0._  |
-| property [**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) \* | [**plot**](classQAccelPlot_1_1PlotExporter.md#property-plot-12)  <br>_Plot to export; null once the plot is destroyed._  |
+| property [**PlotView**](classQAccelPlot_1_1PlotView.md) \* | [**plot**](classQAccelPlot_1_1PlotExporter.md#property-plot-12)  <br>_Plot to export; null once the plot is destroyed._  |
 | property int | [**quality**](classQAccelPlot_1_1PlotExporter.md#property-quality-12)  <br>_Encoder quality from 0 to 100 passed to_ `QImageWriter` _; -1 uses the format's default. Default: -1._ |
 | property qreal | [**scale**](classQAccelPlot_1_1PlotExporter.md#property-scale-12)  <br>_Image pixels per logical pixel; 0 uses the window's device pixel ratio. Default: 0._  |
 | property bool | [**transparentBackground**](classQAccelPlot_1_1PlotExporter.md#property-transparentbackground-12)  <br>_Leaves out the plot's_ `axesAreaColor` _and_`plotAreaColor` _backgrounds. Default: false._ |
@@ -103,12 +103,12 @@ flowchart TB
 |  Q\_INVOKABLE bool | [**grabImage**](#function-grabimage) () <br>_Captures the plot and emits_ `imageReady()` _; returns false when the request fails immediately._ |
 |  [**PlotExporter**](classQAccelPlot_1_1PlotExporter.md) & | [**operator=**](#function-operator) (const [**PlotExporter**](classQAccelPlot_1_1PlotExporter.md) &) = delete<br> |
 |  [**PlotExporter**](classQAccelPlot_1_1PlotExporter.md) & | [**operator=**](#function-operator_1) ([**PlotExporter**](classQAccelPlot_1_1PlotExporter.md) &&) = delete<br> |
-|  [**::QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) \* | [**plot**](#function-plot-22) () const<br>_Returns the plot to export._  |
+|  [**PlotView**](classQAccelPlot_1_1PlotView.md) \* | [**plot**](#function-plot-22) () const<br>_Returns the plot to export._  |
 |  int | [**quality**](#function-quality-22) () const<br>_Returns the encoder quality._  |
 |  Q\_INVOKABLE bool | [**save**](#function-save) (const QString & path) <br>_Saves the plot to_ _path_ _in the format its suffix names._ |
 |  qreal | [**scale**](#function-scale-22) () const<br>_Returns the image pixels per logical pixel; 0 means the window's device pixel ratio._  |
 |  void | [**setDpi**](#function-setdpi) (qreal dpi) <br>_Sets the stored resolution; negative and nonfinite values are ignored with a warning._  |
-|  void | [**setPlot**](#function-setplot) ([**::QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) \* plot) <br>_Sets the plot to export; a request in progress keeps its plot._  |
+|  void | [**setPlot**](#function-setplot) ([**PlotView**](classQAccelPlot_1_1PlotView.md) \* plot) <br>_Sets the plot to export; a request in progress keeps its plot._  |
 |  void | [**setQuality**](#function-setquality) (int quality) <br>_Sets the encoder quality; values outside -1 to 100 are ignored with a warning._  |
 |  void | [**setScale**](#function-setscale) (qreal scale) <br>_Sets the image pixels per logical pixel; negative and nonfinite values are ignored with a warning._  |
 |  void | [**setTransparentBackground**](#function-settransparentbackground) (bool transparent) <br>_Sets whether the image leaves out the plot's backgrounds._  |
@@ -176,7 +176,7 @@ Button { text: "Save"; onClicked: exporter.save("plot.png") }
 
 
 
-**See also:** PlotView 
+**See also:** [**PlotView**](classQAccelPlot_1_1PlotView.md) 
 
 
 
@@ -225,7 +225,7 @@ The default makes documents place the image at its on-screen size.
 
 _Plot to export; null once the plot is destroyed._ 
 ```C++
-QAccelPlot::QAccelPlot* QAccelPlot::PlotExporter::plot;
+PlotView* QAccelPlot::PlotExporter::plot;
 ```
 
 
@@ -566,7 +566,7 @@ PlotExporter & QAccelPlot::PlotExporter::operator= (
 
 _Returns the plot to export._ 
 ```C++
-::QAccelPlot::QAccelPlot * QAccelPlot::PlotExporter::plot () const
+PlotView * QAccelPlot::PlotExporter::plot () const
 ```
 
 
@@ -650,7 +650,7 @@ void QAccelPlot::PlotExporter::setDpi (
 _Sets the plot to export; a request in progress keeps its plot._ 
 ```C++
 void QAccelPlot::PlotExporter::setPlot (
-    ::QAccelPlot::QAccelPlot * plot
+    PlotView * plot
 ) 
 ```
 

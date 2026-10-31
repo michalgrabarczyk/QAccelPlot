@@ -71,7 +71,7 @@
 | class | [**ColorPalette**](classQAccelPlot_1_1ColorPalette.md) <br>_A named set of theme colors shared by QML (via the_ `Colors` _singleton) and C++ defaults._ |
 | class | [**Colormap**](classQAccelPlot_1_1Colormap.md) <br>_Maps data values to colors: a color ramp plus the rule that places a value on it._  |
 | class | [**ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md) <br>_Base class for series that color their data points by value through a_ `Colormap` _._ |
-| class | [**Colors**](classQAccelPlot_1_1Colors.md) <br>_QML singleton exposing_ [_**QAccelPlot**_](classQAccelPlot_1_1QAccelPlot.md) _'s built-in color palettes._ |
+| class | [**Colors**](classQAccelPlot_1_1Colors.md) <br>_QML singleton exposing QAccelPlot's built-in color palettes._  |
 | struct | [**CurveChunk**](structQAccelPlot_1_1CurveChunk.md) <br>_Axis-aligned bounding box (AABB) for a contiguous block of curve points, used for hit-test culling._  |
 | struct | [**CurveDataView**](structQAccelPlot_1_1CurveDataView.md) <br>_Read-only view over either interleaved float or double curve coordinates._  |
 | struct | [**CurveHitTestParams**](structQAccelPlot_1_1CurveHitTestParams.md) <br>_All inputs required for a_ `contains()` _hit-test, bundled to reduce parameter count._ |
@@ -128,15 +128,15 @@
 | class | [**PlotExporter**](classQAccelPlot_1_1PlotExporter.md) <br>_Exports a plot as a raster image: to a file, to the clipboard, or as a_ `QImage` _._ |
 | class | [**PlotInspector**](classQAccelPlot_1_1PlotInspector.md) <br>_Inspects the visible XY series and heatmaps of a plot at a cursor and publishes one model row per series._  |
 | class | [**PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md) <br>_Carries mouse event data for the mouse signals._  |
-| class | [**PlotRectangleZoom**](classQAccelPlot_1_1PlotRectangleZoom.md) <br>_Rectangle zoom configuration and selection state exposed by PlotView._  |
+| class | [**PlotRectangleZoom**](classQAccelPlot_1_1PlotRectangleZoom.md) <br>_Rectangle zoom configuration and selection state exposed by_ [_**PlotView**_](classQAccelPlot_1_1PlotView.md) _._ |
 | class | [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) <br>_Common QML item contract for data series hosted by_ `PlotView` _._ |
+| class | [**PlotView**](classQAccelPlot_1_1PlotView.md) <br>_The main plot canvas QML item — hosts axes, curves, and a grid._  |
 | class | [**PointCloud**](classQAccelPlot_1_1PointCloud.md) <br>_A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers._  |
 | class | [**PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md) <br>_QSGMaterial for_ `PointCloud` _rendering._ |
 | struct | [**PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md) <br>_Input parameters for_ [_**LineCurvePointRenderer::paint()**_](classQAccelPlot_1_1LineCurvePointRenderer.md#function-paint) _, assembled on the main thread._ |
 | class | [**PointMaterial**](classQAccelPlot_1_1PointMaterial.md) <br>_QSGMaterial for_ `LineCurve` _marker rendering._ |
 | class | [**PointSpatialIndex**](classQAccelPlot_1_1PointSpatialIndex.md) <br>_Uniform-grid spatial index for nearest-point queries over large point sets._  |
 | struct | [**PointVertex**](structQAccelPlot_1_1PointVertex.md) <br>_Placeholder vertex of a marker quad, shared with the main thread for vertex caches._  |
-| class | [**QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) <br>_The main plot canvas QML item — hosts axes, curves, and a grid._  |
 | class | [**RectMaterial**](classQAccelPlot_1_1RectMaterial.md) <br>_QSGMaterial for rectangle series rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with a rect-count uniform._ |
 | class | [**RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md) <br>_A hardware-accelerated QML item that renders a large list of axis-aligned rectangles._  |
 | class | [**SelectionTool**](classQAccelPlot_1_1SelectionTool.md) <br>_Selects a data-space region by dragging, without changing the plot viewport._  |

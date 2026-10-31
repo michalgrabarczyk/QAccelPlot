@@ -74,9 +74,9 @@ flowchart TB
 | ---: | :--- |
 |   | [**HistogramFactory**](#function-histogramfactory) (QObject \* parent=nullptr) <br>_Constructs the factory with the given_ _parent_ _._ |
 |  Q\_INVOKABLE QList&lt; qreal &gt; | [**decadeEdges**](#function-decadeedges) (qreal min, qreal max) const<br>_Returns the edges from_ _min_ _to__max_ _at 1, 2, ..., 9 times each power of ten: the ticks of a logarithmic axis._ |
-|  Q\_INVOKABLE::QAccelPlot::Histogram | [**fromCounts**](#function-fromcounts) (const QList&lt; qreal &gt; & edges, const QList&lt; qreal &gt; & counts) const<br>_Wraps data that is already binned:_ _counts_ _has one value per bin between__edges_ _._ |
-|  Q\_INVOKABLE::QAccelPlot::Histogram | [**fromSamples**](#function-fromsamples-12) (const QList&lt; qreal &gt; & samples, const QVariant & bins) const<br>_Counts_ _samples_ _into bins._ |
-|  Q\_INVOKABLE::QAccelPlot::Histogram | [**fromSamples**](#function-fromsamples-22) (const QList&lt; qreal &gt; & samples, int binCount, qreal min, qreal max) const<br>_Counts_ _samples_ _into__binCount_ _equal bins from__min_ _to__max_ _._ |
+|  Q\_INVOKABLE [**Histogram**](classQAccelPlot_1_1Histogram.md) | [**fromCounts**](#function-fromcounts) (const QList&lt; qreal &gt; & edges, const QList&lt; qreal &gt; & counts) const<br>_Wraps data that is already binned:_ _counts_ _has one value per bin between__edges_ _._ |
+|  Q\_INVOKABLE [**Histogram**](classQAccelPlot_1_1Histogram.md) | [**fromSamples**](#function-fromsamples-12) (const QList&lt; qreal &gt; & samples, const QVariant & bins) const<br>_Counts_ _samples_ _into bins._ |
+|  Q\_INVOKABLE [**Histogram**](classQAccelPlot_1_1Histogram.md) | [**fromSamples**](#function-fromsamples-22) (const QList&lt; qreal &gt; & samples, int binCount, qreal min, qreal max) const<br>_Counts_ _samples_ _into__binCount_ _equal bins from__min_ _to__max_ _._ |
 |  Q\_INVOKABLE QList&lt; qreal &gt; | [**linearEdges**](#function-linearedges) (qreal min, qreal max, int binCount) const<br>_Returns_ _binCount_ _+ 1 equally spaced edges from__min_ _to__max_ _._ |
 |  Q\_INVOKABLE QList&lt; qreal &gt; | [**logEdges**](#function-logedges) (qreal min, qreal max, int binCount) const<br>_Returns_ _binCount_ _+ 1 edges from__min_ _to__max_ _, equally spaced on a logarithmic axis._ |
 
@@ -181,7 +181,7 @@ Q_INVOKABLE QList< qreal > QAccelPlot::HistogramFactory::decadeEdges (
 
 _Wraps data that is already binned:_ _counts_ _has one value per bin between__edges_ _._
 ```C++
-Q_INVOKABLE::QAccelPlot::Histogram QAccelPlot::HistogramFactory::fromCounts (
+Q_INVOKABLE Histogram QAccelPlot::HistogramFactory::fromCounts (
     const QList< qreal > & edges,
     const QList< qreal > & counts
 ) const
@@ -199,7 +199,7 @@ Q_INVOKABLE::QAccelPlot::Histogram QAccelPlot::HistogramFactory::fromCounts (
 
 _Counts_ _samples_ _into bins._
 ```C++
-Q_INVOKABLE::QAccelPlot::Histogram QAccelPlot::HistogramFactory::fromSamples (
+Q_INVOKABLE Histogram QAccelPlot::HistogramFactory::fromSamples (
     const QList< qreal > & samples,
     const QVariant & bins
 ) const
@@ -221,7 +221,7 @@ _bins_ is either a number of equal bins spanning the finite samples, or a list o
 
 _Counts_ _samples_ _into__binCount_ _equal bins from__min_ _to__max_ _._
 ```C++
-Q_INVOKABLE::QAccelPlot::Histogram QAccelPlot::HistogramFactory::fromSamples (
+Q_INVOKABLE Histogram QAccelPlot::HistogramFactory::fromSamples (
     const QList< qreal > & samples,
     int binCount,
     qreal min,

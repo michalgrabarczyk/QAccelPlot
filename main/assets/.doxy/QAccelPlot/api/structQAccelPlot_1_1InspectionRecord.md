@@ -62,7 +62,7 @@ _A native record of a series that is not a plain XY series, such as a bar, recta
 | property QVariantMap | [**fields**](structQAccelPlot_1_1InspectionRecord.md#property-fields)  <br>_Record values keyed by the series' own field names._  |
 | property int | [**index**](structQAccelPlot_1_1InspectionRecord.md#property-index)  <br>_Source index; -1 for an interpolated hit._  |
 | property bool | [**interpolated**](structQAccelPlot_1_1InspectionRecord.md#property-interpolated)  <br>_True when the fields are interpolated between source records._  |
-| property QML\_ANONYMOUSQAccelPlot::InspectionNS::Status | [**status**](structQAccelPlot_1_1InspectionRecord.md#property-status-12)  <br>_Query outcome._  |
+| property QML\_ANONYMOUSInspectionNS::Status | [**status**](structQAccelPlot_1_1InspectionRecord.md#property-status-12)  <br>_Query outcome._  |
 | property bool | [**valid**](structQAccelPlot_1_1InspectionRecord.md#property-valid-12)  <br>_True when status is_ `Ready` _._ |
 
 
@@ -208,7 +208,7 @@ Interpolated fields.
 
 _Query outcome._ 
 ```C++
-QML_ANONYMOUSQAccelPlot::InspectionNS::Status QAccelPlot::InspectionRecord::status;
+QML_ANONYMOUSInspectionNS::Status QAccelPlot::InspectionRecord::status;
 ```
 
 

@@ -41,7 +41,7 @@ struct InspectionSource;
 class SeriesInspection : public QObject {
     Q_OBJECT
     QML_ANONYMOUS
-    Q_PROPERTY(::QAccelPlot::InspectionNS::Status status READ status NOTIFY statusChanged)
+    Q_PROPERTY(InspectionNS::Status status READ status NOTIFY statusChanged)
 
 public:
     ~SeriesInspection() override;
@@ -51,20 +51,19 @@ public:
     Q_INVOKABLE quint64 indexBytes() const;
     Q_INVOKABLE void prepare();
 
-    Q_INVOKABLE ::QAccelPlot::InspectionDataPoint dataPointAt(int index) const;
-    Q_INVOKABLE ::QAccelPlot::InspectionDataPoint nearest(const QPointF& position, qreal radius = 10);
-    Q_INVOKABLE ::QAccelPlot::InspectionDataPoint nearestByX(qreal pixelX, qreal radius = std::numeric_limits<qreal>::infinity());
-    Q_INVOKABLE ::QAccelPlot::InspectionDataPoint nearestByY(qreal pixelY, qreal radius = std::numeric_limits<qreal>::infinity());
-    Q_INVOKABLE ::QAccelPlot::InspectionBracket bracketByX(qreal pixelX);
-    Q_INVOKABLE ::QAccelPlot::InspectionBracket bracketByY(qreal pixelY);
-    Q_INVOKABLE ::QAccelPlot::InspectionSummary summarize(qreal xMin, qreal xMax, qreal yMin, qreal yMax);
-    Q_INVOKABLE ::QAccelPlot::InspectionSummary summarizeRange(qreal xMin, qreal xMax);
-    Q_INVOKABLE ::QAccelPlot::InspectionPage indices(
-        qreal xMin, qreal xMax, qreal yMin, qreal yMax, int offset = 0, int limit = 4096, quint64 expectedRevision = 0);
+    Q_INVOKABLE InspectionDataPoint dataPointAt(int index) const;
+    Q_INVOKABLE InspectionDataPoint nearest(const QPointF& position, qreal radius = 10);
+    Q_INVOKABLE InspectionDataPoint nearestByX(qreal pixelX, qreal radius = std::numeric_limits<qreal>::infinity());
+    Q_INVOKABLE InspectionDataPoint nearestByY(qreal pixelY, qreal radius = std::numeric_limits<qreal>::infinity());
+    Q_INVOKABLE InspectionBracket bracketByX(qreal pixelX);
+    Q_INVOKABLE InspectionBracket bracketByY(qreal pixelY);
+    Q_INVOKABLE InspectionSummary summarize(qreal xMin, qreal xMax, qreal yMin, qreal yMax);
+    Q_INVOKABLE InspectionSummary summarizeRange(qreal xMin, qreal xMax);
+    Q_INVOKABLE InspectionPage indices(qreal xMin, qreal xMax, qreal yMin, qreal yMax, int offset = 0, int limit = 4096, quint64 expectedRevision = 0);
 
-    Q_INVOKABLE ::QAccelPlot::InspectionRecord recordAt(int index) const;
-    Q_INVOKABLE ::QAccelPlot::InspectionRecord recordAtPosition(const QPointF& position) const;
-    Q_INVOKABLE ::QAccelPlot::InspectionDataPoint dataPointAtPosition(const QPointF& position) const;
+    Q_INVOKABLE InspectionRecord recordAt(int index) const;
+    Q_INVOKABLE InspectionRecord recordAtPosition(const QPointF& position) const;
+    Q_INVOKABLE InspectionDataPoint dataPointAtPosition(const QPointF& position) const;
 
 signals:
     void statusChanged();

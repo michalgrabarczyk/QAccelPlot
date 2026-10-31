@@ -29,11 +29,11 @@ namespace QAccelPlot {
 struct LegendEntry {
     Q_GADGET
     QML_ANONYMOUS
-    Q_PROPERTY(::QAccelPlot::PlotSeries::LegendSymbol symbol MEMBER symbol CONSTANT)
+    Q_PROPERTY(PlotSeries::LegendSymbol symbol MEMBER symbol CONSTANT)
     Q_PROPERTY(QColor color MEMBER color CONSTANT)
     Q_PROPERTY(qreal lineWidth MEMBER lineWidth CONSTANT)
-    Q_PROPERTY(::QAccelPlot::LineStyle* lineStyle MEMBER lineStyle CONSTANT)
-    Q_PROPERTY(::QAccelPlot::MarkerShape markerShape MEMBER markerShape CONSTANT)
+    Q_PROPERTY(LineStyle* lineStyle MEMBER lineStyle CONSTANT)
+    Q_PROPERTY(MarkerShape markerShape MEMBER markerShape CONSTANT)
     Q_PROPERTY(qreal markerSize MEMBER markerSize CONSTANT)
     Q_PROPERTY(bool markerFilled MEMBER markerFilled CONSTANT)
     Q_PROPERTY(qreal markerStrokeWidth MEMBER markerStrokeWidth CONSTANT)

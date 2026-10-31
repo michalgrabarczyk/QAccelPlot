@@ -114,7 +114,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
     * **class** [**QAccelPlot::Border**](classQAccelPlot_1_1Border.md) _Outline color and width, exposed as a_ `border` _grouped property, for example_`border.width: 1` _._
     * **class** [**QAccelPlot::ColorPalette**](classQAccelPlot_1_1ColorPalette.md) _A named set of theme colors shared by QML (via the_ `Colors` _singleton) and C++ defaults._
     * **class** [**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md) _Maps data values to colors: a color ramp plus the rule that places a value on it._ 
-    * **class** [**QAccelPlot::Colors**](classQAccelPlot_1_1Colors.md) _QML singleton exposing_ [_**QAccelPlot**_](classQAccelPlot_1_1QAccelPlot.md) _'s built-in color palettes._
+    * **class** [**QAccelPlot::Colors**](classQAccelPlot_1_1Colors.md) _QML singleton exposing QAccelPlot's built-in color palettes._ 
     * **class** [**QAccelPlot::LineStyle**](classQAccelPlot_1_1LineStyle.md) _Abstract base class for all line styles._     
         * **class** [**QAccelPlot::DashLine**](classQAccelPlot_1_1DashLine.md) _A line style that renders the curve as a customisable dashed line._ 
         * **class** [**QAccelPlot::NoLine**](classQAccelPlot_1_1NoLine.md) _A line style that suppresses line rendering entirely, leaving only markers visible._ 
@@ -161,7 +161,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
     * **class** [**QAccelPlot::PlotExporter**](classQAccelPlot_1_1PlotExporter.md) _Exports a plot as a raster image: to a file, to the clipboard, or as a_ `QImage` _._
     * **class** [**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md) _Inspects the visible XY series and heatmaps of a plot at a cursor and publishes one model row per series._ 
     * **class** [**QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md) _Carries mouse event data for the mouse signals._ 
-    * **class** [**QAccelPlot::PlotRectangleZoom**](classQAccelPlot_1_1PlotRectangleZoom.md) _Rectangle zoom configuration and selection state exposed by PlotView._ 
+    * **class** [**QAccelPlot::PlotRectangleZoom**](classQAccelPlot_1_1PlotRectangleZoom.md) _Rectangle zoom configuration and selection state exposed by_ [_**PlotView**_](classQAccelPlot_1_1PlotView.md) _._
     * **class** [**QAccelPlot::SelectionTool**](classQAccelPlot_1_1SelectionTool.md) _Selects a data-space region by dragging, without changing the plot viewport._ 
     * **class** [**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) _Data queries for one series: nearest data points, brackets, region statistics, and index pages._ 
     * **class** [**QAccelPlot::SeriesMarker**](classQAccelPlot_1_1SeriesMarker.md) _Controls the markers a series draws at its data points._ 
@@ -351,6 +351,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
         * **class** [**QAccelPlot::ErrorBarSeries**](classQAccelPlot_1_1ErrorBarSeries.md) _A hardware-accelerated QML item that draws error bars: a line from a low to a high bound at each data point, capped at both ends._ 
         * **class** [**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md) _A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects._ 
         * **class** [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md) _A hardware-accelerated QML item that renders a large list of axis-aligned rectangles._ 
+    * **class** [**QAccelPlot::PlotView**](classQAccelPlot_1_1PlotView.md) _The main plot canvas QML item — hosts axes, curves, and a grid._ 
     * **class** [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md) _Common QML item contract for data series hosted by_ `PlotView` _._    
         * **class** [**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md) _A hardware-accelerated QML item that fills the area between a low and a high value at each X._ 
         * **class** [**QAccelPlot::ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md) _Base class for series that color their data points by value through a_ `Colormap` _._    
@@ -360,7 +361,6 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
         * **class** [**QAccelPlot::ErrorBarSeries**](classQAccelPlot_1_1ErrorBarSeries.md) _A hardware-accelerated QML item that draws error bars: a line from a low to a high bound at each data point, capped at both ends._ 
         * **class** [**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md) _A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects._ 
         * **class** [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md) _A hardware-accelerated QML item that renders a large list of axis-aligned rectangles._ 
-    * **class** [**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) _The main plot canvas QML item — hosts axes, curves, and a grid._ 
     * **class** [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md) _Common QML item contract for data series hosted by_ `PlotView` _._    
         * **class** [**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md) _A hardware-accelerated QML item that fills the area between a low and a high value at each X._ 
         * **class** [**QAccelPlot::ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md) _Base class for series that color their data points by value through a_ `Colormap` _._    

@@ -84,8 +84,8 @@ flowchart TB
 | property QList&lt; [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) \* &gt; | [**includedSeries**](classQAccelPlot_1_1PlotInspector.md#property-includedseries-12)  <br>_Series to inspect; an empty list inspects every series of the plot._  |
 | property bool | [**interpolate**](classQAccelPlot_1_1PlotInspector.md#property-interpolate-12)  <br>_In_ `NearestX` _and_`NearestY` _mode, reports the point on the line between two consecutive data points instead of the nearer one. Default: false._ |
 | property [**Mode**](classQAccelPlot_1_1PlotInspector.md#enum-mode) | [**mode**](classQAccelPlot_1_1PlotInspector.md#property-mode-12)  <br>`NearestX` _and_`NearestY` _report each series at the cursor's X or Y;_`NearestXY` _picks by on-screen distance. Default: NearestX._ |
-| property [**QAccelPlot::InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md) \* | [**model**](classQAccelPlot_1_1PlotInspector.md#property-model-12)  <br>_Read-only constant: one row per inspected series._  |
-| property [**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) \* | [**plot**](classQAccelPlot_1_1PlotInspector.md#property-plot-12)  <br>_Plot whose series are inspected._  |
+| property [**InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md) \* | [**model**](classQAccelPlot_1_1PlotInspector.md#property-model-12)  <br>_Read-only constant: one row per inspected series._  |
+| property [**PlotView**](classQAccelPlot_1_1PlotView.md) \* | [**plot**](classQAccelPlot_1_1PlotInspector.md#property-plot-12)  <br>_Plot whose series are inspected._  |
 | property qreal | [**radius**](classQAccelPlot_1_1PlotInspector.md#property-radius-12)  <br>_Pick distance in logical pixels. In_ `NearestX` _and_`NearestY` _mode it only limits matches beyond a series' extreme data points. Default: 16._ |
 | property bool | [**snapToDataPoint**](classQAccelPlot_1_1PlotInspector.md#property-snaptodatapoint-12)  <br>_Moves the crosshair to the closest matching data point. Default: false._  |
 | property bool | [**summaries**](classQAccelPlot_1_1PlotInspector.md#property-summaries-12)  <br>_Adds Y statistics of the data points around the cursor to every row. Default: false._  |
@@ -140,7 +140,7 @@ flowchart TB
 |  bool | [**interpolate**](#function-interpolate-22) () const<br>_Returns whether_ `NearestX` _and_`NearestY` _rows are interpolated between data points._ |
 |  [**Mode**](classQAccelPlot_1_1PlotInspector.md#enum-mode) | [**mode**](#function-mode-22) () const<br>_Returns the matching mode._  |
 |  [**InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md) \* | [**model**](#function-model-22) () const<br>_Returns the row model._  |
-|  [**::QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) \* | [**plot**](#function-plot-22) () const<br>_Returns the inspected plot._  |
+|  [**PlotView**](classQAccelPlot_1_1PlotView.md) \* | [**plot**](#function-plot-22) () const<br>_Returns the inspected plot._  |
 |  qreal | [**radius**](#function-radius-22) () const<br>_Returns the pick distance in logical pixels._  |
 |  Q\_INVOKABLE void | [**refresh**](#function-refresh) () <br>_Runs the queries now instead of on the next event-loop pass._  |
 |  void | [**setCursorPixelX**](#function-setcursorpixelx) (qreal x) <br>_Sets the cursor X in plot-local logical pixels used while_ `followPointer` _is false._ |
@@ -153,7 +153,7 @@ flowchart TB
 |  void | [**setIncludedSeries**](#function-setincludedseries) (const QList&lt; [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) \* &gt; & series) <br>_Sets the series to inspect._  |
 |  void | [**setInterpolate**](#function-setinterpolate) (bool enabled) <br>_Enables or disables interpolation between consecutive data points._  |
 |  void | [**setMode**](#function-setmode) ([**Mode**](classQAccelPlot_1_1PlotInspector.md#enum-mode) mode) <br>_Sets the matching mode._  |
-|  void | [**setPlot**](#function-setplot) ([**::QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) \* plot) <br>_Sets the inspected plot._  |
+|  void | [**setPlot**](#function-setplot) ([**PlotView**](classQAccelPlot_1_1PlotView.md) \* plot) <br>_Sets the inspected plot._  |
 |  void | [**setRadius**](#function-setradius) (qreal radius) <br>_Sets the pick distance; negative and NaN values are ignored._  |
 |  void | [**setSnapToDataPoint**](#function-setsnaptodatapoint) (bool enabled) <br>_Enables or disables crosshair snapping._  |
 |  void | [**setSummaries**](#function-setsummaries) (bool enabled) <br>_Enables or disables neighborhood statistics._  |
@@ -479,7 +479,7 @@ Mode QAccelPlot::PlotInspector::mode;
 
 _Read-only constant: one row per inspected series._ 
 ```C++
-QAccelPlot::InspectionRowModel* QAccelPlot::PlotInspector::model;
+InspectionRowModel* QAccelPlot::PlotInspector::model;
 ```
 
 
@@ -494,7 +494,7 @@ QAccelPlot::InspectionRowModel* QAccelPlot::PlotInspector::model;
 
 _Plot whose series are inspected._ 
 ```C++
-QAccelPlot::QAccelPlot* QAccelPlot::PlotInspector::plot;
+PlotView* QAccelPlot::PlotInspector::plot;
 ```
 
 
@@ -1085,7 +1085,7 @@ InspectionRowModel * QAccelPlot::PlotInspector::model () const
 
 _Returns the inspected plot._ 
 ```C++
-::QAccelPlot::QAccelPlot * QAccelPlot::PlotInspector::plot () const
+PlotView * QAccelPlot::PlotInspector::plot () const
 ```
 
 
@@ -1301,7 +1301,7 @@ void QAccelPlot::PlotInspector::setMode (
 _Sets the inspected plot._ 
 ```C++
 void QAccelPlot::PlotInspector::setPlot (
-    ::QAccelPlot::QAccelPlot * plot
+    PlotView * plot
 ) 
 ```
 

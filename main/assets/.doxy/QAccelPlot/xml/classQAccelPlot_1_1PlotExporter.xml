@@ -40,9 +40,9 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="property">
-      <memberdef kind="property" id="classQAccelPlot_1_1PlotExporter_1ab93e213ced0565277132800fd3f86f1e" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type><ref refid="classQAccelPlot_1_1QAccelPlot" kindref="compound">QAccelPlot::QAccelPlot</ref> *</type>
-        <definition>QAccelPlot::QAccelPlot* QAccelPlot::PlotExporter::plot</definition>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotExporter_1a4e41c6cb290e8261d95515267b9bf488" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1PlotView" kindref="compound">PlotView</ref> *</type>
+        <definition>PlotView* QAccelPlot::PlotExporter::plot</definition>
         <argsstring></argsstring>
         <name>plot</name>
         <qualifiedname>QAccelPlot::PlotExporter::plot</qualifiedname>
@@ -147,9 +147,9 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="classQAccelPlot_1_1PlotExporter_1acfb69782c3326ec7525ee69980d17f64" prot="private" static="no" mutable="no">
-        <type>QPointer&lt;<ref refid="classQAccelPlot_1_1QAccelPlot" kindref="compound">::QAccelPlot::QAccelPlot</ref> &gt;</type>
-        <definition>QPointer&lt;::QAccelPlot::QAccelPlot&gt; QAccelPlot::PlotExporter::plot_</definition>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotExporter_1a8497049f7bb03e240ab7b14aac8bd977" prot="private" static="no" mutable="no">
+        <type>QPointer&lt; <ref refid="classQAccelPlot_1_1PlotView" kindref="compound">PlotView</ref> &gt;</type>
+        <definition>QPointer&lt;PlotView&gt; QAccelPlot::PlotExporter::plot_</definition>
         <argsstring></argsstring>
         <name>plot_</name>
         <qualifiedname>QAccelPlot::PlotExporter::plot_</qualifiedname>
@@ -383,9 +383,9 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/export/PlotExporter.hpp" line="85" column="18"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1PlotExporter_1af5cbc4ad74b51a59514dcc94d571b007" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classQAccelPlot_1_1QAccelPlot" kindref="compound">::QAccelPlot::QAccelPlot</ref> *</type>
-        <definition>::QAccelPlot::QAccelPlot * QAccelPlot::PlotExporter::plot</definition>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotExporter_1ae22b69b6511b23f4b2bd2ee1a1421d66" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1PlotView" kindref="compound">PlotView</ref> *</type>
+        <definition>PlotView * QAccelPlot::PlotExporter::plot</definition>
         <argsstring>() const</argsstring>
         <name>plot</name>
         <qualifiedname>QAccelPlot::PlotExporter::plot</qualifiedname>
@@ -396,16 +396,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/export/PlotExporter.hpp" line="88" column="30"/>
+        <location file="QAccelPlot/src/QAccelPlot/export/PlotExporter.hpp" line="88" column="14"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1PlotExporter_1adfc942042eae2bfcb37042b6a14120fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotExporter_1a3a21ead236c04c1355a779905c40b5b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void QAccelPlot::PlotExporter::setPlot</definition>
-        <argsstring>(::QAccelPlot::QAccelPlot *plot)</argsstring>
+        <argsstring>(PlotView *plot)</argsstring>
         <name>setPlot</name>
         <qualifiedname>QAccelPlot::PlotExporter::setPlot</qualifiedname>
         <param>
-          <type><ref refid="classQAccelPlot_1_1QAccelPlot" kindref="compound">::QAccelPlot::QAccelPlot</ref> *</type>
+          <type><ref refid="classQAccelPlot_1_1PlotView" kindref="compound">PlotView</ref> *</type>
           <declname>plot</declname>
         </param>
         <briefdescription>
@@ -1003,14 +1003,14 @@
 <para>Every request is asynchronous and ends with exactly one <computeroutput><ref refid="classQAccelPlot_1_1PlotExporter_1a283cd4d68cf8f2880c08bd71c131b3dc" kindref="member">finished()</ref></computeroutput> signal, except one made while <computeroutput>busy:</computeroutput> it returns false with a warning and leaves <computeroutput><ref refid="classQAccelPlot_1_1PlotExporter_1a283cd4d68cf8f2880c08bd71c131b3dc" kindref="member">finished()</ref></computeroutput> to the request in progress. A request for a plot another exporter is capturing fails. The capture is taken on the next frame, and fails when the window is hidden, minimized, or destroyed first; encoding and writing a file run on a worker thread.</para>
 <para><simplesect kind="par"><title>Usage</title><para><programlisting><codeline><highlight class="normal"><ref refid="classQAccelPlot_1_1PlotExporter_1ad24716ee8686ff77f5c5e6ba0ad89c58" kindref="member">PlotExporter</ref><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>id:<sp/>exporter</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotExporter_1ab93e213ced0565277132800fd3f86f1e" kindref="member">plot</ref>:<sp/>myPlot</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotExporter_1a4e41c6cb290e8261d95515267b9bf488" kindref="member">plot</ref>:<sp/>myPlot</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotExporter_1a340483ff03cbd18eee439f106bd188d1" kindref="member">scale</ref>:<sp/>2</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>onFinished:<sp/>(ok,<sp/>path,<sp/>error)<sp/>=&gt;<sp/>console.log(ok<sp/>?<sp/></highlight><highlight class="stringliteral">&quot;Saved<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>path<sp/>:<sp/>error)</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Button<sp/>{<sp/>text:<sp/></highlight><highlight class="stringliteral">&quot;Save&quot;</highlight><highlight class="normal">;<sp/>onClicked:<sp/>exporter.save(</highlight><highlight class="stringliteral">&quot;plot.png&quot;</highlight><highlight class="normal">)<sp/>}</highlight></codeline>
 </programlisting></para>
 </simplesect>
-<simplesect kind="see"><para>PlotView </para>
+<simplesect kind="see"><para><ref refid="classQAccelPlot_1_1PlotView" kindref="compound">PlotView</ref> </para>
 </simplesect>
 </para>
     </detaileddescription>
@@ -1061,9 +1061,9 @@
       <member refid="classQAccelPlot_1_1PlotExporter_1ad8c6db8395c9c8c4f0315f814f2ff37a" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotExporter</scope><name>Operation</name></member>
       <member refid="classQAccelPlot_1_1PlotExporter_1a2f383c41b7ff75ff7d4652f45932dac1" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotExporter</scope><name>operator=</name></member>
       <member refid="classQAccelPlot_1_1PlotExporter_1aeb1020ce67373d2697f251367efd3070" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotExporter</scope><name>operator=</name></member>
-      <member refid="classQAccelPlot_1_1PlotExporter_1ab93e213ced0565277132800fd3f86f1e" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotExporter</scope><name>plot</name></member>
-      <member refid="classQAccelPlot_1_1PlotExporter_1af5cbc4ad74b51a59514dcc94d571b007" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotExporter</scope><name>plot</name></member>
-      <member refid="classQAccelPlot_1_1PlotExporter_1acfb69782c3326ec7525ee69980d17f64" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotExporter</scope><name>plot_</name></member>
+      <member refid="classQAccelPlot_1_1PlotExporter_1a4e41c6cb290e8261d95515267b9bf488" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotExporter</scope><name>plot</name></member>
+      <member refid="classQAccelPlot_1_1PlotExporter_1ae22b69b6511b23f4b2bd2ee1a1421d66" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotExporter</scope><name>plot</name></member>
+      <member refid="classQAccelPlot_1_1PlotExporter_1a8497049f7bb03e240ab7b14aac8bd977" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotExporter</scope><name>plot_</name></member>
       <member refid="classQAccelPlot_1_1PlotExporter_1a4360a684b3eb932acc6772c3650b066f" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotExporter</scope><name>plotChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotExporter_1ad24716ee8686ff77f5c5e6ba0ad89c58" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotExporter</scope><name>PlotExporter</name></member>
       <member refid="classQAccelPlot_1_1PlotExporter_1a6d9926eea4681debdc4cfc805957e05a" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotExporter</scope><name>PlotExporter</name></member>
@@ -1082,7 +1082,7 @@
       <member refid="classQAccelPlot_1_1PlotExporter_1a67534ea70df62f0d9c7ed945eb356567" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotExporter</scope><name>scaleChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotExporter_1a90274751e1694c56f5b3aba98abaafa9" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotExporter</scope><name>setBusy</name></member>
       <member refid="classQAccelPlot_1_1PlotExporter_1a409331242f93061801a9ec4b9c161cdd" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotExporter</scope><name>setDpi</name></member>
-      <member refid="classQAccelPlot_1_1PlotExporter_1adfc942042eae2bfcb37042b6a14120fe" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotExporter</scope><name>setPlot</name></member>
+      <member refid="classQAccelPlot_1_1PlotExporter_1a3a21ead236c04c1355a779905c40b5b8" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotExporter</scope><name>setPlot</name></member>
       <member refid="classQAccelPlot_1_1PlotExporter_1a8a8ca35120aee5cb0056c495965bab34" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotExporter</scope><name>setQuality</name></member>
       <member refid="classQAccelPlot_1_1PlotExporter_1a9ae27457135c3df8ec4775ae831c2405" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotExporter</scope><name>setScale</name></member>
       <member refid="classQAccelPlot_1_1PlotExporter_1a8c659db2c0e364b0ab9b4d443bb96643" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotExporter</scope><name>setTransparentBackground</name></member>

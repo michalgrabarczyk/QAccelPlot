@@ -19,7 +19,7 @@
 
 * `#include "QAccelPlot/Border.hpp"`
 * `#include "QAccelPlot/PlotDragRect.hpp"`
-* `#include "QAccelPlot/QAccelPlot.hpp"`
+* `#include "QAccelPlot/PlotView.hpp"`
 * `#include "QAccelPlot/inspection/InspectionRowModel.hpp"`
 * `#include <limits>`
 

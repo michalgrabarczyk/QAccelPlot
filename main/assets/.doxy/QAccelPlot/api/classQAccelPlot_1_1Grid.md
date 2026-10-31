@@ -157,7 +157,7 @@ Exposed as a CONSTANT property on `PlotView`. Major grid lines are drawn at the 
 
 
 
-**See also:** PlotView 
+**See also:** [**PlotView**](classQAccelPlot_1_1PlotView.md) 
 
 
 

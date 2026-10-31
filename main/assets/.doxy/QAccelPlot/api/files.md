@@ -12,7 +12,7 @@ Here is a list of all files with brief descriptions:
             * **file** [**PlotDragRect.hpp**](PlotDragRect_8hpp.md)     
             * **file** [**PlotMouseEvent.hpp**](PlotMouseEvent_8hpp.md)     
             * **file** [**PlotRectangleZoom.hpp**](PlotRectangleZoom_8hpp.md)     
-            * **file** [**QAccelPlot.hpp**](QAccelPlot_8hpp.md)     
+            * **file** [**PlotView.hpp**](PlotView_8hpp.md)     
             * **dir** [**annotations**](dir_e8bec8340f9666b044480da91801ccc6.md)     
                 * **file** [**DataAnchor.hpp**](DataAnchor_8hpp.md)     
             * **dir** [**axis**](dir_4047c0a16b95170c37806a99233d1784.md)     

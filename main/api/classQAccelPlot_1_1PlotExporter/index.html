@@ -1923,7 +1923,7 @@
 <td style="text-align: left;"><a href="./#property-dpi-12"><strong>dpi</strong></a>  <br><em>Resolution stored in saved files, in dots per inch; 0 stores 96 times the effective scale. Default: 0.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">property <a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a> *</td>
+<td style="text-align: right;">property <a href="../classQAccelPlot_1_1PlotView/"><strong>PlotView</strong></a> *</td>
 <td style="text-align: left;"><a href="./#property-plot-12"><strong>plot</strong></a>  <br><em>Plot to export; null once the plot is destroyed.</em></td>
 </tr>
 <tr>
@@ -2029,7 +2029,7 @@
 <td style="text-align: left;"><a href="#function-operator_1"><strong>operator=</strong></a> (<a href="./"><strong>PlotExporter</strong></a> &amp;&amp;) = delete<br></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classQAccelPlot_1_1QAccelPlot/"><strong>::QAccelPlot::QAccelPlot</strong></a> *</td>
+<td style="text-align: right;"><a href="../classQAccelPlot_1_1PlotView/"><strong>PlotView</strong></a> *</td>
 <td style="text-align: left;"><a href="#function-plot-22"><strong>plot</strong></a> () const<br><em>Returns the plot to export.</em></td>
 </tr>
 <tr>
@@ -2050,7 +2050,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setplot"><strong>setPlot</strong></a> (<a href="../classQAccelPlot_1_1QAccelPlot/"><strong>::QAccelPlot::QAccelPlot</strong></a> * plot) <br><em>Sets the plot to export; a request in progress keeps its plot.</em></td>
+<td style="text-align: left;"><a href="#function-setplot"><strong>setPlot</strong></a> (<a href="../classQAccelPlot_1_1PlotView/"><strong>PlotView</strong></a> * plot) <br><em>Sets the plot to export; a request in progress keeps its plot.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -2102,7 +2102,7 @@
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">}</span>
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">Button</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">text</span><span class="o">:</span><span class="w"> </span><span class="s">"Save"</span><span class="p">;</span><span class="w"> </span><span class="n">onClicked</span><span class="o">:</span><span class="w"> </span><span class="n">exporter</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="s">"plot.png"</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
-<p><strong>See also:</strong> PlotView </p>
+<p><strong>See also:</strong> <a href="../classQAccelPlot_1_1PlotView/"><strong>PlotView</strong></a> </p>
 <h2 id="public-properties-documentation">Public Properties Documentation<a class="headerlink" href="#public-properties-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="property-busy-12">property busy<a class="headerlink" href="#property-busy-12" title="Permanent link">&para;</a></h3>
 <p><em>True from a request until its</em> <code>finished()</code> <em>signal.</em>
@@ -2119,7 +2119,7 @@
 
 <h3 id="property-plot-12">property plot<a class="headerlink" href="#property-plot-12" title="Permanent link">&para;</a></h3>
 <p><em>Plot to export; null once the plot is destroyed.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">plot</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">PlotView</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">plot</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
@@ -2255,7 +2255,7 @@
 
 <h3 id="function-plot-22">function plot<a class="headerlink" href="#function-plot-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the plot to export.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">plot</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">PlotView</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">plot</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
@@ -2291,7 +2291,7 @@
 <h3 id="function-setplot">function setPlot<a class="headerlink" href="#function-setplot" title="Permanent link">&para;</a></h3>
 <p><em>Sets the plot to export; a request in progress keeps its plot.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">setPlot</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="w">    </span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">plot</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="w">    </span><span class="n">PlotView</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">plot</span>
 <a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>

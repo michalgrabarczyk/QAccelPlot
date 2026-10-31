@@ -14,7 +14,7 @@
     <includes local="no">optional</includes>
     <includes local="no">string</includes>
     <includes local="no">vector</includes>
-    <includedby refid="QAccelPlot_8hpp" local="yes">QAccelPlot/src/QAccelPlot/QAccelPlot.hpp</includedby>
+    <includedby refid="PlotView_8hpp" local="yes">QAccelPlot/src/QAccelPlot/PlotView.hpp</includedby>
     <includedby refid="InspectionRowModel_8hpp" local="yes">QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp</includedby>
     <includedby refid="LegendEntry_8hpp" local="yes">QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp</includedby>
     <includedby refid="LegendModel_8hpp" local="yes">QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp</includedby>
@@ -134,7 +134,7 @@
 <codeline lineno="95"><highlight class="normal"></highlight></codeline>
 <codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(quint64<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a74c197e04386613b694bd8a63963c479" kindref="member">dataRevision</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a74c197e04386613b694bd8a63963c479" kindref="member">dataRevision</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1ae08fae615331785b023882afef1a4fa1" kindref="member">dataRevisionChanged</ref>)</highlight></codeline>
-<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(<ref refid="classQAccelPlot_1_1SeriesInspection" kindref="compound">::QAccelPlot::SeriesInspection</ref>*<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a2a23af3683416afeea98697c66616cea" kindref="member">inspection</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a2a23af3683416afeea98697c66616cea" kindref="member">inspection</ref><sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(<ref refid="classQAccelPlot_1_1SeriesInspection" kindref="compound">SeriesInspection</ref>*<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1addb81876423cd48343592cfce8c19d5b" kindref="member">inspection</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1addb81876423cd48343592cfce8c19d5b" kindref="member">inspection</ref><sp/>CONSTANT)</highlight></codeline>
 <codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a53e3980416791cdfa11e95ddf45f51a6" kindref="member">count</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a53e3980416791cdfa11e95ddf45f51a6" kindref="member">count</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a4ab130c4ee8aafee3cc274bee94b0633" kindref="member">countChanged</ref>)</highlight></codeline>
 <codeline lineno="106"><highlight class="normal"></highlight></codeline>
 <codeline lineno="107"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
@@ -158,7 +158,7 @@
 <codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">~PlotSeries</ref>()<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="134"><highlight class="normal"></highlight></codeline>
 <codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>quint64<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a74c197e04386613b694bd8a63963c479" kindref="member">dataRevision</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1SeriesInspection" kindref="compound">SeriesInspection</ref>*<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a2a23af3683416afeea98697c66616cea" kindref="member">inspection</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1SeriesInspection" kindref="compound">SeriesInspection</ref>*<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1addb81876423cd48343592cfce8c19d5b" kindref="member">inspection</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a53e3980416791cdfa11e95ddf45f51a6" kindref="member">count</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="141"><highlight class="normal"></highlight></codeline>
 <codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>QString<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a71b82b1a4372d71c848a3a09c59b20b0" kindref="member">name</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>

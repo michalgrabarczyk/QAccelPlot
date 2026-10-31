@@ -45,9 +45,9 @@ class HistogramFactory : public QObject {
 public:
     explicit HistogramFactory(QObject* parent = nullptr);
 
-    Q_INVOKABLE ::QAccelPlot::Histogram fromSamples(const QList<qreal>& samples, const QVariant& bins) const;
-    Q_INVOKABLE ::QAccelPlot::Histogram fromSamples(const QList<qreal>& samples, int binCount, qreal min, qreal max) const;
-    Q_INVOKABLE ::QAccelPlot::Histogram fromCounts(const QList<qreal>& edges, const QList<qreal>& counts) const;
+    Q_INVOKABLE Histogram fromSamples(const QList<qreal>& samples, const QVariant& bins) const;
+    Q_INVOKABLE Histogram fromSamples(const QList<qreal>& samples, int binCount, qreal min, qreal max) const;
+    Q_INVOKABLE Histogram fromCounts(const QList<qreal>& edges, const QList<qreal>& counts) const;
 
     Q_INVOKABLE QList<qreal> linearEdges(qreal min, qreal max, int binCount) const;
     Q_INVOKABLE QList<qreal> logEdges(qreal min, qreal max, int binCount) const;

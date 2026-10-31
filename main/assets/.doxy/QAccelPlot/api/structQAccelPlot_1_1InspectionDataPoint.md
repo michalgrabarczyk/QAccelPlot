@@ -64,7 +64,7 @@ _One XY source data point returned by an inspection query._ [More...](#detailed-
 | property bool | [**interpolated**](structQAccelPlot_1_1InspectionDataPoint.md#property-interpolated)  <br>_True when the coordinates are interpolated between two data points; index is then the data point whose value is shown._  |
 | property qreal | [**pixelX**](structQAccelPlot_1_1InspectionDataPoint.md#property-pixelx)  <br>_X in series-local logical pixels; NaN for an invalid record._  |
 | property qreal | [**pixelY**](structQAccelPlot_1_1InspectionDataPoint.md#property-pixely)  <br>_Y in series-local logical pixels; NaN for an invalid record._  |
-| property QML\_ANONYMOUSQAccelPlot::InspectionNS::Status | [**status**](structQAccelPlot_1_1InspectionDataPoint.md#property-status-12)  <br>_Query outcome._  |
+| property QML\_ANONYMOUSInspectionNS::Status | [**status**](structQAccelPlot_1_1InspectionDataPoint.md#property-status-12)  <br>_Query outcome._  |
 | property bool | [**valid**](structQAccelPlot_1_1InspectionDataPoint.md#property-valid-12)  <br>_True when status is_ `Ready` _._ |
 | property qreal | [**value**](structQAccelPlot_1_1InspectionDataPoint.md#property-value)  <br>[_**Colormap**_](classQAccelPlot_1_1Colormap.md) _value of a_`PointCloud` _point or a heatmap cell; NaN for other series and for interpolated points._ |
 | property qreal | [**x**](structQAccelPlot_1_1InspectionDataPoint.md#property-x)  <br>_X in data units._  |
@@ -261,7 +261,7 @@ Y in series-local pixels.
 
 _Query outcome._ 
 ```C++
-QML_ANONYMOUSQAccelPlot::InspectionNS::Status QAccelPlot::InspectionDataPoint::status;
+QML_ANONYMOUSInspectionNS::Status QAccelPlot::InspectionDataPoint::status;
 ```
 
 

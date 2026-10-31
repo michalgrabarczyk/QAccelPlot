@@ -1603,7 +1603,7 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 pixel coordinates, handles pan and zoom, and collects child series.</p>
 <p><code>Plot</code> is the QML wrapper most applications use. It adds a <code>Legend</code>,
 <code>legendModel</code>, and <code>legendVisible</code> to the full <code>PlotView</code> interface.</p>
-<p><a href="../api/classQAccelPlot_1_1QAccelPlot/#property-plotrect-12"><code>plotRect</code></a> is the data area, excluding axes and padding. Use it to
+<p><a href="../api/classQAccelPlot_1_1PlotView/#property-plotrect-12"><code>plotRect</code></a> is the data area, excluding axes and padding. Use it to
 place clipped overlays and custom tools.</p>
 <h2 id="axes-and-ranges">Axes and ranges<a class="headerlink" href="#axes-and-ranges" title="Permanent link">&para;</a></h2>
 <p>An <code>Axis</code> has two related ranges:</p>
@@ -1627,23 +1627,23 @@ The extent is
 </thead>
 <tbody>
 <tr>
-<td><a href="../api/classQAccelPlot_1_1QAccelPlot/#property-xaxis-12"><code>xAxis</code></a></td>
+<td><a href="../api/classQAccelPlot_1_1PlotView/#property-xaxis-12"><code>xAxis</code></a></td>
 <td>Bottom</td>
 </tr>
 <tr>
-<td><a href="../api/classQAccelPlot_1_1QAccelPlot/#property-x2axis-12"><code>x2Axis</code></a></td>
+<td><a href="../api/classQAccelPlot_1_1PlotView/#property-x2axis-12"><code>x2Axis</code></a></td>
 <td>Top</td>
 </tr>
 <tr>
-<td><a href="../api/classQAccelPlot_1_1QAccelPlot/#property-yaxis-12"><code>yAxis</code></a></td>
+<td><a href="../api/classQAccelPlot_1_1PlotView/#property-yaxis-12"><code>yAxis</code></a></td>
 <td>Left</td>
 </tr>
 <tr>
-<td><a href="../api/classQAccelPlot_1_1QAccelPlot/#property-y2axis-12"><code>y2Axis</code></a></td>
+<td><a href="../api/classQAccelPlot_1_1PlotView/#property-y2axis-12"><code>y2Axis</code></a></td>
 <td>Right</td>
 </tr>
 <tr>
-<td><a href="../api/classQAccelPlot_1_1QAccelPlot/#property-extraaxes-12"><code>extraAxes</code></a></td>
+<td><a href="../api/classQAccelPlot_1_1PlotView/#property-extraaxes-12"><code>extraAxes</code></a></td>
 <td>Set by each axis's <code>side</code></td>
 </tr>
 </tbody>
@@ -1785,9 +1785,9 @@ and non-positive log-axis values.</p>
 <p>Ordinary QML items can be placed above the grid and series. <code>DataAnchor</code> maps
 one or two data coordinates to a QML item's geometry, so labels, event lines,
 regions, and drag handles follow the data while panning and zooming.</p>
-<p>For custom tools, <code>PlotView</code> provides <a href="../api/classQAccelPlot_1_1QAccelPlot/#function-datatopixelx"><code>dataToPixelX()</code></a>,
-<a href="../api/classQAccelPlot_1_1QAccelPlot/#function-datatopixely"><code>dataToPixelY()</code></a>, <a href="../api/classQAccelPlot_1_1QAccelPlot/#function-pixeltodatax"><code>pixelToDataX()</code></a>,
-<a href="../api/classQAccelPlot_1_1QAccelPlot/#function-pixeltodatay"><code>pixelToDataY()</code></a>, and <a href="../api/classQAccelPlot_1_1QAccelPlot/#function-isinsideplotarea"><code>isInsidePlotArea()</code></a>.
+<p>For custom tools, <code>PlotView</code> provides <a href="../api/classQAccelPlot_1_1PlotView/#function-datatopixelx"><code>dataToPixelX()</code></a>,
+<a href="../api/classQAccelPlot_1_1PlotView/#function-datatopixely"><code>dataToPixelY()</code></a>, <a href="../api/classQAccelPlot_1_1PlotView/#function-pixeltodatax"><code>pixelToDataX()</code></a>,
+<a href="../api/classQAccelPlot_1_1PlotView/#function-pixeltodatay"><code>pixelToDataY()</code></a>, and <a href="../api/classQAccelPlot_1_1PlotView/#function-isinsideplotarea"><code>isInsidePlotArea()</code></a>.
 Accepting a plot mouse event suppresses the default pan.</p>
 <h2 id="rendering-and-threads">Rendering and threads<a class="headerlink" href="#rendering-and-threads" title="Permanent link">&para;</a></h2>
 <p>QML objects and setters run on the UI thread; Qt synchronizes their state to

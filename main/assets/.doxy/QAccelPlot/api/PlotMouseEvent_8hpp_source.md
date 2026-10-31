@@ -24,12 +24,12 @@ class QSinglePointEvent;
 
 namespace QAccelPlot {
 
-class QAccelPlot;
+class PlotView;
 
 class PlotMouseEvent : public QObject {
     Q_OBJECT
     QML_NAMED_ELEMENT(PlotMouseEvent)
-    QML_UNCREATABLE("PlotMouseEvent can only be created by QAccelPlot.")
+    QML_UNCREATABLE("PlotMouseEvent can only be created by PlotView.")
 
     
     Q_PROPERTY(Qt::MouseButton button READ button CONSTANT)
@@ -53,7 +53,7 @@ public:
     void setAccepted(bool accepted);
 
 private:
-    friend class QAccelPlot;
+    friend class PlotView;
 
     void reset(const QSinglePointEvent& event);
 

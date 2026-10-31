@@ -17,7 +17,7 @@
 //
 #pragma once
 
-#include "QAccelPlot/QAccelPlot.hpp"
+#include "QAccelPlot/PlotView.hpp"
 
 #include <QFutureWatcher>
 #include <QImage>
@@ -33,7 +33,7 @@ namespace QAccelPlot {
 class PlotExporter : public QObject {
     Q_OBJECT
     QML_NAMED_ELEMENT(PlotExporter)
-    Q_PROPERTY(::QAccelPlot::QAccelPlot* plot READ plot WRITE setPlot NOTIFY plotChanged)
+    Q_PROPERTY(PlotView* plot READ plot WRITE setPlot NOTIFY plotChanged)
     Q_PROPERTY(qreal scale READ scale WRITE setScale NOTIFY scaleChanged)
     Q_PROPERTY(int quality READ quality WRITE setQuality NOTIFY qualityChanged)
     Q_PROPERTY(qreal dpi READ dpi WRITE setDpi NOTIFY dpiChanged)
@@ -49,8 +49,8 @@ public:
     PlotExporter(PlotExporter&&) = delete;
     PlotExporter& operator=(PlotExporter&&) = delete;
 
-    ::QAccelPlot::QAccelPlot* plot() const;
-    void setPlot(::QAccelPlot::QAccelPlot* plot);
+    PlotView* plot() const;
+    void setPlot(PlotView* plot);
     qreal scale() const;
     void setScale(qreal scale);
     int quality() const;
@@ -92,7 +92,7 @@ private:
     void finish(bool ok, const QString& path, const QString& error);
     void setBusy(bool busy);
 
-    QPointer<::QAccelPlot::QAccelPlot> plot_;
+    QPointer<PlotView> plot_;
     qreal scale_{0.0};
     int quality_{-1};
     qreal dpi_{0.0};

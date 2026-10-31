@@ -14,7 +14,7 @@
 
 * **Dimension** ([**QAccelPlot::DataPointStore**](classQAccelPlot_1_1DataPointStore.md))
 * **DataChange** ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
-* **DragMode** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
+* **DragMode** ([**QAccelPlot::PlotView**](classQAccelPlot_1_1PlotView.md))
 
 
 ## e

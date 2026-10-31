@@ -104,14 +104,14 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="friend">
-      <memberdef kind="friend" id="classQAccelPlot_1_1PlotMouseEvent_1a86ae3b16a617a4a7aee0788e96d67dd5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="friend" id="classQAccelPlot_1_1PlotMouseEvent_1a8431a636b65eadbbf187e83f8ac2b58c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>class</type>
-        <definition>friend class QAccelPlot</definition>
+        <definition>friend class PlotView</definition>
         <argsstring></argsstring>
-        <name>QAccelPlot</name>
-        <qualifiedname>QAccelPlot::PlotMouseEvent::QAccelPlot</qualifiedname>
+        <name>PlotView</name>
+        <qualifiedname>QAccelPlot::PlotMouseEvent::PlotView</qualifiedname>
         <param>
-          <type><ref refid="classQAccelPlot_1_1QAccelPlot" kindref="compound">QAccelPlot</ref></type>
+          <type><ref refid="classQAccelPlot_1_1PlotView" kindref="compound">PlotView</ref></type>
         </param>
         <briefdescription>
         </briefdescription>
@@ -401,7 +401,7 @@
     </briefdescription>
     <detaileddescription>
 <para>An instance of this class is passed to each mouse signal. Mirrors the Qt <computeroutput>QEvent</computeroutput> API: call <computeroutput><ref refid="classQAccelPlot_1_1PlotMouseEvent_1a7944913d23a28ca9e24c274b505af679" kindref="member">accept()</ref></computeroutput> in a handler to consume the event and suppress the plot&apos;s built-in handling (dragging, double-click rescaling, etc.).</para>
-<para><simplesect kind="note"><para>The object is owned by <computeroutput><ref refid="classQAccelPlot_1_1QAccelPlot" kindref="compound">QAccelPlot</ref></computeroutput> and is reused across events — do not store a reference to it beyond the signal handler. </para>
+<para><simplesect kind="note"><para>The object is owned by <computeroutput>QAccelPlot</computeroutput> and is reused across events — do not store a reference to it beyond the signal handler. </para>
 </simplesect>
 </para>
     </detaileddescription>
@@ -444,7 +444,7 @@
       <member refid="classQAccelPlot_1_1PlotMouseEvent_1acba280638c6542e7741a5e163657b079" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>modifiers</name></member>
       <member refid="classQAccelPlot_1_1PlotMouseEvent_1af0d6071e378ba399747980c850749f81" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>modifiers_</name></member>
       <member refid="classQAccelPlot_1_1PlotMouseEvent_1a6d497e472f5b1eb8158e46b00365c2d4" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>PlotMouseEvent</name></member>
-      <member refid="classQAccelPlot_1_1PlotMouseEvent_1a86ae3b16a617a4a7aee0788e96d67dd5" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>QAccelPlot</name></member>
+      <member refid="classQAccelPlot_1_1PlotMouseEvent_1a8431a636b65eadbbf187e83f8ac2b58c" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>PlotView</name></member>
       <member refid="classQAccelPlot_1_1PlotMouseEvent_1a27189dea1d9ee973b86d5e68d7021e43" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>reset</name></member>
       <member refid="classQAccelPlot_1_1PlotMouseEvent_1ab18c886fe3f574609d59f4d92ff113ee" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>setAccepted</name></member>
       <member refid="classQAccelPlot_1_1PlotMouseEvent_1aeb7cfbe01655891a4782f410a18dcd3f" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>x</name></member>

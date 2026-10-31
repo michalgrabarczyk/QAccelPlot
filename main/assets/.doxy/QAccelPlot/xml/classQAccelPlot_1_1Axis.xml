@@ -1577,7 +1577,7 @@
         <name>inwardTickOverlap</name>
         <qualifiedname>QAccelPlot::Axis::inwardTickOverlap</qualifiedname>
         <briefdescription>
-<para>Returns the inward tick overlap beyond <computeroutput>baselinePadding</computeroutput>, used by PlotView to size the plot area. </para>
+<para>Returns the inward tick overlap beyond <computeroutput>baselinePadding</computeroutput>, used by <ref refid="classQAccelPlot_1_1PlotView" kindref="compound">PlotView</ref> to size the plot area. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -2376,8 +2376,8 @@
 <para>A visual axis item that maps a data-space range to pixel coordinates and renders tick marks and labels. </para>
     </briefdescription>
     <detaileddescription>
-<para>Assign an <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> to the corresponding property of <computeroutput>PlotView</computeroutput> (<computeroutput>xAxis</computeroutput>, <computeroutput>yAxis</computeroutput>, etc.) to connect it to the plot. Tick appearance is configured via the <computeroutput>ticker</computeroutput> property. Supports linear and logarithmic scaling, mouse-driven pan/zoom, and custom label formatters. Set the inherited <computeroutput>visible</computeroutput> property to <computeroutput>false</computeroutput> to hide the axis and reclaim its layout space while preserving its range, coordinate mapping, and plot-wide navigation behavior.</para>
-<para><simplesect kind="see"><para>PlotView, <ref refid="classQAccelPlot_1_1AxisTicker" kindref="compound">AxisTicker</ref>, <ref refid="classQAccelPlot_1_1TickLabelFormatter" kindref="compound">TickLabelFormatter</ref> </para>
+<para>Assign an <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> to the corresponding property of <computeroutput><ref refid="classQAccelPlot_1_1PlotView" kindref="compound">PlotView</ref></computeroutput> (<computeroutput>xAxis</computeroutput>, <computeroutput>yAxis</computeroutput>, etc.) to connect it to the plot. Tick appearance is configured via the <computeroutput>ticker</computeroutput> property. Supports linear and logarithmic scaling, mouse-driven pan/zoom, and custom label formatters. Set the inherited <computeroutput>visible</computeroutput> property to <computeroutput>false</computeroutput> to hide the axis and reclaim its layout space while preserving its range, coordinate mapping, and plot-wide navigation behavior.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1PlotView" kindref="compound">PlotView</ref>, <ref refid="classQAccelPlot_1_1AxisTicker" kindref="compound">AxisTicker</ref>, <ref refid="classQAccelPlot_1_1TickLabelFormatter" kindref="compound">TickLabelFormatter</ref> </para>
 </simplesect>
 </para>
     </detaileddescription>

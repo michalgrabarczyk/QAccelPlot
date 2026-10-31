@@ -19,7 +19,7 @@
 
 #include "QAccelPlot/Border.hpp"
 #include "QAccelPlot/PlotDragRect.hpp"
-#include "QAccelPlot/QAccelPlot.hpp"
+#include "QAccelPlot/PlotView.hpp"
 #include "QAccelPlot/inspection/InspectionRowModel.hpp"
 
 #include <limits>
@@ -33,16 +33,16 @@ class SelectionRectangle;
 class SelectionTool : public QObject {
     Q_OBJECT
     QML_NAMED_ELEMENT(SelectionTool)
-    Q_PROPERTY(::QAccelPlot::QAccelPlot* plot READ plot WRITE setPlot NOTIFY plotChanged)
-    Q_PROPERTY(::QAccelPlot::Axis* xAxis READ xAxis WRITE setXAxis NOTIFY xAxisChanged)
-    Q_PROPERTY(::QAccelPlot::Axis* yAxis READ yAxis WRITE setYAxis NOTIFY yAxisChanged)
+    Q_PROPERTY(PlotView* plot READ plot WRITE setPlot NOTIFY plotChanged)
+    Q_PROPERTY(Axis* xAxis READ xAxis WRITE setXAxis NOTIFY xAxisChanged)
+    Q_PROPERTY(Axis* yAxis READ yAxis WRITE setYAxis NOTIFY yAxisChanged)
     Q_PROPERTY(bool enabled READ enabled WRITE setEnabled NOTIFY enabledChanged)
     Q_PROPERTY(Mode mode READ mode WRITE setMode NOTIFY modeChanged)
     Q_PROPERTY(Qt::MouseButton button READ button WRITE setButton NOTIFY buttonChanged)
     Q_PROPERTY(Qt::KeyboardModifiers modifiers READ modifiers WRITE setModifiers NOTIFY modifiersChanged)
     Q_PROPERTY(qreal minimumSize READ minimumSize WRITE setMinimumSize NOTIFY minimumSizeChanged)
     Q_PROPERTY(QColor fillColor READ fillColor WRITE setFillColor NOTIFY fillColorChanged)
-    Q_PROPERTY(::QAccelPlot::Border* border READ border CONSTANT)
+    Q_PROPERTY(Border* border READ border CONSTANT)
     Q_PROPERTY(bool rectangleVisible READ rectangleVisible WRITE setRectangleVisible NOTIFY rectangleVisibleChanged)
     Q_PROPERTY(bool selecting READ selecting NOTIFY selectingChanged)
     Q_PROPERTY(bool hasSelection READ hasSelection NOTIFY selectionChanged)
@@ -51,7 +51,7 @@ class SelectionTool : public QObject {
     Q_PROPERTY(qreal xMax READ xMax NOTIFY selectionChanged)
     Q_PROPERTY(qreal yMin READ yMin NOTIFY selectionChanged)
     Q_PROPERTY(qreal yMax READ yMax NOTIFY selectionChanged)
-    Q_PROPERTY(::QAccelPlot::InspectionRowModel* model READ model CONSTANT)
+    Q_PROPERTY(InspectionRowModel* model READ model CONSTANT)
 
 public:
     enum Mode {
@@ -64,8 +64,8 @@ public:
     
     explicit SelectionTool(QObject* parent = nullptr);
 
-    ::QAccelPlot::QAccelPlot* plot() const;
-    void setPlot(::QAccelPlot::QAccelPlot* plot);
+    PlotView* plot() const;
+    void setPlot(PlotView* plot);
     Axis* xAxis() const;
     void setXAxis(Axis* axis);
     Axis* yAxis() const;
@@ -95,7 +95,7 @@ public:
     InspectionRowModel* model() const;
 
     Q_INVOKABLE bool select(qreal xMin, qreal xMax, qreal yMin, qreal yMax);
-    Q_INVOKABLE ::QAccelPlot::InspectionPage indices(::QAccelPlot::PlotSeries* series, int offset = 0, int limit = 4096);
+    Q_INVOKABLE InspectionPage indices(PlotSeries* series, int offset = 0, int limit = 4096);
     Q_INVOKABLE void clear();
 
 signals:
@@ -137,7 +137,7 @@ private:
     QRectF regionRect() const;
     Region regionFromGesture(const QRectF& pixels) const;
 
-    QPointer<::QAccelPlot::QAccelPlot> plot_;
+    QPointer<PlotView> plot_;
     QPointer<Axis> xAxis_;
     QPointer<Axis> yAxis_;
     bool enabled_{true};

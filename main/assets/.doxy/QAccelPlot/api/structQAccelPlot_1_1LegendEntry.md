@@ -45,8 +45,6 @@ _How a legend draws one series: its symbol, color, line, and marker._ [More...](
 
 | Type | Name |
 | ---: | :--- |
-|  [**LineStyle**](classQAccelPlot_1_1LineStyle.md) \* | [**lineStyle**](#variable-linestyle-22)   = `{nullptr}`<br>_Line style, or null for solid._  |
-|  [**MarkerShape**](namespaceQAccelPlot_1_1MarkerShapeNS.md#enum-shape) | [**markerShape**](#variable-markershape-22)   = `{MarkerShape::None}`<br>_Marker shape._  |
 |  [**PlotSeries::LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol) | [**symbol**](#variable-symbol-22)   = `{PlotSeries::LegendSymbol::Line}`<br>_Symbol style._  |
 
 
@@ -63,13 +61,13 @@ _How a legend draws one series: its symbol, color, line, and marker._ [More...](
 | property bool | [**antialiasing**](structQAccelPlot_1_1LegendEntry.md#property-antialiasing)  <br>_Whether the line and marker are antialiased._  |
 | property qreal | [**antialiasingFeather**](structQAccelPlot_1_1LegendEntry.md#property-antialiasingfeather)  <br>_Antialiasing feather width in pixels._  |
 | property QColor | [**color**](structQAccelPlot_1_1LegendEntry.md#property-color)  <br>_Color of the line, marker, or fill._  |
-| property [**QAccelPlot::LineStyle**](classQAccelPlot_1_1LineStyle.md) \* | [**lineStyle**](structQAccelPlot_1_1LegendEntry.md#property-linestyle-12)  <br>_Line style, or null for a solid line. Owned by the series._  |
+| property [**LineStyle**](classQAccelPlot_1_1LineStyle.md) \* | [**lineStyle**](structQAccelPlot_1_1LegendEntry.md#property-linestyle)  <br>_Line style, or null for a solid line. Owned by the series._  |
 | property qreal | [**lineWidth**](structQAccelPlot_1_1LegendEntry.md#property-linewidth)  <br>_Line width in pixels._  |
 | property bool | [**markerFilled**](structQAccelPlot_1_1LegendEntry.md#property-markerfilled)  <br>_Whether the marker is filled._  |
-| property [**QAccelPlot::MarkerShape**](namespaceQAccelPlot_1_1MarkerShapeNS.md#enum-shape) | [**markerShape**](structQAccelPlot_1_1LegendEntry.md#property-markershape-12)  <br>_Marker shape;_ `None` _draws no marker._ |
+| property [**MarkerShape**](namespaceQAccelPlot_1_1MarkerShapeNS.md#enum-shape) | [**markerShape**](structQAccelPlot_1_1LegendEntry.md#property-markershape)  <br>_Marker shape;_ `None` _draws no marker._ |
 | property qreal | [**markerSize**](structQAccelPlot_1_1LegendEntry.md#property-markersize)  <br>_Marker size in pixels._  |
 | property qreal | [**markerStrokeWidth**](structQAccelPlot_1_1LegendEntry.md#property-markerstrokewidth)  <br>_Outline width in pixels of a hollow marker._  |
-| property QML\_ANONYMOUSQAccelPlot::PlotSeries::LegendSymbol | [**symbol**](structQAccelPlot_1_1LegendEntry.md#property-symbol-12)  <br>_Symbol style._  |
+| property QML\_ANONYMOUSPlotSeries::LegendSymbol | [**symbol**](structQAccelPlot_1_1LegendEntry.md#property-symbol-12)  <br>_Symbol style._  |
 
 
 
@@ -121,36 +119,6 @@ Returned by `PlotSeries::legendEntry()` and exposed by `LegendModel` as the `ent
     
 ## Public Attributes Documentation
 
-
-
-
-
-### variable lineStyle {#variable-linestyle-22}
-
-_Line style, or null for solid._ 
-```C++
-LineStyle* QAccelPlot::LegendEntry::lineStyle;
-```
-
-
-
-
-<hr>
-
-
-
-
-### variable markerShape {#variable-markershape-22}
-
-_Marker shape._ 
-```C++
-MarkerShape QAccelPlot::LegendEntry::markerShape;
-```
-
-
-
-
-<hr>
 
 
 
@@ -229,15 +197,19 @@ Line, marker, or fill color.
 
 
 
-### property lineStyle {#property-linestyle-12}
+### property lineStyle {#property-linestyle}
 
 _Line style, or null for a solid line. Owned by the series._ 
 ```C++
-QAccelPlot::LineStyle* QAccelPlot::LegendEntry::lineStyle;
+LineStyle * QAccelPlot::LegendEntry::lineStyle;
 ```
 
 
 
+Line style, or null for solid. 
+
+
+        
 
 <hr>
 
@@ -274,15 +246,19 @@ bool QAccelPlot::LegendEntry::markerFilled;
 
 
 
-### property markerShape {#property-markershape-12}
+### property markerShape {#property-markershape}
 
 _Marker shape;_ `None` _draws no marker._
 ```C++
-QAccelPlot::MarkerShape QAccelPlot::LegendEntry::markerShape;
+MarkerShape QAccelPlot::LegendEntry::markerShape;
 ```
 
 
 
+Marker shape. 
+
+
+        
 
 <hr>
 
@@ -327,7 +303,7 @@ Hollow marker outline width.
 
 _Symbol style._ 
 ```C++
-QML_ANONYMOUSQAccelPlot::PlotSeries::LegendSymbol QAccelPlot::LegendEntry::symbol;
+QML_ANONYMOUSPlotSeries::LegendSymbol QAccelPlot::LegendEntry::symbol;
 ```
 
 

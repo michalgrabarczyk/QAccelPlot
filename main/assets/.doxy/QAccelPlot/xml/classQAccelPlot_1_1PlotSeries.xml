@@ -172,7 +172,7 @@
         <read>plotRect</read>
         <write>setPlotRect</write>
         <briefdescription>
-<para>Plot area in parent-item coordinates, assigned by <computeroutput>PlotView</computeroutput>. </para>
+<para>Plot area in parent-item coordinates, assigned by <computeroutput><ref refid="classQAccelPlot_1_1PlotView" kindref="compound">PlotView</ref></computeroutput>. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -248,9 +248,9 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="97" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="97" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="classQAccelPlot_1_1PlotSeries_1a2a23af3683416afeea98697c66616cea" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type><ref refid="classQAccelPlot_1_1SeriesInspection" kindref="compound">QAccelPlot::SeriesInspection</ref> *</type>
-        <definition>QAccelPlot::SeriesInspection* QAccelPlot::PlotSeries::inspection</definition>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotSeries_1addb81876423cd48343592cfce8c19d5b" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1SeriesInspection" kindref="compound">SeriesInspection</ref> *</type>
+        <definition>SeriesInspection* QAccelPlot::PlotSeries::inspection</definition>
         <argsstring></argsstring>
         <name>inspection</name>
         <qualifiedname>QAccelPlot::PlotSeries::inspection</qualifiedname>
@@ -2147,7 +2147,7 @@
       </memberdef>
     </sectiondef>
     <briefdescription>
-<para>Common QML item contract for data series hosted by <computeroutput>PlotView</computeroutput>. </para>
+<para>Common QML item contract for data series hosted by <computeroutput><ref refid="classQAccelPlot_1_1PlotView" kindref="compound">PlotView</ref></computeroutput>. </para>
     </briefdescription>
     <detaileddescription>
 <para><ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> owns the integration shared by every plot type: axis bindings, plot-area layout, data-range reporting, legend metadata, and a common C++ data-setting API backed by the series&apos; data points. Concrete series define their data point layout, rendering, and hit testing.</para>
@@ -2233,7 +2233,7 @@
 </entry></row>
 </table>
 </para>
-<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref>, <ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref>, <ref refid="classQAccelPlot_1_1RectangleSeries" kindref="compound">RectangleSeries</ref>, <ref refid="classQAccelPlot_1_1BarSeries" kindref="compound">BarSeries</ref>, <ref refid="classQAccelPlot_1_1BandSeries" kindref="compound">BandSeries</ref>, <ref refid="classQAccelPlot_1_1ErrorBarSeries" kindref="compound">ErrorBarSeries</ref>, <ref refid="classQAccelPlot_1_1HeatmapSeries" kindref="compound">HeatmapSeries</ref>, <ref refid="classQAccelPlot_1_1QAccelPlot" kindref="compound">QAccelPlot</ref> </para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref>, <ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref>, <ref refid="classQAccelPlot_1_1RectangleSeries" kindref="compound">RectangleSeries</ref>, <ref refid="classQAccelPlot_1_1BarSeries" kindref="compound">BarSeries</ref>, <ref refid="classQAccelPlot_1_1BandSeries" kindref="compound">BandSeries</ref>, <ref refid="classQAccelPlot_1_1ErrorBarSeries" kindref="compound">ErrorBarSeries</ref>, <ref refid="classQAccelPlot_1_1HeatmapSeries" kindref="compound">HeatmapSeries</ref>, QAccelPlot </para>
 </simplesect>
 </para>
     </detaileddescription>
@@ -2345,7 +2345,7 @@
       <member refid="classQAccelPlot_1_1PlotSeries_1af122f5cc3abf6129432743ac08a583be" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>hoverEnabled_</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a4e3f4fcdbad0963b70f29169d4026a0a" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>hoverEnabledChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1af6f92ce1126990d2a4fcebb7a67814b4" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>hoverSupported_</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1a2a23af3683416afeea98697c66616cea" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>inspection</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1addb81876423cd48343592cfce8c19d5b" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>inspection</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a00a3d60288b86fd54569387281355060" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>inspection</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a2abb726bf878eed8dad217273f2ebe29" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>inspection_</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a32638eb7718d210d95fa70351696441d" prot="protected" virt="virtual"><scope>QAccelPlot::PlotSeries</scope><name>inspectionAvailable</name></member>

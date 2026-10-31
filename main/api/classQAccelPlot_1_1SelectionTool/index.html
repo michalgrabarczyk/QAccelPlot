@@ -2282,7 +2282,7 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;">property <a href="../classQAccelPlot_1_1Border/"><strong>QAccelPlot::Border</strong></a> *</td>
+<td style="text-align: right;">property <a href="../classQAccelPlot_1_1Border/"><strong>Border</strong></a> *</td>
 <td style="text-align: left;"><a href="./#property-border-12"><strong>border</strong></a>  <br><em>Outline inside the rectangle's edges. Default:</em> <code>Colors.dark.selectionBorder</code> <em>, width 1.</em></td>
 </tr>
 <tr>
@@ -2310,7 +2310,7 @@
 <td style="text-align: left;"><a href="./#property-mode-12"><strong>mode</strong></a>  <br><em>Region a gesture selects: a box, an X range, or a Y range. Default: Box.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">property <a href="../classQAccelPlot_1_1InspectionRowModel/"><strong>QAccelPlot::InspectionRowModel</strong></a> *</td>
+<td style="text-align: right;">property <a href="../classQAccelPlot_1_1InspectionRowModel/"><strong>InspectionRowModel</strong></a> *</td>
 <td style="text-align: left;"><a href="./#property-model-12"><strong>model</strong></a>  <br><em>Read-only constant: one row of region statistics per selected series.</em></td>
 </tr>
 <tr>
@@ -2322,7 +2322,7 @@
 <td style="text-align: left;"><a href="./#property-pixelrect-12"><strong>pixelRect</strong></a>  <br><em>Gesture or selected region in plot-local logical pixels; empty without either.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">property <a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a> *</td>
+<td style="text-align: right;">property <a href="../classQAccelPlot_1_1PlotView/"><strong>PlotView</strong></a> *</td>
 <td style="text-align: left;"><a href="./#property-plot-12"><strong>plot</strong></a>  <br><em>Plot receiving the selection gestures.</em></td>
 </tr>
 <tr>
@@ -2334,7 +2334,7 @@
 <td style="text-align: left;"><a href="./#property-selecting-12"><strong>selecting</strong></a>  <br><em>True while a gesture is in progress.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">property <a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a> *</td>
+<td style="text-align: right;">property <a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> *</td>
 <td style="text-align: left;"><a href="./#property-xaxis-12"><strong>xAxis</strong></a>  <br><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>the X limits refer to; unset uses the plot's primary X axis.</em></td>
 </tr>
 <tr>
@@ -2346,7 +2346,7 @@
 <td style="text-align: left;"><a href="./#property-xmin-12"><strong>xMin</strong></a>  <br><em>Lower X limit of the selection; -Infinity when unbounded, NaN without a selection.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">property <a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a> *</td>
+<td style="text-align: right;">property <a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> *</td>
 <td style="text-align: left;"><a href="./#property-yaxis-12"><strong>yAxis</strong></a>  <br><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>the Y limits refer to; unset uses the plot's primary Y axis.</em></td>
 </tr>
 <tr>
@@ -2464,8 +2464,8 @@
 <td style="text-align: left;"><a href="#function-hasselection-22"><strong>hasSelection</strong></a> () const<br><em>Returns true while a region is selected.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">Q_INVOKABLE::QAccelPlot::InspectionPage</td>
-<td style="text-align: left;"><a href="#function-indices"><strong>indices</strong></a> (<a href="../classQAccelPlot_1_1PlotSeries/"><strong>::QAccelPlot::PlotSeries</strong></a> * series, int offset=0, int limit=4096) <br><em>Returns one page of</em> <em>series'</em> <em>source indices inside the selection, against its current data.</em></td>
+<td style="text-align: right;">Q_INVOKABLE <a href="../structQAccelPlot_1_1InspectionPage/"><strong>InspectionPage</strong></a></td>
+<td style="text-align: left;"><a href="#function-indices"><strong>indices</strong></a> (<a href="../classQAccelPlot_1_1PlotSeries/"><strong>PlotSeries</strong></a> * series, int offset=0, int limit=4096) <br><em>Returns one page of</em> <em>series'</em> <em>source indices inside the selection, against its current data.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">qreal</td>
@@ -2488,7 +2488,7 @@
 <td style="text-align: left;"><a href="#function-pixelrect-22"><strong>pixelRect</strong></a> () const<br><em>Returns the gesture or selected region in plot-local logical pixels.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classQAccelPlot_1_1QAccelPlot/"><strong>::QAccelPlot::QAccelPlot</strong></a> *</td>
+<td style="text-align: right;"><a href="../classQAccelPlot_1_1PlotView/"><strong>PlotView</strong></a> *</td>
 <td style="text-align: left;"><a href="#function-plot-22"><strong>plot</strong></a> () const<br><em>Returns the attached plot.</em></td>
 </tr>
 <tr>
@@ -2529,7 +2529,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setplot"><strong>setPlot</strong></a> (<a href="../classQAccelPlot_1_1QAccelPlot/"><strong>::QAccelPlot::QAccelPlot</strong></a> * plot) <br><em>Attaches to</em> <em>plot</em> <em>and clears the selection.</em></td>
+<td style="text-align: left;"><a href="#function-setplot"><strong>setPlot</strong></a> (<a href="../classQAccelPlot_1_1PlotView/"><strong>PlotView</strong></a> * plot) <br><em>Attaches to</em> <em>plot</em> <em>and clears the selection.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -2585,7 +2585,7 @@
 <h2 id="public-properties-documentation">Public Properties Documentation<a class="headerlink" href="#public-properties-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="property-border-12">property border<a class="headerlink" href="#property-border-12" title="Permanent link">&para;</a></h3>
 <p><em>Outline inside the rectangle's edges. Default:</em> <code>Colors.dark.selectionBorder</code> <em>, width 1.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Border</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">border</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">Border</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">border</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
@@ -2627,7 +2627,7 @@
 
 <h3 id="property-model-12">property model<a class="headerlink" href="#property-model-12" title="Permanent link">&para;</a></h3>
 <p><em>Read-only constant: one row of region statistics per selected series.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionRowModel</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">model</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">InspectionRowModel</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">model</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
@@ -2645,7 +2645,7 @@
 
 <h3 id="property-plot-12">property plot<a class="headerlink" href="#property-plot-12" title="Permanent link">&para;</a></h3>
 <p><em>Plot receiving the selection gestures.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">plot</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">PlotView</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">plot</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
@@ -2663,7 +2663,7 @@
 
 <h3 id="property-xaxis-12">property xAxis<a class="headerlink" href="#property-xaxis-12" title="Permanent link">&para;</a></h3>
 <p><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>the X limits refer to; unset uses the plot's primary X axis.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">xAxis</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">Axis</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">xAxis</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
@@ -2681,7 +2681,7 @@
 
 <h3 id="property-yaxis-12">property yAxis<a class="headerlink" href="#property-yaxis-12" title="Permanent link">&para;</a></h3>
 <p><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>the Y limits refer to; unset uses the plot's primary Y axis.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">yAxis</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">Axis</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">yAxis</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
@@ -2827,8 +2827,8 @@
 
 <h3 id="function-indices">function indices<a class="headerlink" href="#function-indices" title="Permanent link">&para;</a></h3>
 <p><em>Returns one page of</em> <em>series'</em> <em>source indices inside the selection, against its current data.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="n">Q_INVOKABLE</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionPage</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">indices</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="w">    </span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">series</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="n">InspectionPage</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">indices</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="w">    </span><span class="n">PlotSeries</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">series</span><span class="p">,</span>
 <a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
 <a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">limit</span><span class="o">=</span><span class="mi">4096</span>
 <a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a><span class="p">)</span><span class="w"> </span>
@@ -2868,7 +2868,7 @@
 
 <h3 id="function-plot-22">function plot<a class="headerlink" href="#function-plot-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the attached plot.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">plot</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="n">PlotView</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">plot</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
@@ -2946,7 +2946,7 @@
 <h3 id="function-setplot">function setPlot<a class="headerlink" href="#function-setplot" title="Permanent link">&para;</a></h3>
 <p><em>Attaches to</em> <em>plot</em> <em>and clears the selection.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setPlot</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a><span class="w">    </span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">plot</span>
+<a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a><span class="w">    </span><span class="n">PlotView</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">plot</span>
 <a id="__codelineno-57-3" name="__codelineno-57-3" href="#__codelineno-57-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>

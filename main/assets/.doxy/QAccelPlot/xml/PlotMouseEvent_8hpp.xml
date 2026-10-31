@@ -4,7 +4,7 @@
     <compoundname>PlotMouseEvent.hpp</compoundname>
     <includes local="no">QObject</includes>
     <includes local="no">QtQml/qqmlregistration.h</includes>
-    <includedby refid="QAccelPlot_8hpp" local="yes">QAccelPlot/src/QAccelPlot/QAccelPlot.hpp</includedby>
+    <includedby refid="PlotView_8hpp" local="yes">QAccelPlot/src/QAccelPlot/PlotView.hpp</includedby>
     <incdepgraph>
       <node id="1">
         <label>QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp</label>
@@ -44,12 +44,12 @@
 <codeline lineno="14"><highlight class="normal"></highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
 <codeline lineno="16"><highlight class="normal"></highlight></codeline>
-<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">QAccelPlot;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">PlotView;</highlight></codeline>
 <codeline lineno="18"><highlight class="normal"></highlight></codeline>
 <codeline lineno="27" refid="classQAccelPlot_1_1PlotMouseEvent" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1PlotMouseEvent" kindref="compound">PlotMouseEvent</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QObject<sp/>{</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_OBJECT</highlight></codeline>
 <codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_NAMED_ELEMENT(<ref refid="classQAccelPlot_1_1PlotMouseEvent" kindref="compound">PlotMouseEvent</ref>)</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_UNCREATABLE(</highlight><highlight class="stringliteral">&quot;PlotMouseEvent<sp/>can<sp/>only<sp/>be<sp/>created<sp/>by<sp/>QAccelPlot.&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_UNCREATABLE(</highlight><highlight class="stringliteral">&quot;PlotMouseEvent<sp/>can<sp/>only<sp/>be<sp/>created<sp/>by<sp/>PlotView.&quot;</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight></codeline>
 <codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(Qt::MouseButton<sp/><ref refid="classQAccelPlot_1_1PlotMouseEvent_1a12f7183ee56110b140750d919019db77" kindref="member">button</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1PlotMouseEvent_1a12f7183ee56110b140750d919019db77" kindref="member">button</ref><sp/>CONSTANT)</highlight></codeline>
@@ -73,7 +73,7 @@
 <codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotMouseEvent_1ab18c886fe3f574609d59f4d92ff113ee" kindref="member">setAccepted</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotMouseEvent_1a1849087a8c631aa466077ec6a4d87145" kindref="member">accepted</ref>);</highlight></codeline>
 <codeline lineno="68"><highlight class="normal"></highlight></codeline>
 <codeline lineno="69"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1QAccelPlot" kindref="compound">QAccelPlot</ref>;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1PlotView" kindref="compound">PlotView</ref>;</highlight></codeline>
 <codeline lineno="71"><highlight class="normal"></highlight></codeline>
 <codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>reset(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QSinglePointEvent&amp;<sp/>event);</highlight></codeline>
 <codeline lineno="74"><highlight class="normal"></highlight></codeline>

@@ -1501,7 +1501,7 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 <h1 id="annotations-and-tools">Annotations and tools<a class="headerlink" href="#annotations-and-tools" title="Permanent link">&para;</a></h1>
 <h2 id="attach-qml-items-to-data">Attach QML items to data<a class="headerlink" href="#attach-qml-items-to-data" title="Permanent link">&para;</a></h2>
 <p>Place <code>QAccelPlot.DataAnchor</code> items in a clipped layer that matches
-<a href="../../api/classQAccelPlot_1_1QAccelPlot/#property-plotrect-12"><code>plotRect</code></a>. The layer's origin is the plot area's top-left, so pass
+<a href="../../api/classQAccelPlot_1_1PlotView/#property-plotrect-12"><code>plotRect</code></a>. The layer's origin is the plot area's top-left, so pass
 each anchor a local rectangle:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nx">Item</span> <span class="p">{</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="kd">id: annotationLayer</span>
@@ -1618,12 +1618,12 @@ fast for large collections unless many rectangles are very wide or tall; see
 <a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="p">}</span>
 <a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="p">}</span>
 </code></pre></div>
-<p>Position handles with <a href="../../api/classQAccelPlot_1_1QAccelPlot/#function-datatopixelx"><code>dataToPixelX()</code></a> and
-<a href="../../api/classQAccelPlot_1_1QAccelPlot/#function-datatopixely"><code>dataToPixelY()</code></a>; convert drag positions back with
-<a href="../../api/classQAccelPlot_1_1QAccelPlot/#function-pixeltodatax"><code>pixelToDataX()</code></a> and <a href="../../api/classQAccelPlot_1_1QAccelPlot/#function-pixeltodatay"><code>pixelToDataY()</code></a>.
+<p>Position handles with <a href="../../api/classQAccelPlot_1_1PlotView/#function-datatopixelx"><code>dataToPixelX()</code></a> and
+<a href="../../api/classQAccelPlot_1_1PlotView/#function-datatopixely"><code>dataToPixelY()</code></a>; convert drag positions back with
+<a href="../../api/classQAccelPlot_1_1PlotView/#function-pixeltodatax"><code>pixelToDataX()</code></a> and <a href="../../api/classQAccelPlot_1_1PlotView/#function-pixeltodatay"><code>pixelToDataY()</code></a>.
 Call <code>event.accept()</code> when a tool handles an event so the gesture does not also
 pan the plot or start rectangle zoom.</p>
-<p>In a layer positioned at <a href="../../api/classQAccelPlot_1_1QAccelPlot/#property-plotrect-12"><code>plotRect</code></a>, add or subtract the plot
+<p>In a layer positioned at <a href="../../api/classQAccelPlot_1_1PlotView/#property-plotrect-12"><code>plotRect</code></a>, add or subtract the plot
 rectangle origin to convert between plot and layer coordinates.</p>
 <p>Complete sources:</p>
 <ul>

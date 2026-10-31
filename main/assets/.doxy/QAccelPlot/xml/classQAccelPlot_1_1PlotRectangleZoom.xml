@@ -123,14 +123,14 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="friend">
-      <memberdef kind="friend" id="classQAccelPlot_1_1PlotRectangleZoom_1a86ae3b16a617a4a7aee0788e96d67dd5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="friend" id="classQAccelPlot_1_1PlotRectangleZoom_1a8431a636b65eadbbf187e83f8ac2b58c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>class</type>
-        <definition>friend class QAccelPlot</definition>
+        <definition>friend class PlotView</definition>
         <argsstring></argsstring>
-        <name>QAccelPlot</name>
-        <qualifiedname>QAccelPlot::PlotRectangleZoom::QAccelPlot</qualifiedname>
+        <name>PlotView</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::PlotView</qualifiedname>
         <param>
-          <type><ref refid="classQAccelPlot_1_1QAccelPlot" kindref="compound">QAccelPlot</ref></type>
+          <type><ref refid="classQAccelPlot_1_1PlotView" kindref="compound">PlotView</ref></type>
         </param>
         <briefdescription>
         </briefdescription>
@@ -567,7 +567,7 @@
       </memberdef>
     </sectiondef>
     <briefdescription>
-<para>Rectangle zoom configuration and selection state exposed by PlotView. </para>
+<para>Rectangle zoom configuration and selection state exposed by <ref refid="classQAccelPlot_1_1PlotView" kindref="compound">PlotView</ref>. </para>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
@@ -619,7 +619,7 @@
       <member refid="classQAccelPlot_1_1PlotRectangleZoom_1af83528d1940d5b2481af0da5868ede1f" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>modifiers_</name></member>
       <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a66a75c5d346b6e1610151d53902c5d6c" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>modifiersChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotRectangleZoom_1ab3d1a3096224cc00e528f7a479a65a21" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>PlotRectangleZoom</name></member>
-      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a86ae3b16a617a4a7aee0788e96d67dd5" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>QAccelPlot</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a8431a636b65eadbbf187e83f8ac2b58c" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>PlotView</name></member>
       <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a021e3310b5a75e7e6772faae07e22181" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>selectionRect</name></member>
       <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a6322baac1b3c38f9b97228b93a8a351e" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>selectionRect</name></member>
       <member refid="classQAccelPlot_1_1PlotRectangleZoom_1acbf12420a9c646b5abff3d0ee7350751" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>selectionRect_</name></member>

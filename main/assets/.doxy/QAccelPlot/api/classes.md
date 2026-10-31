@@ -294,6 +294,8 @@
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**PlotView**](classQAccelPlot_1_1PlotView.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**Point**](structQAccelPlot_1_1Internal_1_1InspectionIndex_1_1Point.md)
 ([**QAccelPlot::Internal::InspectionIndex**](classQAccelPlot_1_1Internal_1_1InspectionIndex.md))
 * [**PointCloud**](classQAccelPlot_1_1PointCloud.md)
@@ -310,12 +312,6 @@
 * [**PointSpatialIndex**](classQAccelPlot_1_1PointSpatialIndex.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**PointVertex**](structQAccelPlot_1_1PointVertex.md)
-([**QAccelPlot**](namespaceQAccelPlot.md))
-
-
-## q
-
-* [**QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
