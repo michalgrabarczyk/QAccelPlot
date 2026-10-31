@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2026-10-31 13:41:04</td>
+      <td>2026-10-31 21:10:31</td>
     </tr>
   </table>
 </div>
@@ -277,7 +277,7 @@
         </details>
       </td>
       <td class="linecount partialCoveredLine">14</td>
-      <td class="src partialCoveredLine"><span class="w">    </span><span class="n">connect</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tool_</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">pixelRectChanged</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">SelectionRectangle</span><span class="o">::</span><span class="n">sync</span><span class="p">);</span></td>
+      <td class="src partialCoveredLine"><span class="w">    </span><span class="n">connect</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tool_</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">selectionRectChanged</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">SelectionRectangle</span><span class="o">::</span><span class="n">sync</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l23" href="#l23">23</a></td>
@@ -337,7 +337,7 @@
         </details>
       </td>
       <td class="linecount partialCoveredLine">14</td>
-      <td class="src partialCoveredLine"><span class="w">    </span><span class="n">connect</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tool_</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">rectangleVisibleChanged</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">SelectionRectangle</span><span class="o">::</span><span class="n">sync</span><span class="p">);</span></td>
+      <td class="src partialCoveredLine"><span class="w">    </span><span class="n">connect</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tool_</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">visibleChanged</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">SelectionRectangle</span><span class="o">::</span><span class="n">sync</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l27" href="#l27">27</a></td>
@@ -524,7 +524,7 @@
         </details>
       </td>
       <td class="linecount partialCoveredLine">97</td>
-      <td class="src partialCoveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">rect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tool_</span><span class="p">.</span><span class="n">pixelRect</span><span class="p">();</span></td>
+      <td class="src partialCoveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">rect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tool_</span><span class="p">.</span><span class="n">selectionRect</span><span class="p">();</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l46" href="#l46">46</a></td>
@@ -546,7 +546,7 @@
         </details>
       </td>
       <td class="linecount partialCoveredLine">97</td>
-      <td class="src partialCoveredLine"><span class="w">    </span><span class="n">setVisible</span><span class="p">(</span><span class="n">plot</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">tool_</span><span class="p">.</span><span class="n">rectangleVisible</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">rect</span><span class="p">.</span><span class="n">isEmpty</span><span class="p">());</span></td>
+      <td class="src partialCoveredLine"><span class="w">    </span><span class="n">setVisible</span><span class="p">(</span><span class="n">plot</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">tool_</span><span class="p">.</span><span class="n">isVisible</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">rect</span><span class="p">.</span><span class="n">isEmpty</span><span class="p">());</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l47" href="#l47">47</a></td>

@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2026-10-31 13:41:04</td>
+      <td>2026-10-31 21:10:31</td>
     </tr>
   </table>
 </div>
@@ -84,12 +84,12 @@
     <tr><td><a href="#l464">QAccelPlot::SelectionTool::gestureRect() const (line 464)</a></td><td>called 18 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l208">QAccelPlot::SelectionTool::hasSelection() const (line 208)</a></td><td>called 15 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l259">QAccelPlot::SelectionTool::indices(QAccelPlot::PlotSeries*, int, int) (line 259)</a></td><td>called 7 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l189">QAccelPlot::SelectionTool::isVisible() const (line 189)</a></td><td>called 81 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l152">QAccelPlot::SelectionTool::minimumSize() const (line 152)</a></td><td>not called</td><td>0.0%</td></tr>
     <tr><td><a href="#l108">QAccelPlot::SelectionTool::mode() const (line 108)</a></td><td>not called</td><td>0.0%</td></tr>
     <tr><td><a href="#l244">QAccelPlot::SelectionTool::model() const (line 244)</a></td><td>called 36 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l138">QAccelPlot::SelectionTool::modifiers() const (line 138)</a></td><td>not called</td><td>0.0%</td></tr>
     <tr><td><a href="#l370">QAccelPlot::SelectionTool::move(QAccelPlot::PlotMouseEvent*) (line 370)</a></td><td>called 9 times</td><td>93.0%</td></tr>
-    <tr><td><a href="#l213">QAccelPlot::SelectionTool::pixelRect() const (line 213)</a></td><td>called 108 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l41">QAccelPlot::SelectionTool::plot() const (line 41)</a></td><td>called 125 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l355">QAccelPlot::SelectionTool::press(QAccelPlot::PlotMouseEvent*) (line 355)</a></td><td>called 14 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l283">QAccelPlot::SelectionTool::reconnect() (line 283)</a></td><td>called 23 times</td><td>59.0%</td></tr>
@@ -97,7 +97,6 @@
     <tr><td><a href="#l303">QAccelPlot::SelectionTool::reconnect()::{lambda()#2}::operator()() const (line 303)</a></td><td>not called</td><td>0.0%</td></tr>
     <tr><td><a href="#l309">QAccelPlot::SelectionTool::reconnect()::{lambda()#3}::operator()() const (line 309)</a></td><td>called 2 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l313">QAccelPlot::SelectionTool::reconnect()::{lambda()#4}::operator()() const (line 313)</a></td><td>called 4 times</td><td>77.0%</td></tr>
-    <tr><td><a href="#l189">QAccelPlot::SelectionTool::rectangleVisible() const (line 189)</a></td><td>called 81 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l418">QAccelPlot::SelectionTool::refreshRows() (line 418)</a></td><td>called 48 times</td><td>74.0%</td></tr>
     <tr><td><a href="#l489">QAccelPlot::SelectionTool::regionFromGesture(QRectF const&amp;) const (line 489)</a></td><td>called 7 times</td><td>94.0%</td></tr>
     <tr><td><a href="#l479">QAccelPlot::SelectionTool::regionRect() const (line 479)</a></td><td>called 34 times</td><td>100.0%</td></tr>
@@ -105,6 +104,7 @@
     <tr><td><a href="#l347">QAccelPlot::SelectionTool::resetAxes() (line 347)</a></td><td>not called</td><td>0.0%</td></tr>
     <tr><td><a href="#l249">QAccelPlot::SelectionTool::select(double, double, double, double) (line 249)</a></td><td>called 13 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l203">QAccelPlot::SelectionTool::selecting() const (line 203)</a></td><td>called 8 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l213">QAccelPlot::SelectionTool::selectionRect() const (line 213)</a></td><td>called 108 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l458">QAccelPlot::SelectionTool::selects(QAccelPlot::PlotSeries const*) const (line 458)</a></td><td>called 46 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l128">QAccelPlot::SelectionTool::setButton(Qt::MouseButton) (line 128)</a></td><td>not called</td><td>0.0%</td></tr>
     <tr><td><a href="#l96">QAccelPlot::SelectionTool::setEnabled(bool) (line 96)</a></td><td>called 2 times</td><td>83.0%</td></tr>
@@ -113,8 +113,8 @@
     <tr><td><a href="#l113">QAccelPlot::SelectionTool::setMode(QAccelPlot::SelectionTool::Mode) (line 113)</a></td><td>called 2 times</td><td>80.0%</td></tr>
     <tr><td><a href="#l143">QAccelPlot::SelectionTool::setModifiers(QFlags&lt;Qt::KeyboardModifier&gt;) (line 143)</a></td><td>not called</td><td>0.0%</td></tr>
     <tr><td><a href="#l46">QAccelPlot::SelectionTool::setPlot(QAccelPlot::PlotView*) (line 46)</a></td><td>called 14 times</td><td>90.0%</td></tr>
-    <tr><td><a href="#l194">QAccelPlot::SelectionTool::setRectangleVisible(bool) (line 194)</a></td><td>called 2 times</td><td>75.0%</td></tr>
     <tr><td><a href="#l409">QAccelPlot::SelectionTool::setRegion(QAccelPlot::SelectionTool::Region const&amp;) (line 409)</a></td><td>called 17 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l194">QAccelPlot::SelectionTool::setVisible(bool) (line 194)</a></td><td>called 2 times</td><td>75.0%</td></tr>
     <tr><td><a href="#l64">QAccelPlot::SelectionTool::setXAxis(QAccelPlot::Axis*) (line 64)</a></td><td>not called</td><td>0.0%</td></tr>
     <tr><td><a href="#l80">QAccelPlot::SelectionTool::setYAxis(QAccelPlot::Axis*) (line 80)</a></td><td>called 1 time</td><td>88.0%</td></tr>
     <tr><td><a href="#l59">QAccelPlot::SelectionTool::xAxis() const (line 59)</a></td><td>called 157 times</td><td>83.0%</td></tr>
@@ -1558,7 +1558,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">81</td>
-      <td class="src coveredLine"><span class="kt">bool</span><span class="w"> </span><span class="nf">SelectionTool::rectangleVisible</span><span class="p">()</span><span class="w"> </span><span class="k">const</span></td>
+      <td class="src coveredLine"><span class="kt">bool</span><span class="w"> </span><span class="nf">SelectionTool::isVisible</span><span class="p">()</span><span class="w"> </span><span class="k">const</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l190" href="#l190">190</a></td>
@@ -1572,7 +1572,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">81</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">rectangleVisible_</span><span class="p">;</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">visible_</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l192" href="#l192">192</a></td>
@@ -1593,7 +1593,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">2</td>
-      <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="nf">SelectionTool::setRectangleVisible</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">visible</span><span class="p">)</span></td>
+      <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="nf">SelectionTool::setVisible</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">visible</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l195" href="#l195">195</a></td>
@@ -1614,7 +1614,7 @@
         </details>
       </td>
       <td class="linecount partialCoveredLine">2</td>
-      <td class="src partialCoveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rectangleVisible_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">visible</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
+      <td class="src partialCoveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">visible_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">visible</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l197" href="#l197">197</a></td>
@@ -1635,14 +1635,14 @@
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">2</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="n">rectangleVisible_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">visible</span><span class="p">;</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="n">visible_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">visible</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l200" href="#l200">200</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">2</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="n">emit</span><span class="w"> </span><span class="n">rectangleVisibleChanged</span><span class="p">();</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="n">emit</span><span class="w"> </span><span class="n">visibleChanged</span><span class="p">();</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l201" href="#l201">201</a></td>
@@ -1733,7 +1733,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">108</td>
-      <td class="src coveredLine"><span class="n">QRectF</span><span class="w"> </span><span class="nf">SelectionTool::pixelRect</span><span class="p">()</span><span class="w"> </span><span class="k">const</span></td>
+      <td class="src coveredLine"><span class="n">QRectF</span><span class="w"> </span><span class="nf">SelectionTool::selectionRect</span><span class="p">()</span><span class="w"> </span><span class="k">const</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l214" href="#l214">214</a></td>
@@ -2279,7 +2279,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">10</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="n">emit</span><span class="w"> </span><span class="n">pixelRectChanged</span><span class="p">();</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="n">emit</span><span class="w"> </span><span class="n">selectionRectChanged</span><span class="p">();</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l281" href="#l281">281</a></td>
@@ -2612,7 +2612,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">2</td>
-      <td class="src coveredLine"><span class="w">        </span><span class="n">emit</span><span class="w"> </span><span class="n">pixelRectChanged</span><span class="p">();</span></td>
+      <td class="src coveredLine"><span class="w">        </span><span class="n">emit</span><span class="w"> </span><span class="n">selectionRectChanged</span><span class="p">();</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l312" href="#l312">312</a></td>
@@ -2738,7 +2738,7 @@
         </details>
       </td>
       <td class="linecount partialCoveredLine">42</td>
-      <td class="src partialCoveredLine"><span class="w">            </span><span class="n">connections_</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">connect</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Axis</span><span class="o">::</span><span class="n">rangeChanged</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">pixelRectChanged</span><span class="p">));</span></td>
+      <td class="src partialCoveredLine"><span class="w">            </span><span class="n">connections_</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">connect</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Axis</span><span class="o">::</span><span class="n">rangeChanged</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">selectionRectChanged</span><span class="p">));</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l322" href="#l322">322</a></td>
@@ -2754,7 +2754,7 @@
         </details>
       </td>
       <td class="linecount partialCoveredLine">42</td>
-      <td class="src partialCoveredLine"><span class="w">            </span><span class="n">connections_</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">connect</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Axis</span><span class="o">::</span><span class="n">logScaleChanged</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">pixelRectChanged</span><span class="p">));</span></td>
+      <td class="src partialCoveredLine"><span class="w">            </span><span class="n">connections_</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">connect</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Axis</span><span class="o">::</span><span class="n">logScaleChanged</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">selectionRectChanged</span><span class="p">));</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l323" href="#l323">323</a></td>
@@ -3205,7 +3205,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">10</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="n">emit</span><span class="w"> </span><span class="n">pixelRectChanged</span><span class="p">();</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="n">emit</span><span class="w"> </span><span class="n">selectionRectChanged</span><span class="p">();</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l368" href="#l368">368</a></td>
@@ -3295,7 +3295,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">7</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="n">emit</span><span class="w"> </span><span class="n">pixelRectChanged</span><span class="p">();</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="n">emit</span><span class="w"> </span><span class="n">selectionRectChanged</span><span class="p">();</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l378" href="#l378">378</a></td>
@@ -3491,7 +3491,7 @@
         </details>
       </td>
       <td class="linecount partialCoveredLine">2</td>
-      <td class="src partialCoveredLine"><span class="w">        </span><span class="n">emit</span><span class="w"> </span><span class="n">pixelRectChanged</span><span class="p">();</span></td>
+      <td class="src partialCoveredLine"><span class="w">        </span><span class="n">emit</span><span class="w"> </span><span class="n">selectionRectChanged</span><span class="p">();</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l393" href="#l393">393</a></td>
@@ -3610,7 +3610,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">3</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="n">emit</span><span class="w"> </span><span class="n">pixelRectChanged</span><span class="p">();</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="n">emit</span><span class="w"> </span><span class="n">selectionRectChanged</span><span class="p">();</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l407" href="#l407">407</a></td>
@@ -3673,7 +3673,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">17</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="n">emit</span><span class="w"> </span><span class="n">pixelRectChanged</span><span class="p">();</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="n">emit</span><span class="w"> </span><span class="n">selectionRectChanged</span><span class="p">();</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l416" href="#l416">416</a></td>
