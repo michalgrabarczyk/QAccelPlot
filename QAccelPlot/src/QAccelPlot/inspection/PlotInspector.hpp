@@ -7,7 +7,7 @@
 //
 #pragma once
 
-#include "QAccelPlot/QAccelPlot.hpp"
+#include "QAccelPlot/PlotView.hpp"
 #include "QAccelPlot/inspection/InspectionRowModel.hpp"
 
 #include <QQmlListProperty>
@@ -47,7 +47,7 @@ class PlotInspector : public QObject {
     /// in declaration order above the other children of the plot's overlay.
     Q_PROPERTY(QQmlListProperty<QObject> data READ data)
     /// \brief Plot whose series are inspected.
-    Q_PROPERTY(::QAccelPlot::QAccelPlot* plot READ plot WRITE setPlot NOTIFY plotChanged)
+    Q_PROPERTY(PlotView* plot READ plot WRITE setPlot NOTIFY plotChanged)
     /// \brief Enables queries. A disabled inspector is inactive and does no work. Default: true.
     Q_PROPERTY(bool enabled READ enabled WRITE setEnabled NOTIFY enabledChanged)
     /// \brief \c NearestX and \c NearestY report each series at the cursor's X or Y; \c NearestXY picks by on-screen distance. Default: NearestX.
@@ -92,7 +92,7 @@ class PlotInspector : public QObject {
     /// is NaN.
     Q_PROPERTY(QPointF crosshairPosition READ crosshairPosition NOTIFY crosshairPositionChanged)
     /// \brief Read-only constant: one row per inspected series.
-    Q_PROPERTY(::QAccelPlot::InspectionRowModel* model READ model CONSTANT)
+    Q_PROPERTY(InspectionRowModel* model READ model CONSTANT)
     /// \brief Number of rows with a matching data point.
     Q_PROPERTY(int validCount READ validCount NOTIFY validCountChanged)
 
@@ -114,9 +114,9 @@ public:
     QQmlListProperty<QObject> data();
 
     /// \brief Returns the inspected plot.
-    ::QAccelPlot::QAccelPlot* plot() const;
+    PlotView* plot() const;
     /// \brief Sets the inspected plot.
-    void setPlot(::QAccelPlot::QAccelPlot* plot);
+    void setPlot(PlotView* plot);
     /// \brief Returns whether queries are enabled.
     bool enabled() const;
     /// \brief Enables or disables queries.
@@ -258,7 +258,7 @@ private:
     QPointF snappedPosition(const QList<Query>& queries, const QPointF& cursor) const;
     void publish(const State& state);
 
-    QPointer<::QAccelPlot::QAccelPlot> plot_;
+    QPointer<PlotView> plot_;
     bool enabled_{true};
     Mode mode_{NearestX};
     qreal radius_{16};

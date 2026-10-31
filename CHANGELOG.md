@@ -49,6 +49,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- The C++ plot item class `QAccelPlot::QAccelPlot` is now
+  `QAccelPlot::PlotView`, its QML name, in `<QAccelPlot/PlotView.hpp>`. QML is
+  unchanged.
 - Marker shapes are a standalone `MarkerShape` enum instead of a
   `PlotSeries` enum. Replace `LineCurve.Diamond` or `PointCloud.Circle` with
   `MarkerShape.Diamond` or `MarkerShape.Circle` in QML, and

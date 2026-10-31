@@ -104,12 +104,12 @@ QQmlListProperty<QObject> PlotInspector::data()
     return children_->list();
 }
 
-::QAccelPlot::QAccelPlot* PlotInspector::plot() const
+PlotView* PlotInspector::plot() const
 {
     return plot_;
 }
 
-void PlotInspector::setPlot(::QAccelPlot::QAccelPlot* plot)
+void PlotInspector::setPlot(PlotView* plot)
 {
     if (plot_ == plot) {
         return;
@@ -480,11 +480,11 @@ void PlotInspector::reconnect()
         return;
     }
     connections_.push_back(connect(&plot_->pointer(), &Internal::PointerTracker::changed, this, &PlotInspector::schedule));
-    connections_.push_back(connect(plot_, &::QAccelPlot::QAccelPlot::plotRectChanged, this, &PlotInspector::schedule));
-    connections_.push_back(connect(plot_, &::QAccelPlot::QAccelPlot::xAxisChanged, this, &PlotInspector::reconnect));
-    connections_.push_back(connect(plot_, &::QAccelPlot::QAccelPlot::yAxisChanged, this, &PlotInspector::reconnect));
+    connections_.push_back(connect(plot_, &PlotView::plotRectChanged, this, &PlotInspector::schedule));
+    connections_.push_back(connect(plot_, &PlotView::xAxisChanged, this, &PlotInspector::reconnect));
+    connections_.push_back(connect(plot_, &PlotView::yAxisChanged, this, &PlotInspector::reconnect));
     connections_.push_back(connect(plot_, &QObject::destroyed, this, &PlotInspector::reconnect));
-    connections_.push_back(connect(plot_, &::QAccelPlot::QAccelPlot::seriesChanged, this, [this] {
+    connections_.push_back(connect(plot_, &PlotView::seriesChanged, this, [this] {
         // Rows of removed series go at once, so delegates never see a destroyed series.
         model_->retainSeries(plot_ ? plot_->series() : QList<PlotSeries*>{});
         reconnect();

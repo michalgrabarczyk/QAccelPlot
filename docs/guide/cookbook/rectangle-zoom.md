@@ -43,4 +43,4 @@ It returns `false` without changing ranges if the selection or target axes are i
 
 Complete source: [`examples/plot_types/point_cloud`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/point_cloud)
 
-[zoom-to-rect]: ../api/classQAccelPlot_1_1QAccelPlot.md#function-zoomtorect
+[zoom-to-rect]: ../api/classQAccelPlot_1_1PlotView.md#function-zoomtorect

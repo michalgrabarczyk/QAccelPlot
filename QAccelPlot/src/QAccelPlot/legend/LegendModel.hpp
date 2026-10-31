@@ -37,7 +37,7 @@ class LegendModel : public QAbstractListModel {
     QML_NAMED_ELEMENT(LegendModel)
 
     /// \brief Series to list, in legend order. Default: empty.
-    Q_PROPERTY(QList<::QAccelPlot::PlotSeries*> series READ series WRITE setSeries NOTIFY seriesChanged)
+    Q_PROPERTY(QList<PlotSeries*> series READ series WRITE setSeries NOTIFY seriesChanged)
     /// \brief Read-only: number of rows.
     Q_PROPERTY(int count READ count NOTIFY countChanged)
 

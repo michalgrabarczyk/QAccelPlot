@@ -5,7 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "QAccelPlot/QAccelPlot.hpp"
+#include "QAccelPlot/PlotView.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
 #include "QAccelPlot/series/PointCloud.hpp"
@@ -18,7 +18,7 @@
 
 #include <memory>
 
-using PlotView = QAccelPlot::QAccelPlot;
+using PlotView = QAccelPlot::PlotView;
 
 class PlotSeriesRegistrationTest : public QObject {
     Q_OBJECT

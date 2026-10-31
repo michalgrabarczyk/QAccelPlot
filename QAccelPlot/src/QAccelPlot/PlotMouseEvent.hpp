@@ -14,7 +14,7 @@ class QSinglePointEvent;
 
 namespace QAccelPlot {
 
-class QAccelPlot;
+class PlotView;
 
 /// \brief Carries mouse event data for the mouse signals.
 ///
@@ -27,7 +27,7 @@ class QAccelPlot;
 class PlotMouseEvent : public QObject {
     Q_OBJECT
     QML_NAMED_ELEMENT(PlotMouseEvent)
-    QML_UNCREATABLE("PlotMouseEvent can only be created by QAccelPlot.")
+    QML_UNCREATABLE("PlotMouseEvent can only be created by PlotView.")
 
     /// \brief The mouse button that caused the event; \c Qt.NoButton for a move.
     Q_PROPERTY(Qt::MouseButton button READ button CONSTANT)
@@ -67,7 +67,7 @@ public:
     void setAccepted(bool accepted);
 
 private:
-    friend class QAccelPlot;
+    friend class PlotView;
 
     /// \brief Copies \p event and clears the acceptance before the plot emits a mouse signal.
     void reset(const QSinglePointEvent& event);

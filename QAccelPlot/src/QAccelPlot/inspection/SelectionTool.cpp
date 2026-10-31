@@ -38,12 +38,12 @@ SelectionTool::SelectionTool(QObject* parent)
 {
 }
 
-::QAccelPlot::QAccelPlot* SelectionTool::plot() const
+PlotView* SelectionTool::plot() const
 {
     return plot_;
 }
 
-void SelectionTool::setPlot(::QAccelPlot::QAccelPlot* plot)
+void SelectionTool::setPlot(PlotView* plot)
 {
     if (plot_ == plot) {
         return;
@@ -290,28 +290,27 @@ void SelectionTool::reconnect()
         clear();
         return;
     }
-    using Plot = ::QAccelPlot::QAccelPlot;
-    connections_.push_back(connect(plot_, &Plot::mousePressed, this, &SelectionTool::press));
-    connections_.push_back(connect(plot_, &Plot::mouseMoved, this, &SelectionTool::move));
-    connections_.push_back(connect(plot_, &Plot::mouseReleased, this, &SelectionTool::release));
-    connections_.push_back(connect(plot_, &Plot::escapePressed, this, &SelectionTool::clear));
-    connections_.push_back(connect(plot_, &Plot::pointerGrabLost, this, &SelectionTool::cancelGesture));
-    connections_.push_back(connect(plot_, &Plot::xAxisChanged, this, [this] {
+    connections_.push_back(connect(plot_, &PlotView::mousePressed, this, &SelectionTool::press));
+    connections_.push_back(connect(plot_, &PlotView::mouseMoved, this, &SelectionTool::move));
+    connections_.push_back(connect(plot_, &PlotView::mouseReleased, this, &SelectionTool::release));
+    connections_.push_back(connect(plot_, &PlotView::escapePressed, this, &SelectionTool::clear));
+    connections_.push_back(connect(plot_, &PlotView::pointerGrabLost, this, &SelectionTool::cancelGesture));
+    connections_.push_back(connect(plot_, &PlotView::xAxisChanged, this, [this] {
         if (!xAxis_) {
             resetAxes();
         }
     }));
-    connections_.push_back(connect(plot_, &Plot::yAxisChanged, this, [this] {
+    connections_.push_back(connect(plot_, &PlotView::yAxisChanged, this, [this] {
         if (!yAxis_) {
             resetAxes();
         }
     }));
     connections_.push_back(connect(plot_, &QObject::destroyed, this, &SelectionTool::reconnect));
-    connections_.push_back(connect(plot_, &Plot::plotRectChanged, this, [this] {
+    connections_.push_back(connect(plot_, &PlotView::plotRectChanged, this, [this] {
         cancelGesture();
         emit pixelRectChanged();
     }));
-    connections_.push_back(connect(plot_, &Plot::seriesChanged, this, [this] {
+    connections_.push_back(connect(plot_, &PlotView::seriesChanged, this, [this] {
         model_->retainSeries(plot_ ? plot_->series() : QList<PlotSeries*>{});
         reconnect();
         refreshRows();

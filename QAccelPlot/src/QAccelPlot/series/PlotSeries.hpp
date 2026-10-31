@@ -96,7 +96,7 @@ class PlotSeries : public QQuickItem {
     /// \brief Revision incremented by every accepted change of the series' records.
     Q_PROPERTY(quint64 dataRevision READ dataRevision NOTIFY dataRevisionChanged)
     /// \brief Read-only constant: data queries for this series.
-    Q_PROPERTY(::QAccelPlot::SeriesInspection* inspection READ inspection CONSTANT)
+    Q_PROPERTY(SeriesInspection* inspection READ inspection CONSTANT)
     /// \brief Read-only: number of records stored, including invalid ones.
     ///
     /// A record is one data point of the layout in the class description: a point of a \c LineCurve

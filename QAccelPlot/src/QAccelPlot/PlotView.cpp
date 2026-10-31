@@ -5,7 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "QAccelPlot/QAccelPlot.hpp"
+#include "QAccelPlot/PlotView.hpp"
 #include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/PlotMouseEvent.hpp"
 #include "QAccelPlot/QAccelPlotLogging.hpp"
@@ -73,7 +73,7 @@ std::optional<RectangleAxisRange> rectangleAxisRange(Axis* axis, const QRectF& s
 
 }
 
-QAccelPlot::QAccelPlot(QQuickItem* parent)
+PlotView::PlotView(QQuickItem* parent)
     : QQuickItem(parent)
 {
     setFlag(ItemHasContents, true);
@@ -88,24 +88,24 @@ QAccelPlot::QAccelPlot(QQuickItem* parent)
     overlay_ = new QQuickItem(this);
     overlay_->setZ(kOverlayZ);
     pointer_ = new Internal::PointerTracker(this);
-    connect(rectangleZoom_, &PlotRectangleZoom::enabledChanged, this, &QAccelPlot::cancelRectangleSelection);
-    connect(this, &QQuickItem::visibleChanged, this, &QAccelPlot::cancelRectangleSelection);
-    connect(this, &QQuickItem::enabledChanged, this, &QAccelPlot::cancelRectangleSelection);
-    connect(grid_, &Grid::lineWidthChanged, this, &QAccelPlot::update);
-    connect(grid_, &Grid::subGridLineWidthChanged, this, &QAccelPlot::update);
-    connect(grid_, &Grid::gridColorChanged, this, &QAccelPlot::update);
-    connect(grid_, &Grid::subGridColorChanged, this, &QAccelPlot::update);
-    connect(grid_, &Grid::gridVisibleChanged, this, &QAccelPlot::update);
-    connect(grid_, &Grid::subGridVisibleChanged, this, &QAccelPlot::update);
-    connect(grid_, &Grid::gridHorizontalLinesVisibleChanged, this, &QAccelPlot::update);
-    connect(grid_, &Grid::gridVerticalLinesVisibleChanged, this, &QAccelPlot::update);
-    connect(grid_, &Grid::subGridHorizontalLinesVisibleChanged, this, &QAccelPlot::update);
-    connect(grid_, &Grid::subGridVerticalLinesVisibleChanged, this, &QAccelPlot::update);
-    connect(border_, &Border::colorChanged, this, &QAccelPlot::update);
-    connect(border_, &Border::widthChanged, this, &QAccelPlot::update);
+    connect(rectangleZoom_, &PlotRectangleZoom::enabledChanged, this, &PlotView::cancelRectangleSelection);
+    connect(this, &QQuickItem::visibleChanged, this, &PlotView::cancelRectangleSelection);
+    connect(this, &QQuickItem::enabledChanged, this, &PlotView::cancelRectangleSelection);
+    connect(grid_, &Grid::lineWidthChanged, this, &PlotView::update);
+    connect(grid_, &Grid::subGridLineWidthChanged, this, &PlotView::update);
+    connect(grid_, &Grid::gridColorChanged, this, &PlotView::update);
+    connect(grid_, &Grid::subGridColorChanged, this, &PlotView::update);
+    connect(grid_, &Grid::gridVisibleChanged, this, &PlotView::update);
+    connect(grid_, &Grid::subGridVisibleChanged, this, &PlotView::update);
+    connect(grid_, &Grid::gridHorizontalLinesVisibleChanged, this, &PlotView::update);
+    connect(grid_, &Grid::gridVerticalLinesVisibleChanged, this, &PlotView::update);
+    connect(grid_, &Grid::subGridHorizontalLinesVisibleChanged, this, &PlotView::update);
+    connect(grid_, &Grid::subGridVerticalLinesVisibleChanged, this, &PlotView::update);
+    connect(border_, &Border::colorChanged, this, &PlotView::update);
+    connect(border_, &Border::widthChanged, this, &PlotView::update);
 }
 
-QAccelPlot::~QAccelPlot()
+PlotView::~PlotView()
 {
     // Release the children while this is still a plot. ~QQuickItem would do it later, when the
     // observers of seriesChanged() and of the children can no longer use their pointers to it.
@@ -124,7 +124,7 @@ QAccelPlot::~QAccelPlot()
     }
 }
 
-qreal QAccelPlot::dataToPixelX(qreal dataValue) const
+qreal PlotView::dataToPixelX(qreal dataValue) const
 {
     if (!xAxis_) {
         return 0.0;
@@ -132,7 +132,7 @@ qreal QAccelPlot::dataToPixelX(qreal dataValue) const
     return plotRect_.x() + xAxis_->coordToPixel(dataValue, plotRect_.width());
 }
 
-qreal QAccelPlot::dataToPixelY(qreal dataValue) const
+qreal PlotView::dataToPixelY(qreal dataValue) const
 {
     if (!yAxis_) {
         return 0.0;
@@ -140,7 +140,7 @@ qreal QAccelPlot::dataToPixelY(qreal dataValue) const
     return plotRect_.y() + yAxis_->coordToPixel(dataValue, plotRect_.height());
 }
 
-qreal QAccelPlot::pixelToDataX(qreal pixelX) const
+qreal PlotView::pixelToDataX(qreal pixelX) const
 {
     if (!xAxis_) {
         return 0.0;
@@ -148,7 +148,7 @@ qreal QAccelPlot::pixelToDataX(qreal pixelX) const
     return xAxis_->pixelToCoord(pixelX - plotRect_.x(), plotRect_.width());
 }
 
-qreal QAccelPlot::pixelToDataY(qreal pixelY) const
+qreal PlotView::pixelToDataY(qreal pixelY) const
 {
     if (!yAxis_) {
         return 0.0;
@@ -156,12 +156,12 @@ qreal QAccelPlot::pixelToDataY(qreal pixelY) const
     return yAxis_->pixelToCoord(pixelY - plotRect_.y(), plotRect_.height());
 }
 
-bool QAccelPlot::isInsidePlotArea(qreal x, qreal y) const
+bool PlotView::isInsidePlotArea(qreal x, qreal y) const
 {
     return plotRect_.contains(x, y);
 }
 
-bool QAccelPlot::zoomToRect(const QRectF& rect)
+bool PlotView::zoomToRect(const QRectF& rect)
 {
     if (!isFiniteRect(rect) || !isFiniteRect(plotRect_) || plotRect_.isEmpty()) {
         return false;
@@ -193,7 +193,7 @@ bool QAccelPlot::zoomToRect(const QRectF& rect)
     return true;
 }
 
-void QAccelPlot::rescaleAllAxes()
+void PlotView::rescaleAllAxes()
 {
     for (const auto axis : {xAxis_, yAxis_, x2Axis_, y2Axis_}) {
         if (axis) {
@@ -205,12 +205,12 @@ void QAccelPlot::rescaleAllAxes()
     }
 }
 
-Axis* QAccelPlot::xAxis() const
+Axis* PlotView::xAxis() const
 {
     return xAxis_;
 }
 
-void QAccelPlot::setXAxis(Axis* axis)
+void PlotView::setXAxis(Axis* axis)
 {
     if (xAxis_ == axis) {
         return;
@@ -231,12 +231,12 @@ void QAccelPlot::setXAxis(Axis* axis)
     layoutAxes();
 }
 
-Axis* QAccelPlot::yAxis() const
+Axis* PlotView::yAxis() const
 {
     return yAxis_;
 }
 
-void QAccelPlot::setYAxis(Axis* axis)
+void PlotView::setYAxis(Axis* axis)
 {
     if (yAxis_ == axis) {
         return;
@@ -257,12 +257,12 @@ void QAccelPlot::setYAxis(Axis* axis)
     layoutAxes();
 }
 
-Axis* QAccelPlot::x2Axis() const
+Axis* PlotView::x2Axis() const
 {
     return x2Axis_;
 }
 
-void QAccelPlot::setX2Axis(Axis* axis)
+void PlotView::setX2Axis(Axis* axis)
 {
     if (x2Axis_ == axis) {
         return;
@@ -283,12 +283,12 @@ void QAccelPlot::setX2Axis(Axis* axis)
     layoutAxes();
 }
 
-Axis* QAccelPlot::y2Axis() const
+Axis* PlotView::y2Axis() const
 {
     return y2Axis_;
 }
 
-void QAccelPlot::setY2Axis(Axis* axis)
+void PlotView::setY2Axis(Axis* axis)
 {
     if (y2Axis_ == axis) {
         return;
@@ -309,18 +309,17 @@ void QAccelPlot::setY2Axis(Axis* axis)
     layoutAxes();
 }
 
-QQmlListProperty<Axis> QAccelPlot::extraAxes()
+QQmlListProperty<Axis> PlotView::extraAxes()
 {
-    return QQmlListProperty<Axis>(
-        this, &extraAxes_, &QAccelPlot::appendExtraAxis, &QAccelPlot::extraAxisCount, &QAccelPlot::extraAxis, &QAccelPlot::clearExtraAxes);
+    return QQmlListProperty<Axis>(this, &extraAxes_, &PlotView::appendExtraAxis, &PlotView::extraAxisCount, &PlotView::extraAxis, &PlotView::clearExtraAxes);
 }
 
-qreal QAccelPlot::padding() const
+qreal PlotView::padding() const
 {
     return padding_;
 }
 
-void QAccelPlot::setPadding(const qreal p)
+void PlotView::setPadding(const qreal p)
 {
     if (nearlyEqual(padding_, p)) {
         return;
@@ -330,17 +329,17 @@ void QAccelPlot::setPadding(const qreal p)
     layoutAxes();
 }
 
-QRectF QAccelPlot::plotRect() const
+QRectF PlotView::plotRect() const
 {
     return plotRect_;
 }
 
-QColor QAccelPlot::plotAreaColor() const
+QColor PlotView::plotAreaColor() const
 {
     return plotAreaColor_;
 }
 
-void QAccelPlot::setPlotAreaColor(const QColor& c)
+void PlotView::setPlotAreaColor(const QColor& c)
 {
     if (plotAreaColor_ == c) {
         return;
@@ -350,12 +349,12 @@ void QAccelPlot::setPlotAreaColor(const QColor& c)
     update();
 }
 
-QColor QAccelPlot::axesAreaColor() const
+QColor PlotView::axesAreaColor() const
 {
     return axesAreaColor_;
 }
 
-void QAccelPlot::setAxesAreaColor(const QColor& c)
+void PlotView::setAxesAreaColor(const QColor& c)
 {
     if (axesAreaColor_ == c) {
         return;
@@ -365,32 +364,32 @@ void QAccelPlot::setAxesAreaColor(const QColor& c)
     update();
 }
 
-Border* QAccelPlot::border() const
+Border* PlotView::border() const
 {
     return border_;
 }
 
-PlotRectangleZoom* QAccelPlot::rectangleZoom() const
+PlotRectangleZoom* PlotView::rectangleZoom() const
 {
     return rectangleZoom_;
 }
 
-Grid* QAccelPlot::grid() const
+Grid* PlotView::grid() const
 {
     return grid_;
 }
 
-QList<PlotSeries*> QAccelPlot::series() const
+QList<PlotSeries*> PlotView::series() const
 {
     return series_;
 }
 
-QQuickItem* QAccelPlot::overlay() const
+QQuickItem* PlotView::overlay() const
 {
     return overlay_;
 }
 
-void QAccelPlot::wheelEvent(QWheelEvent* event)
+void PlotView::wheelEvent(QWheelEvent* event)
 {
     if (dragMode_ == DragMode::RectangleZoom) {
         event->accept();
@@ -439,7 +438,7 @@ void QAccelPlot::wheelEvent(QWheelEvent* event)
     QQuickItem::wheelEvent(event);
 }
 
-void QAccelPlot::mousePressEvent(QMouseEvent* event)
+void PlotView::mousePressEvent(QMouseEvent* event)
 {
     pointer_->press(*event);
     mousePressEvent_.reset(*event);
@@ -467,13 +466,13 @@ void QAccelPlot::mousePressEvent(QMouseEvent* event)
     }
 }
 
-void QAccelPlot::hoverEnterEvent(QHoverEvent* event)
+void PlotView::hoverEnterEvent(QHoverEvent* event)
 {
     pointer_->hoverEnter(*event);
     QQuickItem::hoverEnterEvent(event);
 }
 
-void QAccelPlot::hoverMoveEvent(QHoverEvent* event)
+void PlotView::hoverMoveEvent(QHoverEvent* event)
 {
     pointer_->hoverMove(*event);
     if (dragMode_ != DragMode::Idle) {
@@ -491,13 +490,13 @@ void QAccelPlot::hoverMoveEvent(QHoverEvent* event)
     QQuickItem::hoverMoveEvent(event);
 }
 
-void QAccelPlot::hoverLeaveEvent(QHoverEvent* event)
+void PlotView::hoverLeaveEvent(QHoverEvent* event)
 {
     pointer_->hoverLeave();
     QQuickItem::hoverLeaveEvent(event);
 }
 
-void QAccelPlot::mouseMoveEvent(QMouseEvent* event)
+void PlotView::mouseMoveEvent(QMouseEvent* event)
 {
     pointer_->mouseMove(*event);
     mouseMoveEvent_.reset(*event);
@@ -534,7 +533,7 @@ void QAccelPlot::mouseMoveEvent(QMouseEvent* event)
     }
 }
 
-void QAccelPlot::mouseReleaseEvent(QMouseEvent* event)
+void PlotView::mouseReleaseEvent(QMouseEvent* event)
 {
     pointer_->release();
     const auto endedDrag = event->button() == Qt::LeftButton && dragMode_ != DragMode::Idle;
@@ -562,7 +561,7 @@ void QAccelPlot::mouseReleaseEvent(QMouseEvent* event)
     }
 }
 
-void QAccelPlot::mouseUngrabEvent()
+void PlotView::mouseUngrabEvent()
 {
     pointer_->release();
     cancelRectangleSelection();
@@ -571,13 +570,13 @@ void QAccelPlot::mouseUngrabEvent()
     QQuickItem::mouseUngrabEvent();
 }
 
-void QAccelPlot::focusOutEvent(QFocusEvent* event)
+void PlotView::focusOutEvent(QFocusEvent* event)
 {
     cancelRectangleSelection();
     QQuickItem::focusOutEvent(event);
 }
 
-void QAccelPlot::mouseDoubleClickEvent(QMouseEvent* event)
+void PlotView::mouseDoubleClickEvent(QMouseEvent* event)
 {
     cancelRectangleSelection();
     mouseDoubleClickEvent_.reset(*event);
@@ -593,7 +592,7 @@ void QAccelPlot::mouseDoubleClickEvent(QMouseEvent* event)
     }
 }
 
-void QAccelPlot::keyPressEvent(QKeyEvent* event)
+void PlotView::keyPressEvent(QKeyEvent* event)
 {
     if (event->key() == Qt::Key_Escape) {
         emit escapePressed();
@@ -624,7 +623,7 @@ void QAccelPlot::keyPressEvent(QKeyEvent* event)
     QQuickItem::keyPressEvent(event);
 }
 
-void QAccelPlot::geometryChange(const QRectF& newGeometry, const QRectF& oldGeometry)
+void PlotView::geometryChange(const QRectF& newGeometry, const QRectF& oldGeometry)
 {
     cancelRectangleSelection();
     QQuickItem::geometryChange(newGeometry, oldGeometry);
@@ -632,7 +631,7 @@ void QAccelPlot::geometryChange(const QRectF& newGeometry, const QRectF& oldGeom
     layoutAxes();
 }
 
-void QAccelPlot::itemChange(ItemChange change, const ItemChangeData& value)
+void PlotView::itemChange(ItemChange change, const ItemChangeData& value)
 {
     QQuickItem::itemChange(change, value);
     if (change == ItemChildAddedChange) {
@@ -652,7 +651,7 @@ void QAccelPlot::itemChange(ItemChange change, const ItemChangeData& value)
     }
 }
 
-QSGNode* QAccelPlot::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
+QSGNode* PlotView::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
 {
     auto* root = oldNode ? static_cast<QSGNode*>(oldNode) : new QSGNode;
 
@@ -703,14 +702,14 @@ QSGNode* QAccelPlot::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
     return root;
 }
 
-bool QAccelPlot::isAxisRegistered(Axis* axis) const
+bool PlotView::isAxisRegistered(Axis* axis) const
 {
     return axis && (axis == xAxis_ || axis == yAxis_ || axis == x2Axis_ || axis == y2Axis_ || extraAxes_.contains(axis));
 }
 
-void QAccelPlot::appendExtraAxis(QQmlListProperty<Axis>* list, Axis* axis)
+void PlotView::appendExtraAxis(QQmlListProperty<Axis>* list, Axis* axis)
 {
-    auto* plot = list ? qobject_cast<QAccelPlot*>(list->object) : nullptr;
+    auto* plot = list ? qobject_cast<PlotView*>(list->object) : nullptr;
     if (!plot || !axis) {
         return;
     }
@@ -726,15 +725,15 @@ void QAccelPlot::appendExtraAxis(QQmlListProperty<Axis>* list, Axis* axis)
     plot->layoutAxes();
 }
 
-qsizetype QAccelPlot::extraAxisCount(QQmlListProperty<Axis>* list)
+qsizetype PlotView::extraAxisCount(QQmlListProperty<Axis>* list)
 {
-    const auto* plot = list ? qobject_cast<QAccelPlot*>(list->object) : nullptr;
+    const auto* plot = list ? qobject_cast<PlotView*>(list->object) : nullptr;
     return plot ? plot->extraAxes_.size() : 0;
 }
 
-Axis* QAccelPlot::extraAxis(QQmlListProperty<Axis>* list, qsizetype index)
+Axis* PlotView::extraAxis(QQmlListProperty<Axis>* list, qsizetype index)
 {
-    const auto* plot = list ? qobject_cast<QAccelPlot*>(list->object) : nullptr;
+    const auto* plot = list ? qobject_cast<PlotView*>(list->object) : nullptr;
     if (!plot || index < 0 || index >= plot->extraAxes_.size()) {
         qCDebug(lcQAccelPlot) << "invalid list or out-of-bounds extra axis index" << index << ", returning nullptr";
         return nullptr;
@@ -743,9 +742,9 @@ Axis* QAccelPlot::extraAxis(QQmlListProperty<Axis>* list, qsizetype index)
     return plot->extraAxes_.at(index);
 }
 
-void QAccelPlot::clearExtraAxes(QQmlListProperty<Axis>* list)
+void PlotView::clearExtraAxes(QQmlListProperty<Axis>* list)
 {
-    auto* plot = list ? qobject_cast<QAccelPlot*>(list->object) : nullptr;
+    auto* plot = list ? qobject_cast<PlotView*>(list->object) : nullptr;
     if (!plot) {
         return;
     }
@@ -759,7 +758,7 @@ void QAccelPlot::clearExtraAxes(QQmlListProperty<Axis>* list)
     plot->layoutAxes();
 }
 
-bool QAccelPlot::tryForwardKeyEventToAxis(Axis* axis, const QPointF& mousePos, QKeyEvent* event)
+bool PlotView::tryForwardKeyEventToAxis(Axis* axis, const QPointF& mousePos, QKeyEvent* event)
 {
     if (!axis || !axis->isVisible()) {
         return false;
@@ -772,7 +771,7 @@ bool QAccelPlot::tryForwardKeyEventToAxis(Axis* axis, const QPointF& mousePos, Q
     return false;
 }
 
-bool QAccelPlot::tryZoomAxisAtPosition(Axis* axis, const QPointF& pos, const qreal wheelSteps)
+bool PlotView::tryZoomAxisAtPosition(Axis* axis, const QPointF& pos, const qreal wheelSteps)
 {
     if (!axis || !axis->isVisible()) {
         return false;
@@ -786,7 +785,7 @@ bool QAccelPlot::tryZoomAxisAtPosition(Axis* axis, const QPointF& pos, const qre
     return true;
 }
 
-void QAccelPlot::zoomAxisAtRatio(Axis* axis, const qreal ratio, const qreal wheelSteps)
+void PlotView::zoomAxisAtRatio(Axis* axis, const qreal ratio, const qreal wheelSteps)
 {
     if (!axis) {
         return;
@@ -794,53 +793,53 @@ void QAccelPlot::zoomAxisAtRatio(Axis* axis, const qreal ratio, const qreal whee
     zoomAxis(axis, Internal::wheelZoomFactor(axis->zoomScaleFactor(), wheelSteps > 0, std::abs(wheelSteps)), ratio);
 }
 
-void QAccelPlot::connectAxisSignals(Axis* axis)
+void PlotView::connectAxisSignals(Axis* axis)
 {
     connect(axis, &Axis::doubleClicked, axis, &Axis::rescaleToData, Qt::UniqueConnection);
-    connect(axis, &Axis::viewportMinChanged, this, &QAccelPlot::update, Qt::UniqueConnection);
-    connect(axis, &Axis::viewportMaxChanged, this, &QAccelPlot::update, Qt::UniqueConnection);
-    connect(axis, &Axis::dataMinChanged, this, &QAccelPlot::update, Qt::UniqueConnection);
-    connect(axis, &Axis::dataMaxChanged, this, &QAccelPlot::update, Qt::UniqueConnection);
-    connect(axis, &Axis::rangeChanged, this, &QAccelPlot::update, Qt::UniqueConnection);
-    connect(axis, &Axis::rangeChanged, this, &QAccelPlot::cancelRectangleSelection, Qt::UniqueConnection);
-    connect(axis, &Axis::logScaleChanged, this, &QAccelPlot::cancelRectangleSelection, Qt::UniqueConnection);
-    connect(axis, &Axis::orientationChanged, this, &QAccelPlot::cancelRectangleSelection, Qt::UniqueConnection);
-    connect(axis, &QQuickItem::visibleChanged, this, &QAccelPlot::layoutAxes, Qt::UniqueConnection);
-    connect(axis, &Axis::layoutSizeChanged, this, &QAccelPlot::layoutAxes, Qt::UniqueConnection);
-    connect(axis, &QObject::destroyed, this, &QAccelPlot::axisDestroyed, Qt::UniqueConnection);
-    connect(axis->ticker(), &AxisTicker::tickCountChanged, this, &QAccelPlot::update, Qt::UniqueConnection);
-    connect(axis->ticker(), &AxisTicker::subtickCountChanged, this, &QAccelPlot::update, Qt::UniqueConnection);
-    connect(axis, &Axis::baselinePaddingChanged, this, &QAccelPlot::layoutAxes, Qt::UniqueConnection);
-    connect(axis, &Axis::orientationChanged, this, &QAccelPlot::layoutAxes, Qt::UniqueConnection);
-    connect(axis, &Axis::sideChanged, this, &QAccelPlot::layoutAxes, Qt::UniqueConnection);
-    connect(axis->ticker(), &AxisTicker::tickLengthInChanged, this, &QAccelPlot::layoutAxes, Qt::UniqueConnection);
-    connect(axis->ticker(), &AxisTicker::subtickLengthInChanged, this, &QAccelPlot::layoutAxes, Qt::UniqueConnection);
+    connect(axis, &Axis::viewportMinChanged, this, &PlotView::update, Qt::UniqueConnection);
+    connect(axis, &Axis::viewportMaxChanged, this, &PlotView::update, Qt::UniqueConnection);
+    connect(axis, &Axis::dataMinChanged, this, &PlotView::update, Qt::UniqueConnection);
+    connect(axis, &Axis::dataMaxChanged, this, &PlotView::update, Qt::UniqueConnection);
+    connect(axis, &Axis::rangeChanged, this, &PlotView::update, Qt::UniqueConnection);
+    connect(axis, &Axis::rangeChanged, this, &PlotView::cancelRectangleSelection, Qt::UniqueConnection);
+    connect(axis, &Axis::logScaleChanged, this, &PlotView::cancelRectangleSelection, Qt::UniqueConnection);
+    connect(axis, &Axis::orientationChanged, this, &PlotView::cancelRectangleSelection, Qt::UniqueConnection);
+    connect(axis, &QQuickItem::visibleChanged, this, &PlotView::layoutAxes, Qt::UniqueConnection);
+    connect(axis, &Axis::layoutSizeChanged, this, &PlotView::layoutAxes, Qt::UniqueConnection);
+    connect(axis, &QObject::destroyed, this, &PlotView::axisDestroyed, Qt::UniqueConnection);
+    connect(axis->ticker(), &AxisTicker::tickCountChanged, this, &PlotView::update, Qt::UniqueConnection);
+    connect(axis->ticker(), &AxisTicker::subtickCountChanged, this, &PlotView::update, Qt::UniqueConnection);
+    connect(axis, &Axis::baselinePaddingChanged, this, &PlotView::layoutAxes, Qt::UniqueConnection);
+    connect(axis, &Axis::orientationChanged, this, &PlotView::layoutAxes, Qt::UniqueConnection);
+    connect(axis, &Axis::sideChanged, this, &PlotView::layoutAxes, Qt::UniqueConnection);
+    connect(axis->ticker(), &AxisTicker::tickLengthInChanged, this, &PlotView::layoutAxes, Qt::UniqueConnection);
+    connect(axis->ticker(), &AxisTicker::subtickLengthInChanged, this, &PlotView::layoutAxes, Qt::UniqueConnection);
 }
 
-void QAccelPlot::disconnectAxisSignals(Axis* axis)
+void PlotView::disconnectAxisSignals(Axis* axis)
 {
     disconnect(axis, &Axis::doubleClicked, axis, &Axis::rescaleToData);
-    disconnect(axis, &Axis::viewportMinChanged, this, &QAccelPlot::update);
-    disconnect(axis, &Axis::viewportMaxChanged, this, &QAccelPlot::update);
-    disconnect(axis, &Axis::dataMinChanged, this, &QAccelPlot::update);
-    disconnect(axis, &Axis::dataMaxChanged, this, &QAccelPlot::update);
-    disconnect(axis, &Axis::rangeChanged, this, &QAccelPlot::update);
-    disconnect(axis, &Axis::rangeChanged, this, &QAccelPlot::cancelRectangleSelection);
-    disconnect(axis, &Axis::logScaleChanged, this, &QAccelPlot::cancelRectangleSelection);
-    disconnect(axis, &Axis::orientationChanged, this, &QAccelPlot::cancelRectangleSelection);
-    disconnect(axis, &QQuickItem::visibleChanged, this, &QAccelPlot::layoutAxes);
-    disconnect(axis, &Axis::layoutSizeChanged, this, &QAccelPlot::layoutAxes);
-    disconnect(axis, &QObject::destroyed, this, &QAccelPlot::axisDestroyed);
-    disconnect(axis->ticker(), &AxisTicker::tickCountChanged, this, &QAccelPlot::update);
-    disconnect(axis->ticker(), &AxisTicker::subtickCountChanged, this, &QAccelPlot::update);
-    disconnect(axis, &Axis::baselinePaddingChanged, this, &QAccelPlot::layoutAxes);
-    disconnect(axis, &Axis::orientationChanged, this, &QAccelPlot::layoutAxes);
-    disconnect(axis, &Axis::sideChanged, this, &QAccelPlot::layoutAxes);
-    disconnect(axis->ticker(), &AxisTicker::tickLengthInChanged, this, &QAccelPlot::layoutAxes);
-    disconnect(axis->ticker(), &AxisTicker::subtickLengthInChanged, this, &QAccelPlot::layoutAxes);
+    disconnect(axis, &Axis::viewportMinChanged, this, &PlotView::update);
+    disconnect(axis, &Axis::viewportMaxChanged, this, &PlotView::update);
+    disconnect(axis, &Axis::dataMinChanged, this, &PlotView::update);
+    disconnect(axis, &Axis::dataMaxChanged, this, &PlotView::update);
+    disconnect(axis, &Axis::rangeChanged, this, &PlotView::update);
+    disconnect(axis, &Axis::rangeChanged, this, &PlotView::cancelRectangleSelection);
+    disconnect(axis, &Axis::logScaleChanged, this, &PlotView::cancelRectangleSelection);
+    disconnect(axis, &Axis::orientationChanged, this, &PlotView::cancelRectangleSelection);
+    disconnect(axis, &QQuickItem::visibleChanged, this, &PlotView::layoutAxes);
+    disconnect(axis, &Axis::layoutSizeChanged, this, &PlotView::layoutAxes);
+    disconnect(axis, &QObject::destroyed, this, &PlotView::axisDestroyed);
+    disconnect(axis->ticker(), &AxisTicker::tickCountChanged, this, &PlotView::update);
+    disconnect(axis->ticker(), &AxisTicker::subtickCountChanged, this, &PlotView::update);
+    disconnect(axis, &Axis::baselinePaddingChanged, this, &PlotView::layoutAxes);
+    disconnect(axis, &Axis::orientationChanged, this, &PlotView::layoutAxes);
+    disconnect(axis, &Axis::sideChanged, this, &PlotView::layoutAxes);
+    disconnect(axis->ticker(), &AxisTicker::tickLengthInChanged, this, &PlotView::layoutAxes);
+    disconnect(axis->ticker(), &AxisTicker::subtickLengthInChanged, this, &PlotView::layoutAxes);
 }
 
-void QAccelPlot::axisDestroyed(QObject* object)
+void PlotView::axisDestroyed(QObject* object)
 {
     cancelRectangleSelection();
     auto layoutChanged = false;
@@ -871,20 +870,20 @@ void QAccelPlot::axisDestroyed(QObject* object)
     }
 }
 
-void QAccelPlot::connectAxis(Axis* axis, Axis::Side side)
+void PlotView::connectAxis(Axis* axis, Axis::Side side)
 {
     axis->setParentItem(this);
     axis->setSide(side);
     connectAxisSignals(axis);
 }
 
-void QAccelPlot::disconnectAxis(Axis* axis)
+void PlotView::disconnectAxis(Axis* axis)
 {
     disconnectAxisSignals(axis);
     axis->setParentItem(nullptr);
 }
 
-void QAccelPlot::zoomAxis(Axis* axis, const qreal factor, const qreal centerRatio)
+void PlotView::zoomAxis(Axis* axis, const qreal factor, const qreal centerRatio)
 {
     if (!axis) {
         return;
@@ -894,7 +893,7 @@ void QAccelPlot::zoomAxis(Axis* axis, const qreal factor, const qreal centerRati
     axis->setViewportMax(range.max);
 }
 
-void QAccelPlot::panAxis(Axis* axis, const qreal delta, const qreal length)
+void PlotView::panAxis(Axis* axis, const qreal delta, const qreal length)
 {
     if (!axis || length == 0) {
         return;
@@ -904,7 +903,7 @@ void QAccelPlot::panAxis(Axis* axis, const qreal delta, const qreal length)
     axis->setViewportMax(range.max);
 }
 
-QList<Axis*> QAccelPlot::attachedAxes() const
+QList<Axis*> PlotView::attachedAxes() const
 {
     auto axes = QList<Axis*>{};
     const auto append = [&axes](Axis* axis) {
@@ -921,7 +920,7 @@ QList<Axis*> QAccelPlot::attachedAxes() const
     return axes;
 }
 
-void QAccelPlot::updateRectangleSelection(const QPointF& pos)
+void PlotView::updateRectangleSelection(const QPointF& pos)
 {
     if (dragMode_ != DragMode::RectangleZoom || !std::isfinite(pos.x()) || !std::isfinite(pos.y())) {
         return;
@@ -930,7 +929,7 @@ void QAccelPlot::updateRectangleSelection(const QPointF& pos)
     rectangleZoom_->setSelection(true, zoomDrag_.rect());
 }
 
-void QAccelPlot::cancelRectangleSelection()
+void PlotView::cancelRectangleSelection()
 {
     if (dragMode_ == DragMode::RectangleZoom) {
         dragMode_ = DragMode::Idle;
@@ -939,7 +938,7 @@ void QAccelPlot::cancelRectangleSelection()
     }
 }
 
-void QAccelPlot::layoutAxes()
+void PlotView::layoutAxes()
 {
     const auto w = width();
     const auto h = height();
@@ -1059,12 +1058,12 @@ void QAccelPlot::layoutAxes()
     }
 }
 
-const Internal::PointerTracker& QAccelPlot::pointer() const
+const Internal::PointerTracker& PlotView::pointer() const
 {
     return *pointer_;
 }
 
-void QAccelPlot::registerSeries(QQuickItem* item)
+void PlotView::registerSeries(QQuickItem* item)
 {
     auto* series = qobject_cast<PlotSeries*>(item);
     if (!series || series->parentItem() != this || series_.contains(series)) {
@@ -1075,7 +1074,7 @@ void QAccelPlot::registerSeries(QQuickItem* item)
     emit seriesChanged();
 }
 
-void QAccelPlot::beginExport(const bool transparentBackground)
+void PlotView::beginExport(const bool transparentBackground)
 {
     exporting_ = true;
     transparentBackground_ = transparentBackground;
@@ -1084,7 +1083,7 @@ void QAccelPlot::beginExport(const bool transparentBackground)
     }
 }
 
-void QAccelPlot::endExport()
+void PlotView::endExport()
 {
     exporting_ = false;
     if (transparentBackground_) {

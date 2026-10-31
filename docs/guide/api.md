@@ -17,7 +17,7 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 
 ## Key types
 
-- [`PlotView`](api/classQAccelPlot_1_1QAccelPlot.md) — plot item: layout,
+- [`PlotView`](api/classQAccelPlot_1_1PlotView.md) — plot item: layout,
   pan and zoom, coordinate conversion, grid, and series collection. QML
   applications use its `Plot` wrapper.
 - [`Axis`](api/classQAccelPlot_1_1Axis.md) — ranges, log scale, ticks, labels,

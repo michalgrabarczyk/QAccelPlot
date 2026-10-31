@@ -6,7 +6,7 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #include "HoverEvents.hpp"
-#include "QAccelPlot/QAccelPlot.hpp"
+#include "QAccelPlot/PlotView.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
 
@@ -15,13 +15,13 @@
 #include <QWheelEvent>
 #include <QtTest/QtTest>
 
-class TestablePlot final : public QAccelPlot::QAccelPlot {
+class TestablePlot final : public QAccelPlot::PlotView {
 public:
-    using QAccelPlot::QAccelPlot::hoverMoveEvent;
-    using QAccelPlot::QAccelPlot::mouseMoveEvent;
-    using QAccelPlot::QAccelPlot::mousePressEvent;
-    using QAccelPlot::QAccelPlot::mouseReleaseEvent;
-    using QAccelPlot::QAccelPlot::wheelEvent;
+    using QAccelPlot::PlotView::hoverMoveEvent;
+    using QAccelPlot::PlotView::mouseMoveEvent;
+    using QAccelPlot::PlotView::mousePressEvent;
+    using QAccelPlot::PlotView::mouseReleaseEvent;
+    using QAccelPlot::PlotView::wheelEvent;
 };
 
 class TestPlotAppearance : public QObject {
@@ -62,7 +62,7 @@ private slots:
 
 void TestPlotAppearance::border_defaultsToDisabled()
 {
-    QAccelPlot::QAccelPlot plot;
+    QAccelPlot::PlotView plot;
 
     QCOMPARE(plot.border()->width(), 0.0);
     QCOMPARE(plot.border()->color(), QColor(Qt::transparent));
@@ -70,7 +70,7 @@ void TestPlotAppearance::border_defaultsToDisabled()
 
 void TestPlotAppearance::border_clampsNegativeWidth()
 {
-    QAccelPlot::QAccelPlot plot;
+    QAccelPlot::PlotView plot;
     QSignalSpy widthChanged(plot.border(), &QAccelPlot::Border::widthChanged);
     QSignalSpy colorChanged(plot.border(), &QAccelPlot::Border::colorChanged);
 
@@ -119,7 +119,7 @@ void TestPlotAppearance::layoutSize_defaultsAndClamps()
 
 void TestPlotAppearance::namedAxesAssignSidesAutomatically()
 {
-    QAccelPlot::QAccelPlot plot;
+    QAccelPlot::PlotView plot;
     auto* xAxis = new QAccelPlot::Axis{&plot, QAccelPlot::Axis::Left};
     auto* yAxis = new QAccelPlot::Axis{&plot, QAccelPlot::Axis::Top};
     auto* x2Axis = new QAccelPlot::Axis{&plot, QAccelPlot::Axis::Bottom};
@@ -148,7 +148,7 @@ void TestPlotAppearance::namedAxesAssignSidesAutomatically()
 
 void TestPlotAppearance::customAxisLayoutSizesUpdatePlotRect()
 {
-    QAccelPlot::QAccelPlot plot;
+    QAccelPlot::PlotView plot;
     plot.setSize({400.0, 300.0});
     plot.setPadding(10.0);
 
@@ -171,7 +171,7 @@ void TestPlotAppearance::customAxisLayoutSizesUpdatePlotRect()
     QCOMPARE(x2Axis->height(), 48.0);
     QCOMPARE(y2Axis->width(), 68.0);
 
-    QSignalSpy plotRectChanged(&plot, &QAccelPlot::QAccelPlot::plotRectChanged);
+    QSignalSpy plotRectChanged(&plot, &QAccelPlot::PlotView::plotRectChanged);
     yAxis->setLayoutSize(100.0);
     QCOMPARE(plot.plotRect(), QRectF(110.0, 50.0, 220.0, 170.0));
     QCOMPARE(plotRectChanged.count(), 1);
@@ -179,7 +179,7 @@ void TestPlotAppearance::customAxisLayoutSizesUpdatePlotRect()
 
 void TestPlotAppearance::extraAxesUseIndividualLayoutSizes()
 {
-    QAccelPlot::QAccelPlot plot;
+    QAccelPlot::PlotView plot;
     plot.setSize({300.0, 250.0});
     plot.setPadding(10.0);
 
@@ -214,7 +214,7 @@ void TestPlotAppearance::extraAxisSideChangesRelayout_data()
 void TestPlotAppearance::extraAxisSideChangesRelayout()
 {
     QFETCH(QAccelPlot::Axis::Side, side);
-    auto plot = QAccelPlot::QAccelPlot{};
+    auto plot = QAccelPlot::PlotView{};
     plot.setSize({400, 300});
     auto axis = QAccelPlot::Axis{};
     axis.setSide(side);
@@ -234,7 +234,7 @@ void TestPlotAppearance::extraAxisSideChangesRelayout()
 
 void TestPlotAppearance::topSideExtraAxisStacksAboveThePlot()
 {
-    QAccelPlot::QAccelPlot plot;
+    QAccelPlot::PlotView plot;
     plot.setSize({300.0, 250.0});
     plot.setPadding(10.0);
 
@@ -252,7 +252,7 @@ void TestPlotAppearance::topSideExtraAxisStacksAboveThePlot()
 
 void TestPlotAppearance::rightSideExtraAxisStacksRightOfThePlot()
 {
-    QAccelPlot::QAccelPlot plot;
+    QAccelPlot::PlotView plot;
     plot.setSize({300.0, 250.0});
     plot.setPadding(10.0);
 
@@ -269,7 +269,7 @@ void TestPlotAppearance::rightSideExtraAxisStacksRightOfThePlot()
 
 void TestPlotAppearance::duplicateExtraAxisIsIgnored()
 {
-    QAccelPlot::QAccelPlot plot;
+    QAccelPlot::PlotView plot;
     plot.setSize({300.0, 250.0});
     plot.setPadding(10.0);
 
@@ -289,7 +289,7 @@ void TestPlotAppearance::duplicateExtraAxisIsIgnored()
 
 void TestPlotAppearance::axisAlreadyInAnotherSlotIsIgnored()
 {
-    QAccelPlot::QAccelPlot plot;
+    QAccelPlot::PlotView plot;
     auto* primaryAxis = new QAccelPlot::Axis{&plot};
     plot.setXAxis(primaryAxis);
 
@@ -310,7 +310,7 @@ void TestPlotAppearance::axisAlreadyInAnotherSlotIsIgnored()
 
 void TestPlotAppearance::clearingExtraAxesReleasesThem()
 {
-    QAccelPlot::QAccelPlot plot;
+    QAccelPlot::PlotView plot;
     plot.setSize({400.0, 300.0});
     const auto initialPlotRect = plot.plotRect();
     auto first = QAccelPlot::Axis{nullptr, QAccelPlot::Axis::Bottom};
@@ -331,7 +331,7 @@ void TestPlotAppearance::clearingExtraAxesReleasesThem()
 
 void TestPlotAppearance::outOfBoundsExtraAxisIndexReturnsNull()
 {
-    QAccelPlot::QAccelPlot plot;
+    QAccelPlot::PlotView plot;
     auto* extraAxis = new QAccelPlot::Axis{&plot};
     auto extraAxes = plot.extraAxes();
     extraAxes.append(&extraAxes, extraAxis);
@@ -344,7 +344,7 @@ void TestPlotAppearance::outOfBoundsExtraAxisIndexReturnsNull()
 void TestPlotAppearance::tinyPlotNeverGivesAxesNegativeSize()
 {
     // The reserved padding and axis sizes add up to far more than the item itself.
-    QAccelPlot::QAccelPlot plot;
+    QAccelPlot::PlotView plot;
     plot.setSize({20.0, 20.0});
     plot.setPadding(10.0);
 
@@ -398,7 +398,7 @@ void TestPlotAppearance::acceptedReleaseEndsDrag()
     axis->setViewportMin(0.0);
     axis->setViewportMax(100.0);
     plot.setXAxis(axis);
-    connect(&plot, &QAccelPlot::QAccelPlot::mouseReleased, [](QAccelPlot::PlotMouseEvent* event) { event->accept(); });
+    connect(&plot, &QAccelPlot::PlotView::mouseReleased, [](QAccelPlot::PlotMouseEvent* event) { event->accept(); });
 
     const auto pressPosition = QPointF{50.0, 50.0};
     auto press = QMouseEvent{QEvent::MouseButtonPress, pressPosition, pressPosition, pressPosition, Qt::LeftButton, Qt::LeftButton, Qt::NoModifier};
@@ -443,7 +443,7 @@ void TestPlotAppearance::mouseMovedFiresWhileHoveringWithoutButton()
 
     auto movedX = qreal{};
     auto movedButtons = -1;
-    connect(&plot, &QAccelPlot::QAccelPlot::mouseMoved, [&](QAccelPlot::PlotMouseEvent* event) {
+    connect(&plot, &QAccelPlot::PlotView::mouseMoved, [&](QAccelPlot::PlotMouseEvent* event) {
         movedX = event->x();
         movedButtons = event->button();
     });
@@ -463,7 +463,7 @@ void TestPlotAppearance::mouseMovedReportsHeldButtons()
 
     auto button = Qt::MouseButton{Qt::LeftButton};
     auto buttons = Qt::MouseButtons{};
-    connect(&plot, &QAccelPlot::QAccelPlot::mouseMoved, [&](QAccelPlot::PlotMouseEvent* event) {
+    connect(&plot, &QAccelPlot::PlotView::mouseMoved, [&](QAccelPlot::PlotMouseEvent* event) {
         button = event->button();
         buttons = event->buttons();
     });
@@ -484,7 +484,7 @@ void TestPlotAppearance::mouseMovedDoesNotFireTwiceWhileDragging()
     plot.setXAxis(axis);
 
     auto moveCount = 0;
-    connect(&plot, &QAccelPlot::QAccelPlot::mouseMoved, [&](QAccelPlot::PlotMouseEvent*) { ++moveCount; });
+    connect(&plot, &QAccelPlot::PlotView::mouseMoved, [&](QAccelPlot::PlotMouseEvent*) { ++moveCount; });
 
     const auto pressPosition = QPointF{50.0, 50.0};
     auto press = QMouseEvent{QEvent::MouseButtonPress, pressPosition, pressPosition, pressPosition, Qt::LeftButton, Qt::LeftButton, Qt::NoModifier};
@@ -502,7 +502,7 @@ void TestPlotAppearance::mouseMovedDoesNotFireTwiceWhileDragging()
 
 void TestPlotAppearance::tickOverlapChangeTriggersRelayout()
 {
-    QAccelPlot::QAccelPlot plot;
+    QAccelPlot::PlotView plot;
     plot.setSize({300.0, 200.0});
     plot.setPadding(10.0);
 
@@ -517,7 +517,7 @@ void TestPlotAppearance::tickOverlapChangeTriggersRelayout()
 
 void TestPlotAppearance::labelOverflowChangeTriggersRelayout()
 {
-    QAccelPlot::QAccelPlot plot;
+    QAccelPlot::PlotView plot;
     plot.setSize({300.0, 200.0});
     plot.setPadding(10.0);
 
@@ -532,7 +532,7 @@ void TestPlotAppearance::labelOverflowChangeTriggersRelayout()
 
 void TestPlotAppearance::hiddenAxesDoNotReserveLayoutSpace()
 {
-    QAccelPlot::QAccelPlot plot;
+    QAccelPlot::PlotView plot;
     plot.setSize({300.0, 200.0});
     plot.setPadding(10.0);
 
@@ -543,7 +543,7 @@ void TestPlotAppearance::hiddenAxesDoNotReserveLayoutSpace()
 
     QCOMPARE(plot.plotRect(), QRectF(60.0, 10.0, 230.0, 130.0));
 
-    QSignalSpy plotRectChanged(&plot, &QAccelPlot::QAccelPlot::plotRectChanged);
+    QSignalSpy plotRectChanged(&plot, &QAccelPlot::PlotView::plotRectChanged);
     yAxis->setVisible(false);
     QCOMPARE(plot.plotRect(), QRectF(10.0, 10.0, 280.0, 130.0));
     QCOMPARE(yAxis->size(), QSizeF{});
@@ -591,7 +591,7 @@ void TestPlotAppearance::hiddenAxisRetainsCoordinateMapping()
 
 void TestPlotAppearance::hiddenExtraAxisDoesNotReserveLayoutSpace()
 {
-    QAccelPlot::QAccelPlot plot;
+    QAccelPlot::PlotView plot;
     plot.setSize({300.0, 250.0});
     plot.setPadding(10.0);
 
@@ -611,7 +611,7 @@ void TestPlotAppearance::hiddenExtraAxisDoesNotReserveLayoutSpace()
 
 void TestPlotAppearance::destroyedAxesAreUnregistered()
 {
-    QAccelPlot::QAccelPlot plot;
+    QAccelPlot::PlotView plot;
     plot.setSize({300.0, 250.0});
     plot.setPadding(10.0);
 
@@ -632,11 +632,11 @@ void TestPlotAppearance::destroyedAxesAreUnregistered()
 
 void TestPlotAppearance::destroyedSeriesAreUnregistered()
 {
-    auto plot = QAccelPlot::QAccelPlot{};
+    auto plot = QAccelPlot::PlotView{};
     auto* curve = new QAccelPlot::LineCurve;
     curve->setParentItem(&plot);
     QCOMPARE(plot.series().size(), 1);
-    auto changed = QSignalSpy{&plot, &QAccelPlot::QAccelPlot::seriesChanged};
+    auto changed = QSignalSpy{&plot, &QAccelPlot::PlotView::seriesChanged};
 
     delete curve;
 
@@ -647,14 +647,14 @@ void TestPlotAppearance::destroyedSeriesAreUnregistered()
 
 void TestPlotAppearance::reparentedSeriesAreUnregistered()
 {
-    auto first = QAccelPlot::QAccelPlot{};
-    auto second = QAccelPlot::QAccelPlot{};
+    auto first = QAccelPlot::PlotView{};
+    auto second = QAccelPlot::PlotView{};
     auto* curve = new QAccelPlot::LineCurve;
     curve->setParentItem(&first);
     curve->setParentItem(&second);
     QVERIFY(first.series().isEmpty());
     QCOMPARE(second.series().size(), 1);
-    auto firstChanged = QSignalSpy{&first, &QAccelPlot::QAccelPlot::seriesChanged};
+    auto firstChanged = QSignalSpy{&first, &QAccelPlot::PlotView::seriesChanged};
 
     delete curve;
 

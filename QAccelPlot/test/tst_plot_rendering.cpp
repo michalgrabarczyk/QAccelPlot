@@ -5,7 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "QAccelPlot/QAccelPlot.hpp"
+#include "QAccelPlot/PlotView.hpp"
 #include "QAccelPlot/series/PointCloud.hpp"
 
 #include <QGuiApplication>
@@ -219,7 +219,7 @@ void PlotRenderingTest::rendersFillStrokeRectanglesAndPoints()
     component.setData(kScene, QUrl{});
     const auto root = std::unique_ptr<QObject>{component.create()};
     QVERIFY2(root, qPrintable(component.errorString()));
-    auto* plot = qobject_cast<QAccelPlot*>(root.get());
+    auto* plot = qobject_cast<PlotView*>(root.get());
     QVERIFY(plot);
     plot->setParentItem(window.contentItem());
 
@@ -257,7 +257,7 @@ void PlotRenderingTest::rendersEveryPointOfSeveralPointClouds()
     component.setData(kPointCloudScene, QUrl{});
     const auto root = std::unique_ptr<QObject>{component.create()};
     QVERIFY2(root, qPrintable(component.errorString()));
-    auto* plot = qobject_cast<QAccelPlot*>(root.get());
+    auto* plot = qobject_cast<PlotView*>(root.get());
     QVERIFY(plot);
     plot->setParentItem(window.contentItem());
 
@@ -315,7 +315,7 @@ void PlotRenderingTest::rendersPointsBeyondFirstTextureRows()
     component.setData(kPointCloudScene, QUrl{});
     const auto root = std::unique_ptr<QObject>{component.create()};
     QVERIFY2(root, qPrintable(component.errorString()));
-    auto* plot = qobject_cast<QAccelPlot*>(root.get());
+    auto* plot = qobject_cast<PlotView*>(root.get());
     QVERIFY(plot);
     plot->setParentItem(window.contentItem());
     auto* redCloud = root->property("redCloud").value<PointCloud*>();

@@ -11,7 +11,7 @@
 //
 #include "WindowPlacement.hpp"
 
-#include "QAccelPlot/QAccelPlot.hpp"
+#include "QAccelPlot/PlotView.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/materials/internal/DataTextureUploadTotals.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
@@ -225,7 +225,7 @@ public:
             errors_ = component.errorString();
             return;
         }
-        plot_ = qobject_cast<QAccelPlot*>(root_.get());
+        plot_ = qobject_cast<PlotView*>(root_.get());
         plot_->setParentItem(window_.contentItem());
         for (auto* child : plot_->childItems()) {
             if (auto* series = qobject_cast<PlotSeries*>(child)) {
@@ -291,7 +291,7 @@ private:
     QQuickWindow window_;
     QQmlEngine engine_;
     std::unique_ptr<QObject> root_;
-    QAccelPlot* plot_{nullptr};
+    PlotView* plot_{nullptr};
     std::vector<PlotSeries*> series_;
     QString errors_;
 };
