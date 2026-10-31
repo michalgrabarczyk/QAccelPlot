@@ -16,7 +16,9 @@
 
 namespace QAccelPlot {
 
+namespace Internal {
 class SelectionRectangle;
+} // namespace Internal
 
 /// \brief Selects a data-space region by dragging, without changing the plot viewport.
 ///
@@ -218,7 +220,7 @@ private:
     InspectionRowModel* model_;
     QList<QMetaObject::Connection> connections_;
     // Owned as a QObject child.
-    SelectionRectangle* rectangle_;
+    Internal::SelectionRectangle* rectangle_;
 };
 
 } // namespace QAccelPlot

@@ -10,9 +10,12 @@
 #include <QQuickItem>
 
 namespace QAccelPlot {
+class SelectionTool;
+} // namespace QAccelPlot
+
+namespace QAccelPlot::Internal {
 
 class OutlinedRectangle;
-class SelectionTool;
 
 /// \brief Draws the gesture or the selected region of a SelectionTool, clipped to the plot area.
 ///
@@ -30,4 +33,4 @@ private:
     OutlinedRectangle* rectangle_;
 };
 
-} // namespace QAccelPlot
+} // namespace QAccelPlot::Internal

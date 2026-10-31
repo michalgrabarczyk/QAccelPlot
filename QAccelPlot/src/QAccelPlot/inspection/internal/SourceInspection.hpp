@@ -13,7 +13,7 @@
 
 #include <vector>
 
-namespace QAccelPlot {
+namespace QAccelPlot::Internal {
 
 /// \brief Inspection queries that read a series' own buffer whose records are ordered along one axis.
 ///
@@ -76,4 +76,4 @@ void collect(const InspectionSource& source, const InspectionBounds& bounds, int
 
 } // namespace InspectionScan
 
-} // namespace QAccelPlot
+} // namespace QAccelPlot::Internal

@@ -14,7 +14,7 @@
 
 #include <limits>
 
-namespace QAccelPlot {
+namespace QAccelPlot::Internal {
 
 /// \brief Data dimension a query measures along, or along which a series' records are ordered.
 enum class InspectionAxis { X, Y };
@@ -108,4 +108,4 @@ struct SummaryAccumulator {
 /// \brief Returns the signed distance from \a position to the closed interval between \a a and \a b.
 [[nodiscard]] double distanceToInterval(double position, double a, double b) noexcept;
 
-} // namespace QAccelPlot
+} // namespace QAccelPlot::Internal

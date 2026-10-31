@@ -8,7 +8,7 @@
 #include "QAccelPlot/internal/RectangleZoomOverlay.hpp"
 #include "QAccelPlot/PlotRectangleZoom.hpp"
 
-namespace QAccelPlot {
+namespace QAccelPlot::Internal {
 
 RectangleZoomOverlay::RectangleZoomOverlay(QQuickItem* parent, PlotRectangleZoom* configuration)
     : OutlinedRectangle(parent)
@@ -38,4 +38,4 @@ void RectangleZoomOverlay::syncStyle()
     setStyle(configuration_->fillColor(), configuration_->border()->color(), configuration_->border()->width());
 }
 
-} // namespace QAccelPlot
+} // namespace QAccelPlot::Internal

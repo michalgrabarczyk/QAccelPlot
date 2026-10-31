@@ -10,8 +10,10 @@
 #include "QAccelPlot/internal/OutlinedRectangle.hpp"
 
 namespace QAccelPlot {
-
 class PlotRectangleZoom;
+} // namespace QAccelPlot
+
+namespace QAccelPlot::Internal {
 
 class RectangleZoomOverlay final : public OutlinedRectangle {
 public:
@@ -24,4 +26,4 @@ private:
     PlotRectangleZoom* configuration_;
 };
 
-} // namespace QAccelPlot
+} // namespace QAccelPlot::Internal

@@ -34,7 +34,7 @@ qreal limitToPixel(const Axis* axis, const qreal value, const qreal origin, cons
 SelectionTool::SelectionTool(QObject* parent)
     : QObject(parent)
     , model_(new InspectionRowModel(this))
-    , rectangle_(new SelectionRectangle(*this))
+    , rectangle_(new Internal::SelectionRectangle(*this))
 {
 }
 
@@ -458,7 +458,7 @@ void SelectionTool::refreshRows()
 
 bool SelectionTool::selects(const PlotSeries* series) const
 {
-    return series->isVisible() && series->inspection()->matching() == InspectionMatching::Nearest
+    return series->isVisible() && series->inspection()->matching() == Internal::InspectionMatching::Nearest
         && (unbounded(region_.xMin, region_.xMax) || series->xAxis() == xAxis()) && (unbounded(region_.yMin, region_.yMax) || series->yAxis() == yAxis());
 }
 

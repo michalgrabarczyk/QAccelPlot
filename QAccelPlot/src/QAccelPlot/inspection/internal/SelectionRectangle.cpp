@@ -10,7 +10,7 @@
 #include "QAccelPlot/inspection/SelectionTool.hpp"
 #include "QAccelPlot/internal/OutlinedRectangle.hpp"
 
-namespace QAccelPlot {
+namespace QAccelPlot::Internal {
 
 SelectionRectangle::SelectionRectangle(SelectionTool& tool)
     : tool_(tool)
@@ -55,4 +55,4 @@ void SelectionRectangle::sync()
     rectangle_->setStyle(tool_.fillColor(), tool_.border()->color(), tool_.border()->width());
 }
 
-} // namespace QAccelPlot
+} // namespace QAccelPlot::Internal

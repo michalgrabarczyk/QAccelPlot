@@ -64,6 +64,8 @@ QAccelPlot/
 │       ├── Border.*              — Outline color and width (border grouped property)
 │       ├── MathUtils.hpp         — Math utilities
 │       ├── QAccelPlotLogging.*   — Qt logging category
+│       ├── internal/             — Helpers shared across folders or used by PlotView: pointer tracking,
+│       │                           outlined rectangle item, rectangle zoom overlay
 │       ├── annotations/          — DataAnchor (attach QML items to data coords)
 │       ├── axis/                 — Axis, AxisTicker, AxisTickPainter, ColorBar,
 │       │                           internal/ (pan and zoom range math)
@@ -129,6 +131,9 @@ QAccelPlot/
   subdirectories under `src/QAccelPlot/`. Include library headers with the
   `QAccelPlot/` prefix: `"QAccelPlot/series/LineCurve.hpp"` inside `QAccelPlot/`,
   `<QAccelPlot/series/LineCurve.hpp>` in examples.
+- Put library-only helpers in `QAccelPlot::Internal`. A helper used by one
+  folder lives in that folder's `internal/`; a helper shared across folders
+  lives in the top-level `src/QAccelPlot/internal/`.
 - Follow Qt's signal/slot naming: `fooChanged()` signal paired with
   `setFoo()` setter.
 - Prefer `qreal` for geometric values exposed to QML; use `float` for

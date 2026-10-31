@@ -392,10 +392,10 @@ std::optional<LegendEntry> LineCurve::legendEntry() const
     return entry;
 }
 
-InspectionSource LineCurve::inspectionSource() const
+Internal::InspectionSource LineCurve::inspectionSource() const
 {
     const auto points = dataPoints().view();
-    auto source = InspectionSource{};
+    auto source = Internal::InspectionSource{};
     source.count = points.count;
     source.logX = logScaleX();
     source.logY = logScaleY();

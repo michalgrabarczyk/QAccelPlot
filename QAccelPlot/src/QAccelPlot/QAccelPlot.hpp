@@ -28,10 +28,10 @@ namespace QAccelPlot {
 class GridNode;
 class PlotExporter;
 class PlotInspector;
-class RectangleZoomOverlay;
 
 namespace Internal {
 class PointerTracker;
+class RectangleZoomOverlay;
 } // namespace Internal
 
 /// \brief The main plot canvas QML item — hosts axes, curves, and a grid.
@@ -278,7 +278,7 @@ private:
     bool transparentBackground_{false};
     Border* border_{nullptr};
     PlotRectangleZoom* rectangleZoom_{nullptr};
-    RectangleZoomOverlay* rectangleZoomOverlay_{nullptr};
+    Internal::RectangleZoomOverlay* rectangleZoomOverlay_{nullptr};
     QQuickItem* overlay_{nullptr};
     Grid* grid_{nullptr};
     GridNode* gridNode_{nullptr};

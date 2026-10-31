@@ -23,15 +23,15 @@ constexpr auto kMaximumPageSize = int{4096};
 // Series up to this size are scanned per query instead of being indexed, when they are not ordered as the query needs.
 constexpr auto kScanLimit = int{20000};
 
-std::optional<InspectionBounds> normalizedBounds(const qreal xMin, const qreal xMax, const qreal yMin, const qreal yMax)
+std::optional<Internal::InspectionBounds> normalizedBounds(const qreal xMin, const qreal xMax, const qreal yMin, const qreal yMax)
 {
     if (std::isnan(xMin) || std::isnan(xMax) || std::isnan(yMin) || std::isnan(yMax)) {
         return std::nullopt;
     }
-    return InspectionBounds{std::min(xMin, xMax), std::max(xMin, xMax), std::min(yMin, yMax), std::max(yMin, yMax)};
+    return Internal::InspectionBounds{std::min(xMin, xMax), std::max(xMin, xMax), std::min(yMin, yMax), std::max(yMin, yMax)};
 }
 
-InspectionSummary toSummary(const SummaryAccumulator& stats, const quint64 revision)
+InspectionSummary toSummary(const Internal::SummaryAccumulator& stats, const quint64 revision)
 {
     auto result = InspectionSummary{};
     result.dataRevision = revision;
@@ -72,7 +72,7 @@ StepPoint stepPointBetween(const StepMode mode, const bool alongX, const double 
 }
 
 // Whether appending the last record of source keeps its coordinates along axis non-decreasing.
-bool appendKeepsOrder(const InspectionSource& source, const InspectionAxis axis)
+bool appendKeepsOrder(const Internal::InspectionSource& source, const Internal::InspectionAxis axis)
 {
     const auto last = source.count - 1;
     const auto value = source.coordinate(axis, last);
@@ -81,13 +81,13 @@ bool appendKeepsOrder(const InspectionSource& source, const InspectionAxis axis)
 
 } // namespace
 
-struct SeriesInspection::Private : InspectionCache::Host {
+struct SeriesInspection::Private : Internal::InspectionCache::Host {
     enum class Backend { Sorted, Scan, Index };
 
     // How a query is answered, and for the in-place search, the axis the records are ordered along.
     struct Plan {
         Backend backend;
-        InspectionAxis order;
+        Internal::InspectionAxis order;
     };
 
     explicit Private(SeriesInspection& owner)
@@ -95,7 +95,7 @@ struct SeriesInspection::Private : InspectionCache::Host {
     {
     }
 
-    InspectionSource indexSource() const override
+    Internal::InspectionSource indexSource() const override
     {
         return owner.series_.inspectionSource();
     }
@@ -110,101 +110,102 @@ struct SeriesInspection::Private : InspectionCache::Host {
         emit owner.statusChanged();
     }
 
-    void classify(const InspectionSource& source)
+    void classify(const Internal::InspectionSource& source)
     {
         if (!classified) {
-            sortedX = SourceInspection::isSorted(source, InspectionAxis::X);
-            sortedY = SourceInspection::isSorted(source, InspectionAxis::Y);
+            sortedX = Internal::SourceInspection::isSorted(source, Internal::InspectionAxis::X);
+            sortedY = Internal::SourceInspection::isSorted(source, Internal::InspectionAxis::Y);
             classified = true;
         }
     }
 
-    Plan fallback(const InspectionSource& source) const
+    Plan fallback(const Internal::InspectionSource& source) const
     {
-        return {source.count <= kScanLimit ? Backend::Scan : Backend::Index, InspectionAxis::X};
+        return {source.count <= kScanLimit ? Backend::Scan : Backend::Index, Internal::InspectionAxis::X};
     }
 
     // On-screen and region queries can search in place when the records are ordered along either axis.
-    Plan regionPlan(const InspectionSource& source)
+    Plan regionPlan(const Internal::InspectionSource& source)
     {
         classify(source);
         if (sortedX || sortedY) {
-            return {Backend::Sorted, sortedX ? InspectionAxis::X : InspectionAxis::Y};
+            return {Backend::Sorted, sortedX ? Internal::InspectionAxis::X : Internal::InspectionAxis::Y};
         }
         return fallback(source);
     }
 
     // Queries along one axis can search in place only when the records are ordered along that axis.
-    Plan alongPlan(const InspectionSource& source, const InspectionAxis axis)
+    Plan alongPlan(const Internal::InspectionSource& source, const Internal::InspectionAxis axis)
     {
         classify(source);
-        if (axis == InspectionAxis::X ? sortedX : sortedY) {
+        if (axis == Internal::InspectionAxis::X ? sortedX : sortedY) {
             return {Backend::Sorted, axis};
         }
         return fallback(source);
     }
 
-    Plan plan(const InspectionSource& source, const std::optional<InspectionAxis> along)
+    Plan plan(const Internal::InspectionSource& source, const std::optional<Internal::InspectionAxis> along)
     {
         return along ? alongPlan(source, *along) : regionPlan(source);
     }
 
-    InspectionHit nearestAlong(
-        const InspectionSource& source, const InspectionMetric& metric, const InspectionAxis axis, const double pixel, const double radius)
+    Internal::InspectionHit nearestAlong(const Internal::InspectionSource& source, const Internal::InspectionMetric& metric,
+        const Internal::InspectionAxis axis, const double pixel, const double radius)
     {
         switch (alongPlan(source, axis).backend) {
         case Backend::Sorted:
             return sorted.nearestAlong(source, metric, axis, pixel, radius);
         case Backend::Scan:
-            return InspectionScan::nearestAlong(source, metric, axis, pixel, radius);
+            return Internal::InspectionScan::nearestAlong(source, metric, axis, pixel, radius);
         case Backend::Index:
             break;
         }
         return cache.index()->nearestAlong(metric, axis, pixel, radius);
     }
 
-    InspectionHit nearest(const InspectionSource& source, const InspectionMetric& metric, const QPointF& position, const double radius)
+    Internal::InspectionHit nearest(
+        const Internal::InspectionSource& source, const Internal::InspectionMetric& metric, const QPointF& position, const double radius)
     {
         const auto chosen = regionPlan(source);
         switch (chosen.backend) {
         case Backend::Sorted:
             return sorted.nearest(source, metric, chosen.order, position, radius);
         case Backend::Scan:
-            return InspectionScan::nearest(source, metric, position, radius);
+            return Internal::InspectionScan::nearest(source, metric, position, radius);
         case Backend::Index:
             break;
         }
         return cache.index()->nearest(metric, position, radius);
     }
 
-    InspectionNeighbors neighbors(const InspectionSource& source, const InspectionAxis axis, const double value)
+    Internal::InspectionNeighbors neighbors(const Internal::InspectionSource& source, const Internal::InspectionAxis axis, const double value)
     {
         switch (alongPlan(source, axis).backend) {
         case Backend::Sorted:
             return sorted.neighbors(source, axis, value);
         case Backend::Scan:
-            return InspectionScan::neighbors(source, axis, value);
+            return Internal::InspectionScan::neighbors(source, axis, value);
         case Backend::Index:
             break;
         }
         return cache.index()->neighbors(axis, value);
     }
 
-    SummaryAccumulator summarize(const InspectionSource& source, const InspectionBounds& bounds)
+    Internal::SummaryAccumulator summarize(const Internal::InspectionSource& source, const Internal::InspectionBounds& bounds)
     {
         const auto chosen = regionPlan(source);
         switch (chosen.backend) {
         case Backend::Sorted:
             return sorted.summarize(source, chosen.order, bounds);
         case Backend::Scan:
-            return InspectionScan::summarize(source, bounds);
+            return Internal::InspectionScan::summarize(source, bounds);
         case Backend::Index:
             break;
         }
         return cache.index()->summarize(bounds);
     }
 
-    void collect(const InspectionSource& source, const InspectionBounds& bounds, const int offset, const int limit, QList<int>& indices)
+    void collect(const Internal::InspectionSource& source, const Internal::InspectionBounds& bounds, const int offset, const int limit, QList<int>& indices)
     {
         const auto chosen = regionPlan(source);
         switch (chosen.backend) {
@@ -212,7 +213,7 @@ struct SeriesInspection::Private : InspectionCache::Host {
             sorted.collect(source, chosen.order, bounds, offset, limit, indices);
             return;
         case Backend::Scan:
-            InspectionScan::collect(source, bounds, offset, limit, indices);
+            Internal::InspectionScan::collect(source, bounds, offset, limit, indices);
             return;
         case Backend::Index:
             break;
@@ -224,8 +225,8 @@ struct SeriesInspection::Private : InspectionCache::Host {
     bool classified{false};
     bool sortedX{false};
     bool sortedY{false};
-    SourceInspection sorted;
-    InspectionCache cache{*this};
+    Internal::SourceInspection sorted;
+    Internal::InspectionCache cache{*this};
 };
 
 SeriesInspection::~SeriesInspection() = default;
@@ -308,22 +309,22 @@ InspectionDataPoint SeriesInspection::nearest(const QPointF& position, const qre
 
 InspectionDataPoint SeriesInspection::nearestByX(const qreal pixelX, const qreal radius)
 {
-    return nearestAlong(InspectionAxis::X, pixelX, radius);
+    return nearestAlong(Internal::InspectionAxis::X, pixelX, radius);
 }
 
 InspectionDataPoint SeriesInspection::nearestByY(const qreal pixelY, const qreal radius)
 {
-    return nearestAlong(InspectionAxis::Y, pixelY, radius);
+    return nearestAlong(Internal::InspectionAxis::Y, pixelY, radius);
 }
 
 InspectionBracket SeriesInspection::bracketByX(const qreal pixelX)
 {
-    return bracketAlong(InspectionAxis::X, pixelX);
+    return bracketAlong(Internal::InspectionAxis::X, pixelX);
 }
 
 InspectionBracket SeriesInspection::bracketByY(const qreal pixelY)
 {
-    return bracketAlong(InspectionAxis::Y, pixelY);
+    return bracketAlong(Internal::InspectionAxis::Y, pixelY);
 }
 
 InspectionSummary SeriesInspection::summarize(const qreal xMin, const qreal xMax, const qreal yMin, const qreal yMax)
@@ -412,12 +413,12 @@ SeriesInspection::SeriesInspection(PlotSeries& series)
 {
 }
 
-InspectionMatching SeriesInspection::matching() const
+Internal::InspectionMatching SeriesInspection::matching() const
 {
     if (series_.inspectionSource().supported()) {
-        return InspectionMatching::Nearest;
+        return Internal::InspectionMatching::Nearest;
     }
-    return series_.positionInspectionSupported() ? InspectionMatching::Containing : InspectionMatching::None;
+    return series_.positionInspectionSupported() ? Internal::InspectionMatching::Containing : Internal::InspectionMatching::None;
 }
 
 void SeriesInspection::sourceChanged(const bool appended)
@@ -425,8 +426,8 @@ void SeriesInspection::sourceChanged(const bool appended)
     d_->cache.invalidate();
     const auto source = series_.inspectionSource();
     if (appended && d_->classified && source.count > 0) {
-        d_->sortedX = d_->sortedX && appendKeepsOrder(source, InspectionAxis::X);
-        d_->sortedY = d_->sortedY && appendKeepsOrder(source, InspectionAxis::Y);
+        d_->sortedX = d_->sortedX && appendKeepsOrder(source, Internal::InspectionAxis::X);
+        d_->sortedY = d_->sortedY && appendKeepsOrder(source, Internal::InspectionAxis::Y);
         d_->sorted.appended(source.count);
     } else {
         d_->classified = false;
@@ -443,7 +444,7 @@ void SeriesInspection::sourceInvalidated()
     emit statusChanged();
 }
 
-InspectionStatus SeriesInspection::acquire(const InspectionSource& source, const std::optional<InspectionAxis> along)
+InspectionStatus SeriesInspection::acquire(const Internal::InspectionSource& source, const std::optional<Internal::InspectionAxis> along)
 {
     if (!source.supported()) {
         return InspectionStatus::Unsupported;
@@ -462,21 +463,21 @@ InspectionStatus SeriesInspection::acquire(const InspectionSource& source, const
     return d_->cache.index() ? InspectionStatus::Ready : InspectionStatus::Preparing;
 }
 
-std::optional<InspectionMetric> SeriesInspection::metric() const
+std::optional<Internal::InspectionMetric> SeriesInspection::metric() const
 {
     const auto* xAxis = series_.xAxis();
     const auto* yAxis = series_.yAxis();
     if (!xAxis || !yAxis || !(series_.width() > 0) || !(series_.height() > 0)) {
         return std::nullopt;
     }
-    const auto result = InspectionMetric{xAxis->mapping(), yAxis->mapping(), series_.width(), series_.height()};
+    const auto result = Internal::InspectionMetric{xAxis->mapping(), yAxis->mapping(), series_.width(), series_.height()};
     if (!result.x.valid || !result.y.valid) {
         return std::nullopt;
     }
     return result;
 }
 
-InspectionDataPoint SeriesInspection::nearestAlong(const InspectionAxis axis, const qreal pixel, const qreal radius)
+InspectionDataPoint SeriesInspection::nearestAlong(const Internal::InspectionAxis axis, const qreal pixel, const qreal radius)
 {
     auto result = InspectionDataPoint{};
     result.dataRevision = series_.dataRevision();
@@ -498,7 +499,7 @@ InspectionDataPoint SeriesInspection::nearestAlong(const InspectionAxis axis, co
     return makeDataPoint(source, hit.index, hit.distance);
 }
 
-InspectionBracket SeriesInspection::bracketAlong(const InspectionAxis axis, const qreal pixel)
+InspectionBracket SeriesInspection::bracketAlong(const Internal::InspectionAxis axis, const qreal pixel)
 {
     auto result = InspectionBracket{};
     result.dataRevision = series_.dataRevision();
@@ -525,7 +526,7 @@ InspectionBracket SeriesInspection::bracketAlong(const InspectionAxis axis, cons
     return result;
 }
 
-InspectionDataPoint SeriesInspection::makeDataPoint(const InspectionSource& source, const int index, const qreal distance) const
+InspectionDataPoint SeriesInspection::makeDataPoint(const Internal::InspectionSource& source, const int index, const qreal distance) const
 {
     auto result = InspectionDataPoint{};
     result.dataRevision = series_.dataRevision();
@@ -543,13 +544,13 @@ InspectionDataPoint SeriesInspection::makeDataPoint(const InspectionSource& sour
     return result;
 }
 
-InspectionDataPoint SeriesInspection::interpolate(const InspectionMetric& metric, const InspectionAxis axis, const InspectionDataPoint& left,
-    const InspectionDataPoint& right, const qreal pixel, const StepMode stepMode) const
+InspectionDataPoint SeriesInspection::interpolate(const Internal::InspectionMetric& metric, const Internal::InspectionAxis axis,
+    const InspectionDataPoint& left, const InspectionDataPoint& right, const qreal pixel, const StepMode stepMode) const
 {
     auto result = InspectionDataPoint{};
     result.dataRevision = left.dataRevision;
-    const auto alongX = axis == InspectionAxis::X;
-    const auto acrossAxis = alongX ? InspectionAxis::Y : InspectionAxis::X;
+    const auto alongX = axis == Internal::InspectionAxis::X;
+    const auto acrossAxis = alongX ? Internal::InspectionAxis::Y : Internal::InspectionAxis::X;
     const auto pixelAlong = [alongX](const QPointF& position) { return alongX ? position.x() : position.y(); };
     const auto pixelAcross = [alongX](const QPointF& position) { return alongX ? position.y() : position.x(); };
     const auto from = pixelAlong(left.pixelPosition);
