@@ -145,6 +145,8 @@ public:
     /// \brief Selects the region with the given limits; returns false when a limit is NaN.
     Q_INVOKABLE bool select(qreal xMin, qreal xMax, qreal yMin, qreal yMax);
     /// \brief Returns one page of \a series' source indices inside the selection, against its current data.
+    ///
+    /// Pages like \c SeriesInspection::indices(): \a limit must be positive and is capped at 4096.
     Q_INVOKABLE ::QAccelPlot::InspectionPage indices(::QAccelPlot::PlotSeries* series, int offset = 0, int limit = 4096);
     /// \brief Cancels a gesture in progress and clears the selection.
     Q_INVOKABLE void clear();

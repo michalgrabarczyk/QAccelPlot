@@ -246,11 +246,6 @@ InspectionStatus SeriesInspection::status() const
     return d_->cache.requested() ? InspectionStatus::Preparing : InspectionStatus::Idle;
 }
 
-int SeriesInspection::maximumPageSize() const
-{
-    return kMaximumPageSize;
-}
-
 quint64 SeriesInspection::indexBytes() const
 {
     auto bytes = quint64{d_->sorted.storageBytes()};

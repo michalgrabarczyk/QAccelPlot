@@ -180,7 +180,7 @@ void TestSeriesInspection::summariesAndPages()
     QVERIFY(!second.hasMore);
     QCOMPARE(second.indices, (QList<int>{3}));
     // The page size is clamped and the effective value reported.
-    QCOMPARE(inspection->indices(0, 3, 0, 4, 0, 1000000).limit, inspection->maximumPageSize());
+    QCOMPARE(inspection->indices(0, 3, 0, 4, 0, 1000000).limit, 4096);
     QCOMPARE(inspection->indices(0, 3, 0, 4, -1, 10).status, InspectionStatus::InvalidArgument);
     QCOMPARE(inspection->indices(0, 3, 0, 4, 0, 0).status, InspectionStatus::InvalidArgument);
     QCOMPARE(inspection->indices(kNaN, 3, 0, 4).status, InspectionStatus::InvalidArgument);
