@@ -7,7 +7,7 @@
 //
 #include "QAccelPlot/renderers/LineCurveLineRenderer.hpp"
 
-#include "QAccelPlot/effects/GradientCoordinateUtils.hpp"
+#include "QAccelPlot/effects/internal/GradientCoordinates.hpp"
 #include "QAccelPlot/materials/DataTextureMaterial.hpp"
 #include "QAccelPlot/materials/GradientFillMaterial.hpp"
 #include "QAccelPlot/materials/GradientLineMaterial.hpp"
@@ -45,7 +45,7 @@ float normalizedGradientFillValue(const GradientFillPayload& gradientPayload, co
     // curve whenever an endpoint lies outside the configured gradient range.
     // The fragment shader clamps the interpolated coordinate immediately before
     // sampling, preserving endpoint-color saturation beyond the configured range.
-    return unboundedGradientCoordinate(gradientPayload.direction, value, valueMin, valueMax);
+    return Internal::unboundedGradientCoordinate(gradientPayload.direction, value, valueMin, valueMax);
 }
 
 QSGGeometryNode* createLineNode(const int vertexCount, const bool gradientStroke)

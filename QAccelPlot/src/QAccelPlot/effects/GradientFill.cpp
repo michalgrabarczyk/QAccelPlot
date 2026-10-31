@@ -8,7 +8,7 @@
 #include "QAccelPlot/effects/GradientFill.hpp"
 
 #include "QAccelPlot/MathUtils.hpp"
-#include "QAccelPlot/effects/GradientUtils.hpp"
+#include "QAccelPlot/effects/internal/GradientStops.hpp"
 
 #include <QMetaMethod>
 #include <QQmlProperty>
@@ -203,7 +203,7 @@ void GradientFill::refresh()
     if (colormap_ || !gradient_ || !enabled()) {
         return;
     }
-    if (readEffectStops(colormap_, gradient_) != payload_.stops) {
+    if (Internal::readEffectStops(colormap_, gradient_) != payload_.stops) {
         emit effectChanged();
     }
 }
@@ -223,7 +223,7 @@ GradientFillPayload GradientFill::readPayload() const
         return payload;
     }
 
-    payload.stops = readEffectStops(colormap_, gradient_);
+    payload.stops = Internal::readEffectStops(colormap_, gradient_);
     return payload;
 }
 

@@ -11,7 +11,7 @@
 
 #include <algorithm>
 
-namespace QAccelPlot {
+namespace QAccelPlot::Internal {
 
 /// \brief Returns an unbounded palette coordinate for a data-space \a value.
 ///
@@ -40,4 +40,4 @@ template <typename Payload> void resolveGradientValueRange(Payload& payload, con
     }
 }
 
-} // namespace QAccelPlot
+} // namespace QAccelPlot::Internal

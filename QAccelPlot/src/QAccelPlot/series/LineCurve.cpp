@@ -9,9 +9,9 @@
 #include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
-#include "QAccelPlot/effects/GradientCoordinateUtils.hpp"
 #include "QAccelPlot/effects/GradientFill.hpp"
 #include "QAccelPlot/effects/GradientStroke.hpp"
+#include "QAccelPlot/effects/internal/GradientCoordinates.hpp"
 #include "QAccelPlot/inspection/internal/InspectionTypes.hpp"
 #include "QAccelPlot/legend/LegendEntry.hpp"
 #include "QAccelPlot/materials/internal/DataTextureLayout.hpp"
@@ -139,7 +139,7 @@ template <typename Effect, typename Payload, typename RangeFn> Payload resolveGr
     // Reading the data range can scan the records, so it is skipped when both bounds are fixed.
     if (!payload.gradientValueMin.has_value() || !payload.gradientValueMax.has_value()) {
         const auto [min, max] = rangeFn(payload.direction);
-        resolveGradientValueRange(payload, min, max);
+        Internal::resolveGradientValueRange(payload, min, max);
     }
     return payload;
 }

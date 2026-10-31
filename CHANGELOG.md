@@ -131,6 +131,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   Measure frame rates with the Performance Lab.
 - `RectVertexCache` from the public headers. It was an internal helper of
   `BarSeries` and `RectangleSeries`.
+- `effects/GradientCoordinateUtils.hpp` and `effects/GradientUtils.hpp` from
+  the public headers. Their helpers were internal to the gradient effects,
+  `Colormap`, and `LineCurve`.
 
 ### Fixed
 
