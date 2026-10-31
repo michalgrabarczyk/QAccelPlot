@@ -11,6 +11,7 @@
 #include "QAccelPlot/inspection/SeriesInspection.hpp"
 #include "QAccelPlot/series/DataPointStore.hpp"
 
+#include <QList>
 #include <QPointer>
 #include <QQuickItem>
 #include <QRectF>
@@ -168,6 +169,11 @@ public:
     ///
     /// Series that override it emit \c legendEntryChanged() whenever the result changes.
     virtual std::optional<LegendEntry> legendEntry() const;
+    /// \brief Returns the legend rows of the series. Default: the \c legendEntry(), if any.
+    ///
+    /// A series colored by category returns one entry per category, labeled by its \c name.
+    /// Series that override it emit \c legendEntryChanged() whenever the result changes.
+    virtual QList<LegendEntry> legendEntries() const;
 
     /// \brief Replaces the series data with \a count data points copied from an interleaved double array.
     ///
@@ -215,7 +221,7 @@ signals:
     void hoverEnabledChanged();
     /// \brief Emitted when the hovered property changes.
     void hoveredChanged();
-    /// \brief Emitted when the result of \c legendEntry() changes.
+    /// \brief Emitted when the result of \c legendEntry() or \c legendEntries() changes.
     void legendEntryChanged();
 
 protected:

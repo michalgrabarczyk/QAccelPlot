@@ -13,18 +13,22 @@
 
 #include <QColor>
 #include <QObject>
+#include <QString>
 
 namespace QAccelPlot {
 
-/// \brief How a legend draws one series: its symbol, color, line, and marker.
+/// \brief How a legend draws one row of a series: its label, symbol, color, line, and marker.
 ///
-/// Returned by \c PlotSeries::legendEntry() and exposed by \c LegendModel as the \c entry role.
+/// Returned by \c PlotSeries::legendEntry() and \c PlotSeries::legendEntries(), and exposed by
+/// \c LegendModel as the \c entry role.
 /// The line fields apply to the \c Line symbol and the marker fields to \c Line and \c Marker.
 ///
-/// \sa LegendModel, PlotSeries::legendEntry()
+/// \sa LegendModel, PlotSeries::legendEntries()
 struct LegendEntry {
     Q_GADGET
     QML_ANONYMOUS
+    /// \brief Row label, such as a category name. Empty labels the row with the series name.
+    Q_PROPERTY(QString name MEMBER name CONSTANT)
     /// \brief Symbol style.
     Q_PROPERTY(PlotSeries::LegendSymbol symbol MEMBER symbol CONSTANT)
     /// \brief Color of the line, marker, or fill.
@@ -47,6 +51,7 @@ struct LegendEntry {
     Q_PROPERTY(qreal antialiasingFeather MEMBER antialiasingFeather CONSTANT)
 
 public:
+    QString name;                                                    ///< \brief Row label, or empty for the series name.
     PlotSeries::LegendSymbol symbol{PlotSeries::LegendSymbol::Line}; ///< \brief Symbol style.
     QColor color;                                                    ///< \brief Line, marker, or fill color.
     qreal lineWidth{1.0};                                            ///< \brief Line width in pixels.

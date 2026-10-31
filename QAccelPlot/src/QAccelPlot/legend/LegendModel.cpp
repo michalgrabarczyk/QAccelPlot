@@ -71,14 +71,23 @@ QVariant LegendModel::data(const QModelIndex& index, const int role) const
     if (!index.isValid() || index.row() < 0 || index.row() >= count()) {
         return {};
     }
-    const auto* series = rows_[index.row()].data();
+    const auto& row = rows_[index.row()];
+    const auto* series = row.series.data();
     if (!series) {
         return {};
     }
+    const auto entries = series->legendEntries();
+    if (row.entry >= entries.size()) {
+        return {};
+    }
+    const auto& entry = entries[row.entry];
     switch (role) {
     case SeriesRole:
         return QVariant::fromValue(const_cast<PlotSeries*>(series));
     case NameRole:
+        if (!entry.name.isEmpty()) {
+            return entry.name;
+        }
         if (!series->name().isEmpty()) {
             return series->name();
         }
@@ -86,10 +95,8 @@ QVariant LegendModel::data(const QModelIndex& index, const int role) const
             return series->objectName();
         }
         return QStringLiteral("Series %1").arg(index.row() + 1);
-    case EntryRole: {
-        const auto entry = series->legendEntry();
-        return entry ? QVariant::fromValue(*entry) : QVariant{};
-    }
+    case EntryRole:
+        return QVariant::fromValue(entry);
     default:
         return {};
     }
@@ -130,10 +137,14 @@ void LegendModel::onSeriesDestroyed()
 
 void LegendModel::refreshRows()
 {
-    auto rows = QList<QPointer<PlotSeries>>{};
+    auto rows = QList<Row>{};
     for (const auto& series : std::as_const(series_)) {
-        if (series && series->isVisible() && series->legendEntry()) {
-            rows.append(series);
+        if (!series || !series->isVisible()) {
+            continue;
+        }
+        const auto entryCount = series->legendEntries().size();
+        for (auto entry = 0; entry < entryCount; ++entry) {
+            rows.append(Row{series, entry});
         }
     }
     if (rows == rows_) {
@@ -149,6 +160,11 @@ void LegendModel::refreshRows()
     if (count() != previousCount) {
         emit countChanged();
     }
+}
+
+bool LegendModel::Row::operator==(const Row& other) const
+{
+    return series == other.series && entry == other.entry;
 }
 
 } // namespace QAccelPlot

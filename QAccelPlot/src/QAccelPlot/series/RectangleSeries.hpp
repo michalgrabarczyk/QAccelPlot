@@ -8,6 +8,7 @@
 #pragma once
 
 #include "QAccelPlot/Border.hpp"
+#include "QAccelPlot/series/Category.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
 #include "QAccelPlot/series/SpatialGrid.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
@@ -18,7 +19,9 @@
 #include <QtQml/qqmlregistration.h>
 #endif
 
+#include <QList>
 #include <QPointF>
+#include <QQmlListProperty>
 #include <QSizeF>
 
 #include <memory>
@@ -28,6 +31,7 @@
 namespace QAccelPlot {
 
 namespace Internal {
+class CategoryList;
 class HoverIndexBudget;
 class RectVertexCache;
 }
@@ -45,8 +49,22 @@ class RectMaterial;
 /// \c y2 = +Infinity for a full-height span. Infinite edges don't affect the axes' data ranges.
 /// Rectangles with a NaN edge are not drawn or hovered.
 ///
-/// Each rectangle can carry a \c category, an index into \c categoryColors. Rectangles without a
-/// category, or with one outside \c categoryColors, use \c color.
+/// Each rectangle can carry a \c category. List the categories in \c categories as \c Category
+/// objects, each with a \c value and an optional \c name and \c color:
+///
+/// \code
+/// QAccelPlot.RectangleSeries {
+///     categories: [
+///         QAccelPlot.Category { value: 0; name: "Running"; color: "seagreen" },
+///         QAccelPlot.Category { value: 1; name: "Alarm"; color: "firebrick" }
+///     ]
+///     Component.onCompleted: setData([{ x1: 0, x2: 40, category: "Running" }])
+/// }
+/// \endcode
+///
+/// A rectangle is filled with the color of the category whose \c value equals its \c category.
+/// Rectangles without a category, or whose category has no color or is not listed, use \c color.
+/// The legend shows one row per category.
 ///
 /// Set \c antialiasing to smooth edges that fall between pixels. It is off by default because
 /// rectangles that touch then show faint seams.
@@ -62,8 +80,11 @@ class RectangleSeries : public PlotSeries {
 
     /// \brief Fill color of rectangles without a category color. Default: \c Colors.dark.seriesPrimary with alpha 50.
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
-    /// \brief Fill colors indexed by each rectangle's \c category. Default: empty.
-    Q_PROPERTY(QList<QColor> categoryColors READ categoryColors WRITE setCategoryColors NOTIFY categoryColorsChanged)
+    /// \brief The rectangles' categories. Default: empty.
+    ///
+    /// The first of categories that share a value or a name wins, and the others log a warning.
+    /// Edits to a listed \c Category apply at once.
+    Q_PROPERTY(QQmlListProperty<Category> categories READ categories NOTIFY categoriesChanged)
     /// \brief Outline inside each rectangle's edges, e.g. <tt>border.width: 1</tt>. Default: black, width 0.
     ///
     /// On rectangles too small for two outlines, the outline narrows so at least 1 px of fill stays visible.
@@ -90,10 +111,10 @@ public:
     /// \brief Sets the fill color to \a color.
     void setColor(const QColor& color);
 
-    /// \brief Returns the fill colors indexed by category.
-    QList<QColor> categoryColors() const;
-    /// \brief Sets the fill colors indexed by category to \a colors.
-    void setCategoryColors(const QList<QColor>& colors);
+    /// \brief Returns the categories as a QML list.
+    QQmlListProperty<Category> categories();
+    /// \brief Replaces the categories with \a categories. The series does not take ownership.
+    void setCategories(const QList<Category*>& categories);
 
     /// \brief Returns the grouped outline settings. The object is owned by the series.
     Border* border() const;
@@ -119,20 +140,22 @@ public:
     /// \brief Loads rectangles from \a rects, a QML list of objects with \c x1, \c y1, \c x2, \c y2 properties.
     ///
     /// A missing or null \c x1 / \c y1 is -Infinity and a missing \c x2 / \c y2 is +Infinity, so
-    /// <tt>{ x1: 8, x2: 12 }</tt> is a full-height span. An optional integer \c category selects
-    /// the fill color from \c categoryColors.
+    /// <tt>{ x1: 8, x2: 12 }</tt> is a full-height span. An optional \c category is a category
+    /// \c value or \c name; names resolve against \c categories now. Any other \c category is
+    /// ignored with a warning.
     Q_INVOKABLE void setData(const QVariantList& rects);
 
     // The PlotSeries overloads take interleaved (x1, y1, x2, y2) rectangles, as doubles or floats,
-    // and clear the categories.
+    // and clear the rectangles' categories.
     using PlotSeries::postData;
     using PlotSeries::setData;
     using PlotSeries::setDataF;
 
-    /// \brief Moves \a data and per-rectangle \a categories (empty, or exactly \a rectCount) into the series.
+    /// \brief Moves \a data and per-rectangle category values \a categories (empty, or exactly \a rectCount) into the series.
     void setData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
 
-    /// \brief Like \c setDataF(\a data, \a rectCount) and also moves per-rectangle \a categories (empty, or exactly \a rectCount) into the series.
+    /// \brief Like \c setDataF(\a data, \a rectCount) and also moves per-rectangle category values \a categories (empty, or exactly \a rectCount) into the
+    /// series.
     void setDataF(std::vector<float>&& data, std::vector<int>&& categories, int rectCount);
 
     /// \brief Thread-safe: queues \c setData(\a data, \a categories, \a rectCount) to the item's thread.
@@ -145,13 +168,19 @@ public:
     Q_INVOKABLE void clearData() override;
     /// \brief Returns the legend entry: the symbol and color of the rectangles.
     std::optional<LegendEntry> legendEntry() const override;
+    /// \brief Returns one legend entry per category, or the \c legendEntry() when there are no categories.
+    QList<LegendEntry> legendEntries() const override;
 
-    /// \brief Sets one category per rectangle. An empty list clears categories; any other size must equal \c count.
-    Q_INVOKABLE void setCategories(const QList<int>& categories);
+    /// \brief Sets one category per rectangle, each a category \c value or \c name.
+    ///
+    /// An empty list clears them; any other size must equal \c count. Other values leave their
+    /// rectangle without a category and log a warning.
+    Q_INVOKABLE void setDataPointCategories(const QVariantList& categories);
 
     /// \brief Returns rectangle \a index as an object with \c x1, \c y1, \c x2, \c y2 properties.
     ///
-    /// Includes \c category when categories are set. Returns an empty object when \a index is out of range.
+    /// Includes \c category when the rectangles have categories, and \c categoryName when that
+    /// category has a name. Returns an empty object when \a index is out of range.
     Q_INVOKABLE QVariantMap rectangleAt(int index) const;
 
     /// \brief Returns the index of the topmost rectangle under item position \a position, or -1.
@@ -165,8 +194,8 @@ public:
 signals:
     /// \brief Emitted when the color property changes.
     void colorChanged();
-    /// \brief Emitted when the categoryColors property changes.
-    void categoryColorsChanged();
+    /// \brief Emitted when a category is added, removed, or edited.
+    void categoriesChanged();
     /// \brief Emitted when the hoverColor property changes.
     void hoverColorChanged();
     /// \brief Emitted when the minimumWidth property changes.
@@ -193,6 +222,7 @@ protected:
     void onDataPointsChanged(DataChange change, int previousCount) override;
 
 private:
+    void onCategoriesChanged();
     bool validateCategories(std::size_t categoryCount, int rectCount) const;
     void applyData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
     void applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, int rectCount);
@@ -230,7 +260,7 @@ private:
     void buildVertexCache(int rectCount);
 
     QColor color_;
-    QList<QColor> categoryColors_;
+    std::unique_ptr<Internal::CategoryList> categories_;
     Border* border_{new Border{Qt::black, 0.0, this}};
     QColor hoverColor_;
     qreal minimumWidth_{1.0};

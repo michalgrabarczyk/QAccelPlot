@@ -5,6 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
+import QtQml.Models
 import QtQuick
 import QAccelPlot as QAccelPlot
 
@@ -16,16 +17,21 @@ QAccelPlot.Plot {
     readonly property var seriesColors: ["mediumaquamarine", "#ffb454", "#ff6b9d", "cornflowerblue"]
     // Bars narrower than a pixel overlap, so each gets fainter as the count grows and overlap adds up to brightness.
     readonly property real barOpacity: Math.max(0.02, Math.min(1, 1500 / settings.count))
-    // One color per category, from blue for the lowest bars to yellow for the highest.
-    readonly property var categoryColors: {
-        const colors = [];
-        for (let category = 0; category < settings.categoryCount; ++category) {
-            colors.push(Qt.hsla(0.62 - 0.48 * category / Math.max(1, settings.categoryCount - 1), 0.85, 0.6, barOpacity));
-        }
-        return colors;
-    }
+    readonly property var categories: Array.from({ length: levels.count }, (_, index) => levels.objectAt(index))
 
     legendVisible: false
+
+    // One category per level, from blue for the lowest bars to yellow for the highest.
+    Instantiator {
+        id: levels
+        model: plot.settings.categoryCount
+
+        QAccelPlot.Category {
+            required property int index
+            value: index
+            color: Qt.hsla(0.62 - 0.48 * index / Math.max(1, plot.settings.categoryCount - 1), 0.85, 0.6, plot.barOpacity)
+        }
+    }
 
     // A bar's position is its index, so the range follows the bar count.
     xAxis: ExampleAxis {
@@ -55,7 +61,7 @@ QAccelPlot.Plot {
             xAxis: plot.xAxis
             yAxis: plot.yAxis
             color: Qt.rgba(barColor.r, barColor.g, barColor.b, plot.barOpacity)
-            categoryColors: plot.categoryColors
+            categories: plot.categories
             barWidth: plot.settings.barWidth
             border.width: plot.settings.borderWidth
             border.color: QAccelPlot.Colors.dark.plotArea

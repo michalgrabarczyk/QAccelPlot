@@ -20,9 +20,8 @@ Window {
     required property real timelineEnd
     readonly property real dayMs: 24 * 60 * 60 * 1000
     readonly property var machineNames: ["Press 1", "Press 2", "Press 3", "Lathe 1", "Lathe 2", "Mill 1", "Mill 2", "Mill 3", "Welder 1", "Welder 2", "Packer 1", "Packer 2"]
-    // Indexed by the state category set in C++.
-    readonly property var stateNames: ["Running", "Idle", "Setup", "Alarm"]
-    readonly property var stateColors: [colorPalette.statusGood, colorPalette.seriesMuted, colorPalette.seriesPrimary, colorPalette.statusError]
+    // Set from C++: the value of each state in its State enum, which the data carries as the category.
+    required property var stateValues
 
     width: 1200
     height: 800
@@ -61,21 +60,24 @@ Window {
             Layout.fillWidth: true
             spacing: 8
 
+            // One row per category of the states series.
             Repeater {
-                model: window.stateNames
+                model: QAccelPlot.LegendModel {
+                    series: [states]
+                }
 
                 RowLayout {
-                    required property int index
-                    required property string modelData
+                    required property string name
+                    required property var entry
                     spacing: 4
 
                     Rectangle {
                         implicitWidth: 12
                         implicitHeight: 12
-                        color: window.stateColors[parent.index]
+                        color: parent.entry.color
                     }
                     Label {
-                        text: parent.modelData
+                        text: parent.name
                         color: colorPalette.text
                     }
                 }
@@ -157,14 +159,19 @@ Window {
                 }
             }
 
-            // Filled from C++ with setData(), which also passes one state category per interval.
+            // Filled from C++ with setData(), which also passes one State value per interval as its category.
             QAccelPlot.RectangleSeries {
                 id: states
                 objectName: "states"
                 xAxis: plot.xAxis
                 yAxis: plot.yAxis
                 color: colorPalette.seriesMuted
-                categoryColors: window.stateColors
+                categories: [
+                    QAccelPlot.Category { value: window.stateValues.Running; name: "Running"; color: colorPalette.statusGood },
+                    QAccelPlot.Category { value: window.stateValues.Idle; name: "Idle"; color: colorPalette.seriesMuted },
+                    QAccelPlot.Category { value: window.stateValues.Setup; name: "Setup"; color: colorPalette.seriesPrimary },
+                    QAccelPlot.Category { value: window.stateValues.Alarm; name: "Alarm"; color: colorPalette.statusError }
+                ]
                 border.width: outlineCheck.checked ? 1 : 0
                 border.color: colorPalette.plotArea
                 minimumWidth: minimumWidthSlider.value
@@ -214,7 +221,7 @@ Window {
                                     return "";
                                 }
                                 const machine = window.machineNames[Math.round((interval.y1 + interval.y2) / 2)];
-                                return machine + " · " + window.stateNames[interval.category] + "\n" + window.formatTime(interval.x1) + " – "
+                                return machine + " · " + interval.categoryName + "\n" + window.formatTime(interval.x1) + " – "
                                     + window.formatTime(interval.x2) + " (" + window.formatDuration(interval.x2 - interval.x1) + ")";
                             }
                         }

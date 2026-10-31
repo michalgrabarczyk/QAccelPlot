@@ -14,6 +14,7 @@
 #include <QGuiApplication>
 #include <QLocale>
 #include <QQmlApplicationEngine>
+#include <QVariantMap>
 
 #include <algorithm>
 #include <array>
@@ -29,8 +30,13 @@ constexpr auto kDayCount = 14;
 constexpr auto kLaneHalfHeight = 0.4;
 constexpr auto kMinuteMs = 60'000.0;
 
-// Must match stateNames in main.qml.
+// A rectangle's category is its State. main.qml lists the categories with these values.
 enum State { Running, Idle, Setup, Alarm };
+
+QVariantMap stateValues()
+{
+    return {{QStringLiteral("Running"), Running}, {QStringLiteral("Idle"), Idle}, {QStringLiteral("Setup"), Setup}, {QStringLiteral("Alarm"), Alarm}};
+}
 
 struct Timeline {
     std::vector<double> rects; // x1, y1, x2, y2 per state interval
@@ -86,7 +92,8 @@ int main(int argc, char* argv[])
 
     const auto start = static_cast<double>(QDateTime{QDate{2026, 3, 2}, QTime{0, 0}}.toMSecsSinceEpoch());
     const auto end = start + kDayCount * 24 * 60 * kMinuteMs;
-    engine.setInitialProperties({{QStringLiteral("timelineStart"), start}, {QStringLiteral("timelineEnd"), end}});
+    engine.setInitialProperties(
+        {{QStringLiteral("timelineStart"), start}, {QStringLiteral("timelineEnd"), end}, {QStringLiteral("stateValues"), stateValues()}});
     engine.load(QUrl(QStringLiteral("qrc:/app/qml/main.qml")));
     auto* root = engine.rootObjects().value(0);
     auto* states = root ? root->findChild<QAccelPlot::RectangleSeries*>(QStringLiteral("states")) : nullptr;

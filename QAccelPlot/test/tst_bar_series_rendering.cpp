@@ -94,7 +94,7 @@ constexpr auto kNarrowAndCategoryScene = R"(
         xAxis: plot.xAxis
         yAxis: plot.yAxis
         color: "blue"
-        categoryColors: ["lime"]
+        categories: [Category { value: 0; color: "lime" }]
         barWidth: 1
         Component.onCompleted: setData([{ position: 2, value: 4 }, { position: 8, value: 4, category: 0 }])
     }
@@ -140,7 +140,7 @@ constexpr auto kColormapScene = R"(
         xAxis: plot.xAxis
         yAxis: plot.yAxis
         color: "lime"
-        categoryColors: ["yellow"]
+        categories: [Category { value: 0; color: "yellow" }]
         hoverColor: "white"
         barWidth: 1
         colormap: Colormap {

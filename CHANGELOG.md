@@ -44,6 +44,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   you can draw `selectionRect` yourself.
 - `PlotInspector.cursorPixelX` and `cursorPixelY` place the cursor in
   plot-local pixels; it stays on those pixels when the axes pan or zoom.
+- Named categories on `BarSeries` and `RectangleSeries`: `categories` lists
+  `Category` objects with a `value`, `name`, and `color`, a data point's
+  `category` is a value or, in QML, a name, and the legend shows one row per
+  category through `PlotSeries::legendEntries()`.
 - A Vibration Monitoring showcase: eight accelerometer channels streamed live,
   2M points replaced every frame, with spectrum, spectrogram, and RMS panels.
   Examples can record deterministic frames with `--record`, and
@@ -80,6 +84,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `selectionRect`, matching `PlotView.rectangleZoom`. Signals and C++
   accessors follow: `visibleChanged()`, `isVisible()`, `setVisible()`,
   `selectionRect()`, `selectionRectChanged()`.
+- `BarSeries` and `RectangleSeries` take `categories` instead of
+  `categoryColors`: replace `categoryColors: [a, b]` with
+  `categories: [Category { value: 0; color: a }, Category { value: 1; color: b }]`.
+  `setCategories()` for the data points is now `setDataPointCategories()`. A
+  QML `category` that is neither a whole number nor a category name is ignored
+  with a warning.
 - Series use the `antialiasing` property inherited from `Item`.
   `LineCurve.antialiasingEnabled`, `PointCloud.antialiasingEnabled`, and
   `LegendEntry.antialiasingEnabled` are now `antialiasing`. `BandSeries` edge

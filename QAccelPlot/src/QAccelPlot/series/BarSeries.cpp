@@ -12,6 +12,7 @@
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/materials/BarMaterial.hpp"
 #include "QAccelPlot/materials/DataTextureMaterial.hpp"
+#include "QAccelPlot/series/internal/CategoryList.hpp"
 #include "QAccelPlot/series/internal/RectGeometry.hpp"
 #include "QAccelPlot/series/internal/RectVertexCache.hpp"
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
@@ -107,6 +108,7 @@ void appendRestingBars(std::vector<double>& bars, const std::vector<double>& sou
 BarSeries::BarSeries(QQuickItem* parent)
     : ColormappedSeries(barLayout(Qt::Vertical, false), DataPointWording{"data bar", "bars", "values", "values"}, parent)
     , color_(ColorPalette::dark().seriesPrimary)
+    , categories_(std::make_unique<Internal::CategoryList>("BarSeries"))
     , transition_(std::make_unique<TransitionRunner>(this))
     , vertexCache_(std::make_unique<Internal::RectVertexCache>())
 {
@@ -120,6 +122,9 @@ BarSeries::BarSeries(QQuickItem* parent)
     connect(transition_.get(), &TransitionRunner::interrupted, this, &BarSeries::endTransition);
     connect(transition_.get(), &TransitionRunner::transitionDestroyed, this, &BarSeries::transitionChanged);
     connect(this, &BarSeries::colorChanged, this, &PlotSeries::legendEntryChanged);
+    // A colormap replaces the per-category legend entries.
+    connect(this, &ColormappedSeries::colormapChanged, this, &PlotSeries::legendEntryChanged);
+    connect(categories_.get(), &Internal::CategoryList::changed, this, &BarSeries::onCategoriesChanged);
 }
 
 BarSeries::~BarSeries()
@@ -224,22 +229,14 @@ void BarSeries::setColor(const QColor& color)
     update();
 }
 
-QList<QColor> BarSeries::categoryColors() const
+QQmlListProperty<Category> BarSeries::categories()
 {
-    return categoryColors_;
+    return categories_->listProperty(this);
 }
 
-void BarSeries::setCategoryColors(const QList<QColor>& colors)
+void BarSeries::setCategories(const QList<Category*>& categories)
 {
-    if (categoryColors_ == colors) {
-        return;
-    }
-    categoryColors_ = colors;
-    if (!drawnCategories().empty()) {
-        vertexCache_->invalidate();
-    }
-    emit categoryColorsChanged();
-    update();
+    categories_->setCategories(categories);
 }
 
 BarSeries::ColorSource BarSeries::colorSource() const
@@ -314,9 +311,8 @@ void BarSeries::setData(const QVariantList& bars)
             values[0] = numberOr(map.value(QStringLiteral("position")), static_cast<double>(i));
         }
         values[stride - 1] = numberOr(isObject ? map.value(QStringLiteral("value")) : bar, kNaN);
-        const auto category = map.value(QStringLiteral("category"));
-        if (category.isValid() && !category.isNull()) {
-            categories[static_cast<size_t>(i)] = category.toInt();
+        if (const auto category = categories_->table().dataPointCategory(map.value(QStringLiteral("category")), "BarSeries", i)) {
+            categories[static_cast<size_t>(i)] = *category;
             anyCategory = true;
         }
     }
@@ -397,13 +393,25 @@ std::optional<LegendEntry> BarSeries::legendEntry() const
     return entry;
 }
 
-void BarSeries::setCategories(const QList<int>& categories)
+QList<LegendEntry> BarSeries::legendEntries() const
+{
+    if (categories_->table().empty() || colormap()) {
+        return PlotSeries::legendEntries();
+    }
+    return categories_->table().legendEntries(*legendEntry());
+}
+
+void BarSeries::setDataPointCategories(const QVariantList& categories)
 {
     if (!categories.isEmpty() && categories.size() != count()) {
         qCWarning(lcQAccelPlot) << "BarSeries received" << categories.size() << "categories for" << count() << "bars";
         return;
     }
-    dataPoints().setCategories(std::vector<int>(categories.cbegin(), categories.cend()));
+    auto values = std::vector<int>(static_cast<size_t>(categories.size()), -1);
+    for (qsizetype i = 0; i < categories.size(); ++i) {
+        values[static_cast<size_t>(i)] = categories_->table().dataPointCategory(categories[i], "BarSeries", i).value_or(-1);
+    }
+    dataPoints().setCategories(std::move(values));
     if (animating()) {
         transitionCategories_ = transitionCategories(transitionCategories_, drawnBarCount());
     }
@@ -425,7 +433,12 @@ QVariantMap BarSeries::barAt(const int index) const
         bar.insert(QStringLiteral("position"), component(index, 0));
     }
     if (hasCategories()) {
-        bar.insert(QStringLiteral("category"), dataPoints().categories()[static_cast<size_t>(index)]);
+        const auto category = dataPoints().categories()[static_cast<size_t>(index)];
+        bar.insert(QStringLiteral("category"), category);
+        const auto name = categories_->table().name(category);
+        if (!name.isEmpty()) {
+            bar.insert(QStringLiteral("categoryName"), name);
+        }
     }
     return bar;
 }
@@ -570,6 +583,19 @@ int BarSeries::dataPointValueCount() const
 
 void BarSeries::onAxisScaleChanged()
 {
+    update();
+}
+
+void BarSeries::onCategoriesChanged()
+{
+    if (!drawnCategories().empty()) {
+        vertexCache_->invalidate();
+    }
+    if (hasCategories()) {
+        inspectionDataChanged();
+    }
+    emit categoriesChanged();
+    emit legendEntryChanged();
     update();
 }
 
@@ -863,8 +889,8 @@ bool BarSeries::hasCategories() const
 QColor BarSeries::barColor(const int index) const
 {
     const auto& categories = drawnCategories();
-    const auto category = categories.empty() ? -1 : categories[static_cast<size_t>(index)];
-    return category >= 0 && category < categoryColors_.size() ? categoryColors_[category] : color_;
+    const auto categoryColor = categories.empty() ? QColor{} : categories_->table().color(categories[static_cast<size_t>(index)]);
+    return categoryColor.isValid() ? categoryColor : color_;
 }
 
 bool BarSeries::containsInPixels(const int index, const QPointF& position) const

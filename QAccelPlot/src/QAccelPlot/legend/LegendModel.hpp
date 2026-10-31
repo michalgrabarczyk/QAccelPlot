@@ -17,12 +17,14 @@ namespace QAccelPlot {
 
 /// \brief List model of the legend entries of a list of series.
 ///
-/// Has one row per series in \c series that is visible and returns a \c PlotSeries::legendEntry().
-/// Series without an entry, such as \c HeatmapSeries, and hidden series have no row. Rows follow
-/// changes of the series' entries, names, and visibility.
+/// Has one row per \c PlotSeries::legendEntries() entry of each visible series in \c series: one
+/// row for most series, and one per category for a series colored by category. Series without an
+/// entry, such as \c HeatmapSeries, and hidden series have no row. Rows follow changes of the
+/// series' entries, names, and visibility.
 ///
-/// Roles: \c series, \c name (the series' \c name, its \c objectName, or "Series N"), and \c entry
-/// (a \c LegendEntry). \c Plot provides one over all its series as \c legendModel:
+/// Roles: \c series, \c name (the entry's \c name, else the series' \c name, its \c objectName, or
+/// "Series N"), and \c entry (a \c LegendEntry). \c Plot provides one over all its series as
+/// \c legendModel:
 ///
 /// \code
 /// QAccelPlot.Plot {
@@ -31,7 +33,7 @@ namespace QAccelPlot {
 /// }
 /// \endcode
 ///
-/// \sa LegendEntry, PlotSeries::legendEntry()
+/// \sa LegendEntry, PlotSeries::legendEntries()
 class LegendModel : public QAbstractListModel {
     Q_OBJECT
     QML_NAMED_ELEMENT(LegendModel)
@@ -80,8 +82,16 @@ private:
     /// \brief Recomputes the rows: resets the model when the listed rows change, and reports changed data otherwise.
     void refreshRows();
 
+    // One legend row: entry \c entry of \c series' legendEntries().
+    struct Row {
+        QPointer<PlotSeries> series;
+        int entry{0};
+
+        bool operator==(const Row& other) const;
+    };
+
     QList<QPointer<PlotSeries>> series_;
-    QList<QPointer<PlotSeries>> rows_;
+    QList<Row> rows_;
 };
 
 } // namespace QAccelPlot

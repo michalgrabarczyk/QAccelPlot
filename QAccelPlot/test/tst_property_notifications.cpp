@@ -50,6 +50,7 @@ const std::map<QString, Factory>& factories()
         {QStringLiteral("Axis"), make<Axis>()},
         {QStringLiteral("BandEdges"), make<BandEdges>()},
         {QStringLiteral("BandSeries"), make<BandSeries>()},
+        {QStringLiteral("Category"), make<Category>()},
         {QStringLiteral("AxisTicker"), make<AxisTicker>()},
         {QStringLiteral("ColorBar"), make<ColorBar>()},
         {QStringLiteral("BarSeries"), make<BarSeries>()},
@@ -101,6 +102,10 @@ void PropertyNotificationsTest::writeNotifiesOnceAndRoundTrips_data()
     row("AxisTicker", "subtickLengthOut", 6.0);
     row("AxisTicker", "subtickColor", QColor{Qt::darkRed});
     row("AxisTicker", "subtickWidth", 3.0);
+
+    row("Category", "value", 3);
+    row("Category", "name", QStringLiteral("Idle"));
+    row("Category", "color", QColor{Qt::gray});
 
     row("ColorBar", "orientation", QVariant::fromValue(Qt::Horizontal));
     row("ColorBar", "label", QStringLiteral("Intensity"));
@@ -173,7 +178,6 @@ void PropertyNotificationsTest::writeNotifiesOnceAndRoundTrips_data()
     row("BarSeries", "baselineValue", 2.0);
     row("BarSeries", "minimumWidth", 3.0);
     row("BarSeries", "color", palette.seriesSecondary);
-    row("BarSeries", "categoryColors", QVariant::fromValue(QList<QColor>{palette.statusGood, palette.statusError}));
     row("BarSeries", "hoverColor", palette.seriesYellow);
 
     row("ErrorBarSeries", "orientation", QVariant::fromValue(Qt::Horizontal));
@@ -185,7 +189,6 @@ void PropertyNotificationsTest::writeNotifiesOnceAndRoundTrips_data()
     row("ErrorBarSeries", "hoverRadius", 2.0);
 
     row("RectangleSeries", "color", palette.seriesSecondary);
-    row("RectangleSeries", "categoryColors", QVariant::fromValue(QList<QColor>{palette.statusGood, palette.statusError}));
     row("RectangleSeries", "hoverColor", palette.seriesYellow);
     row("RectangleSeries", "minimumWidth", 4.0);
     row("RectangleSeries", "minimumHeight", 0.0);

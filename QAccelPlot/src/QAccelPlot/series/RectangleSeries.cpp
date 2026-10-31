@@ -12,6 +12,7 @@
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/materials/DataTextureMaterial.hpp"
 #include "QAccelPlot/materials/RectMaterial.hpp"
+#include "QAccelPlot/series/internal/CategoryList.hpp"
 #include "QAccelPlot/series/internal/HoverIndexBudget.hpp"
 #include "QAccelPlot/series/internal/RectGeometry.hpp"
 #include "QAccelPlot/series/internal/RectVertexCache.hpp"
@@ -61,6 +62,7 @@ DataPointStore::Layout rectangleLayout()
 RectangleSeries::RectangleSeries(QQuickItem* parent)
     : PlotSeries(rectangleLayout(), DataPointWording{"data rectangle", "rectangles", "coordinates", "coordinates"}, parent)
     , color_(defaultRectangleColor())
+    , categories_(std::make_unique<Internal::CategoryList>("RectangleSeries"))
     , vertexCache_(std::make_unique<Internal::RectVertexCache>())
     , spatialGridBudget_(std::make_unique<Internal::HoverIndexBudget>(kAssumedIndexCostPerRectangle))
 {
@@ -71,6 +73,7 @@ RectangleSeries::RectangleSeries(QQuickItem* parent)
     connect(border_, &Border::widthChanged, this, &QQuickItem::update);
     connect(border_, &Border::colorChanged, this, &QQuickItem::update);
     connect(this, &RectangleSeries::colorChanged, this, &PlotSeries::legendEntryChanged);
+    connect(categories_.get(), &Internal::CategoryList::changed, this, &RectangleSeries::onCategoriesChanged);
 }
 
 RectangleSeries::~RectangleSeries() = default;
@@ -93,22 +96,14 @@ void RectangleSeries::setColor(const QColor& color)
     update();
 }
 
-QList<QColor> RectangleSeries::categoryColors() const
+QQmlListProperty<Category> RectangleSeries::categories()
 {
-    return categoryColors_;
+    return categories_->listProperty(this);
 }
 
-void RectangleSeries::setCategoryColors(const QList<QColor>& colors)
+void RectangleSeries::setCategories(const QList<Category*>& categories)
 {
-    if (categoryColors_ == colors) {
-        return;
-    }
-    categoryColors_ = colors;
-    if (hasCategories()) {
-        vertexCache_->invalidate();
-    }
-    emit categoryColorsChanged();
-    update();
+    categories_->setCategories(categories);
 }
 
 Border* RectangleSeries::border() const
@@ -185,9 +180,8 @@ void RectangleSeries::setData(const QVariantList& rects)
             const auto unbounded = k < 2 ? -kInf : kInf;
             data[base + k] = value.isValid() && !value.isNull() ? value.toDouble() : unbounded;
         }
-        const auto category = map.value(categoryKey);
-        if (category.isValid() && !category.isNull()) {
-            categories[static_cast<size_t>(i)] = category.toInt();
+        if (const auto category = categories_->table().dataPointCategory(map.value(categoryKey), "RectangleSeries", i)) {
+            categories[static_cast<size_t>(i)] = *category;
             anyCategory = true;
         }
     }
@@ -246,12 +240,21 @@ std::optional<LegendEntry> RectangleSeries::legendEntry() const
     return entry;
 }
 
-void RectangleSeries::setCategories(const QList<int>& categories)
+QList<LegendEntry> RectangleSeries::legendEntries() const
+{
+    return categories_->table().empty() ? PlotSeries::legendEntries() : categories_->table().legendEntries(*legendEntry());
+}
+
+void RectangleSeries::setDataPointCategories(const QVariantList& categories)
 {
     if (!validateCategories(static_cast<std::size_t>(categories.size()), count())) {
         return;
     }
-    dataPoints().setCategories(std::vector<int>(categories.cbegin(), categories.cend()));
+    auto values = std::vector<int>(static_cast<size_t>(categories.size()), -1);
+    for (qsizetype i = 0; i < categories.size(); ++i) {
+        values[static_cast<size_t>(i)] = categories_->table().dataPointCategory(categories[i], "RectangleSeries", i).value_or(-1);
+    }
+    dataPoints().setCategories(std::move(values));
     vertexCache_->invalidate();
     inspectionDataChanged();
     update();
@@ -268,7 +271,12 @@ QVariantMap RectangleSeries::rectangleAt(const int index) const
         rect.insert(keys[k], coordinate(index, static_cast<int>(k)));
     }
     if (hasCategories()) {
-        rect.insert(QStringLiteral("category"), dataPoints().categories()[static_cast<size_t>(index)]);
+        const auto category = dataPoints().categories()[static_cast<size_t>(index)];
+        rect.insert(QStringLiteral("category"), category);
+        const auto name = categories_->table().name(category);
+        if (!name.isEmpty()) {
+            rect.insert(QStringLiteral("categoryName"), name);
+        }
     }
     return rect;
 }
@@ -315,6 +323,17 @@ InspectionRecord RectangleSeries::inspectionRecordAt(const QPointF& position) co
 {
     const auto index = rectangleIndexAt(position);
     return index < 0 ? InspectionRecord{} : inspectionRecord(index);
+}
+
+void RectangleSeries::onCategoriesChanged()
+{
+    if (hasCategories()) {
+        vertexCache_->invalidate();
+        inspectionDataChanged();
+    }
+    emit categoriesChanged();
+    emit legendEntryChanged();
+    update();
 }
 
 bool RectangleSeries::validateCategories(const std::size_t categoryCount, const int rectCount) const
@@ -368,8 +387,8 @@ bool RectangleSeries::hasCategories() const
 
 QColor RectangleSeries::rectangleColor(const int index) const
 {
-    const auto category = hasCategories() ? dataPoints().categories()[static_cast<size_t>(index)] : -1;
-    return category >= 0 && category < categoryColors_.size() ? categoryColors_[category] : color_;
+    const auto categoryColor = hasCategories() ? categories_->table().color(dataPoints().categories()[static_cast<size_t>(index)]) : QColor{};
+    return categoryColor.isValid() ? categoryColor : color_;
 }
 
 bool RectangleSeries::containsInPixels(const int index, const QPointF& position) const

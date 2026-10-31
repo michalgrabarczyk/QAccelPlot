@@ -6,6 +6,7 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/legend/LegendEntry.hpp"
 #include "QAccelPlot/materials/RectMaterial.hpp"
 #include "QAccelPlot/series/RectangleSeries.hpp"
 
@@ -47,7 +48,9 @@ private slots:
     void unboundedAndInvalidEdgesAreExcludedFromRanges();
     void logAxisExcludesNonPositiveEdgesFromRanges();
     void variantListCategoriesAreStored();
+    void variantListCategoriesAreValuesOrNames();
     void categoriesFollowTheData();
+    void categoriesGiveOneLegendEntryEach();
     void mismatchedCategoriesAreRejected();
     void borderSettingsClampAndNotify();
     void scaleChangesRefreshRenderCoordinates_data();
@@ -435,25 +438,81 @@ void RectangleSeriesDataTest::variantListCategoriesAreStored()
     QVERIFY(!rectangles.rectangleAt(0).contains(QStringLiteral("category")));
 }
 
+void RectangleSeriesDataTest::variantListCategoriesAreValuesOrNames()
+{
+    auto rectangles = RectangleSeries{};
+    rectangles.setCategories({new Category{10, QStringLiteral("Running"), {}, &rectangles}, new Category{20, QStringLiteral("Alarm"), {}, &rectangles}});
+    const auto rect = [](const QVariant& category) { return QVariantMap{{QStringLiteral("x2"), 1.0}, {QStringLiteral("category"), category}}; };
+
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleSeries ignores the category of data point 2: no category is named \"Idle\""));
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleSeries ignores the category .*1\\.5.* of data point 3"));
+    rectangles.setData(QVariantList{rect(QStringLiteral("Alarm")), rect(10), rect(QStringLiteral("Idle")), rect(1.5), rect(3.0)});
+
+    QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("category")).toInt(), 20);
+    QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("categoryName")).toString(), QStringLiteral("Alarm"));
+    QCOMPARE(rectangles.rectangleAt(1).value(QStringLiteral("categoryName")).toString(), QStringLiteral("Running"));
+    QCOMPARE(rectangles.rectangleAt(2).value(QStringLiteral("category")).toInt(), -1);
+    QCOMPARE(rectangles.rectangleAt(3).value(QStringLiteral("category")).toInt(), -1);
+    QCOMPARE(rectangles.rectangleAt(4).value(QStringLiteral("category")).toInt(), 3);
+    QVERIFY(!rectangles.rectangleAt(4).contains(QStringLiteral("categoryName")));
+
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("no category is named \"Idle\""));
+    rectangles.setData(QVariantList{rect(QStringLiteral("Idle"))});
+    QVERIFY(!rectangles.rectangleAt(0).contains(QStringLiteral("category")));
+}
+
 void RectangleSeriesDataTest::categoriesFollowTheData()
 {
     auto rectangles = RectangleSeries{};
+    rectangles.setCategories({new Category{4, QStringLiteral("Idle"), {}, &rectangles}});
     rectangles.setData(std::vector<double>{0.0, 0.0, 1.0, 1.0, 2.0, 2.0, 3.0, 3.0}, std::vector<int>{1, 0}, 2);
     QCOMPARE(rectangles.rectangleAt(1).value(QStringLiteral("category")).toInt(), 0);
 
-    rectangles.setCategories({3, 4});
+    rectangles.setDataPointCategories({3, QStringLiteral("Idle")});
     QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("category")).toInt(), 3);
+    QCOMPARE(rectangles.rectangleAt(1).value(QStringLiteral("category")).toInt(), 4);
 
-    rectangles.setCategories({});
+    rectangles.setDataPointCategories({});
     QVERIFY(!rectangles.rectangleAt(0).contains(QStringLiteral("category")));
 
-    rectangles.setCategories({5, 6});
+    rectangles.setDataPointCategories({5, 6});
     rectangles.setData(std::vector<double>{0.0, 0.0, 1.0, 1.0}, 1);
     QVERIFY(!rectangles.rectangleAt(0).contains(QStringLiteral("category")));
 
     auto worker = std::thread{[&rectangles]() { rectangles.postData(std::vector<double>{0.0, 0.0, 1.0, 1.0}, std::vector<int>{7}, 1); }};
     worker.join();
     QTRY_COMPARE(rectangles.rectangleAt(0).value(QStringLiteral("category")).toInt(), 7);
+}
+
+void RectangleSeriesDataTest::categoriesGiveOneLegendEntryEach()
+{
+    auto rectangles = RectangleSeries{};
+    rectangles.setColor(Qt::gray);
+    QCOMPARE(rectangles.legendEntries().size(), 1);
+
+    auto legendChanged = QSignalSpy{&rectangles, &PlotSeries::legendEntryChanged};
+    auto categoriesChanged = QSignalSpy{&rectangles, &RectangleSeries::categoriesChanged};
+    auto* running = new Category{0, QStringLiteral("Running"), Qt::green, &rectangles};
+    rectangles.setCategories({running, new Category{7, {}, {}, &rectangles}});
+    QCOMPARE(legendChanged.count(), 1);
+    QCOMPARE(categoriesChanged.count(), 1);
+
+    auto entries = rectangles.legendEntries();
+    QCOMPARE(entries.size(), 2);
+    QCOMPARE(entries[0].name, QStringLiteral("Running"));
+    QCOMPARE(entries[0].color, QColor{Qt::green});
+    QCOMPARE(entries[1].name, QStringLiteral("7"));
+    QCOMPARE(entries[1].color, QColor{Qt::gray});
+    QCOMPARE(entries[1].symbol, PlotSeries::LegendSymbol::Fill);
+
+    running->setColor(Qt::yellow);
+    QCOMPARE(categoriesChanged.count(), 2);
+    entries = rectangles.legendEntries();
+    QCOMPARE(entries[0].color, QColor{Qt::yellow});
+
+    delete running;
+    QCOMPARE(rectangles.legendEntries().size(), 1);
+    QCOMPARE(categoriesChanged.count(), 3);
 }
 
 void RectangleSeriesDataTest::mismatchedCategoriesAreRejected()
@@ -464,7 +523,7 @@ void RectangleSeriesDataTest::mismatchedCategoriesAreRejected()
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleSeries received 2 categories for 1 rectangles"));
     rectangles.setData(std::vector<double>{5.0, 5.0, 6.0, 6.0}, std::vector<int>{1, 2}, 1);
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleSeries received 3 categories for 1 rectangles"));
-    rectangles.setCategories({1, 2, 3});
+    rectangles.setDataPointCategories({1, 2, 3});
 
     QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("x1")).toDouble(), 0.0);
     QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("category")).toInt(), 1);

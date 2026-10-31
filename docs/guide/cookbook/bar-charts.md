@@ -91,22 +91,33 @@ are ranged. [Histograms](histograms.md) are drawn this way.
 
 ## Color bars by category
 
-Give bars a `category` and list the colors in `categoryColors`. Bars without a
-category, or with one outside the list, use `color`.
+List the categories in `categories` as `Category` objects and give each bar a
+`category`:
 
 ```qml
 QAccelPlot.BarSeries {
-    categoryColors: ["#4ade80", "#f87171"]
+    categories: [
+        QAccelPlot.Category { value: 0; name: "Profit"; color: "#4ade80" },
+        QAccelPlot.Category { value: 1; name: "Loss"; color: "#f87171" }
+    ]
     Component.onCompleted: setData(profit.map((value, month) => ({
         position: month,
         value: value,
-        category: value >= 0 ? 0 : 1
+        category: value >= 0 ? "Profit" : "Loss"
     })))
 }
 ```
 
-`setCategories()` replaces the categories without changing the data. Outlines
-are set with `border.width` and `border.color`.
+- Each `Category` has an integer `value` and an optional `name` and `color`.
+- A bar's `category` is a `value` or, in QML, a `name`. Names resolve when the
+  data is set; an unknown name or a non-whole number is ignored with a warning.
+- Bars without a category, or whose category has no color or is not listed,
+  use `color`.
+- `setDataPointCategories()` replaces the bars' categories without changing
+  the data.
+- The legend shows one row per category.
+
+Outlines are set with `border.width` and `border.color`.
 
 ## Color bars by value
 
@@ -128,8 +139,8 @@ QAccelPlot.BarSeries {
 | `BarSeries.Value` (default) | The bar's value |
 | `BarSeries.Position` | The bar's position; for a ranged bar, the middle of its edges as the colormap places them |
 
-- The colormap overrides `color` and `categoryColors`; `hoverColor` still
-  marks the hovered bar.
+- The colormap overrides `color` and the category colors, and the legend shows
+  one row for the series; `hoverColor` still marks the hovered bar.
 - `min` and `max` work as for [point clouds](point-clouds.md#color-points-by-value).
   An unset bound resolves from the data, and ranged bars contribute both edges.
   `dataValueMin` and `dataValueMax` expose the resolved range.
@@ -145,7 +156,7 @@ QAccelPlot.BarSeries {
 ## Hover
 
 `hoveredIndex` is the bar under the mouse pointer, or -1. `barAt(index)`
-returns its `position`, `value`, and `category`; a ranged bar has `from` and
+returns its `position`, `value`, `category`, and `categoryName`; a ranged bar has `from` and
 `to` instead of `position`. Set `hoverColor` to highlight it.
 `minimumWidth` also widens the hover area.
 
