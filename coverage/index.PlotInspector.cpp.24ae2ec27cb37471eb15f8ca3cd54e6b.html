@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2026-10-30 21:55:27</td>
+      <td>2026-10-31 12:23:15</td>
     </tr>
   </table>
 </div>
@@ -912,7 +912,7 @@
         </details>
       </td>
       <td class="linecount partialCoveredLine">51</td>
-      <td class="src partialCoveredLine"><span class="w">    </span><span class="p">,</span><span class="w"> </span><span class="n">children_</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">OverlayChildren</span><span class="o">&gt;</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">QVariant</span><span class="o">::</span><span class="n">fromValue</span><span class="p">(</span><span class="k">this</span><span class="p">),</span><span class="w"> </span><span class="s">"inspector"</span><span class="p">))</span></td>
+      <td class="src partialCoveredLine"><span class="w">    </span><span class="p">,</span><span class="w"> </span><span class="n">children_</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">Internal</span><span class="o">::</span><span class="n">OverlayChildren</span><span class="o">&gt;</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">QVariant</span><span class="o">::</span><span class="n">fromValue</span><span class="p">(</span><span class="k">this</span><span class="p">),</span><span class="w"> </span><span class="s">"inspector"</span><span class="p">))</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l97" href="#l97">97</a></td>
@@ -3620,7 +3620,7 @@
         </details>
       </td>
       <td class="linecount partialCoveredLine">8</td>
-      <td class="src partialCoveredLine"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">row</span><span class="p">.</span><span class="n">series</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="n">row</span><span class="p">.</span><span class="n">dataPoint</span><span class="p">.</span><span class="n">valid</span><span class="p">()</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">row</span><span class="p">.</span><span class="n">series</span><span class="o">-&gt;</span><span class="n">inspection</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">matching</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">InspectionMatching</span><span class="o">::</span><span class="n">Nearest</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
+      <td class="src partialCoveredLine"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">row</span><span class="p">.</span><span class="n">series</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="n">row</span><span class="p">.</span><span class="n">dataPoint</span><span class="p">.</span><span class="n">valid</span><span class="p">()</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">row</span><span class="p">.</span><span class="n">series</span><span class="o">-&gt;</span><span class="n">inspection</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">matching</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">Internal</span><span class="o">::</span><span class="n">InspectionMatching</span><span class="o">::</span><span class="n">Nearest</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l425" href="#l425">425</a></td>
@@ -4735,7 +4735,7 @@
         </details>
       </td>
       <td class="linecount coveredLine">407</td>
-      <td class="src coveredLine"><span class="w">        </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">series</span><span class="o">-&gt;</span><span class="n">inspection</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">matching</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">InspectionMatching</span><span class="o">::</span><span class="n">None</span><span class="p">;</span></td>
+      <td class="src coveredLine"><span class="w">        </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">series</span><span class="o">-&gt;</span><span class="n">inspection</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">matching</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">Internal</span><span class="o">::</span><span class="n">InspectionMatching</span><span class="o">::</span><span class="n">None</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l526" href="#l526">526</a></td>
@@ -6183,7 +6183,7 @@
         </details>
       </td>
       <td class="linecount partialCoveredLine">175</td>
-      <td class="src partialCoveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">inspection</span><span class="p">.</span><span class="n">matching</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">InspectionMatching</span><span class="o">::</span><span class="n">Nearest</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
+      <td class="src partialCoveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">inspection</span><span class="p">.</span><span class="n">matching</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Internal</span><span class="o">::</span><span class="n">InspectionMatching</span><span class="o">::</span><span class="n">Nearest</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l653" href="#l653">653</a></td>
@@ -7155,7 +7155,7 @@
         </details>
       </td>
       <td class="linecount coveredLine">7</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">closest</span><span class="o">-&gt;</span><span class="n">series</span><span class="o">-&gt;</span><span class="n">inspection</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">matching</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">InspectionMatching</span><span class="o">::</span><span class="n">Containing</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">closest</span><span class="o">-&gt;</span><span class="n">series</span><span class="o">-&gt;</span><span class="n">inspection</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">matching</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Internal</span><span class="o">::</span><span class="n">InspectionMatching</span><span class="o">::</span><span class="n">Containing</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l742" href="#l742">742</a></td>
