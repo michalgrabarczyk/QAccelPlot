@@ -27,18 +27,19 @@ QQmlListProperty<Category> CategoryList::listProperty(QObject* owner)
 
 void CategoryList::setCategories(const QList<Category*>& categories)
 {
-    if (categories == categories_) {
-        return;
-    }
-    for (auto* category : std::as_const(categories_)) {
-        disconnect(category, nullptr, this, nullptr);
-    }
-    categories_.clear();
+    auto listed = QList<QPointer<Category>>{};
     for (auto* category : categories) {
         if (category) {
-            watch(category);
-            categories_.append(category);
+            listed.append(category);
         }
+    }
+    if (listed == categories_) {
+        return;
+    }
+    unwatchAll();
+    categories_ = std::move(listed);
+    for (const auto& category : std::as_const(categories_)) {
+        watch(category.data());
     }
     onCategoriesChanged();
 }
@@ -63,9 +64,7 @@ void CategoryList::clear()
     if (categories_.isEmpty()) {
         return;
     }
-    for (auto* category : std::as_const(categories_)) {
-        disconnect(category, nullptr, this, nullptr);
-    }
+    unwatchAll();
     categories_.clear();
     onCategoriesChanged();
 }
@@ -78,16 +77,28 @@ void CategoryList::watch(Category* category) const
     connect(category, &QObject::destroyed, this, &CategoryList::onCategoryDestroyed, Qt::UniqueConnection);
 }
 
-void CategoryList::onCategoryDestroyed(QObject* category)
+void CategoryList::unwatchAll() const
 {
-    // The object is mid-destruction, so it is only compared, never dereferenced.
-    categories_.removeAll(static_cast<Category*>(category));
+    for (const auto& category : categories_) {
+        if (category) {
+            disconnect(category.data(), nullptr, this, nullptr);
+        }
+    }
+}
+
+void CategoryList::onCategoryDestroyed()
+{
+    categories_.removeAll(QPointer<Category>{});
     onCategoriesChanged();
 }
 
 void CategoryList::onCategoriesChanged()
 {
-    table_ = CategoryTable::fromCategories(categories_);
+    auto live = QList<Category*>{};
+    for (const auto& category : std::as_const(categories_)) {
+        live.append(category.data());
+    }
+    table_ = CategoryTable::fromCategories(live);
     if (!table_.problems().isEmpty() && !reportQueued_) {
         reportQueued_ = true;
         QMetaObject::invokeMethod(this, &CategoryList::reportProblems, Qt::QueuedConnection);
@@ -115,7 +126,7 @@ qsizetype CategoryList::categoryCount(QQmlListProperty<Category>* list)
 
 Category* CategoryList::categoryAt(QQmlListProperty<Category>* list, const qsizetype index)
 {
-    return static_cast<CategoryList*>(list->data)->categories_.value(index);
+    return static_cast<CategoryList*>(list->data)->categories_.value(index).data();
 }
 
 void CategoryList::clearCategories(QQmlListProperty<Category>* list)

@@ -12,6 +12,7 @@
 
 #include <QList>
 #include <QObject>
+#include <QPointer>
 #include <QQmlListProperty>
 
 namespace QAccelPlot::Internal {
@@ -44,7 +45,10 @@ private:
     void clear();
     // Follows the edits and the destruction of \a category.
     void watch(Category* category) const;
-    void onCategoryDestroyed(QObject* category);
+    // Stops following every listed category.
+    void unwatchAll() const;
+    // Drops the destroyed category, whose pointer is already null.
+    void onCategoryDestroyed();
     void onCategoriesChanged();
     // Logs the problems of the current table naming the series.
     void reportProblems();
@@ -55,7 +59,7 @@ private:
     static void clearCategories(QQmlListProperty<Category>* list);
 
     const char* seriesName_;
-    QList<Category*> categories_;
+    QList<QPointer<Category>> categories_;
     CategoryTable table_;
     bool reportQueued_{false};
 };
