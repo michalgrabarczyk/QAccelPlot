@@ -1997,6 +1997,9 @@
 <li>The C++ plot item class <code>QAccelPlot::QAccelPlot</code> is now
   <code>QAccelPlot::PlotView</code>, its QML name, in <code>&lt;QAccelPlot/PlotView.hpp&gt;</code>. QML is
   unchanged.</li>
+<li><code>Grid.lineWidth</code> is now <code>gridLineWidth</code>, matching <code>subGridLineWidth</code>. In
+  C++, use <code>gridLineWidth()</code>, <code>setGridLineWidth()</code>, and
+  <code>gridLineWidthChanged()</code>.</li>
 <li>Marker shapes are a standalone <code>MarkerShape</code> enum instead of a
   <code>PlotSeries</code> enum. Replace <code>LineCurve.Diamond</code> or <code>PointCloud.Circle</code> with
   <code>MarkerShape.Diamond</code> or <code>MarkerShape.Circle</code> in QML, and

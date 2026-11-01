@@ -66,9 +66,9 @@ flowchart TB
 | ---: | :--- |
 | property QColor | [**gridColor**](classQAccelPlot_1_1Grid.md#property-gridcolor-12)  <br>_Color of the major grid lines. Default:_ `Colors.dark.grid` _._ |
 | property bool | [**gridHorizontalLinesVisible**](classQAccelPlot_1_1Grid.md#property-gridhorizontallinesvisible-12)  <br>_Whether horizontal major grid lines are visible. Default:_ `true` _._ |
+| property QML\_ANONYMOUSqreal | [**gridLineWidth**](classQAccelPlot_1_1Grid.md#property-gridlinewidth-12)  <br>_Width in pixels of the major grid lines. Default: 2._  |
 | property bool | [**gridVerticalLinesVisible**](classQAccelPlot_1_1Grid.md#property-gridverticallinesvisible-12)  <br>_Whether vertical major grid lines are visible. Default:_ `true` _._ |
 | property bool | [**gridVisible**](classQAccelPlot_1_1Grid.md#property-gridvisible-12)  <br>_Whether major grid lines are visible. Default:_ `true` _._ |
-| property QML\_ANONYMOUSqreal | [**lineWidth**](classQAccelPlot_1_1Grid.md#property-linewidth-12)  <br>_Width in pixels of the major grid lines. Default: 2._  |
 | property QColor | [**subGridColor**](classQAccelPlot_1_1Grid.md#property-subgridcolor-12)  <br>_Color of the sub-grid lines. Default:_ `Colors.dark.subGrid` _._ |
 | property bool | [**subGridHorizontalLinesVisible**](classQAccelPlot_1_1Grid.md#property-subgridhorizontallinesvisible-12)  <br>_Whether horizontal sub-grid lines are visible. Default:_ `true` _._ |
 | property qreal | [**subGridLineWidth**](classQAccelPlot_1_1Grid.md#property-subgridlinewidth-12)  <br>_Width in pixels of the sub-grid lines. Default: 1._  |
@@ -84,9 +84,9 @@ flowchart TB
 | ---: | :--- |
 | signal void | [**gridColorChanged**](classQAccelPlot_1_1Grid.md#signal-gridcolorchanged)  <br>_Emitted when the gridColor property changes._  |
 | signal void | [**gridHorizontalLinesVisibleChanged**](classQAccelPlot_1_1Grid.md#signal-gridhorizontallinesvisiblechanged)  <br>_Emitted when the gridHorizontalLinesVisible property changes._  |
+| signal void | [**gridLineWidthChanged**](classQAccelPlot_1_1Grid.md#signal-gridlinewidthchanged)  <br>_Emitted when the gridLineWidth property changes._  |
 | signal void | [**gridVerticalLinesVisibleChanged**](classQAccelPlot_1_1Grid.md#signal-gridverticallinesvisiblechanged)  <br>_Emitted when the gridVerticalLinesVisible property changes._  |
 | signal void | [**gridVisibleChanged**](classQAccelPlot_1_1Grid.md#signal-gridvisiblechanged)  <br>_Emitted when the gridVisible property changes._  |
-| signal void | [**lineWidthChanged**](classQAccelPlot_1_1Grid.md#signal-linewidthchanged)  <br>_Emitted when the lineWidth property changes._  |
 | signal void | [**subGridColorChanged**](classQAccelPlot_1_1Grid.md#signal-subgridcolorchanged)  <br>_Emitted when the subGridColor property changes._  |
 | signal void | [**subGridHorizontalLinesVisibleChanged**](classQAccelPlot_1_1Grid.md#signal-subgridhorizontallinesvisiblechanged)  <br>_Emitted when the subGridHorizontalLinesVisible property changes._  |
 | signal void | [**subGridLineWidthChanged**](classQAccelPlot_1_1Grid.md#signal-subgridlinewidthchanged)  <br>_Emitted when the subGridLineWidth property changes._  |
@@ -103,14 +103,14 @@ flowchart TB
 |   | [**Grid**](#function-grid) (QObject \* parent=nullptr) <br>_Constructs a_ [_**Grid**_](classQAccelPlot_1_1Grid.md) _with the given__parent_ _._ |
 |  QColor | [**gridColor**](#function-gridcolor-22) () const<br>_Returns the major grid line color._  |
 |  bool | [**gridHorizontalLinesVisible**](#function-gridhorizontallinesvisible-22) () const<br>_Returns_ `true` _if horizontal major grid lines are visible._ |
+|  qreal | [**gridLineWidth**](#function-gridlinewidth-22) () const<br>_Returns the major grid line width._  |
 |  bool | [**gridVerticalLinesVisible**](#function-gridverticallinesvisible-22) () const<br>_Returns_ `true` _if vertical major grid lines are visible._ |
 |  bool | [**gridVisible**](#function-gridvisible-22) () const<br>_Returns_ `true` _if major grid lines are visible._ |
-|  qreal | [**lineWidth**](#function-linewidth-22) () const<br>_Returns the major grid line width._  |
 |  void | [**setGridColor**](#function-setgridcolor) (const QColor & c) <br>_Sets the major grid line color to_ _c_ _._ |
 |  void | [**setGridHorizontalLinesVisible**](#function-setgridhorizontallinesvisible) (bool on) <br>_Sets horizontal major grid line visibility to_ _on_ _._ |
+|  void | [**setGridLineWidth**](#function-setgridlinewidth) (qreal w) <br>_Sets the major grid line width to_ _w_ _._ |
 |  void | [**setGridVerticalLinesVisible**](#function-setgridverticallinesvisible) (bool on) <br>_Sets vertical major grid line visibility to_ _on_ _._ |
 |  void | [**setGridVisible**](#function-setgridvisible) (bool on) <br>_Sets major grid line visibility to_ _on_ _._ |
-|  void | [**setLineWidth**](#function-setlinewidth) (qreal w) <br>_Sets the major grid line width to_ _w_ _._ |
 |  void | [**setSubGridColor**](#function-setsubgridcolor) (const QColor & c) <br>_Sets the sub-grid line color to_ _c_ _._ |
 |  void | [**setSubGridHorizontalLinesVisible**](#function-setsubgridhorizontallinesvisible) (bool on) <br>_Sets horizontal sub-grid line visibility to_ _on_ _._ |
 |  void | [**setSubGridLineWidth**](#function-setsubgridlinewidth) (qreal w) <br>_Sets the sub-grid line width to_ _w_ _._ |
@@ -198,6 +198,21 @@ bool QAccelPlot::Grid::gridHorizontalLinesVisible;
 
 
 
+### property gridLineWidth {#property-gridlinewidth-12}
+
+_Width in pixels of the major grid lines. Default: 2._ 
+```C++
+QML_ANONYMOUSqreal QAccelPlot::Grid::gridLineWidth;
+```
+
+
+
+
+<hr>
+
+
+
+
 ### property gridVerticalLinesVisible {#property-gridverticallinesvisible-12}
 
 _Whether vertical major grid lines are visible. Default:_ `true` _._
@@ -218,21 +233,6 @@ bool QAccelPlot::Grid::gridVerticalLinesVisible;
 _Whether major grid lines are visible. Default:_ `true` _._
 ```C++
 bool QAccelPlot::Grid::gridVisible;
-```
-
-
-
-
-<hr>
-
-
-
-
-### property lineWidth {#property-linewidth-12}
-
-_Width in pixels of the major grid lines. Default: 2._ 
-```C++
-QML_ANONYMOUSqreal QAccelPlot::Grid::lineWidth;
 ```
 
 
@@ -350,6 +350,21 @@ void QAccelPlot::Grid::gridHorizontalLinesVisibleChanged;
 
 
 
+### signal gridLineWidthChanged {#signal-gridlinewidthchanged}
+
+_Emitted when the gridLineWidth property changes._ 
+```C++
+void QAccelPlot::Grid::gridLineWidthChanged;
+```
+
+
+
+
+<hr>
+
+
+
+
 ### signal gridVerticalLinesVisibleChanged {#signal-gridverticallinesvisiblechanged}
 
 _Emitted when the gridVerticalLinesVisible property changes._ 
@@ -370,21 +385,6 @@ void QAccelPlot::Grid::gridVerticalLinesVisibleChanged;
 _Emitted when the gridVisible property changes._ 
 ```C++
 void QAccelPlot::Grid::gridVisibleChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
-### signal lineWidthChanged {#signal-linewidthchanged}
-
-_Emitted when the lineWidth property changes._ 
-```C++
-void QAccelPlot::Grid::lineWidthChanged;
 ```
 
 
@@ -519,6 +519,21 @@ bool QAccelPlot::Grid::gridHorizontalLinesVisible () const
 
 
 
+### function gridLineWidth {#function-gridlinewidth-22}
+
+_Returns the major grid line width._ 
+```C++
+qreal QAccelPlot::Grid::gridLineWidth () const
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function gridVerticalLinesVisible {#function-gridverticallinesvisible-22}
 
 _Returns_ `true` _if vertical major grid lines are visible._
@@ -539,21 +554,6 @@ bool QAccelPlot::Grid::gridVerticalLinesVisible () const
 _Returns_ `true` _if major grid lines are visible._
 ```C++
 bool QAccelPlot::Grid::gridVisible () const
-```
-
-
-
-
-<hr>
-
-
-
-
-### function lineWidth {#function-linewidth-22}
-
-_Returns the major grid line width._ 
-```C++
-qreal QAccelPlot::Grid::lineWidth () const
 ```
 
 
@@ -598,6 +598,23 @@ void QAccelPlot::Grid::setGridHorizontalLinesVisible (
 
 
 
+### function setGridLineWidth {#function-setgridlinewidth}
+
+_Sets the major grid line width to_ _w_ _._
+```C++
+void QAccelPlot::Grid::setGridLineWidth (
+    qreal w
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function setGridVerticalLinesVisible {#function-setgridverticallinesvisible}
 
 _Sets vertical major grid line visibility to_ _on_ _._
@@ -621,23 +638,6 @@ _Sets major grid line visibility to_ _on_ _._
 ```C++
 void QAccelPlot::Grid::setGridVisible (
     bool on
-) 
-```
-
-
-
-
-<hr>
-
-
-
-
-### function setLineWidth {#function-setlinewidth}
-
-_Sets the major grid line width to_ _w_ _._
-```C++
-void QAccelPlot::Grid::setLineWidth (
-    qreal w
 ) 
 ```
 

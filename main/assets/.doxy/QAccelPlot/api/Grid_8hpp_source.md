@@ -28,7 +28,7 @@ namespace QAccelPlot {
 class Grid : public QObject {
     Q_OBJECT
     QML_ANONYMOUS
-    Q_PROPERTY(qreal lineWidth READ lineWidth WRITE setLineWidth NOTIFY lineWidthChanged)
+    Q_PROPERTY(qreal gridLineWidth READ gridLineWidth WRITE setGridLineWidth NOTIFY gridLineWidthChanged)
     Q_PROPERTY(qreal subGridLineWidth READ subGridLineWidth WRITE setSubGridLineWidth NOTIFY subGridLineWidthChanged)
     Q_PROPERTY(QColor gridColor READ gridColor WRITE setGridColor NOTIFY gridColorChanged)
     Q_PROPERTY(QColor subGridColor READ subGridColor WRITE setSubGridColor NOTIFY subGridColorChanged)
@@ -43,8 +43,8 @@ class Grid : public QObject {
 public:
     explicit Grid(QObject* parent = nullptr);
 
-    qreal lineWidth() const;
-    void setLineWidth(qreal w);
+    qreal gridLineWidth() const;
+    void setGridLineWidth(qreal w);
 
     qreal subGridLineWidth() const;
     void setSubGridLineWidth(qreal w);
@@ -74,7 +74,7 @@ public:
     void setSubGridVerticalLinesVisible(bool on);
 
 signals:
-    void lineWidthChanged();
+    void gridLineWidthChanged();
     void subGridLineWidthChanged();
     void gridColorChanged();
     void subGridColorChanged();
@@ -86,7 +86,7 @@ signals:
     void subGridVerticalLinesVisibleChanged();
 
 private:
-    qreal lineWidth_{2.0};
+    qreal gridLineWidth_{2.0};
     qreal subGridLineWidth_{1.0};
     QColor gridColor_{ColorPalette::dark().grid};
     QColor subGridColor_{ColorPalette::dark().subGrid};
