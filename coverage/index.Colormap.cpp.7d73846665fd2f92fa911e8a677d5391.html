@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2026-11-01 09:31:03</td>
+      <td>2026-11-01 10:20:25</td>
     </tr>
   </table>
 </div>
@@ -83,18 +83,18 @@
     <tr><td><a href="#l250">QAccelPlot::Colormap::connectStop(QObject*) (line 250)</a></td><td>called 58 times</td><td>79.0%</td></tr>
     <tr><td><a href="#l323">QAccelPlot::Colormap::customStops() const (line 323)</a></td><td>called 357 times</td><td>75.0%</td></tr>
     <tr><td><a href="#l267">QAccelPlot::Colormap::disconnectStops() (line 267)</a></td><td>called 7 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l205">QAccelPlot::Colormap::logScale() const (line 205)</a></td><td>called 284 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l185">QAccelPlot::Colormap::max() const (line 185)</a></td><td>called 490 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l175">QAccelPlot::Colormap::min() const (line 175)</a></td><td>called 492 times</td><td>100.0%</td></tr>
-    <tr><td><a href="#l205">QAccelPlot::Colormap::norm() const (line 205)</a></td><td>called 284 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l237">QAccelPlot::Colormap::onStopChanged() (line 237)</a></td><td>called 7 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l243">QAccelPlot::Colormap::onStopDestroyed(QObject*) (line 243)</a></td><td>called 13 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l109">QAccelPlot::Colormap::preset() const (line 109)</a></td><td>called 2 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l308">QAccelPlot::Colormap::rebuildStops() (line 308)</a></td><td>called 357 times</td><td>96.0%</td></tr>
     <tr><td><a href="#l219">QAccelPlot::Colormap::resolvedStops() const (line 219)</a></td><td>called 357 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l160">QAccelPlot::Colormap::reversed() const (line 160)</a></td><td>called 1 time</td><td>100.0%</td></tr>
+    <tr><td><a href="#l210">QAccelPlot::Colormap::setLogScale(bool) (line 210)</a></td><td>called 14 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l190">QAccelPlot::Colormap::setMax(double) (line 190)</a></td><td>called 66 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l180">QAccelPlot::Colormap::setMin(double) (line 180)</a></td><td>called 66 times</td><td>100.0%</td></tr>
-    <tr><td><a href="#l210">QAccelPlot::Colormap::setNorm(QAccelPlot::Colormap::Normalization) (line 210)</a></td><td>called 14 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l114">QAccelPlot::Colormap::setPreset(QAccelPlot::Colormap::Preset) (line 114)</a></td><td>called 74 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l195">QAccelPlot::Colormap::setRange(double, double) (line 195)</a></td><td>called 260 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l165">QAccelPlot::Colormap::setReversed(bool) (line 165)</a></td><td>called 7 times</td><td>100.0%</td></tr>
@@ -1734,7 +1734,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">284</td>
-      <td class="src coveredLine"><span class="n">Colormap</span><span class="o">::</span><span class="n">Normalization</span><span class="w"> </span><span class="n">Colormap</span><span class="o">::</span><span class="n">norm</span><span class="p">()</span><span class="w"> </span><span class="k">const</span></td>
+      <td class="src coveredLine"><span class="kt">bool</span><span class="w"> </span><span class="n">Colormap</span><span class="o">::</span><span class="n">logScale</span><span class="p">()</span><span class="w"> </span><span class="k">const</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l206" href="#l206">206</a></td>
@@ -1748,7 +1748,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">284</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">norm_</span><span class="p">;</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">logScale_</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l208" href="#l208">208</a></td>
@@ -1769,7 +1769,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">14</td>
-      <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="n">Colormap</span><span class="o">::</span><span class="n">setNorm</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Normalization</span><span class="w"> </span><span class="n">norm</span><span class="p">)</span></td>
+      <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="n">Colormap</span><span class="o">::</span><span class="n">setLogScale</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">on</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l211" href="#l211">211</a></td>
@@ -1790,7 +1790,7 @@
         </details>
       </td>
       <td class="linecount coveredLine">14</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">norm_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">norm</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">logScale_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">on</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l213" href="#l213">213</a></td>
@@ -1811,7 +1811,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">13</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="n">norm_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">norm</span><span class="p">;</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="n">logScale_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">on</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l216" href="#l216">216</a></td>

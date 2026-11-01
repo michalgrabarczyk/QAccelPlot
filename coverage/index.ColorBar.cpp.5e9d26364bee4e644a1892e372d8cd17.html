@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2026-11-01 09:31:03</td>
+      <td>2026-11-01 10:20:25</td>
     </tr>
   </table>
 </div>
@@ -656,7 +656,7 @@
         </details>
       </td>
       <td class="linecount partialCoveredLine">151</td>
-      <td class="src partialCoveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">colormap</span><span class="p">.</span><span class="n">norm</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Colormap</span><span class="o">::</span><span class="n">Normalization</span><span class="o">::</span><span class="n">Log</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">min</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">max</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span></td>
+      <td class="src partialCoveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">colormap</span><span class="p">.</span><span class="n">logScale</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">min</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">max</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l68" href="#l68">68</a></td>
@@ -4406,7 +4406,7 @@
         </details>
       </td>
       <td class="linecount partialCoveredLine">51</td>
-      <td class="src partialCoveredLine"><span class="w">    </span><span class="n">logScale_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">colormap</span><span class="o">-&gt;</span><span class="n">norm</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Colormap</span><span class="o">::</span><span class="n">Normalization</span><span class="o">::</span><span class="n">Log</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">valueMin_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">valueMax_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span></td>
+      <td class="src partialCoveredLine"><span class="w">    </span><span class="n">logScale_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">colormap</span><span class="o">-&gt;</span><span class="n">logScale</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">valueMin_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">valueMax_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l516" href="#l516">516</a></td>
