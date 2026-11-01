@@ -17,7 +17,7 @@ releases under matching Git tags such as `v0.1.0`.
 Before version 1.0, every regular release increments the minor version:
 
 ```text
-0.1.0 → 0.2.0 → 0.3.0 → 0.4.0
+0.1.0 → 0.2.0 → 0.3.0 → 0.4.0 → 0.5.0
 ```
 
 A pre-1.0 release may contain breaking changes. The patch component stays zero,
@@ -45,7 +45,7 @@ Pin a release tag rather than `main`:
 FetchContent_Declare(
     QAccelPlot
     GIT_REPOSITORY https://github.com/michalgrabarczyk/QAccelPlot.git
-    GIT_TAG v0.4.0
+    GIT_TAG v0.5.0
 )
 ```
 

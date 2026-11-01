@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [0.5.0] — 2026-11-01
+
 ### Added
 
 - Heatmaps via `HeatmapSeries`: a uniform grid of values colored through a
@@ -155,10 +157,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   evaluated, and follows later changes to stops declared in the list.
 - Panning and zooming no longer re-upload every series' vertex data each
   frame: the grid updates its scene graph nodes in place.
-- The benchmarks render into their offscreen target and wait for the GPU each
-  frame, so GPU-bound scenarios report their real frame time.
 - Incremental builds recompile a shader when a `.glsl` file it includes
   changes. Stale shaders could fail to link on OpenGL and draw no curves.
+
 ## [0.4.0] — 2026-10-16
 
 ### Added
