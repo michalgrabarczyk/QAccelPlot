@@ -65,6 +65,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `PlotMouseEvent.button` is `Qt.NoButton` for a move instead of the held
   buttons cast into one value; the new `buttons` holds them. `reset()` is no
   longer public.
+- `Colormap.norm` is now `logScale: bool`, like `Axis.logScale`. Replace
+  `norm: Colormap.Log` with `logScale: true` in QML, and
+  `setNorm(Colormap::Normalization::Log)` with `setLogScale(true)` in C++. The
+  `Colormap::Normalization` enum is removed.
 - Renamed `PlotInspector.position` to `crosshairPosition`, and
   `positionChanged()` to `crosshairPositionChanged()`.
 - Inspection data points place a point as `x`, `y` (data units) and `pixelX`,

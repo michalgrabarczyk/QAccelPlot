@@ -173,7 +173,7 @@ Both effects take their color stops from one of two properties:
 
 - `colormap`: a [`Colormap`](point-clouds.md#color-points-by-value) preset or
   custom ramp. Overrides `gradient` when both are set. Only the ramp is used;
-  the colormap's `min`, `max`, and `norm` are ignored.
+  the colormap's `min`, `max`, and `logScale` are ignored.
 - `gradient`: a Qt Quick `Gradient`.
 
 ```qml

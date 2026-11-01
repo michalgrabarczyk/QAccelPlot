@@ -64,7 +64,7 @@ Internal::ValueRange resolvedRange(const ColormappedSeries& series)
 
 bool mapsThroughLog(const Colormap& colormap, const Internal::ValueRange& range)
 {
-    return colormap.norm() == Colormap::Normalization::Log && range.min > 0.0 && range.max > 0.0;
+    return colormap.logScale() && range.min > 0.0 && range.max > 0.0;
 }
 
 // The series hands its range to the shader in single precision.
@@ -512,7 +512,7 @@ void ColorBar::captureColormap()
     valueMin_ = series_->dataValueMin();
     valueMax_ = series_->dataValueMax();
     // The series leaves every point unmapped when a log range is not positive; ticks fall back to linear.
-    logScale_ = colormap->norm() == Colormap::Normalization::Log && valueMin_ > 0.0 && valueMax_ > 0.0;
+    logScale_ = colormap->logScale() && valueMin_ > 0.0 && valueMax_ > 0.0;
 }
 
 void ColorBar::updateImplicitSize()

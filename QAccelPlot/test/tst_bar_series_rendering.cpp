@@ -174,7 +174,7 @@ constexpr auto kLogColormapScene = R"(
         colormap: Colormap {
             min: 1
             max: 100
-            norm: Colormap.Log
+            logScale: true
             stops: [GradientStop { position: 0; color: "blue" }, GradientStop { position: 1; color: "red" }]
         }
         Component.onCompleted: setData([{ from: 0, to: 0.8, value: 5 }, { from: 1, to: 100, value: 5 }])
@@ -527,7 +527,7 @@ void BarSeriesRenderingTest::logColormapPlacesRangedBarsByTheirMiddle()
     QVERIFY(QTest::qWaitForWindowExposed(&scene.window()));
 
     const auto image = scene.grab();
-    // A log norm cannot place the edge at 0, so that bar keeps its color.
+    // A log-scale colormap cannot place the edge at 0, so that bar keeps its color.
     QVERIFY(isColor(image.pixelColor(scene.pixel(0.4, 2.0)), Qt::green));
     // The bar from 1 to 100 sits at the middle of the log ramp, not at its arithmetic middle 50.5.
     QVERIFY(isColor(image.pixelColor(scene.pixel(5.0, 2.0)), QColor{128, 0, 128}));

@@ -126,7 +126,7 @@ QAccelPlot.BarSeries {
 | `colorSource` | Mapped to a color |
 | --- | --- |
 | `BarSeries.Value` (default) | The bar's value |
-| `BarSeries.Position` | The bar's position; for a ranged bar, the middle of its edges under the colormap's `norm` |
+| `BarSeries.Position` | The bar's position; for a ranged bar, the middle of its edges as the colormap places them |
 
 - The colormap overrides `color` and `categoryColors`; `hoverColor` still
   marks the hovered bar.
@@ -135,7 +135,7 @@ QAccelPlot.BarSeries {
   `dataValueMin` and `dataValueMax` expose the resolved range.
 - Values outside the range take the color at its nearer end.
 - `barOffset` does not move a bar's position on the colormap.
-- Under `norm: Colormap.Log`, a bar at or below zero keeps `color` or its
+- Under `logScale: true`, a bar at or below zero keeps `color` or its
   category color. If an unset bound resolves from such a bar, the range is not
   positive and every bar keeps its color; set `min` above zero.
 - A [`ColorBar`](point-clouds.md#show-a-color-bar) keys the series. To key a

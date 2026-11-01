@@ -21,7 +21,7 @@ namespace QAccelPlot {
 /// \brief Maps data values to colors: a color ramp plus the rule that places a value on it.
 ///
 /// A colormap has no geometry. It is a one-dimensional ramp addressed by a normalized coordinate
-/// in [0, 1], and \c norm decides how a value reaches that coordinate. Series that color by value,
+/// in [0, 1], and \c logScale decides how a value reaches that coordinate. Series that color by value,
 /// such as \c PointCloud and \c HeatmapSeries, index the ramp with each value. Effects that paint a
 /// ramp across the plot, such as \c GradientFill and \c GradientStroke, supply the coordinate from a
 /// position instead and own that geometry themselves, so they use only the ramp.
@@ -51,8 +51,10 @@ class Colormap : public QObject, public QQmlParserStatus {
     Q_PROPERTY(qreal min READ min WRITE setMin NOTIFY colormapChanged)
     /// \brief Value at ramp position 1. Unset (NaN) resolves it from the data. Default: unset.
     Q_PROPERTY(qreal max READ max WRITE setMax NOTIFY colormapChanged)
-    /// \brief How a value is placed on the ramp. Default: \c Linear.
-    Q_PROPERTY(Normalization norm READ norm WRITE setNorm NOTIFY colormapChanged)
+    /// \brief Whether values are placed on the ramp in log10 instead of linearly. Default: \c false.
+    ///
+    /// Values at or below zero are unmapped. A \c ColorBar showing the colormap gets decade ticks.
+    Q_PROPERTY(bool logScale READ logScale WRITE setLogScale NOTIFY colormapChanged)
 
 public:
     /// \brief Built-in color ramps.
@@ -68,13 +70,6 @@ public:
         Rainbow    ///< \brief Classic blue-to-red rainbow. Not perceptually uniform.
     };
     Q_ENUM(Preset)
-
-    /// \brief How a value is mapped onto the [0, 1] ramp coordinate.
-    enum class Normalization {
-        Linear, ///< \brief Proportional between \c min and \c max.
-        Log     ///< \brief Proportional in log10. Values at or below zero are treated as unmapped.
-    };
-    Q_ENUM(Normalization)
 
     /// \brief Constructs a Colormap with the given \a parent.
     explicit Colormap(QObject* parent = nullptr);
@@ -105,10 +100,10 @@ public:
     /// \brief Sets both bounds to \a min and \a max with a single \c colormapChanged(). NaN unsets a bound.
     Q_INVOKABLE void setRange(qreal min, qreal max);
 
-    /// \brief Returns the normalization.
-    Normalization norm() const;
-    /// \brief Sets the normalization to \a norm.
-    void setNorm(Normalization norm);
+    /// \brief Returns \c true when values are placed on the ramp in log10.
+    bool logScale() const;
+    /// \brief Sets log-scale placement to \a on.
+    void setLogScale(bool on);
 
     /// \brief Returns the resolved ramp stops, in position order and covering [0, 1].
     ///
@@ -116,7 +111,7 @@ public:
     const std::vector<GradientStopData>& resolvedStops() const;
 
 signals:
-    /// \brief Emitted when the ramp, its bounds, or the normalization changes.
+    /// \brief Emitted when the ramp, its bounds, or \c logScale changes.
     void colormapChanged();
 
 protected:
@@ -148,7 +143,7 @@ private:
     std::vector<GradientStopData> resolvedStops_;
     qreal min_;
     qreal max_;
-    Normalization norm_{Normalization::Linear};
+    bool logScale_{false};
 };
 
 } // namespace QAccelPlot

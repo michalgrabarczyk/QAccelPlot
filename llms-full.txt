@@ -1373,7 +1373,7 @@ Both effects take their color stops from one of two properties:
 
 - `colormap`: a [`Colormap`](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/point-clouds/#color-points-by-value) preset or
   custom ramp. Overrides `gradient` when both are set. Only the ramp is used;
-  the colormap's `min`, `max`, and `norm` are ignored.
+  the colormap's `min`, `max`, and `logScale` are ignored.
 - `gradient`: a Qt Quick `Gradient`.
 
 ```qml
@@ -1879,7 +1879,7 @@ QAccelPlot.PointCloud {
 
 `min` and `max` bound the value range. An unset bound is resolved from the
 data, so series sharing one colormap can resolve different ranges.
-`setRange(min, max)` sets both with one update. Set `norm` to `Colormap.Log`
+`setRange(min, max)` sets both with one update. Set `logScale: true`
 when the values span decades; values at or below zero are then drawn with
 `color`.
 
@@ -2108,13 +2108,13 @@ QAccelPlot.HeatmapSeries {
 
 The colormap works as for [point clouds](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/point-clouds/#color-points-by-value):
 presets, `reversed`, custom `stops`, fixed or data-resolved `min` and `max`,
-and `norm: Colormap.Log`. `dataValueMin` and `dataValueMax` expose the resolved
+and `logScale`. `dataValueMin` and `dataValueMax` expose the resolved
 range. Nothing is drawn while `colormap` is null.
 
 These cells are transparent:
 
 - cells with a non-finite value, such as `NaN` for missing data;
-- under a `Log` colormap, cells with a value at or below zero.
+- under a `logScale` colormap, cells with a value at or below zero.
 
 Non-finite values do not count toward the value range.
 
@@ -2365,7 +2365,7 @@ QAccelPlot.BarSeries {
 | `colorSource` | Mapped to a color |
 | --- | --- |
 | `BarSeries.Value` (default) | The bar's value |
-| `BarSeries.Position` | The bar's position; for a ranged bar, the middle of its edges under the colormap's `norm` |
+| `BarSeries.Position` | The bar's position; for a ranged bar, the middle of its edges as the colormap places them |
 
 - The colormap overrides `color` and `categoryColors`; `hoverColor` still
   marks the hovered bar.
@@ -2374,7 +2374,7 @@ QAccelPlot.BarSeries {
   `dataValueMin` and `dataValueMax` expose the resolved range.
 - Values outside the range take the color at its nearer end.
 - `barOffset` does not move a bar's position on the colormap.
-- Under `norm: Colormap.Log`, a bar at or below zero keeps `color` or its
+- Under `logScale: true`, a bar at or below zero keeps `color` or its
   category color. If an unset bound resolves from such a bar, the range is not
   positive and every bar keeps its color; set `min` above zero.
 - A [`ColorBar`](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/point-clouds/#show-a-color-bar) keys the series. To key a

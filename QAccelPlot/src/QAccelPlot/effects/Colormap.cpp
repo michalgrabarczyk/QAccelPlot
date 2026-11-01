@@ -202,17 +202,17 @@ void Colormap::setRange(const qreal min, const qreal max)
     emit colormapChanged();
 }
 
-Colormap::Normalization Colormap::norm() const
+bool Colormap::logScale() const
 {
-    return norm_;
+    return logScale_;
 }
 
-void Colormap::setNorm(const Normalization norm)
+void Colormap::setLogScale(const bool on)
 {
-    if (norm_ == norm) {
+    if (logScale_ == on) {
         return;
     }
-    norm_ = norm;
+    logScale_ = on;
     emit colormapChanged();
 }
 

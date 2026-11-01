@@ -638,7 +638,7 @@ void BarSeriesDataTest::logColormapReceivesAbsoluteValues()
     bars.setColorSource(BarSeries::ColorSource::Position);
     bars.setData(std::vector<double>{1001.0, 5.0, 1003.0, 6.0}, 2);
     auto colormap = Colormap{};
-    colormap.setNorm(Colormap::Normalization::Log);
+    colormap.setLogScale(true);
     bars.setColormap(&colormap);
 
     auto node = std::unique_ptr<QSGNode>{bars.updatePaintNode(nullptr, nullptr)};

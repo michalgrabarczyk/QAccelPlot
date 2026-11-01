@@ -541,7 +541,7 @@ void HeatmapSeries::updateMaterial(HeatmapMaterial& material, QQuickWindow* wind
     material.rowMapping = static_cast<int>(rows.mode);
     material.valueMin = static_cast<float>(dataValueMin());
     material.valueMax = static_cast<float>(dataValueMax());
-    material.valueLogScale = colormap()->norm() == Colormap::Normalization::Log ? 1.0f : 0.0f;
+    material.valueLogScale = colormap()->logScale() ? 1.0f : 0.0f;
     material.columns = columns_;
     material.rows = rows_;
 }

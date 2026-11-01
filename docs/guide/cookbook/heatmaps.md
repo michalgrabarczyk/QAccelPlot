@@ -98,13 +98,13 @@ QAccelPlot.HeatmapSeries {
 
 The colormap works as for [point clouds](point-clouds.md#color-points-by-value):
 presets, `reversed`, custom `stops`, fixed or data-resolved `min` and `max`,
-and `norm: Colormap.Log`. `dataValueMin` and `dataValueMax` expose the resolved
+and `logScale`. `dataValueMin` and `dataValueMax` expose the resolved
 range. Nothing is drawn while `colormap` is null.
 
 These cells are transparent:
 
 - cells with a non-finite value, such as `NaN` for missing data;
-- under a `Log` colormap, cells with a value at or below zero.
+- under a `logScale` colormap, cells with a value at or below zero.
 
 Non-finite values do not count toward the value range.
 

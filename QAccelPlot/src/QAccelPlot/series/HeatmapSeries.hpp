@@ -55,7 +55,7 @@ class HeatmapMaterial;
 /// called from any thread.
 ///
 /// \par Invalid cells
-/// Cells with a non-finite value, and cells with a value at or below zero under a \c Log colormap,
+/// Cells with a non-finite value, and cells with a value at or below zero under a log-scale colormap,
 /// are transparent. Non-finite values do not count toward the value range.
 ///
 /// \par Logarithmic axes and spacing

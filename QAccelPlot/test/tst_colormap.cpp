@@ -89,7 +89,7 @@ void ColormapTest::defaultsToViridisRamp()
     const auto& stops = colormap.resolvedStops();
 
     QCOMPARE(colormap.preset(), Colormap::Preset::Viridis);
-    QCOMPARE(colormap.norm(), Colormap::Normalization::Linear);
+    QVERIFY(!colormap.logScale());
     QVERIFY(stops.size() >= 2);
     // The ramp always spans the full coordinate range.
     QCOMPARE(stops.front().position, 0.0f);

@@ -407,7 +407,7 @@ QSGNode* PointCloud::updatePaintNode(QSGNode* oldNode, [[maybe_unused]] UpdatePa
     material->logScaleX = xAxis()->logScale() ? 1.0f : 0.0f;
     material->logScaleY = yAxis()->logScale() ? 1.0f : 0.0f;
     material->useVertexColor = useValueColor ? 1.0f : 0.0f;
-    material->valueLogScale = useValueColor && valueColormap->norm() == Colormap::Normalization::Log ? 1.0f : 0.0f;
+    material->valueLogScale = useValueColor && valueColormap->logScale() ? 1.0f : 0.0f;
     material->markerSize = static_cast<float>(marker_->size());
     material->markerFilled = marker_->filled() ? 1.0f : 0.0f;
     material->markerStrokeWidth = static_cast<float>(marker_->strokeWidth());
