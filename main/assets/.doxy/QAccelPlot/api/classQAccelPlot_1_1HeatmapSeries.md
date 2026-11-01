@@ -472,7 +472,7 @@ QAccelPlot.HeatmapSeries {
 **
 **
 
-Cells with a non-finite value, and cells with a value at or below zero under a `Log` colormap, are transparent. Non-finite values do not count toward the value range.
+Cells with a non-finite value, and cells with a value at or below zero under a log-scale colormap, are transparent. Non-finite values do not count toward the value range.
 
 
 

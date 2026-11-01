@@ -39,7 +39,7 @@ class Colormap : public QObject, public QQmlParserStatus {
     Q_PROPERTY(bool reversed READ reversed WRITE setReversed NOTIFY colormapChanged)
     Q_PROPERTY(qreal min READ min WRITE setMin NOTIFY colormapChanged)
     Q_PROPERTY(qreal max READ max WRITE setMax NOTIFY colormapChanged)
-    Q_PROPERTY(Normalization norm READ norm WRITE setNorm NOTIFY colormapChanged)
+    Q_PROPERTY(bool logScale READ logScale WRITE setLogScale NOTIFY colormapChanged)
 
 public:
     enum class Preset {
@@ -51,13 +51,6 @@ public:
         Rainbow    
     };
     Q_ENUM(Preset)
-
-    
-    enum class Normalization {
-        Linear, 
-        Log     
-    };
-    Q_ENUM(Normalization)
 
     
     explicit Colormap(QObject* parent = nullptr);
@@ -78,8 +71,8 @@ public:
 
     Q_INVOKABLE void setRange(qreal min, qreal max);
 
-    Normalization norm() const;
-    void setNorm(Normalization norm);
+    bool logScale() const;
+    void setLogScale(bool on);
 
     const std::vector<GradientStopData>& resolvedStops() const;
 
@@ -113,7 +106,7 @@ private:
     std::vector<GradientStopData> resolvedStops_;
     qreal min_;
     qreal max_;
-    Normalization norm_{Normalization::Linear};
+    bool logScale_{false};
 };
 
 } // namespace QAccelPlot

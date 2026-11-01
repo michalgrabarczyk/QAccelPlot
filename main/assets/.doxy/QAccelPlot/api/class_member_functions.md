@@ -436,7 +436,7 @@
 * **labelOverflow** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
 * **labelPadding** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **layoutSize** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
-* **logScale** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
+* **logScale** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **lineStyle** ([**QAccelPlot::BandEdges**](classQAccelPlot_1_1BandEdges.md), [**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **legendEntry** ([**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md), [**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md), [**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md), [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md), [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md))
 * **light** ([**QAccelPlot::ColorPalette**](classQAccelPlot_1_1ColorPalette.md), [**QAccelPlot::Colors**](classQAccelPlot_1_1Colors.md))
@@ -497,7 +497,6 @@
 
 ## n
 
-* **norm** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **neutralStops** ([**QAccelPlot::GradientTexture**](classQAccelPlot_1_1GradientTexture.md))
 * **nearest** ([**QAccelPlot::Internal::InspectionIndex**](classQAccelPlot_1_1Internal_1_1InspectionIndex.md), [**QAccelPlot::Internal::SourceInspection**](classQAccelPlot_1_1Internal_1_1SourceInspection.md), [**QAccelPlot::PointSpatialIndex**](classQAccelPlot_1_1PointSpatialIndex.md), [**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md))
 * **nearestAlong** ([**QAccelPlot::Internal::InspectionIndex**](classQAccelPlot_1_1Internal_1_1InspectionIndex.md), [**QAccelPlot::Internal::SourceInspection**](classQAccelPlot_1_1Internal_1_1SourceInspection.md), [**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md))
@@ -696,7 +695,7 @@
 * **setLabelFont** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **setLabelPadding** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **setLayoutSize** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
-* **setLogScale** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
+* **setLogScale** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **setOrientation** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md), [**QAccelPlot::ErrorBarSeries**](classQAccelPlot_1_1ErrorBarSeries.md))
 * **setSide** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
 * **setViewportMax** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
@@ -758,7 +757,6 @@
 * **stripLength** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **setMax** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **setMin** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
-* **setNorm** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **setPreset** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **setRange** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **setReversed** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))

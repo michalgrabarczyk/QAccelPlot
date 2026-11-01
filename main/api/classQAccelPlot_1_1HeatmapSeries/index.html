@@ -3026,7 +3026,7 @@
 <p><code>setValues()</code> replaces the values and the shape together. The <code>PlotSeries</code> setters take one value per cell and keep <code>columns</code>, so their count must be a multiple of it. <code>DataBounds</code> passed to them replace the grid edges as the data range until the values, the shape, or an edge next changes. Values are stored in single precision. <code>postValues()</code> and <code>postData()</code> may be called from any thread.</p>
 <p>**
 **</p>
-<p>Cells with a non-finite value, and cells with a value at or below zero under a <code>Log</code> colormap, are transparent. Non-finite values do not count toward the value range.</p>
+<p>Cells with a non-finite value, and cells with a value at or below zero under a log-scale colormap, are transparent. Non-finite values do not count toward the value range.</p>
 <p>**
 **</p>
 <p><code>xSpacing</code> and <code>ySpacing</code> space the cells evenly in data or in log10, independently of the axis scale. On a log axis, <code>Log</code> cells have equal widths, <code>Linear</code> cells narrow toward larger values, and the parts of cells at or below zero are not drawn; the data range starts at the first cell edge above zero. Under <code>Log</code> spacing, both edges of that dimension must be positive, so set them: an unset edge resolves to index space, which starts at 0. Otherwise the series draws nothing, reports no data range in that dimension, and logs a warning.</p>

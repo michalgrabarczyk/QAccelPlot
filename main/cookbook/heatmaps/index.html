@@ -1683,12 +1683,12 @@ resolved from the data. Change it in place, or assign a shared one:</p>
 </code></pre></div>
 <p>The colormap works as for <a href="../point-clouds/#color-points-by-value">point clouds</a>:
 presets, <code>reversed</code>, custom <code>stops</code>, fixed or data-resolved <code>min</code> and <code>max</code>,
-and <code>norm: Colormap.Log</code>. <code>dataValueMin</code> and <code>dataValueMax</code> expose the resolved
+and <code>logScale</code>. <code>dataValueMin</code> and <code>dataValueMax</code> expose the resolved
 range. Nothing is drawn while <code>colormap</code> is null.</p>
 <p>These cells are transparent:</p>
 <ul>
 <li>cells with a non-finite value, such as <code>NaN</code> for missing data;</li>
-<li>under a <code>Log</code> colormap, cells with a value at or below zero.</li>
+<li>under a <code>logScale</code> colormap, cells with a value at or below zero.</li>
 </ul>
 <p>Non-finite values do not count toward the value range.</p>
 <h2 id="show-a-color-bar">Show a color bar<a class="headerlink" href="#show-a-color-bar" title="Permanent link">&para;</a></h2>

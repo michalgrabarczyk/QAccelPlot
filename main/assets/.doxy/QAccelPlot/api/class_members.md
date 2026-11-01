@@ -677,8 +677,8 @@
 * **lastMousePos\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md), [**QAccelPlot::PlotView**](classQAccelPlot_1_1PlotView.md))
 * **layoutSize** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
 * **layoutSize\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
-* **logScale** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::AxisTickValues**](structQAccelPlot_1_1AxisTickValues.md), [**QAccelPlot::DataPointStore::DimensionState**](structQAccelPlot_1_1DataPointStore_1_1DimensionState.md))
-* **logScale\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
+* **logScale** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::AxisTickValues**](structQAccelPlot_1_1AxisTickValues.md), [**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md), [**QAccelPlot::DataPointStore::DimensionState**](structQAccelPlot_1_1DataPointStore_1_1DimensionState.md))
+* **logScale\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md), [**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **logarithmic** ([**QAccelPlot::AxisMapping**](structQAccelPlot_1_1AxisMapping.md))
 * **lineStyle** ([**QAccelPlot::BandEdges**](classQAccelPlot_1_1BandEdges.md), [**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md))
 * **lineStyle\_** ([**QAccelPlot::BandEdges**](classQAccelPlot_1_1BandEdges.md), [**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
@@ -804,9 +804,6 @@
 
 ## n
 
-* **Normalization** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
-* **norm** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
-* **norm\_** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **nonPositiveXInvalid** ([**QAccelPlot::CurveHitTestParams**](structQAccelPlot_1_1CurveHitTestParams.md))
 * **nonPositiveYInvalid** ([**QAccelPlot::CurveHitTestParams**](structQAccelPlot_1_1CurveHitTestParams.md))
 * **neutralStops** ([**QAccelPlot::GradientTexture**](classQAccelPlot_1_1GradientTexture.md))
@@ -1083,7 +1080,7 @@
 * **setLabelFont** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **setLabelPadding** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **setLayoutSize** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
-* **setLogScale** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
+* **setLogScale** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **setOrientation** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md), [**QAccelPlot::ErrorBarSeries**](classQAccelPlot_1_1ErrorBarSeries.md))
 * **setSide** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
 * **setViewportMax** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
@@ -1159,7 +1156,6 @@
 * **stripLength** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **setMax** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **setMin** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
-* **setNorm** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **setPreset** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **setRange** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **setReversed** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))

@@ -35,7 +35,6 @@
 
 ## n
 
-* **Normalization** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **NoneShape** ([**QAccelPlot::SeriesMarker**](classQAccelPlot_1_1SeriesMarker.md))
 
 

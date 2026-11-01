@@ -497,7 +497,7 @@ Set `antialiasing` to smooth edges that fall between pixels. It is off by defaul
 **
 **
 
-Assign a `colormap` to color each bar by `colorSource:` its `value`, or its `position`. The position of a ranged bar is the middle of its edges as the colormap's `norm` places them, and `barOffset` does not apply. A colormap with at least two stops overrides `color` and `categoryColors`, and `hoverColor` still marks the hovered bar. Values outside the value range take the color at its nearer end. A bar whose source the norm cannot map, such as a non-positive one under `Log`, keeps `color` or its category color. Under `Log`, an unset bound resolved from such a bar is not positive, so every bar keeps its color; set `Colormap::min` above zero. Bars can be histogram bins colored by their bin, with a `ColorBar` or the position axis as the key:
+Assign a `colormap` to color each bar by `colorSource:` its `value`, or its `position`. The position of a ranged bar is the middle of its edges as the colormap places them, and `barOffset` does not apply. A colormap with at least two stops overrides `color` and `categoryColors`, and `hoverColor` still marks the hovered bar. Values outside the value range take the color at its nearer end. A bar whose source the colormap cannot map, such as a non-positive one under `Colormap::logScale`, keeps `color` or its category color. Under `logScale`, an unset bound resolved from such a bar is not positive, so every bar keeps its color; set `Colormap::min` above zero. Bars can be histogram bins colored by their bin, with a `ColorBar` or the position axis as the key:
 
 
 

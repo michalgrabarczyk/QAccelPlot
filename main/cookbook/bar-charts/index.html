@@ -1760,7 +1760,7 @@ are set with <code>border.width</code> and <code>border.color</code>.</p>
 </tr>
 <tr>
 <td><code>BarSeries.Position</code></td>
-<td>The bar's position; for a ranged bar, the middle of its edges under the colormap's <code>norm</code></td>
+<td>The bar's position; for a ranged bar, the middle of its edges as the colormap places them</td>
 </tr>
 </tbody>
 </table>
@@ -1772,7 +1772,7 @@ are set with <code>border.width</code> and <code>border.color</code>.</p>
   <code>dataValueMin</code> and <code>dataValueMax</code> expose the resolved range.</li>
 <li>Values outside the range take the color at its nearer end.</li>
 <li><code>barOffset</code> does not move a bar's position on the colormap.</li>
-<li>Under <code>norm: Colormap.Log</code>, a bar at or below zero keeps <code>color</code> or its
+<li>Under <code>logScale: true</code>, a bar at or below zero keeps <code>color</code> or its
   category color. If an unset bound resolves from such a bar, the range is not
   positive and every bar keeps its color; set <code>min</code> above zero.</li>
 <li>A <a href="../point-clouds/#show-a-color-bar"><code>ColorBar</code></a> keys the series. To key a

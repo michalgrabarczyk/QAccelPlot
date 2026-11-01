@@ -2008,6 +2008,10 @@
 <li><code>PlotMouseEvent.button</code> is <code>Qt.NoButton</code> for a move instead of the held
   buttons cast into one value; the new <code>buttons</code> holds them. <code>reset()</code> is no
   longer public.</li>
+<li><code>Colormap.norm</code> is now <code>logScale: bool</code>, like <code>Axis.logScale</code>. Replace
+  <code>norm: Colormap.Log</code> with <code>logScale: true</code> in QML, and
+  <code>setNorm(Colormap::Normalization::Log)</code> with <code>setLogScale(true)</code> in C++. The
+  <code>Colormap::Normalization</code> enum is removed.</li>
 <li>Renamed <code>PlotInspector.position</code> to <code>crosshairPosition</code>, and
   <code>positionChanged()</code> to <code>crosshairPositionChanged()</code>.</li>
 <li>Inspection data points place a point as <code>x</code>, <code>y</code> (data units) and <code>pixelX</code>,

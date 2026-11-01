@@ -1662,7 +1662,7 @@ their <code>position</code> and <code>color</code>:</p>
 </code></pre></div>
 <p><code>min</code> and <code>max</code> bound the value range. An unset bound is resolved from the
 data, so series sharing one colormap can resolve different ranges.
-<code>setRange(min, max)</code> sets both with one update. Set <code>norm</code> to <code>Colormap.Log</code>
+<code>setRange(min, max)</code> sets both with one update. Set <code>logScale: true</code>
 when the values span decades; values at or below zero are then drawn with
 <code>color</code>.</p>
 <p>From QML, call <code>setValues()</code> after <code>setData()</code> with one value per point. From

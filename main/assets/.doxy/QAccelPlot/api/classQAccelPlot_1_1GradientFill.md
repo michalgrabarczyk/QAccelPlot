@@ -286,7 +286,7 @@ Colormap* QAccelPlot::GradientFill::colormap;
 
 
 
-Only the ramp is used. `Colormap::min`, `Colormap::max`, and `Colormap::norm` are ignored; `valueMin` and `valueMax` place the ramp instead. 
+Only the ramp is used. `Colormap::min`, `Colormap::max`, and `Colormap::logScale` are ignored; `valueMin` and `valueMax` place the ramp instead. 
 
 
         
