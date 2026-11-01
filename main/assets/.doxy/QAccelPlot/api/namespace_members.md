@@ -95,15 +95,14 @@
 
 ## r
 
+* **readEffectStops** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **readGradientStopList** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **recordCapacity** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **recordDataTextureUpload** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **resetDataTextureUploadTotals** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
-* **readEffectStops** ([**QAccelPlot**](namespaceQAccelPlot.md))
-* **readGradientStopList** ([**QAccelPlot**](namespaceQAccelPlot.md))
-* **readGradientStops** ([**QAccelPlot**](namespaceQAccelPlot.md))
+* **resolveGradientValueRange** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **renderOriginForViewport** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **renderOriginTooFar** ([**QAccelPlot**](namespaceQAccelPlot.md))
-* **resolveGradientValueRange** ([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
 ## s
@@ -121,8 +120,8 @@
 
 ## u
 
+* **unboundedGradientCoordinate** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **uploadDataTexture** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
-* **unboundedGradientCoordinate** ([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
 ## v

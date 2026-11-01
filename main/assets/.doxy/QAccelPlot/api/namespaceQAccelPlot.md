@@ -192,13 +192,8 @@
 |  bool | [**isEmptyChunk**](#function-isemptychunk) (const [**CurveChunk**](structQAccelPlot_1_1CurveChunk.md) & chunk) <br>_Returns_ `true` _when__chunk_ _contains no valid data point and can be skipped by hit tests._ |
 |  bool | [**isValidCoordinate**](#function-isvalidcoordinate) (double value, bool logScale) noexcept<br> |
 |  bool | [**nearlyEqual**](#function-nearlyequal) (double a, double b, double relativeEpsilon=kNearlyEqualEpsilon, double absoluteEpsilon=0.0) noexcept<br> |
-|  std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; | [**readEffectStops**](#function-readeffectstops) (const [**Colormap**](classQAccelPlot_1_1Colormap.md) \* colormap, QObject \* gradient) <br>_Returns the color stops of a gradient effect: the_ _colormap_ _ramp when set, otherwise the stops of__gradient_ _._ |
-|  std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; | [**readGradientStopList**](#function-readgradientstoplist) (const QVariantList & stopObjects) <br>_Reads a list of stop objects, each exposing_ `position` _and_`color` _, into position order._ |
-|  std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; | [**readGradientStops**](#function-readgradientstops) (QObject \* gradient) <br>_Reads the stops of a QML_ `Gradient` _into position order, covering the full [0, 1] range._ |
 |  double | [**renderOriginForViewport**](#function-renderoriginforviewport) (double origin, double viewportMin, double viewportMax) noexcept<br> |
 |  bool | [**renderOriginTooFar**](#function-renderorigintoofar) (double origin, double viewportMin, double viewportMax) noexcept<br> |
-|  void | [**resolveGradientValueRange**](#function-resolvegradientvaluerange) (Payload & payload, const qreal dataMin, const qreal dataMax) <br>_Fills each unset gradient value bound of_ _payload_ _from [__dataMin_ _,__dataMax_ _]._ |
-|  float | [**unboundedGradientCoordinate**](#function-unboundedgradientcoordinate) (const Qt::Orientation direction, const qreal value, const qreal minimum, const qreal maximum) <br>_Returns an unbounded palette coordinate for a data-space_ _value_ _._ |
 
 
 
@@ -403,88 +398,6 @@ inline bool QAccelPlot::nearlyEqual (
 
 
 
-### function readEffectStops {#function-readeffectstops}
-
-_Returns the color stops of a gradient effect: the_ _colormap_ _ramp when set, otherwise the stops of__gradient_ _._
-```C++
-std::vector< GradientStopData > QAccelPlot::readEffectStops (
-    const Colormap * colormap,
-    QObject * gradient
-) 
-```
-
-
-
-Returns an empty vector when both are null.
-
-
-
-
-**See also:** [**GradientFill**](classQAccelPlot_1_1GradientFill.md), [**GradientStroke**](classQAccelPlot_1_1GradientStroke.md) 
-
-
-
-        
-
-<hr>
-
-
-
-
-### function readGradientStopList {#function-readgradientstoplist}
-
-_Reads a list of stop objects, each exposing_ `position` _and_`color` _, into position order._
-```C++
-std::vector< GradientStopData > QAccelPlot::readGradientStopList (
-    const QVariantList & stopObjects
-) 
-```
-
-
-
-Normalized the same way as `readGradientStops()`: a single stop is duplicated and the end colors are extended to 0 and 1. Entries that are not stop-like are skipped.
-
-
-
-
-**See also:** [**Colormap**](classQAccelPlot_1_1Colormap.md) 
-
-
-
-        
-
-<hr>
-
-
-
-
-### function readGradientStops {#function-readgradientstops}
-
-_Reads the stops of a QML_ `Gradient` _into position order, covering the full [0, 1] range._
-```C++
-std::vector< GradientStopData > QAccelPlot::readGradientStops (
-    QObject * gradient
-) 
-```
-
-
-
-Stops are read from the `stops` list property, falling back to child objects. A single stop is duplicated, and the first and last colors are extended to positions 0 and 1. Returns an empty vector when _gradient_ is null or has no valid stops.
-
-
-
-
-**See also:** [**GradientFill**](classQAccelPlot_1_1GradientFill.md), [**GradientStroke**](classQAccelPlot_1_1GradientStroke.md), [**PointCloud**](classQAccelPlot_1_1PointCloud.md) 
-
-
-
-        
-
-<hr>
-
-
-
-
 ### function renderOriginForViewport {#function-renderoriginforviewport}
 
 ```C++
@@ -515,54 +428,6 @@ inline bool QAccelPlot::renderOriginTooFar (
 
 
 
-
-<hr>
-
-
-
-
-### function resolveGradientValueRange {#function-resolvegradientvaluerange}
-
-_Fills each unset gradient value bound of_ _payload_ _from [__dataMin_ _,__dataMax_ _]._
-```C++
-template<typename Payload>
-void QAccelPlot::resolveGradientValueRange (
-    Payload & payload,
-    const qreal dataMin,
-    const qreal dataMax
-) 
-```
-
-
-
-Bounds resolve independently, so a `Fixed` bound is kept when the other bound uses `DataRange`. 
-
-
-        
-
-<hr>
-
-
-
-
-### function unboundedGradientCoordinate {#function-unboundedgradientcoordinate}
-
-_Returns an unbounded palette coordinate for a data-space_ _value_ _._
-```C++
-inline float QAccelPlot::unboundedGradientCoordinate (
-    const Qt::Orientation direction,
-    const qreal value,
-    const qreal minimum,
-    const qreal maximum
-) 
-```
-
-
-
-Coordinates outside [0, 1] are intentionally preserved for interpolation. Renderers must clamp only after interpolation, immediately before sampling the gradient, so values beyond the configured range retain endpoint colors. 
-
-
-        
 
 <hr>
 

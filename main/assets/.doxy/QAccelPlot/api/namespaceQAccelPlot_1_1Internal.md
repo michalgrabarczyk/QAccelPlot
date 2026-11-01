@@ -116,13 +116,17 @@
 |  QString | [**localFilePath**](#function-localfilepath) (const QString & pathOrUrl) <br>_Returns_ _pathOrUrl_ _as a local file path; a_`file:` _URL, as a QML file dialog returns, is converted._ |
 |  int | [**maxTextureSize**](#function-maxtexturesize) (QQuickWindow \* window) <br>_Returns the largest texture width and height, in pixels, that_ _window's_ _GPU supports._ |
 |  [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) | [**pannedRange**](#function-pannedrange) (const [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) & range, qreal fraction, bool logarithmic) <br>_Returns_ _range_ _shifted by__fraction_ _of its extent; a positive__fraction_ _raises both bounds._ |
+|  std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; | [**readEffectStops**](#function-readeffectstops) (const [**Colormap**](classQAccelPlot_1_1Colormap.md) \* colormap, QObject \* gradient) <br>_Returns the color stops of a gradient effect: the_ _colormap_ _ramp when set, otherwise the stops of the QML_`Gradient` ___gradient_ _._ |
+|  std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; | [**readGradientStopList**](#function-readgradientstoplist) (const QVariantList & stopObjects) <br>_Reads a list of stop objects, each exposing_ `position` _and_`color` _, into position order._ |
 |  int | [**recordCapacity**](#function-recordcapacity) (QQuickWindow \* window, int floatsPerRecord, int vertexBytesPerRecord) <br>_Returns how many records a series draws that reads them from the data texture by a float vertex id._  |
 |  void | [**recordDataTextureUpload**](#function-recorddatatextureupload) (std::int64\_t bytes) <br>_Adds one upload of_ _bytes_ _to the totals. Thread-safe._ |
 |  void | [**resetDataTextureUploadTotals**](#function-resetdatatextureuploadtotals) () <br>_Sets the totals back to zero. Thread-safe._  |
+|  void | [**resolveGradientValueRange**](#function-resolvegradientvaluerange) (Payload & payload, const qreal dataMin, const qreal dataMax) <br>_Fills each unset gradient value bound of_ _payload_ _from [__dataMin_ _,__dataMax_ _]._ |
 |  void | [**setImageResolution**](#function-setimageresolution) (QImage & image, qreal dpi) <br>_Sets the resolution stored with_ _image_ _to__dpi_ _dots per inch._ |
 |  std::optional&lt; QPointF &gt; | [**stepCorner**](#function-stepcorner) (const [**CurveDataView**](structQAccelPlot_1_1CurveDataView.md) & data, int from, int to, int corner, [**StepMode**](namespaceQAccelPlot_1_1StepModeNS.md#enum-mode) mode, bool logScaleX, bool logScaleY) <br>_Returns corner_ _corner_ _of the step from data point__from_ _to data point__to_ _, in data space._ |
 |  int | [**stepCornerCount**](#function-stepcornercount) ([**StepMode**](namespaceQAccelPlot_1_1StepModeNS.md#enum-mode) mode) noexcept<br>_Returns the number of line path points per data point for_ _mode:_ _the data point and the step corners after it._ |
 |  bool | [**supportsCustomShaderRendering**](#function-supportscustomshaderrendering) (const QQuickWindow \* window) <br>_Returns_ `true` _when__window_ _renders through a hardware scene graph backend that runs custom shaders._ |
+|  float | [**unboundedGradientCoordinate**](#function-unboundedgradientcoordinate) (const Qt::Orientation direction, const qreal value, const qreal minimum, const qreal maximum) <br>_Returns an unbounded palette coordinate for a data-space_ _value_ _._ |
 |  void | [**uploadDataTexture**](#function-uploaddatatexture) (std::unique\_ptr&lt; QSGTexture &gt; & texture, QQuickWindow \* window, const QImage & image) <br>_Uploads an image to the live-data texture using the configured Qt API path._  |
 |  qreal | [**wheelZoomFactor**](#function-wheelzoomfactor) (qreal zoomScaleFactor, bool zoomingIn, qreal steps=1.0) <br>_Returns the extent multiplier for mouse-wheel zoom with a_ _zoomScaleFactor_ _in (0, 1)._ |
 |  std::pair&lt; qreal, qreal &gt; | [**widenedSpan**](#function-widenedspan) (qreal a, qreal b, qreal minimumSize) <br>_Returns the pixel span between edges_ _a_ _and__b_ _, widened around its center to at least__minimumSize_ _._ |
@@ -474,6 +478,61 @@ With _logarithmic_ set, the shift is applied in `log10` space, so both bounds ar
 
 
 
+### function readEffectStops {#function-readeffectstops}
+
+_Returns the color stops of a gradient effect: the_ _colormap_ _ramp when set, otherwise the stops of the QML_`Gradient` ___gradient_ _._
+```C++
+std::vector< GradientStopData > QAccelPlot::Internal::readEffectStops (
+    const Colormap * colormap,
+    QObject * gradient
+) 
+```
+
+
+
+_gradient_ stops are read from its `stops` list property, falling back to child objects, and normalized like `readGradientStopList()`. Returns an empty vector when both are null.
+
+
+
+
+**See also:** [**GradientFill**](classQAccelPlot_1_1GradientFill.md), [**GradientStroke**](classQAccelPlot_1_1GradientStroke.md) 
+
+
+
+        
+
+<hr>
+
+
+
+
+### function readGradientStopList {#function-readgradientstoplist}
+
+_Reads a list of stop objects, each exposing_ `position` _and_`color` _, into position order._
+```C++
+std::vector< GradientStopData > QAccelPlot::Internal::readGradientStopList (
+    const QVariantList & stopObjects
+) 
+```
+
+
+
+A single stop is duplicated, and the first and last colors are extended to positions 0 and 1. Entries that are not stop-like are skipped.
+
+
+
+
+**See also:** [**Colormap**](classQAccelPlot_1_1Colormap.md) 
+
+
+
+        
+
+<hr>
+
+
+
+
 ### function recordCapacity {#function-recordcapacity}
 
 _Returns how many records a series draws that reads them from the data texture by a float vertex id._ 
@@ -523,6 +582,30 @@ void QAccelPlot::Internal::resetDataTextureUploadTotals ()
 
 
 
+
+<hr>
+
+
+
+
+### function resolveGradientValueRange {#function-resolvegradientvaluerange}
+
+_Fills each unset gradient value bound of_ _payload_ _from [__dataMin_ _,__dataMax_ _]._
+```C++
+template<typename Payload>
+void QAccelPlot::Internal::resolveGradientValueRange (
+    Payload & payload,
+    const qreal dataMin,
+    const qreal dataMax
+) 
+```
+
+
+
+Bounds resolve independently, so a `Fixed` bound is kept when the other bound uses `DataRange`. 
+
+
+        
 
 <hr>
 
@@ -602,6 +685,30 @@ bool QAccelPlot::Internal::supportsCustomShaderRendering (
 
 
 
+
+<hr>
+
+
+
+
+### function unboundedGradientCoordinate {#function-unboundedgradientcoordinate}
+
+_Returns an unbounded palette coordinate for a data-space_ _value_ _._
+```C++
+inline float QAccelPlot::Internal::unboundedGradientCoordinate (
+    const Qt::Orientation direction,
+    const qreal value,
+    const qreal minimum,
+    const qreal maximum
+) 
+```
+
+
+
+Coordinates outside [0, 1] are intentionally preserved for interpolation. Renderers must clamp only after interpolation, immediately before sampling the gradient, so values beyond the configured range retain endpoint colors. 
+
+
+        
 
 <hr>
 

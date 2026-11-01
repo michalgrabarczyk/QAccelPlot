@@ -3505,11 +3505,6 @@
     <member refid="StepMode_8hpp_1a701d066e167f1caad8be578e0750f7b1" kind="typedef"><name>StepMode</name></member>
     <member refid="LineStyle_8hpp_1a44595e259edb178d9a8c42317ab2cff7" kind="variable"><name>kMaxDashPatternSize</name></member>
     <member refid="MathUtils_8hpp_1a5d7d51876775f2a846a29ae3032b7f1e" kind="variable"><name>kNearlyEqualEpsilon</name></member>
-    <member refid="GradientCoordinateUtils_8hpp_1a7a483f340fdb2f9ed6987539809e69cc" kind="function"><name>unboundedGradientCoordinate</name></member>
-    <member refid="GradientCoordinateUtils_8hpp_1ab02a40a9e484dff0dc95ff41ab4cb05a" kind="function"><name>resolveGradientValueRange</name></member>
-    <member refid="GradientUtils_8hpp_1a01559e11c48716fb64ab60d66528b16f" kind="function"><name>readGradientStops</name></member>
-    <member refid="GradientUtils_8hpp_1adb5493efd24befa81d92387aa6a20e41" kind="function"><name>readGradientStopList</name></member>
-    <member refid="GradientUtils_8hpp_1aa9c81c1f9c0977be0c389df9d451b47d" kind="function"><name>readEffectStops</name></member>
     <member refid="MathUtils_8hpp_1a9b86bb1e432c9efd9b8e5af40a5f0ca3" kind="function"><name>nearlyEqual</name></member>
     <member refid="MathUtils_8hpp_1ac7d165e0f8ddf211fb2c68747273729f" kind="function"><name>renderOriginTooFar</name></member>
     <member refid="MathUtils_8hpp_1a5904761cbbca38652885b7d0369c7285" kind="function"><name>renderOriginForViewport</name></member>
@@ -3549,6 +3544,10 @@
     <member refid="RangeGesture_8hpp_1a390751056142cf5002a19cd6b5dd9741" kind="function"><name>pannedRange</name></member>
     <member refid="RangeGesture_8hpp_1a4a90cd70f2514e64a984dae98d06a599" kind="function"><name>zoomedRange</name></member>
     <member refid="RangeGesture_8hpp_1aa1295e38cb274d582f872c75a35b71ae" kind="function"><name>wheelZoomFactor</name></member>
+    <member refid="GradientCoordinates_8hpp_1a3b3bc1ac97af93601982a97032c2e7c8" kind="function"><name>unboundedGradientCoordinate</name></member>
+    <member refid="GradientCoordinates_8hpp_1a6a40c20d9671161eb1b0636d4deafd3d" kind="function"><name>resolveGradientValueRange</name></member>
+    <member refid="GradientStops_8hpp_1aadc01434de65429e54993a942b277f2e" kind="function"><name>readGradientStopList</name></member>
+    <member refid="GradientStops_8hpp_1abc5be5b78eb1208392b78a70f402e8a1" kind="function"><name>readEffectStops</name></member>
     <member refid="GrabSize_8hpp_1a064b4a4757b002339611751756816610" kind="function"><name>grabSizeFor</name></member>
     <member refid="ImageFile_8hpp_1ada9a07f1567e73f6eb0bac5305aeaefa" kind="function"><name>localFilePath</name></member>
     <member refid="ImageFile_8hpp_1afd21fed10a07314ea38c3997bd36661b" kind="function"><name>imageFormatForPath</name></member>
@@ -3651,13 +3650,13 @@
   </compound>
   <compound refid="GradientColorTypes_8hpp" kind="file"><name>GradientColorTypes.hpp</name>
   </compound>
-  <compound refid="GradientCoordinateUtils_8hpp" kind="file"><name>GradientCoordinateUtils.hpp</name>
-  </compound>
   <compound refid="GradientFill_8hpp" kind="file"><name>GradientFill.hpp</name>
   </compound>
   <compound refid="GradientStroke_8hpp" kind="file"><name>GradientStroke.hpp</name>
   </compound>
-  <compound refid="GradientUtils_8hpp" kind="file"><name>GradientUtils.hpp</name>
+  <compound refid="GradientCoordinates_8hpp" kind="file"><name>GradientCoordinates.hpp</name>
+  </compound>
+  <compound refid="GradientStops_8hpp" kind="file"><name>GradientStops.hpp</name>
   </compound>
   <compound refid="LineCurveEffect_8hpp" kind="file"><name>LineCurveEffect.hpp</name>
   </compound>
@@ -3858,6 +3857,8 @@
   <compound refid="dir_7c3af00b227ed418fdf47d7cd69e8a77" kind="dir"><name>QAccelPlot/src/QAccelPlot/inspection</name>
   </compound>
   <compound refid="dir_3acc16ec162842b49991cd4d9cea8fc4" kind="dir"><name>QAccelPlot/src/QAccelPlot/axis/internal</name>
+  </compound>
+  <compound refid="dir_549760165a8bc07353c1d6f09e5e91eb" kind="dir"><name>QAccelPlot/src/QAccelPlot/effects/internal</name>
   </compound>
   <compound refid="dir_502a5035d8e883b896944d94c324e4a9" kind="dir"><name>QAccelPlot/src/QAccelPlot/export/internal</name>
   </compound>

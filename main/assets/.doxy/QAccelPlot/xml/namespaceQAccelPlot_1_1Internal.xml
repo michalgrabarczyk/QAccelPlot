@@ -201,6 +201,121 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" line="40" column="8" declfile="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" declline="40" declcolumn="8"/>
       </memberdef>
+      <memberdef kind="function" id="GradientCoordinates_8hpp_1a3b3bc1ac97af93601982a97032c2e7c8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float QAccelPlot::Internal::unboundedGradientCoordinate</definition>
+        <argsstring>(const Qt::Orientation direction, const qreal value, const qreal minimum, const qreal maximum)</argsstring>
+        <name>unboundedGradientCoordinate</name>
+        <qualifiedname>QAccelPlot::Internal::unboundedGradientCoordinate</qualifiedname>
+        <param>
+          <type>const Qt::Orientation</type>
+          <declname>direction</declname>
+        </param>
+        <param>
+          <type>const qreal</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>const qreal</type>
+          <declname>minimum</declname>
+        </param>
+        <param>
+          <type>const qreal</type>
+          <declname>maximum</declname>
+        </param>
+        <briefdescription>
+<para>Returns an unbounded palette coordinate for a data-space <emphasis>value</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Coordinates outside [0, 1] are intentionally preserved for interpolation. Renderers must clamp only after interpolation, immediately before sampling the gradient, so values beyond the configured range retain endpoint colors. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/internal/GradientCoordinates.hpp" line="21" column="14" bodyfile="QAccelPlot/src/QAccelPlot/effects/internal/GradientCoordinates.hpp" bodystart="21" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="GradientCoordinates_8hpp_1a6a40c20d9671161eb1b0636d4deafd3d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Payload</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::resolveGradientValueRange</definition>
+        <argsstring>(Payload &amp;payload, const qreal dataMin, const qreal dataMax)</argsstring>
+        <name>resolveGradientValueRange</name>
+        <qualifiedname>QAccelPlot::Internal::resolveGradientValueRange</qualifiedname>
+        <param>
+          <type>Payload &amp;</type>
+          <declname>payload</declname>
+        </param>
+        <param>
+          <type>const qreal</type>
+          <declname>dataMin</declname>
+        </param>
+        <param>
+          <type>const qreal</type>
+          <declname>dataMax</declname>
+        </param>
+        <briefdescription>
+<para>Fills each unset gradient value bound of <emphasis>payload</emphasis> from [<emphasis>dataMin</emphasis>, <emphasis>dataMax</emphasis>]. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Bounds resolve independently, so a <computeroutput>Fixed</computeroutput> bound is kept when the other bound uses <computeroutput>DataRange</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/internal/GradientCoordinates.hpp" line="33" column="18" bodyfile="QAccelPlot/src/QAccelPlot/effects/internal/GradientCoordinates.hpp" bodystart="33" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="GradientStops_8hpp_1aadc01434de65429e54993a942b277f2e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="structQAccelPlot_1_1GradientStopData" kindref="compound">GradientStopData</ref> &gt;</type>
+        <definition>std::vector&lt; GradientStopData &gt; QAccelPlot::Internal::readGradientStopList</definition>
+        <argsstring>(const QVariantList &amp;stopObjects)</argsstring>
+        <name>readGradientStopList</name>
+        <qualifiedname>QAccelPlot::Internal::readGradientStopList</qualifiedname>
+        <param>
+          <type>const QVariantList &amp;</type>
+          <declname>stopObjects</declname>
+        </param>
+        <briefdescription>
+<para>Reads a list of stop objects, each exposing <computeroutput>position</computeroutput> and <computeroutput>color</computeroutput>, into position order. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A single stop is duplicated, and the first and last colors are extended to positions 0 and 1. Entries that are not stop-like are skipped.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/internal/GradientStops.hpp" line="30" column="13" declfile="QAccelPlot/src/QAccelPlot/effects/internal/GradientStops.hpp" declline="30" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="GradientStops_8hpp_1abc5be5b78eb1208392b78a70f402e8a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="structQAccelPlot_1_1GradientStopData" kindref="compound">GradientStopData</ref> &gt;</type>
+        <definition>std::vector&lt; GradientStopData &gt; QAccelPlot::Internal::readEffectStops</definition>
+        <argsstring>(const Colormap *colormap, QObject *gradient)</argsstring>
+        <name>readEffectStops</name>
+        <qualifiedname>QAccelPlot::Internal::readEffectStops</qualifiedname>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref> *</type>
+          <declname>colormap</declname>
+        </param>
+        <param>
+          <type>QObject *</type>
+          <declname>gradient</declname>
+        </param>
+        <briefdescription>
+<para>Returns the color stops of a gradient effect: the <emphasis>colormap</emphasis> ramp when set, otherwise the stops of the QML <computeroutput>Gradient</computeroutput> <emphasis>gradient</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><emphasis>gradient</emphasis> stops are read from its <computeroutput>stops</computeroutput> list property, falling back to child objects, and normalized like <computeroutput>readGradientStopList()</computeroutput>. Returns an empty vector when both are null.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1GradientFill" kindref="compound">GradientFill</ref>, <ref refid="classQAccelPlot_1_1GradientStroke" kindref="compound">GradientStroke</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/internal/GradientStops.hpp" line="39" column="13" declfile="QAccelPlot/src/QAccelPlot/effects/internal/GradientStops.hpp" declline="39" declcolumn="13"/>
+      </memberdef>
       <memberdef kind="function" id="GrabSize_8hpp_1a064b4a4757b002339611751756816610" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structQAccelPlot_1_1Internal_1_1GrabSize" kindref="compound">GrabSize</ref></type>
         <definition>GrabSize QAccelPlot::Internal::grabSizeFor</definition>
