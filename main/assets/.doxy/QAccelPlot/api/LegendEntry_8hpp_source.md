@@ -23,12 +23,14 @@
 
 #include <QColor>
 #include <QObject>
+#include <QString>
 
 namespace QAccelPlot {
 
 struct LegendEntry {
     Q_GADGET
     QML_ANONYMOUS
+    Q_PROPERTY(QString name MEMBER name CONSTANT)
     Q_PROPERTY(PlotSeries::LegendSymbol symbol MEMBER symbol CONSTANT)
     Q_PROPERTY(QColor color MEMBER color CONSTANT)
     Q_PROPERTY(qreal lineWidth MEMBER lineWidth CONSTANT)
@@ -41,6 +43,7 @@ struct LegendEntry {
     Q_PROPERTY(qreal antialiasingFeather MEMBER antialiasingFeather CONSTANT)
 
 public:
+    QString name;                                                    
     PlotSeries::LegendSymbol symbol{PlotSeries::LegendSymbol::Line}; 
     QColor color;                                                    
     qreal lineWidth{1.0};                                            

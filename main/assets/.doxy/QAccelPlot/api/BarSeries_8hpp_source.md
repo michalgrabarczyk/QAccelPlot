@@ -18,6 +18,7 @@
 #pragma once
 
 #include "QAccelPlot/Border.hpp"
+#include "QAccelPlot/series/Category.hpp"
 #include "QAccelPlot/series/ColormappedSeries.hpp"
 #include "QAccelPlot/series/SpatialGrid.hpp"
 #include "QAccelPlot/transitions/DataTransition.hpp"
@@ -28,6 +29,9 @@
 #include <QtQml/qqmlregistration.h>
 #endif
 
+#include <QList>
+#include <QQmlListProperty>
+
 #include <array>
 #include <memory>
 #include <vector>
@@ -35,6 +39,7 @@
 namespace QAccelPlot {
 
 namespace Internal {
+class CategoryList;
 class RectVertexCache;
 }
 class BarMaterial;
@@ -51,7 +56,7 @@ class BarSeries : public ColormappedSeries {
     Q_PROPERTY(qreal baselineValue READ baselineValue WRITE setBaselineValue NOTIFY baselineValueChanged)
     Q_PROPERTY(qreal minimumWidth READ minimumWidth WRITE setMinimumWidth NOTIFY minimumWidthChanged)
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
-    Q_PROPERTY(QList<QColor> categoryColors READ categoryColors WRITE setCategoryColors NOTIFY categoryColorsChanged)
+    Q_PROPERTY(QQmlListProperty<Category> categories READ categories NOTIFY categoriesChanged)
     Q_PROPERTY(ColorSource colorSource READ colorSource WRITE setColorSource NOTIFY colorSourceChanged)
     Q_PROPERTY(Border* border READ border CONSTANT)
     Q_PROPERTY(QColor hoverColor READ hoverColor WRITE setHoverColor NOTIFY hoverColorChanged)
@@ -87,8 +92,8 @@ public:
     QColor color() const;
     void setColor(const QColor& color);
 
-    QList<QColor> categoryColors() const;
-    void setCategoryColors(const QList<QColor>& colors);
+    QQmlListProperty<Category> categories();
+    void setCategories(const QList<Category*>& categories);
 
     ColorSource colorSource() const;
     void setColorSource(ColorSource source);
@@ -123,8 +128,9 @@ public:
 
     Q_INVOKABLE void clearData() override;
     std::optional<LegendEntry> legendEntry() const override;
+    QList<LegendEntry> legendEntries() const override;
 
-    Q_INVOKABLE void setCategories(const QList<int>& categories);
+    Q_INVOKABLE void setDataPointCategories(const QVariantList& categories);
 
     Q_INVOKABLE QVariantMap barAt(int index) const;
 
@@ -138,7 +144,7 @@ signals:
     void baselineValueChanged();
     void minimumWidthChanged();
     void colorChanged();
-    void categoryColorsChanged();
+    void categoriesChanged();
     void colorSourceChanged();
     void hoverColorChanged();
     void transitionChanged();
@@ -168,6 +174,7 @@ private:
         int stride{2};
     };
 
+    void onCategoriesChanged();
     bool validateDataArguments(std::size_t valueCount, std::size_t categoryCount, int barCount, int barValueCount = 2) const;
     // Switches between (position, value) and (from, to, value) bars; dropping the bars when it changes.
     void setRanged(bool ranged);
@@ -217,7 +224,7 @@ private:
     void updateMaterial(BarMaterial& material, int renderCount) const;
     // Uploads the colormap ramp and sets the uniforms that place each bar on it.
     void updateColormapUniforms(BarMaterial& material, QQuickWindow* window) const;
-    // True when the colormap colors the bars instead of color and categoryColors.
+    // True when the colormap colors the bars instead of color and the category colors.
     bool colormapped() const;
     void ensureSpatialGrid() const;
     // Builds the vertices of the first \a barCount of the drawn bars.
@@ -229,7 +236,7 @@ private:
     qreal baselineValue_{0.0};
     qreal minimumWidth_{1.0};
     QColor color_;
-    QList<QColor> categoryColors_;
+    std::unique_ptr<Internal::CategoryList> categories_;
     ColorSource colorSource_{ColorSource::Value};
     Border* border_{new Border{Qt::black, 0.0, this}};
     QColor hoverColor_;

@@ -11,6 +11,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **class** [**QAccelPlot::DataTransition::Run**](classQAccelPlot_1_1DataTransition_1_1Run.md) _One animation of a transition on one host element._ 
 * **class** [**QAccelPlot::GradientTexture**](classQAccelPlot_1_1GradientTexture.md) _Cached one-dimensional texture used by gradient materials._ 
 * **class** [**QAccelPlot::Histogram**](classQAccelPlot_1_1Histogram.md) _Samples counted into bins, convertible to_ `BarSeries` _data._
+* **class** [**QAccelPlot::Internal::CategoryTable**](classQAccelPlot_1_1Internal_1_1CategoryTable.md) _A snapshot of the categories of a series, looked up by value or name._ 
 * **class** [**QAccelPlot::Internal::HoverIndexBudget**](classQAccelPlot_1_1Internal_1_1HoverIndexBudget.md) _Decides when queried data is worth a hover index._ 
 * **class** [**QAccelPlot::Internal::InspectionCache::Host**](classQAccelPlot_1_1Internal_1_1InspectionCache_1_1Host.md) _Series-side callbacks; all are invoked on the series' thread._ 
 * **class** [**QAccelPlot::Internal::InspectionIndex**](classQAccelPlot_1_1Internal_1_1InspectionIndex.md) _Immutable k-d tree over the valid data points of a series, with their order along each axis._ 
@@ -56,6 +57,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **struct** [**QAccelPlot::InspectionRecord**](structQAccelPlot_1_1InspectionRecord.md) _A native record of a series that is not a plain XY series, such as a bar, rectangle, or band._ 
 * **struct** [**QAccelPlot::InspectionRow**](structQAccelPlot_1_1InspectionRow.md) _Inspection result of one series, as shown by one row of an_ `InspectionRowModel` _._
 * **struct** [**QAccelPlot::InspectionSummary**](structQAccelPlot_1_1InspectionSummary.md) _Data-point-weighted Y statistics over the valid data points inside a region._ 
+* **struct** [**QAccelPlot::Internal::CategoryTable::Entry**](structQAccelPlot_1_1Internal_1_1CategoryTable_1_1Entry.md) _One category: the value data points carry, an optional name, and an optional color._ 
 * **struct** [**QAccelPlot::Internal::DataTextureUploadTotals**](structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals.md) _How many data textures were uploaded since the last reset, and how many bytes they held._ 
 * **struct** [**QAccelPlot::Internal::GrabSize**](structQAccelPlot_1_1Internal_1_1GrabSize.md) _Sizes of one item grab._ 
 * **struct** [**QAccelPlot::Internal::HeatmapGridDimension**](structQAccelPlot_1_1Internal_1_1HeatmapGridDimension.md) _One dimension of a heatmap grid:_ `count` _cells between the edges_`from` _and_`to` _._
@@ -69,7 +71,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **struct** [**QAccelPlot::Internal::RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md) _Mirrors the std140 uniform block of rect.vert._ 
 * **struct** [**QAccelPlot::Internal::SummaryAccumulator**](structQAccelPlot_1_1Internal_1_1SummaryAccumulator.md) _Running data-point-weighted Y statistics that can be merged across disjoint data point sets._ 
 * **struct** [**QAccelPlot::Internal::ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) _Bounds of an axis viewport or a colormap value range._ 
-* **struct** [**QAccelPlot::LegendEntry**](structQAccelPlot_1_1LegendEntry.md) _How a legend draws one series: its symbol, color, line, and marker._ 
+* **struct** [**QAccelPlot::LegendEntry**](structQAccelPlot_1_1LegendEntry.md) _How a legend draws one row of a series: its label, symbol, color, line, and marker._ 
 * **struct** [**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md) _Input parameters for_ [_**LineCurveLineRenderer::paint()**_](classQAccelPlot_1_1LineCurveLineRenderer.md#function-paint) _, assembled on the main thread._
 * **struct** [**QAccelPlot::LineStroke::Uniforms**](structQAccelPlot_1_1LineStroke_1_1Uniforms.md) [_**Uniforms**_](structQAccelPlot_1_1LineStroke_1_1Uniforms.md) _of a line material that do not depend on its shader variant._
 * **struct** [**QAccelPlot::LineVertex**](structQAccelPlot_1_1LineVertex.md) _Vertex layout for line geometry, shared with the main thread for pre-built vertex caches._ 
@@ -98,6 +100,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **struct** [**QAccelPlot::Internal::RectVertexCache::Vertex**](structQAccelPlot_1_1Internal_1_1RectVertexCache_1_1Vertex.md) 
 * **struct** [**QAccelPlot::Internal::ScopedPaintedItemTextures::SavedTexture**](structQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1_1SavedTexture.md) 
 * **struct** [**QAccelPlot::Internal::SourceInspection::Block**](structQAccelPlot_1_1Internal_1_1SourceInspection_1_1Block.md) 
+* **struct** [**QAccelPlot::LegendModel::Row**](structQAccelPlot_1_1LegendModel_1_1Row.md) 
 * **struct** [**QAccelPlot::LineCurveLineRenderer::FillSampleCache**](structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache.md) 
 * **struct** [**QAccelPlot::PointCloud::HoverQuery**](structQAccelPlot_1_1PointCloud_1_1HoverQuery.md) _A hover query in the spatial index's coordinates. With the data, it decides the answer._ 
 * **struct** [**QAccelPlot::PointCloud::Points**](structQAccelPlot_1_1PointCloud_1_1Points.md) _Points of_ `stride` _doubles each: (x, y), or (x, y, value)._
@@ -112,6 +115,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
     * **class** [**QAccelPlot::AxisTicker**](classQAccelPlot_1_1AxisTicker.md) _Controls the visual appearance of ticks, sub-ticks, and tick labels on an_ `Axis` _._
     * **class** [**QAccelPlot::BandEdges**](classQAccelPlot_1_1BandEdges.md) _Controls the lines a_ `BandSeries` _draws along its lower and upper edges._
     * **class** [**QAccelPlot::Border**](classQAccelPlot_1_1Border.md) _Outline color and width, exposed as a_ `border` _grouped property, for example_`border.width: 1` _._
+    * **class** [**QAccelPlot::Category**](classQAccelPlot_1_1Category.md) _One category of a_ `BarSeries` _or_`RectangleSeries :` _a value, a name, and a fill color._
     * **class** [**QAccelPlot::ColorPalette**](classQAccelPlot_1_1ColorPalette.md) _A named set of theme colors shared by QML (via the_ `Colors` _singleton) and C++ defaults._
     * **class** [**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md) _Maps data values to colors: a color ramp plus the rule that places a value on it._ 
     * **class** [**QAccelPlot::Colors**](classQAccelPlot_1_1Colors.md) _QML singleton exposing QAccelPlot's built-in color palettes._ 
@@ -137,6 +141,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
         * **class** [**QAccelPlot::GradientStroke**](classQAccelPlot_1_1GradientStroke.md) _A_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _effect that replaces the solid line color with a color gradient._
     * **class** [**QAccelPlot::Grid**](classQAccelPlot_1_1Grid.md) _Configuration object that controls the appearance of the plot grid._ 
     * **class** [**QAccelPlot::HistogramFactory**](classQAccelPlot_1_1HistogramFactory.md) _QML singleton_ `Histogram` _that creates_[_**Histogram**_](classQAccelPlot_1_1Histogram.md) _values from JavaScript arrays._
+    * **class** [**QAccelPlot::Internal::CategoryList**](classQAccelPlot_1_1Internal_1_1CategoryList.md) _The_ `categories` _list of a series: the_`Category` _objects and a lookup table that follows their edits._
     * **class** [**QAccelPlot::Internal::InspectionCache**](classQAccelPlot_1_1Internal_1_1InspectionCache.md) _Builds an_ `InspectionIndex` _on a worker thread from a snapshot of a series' records._
     * **class** [**QAccelPlot::Internal::PointerTracker**](classQAccelPlot_1_1Internal_1_1PointerTracker.md) _Tracks the pointer over a plot from the plot's mouse and hover events._ 
     * **class** [**QAccelPlot::LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md) _Abstract base class for visual effects applied to a_ `LineCurve` _._    

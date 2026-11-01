@@ -127,10 +127,10 @@ flowchart TB
 ## Detailed Description
 
 
-Has one row per series in `series` that is visible and returns a `PlotSeries::legendEntry()`. Series without an entry, such as `HeatmapSeries`, and hidden series have no row. Rows follow changes of the series' entries, names, and visibility.
+Has one row per `PlotSeries::legendEntries()` entry of each visible series in `series:` one row for most series, and one per category for a series colored by category. Series without an entry, such as `HeatmapSeries`, and hidden series have no row. Rows follow changes of the series' entries, names, and visibility.
 
 
-Roles: `series`, `name` (the series' `name`, its `objectName`, or "Series N"), and `entry` (a `LegendEntry`). `Plot` provides one over all its series as `legendModel:` 
+Roles: `series`, `name` (the entry's `name`, else the series' `name`, its `objectName`, or "Series N"), and `entry` (a `LegendEntry`). `Plot` provides one over all its series as `legendModel:` 
 
 
 
@@ -145,7 +145,7 @@ QAccelPlot.Plot {
 
 
 
-**See also:** [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md), [**PlotSeries::legendEntry()**](classQAccelPlot_1_1PlotSeries.md#function-legendentry) 
+**See also:** [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md), [**PlotSeries::legendEntries()**](classQAccelPlot_1_1PlotSeries.md#function-legendentries) 
 
 
 

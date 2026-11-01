@@ -67,6 +67,7 @@
 | class | [**BarMaterial**](classQAccelPlot_1_1BarMaterial.md) <br>_QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry and colormap uniforms._ |
 | class | [**BarSeries**](classQAccelPlot_1_1BarSeries.md) <br>_A hardware-accelerated QML item that renders a bar chart._  |
 | class | [**Border**](classQAccelPlot_1_1Border.md) <br>_Outline color and width, exposed as a_ `border` _grouped property, for example_`border.width: 1` _._ |
+| class | [**Category**](classQAccelPlot_1_1Category.md) <br>_One category of a_ `BarSeries` _or_`RectangleSeries :` _a value, a name, and a fill color._ |
 | class | [**ColorBar**](classQAccelPlot_1_1ColorBar.md) <br>_A continuous key that shows how a series'_ `Colormap` _maps values to colors._ |
 | class | [**ColorPalette**](classQAccelPlot_1_1ColorPalette.md) <br>_A named set of theme colors shared by QML (via the_ `Colors` _singleton) and C++ defaults._ |
 | class | [**Colormap**](classQAccelPlot_1_1Colormap.md) <br>_Maps data values to colors: a color ramp plus the rule that places a value on it._  |
@@ -109,7 +110,7 @@
 | struct | [**InspectionRow**](structQAccelPlot_1_1InspectionRow.md) <br>_Inspection result of one series, as shown by one row of an_ `InspectionRowModel` _._ |
 | class | [**InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md) <br>_List model with one stable row per inspected series._  |
 | struct | [**InspectionSummary**](structQAccelPlot_1_1InspectionSummary.md) <br>_Data-point-weighted Y statistics over the valid data points inside a region._  |
-| struct | [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md) <br>_How a legend draws one series: its symbol, color, line, and marker._  |
+| struct | [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md) <br>_How a legend draws one row of a series: its label, symbol, color, line, and marker._  |
 | class | [**LegendModel**](classQAccelPlot_1_1LegendModel.md) <br>_List model of the legend entries of a list of series._  |
 | class | [**LineCurve**](classQAccelPlot_1_1LineCurve.md) <br>_A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects._  |
 | class | [**LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md) <br>_Abstract base class for visual effects applied to a_ `LineCurve` _._ |

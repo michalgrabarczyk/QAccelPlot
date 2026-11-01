@@ -1895,7 +1895,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">signal void</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#signal-legendentrychanged"><strong>legendEntryChanged</strong></a>  <br><em>Emitted when the result of</em> <code>legendEntry()</code> <em>changes.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#signal-legendentrychanged"><strong>legendEntryChanged</strong></a>  <br><em>Emitted when the result of</em> <code>legendEntry()</code> <em>or</em><code>legendEntries()</code> <em>changes.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">signal void</td>
@@ -1983,6 +1983,10 @@
 <tr>
 <td style="text-align: right;"><a href="../classQAccelPlot_1_1SeriesInspection/"><strong>SeriesInspection</strong></a> *</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-inspection-22"><strong>inspection</strong></a> () const<br><em>Returns the data queries for this series; created on first use and owned by the series.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual QList&lt; <a href="../structQAccelPlot_1_1LegendEntry/"><strong>LegendEntry</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-legendentries"><strong>legendEntries</strong></a> () const<br><em>Returns the legend rows of the series. Default: the</em> <code>legendEntry()</code> <em>, if any.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual std::optional&lt; <a href="../structQAccelPlot_1_1LegendEntry/"><strong>LegendEntry</strong></a> &gt;</td>

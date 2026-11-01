@@ -24,6 +24,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **class** [**BarMaterial**](classQAccelPlot_1_1BarMaterial.md) _QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry and colormap uniforms._    
     * **class** [**BarSeries**](classQAccelPlot_1_1BarSeries.md) _A hardware-accelerated QML item that renders a bar chart._     
     * **class** [**Border**](classQAccelPlot_1_1Border.md) _Outline color and width, exposed as a_ `border` _grouped property, for example_`border.width: 1` _._    
+    * **class** [**Category**](classQAccelPlot_1_1Category.md) _One category of a_ `BarSeries` _or_`RectangleSeries :` _a value, a name, and a fill color._    
     * **class** [**ColorBar**](classQAccelPlot_1_1ColorBar.md) _A continuous key that shows how a series'_ `Colormap` _maps values to colors._    
     * **class** [**ColorPalette**](classQAccelPlot_1_1ColorPalette.md) _A named set of theme colors shared by QML (via the_ `Colors` _singleton) and C++ defaults._    
     * **class** [**Colormap**](classQAccelPlot_1_1Colormap.md) _Maps data values to colors: a color ramp plus the rule that places a value on it._     
@@ -80,6 +81,9 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **class** [**InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md) _List model with one stable row per inspected series._     
     * **struct** [**InspectionSummary**](structQAccelPlot_1_1InspectionSummary.md) _Data-point-weighted Y statistics over the valid data points inside a region._     
     * **namespace** [**Internal**](namespaceQAccelPlot_1_1Internal.md)     
+        * **class** [**CategoryList**](classQAccelPlot_1_1Internal_1_1CategoryList.md) _The_ `categories` _list of a series: the_`Category` _objects and a lookup table that follows their edits._    
+        * **class** [**CategoryTable**](classQAccelPlot_1_1Internal_1_1CategoryTable.md) _A snapshot of the categories of a series, looked up by value or name._     
+            * **struct** [**Entry**](structQAccelPlot_1_1Internal_1_1CategoryTable_1_1Entry.md) _One category: the value data points carry, an optional name, and an optional color._     
         * **struct** [**DataTextureUploadTotals**](structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals.md) _How many data textures were uploaded since the last reset, and how many bytes they held._     
         * **struct** [**GrabSize**](structQAccelPlot_1_1Internal_1_1GrabSize.md) _Sizes of one item grab._     
         * **struct** [**HeatmapGridDimension**](structQAccelPlot_1_1Internal_1_1HeatmapGridDimension.md) _One dimension of a heatmap grid:_ `count` _cells between the edges_`from` _and_`to` _._    
@@ -106,7 +110,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
         * **class** [**SourceInspection**](classQAccelPlot_1_1Internal_1_1SourceInspection.md) _Inspection queries that read a series' own buffer whose records are ordered along one axis._     
         * **struct** [**SummaryAccumulator**](structQAccelPlot_1_1Internal_1_1SummaryAccumulator.md) _Running data-point-weighted Y statistics that can be merged across disjoint data point sets._     
         * **struct** [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) _Bounds of an axis viewport or a colormap value range._     
-    * **struct** [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md) _How a legend draws one series: its symbol, color, line, and marker._     
+    * **struct** [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md) _How a legend draws one row of a series: its label, symbol, color, line, and marker._     
     * **class** [**LegendModel**](classQAccelPlot_1_1LegendModel.md) _List model of the legend entries of a list of series._     
     * **class** [**LineCurve**](classQAccelPlot_1_1LineCurve.md) _A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects._     
     * **class** [**LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md) _Abstract base class for visual effects applied to a_ `LineCurve` _._    
@@ -173,6 +177,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
 * **struct** [**Vertex**](structQAccelPlot_1_1Internal_1_1RectVertexCache_1_1Vertex.md)     
 * **struct** [**SavedTexture**](structQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1_1SavedTexture.md)     
 * **struct** [**Block**](structQAccelPlot_1_1Internal_1_1SourceInspection_1_1Block.md)     
+* **struct** [**Row**](structQAccelPlot_1_1LegendModel_1_1Row.md)     
 * **struct** [**FillSampleCache**](structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache.md)     
 * **struct** [**HoverQuery**](structQAccelPlot_1_1PointCloud_1_1HoverQuery.md) _A hover query in the spatial index's coordinates. With the data, it decides the answer._     
 * **struct** [**Points**](structQAccelPlot_1_1PointCloud_1_1Points.md) _Points of_ `stride` _doubles each: (x, y), or (x, y, value)._    

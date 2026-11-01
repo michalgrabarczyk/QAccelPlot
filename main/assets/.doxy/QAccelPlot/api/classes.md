@@ -49,6 +49,12 @@
 
 ## c
 
+* [**Category**](classQAccelPlot_1_1Category.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**CategoryList**](classQAccelPlot_1_1Internal_1_1CategoryList.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* [**CategoryTable**](classQAccelPlot_1_1Internal_1_1CategoryTable.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * [**ColorBar**](classQAccelPlot_1_1ColorBar.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**Colormap**](classQAccelPlot_1_1Colormap.md)
@@ -113,6 +119,8 @@
 
 ## e
 
+* [**Entry**](structQAccelPlot_1_1Internal_1_1CategoryTable_1_1Entry.md)
+([**QAccelPlot::Internal::CategoryTable**](classQAccelPlot_1_1Internal_1_1CategoryTable.md))
 * [**ErrorBarMaterial**](classQAccelPlot_1_1ErrorBarMaterial.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**ErrorBarSeries**](classQAccelPlot_1_1ErrorBarSeries.md)
@@ -329,6 +337,7 @@
 ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * [**Region**](structQAccelPlot_1_1SelectionTool_1_1Region.md)
 * [**RenderView**](structQAccelPlot_1_1BandSeries_1_1RenderView.md)
+* [**Row**](structQAccelPlot_1_1LegendModel_1_1Row.md)
 * [**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md)
 ([**QAccelPlot::DataTransition**](classQAccelPlot_1_1DataTransition.md))
 

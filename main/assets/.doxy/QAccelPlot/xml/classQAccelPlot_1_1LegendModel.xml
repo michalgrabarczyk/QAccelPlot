@@ -4,6 +4,7 @@
     <compoundname>QAccelPlot::LegendModel</compoundname>
     <basecompoundref prot="public" virt="non-virtual">QAbstractListModel</basecompoundref>
     <includes local="no">LegendModel.hpp</includes>
+    <innerclass refid="structQAccelPlot_1_1LegendModel_1_1Row" prot="private">QAccelPlot::LegendModel::Row</innerclass>
     <sectiondef kind="public-type">
       <memberdef kind="enum" id="classQAccelPlot_1_1LegendModel_1a82e1c0fb48ff48fbb0bc9779b1e3865e" prot="public" static="no" strong="no">
         <type></type>
@@ -38,7 +39,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="46" column="5" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" bodystart="46" bodyend="50"/>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="48" column="5" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" bodystart="48" bodyend="52"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="property">
@@ -57,7 +58,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="40" column="5" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" bodystart="40" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="42" column="5" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" bodystart="42" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1LegendModel_1a20ee439311d814eec70a568bedac2622" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>int</type>
@@ -73,7 +74,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="42" column="5" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" bodystart="42" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="44" column="5" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" bodystart="44" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-attrib">
@@ -89,11 +90,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="83" column="11" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" bodystart="83" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="93" column="11" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" bodystart="93" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classQAccelPlot_1_1LegendModel_1a0976fe1d88fe35e4ae3fdd360428629f" prot="private" static="no" mutable="no">
-        <type>QList&lt; QPointer&lt; <ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> &gt; &gt;</type>
-        <definition>QList&lt;QPointer&lt;PlotSeries&gt; &gt; QAccelPlot::LegendModel::rows_</definition>
+      <memberdef kind="variable" id="classQAccelPlot_1_1LegendModel_1a08b8b62529e6695216dae22c7f2b74dc" prot="private" static="no" mutable="no">
+        <type>QList&lt; Row &gt;</type>
+        <definition>QList&lt;Row&gt; QAccelPlot::LegendModel::rows_</definition>
         <argsstring></argsstring>
         <name>rows_</name>
         <qualifiedname>QAccelPlot::LegendModel::rows_</qualifiedname>
@@ -103,7 +104,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="84" column="11" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" bodystart="84" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="94" column="11" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" bodystart="94" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -125,7 +126,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="53" column="14"/>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="55" column="14"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LegendModel_1a65592775c901e6c233df7264bdf56628" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QList&lt; <ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> * &gt;</type>
@@ -140,7 +141,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="56" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="58" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LegendModel_1a13acf6d15ac044d3bdc3b76b4856b922" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -159,7 +160,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="58" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="60" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LegendModel_1a5213a80bcfbac4888b5a63b54cfcea2b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -174,7 +175,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="61" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="63" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LegendModel_1a5c68fbe606bbed5d5574c6bbf3fc5150" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -194,7 +195,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="64" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="66" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LegendModel_1af55f9d1cf1feb34769705a26c02aa47b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QVariant</type>
@@ -217,7 +218,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="66" column="14"/>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="68" column="14"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LegendModel_1aafa70054d0d07cd87275e6c415b123f1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QHash&lt; int, QByteArray &gt;</type>
@@ -232,7 +233,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="68" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="70" column="11"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="signal">
@@ -249,7 +250,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="72" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="74" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1LegendModel_1a82ab7fc1396d89d0fe4286824c4925fc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -264,7 +265,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="74" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="76" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
@@ -284,7 +285,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="77" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="79" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LegendModel_1afde8d0e08d1de81fd0c151397b247cb0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -302,7 +303,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="78" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="80" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LegendModel_1a1644ac4d34ae27ee2dde6d800377f2b1" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -316,7 +317,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="79" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="81" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LegendModel_1a257832b37a8bf1556a36859d9d019952" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -331,21 +332,21 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="81" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="83" column="10"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
 <para>List model of the legend entries of a list of series. </para>
     </briefdescription>
     <detaileddescription>
-<para>Has one row per series in <computeroutput>series</computeroutput> that is visible and returns a <computeroutput><ref refid="classQAccelPlot_1_1PlotSeries_1a4e5a53df93bf478ae4b3f2f53ee4ff37" kindref="member">PlotSeries::legendEntry()</ref></computeroutput>. Series without an entry, such as <computeroutput><ref refid="classQAccelPlot_1_1HeatmapSeries" kindref="compound">HeatmapSeries</ref></computeroutput>, and hidden series have no row. Rows follow changes of the series&apos; entries, names, and visibility.</para>
-<para>Roles: <computeroutput>series</computeroutput>, <computeroutput>name</computeroutput> (the series&apos; <computeroutput>name</computeroutput>, its <computeroutput>objectName</computeroutput>, or &quot;Series N&quot;), and <computeroutput>entry</computeroutput> (a <computeroutput><ref refid="structQAccelPlot_1_1LegendEntry" kindref="compound">LegendEntry</ref></computeroutput>). <computeroutput>Plot</computeroutput> provides one over all its series as <computeroutput>legendModel:</computeroutput> </para>
+<para>Has one row per <computeroutput><ref refid="classQAccelPlot_1_1PlotSeries_1a65b522c090eb4baa8377ea2fea24e2ab" kindref="member">PlotSeries::legendEntries()</ref></computeroutput> entry of each visible series in <computeroutput>series:</computeroutput> one row for most series, and one per category for a series colored by category. Series without an entry, such as <computeroutput><ref refid="classQAccelPlot_1_1HeatmapSeries" kindref="compound">HeatmapSeries</ref></computeroutput>, and hidden series have no row. Rows follow changes of the series&apos; entries, names, and visibility.</para>
+<para>Roles: <computeroutput>series</computeroutput>, <computeroutput>name</computeroutput> (the entry&apos;s <computeroutput>name</computeroutput>, else the series&apos; <computeroutput>name</computeroutput>, its <computeroutput>objectName</computeroutput>, or &quot;Series N&quot;), and <computeroutput>entry</computeroutput> (a <computeroutput><ref refid="structQAccelPlot_1_1LegendEntry" kindref="compound">LegendEntry</ref></computeroutput>). <computeroutput>Plot</computeroutput> provides one over all its series as <computeroutput>legendModel:</computeroutput> </para>
 <para><programlisting><codeline><highlight class="normal">QAccelPlot.Plot<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>id:<sp/>plot</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>legend:<sp/>QAccelPlot.Legend<sp/>{<sp/>model:<sp/>QAccelPlot.LegendModel<sp/>{<sp/><ref refid="classQAccelPlot_1_1LegendModel_1aa4ec20f016cd7fc60ea0dd771cab5f29" kindref="member">series</ref>:<sp/>[signal,<sp/>fit]<sp/>}<sp/>}</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 </programlisting></para>
-<para><simplesect kind="see"><para><ref refid="structQAccelPlot_1_1LegendEntry" kindref="compound">LegendEntry</ref>, <ref refid="classQAccelPlot_1_1PlotSeries_1a4e5a53df93bf478ae4b3f2f53ee4ff37" kindref="member">PlotSeries::legendEntry()</ref> </para>
+<para><simplesect kind="see"><para><ref refid="structQAccelPlot_1_1LegendEntry" kindref="compound">LegendEntry</ref>, <ref refid="classQAccelPlot_1_1PlotSeries_1a65b522c090eb4baa8377ea2fea24e2ab" kindref="member">PlotSeries::legendEntries()</ref> </para>
 </simplesect>
 </para>
     </detaileddescription>
@@ -371,7 +372,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="35" column="1" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" bodystart="35" bodyend="85"/>
+    <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="37" column="1" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" bodystart="37" bodyend="95"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1LegendModel_1a20ee439311d814eec70a568bedac2622" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendModel</scope><name>count</name></member>
       <member refid="classQAccelPlot_1_1LegendModel_1a5213a80bcfbac4888b5a63b54cfcea2b" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendModel</scope><name>count</name></member>
@@ -385,7 +386,7 @@
       <member refid="classQAccelPlot_1_1LegendModel_1a82e1c0fb48ff48fbb0bc9779b1e3865e" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendModel</scope><name>Role</name></member>
       <member refid="classQAccelPlot_1_1LegendModel_1aafa70054d0d07cd87275e6c415b123f1" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendModel</scope><name>roleNames</name></member>
       <member refid="classQAccelPlot_1_1LegendModel_1a5c68fbe606bbed5d5574c6bbf3fc5150" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendModel</scope><name>rowCount</name></member>
-      <member refid="classQAccelPlot_1_1LegendModel_1a0976fe1d88fe35e4ae3fdd360428629f" prot="private" virt="non-virtual"><scope>QAccelPlot::LegendModel</scope><name>rows_</name></member>
+      <member refid="classQAccelPlot_1_1LegendModel_1a08b8b62529e6695216dae22c7f2b74dc" prot="private" virt="non-virtual"><scope>QAccelPlot::LegendModel</scope><name>rows_</name></member>
       <member refid="classQAccelPlot_1_1LegendModel_1aa4ec20f016cd7fc60ea0dd771cab5f29" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendModel</scope><name>series</name></member>
       <member refid="classQAccelPlot_1_1LegendModel_1a65592775c901e6c233df7264bdf56628" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendModel</scope><name>series</name></member>
       <member refid="classQAccelPlot_1_1LegendModel_1a9b983b31d85fbb8b80f4a5a4ca68cf64" prot="private" virt="non-virtual"><scope>QAccelPlot::LegendModel</scope><name>series_</name></member>

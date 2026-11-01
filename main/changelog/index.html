@@ -1987,6 +1987,10 @@
   you can draw <code>selectionRect</code> yourself.</li>
 <li><code>PlotInspector.cursorPixelX</code> and <code>cursorPixelY</code> place the cursor in
   plot-local pixels; it stays on those pixels when the axes pan or zoom.</li>
+<li>Named categories on <code>BarSeries</code> and <code>RectangleSeries</code>: <code>categories</code> lists
+  <code>Category</code> objects with a <code>value</code>, <code>name</code>, and <code>color</code>, a data point's
+  <code>category</code> is a value or, in QML, a name, and the legend shows one row per
+  category through <code>PlotSeries::legendEntries()</code>.</li>
 <li>A Vibration Monitoring showcase: eight accelerometer channels streamed live,
   2M points replaced every frame, with spectrum, spectrogram, and RMS panels.
   Examples can record deterministic frames with <code>--record</code>, and
@@ -2023,6 +2027,12 @@
   <code>selectionRect</code>, matching <code>PlotView.rectangleZoom</code>. Signals and C++
   accessors follow: <code>visibleChanged()</code>, <code>isVisible()</code>, <code>setVisible()</code>,
   <code>selectionRect()</code>, <code>selectionRectChanged()</code>.</li>
+<li><code>BarSeries</code> and <code>RectangleSeries</code> take <code>categories</code> instead of
+  <code>categoryColors</code>: replace <code>categoryColors: [a, b]</code> with
+  <code>categories: [Category { value: 0; color: a }, Category { value: 1; color: b }]</code>.
+  <code>setCategories()</code> for the data points is now <code>setDataPointCategories()</code>. A
+  QML <code>category</code> that is neither a whole number nor a category name is ignored
+  with a warning.</li>
 <li>Series use the <code>antialiasing</code> property inherited from <code>Item</code>.
   <code>LineCurve.antialiasingEnabled</code>, <code>PointCloud.antialiasingEnabled</code>, and
   <code>LegendEntry.antialiasingEnabled</code> are now <code>antialiasing</code>. <code>BandSeries</code> edge

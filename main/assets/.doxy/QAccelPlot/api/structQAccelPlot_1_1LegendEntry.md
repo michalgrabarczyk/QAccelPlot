@@ -15,7 +15,7 @@
 
 
 
-_How a legend draws one series: its symbol, color, line, and marker._ [More...](#detailed-description)
+_How a legend draws one row of a series: its label, symbol, color, line, and marker._ [More...](#detailed-description)
 
 * `#include <LegendEntry.hpp>`
 
@@ -45,7 +45,7 @@ _How a legend draws one series: its symbol, color, line, and marker._ [More...](
 
 | Type | Name |
 | ---: | :--- |
-|  [**PlotSeries::LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol) | [**symbol**](#variable-symbol-22)   = `{PlotSeries::LegendSymbol::Line}`<br>_Symbol style._  |
+|  QString | [**name**](#variable-name-22)  <br>_Row label, or empty for the series name._  |
 
 
 
@@ -67,7 +67,8 @@ _How a legend draws one series: its symbol, color, line, and marker._ [More...](
 | property [**MarkerShape**](namespaceQAccelPlot_1_1MarkerShapeNS.md#enum-shape) | [**markerShape**](structQAccelPlot_1_1LegendEntry.md#property-markershape)  <br>_Marker shape;_ `None` _draws no marker._ |
 | property qreal | [**markerSize**](structQAccelPlot_1_1LegendEntry.md#property-markersize)  <br>_Marker size in pixels._  |
 | property qreal | [**markerStrokeWidth**](structQAccelPlot_1_1LegendEntry.md#property-markerstrokewidth)  <br>_Outline width in pixels of a hollow marker._  |
-| property QML\_ANONYMOUSPlotSeries::LegendSymbol | [**symbol**](structQAccelPlot_1_1LegendEntry.md#property-symbol-12)  <br>_Symbol style._  |
+| property QML\_ANONYMOUSQString | [**name**](structQAccelPlot_1_1LegendEntry.md#property-name-12)  <br>_Row label, such as a category name. Empty labels the row with the series name._  |
+| property [**PlotSeries::LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol) | [**symbol**](structQAccelPlot_1_1LegendEntry.md#property-symbol)  <br>_Symbol style._  |
 
 
 
@@ -107,12 +108,12 @@ _How a legend draws one series: its symbol, color, line, and marker._ [More...](
 ## Detailed Description
 
 
-Returned by `PlotSeries::legendEntry()` and exposed by `LegendModel` as the `entry` role. The line fields apply to the `Line` symbol and the marker fields to `Line` and `Marker`.
+Returned by `PlotSeries::legendEntry()` and `PlotSeries::legendEntries()`, and exposed by `LegendModel` as the `entry` role. The line fields apply to the `Line` symbol and the marker fields to `Line` and `Marker`.
 
 
 
 
-**See also:** [**LegendModel**](classQAccelPlot_1_1LegendModel.md), [**PlotSeries::legendEntry()**](classQAccelPlot_1_1PlotSeries.md#function-legendentry) 
+**See also:** [**LegendModel**](classQAccelPlot_1_1LegendModel.md), [**PlotSeries::legendEntries()**](classQAccelPlot_1_1PlotSeries.md#function-legendentries) 
 
 
 
@@ -123,11 +124,11 @@ Returned by `PlotSeries::legendEntry()` and exposed by `LegendModel` as the `ent
 
 
 
-### variable symbol {#variable-symbol-22}
+### variable name {#variable-name-22}
 
-_Symbol style._ 
+_Row label, or empty for the series name._ 
 ```C++
-PlotSeries::LegendSymbol QAccelPlot::LegendEntry::symbol;
+QString QAccelPlot::LegendEntry::name;
 ```
 
 
@@ -299,11 +300,26 @@ Hollow marker outline width.
 
 
 
-### property symbol {#property-symbol-12}
+### property name {#property-name-12}
+
+_Row label, such as a category name. Empty labels the row with the series name._ 
+```C++
+QML_ANONYMOUSQString QAccelPlot::LegendEntry::name;
+```
+
+
+
+
+<hr>
+
+
+
+
+### property symbol {#property-symbol}
 
 _Symbol style._ 
 ```C++
-QML_ANONYMOUSPlotSeries::LegendSymbol QAccelPlot::LegendEntry::symbol;
+PlotSeries::LegendSymbol QAccelPlot::LegendEntry::symbol;
 ```
 
 

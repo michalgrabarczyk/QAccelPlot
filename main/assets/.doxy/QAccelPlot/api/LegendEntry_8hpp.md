@@ -22,6 +22,7 @@
 * `#include "QAccelPlot/series/PlotSeries.hpp"`
 * `#include <QColor>`
 * `#include <QObject>`
+* `#include <QString>`
 
 
 
@@ -48,7 +49,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| struct | [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md) <br>_How a legend draws one series: its symbol, color, line, and marker._  |
+| struct | [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md) <br>_How a legend draws one row of a series: its label, symbol, color, line, and marker._  |
 
 
 

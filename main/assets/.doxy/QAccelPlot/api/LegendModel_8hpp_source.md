@@ -61,8 +61,16 @@ private:
     void onSeriesDestroyed();
     void refreshRows();
 
+    // One legend row: entry \c entry of \c series' legendEntries().
+    struct Row {
+        QPointer<PlotSeries> series;
+        int entry{0};
+
+        bool operator==(const Row& other) const;
+    };
+
     QList<QPointer<PlotSeries>> series_;
-    QList<QPointer<PlotSeries>> rows_;
+    QList<Row> rows_;
 };
 
 } // namespace QAccelPlot

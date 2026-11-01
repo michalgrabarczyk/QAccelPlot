@@ -18,10 +18,13 @@
 
 
 * `#include "QAccelPlot/Border.hpp"`
+* `#include "QAccelPlot/series/Category.hpp"`
 * `#include "QAccelPlot/series/ColormappedSeries.hpp"`
 * `#include "QAccelPlot/series/SpatialGrid.hpp"`
 * `#include "QAccelPlot/transitions/DataTransition.hpp"`
 * `#include <QtQml/qqmlregistration.h>`
+* `#include <QList>`
+* `#include <QQmlListProperty>`
 * `#include <array>`
 * `#include <memory>`
 * `#include <vector>`

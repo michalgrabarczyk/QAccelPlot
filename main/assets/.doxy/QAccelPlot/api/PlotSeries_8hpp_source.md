@@ -21,6 +21,7 @@
 #include "QAccelPlot/inspection/SeriesInspection.hpp"
 #include "QAccelPlot/series/DataPointStore.hpp"
 
+#include <QList>
 #include <QPointer>
 #include <QQuickItem>
 #include <QRectF>
@@ -103,6 +104,7 @@ public:
     bool hovered() const;
 
     virtual std::optional<LegendEntry> legendEntry() const;
+    virtual QList<LegendEntry> legendEntries() const;
 
     void setData(const double* data, int count);
     void setData(std::vector<double>&& data, int count);

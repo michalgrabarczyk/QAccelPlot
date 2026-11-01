@@ -4,12 +4,28 @@
     <compoundname>QAccelPlot::LegendEntry</compoundname>
     <includes local="no">LegendEntry.hpp</includes>
     <sectiondef kind="property">
-      <memberdef kind="property" id="structQAccelPlot_1_1LegendEntry_1a5ef34abae847aea20592f888774e9701" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type>QML_ANONYMOUSPlotSeries::LegendSymbol</type>
-        <definition>QML_ANONYMOUSPlotSeries::LegendSymbol QAccelPlot::LegendEntry::symbol</definition>
+      <memberdef kind="property" id="structQAccelPlot_1_1LegendEntry_1ae0d6a6733c0af103f06402a7081b017f" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QML_ANONYMOUSQString</type>
+        <definition>QML_ANONYMOUSQString QAccelPlot::LegendEntry::name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <qualifiedname>QAccelPlot::LegendEntry::name</qualifiedname>
+        <briefdescription>
+<para>Row label, such as a category name. Empty labels the row with the series name. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" line="31" column="5" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="structQAccelPlot_1_1LegendEntry_1a760add19503952cbbb1506c1ca023ada" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" kindref="member">PlotSeries::LegendSymbol</ref></type>
+        <definition>PlotSeries::LegendSymbol QAccelPlot::LegendEntry::symbol</definition>
         <argsstring></argsstring>
         <name>symbol</name>
         <qualifiedname>QAccelPlot::LegendEntry::symbol</qualifiedname>
+        <initializer>{PlotSeries::LegendSymbol::Line}</initializer>
         <briefdescription>
 <para>Symbol style. </para>
         </briefdescription>
@@ -17,7 +33,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" line="29" column="5" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" bodystart="29" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" line="33" column="5" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" bodystart="33" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="structQAccelPlot_1_1LegendEntry_1add88ed743f9ae26708ca5b69dd7fe1c6" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>QColor</type>
@@ -33,7 +49,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" line="31" column="5" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" bodystart="31" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" line="35" column="5" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" bodystart="35" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="structQAccelPlot_1_1LegendEntry_1ae16cda2d7b3d8342192357a92cff6992" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>qreal</type>
@@ -49,7 +65,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" line="33" column="5" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" bodystart="33" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" line="37" column="5" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" bodystart="37" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="structQAccelPlot_1_1LegendEntry_1aac2cd9c9c62dfc8e9bf57c1a0a60c98e" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type><ref refid="classQAccelPlot_1_1LineStyle" kindref="compound">LineStyle</ref> *</type>
@@ -66,7 +82,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" line="35" column="5" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" bodystart="35" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" line="39" column="5" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" bodystart="39" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="structQAccelPlot_1_1LegendEntry_1a57a60253c4eb48d4cea7c959270b42b6" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type><ref refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fd" kindref="member">MarkerShape</ref></type>
@@ -83,7 +99,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" line="37" column="5" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" bodystart="37" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" line="41" column="5" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" bodystart="41" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="structQAccelPlot_1_1LegendEntry_1a79747b9594f64f093ceea4391f2e0991" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>qreal</type>
@@ -99,7 +115,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" line="39" column="5" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" bodystart="39" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" line="43" column="5" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" bodystart="43" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="structQAccelPlot_1_1LegendEntry_1af00e03e8e4f28981493e9a89016893b0" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>bool</type>
@@ -115,7 +131,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" line="41" column="5" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" bodystart="41" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" line="45" column="5" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" bodystart="45" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="structQAccelPlot_1_1LegendEntry_1ab4900281705f82ddbba3f7dbcb5557f0" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>qreal</type>
@@ -132,7 +148,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" line="43" column="5" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" bodystart="43" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" line="47" column="5" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" bodystart="47" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="structQAccelPlot_1_1LegendEntry_1ae1747530af5a615b6257d43482ec6d9a" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>bool</type>
@@ -149,7 +165,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" line="45" column="5" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" bodystart="45" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" line="49" column="5" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" bodystart="49" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="structQAccelPlot_1_1LegendEntry_1af420c8714795ad5dd236894872e93390" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>qreal</type>
@@ -166,37 +182,36 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" line="47" column="5" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" bodystart="47" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" line="51" column="5" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" bodystart="51" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="structQAccelPlot_1_1LegendEntry_1a760add19503952cbbb1506c1ca023ada" prot="public" static="no" mutable="no">
-        <type><ref refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" kindref="member">PlotSeries::LegendSymbol</ref></type>
-        <definition>PlotSeries::LegendSymbol QAccelPlot::LegendEntry::symbol</definition>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LegendEntry_1a5b327249d45be22f2bf2a728110a0609" prot="public" static="no" mutable="no">
+        <type>QString</type>
+        <definition>QString QAccelPlot::LegendEntry::name</definition>
         <argsstring></argsstring>
-        <name>symbol</name>
-        <qualifiedname>QAccelPlot::LegendEntry::symbol</qualifiedname>
-        <initializer>{PlotSeries::LegendSymbol::Line}</initializer>
+        <name>name</name>
+        <qualifiedname>QAccelPlot::LegendEntry::name</qualifiedname>
         <briefdescription>
-<para>Symbol style. </para>
+<para>Row label, or empty for the series name. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" line="50" column="30" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" bodystart="50" bodyend="50"/>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" line="54" column="13" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" bodystart="54" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
-<para>How a legend draws one series: its symbol, color, line, and marker. </para>
+<para>How a legend draws one row of a series: its label, symbol, color, line, and marker. </para>
     </briefdescription>
     <detaileddescription>
-<para>Returned by <computeroutput><ref refid="classQAccelPlot_1_1PlotSeries_1a4e5a53df93bf478ae4b3f2f53ee4ff37" kindref="member">PlotSeries::legendEntry()</ref></computeroutput> and exposed by <computeroutput><ref refid="classQAccelPlot_1_1LegendModel" kindref="compound">LegendModel</ref></computeroutput> as the <computeroutput>entry</computeroutput> role. The line fields apply to the <computeroutput>Line</computeroutput> symbol and the marker fields to <computeroutput>Line</computeroutput> and <computeroutput>Marker</computeroutput>.</para>
-<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1LegendModel" kindref="compound">LegendModel</ref>, <ref refid="classQAccelPlot_1_1PlotSeries_1a4e5a53df93bf478ae4b3f2f53ee4ff37" kindref="member">PlotSeries::legendEntry()</ref> </para>
+<para>Returned by <computeroutput><ref refid="classQAccelPlot_1_1PlotSeries_1a4e5a53df93bf478ae4b3f2f53ee4ff37" kindref="member">PlotSeries::legendEntry()</ref></computeroutput> and <computeroutput><ref refid="classQAccelPlot_1_1PlotSeries_1a65b522c090eb4baa8377ea2fea24e2ab" kindref="member">PlotSeries::legendEntries()</ref></computeroutput>, and exposed by <computeroutput><ref refid="classQAccelPlot_1_1LegendModel" kindref="compound">LegendModel</ref></computeroutput> as the <computeroutput>entry</computeroutput> role. The line fields apply to the <computeroutput>Line</computeroutput> symbol and the marker fields to <computeroutput>Line</computeroutput> and <computeroutput>Marker</computeroutput>.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1LegendModel" kindref="compound">LegendModel</ref>, <ref refid="classQAccelPlot_1_1PlotSeries_1a65b522c090eb4baa8377ea2fea24e2ab" kindref="member">PlotSeries::legendEntries()</ref> </para>
 </simplesect>
 </para>
     </detaileddescription>
-    <location file="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" line="25" column="1" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" bodystart="25" bodyend="60"/>
+    <location file="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" line="27" column="1" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp" bodystart="27" bodyend="65"/>
     <listofallmembers>
       <member refid="structQAccelPlot_1_1LegendEntry_1ae1747530af5a615b6257d43482ec6d9a" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendEntry</scope><name>antialiasing</name></member>
       <member refid="structQAccelPlot_1_1LegendEntry_1af420c8714795ad5dd236894872e93390" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendEntry</scope><name>antialiasingFeather</name></member>
@@ -207,7 +222,8 @@
       <member refid="structQAccelPlot_1_1LegendEntry_1a57a60253c4eb48d4cea7c959270b42b6" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendEntry</scope><name>markerShape</name></member>
       <member refid="structQAccelPlot_1_1LegendEntry_1a79747b9594f64f093ceea4391f2e0991" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendEntry</scope><name>markerSize</name></member>
       <member refid="structQAccelPlot_1_1LegendEntry_1ab4900281705f82ddbba3f7dbcb5557f0" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendEntry</scope><name>markerStrokeWidth</name></member>
-      <member refid="structQAccelPlot_1_1LegendEntry_1a5ef34abae847aea20592f888774e9701" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendEntry</scope><name>symbol</name></member>
+      <member refid="structQAccelPlot_1_1LegendEntry_1ae0d6a6733c0af103f06402a7081b017f" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendEntry</scope><name>name</name></member>
+      <member refid="structQAccelPlot_1_1LegendEntry_1a5b327249d45be22f2bf2a728110a0609" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendEntry</scope><name>name</name></member>
       <member refid="structQAccelPlot_1_1LegendEntry_1a760add19503952cbbb1506c1ca023ada" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendEntry</scope><name>symbol</name></member>
     </listofallmembers>
   </compounddef>

@@ -43,6 +43,8 @@
 
 | Type | Name |
 | ---: | :--- |
+| class | [**CategoryList**](classQAccelPlot_1_1Internal_1_1CategoryList.md) <br>_The_ `categories` _list of a series: the_`Category` _objects and a lookup table that follows their edits._ |
+| class | [**CategoryTable**](classQAccelPlot_1_1Internal_1_1CategoryTable.md) <br>_A snapshot of the categories of a series, looked up by value or name._  |
 | struct | [**DataTextureUploadTotals**](structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals.md) <br>_How many data textures were uploaded since the last reset, and how many bytes they held._  |
 | struct | [**GrabSize**](structQAccelPlot_1_1Internal_1_1GrabSize.md) <br>_Sizes of one item grab._  |
 | struct | [**HeatmapGridDimension**](structQAccelPlot_1_1Internal_1_1HeatmapGridDimension.md) <br>_One dimension of a heatmap grid:_ `count` _cells between the edges_`from` _and_`to` _._ |

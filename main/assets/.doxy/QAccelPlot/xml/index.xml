@@ -418,7 +418,7 @@
     <member refid="classQAccelPlot_1_1BarSeries_1a5b6b5cb850b2e79d0d223f3483fc0ba7" kind="property"><name>baselineValue</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a182272a044de10d6c0d7dd1af7bf22f9" kind="property"><name>minimumWidth</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1aa92f945a6369f21179c3f6a1fbc73d0c" kind="property"><name>color</name></member>
-    <member refid="classQAccelPlot_1_1BarSeries_1a09aa558d5212462b29f6a7931bb662bd" kind="property"><name>categoryColors</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1ae728069dc8cceeea2cb9bb28e5c0cec8" kind="property"><name>categories</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a2543bb0e40b4d05a0179999a2ac3aa9c" kind="property"><name>colorSource</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1ad544cd7d6b47535dfd3e426fadd2f045" kind="property"><name>border</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1adfb933c4c3acfed2fa348463ffe5a1e5" kind="property"><name>hoverColor</name></member>
@@ -430,7 +430,7 @@
     <member refid="classQAccelPlot_1_1BarSeries_1abf50c4a1930c81bf46840371bfa723b6" kind="variable"><name>baselineValue_</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a260bdc1e0a37dbf96e05e81358824b14" kind="variable"><name>minimumWidth_</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1aec3ca2366e2a0c1897b765abc96a3b2b" kind="variable"><name>color_</name></member>
-    <member refid="classQAccelPlot_1_1BarSeries_1a5c6db3b636df3d56938fc40b8d3eaf58" kind="variable"><name>categoryColors_</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a5cf81d1f1263af6503bf7f42ff2b3b11" kind="variable"><name>categories_</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a9666d7aee12c710b787220b9c119e0c3" kind="variable"><name>colorSource_</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1ac8922ef9a7afa12e7b3e025b7eb30dfe" kind="variable"><name>border_</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a3ed90cb99cb820f2d9bafc6720d92001" kind="variable"><name>hoverColor_</name></member>
@@ -458,8 +458,8 @@
     <member refid="classQAccelPlot_1_1BarSeries_1a0f4dc9328a020eb638e1b9c155c455c3" kind="function"><name>setMinimumWidth</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a1e744289a2698934252dc1c8900ebb5c" kind="function"><name>color</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1af9805997643ad2f45780839a6c8b0d80" kind="function"><name>setColor</name></member>
-    <member refid="classQAccelPlot_1_1BarSeries_1a54f1a9c149f26cbc87b22c8aa664edad" kind="function"><name>categoryColors</name></member>
-    <member refid="classQAccelPlot_1_1BarSeries_1a5562fc614faa7d3650604fab277abbc2" kind="function"><name>setCategoryColors</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a9a1c2dd06a65d3e2e71d547e2dc4d747" kind="function"><name>categories</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a513a0e3d710cbcbf7166354fabc417b4" kind="function"><name>setCategories</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1ac94d677fbcdc832df2b01f1b0f5ca596" kind="function"><name>colorSource</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a7fce8da648a88f9ff7e60c2a38a52d0b" kind="function"><name>setColorSource</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a06f0a953222d24b884bce42e4fe3ef24" kind="function"><name>border</name></member>
@@ -478,7 +478,8 @@
     <member refid="classQAccelPlot_1_1BarSeries_1a1d918989e80e29b968f4680f811f419a" kind="function"><name>postRangedData</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a1128846c139b4bf98785326558985dad" kind="function"><name>clearData</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1aa8a1354da5e51022c4e9cb2d3d7155df" kind="function"><name>legendEntry</name></member>
-    <member refid="classQAccelPlot_1_1BarSeries_1a9cb606e0a24dafdceb3200c8aa5d7020" kind="function"><name>setCategories</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1ae40e81143ba79022b92c6b235d629386" kind="function"><name>legendEntries</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1aba18113da6e2726d357ce321170bd29d" kind="function"><name>setDataPointCategories</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a50b913d33661eeca6c7485d2136f9e3a" kind="function"><name>barAt</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a3817903f4ad2624e51bd623f29fe862e" kind="function"><name>barIndexAt</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a2d621c5b0435cb54b65f68601208f95b" kind="function"><name>contains</name></member>
@@ -498,7 +499,7 @@
     <member refid="classQAccelPlot_1_1BarSeries_1acf1f15d2de24433d3f75309d25cc0bc6" kind="signal"><name>baselineValueChanged</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a7a8a18465a75203a16031c3256aa0697" kind="signal"><name>minimumWidthChanged</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1ab3ed4146c06f60dfce6e8f6843f43401" kind="signal"><name>colorChanged</name></member>
-    <member refid="classQAccelPlot_1_1BarSeries_1acddc8937b15de064f50add21647c0433" kind="signal"><name>categoryColorsChanged</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a1545c1451f2f1ba4ad0e8b5aa382c5e2" kind="signal"><name>categoriesChanged</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a1d7b09e8291b682dd4b2203b5428b145" kind="signal"><name>colorSourceChanged</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a081d50587420ec37880e74e6e60ff106" kind="signal"><name>hoverColorChanged</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a27c17715b5d79b484a65d72ff9a16561" kind="signal"><name>transitionChanged</name></member>
@@ -516,6 +517,7 @@
     <member refid="classQAccelPlot_1_1BarSeries_1a735bbac8ac544d6cf2ba582ccf376bcb" kind="function"><name>computeDataRanges</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a75c87aace83eb9720d38c3cccf51826a" kind="function"><name>onDataPointsChanged</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a1499c326d07508041640efc8f9db2b3b" kind="function"><name>scanValueRange</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a1b56dc06ba4b62a26f77efa99e459c51" kind="function"><name>onCategoriesChanged</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a7627491b0ee8668dc126d41553333831" kind="function"><name>validateDataArguments</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1ad2b1027f07f78b96a4025932759218f0" kind="function"><name>setRanged</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1afd1452f6642a7e27df9257fdd9e9d4b1" kind="function"><name>applyData</name></member>
@@ -569,6 +571,65 @@
     <member refid="classQAccelPlot_1_1Border_1ab0459b10956f892427dd5afb76faef86" kind="function"><name>setWidth</name></member>
     <member refid="classQAccelPlot_1_1Border_1a5b5233d12e10727f6148717faff188e1" kind="signal"><name>colorChanged</name></member>
     <member refid="classQAccelPlot_1_1Border_1ab94b6be54bc4bb575bd0019b592bd617" kind="signal"><name>widthChanged</name></member>
+  </compound>
+  <compound refid="classQAccelPlot_1_1Category" kind="class"><name>QAccelPlot::Category</name>
+    <member refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kind="property"><name>value</name></member>
+    <member refid="classQAccelPlot_1_1Category_1aa56e800e6c107c219839466c90566d81" kind="property"><name>name</name></member>
+    <member refid="classQAccelPlot_1_1Category_1a69e1147a12652e9c347ea27378598ba9" kind="property"><name>color</name></member>
+    <member refid="classQAccelPlot_1_1Category_1a4d362b90dd12f297046c9eda95c6a1d8" kind="variable"><name>value_</name></member>
+    <member refid="classQAccelPlot_1_1Category_1a5098dcd3ede01e04871d5c79b7204cec" kind="variable"><name>name_</name></member>
+    <member refid="classQAccelPlot_1_1Category_1a82ac2929464e14e4f86391985efa51d9" kind="variable"><name>color_</name></member>
+    <member refid="classQAccelPlot_1_1Category_1a706a31512d9efc476527152d697b8783" kind="function"><name>Category</name></member>
+    <member refid="classQAccelPlot_1_1Category_1aa0a8e1b5196a6324768167c0206e47b6" kind="function"><name>Category</name></member>
+    <member refid="classQAccelPlot_1_1Category_1a7431b05cd9391cb3372fa07b9d57ce35" kind="function"><name>value</name></member>
+    <member refid="classQAccelPlot_1_1Category_1a7d48405b070c380d2bd3d9355b14c43b" kind="function"><name>setValue</name></member>
+    <member refid="classQAccelPlot_1_1Category_1af8340b8c4d6ec5924ba1ba72100a4509" kind="function"><name>name</name></member>
+    <member refid="classQAccelPlot_1_1Category_1a6ead95851717798d432d7b26f4489533" kind="function"><name>setName</name></member>
+    <member refid="classQAccelPlot_1_1Category_1ab23f2fc1b3259de523b8c8bacef21535" kind="function"><name>color</name></member>
+    <member refid="classQAccelPlot_1_1Category_1a09109d8f212b9c3f878ef58df953f4ee" kind="function"><name>setColor</name></member>
+    <member refid="classQAccelPlot_1_1Category_1a5a09039d768e38c456142817ef1a5350" kind="signal"><name>valueChanged</name></member>
+    <member refid="classQAccelPlot_1_1Category_1a272bdf9ea40c4b631b6a5061a24f5d40" kind="signal"><name>nameChanged</name></member>
+    <member refid="classQAccelPlot_1_1Category_1a67dbd18a0fce0c61f44d2679ecdc13e7" kind="signal"><name>colorChanged</name></member>
+  </compound>
+  <compound refid="classQAccelPlot_1_1Internal_1_1CategoryList" kind="class"><name>QAccelPlot::Internal::CategoryList</name>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1a4eec82dc6360fefe840793ff1ed8af98" kind="variable"><name>seriesName_</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1a7a20294842a10a6dc65fe8299adc87a3" kind="variable"><name>categories_</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1a550e073efdef7831d8b9746aa7f623cd" kind="variable"><name>table_</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1ae098c8c90088f321ac5dd51f4d387ab4" kind="variable"><name>reportQueued_</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1a1e372f22cf214a26a06b8b41de9ebe5b" kind="function"><name>CategoryList</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1aabb6a18bb191f770345c3a8c9667fd35" kind="function"><name>listProperty</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1ab506e9b57a469d52131d6e449e9a2516" kind="function"><name>setCategories</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1ae2ab217cbd70ec4e114417b4bb448c18" kind="function"><name>table</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1a3d68dc0a183f28b3d1f82115aacc33c5" kind="signal"><name>changed</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1a8a0d9745d754a85ab1563cd859bc6064" kind="function"><name>append</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1a8ea2c0ea2310cb7a26801014fe1dc71b" kind="function"><name>clear</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1a201fd460195d165d36dcf9f59db964ed" kind="function"><name>watch</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1a980dfc9b365e9f2e6aa198a9f6cb7e82" kind="function"><name>unwatchAll</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1a0cd9cf651198ff00adcc9f1a935f7e2b" kind="function"><name>onCategoryDestroyed</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1aaaaa02ded67437a66055ed50d4a18746" kind="function"><name>onCategoriesChanged</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1a12333b84c55d188dd6c22ce0775865b7" kind="function"><name>reportProblems</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1af2a31e0b41b603e9ec654fec5e37a925" kind="function"><name>appendCategory</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1a787bcb0c83fda966d1f3639f0e2ada0a" kind="function"><name>categoryCount</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1a550b338a5282d6e4abc3ff041e192c52" kind="function"><name>categoryAt</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1af8cce5d0a617504d8260ed64223a2c69" kind="function"><name>clearCategories</name></member>
+  </compound>
+  <compound refid="classQAccelPlot_1_1Internal_1_1CategoryTable" kind="class"><name>QAccelPlot::Internal::CategoryTable</name>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryTable_1a32f053f7674010d194250d9f3435f570" kind="variable"><name>entries_</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryTable_1a13a78357179866f411f589a3d16e16cb" kind="variable"><name>problems_</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryTable_1a53a6632ede74eb98f4b9f1dbd21f7536" kind="variable"><name>denseIndex_</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryTable_1a8860011961da4ed84c10c08a666f4067" kind="variable"><name>denseMin_</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryTable_1a3b687ee97bbc94dc504a2f2fdbd1b295" kind="variable"><name>hashedIndex_</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryTable_1a65fee045953a51b90517ff2f5851d537" kind="variable"><name>valueByName_</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryTable_1a83c52218bffdb2e28f0ff031fbc9bee2" kind="function"><name>fromCategories</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryTable_1a1b1679db4b82bec4d26e392fe801c543" kind="function"><name>empty</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryTable_1ae0e15268d1dfca8b74311087e2127b8f" kind="function"><name>entries</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryTable_1a5aa652478c18e0a653da59797d514575" kind="function"><name>problems</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryTable_1a2eb0a38bacbf87c7ca6f09b991b7baca" kind="function"><name>color</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryTable_1a8c7ba6d2b9708c79d72e6de8d46480a5" kind="function"><name>name</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryTable_1ae06a2101d24693bc0434181eba65eb29" kind="function"><name>dataPointCategory</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryTable_1ab8bcf723d65e6865154cadd20f8d90bd" kind="function"><name>legendEntries</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryTable_1a07d95585188fa85fa233eb286b00726b" kind="function"><name>find</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1CategoryTable_1a22d58e1fe6105b638f3a47e4a3b111a0" kind="function"><name>buildValueIndex</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1ColorBar" kind="class"><name>QAccelPlot::ColorBar</name>
     <member refid="classQAccelPlot_1_1ColorBar_1abeecf557895378319ac465dabd4a5776" kind="property"><name>series</name></member>
@@ -1123,6 +1184,11 @@
   <compound refid="classQAccelPlot_1_1DrawTransition" kind="class"><name>QAccelPlot::DrawTransition</name>
     <member refid="classQAccelPlot_1_1DrawTransition_1a69f652e7372b06d1d54bca34a736238e" kind="function"><name>DrawTransition</name></member>
     <member refid="classQAccelPlot_1_1DrawTransition_1a904da570c469cfd92bd7b54fcd4241fc" kind="function"><name>interpolate</name></member>
+  </compound>
+  <compound refid="structQAccelPlot_1_1Internal_1_1CategoryTable_1_1Entry" kind="struct"><name>QAccelPlot::Internal::CategoryTable::Entry</name>
+    <member refid="structQAccelPlot_1_1Internal_1_1CategoryTable_1_1Entry_1aa37e8485073a45eff5651a95266d6784" kind="variable"><name>value</name></member>
+    <member refid="structQAccelPlot_1_1Internal_1_1CategoryTable_1_1Entry_1a3640a4bb6ccfcfb02decdc7cb325d790" kind="variable"><name>name</name></member>
+    <member refid="structQAccelPlot_1_1Internal_1_1CategoryTable_1_1Entry_1ae7026e925102230644ad8ab121999bfb" kind="variable"><name>color</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1ErrorBarMaterial" kind="class"><name>QAccelPlot::ErrorBarMaterial</name>
     <member refid="classQAccelPlot_1_1ErrorBarMaterial_1a2071780cf36fb120fd0ca15e3e4c13b4" kind="variable"><name>kVerticesPerErrorBar</name></member>
@@ -1941,7 +2007,8 @@
     <member refid="structQAccelPlot_1_1DataPointStore_1_1Layout_1a509f6cddab026da6c7b429f635632b07" kind="variable"><name>attributeCount</name></member>
   </compound>
   <compound refid="structQAccelPlot_1_1LegendEntry" kind="struct"><name>QAccelPlot::LegendEntry</name>
-    <member refid="structQAccelPlot_1_1LegendEntry_1a5ef34abae847aea20592f888774e9701" kind="property"><name>symbol</name></member>
+    <member refid="structQAccelPlot_1_1LegendEntry_1ae0d6a6733c0af103f06402a7081b017f" kind="property"><name>name</name></member>
+    <member refid="structQAccelPlot_1_1LegendEntry_1a760add19503952cbbb1506c1ca023ada" kind="property"><name>symbol</name></member>
     <member refid="structQAccelPlot_1_1LegendEntry_1add88ed743f9ae26708ca5b69dd7fe1c6" kind="property"><name>color</name></member>
     <member refid="structQAccelPlot_1_1LegendEntry_1ae16cda2d7b3d8342192357a92cff6992" kind="property"><name>lineWidth</name></member>
     <member refid="structQAccelPlot_1_1LegendEntry_1aac2cd9c9c62dfc8e9bf57c1a0a60c98e" kind="property"><name>lineStyle</name></member>
@@ -1951,7 +2018,7 @@
     <member refid="structQAccelPlot_1_1LegendEntry_1ab4900281705f82ddbba3f7dbcb5557f0" kind="property"><name>markerStrokeWidth</name></member>
     <member refid="structQAccelPlot_1_1LegendEntry_1ae1747530af5a615b6257d43482ec6d9a" kind="property"><name>antialiasing</name></member>
     <member refid="structQAccelPlot_1_1LegendEntry_1af420c8714795ad5dd236894872e93390" kind="property"><name>antialiasingFeather</name></member>
-    <member refid="structQAccelPlot_1_1LegendEntry_1a760add19503952cbbb1506c1ca023ada" kind="variable"><name>symbol</name></member>
+    <member refid="structQAccelPlot_1_1LegendEntry_1a5b327249d45be22f2bf2a728110a0609" kind="variable"><name>name</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1LegendModel" kind="class"><name>QAccelPlot::LegendModel</name>
     <member refid="classQAccelPlot_1_1LegendModel_1a82e1c0fb48ff48fbb0bc9779b1e3865e" kind="enum"><name>Role</name></member>
@@ -1961,7 +2028,7 @@
     <member refid="classQAccelPlot_1_1LegendModel_1aa4ec20f016cd7fc60ea0dd771cab5f29" kind="property"><name>series</name></member>
     <member refid="classQAccelPlot_1_1LegendModel_1a20ee439311d814eec70a568bedac2622" kind="property"><name>count</name></member>
     <member refid="classQAccelPlot_1_1LegendModel_1a9b983b31d85fbb8b80f4a5a4ca68cf64" kind="variable"><name>series_</name></member>
-    <member refid="classQAccelPlot_1_1LegendModel_1a0976fe1d88fe35e4ae3fdd360428629f" kind="variable"><name>rows_</name></member>
+    <member refid="classQAccelPlot_1_1LegendModel_1a08b8b62529e6695216dae22c7f2b74dc" kind="variable"><name>rows_</name></member>
     <member refid="classQAccelPlot_1_1LegendModel_1a140c9400acba7f82e62896e09547172e" kind="function"><name>LegendModel</name></member>
     <member refid="classQAccelPlot_1_1LegendModel_1a65592775c901e6c233df7264bdf56628" kind="function"><name>series</name></member>
     <member refid="classQAccelPlot_1_1LegendModel_1a13acf6d15ac044d3bdc3b76b4856b922" kind="function"><name>setSeries</name></member>
@@ -2605,6 +2672,7 @@
     <member refid="classQAccelPlot_1_1PlotSeries_1a085c9270fc300894598ebe442e2d019c" kind="function"><name>setHoverEnabled</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a1edf0373b587b3f3373048e4d0b707ed" kind="function"><name>hovered</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a4e5a53df93bf478ae4b3f2f53ee4ff37" kind="function"><name>legendEntry</name></member>
+    <member refid="classQAccelPlot_1_1PlotSeries_1a65b522c090eb4baa8377ea2fea24e2ab" kind="function"><name>legendEntries</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a5615889cceabfee35f5e3e2dbd25f455" kind="function"><name>setData</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1af143a846c63372800995a0bd4f058598" kind="function"><name>setData</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1aa3475ca31d506b1b1c28ea586d61402e" kind="function"><name>setDataF</name></member>
@@ -2982,14 +3050,14 @@
   </compound>
   <compound refid="classQAccelPlot_1_1RectangleSeries" kind="class"><name>QAccelPlot::RectangleSeries</name>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a0aa2fb58305e5815f71d8d717dc3821f" kind="property"><name>color</name></member>
-    <member refid="classQAccelPlot_1_1RectangleSeries_1a7dfebc9760304138db9624f7f8e9cd86" kind="property"><name>categoryColors</name></member>
+    <member refid="classQAccelPlot_1_1RectangleSeries_1ab5db60ed9c8b7777149175b6d897ea23" kind="property"><name>categories</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a628e3158a675995a855c91b05f01a84d" kind="property"><name>border</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a09de44899bfb96bed192692a0d5b6d3e" kind="property"><name>hoverColor</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a2e615e5b52a1ce9faba6f29829b23eec" kind="property"><name>minimumWidth</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a4a6c36243deec7974410e56b27b19df7" kind="property"><name>minimumHeight</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a0d60605cb2fc7c48505f697e5a1d6d9b" kind="property"><name>hoveredIndex</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a8d59117caf07450392eccb05b1ac3f32" kind="variable"><name>color_</name></member>
-    <member refid="classQAccelPlot_1_1RectangleSeries_1a51b520e79ed624399697b55a4f76d6e5" kind="variable"><name>categoryColors_</name></member>
+    <member refid="classQAccelPlot_1_1RectangleSeries_1a37e17c01d38e355e6da8618ad0a85de5" kind="variable"><name>categories_</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a3a50bb62358de53c412f4bf5fefe07f6" kind="variable"><name>border_</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a9f3cbe0746d032dd96f1b0f97c55627c" kind="variable"><name>hoverColor_</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1abf29d4256b7777b7a930dfc6deaab61e" kind="variable"><name>minimumWidth_</name></member>
@@ -3007,8 +3075,8 @@
     <member refid="classQAccelPlot_1_1RectangleSeries_1a013b09032bb1aa5ecd60fa712d4fde64" kind="function"><name>~RectangleSeries</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a4a2e622708a8a4a1a2be3e8e1001c271" kind="function"><name>color</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a3fb2f93716829bf358063859eb333861" kind="function"><name>setColor</name></member>
-    <member refid="classQAccelPlot_1_1RectangleSeries_1a3bc5c4302a62a46875b97c63b2055a11" kind="function"><name>categoryColors</name></member>
-    <member refid="classQAccelPlot_1_1RectangleSeries_1a6259ebaed30dc9812190b4ab9721c78d" kind="function"><name>setCategoryColors</name></member>
+    <member refid="classQAccelPlot_1_1RectangleSeries_1a9f3810fbe4a7f9b216dd2a0b2868b474" kind="function"><name>categories</name></member>
+    <member refid="classQAccelPlot_1_1RectangleSeries_1aac6bdb25376a29e3b511837efec8a0a0" kind="function"><name>setCategories</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a061693e5dcb1d961b7c217fbb189adab" kind="function"><name>border</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a065ead86e85291e377087f91996d77b5" kind="function"><name>hoverColor</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a33f7d8cec42ff4cf6ac9d978e088580c" kind="function"><name>setHoverColor</name></member>
@@ -3024,7 +3092,8 @@
     <member refid="classQAccelPlot_1_1RectangleSeries_1afa940d994549d840a47a7464fab9f680" kind="function"><name>postData</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a83e7c1afb39f6ddbd7a7e04b3f5b381d" kind="function"><name>clearData</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1aff69c7666b5181aa9ee950c4eeb3dab1" kind="function"><name>legendEntry</name></member>
-    <member refid="classQAccelPlot_1_1RectangleSeries_1aaa37a59e34a883446579a22808bc314e" kind="function"><name>setCategories</name></member>
+    <member refid="classQAccelPlot_1_1RectangleSeries_1abd082065e3d4b9ce39095a77dd91231b" kind="function"><name>legendEntries</name></member>
+    <member refid="classQAccelPlot_1_1RectangleSeries_1a32a25fdd804bacbf0b9d8414f15f0fd0" kind="function"><name>setDataPointCategories</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a127de00580279df93667249b43f68df0" kind="function"><name>rectangleAt</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a7c5a7e5963b1e1701f7370a0cca8571a" kind="function"><name>rectangleIndexAt</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a1c3b4741371bc812b93a9cf557f00fbe" kind="function"><name>contains</name></member>
@@ -3039,7 +3108,7 @@
     <member refid="classQAccelPlot_1_1RectangleSeries_1ab0d977683b1b06807842ade3c6011a3a" kind="function"><name>setDataF</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a795dc3374e83da98b6a471bb55f51fbd" kind="function"><name>setDataF</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1aa04ed79550acd5f3920496cf97e6be0c" kind="signal"><name>colorChanged</name></member>
-    <member refid="classQAccelPlot_1_1RectangleSeries_1a8f80152686c044a7fe3a850382cd6861" kind="signal"><name>categoryColorsChanged</name></member>
+    <member refid="classQAccelPlot_1_1RectangleSeries_1af7692b7f6488058b0eabdaf05cdb98ec" kind="signal"><name>categoriesChanged</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a4a78933d3a639c82dba3edd87bde6a86" kind="signal"><name>hoverColorChanged</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a447fb0055248a4c043574ee4fd543be9" kind="signal"><name>minimumWidthChanged</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a97be76ce75b7c21761071030fe407f47" kind="signal"><name>minimumHeightChanged</name></member>
@@ -3053,6 +3122,7 @@
     <member refid="classQAccelPlot_1_1RectangleSeries_1abb8c966134316217b61aa27731cd4de9" kind="function"><name>hoverLeaveEvent</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a9258965161abf24d2853375aedf3752d" kind="function"><name>onAxisScaleChanged</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a3d7418ecfd1c0b2db79d7c1cafa4c0c9" kind="function"><name>onDataPointsChanged</name></member>
+    <member refid="classQAccelPlot_1_1RectangleSeries_1a8acf59efd1f01e26e9bfe60351bc67e6" kind="function"><name>onCategoriesChanged</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1ac480f0ea73396ff32faf7afb7f8e8f4c" kind="function"><name>validateCategories</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a39dc428c0169d4ef65e58e922354cd4e" kind="function"><name>applyData</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1aa8c89087d5b2b1fbd47108ccc7d6ac13" kind="function"><name>applyFloatData</name></member>
@@ -3128,6 +3198,11 @@
     <member refid="structQAccelPlot_1_1BandSeries_1_1RenderView_1a3401efa8430463a3c7c3505177b241b7" kind="variable"><name>viewportSize</name></member>
     <member refid="structQAccelPlot_1_1BandSeries_1_1RenderView_1ad77388f0085c1d8744f3cf5528384f32" kind="variable"><name>drawnCount</name></member>
     <member refid="structQAccelPlot_1_1BandSeries_1_1RenderView_1acbcfd3cc55239b486aec7949cfa2a698" kind="variable"><name>reservedCount</name></member>
+  </compound>
+  <compound refid="structQAccelPlot_1_1LegendModel_1_1Row" kind="struct"><name>QAccelPlot::LegendModel::Row</name>
+    <member refid="structQAccelPlot_1_1LegendModel_1_1Row_1abec655cee3341557d6f6c33ab9555a88" kind="variable"><name>series</name></member>
+    <member refid="structQAccelPlot_1_1LegendModel_1_1Row_1a750801384017ef0c1039b0e460f2b29a" kind="variable"><name>entry</name></member>
+    <member refid="structQAccelPlot_1_1LegendModel_1_1Row_1ae81abb6f420ee7b5d008eaa99a99e86c" kind="function"><name>operator==</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1DataTransition_1_1Run" kind="class"><name>QAccelPlot::DataTransition::Run</name>
     <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1a3fc2ec9b2f153e00f753a9f6a21957b0" kind="friend"><name>DataTransition</name></member>
@@ -3784,6 +3859,8 @@
   </compound>
   <compound refid="BarSeries_8hpp" kind="file"><name>BarSeries.hpp</name>
   </compound>
+  <compound refid="Category_8hpp" kind="file"><name>Category.hpp</name>
+  </compound>
   <compound refid="ColormappedSeries_8hpp" kind="file"><name>ColormappedSeries.hpp</name>
   </compound>
   <compound refid="DataPointStore_8hpp" kind="file"><name>DataPointStore.hpp</name>
@@ -3791,6 +3868,10 @@
   <compound refid="ErrorBarSeries_8hpp" kind="file"><name>ErrorBarSeries.hpp</name>
   </compound>
   <compound refid="HeatmapSeries_8hpp" kind="file"><name>HeatmapSeries.hpp</name>
+  </compound>
+  <compound refid="CategoryList_8hpp" kind="file"><name>CategoryList.hpp</name>
+  </compound>
+  <compound refid="CategoryTable_8hpp" kind="file"><name>CategoryTable.hpp</name>
   </compound>
   <compound refid="HeatmapGrid_8hpp" kind="file"><name>HeatmapGrid.hpp</name>
   </compound>

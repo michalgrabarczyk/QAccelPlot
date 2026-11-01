@@ -1401,10 +1401,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#variable-symbol-22" class="md-nav__link">
+  <a href="#variable-name-22" class="md-nav__link">
     <span class="md-ellipsis">
       
-        variable symbol
+        variable name
       
     </span>
   </a>
@@ -1528,7 +1528,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#property-symbol-12" class="md-nav__link">
+  <a href="#property-name-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property name
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-symbol" class="md-nav__link">
     <span class="md-ellipsis">
       
         property symbol
@@ -1562,7 +1573,7 @@
 
 <h1 id="struct-qaccelplotlegendentry">Struct QAccelPlot::LegendEntry<a class="headerlink" href="#struct-qaccelplotlegendentry" title="Permanent link">&para;</a></h1>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="./"><strong>LegendEntry</strong></a></p>
-<p><em>How a legend draws one series: its symbol, color, line, and marker.</em> <a href="#detailed-description">More...</a></p>
+<p><em>How a legend draws one row of a series: its label, symbol, color, line, and marker.</em> <a href="#detailed-description">More...</a></p>
 <ul>
 <li><code>#include &lt;LegendEntry.hpp&gt;</code></li>
 </ul>
@@ -1576,8 +1587,8 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"><a href="../classQAccelPlot_1_1PlotSeries/#enum-legendsymbol"><strong>PlotSeries::LegendSymbol</strong></a></td>
-<td style="text-align: left;"><a href="#variable-symbol-22"><strong>symbol</strong></a>   = <code>{PlotSeries::LegendSymbol::Line}</code><br><em>Symbol style.</em></td>
+<td style="text-align: right;">QString</td>
+<td style="text-align: left;"><a href="#variable-name-22"><strong>name</strong></a>  <br><em>Row label, or empty for the series name.</em></td>
 </tr>
 </tbody>
 </table>
@@ -1627,18 +1638,22 @@
 <td style="text-align: left;"><a href="./#property-markerstrokewidth"><strong>markerStrokeWidth</strong></a>  <br><em>Outline width in pixels of a hollow marker.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">property QML_ANONYMOUSPlotSeries::LegendSymbol</td>
-<td style="text-align: left;"><a href="./#property-symbol-12"><strong>symbol</strong></a>  <br><em>Symbol style.</em></td>
+<td style="text-align: right;">property QML_ANONYMOUSQString</td>
+<td style="text-align: left;"><a href="./#property-name-12"><strong>name</strong></a>  <br><em>Row label, such as a category name. Empty labels the row with the series name.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property <a href="../classQAccelPlot_1_1PlotSeries/#enum-legendsymbol"><strong>PlotSeries::LegendSymbol</strong></a></td>
+<td style="text-align: left;"><a href="./#property-symbol"><strong>symbol</strong></a>  <br><em>Symbol style.</em></td>
 </tr>
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
-<p>Returned by <code>PlotSeries::legendEntry()</code> and exposed by <code>LegendModel</code> as the <code>entry</code> role. The line fields apply to the <code>Line</code> symbol and the marker fields to <code>Line</code> and <code>Marker</code>.</p>
-<p><strong>See also:</strong> <a href="../classQAccelPlot_1_1LegendModel/"><strong>LegendModel</strong></a>, <a href="../classQAccelPlot_1_1PlotSeries/#function-legendentry"><strong>PlotSeries::legendEntry()</strong></a> </p>
+<p>Returned by <code>PlotSeries::legendEntry()</code> and <code>PlotSeries::legendEntries()</code>, and exposed by <code>LegendModel</code> as the <code>entry</code> role. The line fields apply to the <code>Line</code> symbol and the marker fields to <code>Line</code> and <code>Marker</code>.</p>
+<p><strong>See also:</strong> <a href="../classQAccelPlot_1_1LegendModel/"><strong>LegendModel</strong></a>, <a href="../classQAccelPlot_1_1PlotSeries/#function-legendentries"><strong>PlotSeries::legendEntries()</strong></a> </p>
 <h2 id="public-attributes-documentation">Public Attributes Documentation<a class="headerlink" href="#public-attributes-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="variable-symbol-22">variable symbol<a class="headerlink" href="#variable-symbol-22" title="Permanent link">&para;</a></h3>
-<p><em>Symbol style.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">PlotSeries</span><span class="o">::</span><span class="n">LegendSymbol</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">symbol</span><span class="p">;</span>
+<h3 id="variable-name-22">variable name<a class="headerlink" href="#variable-name-22" title="Permanent link">&para;</a></h3>
+<p><em>Row label, or empty for the series name.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">QString</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">name</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 <h2 id="public-properties-documentation">Public Properties Documentation<a class="headerlink" href="#public-properties-documentation" title="Permanent link">&para;</a></h2>
@@ -1702,9 +1717,15 @@
 <p>Hollow marker outline width. </p>
 <hr>
 
-<h3 id="property-symbol-12">property symbol<a class="headerlink" href="#property-symbol-12" title="Permanent link">&para;</a></h3>
+<h3 id="property-name-12">property name<a class="headerlink" href="#property-name-12" title="Permanent link">&para;</a></h3>
+<p><em>Row label, such as a category name. Empty labels the row with the series name.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">QML_ANONYMOUSQString</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">name</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-symbol">property symbol<a class="headerlink" href="#property-symbol" title="Permanent link">&para;</a></h3>
 <p><em>Symbol style.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">QML_ANONYMOUSPlotSeries</span><span class="o">::</span><span class="n">LegendSymbol</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">symbol</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">PlotSeries</span><span class="o">::</span><span class="n">LegendSymbol</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LegendEntry</span><span class="o">::</span><span class="n">symbol</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 

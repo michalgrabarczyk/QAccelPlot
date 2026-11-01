@@ -1432,8 +1432,9 @@ its data and optionally supplies a <code>name</code> for the legend.</p>
 <a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    <span class="p">}</span>
 <a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="p">}</span>
 </code></pre></div>
-<p><code>Plot</code> shows a legend entry for every visible series that has one; a heatmap
-has none, because its color bar is its key. Set <code>legendVisible: false</code> to hide
+<p><code>Plot</code> shows a legend entry for every visible series that has one, and one per
+category for a series with <code>categories</code>; a heatmap has none, because its color
+bar is its key. Set <code>legendVisible: false</code> to hide
 the legend, or assign <code>legend</code> to replace it. <code>Plot.legendModel</code> lists every
 entry; a <code>LegendModel</code> of your own lists a subset:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">legend:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Legend</span> <span class="p">{</span>

@@ -18,6 +18,7 @@
 #pragma once
 
 #include "QAccelPlot/Border.hpp"
+#include "QAccelPlot/series/Category.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
 #include "QAccelPlot/series/SpatialGrid.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
@@ -28,7 +29,9 @@
 #include <QtQml/qqmlregistration.h>
 #endif
 
+#include <QList>
 #include <QPointF>
+#include <QQmlListProperty>
 #include <QSizeF>
 
 #include <memory>
@@ -38,6 +41,7 @@
 namespace QAccelPlot {
 
 namespace Internal {
+class CategoryList;
 class HoverIndexBudget;
 class RectVertexCache;
 }
@@ -49,7 +53,7 @@ class RectangleSeries : public PlotSeries {
 
     
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
-    Q_PROPERTY(QList<QColor> categoryColors READ categoryColors WRITE setCategoryColors NOTIFY categoryColorsChanged)
+    Q_PROPERTY(QQmlListProperty<Category> categories READ categories NOTIFY categoriesChanged)
     Q_PROPERTY(Border* border READ border CONSTANT)
     Q_PROPERTY(QColor hoverColor READ hoverColor WRITE setHoverColor NOTIFY hoverColorChanged)
     Q_PROPERTY(qreal minimumWidth READ minimumWidth WRITE setMinimumWidth NOTIFY minimumWidthChanged)
@@ -63,8 +67,8 @@ public:
     QColor color() const;
     void setColor(const QColor& color);
 
-    QList<QColor> categoryColors() const;
-    void setCategoryColors(const QList<QColor>& colors);
+    QQmlListProperty<Category> categories();
+    void setCategories(const QList<Category*>& categories);
 
     Border* border() const;
 
@@ -82,7 +86,7 @@ public:
     Q_INVOKABLE void setData(const QVariantList& rects);
 
     // The PlotSeries overloads take interleaved (x1, y1, x2, y2) rectangles, as doubles or floats,
-    // and clear the categories.
+    // and clear the rectangles' categories.
     using PlotSeries::postData;
     using PlotSeries::setData;
     using PlotSeries::setDataF;
@@ -97,8 +101,9 @@ public:
 
     Q_INVOKABLE void clearData() override;
     std::optional<LegendEntry> legendEntry() const override;
+    QList<LegendEntry> legendEntries() const override;
 
-    Q_INVOKABLE void setCategories(const QList<int>& categories);
+    Q_INVOKABLE void setDataPointCategories(const QVariantList& categories);
 
     Q_INVOKABLE QVariantMap rectangleAt(int index) const;
 
@@ -107,7 +112,7 @@ public:
 
 signals:
     void colorChanged();
-    void categoryColorsChanged();
+    void categoriesChanged();
     void hoverColorChanged();
     void minimumWidthChanged();
     void minimumHeightChanged();
@@ -125,6 +130,7 @@ protected:
     void onDataPointsChanged(DataChange change, int previousCount) override;
 
 private:
+    void onCategoriesChanged();
     bool validateCategories(std::size_t categoryCount, int rectCount) const;
     void applyData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
     void applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, int rectCount);
@@ -162,7 +168,7 @@ private:
     void buildVertexCache(int rectCount);
 
     QColor color_;
-    QList<QColor> categoryColors_;
+    std::unique_ptr<Internal::CategoryList> categories_;
     Border* border_{new Border{Qt::black, 0.0, this}};
     QColor hoverColor_;
     qreal minimumWidth_{1.0};

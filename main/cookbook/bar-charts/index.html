@@ -1722,19 +1722,31 @@ being centered on a position:</p>
 ranged bars or position bars: when any object has <code>from</code> or <code>to</code>, all of them
 are ranged. <a href="../histograms/">Histograms</a> are drawn this way.</p>
 <h2 id="color-bars-by-category">Color bars by category<a class="headerlink" href="#color-bars-by-category" title="Permanent link">&para;</a></h2>
-<p>Give bars a <code>category</code> and list the colors in <code>categoryColors</code>. Bars without a
-category, or with one outside the list, use <code>color</code>.</p>
+<p>List the categories in <code>categories</code> as <code>Category</code> objects and give each bar a
+<code>category</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">BarSeries</span> <span class="p">{</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="k">categoryColors:</span> <span class="p">[</span><span class="s2">"#4ade80"</span><span class="p">,</span> <span class="s2">"#f87171"</span><span class="p">]</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="k">Component.onCompleted:</span> <span class="nx">setData</span><span class="p">(</span><span class="nx">profit</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">value</span><span class="p">,</span> <span class="nx">month</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>        <span class="k">position:</span> <span class="nx">month</span><span class="p">,</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>        <span class="k">value:</span> <span class="nx">value</span><span class="p">,</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>        <span class="k">category:</span> <span class="nx">value</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="p">})))</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="p">}</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="k">categories:</span> <span class="p">[</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>        <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Category</span> <span class="p">{</span> <span class="k">value:</span> <span class="mi">0</span><span class="p">;</span> <span class="k">name:</span> <span class="s2">"Profit"</span><span class="p">;</span> <span class="k">color:</span> <span class="s2">"#4ade80"</span> <span class="p">},</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>        <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Category</span> <span class="p">{</span> <span class="k">value:</span> <span class="mi">1</span><span class="p">;</span> <span class="k">name:</span> <span class="s2">"Loss"</span><span class="p">;</span> <span class="k">color:</span> <span class="s2">"#f87171"</span> <span class="p">}</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="p">]</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="k">Component.onCompleted:</span> <span class="nx">setData</span><span class="p">(</span><span class="nx">profit</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">value</span><span class="p">,</span> <span class="nx">month</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>        <span class="k">position:</span> <span class="nx">month</span><span class="p">,</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>        <span class="k">value:</span> <span class="nx">value</span><span class="p">,</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>        <span class="k">category:</span> <span class="nx">value</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">?</span> <span class="s2">"Profit"</span> <span class="o">:</span> <span class="s2">"Loss"</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="p">})))</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="p">}</span>
 </code></pre></div>
-<p><code>setCategories()</code> replaces the categories without changing the data. Outlines
-are set with <code>border.width</code> and <code>border.color</code>.</p>
+<ul>
+<li>Each <code>Category</code> has an integer <code>value</code> and an optional <code>name</code> and <code>color</code>.</li>
+<li>A bar's <code>category</code> is a <code>value</code> or, in QML, a <code>name</code>. Names resolve when the
+  data is set; an unknown name or a non-whole number is ignored with a warning.</li>
+<li>Bars without a category, or whose category has no color or is not listed,
+  use <code>color</code>.</li>
+<li><code>setDataPointCategories()</code> replaces the bars' categories without changing
+  the data.</li>
+<li>The legend shows one row per category.</li>
+</ul>
+<p>Outlines are set with <code>border.width</code> and <code>border.color</code>.</p>
 <h2 id="color-bars-by-value">Color bars by value<a class="headerlink" href="#color-bars-by-value" title="Permanent link">&para;</a></h2>
 <p>Assign a <a href="../../api/classQAccelPlot_1_1Colormap/"><code>Colormap</code></a> to color each bar from <code>colorSource</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">BarSeries</span> <span class="p">{</span>
@@ -1765,8 +1777,8 @@ are set with <code>border.width</code> and <code>border.color</code>.</p>
 </tbody>
 </table>
 <ul>
-<li>The colormap overrides <code>color</code> and <code>categoryColors</code>; <code>hoverColor</code> still
-  marks the hovered bar.</li>
+<li>The colormap overrides <code>color</code> and the category colors, and the legend shows
+  one row for the series; <code>hoverColor</code> still marks the hovered bar.</li>
 <li><code>min</code> and <code>max</code> work as for <a href="../point-clouds/#color-points-by-value">point clouds</a>.
   An unset bound resolves from the data, and ranged bars contribute both edges.
   <code>dataValueMin</code> and <code>dataValueMax</code> expose the resolved range.</li>
@@ -1781,7 +1793,7 @@ are set with <code>border.width</code> and <code>border.color</code>.</p>
 </ul>
 <h2 id="hover">Hover<a class="headerlink" href="#hover" title="Permanent link">&para;</a></h2>
 <p><code>hoveredIndex</code> is the bar under the mouse pointer, or -1. <code>barAt(index)</code>
-returns its <code>position</code>, <code>value</code>, and <code>category</code>; a ranged bar has <code>from</code> and
+returns its <code>position</code>, <code>value</code>, <code>category</code>, and <code>categoryName</code>; a ranged bar has <code>from</code> and
 <code>to</code> instead of <code>position</code>. Set <code>hoverColor</code> to highlight it.
 <code>minimumWidth</code> also widens the hover area.</p>
 <h2 id="animate-data-changes">Animate data changes<a class="headerlink" href="#animate-data-changes" title="Permanent link">&para;</a></h2>

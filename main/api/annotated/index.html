@@ -1407,6 +1407,7 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BarMaterial/"><strong>BarMaterial</strong></a> <em>QSGMaterial for bar series rendering, extending</em> <a href="../classQAccelPlot_1_1RectMaterial/"><em><strong>RectMaterial</strong></em></a> <em>with the bar geometry and colormap uniforms.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BarSeries/"><strong>BarSeries</strong></a> <em>A hardware-accelerated QML item that renders a bar chart.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Border/"><strong>Border</strong></a> <em>Outline color and width, exposed as a</em> <code>border</code> <em>grouped property, for example</em><code>border.width: 1</code> <em>.</em>    </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1Category/"><strong>Category</strong></a> <em>One category of a</em> <code>BarSeries</code> <em>or</em><code>RectangleSeries :</code> <em>a value, a name, and a fill color.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1ColorBar/"><strong>ColorBar</strong></a> <em>A continuous key that shows how a series'</em> <code>Colormap</code> <em>maps values to colors.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1ColorPalette/"><strong>ColorPalette</strong></a> <em>A named set of theme colors shared by QML (via the</em> <code>Colors</code> <em>singleton) and C++ defaults.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Colormap/"><strong>Colormap</strong></a> <em>Maps data values to colors: a color ramp plus the rule that places a value on it.</em>     </li>
@@ -1469,6 +1470,11 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1InspectionRowModel/"><strong>InspectionRowModel</strong></a> <em>List model with one stable row per inspected series.</em>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionSummary/"><strong>InspectionSummary</strong></a> <em>Data-point-weighted Y statistics over the valid data points inside a region.</em>     </li>
 <li><strong>namespace</strong> <a href="../namespaceQAccelPlot_1_1Internal/"><strong>Internal</strong></a>     <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1CategoryList/"><strong>CategoryList</strong></a> <em>The</em> <code>categories</code> <em>list of a series: the</em><code>Category</code> <em>objects and a lookup table that follows their edits.</em>    </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1CategoryTable/"><strong>CategoryTable</strong></a> <em>A snapshot of the categories of a series, looked up by value or name.</em>     <ul>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1CategoryTable_1_1Entry/"><strong>Entry</strong></a> <em>One category: the value data points carry, an optional name, and an optional color.</em>     </li>
+</ul>
+</li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals/"><strong>DataTextureUploadTotals</strong></a> <em>How many data textures were uploaded since the last reset, and how many bytes they held.</em>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1GrabSize/"><strong>GrabSize</strong></a> <em>Sizes of one item grab.</em>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1HeatmapGridDimension/"><strong>HeatmapGridDimension</strong></a> <em>One dimension of a heatmap grid:</em> <code>count</code> <em>cells between the edges</em><code>from</code> <em>and</em><code>to</code> <em>.</em>    </li>
@@ -1501,7 +1507,7 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1ValueRange/"><strong>ValueRange</strong></a> <em>Bounds of an axis viewport or a colormap value range.</em>     </li>
 </ul>
 </li>
-<li><strong>struct</strong> <a href="../structQAccelPlot_1_1LegendEntry/"><strong>LegendEntry</strong></a> <em>How a legend draws one series: its symbol, color, line, and marker.</em>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1LegendEntry/"><strong>LegendEntry</strong></a> <em>How a legend draws one row of a series: its label, symbol, color, line, and marker.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LegendModel/"><strong>LegendModel</strong></a> <em>List model of the legend entries of a list of series.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>LineCurve</strong></a> <em>A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurveEffect/"><strong>LineCurveEffect</strong></a> <em>Abstract base class for visual effects applied to a</em> <code>LineCurve</code> <em>.</em>    </li>
@@ -1576,6 +1582,7 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1RectVertexCache_1_1Vertex/"><strong>Vertex</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1_1SavedTexture/"><strong>SavedTexture</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1SourceInspection_1_1Block/"><strong>Block</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1LegendModel_1_1Row/"><strong>Row</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache/"><strong>FillSampleCache</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointCloud_1_1HoverQuery/"><strong>HoverQuery</strong></a> <em>A hover query in the spatial index's coordinates. With the data, it decides the answer.</em>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointCloud_1_1Points/"><strong>Points</strong></a> <em>Points of</em> <code>stride</code> <em>doubles each: (x, y), or (x, y, value).</em>    </li>
