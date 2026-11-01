@@ -8,7 +8,7 @@
 #include "QAccelPlot/effects/GradientStroke.hpp"
 
 #include "QAccelPlot/MathUtils.hpp"
-#include "QAccelPlot/effects/GradientUtils.hpp"
+#include "QAccelPlot/effects/internal/GradientStops.hpp"
 
 #include <QMetaMethod>
 #include <QQmlProperty>
@@ -152,7 +152,7 @@ void GradientStroke::refresh()
     if (colormap_ || !gradient_ || !enabled()) {
         return;
     }
-    if (readEffectStops(colormap_, gradient_) != payload_.stops) {
+    if (Internal::readEffectStops(colormap_, gradient_) != payload_.stops) {
         emit effectChanged();
     }
 }
@@ -167,7 +167,7 @@ GradientColorPayload GradientStroke::readPayload() const
         return payload;
     }
 
-    payload.stops = readEffectStops(colormap_, gradient_);
+    payload.stops = Internal::readEffectStops(colormap_, gradient_);
     if (payload.stops.empty()) {
         return payload;
     }

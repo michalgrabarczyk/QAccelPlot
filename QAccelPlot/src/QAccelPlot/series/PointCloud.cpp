@@ -12,7 +12,6 @@
 #include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
-#include "QAccelPlot/effects/GradientUtils.hpp"
 #include "QAccelPlot/materials/PointCloudMaterial.hpp"
 #include "QAccelPlot/materials/internal/DataTextureLayout.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"

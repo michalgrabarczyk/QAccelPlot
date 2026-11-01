@@ -5,7 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "QAccelPlot/effects/GradientUtils.hpp"
+#include "QAccelPlot/effects/internal/GradientStops.hpp"
 
 #include "QAccelPlot/effects/Colormap.hpp"
 
@@ -16,7 +16,7 @@
 
 #include <algorithm>
 
-namespace QAccelPlot {
+namespace QAccelPlot::Internal {
 
 namespace {
 
@@ -79,8 +79,7 @@ std::vector<GradientStopData> normalizeStops(std::vector<GradientStopData> stops
     return stops;
 }
 
-} // namespace
-
+/// \brief Reads the stops of a QML \c Gradient, from its \c stops list or else its child objects.
 std::vector<GradientStopData> readGradientStops(QObject* gradient)
 {
     auto stops = std::vector<GradientStopData>{};
@@ -107,6 +106,8 @@ std::vector<GradientStopData> readGradientStops(QObject* gradient)
     return normalizeStops(std::move(stops));
 }
 
+} // namespace
+
 std::vector<GradientStopData> readGradientStopList(const QVariantList& stopObjects)
 {
     auto stops = std::vector<GradientStopData>{};
@@ -125,4 +126,4 @@ std::vector<GradientStopData> readEffectStops(const Colormap* colormap, QObject*
     return readGradientStops(gradient);
 }
 
-} // namespace QAccelPlot
+} // namespace QAccelPlot::Internal

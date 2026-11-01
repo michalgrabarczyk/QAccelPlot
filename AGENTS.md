@@ -72,6 +72,7 @@ QAccelPlot/
 │       ├── data/                 — Histogram (binning samples into BarSeries data),
 │       │                           HistogramFactory (QML Histogram singleton)
 │       ├── effects/              — GradientFill, GradientStroke, LineCurveEffect
+│       │                           internal/ (gradient stop reading, coordinates, and value ranges)
 │       ├── export/               — PlotExporter (raster image export),
 │       │                           internal/ (grab sizing, painted-item texture scaling, image file writing)
 │       ├── formatters/           — DateTimeTickLabelFormatter, NumericTickLabelFormatter,

@@ -8,7 +8,7 @@
 #include "QAccelPlot/effects/Colormap.hpp"
 
 #include "QAccelPlot/MathUtils.hpp"
-#include "QAccelPlot/effects/GradientUtils.hpp"
+#include "QAccelPlot/effects/internal/GradientStops.hpp"
 
 #include <QColor>
 #include <QMetaMethod>
@@ -327,7 +327,7 @@ std::vector<GradientStopData> Colormap::customStops() const
     for (auto* stop : stopObjects_) {
         stops.append(QVariant::fromValue(stop));
     }
-    return readGradientStopList(stops);
+    return Internal::readGradientStopList(stops);
 }
 
 } // namespace QAccelPlot

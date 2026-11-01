@@ -5,9 +5,9 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "QAccelPlot/effects/GradientCoordinateUtils.hpp"
 #include "QAccelPlot/effects/GradientFill.hpp"
 #include "QAccelPlot/effects/GradientStroke.hpp"
+#include "QAccelPlot/effects/internal/GradientCoordinates.hpp"
 
 #include <QtTest/QtTest>
 
@@ -74,7 +74,7 @@ void TestGradientValueRange::strokeFixedMinDataRangeMax_keepsFixedMin()
 
     auto payload = stroke.payload();
     QVERIFY(payload.isValid());
-    resolveGradientValueRange(payload, kDataMin, kDataMax);
+    Internal::resolveGradientValueRange(payload, kDataMin, kDataMax);
 
     QCOMPARE(payload.gradientValueMin, std::optional<qreal>{kFixedValue});
     QCOMPARE(payload.gradientValueMax, std::optional<qreal>{kDataMax});
@@ -87,7 +87,7 @@ void TestGradientValueRange::strokeDataRangeMinFixedMax_keepsFixedMax()
 
     auto payload = stroke.payload();
     QVERIFY(payload.isValid());
-    resolveGradientValueRange(payload, kDataMin, kDataMax);
+    Internal::resolveGradientValueRange(payload, kDataMin, kDataMax);
 
     QCOMPARE(payload.gradientValueMin, std::optional<qreal>{kDataMin});
     QCOMPARE(payload.gradientValueMax, std::optional<qreal>{kFixedValue});
@@ -100,7 +100,7 @@ void TestGradientValueRange::fillFixedMinDataRangeMax_keepsFixedMin()
 
     auto payload = fill.payload();
     QVERIFY(payload.isValid());
-    resolveGradientValueRange(payload, kDataMin, kDataMax);
+    Internal::resolveGradientValueRange(payload, kDataMin, kDataMax);
 
     QCOMPARE(payload.gradientValueMin, std::optional<qreal>{kFixedValue});
     QCOMPARE(payload.gradientValueMax, std::optional<qreal>{kDataMax});
@@ -113,7 +113,7 @@ void TestGradientValueRange::fillDataRangeMinFixedMax_keepsFixedMax()
 
     auto payload = fill.payload();
     QVERIFY(payload.isValid());
-    resolveGradientValueRange(payload, kDataMin, kDataMax);
+    Internal::resolveGradientValueRange(payload, kDataMin, kDataMax);
 
     QCOMPARE(payload.gradientValueMin, std::optional<qreal>{kDataMin});
     QCOMPARE(payload.gradientValueMax, std::optional<qreal>{kFixedValue});
