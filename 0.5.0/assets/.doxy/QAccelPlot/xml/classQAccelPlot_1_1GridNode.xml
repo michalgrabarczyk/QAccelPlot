@@ -1,0 +1,240 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1GridNode" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::GridNode</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QSGNode</basecompoundref>
+    <includes local="no">GridNode.hpp</includes>
+    <innerclass refid="structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams" prot="private">QAccelPlot::GridNode::GridLineCollectionParams</innerclass>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1GridNode_1ab6e052acf7e63c7d8f4faee40ff8b23b" prot="private" static="no" mutable="no">
+        <type>QRectF</type>
+        <definition>QRectF QAccelPlot::GridNode::plotRect_</definition>
+        <argsstring></argsstring>
+        <name>plotRect_</name>
+        <qualifiedname>QAccelPlot::GridNode::plotRect_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/grid/GridNode.hpp" line="56" column="12" bodyfile="QAccelPlot/src/QAccelPlot/grid/GridNode.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1GridNode_1a3bdbb2d83956972babf240f4ccd88a8e" prot="private" static="no" mutable="no">
+        <type>QSGGeometryNode *</type>
+        <definition>QSGGeometryNode* QAccelPlot::GridNode::subGridNode_</definition>
+        <argsstring></argsstring>
+        <name>subGridNode_</name>
+        <qualifiedname>QAccelPlot::GridNode::subGridNode_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/grid/GridNode.hpp" line="57" column="21" bodyfile="QAccelPlot/src/QAccelPlot/grid/GridNode.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1GridNode_1ae92228a6dec0b153cde52f1b1c81b336" prot="private" static="no" mutable="no">
+        <type>QSGGeometryNode *</type>
+        <definition>QSGGeometryNode* QAccelPlot::GridNode::mainGridNode_</definition>
+        <argsstring></argsstring>
+        <name>mainGridNode_</name>
+        <qualifiedname>QAccelPlot::GridNode::mainGridNode_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/grid/GridNode.hpp" line="58" column="21" bodyfile="QAccelPlot/src/QAccelPlot/grid/GridNode.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1GridNode_1a6416104e37be924f11c4982dc629dda0" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::GridNode::GridNode</definition>
+        <argsstring>()</argsstring>
+        <name>GridNode</name>
+        <qualifiedname>QAccelPlot::GridNode::GridNode</qualifiedname>
+        <briefdescription>
+<para>Constructs a <ref refid="classQAccelPlot_1_1GridNode" kindref="compound">GridNode</ref> with empty sub-grid and main grid children. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/grid/GridNode.hpp" line="33" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1GridNode_1a8f3379579bde6537cf9f8efc9a7e1fc6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::GridNode::update</definition>
+        <argsstring>(const Grid *grid, const Axis *xAxis, const Axis *yAxis, const QRectF &amp;plotRect)</argsstring>
+        <name>update</name>
+        <qualifiedname>QAccelPlot::GridNode::update</qualifiedname>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1Grid" kindref="compound">Grid</ref> *</type>
+          <declname>grid</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
+          <declname>xAxis</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
+          <declname>yAxis</declname>
+        </param>
+        <param>
+          <type>const QRectF &amp;</type>
+          <declname>plotRect</declname>
+        </param>
+        <briefdescription>
+<para>Recomputes and updates all grid geometry from the supplied configuration objects. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>grid</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classQAccelPlot_1_1Grid" kindref="compound">Grid</ref> configuration (line widths, visibility flags, colors). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>xAxis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Horizontal axis used to determine column positions. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>yAxis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vertical axis used to determine row positions. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>plotRect</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Plot area rectangle in item-local pixel coordinates. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/grid/GridNode.hpp" line="40" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1GridNode_1a1231c0fc14caf03f1170a9e031f0a5ee" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::GridNode::collectGridLines</definition>
+        <argsstring>(QVector&lt; QRectF &gt; &amp;mainRects, QVector&lt; QRectF &gt; &amp;subRects, const Grid *grid, const Axis *xAxis, const Axis *yAxis) const</argsstring>
+        <name>collectGridLines</name>
+        <qualifiedname>QAccelPlot::GridNode::collectGridLines</qualifiedname>
+        <param>
+          <type>QVector&lt; QRectF &gt; &amp;</type>
+          <declname>mainRects</declname>
+        </param>
+        <param>
+          <type>QVector&lt; QRectF &gt; &amp;</type>
+          <declname>subRects</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1Grid" kindref="compound">Grid</ref> *</type>
+          <declname>grid</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
+          <declname>xAxis</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
+          <declname>yAxis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/grid/GridNode.hpp" line="53" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1GridNode_1a3fb5247927287a82e3de24681b403bd9" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::GridNode::collectAxisGridLines</definition>
+        <argsstring>(QVector&lt; QRectF &gt; &amp;mainRects, QVector&lt; QRectF &gt; &amp;subRects, const Grid *grid, const GridLineCollectionParams &amp;p) const</argsstring>
+        <name>collectAxisGridLines</name>
+        <qualifiedname>QAccelPlot::GridNode::collectAxisGridLines</qualifiedname>
+        <param>
+          <type>QVector&lt; QRectF &gt; &amp;</type>
+          <declname>mainRects</declname>
+        </param>
+        <param>
+          <type>QVector&lt; QRectF &gt; &amp;</type>
+          <declname>subRects</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1Grid" kindref="compound">Grid</ref> *</type>
+          <declname>grid</declname>
+        </param>
+        <param>
+          <type>const GridLineCollectionParams &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/grid/GridNode.hpp" line="54" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Internal QSGNode responsible for rendering the plot grid into the scene graph. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Draws grid lines at the tick values from <computeroutput><ref refid="classQAccelPlot_1_1AxisTickPainter_1aa8dd989ea1edb1442179ac87ac00bb5c" kindref="member">AxisTickPainter::computeTickValues()</ref></computeroutput>, the same values the axis places its tick marks at, so both stay aligned under all zoom levels, including log scale.</para>
+<para>Keeps two child geometry nodes, sub-grid first and main grid second, for its whole lifetime and updates them in place. A hidden layer keeps its node with no vertices. Adding or removing nodes would make the Qt Quick renderer rebuild all batches and re-upload every series&apos; vertex data. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::GridNode</label>
+        <link refid="classQAccelPlot_1_1GridNode"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QSGNode</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::GridNode</label>
+        <link refid="classQAccelPlot_1_1GridNode"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QSGNode</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/grid/GridNode.hpp" line="30" column="1" bodyfile="QAccelPlot/src/QAccelPlot/grid/GridNode.hpp" bodystart="30" bodyend="59"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1GridNode_1a3fb5247927287a82e3de24681b403bd9" prot="private" virt="non-virtual"><scope>QAccelPlot::GridNode</scope><name>collectAxisGridLines</name></member>
+      <member refid="classQAccelPlot_1_1GridNode_1a1231c0fc14caf03f1170a9e031f0a5ee" prot="private" virt="non-virtual"><scope>QAccelPlot::GridNode</scope><name>collectGridLines</name></member>
+      <member refid="classQAccelPlot_1_1GridNode_1a6416104e37be924f11c4982dc629dda0" prot="public" virt="non-virtual"><scope>QAccelPlot::GridNode</scope><name>GridNode</name></member>
+      <member refid="classQAccelPlot_1_1GridNode_1ae92228a6dec0b153cde52f1b1c81b336" prot="private" virt="non-virtual"><scope>QAccelPlot::GridNode</scope><name>mainGridNode_</name></member>
+      <member refid="classQAccelPlot_1_1GridNode_1ab6e052acf7e63c7d8f4faee40ff8b23b" prot="private" virt="non-virtual"><scope>QAccelPlot::GridNode</scope><name>plotRect_</name></member>
+      <member refid="classQAccelPlot_1_1GridNode_1a3bdbb2d83956972babf240f4ccd88a8e" prot="private" virt="non-virtual"><scope>QAccelPlot::GridNode</scope><name>subGridNode_</name></member>
+      <member refid="classQAccelPlot_1_1GridNode_1a8f3379579bde6537cf9f8efc9a7e1fc6" prot="public" virt="non-virtual"><scope>QAccelPlot::GridNode</scope><name>update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

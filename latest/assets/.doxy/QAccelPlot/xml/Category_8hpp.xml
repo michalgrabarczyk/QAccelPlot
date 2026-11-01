@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="Category_8hpp" kind="file" language="C++">
+    <compoundname>Category.hpp</compoundname>
+    <includes local="no">QColor</includes>
+    <includes local="no">QObject</includes>
+    <includes local="no">QString</includes>
+    <includes local="no">QtQml/qqmlregistration.h</includes>
+    <includedby refid="BarSeries_8hpp" local="yes">QAccelPlot/src/QAccelPlot/series/BarSeries.hpp</includedby>
+    <includedby refid="RectangleSeries_8hpp" local="yes">QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp</includedby>
+    <includedby refid="CategoryList_8hpp" local="yes">QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>QAccelPlot/src/QAccelPlot/series/Category.hpp</label>
+        <link refid="Category_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QColor</label>
+      </node>
+      <node id="3">
+        <label>QObject</label>
+      </node>
+      <node id="4">
+        <label>QString</label>
+      </node>
+      <node id="5">
+        <label>QtQml/qqmlregistration.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classQAccelPlot_1_1Category" prot="public">QAccelPlot::Category</innerclass>
+    <innernamespace refid="namespaceQAccelPlot">QAccelPlot</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-FileCopyrightText:<sp/>2026<sp/>Michal<sp/>Grabarczyk</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>GPL-3.0-only<sp/>WITH<sp/>Universal-FOSS-exception-1.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>file<sp/>is<sp/>also<sp/>available<sp/>under<sp/>a<sp/>separate<sp/>commercial<sp/>license.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>See<sp/>COMMERCIAL-LICENSING.md<sp/>for<sp/>contact<sp/>information.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QColor&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QObject&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QString&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>__has_include(&lt;QtQmlIntegration/qqmlintegration.h&gt;)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QtQmlIntegration/qqmlintegration.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QtQml/qqmlregistration.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="classQAccelPlot_1_1Category" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1Category" kindref="compound">Category</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QObject<sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">Q_OBJECT</ref></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">QML_NAMED_ELEMENT</ref>(<ref refid="classQAccelPlot_1_1Category" kindref="compound">Category</ref>)</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">Q_PROPERTY</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">value</ref><sp/><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">READ</ref><sp/><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">value</ref><sp/><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">WRITE</ref><sp/><ref refid="classQAccelPlot_1_1Category_1a7d48405b070c380d2bd3d9355b14c43b" kindref="member">setValue</ref><sp/><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">NOTIFY</ref><sp/><ref refid="classQAccelPlot_1_1Category_1a5a09039d768e38c456142817ef1a5350" kindref="member">valueChanged</ref>)</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">Q_PROPERTY</ref>(<ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">QString</ref><sp/><ref refid="classQAccelPlot_1_1Category_1aa56e800e6c107c219839466c90566d81" kindref="member">name</ref><sp/><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">READ</ref><sp/><ref refid="classQAccelPlot_1_1Category_1aa56e800e6c107c219839466c90566d81" kindref="member">name</ref><sp/><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">WRITE</ref><sp/><ref refid="classQAccelPlot_1_1Category_1a6ead95851717798d432d7b26f4489533" kindref="member">setName</ref><sp/><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">NOTIFY</ref><sp/><ref refid="classQAccelPlot_1_1Category_1a272bdf9ea40c4b631b6a5061a24f5d40" kindref="member">nameChanged</ref>)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">Q_PROPERTY</ref>(<ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">QColor</ref><sp/><ref refid="classQAccelPlot_1_1Category_1a69e1147a12652e9c347ea27378598ba9" kindref="member">color</ref><sp/><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">READ</ref><sp/><ref refid="classQAccelPlot_1_1Category_1a69e1147a12652e9c347ea27378598ba9" kindref="member">color</ref><sp/><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">WRITE</ref><sp/><ref refid="classQAccelPlot_1_1Category_1a09109d8f212b9c3f878ef58df953f4ee" kindref="member">setColor</ref><sp/><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">NOTIFY</ref><sp/><ref refid="classQAccelPlot_1_1Category_1a67dbd18a0fce0c61f44d2679ecdc13e7" kindref="member">colorChanged</ref>)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Category" kindref="compound">Category</ref>(QObject*<sp/><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">parent</ref><sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Category" kindref="compound">Category</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">value</ref>,<sp/><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">QString</ref><sp/><ref refid="classQAccelPlot_1_1Category_1aa56e800e6c107c219839466c90566d81" kindref="member">name</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">QColor</ref>&amp;<sp/><ref refid="classQAccelPlot_1_1Category_1a69e1147a12652e9c347ea27378598ba9" kindref="member">color</ref>,<sp/>QObject*<sp/><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">parent</ref><sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">value</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Category_1a7d48405b070c380d2bd3d9355b14c43b" kindref="member">setValue</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">value</ref>);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">QString</ref><sp/><ref refid="classQAccelPlot_1_1Category_1aa56e800e6c107c219839466c90566d81" kindref="member">name</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Category_1a6ead95851717798d432d7b26f4489533" kindref="member">setName</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">QString</ref>&amp;<sp/><ref refid="classQAccelPlot_1_1Category_1aa56e800e6c107c219839466c90566d81" kindref="member">name</ref>);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">QColor</ref><sp/><ref refid="classQAccelPlot_1_1Category_1a69e1147a12652e9c347ea27378598ba9" kindref="member">color</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Category_1a09109d8f212b9c3f878ef58df953f4ee" kindref="member">setColor</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">QColor</ref>&amp;<sp/><ref refid="classQAccelPlot_1_1Category_1a69e1147a12652e9c347ea27378598ba9" kindref="member">color</ref>);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">signals</ref>:</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Category_1a5a09039d768e38c456142817ef1a5350" kindref="member">valueChanged</ref>();</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Category_1a272bdf9ea40c4b631b6a5061a24f5d40" kindref="member">nameChanged</ref>();</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Category_1a67dbd18a0fce0c61f44d2679ecdc13e7" kindref="member">colorChanged</ref>();</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>value_{0};</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">QString</ref><sp/>name_;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">QColor</ref><sp/>color_;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp"/>
+  </compounddef>
+</doxygen>

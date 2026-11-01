@@ -137,7 +137,7 @@ flowchart TB
 |  Q\_INVOKABLE QString | [**formatValue**](#function-formatvalue) (qreal value, qreal length) const<br>_Formats_ _value_ _for a readout on an axis of__length_ _pixels._ |
 |  QColor | [**hoverColor**](#function-hovercolor-22) () const<br>_Returns the hovered tick/label color._  |
 |  bool | [**hovered**](#function-hovered-22) () const<br>_Returns_ `true` _if the mouse is currently over the axis widget._ |
-|  qreal | [**inwardTickOverlap**](#function-inwardtickoverlap) () const<br>_Returns the inward tick overlap beyond_ `baselinePadding` _, used by PlotView to size the plot area._ |
+|  qreal | [**inwardTickOverlap**](#function-inwardtickoverlap) () const<br>_Returns the inward tick overlap beyond_ `baselinePadding` _, used by_[_**PlotView**_](classQAccelPlot_1_1PlotView.md) _to size the plot area._ |
 |  QString | [**label**](#function-label-22) () const<br>_Returns the axis label string._  |
 |  QColor | [**labelColor**](#function-labelcolor-22) () const<br>_Returns the axis-label color, or an invalid color when it follows baselineColor._  |
 |  QFont | [**labelFont**](#function-labelfont-22) () const<br>_Returns the axis label font._  |
@@ -224,7 +224,7 @@ Assign an [**Axis**](classQAccelPlot_1_1Axis.md) to the corresponding property o
 
 
 
-**See also:** PlotView, [**AxisTicker**](classQAccelPlot_1_1AxisTicker.md), [**TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md) 
+**See also:** [**PlotView**](classQAccelPlot_1_1PlotView.md), [**AxisTicker**](classQAccelPlot_1_1AxisTicker.md), [**TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md) 
 
 
 
@@ -1068,7 +1068,7 @@ bool QAccelPlot::Axis::hovered () const
 
 ### function inwardTickOverlap {#function-inwardtickoverlap}
 
-_Returns the inward tick overlap beyond_ `baselinePadding` _, used by PlotView to size the plot area._
+_Returns the inward tick overlap beyond_ `baselinePadding` _, used by_[_**PlotView**_](classQAccelPlot_1_1PlotView.md) _to size the plot area._
 ```C++
 qreal QAccelPlot::Axis::inwardTickOverlap () const
 ```

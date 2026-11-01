@@ -15,7 +15,7 @@
 
 
 
-_Inspects every visible XY series of a plot at a cursor and publishes one model row per series._ [More...](#detailed-description)
+_Inspects the visible XY series and heatmaps of a plot at a cursor and publishes one model row per series._ [More...](#detailed-description)
 
 * `#include <PlotInspector.hpp>`
 
@@ -70,6 +70,9 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 | property bool | [**active**](classQAccelPlot_1_1PlotInspector.md#property-active-12)  <br>_True while enabled and the cursor is inside the plot area._  |
+| property QPointF | [**crosshairPosition**](classQAccelPlot_1_1PlotInspector.md#property-crosshairposition-12)  <br>_Crosshair position in plot-local logical pixels: the cursor's, or the matched data point's with_ `snapToDataPoint` _. A coordinate the cursor lacks is NaN._ |
+| property qreal | [**cursorPixelX**](classQAccelPlot_1_1PlotInspector.md#property-cursorpixelx-12)  <br>_Cursor X in plot-local logical pixels, the pixel of_ `cursorX` _; NaN when the cursor has no X._ |
+| property qreal | [**cursorPixelY**](classQAccelPlot_1_1PlotInspector.md#property-cursorpixely-12)  <br>_Cursor Y in plot-local logical pixels, the pixel of_ `cursorY` _; see_`cursorPixelX` _._ |
 | property qreal | [**cursorX**](classQAccelPlot_1_1PlotInspector.md#property-cursorx-12)  <br>_Cursor X on the plot's primary X axis: the pointer's while_ `followPointer` _is true, NaN when it is outside._ |
 | property QString | [**cursorXText**](classQAccelPlot_1_1PlotInspector.md#property-cursorxtext-12)  <br>_Crosshair X formatted by the plot's primary X axis._  |
 | property qreal | [**cursorY**](classQAccelPlot_1_1PlotInspector.md#property-cursory-12)  <br>_Cursor Y on the plot's primary Y axis; see_ `cursorX` _. NaN leaves the cursor without a Y._ |
@@ -81,9 +84,8 @@ flowchart TB
 | property QList&lt; [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) \* &gt; | [**includedSeries**](classQAccelPlot_1_1PlotInspector.md#property-includedseries-12)  <br>_Series to inspect; an empty list inspects every series of the plot._  |
 | property bool | [**interpolate**](classQAccelPlot_1_1PlotInspector.md#property-interpolate-12)  <br>_In_ `NearestX` _and_`NearestY` _mode, reports the point on the line between two consecutive data points instead of the nearer one. Default: false._ |
 | property [**Mode**](classQAccelPlot_1_1PlotInspector.md#enum-mode) | [**mode**](classQAccelPlot_1_1PlotInspector.md#property-mode-12)  <br>`NearestX` _and_`NearestY` _report each series at the cursor's X or Y;_`NearestXY` _picks by on-screen distance. Default: NearestX._ |
-| property [**QAccelPlot::InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md) \* | [**model**](classQAccelPlot_1_1PlotInspector.md#property-model-12)  <br>_Read-only constant: one row per inspected series._  |
-| property [**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) \* | [**plot**](classQAccelPlot_1_1PlotInspector.md#property-plot-12)  <br>_Plot whose series are inspected._  |
-| property QPointF | [**position**](classQAccelPlot_1_1PlotInspector.md#property-position-12)  <br>_Crosshair position in plot-local logical pixels; a coordinate the cursor lacks is NaN._  |
+| property [**InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md) \* | [**model**](classQAccelPlot_1_1PlotInspector.md#property-model-12)  <br>_Read-only constant: one row per inspected series._  |
+| property [**PlotView**](classQAccelPlot_1_1PlotView.md) \* | [**plot**](classQAccelPlot_1_1PlotInspector.md#property-plot-12)  <br>_Plot whose series are inspected._  |
 | property qreal | [**radius**](classQAccelPlot_1_1PlotInspector.md#property-radius-12)  <br>_Pick distance in logical pixels. In_ `NearestX` _and_`NearestY` _mode it only limits matches beyond a series' extreme data points. Default: 16._ |
 | property bool | [**snapToDataPoint**](classQAccelPlot_1_1PlotInspector.md#property-snaptodatapoint-12)  <br>_Moves the crosshair to the closest matching data point. Default: false._  |
 | property bool | [**summaries**](classQAccelPlot_1_1PlotInspector.md#property-summaries-12)  <br>_Adds Y statistics of the data points around the cursor to every row. Default: false._  |
@@ -98,6 +100,7 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 | signal void | [**activeChanged**](classQAccelPlot_1_1PlotInspector.md#signal-activechanged)  <br>_Emitted when the active property changes._  |
+| signal void | [**crosshairPositionChanged**](classQAccelPlot_1_1PlotInspector.md#signal-crosshairpositionchanged)  <br>_Emitted when the crosshairPosition property changes._  |
 | signal void | [**cursorChanged**](classQAccelPlot_1_1PlotInspector.md#signal-cursorchanged)  <br>_Emitted when the cursor coordinates or their texts change._  |
 | signal void | [**enabledChanged**](classQAccelPlot_1_1PlotInspector.md#signal-enabledchanged)  <br>_Emitted when the enabled property changes._  |
 | signal void | [**excludedSeriesChanged**](classQAccelPlot_1_1PlotInspector.md#signal-excludedserieschanged)  <br>_Emitted when the excludedSeries property changes._  |
@@ -106,7 +109,6 @@ flowchart TB
 | signal void | [**interpolateChanged**](classQAccelPlot_1_1PlotInspector.md#signal-interpolatechanged)  <br>_Emitted when the interpolate property changes._  |
 | signal void | [**modeChanged**](classQAccelPlot_1_1PlotInspector.md#signal-modechanged)  <br>_Emitted when the mode property changes._  |
 | signal void | [**plotChanged**](classQAccelPlot_1_1PlotInspector.md#signal-plotchanged)  <br>_Emitted when the plot property changes._  |
-| signal void | [**positionChanged**](classQAccelPlot_1_1PlotInspector.md#signal-positionchanged)  <br>_Emitted when the position property changes._  |
 | signal void | [**radiusChanged**](classQAccelPlot_1_1PlotInspector.md#signal-radiuschanged)  <br>_Emitted when the radius property changes._  |
 | signal void | [**refreshed**](classQAccelPlot_1_1PlotInspector.md#signal-refreshed)  <br>_Emitted after every refresh that published results._  |
 | signal void | [**snapToDataPointChanged**](classQAccelPlot_1_1PlotInspector.md#signal-snaptodatapointchanged)  <br>_Emitted when the snapToDataPoint property changes._  |
@@ -123,6 +125,9 @@ flowchart TB
 | ---: | :--- |
 |   | [**PlotInspector**](#function-plotinspector) (QObject \* parent=nullptr) <br>_Constructs an inspector without a plot._  |
 |  bool | [**active**](#function-active-22) () const<br>_Returns whether the cursor is inside the plot area._  |
+|  QPointF | [**crosshairPosition**](#function-crosshairposition-22) () const<br>_Returns the crosshair position in plot-local logical pixels._  |
+|  qreal | [**cursorPixelX**](#function-cursorpixelx-22) () const<br>_Returns the cursor X in plot-local logical pixels._  |
+|  qreal | [**cursorPixelY**](#function-cursorpixely-22) () const<br>_Returns the cursor Y in plot-local logical pixels._  |
 |  qreal | [**cursorX**](#function-cursorx-22) () const<br>_Returns the cursor X on the plot's primary X axis._  |
 |  QString | [**cursorXText**](#function-cursorxtext-22) () const<br>_Returns the formatted crosshair X._  |
 |  qreal | [**cursorY**](#function-cursory-22) () const<br>_Returns the cursor Y on the plot's primary Y axis._  |
@@ -135,10 +140,11 @@ flowchart TB
 |  bool | [**interpolate**](#function-interpolate-22) () const<br>_Returns whether_ `NearestX` _and_`NearestY` _rows are interpolated between data points._ |
 |  [**Mode**](classQAccelPlot_1_1PlotInspector.md#enum-mode) | [**mode**](#function-mode-22) () const<br>_Returns the matching mode._  |
 |  [**InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md) \* | [**model**](#function-model-22) () const<br>_Returns the row model._  |
-|  [**::QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) \* | [**plot**](#function-plot-22) () const<br>_Returns the inspected plot._  |
-|  QPointF | [**position**](#function-position-22) () const<br>_Returns the crosshair position in plot-local logical pixels._  |
+|  [**PlotView**](classQAccelPlot_1_1PlotView.md) \* | [**plot**](#function-plot-22) () const<br>_Returns the inspected plot._  |
 |  qreal | [**radius**](#function-radius-22) () const<br>_Returns the pick distance in logical pixels._  |
 |  Q\_INVOKABLE void | [**refresh**](#function-refresh) () <br>_Runs the queries now instead of on the next event-loop pass._  |
+|  void | [**setCursorPixelX**](#function-setcursorpixelx) (qreal x) <br>_Sets the cursor X in plot-local logical pixels used while_ `followPointer` _is false._ |
+|  void | [**setCursorPixelY**](#function-setcursorpixely) (qreal y) <br>_Sets the cursor Y in plot-local logical pixels used while_ `followPointer` _is false._ |
 |  void | [**setCursorX**](#function-setcursorx) (qreal x) <br>_Sets the cursor X used while_ `followPointer` _is false._ |
 |  void | [**setCursorY**](#function-setcursory) (qreal y) <br>_Sets the cursor Y used while_ `followPointer` _is false._ |
 |  void | [**setEnabled**](#function-setenabled) (bool enabled) <br>_Enables or disables queries._  |
@@ -147,13 +153,13 @@ flowchart TB
 |  void | [**setIncludedSeries**](#function-setincludedseries) (const QList&lt; [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) \* &gt; & series) <br>_Sets the series to inspect._  |
 |  void | [**setInterpolate**](#function-setinterpolate) (bool enabled) <br>_Enables or disables interpolation between consecutive data points._  |
 |  void | [**setMode**](#function-setmode) ([**Mode**](classQAccelPlot_1_1PlotInspector.md#enum-mode) mode) <br>_Sets the matching mode._  |
-|  void | [**setPlot**](#function-setplot) ([**::QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) \* plot) <br>_Sets the inspected plot._  |
+|  void | [**setPlot**](#function-setplot) ([**PlotView**](classQAccelPlot_1_1PlotView.md) \* plot) <br>_Sets the inspected plot._  |
 |  void | [**setRadius**](#function-setradius) (qreal radius) <br>_Sets the pick distance; negative and NaN values are ignored._  |
 |  void | [**setSnapToDataPoint**](#function-setsnaptodatapoint) (bool enabled) <br>_Enables or disables crosshair snapping._  |
 |  void | [**setSummaries**](#function-setsummaries) (bool enabled) <br>_Enables or disables neighborhood statistics._  |
 |  void | [**setSummaryRadius**](#function-setsummaryradius) (qreal radius) <br>_Sets the summary half-width; negative and nonfinite values are ignored._  |
 |  bool | [**snapToDataPoint**](#function-snaptodatapoint-22) () const<br>_Returns whether the crosshair snaps to the closest matching data point._  |
-|  Q\_INVOKABLE void | [**stepCursor**](#function-stepcursor) (int steps) <br>_Moves the cursor_ _steps_ _source records along the first matching series and stops following the pointer._ |
+|  Q\_INVOKABLE void | [**stepCursor**](#function-stepcursor) (int steps) <br>_Moves the cursor_ _steps_ _source records along the first matching XY series and stops following the pointer._ |
 |  bool | [**summaries**](#function-summaries-22) () const<br>_Returns whether rows include neighborhood statistics._  |
 |  qreal | [**summaryRadius**](#function-summaryradius-22) () const<br>_Returns the summary half-width in logical pixels._  |
 |  int | [**validCount**](#function-validcount-22) () const<br>_Returns the number of rows with a matching data point._  |
@@ -189,7 +195,10 @@ flowchart TB
 ## Detailed Description
 
 
-The cursor follows the plot's pointer by default; set `followPointer` to `false` and write `cursorX` to drive it from code, for example to link the crosshairs of several plots. Results are refreshed at most once per event-loop pass.
+Series that draw data points as areas, such as `HeatmapSeries`, report the record under the cursor in every mode, and only while the cursor has both coordinates; `radius`, `interpolate`, and `summaries` do not apply to them, and `snapToDataPoint` moves both crosshair coordinates to the record's center.
+
+
+The cursor follows the plot's pointer by default; set `followPointer` to `false` and write `cursorX` to drive it from code, for example to link the crosshairs of several plots, or `cursorPixelX` to keep it at a pixel while the axes pan or zoom. Results are refreshed at most once per event-loop pass.
 
 
 In QML, declare `Crosshair`, `InspectionMarkers`, and `InspectionTooltip` inside the inspector: they receive it as their `inspector` and are stacked in declaration order, the last one on top.
@@ -234,6 +243,55 @@ enum QAccelPlot::PlotInspector::Mode {
 _True while enabled and the cursor is inside the plot area._ 
 ```C++
 bool QAccelPlot::PlotInspector::active;
+```
+
+
+
+
+<hr>
+
+
+
+
+### property crosshairPosition {#property-crosshairposition-12}
+
+_Crosshair position in plot-local logical pixels: the cursor's, or the matched data point's with_ `snapToDataPoint` _. A coordinate the cursor lacks is NaN._
+```C++
+QPointF QAccelPlot::PlotInspector::crosshairPosition;
+```
+
+
+
+
+<hr>
+
+
+
+
+### property cursorPixelX {#property-cursorpixelx-12}
+
+_Cursor X in plot-local logical pixels, the pixel of_ `cursorX` _; NaN when the cursor has no X._
+```C++
+qreal QAccelPlot::PlotInspector::cursorPixelX;
+```
+
+
+
+A written value is used while `followPointer` is false. It stays at the same pixel when the axes pan or zoom, and `cursorX` reports the data under it. Writing `cursorX` places the cursor in data units again. 
+
+
+        
+
+<hr>
+
+
+
+
+### property cursorPixelY {#property-cursorpixely-12}
+
+_Cursor Y in plot-local logical pixels, the pixel of_ `cursorY` _; see_`cursorPixelX` _._
+```C++
+qreal QAccelPlot::PlotInspector::cursorPixelY;
 ```
 
 
@@ -421,7 +479,7 @@ Mode QAccelPlot::PlotInspector::mode;
 
 _Read-only constant: one row per inspected series._ 
 ```C++
-QAccelPlot::InspectionRowModel* QAccelPlot::PlotInspector::model;
+InspectionRowModel* QAccelPlot::PlotInspector::model;
 ```
 
 
@@ -436,22 +494,7 @@ QAccelPlot::InspectionRowModel* QAccelPlot::PlotInspector::model;
 
 _Plot whose series are inspected._ 
 ```C++
-QAccelPlot::QAccelPlot* QAccelPlot::PlotInspector::plot;
-```
-
-
-
-
-<hr>
-
-
-
-
-### property position {#property-position-12}
-
-_Crosshair position in plot-local logical pixels; a coordinate the cursor lacks is NaN._ 
-```C++
-QPointF QAccelPlot::PlotInspector::position;
+PlotView* QAccelPlot::PlotInspector::plot;
 ```
 
 
@@ -544,6 +587,21 @@ int QAccelPlot::PlotInspector::validCount;
 _Emitted when the active property changes._ 
 ```C++
 void QAccelPlot::PlotInspector::activeChanged;
+```
+
+
+
+
+<hr>
+
+
+
+
+### signal crosshairPositionChanged {#signal-crosshairpositionchanged}
+
+_Emitted when the crosshairPosition property changes._ 
+```C++
+void QAccelPlot::PlotInspector::crosshairPositionChanged;
 ```
 
 
@@ -674,21 +732,6 @@ void QAccelPlot::PlotInspector::plotChanged;
 
 
 
-### signal positionChanged {#signal-positionchanged}
-
-_Emitted when the position property changes._ 
-```C++
-void QAccelPlot::PlotInspector::positionChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
 ### signal radiusChanged {#signal-radiuschanged}
 
 _Emitted when the radius property changes._ 
@@ -803,6 +846,51 @@ explicit QAccelPlot::PlotInspector::PlotInspector (
 _Returns whether the cursor is inside the plot area._ 
 ```C++
 bool QAccelPlot::PlotInspector::active () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function crosshairPosition {#function-crosshairposition-22}
+
+_Returns the crosshair position in plot-local logical pixels._ 
+```C++
+QPointF QAccelPlot::PlotInspector::crosshairPosition () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function cursorPixelX {#function-cursorpixelx-22}
+
+_Returns the cursor X in plot-local logical pixels._ 
+```C++
+qreal QAccelPlot::PlotInspector::cursorPixelX () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function cursorPixelY {#function-cursorpixely-22}
+
+_Returns the cursor Y in plot-local logical pixels._ 
+```C++
+qreal QAccelPlot::PlotInspector::cursorPixelY () const
 ```
 
 
@@ -997,22 +1085,7 @@ InspectionRowModel * QAccelPlot::PlotInspector::model () const
 
 _Returns the inspected plot._ 
 ```C++
-::QAccelPlot::QAccelPlot * QAccelPlot::PlotInspector::plot () const
-```
-
-
-
-
-<hr>
-
-
-
-
-### function position {#function-position-22}
-
-_Returns the crosshair position in plot-local logical pixels._ 
-```C++
-QPointF QAccelPlot::PlotInspector::position () const
+PlotView * QAccelPlot::PlotInspector::plot () const
 ```
 
 
@@ -1043,6 +1116,40 @@ qreal QAccelPlot::PlotInspector::radius () const
 _Runs the queries now instead of on the next event-loop pass._ 
 ```C++
 Q_INVOKABLE void QAccelPlot::PlotInspector::refresh () 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setCursorPixelX {#function-setcursorpixelx}
+
+_Sets the cursor X in plot-local logical pixels used while_ `followPointer` _is false._
+```C++
+void QAccelPlot::PlotInspector::setCursorPixelX (
+    qreal x
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setCursorPixelY {#function-setcursorpixely}
+
+_Sets the cursor Y in plot-local logical pixels used while_ `followPointer` _is false._
+```C++
+void QAccelPlot::PlotInspector::setCursorPixelY (
+    qreal y
+) 
 ```
 
 
@@ -1194,7 +1301,7 @@ void QAccelPlot::PlotInspector::setMode (
 _Sets the inspected plot._ 
 ```C++
 void QAccelPlot::PlotInspector::setPlot (
-    ::QAccelPlot::QAccelPlot * plot
+    PlotView * plot
 ) 
 ```
 
@@ -1291,7 +1398,7 @@ bool QAccelPlot::PlotInspector::snapToDataPoint () const
 
 ### function stepCursor {#function-stepcursor}
 
-_Moves the cursor_ _steps_ _source records along the first matching series and stops following the pointer._
+_Moves the cursor_ _steps_ _source records along the first matching XY series and stops following the pointer._
 ```C++
 Q_INVOKABLE void QAccelPlot::PlotInspector::stepCursor (
     int steps

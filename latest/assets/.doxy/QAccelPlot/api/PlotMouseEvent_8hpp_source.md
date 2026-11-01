@@ -20,15 +20,20 @@
 #include <QObject>
 #include <QtQml/qqmlregistration.h>
 
+class QSinglePointEvent;
+
 namespace QAccelPlot {
+
+class PlotView;
 
 class PlotMouseEvent : public QObject {
     Q_OBJECT
     QML_NAMED_ELEMENT(PlotMouseEvent)
-    QML_UNCREATABLE("PlotMouseEvent can only be created by QAccelPlot.")
+    QML_UNCREATABLE("PlotMouseEvent can only be created by PlotView.")
 
     
     Q_PROPERTY(Qt::MouseButton button READ button CONSTANT)
+    Q_PROPERTY(Qt::MouseButtons buttons READ buttons CONSTANT)
     Q_PROPERTY(qreal x READ x CONSTANT)
     Q_PROPERTY(qreal y READ y CONSTANT)
     Q_PROPERTY(Qt::KeyboardModifiers modifiers READ modifiers CONSTANT)
@@ -38,6 +43,7 @@ public:
     explicit PlotMouseEvent(QObject* parent = nullptr);
 
     Qt::MouseButton button() const;
+    Qt::MouseButtons buttons() const;
     qreal x() const;
     qreal y() const;
     Qt::KeyboardModifiers modifiers() const;
@@ -45,10 +51,14 @@ public:
     Q_INVOKABLE void accept();
     Q_INVOKABLE void ignore();
     void setAccepted(bool accepted);
-    void reset(Qt::MouseButton button, qreal x, qreal y, Qt::KeyboardModifiers modifiers);
 
 private:
+    friend class PlotView;
+
+    void reset(const QSinglePointEvent& event);
+
     Qt::MouseButton button_{Qt::NoButton};
+    Qt::MouseButtons buttons_{Qt::NoButton};
     qreal x_{0.0};
     qreal y_{0.0};
     Qt::KeyboardModifiers modifiers_{Qt::NoModifier};

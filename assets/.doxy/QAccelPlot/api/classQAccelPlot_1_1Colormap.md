@@ -21,7 +21,7 @@ _Maps data values to colors: a color ramp plus the rule that places a value on i
 
 
 
-Inherits the following classes: QObject
+Inherits the following classes: QObject,  QQmlParserStatus
 
 
 
@@ -34,6 +34,8 @@ flowchart TB
 
   external_base_classQAccelPlot_1_1Colormap_1["QObject"]
   external_base_classQAccelPlot_1_1Colormap_1 --> classQAccelPlot_1_1Colormap
+  external_base_classQAccelPlot_1_1Colormap_2["QQmlParserStatus"]
+  external_base_classQAccelPlot_1_1Colormap_2 --> classQAccelPlot_1_1Colormap
 
 ```
 
@@ -52,7 +54,6 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-| enum  | [**Normalization**](#enum-normalization)  <br>_How a value is mapped onto the [0, 1] ramp coordinate._  |
 | enum  | [**Preset**](#enum-preset)  <br>_Built-in color ramps._  |
 
 
@@ -70,12 +71,12 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
+| property bool | [**logScale**](classQAccelPlot_1_1Colormap.md#property-logscale-12)  <br>_Whether values are placed on the ramp in log10 instead of linearly. Default:_ `false` _._ |
 | property qreal | [**max**](classQAccelPlot_1_1Colormap.md#property-max-12)  <br>_Value at ramp position 1. Unset (NaN) resolves it from the data. Default: unset._  |
 | property qreal | [**min**](classQAccelPlot_1_1Colormap.md#property-min-12)  <br>_Value at ramp position 0. Unset (NaN) resolves it from the data. Default: unset._  |
-| property [**Normalization**](classQAccelPlot_1_1Colormap.md#enum-normalization) | [**norm**](classQAccelPlot_1_1Colormap.md#property-norm-12)  <br>_How a value is placed on the ramp. Default:_ `Linear` _._ |
 | property [**Preset**](classQAccelPlot_1_1Colormap.md#enum-preset) | [**preset**](classQAccelPlot_1_1Colormap.md#property-preset-12)  <br>_Built-in color ramp. Ignored when_ `stops` _is non-empty. Default:_`Viridis` _._ |
 | property bool | [**reversed**](classQAccelPlot_1_1Colormap.md#property-reversed-12)  <br>_Whether the ramp runs from its last color to its first. Applies to_ `preset` _and_`stops` _alike. Default:_`false` _._ |
-| property QQmlListProperty&lt; QObject &gt; | [**stops**](classQAccelPlot_1_1Colormap.md#property-stops-12)  <br>_Custom ramp as a list of objects with_ `position` _and_`color` _, such as_`GradientStop` _. Overrides_`preset` _when non-empty._ |
+| property QQmlListProperty&lt; QObject &gt; | [**stops**](classQAccelPlot_1_1Colormap.md#property-stops-12)  <br>_Custom ramp as a list of objects with_ `position` _and_`color` _, such as_`GradientStop` _. Overrides_`preset` _when non-empty. Stops are read again once the component is complete. The ramp follows changes to a stop that notifies them, to a_`GradientStop` _inside a_`Gradient` _, and to a_`GradientStop` _declared in this list._ |
 
 
 
@@ -84,7 +85,7 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-| signal void | [**colormapChanged**](classQAccelPlot_1_1Colormap.md#signal-colormapchanged)  <br>_Emitted when the ramp, its bounds, or the normalization changes._  |
+| signal void | [**colormapChanged**](classQAccelPlot_1_1Colormap.md#signal-colormapchanged)  <br>_Emitted when the ramp, its bounds, or_ `logScale` _changes._ |
 
 
 
@@ -94,15 +95,15 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 |   | [**Colormap**](#function-colormap) (QObject \* parent=nullptr) <br>_Constructs a_ [_**Colormap**_](classQAccelPlot_1_1Colormap.md) _with the given__parent_ _._ |
+|  bool | [**logScale**](#function-logscale-22) () const<br>_Returns_ `true` _when values are placed on the ramp in log10._ |
 |  qreal | [**max**](#function-max-22) () const<br>_Returns the fixed upper bound, or NaN when it is resolved from the data._  |
 |  qreal | [**min**](#function-min-22) () const<br>_Returns the fixed lower bound, or NaN when it is resolved from the data._  |
-|  [**Normalization**](classQAccelPlot_1_1Colormap.md#enum-normalization) | [**norm**](#function-norm-22) () const<br>_Returns the normalization._  |
 |  [**Preset**](classQAccelPlot_1_1Colormap.md#enum-preset) | [**preset**](#function-preset-22) () const<br>_Returns the built-in ramp._  |
 |  const std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; & | [**resolvedStops**](#function-resolvedstops) () const<br>_Returns the resolved ramp stops, in position order and covering [0, 1]._  |
 |  bool | [**reversed**](#function-reversed-22) () const<br>_Returns whether the ramp is reversed._  |
+|  void | [**setLogScale**](#function-setlogscale) (bool on) <br>_Sets log-scale placement to_ _on_ _._ |
 |  void | [**setMax**](#function-setmax) (qreal value) <br>_Sets the fixed upper bound to_ _value_ _. NaN resolves it from the data._ |
 |  void | [**setMin**](#function-setmin) (qreal value) <br>_Sets the fixed lower bound to_ _value_ _. NaN resolves it from the data._ |
-|  void | [**setNorm**](#function-setnorm) ([**Normalization**](classQAccelPlot_1_1Colormap.md#enum-normalization) norm) <br>_Sets the normalization to_ _norm_ _._ |
 |  void | [**setPreset**](#function-setpreset) ([**Preset**](classQAccelPlot_1_1Colormap.md#enum-preset) preset) <br>_Sets the built-in ramp to_ _preset_ _._ |
 |  Q\_INVOKABLE void | [**setRange**](#function-setrange) (qreal min, qreal max) <br>_Sets both bounds to_ _min_ _and__max_ _with a single_`colormapChanged()` _. NaN unsets a bound._ |
 |  void | [**setReversed**](#function-setreversed) (bool reversed) <br>_Sets whether the ramp is reversed to_ _reversed_ _._ |
@@ -131,6 +132,12 @@ flowchart TB
 
 
 
+## Protected Functions
+
+| Type | Name |
+| ---: | :--- |
+|  void | [**classBegin**](#function-classbegin) () override<br>_Does nothing; part of_ `QQmlParserStatus` _._ |
+|  void | [**componentComplete**](#function-componentcomplete) () override<br>_Reads the stops again after their bindings are evaluated._  |
 
 
 
@@ -138,39 +145,21 @@ flowchart TB
 ## Detailed Description
 
 
-A colormap has no geometry. It is a one-dimensional ramp addressed by a normalized coordinate in [0, 1], and `norm` decides how a value reaches that coordinate. Series that color by value, such as `PointCloud`, index the ramp with each point's value. Effects that paint a ramp across the plot, such as `GradientFill` and `GradientStroke`, supply the coordinate from a position instead and own that geometry themselves, so they use only the ramp.
+A colormap has no geometry. It is a one-dimensional ramp addressed by a normalized coordinate in [0, 1], and `logScale` decides how a value reaches that coordinate. Series that color by value, such as `PointCloud` and `HeatmapSeries`, index the ramp with each value. Effects that paint a ramp across the plot, such as `GradientFill` and `GradientStroke`, supply the coordinate from a position instead and own that geometry themselves, so they use only the ramp.
 
 
-The ramp comes from `preset`, or from `stops` when a custom ramp is given. `min` and `max` bound the value range; leaving either unset resolves it from the data, so one colormap can be shared between series that resolve different ranges. Each series reports what it resolved, for example through `PointCloud::dataValueMin()`.
+The ramp comes from `preset`, or from `stops` when a custom ramp is given. `min` and `max` bound the value range; leaving either unset resolves it from the data, so one colormap can be shared between series that resolve different ranges. Each series reports what it resolved through `ColormappedSeries::dataValueMin()` and `ColormappedSeries::dataValueMax()`.
 
 
 
 
-**See also:** [**PointCloud**](classQAccelPlot_1_1PointCloud.md), [**GradientFill**](classQAccelPlot_1_1GradientFill.md), [**GradientStroke**](classQAccelPlot_1_1GradientStroke.md) 
+**See also:** [**PointCloud**](classQAccelPlot_1_1PointCloud.md), [**HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md), [**BarSeries**](classQAccelPlot_1_1BarSeries.md), [**GradientFill**](classQAccelPlot_1_1GradientFill.md), [**GradientStroke**](classQAccelPlot_1_1GradientStroke.md) 
 
 
 
     
 ## Public Types Documentation
 
-
-
-
-
-### enum Normalization {#enum-normalization}
-
-_How a value is mapped onto the [0, 1] ramp coordinate._ 
-```C++
-enum QAccelPlot::Colormap::Normalization {
-    Linear,
-    Log
-};
-```
-
-
-
-
-<hr>
 
 
 
@@ -203,6 +192,25 @@ The perceptually uniform ramps are sampled from the matplotlib originals. Prefer
 
 
 
+### property logScale {#property-logscale-12}
+
+_Whether values are placed on the ramp in log10 instead of linearly. Default:_ `false` _._
+```C++
+bool QAccelPlot::Colormap::logScale;
+```
+
+
+
+Values at or below zero are unmapped. A `ColorBar` showing the colormap gets decade ticks. 
+
+
+        
+
+<hr>
+
+
+
+
 ### property max {#property-max-12}
 
 _Value at ramp position 1. Unset (NaN) resolves it from the data. Default: unset._ 
@@ -223,21 +231,6 @@ qreal QAccelPlot::Colormap::max;
 _Value at ramp position 0. Unset (NaN) resolves it from the data. Default: unset._ 
 ```C++
 qreal QAccelPlot::Colormap::min;
-```
-
-
-
-
-<hr>
-
-
-
-
-### property norm {#property-norm-12}
-
-_How a value is placed on the ramp. Default:_ `Linear` _._
-```C++
-Normalization QAccelPlot::Colormap::norm;
 ```
 
 
@@ -280,7 +273,7 @@ bool QAccelPlot::Colormap::reversed;
 
 ### property stops {#property-stops-12}
 
-_Custom ramp as a list of objects with_ `position` _and_`color` _, such as_`GradientStop` _. Overrides_`preset` _when non-empty._
+_Custom ramp as a list of objects with_ `position` _and_`color` _, such as_`GradientStop` _. Overrides_`preset` _when non-empty. Stops are read again once the component is complete. The ramp follows changes to a stop that notifies them, to a_`GradientStop` _inside a_`Gradient` _, and to a_`GradientStop` _declared in this list._
 ```C++
 QQmlListProperty<QObject> QAccelPlot::Colormap::stops;
 ```
@@ -297,7 +290,7 @@ QQmlListProperty<QObject> QAccelPlot::Colormap::stops;
 
 ### signal colormapChanged {#signal-colormapchanged}
 
-_Emitted when the ramp, its bounds, or the normalization changes._ 
+_Emitted when the ramp, its bounds, or_ `logScale` _changes._
 ```C++
 void QAccelPlot::Colormap::colormapChanged;
 ```
@@ -329,6 +322,21 @@ explicit QAccelPlot::Colormap::Colormap (
 
 
 
+### function logScale {#function-logscale-22}
+
+_Returns_ `true` _when values are placed on the ramp in log10._
+```C++
+bool QAccelPlot::Colormap::logScale () const
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function max {#function-max-22}
 
 _Returns the fixed upper bound, or NaN when it is resolved from the data._ 
@@ -349,21 +357,6 @@ qreal QAccelPlot::Colormap::max () const
 _Returns the fixed lower bound, or NaN when it is resolved from the data._ 
 ```C++
 qreal QAccelPlot::Colormap::min () const
-```
-
-
-
-
-<hr>
-
-
-
-
-### function norm {#function-norm-22}
-
-_Returns the normalization._ 
-```C++
-Normalization QAccelPlot::Colormap::norm () const
 ```
 
 
@@ -423,6 +416,23 @@ bool QAccelPlot::Colormap::reversed () const
 
 
 
+### function setLogScale {#function-setlogscale}
+
+_Sets log-scale placement to_ _on_ _._
+```C++
+void QAccelPlot::Colormap::setLogScale (
+    bool on
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function setMax {#function-setmax}
 
 _Sets the fixed upper bound to_ _value_ _. NaN resolves it from the data._
@@ -446,23 +456,6 @@ _Sets the fixed lower bound to_ _value_ _. NaN resolves it from the data._
 ```C++
 void QAccelPlot::Colormap::setMin (
     qreal value
-) 
-```
-
-
-
-
-<hr>
-
-
-
-
-### function setNorm {#function-setnorm}
-
-_Sets the normalization to_ _norm_ _._
-```C++
-void QAccelPlot::Colormap::setNorm (
-    Normalization norm
 ) 
 ```
 
@@ -531,6 +524,38 @@ void QAccelPlot::Colormap::setReversed (
 _Returns the custom ramp stops, empty when the preset supplies the ramp._ 
 ```C++
 QQmlListProperty< QObject > QAccelPlot::Colormap::stops () 
+```
+
+
+
+
+<hr>
+## Protected Functions Documentation
+
+
+
+
+
+### function classBegin {#function-classbegin}
+
+_Does nothing; part of_ `QQmlParserStatus` _._
+```C++
+void QAccelPlot::Colormap::classBegin () override
+```
+
+
+
+
+<hr>
+
+
+
+
+### function componentComplete {#function-componentcomplete}
+
+_Reads the stops again after their bindings are evaluated._ 
+```C++
+void QAccelPlot::Colormap::componentComplete () override
 ```
 
 

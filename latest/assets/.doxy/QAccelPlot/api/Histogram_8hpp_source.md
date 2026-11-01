@@ -63,7 +63,7 @@ public:
     bool isUniform() const;
     double binWidth() const;
 
-    Q_INVOKABLE ::QAccelPlot::Histogram density() const;
+    Q_INVOKABLE Histogram density() const;
 
     std::vector<double> barData() const;
     Q_INVOKABLE QVariantList bars() const;

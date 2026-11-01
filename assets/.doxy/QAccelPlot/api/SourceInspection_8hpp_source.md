@@ -23,7 +23,7 @@
 
 #include <vector>
 
-namespace QAccelPlot {
+namespace QAccelPlot::Internal {
 
 class SourceInspection {
 public:
@@ -71,7 +71,7 @@ void collect(const InspectionSource& source, const InspectionBounds& bounds, int
 
 } // namespace InspectionScan
 
-} // namespace QAccelPlot
+} // namespace QAccelPlot::Internal
 ```
 
 

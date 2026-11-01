@@ -36,6 +36,8 @@ public:
 
     QString formatLogTick(qreal value) const;
 
+    virtual qreal minimumTickStep() const;
+
     QJSValue tickLabel() const;
     void setTickLabel(const QJSValue& tickLabel);
 

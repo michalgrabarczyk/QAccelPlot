@@ -20,6 +20,7 @@
 * `#include "QAccelPlot/axis/Axis.hpp"`
 * `#include "QAccelPlot/inspection/SeriesInspection.hpp"`
 * `#include "QAccelPlot/series/DataPointStore.hpp"`
+* `#include <QList>`
 * `#include <QPointer>`
 * `#include <QQuickItem>`
 * `#include <QRectF>`

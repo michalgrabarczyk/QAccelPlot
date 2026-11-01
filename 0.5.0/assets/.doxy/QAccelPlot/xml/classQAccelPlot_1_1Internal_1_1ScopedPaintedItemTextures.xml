@@ -1,0 +1,177 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::ScopedPaintedItemTextures</compoundname>
+    <includes local="no">ScopedPaintedItemTextures.hpp</includes>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1_1SavedTexture" prot="private">QAccelPlot::Internal::ScopedPaintedItemTextures::SavedTexture</innerclass>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1aa27738026ca8a98596f53f6266114afb" prot="private" static="no" mutable="no">
+        <type>QList&lt; SavedTexture &gt;</type>
+        <definition>QList&lt;SavedTexture&gt; QAccelPlot::Internal::ScopedPaintedItemTextures::saved_</definition>
+        <argsstring></argsstring>
+        <name>saved_</name>
+        <qualifiedname>QAccelPlot::Internal::ScopedPaintedItemTextures::saved_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/export/internal/ScopedPaintedItemTextures.hpp" line="43" column="11" bodyfile="QAccelPlot/src/QAccelPlot/export/internal/ScopedPaintedItemTextures.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1a1c39b42ca72a3145e6bb9a52c74079b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::Internal::ScopedPaintedItemTextures::ScopedPaintedItemTextures</definition>
+        <argsstring>(QQuickItem *root, qreal pixelsPerLogicalPixel, qreal devicePixelRatio)</argsstring>
+        <name>ScopedPaintedItemTextures</name>
+        <qualifiedname>QAccelPlot::Internal::ScopedPaintedItemTextures::ScopedPaintedItemTextures</qualifiedname>
+        <param>
+          <type>QQuickItem *</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>pixelsPerLogicalPixel</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>devicePixelRatio</declname>
+        </param>
+        <briefdescription>
+<para>Resizes the textures of <emphasis>root</emphasis> and its painted descendants rendered at <emphasis>devicePixelRatio</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/export/internal/ScopedPaintedItemTextures.hpp" line="26" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1a1548b7c32b3297d7c39350d9b1cb4c08" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::Internal::ScopedPaintedItemTextures::~ScopedPaintedItemTextures</definition>
+        <argsstring>()</argsstring>
+        <name>~ScopedPaintedItemTextures</name>
+        <qualifiedname>QAccelPlot::Internal::ScopedPaintedItemTextures::~ScopedPaintedItemTextures</qualifiedname>
+        <briefdescription>
+<para>Restores the previous texture sizes of the items that still exist. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/export/internal/ScopedPaintedItemTextures.hpp" line="28" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1a6f62da445dea9765cb5696802ace7330" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::Internal::ScopedPaintedItemTextures::ScopedPaintedItemTextures</definition>
+        <argsstring>(const ScopedPaintedItemTextures &amp;)=delete</argsstring>
+        <name>ScopedPaintedItemTextures</name>
+        <qualifiedname>QAccelPlot::Internal::ScopedPaintedItemTextures::ScopedPaintedItemTextures</qualifiedname>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures" kindref="compound">ScopedPaintedItemTextures</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/export/internal/ScopedPaintedItemTextures.hpp" line="30" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1a186d97e60d0d2d98e88c5cc0b6c44c77" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures" kindref="compound">ScopedPaintedItemTextures</ref> &amp;</type>
+        <definition>ScopedPaintedItemTextures &amp; QAccelPlot::Internal::ScopedPaintedItemTextures::operator=</definition>
+        <argsstring>(const ScopedPaintedItemTextures &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <qualifiedname>QAccelPlot::Internal::ScopedPaintedItemTextures::operator=</qualifiedname>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures" kindref="compound">ScopedPaintedItemTextures</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/export/internal/ScopedPaintedItemTextures.hpp" line="31" column="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1abd104d222224c911929005ed1ac54e7e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::Internal::ScopedPaintedItemTextures::ScopedPaintedItemTextures</definition>
+        <argsstring>(ScopedPaintedItemTextures &amp;&amp;)=delete</argsstring>
+        <name>ScopedPaintedItemTextures</name>
+        <qualifiedname>QAccelPlot::Internal::ScopedPaintedItemTextures::ScopedPaintedItemTextures</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures" kindref="compound">ScopedPaintedItemTextures</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/export/internal/ScopedPaintedItemTextures.hpp" line="32" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1a97344167cf1b242bce1a1427f1978de2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures" kindref="compound">ScopedPaintedItemTextures</ref> &amp;</type>
+        <definition>ScopedPaintedItemTextures &amp; QAccelPlot::Internal::ScopedPaintedItemTextures::operator=</definition>
+        <argsstring>(ScopedPaintedItemTextures &amp;&amp;)=delete</argsstring>
+        <name>operator=</name>
+        <qualifiedname>QAccelPlot::Internal::ScopedPaintedItemTextures::operator=</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures" kindref="compound">ScopedPaintedItemTextures</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/export/internal/ScopedPaintedItemTextures.hpp" line="33" column="31"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1afae84abfc8fe2fbfe0e7e42d8bdde5b1" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::ScopedPaintedItemTextures::resize</definition>
+        <argsstring>(QQuickItem *root, qreal textureScale)</argsstring>
+        <name>resize</name>
+        <qualifiedname>QAccelPlot::Internal::ScopedPaintedItemTextures::resize</qualifiedname>
+        <param>
+          <type>QQuickItem *</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>textureScale</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/export/internal/ScopedPaintedItemTextures.hpp" line="41" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Rasterizes the painted items under a root item at a capture scale until destroyed. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>A <computeroutput>QQuickPaintedItem</computeroutput> rasterizes into a texture sized for its window&apos;s device pixel ratio, so an item grab at a higher scale would magnify, and blur, that texture. This raises every painted descendant&apos;s texture to <emphasis>pixelsPerLogicalPixel</emphasis> and restores the previous texture sizes on destruction. </para>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/export/internal/ScopedPaintedItemTextures.hpp" line="23" column="1" bodyfile="QAccelPlot/src/QAccelPlot/export/internal/ScopedPaintedItemTextures.hpp" bodystart="23" bodyend="44"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1a186d97e60d0d2d98e88c5cc0b6c44c77" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ScopedPaintedItemTextures</scope><name>operator=</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1a97344167cf1b242bce1a1427f1978de2" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ScopedPaintedItemTextures</scope><name>operator=</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1afae84abfc8fe2fbfe0e7e42d8bdde5b1" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::ScopedPaintedItemTextures</scope><name>resize</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1aa27738026ca8a98596f53f6266114afb" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::ScopedPaintedItemTextures</scope><name>saved_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1a1c39b42ca72a3145e6bb9a52c74079b8" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ScopedPaintedItemTextures</scope><name>ScopedPaintedItemTextures</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1a6f62da445dea9765cb5696802ace7330" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ScopedPaintedItemTextures</scope><name>ScopedPaintedItemTextures</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1abd104d222224c911929005ed1ac54e7e" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ScopedPaintedItemTextures</scope><name>ScopedPaintedItemTextures</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1a1548b7c32b3297d7c39350d9b1cb4c08" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ScopedPaintedItemTextures</scope><name>~ScopedPaintedItemTextures</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

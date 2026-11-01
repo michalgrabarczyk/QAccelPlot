@@ -17,9 +17,9 @@
 //
 #pragma once
 
-#include "QAccelPlot/series/PlotSeries.hpp"
-#include "QAccelPlot/series/RectVertexCache.hpp"
-#include "QAccelPlot/series/RectangleBorder.hpp"
+#include "QAccelPlot/Border.hpp"
+#include "QAccelPlot/series/Category.hpp"
+#include "QAccelPlot/series/ColormappedSeries.hpp"
 #include "QAccelPlot/series/SpatialGrid.hpp"
 #include "QAccelPlot/transitions/DataTransition.hpp"
 
@@ -29,16 +29,23 @@
 #include <QtQml/qqmlregistration.h>
 #endif
 
+#include <QList>
+#include <QQmlListProperty>
+
 #include <array>
 #include <memory>
 #include <vector>
 
 namespace QAccelPlot {
 
+namespace Internal {
+class CategoryList;
+class RectVertexCache;
+}
 class BarMaterial;
 class TransitionRunner;
 
-class BarSeries : public PlotSeries {
+class BarSeries : public ColormappedSeries {
     Q_OBJECT
     QML_NAMED_ELEMENT(BarSeries)
 
@@ -49,14 +56,21 @@ class BarSeries : public PlotSeries {
     Q_PROPERTY(qreal baselineValue READ baselineValue WRITE setBaselineValue NOTIFY baselineValueChanged)
     Q_PROPERTY(qreal minimumWidth READ minimumWidth WRITE setMinimumWidth NOTIFY minimumWidthChanged)
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
-    Q_PROPERTY(QList<QColor> categoryColors READ categoryColors WRITE setCategoryColors NOTIFY categoryColorsChanged)
-    Q_PROPERTY(RectangleBorder* border READ border CONSTANT)
+    Q_PROPERTY(QQmlListProperty<Category> categories READ categories NOTIFY categoriesChanged)
+    Q_PROPERTY(ColorSource colorSource READ colorSource WRITE setColorSource NOTIFY colorSourceChanged)
+    Q_PROPERTY(Border* border READ border CONSTANT)
     Q_PROPERTY(QColor hoverColor READ hoverColor WRITE setHoverColor NOTIFY hoverColorChanged)
     Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
-    Q_PROPERTY(int count READ count NOTIFY countChanged)
     Q_PROPERTY(int hoveredIndex READ hoveredIndex NOTIFY hoveredIndexChanged)
 
 public:
+    enum class ColorSource {
+        Value,   
+        Position 
+    };
+    Q_ENUM(ColorSource)
+
+    
     explicit BarSeries(QQuickItem* parent = nullptr);
     ~BarSeries() override;
 
@@ -78,10 +92,13 @@ public:
     QColor color() const;
     void setColor(const QColor& color);
 
-    QList<QColor> categoryColors() const;
-    void setCategoryColors(const QList<QColor>& colors);
+    QQmlListProperty<Category> categories();
+    void setCategories(const QList<Category*>& categories);
 
-    RectangleBorder* border() const;
+    ColorSource colorSource() const;
+    void setColorSource(ColorSource source);
+
+    Border* border() const;
 
     QColor hoverColor() const;
     void setHoverColor(const QColor& color);
@@ -89,7 +106,6 @@ public:
     DataTransition* transition() const;
     void setTransition(DataTransition* transition);
 
-    int count() const;
     int hoveredIndex() const;
 
     Q_INVOKABLE void setData(const QVariantList& bars);
@@ -111,8 +127,10 @@ public:
     void postRangedData(std::vector<double>&& data, int barCount);
 
     Q_INVOKABLE void clearData() override;
+    std::optional<LegendEntry> legendEntry() const override;
+    QList<LegendEntry> legendEntries() const override;
 
-    Q_INVOKABLE void setCategories(const QList<int>& categories);
+    Q_INVOKABLE void setDataPointCategories(const QVariantList& categories);
 
     Q_INVOKABLE QVariantMap barAt(int index) const;
 
@@ -126,14 +144,15 @@ signals:
     void baselineValueChanged();
     void minimumWidthChanged();
     void colorChanged();
-    void categoryColorsChanged();
+    void categoriesChanged();
+    void colorSourceChanged();
     void hoverColorChanged();
     void transitionChanged();
-    void countChanged();
     void hoveredIndexChanged();
 
 protected:
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*) override;
+    bool recordInspectionSupported() const override;
     InspectionRecord inspectionRecord(int index) const override;
     InspectionRecord inspectionRecordAt(const QPointF& position) const override;
     void hoverEnterEvent(QHoverEvent* event) override;
@@ -144,6 +163,7 @@ protected:
     void onAxisScaleChanged() override;
     DataRanges computeDataRanges() const override;
     void onDataPointsChanged(DataChange change, int previousCount) override;
+    std::optional<ValueSpan> scanValueRange() const override;
 
 private:
     // A set of bars: count bars of stride values each, with one category per bar or none.
@@ -154,6 +174,7 @@ private:
         int stride{2};
     };
 
+    void onCategoriesChanged();
     bool validateDataArguments(std::size_t valueCount, std::size_t categoryCount, int barCount, int barValueCount = 2) const;
     // Switches between (position, value) and (from, to, value) bars; dropping the bars when it changes.
     void setRanged(bool ranged);
@@ -201,6 +222,10 @@ private:
     QSGNode* releaseNode(QSGNode* oldNode) const;
     // Sets the uniforms for drawing the first \a renderCount of the drawn bars.
     void updateMaterial(BarMaterial& material, int renderCount) const;
+    // Uploads the colormap ramp and sets the uniforms that place each bar on it.
+    void updateColormapUniforms(BarMaterial& material, QQuickWindow* window) const;
+    // True when the colormap colors the bars instead of color and the category colors.
+    bool colormapped() const;
     void ensureSpatialGrid() const;
     // Builds the vertices of the first \a barCount of the drawn bars.
     void buildVertexCache(int barCount);
@@ -211,8 +236,9 @@ private:
     qreal baselineValue_{0.0};
     qreal minimumWidth_{1.0};
     QColor color_;
-    QList<QColor> categoryColors_;
-    RectangleBorder* border_{new RectangleBorder{this}};
+    std::unique_ptr<Internal::CategoryList> categories_;
+    ColorSource colorSource_{ColorSource::Value};
+    Border* border_{new Border{Qt::black, 0.0, this}};
     QColor hoverColor_;
     int hoveredIndex_{-1};
     std::unique_ptr<TransitionRunner> transition_;
@@ -223,10 +249,8 @@ private:
     std::vector<double> frameBuffer_;
     // Render revision of the bars last uploaded to the GPU.
     std::uint64_t uploadedRevision_{0};
-    // Whether the last frame held more records than the GPU buffers do; warns on each crossing.
-    bool overCapacity_{false};
     // Vertex colors are category colors when categories are set; otherwise \c color is a uniform.
-    RectVertexCache vertexCache_;
+    std::unique_ptr<Internal::RectVertexCache> vertexCache_;
     // Whether the vertex cache holds category colors.
     bool vertexCacheHasCategories_{false};
     // Built on the first hit test after a data or geometry change, so streaming without hover skips it.

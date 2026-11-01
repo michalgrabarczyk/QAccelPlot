@@ -1,0 +1,548 @@
+
+
+
+
+
+
+
+
+
+# Class QAccelPlot::BarMaterial
+
+
+
+[**ClassList**](annotated.md) **>** [**QAccelPlot**](namespaceQAccelPlot.md) **>** [**BarMaterial**](classQAccelPlot_1_1BarMaterial.md)
+
+
+
+_QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry and colormap uniforms._[More...](#detailed-description)
+
+* `#include <BarMaterial.hpp>`
+
+
+
+Inherits the following classes: [QAccelPlot::RectMaterial](classQAccelPlot_1_1RectMaterial.md)
+
+
+
+
+## Inheritance diagram
+
+```mermaid
+flowchart TB
+  classQAccelPlot_1_1BarMaterial["QAccelPlot::BarMaterial"]
+
+  classQAccelPlot_1_1RectMaterial["QAccelPlot::RectMaterial"]
+  classQAccelPlot_1_1RectMaterial --> classQAccelPlot_1_1BarMaterial
+  click classQAccelPlot_1_1RectMaterial "../classQAccelPlot_1_1RectMaterial/" "Open QAccelPlot::RectMaterial"
+
+  classQAccelPlot_1_1DataTextureMaterial["QAccelPlot::DataTextureMaterial"]
+  classQAccelPlot_1_1DataTextureMaterial --> classQAccelPlot_1_1RectMaterial
+  click classQAccelPlot_1_1DataTextureMaterial "../classQAccelPlot_1_1DataTextureMaterial/" "Open QAccelPlot::DataTextureMaterial"
+
+  external_base_classQAccelPlot_1_1DataTextureMaterial_1["QSGMaterial"]
+  external_base_classQAccelPlot_1_1DataTextureMaterial_1 --> classQAccelPlot_1_1DataTextureMaterial
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Public Attributes
+
+| Type | Name |
+| ---: | :--- |
+|  float | [**barOffset**](#variable-baroffset)   = `{0.0f}`<br>_Shift of every bar along the position axis in data units._  |
+|  float | [**barWidth**](#variable-barwidth)   = `{0.8f}`<br>_Bar width in position-axis data units._  |
+|  float | [**baseline**](#variable-baseline)   = `{0.0f}`<br>_Value the bars start from, relative to the value-axis render origin._  |
+|  [**GradientTexture**](classQAccelPlot_1_1GradientTexture.md) | [**colorMap**](#variable-colormap)  <br>[_**Colormap**_](classQAccelPlot_1_1Colormap.md) _lookup texture sampled at binding 2._ |
+|  float | [**colorSource**](#variable-colorsource)   = `{0.0f}`<br>_What_ `colorMap` _maps: 0 nothing (the rectangle colors apply), 1 the value, 2 the position._ |
+|  float | [**horizontal**](#variable-horizontal)   = `{0.0f}`<br>_1.0 when positions lie on the Y axis (float for std140 UBO compatibility)._  |
+|  float | [**ranged**](#variable-ranged)   = `{0.0f}`<br>_1.0 when each bar holds its own extent along the position axis._  |
+|  float | [**valueLogScale**](#variable-valuelogscale)   = `{0.0f}`<br>_1.0 to place values on the colormap in log10._  |
+|  float | [**valueMax**](#variable-valuemax)   = `{1.0f}`<br>_Value at colormap position 1, shifted like_ `valueMin` _._ |
+|  float | [**valueMin**](#variable-valuemin)   = `{0.0f}`<br>_Value at colormap position 0, shifted like the data unless_ `valueLogScale` _is set._ |
+|  float | [**valueOrigin**](#variable-valueorigin)   = `{0.0f}`<br>_Added to the mapped data before a log normalization, which needs the absolute value._  |
+
+
+## Public Attributes inherited from QAccelPlot::RectMaterial
+
+See [QAccelPlot::RectMaterial](classQAccelPlot_1_1RectMaterial.md)
+
+| Type | Name |
+| ---: | :--- |
+|  float | [**antialiasing**](classQAccelPlot_1_1RectMaterial.md#variable-antialiasing)   = `{0.0f}`<br>_1.0 to smooth the rectangle and outline edges._  |
+|  QColor | [**borderColor**](classQAccelPlot_1_1RectMaterial.md#variable-bordercolor)   = `{Qt::black}`<br>_Outline color._  |
+|  float | [**borderWidth**](classQAccelPlot_1_1RectMaterial.md#variable-borderwidth)   = `{0.0f}`<br>_Outline width in pixels, drawn inside each rectangle._  |
+|  QColor | [**hoverColor**](classQAccelPlot_1_1RectMaterial.md#variable-hovercolor)   = `{Qt::transparent}`<br>_Fill color of the highlighted rectangle._  |
+|  float | [**hoveredIndex**](classQAccelPlot_1_1RectMaterial.md#variable-hoveredindex)   = `{-1.0f}`<br>_Index of the highlighted rectangle, or -1 for none._  |
+|  QVector2D | [**minimumSize**](classQAccelPlot_1_1RectMaterial.md#variable-minimumsize)   = `{0.0f, 0.0f}`<br>_Minimum drawn rectangle width and height in pixels._  |
+|  float | [**rectCount**](classQAccelPlot_1_1RectMaterial.md#variable-rectcount)   = `{0.0f}`<br>_Number of rectangles in the data texture (used to index the sampler)._  |
+
+
+## Public Attributes inherited from QAccelPlot::DataTextureMaterial
+
+See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
+
+| Type | Name |
+| ---: | :--- |
+|  QColor | [**color**](classQAccelPlot_1_1DataTextureMaterial.md#variable-color)   = `{Qt::blue}`<br>_Line/fill color uniform._  |
+|  std::shared\_ptr&lt; [**DataTexture**](classQAccelPlot_1_1DataTexture.md) &gt; | [**dataTexture**](classQAccelPlot_1_1DataTextureMaterial.md#variable-datatexture)  <br>_Data texture sampled by the shader. Materials drawing the same samples may share one._  |
+|  QVector2D | [**domainMax**](classQAccelPlot_1_1DataTextureMaterial.md#variable-domainmax)   = `{1.0f, 1.0f}`<br>_Maximum data-space coordinate._  |
+|  QVector2D | [**domainMin**](classQAccelPlot_1_1DataTextureMaterial.md#variable-domainmin)   = `{0.0f, 0.0f}`<br>_Minimum data-space coordinate._  |
+|  float | [**logScaleX**](classQAccelPlot_1_1DataTextureMaterial.md#variable-logscalex)   = `{0.0f}`<br>_1.0 when the X axis uses log scale (float for std140 UBO compatibility)._  |
+|  float | [**logScaleY**](classQAccelPlot_1_1DataTextureMaterial.md#variable-logscaley)   = `{0.0f}`<br>_1.0 when the Y axis uses log scale (float for std140 UBO compatibility)._  |
+|  float | [**useVertexColor**](classQAccelPlot_1_1DataTextureMaterial.md#variable-usevertexcolor)   = `{0.0f}`<br>_1.0 when per-vertex color overrides_ `color` _(float for std140 UBO compatibility)._ |
+|  QVector2D | [**viewportSize**](classQAccelPlot_1_1DataTextureMaterial.md#variable-viewportsize)   = `{800.0f, 600.0f}`<br>_Viewport size in pixels._  |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Public Functions
+
+| Type | Name |
+| ---: | :--- |
+|   | [**BarMaterial**](#function-barmaterial) () <br>_Constructs a_ [_**BarMaterial**_](classQAccelPlot_1_1BarMaterial.md) _with default uniform values._ |
+|  QSGMaterialShader \* | [**createShader**](#function-createshader) (QSGRendererInterface::RenderMode) override const<br>_Creates and returns the bar shader program._  |
+|  QSGMaterialType \* | [**type**](#function-type) () override const<br>_Returns the unique material type identifier for this class._  |
+
+
+## Public Functions inherited from QAccelPlot::RectMaterial
+
+See [QAccelPlot::RectMaterial](classQAccelPlot_1_1RectMaterial.md)
+
+| Type | Name |
+| ---: | :--- |
+|   | [**RectMaterial**](classQAccelPlot_1_1RectMaterial.md#function-rectmaterial) () <br>_Constructs a_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with default uniform values._ |
+|  QSGMaterialShader \* | [**createShader**](classQAccelPlot_1_1RectMaterial.md#function-createshader) (QSGRendererInterface::RenderMode) override const<br>_Creates and returns the rectangle shader program._  |
+|  QSGMaterialType \* | [**type**](classQAccelPlot_1_1RectMaterial.md#function-type) () override const<br>_Returns the unique material type identifier for this class._  |
+
+
+## Public Functions inherited from QAccelPlot::DataTextureMaterial
+
+See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
+
+| Type | Name |
+| ---: | :--- |
+|   | [**DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md#function-datatexturematerial) () <br>_Constructs an empty_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _._ |
+|  int | [**compare**](classQAccelPlot_1_1DataTextureMaterial.md#function-compare) (const QSGMaterial \* other) override const<br>_Compares shared uniform fields; delegates type-specific fields to_ `compareExtra()` _._ |
+|  QSGTexture \* | [**sampledTexture**](classQAccelPlot_1_1DataTextureMaterial.md#function-sampledtexture) () const<br>_Returns the texture the shader samples, or_ `nullptr` _before_`dataTexture` _holds an upload._ |
+|  void | [**uploadTexture**](classQAccelPlot_1_1DataTextureMaterial.md#function-uploadtexture) (QQuickWindow \* window, const float \* data, int floatCount) <br>_Uploads_ _floatCount_ _raw floats from__data_ _into_`dataTexture` _, creating it when it is_`nullptr` _._ |
+|   | [**~DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md#function-datatexturematerial) () override<br> |
+
+
+
+
+
+
+## Public Static Functions inherited from QAccelPlot::DataTextureMaterial
+
+See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
+
+| Type | Name |
+| ---: | :--- |
+|  const QSGGeometry::AttributeSet & | [**attributeSet**](classQAccelPlot_1_1DataTextureMaterial.md#function-attributeset) () <br>_Returns the shared vertex attribute set:_ `{float` _id, float param, uchar4 color} (12 bytes)._ |
+|  void | [**commitTexture**](classQAccelPlot_1_1DataTextureMaterial.md#function-committexture) (QSGMaterialShader::RenderState & state, int binding, QSGTexture \*\* texture, const [**DataTexture**](classQAccelPlot_1_1DataTexture.md) \* data) <br>_Commits the texture of_ _data_ _to sampler__binding_ _(call from_`updateSampledImage` _). Does nothing before an upload._ |
+|  const QSGGeometry::AttributeSet & | [**vertexIndexAttributeSet**](classQAccelPlot_1_1DataTextureMaterial.md#function-vertexindexattributeset) () <br>_Returns the attribute set of marker quads: one ignored_ `uchar4` _placeholder (4 bytes)._ |
+|  bool | [**writeCommonUniforms**](classQAccelPlot_1_1DataTextureMaterial.md#function-writecommonuniforms) (char \* buf, int bufSize, const QMatrix4x4 & matrix, const [**DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) \* mat) <br>_Writes the shared UBO prefix (transform + color + domain + flags) into_ _buf_ _._ |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Protected Functions
+
+| Type | Name |
+| ---: | :--- |
+| virtual int | [**compareExtra**](#function-compareextra) (const QSGMaterial \* other) override const<br>_Compares the bar-specific uniforms and the colormap texture after the rectangle uniforms compare equal._  |
+
+
+## Protected Functions inherited from QAccelPlot::RectMaterial
+
+See [QAccelPlot::RectMaterial](classQAccelPlot_1_1RectMaterial.md)
+
+| Type | Name |
+| ---: | :--- |
+| virtual int | [**compareExtra**](classQAccelPlot_1_1RectMaterial.md#function-compareextra) (const QSGMaterial \* other) override const<br>_Compares the rectangle-specific uniforms after the base-class comparison succeeds._  |
+
+
+## Protected Functions inherited from QAccelPlot::DataTextureMaterial
+
+See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
+
+| Type | Name |
+| ---: | :--- |
+| virtual int | [**compareExtra**](classQAccelPlot_1_1DataTextureMaterial.md#function-compareextra) (const QSGMaterial \* other) const<br>_Subclass hook for_ `compare()` _— called after the shared fields compare equal._ |
+
+
+
+
+
+
+
+
+## Detailed Description
+
+
+The data texture holds (position, value) pairs, or (from, to, value) triples when `ranged` is set; the shader turns each into a rectangle. When `colorSource` is set, the vertex shader colors each bar from `colorMap`. 
+
+
+    
+## Public Attributes Documentation
+
+
+
+
+
+### variable barOffset {#variable-baroffset}
+
+_Shift of every bar along the position axis in data units._ 
+```C++
+float QAccelPlot::BarMaterial::barOffset;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable barWidth {#variable-barwidth}
+
+_Bar width in position-axis data units._ 
+```C++
+float QAccelPlot::BarMaterial::barWidth;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable baseline {#variable-baseline}
+
+_Value the bars start from, relative to the value-axis render origin._ 
+```C++
+float QAccelPlot::BarMaterial::baseline;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable colorMap {#variable-colormap}
+
+[_**Colormap**_](classQAccelPlot_1_1Colormap.md) _lookup texture sampled at binding 2._
+```C++
+GradientTexture QAccelPlot::BarMaterial::colorMap;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable colorSource {#variable-colorsource}
+
+_What_ `colorMap` _maps: 0 nothing (the rectangle colors apply), 1 the value, 2 the position._
+```C++
+float QAccelPlot::BarMaterial::colorSource;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable horizontal {#variable-horizontal}
+
+_1.0 when positions lie on the Y axis (float for std140 UBO compatibility)._ 
+```C++
+float QAccelPlot::BarMaterial::horizontal;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable ranged {#variable-ranged}
+
+_1.0 when each bar holds its own extent along the position axis._ 
+```C++
+float QAccelPlot::BarMaterial::ranged;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable valueLogScale {#variable-valuelogscale}
+
+_1.0 to place values on the colormap in log10._ 
+```C++
+float QAccelPlot::BarMaterial::valueLogScale;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable valueMax {#variable-valuemax}
+
+_Value at colormap position 1, shifted like_ `valueMin` _._
+```C++
+float QAccelPlot::BarMaterial::valueMax;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable valueMin {#variable-valuemin}
+
+_Value at colormap position 0, shifted like the data unless_ `valueLogScale` _is set._
+```C++
+float QAccelPlot::BarMaterial::valueMin;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable valueOrigin {#variable-valueorigin}
+
+_Added to the mapped data before a log normalization, which needs the absolute value._ 
+```C++
+float QAccelPlot::BarMaterial::valueOrigin;
+```
+
+
+
+
+<hr>
+## Public Functions Documentation
+
+
+
+
+
+### function BarMaterial {#function-barmaterial}
+
+_Constructs a_ [_**BarMaterial**_](classQAccelPlot_1_1BarMaterial.md) _with default uniform values._
+```C++
+QAccelPlot::BarMaterial::BarMaterial () 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function createShader {#function-createshader}
+
+_Creates and returns the bar shader program._ 
+```C++
+QSGMaterialShader * QAccelPlot::BarMaterial::createShader (
+    QSGRendererInterface::RenderMode
+) override const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function type {#function-type}
+
+_Returns the unique material type identifier for this class._ 
+```C++
+QSGMaterialType * QAccelPlot::BarMaterial::type () override const
+```
+
+
+
+
+<hr>
+## Protected Functions Documentation
+
+
+
+
+
+### function compareExtra {#function-compareextra}
+
+_Compares the bar-specific uniforms and the colormap texture after the rectangle uniforms compare equal._ 
+```C++
+virtual int QAccelPlot::BarMaterial::compareExtra (
+    const QSGMaterial * other
+) override const
+```
+
+
+
+Implements [*QAccelPlot::DataTextureMaterial::compareExtra*](classQAccelPlot_1_1DataTextureMaterial.md#function-compareextra)
+
+
+<hr>
+
+------------------------------
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp`
+

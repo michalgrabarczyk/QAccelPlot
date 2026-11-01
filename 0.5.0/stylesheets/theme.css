@@ -1,0 +1,189 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Michal Grabarczyk
+ * SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
+ *
+ * Maps the QAccelPlot palette (palette.css, generated from ColorPalette.cpp)
+ * onto MkDocs Material's color variables. Use only --qap-* variables here so
+ * the site follows the library's Colors.light and Colors.dark palettes.
+ */
+
+/* Colors.light */
+[data-md-color-scheme="default"] {
+  --qap-docs-surface: var(--qap-axes-area);
+
+  --md-default-bg-color: var(--qap-plot-area);
+
+  --md-primary-fg-color: var(--qap-material-accent);
+  --md-primary-fg-color--light: color-mix(in srgb, var(--qap-material-accent) 80%, white);
+  --md-primary-fg-color--dark: color-mix(in srgb, var(--qap-material-accent) 80%, black);
+  --md-primary-bg-color: var(--qap-text-on-accent);
+  --md-primary-bg-color--light: color-mix(in srgb, var(--qap-text-on-accent) 70%, transparent);
+
+  --md-typeset-a-color: var(--qap-hover);
+
+  /* Material's light footer is dark; the palette's dark-on-light tooltip matches it. */
+  --md-footer-bg-color: var(--qap-text);
+  --md-footer-bg-color--dark: color-mix(in srgb, var(--qap-text) 85%, black);
+  --md-footer-fg-color: var(--qap-tooltip-text);
+  --md-footer-fg-color--light: color-mix(in srgb, var(--qap-tooltip-text) 70%, transparent);
+  --md-footer-fg-color--lighter: color-mix(in srgb, var(--qap-tooltip-text) 50%, transparent);
+}
+
+/* Colors.dark */
+[data-md-color-scheme="slate"] {
+  --qap-docs-surface: var(--qap-plot-area);
+
+  --md-default-bg-color: var(--qap-window);
+
+  /* A deep teal: the header blend is contrast-checked in scripts/generate-docs-palette.py. */
+  --md-primary-fg-color: color-mix(in srgb, var(--qap-material-accent) 45%, var(--qap-window));
+  --md-primary-fg-color--light: color-mix(in srgb, var(--qap-material-accent) 55%, var(--qap-window));
+  --md-primary-fg-color--dark: color-mix(in srgb, var(--qap-material-accent) 30%, var(--qap-window));
+  --md-primary-bg-color: var(--qap-text);
+  --md-primary-bg-color--light: var(--qap-text-secondary);
+
+  --md-typeset-a-color: var(--qap-series-primary);
+
+  --md-footer-bg-color: var(--qap-axes-area);
+  --md-footer-bg-color--dark: var(--qap-window);
+  --md-footer-fg-color: var(--qap-text);
+  --md-footer-fg-color--light: var(--qap-text-secondary);
+  --md-footer-fg-color--lighter: var(--qap-text-muted);
+}
+
+/* Shared role mapping */
+[data-md-color-scheme] {
+  --md-default-fg-color: var(--qap-text);
+  --md-default-fg-color--light: var(--qap-text-secondary);
+  --md-default-fg-color--lighter: var(--qap-text-muted);
+  --md-default-fg-color--lightest: var(--qap-grid);
+  --md-default-bg-color--light: color-mix(in srgb, var(--md-default-bg-color) 54%, transparent);
+  --md-default-bg-color--lighter: color-mix(in srgb, var(--md-default-bg-color) 26%, transparent);
+  --md-default-bg-color--lightest: color-mix(in srgb, var(--md-default-bg-color) 7%, transparent);
+
+  --md-accent-fg-color: var(--qap-material-accent);
+  --md-accent-fg-color--transparent: color-mix(in srgb, var(--qap-material-accent) 10%, transparent);
+  --md-accent-bg-color: var(--qap-text-on-accent);
+  --md-accent-bg-color--light: color-mix(in srgb, var(--qap-text-on-accent) 70%, transparent);
+
+  --md-code-fg-color: var(--qap-text);
+  --md-code-bg-color: var(--qap-docs-surface);
+  --md-code-bg-color--light: color-mix(in srgb, var(--qap-docs-surface) 90%, transparent);
+  --md-code-bg-color--lighter: color-mix(in srgb, var(--qap-docs-surface) 54%, transparent);
+  --md-code-hl-color: var(--qap-focus);
+  --md-code-hl-color--light: color-mix(in srgb, var(--qap-focus) 10%, transparent);
+  --md-code-hl-keyword-color: var(--qap-series-quaternary);
+  --md-code-hl-string-color: var(--qap-series-tertiary);
+  --md-code-hl-number-color: var(--qap-series-secondary);
+  --md-code-hl-function-color: var(--qap-series-primary);
+  --md-code-hl-constant-color: var(--qap-series-cyan);
+  --md-code-hl-special-color: var(--qap-series-rose);
+  --md-code-hl-name-color: var(--qap-text);
+  --md-code-hl-operator-color: var(--qap-text-secondary);
+  --md-code-hl-punctuation-color: var(--qap-text-secondary);
+  --md-code-hl-comment-color: var(--qap-text-secondary);
+  --md-code-hl-generic-color: var(--qap-text-secondary);
+  --md-code-hl-variable-color: var(--qap-text-secondary);
+
+  --md-typeset-color: var(--qap-text);
+  --md-typeset-mark-color: var(--qap-annotation-range-fill);
+  --md-typeset-table-color: var(--qap-grid);
+  --md-typeset-table-color--light: color-mix(in srgb, var(--qap-control-hover) 50%, transparent);
+  --md-typeset-kbd-color: var(--qap-docs-surface);
+  --md-typeset-kbd-accent-color: var(--qap-outline);
+  --md-typeset-kbd-border-color: var(--qap-plot-border);
+
+  --md-admonition-fg-color: var(--qap-text);
+  --md-admonition-bg-color: var(--md-default-bg-color);
+
+  --md-warning-fg-color: var(--qap-text);
+  --md-warning-bg-color: color-mix(in srgb, var(--qap-status-warning) 25%, var(--md-default-bg-color));
+
+  --md-mermaid-font-family: var(--md-text-font-family), sans-serif;
+  --md-mermaid-edge-color: var(--qap-axis-line);
+  --md-mermaid-node-bg-color: var(--qap-control);
+  --md-mermaid-node-fg-color: var(--qap-text);
+  --md-mermaid-label-bg-color: var(--md-default-bg-color);
+  --md-mermaid-label-fg-color: var(--qap-text);
+}
+
+/* Material dims the repository version and stars, which falls below AA on the teal headers. */
+.md-source__facts {
+  opacity: 1;
+}
+
+/* Development-documentation announcement bar */
+.md-banner {
+  background-color: color-mix(in srgb, var(--qap-status-warning) 10%, var(--md-default-bg-color));
+  border-bottom: 0.05rem solid var(--qap-status-warning);
+  color: var(--qap-text);
+}
+
+.md-banner a {
+  color: var(--md-typeset-a-color);
+}
+
+.md-typeset table:not([class]) th {
+  background-color: var(--qap-docs-surface);
+}
+
+/* Admonitions. The doubled .md-typeset class outranks Material's per-type rules. */
+.md-typeset :is(.admonition, details) {
+  --qap-admonition-color: var(--qap-series-primary);
+}
+
+.md-typeset :is(.admonition, details):is(.abstract, .summary, .tldr, .info, .todo) {
+  --qap-admonition-color: var(--qap-series-cyan);
+}
+
+.md-typeset :is(.admonition, details):is(.tip, .hint, .important) {
+  --qap-admonition-color: var(--qap-material-accent);
+}
+
+.md-typeset :is(.admonition, details):is(.success, .check, .done) {
+  --qap-admonition-color: var(--qap-status-good);
+}
+
+.md-typeset :is(.admonition, details):is(.question, .help, .faq) {
+  --qap-admonition-color: var(--qap-series-yellow);
+}
+
+.md-typeset :is(.admonition, details):is(.warning, .caution, .attention) {
+  --qap-admonition-color: var(--qap-status-warning);
+}
+
+.md-typeset :is(.admonition, details):is(.failure, .fail, .missing, .danger, .error) {
+  --qap-admonition-color: var(--qap-status-error);
+}
+
+.md-typeset :is(.admonition, details).bug {
+  --qap-admonition-color: var(--qap-series-rose);
+}
+
+.md-typeset :is(.admonition, details).example {
+  --qap-admonition-color: var(--qap-series-quaternary);
+}
+
+.md-typeset :is(.admonition, details):is(.quote, .cite) {
+  --qap-admonition-color: var(--qap-series-muted);
+}
+
+.md-typeset.md-typeset :is(.admonition, details) {
+  border-color: var(--qap-admonition-color);
+}
+
+.md-typeset.md-typeset :is(.admonition, details):focus-within {
+  box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--qap-admonition-color) 10%, transparent);
+}
+
+.md-typeset.md-typeset :is(.admonition, details) > :is(.admonition-title, summary) {
+  background-color: color-mix(in srgb, var(--qap-admonition-color) 10%, transparent);
+}
+
+.md-typeset.md-typeset :is(.admonition, details) > :is(.admonition-title, summary)::before {
+  background-color: var(--qap-admonition-color);
+}
+
+.md-typeset.md-typeset :is(.admonition, details) > summary::after {
+  color: var(--qap-admonition-color);
+}

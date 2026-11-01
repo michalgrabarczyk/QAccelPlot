@@ -61,10 +61,10 @@ _One page of source indices inside a region._
 | property quint64 | [**dataRevision**](structQAccelPlot_1_1InspectionPage.md#property-datarevision)  <br>_Data revision the indices refer to._  |
 | property bool | [**hasMore**](structQAccelPlot_1_1InspectionPage.md#property-hasmore)  <br>_True when matches remain after this page._  |
 | property QList&lt; int &gt; | [**indices**](structQAccelPlot_1_1InspectionPage.md#property-indices)  <br>_Matching source indices. In QML,_ `Array.from` _(page.indices) gives a JavaScript array._ |
-| property int | [**limit**](structQAccelPlot_1_1InspectionPage.md#property-limit)  <br>_Effective page size after clamping to the maximum._  |
+| property int | [**limit**](structQAccelPlot_1_1InspectionPage.md#property-limit)  <br>_Page size used: the requested limit, capped at 4096._  |
 | property int | [**offset**](structQAccelPlot_1_1InspectionPage.md#property-offset)  <br>_Number of matches skipped before this page._  |
 | property bool | [**sourceOrder**](structQAccelPlot_1_1InspectionPage.md#property-sourceorder)  <br>_True when pages are in ascending source order; false for index traversal order._  |
-| property QML\_ANONYMOUSQAccelPlot::InspectionNS::Status | [**status**](structQAccelPlot_1_1InspectionPage.md#property-status-12)  <br>_Query outcome;_ `Ready` _also for an empty page of a matching region._ |
+| property QML\_ANONYMOUSInspectionNS::Status | [**status**](structQAccelPlot_1_1InspectionPage.md#property-status-12)  <br>_Query outcome;_ `Ready` _also for an empty page of a matching region._ |
 | property int | [**total**](structQAccelPlot_1_1InspectionPage.md#property-total)  <br>_Number of matching data points in the whole region._  |
 | property bool | [**valid**](structQAccelPlot_1_1InspectionPage.md#property-valid-12)  <br>_True when status is_ `Ready` _._ |
 
@@ -190,7 +190,7 @@ Matching source indices.
 
 ### property limit {#property-limit}
 
-_Effective page size after clamping to the maximum._ 
+_Page size used: the requested limit, capped at 4096._ 
 ```C++
 int QAccelPlot::InspectionPage::limit;
 ```
@@ -249,7 +249,7 @@ Ascending source order.
 
 _Query outcome;_ `Ready` _also for an empty page of a matching region._
 ```C++
-QML_ANONYMOUSQAccelPlot::InspectionNS::Status QAccelPlot::InspectionPage::status;
+QML_ANONYMOUSInspectionNS::Status QAccelPlot::InspectionPage::status;
 ```
 
 

@@ -19,7 +19,6 @@
 
 #include <QList>
 #include <QObject>
-#include <QPointF>
 #include <QVariantMap>
 #if __has_include(<QtQmlIntegration/qqmlintegration.h>)
 #include <QtQmlIntegration/qqmlintegration.h>
@@ -54,36 +53,37 @@ using InspectionStatus = InspectionNS::Status;
 struct InspectionDataPoint {
     Q_GADGET
     QML_ANONYMOUS
-    Q_PROPERTY(::QAccelPlot::InspectionNS::Status status MEMBER status CONSTANT)
+    Q_PROPERTY(InspectionNS::Status status MEMBER status CONSTANT)
     Q_PROPERTY(bool valid READ valid CONSTANT)
     Q_PROPERTY(quint64 dataRevision MEMBER dataRevision CONSTANT)
     Q_PROPERTY(int index MEMBER index CONSTANT)
-    Q_PROPERTY(qreal x READ x CONSTANT)
-    Q_PROPERTY(qreal y READ y CONSTANT)
+    Q_PROPERTY(qreal x MEMBER x CONSTANT)
+    Q_PROPERTY(qreal y MEMBER y CONSTANT)
     Q_PROPERTY(qreal value MEMBER value CONSTANT)
-    Q_PROPERTY(QPointF pixelPosition MEMBER pixelPosition CONSTANT)
+    Q_PROPERTY(qreal pixelX MEMBER pixelX CONSTANT)
+    Q_PROPERTY(qreal pixelY MEMBER pixelY CONSTANT)
     Q_PROPERTY(qreal distance MEMBER distance CONSTANT)
     Q_PROPERTY(bool interpolated MEMBER interpolated CONSTANT)
 
 public:
-    InspectionStatus status{InspectionStatus::NoMatch};                                                      
-    quint64 dataRevision{0};                                                                                 
-    int index{-1};                                                                                           
-    QPointF position{std::numeric_limits<qreal>::quiet_NaN(), std::numeric_limits<qreal>::quiet_NaN()};      
-    QPointF pixelPosition{std::numeric_limits<qreal>::quiet_NaN(), std::numeric_limits<qreal>::quiet_NaN()}; 
-    qreal distance{std::numeric_limits<qreal>::quiet_NaN()};                                                 
-    qreal value{std::numeric_limits<qreal>::quiet_NaN()};                                                    
-    bool interpolated{false};                                                                                
+    InspectionStatus status{InspectionStatus::NoMatch};      
+    quint64 dataRevision{0};                                 
+    int index{-1};                                           
+    qreal x{std::numeric_limits<qreal>::quiet_NaN()};        
+    qreal y{std::numeric_limits<qreal>::quiet_NaN()};        
+    qreal value{std::numeric_limits<qreal>::quiet_NaN()};    
+    qreal pixelX{std::numeric_limits<qreal>::quiet_NaN()};   
+    qreal pixelY{std::numeric_limits<qreal>::quiet_NaN()};   
+    qreal distance{std::numeric_limits<qreal>::quiet_NaN()}; 
+    bool interpolated{false};                                
 
     bool valid() const;
-    qreal x() const;
-    qreal y() const;
 };
 
 struct InspectionSummary {
     Q_GADGET
     QML_ANONYMOUS
-    Q_PROPERTY(::QAccelPlot::InspectionNS::Status status MEMBER status CONSTANT)
+    Q_PROPERTY(InspectionNS::Status status MEMBER status CONSTANT)
     Q_PROPERTY(bool valid READ valid CONSTANT)
     Q_PROPERTY(quint64 dataRevision MEMBER dataRevision CONSTANT)
     Q_PROPERTY(int count MEMBER count CONSTANT)
@@ -111,13 +111,13 @@ public:
 struct InspectionBracket {
     Q_GADGET
     QML_ANONYMOUS
-    Q_PROPERTY(::QAccelPlot::InspectionNS::Status status MEMBER status CONSTANT)
+    Q_PROPERTY(InspectionNS::Status status MEMBER status CONSTANT)
     Q_PROPERTY(bool valid READ valid CONSTANT)
     Q_PROPERTY(quint64 dataRevision MEMBER dataRevision CONSTANT)
-    Q_PROPERTY(::QAccelPlot::InspectionDataPoint left MEMBER left CONSTANT)
-    Q_PROPERTY(::QAccelPlot::InspectionDataPoint right MEMBER right CONSTANT)
+    Q_PROPERTY(InspectionDataPoint left MEMBER left CONSTANT)
+    Q_PROPERTY(InspectionDataPoint right MEMBER right CONSTANT)
     Q_PROPERTY(bool adjacent MEMBER adjacent CONSTANT)
-    Q_PROPERTY(::QAccelPlot::InspectionDataPoint interpolated MEMBER interpolated CONSTANT)
+    Q_PROPERTY(InspectionDataPoint interpolated MEMBER interpolated CONSTANT)
 
 public:
     InspectionStatus status{InspectionStatus::NoMatch}; 
@@ -133,7 +133,7 @@ public:
 struct InspectionPage {
     Q_GADGET
     QML_ANONYMOUS
-    Q_PROPERTY(::QAccelPlot::InspectionNS::Status status MEMBER status CONSTANT)
+    Q_PROPERTY(InspectionNS::Status status MEMBER status CONSTANT)
     Q_PROPERTY(bool valid READ valid CONSTANT)
     Q_PROPERTY(quint64 dataRevision MEMBER dataRevision CONSTANT)
     Q_PROPERTY(int total MEMBER total CONSTANT)
@@ -159,7 +159,7 @@ public:
 struct InspectionRecord {
     Q_GADGET
     QML_ANONYMOUS
-    Q_PROPERTY(::QAccelPlot::InspectionNS::Status status MEMBER status CONSTANT)
+    Q_PROPERTY(InspectionNS::Status status MEMBER status CONSTANT)
     Q_PROPERTY(bool valid READ valid CONSTANT)
     Q_PROPERTY(quint64 dataRevision MEMBER dataRevision CONSTANT)
     Q_PROPERTY(int index MEMBER index CONSTANT)

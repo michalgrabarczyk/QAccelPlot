@@ -70,7 +70,7 @@ flowchart TB
 |  float | [**markerFilled**](#variable-markerfilled)   = `{1.0f}`<br>_1.0 for filled markers, 0.0 for hollow outlines._  |
 |  float | [**markerSize**](#variable-markersize)   = `{3.0f}`<br>_Marker radius in pixels._  |
 |  float | [**markerStrokeWidth**](#variable-markerstrokewidth)   = `{1.0f}`<br>_Outline width in pixels for hollow markers._  |
-|  int | [**shapeType**](#variable-shapetype)   = `{0}`<br>_Marker shape:_ `PlotSeries::MarkerShape` _value minus one (0 = Circle)._ |
+|  int | [**shapeType**](#variable-shapetype)   = `{0}`<br>_Marker shape:_ `MarkerShape` _value minus one (0 = Circle)._ |
 |  float | [**stride**](#variable-stride)   = `{2.0f}`<br>_Floats per point in the data texture: 2 (x, y) or 3 (x, y, value)._  |
 |  float | [**valueLogScale**](#variable-valuelogscale)   = `{0.0f}`<br>_1.0 to place values on the ramp in log10 instead of linearly._  |
 |  float | [**valueMax**](#variable-valuemax)   = `{1.0f}`<br>_Value mapped to colormap position 1._  |
@@ -143,11 +143,6 @@ See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 |   | [**~DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md#function-datatexturematerial) () override<br> |
 
 
-## Public Static Functions
-
-| Type | Name |
-| ---: | :--- |
-|  const QSGGeometry::AttributeSet & | [**attributeSet**](#function-attributeset) () <br>_Returns the per-vertex attribute set: one ignored_ `uchar4` _placeholder (4 bytes)._ |
 
 
 ## Public Static Functions inherited from QAccelPlot::DataTextureMaterial
@@ -158,6 +153,7 @@ See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 | ---: | :--- |
 |  const QSGGeometry::AttributeSet & | [**attributeSet**](classQAccelPlot_1_1DataTextureMaterial.md#function-attributeset) () <br>_Returns the shared vertex attribute set:_ `{float` _id, float param, uchar4 color} (12 bytes)._ |
 |  void | [**commitTexture**](classQAccelPlot_1_1DataTextureMaterial.md#function-committexture) (QSGMaterialShader::RenderState & state, int binding, QSGTexture \*\* texture, const [**DataTexture**](classQAccelPlot_1_1DataTexture.md) \* data) <br>_Commits the texture of_ _data_ _to sampler__binding_ _(call from_`updateSampledImage` _). Does nothing before an upload._ |
+|  const QSGGeometry::AttributeSet & | [**vertexIndexAttributeSet**](classQAccelPlot_1_1DataTextureMaterial.md#function-vertexindexattributeset) () <br>_Returns the attribute set of marker quads: one ignored_ `uchar4` _placeholder (4 bytes)._ |
 |  bool | [**writeCommonUniforms**](classQAccelPlot_1_1DataTextureMaterial.md#function-writecommonuniforms) (char \* buf, int bufSize, const QMatrix4x4 & matrix, const [**DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) \* mat) <br>_Writes the shared UBO prefix (transform + color + domain + flags) into_ _buf_ _._ |
 
 
@@ -350,7 +346,7 @@ float QAccelPlot::PointCloudMaterial::markerStrokeWidth;
 
 ### variable shapeType {#variable-shapetype}
 
-_Marker shape:_ `PlotSeries::MarkerShape` _value minus one (0 = Circle)._
+_Marker shape:_ `MarkerShape` _value minus one (0 = Circle)._
 ```C++
 int QAccelPlot::PointCloudMaterial::shapeType;
 ```
@@ -466,27 +462,6 @@ QSGMaterialType * QAccelPlot::PointCloudMaterial::type () override const
 
 
 
-
-<hr>
-## Public Static Functions Documentation
-
-
-
-
-
-### function attributeSet {#function-attributeset}
-
-_Returns the per-vertex attribute set: one ignored_ `uchar4` _placeholder (4 bytes)._
-```C++
-static const QSGGeometry::AttributeSet & QAccelPlot::PointCloudMaterial::attributeSet () 
-```
-
-
-
-The shader derives the point index and billboard corner from `gl_VertexIndex`. 
-
-
-        
 
 <hr>
 ## Protected Functions Documentation

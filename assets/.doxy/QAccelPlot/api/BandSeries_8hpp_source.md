@@ -44,8 +44,6 @@ class BandSeries : public PlotSeries {
     
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
     Q_PROPERTY(BandEdges* edges READ edges CONSTANT)
-    Q_PROPERTY(int count READ count NOTIFY countChanged)
-    Q_PROPERTY(bool hovered READ hovered NOTIFY hoveredChanged)
 
 public:
     explicit BandSeries(QQuickItem* parent = nullptr);
@@ -55,10 +53,6 @@ public:
 
     BandEdges* edges() const;
 
-    int count() const;
-
-    bool hovered() const;
-
     Q_INVOKABLE void appendData(qreal x, qreal low, qreal high);
     Q_INVOKABLE void setData(const QList<qreal>& xs, const QList<qreal>& lows, const QList<qreal>& highs);
     void setData(const std::vector<double>& xs, const std::vector<double>& lows, const std::vector<double>& highs);
@@ -66,6 +60,7 @@ public:
     using PlotSeries::setData;
     using PlotSeries::setDataF;
     Q_INVOKABLE void clearData() override;
+    std::optional<LegendEntry> legendEntry() const override;
 
     Q_INVOKABLE QVariantMap valueAt(qreal x) const;
 
@@ -73,10 +68,9 @@ public:
 
 signals:
     void colorChanged();
-    void countChanged();
-    void hoveredChanged();
 
 protected:
+    bool recordInspectionSupported() const override;
     InspectionRecord inspectionRecord(int index) const override;
     InspectionRecord inspectionRecordAt(const QPointF& position) const override;
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updatePaintNodeData) override;
@@ -111,10 +105,10 @@ private:
     double value(int index, int component) const;
     bool dataPointValid(int index) const;
     void updateXAscending();
-    std::optional<Span> spanAt(qreal x) const;
+    // Returns the band at x as drawn from the first dataPointCount data points.
+    std::optional<Span> spanAt(qreal x, int dataPointCount) const;
     bool edgesVisible() const;
     QColor edgeColor() const;
-    void setHovered(bool hovered);
     // Re-tests the last hover position after the data or the axes moved under the cursor.
     void refreshHovered();
     // Follows edits of the current edge line style, such as a new dash pattern.
@@ -126,13 +120,10 @@ private:
 
     QColor color_;
     BandEdges* edges_{new BandEdges{this}};
-    bool hovered_{false};
     // Cursor position while hover events arrive, in item coordinates.
     std::optional<QPointF> hoverPosition_;
     // Render revision of the data points last uploaded to the GPU.
     std::uint64_t uploadedRevision_{0};
-    // Whether the last frame held more records than the GPU buffers do; warns on each crossing.
-    bool overCapacity_{false};
     bool xAscending_{true};
     QMetaObject::Connection edgeStyleConnection_;
     BandEdgeRenderer lowerEdgeRenderer_{BandEdgeMaterial::Edge::Lower};

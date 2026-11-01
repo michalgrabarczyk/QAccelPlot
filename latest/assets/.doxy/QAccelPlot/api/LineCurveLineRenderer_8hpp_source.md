@@ -30,12 +30,15 @@
 #include <QSGNode>
 #include <QVector2D>
 
+#include <cstddef>
+#include <memory>
 #include <vector>
 
 QT_FORWARD_DECLARE_CLASS(QQuickWindow)
 
 namespace QAccelPlot {
 
+class DataTexture;
 struct DashParameters;
 class LineMaterial;
 
@@ -61,20 +64,25 @@ struct LineCurveRenderParams {
     const GradientFillPayload& gradientFillPayload; 
     const std::vector<char>* vertexCache;           
     const LineStyle* lineStyle;                     
+    StepMode stepMode{StepMode::None};              
 };
 
 struct FillSamples {
-    std::vector<int> sampledCounts; 
-    std::vector<int> indices;       
+    std::vector<int> pointCounts; 
+    std::vector<QPointF> points;  
 };
 
 class LineCurveLineRenderer {
 public:
-    void buildVertexCache(const std::vector<float>& data, int pointCount, std::vector<char>& cache) const;
+    static std::size_t vertexCacheBytesPerPoint(StepMode stepMode);
+
+    static void writeVertexCache(std::vector<char>& cache, int firstPoint, int pointCount, StepMode stepMode);
 
     bool contains(const QPointF& point, const CurveHitTestParams& params) const;
 
     QSGNode* paint(QSGNode* oldNode, const LineCurveRenderParams& params) const;
+
+    static std::shared_ptr<DataTexture> dataTexture(QSGNode* node);
 
 private:
     // Gradient fill data points, cached across frames because they depend only on the data.
@@ -83,11 +91,13 @@ private:
         int pointCount{-1};
         bool logScaleX{false};
         bool logScaleY{false};
+        StepMode stepMode{StepMode::None};
         FillSamples samples;
     };
 
     void updateFillGeometry(QSGGeometryNode* fillNode, const LineCurveRenderParams& params) const;
     const FillSamples& fillSamples(const LineCurveRenderParams& params) const;
+    static void rebuildFillSamples(const LineCurveRenderParams& params, FillSamples& samples);
     void updateLineMaterial(
         LineMaterial* material, const LineCurveRenderParams& params, const QColor& effectiveColor, bool useVertexColor, const DashParameters& dashParams) const;
     std::vector<float> computeArcLengths(const LineCurveRenderParams& params, const DashParameters& dashParams) const;

@@ -21,40 +21,41 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="61" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="61" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="82" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="82" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="classQAccelPlot_1_1RectangleSeries_1a7dfebc9760304138db9624f7f8e9cd86" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type>QList&lt; QColor &gt;</type>
-        <definition>QList&lt;QColor&gt; QAccelPlot::RectangleSeries::categoryColors</definition>
+      <memberdef kind="property" id="classQAccelPlot_1_1RectangleSeries_1ab5db60ed9c8b7777149175b6d897ea23" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QQmlListProperty&lt; <ref refid="classQAccelPlot_1_1Category" kindref="compound">Category</ref> &gt;</type>
+        <definition>QQmlListProperty&lt;Category&gt; QAccelPlot::RectangleSeries::categories</definition>
         <argsstring></argsstring>
-        <name>categoryColors</name>
-        <qualifiedname>QAccelPlot::RectangleSeries::categoryColors</qualifiedname>
-        <read>categoryColors</read>
-        <write>setCategoryColors</write>
+        <name>categories</name>
+        <qualifiedname>QAccelPlot::RectangleSeries::categories</qualifiedname>
+        <read>categories</read>
         <briefdescription>
-<para>Fill colors indexed by each rectangle&apos;s <computeroutput>category</computeroutput>. Default: empty. </para>
+<para>The rectangles&apos; categories. Default: empty. </para>
         </briefdescription>
         <detaileddescription>
+<para>The first of categories that share a value or a name wins, and the others log a warning. Edits to a listed <computeroutput><ref refid="classQAccelPlot_1_1Category" kindref="compound">Category</ref></computeroutput> apply at once. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="63" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="63" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="87" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="87" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="classQAccelPlot_1_1RectangleSeries_1a92bc4f1e4e62cb85b92993717a3919c8" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type><ref refid="classQAccelPlot_1_1RectangleBorder" kindref="compound">RectangleBorder</ref> *</type>
-        <definition>RectangleBorder* QAccelPlot::RectangleSeries::border</definition>
+      <memberdef kind="property" id="classQAccelPlot_1_1RectangleSeries_1a628e3158a675995a855c91b05f01a84d" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1Border" kindref="compound">Border</ref> *</type>
+        <definition>Border* QAccelPlot::RectangleSeries::border</definition>
         <argsstring></argsstring>
         <name>border</name>
         <qualifiedname>QAccelPlot::RectangleSeries::border</qualifiedname>
         <read>border</read>
         <briefdescription>
-<para>Grouped outline settings, e.g. <computeroutput>border.width</computeroutput> and <computeroutput>border.color</computeroutput>. No outline by default. </para>
+<para>Outline inside each rectangle&apos;s edges, e.g. <computeroutput>border.width: 1</computeroutput>. Default: black, width 0. </para>
         </briefdescription>
         <detaileddescription>
+<para>On rectangles too small for two outlines, the outline narrows so at least 1 px of fill stays visible. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="65" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="65" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="91" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="91" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1RectangleSeries_1a09de44899bfb96bed192692a0d5b6d3e" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>QColor</type>
@@ -71,7 +72,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="67" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="67" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="93" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="93" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1RectangleSeries_1a2e615e5b52a1ce9faba6f29829b23eec" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>qreal</type>
@@ -89,7 +90,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="71" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="71" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="97" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="97" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1RectangleSeries_1a4a6c36243deec7974410e56b27b19df7" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>qreal</type>
@@ -106,23 +107,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="73" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="73" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="classQAccelPlot_1_1RectangleSeries_1a15ed9df159860244ebaab8f93a837c7a" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type>int</type>
-        <definition>int QAccelPlot::RectangleSeries::count</definition>
-        <argsstring></argsstring>
-        <name>count</name>
-        <qualifiedname>QAccelPlot::RectangleSeries::count</qualifiedname>
-        <read>count</read>
-        <briefdescription>
-<para>Read-only: number of rectangles currently loaded. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="75" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="75" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="99" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="99" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1RectangleSeries_1a0d60605cb2fc7c48505f697e5a1d6d9b" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>int</type>
@@ -138,7 +123,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="77" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="77" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="101" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="101" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-attrib">
@@ -154,36 +139,36 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="229" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="229" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="262" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="262" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classQAccelPlot_1_1RectangleSeries_1a51b520e79ed624399697b55a4f76d6e5" prot="private" static="no" mutable="no">
-        <type>QList&lt; QColor &gt;</type>
-        <definition>QList&lt;QColor&gt; QAccelPlot::RectangleSeries::categoryColors_</definition>
+      <memberdef kind="variable" id="classQAccelPlot_1_1RectangleSeries_1a37e17c01d38e355e6da8618ad0a85de5" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; <ref refid="classQAccelPlot_1_1Internal_1_1CategoryList" kindref="compound">Internal::CategoryList</ref> &gt;</type>
+        <definition>std::unique_ptr&lt;Internal::CategoryList&gt; QAccelPlot::RectangleSeries::categories_</definition>
         <argsstring></argsstring>
-        <name>categoryColors_</name>
-        <qualifiedname>QAccelPlot::RectangleSeries::categoryColors_</qualifiedname>
+        <name>categories_</name>
+        <qualifiedname>QAccelPlot::RectangleSeries::categories_</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="230" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="230" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="263" column="21" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="263" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classQAccelPlot_1_1RectangleSeries_1a3e62ee0592cbeeea72a15511c812b9b4" prot="private" static="no" mutable="no">
-        <type><ref refid="classQAccelPlot_1_1RectangleBorder" kindref="compound">RectangleBorder</ref> *</type>
-        <definition>RectangleBorder* QAccelPlot::RectangleSeries::border_</definition>
+      <memberdef kind="variable" id="classQAccelPlot_1_1RectangleSeries_1a3a50bb62358de53c412f4bf5fefe07f6" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1Border" kindref="compound">Border</ref> *</type>
+        <definition>Border* QAccelPlot::RectangleSeries::border_</definition>
         <argsstring></argsstring>
         <name>border_</name>
         <qualifiedname>QAccelPlot::RectangleSeries::border_</qualifiedname>
-        <initializer>{new <ref refid="classQAccelPlot_1_1RectangleBorder" kindref="compound">RectangleBorder</ref>{this}}</initializer>
+        <initializer>{new <ref refid="classQAccelPlot_1_1Border" kindref="compound">Border</ref>{Qt::black, 0.0, this}}</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="231" column="21" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="231" bodyend="231"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="264" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="264" bodyend="264"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1RectangleSeries_1a9f3cbe0746d032dd96f1b0f97c55627c" prot="private" static="no" mutable="no">
         <type>QColor</type>
@@ -197,7 +182,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="232" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="232" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="265" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="265" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1RectangleSeries_1abf29d4256b7777b7a930dfc6deaab61e" prot="private" static="no" mutable="no">
         <type>qreal</type>
@@ -212,7 +197,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="233" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="233" bodyend="233"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="266" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="266" bodyend="266"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1RectangleSeries_1ab08438ab8eee0a6112f9aed187c00b72" prot="private" static="no" mutable="no">
         <type>qreal</type>
@@ -227,7 +212,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="234" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="234" bodyend="234"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="267" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="267" bodyend="267"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1RectangleSeries_1a03812984154d495371aee06df39555d9" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -242,7 +227,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="235" column="9" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="235" bodyend="235"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="268" column="9" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="268" bodyend="268"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1RectangleSeries_1a8e0cd30fd463999a2c7dfcbbcae951dd" prot="private" static="no" mutable="no">
         <type>std::uint64_t</type>
@@ -257,26 +242,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="237" column="19" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="237" bodyend="237"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="270" column="19" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="270" bodyend="270"/>
       </memberdef>
-      <memberdef kind="variable" id="classQAccelPlot_1_1RectangleSeries_1a065183e3c8a37fae7e9a1980fb64427d" prot="private" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool QAccelPlot::RectangleSeries::overCapacity_</definition>
-        <argsstring></argsstring>
-        <name>overCapacity_</name>
-        <qualifiedname>QAccelPlot::RectangleSeries::overCapacity_</qualifiedname>
-        <initializer>{false}</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="239" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="239" bodyend="239"/>
-      </memberdef>
-      <memberdef kind="variable" id="classQAccelPlot_1_1RectangleSeries_1ae1d9e7f48009de6f311f7994deba5b9e" prot="private" static="no" mutable="no">
-        <type><ref refid="classQAccelPlot_1_1RectVertexCache" kindref="compound">RectVertexCache</ref></type>
-        <definition>RectVertexCache QAccelPlot::RectangleSeries::vertexCache_</definition>
+      <memberdef kind="variable" id="classQAccelPlot_1_1RectangleSeries_1abc038f4fe57fbc6f771d875724d18aaa" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; <ref refid="classQAccelPlot_1_1Internal_1_1RectVertexCache" kindref="compound">Internal::RectVertexCache</ref> &gt;</type>
+        <definition>std::unique_ptr&lt;Internal::RectVertexCache&gt; QAccelPlot::RectangleSeries::vertexCache_</definition>
         <argsstring></argsstring>
         <name>vertexCache_</name>
         <qualifiedname>QAccelPlot::RectangleSeries::vertexCache_</qualifiedname>
@@ -286,7 +256,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="241" column="21" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="241" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="272" column="21" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="272" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1RectangleSeries_1a948f13f5b87af05e249789a451493e1e" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -301,7 +271,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="243" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="243" bodyend="243"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="274" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="274" bodyend="274"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1RectangleSeries_1af5049bf1e5303db95d91a4d7102eca30" prot="private" static="no" mutable="yes">
         <type><ref refid="classQAccelPlot_1_1SpatialGrid" kindref="compound">SpatialGrid</ref></type>
@@ -315,7 +285,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="245" column="25" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="245" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="276" column="25" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="276" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1RectangleSeries_1ab33e61712236103b639574e9cbb75a56" prot="private" static="no" mutable="yes">
         <type>bool</type>
@@ -330,7 +300,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="246" column="18" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="246" bodyend="246"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="277" column="18" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="277" bodyend="277"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1RectangleSeries_1a9d1513e0e69be70e06162416d065567c" prot="private" static="no" mutable="no">
         <type>std::unique_ptr&lt; <ref refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget" kindref="compound">Internal::HoverIndexBudget</ref> &gt;</type>
@@ -344,7 +314,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="247" column="21" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="247" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="278" column="21" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="278" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1RectangleSeries_1a47cbe3fb4e57f5c4b644da430e691c27" prot="private" static="no" mutable="yes">
         <type>std::optional&lt; HitTestInputs &gt;</type>
@@ -358,7 +328,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="250" column="27" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="250" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="281" column="27" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="281" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1RectangleSeries_1a643356bf61702f41000427e42a644f00" prot="private" static="no" mutable="yes">
         <type>int</type>
@@ -373,7 +343,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="251" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="251" bodyend="251"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="282" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="282" bodyend="282"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -395,7 +365,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="81" column="14"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="105" column="14"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a013b09032bb1aa5ecd60fa712d4fde64" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -410,7 +380,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="83" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="107" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a4a2e622708a8a4a1a2be3e8e1001c271" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QColor</type>
@@ -425,7 +395,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="86" column="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="110" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a3fb2f93716829bf358063859eb333861" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -444,45 +414,45 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="88" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="112" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a3bc5c4302a62a46875b97c63b2055a11" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>QList&lt; QColor &gt;</type>
-        <definition>QList&lt; QColor &gt; QAccelPlot::RectangleSeries::categoryColors</definition>
-        <argsstring>() const</argsstring>
-        <name>categoryColors</name>
-        <qualifiedname>QAccelPlot::RectangleSeries::categoryColors</qualifiedname>
+      <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a9f3810fbe4a7f9b216dd2a0b2868b474" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QQmlListProperty&lt; <ref refid="classQAccelPlot_1_1Category" kindref="compound">Category</ref> &gt;</type>
+        <definition>QQmlListProperty&lt; Category &gt; QAccelPlot::RectangleSeries::categories</definition>
+        <argsstring>()</argsstring>
+        <name>categories</name>
+        <qualifiedname>QAccelPlot::RectangleSeries::categories</qualifiedname>
         <briefdescription>
-<para>Returns the fill colors indexed by category. </para>
+<para>Returns the categories as a QML list. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="91" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="115" column="22"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a6259ebaed30dc9812190b4ab9721c78d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1aac6bdb25376a29e3b511837efec8a0a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
-        <definition>void QAccelPlot::RectangleSeries::setCategoryColors</definition>
-        <argsstring>(const QList&lt; QColor &gt; &amp;colors)</argsstring>
-        <name>setCategoryColors</name>
-        <qualifiedname>QAccelPlot::RectangleSeries::setCategoryColors</qualifiedname>
+        <definition>void QAccelPlot::RectangleSeries::setCategories</definition>
+        <argsstring>(const QList&lt; Category * &gt; &amp;categories)</argsstring>
+        <name>setCategories</name>
+        <qualifiedname>QAccelPlot::RectangleSeries::setCategories</qualifiedname>
         <param>
-          <type>const QList&lt; QColor &gt; &amp;</type>
-          <declname>colors</declname>
+          <type>const QList&lt; <ref refid="classQAccelPlot_1_1Category" kindref="compound">Category</ref> * &gt; &amp;</type>
+          <declname>categories</declname>
         </param>
         <briefdescription>
-<para>Sets the fill colors indexed by category to <emphasis>colors</emphasis>. </para>
+<para>Replaces the categories with <emphasis>categories</emphasis>. The series does not take ownership. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="93" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="117" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a8533f28f6177d4ed30a53a79fcf99da1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classQAccelPlot_1_1RectangleBorder" kindref="compound">RectangleBorder</ref> *</type>
-        <definition>RectangleBorder * QAccelPlot::RectangleSeries::border</definition>
+      <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a061693e5dcb1d961b7c217fbb189adab" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1Border" kindref="compound">Border</ref> *</type>
+        <definition>Border * QAccelPlot::RectangleSeries::border</definition>
         <argsstring>() const</argsstring>
         <name>border</name>
         <qualifiedname>QAccelPlot::RectangleSeries::border</qualifiedname>
@@ -493,7 +463,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="96" column="21"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="120" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a065ead86e85291e377087f91996d77b5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QColor</type>
@@ -508,7 +478,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="99" column="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="123" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a33f7d8cec42ff4cf6ac9d978e088580c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -527,7 +497,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="101" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="125" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a77521e5a742ff8de07ff2f4ddadfe2f8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -542,7 +512,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="104" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="128" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a9897325728653f3991bdb879b1b3ba29" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -561,7 +531,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="106" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="130" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a82fbb1ce9e2f7393a5d4cd47da20e975" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -576,7 +546,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="109" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="133" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a051cc8deac715d3bf3367de5e96b9d83" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -595,22 +565,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="111" column="10"/>
-      </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1ad643a3292d1d25cf9acfb32dd0871a7a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>int</type>
-        <definition>int QAccelPlot::RectangleSeries::count</definition>
-        <argsstring>() const</argsstring>
-        <name>count</name>
-        <qualifiedname>QAccelPlot::RectangleSeries::count</qualifiedname>
-        <briefdescription>
-<para>Returns the number of rectangles currently loaded. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="114" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="135" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a71502b4ed1b60af00ad72c4b80c3a15b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -625,7 +580,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="116" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="138" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a8a7d03400f338d027b6fa7a823ba9bcd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE void</type>
@@ -641,11 +596,11 @@
 <para>Loads rectangles from <emphasis>rects</emphasis>, a QML list of objects with <computeroutput>x1</computeroutput>, <computeroutput>y1</computeroutput>, <computeroutput>x2</computeroutput>, <computeroutput>y2</computeroutput> properties. </para>
         </briefdescription>
         <detaileddescription>
-<para>A missing or null <computeroutput>x1</computeroutput> / <computeroutput>y1</computeroutput> is -Infinity and a missing <computeroutput>x2</computeroutput> / <computeroutput>y2</computeroutput> is +Infinity, so <computeroutput>{ x1: 8, x2: 12 }</computeroutput> is a full-height span. An optional integer <computeroutput>category</computeroutput> selects the fill color from <computeroutput>categoryColors</computeroutput>. </para>
+<para>A missing or null <computeroutput>x1</computeroutput> / <computeroutput>y1</computeroutput> is -Infinity and a missing <computeroutput>x2</computeroutput> / <computeroutput>y2</computeroutput> is +Infinity, so <computeroutput>{ x1: 8, x2: 12 }</computeroutput> is a full-height span. An optional <computeroutput>category</computeroutput> is a category <computeroutput>value</computeroutput> or <computeroutput>name</computeroutput>; names resolve against <computeroutput>categories</computeroutput> now. Any other <computeroutput>category</computeroutput> is ignored with a warning. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="123" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="146" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a8d04ef7be6d840aa4d724e7c48643202" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -666,13 +621,13 @@
           <declname>rectCount</declname>
         </param>
         <briefdescription>
-<para>Moves <emphasis>data</emphasis> and per-rectangle <emphasis>categories</emphasis> (empty, or exactly <emphasis>rectCount</emphasis>) into the series. </para>
+<para>Moves <emphasis>data</emphasis> and per-rectangle category values <emphasis>categories</emphasis> (empty, or exactly <emphasis>rectCount</emphasis>) into the series. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="132" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="155" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1abeec0a409c0467c991eb559500dd79fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -693,13 +648,13 @@
           <declname>rectCount</declname>
         </param>
         <briefdescription>
-<para>Like <computeroutput>setDataF</computeroutput>(<emphasis>data</emphasis>, <emphasis>rectCount</emphasis>) and also moves per-rectangle <emphasis>categories</emphasis> (empty, or exactly <emphasis>rectCount</emphasis>) into the series. </para>
+<para>Like <computeroutput>setDataF</computeroutput>(<emphasis>data</emphasis>, <emphasis>rectCount</emphasis>) and also moves per-rectangle category values <emphasis>categories</emphasis> (empty, or exactly <emphasis>rectCount</emphasis>) into the series. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="135" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="159" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a4c1102c1902b597e1d03201aac3f5176" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -726,7 +681,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="138" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="162" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1afa940d994549d840a47a7464fab9f680" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -753,7 +708,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="141" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="165" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a83e7c1afb39f6ddbd7a7e04b3f5b381d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>Q_INVOKABLE void</type>
@@ -769,26 +724,59 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="144" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="168" column="22"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1aaa37a59e34a883446579a22808bc314e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>Q_INVOKABLE void</type>
-        <definition>Q_INVOKABLE void QAccelPlot::RectangleSeries::setCategories</definition>
-        <argsstring>(const QList&lt; int &gt; &amp;categories)</argsstring>
-        <name>setCategories</name>
-        <qualifiedname>QAccelPlot::RectangleSeries::setCategories</qualifiedname>
-        <param>
-          <type>const QList&lt; int &gt; &amp;</type>
-          <declname>categories</declname>
-        </param>
+      <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1aff69c7666b5181aa9ee950c4eeb3dab1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>std::optional&lt; <ref refid="structQAccelPlot_1_1LegendEntry" kindref="compound">LegendEntry</ref> &gt;</type>
+        <definition>std::optional&lt; LegendEntry &gt; QAccelPlot::RectangleSeries::legendEntry</definition>
+        <argsstring>() const override</argsstring>
+        <name>legendEntry</name>
+        <qualifiedname>QAccelPlot::RectangleSeries::legendEntry</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1a4e5a53df93bf478ae4b3f2f53ee4ff37">legendEntry</reimplements>
         <briefdescription>
-<para>Sets one category per rectangle. An empty list clears categories; any other size must equal <computeroutput>count</computeroutput>. </para>
+<para>Returns the legend entry: the symbol and color of the rectangles. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="147" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="170" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1abd082065e3d4b9ce39095a77dd91231b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>QList&lt; <ref refid="structQAccelPlot_1_1LegendEntry" kindref="compound">LegendEntry</ref> &gt;</type>
+        <definition>QList&lt; LegendEntry &gt; QAccelPlot::RectangleSeries::legendEntries</definition>
+        <argsstring>() const override</argsstring>
+        <name>legendEntries</name>
+        <qualifiedname>QAccelPlot::RectangleSeries::legendEntries</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1a65b522c090eb4baa8377ea2fea24e2ab">legendEntries</reimplements>
+        <briefdescription>
+<para>Returns one legend entry per category, or the <computeroutput><ref refid="classQAccelPlot_1_1RectangleSeries_1aff69c7666b5181aa9ee950c4eeb3dab1" kindref="member">legendEntry()</ref></computeroutput> when there are no categories. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="172" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a32a25fdd804bacbf0b9d8414f15f0fd0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE void</type>
+        <definition>Q_INVOKABLE void QAccelPlot::RectangleSeries::setDataPointCategories</definition>
+        <argsstring>(const QVariantList &amp;categories)</argsstring>
+        <name>setDataPointCategories</name>
+        <qualifiedname>QAccelPlot::RectangleSeries::setDataPointCategories</qualifiedname>
+        <param>
+          <type>const QVariantList &amp;</type>
+          <declname>categories</declname>
+        </param>
+        <briefdescription>
+<para>Sets one category per rectangle, each a category <computeroutput>value</computeroutput> or <computeroutput>name</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>An empty list clears them; any other size must equal <computeroutput>count</computeroutput>. Other values leave their rectangle without a category and log a warning. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="178" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a127de00580279df93667249b43f68df0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE QVariantMap</type>
@@ -804,11 +792,11 @@
 <para>Returns rectangle <emphasis>index</emphasis> as an object with <computeroutput>x1</computeroutput>, <computeroutput>y1</computeroutput>, <computeroutput>x2</computeroutput>, <computeroutput>y2</computeroutput> properties. </para>
         </briefdescription>
         <detaileddescription>
-<para>Includes <computeroutput>category</computeroutput> when categories are set. Returns an empty object when <emphasis>index</emphasis> is out of range. </para>
+<para>Includes <computeroutput>category</computeroutput> when the rectangles have categories, and <computeroutput>categoryName</computeroutput> when that category has a name. Returns an empty object when <emphasis>index</emphasis> is out of range. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="152" column="29"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="184" column="29"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a7c5a7e5963b1e1701f7370a0cca8571a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -827,7 +815,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="155" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="187" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a1c3b4741371bc812b93a9cf557f00fbe" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -847,7 +835,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="160" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="192" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1acbf8fb06d9d8ca2a5ab3a0c4e060a4b4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -870,7 +858,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="127" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="150" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1aad3e05b7da4d8c16ca53819017e7b6e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -893,7 +881,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="127" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="150" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a5615889cceabfee35f5e3e2dbd25f455" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -917,7 +905,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="128" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="151" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1af143a846c63372800995a0bd4f058598" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -940,7 +928,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="128" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="151" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a683165ce25c4f4a2f0cf3a36852c3721" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -967,7 +955,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="128" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="151" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1ad10aa7307918305c127eb0b98c962484" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -994,7 +982,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="128" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="151" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1aa3475ca31d506b1b1c28ea586d61402e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1017,7 +1005,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="129" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="152" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a1180d75ce402fbf92fd7d95a4d0acda4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1040,7 +1028,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="129" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="152" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1ab0d977683b1b06807842ade3c6011a3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1067,7 +1055,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="129" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="152" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a795dc3374e83da98b6a471bb55f51fbd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1094,7 +1082,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="129" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="152" column="5"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="signal">
@@ -1111,22 +1099,22 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="164" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="196" column="10"/>
       </memberdef>
-      <memberdef kind="signal" id="classQAccelPlot_1_1RectangleSeries_1a8f80152686c044a7fe3a850382cd6861" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="signal" id="classQAccelPlot_1_1RectangleSeries_1af7692b7f6488058b0eabdaf05cdb98ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
-        <definition>void QAccelPlot::RectangleSeries::categoryColorsChanged</definition>
+        <definition>void QAccelPlot::RectangleSeries::categoriesChanged</definition>
         <argsstring>()</argsstring>
-        <name>categoryColorsChanged</name>
-        <qualifiedname>QAccelPlot::RectangleSeries::categoryColorsChanged</qualifiedname>
+        <name>categoriesChanged</name>
+        <qualifiedname>QAccelPlot::RectangleSeries::categoriesChanged</qualifiedname>
         <briefdescription>
-<para>Emitted when the categoryColors property changes. </para>
+<para>Emitted when a category is added, removed, or edited. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="166" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="198" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1RectangleSeries_1a4a78933d3a639c82dba3edd87bde6a86" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1141,7 +1129,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="168" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="200" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1RectangleSeries_1a447fb0055248a4c043574ee4fd543be9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1156,7 +1144,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="170" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="202" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1RectangleSeries_1a97be76ce75b7c21761071030fe407f47" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1171,22 +1159,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="172" column="10"/>
-      </memberdef>
-      <memberdef kind="signal" id="classQAccelPlot_1_1RectangleSeries_1a3ec6e2dc2b38de10b2e523a73bc4bb6c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void QAccelPlot::RectangleSeries::countChanged</definition>
-        <argsstring>()</argsstring>
-        <name>countChanged</name>
-        <qualifiedname>QAccelPlot::RectangleSeries::countChanged</qualifiedname>
-        <briefdescription>
-<para>Emitted when the rectangle count changes. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="174" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="204" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1RectangleSeries_1a0c70e2800949f9c27a4a6c744553025a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1201,7 +1174,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="176" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="206" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="protected-func">
@@ -1224,7 +1197,23 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="179" column="13"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="209" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a09d8e2cd705feb1278a2ae35eebf0f60" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::RectangleSeries::recordInspectionSupported</definition>
+        <argsstring>() const override</argsstring>
+        <name>recordInspectionSupported</name>
+        <qualifiedname>QAccelPlot::RectangleSeries::recordInspectionSupported</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1a11565c208e7f6c2615d367e96b133fd9">recordInspectionSupported</reimplements>
+        <briefdescription>
+<para>Returns true: rectangles are inspected as records. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="211" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1aef02be3d5bf326e8e2730b9743d4f7e5" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type><ref refid="structQAccelPlot_1_1InspectionRecord" kindref="compound">InspectionRecord</ref></type>
@@ -1244,7 +1233,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="181" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="213" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a80f460a4a64643cab9ed9c95523cce5d" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type><ref refid="structQAccelPlot_1_1InspectionRecord" kindref="compound">InspectionRecord</ref></type>
@@ -1264,7 +1253,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="183" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="215" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a4781f5e3d4a3831105d67be15accd03e" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1282,7 +1271,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="184" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="216" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a65a2b6755c7a599eaf6ff1fb3e54c6a7" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1300,7 +1289,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="185" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="217" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1abb8c966134316217b61aa27731cd4de9" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1318,7 +1307,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="186" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="218" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a9258965161abf24d2853375aedf3752d" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -1334,7 +1323,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="188" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="220" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a3d7418ecfd1c0b2db79d7c1cafa4c0c9" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -1358,10 +1347,24 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="190" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="222" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a8acf59efd1f01e26e9bfe60351bc67e6" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::RectangleSeries::onCategoriesChanged</definition>
+        <argsstring>()</argsstring>
+        <name>onCategoriesChanged</name>
+        <qualifiedname>QAccelPlot::RectangleSeries::onCategoriesChanged</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="225" column="10"/>
+      </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1ac480f0ea73396ff32faf7afb7f8e8f4c" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
         <definition>bool QAccelPlot::RectangleSeries::validateCategories</definition>
@@ -1382,7 +1385,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="193" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="226" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a39dc428c0169d4ef65e58e922354cd4e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1408,7 +1411,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="194" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="227" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1aa8c89087d5b2b1fbd47108ccc7d6ac13" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1434,7 +1437,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="195" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="228" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a0dbf7052bfc63c018f626be84a77f5f3" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -1456,7 +1459,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="197" column="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="230" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a506a462b18ba098653bf8522881683e6" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -1470,7 +1473,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="198" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="231" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1ab3c6ff5f438e199474d3f9a1824c29d5" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QColor</type>
@@ -1488,7 +1491,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="199" column="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="232" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a121a8e144786b7e5b23c2aa7e1262c16" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -1510,7 +1513,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="201" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="234" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a897665d9d5bb4cb2470bb0e81e5d4cde" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1528,7 +1531,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="202" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="235" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a839dc3701b3dc14ea7ad922f8e32222e" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1550,7 +1553,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="204" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="237" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1afd5c66773fa350ec0304d34ff9bec371" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -1564,7 +1567,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="206" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="239" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a6ddfc8899f6f8cc58b108a1ca6203993" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>HitTestInputs</type>
@@ -1582,7 +1585,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="224" column="19"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="257" column="19"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a38a89f4c0abbb540a660d8690ca3d1bf" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -1600,7 +1603,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="225" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="258" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleSeries_1a7e2951fc81070c39ec894e02d2d5e037" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1618,7 +1621,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="227" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="260" column="10"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -1627,7 +1630,17 @@
     <detaileddescription>
 <para>Rectangles are stored as interleaved (x1, y1, x2, y2) values and uploaded to the GPU as a float data texture, making it suitable for millions of rectangles. The <computeroutput><ref refid="classQAccelPlot_1_1RectangleSeries_1a8a7d03400f338d027b6fa7a823ba9bcd" kindref="member">setData()</ref></computeroutput> overloads keep doubles and upload them relative to an origin near the data, so large coordinates such as epoch timestamps stay precise. The <computeroutput><ref refid="classQAccelPlot_1_1RectangleSeries_1abeec0a409c0467c991eb559500dd79fb" kindref="member">setDataF()</ref></computeroutput> overloads store floats and upload them without conversion. Hover detection uses an internal <computeroutput><ref refid="classQAccelPlot_1_1SpatialGrid" kindref="compound">SpatialGrid</ref></computeroutput>; rectangles spanning more than 64 grid cells are tested linearly.</para>
 <para>An infinite edge extends the rectangle to the plot edge, e.g. <computeroutput>y1</computeroutput> = -Infinity and <computeroutput>y2</computeroutput> = +Infinity for a full-height span. Infinite edges don&apos;t affect the axes&apos; data ranges. Rectangles with a NaN edge are not drawn or hovered.</para>
-<para>Each rectangle can carry a <computeroutput>category</computeroutput>, an index into <computeroutput>categoryColors</computeroutput>. Rectangles without a category, or with one outside <computeroutput>categoryColors</computeroutput>, use <computeroutput>color</computeroutput>.</para>
+<para>Each rectangle can carry a <computeroutput>category</computeroutput>. List the categories in <computeroutput>categories</computeroutput> as <computeroutput><ref refid="classQAccelPlot_1_1Category" kindref="compound">Category</ref></computeroutput> objects, each with a <computeroutput>value</computeroutput> and an optional <computeroutput>name</computeroutput> and <computeroutput>color:</computeroutput> </para>
+<para><programlisting><codeline><highlight class="normal">QAccelPlot.RectangleSeries<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1RectangleSeries_1ab5db60ed9c8b7777149175b6d897ea23" kindref="member">categories</ref>:<sp/>[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QAccelPlot.Category<sp/>{<sp/>value:<sp/>0;<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a71b82b1a4372d71c848a3a09c59b20b0" kindref="member">name</ref>:<sp/></highlight><highlight class="stringliteral">&quot;Running&quot;</highlight><highlight class="normal">;<sp/><ref refid="classQAccelPlot_1_1RectangleSeries_1a0aa2fb58305e5815f71d8d717dc3821f" kindref="member">color</ref>:<sp/></highlight><highlight class="stringliteral">&quot;seagreen&quot;</highlight><highlight class="normal"><sp/>},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QAccelPlot.Category<sp/>{<sp/>value:<sp/>1;<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a71b82b1a4372d71c848a3a09c59b20b0" kindref="member">name</ref>:<sp/></highlight><highlight class="stringliteral">&quot;Alarm&quot;</highlight><highlight class="normal">;<sp/><ref refid="classQAccelPlot_1_1RectangleSeries_1a0aa2fb58305e5815f71d8d717dc3821f" kindref="member">color</ref>:<sp/></highlight><highlight class="stringliteral">&quot;firebrick&quot;</highlight><highlight class="normal"><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Component.onCompleted:<sp/><ref refid="classQAccelPlot_1_1RectangleSeries_1a8a7d03400f338d027b6fa7a823ba9bcd" kindref="member">setData</ref>([{<sp/>x1:<sp/>0,<sp/>x2:<sp/>40,<sp/>category:<sp/></highlight><highlight class="stringliteral">&quot;Running&quot;</highlight><highlight class="normal"><sp/>}])</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>A rectangle is filled with the color of the category whose <computeroutput>value</computeroutput> equals its <computeroutput>category</computeroutput>. Rectangles without a category, or whose category has no color or is not listed, use <computeroutput>color</computeroutput>. The legend shows one row per category.</para>
+<para>Set <computeroutput>antialiasing</computeroutput> to smooth edges that fall between pixels. It is off by default because rectangles that touch then show faint seams.</para>
 <para><simplesect kind="par"><title>Limits</title><para>Up to 16,777,216 (2^24) rectangles are drawn correctly. The shader indexes rectangles in single precision, and at that count the data texture reaches 8192 rows, the size every GPU supports.</para>
 </simplesect>
 <simplesect kind="see"><para><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref>, <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> </para>
@@ -1668,20 +1681,21 @@
         <label>QQuickItem</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="56" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="56" bodyend="252"/>
+    <location file="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" line="77" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp" bodystart="77" bodyend="283"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1PlotSeries_1afb31a972c88456df230348f4e3794ab5" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>appendDataPoint</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a39dc428c0169d4ef65e58e922354cd4e" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>applyData</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1ac760dabf61aac4bad4cc5e93ad4dae43" prot="protected" virt="virtual"><scope>QAccelPlot::RectangleSeries</scope><name>applyDataPoints</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1aa8c89087d5b2b1fbd47108ccc7d6ac13" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>applyFloatData</name></member>
-      <member refid="classQAccelPlot_1_1RectangleSeries_1a92bc4f1e4e62cb85b92993717a3919c8" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>border</name></member>
-      <member refid="classQAccelPlot_1_1RectangleSeries_1a8533f28f6177d4ed30a53a79fcf99da1" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>border</name></member>
-      <member refid="classQAccelPlot_1_1RectangleSeries_1a3e62ee0592cbeeea72a15511c812b9b4" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>border_</name></member>
+      <member refid="classQAccelPlot_1_1RectangleSeries_1a628e3158a675995a855c91b05f01a84d" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>border</name></member>
+      <member refid="classQAccelPlot_1_1RectangleSeries_1a061693e5dcb1d961b7c217fbb189adab" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>border</name></member>
+      <member refid="classQAccelPlot_1_1RectangleSeries_1a3a50bb62358de53c412f4bf5fefe07f6" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>border_</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a7e2951fc81070c39ec894e02d2d5e037" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>buildVertexCache</name></member>
-      <member refid="classQAccelPlot_1_1RectangleSeries_1a7dfebc9760304138db9624f7f8e9cd86" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>categoryColors</name></member>
-      <member refid="classQAccelPlot_1_1RectangleSeries_1a3bc5c4302a62a46875b97c63b2055a11" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>categoryColors</name></member>
-      <member refid="classQAccelPlot_1_1RectangleSeries_1a51b520e79ed624399697b55a4f76d6e5" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>categoryColors_</name></member>
-      <member refid="classQAccelPlot_1_1RectangleSeries_1a8f80152686c044a7fe3a850382cd6861" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>categoryColorsChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a8e2bc0b299f2d8b1d1c489cd532c10c7" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>CapacityOverflow</name></member>
+      <member refid="classQAccelPlot_1_1RectangleSeries_1ab5db60ed9c8b7777149175b6d897ea23" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>categories</name></member>
+      <member refid="classQAccelPlot_1_1RectangleSeries_1a9f3810fbe4a7f9b216dd2a0b2868b474" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>categories</name></member>
+      <member refid="classQAccelPlot_1_1RectangleSeries_1a37e17c01d38e355e6da8618ad0a85de5" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>categories_</name></member>
+      <member refid="classQAccelPlot_1_1RectangleSeries_1af7692b7f6488058b0eabdaf05cdb98ec" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>categoriesChanged</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a83e7c1afb39f6ddbd7a7e04b3f5b381d" prot="public" virt="virtual"><scope>QAccelPlot::RectangleSeries</scope><name>clearData</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a0aa2fb58305e5815f71d8d717dc3821f" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>color</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a4a2e622708a8a4a1a2be3e8e1001c271" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>color</name></member>
@@ -1691,9 +1705,9 @@
       <member refid="classQAccelPlot_1_1RectangleSeries_1a1c3b4741371bc812b93a9cf557f00fbe" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>contains</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a121a8e144786b7e5b23c2aa7e1262c16" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>containsInPixels</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a0dbf7052bfc63c018f626be84a77f5f3" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>coordinate</name></member>
-      <member refid="classQAccelPlot_1_1RectangleSeries_1a15ed9df159860244ebaab8f93a837c7a" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>count</name></member>
-      <member refid="classQAccelPlot_1_1RectangleSeries_1ad643a3292d1d25cf9acfb32dd0871a7a" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>count</name></member>
-      <member refid="classQAccelPlot_1_1RectangleSeries_1a3ec6e2dc2b38de10b2e523a73bc4bb6c" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>countChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a53e3980416791cdfa11e95ddf45f51a6" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>count</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1aeb5ea2178ca0117bb4a308ab5e0625d6" prot="public" virt="virtual"><scope>QAccelPlot::RectangleSeries</scope><name>count</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a4ab130c4ee8aafee3cc274bee94b0633" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>countChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a7f2b4290f315a7c3d22b7982763b8bc8" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>DataChange</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a92ba17a411311bfe937b241a8b470bae" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>dataPoints</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a6d99b3e386cc6e8d703e590c83a3332b" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>dataPoints</name></member>
@@ -1710,31 +1724,40 @@
       <member refid="classQAccelPlot_1_1RectangleSeries_1a065ead86e85291e377087f91996d77b5" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>hoverColor</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a9f3cbe0746d032dd96f1b0f97c55627c" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>hoverColor_</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a4a78933d3a639c82dba3edd87bde6a86" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>hoverColorChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a2d17eca751f181d61dab1ad6ab95936c" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>hovered</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a1edf0373b587b3f3373048e4d0b707ed" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>hovered</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ac9f85caffff66a6a9afc05fbb79ca321" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>hoveredChanged</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a0d60605cb2fc7c48505f697e5a1d6d9b" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>hoveredIndex</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a71502b4ed1b60af00ad72c4b80c3a15b" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>hoveredIndex</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a03812984154d495371aee06df39555d9" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>hoveredIndex_</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a0c70e2800949f9c27a4a6c744553025a" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>hoveredIndexChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a053ad70c74d104b5083006e44698ece1" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>hoverEnabled</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a1061620ba946d66043941e81e0a85ebb" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>hoverEnabled</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a4e3f4fcdbad0963b70f29169d4026a0a" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>hoverEnabledChanged</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a4781f5e3d4a3831105d67be15accd03e" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>hoverEnterEvent</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1abb8c966134316217b61aa27731cd4de9" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>hoverLeaveEvent</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a65a2b6755c7a599eaf6ff1fb3e54c6a7" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>hoverMoveEvent</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1a2a23af3683416afeea98697c66616cea" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>inspection</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1addb81876423cd48343592cfce8c19d5b" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>inspection</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a00a3d60288b86fd54569387281355060" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>inspection</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a32638eb7718d210d95fa70351696441d" prot="protected" virt="virtual"><scope>QAccelPlot::RectangleSeries</scope><name>inspectionAvailable</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a10efc3369e62d44c163ca7bdcd39fb26" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>inspectionDataChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1aa12ee9f8a4fb237b8cf8789ae1a9df7e" prot="protected" virt="virtual"><scope>QAccelPlot::RectangleSeries</scope><name>inspectionDataPointAt</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1aef02be3d5bf326e8e2730b9743d4f7e5" prot="protected" virt="virtual"><scope>QAccelPlot::RectangleSeries</scope><name>inspectionRecord</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a80f460a4a64643cab9ed9c95523cce5d" prot="protected" virt="virtual"><scope>QAccelPlot::RectangleSeries</scope><name>inspectionRecordAt</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1ae2ba190d0642e569bf6a300bbf2573e5" prot="protected" virt="virtual"><scope>QAccelPlot::RectangleSeries</scope><name>inspectionSource</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1abeaff71c0af0468b6923e90324d15ca8" prot="protected" virt="virtual"><scope>QAccelPlot::RectangleSeries</scope><name>inspectionSource</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a6d479055f9c3acfd2be5befa8cf6d1a8" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>invalidateDataRanges</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a5d56c6f054d6dba8b905f0cb49e188d7" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>invalidateInspection</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a643356bf61702f41000427e42a644f00" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>lastHitIndex_</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a47cbe3fb4e57f5c4b644da430e691c27" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>lastHitTest_</name></member>
+      <member refid="classQAccelPlot_1_1RectangleSeries_1abd082065e3d4b9ce39095a77dd91231b" prot="public" virt="virtual"><scope>QAccelPlot::RectangleSeries</scope><name>legendEntries</name></member>
+      <member refid="classQAccelPlot_1_1RectangleSeries_1aff69c7666b5181aa9ee950c4eeb3dab1" prot="public" virt="virtual"><scope>QAccelPlot::RectangleSeries</scope><name>legendEntry</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a1dbdd720bb06d07672267cfc603b932b" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>legendEntryChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>LegendSymbol</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1ada3d9fd14934647c0f31870184f5eff5" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>legendSymbol</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a37f1fe5cb9f339d593147cd47b75d180" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>legendSymbol</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>LegendSymbol</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a2b88cb6eac8d12cf02b6daf37460150e" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>legendSymbolChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1ad85ffb96b1c9ee3d13a25c412db1eac6" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>logScaleX</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a23f7dd78fbc4e5e03d2537ee2e40707c" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>logScaleY</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>MarkerShape</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a4a6c36243deec7974410e56b27b19df7" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>minimumHeight</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a82fbb1ce9e2f7393a5d4cd47da20e975" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>minimumHeight</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1ab08438ab8eee0a6112f9aed187c00b72" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>minimumHeight_</name></member>
@@ -1749,24 +1772,27 @@
       <member refid="classQAccelPlot_1_1PlotSeries_1a76f0a354a43064f857553ffb2997b6da" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>notifyDataPointsChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a0d37e4fd843acbd10bd9c5d0bf2300c9" prot="protected" virt="virtual"><scope>QAccelPlot::RectangleSeries</scope><name>onAxisRangeChanged</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a9258965161abf24d2853375aedf3752d" prot="protected" virt="virtual"><scope>QAccelPlot::RectangleSeries</scope><name>onAxisScaleChanged</name></member>
+      <member refid="classQAccelPlot_1_1RectangleSeries_1a8acf59efd1f01e26e9bfe60351bc67e6" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>onCategoriesChanged</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a3d7418ecfd1c0b2db79d7c1cafa4c0c9" prot="protected" virt="virtual"><scope>QAccelPlot::RectangleSeries</scope><name>onDataPointsChanged</name></member>
-      <member refid="classQAccelPlot_1_1RectangleSeries_1a065183e3c8a37fae7e9a1980fb64427d" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>overCapacity_</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a7e959948dfdc3fded2cfd5819c62ee61" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>overRenderCapacity_</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1aef0398b7a4f807870dd88a326c0e7d0d" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>plotRect</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1abf3aa64b08afe4f5d2a1728d035665b2" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>plotRect</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a9d58451724a7e0b06d7f04aeba101856" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>plotRectChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1aea1937eafb72c04be5befad4d37e3aac" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>PlotSeries</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a041d4bdadcfef0b798f785ec9c65d933" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>PlotSeries</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a9bc3829157d222d0382bca8fd0025c54" prot="protected" virt="virtual"><scope>QAccelPlot::RectangleSeries</scope><name>positionInspectionSupported</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a4c1102c1902b597e1d03201aac3f5176" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>postData</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1afa940d994549d840a47a7464fab9f680" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>postData</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1acbf8fb06d9d8ca2a5ab3a0c4e060a4b4" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>postData</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1aad3e05b7da4d8c16ca53819017e7b6e0" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>postData</name></member>
+      <member refid="classQAccelPlot_1_1RectangleSeries_1a09d8e2cd705feb1278a2ae35eebf0f60" prot="protected" virt="virtual"><scope>QAccelPlot::RectangleSeries</scope><name>recordInspectionSupported</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a127de00580279df93667249b43f68df0" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>rectangleAt</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1ab3c6ff5f438e199474d3f9a1824c29d5" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>rectangleColor</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a7c5a7e5963b1e1701f7370a0cca8571a" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>rectangleIndexAt</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a35ba4802c433a7fa70bd8dec44a848e0" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>RectangleSeries</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1af46b6cad22a7db687f5b6a93c960abd4" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>renderCapacity_</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a956e8eb1ca7398b6b5f8022225d6edf7" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>resolvePlotRect</name></member>
-      <member refid="classQAccelPlot_1_1RectangleSeries_1aaa37a59e34a883446579a22808bc314e" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>setCategories</name></member>
-      <member refid="classQAccelPlot_1_1RectangleSeries_1a6259ebaed30dc9812190b4ab9721c78d" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>setCategoryColors</name></member>
+      <member refid="classQAccelPlot_1_1RectangleSeries_1aac6bdb25376a29e3b511837efec8a0a0" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>setCategories</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a3fb2f93716829bf358063859eb333861" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>setColor</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a8a7d03400f338d027b6fa7a823ba9bcd" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>setData</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a8d04ef7be6d840aa4d724e7c48643202" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>setData</name></member>
@@ -1779,8 +1805,11 @@
       <member refid="classQAccelPlot_1_1RectangleSeries_1a1180d75ce402fbf92fd7d95a4d0acda4" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>setDataF</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1ab0d977683b1b06807842ade3c6011a3a" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>setDataF</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a795dc3374e83da98b6a471bb55f51fbd" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>setDataF</name></member>
+      <member refid="classQAccelPlot_1_1RectangleSeries_1a32a25fdd804bacbf0b9d8414f15f0fd0" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>setDataPointCategories</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a33f7d8cec42ff4cf6ac9d978e088580c" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>setHoverColor</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1adb4f416b8f3104004eb4611b4d0b7f85" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>setHovered</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a897665d9d5bb4cb2470bb0e81e5d4cde" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>setHoveredIndex</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a085c9270fc300894598ebe442e2d019c" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>setHoverEnabled</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a75695e62b548ccf79a1fe9c1f477a502" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>setLegendSymbol</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a051cc8deac715d3bf3367de5e96b9d83" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>setMinimumHeight</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a9897325728653f3991bdb879b1b3ba29" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>setMinimumWidth</name></member>
@@ -1793,14 +1822,16 @@
       <member refid="classQAccelPlot_1_1RectangleSeries_1afd5c66773fa350ec0304d34ff9bec371" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>spatialGridReady</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1ab33e61712236103b639574e9cbb75a56" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>spatialGridValid_</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a1957171db65a1684ebd515948dfb375d" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>storeDataPoints</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1aa443c35379a9aa2df5da14a5b87a7417" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>supportHover</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a38a89f4c0abbb540a660d8690ca3d1bf" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>topmostRectangleAt</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a839dc3701b3dc14ea7ad922f8e32222e" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>updateMaterial</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a08b41be03eae3f6a87f077776bdf10f9" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>updatePaintNode</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ae657768ad16fcf2b26eac4ce2f6cfd75" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>updateRenderCapacity</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a8e0cd30fd463999a2c7dfcbbcae951dd" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>uploadedRevision_</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1ac480f0ea73396ff32faf7afb7f8e8f4c" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>validateCategories</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a6c7c2ca488f737cd30ee447439441682" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>validateDataSize</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1ac9c532c2c9fec18c4aa53252cda99b9c" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>validateRawDataArguments</name></member>
-      <member refid="classQAccelPlot_1_1RectangleSeries_1ae1d9e7f48009de6f311f7994deba5b9e" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>vertexCache_</name></member>
+      <member refid="classQAccelPlot_1_1RectangleSeries_1abc038f4fe57fbc6f771d875724d18aaa" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>vertexCache_</name></member>
       <member refid="classQAccelPlot_1_1RectangleSeries_1a948f13f5b87af05e249789a451493e1e" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>vertexCacheHasCategories_</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a250150d8eaea44c2608375839747b2b2" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>xAxis</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1afb85ad640494dbeaa616493a1bd4b966" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleSeries</scope><name>xAxis</name></member>

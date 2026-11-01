@@ -17,6 +17,7 @@
 
 
 
+* `#include "QAccelPlot/materials/GradientTexture.hpp"`
 * `#include "QAccelPlot/materials/RectMaterial.hpp"`
 
 
@@ -44,7 +45,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| class | [**BarMaterial**](classQAccelPlot_1_1BarMaterial.md) <br>_QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry uniforms._ |
+| class | [**BarMaterial**](classQAccelPlot_1_1BarMaterial.md) <br>_QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry and colormap uniforms._ |
 
 
 

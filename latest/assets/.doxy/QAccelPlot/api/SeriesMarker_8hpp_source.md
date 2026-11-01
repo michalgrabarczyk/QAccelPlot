@@ -17,7 +17,7 @@
 //
 #pragma once
 
-#include "QAccelPlot/series/PlotSeries.hpp"
+#include "QAccelPlot/series/MarkerShape.hpp"
 
 #include <QObject>
 
@@ -27,7 +27,7 @@ class SeriesMarker : public QObject {
     Q_OBJECT
     QML_ANONYMOUS
 
-    Q_PROPERTY(PlotSeries::MarkerShape shape READ shape WRITE setShape NOTIFY shapeChanged)
+    Q_PROPERTY(MarkerShape shape READ shape WRITE setShape NOTIFY shapeChanged)
     Q_PROPERTY(qreal size READ size WRITE setSize NOTIFY sizeChanged)
     Q_PROPERTY(bool filled READ filled WRITE setFilled NOTIFY filledChanged)
     Q_PROPERTY(qreal strokeWidth READ strokeWidth WRITE setStrokeWidth NOTIFY strokeWidthChanged)
@@ -35,10 +35,10 @@ class SeriesMarker : public QObject {
 public:
     enum class NoneShape { Accepted, Rejected };
 
-    SeriesMarker(PlotSeries::MarkerShape shape, qreal size, NoneShape noneShape, QObject* parent);
+    SeriesMarker(MarkerShape shape, qreal size, NoneShape noneShape, QObject* parent);
 
-    PlotSeries::MarkerShape shape() const;
-    void setShape(PlotSeries::MarkerShape shape);
+    MarkerShape shape() const;
+    void setShape(MarkerShape shape);
 
     qreal size() const;
     void setSize(qreal size);
@@ -56,7 +56,7 @@ signals:
     void strokeWidthChanged();
 
 private:
-    PlotSeries::MarkerShape shape_;
+    MarkerShape shape_;
     qreal size_;
     NoneShape noneShape_;
     bool filled_{true};

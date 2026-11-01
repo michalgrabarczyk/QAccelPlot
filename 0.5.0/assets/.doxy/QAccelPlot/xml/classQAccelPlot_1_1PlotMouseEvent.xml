@@ -1,0 +1,458 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1PlotMouseEvent" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::PlotMouseEvent</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
+    <includes local="no">PlotMouseEvent.hpp</includes>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotMouseEvent_1a12f7183ee56110b140750d919019db77" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>Qt::MouseButton</type>
+        <definition>Qt::MouseButton QAccelPlot::PlotMouseEvent::button</definition>
+        <argsstring></argsstring>
+        <name>button</name>
+        <qualifiedname>QAccelPlot::PlotMouseEvent::button</qualifiedname>
+        <read>button</read>
+        <briefdescription>
+<para>The mouse button that caused the event; <computeroutput>Qt.NoButton</computeroutput> for a move. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" line="33" column="5" bodyfile="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotMouseEvent_1a12fc2fdd402e11bfd465245c97b65f5e" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>Qt::MouseButtons</type>
+        <definition>Qt::MouseButtons QAccelPlot::PlotMouseEvent::buttons</definition>
+        <argsstring></argsstring>
+        <name>buttons</name>
+        <qualifiedname>QAccelPlot::PlotMouseEvent::buttons</qualifiedname>
+        <read>buttons</read>
+        <briefdescription>
+<para>The mouse buttons held down during the event. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" line="35" column="5" bodyfile="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotMouseEvent_1aeb7cfbe01655891a4782f410a18dcd3f" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::PlotMouseEvent::x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <qualifiedname>QAccelPlot::PlotMouseEvent::x</qualifiedname>
+        <read>x</read>
+        <briefdescription>
+<para>Item-local pixel X coordinate of the event. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" line="37" column="5" bodyfile="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotMouseEvent_1a2967bb8752b1493f4075001c9fb961ee" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::PlotMouseEvent::y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <qualifiedname>QAccelPlot::PlotMouseEvent::y</qualifiedname>
+        <read>y</read>
+        <briefdescription>
+<para>Item-local pixel Y coordinate of the event. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" line="39" column="5" bodyfile="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotMouseEvent_1a237e7026f1e62daa5aad2b1004616302" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>Qt::KeyboardModifiers</type>
+        <definition>Qt::KeyboardModifiers QAccelPlot::PlotMouseEvent::modifiers</definition>
+        <argsstring></argsstring>
+        <name>modifiers</name>
+        <qualifiedname>QAccelPlot::PlotMouseEvent::modifiers</qualifiedname>
+        <read>modifiers</read>
+        <briefdescription>
+<para>Active keyboard modifiers at the time of the event. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" line="41" column="5" bodyfile="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotMouseEvent_1a1849087a8c631aa466077ec6a4d87145" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotMouseEvent::accepted</definition>
+        <argsstring></argsstring>
+        <name>accepted</name>
+        <qualifiedname>QAccelPlot::PlotMouseEvent::accepted</qualifiedname>
+        <read>isAccepted</read>
+        <write>setAccepted</write>
+        <briefdescription>
+<para>Whether this event has been accepted by a handler. Read via <computeroutput><ref refid="classQAccelPlot_1_1PlotMouseEvent_1af3ada21d571521a0ee4a38ebac012bed" kindref="member">isAccepted()</ref></computeroutput>; set via <computeroutput><ref refid="classQAccelPlot_1_1PlotMouseEvent_1a7944913d23a28ca9e24c274b505af679" kindref="member">accept()</ref></computeroutput> or <computeroutput><ref refid="classQAccelPlot_1_1PlotMouseEvent_1a26f62899620ac0faf719481900a81500" kindref="member">ignore()</ref></computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" line="44" column="5" bodyfile="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classQAccelPlot_1_1PlotMouseEvent_1a8431a636b65eadbbf187e83f8ac2b58c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class PlotView</definition>
+        <argsstring></argsstring>
+        <name>PlotView</name>
+        <qualifiedname>QAccelPlot::PlotMouseEvent::PlotView</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1PlotView" kindref="compound">PlotView</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" line="70" column="18" bodyfile="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" bodystart="70" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotMouseEvent_1a078137da8bdcc47e971e0c99b8aa0742" prot="private" static="no" mutable="no">
+        <type>Qt::MouseButton</type>
+        <definition>Qt::MouseButton QAccelPlot::PlotMouseEvent::button_</definition>
+        <argsstring></argsstring>
+        <name>button_</name>
+        <qualifiedname>QAccelPlot::PlotMouseEvent::button_</qualifiedname>
+        <initializer>{Qt::NoButton}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" line="75" column="21" bodyfile="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" bodystart="75" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotMouseEvent_1aafc7d29f4896c8948f576cbac5299ae8" prot="private" static="no" mutable="no">
+        <type>Qt::MouseButtons</type>
+        <definition>Qt::MouseButtons QAccelPlot::PlotMouseEvent::buttons_</definition>
+        <argsstring></argsstring>
+        <name>buttons_</name>
+        <qualifiedname>QAccelPlot::PlotMouseEvent::buttons_</qualifiedname>
+        <initializer>{Qt::NoButton}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" line="76" column="22" bodyfile="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" bodystart="76" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotMouseEvent_1a58b05bb5316c82d6ea5daae46e1e4259" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::PlotMouseEvent::x_</definition>
+        <argsstring></argsstring>
+        <name>x_</name>
+        <qualifiedname>QAccelPlot::PlotMouseEvent::x_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" line="77" column="11" bodyfile="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" bodystart="77" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotMouseEvent_1a9da3fa9e7225455bc4cea379802325ed" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::PlotMouseEvent::y_</definition>
+        <argsstring></argsstring>
+        <name>y_</name>
+        <qualifiedname>QAccelPlot::PlotMouseEvent::y_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" line="78" column="11" bodyfile="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" bodystart="78" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotMouseEvent_1af0d6071e378ba399747980c850749f81" prot="private" static="no" mutable="no">
+        <type>Qt::KeyboardModifiers</type>
+        <definition>Qt::KeyboardModifiers QAccelPlot::PlotMouseEvent::modifiers_</definition>
+        <argsstring></argsstring>
+        <name>modifiers_</name>
+        <qualifiedname>QAccelPlot::PlotMouseEvent::modifiers_</qualifiedname>
+        <initializer>{Qt::NoModifier}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" line="79" column="27" bodyfile="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" bodystart="79" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotMouseEvent_1a446cb6b0efa7cf7060d432d64a4a79a4" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotMouseEvent::accepted_</definition>
+        <argsstring></argsstring>
+        <name>accepted_</name>
+        <qualifiedname>QAccelPlot::PlotMouseEvent::accepted_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" line="80" column="10" bodyfile="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" bodystart="80" bodyend="80"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotMouseEvent_1a6d497e472f5b1eb8158e46b00365c2d4" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::PlotMouseEvent::PlotMouseEvent</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>PlotMouseEvent</name>
+        <qualifiedname>QAccelPlot::PlotMouseEvent::PlotMouseEvent</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a <ref refid="classQAccelPlot_1_1PlotMouseEvent" kindref="compound">PlotMouseEvent</ref> with an optional <computeroutput>parent</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" line="48" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotMouseEvent_1af51aef0d3b9ea337d736319077993ecf" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Qt::MouseButton</type>
+        <definition>Qt::MouseButton QAccelPlot::PlotMouseEvent::button</definition>
+        <argsstring>() const</argsstring>
+        <name>button</name>
+        <qualifiedname>QAccelPlot::PlotMouseEvent::button</qualifiedname>
+        <briefdescription>
+<para>Returns the mouse button that caused the event; <computeroutput>Qt::NoButton</computeroutput> for a move. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" line="51" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotMouseEvent_1a7418fffda5aa1e9a1cba08d435f8d823" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Qt::MouseButtons</type>
+        <definition>Qt::MouseButtons QAccelPlot::PlotMouseEvent::buttons</definition>
+        <argsstring>() const</argsstring>
+        <name>buttons</name>
+        <qualifiedname>QAccelPlot::PlotMouseEvent::buttons</qualifiedname>
+        <briefdescription>
+<para>Returns the mouse buttons held down during the event. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" line="53" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotMouseEvent_1a253c477fe12ba1c346e595e0d258bea3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::PlotMouseEvent::x</definition>
+        <argsstring>() const</argsstring>
+        <name>x</name>
+        <qualifiedname>QAccelPlot::PlotMouseEvent::x</qualifiedname>
+        <briefdescription>
+<para>Returns the item-local pixel X coordinate of the event. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" line="55" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotMouseEvent_1af5fe11af5402196cbec65c3f6c4dbe36" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::PlotMouseEvent::y</definition>
+        <argsstring>() const</argsstring>
+        <name>y</name>
+        <qualifiedname>QAccelPlot::PlotMouseEvent::y</qualifiedname>
+        <briefdescription>
+<para>Returns the item-local pixel Y coordinate of the event. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" line="57" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotMouseEvent_1acba280638c6542e7741a5e163657b079" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Qt::KeyboardModifiers</type>
+        <definition>Qt::KeyboardModifiers QAccelPlot::PlotMouseEvent::modifiers</definition>
+        <argsstring>() const</argsstring>
+        <name>modifiers</name>
+        <qualifiedname>QAccelPlot::PlotMouseEvent::modifiers</qualifiedname>
+        <briefdescription>
+<para>Returns the active keyboard modifiers at the time of the event. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" line="59" column="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotMouseEvent_1af3ada21d571521a0ee4a38ebac012bed" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotMouseEvent::isAccepted</definition>
+        <argsstring>() const</argsstring>
+        <name>isAccepted</name>
+        <qualifiedname>QAccelPlot::PlotMouseEvent::isAccepted</qualifiedname>
+        <briefdescription>
+<para>Returns true if the event has been accepted by a handler. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" line="61" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotMouseEvent_1a7944913d23a28ca9e24c274b505af679" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE void</type>
+        <definition>Q_INVOKABLE void QAccelPlot::PlotMouseEvent::accept</definition>
+        <argsstring>()</argsstring>
+        <name>accept</name>
+        <qualifiedname>QAccelPlot::PlotMouseEvent::accept</qualifiedname>
+        <briefdescription>
+<para>Accepts the event, suppressing the plot&apos;s built-in handling. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" line="63" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotMouseEvent_1a26f62899620ac0faf719481900a81500" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE void</type>
+        <definition>Q_INVOKABLE void QAccelPlot::PlotMouseEvent::ignore</definition>
+        <argsstring>()</argsstring>
+        <name>ignore</name>
+        <qualifiedname>QAccelPlot::PlotMouseEvent::ignore</qualifiedname>
+        <briefdescription>
+<para>Ignores the event, allowing the plot&apos;s built-in handling to proceed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" line="65" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotMouseEvent_1ab18c886fe3f574609d59f4d92ff113ee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotMouseEvent::setAccepted</definition>
+        <argsstring>(bool accepted)</argsstring>
+        <name>setAccepted</name>
+        <qualifiedname>QAccelPlot::PlotMouseEvent::setAccepted</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>accepted</declname>
+        </param>
+        <briefdescription>
+<para>Sets whether the event is accepted. Equivalent to <computeroutput><ref refid="classQAccelPlot_1_1PlotMouseEvent_1a7944913d23a28ca9e24c274b505af679" kindref="member">accept()</ref></computeroutput> if <computeroutput>accepted</computeroutput> is true, or <computeroutput><ref refid="classQAccelPlot_1_1PlotMouseEvent_1a26f62899620ac0faf719481900a81500" kindref="member">ignore()</ref></computeroutput> if false. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" line="67" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotMouseEvent_1a27189dea1d9ee973b86d5e68d7021e43" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotMouseEvent::reset</definition>
+        <argsstring>(const QSinglePointEvent &amp;event)</argsstring>
+        <name>reset</name>
+        <qualifiedname>QAccelPlot::PlotMouseEvent::reset</qualifiedname>
+        <param>
+          <type>const QSinglePointEvent &amp;</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+<para>Copies <computeroutput>event</computeroutput> and clears the acceptance before the plot emits a mouse signal. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" line="73" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Carries mouse event data for the mouse signals. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>An instance of this class is passed to each mouse signal. Mirrors the Qt <computeroutput>QEvent</computeroutput> API: call <computeroutput><ref refid="classQAccelPlot_1_1PlotMouseEvent_1a7944913d23a28ca9e24c274b505af679" kindref="member">accept()</ref></computeroutput> in a handler to consume the event and suppress the plot&apos;s built-in handling (dragging, double-click rescaling, etc.).</para>
+<para><simplesect kind="note"><para>The object is owned by <computeroutput>QAccelPlot</computeroutput> and is reused across events — do not store a reference to it beyond the signal handler. </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::PlotMouseEvent</label>
+        <link refid="classQAccelPlot_1_1PlotMouseEvent"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::PlotMouseEvent</label>
+        <link refid="classQAccelPlot_1_1PlotMouseEvent"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" line="27" column="1" bodyfile="QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp" bodystart="27" bodyend="81"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1PlotMouseEvent_1a7944913d23a28ca9e24c274b505af679" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>accept</name></member>
+      <member refid="classQAccelPlot_1_1PlotMouseEvent_1a1849087a8c631aa466077ec6a4d87145" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>accepted</name></member>
+      <member refid="classQAccelPlot_1_1PlotMouseEvent_1a446cb6b0efa7cf7060d432d64a4a79a4" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>accepted_</name></member>
+      <member refid="classQAccelPlot_1_1PlotMouseEvent_1a12f7183ee56110b140750d919019db77" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>button</name></member>
+      <member refid="classQAccelPlot_1_1PlotMouseEvent_1af51aef0d3b9ea337d736319077993ecf" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>button</name></member>
+      <member refid="classQAccelPlot_1_1PlotMouseEvent_1a078137da8bdcc47e971e0c99b8aa0742" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>button_</name></member>
+      <member refid="classQAccelPlot_1_1PlotMouseEvent_1a12fc2fdd402e11bfd465245c97b65f5e" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>buttons</name></member>
+      <member refid="classQAccelPlot_1_1PlotMouseEvent_1a7418fffda5aa1e9a1cba08d435f8d823" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>buttons</name></member>
+      <member refid="classQAccelPlot_1_1PlotMouseEvent_1aafc7d29f4896c8948f576cbac5299ae8" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>buttons_</name></member>
+      <member refid="classQAccelPlot_1_1PlotMouseEvent_1a26f62899620ac0faf719481900a81500" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>ignore</name></member>
+      <member refid="classQAccelPlot_1_1PlotMouseEvent_1af3ada21d571521a0ee4a38ebac012bed" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>isAccepted</name></member>
+      <member refid="classQAccelPlot_1_1PlotMouseEvent_1a237e7026f1e62daa5aad2b1004616302" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>modifiers</name></member>
+      <member refid="classQAccelPlot_1_1PlotMouseEvent_1acba280638c6542e7741a5e163657b079" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>modifiers</name></member>
+      <member refid="classQAccelPlot_1_1PlotMouseEvent_1af0d6071e378ba399747980c850749f81" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>modifiers_</name></member>
+      <member refid="classQAccelPlot_1_1PlotMouseEvent_1a6d497e472f5b1eb8158e46b00365c2d4" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>PlotMouseEvent</name></member>
+      <member refid="classQAccelPlot_1_1PlotMouseEvent_1a8431a636b65eadbbf187e83f8ac2b58c" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>PlotView</name></member>
+      <member refid="classQAccelPlot_1_1PlotMouseEvent_1a27189dea1d9ee973b86d5e68d7021e43" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>reset</name></member>
+      <member refid="classQAccelPlot_1_1PlotMouseEvent_1ab18c886fe3f574609d59f4d92ff113ee" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>setAccepted</name></member>
+      <member refid="classQAccelPlot_1_1PlotMouseEvent_1aeb7cfbe01655891a4782f410a18dcd3f" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>x</name></member>
+      <member refid="classQAccelPlot_1_1PlotMouseEvent_1a253c477fe12ba1c346e595e0d258bea3" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>x</name></member>
+      <member refid="classQAccelPlot_1_1PlotMouseEvent_1a58b05bb5316c82d6ea5daae46e1e4259" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>x_</name></member>
+      <member refid="classQAccelPlot_1_1PlotMouseEvent_1a2967bb8752b1493f4075001c9fb961ee" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>y</name></member>
+      <member refid="classQAccelPlot_1_1PlotMouseEvent_1af5fe11af5402196cbec65c3f6c4dbe36" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>y</name></member>
+      <member refid="classQAccelPlot_1_1PlotMouseEvent_1a9da3fa9e7225455bc4cea379802325ed" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotMouseEvent</scope><name>y_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

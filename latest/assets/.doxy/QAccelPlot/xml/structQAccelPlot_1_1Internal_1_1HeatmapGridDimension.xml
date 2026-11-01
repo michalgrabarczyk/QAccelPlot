@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::HeatmapGridDimension</compoundname>
+    <includes local="no">HeatmapGrid.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension_1a4b9c33c299e2c03bae44879eacef32a2" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::HeatmapGridDimension::from</definition>
+        <argsstring></argsstring>
+        <name>from</name>
+        <qualifiedname>QAccelPlot::Internal::HeatmapGridDimension::from</qualifiedname>
+        <briefdescription>
+<para>Outer edge of cell 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/HeatmapGrid.hpp" line="37" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/HeatmapGrid.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension_1ace5b71ed8bd0fed108676a047717ccf2" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::HeatmapGridDimension::to</definition>
+        <argsstring></argsstring>
+        <name>to</name>
+        <qualifiedname>QAccelPlot::Internal::HeatmapGridDimension::to</qualifiedname>
+        <briefdescription>
+<para>Outer edge of the last cell. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/HeatmapGrid.hpp" line="38" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/HeatmapGrid.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension_1ac985b61d8b14ee61132637d53bb4f6ad" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::HeatmapGridDimension::count</definition>
+        <argsstring></argsstring>
+        <name>count</name>
+        <qualifiedname>QAccelPlot::Internal::HeatmapGridDimension::count</qualifiedname>
+        <briefdescription>
+<para>Number of cells. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/HeatmapGrid.hpp" line="39" column="9" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/HeatmapGrid.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension_1ad715181cf1d92c415b8b058171f25e2e" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::HeatmapGridDimension::logSpacing</definition>
+        <argsstring></argsstring>
+        <name>logSpacing</name>
+        <qualifiedname>QAccelPlot::Internal::HeatmapGridDimension::logSpacing</qualifiedname>
+        <briefdescription>
+<para>Whether the cells are evenly spaced in log10 instead of linearly. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/HeatmapGrid.hpp" line="40" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/HeatmapGrid.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension_1a0bcdfabd0d8753a92ca8361f8942583f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::HeatmapGridDimension::isValid</definition>
+        <argsstring>() const</argsstring>
+        <name>isValid</name>
+        <qualifiedname>QAccelPlot::Internal::HeatmapGridDimension::isValid</qualifiedname>
+        <briefdescription>
+<para>Returns whether both edges are finite, and positive under log spacing. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/HeatmapGrid.hpp" line="43" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension_1a82052e443b3b467b2e8ed267b0d6a119" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::HeatmapGridDimension::cellCoordinate</definition>
+        <argsstring>(double value) const</argsstring>
+        <name>cellCoordinate</name>
+        <qualifiedname>QAccelPlot::Internal::HeatmapGridDimension::cellCoordinate</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Returns the fractional cell coordinate of data <emphasis>value</emphasis>, or NaN when no cell can contain it. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/HeatmapGrid.hpp" line="45" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension_1aee62cb5c8ce17faff7f81a570cc70326" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::HeatmapGridDimension::cellCenter</definition>
+        <argsstring>(int index) const</argsstring>
+        <name>cellCenter</name>
+        <qualifiedname>QAccelPlot::Internal::HeatmapGridDimension::cellCenter</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Returns the center of cell <emphasis>index:</emphasis> arithmetic under linear spacing, geometric under log spacing. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/HeatmapGrid.hpp" line="47" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension_1ad89ad17c129114e7f4240d0d922d8f65" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::optional&lt; std::pair&lt; double, double &gt; &gt;</type>
+        <definition>std::optional&lt; std::pair&lt; double, double &gt; &gt; QAccelPlot::Internal::HeatmapGridDimension::dataExtent</definition>
+        <argsstring>(bool logAxis) const</argsstring>
+        <name>dataExtent</name>
+        <qualifiedname>QAccelPlot::Internal::HeatmapGridDimension::dataExtent</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>logAxis</declname>
+        </param>
+        <briefdescription>
+<para>Returns the ordered extent of the grid on an axis that is logarithmic when <emphasis>logAxis</emphasis> is set. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>On a log axis the extent starts at the first cell edge above zero. Returns <computeroutput>std::nullopt</computeroutput> for an invalid dimension, and on a log axis for a grid entirely at or below zero. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/HeatmapGrid.hpp" line="52" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension_1af13aa209ff41fbda8a177466c37754a0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping" kindref="compound">HeatmapShaderMapping</ref></type>
+        <definition>HeatmapShaderMapping QAccelPlot::Internal::HeatmapGridDimension::shaderMapping</definition>
+        <argsstring>(const AxisMapping &amp;axis, double length) const</argsstring>
+        <name>shaderMapping</name>
+        <qualifiedname>QAccelPlot::Internal::HeatmapGridDimension::shaderMapping</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1AxisMapping" kindref="compound">AxisMapping</ref> &amp;</type>
+          <declname>axis</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>Returns the mapping from pixels along an axis of <emphasis>length</emphasis> pixels, mapped by <emphasis>axis</emphasis>, to cell coordinates. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Computed in double precision relative to pixel 0, so that the single-precision shader only works with cell coordinates near the visible cells. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/HeatmapGrid.hpp" line="57" column="26"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>One dimension of a heatmap grid: <computeroutput>count</computeroutput> cells between the edges <computeroutput>from</computeroutput> and <computeroutput>to</computeroutput>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/series/internal/HeatmapGrid.hpp" line="36" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/HeatmapGrid.hpp" bodystart="36" bodyend="58"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension_1aee62cb5c8ce17faff7f81a570cc70326" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::HeatmapGridDimension</scope><name>cellCenter</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension_1a82052e443b3b467b2e8ed267b0d6a119" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::HeatmapGridDimension</scope><name>cellCoordinate</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension_1ac985b61d8b14ee61132637d53bb4f6ad" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::HeatmapGridDimension</scope><name>count</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension_1ad89ad17c129114e7f4240d0d922d8f65" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::HeatmapGridDimension</scope><name>dataExtent</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension_1a4b9c33c299e2c03bae44879eacef32a2" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::HeatmapGridDimension</scope><name>from</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension_1a0bcdfabd0d8753a92ca8361f8942583f" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::HeatmapGridDimension</scope><name>isValid</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension_1ad715181cf1d92c415b8b058171f25e2e" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::HeatmapGridDimension</scope><name>logSpacing</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension_1af13aa209ff41fbda8a177466c37754a0" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::HeatmapGridDimension</scope><name>shaderMapping</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension_1ace5b71ed8bd0fed108676a047717ccf2" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::HeatmapGridDimension</scope><name>to</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

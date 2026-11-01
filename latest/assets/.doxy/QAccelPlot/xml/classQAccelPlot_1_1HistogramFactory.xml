@@ -25,9 +25,9 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/data/HistogramFactory.hpp" line="51" column="14"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1HistogramFactory_1aa997cccc7277501b97d4cd54254cc01b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>Q_INVOKABLE::QAccelPlot::Histogram</type>
-        <definition>Q_INVOKABLE::QAccelPlot::Histogram QAccelPlot::HistogramFactory::fromSamples</definition>
+      <memberdef kind="function" id="classQAccelPlot_1_1HistogramFactory_1a66304945709c13484cec27a0323e95db" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE <ref refid="classQAccelPlot_1_1Histogram" kindref="compound">Histogram</ref></type>
+        <definition>Q_INVOKABLE Histogram QAccelPlot::HistogramFactory::fromSamples</definition>
         <argsstring>(const QList&lt; qreal &gt; &amp;samples, const QVariant &amp;bins) const</argsstring>
         <name>fromSamples</name>
         <qualifiedname>QAccelPlot::HistogramFactory::fromSamples</qualifiedname>
@@ -47,11 +47,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/data/HistogramFactory.hpp" line="57" column="41"/>
+        <location file="QAccelPlot/src/QAccelPlot/data/HistogramFactory.hpp" line="57" column="27"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1HistogramFactory_1a705d4e2708d32b4dfb8f14aa9b0ca1ed" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>Q_INVOKABLE::QAccelPlot::Histogram</type>
-        <definition>Q_INVOKABLE::QAccelPlot::Histogram QAccelPlot::HistogramFactory::fromSamples</definition>
+      <memberdef kind="function" id="classQAccelPlot_1_1HistogramFactory_1a888e375973114e5b0f61355a7b7c7955" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE <ref refid="classQAccelPlot_1_1Histogram" kindref="compound">Histogram</ref></type>
+        <definition>Q_INVOKABLE Histogram QAccelPlot::HistogramFactory::fromSamples</definition>
         <argsstring>(const QList&lt; qreal &gt; &amp;samples, int binCount, qreal min, qreal max) const</argsstring>
         <name>fromSamples</name>
         <qualifiedname>QAccelPlot::HistogramFactory::fromSamples</qualifiedname>
@@ -78,11 +78,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/data/HistogramFactory.hpp" line="59" column="41"/>
+        <location file="QAccelPlot/src/QAccelPlot/data/HistogramFactory.hpp" line="59" column="27"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1HistogramFactory_1ab2b21a7abc6ec18ba54146bf6228151f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>Q_INVOKABLE::QAccelPlot::Histogram</type>
-        <definition>Q_INVOKABLE::QAccelPlot::Histogram QAccelPlot::HistogramFactory::fromCounts</definition>
+      <memberdef kind="function" id="classQAccelPlot_1_1HistogramFactory_1a6f6507063235dfb7ce62f7ca4eda5969" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE <ref refid="classQAccelPlot_1_1Histogram" kindref="compound">Histogram</ref></type>
+        <definition>Q_INVOKABLE Histogram QAccelPlot::HistogramFactory::fromCounts</definition>
         <argsstring>(const QList&lt; qreal &gt; &amp;edges, const QList&lt; qreal &gt; &amp;counts) const</argsstring>
         <name>fromCounts</name>
         <qualifiedname>QAccelPlot::HistogramFactory::fromCounts</qualifiedname>
@@ -101,7 +101,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/data/HistogramFactory.hpp" line="61" column="41"/>
+        <location file="QAccelPlot/src/QAccelPlot/data/HistogramFactory.hpp" line="61" column="27"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1HistogramFactory_1a281f31fc3b2f3e7edc547460305a86dd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE QList&lt; qreal &gt;</type>
@@ -222,9 +222,9 @@ C++ code uses the static functions of <ref refid="classQAccelPlot_1_1Histogram" 
     <location file="QAccelPlot/src/QAccelPlot/data/HistogramFactory.hpp" line="41" column="1" bodyfile="QAccelPlot/src/QAccelPlot/data/HistogramFactory.hpp" bodystart="41" bodyend="69"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1HistogramFactory_1acb444c03b1607b05e3cedb2adb54ae90" prot="public" virt="non-virtual"><scope>QAccelPlot::HistogramFactory</scope><name>decadeEdges</name></member>
-      <member refid="classQAccelPlot_1_1HistogramFactory_1ab2b21a7abc6ec18ba54146bf6228151f" prot="public" virt="non-virtual"><scope>QAccelPlot::HistogramFactory</scope><name>fromCounts</name></member>
-      <member refid="classQAccelPlot_1_1HistogramFactory_1aa997cccc7277501b97d4cd54254cc01b" prot="public" virt="non-virtual"><scope>QAccelPlot::HistogramFactory</scope><name>fromSamples</name></member>
-      <member refid="classQAccelPlot_1_1HistogramFactory_1a705d4e2708d32b4dfb8f14aa9b0ca1ed" prot="public" virt="non-virtual"><scope>QAccelPlot::HistogramFactory</scope><name>fromSamples</name></member>
+      <member refid="classQAccelPlot_1_1HistogramFactory_1a6f6507063235dfb7ce62f7ca4eda5969" prot="public" virt="non-virtual"><scope>QAccelPlot::HistogramFactory</scope><name>fromCounts</name></member>
+      <member refid="classQAccelPlot_1_1HistogramFactory_1a66304945709c13484cec27a0323e95db" prot="public" virt="non-virtual"><scope>QAccelPlot::HistogramFactory</scope><name>fromSamples</name></member>
+      <member refid="classQAccelPlot_1_1HistogramFactory_1a888e375973114e5b0f61355a7b7c7955" prot="public" virt="non-virtual"><scope>QAccelPlot::HistogramFactory</scope><name>fromSamples</name></member>
       <member refid="classQAccelPlot_1_1HistogramFactory_1a727bbf01130568698054f48d3cf91527" prot="public" virt="non-virtual"><scope>QAccelPlot::HistogramFactory</scope><name>HistogramFactory</name></member>
       <member refid="classQAccelPlot_1_1HistogramFactory_1a281f31fc3b2f3e7edc547460305a86dd" prot="public" virt="non-virtual"><scope>QAccelPlot::HistogramFactory</scope><name>linearEdges</name></member>
       <member refid="classQAccelPlot_1_1HistogramFactory_1ae9db28b007187cd7587c287a14b62f33" prot="public" virt="non-virtual"><scope>QAccelPlot::HistogramFactory</scope><name>logEdges</name></member>

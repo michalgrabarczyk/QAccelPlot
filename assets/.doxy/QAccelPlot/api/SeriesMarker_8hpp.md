@@ -17,7 +17,7 @@
 
 
 
-* `#include "QAccelPlot/series/PlotSeries.hpp"`
+* `#include "QAccelPlot/series/MarkerShape.hpp"`
 * `#include <QObject>`
 
 

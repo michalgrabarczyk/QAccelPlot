@@ -1,0 +1,871 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1Colormap" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::Colormap</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">QQmlParserStatus</basecompoundref>
+    <includes local="no">Colormap.hpp</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classQAccelPlot_1_1Colormap_1aa15fef934b0935f5a3b0f904b849f4fd" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>Preset</name>
+        <qualifiedname>QAccelPlot::Colormap::Preset</qualifiedname>
+        <enumvalue id="classQAccelPlot_1_1Colormap_1aa15fef934b0935f5a3b0f904b849f4fda951ee92ee5e947e1e7e1cb6376523c1a" prot="public">
+          <name>Viridis</name>
+          <briefdescription>
+<para>Perceptually uniform, dark blue to yellow. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1Colormap_1aa15fef934b0935f5a3b0f904b849f4fdab20a4217acaf4316739c6a5f6679ef60" prot="public">
+          <name>Plasma</name>
+          <briefdescription>
+<para>Perceptually uniform, dark blue to yellow through magenta. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1Colormap_1aa15fef934b0935f5a3b0f904b849f4fda8bb279f735c1d9c831e935cca2613b58" prot="public">
+          <name>Inferno</name>
+          <briefdescription>
+<para>Perceptually uniform, black to pale yellow through red. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1Colormap_1aa15fef934b0935f5a3b0f904b849f4fda1b62e99f86d45e754e5e79d9fa9dfcde" prot="public">
+          <name>Magma</name>
+          <briefdescription>
+<para>Perceptually uniform, black to pale pink through purple. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1Colormap_1aa15fef934b0935f5a3b0f904b849f4fdad3f6975213fb5546d8486b54b025dbd7" prot="public">
+          <name>Grayscale</name>
+          <briefdescription>
+<para>Black to white. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1Colormap_1aa15fef934b0935f5a3b0f904b849f4fda4aca5ee9a087fb9218bfb662fe92605c" prot="public">
+          <name>Rainbow</name>
+          <briefdescription>
+<para>Classic blue-to-red rainbow. Not perceptually uniform. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Built-in color ramps. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The perceptually uniform ramps are sampled from the matplotlib originals. Prefer them over <computeroutput>Rainbow</computeroutput>, whose uneven lightness invents boundaries that are not in the data. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="64" column="5" bodyfile="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" bodystart="64" bodyend="71"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1Colormap_1a67a5ff395bc2320f2fa84e6087b7f6c7" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1Colormap_1aa15fef934b0935f5a3b0f904b849f4fd" kindref="member">Preset</ref></type>
+        <definition>Preset QAccelPlot::Colormap::preset</definition>
+        <argsstring></argsstring>
+        <name>preset</name>
+        <qualifiedname>QAccelPlot::Colormap::preset</qualifiedname>
+        <read>preset</read>
+        <write>setPreset</write>
+        <briefdescription>
+<para>Built-in color ramp. Ignored when <computeroutput>stops</computeroutput> is non-empty. Default: <computeroutput>Viridis</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="41" column="5" bodyfile="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Colormap_1acc9f034415f0e2f96bccd938e5b73c5b" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QQmlListProperty&lt; QObject &gt;</type>
+        <definition>QQmlListProperty&lt;QObject&gt; QAccelPlot::Colormap::stops</definition>
+        <argsstring></argsstring>
+        <name>stops</name>
+        <qualifiedname>QAccelPlot::Colormap::stops</qualifiedname>
+        <read>stops</read>
+        <briefdescription>
+<para>Custom ramp as a list of objects with <computeroutput>position</computeroutput> and <computeroutput>color</computeroutput>, such as <computeroutput>GradientStop</computeroutput>. Overrides <computeroutput>preset</computeroutput> when non-empty. Stops are read again once the component is complete. The ramp follows changes to a stop that notifies them, to a <computeroutput>GradientStop</computeroutput> inside a <computeroutput>Gradient</computeroutput>, and to a <computeroutput>GradientStop</computeroutput> declared in this list. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="46" column="5" bodyfile="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Colormap_1ac75d75fedfdd93322fab4617af7e80cd" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Colormap::reversed</definition>
+        <argsstring></argsstring>
+        <name>reversed</name>
+        <qualifiedname>QAccelPlot::Colormap::reversed</qualifiedname>
+        <read>reversed</read>
+        <write>setReversed</write>
+        <briefdescription>
+<para>Whether the ramp runs from its last color to its first. Applies to <computeroutput>preset</computeroutput> and <computeroutput>stops</computeroutput> alike. Default: <computeroutput>false</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="49" column="5" bodyfile="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Colormap_1ad2faff816266d69fb598cad7c7c3c626" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Colormap::min</definition>
+        <argsstring></argsstring>
+        <name>min</name>
+        <qualifiedname>QAccelPlot::Colormap::min</qualifiedname>
+        <read>min</read>
+        <write>setMin</write>
+        <briefdescription>
+<para>Value at ramp position 0. Unset (NaN) resolves it from the data. Default: unset. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="51" column="5" bodyfile="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Colormap_1a1e42c41384869c79a017a49ee22c9fea" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Colormap::max</definition>
+        <argsstring></argsstring>
+        <name>max</name>
+        <qualifiedname>QAccelPlot::Colormap::max</qualifiedname>
+        <read>max</read>
+        <write>setMax</write>
+        <briefdescription>
+<para>Value at ramp position 1. Unset (NaN) resolves it from the data. Default: unset. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="53" column="5" bodyfile="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Colormap_1a827094e553427880c4490e3ee7cd1687" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Colormap::logScale</definition>
+        <argsstring></argsstring>
+        <name>logScale</name>
+        <qualifiedname>QAccelPlot::Colormap::logScale</qualifiedname>
+        <read>logScale</read>
+        <write>setLogScale</write>
+        <briefdescription>
+<para>Whether values are placed on the ramp in log10 instead of linearly. Default: <computeroutput>false</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Values at or below zero are unmapped. A <computeroutput><ref refid="classQAccelPlot_1_1ColorBar" kindref="compound">ColorBar</ref></computeroutput> showing the colormap gets decade ticks. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="57" column="5" bodyfile="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1Colormap_1a94ccb9533269d56f736a32ff0fb8465e" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1Colormap_1aa15fef934b0935f5a3b0f904b849f4fd" kindref="member">Preset</ref></type>
+        <definition>Preset QAccelPlot::Colormap::preset_</definition>
+        <argsstring></argsstring>
+        <name>preset_</name>
+        <qualifiedname>QAccelPlot::Colormap::preset_</qualifiedname>
+        <initializer>{<ref refid="classQAccelPlot_1_1Colormap_1aa15fef934b0935f5a3b0f904b849f4fda951ee92ee5e947e1e7e1cb6376523c1a" kindref="member">Preset::Viridis</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="140" column="12" bodyfile="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" bodystart="140" bodyend="140"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Colormap_1a6f49f5565aec94244870a2a6dff0ebac" prot="private" static="no" mutable="no">
+        <type>QList&lt; QObject * &gt;</type>
+        <definition>QList&lt;QObject*&gt; QAccelPlot::Colormap::stopObjects_</definition>
+        <argsstring></argsstring>
+        <name>stopObjects_</name>
+        <qualifiedname>QAccelPlot::Colormap::stopObjects_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="141" column="11" bodyfile="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Colormap_1a2f309f69815df4079075f60a80c32cef" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Colormap::reversed_</definition>
+        <argsstring></argsstring>
+        <name>reversed_</name>
+        <qualifiedname>QAccelPlot::Colormap::reversed_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="142" column="10" bodyfile="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" bodystart="142" bodyend="142"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Colormap_1adbf8925f5f6253b4214585e76429acf8" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="structQAccelPlot_1_1GradientStopData" kindref="compound">GradientStopData</ref> &gt;</type>
+        <definition>std::vector&lt;GradientStopData&gt; QAccelPlot::Colormap::resolvedStops_</definition>
+        <argsstring></argsstring>
+        <name>resolvedStops_</name>
+        <qualifiedname>QAccelPlot::Colormap::resolvedStops_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="143" column="17" bodyfile="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Colormap_1a28c4a72711e298351ab2e43202aa2e7f" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Colormap::min_</definition>
+        <argsstring></argsstring>
+        <name>min_</name>
+        <qualifiedname>QAccelPlot::Colormap::min_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="144" column="11" bodyfile="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Colormap_1a0cb6749919ddcb7831941bc1f21ebcf5" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Colormap::max_</definition>
+        <argsstring></argsstring>
+        <name>max_</name>
+        <qualifiedname>QAccelPlot::Colormap::max_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="145" column="11" bodyfile="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" bodystart="145" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Colormap_1ac6e355d854ec1aaa67b570090b0afbf4" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Colormap::logScale_</definition>
+        <argsstring></argsstring>
+        <name>logScale_</name>
+        <qualifiedname>QAccelPlot::Colormap::logScale_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="146" column="10" bodyfile="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" bodystart="146" bodyend="146"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Colormap_1ae7c1783f5a837e0b68219cec77c5e0df" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::Colormap::Colormap</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>Colormap</name>
+        <qualifiedname>QAccelPlot::Colormap::Colormap</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a <ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref> with the given <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="75" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Colormap_1af589ac4b82e4e5dfab6314cae86f1d1e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1Colormap_1aa15fef934b0935f5a3b0f904b849f4fd" kindref="member">Preset</ref></type>
+        <definition>Preset QAccelPlot::Colormap::preset</definition>
+        <argsstring>() const</argsstring>
+        <name>preset</name>
+        <qualifiedname>QAccelPlot::Colormap::preset</qualifiedname>
+        <briefdescription>
+<para>Returns the built-in ramp. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="78" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Colormap_1a6d890738d894bf61e553d1f782ddfbe7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Colormap::setPreset</definition>
+        <argsstring>(Preset preset)</argsstring>
+        <name>setPreset</name>
+        <qualifiedname>QAccelPlot::Colormap::setPreset</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1Colormap_1aa15fef934b0935f5a3b0f904b849f4fd" kindref="member">Preset</ref></type>
+          <declname>preset</declname>
+        </param>
+        <briefdescription>
+<para>Sets the built-in ramp to <emphasis>preset</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="80" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Colormap_1a04057c70cd99668ad2077dd8e28d65ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QQmlListProperty&lt; QObject &gt;</type>
+        <definition>QQmlListProperty&lt; QObject &gt; QAccelPlot::Colormap::stops</definition>
+        <argsstring>()</argsstring>
+        <name>stops</name>
+        <qualifiedname>QAccelPlot::Colormap::stops</qualifiedname>
+        <briefdescription>
+<para>Returns the custom ramp stops, empty when the preset supplies the ramp. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="83" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Colormap_1a24ec3d6ee53964f2d4cc163e020eb2b8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Colormap::reversed</definition>
+        <argsstring>() const</argsstring>
+        <name>reversed</name>
+        <qualifiedname>QAccelPlot::Colormap::reversed</qualifiedname>
+        <briefdescription>
+<para>Returns whether the ramp is reversed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="86" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Colormap_1ab0adf49c864c6c5ef75cf461103d9418" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Colormap::setReversed</definition>
+        <argsstring>(bool reversed)</argsstring>
+        <name>setReversed</name>
+        <qualifiedname>QAccelPlot::Colormap::setReversed</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>reversed</declname>
+        </param>
+        <briefdescription>
+<para>Sets whether the ramp is reversed to <emphasis>reversed</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="88" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Colormap_1a3c086f67be351339faeaeb894bfa5b03" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Colormap::min</definition>
+        <argsstring>() const</argsstring>
+        <name>min</name>
+        <qualifiedname>QAccelPlot::Colormap::min</qualifiedname>
+        <briefdescription>
+<para>Returns the fixed lower bound, or NaN when it is resolved from the data. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="91" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Colormap_1a702b39ccd52aec3bb8401322bb1b1a63" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Colormap::setMin</definition>
+        <argsstring>(qreal value)</argsstring>
+        <name>setMin</name>
+        <qualifiedname>QAccelPlot::Colormap::setMin</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Sets the fixed lower bound to <emphasis>value</emphasis>. NaN resolves it from the data. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="93" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Colormap_1aea67b4ee565f06e135b66baa5b24e362" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Colormap::max</definition>
+        <argsstring>() const</argsstring>
+        <name>max</name>
+        <qualifiedname>QAccelPlot::Colormap::max</qualifiedname>
+        <briefdescription>
+<para>Returns the fixed upper bound, or NaN when it is resolved from the data. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="96" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Colormap_1ae53b320946a7e35ce557f83ac41ee5a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Colormap::setMax</definition>
+        <argsstring>(qreal value)</argsstring>
+        <name>setMax</name>
+        <qualifiedname>QAccelPlot::Colormap::setMax</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Sets the fixed upper bound to <emphasis>value</emphasis>. NaN resolves it from the data. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="98" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Colormap_1a447e9e6f49975b27dbef202df100f4fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE void</type>
+        <definition>Q_INVOKABLE void QAccelPlot::Colormap::setRange</definition>
+        <argsstring>(qreal min, qreal max)</argsstring>
+        <name>setRange</name>
+        <qualifiedname>QAccelPlot::Colormap::setRange</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>min</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>max</declname>
+        </param>
+        <briefdescription>
+<para>Sets both bounds to <emphasis>min</emphasis> and <emphasis>max</emphasis> with a single <computeroutput><ref refid="classQAccelPlot_1_1Colormap_1adb30844fc484d5c9fc331388c6b80a71" kindref="member">colormapChanged()</ref></computeroutput>. NaN unsets a bound. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="101" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Colormap_1abab08f950fca92f0896e665710f97a6c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Colormap::logScale</definition>
+        <argsstring>() const</argsstring>
+        <name>logScale</name>
+        <qualifiedname>QAccelPlot::Colormap::logScale</qualifiedname>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> when values are placed on the ramp in log10. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="104" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Colormap_1a5a8a85ce07dc9797d6910e54c3f97206" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Colormap::setLogScale</definition>
+        <argsstring>(bool on)</argsstring>
+        <name>setLogScale</name>
+        <qualifiedname>QAccelPlot::Colormap::setLogScale</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>on</declname>
+        </param>
+        <briefdescription>
+<para>Sets log-scale placement to <emphasis>on</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="106" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Colormap_1a9aefa3bd8e5a7fca6e52ce493a4652e2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::vector&lt; <ref refid="structQAccelPlot_1_1GradientStopData" kindref="compound">GradientStopData</ref> &gt; &amp;</type>
+        <definition>const std::vector&lt; GradientStopData &gt; &amp; QAccelPlot::Colormap::resolvedStops</definition>
+        <argsstring>() const</argsstring>
+        <name>resolvedStops</name>
+        <qualifiedname>QAccelPlot::Colormap::resolvedStops</qualifiedname>
+        <briefdescription>
+<para>Returns the resolved ramp stops, in position order and covering [0, 1]. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Custom <computeroutput>stops</computeroutput> when set, otherwise the <computeroutput>preset</computeroutput> ramp, flipped when <computeroutput>reversed</computeroutput> is set. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="111" column="23"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1Colormap_1adb30844fc484d5c9fc331388c6b80a71" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Colormap::colormapChanged</definition>
+        <argsstring>()</argsstring>
+        <name>colormapChanged</name>
+        <qualifiedname>QAccelPlot::Colormap::colormapChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the ramp, its bounds, or <computeroutput>logScale</computeroutput> changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="115" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Colormap_1aa8c199188a72ec620ab8712d29587f0a" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Colormap::classBegin</definition>
+        <argsstring>() override</argsstring>
+        <name>classBegin</name>
+        <qualifiedname>QAccelPlot::Colormap::classBegin</qualifiedname>
+        <briefdescription>
+<para>Does nothing; part of <computeroutput>QQmlParserStatus</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="119" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Colormap_1a349bc59dc48e79e650806b4260842492" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Colormap::componentComplete</definition>
+        <argsstring>() override</argsstring>
+        <name>componentComplete</name>
+        <qualifiedname>QAccelPlot::Colormap::componentComplete</qualifiedname>
+        <briefdescription>
+<para>Reads the stops again after their bindings are evaluated. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="121" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Colormap_1a5bc12748dadf9ddc180f664bfd4d14d5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_SLOT void</type>
+        <definition>Q_SLOT void QAccelPlot::Colormap::onStopChanged</definition>
+        <argsstring>()</argsstring>
+        <name>onStopChanged</name>
+        <qualifiedname>QAccelPlot::Colormap::onStopChanged</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="124" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Colormap_1ab3a8435fcfdfece84637df407e63411b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Colormap::onStopDestroyed</definition>
+        <argsstring>(QObject *stop)</argsstring>
+        <name>onStopDestroyed</name>
+        <qualifiedname>QAccelPlot::Colormap::onStopDestroyed</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>stop</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="125" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Colormap_1a67b76875a9da1f042e5fa38fec516de8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Colormap::connectStop</definition>
+        <argsstring>(QObject *stop)</argsstring>
+        <name>connectStop</name>
+        <qualifiedname>QAccelPlot::Colormap::connectStop</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>stop</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="127" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Colormap_1a88bdbd6030c430b049b899b3012234b2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Colormap::disconnectStops</definition>
+        <argsstring>()</argsstring>
+        <name>disconnectStops</name>
+        <qualifiedname>QAccelPlot::Colormap::disconnectStops</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="128" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Colormap_1a22d342e6d359a4fbf4f906a57f6c3872" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Colormap::adoptStop</definition>
+        <argsstring>(QObject *stop)</argsstring>
+        <name>adoptStop</name>
+        <qualifiedname>QAccelPlot::Colormap::adoptStop</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>stop</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="130" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Colormap_1aab572dc7cd93f763924e218212319e6b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QObject *</type>
+        <definition>QObject * QAccelPlot::Colormap::stopTracker</definition>
+        <argsstring>()</argsstring>
+        <name>stopTracker</name>
+        <qualifiedname>QAccelPlot::Colormap::stopTracker</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="131" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Colormap_1a1a2888b90e3bdc25514fa44e0368400d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Colormap::rebuildStops</definition>
+        <argsstring>()</argsstring>
+        <name>rebuildStops</name>
+        <qualifiedname>QAccelPlot::Colormap::rebuildStops</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="132" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Colormap_1a6b7b91313f6c94b47b3230bd633be38c" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="structQAccelPlot_1_1GradientStopData" kindref="compound">GradientStopData</ref> &gt;</type>
+        <definition>std::vector&lt; GradientStopData &gt; QAccelPlot::Colormap::customStops</definition>
+        <argsstring>() const</argsstring>
+        <name>customStops</name>
+        <qualifiedname>QAccelPlot::Colormap::customStops</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="133" column="17"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Colormap_1ab55c6351837426360833d91559512c2b" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void QAccelPlot::Colormap::appendStop</definition>
+        <argsstring>(QQmlListProperty&lt; QObject &gt; *list, QObject *stop)</argsstring>
+        <name>appendStop</name>
+        <qualifiedname>QAccelPlot::Colormap::appendStop</qualifiedname>
+        <param>
+          <type>QQmlListProperty&lt; QObject &gt; *</type>
+          <declname>list</declname>
+        </param>
+        <param>
+          <type>QObject *</type>
+          <declname>stop</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="135" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Colormap_1a3540c36c726c0968ad185df0e20374ab" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>qsizetype</type>
+        <definition>static qsizetype QAccelPlot::Colormap::stopCount</definition>
+        <argsstring>(QQmlListProperty&lt; QObject &gt; *list)</argsstring>
+        <name>stopCount</name>
+        <qualifiedname>QAccelPlot::Colormap::stopCount</qualifiedname>
+        <param>
+          <type>QQmlListProperty&lt; QObject &gt; *</type>
+          <declname>list</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="136" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Colormap_1a9f79d1cbbee08dd069b309dcac337bfa" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QObject *</type>
+        <definition>static QObject * QAccelPlot::Colormap::stopAt</definition>
+        <argsstring>(QQmlListProperty&lt; QObject &gt; *list, qsizetype index)</argsstring>
+        <name>stopAt</name>
+        <qualifiedname>QAccelPlot::Colormap::stopAt</qualifiedname>
+        <param>
+          <type>QQmlListProperty&lt; QObject &gt; *</type>
+          <declname>list</declname>
+        </param>
+        <param>
+          <type>qsizetype</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="137" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Colormap_1a7b5b36297c68cbbcc2175c1429594db5" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void QAccelPlot::Colormap::clearStops</definition>
+        <argsstring>(QQmlListProperty&lt; QObject &gt; *list)</argsstring>
+        <name>clearStops</name>
+        <qualifiedname>QAccelPlot::Colormap::clearStops</qualifiedname>
+        <param>
+          <type>QQmlListProperty&lt; QObject &gt; *</type>
+          <declname>list</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="138" column="17"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Maps data values to colors: a color ramp plus the rule that places a value on it. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>A colormap has no geometry. It is a one-dimensional ramp addressed by a normalized coordinate in [0, 1], and <computeroutput>logScale</computeroutput> decides how a value reaches that coordinate. Series that color by value, such as <computeroutput><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref></computeroutput> and <computeroutput><ref refid="classQAccelPlot_1_1HeatmapSeries" kindref="compound">HeatmapSeries</ref></computeroutput>, index the ramp with each value. Effects that paint a ramp across the plot, such as <computeroutput><ref refid="classQAccelPlot_1_1GradientFill" kindref="compound">GradientFill</ref></computeroutput> and <computeroutput><ref refid="classQAccelPlot_1_1GradientStroke" kindref="compound">GradientStroke</ref></computeroutput>, supply the coordinate from a position instead and own that geometry themselves, so they use only the ramp.</para>
+<para>The ramp comes from <computeroutput>preset</computeroutput>, or from <computeroutput>stops</computeroutput> when a custom ramp is given. <computeroutput>min</computeroutput> and <computeroutput>max</computeroutput> bound the value range; leaving either unset resolves it from the data, so one colormap can be shared between series that resolve different ranges. Each series reports what it resolved through <computeroutput><ref refid="classQAccelPlot_1_1ColormappedSeries_1a1c2f3d9df4ef38b33addd7344f26f5e3" kindref="member">ColormappedSeries::dataValueMin()</ref></computeroutput> and <computeroutput><ref refid="classQAccelPlot_1_1ColormappedSeries_1a363084e6b7f15b4e1c0df55961625dc5" kindref="member">ColormappedSeries::dataValueMax()</ref></computeroutput>.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref>, <ref refid="classQAccelPlot_1_1HeatmapSeries" kindref="compound">HeatmapSeries</ref>, <ref refid="classQAccelPlot_1_1BarSeries" kindref="compound">BarSeries</ref>, <ref refid="classQAccelPlot_1_1GradientFill" kindref="compound">GradientFill</ref>, <ref refid="classQAccelPlot_1_1GradientStroke" kindref="compound">GradientStroke</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::Colormap</label>
+        <link refid="classQAccelPlot_1_1Colormap"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+      <node id="3">
+        <label>QQmlParserStatus</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::Colormap</label>
+        <link refid="classQAccelPlot_1_1Colormap"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+      <node id="3">
+        <label>QQmlParserStatus</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" line="35" column="1" bodyfile="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp" bodystart="35" bodyend="147"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1Colormap_1a22d342e6d359a4fbf4f906a57f6c3872" prot="private" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>adoptStop</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1ab55c6351837426360833d91559512c2b" prot="private" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>appendStop</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1aa8c199188a72ec620ab8712d29587f0a" prot="protected" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>classBegin</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1a7b5b36297c68cbbcc2175c1429594db5" prot="private" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>clearStops</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1ae7c1783f5a837e0b68219cec77c5e0df" prot="public" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>Colormap</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1adb30844fc484d5c9fc331388c6b80a71" prot="public" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>colormapChanged</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1a349bc59dc48e79e650806b4260842492" prot="protected" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>componentComplete</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1a67b76875a9da1f042e5fa38fec516de8" prot="private" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>connectStop</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1a6b7b91313f6c94b47b3230bd633be38c" prot="private" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>customStops</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1a88bdbd6030c430b049b899b3012234b2" prot="private" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>disconnectStops</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1a827094e553427880c4490e3ee7cd1687" prot="public" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>logScale</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1abab08f950fca92f0896e665710f97a6c" prot="public" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>logScale</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1ac6e355d854ec1aaa67b570090b0afbf4" prot="private" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>logScale_</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1a1e42c41384869c79a017a49ee22c9fea" prot="public" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>max</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1aea67b4ee565f06e135b66baa5b24e362" prot="public" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>max</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1a0cb6749919ddcb7831941bc1f21ebcf5" prot="private" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>max_</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1ad2faff816266d69fb598cad7c7c3c626" prot="public" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>min</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1a3c086f67be351339faeaeb894bfa5b03" prot="public" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>min</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1a28c4a72711e298351ab2e43202aa2e7f" prot="private" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>min_</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1a5bc12748dadf9ddc180f664bfd4d14d5" prot="private" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>onStopChanged</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1ab3a8435fcfdfece84637df407e63411b" prot="private" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>onStopDestroyed</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1a67a5ff395bc2320f2fa84e6087b7f6c7" prot="public" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>preset</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1af589ac4b82e4e5dfab6314cae86f1d1e" prot="public" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>preset</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1aa15fef934b0935f5a3b0f904b849f4fd" prot="public" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>Preset</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1a94ccb9533269d56f736a32ff0fb8465e" prot="private" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>preset_</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1a1a2888b90e3bdc25514fa44e0368400d" prot="private" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>rebuildStops</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1a9aefa3bd8e5a7fca6e52ce493a4652e2" prot="public" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>resolvedStops</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1adbf8925f5f6253b4214585e76429acf8" prot="private" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>resolvedStops_</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1ac75d75fedfdd93322fab4617af7e80cd" prot="public" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>reversed</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1a24ec3d6ee53964f2d4cc163e020eb2b8" prot="public" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>reversed</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1a2f309f69815df4079075f60a80c32cef" prot="private" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>reversed_</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1a5a8a85ce07dc9797d6910e54c3f97206" prot="public" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>setLogScale</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1ae53b320946a7e35ce557f83ac41ee5a6" prot="public" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>setMax</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1a702b39ccd52aec3bb8401322bb1b1a63" prot="public" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>setMin</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1a6d890738d894bf61e553d1f782ddfbe7" prot="public" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>setPreset</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1a447e9e6f49975b27dbef202df100f4fe" prot="public" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>setRange</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1ab0adf49c864c6c5ef75cf461103d9418" prot="public" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>setReversed</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1a9f79d1cbbee08dd069b309dcac337bfa" prot="private" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>stopAt</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1a3540c36c726c0968ad185df0e20374ab" prot="private" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>stopCount</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1a6f49f5565aec94244870a2a6dff0ebac" prot="private" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>stopObjects_</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1acc9f034415f0e2f96bccd938e5b73c5b" prot="public" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>stops</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1a04057c70cd99668ad2077dd8e28d65ea" prot="public" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>stops</name></member>
+      <member refid="classQAccelPlot_1_1Colormap_1aab572dc7cd93f763924e218212319e6b" prot="private" virt="non-virtual"><scope>QAccelPlot::Colormap</scope><name>stopTracker</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

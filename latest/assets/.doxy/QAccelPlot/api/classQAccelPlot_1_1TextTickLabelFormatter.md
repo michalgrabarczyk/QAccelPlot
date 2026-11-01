@@ -80,7 +80,7 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-| property QStringList | [**labels**](classQAccelPlot_1_1TextTickLabelFormatter.md#property-labels-12)  <br>_The ordered list of label strings, indexed by the rounded tick value._  |
+| property QStringList | [**labels**](classQAccelPlot_1_1TextTickLabelFormatter.md#property-labels-12)  <br>_The ordered list of label strings, indexed by the integer tick value._  |
 
 
 ## Public Properties inherited from QAccelPlot::TickLabelFormatter
@@ -123,6 +123,7 @@ See [QAccelPlot::TickLabelFormatter](classQAccelPlot_1_1TickLabelFormatter.md)
 | ---: | :--- |
 |   | [**TextTickLabelFormatter**](#function-textticklabelformatter) (QObject \* parent=nullptr) <br>_Constructs a_ [_**TextTickLabelFormatter**_](classQAccelPlot_1_1TextTickLabelFormatter.md) _with the given__parent_ _._ |
 |  QStringList | [**labels**](#function-labels-22) () const<br>_Returns the current label list._  |
+| virtual qreal | [**minimumTickStep**](#function-minimumtickstep) () override const<br>_Returns_ `1` _, so a zoomed linear axis keeps one tick per label instead of ticks between labels._ |
 |  void | [**setLabels**](#function-setlabels) (const QStringList & labels) <br>_Sets the label list to_ _labels_ _._ |
 
 
@@ -135,6 +136,7 @@ See [QAccelPlot::TickLabelFormatter](classQAccelPlot_1_1TickLabelFormatter.md)
 |   | [**TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md#function-ticklabelformatter) (QObject \* parent=nullptr) <br>_Constructs an_ [_**TickLabelFormatter**_](classQAccelPlot_1_1TickLabelFormatter.md) _with the given__parent_ _._ |
 |  QString | [**format**](classQAccelPlot_1_1TickLabelFormatter.md#function-format) (qreal value, qreal tickStep) const<br>_Returns the display string for_ _value_ _at the given__tickStep_ _._ |
 |  QString | [**formatLogTick**](classQAccelPlot_1_1TickLabelFormatter.md#function-formatlogtick) (qreal value) const<br>_Returns the display string for a major tick at_ _value_ _on a logarithmic axis._ |
+| virtual qreal | [**minimumTickStep**](classQAccelPlot_1_1TickLabelFormatter.md#function-minimumtickstep) () const<br>_Returns the smallest major tick step a linear axis may use with this formatter._  |
 |  void | [**setTickLabel**](classQAccelPlot_1_1TickLabelFormatter.md#function-setticklabel) (const QJSValue & tickLabel) <br>_Sets the JavaScript override callback to_ _tickLabel_ _._ |
 |  QJSValue | [**tickLabel**](classQAccelPlot_1_1TickLabelFormatter.md#function-ticklabel-22) () const<br>_Returns the optional JavaScript override callback._  |
 
@@ -187,7 +189,7 @@ See [QAccelPlot::TickLabelFormatter](classQAccelPlot_1_1TickLabelFormatter.md)
 
 | Type | Name |
 | ---: | :--- |
-| virtual QString | [**doFormat**](#function-doformat) (qreal value, qreal tickStep) override const<br>_Returns the label at the index corresponding to_ _value_ _, or an empty string if out of range._ |
+| virtual QString | [**doFormat**](#function-doformat) (qreal value, qreal tickStep) override const<br>_Returns the label at the integer_ _value_ _, or an empty string if__value_ _is not an integer or is out of range._ |
 
 
 ## Protected Functions inherited from QAccelPlot::TickLabelFormatter
@@ -207,7 +209,7 @@ See [QAccelPlot::TickLabelFormatter](classQAccelPlot_1_1TickLabelFormatter.md)
 ## Detailed Description
 
 
-The tick value is rounded to the nearest integer and used as an index into `labels`. Values outside the list range are rendered as empty strings.
+A tick on an integer value is labeled with the string at that index in `labels`. Other values and indices outside the list range are rendered as empty strings. On a linear axis, `minimumTickStep()` keeps ticks on whole numbers when the axis is zoomed in.
 
 
 
@@ -225,7 +227,7 @@ The tick value is rounded to the nearest integer and used as an index into `labe
 
 ### property labels {#property-labels-12}
 
-_The ordered list of label strings, indexed by the rounded tick value._ 
+_The ordered list of label strings, indexed by the integer tick value._ 
 ```C++
 QStringList QAccelPlot::TextTickLabelFormatter::labels;
 ```
@@ -289,6 +291,23 @@ QStringList QAccelPlot::TextTickLabelFormatter::labels () const
 
 
 
+### function minimumTickStep {#function-minimumtickstep}
+
+_Returns_ `1` _, so a zoomed linear axis keeps one tick per label instead of ticks between labels._
+```C++
+virtual qreal QAccelPlot::TextTickLabelFormatter::minimumTickStep () override const
+```
+
+
+
+Implements [*QAccelPlot::TickLabelFormatter::minimumTickStep*](classQAccelPlot_1_1TickLabelFormatter.md#function-minimumtickstep)
+
+
+<hr>
+
+
+
+
 ### function setLabels {#function-setlabels}
 
 _Sets the label list to_ _labels_ _._
@@ -310,7 +329,7 @@ void QAccelPlot::TextTickLabelFormatter::setLabels (
 
 ### function doFormat {#function-doformat}
 
-_Returns the label at the index corresponding to_ _value_ _, or an empty string if out of range._
+_Returns the label at the integer_ _value_ _, or an empty string if__value_ _is not an integer or is out of range._
 ```C++
 virtual QString QAccelPlot::TextTickLabelFormatter::doFormat (
     qreal value,

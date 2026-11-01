@@ -20,13 +20,13 @@
 #include <QColor>
 #include <QQuickItem>
 
-namespace QAccelPlot {
+namespace QAccelPlot::Internal {
 
 class OutlinedRectangle : public QQuickItem {
 public:
     explicit OutlinedRectangle(QQuickItem* parent = nullptr);
 
-    void setColors(const QColor& fill, const QColor& border);
+    void setStyle(const QColor& fill, const QColor& borderColor, qreal borderWidth);
 
 protected:
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*) override;
@@ -34,9 +34,10 @@ protected:
 private:
     QColor fill_;
     QColor border_;
+    qreal borderWidth_{0.0};
 };
 
-} // namespace QAccelPlot
+} // namespace QAccelPlot::Internal
 ```
 
 

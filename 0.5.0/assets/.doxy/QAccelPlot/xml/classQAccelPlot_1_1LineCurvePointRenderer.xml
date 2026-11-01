@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1LineCurvePointRenderer" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::LineCurvePointRenderer</compoundname>
+    <includes local="no">LineCurvePointRenderer.hpp</includes>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1LineCurvePointRenderer_1afa3b3e044ac5e0485d43f1f22a7015c9" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int QAccelPlot::LineCurvePointRenderer::kVerticesPerPoint</definition>
+        <argsstring></argsstring>
+        <name>kVerticesPerPoint</name>
+        <qualifiedname>QAccelPlot::LineCurvePointRenderer::kVerticesPerPoint</qualifiedname>
+        <initializer>{6}</initializer>
+        <briefdescription>
+<para>Number of vertices drawn per marker. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="67" column="26" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="67" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1LineCurvePointRenderer_1a5d24c4fdfd3c22624a0463abb68ff258" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr std::size_t</type>
+        <definition>constexpr std::size_t QAccelPlot::LineCurvePointRenderer::kVertexCacheBytesPerPoint</definition>
+        <argsstring></argsstring>
+        <name>kVertexCacheBytesPerPoint</name>
+        <qualifiedname>QAccelPlot::LineCurvePointRenderer::kVertexCacheBytesPerPoint</qualifiedname>
+        <initializer>{<ref refid="classQAccelPlot_1_1LineCurvePointRenderer_1afa3b3e044ac5e0485d43f1f22a7015c9" kindref="member">kVerticesPerPoint</ref> * sizeof(<ref refid="structQAccelPlot_1_1PointVertex" kindref="compound">PointVertex</ref>)}</initializer>
+        <briefdescription>
+<para>Vertex cache bytes per marker. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="70" column="34" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="70" bodyend="70"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1LineCurvePointRenderer_1aa77ef3c8552b5477d5383c5d758290db" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void QAccelPlot::LineCurvePointRenderer::writeVertexCache</definition>
+        <argsstring>(std::vector&lt; char &gt; &amp;cache, int firstPoint, int pointCount)</argsstring>
+        <name>writeVertexCache</name>
+        <qualifiedname>QAccelPlot::LineCurvePointRenderer::writeVertexCache</qualifiedname>
+        <param>
+          <type>std::vector&lt; char &gt; &amp;</type>
+          <declname>cache</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>firstPoint</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>pointCount</declname>
+        </param>
+        <briefdescription>
+<para>Writes the vertices of markers [<emphasis>firstPoint</emphasis>, <emphasis>pointCount</emphasis>) into <emphasis>cache</emphasis>, which holds <computeroutput>kVertexCacheBytesPerPoint</computeroutput> bytes per marker. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Marker vertices hold no data, so the vertices before <emphasis>firstPoint</emphasis> stay valid. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="75" column="17"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1LineCurvePointRenderer_1af95a1d6fb2fd390603024cef6a15d5d5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::LineCurvePointRenderer::contains</definition>
+        <argsstring>(const QPointF &amp;point, const CurveHitTestParams &amp;params) const</argsstring>
+        <name>contains</name>
+        <qualifiedname>QAccelPlot::LineCurvePointRenderer::contains</qualifiedname>
+        <param>
+          <type>const QPointF &amp;</type>
+          <declname>point</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1CurveHitTestParams" kindref="compound">CurveHitTestParams</ref> &amp;</type>
+          <declname>params</declname>
+        </param>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> if <emphasis>point</emphasis> lies within <emphasis>params.hitThreshold</emphasis> pixels of any marker. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="78" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1LineCurvePointRenderer_1a938ef71f14fe97ae9eee935fc4ceef52" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QSGNode *</type>
+        <definition>QSGNode * QAccelPlot::LineCurvePointRenderer::paint</definition>
+        <argsstring>(QSGNode *oldNode, const PointCurveRenderParams &amp;params) const</argsstring>
+        <name>paint</name>
+        <qualifiedname>QAccelPlot::LineCurvePointRenderer::paint</qualifiedname>
+        <param>
+          <type>QSGNode *</type>
+          <declname>oldNode</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1PointCurveRenderParams" kindref="compound">PointCurveRenderParams</ref> &amp;</type>
+          <declname>params</declname>
+        </param>
+        <briefdescription>
+<para>Updates the scene graph node tree for the point markers. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The vertex buffer is written only when the point count changes, from <emphasis>params.vertexCache</emphasis> when it matches. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="84" column="13"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Internal renderer responsible for building and updating QSGNode marker geometry for a <ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Renders per-point markers as two triangles per point. The vertex buffer depends only on the point count, so data updates of the same size only upload the data texture. </para>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="64" column="1" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="64" bodyend="85"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1LineCurvePointRenderer_1af95a1d6fb2fd390603024cef6a15d5d5" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurvePointRenderer</scope><name>contains</name></member>
+      <member refid="classQAccelPlot_1_1LineCurvePointRenderer_1a5d24c4fdfd3c22624a0463abb68ff258" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurvePointRenderer</scope><name>kVertexCacheBytesPerPoint</name></member>
+      <member refid="classQAccelPlot_1_1LineCurvePointRenderer_1afa3b3e044ac5e0485d43f1f22a7015c9" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurvePointRenderer</scope><name>kVerticesPerPoint</name></member>
+      <member refid="classQAccelPlot_1_1LineCurvePointRenderer_1a938ef71f14fe97ae9eee935fc4ceef52" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurvePointRenderer</scope><name>paint</name></member>
+      <member refid="classQAccelPlot_1_1LineCurvePointRenderer_1aa77ef3c8552b5477d5383c5d758290db" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurvePointRenderer</scope><name>writeVertexCache</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -15,7 +15,7 @@
 
 
 
-_QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry uniforms._[More...](#detailed-description)
+_QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry and colormap uniforms._[More...](#detailed-description)
 
 * `#include <BarMaterial.hpp>`
 
@@ -75,8 +75,14 @@ flowchart TB
 |  float | [**barOffset**](#variable-baroffset)   = `{0.0f}`<br>_Shift of every bar along the position axis in data units._  |
 |  float | [**barWidth**](#variable-barwidth)   = `{0.8f}`<br>_Bar width in position-axis data units._  |
 |  float | [**baseline**](#variable-baseline)   = `{0.0f}`<br>_Value the bars start from, relative to the value-axis render origin._  |
+|  [**GradientTexture**](classQAccelPlot_1_1GradientTexture.md) | [**colorMap**](#variable-colormap)  <br>[_**Colormap**_](classQAccelPlot_1_1Colormap.md) _lookup texture sampled at binding 2._ |
+|  float | [**colorSource**](#variable-colorsource)   = `{0.0f}`<br>_What_ `colorMap` _maps: 0 nothing (the rectangle colors apply), 1 the value, 2 the position._ |
 |  float | [**horizontal**](#variable-horizontal)   = `{0.0f}`<br>_1.0 when positions lie on the Y axis (float for std140 UBO compatibility)._  |
 |  float | [**ranged**](#variable-ranged)   = `{0.0f}`<br>_1.0 when each bar holds its own extent along the position axis._  |
+|  float | [**valueLogScale**](#variable-valuelogscale)   = `{0.0f}`<br>_1.0 to place values on the colormap in log10._  |
+|  float | [**valueMax**](#variable-valuemax)   = `{1.0f}`<br>_Value at colormap position 1, shifted like_ `valueMin` _._ |
+|  float | [**valueMin**](#variable-valuemin)   = `{0.0f}`<br>_Value at colormap position 0, shifted like the data unless_ `valueLogScale` _is set._ |
+|  float | [**valueOrigin**](#variable-valueorigin)   = `{0.0f}`<br>_Added to the mapped data before a log normalization, which needs the absolute value._  |
 
 
 ## Public Attributes inherited from QAccelPlot::RectMaterial
@@ -85,6 +91,7 @@ See [QAccelPlot::RectMaterial](classQAccelPlot_1_1RectMaterial.md)
 
 | Type | Name |
 | ---: | :--- |
+|  float | [**antialiasing**](classQAccelPlot_1_1RectMaterial.md#variable-antialiasing)   = `{0.0f}`<br>_1.0 to smooth the rectangle and outline edges._  |
 |  QColor | [**borderColor**](classQAccelPlot_1_1RectMaterial.md#variable-bordercolor)   = `{Qt::black}`<br>_Outline color._  |
 |  float | [**borderWidth**](classQAccelPlot_1_1RectMaterial.md#variable-borderwidth)   = `{0.0f}`<br>_Outline width in pixels, drawn inside each rectangle._  |
 |  QColor | [**hoverColor**](classQAccelPlot_1_1RectMaterial.md#variable-hovercolor)   = `{Qt::transparent}`<br>_Fill color of the highlighted rectangle._  |
@@ -196,6 +203,7 @@ See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 | ---: | :--- |
 |  const QSGGeometry::AttributeSet & | [**attributeSet**](classQAccelPlot_1_1DataTextureMaterial.md#function-attributeset) () <br>_Returns the shared vertex attribute set:_ `{float` _id, float param, uchar4 color} (12 bytes)._ |
 |  void | [**commitTexture**](classQAccelPlot_1_1DataTextureMaterial.md#function-committexture) (QSGMaterialShader::RenderState & state, int binding, QSGTexture \*\* texture, const [**DataTexture**](classQAccelPlot_1_1DataTexture.md) \* data) <br>_Commits the texture of_ _data_ _to sampler__binding_ _(call from_`updateSampledImage` _). Does nothing before an upload._ |
+|  const QSGGeometry::AttributeSet & | [**vertexIndexAttributeSet**](classQAccelPlot_1_1DataTextureMaterial.md#function-vertexindexattributeset) () <br>_Returns the attribute set of marker quads: one ignored_ `uchar4` _placeholder (4 bytes)._ |
 |  bool | [**writeCommonUniforms**](classQAccelPlot_1_1DataTextureMaterial.md#function-writecommonuniforms) (char \* buf, int bufSize, const QMatrix4x4 & matrix, const [**DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) \* mat) <br>_Writes the shared UBO prefix (transform + color + domain + flags) into_ _buf_ _._ |
 
 
@@ -263,7 +271,7 @@ See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 
 | Type | Name |
 | ---: | :--- |
-| virtual int | [**compareExtra**](#function-compareextra) (const QSGMaterial \* other) override const<br>_Compares the bar-specific uniforms after the rectangle uniforms compare equal._  |
+| virtual int | [**compareExtra**](#function-compareextra) (const QSGMaterial \* other) override const<br>_Compares the bar-specific uniforms and the colormap texture after the rectangle uniforms compare equal._  |
 
 
 ## Protected Functions inherited from QAccelPlot::RectMaterial
@@ -293,7 +301,7 @@ See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 ## Detailed Description
 
 
-The data texture holds (position, value) pairs, or (from, to, value) triples when `ranged` is set; the shader turns each into a rectangle. 
+The data texture holds (position, value) pairs, or (from, to, value) triples when `ranged` is set; the shader turns each into a rectangle. When `colorSource` is set, the vertex shader colors each bar from `colorMap`. 
 
 
     
@@ -348,6 +356,36 @@ float QAccelPlot::BarMaterial::baseline;
 
 
 
+### variable colorMap {#variable-colormap}
+
+[_**Colormap**_](classQAccelPlot_1_1Colormap.md) _lookup texture sampled at binding 2._
+```C++
+GradientTexture QAccelPlot::BarMaterial::colorMap;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable colorSource {#variable-colorsource}
+
+_What_ `colorMap` _maps: 0 nothing (the rectangle colors apply), 1 the value, 2 the position._
+```C++
+float QAccelPlot::BarMaterial::colorSource;
+```
+
+
+
+
+<hr>
+
+
+
+
 ### variable horizontal {#variable-horizontal}
 
 _1.0 when positions lie on the Y axis (float for std140 UBO compatibility)._ 
@@ -368,6 +406,66 @@ float QAccelPlot::BarMaterial::horizontal;
 _1.0 when each bar holds its own extent along the position axis._ 
 ```C++
 float QAccelPlot::BarMaterial::ranged;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable valueLogScale {#variable-valuelogscale}
+
+_1.0 to place values on the colormap in log10._ 
+```C++
+float QAccelPlot::BarMaterial::valueLogScale;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable valueMax {#variable-valuemax}
+
+_Value at colormap position 1, shifted like_ `valueMin` _._
+```C++
+float QAccelPlot::BarMaterial::valueMax;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable valueMin {#variable-valuemin}
+
+_Value at colormap position 0, shifted like the data unless_ `valueLogScale` _is set._
+```C++
+float QAccelPlot::BarMaterial::valueMin;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable valueOrigin {#variable-valueorigin}
+
+_Added to the mapped data before a log normalization, which needs the absolute value._ 
+```C++
+float QAccelPlot::BarMaterial::valueOrigin;
 ```
 
 
@@ -431,7 +529,7 @@ QSGMaterialType * QAccelPlot::BarMaterial::type () override const
 
 ### function compareExtra {#function-compareextra}
 
-_Compares the bar-specific uniforms after the rectangle uniforms compare equal._ 
+_Compares the bar-specific uniforms and the colormap texture after the rectangle uniforms compare equal._ 
 ```C++
 virtual int QAccelPlot::BarMaterial::compareExtra (
     const QSGMaterial * other

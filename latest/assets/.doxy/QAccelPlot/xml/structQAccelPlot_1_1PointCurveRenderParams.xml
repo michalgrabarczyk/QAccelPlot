@@ -4,6 +4,21 @@
     <compoundname>QAccelPlot::PointCurveRenderParams</compoundname>
     <includes local="no">LineCurvePointRenderer.hpp</includes>
     <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1PointCurveRenderParams_1aaf9622761df658b1dc643a77dc7faca3" prot="public" static="no" mutable="no">
+        <type>QQuickWindow *</type>
+        <definition>QQuickWindow* QAccelPlot::PointCurveRenderParams::window</definition>
+        <argsstring></argsstring>
+        <name>window</name>
+        <qualifiedname>QAccelPlot::PointCurveRenderParams::window</qualifiedname>
+        <briefdescription>
+<para>Window providing the texture upload context. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="30" column="18" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1PointCurveRenderParams_1a760e8f29fc605b05f08966413c0e3a13" prot="public" static="no" mutable="no">
         <type>const std::vector&lt; float &gt; &amp;</type>
         <definition>const std::vector&lt;float&gt;&amp; QAccelPlot::PointCurveRenderParams::data</definition>
@@ -17,22 +32,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="24" column="23" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="24" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="structQAccelPlot_1_1PointCurveRenderParams_1ab1ba23bc662b1a429a78faebe12c2019" prot="public" static="no" mutable="no">
-        <type><ref refid="structQAccelPlot_1_1CurveDataView" kindref="compound">CurveDataView</ref></type>
-        <definition>CurveDataView QAccelPlot::PointCurveRenderParams::sourceData</definition>
-        <argsstring></argsstring>
-        <name>sourceData</name>
-        <qualifiedname>QAccelPlot::PointCurveRenderParams::sourceData</qualifiedname>
-        <briefdescription>
-<para>Original float or double data used by CPU-side operations. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="25" column="19" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="25" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="31" column="23" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="31" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1PointCurveRenderParams_1aef6cff460337216ce9fe6622d5d98ad3" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -47,7 +47,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="26" column="9" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="26" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="32" column="9" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="32" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1PointCurveRenderParams_1ab15e4141e0b60d86680b114a9dcaba2d" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -62,7 +62,22 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="27" column="10" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="27" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="33" column="10" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1PointCurveRenderParams_1aba5de360230e77d3a26056402b407bb7" prot="public" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classQAccelPlot_1_1DataTexture" kindref="compound">DataTexture</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;DataTexture&gt; QAccelPlot::PointCurveRenderParams::dataTexture</definition>
+        <argsstring></argsstring>
+        <name>dataTexture</name>
+        <qualifiedname>QAccelPlot::PointCurveRenderParams::dataTexture</qualifiedname>
+        <briefdescription>
+<para>Texture that already holds <computeroutput>data</computeroutput>, or <computeroutput>nullptr</computeroutput> to upload <computeroutput>data</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="34" column="21" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="34" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1PointCurveRenderParams_1a57cd5d1f0c942535d273d3d2c36c1996" prot="public" static="no" mutable="no">
         <type>QColor</type>
@@ -77,7 +92,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="28" column="12" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="28" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="35" column="12" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="35" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1PointCurveRenderParams_1ab1aa70a1fb9c2fa35c9437a7f5743d46" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -92,7 +107,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="29" column="10" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="29" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="36" column="10" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="36" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1PointCurveRenderParams_1a6cc41826adefcbe7f0ffdafb338bd2f2" prot="public" static="no" mutable="no">
         <type>qreal</type>
@@ -107,7 +122,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="30" column="11" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="30" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="37" column="11" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="37" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1PointCurveRenderParams_1a513f5774143f5c90f1da792b26c015da" prot="public" static="no" mutable="no">
         <type>QVector2D</type>
@@ -122,7 +137,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="31" column="15" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="31" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="38" column="15" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="38" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1PointCurveRenderParams_1a8ecb7e665641b630d32c89bc5b914488" prot="public" static="no" mutable="no">
         <type>QVector2D</type>
@@ -137,7 +152,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="32" column="15" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="32" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="39" column="15" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="39" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1PointCurveRenderParams_1a852f2f89105135c93e882381ccf64118" prot="public" static="no" mutable="no">
         <type>QVector2D</type>
@@ -152,7 +167,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="33" column="15" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="33" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="40" column="15" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="40" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1PointCurveRenderParams_1ae74b243cdf12ac2a0306c5865170e4f1" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -167,7 +182,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="34" column="10" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="34" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="41" column="10" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="41" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1PointCurveRenderParams_1ac1fbed77ffb19a6741f331ca5f1a372f" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -182,7 +197,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="35" column="10" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="35" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="42" column="10" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="42" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1PointCurveRenderParams_1ac6a23fd2774b37be8bbaeb5f0e416913" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -197,7 +212,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="36" column="10" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="36" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="43" column="10" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="43" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1PointCurveRenderParams_1a7aa9f493fe0b8619b60d4be465874d25" prot="public" static="no" mutable="no">
         <type>qreal</type>
@@ -212,7 +227,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="37" column="11" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="37" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="44" column="11" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="44" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1PointCurveRenderParams_1a45527a10f2db2a5ba39226fdeb53cacc" prot="public" static="no" mutable="no">
         <type>const <ref refid="structQAccelPlot_1_1GradientColorPayload" kindref="compound">GradientColorPayload</ref> &amp;</type>
@@ -221,13 +236,13 @@
         <name>gradientPayload</name>
         <qualifiedname>QAccelPlot::PointCurveRenderParams::gradientPayload</qualifiedname>
         <briefdescription>
-<para>Gradient color parameters. </para>
+<para>Gradient color parameters, with value bounds in the coordinates of <computeroutput>data</computeroutput>. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="38" column="32" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="38" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="45" column="32" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="45" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1PointCurveRenderParams_1ad5f4d27e5b86b555dea526542be25ab9" prot="public" static="no" mutable="no">
         <type>const std::vector&lt; char &gt; *</type>
@@ -242,7 +257,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="39" column="23" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="39" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="46" column="23" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="46" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1PointCurveRenderParams_1a8306dba154f844fd86a3cf8d1aef7b80" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -251,13 +266,13 @@
         <name>shapeType</name>
         <qualifiedname>QAccelPlot::PointCurveRenderParams::shapeType</qualifiedname>
         <briefdescription>
-<para>Marker shape index (<computeroutput><ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619" kindref="member">PlotSeries::MarkerShape</ref></computeroutput> value minus one). </para>
+<para>Marker shape index (<computeroutput>MarkerShape</computeroutput> value minus one). </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="40" column="9" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="40" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="47" column="9" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="47" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1PointCurveRenderParams_1a97c7dfa326594956775a80e1d8f8eefb" prot="public" static="no" mutable="no">
         <type>qreal</type>
@@ -272,7 +287,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="41" column="11" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="41" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="48" column="11" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="48" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1PointCurveRenderParams_1a53be39fcb259900620ff26254b5e6632" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -287,7 +302,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="42" column="10" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="42" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="49" column="10" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="49" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -297,10 +312,6 @@
     </detaileddescription>
     <collaborationgraph>
       <node id="2">
-        <label>QAccelPlot::CurveDataView</label>
-        <link refid="structQAccelPlot_1_1CurveDataView"/>
-      </node>
-      <node id="3">
         <label>QAccelPlot::GradientColorPayload</label>
         <link refid="structQAccelPlot_1_1GradientColorPayload"/>
       </node>
@@ -308,20 +319,18 @@
         <label>QAccelPlot::PointCurveRenderParams</label>
         <link refid="structQAccelPlot_1_1PointCurveRenderParams"/>
         <childnode refid="2" relation="usage">
-          <edgelabel>sourceData</edgelabel>
-        </childnode>
-        <childnode refid="3" relation="usage">
           <edgelabel>gradientPayload</edgelabel>
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="23" column="1" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="23" bodyend="43"/>
+    <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="29" column="1" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="29" bodyend="50"/>
     <listofallmembers>
       <member refid="structQAccelPlot_1_1PointCurveRenderParams_1ac6a23fd2774b37be8bbaeb5f0e416913" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCurveRenderParams</scope><name>antialiasingEnabled</name></member>
       <member refid="structQAccelPlot_1_1PointCurveRenderParams_1a7aa9f493fe0b8619b60d4be465874d25" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCurveRenderParams</scope><name>antialiasingFeather</name></member>
       <member refid="structQAccelPlot_1_1PointCurveRenderParams_1a57cd5d1f0c942535d273d3d2c36c1996" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCurveRenderParams</scope><name>color</name></member>
       <member refid="structQAccelPlot_1_1PointCurveRenderParams_1a760e8f29fc605b05f08966413c0e3a13" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCurveRenderParams</scope><name>data</name></member>
       <member refid="structQAccelPlot_1_1PointCurveRenderParams_1ab15e4141e0b60d86680b114a9dcaba2d" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCurveRenderParams</scope><name>dataChanged</name></member>
+      <member refid="structQAccelPlot_1_1PointCurveRenderParams_1aba5de360230e77d3a26056402b407bb7" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCurveRenderParams</scope><name>dataTexture</name></member>
       <member refid="structQAccelPlot_1_1PointCurveRenderParams_1a8ecb7e665641b630d32c89bc5b914488" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCurveRenderParams</scope><name>domainMax</name></member>
       <member refid="structQAccelPlot_1_1PointCurveRenderParams_1a513f5774143f5c90f1da792b26c015da" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCurveRenderParams</scope><name>domainMin</name></member>
       <member refid="structQAccelPlot_1_1PointCurveRenderParams_1a45527a10f2db2a5ba39226fdeb53cacc" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCurveRenderParams</scope><name>gradientPayload</name></member>
@@ -333,9 +342,9 @@
       <member refid="structQAccelPlot_1_1PointCurveRenderParams_1a97c7dfa326594956775a80e1d8f8eefb" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCurveRenderParams</scope><name>markerStrokeWidth</name></member>
       <member refid="structQAccelPlot_1_1PointCurveRenderParams_1aef6cff460337216ce9fe6622d5d98ad3" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCurveRenderParams</scope><name>pointCount</name></member>
       <member refid="structQAccelPlot_1_1PointCurveRenderParams_1a8306dba154f844fd86a3cf8d1aef7b80" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCurveRenderParams</scope><name>shapeType</name></member>
-      <member refid="structQAccelPlot_1_1PointCurveRenderParams_1ab1ba23bc662b1a429a78faebe12c2019" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCurveRenderParams</scope><name>sourceData</name></member>
       <member refid="structQAccelPlot_1_1PointCurveRenderParams_1ad5f4d27e5b86b555dea526542be25ab9" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCurveRenderParams</scope><name>vertexCache</name></member>
       <member refid="structQAccelPlot_1_1PointCurveRenderParams_1a852f2f89105135c93e882381ccf64118" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCurveRenderParams</scope><name>viewportSize</name></member>
+      <member refid="structQAccelPlot_1_1PointCurveRenderParams_1aaf9622761df658b1dc643a77dc7faca3" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCurveRenderParams</scope><name>window</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

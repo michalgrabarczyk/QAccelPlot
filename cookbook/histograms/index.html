@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Draw histograms in QAccelPlot: count samples into equal or uneven bins with Histogram, show counts or density, and draw them with a BarSeries from QML or C++.">
+        <meta name="description" content="Draw histograms in QAccelPlot: count samples into equal or uneven bins with Histogram, show counts or density, draw them with a BarSeries from QML or C++, and key a heatmap with a histogram of its values.">
       
       
       
@@ -27,7 +27,7 @@
     
     
       
-        <title>Histograms - QAccelPlot v0.4.0 Documentation</title>
+        <title>Histograms - QAccelPlot v0.5.0 Documentation</title>
       
     
     
@@ -64,7 +64,7 @@
     
     
 
-<meta property="og:description" content="Draw histograms in QAccelPlot: count samples into equal or uneven bins with Histogram, show counts or density, and draw them with a BarSeries from QML or C++.">
+<meta property="og:description" content="Draw histograms in QAccelPlot: count samples into equal or uneven bins with Histogram, show counts or density, draw them with a BarSeries from QML or C++, and key a heatmap with a histogram of its values.">
 
 <script type="application/ld+json">
 {
@@ -81,7 +81,7 @@
     "@type": "Person",
     "name": "Michal Grabarczyk"
   },
-  "softwareVersion": "0.4.0",
+  "softwareVersion": "0.5.0",
   "operatingSystem": "Cross-platform (Windows, Linux, macOS)",
   "applicationCategory": "DeveloperApplication",
   "keywords": ["plotting", "Qt Quick", "QML", "Scene Graph", "GPU", "real-time", "data visualization", "C++"]
@@ -133,7 +133,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="QAccelPlot v0.4.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.4.0 Documentation" data-md-component="logo">
+    <a href="../.." title="QAccelPlot v0.5.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.5.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -147,7 +147,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            QAccelPlot v0.4.0 Documentation
+            QAccelPlot v0.5.0 Documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -271,13 +271,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="QAccelPlot v0.4.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.4.0 Documentation" data-md-component="logo">
+    <a href="../.." title="QAccelPlot v0.5.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.5.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    QAccelPlot v0.4.0 Documentation
+    QAccelPlot v0.5.0 Documentation
   </label>
   
     <div class="md-nav__source">
@@ -406,33 +406,6 @@
       
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../../performance-comparison/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Performance comparison
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
     
   
   
@@ -442,6 +415,12 @@
       
         
           
+        
+      
+        
+      
+        
+      
         
       
         
@@ -483,7 +462,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <div class="md-nav__link md-nav__container">
@@ -505,14 +484,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_6">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -755,6 +734,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../heatmaps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Heatmaps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../rectangle-zoom/" class="md-nav__link">
         
   
@@ -925,6 +932,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#use-a-histogram-as-a-color-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use a histogram as a color bar
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -969,6 +987,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../error-bars/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error bars
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../background-data/" class="md-nav__link">
         
   
@@ -990,9 +1036,64 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../export/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exporting images
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Example gallery
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1427,6 +1528,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#use-a-histogram-as-a-color-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use a histogram as a color bar
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1544,6 +1656,46 @@ and a logged warning. A histogram exposes <code>binCount</code>, <code>edges</co
 a worker thread can build the histogram and pass its data to
 <code>postRangedData()</code>.
 <code>Histogram::fromCounts(edges, counts)</code> wraps data that is already binned.</p>
+<h2 id="use-a-histogram-as-a-color-bar">Use a histogram as a color bar<a class="headerlink" href="#use-a-histogram-as-a-color-bar" title="Permanent link">&para;</a></h2>
+<p>A histogram of a heatmap's values can key its colors: color the bins with the
+heatmap's colormap through
+<a href="../bar-charts/#color-bars-by-value"><code>colorSource: BarSeries.Position</code></a>, and let
+the histogram's bin axis set the colormap range. With horizontal bars, that is
+<code>yAxis</code>, the bars' position axis:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Colormap</span> <span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="kd">id: amplitudeColors</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="k">min:</span> <span class="nx">histogramPlot</span><span class="p">.</span><span class="nx">yAxis</span><span class="p">.</span><span class="nx">viewportMin</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="k">max:</span> <span class="nx">histogramPlot</span><span class="p">.</span><span class="nx">yAxis</span><span class="p">.</span><span class="nx">viewportMax</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">}</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">HeatmapSeries</span> <span class="p">{</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="k">colormap:</span> <span class="nx">amplitudeColors</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="p">}</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Plot</span> <span class="p">{</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    <span class="kd">id: histogramPlot</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>    <span class="k">xAxis:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Axis</span> <span class="p">{</span> <span class="k">autoRescale:</span> <span class="kc">true</span> <span class="p">}</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>    <span class="k">yAxis:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Axis</span> <span class="p">{}</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>    <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">BarSeries</span> <span class="p">{</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>        <span class="k">xAxis:</span> <span class="nx">histogramPlot</span><span class="p">.</span><span class="nx">xAxis</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>        <span class="k">yAxis:</span> <span class="nx">histogramPlot</span><span class="p">.</span><span class="nx">yAxis</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>        <span class="k">orientation:</span> <span class="nx">Qt</span><span class="p">.</span><span class="nx">Horizontal</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>        <span class="k">colorSource:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">BarSeries</span><span class="p">.</span><span class="nx">Position</span>
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>        <span class="k">colormap:</span> <span class="nx">amplitudeColors</span>
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>    <span class="p">}</span>
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>Panning or zooming the bin axis recolors the heatmap and the bins.</li>
+<li>Fill the bars with <code>setRangedData()</code>, and call <code>rescaleToData()</code> on the
+  bin axis once to fit it to the bin edges.</li>
+<li>Keep the bin edges fixed when recounting, for example over the cells in
+  view, so the bin axis is never refitted under the user.</li>
+</ul>
+<p>The Interference page of
+<a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/heatmap"><code>examples/plot_types/heatmap</code></a>
+recounts the cells in view as the heatmap pans and zooms.</p>
 <p>Complete source: <a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/histogram"><code>examples/plot_types/histogram</code></a></p>
 
 

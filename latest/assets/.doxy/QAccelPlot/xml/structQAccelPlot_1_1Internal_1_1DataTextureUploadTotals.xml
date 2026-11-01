@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::DataTextureUploadTotals</compoundname>
+    <includes local="no">DataTextureUploadTotals.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals_1ae6c9279f338a9036cdf966c2d117ea6b" prot="public" static="no" mutable="no">
+        <type>std::int64_t</type>
+        <definition>std::int64_t QAccelPlot::Internal::DataTextureUploadTotals::count</definition>
+        <argsstring></argsstring>
+        <name>count</name>
+        <qualifiedname>QAccelPlot::Internal::DataTextureUploadTotals::count</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+<para>Number of uploads. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureUploadTotals.hpp" line="18" column="18" bodyfile="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureUploadTotals.hpp" bodystart="18" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals_1ad9d96dab53de2e8bccce5c5c068ec59f" prot="public" static="no" mutable="no">
+        <type>std::int64_t</type>
+        <definition>std::int64_t QAccelPlot::Internal::DataTextureUploadTotals::bytes</definition>
+        <argsstring></argsstring>
+        <name>bytes</name>
+        <qualifiedname>QAccelPlot::Internal::DataTextureUploadTotals::bytes</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+<para>Bytes of series data uploaded, without the padding of the last texture row. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureUploadTotals.hpp" line="19" column="18" bodyfile="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureUploadTotals.hpp" bodystart="19" bodyend="19"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>How many data textures were uploaded since the last reset, and how many bytes they held. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Tests read the totals to check how much data a frame uploads. </para>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureUploadTotals.hpp" line="17" column="1" bodyfile="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureUploadTotals.hpp" bodystart="17" bodyend="20"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals_1ad9d96dab53de2e8bccce5c5c068ec59f" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::DataTextureUploadTotals</scope><name>bytes</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals_1ae6c9279f338a9036cdf966c2d117ea6b" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::DataTextureUploadTotals</scope><name>count</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

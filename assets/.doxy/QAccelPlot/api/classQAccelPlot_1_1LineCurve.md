@@ -61,7 +61,6 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | Type | Name |
 | ---: | :--- |
 | enum  | [**LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol)  <br>_Supported default legend symbols._  |
-| enum  | [**MarkerShape**](classQAccelPlot_1_1PlotSeries.md#enum-markershape)  <br>_Marker shapes shared by every series that draws markers._  |
 
 
 
@@ -88,16 +87,15 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 | Type | Name |
 | ---: | :--- |
-| property bool | [**antialiasingEnabled**](classQAccelPlot_1_1LineCurve.md#property-antialiasingenabled-12)  <br>_Whether GPU-side anti-aliasing is applied to lines and markers. Default:_ `true` _._ |
-| property qreal | [**antialiasingFeather**](classQAccelPlot_1_1LineCurve.md#property-antialiasingfeather-12)  <br>_Anti-aliasing feather width in pixels. Has effect only when_ `antialiasingEnabled` _is_`true` _. Default: 1._ |
+| property qreal | [**antialiasingFeather**](classQAccelPlot_1_1LineCurve.md#property-antialiasingfeather-12)  <br>_Antialiasing feather width in pixels, clamped to [0, 10]. Has effect only when the inherited_ `antialiasing` _is_`true` _. Default: 1._ |
 | property QColor | [**color**](classQAccelPlot_1_1LineCurve.md#property-color-12)  <br>_Base line color. Default:_ `Colors.dark.seriesPrimary` _._ |
 | property QQmlListProperty&lt; [**LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md) &gt; | [**effects**](classQAccelPlot_1_1LineCurve.md#property-effects-12)  <br>_List of visual effects (e.g._ [_**GradientFill**_](classQAccelPlot_1_1GradientFill.md) _,_[_**GradientStroke**_](classQAccelPlot_1_1GradientStroke.md) _) applied to this curve._ |
 | property [**LineCurveGaps**](classQAccelPlot_1_1LineCurveGaps.md) \* | [**gaps**](classQAccelPlot_1_1LineCurve.md#property-gaps-12)  <br>_Grouped gap-rendering settings, e.g._ `gaps.nanMode` _._ |
-| property qreal | [**hoverRadius**](classQAccelPlot_1_1LineCurve.md#property-hoverradius-12)  <br>_Pick radius in pixels around the line used for hover detection; 0 disables line hover. Default: 10._  |
-| property bool | [**hovered**](classQAccelPlot_1_1LineCurve.md#property-hovered-12)  <br>_Read-only:_ `true` _while the mouse cursor is over the curve._ |
+| property qreal | [**hoverRadius**](classQAccelPlot_1_1LineCurve.md#property-hoverradius-12)  <br>_Pick distance in pixels from the line; 0 disables line hover. Markers are picked within their size. Default: 10._  |
 | property [**LineStyle**](classQAccelPlot_1_1LineStyle.md) \* | [**lineStyle**](classQAccelPlot_1_1LineCurve.md#property-linestyle-12)  <br>_Line style (_ [_**SolidLine**_](classQAccelPlot_1_1SolidLine.md) _,_[_**DashLine**_](classQAccelPlot_1_1DashLine.md) _, or_[_**NoLine**_](classQAccelPlot_1_1NoLine.md) _). Default:_[_**SolidLine**_](classQAccelPlot_1_1SolidLine.md) _._ |
 | property qreal | [**lineWidth**](classQAccelPlot_1_1LineCurve.md#property-linewidth-12)  <br>_Line stroke width in pixels. Default: 1._  |
 | property [**SeriesMarker**](classQAccelPlot_1_1SeriesMarker.md) \* | [**marker**](classQAccelPlot_1_1LineCurve.md#property-marker-12)  <br>_Grouped marker settings, e.g._ `marker.shape` _and_`marker.size` _._ |
+| property [**StepMode**](namespaceQAccelPlot_1_1StepModeNS.md#enum-mode) | [**stepMode**](classQAccelPlot_1_1LineCurve.md#property-stepmode-12)  <br>_How the line joins consecutive data points. Default:_ `StepMode.None` _._ |
 | property [**DataTransition**](classQAccelPlot_1_1DataTransition.md) \* | [**transition**](classQAccelPlot_1_1LineCurve.md#property-transition-12)  <br>_Optional data transition animation applied when new data arrives._  |
 
 
@@ -107,8 +105,11 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 | Type | Name |
 | ---: | :--- |
+| property int | [**count**](classQAccelPlot_1_1PlotSeries.md#property-count-12)  <br>_Read-only: number of records stored, including invalid ones._  |
 | property quint64 | [**dataRevision**](classQAccelPlot_1_1PlotSeries.md#property-datarevision-12)  <br>_Revision incremented by every accepted change of the series' records._  |
-| property [**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) \* | [**inspection**](classQAccelPlot_1_1PlotSeries.md#property-inspection-12)  <br>_Read-only constant: data queries for this series._  |
+| property bool | [**hoverEnabled**](classQAccelPlot_1_1PlotSeries.md#property-hoverenabled-12)  <br>_Whether the series reacts to the mouse cursor. Default:_ `true` _._ |
+| property bool | [**hovered**](classQAccelPlot_1_1PlotSeries.md#property-hovered-12)  <br>_Read-only:_ `true` _while the mouse cursor is over the series._ |
+| property [**SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) \* | [**inspection**](classQAccelPlot_1_1PlotSeries.md#property-inspection-12)  <br>_Read-only constant: data queries for this series._  |
 | property [**LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol) | [**legendSymbol**](classQAccelPlot_1_1PlotSeries.md#property-legendsymbol-12)  <br>_Symbol style requested from the default legend._  |
 | property QString | [**name**](classQAccelPlot_1_1PlotSeries.md#property-name-12)  <br>_Identifying name used by the default legend._  |
 | property QRectF | [**plotRect**](classQAccelPlot_1_1PlotSeries.md#property-plotrect-12)  <br>_Plot area in parent-item coordinates, assigned by_ `PlotView` _._ |
@@ -124,13 +125,12 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 | Type | Name |
 | ---: | :--- |
-| signal void | [**antialiasingEnabledChanged**](classQAccelPlot_1_1LineCurve.md#signal-antialiasingenabledchanged)  <br>_Emitted when the antialiasingEnabled property changes._  |
 | signal void | [**antialiasingFeatherChanged**](classQAccelPlot_1_1LineCurve.md#signal-antialiasingfeatherchanged)  <br>_Emitted when the antialiasingFeather property changes._  |
 | signal void | [**colorChanged**](classQAccelPlot_1_1LineCurve.md#signal-colorchanged)  <br>_Emitted when the color property changes._  |
 | signal void | [**hoverRadiusChanged**](classQAccelPlot_1_1LineCurve.md#signal-hoverradiuschanged)  <br>_Emitted when the hoverRadius property changes._  |
-| signal void | [**hoveredChanged**](classQAccelPlot_1_1LineCurve.md#signal-hoveredchanged)  <br>_Emitted when the hovered property changes._  |
 | signal void | [**lineStyleChanged**](classQAccelPlot_1_1LineCurve.md#signal-linestylechanged)  <br>_Emitted when the lineStyle property changes._  |
 | signal void | [**lineWidthChanged**](classQAccelPlot_1_1LineCurve.md#signal-linewidthchanged)  <br>_Emitted when the lineWidth property changes._  |
+| signal void | [**stepModeChanged**](classQAccelPlot_1_1LineCurve.md#signal-stepmodechanged)  <br>_Emitted when the stepMode property changes._  |
 | signal void | [**transitionChanged**](classQAccelPlot_1_1LineCurve.md#signal-transitionchanged)  <br>_Emitted when the transition property changes._  |
 
 
@@ -140,7 +140,11 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 | Type | Name |
 | ---: | :--- |
+| signal void | [**countChanged**](classQAccelPlot_1_1PlotSeries.md#signal-countchanged)  <br>_Emitted when the number of records changes._  |
 | signal void | [**dataRevisionChanged**](classQAccelPlot_1_1PlotSeries.md#signal-datarevisionchanged)  <br>_Emitted when the dataRevision property changes._  |
+| signal void | [**hoverEnabledChanged**](classQAccelPlot_1_1PlotSeries.md#signal-hoverenabledchanged)  <br>_Emitted when the hoverEnabled property changes._  |
+| signal void | [**hoveredChanged**](classQAccelPlot_1_1PlotSeries.md#signal-hoveredchanged)  <br>_Emitted when the hovered property changes._  |
+| signal void | [**legendEntryChanged**](classQAccelPlot_1_1PlotSeries.md#signal-legendentrychanged)  <br>_Emitted when the result of_ `legendEntry()` _or_`legendEntries()` _changes._ |
 | signal void | [**legendSymbolChanged**](classQAccelPlot_1_1PlotSeries.md#signal-legendsymbolchanged)  <br> |
 | signal void | [**nameChanged**](classQAccelPlot_1_1PlotSeries.md#signal-namechanged)  <br> |
 | signal void | [**plotRectChanged**](classQAccelPlot_1_1PlotSeries.md#signal-plotrectchanged)  <br> |
@@ -157,22 +161,20 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | Type | Name |
 | ---: | :--- |
 |   | [**LineCurve**](#function-linecurve) (QQuickItem \* parent=nullptr) <br>_Constructs a_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _with the given__parent_ _._ |
-|  bool | [**antialiasingEnabled**](#function-antialiasingenabled-22) () const<br>_Returns_ `true` _when GPU anti-aliasing is enabled._ |
-|  qreal | [**antialiasingFeather**](#function-antialiasingfeather-22) () const<br>_Returns the anti-aliasing feather width._  |
+|  qreal | [**antialiasingFeather**](#function-antialiasingfeather-22) () const<br>_Returns the antialiasing feather width in pixels._  |
 |  Q\_INVOKABLE void | [**appendData**](#function-appenddata) (qreal x, qreal y) <br>_Appends a single data point (_ _x_ _,__y_ _) to the curve. Triggers a redraw._ |
 | virtual Q\_INVOKABLE void | [**clearData**](#function-cleardata) () override<br>_Removes all data points from the curve._  |
 |  QColor | [**color**](#function-color-22) () const<br>_Returns the base line color._  |
 |  QQmlListProperty&lt; [**LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md) &gt; | [**effects**](#function-effects-22) () <br>_Returns the QML list property for attached visual effects._  |
 |  [**LineCurveGaps**](classQAccelPlot_1_1LineCurveGaps.md) \* | [**gaps**](#function-gaps-22) () const<br>_Returns the grouped gap-rendering settings. The object is owned by the curve._  |
-|  qreal | [**hoverRadius**](#function-hoverradius-22) () const<br>_Returns the line hover pick radius in pixels._  |
-|  bool | [**hovered**](#function-hovered-22) () const<br>_Returns_ `true` _if the cursor is currently over the curve._ |
+|  qreal | [**hoverRadius**](#function-hoverradius-22) () const<br>_Returns the hover pick distance from the line in pixels._  |
+| virtual std::optional&lt; [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md) &gt; | [**legendEntry**](#function-legendentry) () override const<br>_Returns the legend entry: the symbol, color, line, and marker of the curve._  |
 |  [**LineStyle**](classQAccelPlot_1_1LineStyle.md) \* | [**lineStyle**](#function-linestyle-22) () const<br>_Returns the active line style._  |
 |  qreal | [**lineWidth**](#function-linewidth-22) () const<br>_Returns the line stroke width._  |
 |  [**SeriesMarker**](classQAccelPlot_1_1SeriesMarker.md) \* | [**marker**](#function-marker-22) () const<br>_Returns the grouped marker settings. The object is owned by the curve._  |
 |  void | [**postData**](#function-postdata-12) (std::vector&lt; double &gt; && data, int count) <br>_Queues a moved double buffer for assignment on the series' thread._  |
 |  void | [**postData**](#function-postdata-22) (std::vector&lt; float &gt; && data, int count) <br>_Queues a moved float buffer for assignment on the series' thread._  |
-|  void | [**setAntialiasingEnabled**](#function-setantialiasingenabled) (bool enabled) <br>_Sets anti-aliasing to_ _enabled_ _._ |
-|  void | [**setAntialiasingFeather**](#function-setantialiasingfeather) (qreal feather) <br>_Sets the anti-aliasing feather width to_ _feather_ _pixels. Has effect only when_`antialiasingEnabled` _is_`true` _._ |
+|  void | [**setAntialiasingFeather**](#function-setantialiasingfeather) (qreal feather) <br>_Sets the antialiasing feather width to_ _feather_ _pixels, clamped to [0, 10]._ |
 |  void | [**setColor**](#function-setcolor) (const QColor & c) <br>_Sets the line color to_ _c_ _._ |
 |  Q\_INVOKABLE void | [**setData**](#function-setdata-16) (const QList&lt; QPointF &gt; & data) <br>_Replaces the curve data with_ _data_ _(a list of QPointF values)._ |
 |  void | [**setData**](#function-setdata-26) (const std::vector&lt; double &gt; & xs, const std::vector&lt; double &gt; & ys) <br>_Sets data from separate X and Y vectors. If sizes don't match, the shorter length is used._  |
@@ -184,12 +186,12 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  void | [**setDataF**](#function-setdataf-24) (std::vector&lt; float &gt; && data, int count) <br>_Replaces the series data by moving an interleaved float buffer._  |
 |  void | [**setDataF**](#function-setdataf-34) (const float \* data, int count, const [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) & bounds) <br>_Like_ `setDataF` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._ |
 |  void | [**setDataF**](#function-setdataf-44) (std::vector&lt; float &gt; && data, int count, const [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) & bounds) <br>_Like_ `setDataF` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._ |
-|  void | [**setDataFWithCache**](#function-setdatafwithcache-12) (std::vector&lt; float &gt; && data, int pointCount, std::vector&lt; char &gt; && vertexCache) <br>_Like_ `setDataF(vector)` _but also accepts a pre-built__vertexCache_ _, bypassing main-thread rebuild._ |
-|  void | [**setDataFWithCache**](#function-setdatafwithcache-22) (const float \* xyInterleaved, int pointCount, std::vector&lt; char &gt; && vertexCache) <br>_Like_ `setDataFWithCache(vector)` _but copies from a raw interleaved float array._ |
-|  void | [**setHoverRadius**](#function-sethoverradius) (qreal radius) <br>_Sets the line hover pick radius to_ _radius_ _pixels. Negative values are clamped to 0. Marker hit testing is unaffected._ |
+|  void | [**setHoverRadius**](#function-sethoverradius) (qreal radius) <br>_Sets the hover pick distance from the line to_ _radius_ _pixels. Negative values are clamped to 0. Marker hit testing is unaffected._ |
 |  void | [**setLineStyle**](#function-setlinestyle) ([**LineStyle**](classQAccelPlot_1_1LineStyle.md) \* style) <br>_Sets the line style to_ _style_ _._ |
 |  void | [**setLineWidth**](#function-setlinewidth) (qreal w) <br>_Sets the line stroke width to_ _w_ _pixels._ |
+|  void | [**setStepMode**](#function-setstepmode) ([**StepMode**](namespaceQAccelPlot_1_1StepModeNS.md#enum-mode) mode) <br>_Sets how the line joins consecutive data points to_ _mode_ _._ |
 |  void | [**setTransition**](#function-settransition) ([**DataTransition**](classQAccelPlot_1_1DataTransition.md) \* transition) <br>_Sets the data transition to_ _transition_ _._ |
+|  [**StepMode**](namespaceQAccelPlot_1_1StepModeNS.md#enum-mode) | [**stepMode**](#function-stepmode-22) () const<br>_Returns how the line joins consecutive data points._  |
 |  [**DataTransition**](classQAccelPlot_1_1DataTransition.md) \* | [**transition**](#function-transition-22) () const<br>_Returns the active data transition, or_ `nullptr` _if none._ |
 |   | [**~LineCurve**](#function-linecurve) () override<br>_Destroys the curve, ending its animation on the assigned transition._  |
 
@@ -202,8 +204,13 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | ---: | :--- |
 |   | [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md#function-plotseries-12) (QQuickItem \* parent=nullptr) <br> |
 | virtual void | [**clearData**](classQAccelPlot_1_1PlotSeries.md#function-cleardata) () <br>_Removes all data points from the series._  |
+| virtual int | [**count**](classQAccelPlot_1_1PlotSeries.md#function-count-22) () const<br>_Returns the number of records stored. The default is the number of stored data points._  |
 |  quint64 | [**dataRevision**](classQAccelPlot_1_1PlotSeries.md#function-datarevision-22) () const<br>_Returns the current data revision._  |
+|  bool | [**hoverEnabled**](classQAccelPlot_1_1PlotSeries.md#function-hoverenabled-22) () const<br>_Returns whether the series reacts to the mouse cursor._  |
+|  bool | [**hovered**](classQAccelPlot_1_1PlotSeries.md#function-hovered-22) () const<br>_Returns whether the mouse cursor is over the series._  |
 |  [**SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) \* | [**inspection**](classQAccelPlot_1_1PlotSeries.md#function-inspection-22) () const<br>_Returns the data queries for this series; created on first use and owned by the series._  |
+| virtual QList&lt; [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md) &gt; | [**legendEntries**](classQAccelPlot_1_1PlotSeries.md#function-legendentries) () const<br>_Returns the legend rows of the series. Default: the_ `legendEntry()` _, if any._ |
+| virtual std::optional&lt; [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md) &gt; | [**legendEntry**](classQAccelPlot_1_1PlotSeries.md#function-legendentry) () const<br>_Returns how a legend draws the series, or_ `std::nullopt` _for no legend entry. Default: no entry._ |
 |  [**LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol) | [**legendSymbol**](classQAccelPlot_1_1PlotSeries.md#function-legendsymbol-22) () const<br> |
 |  QString | [**name**](classQAccelPlot_1_1PlotSeries.md#function-name-22) () const<br> |
 |  QRectF | [**plotRect**](classQAccelPlot_1_1PlotSeries.md#function-plotrect-22) () const<br> |
@@ -217,6 +224,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  void | [**setDataF**](classQAccelPlot_1_1PlotSeries.md#function-setdataf-24) (std::vector&lt; float &gt; && data, int count) <br>_Replaces the series data by moving an interleaved float buffer._  |
 |  void | [**setDataF**](classQAccelPlot_1_1PlotSeries.md#function-setdataf-34) (const float \* data, int count, const [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) & bounds) <br>_Like_ `setDataF` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._ |
 |  void | [**setDataF**](classQAccelPlot_1_1PlotSeries.md#function-setdataf-44) (std::vector&lt; float &gt; && data, int count, const [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) & bounds) <br>_Like_ `setDataF` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._ |
+|  void | [**setHoverEnabled**](classQAccelPlot_1_1PlotSeries.md#function-sethoverenabled) (bool enabled) <br>_Sets whether the series reacts to the mouse cursor to_ _enabled_ _._ |
 |  void | [**setLegendSymbol**](classQAccelPlot_1_1PlotSeries.md#function-setlegendsymbol) ([**LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol) symbol) <br> |
 |  void | [**setName**](classQAccelPlot_1_1PlotSeries.md#function-setname) (const QString & name) <br> |
 |  void | [**setPlotRect**](classQAccelPlot_1_1PlotSeries.md#function-setplotrect) (const QRectF & rect) <br>_Updates the series geometry to exactly cover_ _rect_ _._ |
@@ -241,6 +249,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 | Type | Name |
 | ---: | :--- |
+| enum  | [**CapacityOverflow**](classQAccelPlot_1_1PlotSeries.md#enum-capacityoverflow)  <br>_What a series draws when its records outgrow its GPU capacity._  |
 | enum  | [**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange)  <br>_How the records changed in a data update._  |
 
 
@@ -250,6 +259,14 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 
 
+## Protected Attributes inherited from QAccelPlot::PlotSeries
+
+See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
+
+| Type | Name |
+| ---: | :--- |
+|  bool | [**overRenderCapacity\_**](classQAccelPlot_1_1PlotSeries.md#variable-overrendercapacity_)   = `{false}`<br>_Whether the record count of the last_ `updateRenderCapacity()` _exceeded_`renderCapacity_` _._ |
+|  int | [**renderCapacity\_**](classQAccelPlot_1_1PlotSeries.md#variable-rendercapacity_)   = `{std::numeric\_limits&lt;int&gt;::max()}`<br>_Records the GPU buffers hold, as of the last_ `updateRenderCapacity()` _; the largest_`int` _before the first._ |
 
 
 
@@ -308,19 +325,25 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  void | [**extendYDataRange**](classQAccelPlot_1_1PlotSeries.md#function-extendydatarange) (qreal y) <br>_Widens the Y extent to include_ _y_ _. A non-finite__y_ _leaves the extent unchanged._ |
 | virtual bool | [**inspectionAvailable**](classQAccelPlot_1_1PlotSeries.md#function-inspectionavailable) () const<br>_Returns false while the records are ambiguous, such as during a data transition. Default: true._  |
 |  void | [**inspectionDataChanged**](classQAccelPlot_1_1PlotSeries.md#function-inspectiondatachanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change=DataChange::Replaced) <br>_Advances the data revision and refreshes the data queries. Call after every accepted record change._  |
+| virtual [**InspectionDataPoint**](structQAccelPlot_1_1InspectionDataPoint.md) | [**inspectionDataPointAt**](classQAccelPlot_1_1PlotSeries.md#function-inspectiondatapointat) (const QPointF & position) const<br>_Returns the record drawn at the series-local_ _position_ _as a data point. Default: unsupported._ |
 | virtual [**InspectionRecord**](structQAccelPlot_1_1InspectionRecord.md) | [**inspectionRecord**](classQAccelPlot_1_1PlotSeries.md#function-inspectionrecord) (int index) const<br>_Returns the native record at_ _index_ _for series that are not plain XY series. Default: unsupported._ |
 | virtual [**InspectionRecord**](structQAccelPlot_1_1InspectionRecord.md) | [**inspectionRecordAt**](classQAccelPlot_1_1PlotSeries.md#function-inspectionrecordat) (const QPointF & position) const<br>_Returns the native record drawn at the series-local_ _position_ _. Default: unsupported._ |
-| virtual [**InspectionSource**](structQAccelPlot_1_1InspectionSource.md) | [**inspectionSource**](classQAccelPlot_1_1PlotSeries.md#function-inspectionsource) () const<br>_Returns a view of the XY records that data point queries search. The default has none._  |
+| virtual [**Internal::InspectionSource**](structQAccelPlot_1_1Internal_1_1InspectionSource.md) | [**inspectionSource**](classQAccelPlot_1_1PlotSeries.md#function-inspectionsource) () const<br>_Returns a view of the XY records that data point queries search. The default has none._  |
 |  void | [**invalidateDataRanges**](classQAccelPlot_1_1PlotSeries.md#function-invalidatedataranges) () <br>_Discards the cached extents and notifies the bound axes._  |
 |  void | [**invalidateInspection**](classQAccelPlot_1_1PlotSeries.md#function-invalidateinspection) () <br>_Refreshes the data queries after record validity changed without a data change, such as an axis scale switch._  |
 |  bool | [**logScaleX**](classQAccelPlot_1_1PlotSeries.md#function-logscalex) () const<br>_Returns whether the horizontal axis is logarithmic; false without an axis._  |
 |  bool | [**logScaleY**](classQAccelPlot_1_1PlotSeries.md#function-logscaley) () const<br>_Returns whether the vertical axis is logarithmic; false without an axis._  |
-|  void | [**notifyDataPointsChanged**](classQAccelPlot_1_1PlotSeries.md#function-notifydatapointschanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change, int previousCount) <br>_Finishes a change of the data points: data ranges,_ `onDataPointsChanged()` _, data queries, and a repaint._ |
+|  void | [**notifyDataPointsChanged**](classQAccelPlot_1_1PlotSeries.md#function-notifydatapointschanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change, int previousCount) <br>_Finishes a change of the data points: data ranges,_ `onDataPointsChanged()` _,_`countChanged()` _, data queries, and a repaint._ |
 | virtual void | [**onAxisRangeChanged**](classQAccelPlot_1_1PlotSeries.md#function-onaxisrangechanged) () <br>_Called when the viewport of a bound axis changes. The default implementation schedules a repaint._  |
 | virtual void | [**onAxisScaleChanged**](classQAccelPlot_1_1PlotSeries.md#function-onaxisscalechanged) () <br>_Called when a bound axis switches between linear and logarithmic scale, or a different axis is bound._  |
 | virtual void | [**onDataPointsChanged**](classQAccelPlot_1_1PlotSeries.md#function-ondatapointschanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change, int previousCount) <br>_Called after the data points changed, before the data queries are refreshed. The default does nothing._  |
+| virtual bool | [**positionInspectionSupported**](classQAccelPlot_1_1PlotSeries.md#function-positioninspectionsupported) () const<br>_Returns whether_ `inspectionDataPointAt()` _matches records drawn as areas, such as heatmap cells. Default: false._ |
+| virtual bool | [**recordInspectionSupported**](classQAccelPlot_1_1PlotSeries.md#function-recordinspectionsupported) () const<br>_Returns whether_ `inspectionRecord()` _and_`inspectionRecordAt()` _answer for this series. Default: false._ |
 |  QRectF | [**resolvePlotRect**](classQAccelPlot_1_1PlotSeries.md#function-resolveplotrect) () const<br>_Returns the plot area to render into:_ `plotRect` _when set, otherwise the item's current size._ |
+|  void | [**setHovered**](classQAccelPlot_1_1PlotSeries.md#function-sethovered) (bool hovered) <br>_Sets the hovered property to_ _hovered_ _. Called by the hover handling of a series._ |
 |  void | [**storeDataPoints**](classQAccelPlot_1_1PlotSeries.md#function-storedatapoints) ([**DataPointInput**](structQAccelPlot_1_1PlotSeries_1_1DataPointInput.md) && input) <br>_Stores_ _input_ _as the data points and finishes the change._ |
+|  void | [**supportHover**](classQAccelPlot_1_1PlotSeries.md#function-supporthover) () <br>_Makes the series accept hover events while_ `hoverEnabled` _is_`true` _._ |
+|  void | [**updateRenderCapacity**](classQAccelPlot_1_1PlotSeries.md#function-updaterendercapacity) (int capacity, int recordCount, [**CapacityOverflow**](classQAccelPlot_1_1PlotSeries.md#enum-capacityoverflow) overflow=CapacityOverflow::DropsExcess) <br>_Stores_ _capacity_ _, the number of records the GPU buffers hold, and warns when__recordCount_ _newly exceeds it._ |
 |  bool | [**validateDataSize**](classQAccelPlot_1_1PlotSeries.md#function-validatedatasize) (std::size\_t valueCount, int count, bool floatData, int valuesPerDataPoint=0) const<br>_Returns whether_ _valueCount_ _values hold__count_ _data points; warns otherwise._ |
 |  bool | [**validateRawDataArguments**](classQAccelPlot_1_1PlotSeries.md#function-validaterawdataarguments) (const void \* data, int count) const<br>_Returns whether_ _data_ _and__count_ _are valid arguments for copying data points; warns otherwise._ |
 
@@ -340,7 +363,7 @@ The `setData()` overloads retain double-precision coordinates, including large t
 **
 **
 
-Markers are configured through the `marker` grouped property, for example `marker.shape:  QAccelPlot.LineCurve.Circle`. No markers are drawn by default.
+Markers are configured through the `marker` grouped property, for example `marker.shape: QAccelPlot.MarkerShape.Circle`. No markers are drawn by default.
 
 
 
@@ -364,7 +387,15 @@ Animated data updates are enabled by assigning a `DrawTransition` or `MorphTrans
 **
 **
 
-A data point is invalid when its X or Y coordinate is NaN or ±Inf, or is not strictly positive on a log-scale axis. Invalid data points are never drawn as markers, never hit-tested, and are excluded from auto-ranging coordinate by coordinate (a finite X with an invalid Y still extends the X range). How the line and gradient fill treat them is controlled by the `gaps` grouped property: `gaps.nanMode` `Break` (default) leaves a gap, `Connect` joins the neighboring valid data points. Insert `NaN` to mark missing telemetry explicitly.
+`stepMode` draws the line as steps, for example `stepMode: QAccelPlot.StepMode.After`. The gradient fill, dash pattern, and hover follow the steps, markers stay on the data points, and interpolated inspection reads the value a step holds. The line follows the data points in order and is not sorted by X.
+
+
+
+
+**
+**
+
+A data point is invalid when its X or Y coordinate is NaN or ±Inf, or is not strictly positive on a log-scale axis. Invalid data points are never drawn as markers, never hit-tested, and are excluded from auto-ranging coordinate by coordinate (a finite X with an invalid Y still extends the X range). How the line and gradient fill treat them is controlled by the `gaps` grouped property: `gaps.nanMode` `Break` (default) leaves a gap, `Connect` joins the neighboring valid data points. Insert `NaN` to mark missing telemetry explicitly. With a step mode and `Break`, a value holds up to the X of an invalid neighbor when that X is finite.
 
 
 
@@ -380,24 +411,9 @@ A data point is invalid when its X or Y coordinate is NaN or ±Inf, or is not st
 
 
 
-### property antialiasingEnabled {#property-antialiasingenabled-12}
-
-_Whether GPU-side anti-aliasing is applied to lines and markers. Default:_ `true` _._
-```C++
-bool QAccelPlot::LineCurve::antialiasingEnabled;
-```
-
-
-
-
-<hr>
-
-
-
-
 ### property antialiasingFeather {#property-antialiasingfeather-12}
 
-_Anti-aliasing feather width in pixels. Has effect only when_ `antialiasingEnabled` _is_`true` _. Default: 1._
+_Antialiasing feather width in pixels, clamped to [0, 10]. Has effect only when the inherited_ `antialiasing` _is_`true` _. Default: 1._
 ```C++
 qreal QAccelPlot::LineCurve::antialiasingFeather;
 ```
@@ -457,24 +473,9 @@ LineCurveGaps* QAccelPlot::LineCurve::gaps;
 
 ### property hoverRadius {#property-hoverradius-12}
 
-_Pick radius in pixels around the line used for hover detection; 0 disables line hover. Default: 10._ 
+_Pick distance in pixels from the line; 0 disables line hover. Markers are picked within their size. Default: 10._ 
 ```C++
 qreal QAccelPlot::LineCurve::hoverRadius;
-```
-
-
-
-
-<hr>
-
-
-
-
-### property hovered {#property-hovered-12}
-
-_Read-only:_ `true` _while the mouse cursor is over the curve._
-```C++
-bool QAccelPlot::LineCurve::hovered;
 ```
 
 
@@ -530,6 +531,21 @@ SeriesMarker* QAccelPlot::LineCurve::marker;
 
 
 
+### property stepMode {#property-stepmode-12}
+
+_How the line joins consecutive data points. Default:_ `StepMode.None` _._
+```C++
+StepMode QAccelPlot::LineCurve::stepMode;
+```
+
+
+
+
+<hr>
+
+
+
+
 ### property transition {#property-transition-12}
 
 _Optional data transition animation applied when new data arrives._ 
@@ -543,21 +559,6 @@ DataTransition* QAccelPlot::LineCurve::transition;
 <hr>
 ## Public Signals Documentation
 
-
-
-
-
-### signal antialiasingEnabledChanged {#signal-antialiasingenabledchanged}
-
-_Emitted when the antialiasingEnabled property changes._ 
-```C++
-void QAccelPlot::LineCurve::antialiasingEnabledChanged;
-```
-
-
-
-
-<hr>
 
 
 
@@ -607,21 +608,6 @@ void QAccelPlot::LineCurve::hoverRadiusChanged;
 
 
 
-### signal hoveredChanged {#signal-hoveredchanged}
-
-_Emitted when the hovered property changes._ 
-```C++
-void QAccelPlot::LineCurve::hoveredChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
 ### signal lineStyleChanged {#signal-linestylechanged}
 
 _Emitted when the lineStyle property changes._ 
@@ -642,6 +628,21 @@ void QAccelPlot::LineCurve::lineStyleChanged;
 _Emitted when the lineWidth property changes._ 
 ```C++
 void QAccelPlot::LineCurve::lineWidthChanged;
+```
+
+
+
+
+<hr>
+
+
+
+
+### signal stepModeChanged {#signal-stepmodechanged}
+
+_Emitted when the stepMode property changes._ 
+```C++
+void QAccelPlot::LineCurve::stepModeChanged;
 ```
 
 
@@ -686,24 +687,9 @@ explicit QAccelPlot::LineCurve::LineCurve (
 
 
 
-### function antialiasingEnabled {#function-antialiasingenabled-22}
-
-_Returns_ `true` _when GPU anti-aliasing is enabled._
-```C++
-bool QAccelPlot::LineCurve::antialiasingEnabled () const
-```
-
-
-
-
-<hr>
-
-
-
-
 ### function antialiasingFeather {#function-antialiasingfeather-22}
 
-_Returns the anti-aliasing feather width._ 
+_Returns the antialiasing feather width in pixels._ 
 ```C++
 qreal QAccelPlot::LineCurve::antialiasingFeather () const
 ```
@@ -798,7 +784,7 @@ LineCurveGaps * QAccelPlot::LineCurve::gaps () const
 
 ### function hoverRadius {#function-hoverradius-22}
 
-_Returns the line hover pick radius in pixels._ 
+_Returns the hover pick distance from the line in pixels._ 
 ```C++
 qreal QAccelPlot::LineCurve::hoverRadius () const
 ```
@@ -811,14 +797,16 @@ qreal QAccelPlot::LineCurve::hoverRadius () const
 
 
 
-### function hovered {#function-hovered-22}
+### function legendEntry {#function-legendentry}
 
-_Returns_ `true` _if the cursor is currently over the curve._
+_Returns the legend entry: the symbol, color, line, and marker of the curve._ 
 ```C++
-bool QAccelPlot::LineCurve::hovered () const
+virtual std::optional< LegendEntry > QAccelPlot::LineCurve::legendEntry () override const
 ```
 
 
+
+Implements [*QAccelPlot::PlotSeries::legendEntry*](classQAccelPlot_1_1PlotSeries.md#function-legendentry)
 
 
 <hr>
@@ -907,26 +895,9 @@ void QAccelPlot::LineCurve::postData (
 
 
 
-### function setAntialiasingEnabled {#function-setantialiasingenabled}
-
-_Sets anti-aliasing to_ _enabled_ _._
-```C++
-void QAccelPlot::LineCurve::setAntialiasingEnabled (
-    bool enabled
-) 
-```
-
-
-
-
-<hr>
-
-
-
-
 ### function setAntialiasingFeather {#function-setantialiasingfeather}
 
-_Sets the anti-aliasing feather width to_ _feather_ _pixels. Has effect only when_`antialiasingEnabled` _is_`true` _._
+_Sets the antialiasing feather width to_ _feather_ _pixels, clamped to [0, 10]._
 ```C++
 void QAccelPlot::LineCurve::setAntialiasingFeather (
     qreal feather
@@ -1145,47 +1116,9 @@ void QAccelPlot::LineCurve::setDataF (
 
 
 
-### function setDataFWithCache {#function-setdatafwithcache-12}
-
-_Like_ `setDataF(vector)` _but also accepts a pre-built__vertexCache_ _, bypassing main-thread rebuild._
-```C++
-void QAccelPlot::LineCurve::setDataFWithCache (
-    std::vector< float > && data,
-    int pointCount,
-    std::vector< char > && vertexCache
-) 
-```
-
-
-
-
-<hr>
-
-
-
-
-### function setDataFWithCache {#function-setdatafwithcache-22}
-
-_Like_ `setDataFWithCache(vector)` _but copies from a raw interleaved float array._
-```C++
-void QAccelPlot::LineCurve::setDataFWithCache (
-    const float * xyInterleaved,
-    int pointCount,
-    std::vector< char > && vertexCache
-) 
-```
-
-
-
-
-<hr>
-
-
-
-
 ### function setHoverRadius {#function-sethoverradius}
 
-_Sets the line hover pick radius to_ _radius_ _pixels. Negative values are clamped to 0. Marker hit testing is unaffected._
+_Sets the hover pick distance from the line to_ _radius_ _pixels. Negative values are clamped to 0. Marker hit testing is unaffected._
 ```C++
 void QAccelPlot::LineCurve::setHoverRadius (
     qreal radius
@@ -1234,6 +1167,23 @@ void QAccelPlot::LineCurve::setLineWidth (
 
 
 
+### function setStepMode {#function-setstepmode}
+
+_Sets how the line joins consecutive data points to_ _mode_ _._
+```C++
+void QAccelPlot::LineCurve::setStepMode (
+    StepMode mode
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function setTransition {#function-settransition}
 
 _Sets the data transition to_ _transition_ _._
@@ -1241,6 +1191,21 @@ _Sets the data transition to_ _transition_ _._
 void QAccelPlot::LineCurve::setTransition (
     DataTransition * transition
 ) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function stepMode {#function-stepmode-22}
+
+_Returns how the line joins consecutive data points._ 
+```C++
+StepMode QAccelPlot::LineCurve::stepMode () const
 ```
 
 

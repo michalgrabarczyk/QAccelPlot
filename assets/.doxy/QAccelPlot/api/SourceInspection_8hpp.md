@@ -40,14 +40,15 @@
 | Type | Name |
 | ---: | :--- |
 | namespace | [**QAccelPlot**](namespaceQAccelPlot.md) <br> |
-| namespace | [**InspectionScan**](namespaceQAccelPlot_1_1InspectionScan.md) <br>_Inspection queries that scan every record; used for small series that are not ordered along the queried axis._  |
+| namespace | [**Internal**](namespaceQAccelPlot_1_1Internal.md) <br> |
+| namespace | [**InspectionScan**](namespaceQAccelPlot_1_1Internal_1_1InspectionScan.md) <br>_Inspection queries that scan every record; used for small series that are not ordered along the queried axis._  |
 
 
 ## Classes
 
 | Type | Name |
 | ---: | :--- |
-| class | [**SourceInspection**](classQAccelPlot_1_1SourceInspection.md) <br>_Inspection queries that read a series' own buffer whose records are ordered along one axis._  |
+| class | [**SourceInspection**](classQAccelPlot_1_1Internal_1_1SourceInspection.md) <br>_Inspection queries that read a series' own buffer whose records are ordered along one axis._  |
 
 
 

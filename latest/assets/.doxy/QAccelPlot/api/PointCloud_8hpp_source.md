@@ -17,9 +17,7 @@
 //
 #pragma once
 
-#include "QAccelPlot/effects/Colormap.hpp"
-#include "QAccelPlot/effects/GradientColorTypes.hpp"
-#include "QAccelPlot/series/PlotSeries.hpp"
+#include "QAccelPlot/series/ColormappedSeries.hpp"
 #include "QAccelPlot/series/PointSpatialIndex.hpp"
 #include "QAccelPlot/series/SeriesMarker.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
@@ -27,11 +25,8 @@
 
 #include <QColor>
 #include <QList>
-#include <QMetaObject>
 #include <QPointF>
-#include <QPointer>
 
-#include <limits>
 #include <memory>
 #include <optional>
 #include <vector>
@@ -44,23 +39,17 @@ class HoverIndexBudget;
 
 class TransitionRunner;
 
-class PointCloud : public PlotSeries {
+class PointCloud : public ColormappedSeries {
     Q_OBJECT
     QML_NAMED_ELEMENT(PointCloud)
 
     
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
     Q_PROPERTY(SeriesMarker* marker READ marker CONSTANT)
-    Q_PROPERTY(Colormap* colormap READ colormap WRITE setColormap NOTIFY colormapChanged)
-    Q_PROPERTY(bool antialiasingEnabled READ antialiasingEnabled WRITE setAntialiasingEnabled NOTIFY antialiasingEnabledChanged)
     Q_PROPERTY(qreal antialiasingFeather READ antialiasingFeather WRITE setAntialiasingFeather NOTIFY antialiasingFeatherChanged)
     Q_PROPERTY(qreal hoverRadius READ hoverRadius WRITE setHoverRadius NOTIFY hoverRadiusChanged)
     Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
-    Q_PROPERTY(int count READ count NOTIFY countChanged)
-    Q_PROPERTY(bool hasValues READ hasValues NOTIFY countChanged)
     Q_PROPERTY(int hoveredIndex READ hoveredIndex NOTIFY hoveredIndexChanged)
-    Q_PROPERTY(qreal dataValueMin READ dataValueMin NOTIFY valueRangeChanged)
-    Q_PROPERTY(qreal dataValueMax READ dataValueMax NOTIFY valueRangeChanged)
 
 public:
     explicit PointCloud(QQuickItem* parent = nullptr);
@@ -71,12 +60,6 @@ public:
 
     SeriesMarker* marker() const;
 
-    Colormap* colormap() const;
-    void setColormap(Colormap* colormap);
-
-    bool antialiasingEnabled() const;
-    void setAntialiasingEnabled(bool enabled);
-
     qreal antialiasingFeather() const;
     void setAntialiasingFeather(qreal feather);
 
@@ -86,11 +69,7 @@ public:
     DataTransition* transition() const;
     void setTransition(DataTransition* transition);
 
-    int count() const;
-    bool hasValues() const;
     int hoveredIndex() const;
-    qreal dataValueMin() const;
-    qreal dataValueMax() const;
 
     Q_INVOKABLE void setData(const QList<QPointF>& points);
     Q_INVOKABLE void setValues(const QList<qreal>& values);
@@ -105,23 +84,20 @@ public:
     void postData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
     void postData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
     Q_INVOKABLE void clearData() override;
+    std::optional<LegendEntry> legendEntry() const override;
 
     int pointIndexAt(const QPointF& position) const;
     bool contains(const QPointF& point) const override;
 
 signals:
     void colorChanged();
-    void colormapChanged();
-    void antialiasingEnabledChanged();
     void antialiasingFeatherChanged();
     void hoverRadiusChanged();
     void transitionChanged();
-    void countChanged();
     void hoveredIndexChanged();
-    void valueRangeChanged();
 
 protected:
-    InspectionSource inspectionSource() const override;
+    Internal::InspectionSource inspectionSource() const override;
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updatePaintNodeData) override;
     void hoverEnterEvent(QHoverEvent* event) override;
     void hoverMoveEvent(QHoverEvent* event) override;
@@ -131,24 +107,21 @@ protected:
     void applyDataPoints(DataPointInput&& input) override;
     void onAxisScaleChanged() override;
     void onDataPointsChanged(DataChange change, int previousCount) override;
+    std::optional<ValueSpan> scanValueRange() const override;
 
 private:
-    Q_SLOT void onColormapUpdated();
-
     struct Points {
         std::vector<double> values;
         int count{0};
         int stride{2};
     };
 
+    bool hasValues() const;
     bool validateValues(std::size_t valueCount, int pointCount) const;
     void applyData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
     void applyFloatData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
     void applyDoubleData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
     void finishValueChange(int previousCount);
-    void updateValueRange();
-    void reconnectColormapSignals();
-    void refreshColorStops();
     void setHoveredIndex(int index);
     int hoverPointCount() const;
     void invalidateSpatialIndex();
@@ -175,9 +148,6 @@ private:
 
     QColor color_{ColorPalette::dark().seriesPrimary};
     SeriesMarker* marker_{new SeriesMarker{MarkerShape::Circle, 3.0, SeriesMarker::NoneShape::Rejected, this}};
-    QPointer<Colormap> colormap_;
-    std::vector<GradientStopData> colorStops_;
-    bool antialiasingEnabled_{true};
     qreal antialiasingFeather_{1.0};
     qreal hoverRadius_{6.0};
     int hoveredIndex_{-1};
@@ -185,18 +155,8 @@ private:
     // The previous transition frame, reused for the next one.
     std::vector<double> frameBuffer_;
 
-    // hasValues() as countChanged() last reported it.
-    bool reportedHasValues_{false};
-    qreal dataValueMin_{0.0};
-    qreal dataValueMax_{1.0};
     // Render revision of the data points last uploaded to the GPU.
     std::uint64_t uploadedRevision_{0};
-    // Whether the last frame held more records than the GPU buffers do; warns on each crossing.
-    bool overCapacity_{false};
-
-    // Points the GPU data texture holds, recorded during the last sync. Points beyond it are
-    // neither drawn nor hovered.
-    int renderCapacity_{std::numeric_limits<int>::max()};
 
     mutable PointSpatialIndex spatialIndex_;
     mutable bool spatialIndexValid_{false};
@@ -207,8 +167,6 @@ private:
     // before the handler asks again, each time at the same position.
     mutable std::optional<HoverQuery> lastHoverQuery_;
     mutable int lastHoverIndex_{-1};
-
-    QList<QMetaObject::Connection> gradientConnections_;
 };
 
 } // namespace QAccelPlot

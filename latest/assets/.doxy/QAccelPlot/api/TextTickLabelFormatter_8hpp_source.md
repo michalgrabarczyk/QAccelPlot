@@ -37,6 +37,8 @@ public:
     QStringList labels() const;
     void setLabels(const QStringList& labels);
 
+    qreal minimumTickStep() const override;
+
 signals:
     void labelsChanged();
 

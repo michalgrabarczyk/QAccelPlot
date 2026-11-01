@@ -18,6 +18,7 @@
 
 
 * `#include "QAccelPlot/inspection/InspectionResult.hpp"`
+* `#include "QAccelPlot/series/StepMode.hpp"`
 * `#include <QObject>`
 * `#include <QPointF>`
 * `#include <limits>`
@@ -43,6 +44,7 @@
 | Type | Name |
 | ---: | :--- |
 | namespace | [**QAccelPlot**](namespaceQAccelPlot.md) <br> |
+| namespace | [**Internal**](namespaceQAccelPlot_1_1Internal.md) <br> |
 
 
 ## Classes

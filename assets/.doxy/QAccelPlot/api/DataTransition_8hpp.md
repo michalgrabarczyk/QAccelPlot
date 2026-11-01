@@ -18,7 +18,6 @@
 
 
 * `#include <QEasingCurve>`
-* `#include <QElapsedTimer>`
 * `#include <QList>`
 * `#include <QObject>`
 * `#include <QtQml/qqmlregistration.h>`

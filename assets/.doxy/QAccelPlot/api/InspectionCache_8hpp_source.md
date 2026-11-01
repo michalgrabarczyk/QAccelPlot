@@ -24,7 +24,7 @@
 
 #include <memory>
 
-namespace QAccelPlot {
+namespace QAccelPlot::Internal {
 
 class InspectionCache : public QObject {
 public:
@@ -63,7 +63,7 @@ private:
     std::unique_ptr<InspectionIndex> index_;
 };
 
-} // namespace QAccelPlot
+} // namespace QAccelPlot::Internal
 ```
 
 

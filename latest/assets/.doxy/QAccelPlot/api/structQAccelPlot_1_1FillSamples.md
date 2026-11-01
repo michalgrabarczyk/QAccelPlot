@@ -15,7 +15,7 @@
 
 
 
-_Data points of a gradient fill: one group per run of valid data points, broken at gaps._ 
+_Outline of a gradient fill in data space: one group of points per run of valid data points, broken at gaps._ [More...](#detailed-description)
 
 * `#include <LineCurveLineRenderer.hpp>`
 
@@ -45,8 +45,8 @@ _Data points of a gradient fill: one group per run of valid data points, broken 
 
 | Type | Name |
 | ---: | :--- |
-|  std::vector&lt; int &gt; | [**indices**](#variable-indices)  <br>_Source indices of all sampled runs, run after run._  |
-|  std::vector&lt; int &gt; | [**sampledCounts**](#variable-sampledcounts)  <br>_Number of samples of each run; zero for runs too short to fill._  |
+|  std::vector&lt; int &gt; | [**pointCounts**](#variable-pointcounts)  <br>_Number of points of each run; zero for runs too short to fill._  |
+|  std::vector&lt; QPointF &gt; | [**points**](#variable-points)  <br>_Points of all runs, run after run._  |
 
 
 
@@ -91,17 +91,24 @@ _Data points of a gradient fill: one group per run of valid data points, broken 
 
 
 
+## Detailed Description
+
+
+Each point is a sampled data point or, with a step mode, a step corner. 
+
+
+    
 ## Public Attributes Documentation
 
 
 
 
 
-### variable indices {#variable-indices}
+### variable pointCounts {#variable-pointcounts}
 
-_Source indices of all sampled runs, run after run._ 
+_Number of points of each run; zero for runs too short to fill._ 
 ```C++
-std::vector<int> QAccelPlot::FillSamples::indices;
+std::vector<int> QAccelPlot::FillSamples::pointCounts;
 ```
 
 
@@ -112,11 +119,11 @@ std::vector<int> QAccelPlot::FillSamples::indices;
 
 
 
-### variable sampledCounts {#variable-sampledcounts}
+### variable points {#variable-points}
 
-_Number of samples of each run; zero for runs too short to fill._ 
+_Points of all runs, run after run._ 
 ```C++
-std::vector<int> QAccelPlot::FillSamples::sampledCounts;
+std::vector<QPointF> QAccelPlot::FillSamples::points;
 ```
 
 

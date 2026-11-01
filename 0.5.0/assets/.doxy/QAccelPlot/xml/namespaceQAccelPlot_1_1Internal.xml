@@ -1,0 +1,881 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespaceQAccelPlot_1_1Internal" kind="namespace" language="C++">
+    <compoundname>QAccelPlot::Internal</compoundname>
+    <innerclass refid="classQAccelPlot_1_1Internal_1_1CategoryList" prot="public">QAccelPlot::Internal::CategoryList</innerclass>
+    <innerclass refid="classQAccelPlot_1_1Internal_1_1CategoryTable" prot="public">QAccelPlot::Internal::CategoryTable</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals" prot="public">QAccelPlot::Internal::DataTextureUploadTotals</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1GrabSize" prot="public">QAccelPlot::Internal::GrabSize</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension" prot="public">QAccelPlot::Internal::HeatmapGridDimension</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping" prot="public">QAccelPlot::Internal::HeatmapShaderMapping</innerclass>
+    <innerclass refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget" prot="public">QAccelPlot::Internal::HoverIndexBudget</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1InspectionBounds" prot="public">QAccelPlot::Internal::InspectionBounds</innerclass>
+    <innerclass refid="classQAccelPlot_1_1Internal_1_1InspectionCache" prot="public">QAccelPlot::Internal::InspectionCache</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1InspectionHit" prot="public">QAccelPlot::Internal::InspectionHit</innerclass>
+    <innerclass refid="classQAccelPlot_1_1Internal_1_1InspectionIndex" prot="public">QAccelPlot::Internal::InspectionIndex</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1InspectionMetric" prot="public">QAccelPlot::Internal::InspectionMetric</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1InspectionNeighbors" prot="public">QAccelPlot::Internal::InspectionNeighbors</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1InspectionSource" prot="public">QAccelPlot::Internal::InspectionSource</innerclass>
+    <innerclass refid="classQAccelPlot_1_1Internal_1_1OutlinedRectangle" prot="public">QAccelPlot::Internal::OutlinedRectangle</innerclass>
+    <innerclass refid="classQAccelPlot_1_1Internal_1_1OverlayChildren" prot="public">QAccelPlot::Internal::OverlayChildren</innerclass>
+    <innerclass refid="classQAccelPlot_1_1Internal_1_1PointerTracker" prot="public">QAccelPlot::Internal::PointerTracker</innerclass>
+    <innerclass refid="classQAccelPlot_1_1Internal_1_1RectangleZoomOverlay" prot="public">QAccelPlot::Internal::RectangleZoomOverlay</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1RectUbo" prot="public">QAccelPlot::Internal::RectUbo</innerclass>
+    <innerclass refid="classQAccelPlot_1_1Internal_1_1RectVertexCache" prot="public">QAccelPlot::Internal::RectVertexCache</innerclass>
+    <innerclass refid="classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures" prot="public">QAccelPlot::Internal::ScopedPaintedItemTextures</innerclass>
+    <innerclass refid="classQAccelPlot_1_1Internal_1_1SelectionRectangle" prot="public">QAccelPlot::Internal::SelectionRectangle</innerclass>
+    <innerclass refid="classQAccelPlot_1_1Internal_1_1SourceInspection" prot="public">QAccelPlot::Internal::SourceInspection</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1SummaryAccumulator" prot="public">QAccelPlot::Internal::SummaryAccumulator</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1ValueRange" prot="public">QAccelPlot::Internal::ValueRange</innerclass>
+    <innernamespace refid="namespaceQAccelPlot_1_1Internal_1_1InspectionScan">QAccelPlot::Internal::InspectionScan</innernamespace>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="InspectionTypes_8hpp_1a9e0bfdf82df212dedd061515ed20ad71" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>InspectionAxis</name>
+        <qualifiedname>QAccelPlot::Internal::InspectionAxis</qualifiedname>
+        <enumvalue id="InspectionTypes_8hpp_1a9e0bfdf82df212dedd061515ed20ad71a02129bb861061d1a052c592e2dc6b383" prot="public">
+          <name>X</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="InspectionTypes_8hpp_1a9e0bfdf82df212dedd061515ed20ad71a57cec4137b614c87cb4e24a3d003a3e0" prot="public">
+          <name>Y</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Data dimension a query measures along, or along which a series&apos; records are ordered. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="20" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="20" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="enum" id="InspectionTypes_8hpp_1a26f5202668e16cc0775f28f50f176c36" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>InspectionMatching</name>
+        <qualifiedname>QAccelPlot::Internal::InspectionMatching</qualifiedname>
+        <enumvalue id="InspectionTypes_8hpp_1a26f5202668e16cc0775f28f50f176c36a6adf97f83acf6453d4a6a4b1070f3754" prot="public">
+          <name>None</name>
+          <briefdescription>
+<para>The series has no data points they can match. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="InspectionTypes_8hpp_1a26f5202668e16cc0775f28f50f176c36a60494f02d440f316319dd0fad40ad007" prot="public">
+          <name>Nearest</name>
+          <briefdescription>
+<para>XY data points, matched by distance. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="InspectionTypes_8hpp_1a26f5202668e16cc0775f28f50f176c36a1548f9eb6677a1ba46e221e2a59f96d3" prot="public">
+          <name>Containing</name>
+          <briefdescription>
+<para>Data points drawn as areas, such as heatmap cells, matched by the area under the position. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>How <computeroutput><ref refid="classQAccelPlot_1_1PlotInspector" kindref="compound">PlotInspector</ref></computeroutput> and <computeroutput><ref refid="classQAccelPlot_1_1SelectionTool" kindref="compound">SelectionTool</ref></computeroutput> match a series&apos; data points to a position. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="23" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="23" bodyend="27"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="DataTextureLayout_8hpp_1a6b4094e09b5bc41bc01b37bb87b2e9bd" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int QAccelPlot::Internal::kDataTextureWidth</definition>
+        <argsstring></argsstring>
+        <name>kDataTextureWidth</name>
+        <qualifiedname>QAccelPlot::Internal::kDataTextureWidth</qualifiedname>
+        <initializer>{8192}</initializer>
+        <briefdescription>
+<para>Number of floats stored per data texture row, one float per RGBA8 texel. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>data_texture.glsl reads the width from the bound texture, so this is the only definition. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureLayout.hpp" line="17" column="15" bodyfile="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureLayout.hpp" bodystart="17" bodyend="17"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="RangeGesture_8hpp_1a390751056142cf5002a19cd6b5dd9741" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1Internal_1_1ValueRange" kindref="compound">ValueRange</ref></type>
+        <definition>ValueRange QAccelPlot::Internal::pannedRange</definition>
+        <argsstring>(const ValueRange &amp;range, qreal fraction, bool logarithmic)</argsstring>
+        <name>pannedRange</name>
+        <qualifiedname>QAccelPlot::Internal::pannedRange</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1ValueRange" kindref="compound">ValueRange</ref> &amp;</type>
+          <declname>range</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>fraction</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>logarithmic</declname>
+        </param>
+        <briefdescription>
+<para>Returns <emphasis>range</emphasis> shifted by <emphasis>fraction</emphasis> of its extent; a positive <emphasis>fraction</emphasis> raises both bounds. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>With <emphasis>logarithmic</emphasis> set, the shift is applied in <computeroutput>log10</computeroutput> space, so both bounds are scaled by the same ratio. A range that is not positive is shifted linearly instead. Returns <emphasis>range</emphasis> unchanged when a bound would leave the range of a double. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" line="25" column="13" declfile="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" declline="25" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="RangeGesture_8hpp_1a4a90cd70f2514e64a984dae98d06a599" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1Internal_1_1ValueRange" kindref="compound">ValueRange</ref></type>
+        <definition>ValueRange QAccelPlot::Internal::zoomedRange</definition>
+        <argsstring>(const ValueRange &amp;range, qreal factor, qreal anchorRatio, bool logarithmic)</argsstring>
+        <name>zoomedRange</name>
+        <qualifiedname>QAccelPlot::Internal::zoomedRange</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1ValueRange" kindref="compound">ValueRange</ref> &amp;</type>
+          <declname>range</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>factor</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>anchorRatio</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>logarithmic</declname>
+        </param>
+        <briefdescription>
+<para>Returns <emphasis>range</emphasis> with its extent multiplied by <emphasis>factor</emphasis>, keeping the value at <emphasis>anchorRatio</emphasis> in place. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><emphasis>anchorRatio</emphasis> is a position inside the range: 0 at <computeroutput>min</computeroutput> and 1 at <computeroutput>max</computeroutput>. With <emphasis>logarithmic</emphasis> set, the extent is measured in <computeroutput>log10</computeroutput> space. A range that is not positive is zoomed linearly instead. Returns <emphasis>range</emphasis> unchanged when a bound would leave the range of a double: it would not be finite, or in <computeroutput>log10</computeroutput> space it would reach zero. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" line="33" column="13" declfile="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" declline="33" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="RangeGesture_8hpp_1aa1295e38cb274d582f872c75a35b71ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Internal::wheelZoomFactor</definition>
+        <argsstring>(qreal zoomScaleFactor, bool zoomingIn, qreal steps=1.0)</argsstring>
+        <name>wheelZoomFactor</name>
+        <qualifiedname>QAccelPlot::Internal::wheelZoomFactor</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>zoomScaleFactor</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>zoomingIn</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>steps</declname>
+          <defval>1.0</defval>
+        </param>
+        <briefdescription>
+<para>Returns the extent multiplier for mouse-wheel zoom with a <emphasis>zoomScaleFactor</emphasis> in (0, 1). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Zooming in multiplies the extent by the factor and zooming out by its reciprocal. A factor of 0 or below counts as 0.01 and a factor of 1 or above as 0.99, so a step always zooms and never collapses the range. Fractional step counts scale partial wheel notches proportionally. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" line="40" column="8" declfile="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" declline="40" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="GradientCoordinates_8hpp_1a3b3bc1ac97af93601982a97032c2e7c8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float QAccelPlot::Internal::unboundedGradientCoordinate</definition>
+        <argsstring>(const Qt::Orientation direction, const qreal value, const qreal minimum, const qreal maximum)</argsstring>
+        <name>unboundedGradientCoordinate</name>
+        <qualifiedname>QAccelPlot::Internal::unboundedGradientCoordinate</qualifiedname>
+        <param>
+          <type>const Qt::Orientation</type>
+          <declname>direction</declname>
+        </param>
+        <param>
+          <type>const qreal</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>const qreal</type>
+          <declname>minimum</declname>
+        </param>
+        <param>
+          <type>const qreal</type>
+          <declname>maximum</declname>
+        </param>
+        <briefdescription>
+<para>Returns an unbounded palette coordinate for a data-space <emphasis>value</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Coordinates outside [0, 1] are intentionally preserved for interpolation. Renderers must clamp only after interpolation, immediately before sampling the gradient, so values beyond the configured range retain endpoint colors. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/internal/GradientCoordinates.hpp" line="21" column="14" bodyfile="QAccelPlot/src/QAccelPlot/effects/internal/GradientCoordinates.hpp" bodystart="21" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="GradientCoordinates_8hpp_1a6a40c20d9671161eb1b0636d4deafd3d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Payload</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::resolveGradientValueRange</definition>
+        <argsstring>(Payload &amp;payload, const qreal dataMin, const qreal dataMax)</argsstring>
+        <name>resolveGradientValueRange</name>
+        <qualifiedname>QAccelPlot::Internal::resolveGradientValueRange</qualifiedname>
+        <param>
+          <type>Payload &amp;</type>
+          <declname>payload</declname>
+        </param>
+        <param>
+          <type>const qreal</type>
+          <declname>dataMin</declname>
+        </param>
+        <param>
+          <type>const qreal</type>
+          <declname>dataMax</declname>
+        </param>
+        <briefdescription>
+<para>Fills each unset gradient value bound of <emphasis>payload</emphasis> from [<emphasis>dataMin</emphasis>, <emphasis>dataMax</emphasis>]. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Bounds resolve independently, so a <computeroutput>Fixed</computeroutput> bound is kept when the other bound uses <computeroutput>DataRange</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/internal/GradientCoordinates.hpp" line="33" column="18" bodyfile="QAccelPlot/src/QAccelPlot/effects/internal/GradientCoordinates.hpp" bodystart="33" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="GradientStops_8hpp_1aadc01434de65429e54993a942b277f2e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="structQAccelPlot_1_1GradientStopData" kindref="compound">GradientStopData</ref> &gt;</type>
+        <definition>std::vector&lt; GradientStopData &gt; QAccelPlot::Internal::readGradientStopList</definition>
+        <argsstring>(const QVariantList &amp;stopObjects)</argsstring>
+        <name>readGradientStopList</name>
+        <qualifiedname>QAccelPlot::Internal::readGradientStopList</qualifiedname>
+        <param>
+          <type>const QVariantList &amp;</type>
+          <declname>stopObjects</declname>
+        </param>
+        <briefdescription>
+<para>Reads a list of stop objects, each exposing <computeroutput>position</computeroutput> and <computeroutput>color</computeroutput>, into position order. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A single stop is duplicated, and the first and last colors are extended to positions 0 and 1. Entries that are not stop-like are skipped.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/internal/GradientStops.hpp" line="30" column="13" declfile="QAccelPlot/src/QAccelPlot/effects/internal/GradientStops.hpp" declline="30" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="GradientStops_8hpp_1abc5be5b78eb1208392b78a70f402e8a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="structQAccelPlot_1_1GradientStopData" kindref="compound">GradientStopData</ref> &gt;</type>
+        <definition>std::vector&lt; GradientStopData &gt; QAccelPlot::Internal::readEffectStops</definition>
+        <argsstring>(const Colormap *colormap, QObject *gradient)</argsstring>
+        <name>readEffectStops</name>
+        <qualifiedname>QAccelPlot::Internal::readEffectStops</qualifiedname>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref> *</type>
+          <declname>colormap</declname>
+        </param>
+        <param>
+          <type>QObject *</type>
+          <declname>gradient</declname>
+        </param>
+        <briefdescription>
+<para>Returns the color stops of a gradient effect: the <emphasis>colormap</emphasis> ramp when set, otherwise the stops of the QML <computeroutput>Gradient</computeroutput> <emphasis>gradient</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><emphasis>gradient</emphasis> stops are read from its <computeroutput>stops</computeroutput> list property, falling back to child objects, and normalized like <computeroutput>readGradientStopList()</computeroutput>. Returns an empty vector when both are null.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1GradientFill" kindref="compound">GradientFill</ref>, <ref refid="classQAccelPlot_1_1GradientStroke" kindref="compound">GradientStroke</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/internal/GradientStops.hpp" line="39" column="13" declfile="QAccelPlot/src/QAccelPlot/effects/internal/GradientStops.hpp" declline="39" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="GrabSize_8hpp_1a064b4a4757b002339611751756816610" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1Internal_1_1GrabSize" kindref="compound">GrabSize</ref></type>
+        <definition>GrabSize QAccelPlot::Internal::grabSizeFor</definition>
+        <argsstring>(const QSize &amp;pixels, qreal devicePixelRatio)</argsstring>
+        <name>grabSizeFor</name>
+        <qualifiedname>QAccelPlot::Internal::grabSizeFor</qualifiedname>
+        <param>
+          <type>const QSize &amp;</type>
+          <declname>pixels</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>devicePixelRatio</declname>
+        </param>
+        <briefdescription>
+<para>Returns the grab whose image is closest to <emphasis>pixels</emphasis> in a window at <emphasis>devicePixelRatio</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Qt 6.2 renders the target size in pixels. Later versions multiply it by the device pixel ratio and round, so some pixel counts cannot be rendered and the image can differ from <emphasis>pixels</emphasis> by a pixel; a tie picks the smaller image. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/export/internal/GrabSize.hpp" line="25" column="10" declfile="QAccelPlot/src/QAccelPlot/export/internal/GrabSize.hpp" declline="25" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="ImageFile_8hpp_1ada9a07f1567e73f6eb0bac5305aeaefa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QString</type>
+        <definition>QString QAccelPlot::Internal::localFilePath</definition>
+        <argsstring>(const QString &amp;pathOrUrl)</argsstring>
+        <name>localFilePath</name>
+        <qualifiedname>QAccelPlot::Internal::localFilePath</qualifiedname>
+        <param>
+          <type>const QString &amp;</type>
+          <declname>pathOrUrl</declname>
+        </param>
+        <briefdescription>
+<para>Returns <emphasis>pathOrUrl</emphasis> as a local file path; a <computeroutput>file:</computeroutput> URL, as a QML file dialog returns, is converted. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/export/internal/ImageFile.hpp" line="17" column="9" declfile="QAccelPlot/src/QAccelPlot/export/internal/ImageFile.hpp" declline="17" declcolumn="9"/>
+      </memberdef>
+      <memberdef kind="function" id="ImageFile_8hpp_1afd21fed10a07314ea38c3997bd36661b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QByteArray</type>
+        <definition>QByteArray QAccelPlot::Internal::imageFormatForPath</definition>
+        <argsstring>(const QString &amp;path)</argsstring>
+        <name>imageFormatForPath</name>
+        <qualifiedname>QAccelPlot::Internal::imageFormatForPath</qualifiedname>
+        <param>
+          <type>const QString &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Returns the lowercase <computeroutput>QImageWriter</computeroutput> format for <emphasis>path&apos;s</emphasis> suffix, or an empty array when none can write it. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/export/internal/ImageFile.hpp" line="20" column="12" declfile="QAccelPlot/src/QAccelPlot/export/internal/ImageFile.hpp" declline="20" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="ImageFile_8hpp_1a35e7866f6024957da987ec41cc0f2927" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::setImageResolution</definition>
+        <argsstring>(QImage &amp;image, qreal dpi)</argsstring>
+        <name>setImageResolution</name>
+        <qualifiedname>QAccelPlot::Internal::setImageResolution</qualifiedname>
+        <param>
+          <type>QImage &amp;</type>
+          <declname>image</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>dpi</declname>
+        </param>
+        <briefdescription>
+<para>Sets the resolution stored with <emphasis>image</emphasis> to <emphasis>dpi</emphasis> dots per inch. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/export/internal/ImageFile.hpp" line="23" column="6" declfile="QAccelPlot/src/QAccelPlot/export/internal/ImageFile.hpp" declline="23" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ImageFile_8hpp_1a77d2509d9cb06cd5384518b034e8f436" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QString</type>
+        <definition>QString QAccelPlot::Internal::writeImageFile</definition>
+        <argsstring>(const QImage &amp;image, const QString &amp;path, const QByteArray &amp;format, int quality)</argsstring>
+        <name>writeImageFile</name>
+        <qualifiedname>QAccelPlot::Internal::writeImageFile</qualifiedname>
+        <param>
+          <type>const QImage &amp;</type>
+          <declname>image</declname>
+        </param>
+        <param>
+          <type>const QString &amp;</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>const QByteArray &amp;</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>quality</declname>
+        </param>
+        <briefdescription>
+<para>Writes <emphasis>image</emphasis> to <emphasis>path</emphasis> in <emphasis>format</emphasis> and returns an error message, or an empty string on success. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><emphasis>quality</emphasis> is passed to <computeroutput>QImageWriter::setQuality()</computeroutput>. Formats without an alpha channel get the image composited over white. The file is replaced atomically, so a failed write leaves an existing file intact. Safe to call from a worker thread. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/export/internal/ImageFile.hpp" line="30" column="9" declfile="QAccelPlot/src/QAccelPlot/export/internal/ImageFile.hpp" declline="30" declcolumn="9"/>
+      </memberdef>
+      <memberdef kind="function" id="InspectionTypes_8hpp_1a61d21d20f32db7d3465b0eb03f846864" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::distanceToInterval</definition>
+        <argsstring>(double position, double a, double b) noexcept</argsstring>
+        <name>distanceToInterval</name>
+        <qualifiedname>QAccelPlot::Internal::distanceToInterval</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>Returns the signed distance from <emphasis>position</emphasis> to the closed interval between <emphasis>a</emphasis> and <emphasis>b</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="109" column="9" declfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" declline="109" declcolumn="9"/>
+      </memberdef>
+      <memberdef kind="function" id="DataTextureLayout_8hpp_1a5c264763c864fb6d047f69120859f093" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>constexpr int</type>
+        <definition>constexpr int QAccelPlot::Internal::dataTextureHeight</definition>
+        <argsstring>(const int floatCount)</argsstring>
+        <name>dataTextureHeight</name>
+        <qualifiedname>QAccelPlot::Internal::dataTextureHeight</qualifiedname>
+        <param>
+          <type>const int</type>
+          <declname>floatCount</declname>
+        </param>
+        <briefdescription>
+<para>Returns the number of data texture rows needed to store <emphasis>floatCount</emphasis> floats. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureLayout.hpp" line="20" column="15" bodyfile="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureLayout.hpp" bodystart="20" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="DataTextureLayout_8hpp_1a05b5caf9207764121231f1e6a2660b03" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>constexpr qint64</type>
+        <definition>constexpr qint64 QAccelPlot::Internal::dataTextureItemCapacity</definition>
+        <argsstring>(const int maxHeight, const int floatsPerItem)</argsstring>
+        <name>dataTextureItemCapacity</name>
+        <qualifiedname>QAccelPlot::Internal::dataTextureItemCapacity</qualifiedname>
+        <param>
+          <type>const int</type>
+          <declname>maxHeight</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>floatsPerItem</declname>
+        </param>
+        <briefdescription>
+<para>Returns how many items of <emphasis>floatsPerItem</emphasis> floats fit in a data texture at most <emphasis>maxHeight</emphasis> rows tall. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureLayout.hpp" line="26" column="18" bodyfile="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureLayout.hpp" bodystart="26" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="DataTextureUpload_8hpp_1a34c4e72c0d34cdd9856c3cf49319b322" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::uploadDataTexture</definition>
+        <argsstring>(std::unique_ptr&lt; QSGTexture &gt; &amp;texture, QQuickWindow *window, const QImage &amp;image)</argsstring>
+        <name>uploadDataTexture</name>
+        <qualifiedname>QAccelPlot::Internal::uploadDataTexture</qualifiedname>
+        <param>
+          <type>std::unique_ptr&lt; QSGTexture &gt; &amp;</type>
+          <declname>texture</declname>
+        </param>
+        <param>
+          <type>QQuickWindow *</type>
+          <declname>window</declname>
+        </param>
+        <param>
+          <type>const QImage &amp;</type>
+          <declname>image</declname>
+        </param>
+        <briefdescription>
+<para>Uploads an image to the live-data texture using the configured Qt API path. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureUpload.hpp" line="21" column="6" declfile="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureUpload.hpp" declline="21" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="DataTextureUploadTotals_8hpp_1a862cbd7d070a0d9d7e73b4dc377910b3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::recordDataTextureUpload</definition>
+        <argsstring>(std::int64_t bytes)</argsstring>
+        <name>recordDataTextureUpload</name>
+        <qualifiedname>QAccelPlot::Internal::recordDataTextureUpload</qualifiedname>
+        <param>
+          <type>std::int64_t</type>
+          <declname>bytes</declname>
+        </param>
+        <briefdescription>
+<para>Adds one upload of <emphasis>bytes</emphasis> to the totals. Thread-safe. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureUploadTotals.hpp" line="23" column="6" declfile="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureUploadTotals.hpp" declline="23" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="DataTextureUploadTotals_8hpp_1a3a2e0e8f73c92f4cb8070f22e5bb2640" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals" kindref="compound">DataTextureUploadTotals</ref></type>
+        <definition>DataTextureUploadTotals QAccelPlot::Internal::dataTextureUploadTotals</definition>
+        <argsstring>()</argsstring>
+        <name>dataTextureUploadTotals</name>
+        <qualifiedname>QAccelPlot::Internal::dataTextureUploadTotals</qualifiedname>
+        <briefdescription>
+<para>Returns the totals since the last reset. Thread-safe. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureUploadTotals.hpp" line="26" column="25" declfile="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureUploadTotals.hpp" declline="26" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="DataTextureUploadTotals_8hpp_1a82583261f1298c7c55f6325b11880b63" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::resetDataTextureUploadTotals</definition>
+        <argsstring>()</argsstring>
+        <name>resetDataTextureUploadTotals</name>
+        <qualifiedname>QAccelPlot::Internal::resetDataTextureUploadTotals</qualifiedname>
+        <briefdescription>
+<para>Sets the totals back to zero. Thread-safe. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureUploadTotals.hpp" line="29" column="6" declfile="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureUploadTotals.hpp" declline="29" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="RectUniforms_8hpp_1a6a5cabe3df31d51d17aa599d49ccfbcc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::writeRectUniforms</definition>
+        <argsstring>(RectUbo &amp;ubo, const QSGMaterialShader::RenderState &amp;state, const RectMaterial &amp;material)</argsstring>
+        <name>writeRectUniforms</name>
+        <qualifiedname>QAccelPlot::Internal::writeRectUniforms</qualifiedname>
+        <param>
+          <type><ref refid="structQAccelPlot_1_1Internal_1_1RectUbo" kindref="compound">RectUbo</ref> &amp;</type>
+          <declname>ubo</declname>
+        </param>
+        <param>
+          <type>const QSGMaterialShader::RenderState &amp;</type>
+          <declname>state</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1RectMaterial" kindref="compound">RectMaterial</ref> &amp;</type>
+          <declname>material</declname>
+        </param>
+        <briefdescription>
+<para>Fills <emphasis>ubo</emphasis> from <emphasis>material</emphasis> and the matrix and opacity of the render <emphasis>state</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/RectUniforms.hpp" line="44" column="6" declfile="QAccelPlot/src/QAccelPlot/materials/internal/RectUniforms.hpp" declline="44" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="RectGeometry_8hpp_1afd040a5c9d2313b9e7f773a54bcf9c5b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Internal::edgePixel</definition>
+        <argsstring>(double value, const Axis &amp;axis, qreal length)</argsstring>
+        <name>edgePixel</name>
+        <qualifiedname>QAccelPlot::Internal::edgePixel</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> &amp;</type>
+          <declname>axis</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>Maps rectangle edge <emphasis>value</emphasis> on <emphasis>axis</emphasis> to item pixels along an item side <emphasis>length</emphasis> pixels long. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Infinite edges, and non-positive edges on a log axis, map to infinity on the matching side, as rect_geometry.glsl extends them past the plot edge. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/RectGeometry.hpp" line="24" column="7" declfile="QAccelPlot/src/QAccelPlot/series/internal/RectGeometry.hpp" declline="24" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="RectGeometry_8hpp_1a8afc11e4c2e9ed57eaef244241915d44" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; qreal, qreal &gt;</type>
+        <definition>std::pair&lt; qreal, qreal &gt; QAccelPlot::Internal::widenedSpan</definition>
+        <argsstring>(qreal a, qreal b, qreal minimumSize)</argsstring>
+        <name>widenedSpan</name>
+        <qualifiedname>QAccelPlot::Internal::widenedSpan</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>minimumSize</declname>
+        </param>
+        <briefdescription>
+<para>Returns the pixel span between edges <emphasis>a</emphasis> and <emphasis>b</emphasis>, widened around its center to at least <emphasis>minimumSize</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Matches <computeroutput>widenedSpan()</computeroutput> in rect_geometry.glsl, so hit tests use the drawn size. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/RectGeometry.hpp" line="29" column="11" declfile="QAccelPlot/src/QAccelPlot/series/internal/RectGeometry.hpp" declline="29" declcolumn="11"/>
+      </memberdef>
+      <memberdef kind="function" id="SeriesSupport_8hpp_1aa0d65f61e140a98b727f1649918c3566" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::hoverEnabled</definition>
+        <argsstring>()</argsstring>
+        <name>hoverEnabled</name>
+        <qualifiedname>QAccelPlot::Internal::hoverEnabled</qualifiedname>
+        <briefdescription>
+<para>Returns whether series accept hover events: <computeroutput>false</computeroutput> only when <computeroutput>QACCELPLOT_HOVER_ENABLED</computeroutput> is 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="17" column="6" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="17" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="SeriesSupport_8hpp_1ac34e08413bb3b53ff8e1154bf2c494dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::supportsCustomShaderRendering</definition>
+        <argsstring>(const QQuickWindow *window)</argsstring>
+        <name>supportsCustomShaderRendering</name>
+        <qualifiedname>QAccelPlot::Internal::supportsCustomShaderRendering</qualifiedname>
+        <param>
+          <type>const QQuickWindow *</type>
+          <declname>window</declname>
+        </param>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> when <emphasis>window</emphasis> renders through a hardware scene graph backend that runs custom shaders. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="20" column="6" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="20" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="SeriesSupport_8hpp_1aa6ae5dce39f0d0f413c54cf6cf325998" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::maxTextureSize</definition>
+        <argsstring>(QQuickWindow *window)</argsstring>
+        <name>maxTextureSize</name>
+        <qualifiedname>QAccelPlot::Internal::maxTextureSize</qualifiedname>
+        <param>
+          <type>QQuickWindow *</type>
+          <declname>window</declname>
+        </param>
+        <briefdescription>
+<para>Returns the largest texture width and height, in pixels, that <emphasis>window&apos;s</emphasis> GPU supports. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Falls back to 8192, supported by every target GPU, when the RHI cannot be queried (Qt older than 6.6, or a build without the private Qt API). <computeroutput>QACCELPLOT_MAX_TEXTURE_SIZE</computeroutput> lowers the result, for example to exercise capacity limits in tests. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="27" column="5" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="27" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="SeriesSupport_8hpp_1a1115a2b55eeca9e9b1f936432726572f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::recordCapacity</definition>
+        <argsstring>(QQuickWindow *window, int floatsPerRecord, int vertexBytesPerRecord)</argsstring>
+        <name>recordCapacity</name>
+        <qualifiedname>QAccelPlot::Internal::recordCapacity</qualifiedname>
+        <param>
+          <type>QQuickWindow *</type>
+          <declname>window</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>floatsPerRecord</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>vertexBytesPerRecord</declname>
+        </param>
+        <briefdescription>
+<para>Returns how many records a series draws that reads them from the data texture by a float vertex id. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A record takes <emphasis>floatsPerRecord</emphasis> floats of the data texture and <emphasis>vertexBytesPerRecord</emphasis> bytes of vertices. The count is limited by the texture size of <emphasis>window&apos;s</emphasis> GPU, by the 2^24 ids a float holds exactly, and by <computeroutput>QSGGeometry</computeroutput>, which sizes its vertex buffer in <computeroutput>int</computeroutput> bytes. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="34" column="5" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="34" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="SeriesSupport_8hpp_1a4d22277096776b7ab88ec04d5a44ae88" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Internal::clampAntialiasingFeather</definition>
+        <argsstring>(qreal feather)</argsstring>
+        <name>clampAntialiasingFeather</name>
+        <qualifiedname>QAccelPlot::Internal::clampAntialiasingFeather</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>feather</declname>
+        </param>
+        <briefdescription>
+<para>Returns <emphasis>feather</emphasis> clamped to the [0, 10] pixel range of the series&apos; <computeroutput>antialiasingFeather</computeroutput> properties. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="37" column="7" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="37" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="StepPath_8hpp_1a6f2f7ff4a80785b5d31e9313e7434119" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::stepCornerCount</definition>
+        <argsstring>(StepMode mode) noexcept</argsstring>
+        <name>stepCornerCount</name>
+        <qualifiedname>QAccelPlot::Internal::stepCornerCount</qualifiedname>
+        <param>
+          <type><ref refid="namespaceQAccelPlot_1_1StepModeNS_1af348af83845fdf1f08b475737f62a7cd" kindref="member">StepMode</ref></type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+<para>Returns the number of line path points per data point for <emphasis>mode:</emphasis> the data point and the step corners after it. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/StepPath.hpp" line="20" column="6" declfile="QAccelPlot/src/QAccelPlot/series/internal/StepPath.hpp" declline="20" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="StepPath_8hpp_1ac74d04114ac7b3ee265f24b21ffc3e94" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::optional&lt; QPointF &gt;</type>
+        <definition>std::optional&lt; QPointF &gt; QAccelPlot::Internal::stepCorner</definition>
+        <argsstring>(const CurveDataView &amp;data, int from, int to, int corner, StepMode mode, bool logScaleX, bool logScaleY)</argsstring>
+        <name>stepCorner</name>
+        <qualifiedname>QAccelPlot::Internal::stepCorner</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1CurveDataView" kindref="compound">CurveDataView</ref> &amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>from</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>to</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>corner</declname>
+        </param>
+        <param>
+          <type><ref refid="namespaceQAccelPlot_1_1StepModeNS_1af348af83845fdf1f08b475737f62a7cd" kindref="member">StepMode</ref></type>
+          <declname>mode</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>logScaleX</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>logScaleY</declname>
+        </param>
+        <briefdescription>
+<para>Returns corner <emphasis>corner</emphasis> of the step from data point <emphasis>from</emphasis> to data point <emphasis>to</emphasis>, in data space. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Corner 0 is data point <emphasis>from</emphasis>. A step corner holds the Y of the data point whose flat step it ends or starts, and is drawn when that data point is valid and the X values placing the corner are usable. Returns <computeroutput>std::nullopt</computeroutput> for a corner that is not drawn. Matches the line shader. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/StepPath.hpp" line="27" column="16" declfile="QAccelPlot/src/QAccelPlot/series/internal/StepPath.hpp" declline="27" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="StepPath_8hpp_1ac63eb0e7a6e4ca78c809a994ee3a8b92" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::optional&lt; QPointF &gt;</type>
+        <definition>std::optional&lt; QPointF &gt; QAccelPlot::Internal::linePathPoint</definition>
+        <argsstring>(const CurveDataView &amp;data, int pointCount, int index, int corner, StepMode mode, bool logScaleX, bool logScaleY)</argsstring>
+        <name>linePathPoint</name>
+        <qualifiedname>QAccelPlot::Internal::linePathPoint</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1CurveDataView" kindref="compound">CurveDataView</ref> &amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>pointCount</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>corner</declname>
+        </param>
+        <param>
+          <type><ref refid="namespaceQAccelPlot_1_1StepModeNS_1af348af83845fdf1f08b475737f62a7cd" kindref="member">StepMode</ref></type>
+          <declname>mode</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>logScaleX</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>logScaleY</declname>
+        </param>
+        <briefdescription>
+<para>Returns path point <emphasis>corner</emphasis> of data point <emphasis>index</emphasis> on the drawn line of <emphasis>pointCount</emphasis> data points. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The last data point has no step after it, so its corners repeat it. Matches the vertices of the line shader. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/StepPath.hpp" line="32" column="16" declfile="QAccelPlot/src/QAccelPlot/series/internal/StepPath.hpp" declline="32" declcolumn="16"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" line="12" column="1"/>
+  </compounddef>
+</doxygen>

@@ -99,6 +99,7 @@ flowchart TB
 |   | [**TickLabelFormatter**](#function-ticklabelformatter) (QObject \* parent=nullptr) <br>_Constructs an_ [_**TickLabelFormatter**_](classQAccelPlot_1_1TickLabelFormatter.md) _with the given__parent_ _._ |
 |  QString | [**format**](#function-format) (qreal value, qreal tickStep) const<br>_Returns the display string for_ _value_ _at the given__tickStep_ _._ |
 |  QString | [**formatLogTick**](#function-formatlogtick) (qreal value) const<br>_Returns the display string for a major tick at_ _value_ _on a logarithmic axis._ |
+| virtual qreal | [**minimumTickStep**](#function-minimumtickstep) () const<br>_Returns the smallest major tick step a linear axis may use with this formatter._  |
 |  void | [**setTickLabel**](#function-setticklabel) (const QJSValue & tickLabel) <br>_Sets the JavaScript override callback to_ _tickLabel_ _._ |
 |  QJSValue | [**tickLabel**](#function-ticklabel-22) () const<br>_Returns the optional JavaScript override callback._  |
 
@@ -254,6 +255,25 @@ QString QAccelPlot::TickLabelFormatter::formatLogTick (
 
 
 Log-scale ticks have no single step, so the `tickLabel` JS callback receives _value_ as its `tickStep`. Without a callback this delegates to `doFormatLogTick()`. 
+
+
+        
+
+<hr>
+
+
+
+
+### function minimumTickStep {#function-minimumtickstep}
+
+_Returns the smallest major tick step a linear axis may use with this formatter._ 
+```C++
+virtual qreal QAccelPlot::TickLabelFormatter::minimumTickStep () const
+```
+
+
+
+The axis raises a smaller "nice" step to this value. The default is `0`, no minimum. Called from the scene graph sync as well as the GUI thread, so overrides must not call into QML. 
 
 
         

@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1Internal_1_1InspectionCache_1_1Host" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>QAccelPlot::Internal::InspectionCache::Host</compoundname>
+    <includes local="no">InspectionCache.hpp</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionCache_1_1Host_1a640dafabedf657b155bc99bd45b5484b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual QAccelPlot::Internal::InspectionCache::Host::~Host</definition>
+        <argsstring>()</argsstring>
+        <name>~Host</name>
+        <qualifiedname>QAccelPlot::Internal::InspectionCache::Host::~Host</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="25" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionCache_1_1Host_1aa213e9f8650f7bfca50bea854e088aaa" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="structQAccelPlot_1_1Internal_1_1InspectionSource" kindref="compound">InspectionSource</ref></type>
+        <definition>virtual InspectionSource QAccelPlot::Internal::InspectionCache::Host::indexSource</definition>
+        <argsstring>() const =0</argsstring>
+        <name>indexSource</name>
+        <qualifiedname>QAccelPlot::Internal::InspectionCache::Host::indexSource</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="26" column="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionCache_1_1Host_1a338790f02db0da8b434d991d7553fdba" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool QAccelPlot::Internal::InspectionCache::Host::indexSourceAvailable</definition>
+        <argsstring>() const =0</argsstring>
+        <name>indexSourceAvailable</name>
+        <qualifiedname>QAccelPlot::Internal::InspectionCache::Host::indexSourceAvailable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="27" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionCache_1_1Host_1a89d4665c08463246bc8b419de9316a82" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void QAccelPlot::Internal::InspectionCache::Host::indexReady</definition>
+        <argsstring>()=0</argsstring>
+        <name>indexReady</name>
+        <qualifiedname>QAccelPlot::Internal::InspectionCache::Host::indexReady</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="28" column="22"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Series-side callbacks; all are invoked on the series&apos; thread. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="23" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" bodystart="23" bodyend="29"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1Internal_1_1InspectionCache_1_1Host_1a89d4665c08463246bc8b419de9316a82" prot="public" virt="pure-virtual"><scope>QAccelPlot::Internal::InspectionCache::Host</scope><name>indexReady</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1InspectionCache_1_1Host_1aa213e9f8650f7bfca50bea854e088aaa" prot="public" virt="pure-virtual"><scope>QAccelPlot::Internal::InspectionCache::Host</scope><name>indexSource</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1InspectionCache_1_1Host_1a338790f02db0da8b434d991d7553fdba" prot="public" virt="pure-virtual"><scope>QAccelPlot::Internal::InspectionCache::Host</scope><name>indexSourceAvailable</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1InspectionCache_1_1Host_1a640dafabedf657b155bc99bd45b5484b" prot="public" virt="virtual"><scope>QAccelPlot::Internal::InspectionCache::Host</scope><name>~Host</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

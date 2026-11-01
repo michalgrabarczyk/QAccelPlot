@@ -17,19 +17,14 @@
 
 
 
-* `#include "QAccelPlot/effects/Colormap.hpp"`
-* `#include "QAccelPlot/effects/GradientColorTypes.hpp"`
-* `#include "QAccelPlot/series/PlotSeries.hpp"`
+* `#include "QAccelPlot/series/ColormappedSeries.hpp"`
 * `#include "QAccelPlot/series/PointSpatialIndex.hpp"`
 * `#include "QAccelPlot/series/SeriesMarker.hpp"`
 * `#include "QAccelPlot/theme/ColorPalette.hpp"`
 * `#include "QAccelPlot/transitions/DataTransition.hpp"`
 * `#include <QColor>`
 * `#include <QList>`
-* `#include <QMetaObject>`
 * `#include <QPointF>`
-* `#include <QPointer>`
-* `#include <limits>`
 * `#include <memory>`
 * `#include <optional>`
 * `#include <vector>`

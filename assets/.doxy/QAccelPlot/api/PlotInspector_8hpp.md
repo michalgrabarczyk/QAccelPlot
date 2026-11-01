@@ -17,7 +17,7 @@
 
 
 
-* `#include "QAccelPlot/QAccelPlot.hpp"`
+* `#include "QAccelPlot/PlotView.hpp"`
 * `#include "QAccelPlot/inspection/InspectionRowModel.hpp"`
 * `#include <QQmlListProperty>`
 * `#include <memory>`
@@ -42,13 +42,14 @@
 | Type | Name |
 | ---: | :--- |
 | namespace | [**QAccelPlot**](namespaceQAccelPlot.md) <br> |
+| namespace | [**Internal**](namespaceQAccelPlot_1_1Internal.md) <br> |
 
 
 ## Classes
 
 | Type | Name |
 | ---: | :--- |
-| class | [**PlotInspector**](classQAccelPlot_1_1PlotInspector.md) <br>_Inspects every visible XY series of a plot at a cursor and publishes one model row per series._  |
+| class | [**PlotInspector**](classQAccelPlot_1_1PlotInspector.md) <br>_Inspects the visible XY series and heatmaps of a plot at a cursor and publishes one model row per series._  |
 
 
 

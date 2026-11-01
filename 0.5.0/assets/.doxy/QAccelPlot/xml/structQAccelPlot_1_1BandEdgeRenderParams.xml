@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1BandEdgeRenderParams" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::BandEdgeRenderParams</compoundname>
+    <includes local="no">BandEdgeRenderer.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1BandEdgeRenderParams_1ac283850cf0e04b038d68af31ce4e92cb" prot="public" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classQAccelPlot_1_1DataTexture" kindref="compound">DataTexture</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;DataTexture&gt; QAccelPlot::BandEdgeRenderParams::dataTexture</definition>
+        <argsstring></argsstring>
+        <name>dataTexture</name>
+        <qualifiedname>QAccelPlot::BandEdgeRenderParams::dataTexture</qualifiedname>
+        <briefdescription>
+<para>The band&apos;s data texture; the edge line never uploads data itself. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" line="28" column="21" bodyfile="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1BandEdgeRenderParams_1a814196d856d640778bbf3ced71c2ca97" prot="public" static="no" mutable="no">
+        <type><ref refid="structQAccelPlot_1_1DataPointStore_1_1View" kindref="compound">DataPointStore::View</ref></type>
+        <definition>DataPointStore::View QAccelPlot::BandEdgeRenderParams::dataPoints</definition>
+        <argsstring></argsstring>
+        <name>dataPoints</name>
+        <qualifiedname>QAccelPlot::BandEdgeRenderParams::dataPoints</qualifiedname>
+        <briefdescription>
+<para>The band&apos;s <computeroutput>(x, low, high)</computeroutput> data points, used for dash lengths. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" line="29" column="26" bodyfile="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1BandEdgeRenderParams_1aa5421cb49415855e7a9d5a95af46e8c0" prot="public" static="no" mutable="no">
+        <type><ref refid="structQAccelPlot_1_1LineStroke_1_1Uniforms" kindref="compound">LineStroke::Uniforms</ref></type>
+        <definition>LineStroke::Uniforms QAccelPlot::BandEdgeRenderParams::uniforms</definition>
+        <argsstring></argsstring>
+        <name>uniforms</name>
+        <qualifiedname>QAccelPlot::BandEdgeRenderParams::uniforms</qualifiedname>
+        <briefdescription>
+<para>Line uniforms; <computeroutput>uniforms.pointCount</computeroutput> equals <computeroutput>dataPoints.count</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" line="30" column="26" bodyfile="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1BandEdgeRenderParams_1a4af83d0dccec33613320180256c4501d" prot="public" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
+        <definition>Axis* QAccelPlot::BandEdgeRenderParams::xAxis</definition>
+        <argsstring></argsstring>
+        <name>xAxis</name>
+        <qualifiedname>QAccelPlot::BandEdgeRenderParams::xAxis</qualifiedname>
+        <briefdescription>
+<para>Horizontal axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" line="31" column="10" bodyfile="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1BandEdgeRenderParams_1a7152df457cd007e6254b3f51bce67489" prot="public" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
+        <definition>Axis* QAccelPlot::BandEdgeRenderParams::yAxis</definition>
+        <argsstring></argsstring>
+        <name>yAxis</name>
+        <qualifiedname>QAccelPlot::BandEdgeRenderParams::yAxis</qualifiedname>
+        <briefdescription>
+<para>Vertical axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" line="32" column="10" bodyfile="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1BandEdgeRenderParams_1aab86a304b5f63d45d3b826c6e440fcb1" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BandEdgeRenderParams::dataChanged</definition>
+        <argsstring></argsstring>
+        <name>dataChanged</name>
+        <qualifiedname>QAccelPlot::BandEdgeRenderParams::dataChanged</qualifiedname>
+        <briefdescription>
+<para>Whether the data points changed since the last paint. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" line="33" column="10" bodyfile="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1BandEdgeRenderParams_1a84dd6b750fb5c48cca01e1ba8481fc64" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::BandEdgeRenderParams::reservedCount</definition>
+        <argsstring></argsstring>
+        <name>reservedCount</name>
+        <qualifiedname>QAccelPlot::BandEdgeRenderParams::reservedCount</qualifiedname>
+        <briefdescription>
+<para>Data points the vertex buffer holds room for, at least <computeroutput>dataPoints.count</computeroutput>, so appends rarely resize it. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" line="35" column="9" bodyfile="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Inputs for <ref refid="classQAccelPlot_1_1BandEdgeRenderer_1a05c6418d92157b0ddc4be7edf2a6fb73" kindref="member">BandEdgeRenderer::paint()</ref>, assembled while the GUI thread is blocked. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="5">
+        <label>QAccelPlot::Axis</label>
+        <link refid="classQAccelPlot_1_1Axis"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>QAccelPlot::BandEdgeRenderParams</label>
+        <link refid="structQAccelPlot_1_1BandEdgeRenderParams"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>dataPoints</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>uniforms</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>xAxis</edgelabel>
+          <edgelabel>yAxis</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>QAccelPlot::DashParameters</label>
+        <link refid="structQAccelPlot_1_1DashParameters"/>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::DataPointStore::View</label>
+        <link refid="structQAccelPlot_1_1DataPointStore_1_1View"/>
+      </node>
+      <node id="3">
+        <label>QAccelPlot::LineStroke::Uniforms</label>
+        <link refid="structQAccelPlot_1_1LineStroke_1_1Uniforms"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>dash</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>QQuickPaintedItem</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" line="27" column="1" bodyfile="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" bodystart="27" bodyend="36"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1BandEdgeRenderParams_1aab86a304b5f63d45d3b826c6e440fcb1" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeRenderParams</scope><name>dataChanged</name></member>
+      <member refid="structQAccelPlot_1_1BandEdgeRenderParams_1a814196d856d640778bbf3ced71c2ca97" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeRenderParams</scope><name>dataPoints</name></member>
+      <member refid="structQAccelPlot_1_1BandEdgeRenderParams_1ac283850cf0e04b038d68af31ce4e92cb" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeRenderParams</scope><name>dataTexture</name></member>
+      <member refid="structQAccelPlot_1_1BandEdgeRenderParams_1a84dd6b750fb5c48cca01e1ba8481fc64" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeRenderParams</scope><name>reservedCount</name></member>
+      <member refid="structQAccelPlot_1_1BandEdgeRenderParams_1aa5421cb49415855e7a9d5a95af46e8c0" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeRenderParams</scope><name>uniforms</name></member>
+      <member refid="structQAccelPlot_1_1BandEdgeRenderParams_1a4af83d0dccec33613320180256c4501d" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeRenderParams</scope><name>xAxis</name></member>
+      <member refid="structQAccelPlot_1_1BandEdgeRenderParams_1a7152df457cd007e6254b3f51bce67489" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeRenderParams</scope><name>yAxis</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

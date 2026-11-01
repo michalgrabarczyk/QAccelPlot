@@ -1,0 +1,3511 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="User guide and API documentation for QAccelPlot">
+      
+      
+      
+        <link rel="canonical" href="https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1RectangleSeries/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Class QAccelPlot::RectangleSeries - QAccelPlot v0.5.0 Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/palette.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/theme.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "name": "QAccelPlot",
+  "description": "High-performance hardware-accelerated plotting library for Qt Quick using the Qt Scene Graph",
+  "programmingLanguage": ["C++", "QML"],
+  "runtimePlatform": "Qt 6",
+  "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+  "codeRepository": "https://github.com/michalgrabarczyk/QAccelPlot",
+  "url": "https://michalgrabarczyk.github.io/QAccelPlot/",
+  "author": {
+    "@type": "Person",
+    "name": "Michal Grabarczyk"
+  },
+  "softwareVersion": "0.5.0",
+  "operatingSystem": "Cross-platform (Windows, Linux, macOS)",
+  "applicationCategory": "DeveloperApplication",
+  "keywords": ["plotting", "Qt Quick", "QML", "Scene Graph", "GPU", "real-time", "data visualization", "C++"]
+}
+</script>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#class-qaccelplotrectangleseries" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="QAccelPlot v0.5.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.5.0 Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            QAccelPlot v0.5.0 Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Class QAccelPlot::RectangleSeries
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/michalgrabarczyk/QAccelPlot" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    michalgrabarczyk/QAccelPlot
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="QAccelPlot v0.5.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.5.0 Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    QAccelPlot v0.5.0 Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/michalgrabarczyk/QAccelPlot" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    michalgrabarczyk/QAccelPlot
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts and architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../cookbook/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cookbook
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cookbook
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/basic-plot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic static plot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/realtime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-time scrolling data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/axis-formats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Axis formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/multiple-axes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multiple axes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/styling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Styling and transitions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/annotations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Annotations and tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/data-inspection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data inspection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/point-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Point clouds
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/heatmaps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Heatmaps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/rectangle-zoom/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rectangle zoom
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/bar-charts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bar charts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/histograms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Histograms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/bands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/error-bars/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error bars
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/background-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Background data production
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/export/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exporting images
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Example gallery
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versioning and releases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../annotated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class list
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../namespaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#inheritance-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inheritance diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-types-inherited-from-qaccelplotplotseries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Types inherited from QAccelPlot::PlotSeries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Properties
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-properties-inherited-from-qaccelplotplotseries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Properties inherited from QAccelPlot::PlotSeries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Signals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-signals-inherited-from-qaccelplotplotseries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Signals inherited from QAccelPlot::PlotSeries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-functions-inherited-from-qaccelplotplotseries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Functions inherited from QAccelPlot::PlotSeries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protected-types-inherited-from-qaccelplotplotseries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protected Types inherited from QAccelPlot::PlotSeries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protected-attributes-inherited-from-qaccelplotplotseries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protected Attributes inherited from QAccelPlot::PlotSeries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protected-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protected Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protected-functions-inherited-from-qaccelplotplotseries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protected Functions inherited from QAccelPlot::PlotSeries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-properties-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Properties Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Properties Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#property-border-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property border
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-categories-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property categories
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-color-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property color
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-hovercolor-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property hoverColor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-hoveredindex-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property hoveredIndex
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-minimumheight-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property minimumHeight
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-minimumwidth-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property minimumWidth
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-signals-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Signals Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Signals Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal-categorieschanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal categoriesChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-colorchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal colorChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-hovercolorchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal hoverColorChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-hoveredindexchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal hoveredIndexChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-minimumheightchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal minimumHeightChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-minimumwidthchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal minimumWidthChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-functions-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Functions Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Functions Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#function-rectangleseries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function RectangleSeries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-border-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function border
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-categories-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function categories
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-cleardata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function clearData
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-color-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function color
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-contains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function contains
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-hovercolor-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function hoverColor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-hoveredindex-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function hoveredIndex
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-legendentries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function legendEntries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-legendentry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function legendEntry
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-minimumheight-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function minimumHeight
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-minimumwidth-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function minimumWidth
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-postdata-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function postData
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-postdata-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function postData
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-postdata-34" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function postData
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-postdata-44" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function postData
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-rectangleat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function rectangleAt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-rectangleindexat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function rectangleIndexAt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setcategories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setCategories
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setcolor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setColor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setdata-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setData
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setdata-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setData
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setdata-36" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setData
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setdata-46" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setData
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setdata-56" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setData
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setdata-66" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setData
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setdataf-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setDataF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setdataf-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setDataF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setdataf-35" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setDataF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setdataf-45" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setDataF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setdataf-55" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setDataF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setdatapointcategories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setDataPointCategories
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-sethovercolor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setHoverColor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setminimumheight" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setMinimumHeight
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setminimumwidth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setMinimumWidth
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-rectangleseries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function ~RectangleSeries
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protected-functions-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protected Functions Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Protected Functions Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#function-hoverenterevent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function hoverEnterEvent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-hoverleaveevent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function hoverLeaveEvent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-hovermoveevent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function hoverMoveEvent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-inspectionrecord" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function inspectionRecord
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-inspectionrecordat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function inspectionRecordAt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-onaxisscalechanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function onAxisScaleChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-ondatapointschanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function onDataPointsChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-recordinspectionsupported" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function recordInspectionSupported
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-updatepaintnode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function updatePaintNode
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="class-qaccelplotrectangleseries">Class QAccelPlot::RectangleSeries<a class="headerlink" href="#class-qaccelplotrectangleseries" title="Permanent link">&para;</a></h1>
+<p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="./"><strong>RectangleSeries</strong></a></p>
+<p><em>A hardware-accelerated QML item that renders a large list of axis-aligned rectangles.</em> <a href="#detailed-description">More...</a></p>
+<ul>
+<li><code>#include &lt;RectangleSeries.hpp&gt;</code></li>
+</ul>
+<p>Inherits the following classes: <a href="../classQAccelPlot_1_1PlotSeries/">QAccelPlot::PlotSeries</a></p>
+<h2 id="inheritance-diagram">Inheritance diagram<a class="headerlink" href="#inheritance-diagram" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>flowchart TB
+  classQAccelPlot_1_1RectangleSeries["QAccelPlot::RectangleSeries"]
+
+  classQAccelPlot_1_1PlotSeries["QAccelPlot::PlotSeries"]
+  classQAccelPlot_1_1PlotSeries --&gt; classQAccelPlot_1_1RectangleSeries
+  click classQAccelPlot_1_1PlotSeries "../classQAccelPlot_1_1PlotSeries/" "Open QAccelPlot::PlotSeries"
+
+  external_base_classQAccelPlot_1_1PlotSeries_1["QQuickItem"]
+  external_base_classQAccelPlot_1_1PlotSeries_1 --&gt; classQAccelPlot_1_1PlotSeries
+</code></pre>
+<h2 id="public-types-inherited-from-qaccelplotplotseries">Public Types inherited from QAccelPlot::PlotSeries<a class="headerlink" href="#public-types-inherited-from-qaccelplotplotseries" title="Permanent link">&para;</a></h2>
+<p>See <a href="../classQAccelPlot_1_1PlotSeries/">QAccelPlot::PlotSeries</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#enum-legendsymbol"><strong>LegendSymbol</strong></a>  <br><em>Supported default legend symbols.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-properties">Public Properties<a class="headerlink" href="#public-properties" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">property <a href="../classQAccelPlot_1_1Border/"><strong>Border</strong></a> *</td>
+<td style="text-align: left;"><a href="./#property-border-12"><strong>border</strong></a>  <br><em>Outline inside each rectangle's edges, e.g.</em> <code>border.width: 1</code> <em>. Default: black, width 0.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property QQmlListProperty&lt; <a href="../classQAccelPlot_1_1Category/"><strong>Category</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="./#property-categories-12"><strong>categories</strong></a>  <br><em>The rectangles' categories. Default: empty.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property QColor</td>
+<td style="text-align: left;"><a href="./#property-color-12"><strong>color</strong></a>  <br><em>Fill color of rectangles without a category color. Default:</em> <code>Colors.dark.seriesPrimary</code> <em>with alpha 50.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property QColor</td>
+<td style="text-align: left;"><a href="./#property-hovercolor-12"><strong>hoverColor</strong></a>  <br><em>Fill color of the rectangle under the cursor. Default: an invalid color, no highlight.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property int</td>
+<td style="text-align: left;"><a href="./#property-hoveredindex-12"><strong>hoveredIndex</strong></a>  <br><em>Read-only: index of the rectangle under the cursor, or -1 when none.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property qreal</td>
+<td style="text-align: left;"><a href="./#property-minimumheight-12"><strong>minimumHeight</strong></a>  <br><em>Minimum drawn height in pixels, like</em> <code>minimumWidth</code> <em>. Default: 1.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property qreal</td>
+<td style="text-align: left;"><a href="./#property-minimumwidth-12"><strong>minimumWidth</strong></a>  <br><em>Minimum drawn width in pixels, so narrow rectangles stay visible when zoomed out. Default: 1.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-properties-inherited-from-qaccelplotplotseries">Public Properties inherited from QAccelPlot::PlotSeries<a class="headerlink" href="#public-properties-inherited-from-qaccelplotplotseries" title="Permanent link">&para;</a></h2>
+<p>See <a href="../classQAccelPlot_1_1PlotSeries/">QAccelPlot::PlotSeries</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">property int</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-count-12"><strong>count</strong></a>  <br><em>Read-only: number of records stored, including invalid ones.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property quint64</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-datarevision-12"><strong>dataRevision</strong></a>  <br><em>Revision incremented by every accepted change of the series' records.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property bool</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-hoverenabled-12"><strong>hoverEnabled</strong></a>  <br><em>Whether the series reacts to the mouse cursor. Default:</em> <code>true</code> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property bool</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-hovered-12"><strong>hovered</strong></a>  <br><em>Read-only:</em> <code>true</code> <em>while the mouse cursor is over the series.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property <a href="../classQAccelPlot_1_1SeriesInspection/"><strong>SeriesInspection</strong></a> *</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-inspection-12"><strong>inspection</strong></a>  <br><em>Read-only constant: data queries for this series.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property <a href="../classQAccelPlot_1_1PlotSeries/#enum-legendsymbol"><strong>LegendSymbol</strong></a></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-legendsymbol-12"><strong>legendSymbol</strong></a>  <br><em>Symbol style requested from the default legend.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property QString</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-name-12"><strong>name</strong></a>  <br><em>Identifying name used by the default legend.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property QRectF</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-plotrect-12"><strong>plotRect</strong></a>  <br><em>Plot area in parent-item coordinates, assigned by</em> <code>PlotView</code> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property <a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> *</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-xaxis-12"><strong>xAxis</strong></a>  <br><em>Horizontal axis used for data-to-pixel coordinate mapping.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property <a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> *</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-yaxis-12"><strong>yAxis</strong></a>  <br><em>Vertical axis used for data-to-pixel coordinate mapping.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-signals">Public Signals<a class="headerlink" href="#public-signals" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-categorieschanged"><strong>categoriesChanged</strong></a>  <br><em>Emitted when a category is added, removed, or edited.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-colorchanged"><strong>colorChanged</strong></a>  <br><em>Emitted when the color property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-hovercolorchanged"><strong>hoverColorChanged</strong></a>  <br><em>Emitted when the hoverColor property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-hoveredindexchanged"><strong>hoveredIndexChanged</strong></a>  <br><em>Emitted when the hovered rectangle index changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-minimumheightchanged"><strong>minimumHeightChanged</strong></a>  <br><em>Emitted when the minimumHeight property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-minimumwidthchanged"><strong>minimumWidthChanged</strong></a>  <br><em>Emitted when the minimumWidth property changes.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-signals-inherited-from-qaccelplotplotseries">Public Signals inherited from QAccelPlot::PlotSeries<a class="headerlink" href="#public-signals-inherited-from-qaccelplotplotseries" title="Permanent link">&para;</a></h2>
+<p>See <a href="../classQAccelPlot_1_1PlotSeries/">QAccelPlot::PlotSeries</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#signal-countchanged"><strong>countChanged</strong></a>  <br><em>Emitted when the number of records changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#signal-datarevisionchanged"><strong>dataRevisionChanged</strong></a>  <br><em>Emitted when the dataRevision property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#signal-hoverenabledchanged"><strong>hoverEnabledChanged</strong></a>  <br><em>Emitted when the hoverEnabled property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#signal-hoveredchanged"><strong>hoveredChanged</strong></a>  <br><em>Emitted when the hovered property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#signal-legendentrychanged"><strong>legendEntryChanged</strong></a>  <br><em>Emitted when the result of</em> <code>legendEntry()</code> <em>or</em><code>legendEntries()</code> <em>changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#signal-legendsymbolchanged"><strong>legendSymbolChanged</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#signal-namechanged"><strong>nameChanged</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#signal-plotrectchanged"><strong>plotRectChanged</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#signal-xaxischanged"><strong>xAxisChanged</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#signal-yaxischanged"><strong>yAxisChanged</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions<a class="headerlink" href="#public-functions" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-rectangleseries"><strong>RectangleSeries</strong></a> (QQuickItem * parent=nullptr) <br><em>Constructs a</em> <a href="./"><em><strong>RectangleSeries</strong></em></a> <em>with the given__parent</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classQAccelPlot_1_1Border/"><strong>Border</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-border-22"><strong>border</strong></a> () const<br><em>Returns the grouped outline settings. The object is owned by the series.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">QQmlListProperty&lt; <a href="../classQAccelPlot_1_1Category/"><strong>Category</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#function-categories-22"><strong>categories</strong></a> () <br><em>Returns the categories as a QML list.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual Q_INVOKABLE void</td>
+<td style="text-align: left;"><a href="#function-cleardata"><strong>clearData</strong></a> () override<br><em>Removes all rectangles.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">QColor</td>
+<td style="text-align: left;"><a href="#function-color-22"><strong>color</strong></a> () const<br><em>Returns the rectangle fill color.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-contains"><strong>contains</strong></a> (const QPointF &amp; point) override const<br><em>Returns</em> <code>true</code> <em>when a rectangle lies under item position__point</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">QColor</td>
+<td style="text-align: left;"><a href="#function-hovercolor-22"><strong>hoverColor</strong></a> () const<br><em>Returns the fill color of the hovered rectangle.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-hoveredindex-22"><strong>hoveredIndex</strong></a> () const<br><em>Returns the index of the hovered rectangle, or -1 if none.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual QList&lt; <a href="../structQAccelPlot_1_1LegendEntry/"><strong>LegendEntry</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#function-legendentries"><strong>legendEntries</strong></a> () override const<br><em>Returns one legend entry per category, or the</em> <code>legendEntry()</code> <em>when there are no categories.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual std::optional&lt; <a href="../structQAccelPlot_1_1LegendEntry/"><strong>LegendEntry</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#function-legendentry"><strong>legendEntry</strong></a> () override const<br><em>Returns the legend entry: the symbol and color of the rectangles.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">qreal</td>
+<td style="text-align: left;"><a href="#function-minimumheight-22"><strong>minimumHeight</strong></a> () const<br><em>Returns the minimum drawn height in pixels.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">qreal</td>
+<td style="text-align: left;"><a href="#function-minimumwidth-22"><strong>minimumWidth</strong></a> () const<br><em>Returns the minimum drawn width in pixels.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-postdata-14"><strong>postData</strong></a> (std::vector&lt; double &gt; &amp;&amp; data, std::vector&lt; int &gt; &amp;&amp; categories, int rectCount) <br><em>Thread-safe: queues</em> <code>setData</code> _(_<em>data</em> _,_<em>categories</em> _,_<em>rectCount</em> <em>) to the item's thread.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-postdata-24"><strong>postData</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, std::vector&lt; int &gt; &amp;&amp; categories, int rectCount) <br><em>Thread-safe: queues</em> <code>setDataF</code> _(_<em>data</em> _,_<em>categories</em> _,_<em>rectCount</em> <em>) to the item's thread.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-postdata-34"><strong>postData</strong></a> (std::vector&lt; double &gt; &amp;&amp; data, int count) <br><em>Queues a moved double buffer for assignment on the series' thread.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-postdata-44"><strong>postData</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, int count) <br><em>Queues a moved float buffer for assignment on the series' thread.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">Q_INVOKABLE QVariantMap</td>
+<td style="text-align: left;"><a href="#function-rectangleat"><strong>rectangleAt</strong></a> (int index) const<br><em>Returns rectangle</em> <em>index</em> <em>as an object with</em><code>x1</code> <em>,</em><code>y1</code> <em>,</em><code>x2</code> <em>,</em><code>y2</code> <em>properties.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-rectangleindexat"><strong>rectangleIndexAt</strong></a> (const QPointF &amp; position) const<br><em>Returns the index of the topmost rectangle under item position</em> <em>position</em> <em>, or -1.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setcategories"><strong>setCategories</strong></a> (const QList&lt; <a href="../classQAccelPlot_1_1Category/"><strong>Category</strong></a> * &gt; &amp; categories) <br><em>Replaces the categories with</em> <em>categories</em> <em>. The series does not take ownership.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setcolor"><strong>setColor</strong></a> (const QColor &amp; color) <br><em>Sets the fill color to</em> <em>color</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">Q_INVOKABLE void</td>
+<td style="text-align: left;"><a href="#function-setdata-16"><strong>setData</strong></a> (const QVariantList &amp; rects) <br><em>Loads rectangles from</em> <em>rects</em> <em>, a QML list of objects with</em><code>x1</code> <em>,</em><code>y1</code> <em>,</em><code>x2</code> <em>,</em><code>y2</code> <em>properties.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setdata-26"><strong>setData</strong></a> (std::vector&lt; double &gt; &amp;&amp; data, std::vector&lt; int &gt; &amp;&amp; categories, int rectCount) <br><em>Moves</em> <em>data</em> <em>and per-rectangle category values__categories</em> <em>(empty, or exactly__rectCount</em> <em>) into the series.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setdata-36"><strong>setData</strong></a> (const double * data, int count) <br><em>Replaces the series data with</em> <em>count</em> <em>data points copied from an interleaved double array.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setdata-46"><strong>setData</strong></a> (std::vector&lt; double &gt; &amp;&amp; data, int count) <br><em>Replaces the series data by moving an interleaved double buffer.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setdata-56"><strong>setData</strong></a> (const double * data, int count, const <a href="../structQAccelPlot_1_1PlotSeries_1_1DataBounds/"><strong>DataBounds</strong></a> &amp; bounds) <br><em>Like</em> <code>setData</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setdata-66"><strong>setData</strong></a> (std::vector&lt; double &gt; &amp;&amp; data, int count, const <a href="../structQAccelPlot_1_1PlotSeries_1_1DataBounds/"><strong>DataBounds</strong></a> &amp; bounds) <br><em>Like</em> <code>setData</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setdataf-15"><strong>setDataF</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, std::vector&lt; int &gt; &amp;&amp; categories, int rectCount) <br><em>Like</em> <code>setDataF</code> _(_<em>data</em> _,_<em>rectCount</em> <em>) and also moves per-rectangle category values__categories</em> <em>(empty, or exactly__rectCount</em> <em>) into the series.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setdataf-25"><strong>setDataF</strong></a> (const float * data, int count) <br><em>Replaces the series data with</em> <em>count</em> <em>data points copied from an interleaved float array.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setdataf-35"><strong>setDataF</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, int count) <br><em>Replaces the series data by moving an interleaved float buffer.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setdataf-45"><strong>setDataF</strong></a> (const float * data, int count, const <a href="../structQAccelPlot_1_1PlotSeries_1_1DataBounds/"><strong>DataBounds</strong></a> &amp; bounds) <br><em>Like</em> <code>setDataF</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setdataf-55"><strong>setDataF</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, int count, const <a href="../structQAccelPlot_1_1PlotSeries_1_1DataBounds/"><strong>DataBounds</strong></a> &amp; bounds) <br><em>Like</em> <code>setDataF</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">Q_INVOKABLE void</td>
+<td style="text-align: left;"><a href="#function-setdatapointcategories"><strong>setDataPointCategories</strong></a> (const QVariantList &amp; categories) <br><em>Sets one category per rectangle, each a category</em> <code>value</code> <em>or</em><code>name</code> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-sethovercolor"><strong>setHoverColor</strong></a> (const QColor &amp; color) <br><em>Sets the fill color of the hovered rectangle to</em> <em>color</em> <em>. An invalid color disables the highlight.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setminimumheight"><strong>setMinimumHeight</strong></a> (qreal height) <br><em>Sets the minimum drawn height to</em> <em>height</em> <em>pixels. Negative values are clamped to 0.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setminimumwidth"><strong>setMinimumWidth</strong></a> (qreal width) <br><em>Sets the minimum drawn width to</em> <em>width</em> <em>pixels. Negative values are clamped to 0.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-rectangleseries"><strong>~RectangleSeries</strong></a> () override<br><em>Destroys the rectangle series.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions-inherited-from-qaccelplotplotseries">Public Functions inherited from QAccelPlot::PlotSeries<a class="headerlink" href="#public-functions-inherited-from-qaccelplotplotseries" title="Permanent link">&para;</a></h2>
+<p>See <a href="../classQAccelPlot_1_1PlotSeries/">QAccelPlot::PlotSeries</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-plotseries-12"><strong>PlotSeries</strong></a> (QQuickItem * parent=nullptr) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-cleardata"><strong>clearData</strong></a> () <br><em>Removes all data points from the series.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual int</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-count-22"><strong>count</strong></a> () const<br><em>Returns the number of records stored. The default is the number of stored data points.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">quint64</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-datarevision-22"><strong>dataRevision</strong></a> () const<br><em>Returns the current data revision.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-hoverenabled-22"><strong>hoverEnabled</strong></a> () const<br><em>Returns whether the series reacts to the mouse cursor.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-hovered-22"><strong>hovered</strong></a> () const<br><em>Returns whether the mouse cursor is over the series.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classQAccelPlot_1_1SeriesInspection/"><strong>SeriesInspection</strong></a> *</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-inspection-22"><strong>inspection</strong></a> () const<br><em>Returns the data queries for this series; created on first use and owned by the series.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual QList&lt; <a href="../structQAccelPlot_1_1LegendEntry/"><strong>LegendEntry</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-legendentries"><strong>legendEntries</strong></a> () const<br><em>Returns the legend rows of the series. Default: the</em> <code>legendEntry()</code> <em>, if any.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual std::optional&lt; <a href="../structQAccelPlot_1_1LegendEntry/"><strong>LegendEntry</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-legendentry"><strong>legendEntry</strong></a> () const<br><em>Returns how a legend draws the series, or</em> <code>std::nullopt</code> <em>for no legend entry. Default: no entry.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classQAccelPlot_1_1PlotSeries/#enum-legendsymbol"><strong>LegendSymbol</strong></a></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-legendsymbol-22"><strong>legendSymbol</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">QString</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-name-22"><strong>name</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">QRectF</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-plotrect-22"><strong>plotRect</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-postdata-12"><strong>postData</strong></a> (std::vector&lt; double &gt; &amp;&amp; data, int count) <br><em>Queues a moved double buffer for assignment on the series' thread.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-postdata-22"><strong>postData</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, int count) <br><em>Queues a moved float buffer for assignment on the series' thread.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setdata-14"><strong>setData</strong></a> (const double * data, int count) <br><em>Replaces the series data with</em> <em>count</em> <em>data points copied from an interleaved double array.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setdata-24"><strong>setData</strong></a> (std::vector&lt; double &gt; &amp;&amp; data, int count) <br><em>Replaces the series data by moving an interleaved double buffer.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setdata-34"><strong>setData</strong></a> (const double * data, int count, const <a href="../structQAccelPlot_1_1PlotSeries_1_1DataBounds/"><strong>DataBounds</strong></a> &amp; bounds) <br><em>Like</em> <code>setData</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setdata-44"><strong>setData</strong></a> (std::vector&lt; double &gt; &amp;&amp; data, int count, const <a href="../structQAccelPlot_1_1PlotSeries_1_1DataBounds/"><strong>DataBounds</strong></a> &amp; bounds) <br><em>Like</em> <code>setData</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setdataf-14"><strong>setDataF</strong></a> (const float * data, int count) <br><em>Replaces the series data with</em> <em>count</em> <em>data points copied from an interleaved float array.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setdataf-24"><strong>setDataF</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, int count) <br><em>Replaces the series data by moving an interleaved float buffer.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setdataf-34"><strong>setDataF</strong></a> (const float * data, int count, const <a href="../structQAccelPlot_1_1PlotSeries_1_1DataBounds/"><strong>DataBounds</strong></a> &amp; bounds) <br><em>Like</em> <code>setDataF</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setdataf-44"><strong>setDataF</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, int count, const <a href="../structQAccelPlot_1_1PlotSeries_1_1DataBounds/"><strong>DataBounds</strong></a> &amp; bounds) <br><em>Like</em> <code>setDataF</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-sethoverenabled"><strong>setHoverEnabled</strong></a> (bool enabled) <br><em>Sets whether the series reacts to the mouse cursor to</em> <em>enabled</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setlegendsymbol"><strong>setLegendSymbol</strong></a> (<a href="../classQAccelPlot_1_1PlotSeries/#enum-legendsymbol"><strong>LegendSymbol</strong></a> symbol) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setname"><strong>setName</strong></a> (const QString &amp; name) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setplotrect"><strong>setPlotRect</strong></a> (const QRectF &amp; rect) <br><em>Updates the series geometry to exactly cover</em> <em>rect</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setxaxis"><strong>setXAxis</strong></a> (<a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> * axis) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setyaxis"><strong>setYAxis</strong></a> (<a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> * axis) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> *</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-xaxis-22"><strong>xAxis</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; <a href="../structQAccelPlot_1_1PlotSeries_1_1DataExtent/"><strong>DataExtent</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-xdatarange"><strong>xDataRange</strong></a> () const<br><em>Returns the extent this series reports to its horizontal axis, or</em> <code>std::nullopt</code> <em>when it has none.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> *</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-yaxis-22"><strong>yAxis</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::optional&lt; <a href="../structQAccelPlot_1_1PlotSeries_1_1DataExtent/"><strong>DataExtent</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-ydatarange"><strong>yDataRange</strong></a> () const<br><em>Returns the extent this series reports to its vertical axis, or</em> <code>std::nullopt</code> <em>when it has none.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-plotseries"><strong>~PlotSeries</strong></a> () override<br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="protected-types-inherited-from-qaccelplotplotseries">Protected Types inherited from QAccelPlot::PlotSeries<a class="headerlink" href="#protected-types-inherited-from-qaccelplotplotseries" title="Permanent link">&para;</a></h2>
+<p>See <a href="../classQAccelPlot_1_1PlotSeries/">QAccelPlot::PlotSeries</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#enum-capacityoverflow"><strong>CapacityOverflow</strong></a>  <br><em>What a series draws when its records outgrow its GPU capacity.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#enum-datachange"><strong>DataChange</strong></a>  <br><em>How the records changed in a data update.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="protected-attributes-inherited-from-qaccelplotplotseries">Protected Attributes inherited from QAccelPlot::PlotSeries<a class="headerlink" href="#protected-attributes-inherited-from-qaccelplotplotseries" title="Permanent link">&para;</a></h2>
+<p>See <a href="../classQAccelPlot_1_1PlotSeries/">QAccelPlot::PlotSeries</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#variable-overrendercapacity_"><strong>overRenderCapacity_</strong></a>   = <code>{false}</code><br><em>Whether the record count of the last</em> <code>updateRenderCapacity()</code> <em>exceeded</em><code>renderCapacity_</code> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#variable-rendercapacity_"><strong>renderCapacity_</strong></a>   = <code>{std::numeric\_limits&amp;lt;int&amp;gt;::max()}</code><br><em>Records the GPU buffers hold, as of the last</em> <code>updateRenderCapacity()</code> <em>; the largest</em><code>int</code> <em>before the first.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="protected-functions">Protected Functions<a class="headerlink" href="#protected-functions" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-hoverenterevent"><strong>hoverEnterEvent</strong></a> (QHoverEvent * event) override<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-hoverleaveevent"><strong>hoverLeaveEvent</strong></a> (QHoverEvent * event) override<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-hovermoveevent"><strong>hoverMoveEvent</strong></a> (QHoverEvent * event) override<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual <a href="../structQAccelPlot_1_1InspectionRecord/"><strong>InspectionRecord</strong></a></td>
+<td style="text-align: left;"><a href="#function-inspectionrecord"><strong>inspectionRecord</strong></a> (int index) override const<br><em>Returns the rectangle at</em> <em>index</em> <em>with its edges and category.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual <a href="../structQAccelPlot_1_1InspectionRecord/"><strong>InspectionRecord</strong></a></td>
+<td style="text-align: left;"><a href="#function-inspectionrecordat"><strong>inspectionRecordAt</strong></a> (const QPointF &amp; position) override const<br><em>Returns the rectangle drawn at the series-local</em> <em>position</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-onaxisscalechanged"><strong>onAxisScaleChanged</strong></a> () override<br><em>Repaints with the coordinates mapped for the new scale.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-ondatapointschanged"><strong>onDataPointsChanged</strong></a> (<a href="../classQAccelPlot_1_1PlotSeries/#enum-datachange"><strong>DataChange</strong></a> change, int previousCount) override<br><em>Refreshes the vertices, the hover index, and the count after the rectangles changed.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="#function-recordinspectionsupported"><strong>recordInspectionSupported</strong></a> () override const<br><em>Returns true: rectangles are inspected as records.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">QSGNode *</td>
+<td style="text-align: left;"><a href="#function-updatepaintnode"><strong>updatePaintNode</strong></a> (QSGNode * oldNode, UpdatePaintNodeData *) override<br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="protected-functions-inherited-from-qaccelplotplotseries">Protected Functions inherited from QAccelPlot::PlotSeries<a class="headerlink" href="#protected-functions-inherited-from-qaccelplotplotseries" title="Permanent link">&para;</a></h2>
+<p>See <a href="../classQAccelPlot_1_1PlotSeries/">QAccelPlot::PlotSeries</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-plotseries-22"><strong>PlotSeries</strong></a> (<a href="../structQAccelPlot_1_1DataPointStore_1_1Layout/"><strong>DataPointStore::Layout</strong></a> layout, <a href="../structQAccelPlot_1_1PlotSeries_1_1DataPointWording/"><strong>DataPointWording</strong></a> wording, QQuickItem * parent) <br><em>Creates a series whose data points have</em> <em>layout</em> _;_<em>wording</em> <em>names them in warnings.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-appenddatapoint"><strong>appendDataPoint</strong></a> (const double * coordinates) <br><em>Appends one double data point and widens the data ranges by its valid coordinates.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-applydatapoints"><strong>applyDataPoints</strong></a> (<a href="../structQAccelPlot_1_1PlotSeries_1_1DataPointInput/"><strong>DataPointInput</strong></a> &amp;&amp; input) <br><em>Applies data points passed to</em> <code>setData()</code> <em>or</em><code>setDataF()</code> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual <a href="../structQAccelPlot_1_1PlotSeries_1_1DataRanges/"><strong>DataRanges</strong></a></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-computedataranges"><strong>computeDataRanges</strong></a> () const<br><em>Scans the records for their extents. The default implementation scans the data points.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual int</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-datapointvaluecount"><strong>dataPointValueCount</strong></a> () const<br><em>Returns the number of values per data point that</em> <code>setData()</code> <em>and</em><code>setDataF()</code> <em>take.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classQAccelPlot_1_1DataPointStore/"><strong>DataPointStore</strong></a> &amp;</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-datapoints-12"><strong>dataPoints</strong></a> () <br><em>Returns the data points of the series.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">const <a href="../classQAccelPlot_1_1DataPointStore/"><strong>DataPointStore</strong></a> &amp;</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-datapoints-22"><strong>dataPoints</strong></a> () const<br><em>Returns the data points of the series.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-event"><strong>event</strong></a> (QEvent * event) override<br><em>Withholds hover events from a series beneath another series under the cursor.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-extendxdatarange"><strong>extendXDataRange</strong></a> (qreal x) <br><em>Widens the X extent to include</em> <em>x</em> <em>and notifies the bound axes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-extendydatarange"><strong>extendYDataRange</strong></a> (qreal y) <br><em>Widens the Y extent to include</em> <em>y</em> <em>. A non-finite__y</em> <em>leaves the extent unchanged.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-inspectionavailable"><strong>inspectionAvailable</strong></a> () const<br><em>Returns false while the records are ambiguous, such as during a data transition. Default: true.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-inspectiondatachanged"><strong>inspectionDataChanged</strong></a> (<a href="../classQAccelPlot_1_1PlotSeries/#enum-datachange"><strong>DataChange</strong></a> change=DataChange::Replaced) <br><em>Advances the data revision and refreshes the data queries. Call after every accepted record change.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual <a href="../structQAccelPlot_1_1InspectionDataPoint/"><strong>InspectionDataPoint</strong></a></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-inspectiondatapointat"><strong>inspectionDataPointAt</strong></a> (const QPointF &amp; position) const<br><em>Returns the record drawn at the series-local</em> <em>position</em> <em>as a data point. Default: unsupported.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual <a href="../structQAccelPlot_1_1InspectionRecord/"><strong>InspectionRecord</strong></a></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-inspectionrecord"><strong>inspectionRecord</strong></a> (int index) const<br><em>Returns the native record at</em> <em>index</em> <em>for series that are not plain XY series. Default: unsupported.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual <a href="../structQAccelPlot_1_1InspectionRecord/"><strong>InspectionRecord</strong></a></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-inspectionrecordat"><strong>inspectionRecordAt</strong></a> (const QPointF &amp; position) const<br><em>Returns the native record drawn at the series-local</em> <em>position</em> <em>. Default: unsupported.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual <a href="../structQAccelPlot_1_1Internal_1_1InspectionSource/"><strong>Internal::InspectionSource</strong></a></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-inspectionsource"><strong>inspectionSource</strong></a> () const<br><em>Returns a view of the XY records that data point queries search. The default has none.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-invalidatedataranges"><strong>invalidateDataRanges</strong></a> () <br><em>Discards the cached extents and notifies the bound axes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-invalidateinspection"><strong>invalidateInspection</strong></a> () <br><em>Refreshes the data queries after record validity changed without a data change, such as an axis scale switch.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-logscalex"><strong>logScaleX</strong></a> () const<br><em>Returns whether the horizontal axis is logarithmic; false without an axis.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-logscaley"><strong>logScaleY</strong></a> () const<br><em>Returns whether the vertical axis is logarithmic; false without an axis.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-notifydatapointschanged"><strong>notifyDataPointsChanged</strong></a> (<a href="../classQAccelPlot_1_1PlotSeries/#enum-datachange"><strong>DataChange</strong></a> change, int previousCount) <br><em>Finishes a change of the data points: data ranges,</em> <code>onDataPointsChanged()</code> <em>,</em><code>countChanged()</code> <em>, data queries, and a repaint.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-onaxisrangechanged"><strong>onAxisRangeChanged</strong></a> () <br><em>Called when the viewport of a bound axis changes. The default implementation schedules a repaint.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-onaxisscalechanged"><strong>onAxisScaleChanged</strong></a> () <br><em>Called when a bound axis switches between linear and logarithmic scale, or a different axis is bound.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-ondatapointschanged"><strong>onDataPointsChanged</strong></a> (<a href="../classQAccelPlot_1_1PlotSeries/#enum-datachange"><strong>DataChange</strong></a> change, int previousCount) <br><em>Called after the data points changed, before the data queries are refreshed. The default does nothing.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-positioninspectionsupported"><strong>positionInspectionSupported</strong></a> () const<br><em>Returns whether</em> <code>inspectionDataPointAt()</code> <em>matches records drawn as areas, such as heatmap cells. Default: false.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-recordinspectionsupported"><strong>recordInspectionSupported</strong></a> () const<br><em>Returns whether</em> <code>inspectionRecord()</code> <em>and</em><code>inspectionRecordAt()</code> <em>answer for this series. Default: false.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">QRectF</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-resolveplotrect"><strong>resolvePlotRect</strong></a> () const<br><em>Returns the plot area to render into:</em> <code>plotRect</code> <em>when set, otherwise the item's current size.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-sethovered"><strong>setHovered</strong></a> (bool hovered) <br><em>Sets the hovered property to</em> <em>hovered</em> <em>. Called by the hover handling of a series.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-storedatapoints"><strong>storeDataPoints</strong></a> (<a href="../structQAccelPlot_1_1PlotSeries_1_1DataPointInput/"><strong>DataPointInput</strong></a> &amp;&amp; input) <br><em>Stores</em> <em>input</em> <em>as the data points and finishes the change.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-supporthover"><strong>supportHover</strong></a> () <br><em>Makes the series accept hover events while</em> <code>hoverEnabled</code> <em>is</em><code>true</code> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-updaterendercapacity"><strong>updateRenderCapacity</strong></a> (int capacity, int recordCount, <a href="../classQAccelPlot_1_1PlotSeries/#enum-capacityoverflow"><strong>CapacityOverflow</strong></a> overflow=CapacityOverflow::DropsExcess) <br><em>Stores</em> <em>capacity</em> <em>, the number of records the GPU buffers hold, and warns when__recordCount</em> <em>newly exceeds it.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-validatedatasize"><strong>validateDataSize</strong></a> (std::size_t valueCount, int count, bool floatData, int valuesPerDataPoint=0) const<br><em>Returns whether</em> <em>valueCount</em> <em>values hold__count</em> <em>data points; warns otherwise.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-validaterawdataarguments"><strong>validateRawDataArguments</strong></a> (const void * data, int count) const<br><em>Returns whether</em> <em>data</em> <em>and__count</em> <em>are valid arguments for copying data points; warns otherwise.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
+<p>Rectangles are stored as interleaved (x1, y1, x2, y2) values and uploaded to the GPU as a float data texture, making it suitable for millions of rectangles. The <code>setData()</code> overloads keep doubles and upload them relative to an origin near the data, so large coordinates such as epoch timestamps stay precise. The <code>setDataF()</code> overloads store floats and upload them without conversion. Hover detection uses an internal <code>SpatialGrid</code>; rectangles spanning more than 64 grid cells are tested linearly.</p>
+<p>An infinite edge extends the rectangle to the plot edge, e.g. <code>y1</code> = -Infinity and <code>y2</code> = +Infinity for a full-height span. Infinite edges don't affect the axes' data ranges. Rectangles with a NaN edge are not drawn or hovered.</p>
+<p>Each rectangle can carry a <code>category</code>. List the categories in <code>categories</code> as <code>Category</code> objects, each with a <code>value</code> and an optional <code>name</code> and <code>color:</code> </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">QAccelPlot</span><span class="p">.</span><span class="n">RectangleSeries</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nl">categories</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">        </span><span class="n">QAccelPlot</span><span class="p">.</span><span class="n">Category</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">value</span><span class="o">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">name</span><span class="o">:</span><span class="w"> </span><span class="s">"Running"</span><span class="p">;</span><span class="w"> </span><span class="n">color</span><span class="o">:</span><span class="w"> </span><span class="s">"seagreen"</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">        </span><span class="n">QAccelPlot</span><span class="p">.</span><span class="n">Category</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">value</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">name</span><span class="o">:</span><span class="w"> </span><span class="s">"Alarm"</span><span class="p">;</span><span class="w"> </span><span class="n">color</span><span class="o">:</span><span class="w"> </span><span class="s">"firebrick"</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="p">]</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="n">Component</span><span class="p">.</span><span class="n">onCompleted</span><span class="o">:</span><span class="w"> </span><span class="n">setData</span><span class="p">([{</span><span class="w"> </span><span class="n">x1</span><span class="o">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span><span class="o">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w"> </span><span class="n">category</span><span class="o">:</span><span class="w"> </span><span class="s">"Running"</span><span class="w"> </span><span class="p">}])</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">}</span>
+</code></pre></div>
+<p>A rectangle is filled with the color of the category whose <code>value</code> equals its <code>category</code>. Rectangles without a category, or whose category has no color or is not listed, use <code>color</code>. The legend shows one row per category.</p>
+<p>Set <code>antialiasing</code> to smooth edges that fall between pixels. It is off by default because rectangles that touch then show faint seams.</p>
+<p>**
+**</p>
+<p>Up to 16,777,216 (2^24) rectangles are drawn correctly. The shader indexes rectangles in single precision, and at that count the data texture reaches 8192 rows, the size every GPU supports.</p>
+<p><strong>See also:</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>LineCurve</strong></a>, <a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> </p>
+<h2 id="public-properties-documentation">Public Properties Documentation<a class="headerlink" href="#public-properties-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="property-border-12">property border<a class="headerlink" href="#property-border-12" title="Permanent link">&para;</a></h3>
+<p><em>Outline inside each rectangle's edges, e.g.</em> <code>border.width: 1</code> <em>. Default: black, width 0.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">Border</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">border</span><span class="p">;</span>
+</code></pre></div></p>
+<p>On rectangles too small for two outlines, the outline narrows so at least 1 px of fill stays visible. </p>
+<hr>
+
+<h3 id="property-categories-12">property categories<a class="headerlink" href="#property-categories-12" title="Permanent link">&para;</a></h3>
+<p><em>The rectangles' categories. Default: empty.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">QQmlListProperty</span><span class="o">&lt;</span><span class="n">Category</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">categories</span><span class="p">;</span>
+</code></pre></div></p>
+<p>The first of categories that share a value or a name wins, and the others log a warning. Edits to a listed <code>Category</code> apply at once. </p>
+<hr>
+
+<h3 id="property-color-12">property color<a class="headerlink" href="#property-color-12" title="Permanent link">&para;</a></h3>
+<p><em>Fill color of rectangles without a category color. Default:</em> <code>Colors.dark.seriesPrimary</code> <em>with alpha 50.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">color</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-hovercolor-12">property hoverColor<a class="headerlink" href="#property-hovercolor-12" title="Permanent link">&para;</a></h3>
+<p><em>Fill color of the rectangle under the cursor. Default: an invalid color, no highlight.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">hoverColor</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-hoveredindex-12">property hoveredIndex<a class="headerlink" href="#property-hoveredindex-12" title="Permanent link">&para;</a></h3>
+<p><em>Read-only: index of the rectangle under the cursor, or -1 when none.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">hoveredIndex</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-minimumheight-12">property minimumHeight<a class="headerlink" href="#property-minimumheight-12" title="Permanent link">&para;</a></h3>
+<p><em>Minimum drawn height in pixels, like</em> <code>minimumWidth</code> <em>. Default: 1.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">minimumHeight</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-minimumwidth-12">property minimumWidth<a class="headerlink" href="#property-minimumwidth-12" title="Permanent link">&para;</a></h3>
+<p><em>Minimum drawn width in pixels, so narrow rectangles stay visible when zoomed out. Default: 1.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">minimumWidth</span><span class="p">;</span>
+</code></pre></div></p>
+<p>Narrower rectangles are widened around their center. Hover uses the widened size. Clamped to at least 0. </p>
+<hr>
+<h2 id="public-signals-documentation">Public Signals Documentation<a class="headerlink" href="#public-signals-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="signal-categorieschanged">signal categoriesChanged<a class="headerlink" href="#signal-categorieschanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when a category is added, removed, or edited.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">categoriesChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-colorchanged">signal colorChanged<a class="headerlink" href="#signal-colorchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the color property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">colorChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-hovercolorchanged">signal hoverColorChanged<a class="headerlink" href="#signal-hovercolorchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the hoverColor property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">hoverColorChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-hoveredindexchanged">signal hoveredIndexChanged<a class="headerlink" href="#signal-hoveredindexchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the hovered rectangle index changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">hoveredIndexChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-minimumheightchanged">signal minimumHeightChanged<a class="headerlink" href="#signal-minimumheightchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the minimumHeight property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">minimumHeightChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-minimumwidthchanged">signal minimumWidthChanged<a class="headerlink" href="#signal-minimumwidthchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the minimumWidth property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">minimumWidthChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="function-rectangleseries">function RectangleSeries<a class="headerlink" href="#function-rectangleseries" title="Permanent link">&para;</a></h3>
+<p><em>Constructs a</em> <a href="./"><em><strong>RectangleSeries</strong></em></a> <em>with the given__parent</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">explicit</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="n">QQuickItem</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">parent</span><span class="o">=</span><span class="nb">nullptr</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-border-22">function border<a class="headerlink" href="#function-border-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the grouped outline settings. The object is owned by the series.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">Border</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">border</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-categories-22">function categories<a class="headerlink" href="#function-categories-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the categories as a QML list.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">QQmlListProperty</span><span class="o">&lt;</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">categories</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-cleardata">function clearData<a class="headerlink" href="#function-cleardata" title="Permanent link">&para;</a></h3>
+<p><em>Removes all rectangles.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">clearData</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div></p>
+<p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-cleardata"><em>QAccelPlot::PlotSeries::clearData</em></a></p>
+<hr>
+
+<h3 id="function-color-22">function color<a class="headerlink" href="#function-color-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the rectangle fill color.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">color</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-contains">function contains<a class="headerlink" href="#function-contains" title="Permanent link">&para;</a></h3>
+<p><em>Returns</em> <code>true</code> <em>when a rectangle lies under item position__point</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">contains</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">point</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<p>Hover delivery uses this test, so stacked series underneath still receive hover events outside this series rectangles. </p>
+<hr>
+
+<h3 id="function-hovercolor-22">function hoverColor<a class="headerlink" href="#function-hovercolor-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the fill color of the hovered rectangle.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">hoverColor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-hoveredindex-22">function hoveredIndex<a class="headerlink" href="#function-hoveredindex-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the index of the hovered rectangle, or -1 if none.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">hoveredIndex</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-legendentries">function legendEntries<a class="headerlink" href="#function-legendentries" title="Permanent link">&para;</a></h3>
+<p><em>Returns one legend entry per category, or the</em> <code>legendEntry()</code> <em>when there are no categories.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">QList</span><span class="o">&lt;</span><span class="w"> </span><span class="n">LegendEntry</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">legendEntries</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-legendentries"><em>QAccelPlot::PlotSeries::legendEntries</em></a></p>
+<hr>
+
+<h3 id="function-legendentry">function legendEntry<a class="headerlink" href="#function-legendentry" title="Permanent link">&para;</a></h3>
+<p><em>Returns the legend entry: the symbol and color of the rectangles.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="w"> </span><span class="n">LegendEntry</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">legendEntry</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-legendentry"><em>QAccelPlot::PlotSeries::legendEntry</em></a></p>
+<hr>
+
+<h3 id="function-minimumheight-22">function minimumHeight<a class="headerlink" href="#function-minimumheight-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the minimum drawn height in pixels.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">minimumHeight</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-minimumwidth-22">function minimumWidth<a class="headerlink" href="#function-minimumwidth-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the minimum drawn width in pixels.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">minimumWidth</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-postdata-14">function postData<a class="headerlink" href="#function-postdata-14" title="Permanent link">&para;</a></h3>
+<p><em>Thread-safe: queues</em> <code>setData</code> _(_<em>data</em> _,_<em>categories</em> _,_<em>rectCount</em> <em>) to the item's thread.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">postData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">categories</span><span class="p">,</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">rectCount</span>
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-postdata-24">function postData<a class="headerlink" href="#function-postdata-24" title="Permanent link">&para;</a></h3>
+<p><em>Thread-safe: queues</em> <code>setDataF</code> _(_<em>data</em> _,_<em>categories</em> _,_<em>rectCount</em> <em>) to the item's thread.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">postData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">categories</span><span class="p">,</span>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">rectCount</span>
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-postdata-34">function postData<a class="headerlink" href="#function-postdata-34" title="Permanent link">&para;</a></h3>
+<p><em>Queues a moved double buffer for assignment on the series' thread.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">postData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-postdata-44">function postData<a class="headerlink" href="#function-postdata-44" title="Permanent link">&para;</a></h3>
+<p><em>Queues a moved float buffer for assignment on the series' thread.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">postData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-rectangleat">function rectangleAt<a class="headerlink" href="#function-rectangleat" title="Permanent link">&para;</a></h3>
+<p><em>Returns rectangle</em> <em>index</em> <em>as an object with</em><code>x1</code> <em>,</em><code>y1</code> <em>,</em><code>x2</code> <em>,</em><code>y2</code> <em>properties.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="n">QVariantMap</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">rectangleAt</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<p>Includes <code>category</code> when the rectangles have categories, and <code>categoryName</code> when that category has a name. Returns an empty object when <em>index</em> is out of range. </p>
+<hr>
+
+<h3 id="function-rectangleindexat">function rectangleIndexAt<a class="headerlink" href="#function-rectangleindexat" title="Permanent link">&para;</a></h3>
+<p><em>Returns the index of the topmost rectangle under item position</em> <em>position</em> <em>, or -1.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">rectangleIndexAt</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">position</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setcategories">function setCategories<a class="headerlink" href="#function-setcategories" title="Permanent link">&para;</a></h3>
+<p><em>Replaces the categories with</em> <em>categories</em> <em>. The series does not take ownership.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">setCategories</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QList</span><span class="o">&lt;</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">categories</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setcolor">function setColor<a class="headerlink" href="#function-setcolor" title="Permanent link">&para;</a></h3>
+<p><em>Sets the fill color to</em> <em>color</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">setColor</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">color</span>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setdata-16">function setData<a class="headerlink" href="#function-setdata-16" title="Permanent link">&para;</a></h3>
+<p><em>Loads rectangles from</em> <em>rects</em> <em>, a QML list of objects with</em><code>x1</code> <em>,</em><code>y1</code> <em>,</em><code>x2</code> <em>,</em><code>y2</code> <em>properties.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QVariantList</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">rects</span>
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<p>A missing or null <code>x1</code> / <code>y1</code> is -Infinity and a missing <code>x2</code> / <code>y2</code> is +Infinity, so <code>{ x1: 8, x2: 12 }</code> is a full-height span. An optional <code>category</code> is a category <code>value</code> or <code>name</code>; names resolve against <code>categories</code> now. Any other <code>category</code> is ignored with a warning. </p>
+<hr>
+
+<h3 id="function-setdata-26">function setData<a class="headerlink" href="#function-setdata-26" title="Permanent link">&para;</a></h3>
+<p><em>Moves</em> <em>data</em> <em>and per-rectangle category values__categories</em> <em>(empty, or exactly__rectCount</em> <em>) into the series.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">categories</span><span class="p">,</span>
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">rectCount</span>
+<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setdata-36">function setData<a class="headerlink" href="#function-setdata-36" title="Permanent link">&para;</a></h3>
+<p><em>Replaces the series data with</em> <em>count</em> <em>data points copied from an interleaved double array.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<p>See the class description for the data point layout of each series. </p>
+<hr>
+
+<h3 id="function-setdata-46">function setData<a class="headerlink" href="#function-setdata-46" title="Permanent link">&para;</a></h3>
+<p><em>Replaces the series data by moving an interleaved double buffer.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
+<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setdata-56">function setData<a class="headerlink" href="#function-setdata-56" title="Permanent link">&para;</a></h3>
+<p><em>Like</em> <code>setData</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="p">,</span>
+<a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">DataBounds</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">bounds</span>
+<a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setdata-66">function setData<a class="headerlink" href="#function-setdata-66" title="Permanent link">&para;</a></h3>
+<p><em>Like</em> <code>setData</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="p">,</span>
+<a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">DataBounds</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">bounds</span>
+<a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setdataf-15">function setDataF<a class="headerlink" href="#function-setdataf-15" title="Permanent link">&para;</a></h3>
+<p><em>Like</em> <code>setDataF</code> _(_<em>data</em> _,_<em>rectCount</em> <em>) and also moves per-rectangle category values__categories</em> <em>(empty, or exactly__rectCount</em> <em>) into the series.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">categories</span><span class="p">,</span>
+<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">rectCount</span>
+<a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setdataf-25">function setDataF<a class="headerlink" href="#function-setdataf-25" title="Permanent link">&para;</a></h3>
+<p><em>Replaces the series data with</em> <em>count</em> <em>data points copied from an interleaved float array.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
+<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setdataf-35">function setDataF<a class="headerlink" href="#function-setdataf-35" title="Permanent link">&para;</a></h3>
+<p><em>Replaces the series data by moving an interleaved float buffer.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
+<a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setdataf-45">function setDataF<a class="headerlink" href="#function-setdataf-45" title="Permanent link">&para;</a></h3>
+<p><em>Like</em> <code>setDataF</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="p">,</span>
+<a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">DataBounds</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">bounds</span>
+<a id="__codelineno-43-5" name="__codelineno-43-5" href="#__codelineno-43-5"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setdataf-55">function setDataF<a class="headerlink" href="#function-setdataf-55" title="Permanent link">&para;</a></h3>
+<p><em>Like</em> <code>setDataF</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="p">,</span>
+<a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">DataBounds</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">bounds</span>
+<a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setdatapointcategories">function setDataPointCategories<a class="headerlink" href="#function-setdatapointcategories" title="Permanent link">&para;</a></h3>
+<p><em>Sets one category per rectangle, each a category</em> <code>value</code> <em>or</em><code>name</code> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">setDataPointCategories</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QVariantList</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">categories</span>
+<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<p>An empty list clears them; any other size must equal <code>count</code>. Other values leave their rectangle without a category and log a warning. </p>
+<hr>
+
+<h3 id="function-sethovercolor">function setHoverColor<a class="headerlink" href="#function-sethovercolor" title="Permanent link">&para;</a></h3>
+<p><em>Sets the fill color of the hovered rectangle to</em> <em>color</em> <em>. An invalid color disables the highlight.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">setHoverColor</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">color</span>
+<a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setminimumheight">function setMinimumHeight<a class="headerlink" href="#function-setminimumheight" title="Permanent link">&para;</a></h3>
+<p><em>Sets the minimum drawn height to</em> <em>height</em> <em>pixels. Negative values are clamped to 0.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">setMinimumHeight</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">height</span>
+<a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setminimumwidth">function setMinimumWidth<a class="headerlink" href="#function-setminimumwidth" title="Permanent link">&para;</a></h3>
+<p><em>Sets the minimum drawn width to</em> <em>width</em> <em>pixels. Negative values are clamped to 0.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">setMinimumWidth</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">width</span>
+<a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-rectangleseries">function ~RectangleSeries<a class="headerlink" href="#function-rectangleseries" title="Permanent link">&para;</a></h3>
+<p><em>Destroys the rectangle series.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::~</span><span class="n">RectangleSeries</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div></p>
+<hr>
+<h2 id="protected-functions-documentation">Protected Functions Documentation<a class="headerlink" href="#protected-functions-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="function-hoverenterevent">function hoverEnterEvent<a class="headerlink" href="#function-hoverenterevent" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">hoverEnterEvent</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a><span class="w">    </span><span class="n">QHoverEvent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span>
+<a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div>
+<hr>
+
+<h3 id="function-hoverleaveevent">function hoverLeaveEvent<a class="headerlink" href="#function-hoverleaveevent" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">hoverLeaveEvent</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a><span class="w">    </span><span class="n">QHoverEvent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span>
+<a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div>
+<hr>
+
+<h3 id="function-hovermoveevent">function hoverMoveEvent<a class="headerlink" href="#function-hovermoveevent" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">hoverMoveEvent</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a><span class="w">    </span><span class="n">QHoverEvent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span>
+<a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div>
+<hr>
+
+<h3 id="function-inspectionrecord">function inspectionRecord<a class="headerlink" href="#function-inspectionrecord" title="Permanent link">&para;</a></h3>
+<p><em>Returns the rectangle at</em> <em>index</em> <em>with its edges and category.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">InspectionRecord</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">inspectionRecord</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span>
+<a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-inspectionrecord"><em>QAccelPlot::PlotSeries::inspectionRecord</em></a></p>
+<hr>
+
+<h3 id="function-inspectionrecordat">function inspectionRecordAt<a class="headerlink" href="#function-inspectionrecordat" title="Permanent link">&para;</a></h3>
+<p><em>Returns the rectangle drawn at the series-local</em> <em>position</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">InspectionRecord</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">inspectionRecordAt</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">position</span>
+<a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-inspectionrecordat"><em>QAccelPlot::PlotSeries::inspectionRecordAt</em></a></p>
+<hr>
+
+<h3 id="function-onaxisscalechanged">function onAxisScaleChanged<a class="headerlink" href="#function-onaxisscalechanged" title="Permanent link">&para;</a></h3>
+<p><em>Repaints with the coordinates mapped for the new scale.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">onAxisScaleChanged</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div></p>
+<p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-onaxisscalechanged"><em>QAccelPlot::PlotSeries::onAxisScaleChanged</em></a></p>
+<hr>
+
+<h3 id="function-ondatapointschanged">function onDataPointsChanged<a class="headerlink" href="#function-ondatapointschanged" title="Permanent link">&para;</a></h3>
+<p><em>Refreshes the vertices, the hover index, and the count after the rectangles changed.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">onDataPointsChanged</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a><span class="w">    </span><span class="n">DataChange</span><span class="w"> </span><span class="n">change</span><span class="p">,</span>
+<a id="__codelineno-56-3" name="__codelineno-56-3" href="#__codelineno-56-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">previousCount</span>
+<a id="__codelineno-56-4" name="__codelineno-56-4" href="#__codelineno-56-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div></p>
+<p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-ondatapointschanged"><em>QAccelPlot::PlotSeries::onDataPointsChanged</em></a></p>
+<hr>
+
+<h3 id="function-recordinspectionsupported">function recordInspectionSupported<a class="headerlink" href="#function-recordinspectionsupported" title="Permanent link">&para;</a></h3>
+<p><em>Returns true: rectangles are inspected as records.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">recordInspectionSupported</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-recordinspectionsupported"><em>QAccelPlot::PlotSeries::recordInspectionSupported</em></a></p>
+<hr>
+
+<h3 id="function-updatepaintnode">function updatePaintNode<a class="headerlink" href="#function-updatepaintnode" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="n">QSGNode</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">updatePaintNode</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a><span class="w">    </span><span class="n">QSGNode</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">oldNode</span><span class="p">,</span>
+<a id="__codelineno-58-3" name="__codelineno-58-3" href="#__codelineno-58-3"></a><span class="w">    </span><span class="n">UpdatePaintNodeData</span><span class="w"> </span><span class="o">*</span>
+<a id="__codelineno-58-4" name="__codelineno-58-4" href="#__codelineno-58-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp</code></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Michal Grabarczyk
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/michalgrabarczyk/QAccelPlot" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.top", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

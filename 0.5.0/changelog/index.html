@@ -1,0 +1,2662 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="User guide and API documentation for QAccelPlot">
+      
+      
+      
+        <link rel="canonical" href="https://michalgrabarczyk.github.io/QAccelPlot/changelog/">
+      
+      
+        <link rel="prev" href="../examples/">
+      
+      
+        <link rel="next" href="../versioning/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Changelog - QAccelPlot v0.5.0 Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/palette.css">
+    
+      <link rel="stylesheet" href="../stylesheets/theme.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "name": "QAccelPlot",
+  "description": "High-performance hardware-accelerated plotting library for Qt Quick using the Qt Scene Graph",
+  "programmingLanguage": ["C++", "QML"],
+  "runtimePlatform": "Qt 6",
+  "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+  "codeRepository": "https://github.com/michalgrabarczyk/QAccelPlot",
+  "url": "https://michalgrabarczyk.github.io/QAccelPlot/",
+  "author": {
+    "@type": "Person",
+    "name": "Michal Grabarczyk"
+  },
+  "softwareVersion": "0.5.0",
+  "operatingSystem": "Cross-platform (Windows, Linux, macOS)",
+  "applicationCategory": "DeveloperApplication",
+  "keywords": ["plotting", "Qt Quick", "QML", "Scene Graph", "GPU", "real-time", "data visualization", "C++"]
+}
+</script>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#changelog" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="QAccelPlot v0.5.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.5.0 Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            QAccelPlot v0.5.0 Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Changelog
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/michalgrabarczyk/QAccelPlot" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    michalgrabarczyk/QAccelPlot
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="QAccelPlot v0.5.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.5.0 Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    QAccelPlot v0.5.0 Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/michalgrabarczyk/QAccelPlot" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    michalgrabarczyk/QAccelPlot
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts and architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../cookbook/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cookbook
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cookbook
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/basic-plot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic static plot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/realtime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-time scrolling data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/axis-formats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Axis formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/multiple-axes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multiple axes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/styling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Styling and transitions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/annotations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Annotations and tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/data-inspection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data inspection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/point-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Point clouds
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/heatmaps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Heatmaps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/rectangle-zoom/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rectangle zoom
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/bar-charts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bar charts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/histograms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Histograms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/bands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/error-bars/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error bars
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/background-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Background data production
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/export/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exporting images
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Example gallery
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#unreleased" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [Unreleased]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#050-2026-11-01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [0.5.0] — 2026-11-01
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[0.5.0] — 2026-11-01">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Added
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Removed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#040-2026-10-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [0.4.0] — 2026-10-16
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[0.4.0] — 2026-10-16">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Added
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changed_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removed_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Removed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#030-2026-09-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [0.3.0] — 2026-09-25
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[0.3.0] — 2026-09-25">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Added
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changed_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removed_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Removed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#020-2026-09-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [0.2.0] — 2026-09-16
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[0.2.0] — 2026-09-16">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Added
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changed_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#010-2026-09-08" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [0.1.0] — 2026-09-08
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[0.1.0] — 2026-09-08">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Added
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../versioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versioning and releases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/annotated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class list
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/namespaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#unreleased" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [Unreleased]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#050-2026-11-01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [0.5.0] — 2026-11-01
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[0.5.0] — 2026-11-01">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Added
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Removed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#040-2026-10-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [0.4.0] — 2026-10-16
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[0.4.0] — 2026-10-16">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Added
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changed_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removed_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Removed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#030-2026-09-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [0.3.0] — 2026-09-25
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[0.3.0] — 2026-09-25">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Added
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changed_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removed_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Removed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#020-2026-09-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [0.2.0] — 2026-09-16
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[0.2.0] — 2026-09-16">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Added
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changed_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#010-2026-09-08" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [0.1.0] — 2026-09-08
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[0.1.0] — 2026-09-08">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Added
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">&para;</a></h1>
+<p>All notable changes to QAccelPlot are documented in this file.</p>
+<p>The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.</p>
+<h2 id="unreleased">[Unreleased]<a class="headerlink" href="#unreleased" title="Permanent link">&para;</a></h2>
+<h2 id="050-2026-11-01">[0.5.0] — 2026-11-01<a class="headerlink" href="#050-2026-11-01" title="Permanent link">&para;</a></h2>
+<h3 id="added">Added<a class="headerlink" href="#added" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Heatmaps via <code>HeatmapSeries</code>: a uniform grid of values colored through a
+  <code>Colormap</code>, with a <code>ColorBar</code> key, a Heatmap example, and cell inspection
+  through <code>PlotInspector</code> and <code>inspection.dataPointAtPosition()</code>. Heatmaps
+  draw on logarithmic axes, and <code>xSpacing</code>/<code>ySpacing: HeatmapSeries.Log</code>
+  spaces cells evenly in log10.</li>
+<li><code>valueText</code> inspection role with the value of a heatmap cell or a colored
+  <code>PointCloud</code> point. The default <code>InspectionTooltip</code> row shows it.</li>
+<li>Legend entries described in C++: <code>PlotSeries::legendEntry()</code> returns a
+  <code>LegendEntry</code>, and <code>LegendModel</code> lists the entries of the visible series that
+  have one, such as <code>Plot.legendModel</code>.</li>
+<li>A <code>HeatmapSeries</code> tab in the <code>showcases/performance</code> example, streaming a
+  scrolling spectrogram of up to 100M cells.</li>
+<li>Colormapped bars: <code>BarSeries.colormap</code> colors each bar by its value or, with
+  <code>colorSource: BarSeries.Position</code>, by its position or bin. The Heatmap
+  example keys its interference pattern with a histogram of the cells in view.</li>
+<li>Image export with <code>PlotExporter</code>: save a plot as PNG, JPEG, or another
+  raster format, copy it to the clipboard, or capture a <code>QImage</code>, at a chosen
+  scale. Includes an Export example.</li>
+<li>Error bars via <code>ErrorBarSeries</code>: vertical or horizontal capped lines, set as
+  bounds or as symmetric or asymmetric errors with <code>setErrorData()</code>, and
+  animated by <code>MorphTransition</code> and <code>DrawTransition</code>. Includes an Error Bars
+  example.</li>
+<li><code>PlotSeries.hoverEnabled</code> turns hover off for one series and leaves it to the
+  series beneath. <code>hovered</code> moved to <code>PlotSeries</code>, so <code>PointCloud</code>,
+  <code>BarSeries</code>, <code>RectangleSeries</code>, and <code>ErrorBarSeries</code> report it too.</li>
+<li><code>PlotSeries.count</code> on every series, including <code>LineCurve</code> (points) and
+  <code>HeatmapSeries</code> (cells, <code>columns</code> × <code>rows</code>).</li>
+<li><code>antialiasing: true</code> smooths <code>RectangleSeries</code> and <code>BarSeries</code> edges. It is
+  off by default.</li>
+<li>Step lines via <code>LineCurve.stepMode</code> (<code>Before</code>, <code>After</code>, or <code>Center</code>): the
+  fill, dash pattern, hover, and interpolated inspection follow the steps.
+  Includes a Step Lines example.</li>
+<li><code>PlotView.rectangleZoom.visible: false</code> hides the drawn zoom rectangle, so
+  you can draw <code>selectionRect</code> yourself.</li>
+<li><code>PlotInspector.cursorPixelX</code> and <code>cursorPixelY</code> place the cursor in
+  plot-local pixels; it stays on those pixels when the axes pan or zoom.</li>
+<li>Named categories on <code>BarSeries</code> and <code>RectangleSeries</code>: <code>categories</code> lists
+  <code>Category</code> objects with a <code>value</code>, <code>name</code>, and <code>color</code>, a data point's
+  <code>category</code> is a value or, in QML, a name, and the legend shows one row per
+  category through <code>PlotSeries::legendEntries()</code>.</li>
+<li>A Vibration Monitoring showcase: eight accelerometer channels streamed live,
+  2M points replaced every frame, with spectrum, spectrogram, and RMS panels.
+  Examples can record deterministic frames with <code>--record</code>, and
+  <code>scripts/frames-to-gif.py</code> turns them into a GIF.</li>
+</ul>
+<h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The C++ plot item class <code>QAccelPlot::QAccelPlot</code> is now
+  <code>QAccelPlot::PlotView</code>, its QML name, in <code>&lt;QAccelPlot/PlotView.hpp&gt;</code>. QML is
+  unchanged.</li>
+<li><code>Grid.lineWidth</code> is now <code>gridLineWidth</code>, matching <code>subGridLineWidth</code>. In
+  C++, use <code>gridLineWidth()</code>, <code>setGridLineWidth()</code>, and
+  <code>gridLineWidthChanged()</code>.</li>
+<li>Marker shapes are a standalone <code>MarkerShape</code> enum instead of a
+  <code>PlotSeries</code> enum. Replace <code>LineCurve.Diamond</code> or <code>PointCloud.Circle</code> with
+  <code>MarkerShape.Diamond</code> or <code>MarkerShape.Circle</code> in QML, and
+  <code>PlotSeries::MarkerShape</code> with <code>MarkerShape</code>
+  (<code>&lt;QAccelPlot/series/MarkerShape.hpp&gt;</code>) in C++. Values are unchanged.</li>
+<li><code>PlotMouseEvent.button</code> is <code>Qt.NoButton</code> for a move instead of the held
+  buttons cast into one value; the new <code>buttons</code> holds them. <code>reset()</code> is no
+  longer public.</li>
+<li><code>Colormap.norm</code> is now <code>logScale: bool</code>, like <code>Axis.logScale</code>. Replace
+  <code>norm: Colormap.Log</code> with <code>logScale: true</code> in QML, and
+  <code>setNorm(Colormap::Normalization::Log)</code> with <code>setLogScale(true)</code> in C++. The
+  <code>Colormap::Normalization</code> enum is removed.</li>
+<li>Renamed <code>PlotInspector.position</code> to <code>crosshairPosition</code>, and
+  <code>positionChanged()</code> to <code>crosshairPositionChanged()</code>.</li>
+<li>Inspection data points place a point as <code>x</code>, <code>y</code> (data units) and <code>pixelX</code>,
+  <code>pixelY</code> (series-local pixels). Replace <code>pixelPosition.x</code> with <code>pixelX</code>, and
+  the inspection row role <code>pixelPosition</code> (plot-local) with <code>pixelX</code> and
+  <code>pixelY</code>. In C++, <code>InspectionDataPoint::position</code> and <code>x()</code>/<code>y()</code> are now the
+  <code>x</code> and <code>y</code> members.</li>
+<li>Renamed <code>SelectionTool.rectangleVisible</code> to <code>visible</code> and <code>pixelRect</code> to
+  <code>selectionRect</code>, matching <code>PlotView.rectangleZoom</code>. Signals and C++
+  accessors follow: <code>visibleChanged()</code>, <code>isVisible()</code>, <code>setVisible()</code>,
+  <code>selectionRect()</code>, <code>selectionRectChanged()</code>.</li>
+<li><code>BarSeries</code> and <code>RectangleSeries</code> take <code>categories</code> instead of
+  <code>categoryColors</code>: replace <code>categoryColors: [a, b]</code> with
+  <code>categories: [Category { value: 0; color: a }, Category { value: 1; color: b }]</code>.
+  <code>setCategories()</code> for the data points is now <code>setDataPointCategories()</code>. A
+  QML <code>category</code> that is neither a whole number nor a category name is ignored
+  with a warning.</li>
+<li>Series use the <code>antialiasing</code> property inherited from <code>Item</code>.
+  <code>LineCurve.antialiasingEnabled</code>, <code>PointCloud.antialiasingEnabled</code>, and
+  <code>LegendEntry.antialiasingEnabled</code> are now <code>antialiasing</code>. <code>BandSeries</code> edge
+  lines and <code>ErrorBarSeries</code> follow it too.</li>
+<li>Outlines use one <code>border</code> grouped property with <code>color</code> and <code>width</code>.
+  <code>PlotView.rectangleZoom.borderColor</code>, <code>SelectionTool.borderColor</code>, and
+  <code>ColorBar.borderColor</code>/<code>borderWidth</code> are now <code>border.color</code>/<code>border.width</code>.
+  The rectangle zoom and selection outlines can now be wider than 1 px. In C++,
+  <code>PlotBorder</code> and <code>RectangleBorder</code> are now <code>Border</code>
+  (<code>&lt;QAccelPlot/Border.hpp&gt;</code>).</li>
+<li><code>ColorBar.series</code> takes any <code>ColormappedSeries</code>, the new base of <code>PointCloud</code>,
+  <code>HeatmapSeries</code>, and <code>BarSeries</code>. In C++, <code>ColorBar::series()</code> returns a
+  <code>ColormappedSeries*</code>.</li>
+<li><code>Legend</code> takes a <code>model</code> instead of <code>series</code>. Hidden series have no entry, and
+  unnamed series are listed as "Series N".</li>
+<li><code>inspection.status</code> is <code>Ready</code> for bar, rectangle, band, and heatmap series
+  instead of <code>Unsupported</code>. Queries that do not apply to them still return
+  <code>Unsupported</code>.</li>
+<li>A <code>LineCurve</code> with hover off no longer scans its points on every data update.
+  Streaming eight 512K-point curves takes about a quarter of the UI-thread time.</li>
+<li><code>LineCurve</code> markers read their positions from the GPU data texture, so data
+  updates no longer rebuild a vertex buffer per marker.</li>
+<li>When a <code>LineCurve</code> point count grows, only the added points' vertices are
+  written.</li>
+<li>Data transitions run on Qt's animation clock, like QML animations, so an
+  installed <code>QAnimationDriver</code> can step them frame by frame. A <code>duration</code> of 0
+  ends at the next frame.</li>
+<li>The <code>showcases/performance</code> example presents without vsync, so the refresh
+  rate no longer caps display FPS.</li>
+</ul>
+<h3 id="removed">Removed<a class="headerlink" href="#removed" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>SeriesInspection.supported</code>. A query that does not apply to a series returns
+  <code>Inspection.Unsupported</code>.</li>
+<li><code>SeriesInspection.maximumPageSize</code>. <code>indices()</code> caps <code>limit</code> at 4096 and
+  each page reports the size used in <code>limit</code>.</li>
+<li><code>PlotView.pointerPosition</code>, <code>pointerInside</code>, and <code>pointerChanged()</code>. Use
+  <code>PlotInspector.cursorPixelX</code>, <code>cursorPixelY</code>, and <code>active</code>, or a
+  <code>HoverHandler</code>.</li>
+<li><code>PointCloud.hasValues</code>. <code>valueAt()</code> returns NaN when no values are stored.
+  <code>countChanged()</code> now fires only when the number of points changes.</li>
+<li><code>LineCurve::setDataFWithCache()</code> and the renderers' <code>buildVertexCache()</code>. Use
+  <code>setDataF()</code> or <code>postData()</code>; the curve builds its own vertex cache.</li>
+<li>The <code>showcases/pulsar</code> example.</li>
+<li>The CI benchmark workflow: its timings on shared runners varied more than
+  its alert threshold. A unit test now counts scene graph rebuilds and data
+  uploads per frame instead.</li>
+<li>The <code>benchmarks/</code> directory and the <code>QACCELPLOT_BUILD_BENCHMARKS</code> option.
+  Measure frame rates with the Performance Lab.</li>
+<li><code>RectVertexCache</code> from the public headers. It was an internal helper of
+  <code>BarSeries</code> and <code>RectangleSeries</code>.</li>
+<li><code>effects/GradientCoordinateUtils.hpp</code> and <code>effects/GradientUtils.hpp</code> from
+  the public headers. Their helpers were internal to the gradient effects,
+  <code>Colormap</code>, and <code>LineCurve</code>.</li>
+</ul>
+<h3 id="fixed">Fixed<a class="headerlink" href="#fixed" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>LineCurve</code>, <code>BarSeries</code>, <code>RectangleSeries</code>, and <code>BandSeries</code> no longer hover
+  records beyond their GPU capacity, which are not drawn.</li>
+<li>Changing <code>PointCloud.hoverRadius</code> or <code>ErrorBarSeries.hoverRadius</code> updates
+  <code>hoveredIndex</code> without waiting for the mouse to move.</li>
+<li><code>Colormap.stops</code> reads bound <code>GradientStop</code>s after their bindings are
+  evaluated, and follows later changes to stops declared in the list.</li>
+<li>Panning and zooming no longer re-upload every series' vertex data each
+  frame: the grid updates its scene graph nodes in place.</li>
+<li>Incremental builds recompile a shader when a <code>.glsl</code> file it includes
+  changes. Stale shaders could fail to link on OpenGL and draw no curves.</li>
+</ul>
+<h2 id="040-2026-10-16">[0.4.0] — 2026-10-16<a class="headerlink" href="#040-2026-10-16" title="Permanent link">&para;</a></h2>
+<h3 id="added_1">Added<a class="headerlink" href="#added_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Rectangle zoom via <code>PlotView.rectangleZoom</code> and <code>zoomToRect()</code>, with theme
+  colors and a Point cloud example.</li>
+<li>Data inspection via <code>PlotInspector</code> and <code>SelectionTool</code>: a crosshair,
+  per-series markers, and a tooltip at the cursor, region selection with
+  statistics, theme colors, and a Data inspection example.</li>
+<li>Data point queries on every series via <code>PlotSeries.inspection</code>: the nearest
+  data point, its neighbors, statistics of a region, and the indices inside it.</li>
+<li><code>PlotView.overlay</code> for items drawn above the series, and the pointer position
+  via <code>pointerPosition</code> and <code>pointerInside</code>.</li>
+<li><code>Axis.formatValue()</code>, which formats a value at the precision of the current
+  zoom.</li>
+<li><code>RectangleSeries</code>: <code>rectangleAt()</code>, <code>rectangleIndexAt()</code>, <code>clearData()</code>,
+  <code>setData(std::vector&lt;double&gt;&amp;&amp;, int)</code>, and <code>postData()</code>.</li>
+<li><code>RectangleSeries</code> spans: infinite or omitted edges reach the plot edge.</li>
+<li><code>RectangleSeries.minimumWidth</code> and <code>minimumHeight</code>, 1 px by default.</li>
+<li><code>RectangleSeries</code> categories: <code>category</code>, <code>categoryColors</code>, and <code>setCategories()</code>.</li>
+<li><code>RectangleSeries.border.width</code> and <code>border.color</code>.</li>
+<li><code>RectangleSeries.hoverColor</code>.</li>
+<li><code>RectangleSeries</code>: <code>setDataF()</code> and float <code>postData()</code> overloads.</li>
+<li><code>SpatialGrid::buildF()</code>.</li>
+<li><code>RectVertexCache</code>.</li>
+<li><code>BarSeries</code>: <code>orientation</code>, <code>barWidth</code>, <code>barOffset</code>, <code>baselineValue</code>, <code>barAt()</code>, and <code>barIndexAt()</code>.</li>
+<li><code>BarSeries</code> ranged bars with their own <code>from</code> and <code>to</code>, via <code>setData()</code> and <code>setRangedData()</code>.</li>
+<li><code>BarSeries.transition</code>: <code>MorphTransition</code> and <code>DrawTransition</code> animate bar updates.</li>
+<li><code>PointCloud.transition</code>: <code>MorphTransition</code> and <code>DrawTransition</code> animate point updates.</li>
+<li><code>LineCurve.hoverRadius</code>.</li>
+<li>The <code>plot_types/bar_chart</code> example.</li>
+<li>The <code>plot_types/state_timeline</code> example.</li>
+<li><code>BandSeries</code> with <code>edges</code>, <code>valueAt()</code>, and <code>hovered</code>.</li>
+<li>The <code>plot_types/bands</code> example.</li>
+<li>Histograms via <code>Histogram</code>: equal or uneven bins, counts or density, as data
+  for a <code>BarSeries</code>, with a Histogram example.</li>
+<li><code>Axis.autoRescale</code>, which fits the viewport to the data range on every data
+  update.</li>
+<li><code>PlotSeries::DataBounds</code> overloads of <code>setData()</code> and <code>setDataF()</code>, which take
+  the data extents instead of scanning for them.</li>
+<li><code>PlotSeries::xDataRange()</code> and <code>yDataRange()</code> are public.</li>
+<li><code>ColorBar.interactive</code>: dragging pans the colormap range, the wheel zooms it,
+  and a double-click or <code>rescaleToData()</code> resolves it from the data again.
+  <code>hovered</code> reports the cursor over it.</li>
+</ul>
+<h3 id="changed_1">Changed<a class="headerlink" href="#changed_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>PlotSeries::setData()</code>, <code>setDataF()</code>, and <code>postData()</code> are no longer virtual:
+  C++ subclasses pass their data point layout to the <code>PlotSeries</code> constructor.</li>
+<li>Renamed the C++ and QML <code>RectangleList</code> type to <code>RectangleSeries</code>. Include
+  <code>&lt;QAccelPlot/series/RectangleSeries.hpp&gt;</code> in C++ code.</li>
+<li><code>GradientStroke::payload()</code> and <code>GradientFill::payload()</code> return a reference to
+  a snapshot that the effect updates on the GUI thread. The new
+  <code>LineCurveEffect::refresh()</code> re-reads inputs that change without a notification.</li>
+<li><code>DataTransition::start()</code> and <code>advance()</code> take a <code>DataTransition::Run</code> that holds
+  one element's animation state.</li>
+<li><code>DataTransition::interpolate()</code> takes <code>DataTransition::Dataset</code> arguments, and
+  <code>start()</code> a <code>stride</code> for points of more than two values.</li>
+<li><code>DrawTransition</code> starts from one point instead of two.</li>
+<li>Moved <code>RectangleSeries.hpp</code> to <code>QAccelPlot/series/</code>.</li>
+<li>Replaced <code>RectangleSeries::setData(const float*, int)</code> with <code>setDataF(const float*, int)</code>.</li>
+<li><code>PointCloud</code> uses half the GPU vertex memory per point.</li>
+<li><code>PointCloud</code> and <code>RectangleSeries</code> hover scans live data instead of rebuilding
+  its spatial index after every data update.</li>
+<li>The <code>showcases/performance</code> example has <code>LineCurve</code>, <code>PointCloud</code>, <code>RectangleSeries</code>, and
+  <code>BarSeries</code> tabs, each with options for series count, ingestion API, hover, and rendering.</li>
+<li><code>Axis::rescaleToData()</code> emits <code>rangeChanged()</code> once instead of once per bound.</li>
+<li>Data ranges are computed on demand. Data setters no longer scan for the range;
+  a series scans when <code>Axis.dataMin</code> / <code>dataMax</code>, <code>rescaleToData()</code>, an axis with
+  <code>autoRescale</code>, or a <code>DataRange</code> gradient reads it.</li>
+<li><code>Axis.dataMinChanged()</code> and <code>dataMaxChanged()</code> also announce a data update whose
+  range has not been computed yet.</li>
+<li>Renamed <code>LineCurve::setDataFNoRangeWithCache()</code> to <code>setDataFWithCache()</code>.</li>
+<li>Renamed <code>Axis::updateDataRange()</code> to <code>setDataRange()</code>.</li>
+<li><code>Axis.orientation</code>, <code>ColorBar.orientation</code>, and the <code>direction</code> of <code>GradientFill</code>
+  and <code>GradientStroke</code> take <code>Qt.Horizontal</code> / <code>Qt.Vertical</code>. This replaces
+  <code>Axis.Orientation</code>, <code>ColorBar.Orientation</code>, and <code>GradientDirection</code>.</li>
+<li>Renamed <code>GradientFill</code> and <code>GradientStroke</code> properties: <code>gradientValueMin</code> →
+  <code>valueMin</code>, <code>gradientValueMax</code> → <code>valueMax</code>, <code>gradientValueMinSource</code> →
+  <code>valueMinSource</code>, and <code>gradientValueMaxSource</code> → <code>valueMaxSource</code>.</li>
+<li>Renamed <code>Axis.axisTitlePadding</code> to <code>labelPadding</code> and <code>Axis.axisLinePadding</code> to
+  <code>baselinePadding</code>.</li>
+<li><code>Axis.labelPadding</code>, <code>Axis.baselinePadding</code>, and <code>zoomScaleFactor</code> of <code>Axis</code> and
+  <code>ColorBar</code> are <code>qreal</code>.</li>
+<li><code>button</code> is a <code>Qt::MouseButton</code> and <code>modifiers</code> a <code>Qt::KeyboardModifiers</code> on
+  <code>PlotMouseEvent</code>, <code>SelectionTool</code>, and <code>PlotView.rectangleZoom</code>, instead of <code>int</code>.</li>
+<li>Renamed <code>nearly_equal()</code> in <code>MathUtils.hpp</code> to <code>nearlyEqual()</code>.</li>
+<li>The QML module version follows the project version, 0.4 in this release,
+  instead of 1.0. Replace <code>import QAccelPlot 1.0</code> with <code>import QAccelPlot</code>.</li>
+<li><code>PlotView::rescaleAllAxes()</code> is public instead of protected.</li>
+</ul>
+<h3 id="removed_1">Removed<a class="headerlink" href="#removed_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The <code>setDataNoRange()</code> and <code>setDataFNoRange()</code> setters. Use <code>setData()</code> and
+  <code>setDataF()</code>, which no longer scan. To keep a range the application maintains,
+  pass it as <code>PlotSeries::DataBounds</code> instead of setting <code>Axis.dataMin</code> / <code>dataMax</code>.</li>
+<li><code>PlotSeries::xDataRangeChanged()</code> and <code>yDataRangeChanged()</code>. Read <code>xDataRange()</code>
+  and <code>yDataRange()</code>, or connect to <code>Axis.dataMinChanged()</code> / <code>dataMaxChanged()</code>.</li>
+</ul>
+<h3 id="fixed_1">Fixed<a class="headerlink" href="#fixed_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>TextTickLabelFormatter</code> returns an empty label for non-finite or out-of-range
+  tick values without an integer conversion failure.</li>
+<li>Changing an inward or outward tick length now notifies bindings to the total
+  tick or subtick length.</li>
+<li>An axis already assigned to a plot slot cannot also occupy another axis slot
+  or appear in <code>extraAxes</code>.</li>
+<li><code>Plot</code> with <code>legend: null</code> no longer logs a TypeError.</li>
+<li>On a logarithmic axis, <code>RectangleSeries</code> edges at or below zero no longer
+  widen the data range, so autoscaling no longer reaches down to 1e-10.</li>
+<li>Rescaling a logarithmic axis with an entirely non-positive data range keeps
+  its viewport positive and usable.</li>
+<li>Zooming or panning an axis stops at the limits of a double. Zooming a
+  logarithmic axis far out no longer leaves a NaN viewport.</li>
+<li>Axes and color ranges preserve distinct values below machine epsilon, so small
+  data spans map across the plot instead of collapsing to one pixel.</li>
+<li><code>LineCurve</code> with both a line and markers is hovered along the line, not only on markers.</li>
+<li>Hovering a <code>RectangleSeries</code> or <code>BarSeries</code> whose records share one coordinate
+  far from zero, such as a zero-width rectangle at a nanosecond timestamp, no
+  longer crashes.</li>
+<li><code>GradientFill</code> on dense data reaches the curve's peaks and troughs.</li>
+<li>Gradient effects with a <code>DataRange</code> bound use the curve's own data extent, not the whole axis range.</li>
+<li><code>LineCurve</code> and <code>PointCloud</code> keep double precision when the viewport is far from the first data point, e.g. at the end of a long timestamp series.</li>
+<li>Hovering a <code>PointCloud</code> whose points lie on a long horizontal line no longer
+  tests every point.</li>
+<li><code>PointCloud</code> no longer hovers points beyond the GPU texture capacity, which are not drawn.</li>
+<li><code>Colormap</code> now drops destroyed <code>stops</code> and updates its ramp when a stop changes.</li>
+<li><code>Colormap</code> ignores null entries in <code>stops</code> instead of crashing.</li>
+<li>A series whose log-scale axis was destroyed refreshes its data ranges when bound
+  to a linear axis.</li>
+<li><code>RectangleSeries</code> and <code>BarSeries</code> keep double precision when the viewport is far
+  from the first record.</li>
+<li><code>LineCurve</code> transitions now advance on the GUI thread, so <code>DataTransition.running</code>
+  changes, and the QML handlers and bindings that react to them, no longer run on
+  the scene graph render thread.</li>
+<li>A series constructed in C++ with a <code>PlotView</code> as its parent, such as
+  <code>new LineCurve(plot)</code>, is now listed in <code>PlotView.series</code> and follows the plot
+  area when the plot is resized. Previously it kept the first plot area it saw,
+  which it adopted from the scene graph render thread.</li>
+<li>The <code>showcases/performance</code> and <code>showcases/pulsar</code> examples no longer hang on
+  exit.</li>
+<li><code>LineCurve</code> no longer reads the QML <code>Gradient</code> of a <code>GradientStroke</code> or
+  <code>GradientFill</code> from the scene graph render thread on every frame. The effect
+  now reads it on the GUI thread when it changes and once per frame, so stop
+  changes that <code>Gradient</code> does not signal still show up.</li>
+<li>Curves sharing one <code>DataTransition</code> animate to their own data.</li>
+<li>Replacing, clearing, cancelling, or destroying a running <code>LineCurve</code> transition,
+  or calling <code>appendData()</code> during it, shows the new data instead of freezing the
+  animation.</li>
+<li>A <code>LineCurve</code> transition that starts from float data in <code>NanGapMode.Connect</code>
+  no longer crashes when the curve is hovered.</li>
+<li><code>RectangleSeries</code> no longer blocks hover for series underneath it.</li>
+<li><code>RectangleSeries</code> and <code>BarSeries</code> skip drawing on the software backend, like the
+  other series, instead of corrupting memory when their data changes.</li>
+<li>Attaching an empty series no longer resets an axis's <code>dataMin</code> and <code>dataMax</code> to 0 and 1.</li>
+<li><code>RectangleSeries</code> and <code>PointCloud</code> render up to about 16M rectangles or 22M points
+  (data texture rows are 8192 texels wide).</li>
+<li><code>LineCurve</code>, <code>RectangleSeries</code>, and <code>BarSeries</code> draw only the records their GPU
+  buffers hold and warn about the rest, instead of overflowing the vertex buffer.
+  These series, <code>BandSeries</code>, and <code>PointCloud</code> warn each time their data outgrows
+  the capacity, not once per application.</li>
+<li>On Qt 6.2, only the topmost series under the cursor is hovered.</li>
+<li>A destroyed series leaves <code>PlotView.series</code>, and a destroyed <code>PlotView</code> releases
+  its children, before their own members are gone, so handlers of <code>seriesChanged</code>
+  no longer see a half-destroyed plot or series.</li>
+</ul>
+<h2 id="030-2026-09-25">[0.3.0] — 2026-09-25<a class="headerlink" href="#030-2026-09-25" title="Permanent link">&para;</a></h2>
+<h3 id="added_2">Added<a class="headerlink" href="#added_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Marker shapes <code>TriangleLeft</code>, <code>TriangleRight</code>, <code>XCross</code>, <code>HLine</code>, <code>VLine</code>,
+  <code>Star</code>, <code>Asterisk</code>, <code>Hexagon</code>, and <code>Pentagon</code>, and a <code>Pixel</code> marker that draws
+  each sample as a single pixel for very dense scatter plots.</li>
+<li>Hollow markers: set <code>marker.filled</code> to <code>false</code> to outline filled shapes with
+  <code>marker.strokeWidth</code> pixels. Legend symbols follow the series.</li>
+<li>The <code>styling/markers</code> example shows every shape. Click a shape to draw a
+  scatter plot with it, and adjust marker size, outline, and opacity.</li>
+<li>The <code>plot_types/parametric_curves</code> example draws curves whose x values do
+  not increase: a spiral, a Lissajous figure, a spirograph, and a Van der Pol
+  phase portrait.</li>
+<li>The <code>plot_types/point_cloud</code> example draws a value-colored cloud with a color bar.</li>
+<li><code>LineCurve::setData(std::vector&lt;double&gt;&amp;&amp;, int)</code> moves an interleaved double
+  buffer into the curve, keeping double precision for large coordinates such as
+  Unix-epoch timestamps without re-interleaving.</li>
+<li><code>LineCurve::postData(std::vector&lt;double&gt;&amp;&amp;, int)</code> hands off an interleaved
+  double buffer from a worker thread, like the existing float <code>postData()</code>.</li>
+<li><code>PointCloud</code> series for large unconnected scatter data. Its markers use the
+  same <code>marker</code> grouped property as <code>LineCurve</code>.</li>
+<li><code>Colormap</code>, mapping data values to colors through a built-in ramp (<code>Viridis</code>, <code>Plasma</code>,
+  <code>Inferno</code>, <code>Magma</code>, <code>Grayscale</code>, <code>Rainbow</code>) or custom stops, with optional
+  bounds, linear or logarithmic normalization, and a <code>reversed</code> flag. <code>GradientFill.colormap</code> and
+  <code>GradientStroke.colormap</code> take a colormap as an alternative to <code>gradient</code>, which
+  it overrides when both are set. <code>PointCloud.colormap</code> colors points by their
+  per-point values.</li>
+<li><code>ColorBar</code>, a continuous key for a <code>PointCloud</code> colormap. It draws the ramp
+  with ticks for the series' resolved value range, follows <code>Linear</code> and <code>Log</code>
+  normalization, and redraws when the colormap or range changes. Vertical and
+  horizontal orientations; ticks are configured through <code>ticker</code>, as on <code>Axis</code>.</li>
+</ul>
+<h3 id="changed_2">Changed<a class="headerlink" href="#changed_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Public headers are now included with a <code>QAccelPlot/</code> prefix, for example
+  <code>#include &lt;QAccelPlot/series/LineCurve.hpp&gt;</code>, both when QAccelPlot is
+  embedded with <code>add_subdirectory</code> or <code>FetchContent</code> and when it is installed.
+  The library sources moved to <code>QAccelPlot/src/QAccelPlot/</code>. Replace unprefixed
+  includes such as <code>"series/LineCurve.hpp"</code>.</li>
+<li><code>LineCurve.markerShape</code> and <code>markerSize</code> moved to <code>marker.shape</code> and <code>marker.size</code>.</li>
+<li>Examples are grouped by category under <code>examples/</code>: <code>plot_types/</code>, <code>styling/</code>,
+  <code>axes/</code>, <code>data/</code>, <code>interaction/</code>, and <code>showcases/</code>, with <code>quickstart/</code> at the
+  top. Renamed examples: <code>axis_formats</code> → <code>axes/tick_formats</code>, <code>custom_axis</code> →
+  <code>axes/multiple_axes</code>, <code>interactive_tools</code> → <code>interaction/measurement_tools</code>,
+  <code>performance_showcase</code> → <code>showcases/performance</code>, and <code>pulsar_showcase</code> →
+  <code>showcases/pulsar</code>. Their executables are renamed to match, for example
+  <code>QAccelPlotExampleTickFormats</code>.</li>
+<li>The styling and transitions example is split into single-topic examples:
+  <code>styling/line_styles</code>, <code>styling/markers</code>, <code>styling/gradients</code>,
+  <code>styling/transitions</code>, <code>styling/theming</code> (dark and light palettes), and
+  <code>data/missing_data</code> (invalid samples and gaps).</li>
+</ul>
+<h3 id="removed_2">Removed<a class="headerlink" href="#removed_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>LogTickLabelFormatter</code>. The default <code>NumericTickLabelFormatter</code> now labels
+  logarithmic axes with the same superscript powers of ten.</li>
+</ul>
+<h3 id="fixed_2">Fixed<a class="headerlink" href="#fixed_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The Qt Quick <code>opacity</code> property, set on a series or inherited from a parent
+  item, now applies to <code>LineCurve</code> lines, markers, <code>GradientStroke</code>, and
+  <code>GradientFill</code>, and to <code>PointCloud</code> and <code>RectangleList</code>. Previously it had no
+  effect. Each fragment blends on its own, so overlapping translucent markers
+  build up density.</li>
+<li>Numeric tick labels no longer show a spurious trailing zero. Labels now use
+  exactly the decimal places needed to write the tick step, so steps of 1 and 2
+  read <code>0, 1, 2</code> instead of <code>0.0, 1.0, 2.0</code>, and steps of 0.1 and 0.2 read
+  <code>0.1, 0.2</code> instead of <code>0.10, 0.20</code>. All labels on a linear axis keep the
+  same number of decimals, for example <code>0.0, 0.5, 1.0, 1.5, 2.0</code>.</li>
+<li>Logarithmic axes now label decades as superscript powers of ten
+  (<code>10⁻², 10⁻¹, 10⁰, 10¹, 10²</code>) by default, instead of
+  <code>0.010, 0.10, 1.0, 10, 100</code>. Custom formatters can override the new
+  <code>TickLabelFormatter::doFormatLogTick()</code>; <code>tickLabel</code> callbacks are unchanged.</li>
+<li><code>LineCurve</code> now renders its marker for a single-point dataset when both lines
+  and markers are enabled.</li>
+<li>Rectangle hover detection now preserves double precision for large coordinates,
+  including Unix-epoch timestamps, so nearby rectangles remain distinguishable.</li>
+<li><code>RectangleList</code> now refreshes its render coordinates when either axis switches
+  between linear and logarithmic scales, keeping rectangles positioned correctly
+  without requiring new data.</li>
+<li>Overlapping rectangles no longer cause quadratic memory growth in the hover
+  lookup index, preventing excessive memory use and crashes with large datasets.</li>
+<li>Removing, reparenting, or destroying a plot series no longer leaves it
+  registered with its former plot, preventing later updates from accessing a
+  dangling series pointer.</li>
+<li><code>LineCurve</code> no longer keeps a dangling <code>transition</code> pointer when an
+  externally owned data transition is destroyed; the property is cleared and
+  its change is reported.</li>
+<li>Canceling, replacing, or destroying a <code>LineCurve</code> transition before its
+  first rendered frame no longer leaves the point count inconsistent with the
+  available data buffers, preventing out-of-bounds rendering access.</li>
+<li>Toggling a <code>LineCurve</code> gradient stroke no longer double-deletes its scene
+  graph node and crashes; the renderer now preserves the node while replacing
+  its material.</li>
+<li>Setting a linear axis ticker's <code>tickCount</code> to zero or below now disables its
+  grid generation instead of potentially exhausting memory, and hiding both
+  the main grid and subgrid clears existing geometry.</li>
+<li>Antialiased lines and markers no longer lose coverage inside their nominal
+  size. The <code>antialiasingFeather</code> ramp is now centered on the edge, so 1 px lines
+  stay continuous regardless of pixel alignment, the 1 px legend symbol is
+  visible, and thicker lines render at their full width. Lines thinner than
+  1 px draw 1 px wide with proportionally reduced alpha.</li>
+<li><code>Diamond</code>, <code>TriangleUp</code>, and <code>TriangleDown</code> markers are no longer clipped flat
+  at their tips, and their antialiased edges are equally soft on every side.
+  They keep their previous width and height.</li>
+<li><code>GradientStroke</code> and <code>GradientFill</code> now keep a <code>Fixed</code> gradient value bound
+  when the other bound uses <code>DataRange</code>. Previously both bounds were taken from
+  the data range.</li>
+<li><code>GradientStroke</code> and <code>GradientFill</code> now redraw when a stop of their
+  <code>gradient</code> changes color or position at runtime.</li>
+</ul>
+<h2 id="020-2026-09-16">[0.2.0] — 2026-09-16<a class="headerlink" href="#020-2026-09-16" title="Permanent link">&para;</a></h2>
+<h3 id="added_3">Added<a class="headerlink" href="#added_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Per-axis <code>layoutSize</code> control for explicitly reserving horizontal-axis height
+  or vertical-axis width.</li>
+<li>Automatic side assignment for the four named plot axes: <code>xAxis</code> uses the
+  bottom, <code>x2Axis</code> the top, <code>yAxis</code> the left, and <code>y2Axis</code> the right.</li>
+<li>Explicit invalid-sample contract for <code>LineCurve</code>: <code>NaN</code>, <code>±Inf</code>, and
+  non-positive values on logarithmic axes break the line, gradient fill, and
+  hover hit testing consistently on every graphics backend, never draw markers,
+  and are excluded from auto-ranging per dimension.</li>
+<li><code>LineCurve.gaps</code> grouped property. <code>gaps.nanMode</code> selects
+  <code>NanGapMode.Break</code> (default) or <code>NanGapMode.Connect</code>, which joins the valid
+  samples on either side of a gap.</li>
+<li>A "Gaps" page in the styling and transitions example.</li>
+</ul>
+<h3 id="changed_3">Changed<a class="headerlink" href="#changed_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Values at or below zero on a logarithmic axis now render as gaps instead of
+  being clamped to a steep drop toward the bottom of the plot.</li>
+<li><code>MorphTransition</code> no longer interpolates from or to non-finite coordinates:
+  new gaps appear immediately and samples leaving a gap jump to their target.</li>
+<li>Renamed <code>RectangleList::setRawData()</code> to <code>setData()</code>, matching the naming
+  of the <code>LineCurve</code> data-setting APIs.</li>
+<li>Default plot, axis, grid, series, and legend colors now come from the
+  built-in dark palette instead of generic Qt colors. The <code>Colors</code> palette is
+  defined once in C++ and shared with QML, where its usage is unchanged.</li>
+</ul>
+<h3 id="fixed_3">Fixed<a class="headerlink" href="#fixed_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Legend line and marker samples now use the curve renderers, keeping marker
+  shapes and dash patterns consistent across graphics backends and display scales.</li>
+<li>Preserved double precision in <code>LineCurve::setData()</code> for modern Unix-epoch
+  timestamps and large coordinates while keeping the <code>F</code> ingestion APIs
+  float-based.</li>
+<li>Reassigning a <code>LineCurve</code>'s <code>effects</code> list no longer deletes the effect
+  objects, and effects destroyed elsewhere are removed from the list instead
+  of leaving dangling entries.</li>
+<li>A running <code>LineCurve</code> transition no longer overwrites data pushed through
+  <code>appendData()</code> or through a data-setting API called after disabling the
+  transition mid-animation: any in-flight transition is now cancelled before
+  the new data is applied directly.</li>
+<li>Major tick marks now honor fractional <code>tickWidth</code> values (e.g. <code>1.5</code>)
+  instead of truncating to an integer pixel width.</li>
+<li><code>LineCurve</code> no longer leaks the default <code>SolidLine</code> it creates for its
+  <code>lineStyle</code>: the default is owned by the curve and released when the curve
+  is destroyed. Styles assigned from QML are still left untouched, and the
+  curve no longer keeps a dangling reference when an assigned style is
+  destroyed before it; it emits <code>lineStyleChanged</code> and repaints instead.</li>
+<li>Appending the same axis to <code>extraAxes</code> twice no longer registers it twice
+  and reserves its layout space twice, and reading an out-of-range
+  <code>extraAxes</code> index returns <code>null</code> instead of tripping an assert.</li>
+<li>A very large series or rectangle count that would produce a data texture
+  taller than a safe cross-GPU limit now logs a clear warning explaining why
+  it may render nothing, instead of failing silently.</li>
+<li><code>DashLine</code> now rejects a pattern containing a negative segment, and warns
+  when a pattern is longer than the eight segments the renderer supports
+  instead of silently dropping the rest.</li>
+<li><code>mouseMoved</code> now fires for a plain cursor move over the plot, not only while
+  a mouse button is held, matching its documented behavior.</li>
+<li>Axes are no longer given a negative width or height when the plot item is
+  smaller than its padding plus the space its axes reserve.</li>
+<li><code>LineCurve</code> no longer changes its own position or size from
+  <code>updatePaintNode()</code>, which runs on the render thread with the threaded
+  render loop and is not a safe place to mutate <code>QQuickItem</code> geometry. It
+  now reads the plot rect that <code>QAccelPlot</code> already assigns on the GUI
+  thread instead.</li>
+<li><code>LineCurve::appendData()</code> updates the reported data range and the GPU render
+  buffer incrementally instead of rescanning and rebuilding the whole curve on
+  every call, so streaming N points costs O(N) work instead of O(N²).</li>
+<li><code>RectangleList</code> re-uploads its data texture when the scene-graph node is
+  recreated (e.g. after axes are temporarily unset), instead of leaving a
+  freshly created node with an empty texture until new data arrives.</li>
+<li><code>DataAnchor</code> no longer dereferences a dangling pointer after its <code>xAxis</code> or
+  <code>yAxis</code> is destroyed elsewhere; the axis reference is cleared automatically
+  instead.</li>
+<li>A horizontal-only wheel or touchpad scroll no longer zooms the plot out;
+  it is now ignored by the zoom handler and passed through instead.</li>
+<li>Tick labels near zero no longer render as a misleading <code>"-0.00"</code> when a
+  tiny negative value from accumulated tick-position arithmetic rounds to
+  zero at the display precision.</li>
+<li>Vertical gradients on markers now match the orientation of line strokes and
+  fills instead of rendering upside down.</li>
+<li>Changing an axis ticker's <code>tickCount</code> or <code>subtickCount</code> now refreshes the
+  plot grid immediately instead of leaving it stale until the next pan or
+  zoom.</li>
+<li>The plot area is now relaid out when an axis's <code>axisLinePadding</code>,
+  <code>orientation</code>, or ticker <code>tickLengthIn</code>/<code>subtickLengthIn</code> changes at
+  runtime, instead of only on <code>visible</code> or <code>layoutSize</code> changes.</li>
+<li>Extra axes now respect their <code>side</code>: a horizontal extra axis with
+  <code>side: Top</code> stacks above the plot instead of always below it, and a
+  vertical extra axis now reserves layout space and stacks on its declared
+  <code>side</code> (<code>Left</code> or <code>Right</code>) instead of always overlapping the plot's left
+  edge with no reserved space.</li>
+<li>Log-scale axis labels no longer collapse to <code>"0.0"</code> or <code>"100.0"</code> for
+  small or large tick values; each major tick's own magnitude is now used
+  to derive its label precision.</li>
+<li><code>Axis::rescaleToData()</code> (double-click rescale) no longer does nothing for
+  flat data — a constant series or a single point — and synthesizes a small
+  viewport around the value instead, proportional to the value's own
+  magnitude so a very small nonzero value isn't rendered indistinguishable
+  from zero. A log-scale axis with only non-positive data now gets a valid,
+  all-positive synthesized viewport instead of a mismatched
+  positive-min/non-positive-max range.</li>
+<li>Enabling <code>logScale</code> (via the property, <code>toggleLogScale()</code>, or the <code>L</code> key)
+  while the current viewport is non-positive now clamps it to a valid
+  positive range instead of collapsing every curve to a single point.</li>
+<li>A non-finite X or Y data range on a <code>PlotSeries</code> no longer blocks the
+  other axis's range update; each axis's range is now validated and
+  reported independently.</li>
+<li>Tick labels are now formatted on the GUI thread before rendering, rather
+  than inside <code>Axis::paint()</code>, which runs on the render thread with the
+  threaded render loop. A <code>tickLabel</code> JavaScript callback is therefore never
+  invoked from the render thread, and it now receives <code>tickStep</code> as its
+  second argument (previously always <code>undefined</code>).</li>
+<li>Preserved double precision in <code>RectangleList</code> for modern Unix-epoch
+  timestamps and large coordinates: rectangles are stored and their data
+  range computed in double precision, and rendering uses an origin-relative
+  float buffer instead of storing raw coordinates as float. A new
+  <code>setData(const double*, int)</code> overload accepts double-precision data
+  directly.</li>
+<li>A single <code>±Inf</code> coordinate is now skipped when computing a curve's axis
+  data ranges instead of making that range non-finite, and all-<code>NaN</code> data no longer reports an inverted range.</li>
+<li><code>NaN</code> samples no longer make adjacent valid line segments disappear or
+  produce backend-dependent artifacts.</li>
+<li>On Qt 6.2, the legend now uses the dark palette's background, border, and
+  text colors instead of falling back to a white box with dark text.</li>
+</ul>
+<h2 id="010-2026-09-08">[0.1.0] — 2026-09-08<a class="headerlink" href="#010-2026-09-08" title="Permanent link">&para;</a></h2>
+<h3 id="added_4">Added<a class="headerlink" href="#added_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>GPU-accelerated <code>LineCurve</code> rendering integrated with a QML-first <code>Plot</code>
+  component and C++ <code>PlotView</code> API.</li>
+<li>Efficient data-ingestion paths for QML and C++, including thread-safe buffer
+  handoff for real-time data produced by worker threads.</li>
+<li>Interactive linear and logarithmic axes with pan, zoom, configurable ticks,
+  multiple label formatters, and support for primary, secondary, and extra
+  axes.</li>
+<li>Curve styling with solid and dashed lines, point markers, anti-aliasing,
+  gradient fills and strokes, and animated draw and morph transitions.</li>
+<li>Hover detection for curves and efficiently batched data-space rectangles.</li>
+<li>Data-anchored QML annotations for labels, regions, and custom overlays.</li>
+<li>Configurable plot grids, automatic legends, and light and dark color
+  palettes.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../examples/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Example gallery">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Example gallery
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../versioning/" class="md-footer__link md-footer__link--next" aria-label="Next: Versioning and releases">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Versioning and releases
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Michal Grabarczyk
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/michalgrabarczyk/QAccelPlot" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.top", "search.highlight", "search.suggest"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

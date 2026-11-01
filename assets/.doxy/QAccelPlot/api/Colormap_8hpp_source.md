@@ -21,14 +21,16 @@
 
 #include <QObject>
 #include <QQmlListProperty>
+#include <QQmlParserStatus>
 #include <QtQml/qqmlregistration.h>
 
 #include <vector>
 
 namespace QAccelPlot {
 
-class Colormap : public QObject {
+class Colormap : public QObject, public QQmlParserStatus {
     Q_OBJECT
+    Q_INTERFACES(QQmlParserStatus)
     QML_NAMED_ELEMENT(Colormap)
 
     
@@ -37,7 +39,7 @@ class Colormap : public QObject {
     Q_PROPERTY(bool reversed READ reversed WRITE setReversed NOTIFY colormapChanged)
     Q_PROPERTY(qreal min READ min WRITE setMin NOTIFY colormapChanged)
     Q_PROPERTY(qreal max READ max WRITE setMax NOTIFY colormapChanged)
-    Q_PROPERTY(Normalization norm READ norm WRITE setNorm NOTIFY colormapChanged)
+    Q_PROPERTY(bool logScale READ logScale WRITE setLogScale NOTIFY colormapChanged)
 
 public:
     enum class Preset {
@@ -49,13 +51,6 @@ public:
         Rainbow    
     };
     Q_ENUM(Preset)
-
-    
-    enum class Normalization {
-        Linear, 
-        Log     
-    };
-    Q_ENUM(Normalization)
 
     
     explicit Colormap(QObject* parent = nullptr);
@@ -76,13 +71,17 @@ public:
 
     Q_INVOKABLE void setRange(qreal min, qreal max);
 
-    Normalization norm() const;
-    void setNorm(Normalization norm);
+    bool logScale() const;
+    void setLogScale(bool on);
 
     const std::vector<GradientStopData>& resolvedStops() const;
 
 signals:
     void colormapChanged();
+
+protected:
+    void classBegin() override;
+    void componentComplete() override;
 
 private:
     Q_SLOT void onStopChanged();
@@ -90,6 +89,9 @@ private:
     // Tracks the stop's lifetime and its position and color edits.
     void connectStop(QObject* stop);
     void disconnectStops();
+    // Moves a GradientStop declared in this list under an internal Gradient, so its edits notify.
+    void adoptStop(QObject* stop);
+    QObject* stopTracker();
     void rebuildStops();
     std::vector<GradientStopData> customStops() const;
 
@@ -104,7 +106,7 @@ private:
     std::vector<GradientStopData> resolvedStops_;
     qreal min_;
     qreal max_;
-    Normalization norm_{Normalization::Linear};
+    bool logScale_{false};
 };
 
 } // namespace QAccelPlot

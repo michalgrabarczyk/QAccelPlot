@@ -64,7 +64,7 @@ const QSGGeometry::AttributeSet& vertexAttributes();
 
 QSGGeometryNode* createNode(int vertexCount, QSGMaterial* material);
 
-void writeVertices(LineVertex* vertices, int pointCount, const QColor& color, const std::vector<float>& arcLengths);
+void writeVertices(LineVertex* vertices, int pointCount, int cornerCount, const QColor& color, const std::vector<float>& arcLengths, int firstPoint = 0);
 
 void applyUniforms(LineMaterial& material, const Uniforms& uniforms);
 

@@ -1,0 +1,404 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1Internal_1_1CategoryList" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::CategoryList</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
+    <includes local="no">CategoryList.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1CategoryList_1a4eec82dc6360fefe840793ff1ed8af98" prot="private" static="no" mutable="no">
+        <type>const char *</type>
+        <definition>const char* QAccelPlot::Internal::CategoryList::seriesName_</definition>
+        <argsstring></argsstring>
+        <name>seriesName_</name>
+        <qualifiedname>QAccelPlot::Internal::CategoryList::seriesName_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="61" column="16" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1CategoryList_1a7a20294842a10a6dc65fe8299adc87a3" prot="private" static="no" mutable="no">
+        <type>QList&lt; QPointer&lt; <ref refid="classQAccelPlot_1_1Category" kindref="compound">Category</ref> &gt; &gt;</type>
+        <definition>QList&lt;QPointer&lt;Category&gt; &gt; QAccelPlot::Internal::CategoryList::categories_</definition>
+        <argsstring></argsstring>
+        <name>categories_</name>
+        <qualifiedname>QAccelPlot::Internal::CategoryList::categories_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="62" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1CategoryList_1a550e073efdef7831d8b9746aa7f623cd" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1Internal_1_1CategoryTable" kindref="compound">CategoryTable</ref></type>
+        <definition>CategoryTable QAccelPlot::Internal::CategoryList::table_</definition>
+        <argsstring></argsstring>
+        <name>table_</name>
+        <qualifiedname>QAccelPlot::Internal::CategoryList::table_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="63" column="19" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1CategoryList_1ae098c8c90088f321ac5dd51f4d387ab4" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::CategoryList::reportQueued_</definition>
+        <argsstring></argsstring>
+        <name>reportQueued_</name>
+        <qualifiedname>QAccelPlot::Internal::CategoryList::reportQueued_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="64" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" bodystart="64" bodyend="64"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1CategoryList_1a1e372f22cf214a26a06b8b41de9ebe5b" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::Internal::CategoryList::CategoryList</definition>
+        <argsstring>(const char *seriesName, QObject *parent=nullptr)</argsstring>
+        <name>CategoryList</name>
+        <qualifiedname>QAccelPlot::Internal::CategoryList::CategoryList</qualifiedname>
+        <param>
+          <type>const char *</type>
+          <declname>seriesName</declname>
+        </param>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs an empty list whose warnings name <emphasis>seriesName</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="29" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1CategoryList_1aabb6a18bb191f770345c3a8c9667fd35" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QQmlListProperty&lt; <ref refid="classQAccelPlot_1_1Category" kindref="compound">Category</ref> &gt;</type>
+        <definition>QQmlListProperty&lt; Category &gt; QAccelPlot::Internal::CategoryList::listProperty</definition>
+        <argsstring>(QObject *owner)</argsstring>
+        <name>listProperty</name>
+        <qualifiedname>QAccelPlot::Internal::CategoryList::listProperty</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>owner</declname>
+        </param>
+        <briefdescription>
+<para>Returns the list as a QML list property of <emphasis>owner</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="32" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1CategoryList_1ab506e9b57a469d52131d6e449e9a2516" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::CategoryList::setCategories</definition>
+        <argsstring>(const QList&lt; Category * &gt; &amp;categories)</argsstring>
+        <name>setCategories</name>
+        <qualifiedname>QAccelPlot::Internal::CategoryList::setCategories</qualifiedname>
+        <param>
+          <type>const QList&lt; <ref refid="classQAccelPlot_1_1Category" kindref="compound">Category</ref> * &gt; &amp;</type>
+          <declname>categories</declname>
+        </param>
+        <briefdescription>
+<para>Replaces the categories with <emphasis>categories</emphasis>. Does not take ownership. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="34" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1CategoryList_1ae2ab217cbd70ec4e114417b4bb448c18" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classQAccelPlot_1_1Internal_1_1CategoryTable" kindref="compound">CategoryTable</ref> &amp;</type>
+        <definition>const CategoryTable &amp; QAccelPlot::Internal::CategoryList::table</definition>
+        <argsstring>() const</argsstring>
+        <name>table</name>
+        <qualifiedname>QAccelPlot::Internal::CategoryList::table</qualifiedname>
+        <briefdescription>
+<para>Returns the lookup table of the current categories. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="37" column="25"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1Internal_1_1CategoryList_1a3d68dc0a183f28b3d1f82115aacc33c5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::CategoryList::changed</definition>
+        <argsstring>()</argsstring>
+        <name>changed</name>
+        <qualifiedname>QAccelPlot::Internal::CategoryList::changed</qualifiedname>
+        <briefdescription>
+<para>Emitted when a category is added, removed, or edited. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="41" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1CategoryList_1a8a0d9745d754a85ab1563cd859bc6064" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::CategoryList::append</definition>
+        <argsstring>(Category *category)</argsstring>
+        <name>append</name>
+        <qualifiedname>QAccelPlot::Internal::CategoryList::append</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1Category" kindref="compound">Category</ref> *</type>
+          <declname>category</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="44" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1CategoryList_1a8ea2c0ea2310cb7a26801014fe1dc71b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::CategoryList::clear</definition>
+        <argsstring>()</argsstring>
+        <name>clear</name>
+        <qualifiedname>QAccelPlot::Internal::CategoryList::clear</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="45" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1CategoryList_1a201fd460195d165d36dcf9f59db964ed" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::CategoryList::watch</definition>
+        <argsstring>(Category *category) const</argsstring>
+        <name>watch</name>
+        <qualifiedname>QAccelPlot::Internal::CategoryList::watch</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1Category" kindref="compound">Category</ref> *</type>
+          <declname>category</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="47" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1CategoryList_1a980dfc9b365e9f2e6aa198a9f6cb7e82" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::CategoryList::unwatchAll</definition>
+        <argsstring>() const</argsstring>
+        <name>unwatchAll</name>
+        <qualifiedname>QAccelPlot::Internal::CategoryList::unwatchAll</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="49" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1CategoryList_1a0cd9cf651198ff00adcc9f1a935f7e2b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::CategoryList::onCategoryDestroyed</definition>
+        <argsstring>()</argsstring>
+        <name>onCategoryDestroyed</name>
+        <qualifiedname>QAccelPlot::Internal::CategoryList::onCategoryDestroyed</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="51" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1CategoryList_1aaaaa02ded67437a66055ed50d4a18746" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::CategoryList::onCategoriesChanged</definition>
+        <argsstring>()</argsstring>
+        <name>onCategoriesChanged</name>
+        <qualifiedname>QAccelPlot::Internal::CategoryList::onCategoriesChanged</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="52" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1CategoryList_1a12333b84c55d188dd6c22ce0775865b7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::CategoryList::reportProblems</definition>
+        <argsstring>()</argsstring>
+        <name>reportProblems</name>
+        <qualifiedname>QAccelPlot::Internal::CategoryList::reportProblems</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="54" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1CategoryList_1af2a31e0b41b603e9ec654fec5e37a925" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void QAccelPlot::Internal::CategoryList::appendCategory</definition>
+        <argsstring>(QQmlListProperty&lt; Category &gt; *list, Category *category)</argsstring>
+        <name>appendCategory</name>
+        <qualifiedname>QAccelPlot::Internal::CategoryList::appendCategory</qualifiedname>
+        <param>
+          <type>QQmlListProperty&lt; <ref refid="classQAccelPlot_1_1Category" kindref="compound">Category</ref> &gt; *</type>
+          <declname>list</declname>
+        </param>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1Category" kindref="compound">Category</ref> *</type>
+          <declname>category</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="56" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1CategoryList_1a787bcb0c83fda966d1f3639f0e2ada0a" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>qsizetype</type>
+        <definition>static qsizetype QAccelPlot::Internal::CategoryList::categoryCount</definition>
+        <argsstring>(QQmlListProperty&lt; Category &gt; *list)</argsstring>
+        <name>categoryCount</name>
+        <qualifiedname>QAccelPlot::Internal::CategoryList::categoryCount</qualifiedname>
+        <param>
+          <type>QQmlListProperty&lt; <ref refid="classQAccelPlot_1_1Category" kindref="compound">Category</ref> &gt; *</type>
+          <declname>list</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="57" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1CategoryList_1a550b338a5282d6e4abc3ff041e192c52" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1Category" kindref="compound">Category</ref> *</type>
+        <definition>static Category * QAccelPlot::Internal::CategoryList::categoryAt</definition>
+        <argsstring>(QQmlListProperty&lt; Category &gt; *list, qsizetype index)</argsstring>
+        <name>categoryAt</name>
+        <qualifiedname>QAccelPlot::Internal::CategoryList::categoryAt</qualifiedname>
+        <param>
+          <type>QQmlListProperty&lt; <ref refid="classQAccelPlot_1_1Category" kindref="compound">Category</ref> &gt; *</type>
+          <declname>list</declname>
+        </param>
+        <param>
+          <type>qsizetype</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="58" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1CategoryList_1af8cce5d0a617504d8260ed64223a2c69" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void QAccelPlot::Internal::CategoryList::clearCategories</definition>
+        <argsstring>(QQmlListProperty&lt; Category &gt; *list)</argsstring>
+        <name>clearCategories</name>
+        <qualifiedname>QAccelPlot::Internal::CategoryList::clearCategories</qualifiedname>
+        <param>
+          <type>QQmlListProperty&lt; <ref refid="classQAccelPlot_1_1Category" kindref="compound">Category</ref> &gt; *</type>
+          <declname>list</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="59" column="17"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>The <computeroutput>categories</computeroutput> list of a series: the <computeroutput><ref refid="classQAccelPlot_1_1Category" kindref="compound">Category</ref></computeroutput> objects and a lookup table that follows their edits. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The table updates on every change, quietly. Duplicate values and names are reported once the event loop runs, after QML bindings of newly declared categories have been evaluated. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::Internal::CategoryList</label>
+        <link refid="classQAccelPlot_1_1Internal_1_1CategoryList"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::Internal::CategoryList</label>
+        <link refid="classQAccelPlot_1_1Internal_1_1CategoryList"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="24" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" bodystart="24" bodyend="65"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1a8a0d9745d754a85ab1563cd859bc6064" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::CategoryList</scope><name>append</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1af2a31e0b41b603e9ec654fec5e37a925" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::CategoryList</scope><name>appendCategory</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1a7a20294842a10a6dc65fe8299adc87a3" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::CategoryList</scope><name>categories_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1a550b338a5282d6e4abc3ff041e192c52" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::CategoryList</scope><name>categoryAt</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1a787bcb0c83fda966d1f3639f0e2ada0a" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::CategoryList</scope><name>categoryCount</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1a1e372f22cf214a26a06b8b41de9ebe5b" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::CategoryList</scope><name>CategoryList</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1a3d68dc0a183f28b3d1f82115aacc33c5" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::CategoryList</scope><name>changed</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1a8ea2c0ea2310cb7a26801014fe1dc71b" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::CategoryList</scope><name>clear</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1af8cce5d0a617504d8260ed64223a2c69" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::CategoryList</scope><name>clearCategories</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1aabb6a18bb191f770345c3a8c9667fd35" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::CategoryList</scope><name>listProperty</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1aaaaa02ded67437a66055ed50d4a18746" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::CategoryList</scope><name>onCategoriesChanged</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1a0cd9cf651198ff00adcc9f1a935f7e2b" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::CategoryList</scope><name>onCategoryDestroyed</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1a12333b84c55d188dd6c22ce0775865b7" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::CategoryList</scope><name>reportProblems</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1ae098c8c90088f321ac5dd51f4d387ab4" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::CategoryList</scope><name>reportQueued_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1a4eec82dc6360fefe840793ff1ed8af98" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::CategoryList</scope><name>seriesName_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1ab506e9b57a469d52131d6e449e9a2516" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::CategoryList</scope><name>setCategories</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1ae2ab217cbd70ec4e114417b4bb448c18" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::CategoryList</scope><name>table</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1a550e073efdef7831d8b9746aa7f623cd" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::CategoryList</scope><name>table_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1a980dfc9b365e9f2e6aa198a9f6cb7e82" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::CategoryList</scope><name>unwatchAll</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1a201fd460195d165d36dcf9f59db964ed" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::CategoryList</scope><name>watch</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

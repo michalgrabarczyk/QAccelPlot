@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1LegendModel_1_1Row" kind="struct" language="C++" prot="private">
+    <compoundname>QAccelPlot::LegendModel::Row</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1LegendModel_1_1Row_1abec655cee3341557d6f6c33ab9555a88" prot="public" static="no" mutable="no">
+        <type>QPointer&lt; <ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> &gt;</type>
+        <definition>QPointer&lt;PlotSeries&gt; QAccelPlot::LegendModel::Row::series</definition>
+        <argsstring></argsstring>
+        <name>series</name>
+        <qualifiedname>QAccelPlot::LegendModel::Row::series</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="87" column="18" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LegendModel_1_1Row_1a750801384017ef0c1039b0e460f2b29a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::LegendModel::Row::entry</definition>
+        <argsstring></argsstring>
+        <name>entry</name>
+        <qualifiedname>QAccelPlot::LegendModel::Row::entry</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="88" column="13" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" bodystart="88" bodyend="88"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structQAccelPlot_1_1LegendModel_1_1Row_1ae81abb6f420ee7b5d008eaa99a99e86c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::LegendModel::Row::operator==</definition>
+        <argsstring>(const Row &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>QAccelPlot::LegendModel::Row::operator==</qualifiedname>
+        <param>
+          <type>const Row &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="90" column="14"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="86" column="5" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" bodystart="86" bodyend="91"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1LegendModel_1_1Row_1a750801384017ef0c1039b0e460f2b29a" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendModel::Row</scope><name>entry</name></member>
+      <member refid="structQAccelPlot_1_1LegendModel_1_1Row_1ae81abb6f420ee7b5d008eaa99a99e86c" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendModel::Row</scope><name>operator==</name></member>
+      <member refid="structQAccelPlot_1_1LegendModel_1_1Row_1abec655cee3341557d6f6c33ab9555a88" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendModel::Row</scope><name>series</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

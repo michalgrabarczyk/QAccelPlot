@@ -1,0 +1,1413 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1DataPointStore" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::DataPointStore</compoundname>
+    <includes local="no">DataPointStore.hpp</includes>
+    <innerclass refid="structQAccelPlot_1_1DataPointStore_1_1AttributeView" prot="public">QAccelPlot::DataPointStore::AttributeView</innerclass>
+    <innerclass refid="structQAccelPlot_1_1DataPointStore_1_1Compacted" prot="private">QAccelPlot::DataPointStore::Compacted</innerclass>
+    <innerclass refid="structQAccelPlot_1_1DataPointStore_1_1DimensionState" prot="public">QAccelPlot::DataPointStore::DimensionState</innerclass>
+    <innerclass refid="structQAccelPlot_1_1DataPointStore_1_1Extent" prot="public">QAccelPlot::DataPointStore::Extent</innerclass>
+    <innerclass refid="structQAccelPlot_1_1DataPointStore_1_1Extents" prot="public">QAccelPlot::DataPointStore::Extents</innerclass>
+    <innerclass refid="structQAccelPlot_1_1DataPointStore_1_1Layout" prot="public">QAccelPlot::DataPointStore::Layout</innerclass>
+    <innerclass refid="structQAccelPlot_1_1DataPointStore_1_1Origin" prot="private">QAccelPlot::DataPointStore::Origin</innerclass>
+    <innerclass refid="structQAccelPlot_1_1DataPointStore_1_1View" prot="public">QAccelPlot::DataPointStore::View</innerclass>
+    <innerclass refid="structQAccelPlot_1_1DataPointStore_1_1Viewport" prot="public">QAccelPlot::DataPointStore::Viewport</innerclass>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classQAccelPlot_1_1DataPointStore_1a2a1f1ed22ed6c76b7068eb753cbb5fef" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>Dimension</name>
+        <qualifiedname>QAccelPlot::DataPointStore::Dimension</qualifiedname>
+        <enumvalue id="classQAccelPlot_1_1DataPointStore_1a2a1f1ed22ed6c76b7068eb753cbb5fefa02129bb861061d1a052c592e2dc6b383" prot="public">
+          <name>X</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1DataPointStore_1a2a1f1ed22ed6c76b7068eb753cbb5fefa57cec4137b614c87cb4e24a3d003a3e0" prot="public">
+          <name>Y</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Plot dimension a coordinate column belongs to. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="35" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="35" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="enum" id="classQAccelPlot_1_1DataPointStore_1afe83393ab8a4e242aa3c5d0e45555122" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>RangeRule</name>
+        <qualifiedname>QAccelPlot::DataPointStore::RangeRule</qualifiedname>
+        <enumvalue id="classQAccelPlot_1_1DataPointStore_1afe83393ab8a4e242aa3c5d0e45555122a6941686632549c8e3771fc6f6d74d2ac" prot="public">
+          <name>EachCoordinate</name>
+          <briefdescription>
+<para>Every valid coordinate counts on its own. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1DataPointStore_1afe83393ab8a4e242aa3c5d0e45555122ad79827e33396f08a8be25057ea087815" prot="public">
+          <name>WholeDataPoint</name>
+          <briefdescription>
+<para>A data point counts only when all its coordinates are valid. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1DataPointStore_1afe83393ab8a4e242aa3c5d0e45555122a7142fec38e3a9c98dbdcee30fcc091e7" prot="public">
+          <name>SkipOnNaN</name>
+          <briefdescription>
+<para>A data point with a NaN coordinate is skipped; otherwise each valid coordinate counts. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Which coordinates count toward the extents. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A coordinate is valid when it is finite and, on a logarithmic dimension, positive. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="40" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="40" bodyend="44"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataPointStore_1a9f34bc081f817a494eda3b70c32c292f" prot="private" static="no" mutable="no">
+        <type><ref refid="structQAccelPlot_1_1DataPointStore_1_1Layout" kindref="compound">Layout</ref></type>
+        <definition>Layout QAccelPlot::DataPointStore::layout_</definition>
+        <argsstring></argsstring>
+        <name>layout_</name>
+        <qualifiedname>QAccelPlot::DataPointStore::layout_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="237" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="237" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataPointStore_1ab3511d34ac053a04d0f5678d31869e67" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::DataPointStore::count_</definition>
+        <argsstring></argsstring>
+        <name>count_</name>
+        <qualifiedname>QAccelPlot::DataPointStore::count_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="238" column="9" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="238" bodyend="238"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataPointStore_1a5ee86adf64495b2dd75310ec3ec51829" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::DataPointStore::isPrecise_</definition>
+        <argsstring></argsstring>
+        <name>isPrecise_</name>
+        <qualifiedname>QAccelPlot::DataPointStore::isPrecise_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="239" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="239" bodyend="239"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataPointStore_1a1e34131ec7bb4d00f41a7c20129674f9" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::DataPointStore::hasAttributes_</definition>
+        <argsstring></argsstring>
+        <name>hasAttributes_</name>
+        <qualifiedname>QAccelPlot::DataPointStore::hasAttributes_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="240" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="240" bodyend="240"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataPointStore_1aea15ab7f2cae06a28ba67551d4e85a7b" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; QAccelPlot::DataPointStore::precise_</definition>
+        <argsstring></argsstring>
+        <name>precise_</name>
+        <qualifiedname>QAccelPlot::DataPointStore::precise_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="241" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="241" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataPointStore_1ac37ca1a9dd056e064a15ac63e3b72d84" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; QAccelPlot::DataPointStore::floats_</definition>
+        <argsstring></argsstring>
+        <name>floats_</name>
+        <qualifiedname>QAccelPlot::DataPointStore::floats_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="242" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="242" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataPointStore_1a234c5319ff62838bbf82f085296e175f" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; QAccelPlot::DataPointStore::attributes_</definition>
+        <argsstring></argsstring>
+        <name>attributes_</name>
+        <qualifiedname>QAccelPlot::DataPointStore::attributes_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="243" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="243" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataPointStore_1a42cac259cf616c3530fa0476559f6cc5" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; int &gt;</type>
+        <definition>std::vector&lt;int&gt; QAccelPlot::DataPointStore::categories_</definition>
+        <argsstring></argsstring>
+        <name>categories_</name>
+        <qualifiedname>QAccelPlot::DataPointStore::categories_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="244" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="244" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataPointStore_1a695ba65aa820806154ad9ef3991bddb3" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; QAccelPlot::DataPointStore::drawn_</definition>
+        <argsstring></argsstring>
+        <name>drawn_</name>
+        <qualifiedname>QAccelPlot::DataPointStore::drawn_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="246" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="246" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataPointStore_1a1dd1e6fff48701ffed0ec5f530b48db4" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::DataPointStore::drawnCount_</definition>
+        <argsstring></argsstring>
+        <name>drawnCount_</name>
+        <qualifiedname>QAccelPlot::DataPointStore::drawnCount_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="247" column="9" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="247" bodyend="247"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataPointStore_1a1f90f95594c88cd94afd471951eacdfe" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::DataPointStore::hasDrawn_</definition>
+        <argsstring></argsstring>
+        <name>hasDrawn_</name>
+        <qualifiedname>QAccelPlot::DataPointStore::hasDrawn_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="248" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="248" bodyend="248"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataPointStore_1a0132b7a2149b0b49c167d78b6cbe48e8" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::DataPointStore::skipInvalid_</definition>
+        <argsstring></argsstring>
+        <name>skipInvalid_</name>
+        <qualifiedname>QAccelPlot::DataPointStore::skipInvalid_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="250" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="250" bodyend="250"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataPointStore_1a7ea3b77af0ec737f45bdf323a9b48249" prot="private" static="no" mutable="yes">
+        <type>Compacted</type>
+        <definition>Compacted QAccelPlot::DataPointStore::compacted_</definition>
+        <argsstring></argsstring>
+        <name>compacted_</name>
+        <qualifiedname>QAccelPlot::DataPointStore::compacted_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="252" column="23" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="252" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataPointStore_1a59b846b14ea0d1ef403cb9f4682eada8" prot="private" static="no" mutable="no">
+        <type><ref refid="structQAccelPlot_1_1DataPointStore_1_1DimensionState" kindref="compound">DimensionState</ref></type>
+        <definition>DimensionState QAccelPlot::DataPointStore::x_</definition>
+        <argsstring></argsstring>
+        <name>x_</name>
+        <qualifiedname>QAccelPlot::DataPointStore::x_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="254" column="20" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="254" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataPointStore_1a8d2059e170c2b7304401e530c2b08c8a" prot="private" static="no" mutable="no">
+        <type><ref refid="structQAccelPlot_1_1DataPointStore_1_1DimensionState" kindref="compound">DimensionState</ref></type>
+        <definition>DimensionState QAccelPlot::DataPointStore::y_</definition>
+        <argsstring></argsstring>
+        <name>y_</name>
+        <qualifiedname>QAccelPlot::DataPointStore::y_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="255" column="20" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="255" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataPointStore_1af3242d70a3f89ca1a51ac7d9b74bf4c6" prot="private" static="no" mutable="yes">
+        <type>Origin</type>
+        <definition>Origin QAccelPlot::DataPointStore::originX_</definition>
+        <argsstring></argsstring>
+        <name>originX_</name>
+        <qualifiedname>QAccelPlot::DataPointStore::originX_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="256" column="20" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="256" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataPointStore_1ae5bd93808255d3ef998d73a06ce19cdb" prot="private" static="no" mutable="yes">
+        <type>Origin</type>
+        <definition>Origin QAccelPlot::DataPointStore::originY_</definition>
+        <argsstring></argsstring>
+        <name>originY_</name>
+        <qualifiedname>QAccelPlot::DataPointStore::originY_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="257" column="20" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="257" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataPointStore_1a964cd3f8350972de4be18defbba7dcf2" prot="private" static="no" mutable="yes">
+        <type>bool</type>
+        <definition>bool QAccelPlot::DataPointStore::renderLogScaleX_</definition>
+        <argsstring></argsstring>
+        <name>renderLogScaleX_</name>
+        <qualifiedname>QAccelPlot::DataPointStore::renderLogScaleX_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="258" column="18" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="258" bodyend="258"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataPointStore_1ac583c943b4a5e4affb7a3e190e331948" prot="private" static="no" mutable="yes">
+        <type>bool</type>
+        <definition>bool QAccelPlot::DataPointStore::renderLogScaleY_</definition>
+        <argsstring></argsstring>
+        <name>renderLogScaleY_</name>
+        <qualifiedname>QAccelPlot::DataPointStore::renderLogScaleY_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="259" column="18" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="259" bodyend="259"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataPointStore_1ac5043f89bfb923caf814be7674bb1682" prot="private" static="no" mutable="yes">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; QAccelPlot::DataPointStore::renderData_</definition>
+        <argsstring></argsstring>
+        <name>renderData_</name>
+        <qualifiedname>QAccelPlot::DataPointStore::renderData_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="260" column="25" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="260" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataPointStore_1aa5a24a5b077f4b1c60f59a19b846e6e3" prot="private" static="no" mutable="yes">
+        <type>bool</type>
+        <definition>bool QAccelPlot::DataPointStore::renderValid_</definition>
+        <argsstring></argsstring>
+        <name>renderValid_</name>
+        <qualifiedname>QAccelPlot::DataPointStore::renderValid_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="261" column="18" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="261" bodyend="261"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataPointStore_1a57965b5705b0580cf610a9729211dcfb" prot="private" static="no" mutable="no">
+        <type>std::uint64_t</type>
+        <definition>std::uint64_t QAccelPlot::DataPointStore::renderRevision_</definition>
+        <argsstring></argsstring>
+        <name>renderRevision_</name>
+        <qualifiedname>QAccelPlot::DataPointStore::renderRevision_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="262" column="19" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="262" bodyend="262"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a79338c4458f1e5c42412aa5c99045fb0" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::DataPointStore::DataPointStore</definition>
+        <argsstring>(Layout layout)</argsstring>
+        <name>DataPointStore</name>
+        <qualifiedname>QAccelPlot::DataPointStore::DataPointStore</qualifiedname>
+        <param>
+          <type><ref refid="structQAccelPlot_1_1DataPointStore_1_1Layout" kindref="compound">Layout</ref></type>
+          <declname>layout</declname>
+        </param>
+        <briefdescription>
+<para>Creates an empty store whose data points have <emphasis>layout</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="97" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a480a0edc00e31c296c544c992a9b26a3" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>const <ref refid="structQAccelPlot_1_1DataPointStore_1_1Layout" kindref="compound">Layout</ref> &amp;</type>
+        <definition>const Layout &amp; QAccelPlot::DataPointStore::layout</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>layout</name>
+        <qualifiedname>QAccelPlot::DataPointStore::layout</qualifiedname>
+        <briefdescription>
+<para>Returns the data point layout. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="100" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a9d15cf9a687c49f423f89a4dcc3e9f10" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataPointStore::setLayout</definition>
+        <argsstring>(Layout layout)</argsstring>
+        <name>setLayout</name>
+        <qualifiedname>QAccelPlot::DataPointStore::setLayout</qualifiedname>
+        <param>
+          <type><ref refid="structQAccelPlot_1_1DataPointStore_1_1Layout" kindref="compound">Layout</ref></type>
+          <declname>layout</declname>
+        </param>
+        <briefdescription>
+<para>Clears the store and switches to <emphasis>layout</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="102" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1adfa547ef9fdd544c089b5d2400844745" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataPointStore::remapColumns</definition>
+        <argsstring>(std::vector&lt; Dimension &gt; columns)</argsstring>
+        <name>remapColumns</name>
+        <qualifiedname>QAccelPlot::DataPointStore::remapColumns</qualifiedname>
+        <param>
+          <type>std::vector&lt; <ref refid="classQAccelPlot_1_1DataPointStore_1a2a1f1ed22ed6c76b7068eb753cbb5fef" kindref="member">Dimension</ref> &gt;</type>
+          <declname>columns</declname>
+        </param>
+        <briefdescription>
+<para>Ties the coordinate columns to <emphasis>columns</emphasis>, one dimension per column, keeping the data points. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="104" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a45e355925aad4e1a1e9b5e6526ec3d57" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::DataPointStore::columnCount</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>columnCount</name>
+        <qualifiedname>QAccelPlot::DataPointStore::columnCount</qualifiedname>
+        <briefdescription>
+<para>Returns the number of coordinate columns per data point. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="106" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a80117ed104d97cea5d14777719652d07" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataPointStore::setPrecise</definition>
+        <argsstring>(std::vector&lt; double &gt; &amp;&amp;coordinates, int count, std::vector&lt; float &gt; &amp;&amp;attributes={})</argsstring>
+        <name>setPrecise</name>
+        <qualifiedname>QAccelPlot::DataPointStore::setPrecise</qualifiedname>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;&amp;</type>
+          <declname>coordinates</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; float &gt; &amp;&amp;</type>
+          <declname>attributes</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+<para>Replaces the data points with <emphasis>count</emphasis> double data points moved from <emphasis>coordinates</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><emphasis>attributes</emphasis> is empty, or holds <computeroutput>attributeCount</computeroutput> floats per data point. The sizes must match. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="111" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a1974b3efbf520b548c1bdbecc80b5c38" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataPointStore::assignPrecise</definition>
+        <argsstring>(const double *coordinates, int count)</argsstring>
+        <name>assignPrecise</name>
+        <qualifiedname>QAccelPlot::DataPointStore::assignPrecise</qualifiedname>
+        <param>
+          <type>const double *</type>
+          <declname>coordinates</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+<para>Replaces the data points with <emphasis>count</emphasis> double data points copied from <emphasis>coordinates</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="113" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1aed97980eda5c3339ce71854d9ee408ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataPointStore::setFloat</definition>
+        <argsstring>(std::vector&lt; float &gt; &amp;&amp;coordinates, int count, std::vector&lt; float &gt; &amp;&amp;attributes={})</argsstring>
+        <name>setFloat</name>
+        <qualifiedname>QAccelPlot::DataPointStore::setFloat</qualifiedname>
+        <param>
+          <type>std::vector&lt; float &gt; &amp;&amp;</type>
+          <declname>coordinates</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; float &gt; &amp;&amp;</type>
+          <declname>attributes</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+<para>Replaces the data points with <emphasis>count</emphasis> float data points moved from <emphasis>coordinates</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Without attributes the moved buffer becomes the render data as is. With attributes, it is interleaved with them once. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="118" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a2a2799c3af64856e637cbd94de00ce26" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataPointStore::assignFloat</definition>
+        <argsstring>(const float *coordinates, int count)</argsstring>
+        <name>assignFloat</name>
+        <qualifiedname>QAccelPlot::DataPointStore::assignFloat</qualifiedname>
+        <param>
+          <type>const float *</type>
+          <declname>coordinates</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+<para>Replaces the data points with <emphasis>count</emphasis> float data points copied from <emphasis>coordinates</emphasis>, reusing the allocation. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="120" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a6593300fcb61261ea68ea9777d9a71e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataPointStore::setAttributes</definition>
+        <argsstring>(std::vector&lt; float &gt; &amp;&amp;attributes)</argsstring>
+        <name>setAttributes</name>
+        <qualifiedname>QAccelPlot::DataPointStore::setAttributes</qualifiedname>
+        <param>
+          <type>std::vector&lt; float &gt; &amp;&amp;</type>
+          <declname>attributes</declname>
+        </param>
+        <briefdescription>
+<para>Replaces the float attributes: empty, or <computeroutput>attributeCount</computeroutput> floats per data point. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="122" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a2c6a888f16061bb6d2a57746d231b417" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataPointStore::setCategories</definition>
+        <argsstring>(std::vector&lt; int &gt; &amp;&amp;categories)</argsstring>
+        <name>setCategories</name>
+        <qualifiedname>QAccelPlot::DataPointStore::setCategories</qualifiedname>
+        <param>
+          <type>std::vector&lt; int &gt; &amp;&amp;</type>
+          <declname>categories</declname>
+        </param>
+        <briefdescription>
+<para>Replaces the categories: empty, or one per data point. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Replacing the data points drops the categories; appending gives the new data point -1. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="126" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1ae6b1d8bcacc4c331b943c90d9cec5d77" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataPointStore::append</definition>
+        <argsstring>(const double *coordinates)</argsstring>
+        <name>append</name>
+        <qualifiedname>QAccelPlot::DataPointStore::append</qualifiedname>
+        <param>
+          <type>const double *</type>
+          <declname>coordinates</declname>
+        </param>
+        <briefdescription>
+<para>Appends one double data point of <computeroutput><ref refid="classQAccelPlot_1_1DataPointStore_1a45e355925aad4e1a1e9b5e6526ec3d57" kindref="member">columnCount()</ref></computeroutput> coordinates; promotes float data first. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The render data grows in place when nothing else it depends on has changed. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="130" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1aa4f3fe28dcc9874605ba25b70e7c86b6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataPointStore::promoteToPrecise</definition>
+        <argsstring>()</argsstring>
+        <name>promoteToPrecise</name>
+        <qualifiedname>QAccelPlot::DataPointStore::promoteToPrecise</qualifiedname>
+        <briefdescription>
+<para>Converts float data points to double, so later updates keep their precision. Does nothing for double data. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="132" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a73611a3409783b2b7f5c169fc0128097" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataPointStore::clear</definition>
+        <argsstring>()</argsstring>
+        <name>clear</name>
+        <qualifiedname>QAccelPlot::DataPointStore::clear</qualifiedname>
+        <briefdescription>
+<para>Removes all data points, attributes, and categories. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="134" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a0d8fa0b92f01aed9c5d59d71a2a92ec3" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::DataPointStore::count</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>count</name>
+        <qualifiedname>QAccelPlot::DataPointStore::count</qualifiedname>
+        <briefdescription>
+<para>Returns the number of data points. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="137" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a7ccf36a9748a4261dcdb913593f95a2c" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::DataPointStore::isPrecise</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>isPrecise</name>
+        <qualifiedname>QAccelPlot::DataPointStore::isPrecise</qualifiedname>
+        <briefdescription>
+<para>Returns whether the data points are stored as doubles. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="139" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1aa0dd46425346d2ecb2d7f39b012fe4e4" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::DataPointStore::hasAttributes</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>hasAttributes</name>
+        <qualifiedname>QAccelPlot::DataPointStore::hasAttributes</qualifiedname>
+        <briefdescription>
+<para>Returns whether the data points carry float attributes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="141" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1ad168da450a38e75dc6f82516450d3466" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::DataPointStore::hasCategories</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>hasCategories</name>
+        <qualifiedname>QAccelPlot::DataPointStore::hasCategories</qualifiedname>
+        <briefdescription>
+<para>Returns whether the data points carry categories. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="143" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1aaf6159f19fe1381fe2fb256e3513d81d" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1DataPointStore_1_1View" kindref="compound">View</ref></type>
+        <definition>View QAccelPlot::DataPointStore::view</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>view</name>
+        <qualifiedname>QAccelPlot::DataPointStore::view</qualifiedname>
+        <briefdescription>
+<para>Returns the stored data points. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="145" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1acd968d3d0452066398fe1bd6740caff9" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::DataPointStore::value</definition>
+        <argsstring>(int index, int column) const noexcept</argsstring>
+        <name>value</name>
+        <qualifiedname>QAccelPlot::DataPointStore::value</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>column</declname>
+        </param>
+        <briefdescription>
+<para>Returns coordinate <emphasis>column</emphasis> of stored data point <emphasis>index</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="147" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a8b0ba169cf7fce012e47b484a0fb0c1b" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1DataPointStore_1_1AttributeView" kindref="compound">AttributeView</ref></type>
+        <definition>AttributeView QAccelPlot::DataPointStore::attributes</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>attributes</name>
+        <qualifiedname>QAccelPlot::DataPointStore::attributes</qualifiedname>
+        <briefdescription>
+<para>Returns the stored float attributes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="149" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a41820af6ff5a706eee0d488baba70617" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float QAccelPlot::DataPointStore::attribute</definition>
+        <argsstring>(int index, int which=0) const noexcept</argsstring>
+        <name>attribute</name>
+        <qualifiedname>QAccelPlot::DataPointStore::attribute</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>which</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>Returns attribute <emphasis>which</emphasis> of data point <emphasis>index</emphasis>; NaN without attributes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="151" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a377d79443cd0fea8adb7ccccd4382bb8" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>const std::vector&lt; int &gt; &amp;</type>
+        <definition>const std::vector&lt; int &gt; &amp; QAccelPlot::DataPointStore::categories</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>categories</name>
+        <qualifiedname>QAccelPlot::DataPointStore::categories</qualifiedname>
+        <briefdescription>
+<para>Returns the stored categories: empty, or one per data point. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="153" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a1b469fed2e7dc915318fd18fe46239fe" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1DataPointStore_1_1Extents" kindref="compound">Extents</ref></type>
+        <definition>Extents QAccelPlot::DataPointStore::extents</definition>
+        <argsstring>(bool logScaleX, bool logScaleY, int first=0, int last=-1) const</argsstring>
+        <name>extents</name>
+        <qualifiedname>QAccelPlot::DataPointStore::extents</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>logScaleX</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>logScaleY</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>first</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>last</declname>
+          <defval>-1</defval>
+        </param>
+        <briefdescription>
+<para>Returns the extents of data points [<emphasis>first</emphasis>, <emphasis>last</emphasis>) under the layout&apos;s range rule. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><emphasis>last</emphasis> of -1 means the end. <emphasis>logScaleX</emphasis> and <emphasis>logScaleY</emphasis> decide which coordinates are valid. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="158" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a38865209f3f1f0dde3d3f3beb56946e4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt; double &gt; QAccelPlot::DataPointStore::setDrawn</definition>
+        <argsstring>(std::vector&lt; double &gt; &amp;&amp;dataPoints, int count)</argsstring>
+        <name>setDrawn</name>
+        <qualifiedname>QAccelPlot::DataPointStore::setDrawn</qualifiedname>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;&amp;</type>
+          <declname>dataPoints</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+<para>Draws <emphasis>count</emphasis> data points moved from <emphasis>dataPoints</emphasis> instead of the stored ones. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Used by a running transition for the frame it shows. <emphasis>dataPoints</emphasis> holds <computeroutput><ref refid="classQAccelPlot_1_1DataPointStore_1a45e355925aad4e1a1e9b5e6526ec3d57" kindref="member">columnCount()</ref></computeroutput> coordinates per data point, followed by <computeroutput>attributeCount</computeroutput> attributes when the stored data points have attributes. The stored data points, their extents, and <computeroutput><ref refid="classQAccelPlot_1_1DataPointStore_1aaf6159f19fe1381fe2fb256e3513d81d" kindref="member">view()</ref></computeroutput> are unchanged. Returns the previous drawn buffer, so a caller drawing frame after frame reuses its allocation. Replacing the stored data points with ones of another stride draws them again. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="167" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a3ac3f075a8baa766de009cec77aa092a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataPointStore::clearDrawn</definition>
+        <argsstring>()</argsstring>
+        <name>clearDrawn</name>
+        <qualifiedname>QAccelPlot::DataPointStore::clearDrawn</qualifiedname>
+        <briefdescription>
+<para>Draws the stored data points again. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="169" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1ae33d5dcbdec4afc06f1199e7c7b611a1" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::DataPointStore::hasDrawn</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>hasDrawn</name>
+        <qualifiedname>QAccelPlot::DataPointStore::hasDrawn</qualifiedname>
+        <briefdescription>
+<para>Returns whether drawn data points replace the stored ones. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="171" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a50728e3e7e83cd632a222d0fe1bed4ab" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1DataPointStore_1_1View" kindref="compound">View</ref></type>
+        <definition>View QAccelPlot::DataPointStore::drawnView</definition>
+        <argsstring>() const</argsstring>
+        <name>drawnView</name>
+        <qualifiedname>QAccelPlot::DataPointStore::drawnView</qualifiedname>
+        <briefdescription>
+<para>Returns the data points that are drawn: the drawn ones, or the stored ones. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="173" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1aaef1510d2b48065d421a7261c34c3f93" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1DataPointStore_1_1View" kindref="compound">View</ref></type>
+        <definition>View QAccelPlot::DataPointStore::renderedView</definition>
+        <argsstring>() const</argsstring>
+        <name>renderedView</name>
+        <qualifiedname>QAccelPlot::DataPointStore::renderedView</qualifiedname>
+        <briefdescription>
+<para>Returns the data points the render data is built from: <computeroutput><ref refid="classQAccelPlot_1_1DataPointStore_1a50728e3e7e83cd632a222d0fe1bed4ab" kindref="member">drawnView()</ref></computeroutput>, without the invalid data points when <computeroutput><ref refid="classQAccelPlot_1_1DataPointStore_1a1188f369679fc9fcdc9a66782a633ee8" kindref="member">skipInvalid()</ref></computeroutput> is set. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="176" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1abe915037ef4360b117903f1923c4d524" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataPointStore::setSkipInvalid</definition>
+        <argsstring>(bool skip)</argsstring>
+        <name>setSkipInvalid</name>
+        <qualifiedname>QAccelPlot::DataPointStore::setSkipInvalid</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>skip</declname>
+        </param>
+        <briefdescription>
+<para>Leaves invalid data points out of the render data and <computeroutput><ref refid="classQAccelPlot_1_1DataPointStore_1aaef1510d2b48065d421a7261c34c3f93" kindref="member">renderedView()</ref></computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A data point is invalid when any coordinate is invalid on the current scale. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="181" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a1188f369679fc9fcdc9a66782a633ee8" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::DataPointStore::skipInvalid</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>skipInvalid</name>
+        <qualifiedname>QAccelPlot::DataPointStore::skipInvalid</qualifiedname>
+        <briefdescription>
+<para>Returns whether invalid data points are left out of the render data. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="183" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a0ddb310072fbee3da628d4f7644bb91a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataPointStore::setDimensionState</definition>
+        <argsstring>(Dimension dimension, const DimensionState &amp;state)</argsstring>
+        <name>setDimensionState</name>
+        <qualifiedname>QAccelPlot::DataPointStore::setDimensionState</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1DataPointStore_1a2a1f1ed22ed6c76b7068eb753cbb5fef" kindref="member">Dimension</ref></type>
+          <declname>dimension</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1DataPointStore_1_1DimensionState" kindref="compound">DimensionState</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+<para>Updates the scale and viewport of <emphasis>dimension</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Marks the render data stale when the scale changes, or when the viewport moves too far from the render origin to keep float precision. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="189" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1aba3d7d0b5dc7690c590d5d5ee26ed9cb" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>const <ref refid="structQAccelPlot_1_1DataPointStore_1_1DimensionState" kindref="compound">DimensionState</ref> &amp;</type>
+        <definition>const DimensionState &amp; QAccelPlot::DataPointStore::dimensionState</definition>
+        <argsstring>(Dimension dimension) const noexcept</argsstring>
+        <name>dimensionState</name>
+        <qualifiedname>QAccelPlot::DataPointStore::dimensionState</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1DataPointStore_1a2a1f1ed22ed6c76b7068eb753cbb5fef" kindref="member">Dimension</ref></type>
+          <declname>dimension</declname>
+        </param>
+        <briefdescription>
+<para>Returns the scale and viewport last given for <emphasis>dimension</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="191" column="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1ab63a5a2b62d46162d79a90f86441a3a7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::vector&lt; float &gt; &amp;</type>
+        <definition>const std::vector&lt; float &gt; &amp; QAccelPlot::DataPointStore::renderData</definition>
+        <argsstring>() const</argsstring>
+        <name>renderData</name>
+        <qualifiedname>QAccelPlot::DataPointStore::renderData</qualifiedname>
+        <briefdescription>
+<para>Returns the float render data, rebuilding it first when stale. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Each data point is its coordinates relative to <computeroutput><ref refid="classQAccelPlot_1_1DataPointStore_1ac698cf52e7b989925917252fc6bcff2d" kindref="member">renderOrigin()</ref></computeroutput>, then its attributes. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="196" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a53600d90f7c1908cbc30463ac6d9e920" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::DataPointStore::renderStride</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>renderStride</name>
+        <qualifiedname>QAccelPlot::DataPointStore::renderStride</qualifiedname>
+        <briefdescription>
+<para>Returns the floats per data point in the render data. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="198" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a73d7472497daf9e3342dc02f96eb7dbd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::DataPointStore::renderCount</definition>
+        <argsstring>() const</argsstring>
+        <name>renderCount</name>
+        <qualifiedname>QAccelPlot::DataPointStore::renderCount</qualifiedname>
+        <briefdescription>
+<para>Returns the number of data points in the render data. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="200" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1ac698cf52e7b989925917252fc6bcff2d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::DataPointStore::renderOrigin</definition>
+        <argsstring>(Dimension dimension) const</argsstring>
+        <name>renderOrigin</name>
+        <qualifiedname>QAccelPlot::DataPointStore::renderOrigin</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1DataPointStore_1a2a1f1ed22ed6c76b7068eb753cbb5fef" kindref="member">Dimension</ref></type>
+          <declname>dimension</declname>
+        </param>
+        <briefdescription>
+<para>Returns the render origin of <emphasis>dimension</emphasis>, rebuilding the render data first when stale. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>It is 0 for float data and logarithmic dimensions. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="204" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a5dcfb841854998a3cb931ad42fbde46d" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>std::uint64_t</type>
+        <definition>std::uint64_t QAccelPlot::DataPointStore::renderRevision</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>renderRevision</name>
+        <qualifiedname>QAccelPlot::DataPointStore::renderRevision</qualifiedname>
+        <briefdescription>
+<para>Returns a number that changes whenever the render data changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="206" column="20"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1ae2da8893d241fe14b7fc5e10f2d2f00a" prot="private" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1DataPointStore_1_1View" kindref="compound">View</ref></type>
+        <definition>View QAccelPlot::DataPointStore::sourceView</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>sourceView</name>
+        <qualifiedname>QAccelPlot::DataPointStore::sourceView</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="224" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a500cefc76333964a637cc15cc1eae24d" prot="private" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::DataPointStore::usesOrigin</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>usesOrigin</name>
+        <qualifiedname>QAccelPlot::DataPointStore::usesOrigin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="225" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1abc6b204552bf324b74ed6a915203378e" prot="private" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::DataPointStore::dataPointValid</definition>
+        <argsstring>(const View &amp;view, int index) const noexcept</argsstring>
+        <name>dataPointValid</name>
+        <qualifiedname>QAccelPlot::DataPointStore::dataPointValid</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1DataPointStore_1_1View" kindref="compound">View</ref> &amp;</type>
+          <declname>view</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="226" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a3713d7296a6f5c0b95cd242464eb1ab2" prot="private" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>Origin &amp;</type>
+        <definition>Origin &amp; QAccelPlot::DataPointStore::origin</definition>
+        <argsstring>(Dimension dimension) const noexcept</argsstring>
+        <name>origin</name>
+        <qualifiedname>QAccelPlot::DataPointStore::origin</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1DataPointStore_1a2a1f1ed22ed6c76b7068eb753cbb5fef" kindref="member">Dimension</ref></type>
+          <declname>dimension</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="227" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1aa9679a5975dee45391249163d9002433" prot="private" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::DataPointStore::originValue</definition>
+        <argsstring>(Dimension dimension) const noexcept</argsstring>
+        <name>originValue</name>
+        <qualifiedname>QAccelPlot::DataPointStore::originValue</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1DataPointStore_1a2a1f1ed22ed6c76b7068eb753cbb5fef" kindref="member">Dimension</ref></type>
+          <declname>dimension</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="228" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a152a81dd4a47464b4d3e53eb9ad9e7e6" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataPointStore::storeFloatCoordinates</definition>
+        <argsstring>(std::vector&lt; float &gt; &amp;&amp;coordinates, std::vector&lt; float &gt; &amp;&amp;attributes)</argsstring>
+        <name>storeFloatCoordinates</name>
+        <qualifiedname>QAccelPlot::DataPointStore::storeFloatCoordinates</qualifiedname>
+        <param>
+          <type>std::vector&lt; float &gt; &amp;&amp;</type>
+          <declname>coordinates</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; float &gt; &amp;&amp;</type>
+          <declname>attributes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="229" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1ab9efa6b910ae5fce82a52a3fcd2d68b7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataPointStore::dataPointsChanged</definition>
+        <argsstring>()</argsstring>
+        <name>dataPointsChanged</name>
+        <qualifiedname>QAccelPlot::DataPointStore::dataPointsChanged</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="230" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1afb408045c664c4863aa5c4be9bc75640" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataPointStore::invalidateRender</definition>
+        <argsstring>()</argsstring>
+        <name>invalidateRender</name>
+        <qualifiedname>QAccelPlot::DataPointStore::invalidateRender</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="231" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a920472c10d679edfc6b558438d0db4db" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataPointStore::ensureCompacted</definition>
+        <argsstring>() const</argsstring>
+        <name>ensureCompacted</name>
+        <qualifiedname>QAccelPlot::DataPointStore::ensureCompacted</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="232" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1ae44370063f32344335ec2ee7f68a14ca" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataPointStore::ensureRenderData</definition>
+        <argsstring>() const</argsstring>
+        <name>ensureRenderData</name>
+        <qualifiedname>QAccelPlot::DataPointStore::ensureRenderData</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="233" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a599807e22435d7e957104473fccb77eb" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataPointStore::chooseOrigins</definition>
+        <argsstring>(const View &amp;source) const</argsstring>
+        <name>chooseOrigins</name>
+        <qualifiedname>QAccelPlot::DataPointStore::chooseOrigins</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1DataPointStore_1_1View" kindref="compound">View</ref> &amp;</type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="234" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a873572b2eae1d7dd4403266886fb349c" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataPointStore::writeRenderData</definition>
+        <argsstring>(const View &amp;source, const float *attributes, int attributeStride) const</argsstring>
+        <name>writeRenderData</name>
+        <qualifiedname>QAccelPlot::DataPointStore::writeRenderData</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1DataPointStore_1_1View" kindref="compound">View</ref> &amp;</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>const float *</type>
+          <declname>attributes</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>attributeStride</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="235" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Holds the data points of one series and derives everything that depends only on them. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>A data point is a fixed number of coordinate columns, each tied to the X or Y dimension, plus optional float attributes and an optional integer category. The store keeps the coordinates at the precision they were given in and derives:</para>
+<para><itemizedlist>
+<listitem><para>the extents of the valid coordinates under one of three range rules;</para>
+</listitem><listitem><para>the float render data uploaded to the GPU. Float input is its own render data. Double input is uploaded relative to a render origin per dimension, which moves to the viewport center when the viewport gets too far from it. Logarithmic dimensions are never shifted.</para>
+</listitem></itemizedlist>
+</para>
+<para>Render data is rebuilt lazily, the first time it is read after something it depends on changed, so even its const readers may rebuild it. The store is not thread-safe: use it from the series&apos; thread, or from <computeroutput>updatePaintNode()</computeroutput> while that thread is blocked. </para>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="32" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="32" bodyend="263"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1DataPointStore_1ae6b1d8bcacc4c331b943c90d9cec5d77" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>append</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a2a2799c3af64856e637cbd94de00ce26" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>assignFloat</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a1974b3efbf520b548c1bdbecc80b5c38" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>assignPrecise</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a41820af6ff5a706eee0d488baba70617" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>attribute</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a8b0ba169cf7fce012e47b484a0fb0c1b" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>attributes</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a234c5319ff62838bbf82f085296e175f" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>attributes_</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a377d79443cd0fea8adb7ccccd4382bb8" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>categories</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a42cac259cf616c3530fa0476559f6cc5" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>categories_</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a599807e22435d7e957104473fccb77eb" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>chooseOrigins</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a73611a3409783b2b7f5c169fc0128097" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>clear</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a3ac3f075a8baa766de009cec77aa092a" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>clearDrawn</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a45e355925aad4e1a1e9b5e6526ec3d57" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>columnCount</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a7ea3b77af0ec737f45bdf323a9b48249" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>compacted_</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a0d8fa0b92f01aed9c5d59d71a2a92ec3" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>count</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1ab3511d34ac053a04d0f5678d31869e67" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>count_</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1ab9efa6b910ae5fce82a52a3fcd2d68b7" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>dataPointsChanged</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a79338c4458f1e5c42412aa5c99045fb0" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>DataPointStore</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1abc6b204552bf324b74ed6a915203378e" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>dataPointValid</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a2a1f1ed22ed6c76b7068eb753cbb5fef" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>Dimension</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1aba3d7d0b5dc7690c590d5d5ee26ed9cb" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>dimensionState</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a695ba65aa820806154ad9ef3991bddb3" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>drawn_</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a1dd1e6fff48701ffed0ec5f530b48db4" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>drawnCount_</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a50728e3e7e83cd632a222d0fe1bed4ab" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>drawnView</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a920472c10d679edfc6b558438d0db4db" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>ensureCompacted</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1ae44370063f32344335ec2ee7f68a14ca" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>ensureRenderData</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a1b469fed2e7dc915318fd18fe46239fe" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>extents</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1ac37ca1a9dd056e064a15ac63e3b72d84" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>floats_</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1aa0dd46425346d2ecb2d7f39b012fe4e4" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>hasAttributes</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a1e34131ec7bb4d00f41a7c20129674f9" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>hasAttributes_</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1ad168da450a38e75dc6f82516450d3466" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>hasCategories</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1ae33d5dcbdec4afc06f1199e7c7b611a1" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>hasDrawn</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a1f90f95594c88cd94afd471951eacdfe" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>hasDrawn_</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1afb408045c664c4863aa5c4be9bc75640" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>invalidateRender</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a7ccf36a9748a4261dcdb913593f95a2c" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>isPrecise</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a5ee86adf64495b2dd75310ec3ec51829" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>isPrecise_</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a480a0edc00e31c296c544c992a9b26a3" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>layout</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a9f34bc081f817a494eda3b70c32c292f" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>layout_</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a3713d7296a6f5c0b95cd242464eb1ab2" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>origin</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1aa9679a5975dee45391249163d9002433" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>originValue</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1af3242d70a3f89ca1a51ac7d9b74bf4c6" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>originX_</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1ae5bd93808255d3ef998d73a06ce19cdb" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>originY_</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1aea15ab7f2cae06a28ba67551d4e85a7b" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>precise_</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1aa4f3fe28dcc9874605ba25b70e7c86b6" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>promoteToPrecise</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1afe83393ab8a4e242aa3c5d0e45555122" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>RangeRule</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1adfa547ef9fdd544c089b5d2400844745" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>remapColumns</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a73d7472497daf9e3342dc02f96eb7dbd" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>renderCount</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1ab63a5a2b62d46162d79a90f86441a3a7" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>renderData</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1ac5043f89bfb923caf814be7674bb1682" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>renderData_</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1aaef1510d2b48065d421a7261c34c3f93" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>renderedView</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a964cd3f8350972de4be18defbba7dcf2" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>renderLogScaleX_</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1ac583c943b4a5e4affb7a3e190e331948" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>renderLogScaleY_</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1ac698cf52e7b989925917252fc6bcff2d" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>renderOrigin</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a5dcfb841854998a3cb931ad42fbde46d" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>renderRevision</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a57965b5705b0580cf610a9729211dcfb" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>renderRevision_</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a53600d90f7c1908cbc30463ac6d9e920" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>renderStride</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1aa5a24a5b077f4b1c60f59a19b846e6e3" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>renderValid_</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a6593300fcb61261ea68ea9777d9a71e7" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>setAttributes</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a2c6a888f16061bb6d2a57746d231b417" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>setCategories</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a0ddb310072fbee3da628d4f7644bb91a" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>setDimensionState</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a38865209f3f1f0dde3d3f3beb56946e4" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>setDrawn</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1aed97980eda5c3339ce71854d9ee408ec" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>setFloat</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a9d15cf9a687c49f423f89a4dcc3e9f10" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>setLayout</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a80117ed104d97cea5d14777719652d07" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>setPrecise</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1abe915037ef4360b117903f1923c4d524" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>setSkipInvalid</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a1188f369679fc9fcdc9a66782a633ee8" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>skipInvalid</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a0132b7a2149b0b49c167d78b6cbe48e8" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>skipInvalid_</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1ae2da8893d241fe14b7fc5e10f2d2f00a" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>sourceView</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a152a81dd4a47464b4d3e53eb9ad9e7e6" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>storeFloatCoordinates</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a500cefc76333964a637cc15cc1eae24d" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>usesOrigin</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1acd968d3d0452066398fe1bd6740caff9" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>value</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1aaf6159f19fe1381fe2fb256e3513d81d" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>view</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a873572b2eae1d7dd4403266886fb349c" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>writeRenderData</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a59b846b14ea0d1ef403cb9f4682eada8" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>x_</name></member>
+      <member refid="classQAccelPlot_1_1DataPointStore_1a8d2059e170c2b7304401e530c2b08c8a" prot="private" virt="non-virtual"><scope>QAccelPlot::DataPointStore</scope><name>y_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

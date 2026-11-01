@@ -24,7 +24,7 @@ _Common QML item contract for data series hosted by_ `PlotView` _._[More...](#de
 Inherits the following classes: QQuickItem
 
 
-Inherited by the following classes: [QAccelPlot::BandSeries](classQAccelPlot_1_1BandSeries.md),  [QAccelPlot::BarSeries](classQAccelPlot_1_1BarSeries.md),  [QAccelPlot::LineCurve](classQAccelPlot_1_1LineCurve.md),  [QAccelPlot::PointCloud](classQAccelPlot_1_1PointCloud.md),  [QAccelPlot::RectangleSeries](classQAccelPlot_1_1RectangleSeries.md)
+Inherited by the following classes: [QAccelPlot::BandSeries](classQAccelPlot_1_1BandSeries.md),  [QAccelPlot::ColormappedSeries](classQAccelPlot_1_1ColormappedSeries.md),  [QAccelPlot::ErrorBarSeries](classQAccelPlot_1_1ErrorBarSeries.md),  [QAccelPlot::LineCurve](classQAccelPlot_1_1LineCurve.md),  [QAccelPlot::RectangleSeries](classQAccelPlot_1_1RectangleSeries.md)
 
 
 ## Inheritance diagram
@@ -40,17 +40,29 @@ flowchart TB
   classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1BandSeries
   click classQAccelPlot_1_1BandSeries "../classQAccelPlot_1_1BandSeries/" "Open QAccelPlot::BandSeries"
 
+  classQAccelPlot_1_1ColormappedSeries["QAccelPlot::ColormappedSeries"]
+  classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1ColormappedSeries
+  click classQAccelPlot_1_1ColormappedSeries "../classQAccelPlot_1_1ColormappedSeries/" "Open QAccelPlot::ColormappedSeries"
+
   classQAccelPlot_1_1BarSeries["QAccelPlot::BarSeries"]
-  classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1BarSeries
+  classQAccelPlot_1_1ColormappedSeries --> classQAccelPlot_1_1BarSeries
   click classQAccelPlot_1_1BarSeries "../classQAccelPlot_1_1BarSeries/" "Open QAccelPlot::BarSeries"
+
+  classQAccelPlot_1_1HeatmapSeries["QAccelPlot::HeatmapSeries"]
+  classQAccelPlot_1_1ColormappedSeries --> classQAccelPlot_1_1HeatmapSeries
+  click classQAccelPlot_1_1HeatmapSeries "../classQAccelPlot_1_1HeatmapSeries/" "Open QAccelPlot::HeatmapSeries"
+
+  classQAccelPlot_1_1PointCloud["QAccelPlot::PointCloud"]
+  classQAccelPlot_1_1ColormappedSeries --> classQAccelPlot_1_1PointCloud
+  click classQAccelPlot_1_1PointCloud "../classQAccelPlot_1_1PointCloud/" "Open QAccelPlot::PointCloud"
+
+  classQAccelPlot_1_1ErrorBarSeries["QAccelPlot::ErrorBarSeries"]
+  classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1ErrorBarSeries
+  click classQAccelPlot_1_1ErrorBarSeries "../classQAccelPlot_1_1ErrorBarSeries/" "Open QAccelPlot::ErrorBarSeries"
 
   classQAccelPlot_1_1LineCurve["QAccelPlot::LineCurve"]
   classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1LineCurve
   click classQAccelPlot_1_1LineCurve "../classQAccelPlot_1_1LineCurve/" "Open QAccelPlot::LineCurve"
-
-  classQAccelPlot_1_1PointCloud["QAccelPlot::PointCloud"]
-  classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1PointCloud
-  click classQAccelPlot_1_1PointCloud "../classQAccelPlot_1_1PointCloud/" "Open QAccelPlot::PointCloud"
 
   classQAccelPlot_1_1RectangleSeries["QAccelPlot::RectangleSeries"]
   classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1RectangleSeries
@@ -80,7 +92,6 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 | enum  | [**LegendSymbol**](#enum-legendsymbol)  <br>_Supported default legend symbols._  |
-| enum  | [**MarkerShape**](#enum-markershape)  <br>_Marker shapes shared by every series that draws markers._  |
 
 
 
@@ -97,8 +108,11 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
+| property int | [**count**](classQAccelPlot_1_1PlotSeries.md#property-count-12)  <br>_Read-only: number of records stored, including invalid ones._  |
 | property quint64 | [**dataRevision**](classQAccelPlot_1_1PlotSeries.md#property-datarevision-12)  <br>_Revision incremented by every accepted change of the series' records._  |
-| property [**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) \* | [**inspection**](classQAccelPlot_1_1PlotSeries.md#property-inspection-12)  <br>_Read-only constant: data queries for this series._  |
+| property bool | [**hoverEnabled**](classQAccelPlot_1_1PlotSeries.md#property-hoverenabled-12)  <br>_Whether the series reacts to the mouse cursor. Default:_ `true` _._ |
+| property bool | [**hovered**](classQAccelPlot_1_1PlotSeries.md#property-hovered-12)  <br>_Read-only:_ `true` _while the mouse cursor is over the series._ |
+| property [**SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) \* | [**inspection**](classQAccelPlot_1_1PlotSeries.md#property-inspection-12)  <br>_Read-only constant: data queries for this series._  |
 | property [**LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol) | [**legendSymbol**](classQAccelPlot_1_1PlotSeries.md#property-legendsymbol-12)  <br>_Symbol style requested from the default legend._  |
 | property QString | [**name**](classQAccelPlot_1_1PlotSeries.md#property-name-12)  <br>_Identifying name used by the default legend._  |
 | property QRectF | [**plotRect**](classQAccelPlot_1_1PlotSeries.md#property-plotrect-12)  <br>_Plot area in parent-item coordinates, assigned by_ `PlotView` _._ |
@@ -112,7 +126,11 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
+| signal void | [**countChanged**](classQAccelPlot_1_1PlotSeries.md#signal-countchanged)  <br>_Emitted when the number of records changes._  |
 | signal void | [**dataRevisionChanged**](classQAccelPlot_1_1PlotSeries.md#signal-datarevisionchanged)  <br>_Emitted when the dataRevision property changes._  |
+| signal void | [**hoverEnabledChanged**](classQAccelPlot_1_1PlotSeries.md#signal-hoverenabledchanged)  <br>_Emitted when the hoverEnabled property changes._  |
+| signal void | [**hoveredChanged**](classQAccelPlot_1_1PlotSeries.md#signal-hoveredchanged)  <br>_Emitted when the hovered property changes._  |
+| signal void | [**legendEntryChanged**](classQAccelPlot_1_1PlotSeries.md#signal-legendentrychanged)  <br>_Emitted when the result of_ `legendEntry()` _or_`legendEntries()` _changes._ |
 | signal void | [**legendSymbolChanged**](classQAccelPlot_1_1PlotSeries.md#signal-legendsymbolchanged)  <br> |
 | signal void | [**nameChanged**](classQAccelPlot_1_1PlotSeries.md#signal-namechanged)  <br> |
 | signal void | [**plotRectChanged**](classQAccelPlot_1_1PlotSeries.md#signal-plotrectchanged)  <br> |
@@ -128,8 +146,13 @@ flowchart TB
 | ---: | :--- |
 |   | [**PlotSeries**](#function-plotseries-12) (QQuickItem \* parent=nullptr) <br> |
 | virtual void | [**clearData**](#function-cleardata) () <br>_Removes all data points from the series._  |
+| virtual int | [**count**](#function-count-22) () const<br>_Returns the number of records stored. The default is the number of stored data points._  |
 |  quint64 | [**dataRevision**](#function-datarevision-22) () const<br>_Returns the current data revision._  |
+|  bool | [**hoverEnabled**](#function-hoverenabled-22) () const<br>_Returns whether the series reacts to the mouse cursor._  |
+|  bool | [**hovered**](#function-hovered-22) () const<br>_Returns whether the mouse cursor is over the series._  |
 |  [**SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) \* | [**inspection**](#function-inspection-22) () const<br>_Returns the data queries for this series; created on first use and owned by the series._  |
+| virtual QList&lt; [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md) &gt; | [**legendEntries**](#function-legendentries) () const<br>_Returns the legend rows of the series. Default: the_ `legendEntry()` _, if any._ |
+| virtual std::optional&lt; [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md) &gt; | [**legendEntry**](#function-legendentry) () const<br>_Returns how a legend draws the series, or_ `std::nullopt` _for no legend entry. Default: no entry._ |
 |  [**LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol) | [**legendSymbol**](#function-legendsymbol-22) () const<br> |
 |  QString | [**name**](#function-name-22) () const<br> |
 |  QRectF | [**plotRect**](#function-plotrect-22) () const<br> |
@@ -143,6 +166,7 @@ flowchart TB
 |  void | [**setDataF**](#function-setdataf-24) (std::vector&lt; float &gt; && data, int count) <br>_Replaces the series data by moving an interleaved float buffer._  |
 |  void | [**setDataF**](#function-setdataf-34) (const float \* data, int count, const [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) & bounds) <br>_Like_ `setDataF` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._ |
 |  void | [**setDataF**](#function-setdataf-44) (std::vector&lt; float &gt; && data, int count, const [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) & bounds) <br>_Like_ `setDataF` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._ |
+|  void | [**setHoverEnabled**](#function-sethoverenabled) (bool enabled) <br>_Sets whether the series reacts to the mouse cursor to_ _enabled_ _._ |
 |  void | [**setLegendSymbol**](#function-setlegendsymbol) ([**LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol) symbol) <br> |
 |  void | [**setName**](#function-setname) (const QString & name) <br> |
 |  void | [**setPlotRect**](#function-setplotrect) (const QRectF & rect) <br>_Updates the series geometry to exactly cover_ _rect_ _._ |
@@ -161,11 +185,18 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
+| enum  | [**CapacityOverflow**](#enum-capacityoverflow)  <br>_What a series draws when its records outgrow its GPU capacity._  |
 | enum  | [**DataChange**](#enum-datachange)  <br>_How the records changed in a data update._  |
 
 
 
 
+## Protected Attributes
+
+| Type | Name |
+| ---: | :--- |
+|  bool | [**overRenderCapacity\_**](#variable-overrendercapacity_)   = `{false}`<br>_Whether the record count of the last_ `updateRenderCapacity()` _exceeded_`renderCapacity_` _._ |
+|  int | [**renderCapacity\_**](#variable-rendercapacity_)   = `{std::numeric\_limits&lt;int&gt;::max()}`<br>_Records the GPU buffers hold, as of the last_ `updateRenderCapacity()` _; the largest_`int` _before the first._ |
 
 
 
@@ -198,19 +229,25 @@ flowchart TB
 |  void | [**extendYDataRange**](#function-extendydatarange) (qreal y) <br>_Widens the Y extent to include_ _y_ _. A non-finite__y_ _leaves the extent unchanged._ |
 | virtual bool | [**inspectionAvailable**](#function-inspectionavailable) () const<br>_Returns false while the records are ambiguous, such as during a data transition. Default: true._  |
 |  void | [**inspectionDataChanged**](#function-inspectiondatachanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change=DataChange::Replaced) <br>_Advances the data revision and refreshes the data queries. Call after every accepted record change._  |
+| virtual [**InspectionDataPoint**](structQAccelPlot_1_1InspectionDataPoint.md) | [**inspectionDataPointAt**](#function-inspectiondatapointat) (const QPointF & position) const<br>_Returns the record drawn at the series-local_ _position_ _as a data point. Default: unsupported._ |
 | virtual [**InspectionRecord**](structQAccelPlot_1_1InspectionRecord.md) | [**inspectionRecord**](#function-inspectionrecord) (int index) const<br>_Returns the native record at_ _index_ _for series that are not plain XY series. Default: unsupported._ |
 | virtual [**InspectionRecord**](structQAccelPlot_1_1InspectionRecord.md) | [**inspectionRecordAt**](#function-inspectionrecordat) (const QPointF & position) const<br>_Returns the native record drawn at the series-local_ _position_ _. Default: unsupported._ |
-| virtual [**InspectionSource**](structQAccelPlot_1_1InspectionSource.md) | [**inspectionSource**](#function-inspectionsource) () const<br>_Returns a view of the XY records that data point queries search. The default has none._  |
+| virtual [**Internal::InspectionSource**](structQAccelPlot_1_1Internal_1_1InspectionSource.md) | [**inspectionSource**](#function-inspectionsource) () const<br>_Returns a view of the XY records that data point queries search. The default has none._  |
 |  void | [**invalidateDataRanges**](#function-invalidatedataranges) () <br>_Discards the cached extents and notifies the bound axes._  |
 |  void | [**invalidateInspection**](#function-invalidateinspection) () <br>_Refreshes the data queries after record validity changed without a data change, such as an axis scale switch._  |
 |  bool | [**logScaleX**](#function-logscalex) () const<br>_Returns whether the horizontal axis is logarithmic; false without an axis._  |
 |  bool | [**logScaleY**](#function-logscaley) () const<br>_Returns whether the vertical axis is logarithmic; false without an axis._  |
-|  void | [**notifyDataPointsChanged**](#function-notifydatapointschanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change, int previousCount) <br>_Finishes a change of the data points: data ranges,_ `onDataPointsChanged()` _, data queries, and a repaint._ |
+|  void | [**notifyDataPointsChanged**](#function-notifydatapointschanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change, int previousCount) <br>_Finishes a change of the data points: data ranges,_ `onDataPointsChanged()` _,_`countChanged()` _, data queries, and a repaint._ |
 | virtual void | [**onAxisRangeChanged**](#function-onaxisrangechanged) () <br>_Called when the viewport of a bound axis changes. The default implementation schedules a repaint._  |
 | virtual void | [**onAxisScaleChanged**](#function-onaxisscalechanged) () <br>_Called when a bound axis switches between linear and logarithmic scale, or a different axis is bound._  |
 | virtual void | [**onDataPointsChanged**](#function-ondatapointschanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change, int previousCount) <br>_Called after the data points changed, before the data queries are refreshed. The default does nothing._  |
+| virtual bool | [**positionInspectionSupported**](#function-positioninspectionsupported) () const<br>_Returns whether_ `inspectionDataPointAt()` _matches records drawn as areas, such as heatmap cells. Default: false._ |
+| virtual bool | [**recordInspectionSupported**](#function-recordinspectionsupported) () const<br>_Returns whether_ `inspectionRecord()` _and_`inspectionRecordAt()` _answer for this series. Default: false._ |
 |  QRectF | [**resolvePlotRect**](#function-resolveplotrect) () const<br>_Returns the plot area to render into:_ `plotRect` _when set, otherwise the item's current size._ |
+|  void | [**setHovered**](#function-sethovered) (bool hovered) <br>_Sets the hovered property to_ _hovered_ _. Called by the hover handling of a series._ |
 |  void | [**storeDataPoints**](#function-storedatapoints) ([**DataPointInput**](structQAccelPlot_1_1PlotSeries_1_1DataPointInput.md) && input) <br>_Stores_ _input_ _as the data points and finishes the change._ |
+|  void | [**supportHover**](#function-supporthover) () <br>_Makes the series accept hover events while_ `hoverEnabled` _is_`true` _._ |
+|  void | [**updateRenderCapacity**](#function-updaterendercapacity) (int capacity, int recordCount, [**CapacityOverflow**](classQAccelPlot_1_1PlotSeries.md#enum-capacityoverflow) overflow=CapacityOverflow::DropsExcess) <br>_Stores_ _capacity_ _, the number of records the GPU buffers hold, and warns when__recordCount_ _newly exceeds it._ |
 |  bool | [**validateDataSize**](#function-validatedatasize) (std::size\_t valueCount, int count, bool floatData, int valuesPerDataPoint=0) const<br>_Returns whether_ _valueCount_ _values hold__count_ _data points; warns otherwise._ |
 |  bool | [**validateRawDataArguments**](#function-validaterawdataarguments) (const void \* data, int count) const<br>_Returns whether_ _data_ _and__count_ _are valid arguments for copying data points; warns otherwise._ |
 
@@ -233,19 +270,39 @@ flowchart TB
 |`PointCloud`   |(x, y)   |2    |
 |`RectangleSeries`   |(x1, y1, x2, y2)   |4    |
 |`BarSeries`   |(position, value)   |2    |
-|`BandSeries`   |(x, low, high)   |3   |
+|`BandSeries`   |(x, low, high)   |3    |
+|`ErrorBarSeries`   |(x, y, low, high)   |4    |
+|`HeatmapSeries`   |cell value   |1   |
 
 
 
 
 
 
-The buffer holds _count_ times that many values. Series-specific setters take other layouts, such as point values, categories, or ranged bars.
+The buffer holds _count_ times that many values. A `HeatmapSeries` takes its cells row by row, `columns` per row. Series-specific setters take other layouts, such as point values, categories, or ranged bars.
+
+
+Series smooth their edges with the inherited `antialiasing` property. `HeatmapSeries` ignores it.
+
+
+
+|Series   |Default `antialiasing`   |Smoothed edges    |
+|-----|-----|-----|
+|`LineCurve`   |`true`   |lines and markers    |
+|`PointCloud`   |`true`   |markers    |
+|`BandSeries`   |`true`   |edge lines    |
+|`ErrorBarSeries`   |`true`   |lines and caps    |
+|`RectangleSeries`   |`false`   |rectangles and their border    |
+|`BarSeries`   |`false`   |bars and their border   |
 
 
 
 
-**See also:** [**LineCurve**](classQAccelPlot_1_1LineCurve.md), [**PointCloud**](classQAccelPlot_1_1PointCloud.md), [**RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md), [**BarSeries**](classQAccelPlot_1_1BarSeries.md), [**BandSeries**](classQAccelPlot_1_1BandSeries.md), [**QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) 
+
+
+
+
+**See also:** [**LineCurve**](classQAccelPlot_1_1LineCurve.md), [**PointCloud**](classQAccelPlot_1_1PointCloud.md), [**RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md), [**BarSeries**](classQAccelPlot_1_1BarSeries.md), [**BandSeries**](classQAccelPlot_1_1BandSeries.md), [**ErrorBarSeries**](classQAccelPlot_1_1ErrorBarSeries.md), [**HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md), QAccelPlot 
 
 
 
@@ -275,45 +332,27 @@ enum QAccelPlot::PlotSeries::LegendSymbol {
         
 
 <hr>
+## Public Properties Documentation
 
 
 
 
-### enum MarkerShape {#enum-markershape}
 
-_Marker shapes shared by every series that draws markers._ 
+### property count {#property-count-12}
+
+_Read-only: number of records stored, including invalid ones._ 
 ```C++
-enum QAccelPlot::PlotSeries::MarkerShape {
-    None,
-    Circle,
-    Square,
-    Diamond,
-    TriangleUp,
-    TriangleDown,
-    TriangleLeft,
-    TriangleRight,
-    Cross,
-    XCross,
-    HLine,
-    VLine,
-    Star,
-    Asterisk,
-    Pixel,
-    Hexagon,
-    Pentagon
-};
+int QAccelPlot::PlotSeries::count;
 ```
 
 
 
-Every shape except `Pixel` fits within a square whose half-width is the marker size. The shaders select a shape by this value minus one, so append new shapes at the end and never reorder or insert. Series that always draw markers, such as `PointCloud`, do not accept `None`. 
+A record is one data point of the layout in the class description: a point of a `LineCurve` or `PointCloud`, a rectangle, a bar, a band sample, an error bar, or a heatmap cell. A `HeatmapSeries` counts `columns` × `rows` cells, without an incomplete last row. 
 
 
         
 
 <hr>
-## Public Properties Documentation
-
 
 
 
@@ -333,11 +372,49 @@ quint64 QAccelPlot::PlotSeries::dataRevision;
 
 
 
+### property hoverEnabled {#property-hoverenabled-12}
+
+_Whether the series reacts to the mouse cursor. Default:_ `true` _._
+```C++
+bool QAccelPlot::PlotSeries::hoverEnabled;
+```
+
+
+
+When `false`, the series is never hovered and hover reaches the series beneath it. `QACCELPLOT_HOVER_ENABLED=0` turns hover off for every series regardless of this property. `HeatmapSeries` has no hover and ignores it. 
+
+
+        
+
+<hr>
+
+
+
+
+### property hovered {#property-hovered-12}
+
+_Read-only:_ `true` _while the mouse cursor is over the series._
+```C++
+bool QAccelPlot::PlotSeries::hovered;
+```
+
+
+
+Only the topmost series under the cursor is hovered. A series with a `hoveredIndex` is hovered while that index is not -1. A `HeatmapSeries` is never hovered. 
+
+
+        
+
+<hr>
+
+
+
+
 ### property inspection {#property-inspection-12}
 
 _Read-only constant: data queries for this series._ 
 ```C++
-QAccelPlot::SeriesInspection* QAccelPlot::PlotSeries::inspection;
+SeriesInspection* QAccelPlot::PlotSeries::inspection;
 ```
 
 
@@ -425,11 +502,71 @@ Axis* QAccelPlot::PlotSeries::yAxis;
 
 
 
+### signal countChanged {#signal-countchanged}
+
+_Emitted when the number of records changes._ 
+```C++
+void QAccelPlot::PlotSeries::countChanged;
+```
+
+
+
+
+<hr>
+
+
+
+
 ### signal dataRevisionChanged {#signal-datarevisionchanged}
 
 _Emitted when the dataRevision property changes._ 
 ```C++
 void QAccelPlot::PlotSeries::dataRevisionChanged;
+```
+
+
+
+
+<hr>
+
+
+
+
+### signal hoverEnabledChanged {#signal-hoverenabledchanged}
+
+_Emitted when the hoverEnabled property changes._ 
+```C++
+void QAccelPlot::PlotSeries::hoverEnabledChanged;
+```
+
+
+
+
+<hr>
+
+
+
+
+### signal hoveredChanged {#signal-hoveredchanged}
+
+_Emitted when the hovered property changes._ 
+```C++
+void QAccelPlot::PlotSeries::hoveredChanged;
+```
+
+
+
+
+<hr>
+
+
+
+
+### signal legendEntryChanged {#signal-legendentrychanged}
+
+_Emitted when the result of_ `legendEntry()` _or_`legendEntries()` _changes._
+```C++
+void QAccelPlot::PlotSeries::legendEntryChanged;
 ```
 
 
@@ -543,11 +680,56 @@ virtual void QAccelPlot::PlotSeries::clearData ()
 
 
 
+### function count {#function-count-22}
+
+_Returns the number of records stored. The default is the number of stored data points._ 
+```C++
+virtual int QAccelPlot::PlotSeries::count () const
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function dataRevision {#function-datarevision-22}
 
 _Returns the current data revision._ 
 ```C++
 quint64 QAccelPlot::PlotSeries::dataRevision () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function hoverEnabled {#function-hoverenabled-22}
+
+_Returns whether the series reacts to the mouse cursor._ 
+```C++
+bool QAccelPlot::PlotSeries::hoverEnabled () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function hovered {#function-hovered-22}
+
+_Returns whether the mouse cursor is over the series._ 
+```C++
+bool QAccelPlot::PlotSeries::hovered () const
 ```
 
 
@@ -567,6 +749,44 @@ SeriesInspection * QAccelPlot::PlotSeries::inspection () const
 
 
 
+
+<hr>
+
+
+
+
+### function legendEntries {#function-legendentries}
+
+_Returns the legend rows of the series. Default: the_ `legendEntry()` _, if any._
+```C++
+virtual QList< LegendEntry > QAccelPlot::PlotSeries::legendEntries () const
+```
+
+
+
+A series colored by category returns one entry per category, labeled by its `name`. Series that override it emit `legendEntryChanged()` whenever the result changes. 
+
+
+        
+
+<hr>
+
+
+
+
+### function legendEntry {#function-legendentry}
+
+_Returns how a legend draws the series, or_ `std::nullopt` _for no legend entry. Default: no entry._
+```C++
+virtual std::optional< LegendEntry > QAccelPlot::PlotSeries::legendEntry () const
+```
+
+
+
+Series that override it emit `legendEntryChanged()` whenever the result changes. 
+
+
+        
 
 <hr>
 
@@ -803,6 +1023,27 @@ void QAccelPlot::PlotSeries::setDataF (
 
 
 
+### function setHoverEnabled {#function-sethoverenabled}
+
+_Sets whether the series reacts to the mouse cursor to_ _enabled_ _._
+```C++
+void QAccelPlot::PlotSeries::setHoverEnabled (
+    bool enabled
+) 
+```
+
+
+
+Turning hover off while the series is hovered clears its hover state at once. 
+
+
+        
+
+<hr>
+
+
+
+
 ### function setLegendSymbol {#function-setlegendsymbol}
 
 ```C++
@@ -962,6 +1203,24 @@ QAccelPlot::PlotSeries::~PlotSeries () override
 
 
 
+### enum CapacityOverflow {#enum-capacityoverflow}
+
+_What a series draws when its records outgrow its GPU capacity._ 
+```C++
+enum QAccelPlot::PlotSeries::CapacityOverflow {
+    DropsExcess,
+    DropsAll
+};
+```
+
+
+
+
+<hr>
+
+
+
+
 ### enum DataChange {#enum-datachange}
 
 _How the records changed in a data update._ 
@@ -970,6 +1229,38 @@ enum QAccelPlot::PlotSeries::DataChange {
     Replaced,
     Appended
 };
+```
+
+
+
+
+<hr>
+## Protected Attributes Documentation
+
+
+
+
+
+### variable overRenderCapacity\_ {#variable-overrendercapacity_}
+
+_Whether the record count of the last_ `updateRenderCapacity()` _exceeded_`renderCapacity_` _._
+```C++
+bool QAccelPlot::PlotSeries::overRenderCapacity_;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable renderCapacity\_ {#variable-rendercapacity_}
+
+_Records the GPU buffers hold, as of the last_ `updateRenderCapacity()` _; the largest_`int` _before the first._
+```C++
+int QAccelPlot::PlotSeries::renderCapacity_;
 ```
 
 
@@ -1198,6 +1489,23 @@ void QAccelPlot::PlotSeries::inspectionDataChanged (
 
 
 
+### function inspectionDataPointAt {#function-inspectiondatapointat}
+
+_Returns the record drawn at the series-local_ _position_ _as a data point. Default: unsupported._
+```C++
+virtual InspectionDataPoint QAccelPlot::PlotSeries::inspectionDataPointAt (
+    const QPointF & position
+) const
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function inspectionRecord {#function-inspectionrecord}
 
 _Returns the native record at_ _index_ _for series that are not plain XY series. Default: unsupported._
@@ -1236,7 +1544,7 @@ virtual InspectionRecord QAccelPlot::PlotSeries::inspectionRecordAt (
 
 _Returns a view of the XY records that data point queries search. The default has none._ 
 ```C++
-virtual InspectionSource QAccelPlot::PlotSeries::inspectionSource () const
+virtual Internal::InspectionSource QAccelPlot::PlotSeries::inspectionSource () const
 ```
 
 
@@ -1313,7 +1621,7 @@ bool QAccelPlot::PlotSeries::logScaleY () const
 
 ### function notifyDataPointsChanged {#function-notifydatapointschanged}
 
-_Finishes a change of the data points: data ranges,_ `onDataPointsChanged()` _, data queries, and a repaint._
+_Finishes a change of the data points: data ranges,_ `onDataPointsChanged()` _,_`countChanged()` _, data queries, and a repaint._
 ```C++
 void QAccelPlot::PlotSeries::notifyDataPointsChanged (
     DataChange change,
@@ -1381,6 +1689,36 @@ virtual void QAccelPlot::PlotSeries::onDataPointsChanged (
 
 
 
+### function positionInspectionSupported {#function-positioninspectionsupported}
+
+_Returns whether_ `inspectionDataPointAt()` _matches records drawn as areas, such as heatmap cells. Default: false._
+```C++
+virtual bool QAccelPlot::PlotSeries::positionInspectionSupported () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function recordInspectionSupported {#function-recordinspectionsupported}
+
+_Returns whether_ `inspectionRecord()` _and_`inspectionRecordAt()` _answer for this series. Default: false._
+```C++
+virtual bool QAccelPlot::PlotSeries::recordInspectionSupported () const
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function resolvePlotRect {#function-resolveplotrect}
 
 _Returns the plot area to render into:_ `plotRect` _when set, otherwise the item's current size._
@@ -1400,6 +1738,23 @@ Safe to call from `updatePaintNode()`; it never modifies the item.
 
 
 
+### function setHovered {#function-sethovered}
+
+_Sets the hovered property to_ _hovered_ _. Called by the hover handling of a series._
+```C++
+void QAccelPlot::PlotSeries::setHovered (
+    bool hovered
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function storeDataPoints {#function-storedatapoints}
 
 _Stores_ _input_ _as the data points and finishes the change._
@@ -1411,6 +1766,48 @@ void QAccelPlot::PlotSeries::storeDataPoints (
 
 
 
+
+<hr>
+
+
+
+
+### function supportHover {#function-supporthover}
+
+_Makes the series accept hover events while_ `hoverEnabled` _is_`true` _._
+```C++
+void QAccelPlot::PlotSeries::supportHover () 
+```
+
+
+
+Call from the constructor of a series that reacts to the cursor. Its `hoverLeaveEvent()` must clear the hover state, `hovered` included, as turning `hoverEnabled` off calls it. 
+
+
+        
+
+<hr>
+
+
+
+
+### function updateRenderCapacity {#function-updaterendercapacity}
+
+_Stores_ _capacity_ _, the number of records the GPU buffers hold, and warns when__recordCount_ _newly exceeds it._
+```C++
+void QAccelPlot::PlotSeries::updateRenderCapacity (
+    int capacity,
+    int recordCount,
+    CapacityOverflow overflow=CapacityOverflow::DropsExcess
+) 
+```
+
+
+
+Call from `updatePaintNode()` on every frame. A series that stays over capacity, for example while streaming, warns once; one whose data fits again and then outgrows the capacity warns again. _overflow_ says in the warning what the series draws. 
+
+
+        
 
 <hr>
 

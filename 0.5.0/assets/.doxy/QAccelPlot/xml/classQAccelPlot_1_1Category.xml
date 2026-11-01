@@ -1,0 +1,367 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1Category" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::Category</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
+    <includes local="no">Category.hpp</includes>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::Category::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <qualifiedname>QAccelPlot::Category::value</qualifiedname>
+        <read>value</read>
+        <write>setValue</write>
+        <briefdescription>
+<para>Value that data points carry as their <computeroutput>category</computeroutput>. Default: 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="42" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/Category.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Category_1aa56e800e6c107c219839466c90566d81" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QString</type>
+        <definition>QString QAccelPlot::Category::name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <qualifiedname>QAccelPlot::Category::name</qualifiedname>
+        <read>name</read>
+        <write>setName</write>
+        <briefdescription>
+<para>Name for the legend, <computeroutput>categoryName</computeroutput>, and QML data. Default: empty. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="44" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/Category.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Category_1a69e1147a12652e9c347ea27378598ba9" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::Category::color</definition>
+        <argsstring></argsstring>
+        <name>color</name>
+        <qualifiedname>QAccelPlot::Category::color</qualifiedname>
+        <read>color</read>
+        <write>setColor</write>
+        <briefdescription>
+<para>Fill color. Default: an invalid color, which uses the series <computeroutput>color</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="46" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/Category.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1Category_1a4d362b90dd12f297046c9eda95c6a1d8" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::Category::value_</definition>
+        <argsstring></argsstring>
+        <name>value_</name>
+        <qualifiedname>QAccelPlot::Category::value_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="78" column="9" bodyfile="QAccelPlot/src/QAccelPlot/series/Category.hpp" bodystart="78" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Category_1a5098dcd3ede01e04871d5c79b7204cec" prot="private" static="no" mutable="no">
+        <type>QString</type>
+        <definition>QString QAccelPlot::Category::name_</definition>
+        <argsstring></argsstring>
+        <name>name_</name>
+        <qualifiedname>QAccelPlot::Category::name_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="79" column="13" bodyfile="QAccelPlot/src/QAccelPlot/series/Category.hpp" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Category_1a82ac2929464e14e4f86391985efa51d9" prot="private" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::Category::color_</definition>
+        <argsstring></argsstring>
+        <name>color_</name>
+        <qualifiedname>QAccelPlot::Category::color_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="80" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/Category.hpp" bodystart="80" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Category_1a706a31512d9efc476527152d697b8783" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::Category::Category</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>Category</name>
+        <qualifiedname>QAccelPlot::Category::Category</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a category with value 0, no name, and no color, owned by <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="50" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Category_1aa0a8e1b5196a6324768167c0206e47b6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::Category::Category</definition>
+        <argsstring>(int value, QString name, const QColor &amp;color, QObject *parent=nullptr)</argsstring>
+        <name>Category</name>
+        <qualifiedname>QAccelPlot::Category::Category</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>QString</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>color</declname>
+        </param>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a category with <emphasis>value</emphasis>, <emphasis>name</emphasis>, and <emphasis>color</emphasis>, owned by <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="52" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Category_1a7431b05cd9391cb3372fa07b9d57ce35" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::Category::value</definition>
+        <argsstring>() const</argsstring>
+        <name>value</name>
+        <qualifiedname>QAccelPlot::Category::value</qualifiedname>
+        <briefdescription>
+<para>Returns the value data points carry. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="55" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Category_1a7d48405b070c380d2bd3d9355b14c43b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Category::setValue</definition>
+        <argsstring>(int value)</argsstring>
+        <name>setValue</name>
+        <qualifiedname>QAccelPlot::Category::setValue</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Sets the value data points carry to <emphasis>value</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="57" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Category_1af8340b8c4d6ec5924ba1ba72100a4509" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QString</type>
+        <definition>QString QAccelPlot::Category::name</definition>
+        <argsstring>() const</argsstring>
+        <name>name</name>
+        <qualifiedname>QAccelPlot::Category::name</qualifiedname>
+        <briefdescription>
+<para>Returns the name. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="60" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Category_1a6ead95851717798d432d7b26f4489533" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Category::setName</definition>
+        <argsstring>(const QString &amp;name)</argsstring>
+        <name>setName</name>
+        <qualifiedname>QAccelPlot::Category::setName</qualifiedname>
+        <param>
+          <type>const QString &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Sets the name to <emphasis>name</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="62" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Category_1ab23f2fc1b3259de523b8c8bacef21535" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::Category::color</definition>
+        <argsstring>() const</argsstring>
+        <name>color</name>
+        <qualifiedname>QAccelPlot::Category::color</qualifiedname>
+        <briefdescription>
+<para>Returns the fill color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="65" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Category_1a09109d8f212b9c3f878ef58df953f4ee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Category::setColor</definition>
+        <argsstring>(const QColor &amp;color)</argsstring>
+        <name>setColor</name>
+        <qualifiedname>QAccelPlot::Category::setColor</qualifiedname>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>color</declname>
+        </param>
+        <briefdescription>
+<para>Sets the fill color to <emphasis>color</emphasis>. An invalid color uses the series <computeroutput>color</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="67" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1Category_1a5a09039d768e38c456142817ef1a5350" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Category::valueChanged</definition>
+        <argsstring>()</argsstring>
+        <name>valueChanged</name>
+        <qualifiedname>QAccelPlot::Category::valueChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the value property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="71" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Category_1a272bdf9ea40c4b631b6a5061a24f5d40" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Category::nameChanged</definition>
+        <argsstring>()</argsstring>
+        <name>nameChanged</name>
+        <qualifiedname>QAccelPlot::Category::nameChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the name property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="73" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Category_1a67dbd18a0fce0c61f44d2679ecdc13e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Category::colorChanged</definition>
+        <argsstring>()</argsstring>
+        <name>colorChanged</name>
+        <qualifiedname>QAccelPlot::Category::colorChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the color property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="75" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>One category of a <computeroutput><ref refid="classQAccelPlot_1_1BarSeries" kindref="compound">BarSeries</ref></computeroutput> or <computeroutput><ref refid="classQAccelPlot_1_1RectangleSeries" kindref="compound">RectangleSeries</ref>:</computeroutput> a value, a name, and a fill color. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Data points carry the category <computeroutput>value</computeroutput> as their <computeroutput>category</computeroutput>. The <computeroutput>name</computeroutput> labels the category in the legend and in <computeroutput>barAt()</computeroutput> / <computeroutput>rectangleAt()</computeroutput>, and QML data can use it instead of the value.</para>
+<para><programlisting><codeline><highlight class="normal">QAccelPlot.RectangleSeries<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>categories:<sp/>[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QAccelPlot.Category<sp/>{<sp/><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">value</ref>:<sp/>0;<sp/><ref refid="classQAccelPlot_1_1Category_1aa56e800e6c107c219839466c90566d81" kindref="member">name</ref>:<sp/></highlight><highlight class="stringliteral">&quot;Running&quot;</highlight><highlight class="normal">;<sp/><ref refid="classQAccelPlot_1_1Category_1a69e1147a12652e9c347ea27378598ba9" kindref="member">color</ref>:<sp/></highlight><highlight class="stringliteral">&quot;seagreen&quot;</highlight><highlight class="normal"><sp/>},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QAccelPlot.Category<sp/>{<sp/><ref refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" kindref="member">value</ref>:<sp/>1;<sp/><ref refid="classQAccelPlot_1_1Category_1aa56e800e6c107c219839466c90566d81" kindref="member">name</ref>:<sp/></highlight><highlight class="stringliteral">&quot;Alarm&quot;</highlight><highlight class="normal">;<sp/><ref refid="classQAccelPlot_1_1Category_1a69e1147a12652e9c347ea27378598ba9" kindref="member">color</ref>:<sp/></highlight><highlight class="stringliteral">&quot;firebrick&quot;</highlight><highlight class="normal"><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>]</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1BarSeries_1ae728069dc8cceeea2cb9bb28e5c0cec8" kindref="member">BarSeries::categories</ref>, <ref refid="classQAccelPlot_1_1RectangleSeries_1ab5db60ed9c8b7777149175b6d897ea23" kindref="member">RectangleSeries::categories</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::Category</label>
+        <link refid="classQAccelPlot_1_1Category"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::Category</label>
+        <link refid="classQAccelPlot_1_1Category"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="37" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/Category.hpp" bodystart="37" bodyend="81"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1Category_1a706a31512d9efc476527152d697b8783" prot="public" virt="non-virtual"><scope>QAccelPlot::Category</scope><name>Category</name></member>
+      <member refid="classQAccelPlot_1_1Category_1aa0a8e1b5196a6324768167c0206e47b6" prot="public" virt="non-virtual"><scope>QAccelPlot::Category</scope><name>Category</name></member>
+      <member refid="classQAccelPlot_1_1Category_1a69e1147a12652e9c347ea27378598ba9" prot="public" virt="non-virtual"><scope>QAccelPlot::Category</scope><name>color</name></member>
+      <member refid="classQAccelPlot_1_1Category_1ab23f2fc1b3259de523b8c8bacef21535" prot="public" virt="non-virtual"><scope>QAccelPlot::Category</scope><name>color</name></member>
+      <member refid="classQAccelPlot_1_1Category_1a82ac2929464e14e4f86391985efa51d9" prot="private" virt="non-virtual"><scope>QAccelPlot::Category</scope><name>color_</name></member>
+      <member refid="classQAccelPlot_1_1Category_1a67dbd18a0fce0c61f44d2679ecdc13e7" prot="public" virt="non-virtual"><scope>QAccelPlot::Category</scope><name>colorChanged</name></member>
+      <member refid="classQAccelPlot_1_1Category_1aa56e800e6c107c219839466c90566d81" prot="public" virt="non-virtual"><scope>QAccelPlot::Category</scope><name>name</name></member>
+      <member refid="classQAccelPlot_1_1Category_1af8340b8c4d6ec5924ba1ba72100a4509" prot="public" virt="non-virtual"><scope>QAccelPlot::Category</scope><name>name</name></member>
+      <member refid="classQAccelPlot_1_1Category_1a5098dcd3ede01e04871d5c79b7204cec" prot="private" virt="non-virtual"><scope>QAccelPlot::Category</scope><name>name_</name></member>
+      <member refid="classQAccelPlot_1_1Category_1a272bdf9ea40c4b631b6a5061a24f5d40" prot="public" virt="non-virtual"><scope>QAccelPlot::Category</scope><name>nameChanged</name></member>
+      <member refid="classQAccelPlot_1_1Category_1a09109d8f212b9c3f878ef58df953f4ee" prot="public" virt="non-virtual"><scope>QAccelPlot::Category</scope><name>setColor</name></member>
+      <member refid="classQAccelPlot_1_1Category_1a6ead95851717798d432d7b26f4489533" prot="public" virt="non-virtual"><scope>QAccelPlot::Category</scope><name>setName</name></member>
+      <member refid="classQAccelPlot_1_1Category_1a7d48405b070c380d2bd3d9355b14c43b" prot="public" virt="non-virtual"><scope>QAccelPlot::Category</scope><name>setValue</name></member>
+      <member refid="classQAccelPlot_1_1Category_1a329a65e65b0664c36242deb554fb8074" prot="public" virt="non-virtual"><scope>QAccelPlot::Category</scope><name>value</name></member>
+      <member refid="classQAccelPlot_1_1Category_1a7431b05cd9391cb3372fa07b9d57ce35" prot="public" virt="non-virtual"><scope>QAccelPlot::Category</scope><name>value</name></member>
+      <member refid="classQAccelPlot_1_1Category_1a4d362b90dd12f297046c9eda95c6a1d8" prot="private" virt="non-virtual"><scope>QAccelPlot::Category</scope><name>value_</name></member>
+      <member refid="classQAccelPlot_1_1Category_1a5a09039d768e38c456142817ef1a5350" prot="public" virt="non-virtual"><scope>QAccelPlot::Category</scope><name>valueChanged</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -41,8 +41,8 @@ _Owns a_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _'s pre-built vertex
 
 | Type | Name |
 | ---: | :--- |
-| typedef std::function&lt; void(std::vector&lt; char &gt; &)&gt; | [**Builder**](#typedef-builder)  <br>_Function that writes a complete cache into the supplied reusable byte buffer._  |
 | enum  | [**Layout**](#enum-layout)  <br>_Renderer geometry represented by the cached bytes._  |
+| typedef std::function&lt; void(std::vector&lt; char &gt; &[**bytes**](classQAccelPlot_1_1LineCurveVertexCache.md#function-bytes), int firstPoint)&gt; | [**Writer**](#typedef-writer)  <br>_Function that writes the vertices of the points from_ _firstPoint_ _on into__bytes_ _, which is sized for all points._ |
 
 
 
@@ -70,12 +70,11 @@ _Owns a_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _'s pre-built vertex
 |  const std::vector&lt; char &gt; & | [**bytes**](#function-bytes) () noexcept const<br>_Returns the owned byte buffer, including retained invalid storage._  |
 |  void | [**clear**](#function-clear) () noexcept<br>_Removes all cached bytes and resets the compatibility metadata._  |
 |  const std::vector&lt; char &gt; \* | [**data**](#function-data) () noexcept const<br>_Returns the cached bytes when valid, or_ `nullptr` _otherwise._ |
-|  bool | [**install**](#function-install) (std::vector&lt; char &gt; && bytes, [**Layout**](classQAccelPlot_1_1LineCurveVertexCache.md#enum-layout) layout, int pointCount, std::size\_t expectedSize) <br>_Installs externally built cache_ _bytes_ _._ |
 |  void | [**invalidate**](#function-invalidate) () noexcept<br>_Marks the cache unusable while retaining its byte allocation._  |
 |  bool | [**isReusableForDataChange**](#function-isreusablefordatachange) ([**Layout**](classQAccelPlot_1_1LineCurveVertexCache.md#enum-layout) requiredLayout, int pointCount) noexcept const<br>_Returns whether this cache can survive a data change with the requested layout._  |
 |  [**Layout**](classQAccelPlot_1_1LineCurveVertexCache.md#enum-layout) | [**layout**](#function-layout) () noexcept const<br>_Returns the renderer geometry represented by the cache._  |
 |  int | [**pointCount**](#function-pointcount) () noexcept const<br>_Returns the point count associated with the cache._  |
-|  void | [**rebuild**](#function-rebuild) ([**Layout**](classQAccelPlot_1_1LineCurveVertexCache.md#enum-layout) layout, int pointCount, const [**Builder**](classQAccelPlot_1_1LineCurveVertexCache.md#typedef-builder) & builder) <br>_Rebuilds the cache with_ _builder_ _while retaining reusable allocation capacity._ |
+|  void | [**update**](#function-update) ([**Layout**](classQAccelPlot_1_1LineCurveVertexCache.md#enum-layout) layout, int pointCount, std::size\_t bytesPerPoint, const [**Writer**](classQAccelPlot_1_1LineCurveVertexCache.md#typedef-writer) & writer) <br>_Sizes the cache for_ _pointCount_ _points of__bytesPerPoint_ _bytes and writes the points it lacks with__writer_ _._ |
 |  bool | [**valid**](#function-valid) () noexcept const<br>_Returns whether the cache contains compatible, usable data._  |
 
 
@@ -108,27 +107,12 @@ _Owns a_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _'s pre-built vertex
 ## Detailed Description
 
 
-A cache is valid only for the vertex layout and point count recorded when it was installed or rebuilt. Invalidating a cache preserves its allocation for reuse; clearing it also releases the stored bytes. 
+A cache is valid only for the vertex layout and point count recorded when it was last updated. A vertex depends only on its point index, so an update to a new point count keeps the cached points and writes only the added ones. Invalidating a cache preserves its allocation for reuse; clearing it also releases the stored bytes. 
 
 
     
 ## Public Types Documentation
 
-
-
-
-
-### typedef Builder {#typedef-builder}
-
-_Function that writes a complete cache into the supplied reusable byte buffer._ 
-```C++
-using QAccelPlot::LineCurveVertexCache::Builder =  std::function<void(std::vector<char>&)>;
-```
-
-
-
-
-<hr>
 
 
 
@@ -142,6 +126,21 @@ enum QAccelPlot::LineCurveVertexCache::Layout {
     Line,
     Points
 };
+```
+
+
+
+
+<hr>
+
+
+
+
+### typedef Writer {#typedef-writer}
+
+_Function that writes the vertices of the points from_ _firstPoint_ _on into__bytes_ _, which is sized for all points._
+```C++
+using QAccelPlot::LineCurveVertexCache::Writer =  std::function<void(std::vector<char>& bytes, int firstPoint)>;
 ```
 
 
@@ -199,30 +198,6 @@ const std::vector< char > * QAccelPlot::LineCurveVertexCache::data () noexcept c
 
 
 
-### function install {#function-install}
-
-_Installs externally built cache_ _bytes_ _._
-```C++
-bool QAccelPlot::LineCurveVertexCache::install (
-    std::vector< char > && bytes,
-    Layout layout,
-    int pointCount,
-    std::size_t expectedSize
-) 
-```
-
-
-
-Returns `true` when the byte count matches _expectedSize_ and the supplied metadata describes a usable cache. On failure, the cache is cleared. 
-
-
-        
-
-<hr>
-
-
-
-
 ### function invalidate {#function-invalidate}
 
 _Marks the cache unusable while retaining its byte allocation._ 
@@ -250,7 +225,7 @@ bool QAccelPlot::LineCurveVertexCache::isReusableForDataChange (
 
 
 
-Solid-line cache vertices contain no XY values and can therefore be reused when the point count remains unchanged. 
+Solid-line and marker cache vertices contain no XY values and can therefore be reused when the point count remains unchanged. 
 
 
         
@@ -290,20 +265,21 @@ int QAccelPlot::LineCurveVertexCache::pointCount () noexcept const
 
 
 
-### function rebuild {#function-rebuild}
+### function update {#function-update}
 
-_Rebuilds the cache with_ _builder_ _while retaining reusable allocation capacity._
+_Sizes the cache for_ _pointCount_ _points of__bytesPerPoint_ _bytes and writes the points it lacks with__writer_ _._
 ```C++
-void QAccelPlot::LineCurveVertexCache::rebuild (
+void QAccelPlot::LineCurveVertexCache::update (
     Layout layout,
     int pointCount,
-    const Builder & builder
+    std::size_t bytesPerPoint,
+    const Writer & writer
 ) 
 ```
 
 
 
-The rebuilt cache is valid only when the builder produces bytes and the supplied _layout_ and _pointCount_ are usable. 
+A valid cache with the same _layout_ and _bytesPerPoint_ keeps its points, so _writer_ writes only the points past its previous point count, or none. Otherwise _writer_ writes all points. A _layout_ of `None`, or a zero _pointCount_ or _bytesPerPoint_, invalidates the cache. 
 
 
         

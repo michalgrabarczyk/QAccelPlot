@@ -28,9 +28,11 @@ namespace QAccelPlot {
 struct InspectionRow {
     QPointer<PlotSeries> series;   
     InspectionDataPoint dataPoint; 
-    QPointF pixelPosition;         
+    qreal pixelX{0.0};             
+    qreal pixelY{0.0};             
     QString xText;                 
     QString yText;                 
+    QString valueText;             
     bool hasSummary{false};        
     InspectionSummary summary;     
     QString minimumText;           
@@ -56,7 +58,9 @@ public:
         DataPointValueRole,
         XTextRole,
         YTextRole,
-        PixelPositionRole,
+        ValueTextRole,
+        PixelXRole,
+        PixelYRole,
         DistanceRole,
         InterpolatedRole,
         HasSummaryRole,
@@ -91,7 +95,7 @@ signals:
 
 private:
     Q_SLOT void seriesAppearanceChanged();
-    void watchSeries(PlotSeries* series);
+    void watchSeries(PlotSeries* series) const;
     void unwatchSeries(PlotSeries* series);
     bool sameSeries(const QList<InspectionRow>& rows) const;
 

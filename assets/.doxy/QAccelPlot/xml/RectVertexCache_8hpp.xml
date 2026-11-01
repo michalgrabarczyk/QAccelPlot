@@ -5,11 +5,9 @@
     <includes local="no">QColor</includes>
     <includes local="no">functional</includes>
     <includes local="no">vector</includes>
-    <includedby refid="BarSeries_8hpp" local="yes">QAccelPlot/src/QAccelPlot/series/BarSeries.hpp</includedby>
-    <includedby refid="RectangleSeries_8hpp" local="yes">QAccelPlot/src/QAccelPlot/series/RectangleSeries.hpp</includedby>
     <incdepgraph>
       <node id="1">
-        <label>QAccelPlot/src/QAccelPlot/series/RectVertexCache.hpp</label>
+        <label>QAccelPlot/src/QAccelPlot/series/internal/RectVertexCache.hpp</label>
         <link refid="RectVertexCache_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -28,9 +26,10 @@
         <label>vector</label>
       </node>
     </incdepgraph>
-    <innerclass refid="classQAccelPlot_1_1RectVertexCache" prot="public">QAccelPlot::RectVertexCache</innerclass>
-    <innerclass refid="structQAccelPlot_1_1RectVertexCache_1_1Vertex" prot="private">QAccelPlot::RectVertexCache::Vertex</innerclass>
+    <innerclass refid="classQAccelPlot_1_1Internal_1_1RectVertexCache" prot="public">QAccelPlot::Internal::RectVertexCache</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1RectVertexCache_1_1Vertex" prot="private">QAccelPlot::Internal::RectVertexCache::Vertex</innerclass>
     <innernamespace refid="namespaceQAccelPlot">QAccelPlot</innernamespace>
+    <innernamespace refid="namespaceQAccelPlot_1_1Internal">QAccelPlot::Internal</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -52,24 +51,24 @@
 <codeline lineno="14"><highlight class="normal"></highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">QSGGeometry;</highlight></codeline>
 <codeline lineno="16"><highlight class="normal"></highlight></codeline>
-<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot::Internal<sp/>{</highlight></codeline>
 <codeline lineno="18"><highlight class="normal"></highlight></codeline>
-<codeline lineno="24" refid="classQAccelPlot_1_1RectVertexCache" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1RectVertexCache" kindref="compound">RectVertexCache</ref><sp/>final<sp/>{</highlight></codeline>
+<codeline lineno="24" refid="classQAccelPlot_1_1Internal_1_1RectVertexCache" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1Internal_1_1RectVertexCache" kindref="compound">RectVertexCache</ref><sp/>final<sp/>{</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1RectVertexCache_1a8d546cf185675bca84e5f9b211281fac" kindref="member">ColorFunction</ref><sp/>=<sp/>std::function&lt;QColor(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index)&gt;;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1Internal_1_1RectVertexCache_1a4ed646d17c24bbbf5f0515767e6ff01d" kindref="member">ColorFunction</ref><sp/>=<sp/>std::function&lt;QColor(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index)&gt;;</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1RectVertexCache_1a0cd4556b9e641bbf961dadf69b917956" kindref="member">kVerticesPerRect</ref>{6};</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1RectVertexCache_1a01d8ec06dbc0714ca16736dae6ea25f8" kindref="member">kBytesPerRect</ref>{72};</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Internal_1_1RectVertexCache_1a35c27fa76eca2ac2378399070a8f73d4" kindref="member">kVerticesPerRect</ref>{6};</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Internal_1_1RectVertexCache_1a2154209ab99cb93e6bb43cd0fb7f9b45" kindref="member">kBytesPerRect</ref>{72};</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
-<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1RectVertexCache_1a03ca37af27c1e19d93a50697a87ed3ac" kindref="member">rebuild</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>rectCount,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1RectVertexCache_1a8d546cf185675bca84e5f9b211281fac" kindref="member">ColorFunction</ref>&amp;<sp/>colorAt);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Internal_1_1RectVertexCache_1a813c0c358b7e4bfdebe56ef309739461" kindref="member">rebuild</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>rectCount,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Internal_1_1RectVertexCache_1a4ed646d17c24bbbf5f0515767e6ff01d" kindref="member">ColorFunction</ref>&amp;<sp/>colorAt);</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1RectVertexCache_1a4d596dc0582830e64c62e55d67cc61a9" kindref="member">invalidate</ref>()<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Internal_1_1RectVertexCache_1aad649205080d7fba0a755e44ec5ad0be" kindref="member">invalidate</ref>()<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight></codeline>
-<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1RectVertexCache_1ac9717e82830e3415b2d938b2ce8aeda4" kindref="member">valid</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Internal_1_1RectVertexCache_1ab34d5f7589be16cbad1bab022a71ce4c" kindref="member">valid</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="45"><highlight class="normal"></highlight></codeline>
-<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1RectVertexCache_1a842852ecc0e3b719daf45f5a062128fb" kindref="member">vertexCount</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Internal_1_1RectVertexCache_1af49c999cddfab0319c06b81b929cdfad" kindref="member">vertexCount</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="48"><highlight class="normal"></highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1RectVertexCache_1a2c6f2537f724e4a595e6cd38c440acc7" kindref="member">copyTo</ref>(QSGGeometry&amp;<sp/>geometry)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Internal_1_1RectVertexCache_1aff89e929047d7cc2e5708f3e856ac1fc" kindref="member">copyTo</ref>(QSGGeometry&amp;<sp/>geometry)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="53"><highlight class="normal"></highlight></codeline>
 <codeline lineno="54"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">Vertex<sp/>{</highlight></codeline>
@@ -82,8 +81,8 @@
 <codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>valid_{</highlight><highlight class="keyword">false</highlight><highlight class="normal">};</highlight></codeline>
 <codeline lineno="63"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="64"><highlight class="normal"></highlight></codeline>
-<codeline lineno="65"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot::Internal</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="QAccelPlot/src/QAccelPlot/series/RectVertexCache.hpp"/>
+    <location file="QAccelPlot/src/QAccelPlot/series/internal/RectVertexCache.hpp"/>
   </compounddef>
 </doxygen>

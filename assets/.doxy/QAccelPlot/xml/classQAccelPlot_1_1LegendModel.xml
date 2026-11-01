@@ -1,0 +1,400 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1LegendModel" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::LegendModel</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QAbstractListModel</basecompoundref>
+    <includes local="no">LegendModel.hpp</includes>
+    <innerclass refid="structQAccelPlot_1_1LegendModel_1_1Row" prot="private">QAccelPlot::LegendModel::Row</innerclass>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classQAccelPlot_1_1LegendModel_1a82e1c0fb48ff48fbb0bc9779b1e3865e" prot="public" static="no" strong="no">
+        <type></type>
+        <name>Role</name>
+        <qualifiedname>QAccelPlot::LegendModel::Role</qualifiedname>
+        <enumvalue id="classQAccelPlot_1_1LegendModel_1a82e1c0fb48ff48fbb0bc9779b1e3865ea50971a42c9b99ce6af7f063ab02fc3b1" prot="public">
+          <name>SeriesRole</name>
+          <initializer>= Qt::UserRole + 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1LegendModel_1a82e1c0fb48ff48fbb0bc9779b1e3865ea62d83a25f013869b4c2c89db3f8e8345" prot="public">
+          <name>NameRole</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1LegendModel_1a82e1c0fb48ff48fbb0bc9779b1e3865ea7e2a24a4d9869b488ace6605f23e9b9e" prot="public">
+          <name>EntryRole</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Data roles; the QML role names are listed in the class description. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="48" column="5" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" bodystart="48" bodyend="52"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1LegendModel_1aa4ec20f016cd7fc60ea0dd771cab5f29" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QList&lt; <ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> * &gt;</type>
+        <definition>QList&lt;PlotSeries*&gt; QAccelPlot::LegendModel::series</definition>
+        <argsstring></argsstring>
+        <name>series</name>
+        <qualifiedname>QAccelPlot::LegendModel::series</qualifiedname>
+        <read>series</read>
+        <write>setSeries</write>
+        <briefdescription>
+<para>Series to list, in legend order. Default: empty. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="42" column="5" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1LegendModel_1a20ee439311d814eec70a568bedac2622" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::LegendModel::count</definition>
+        <argsstring></argsstring>
+        <name>count</name>
+        <qualifiedname>QAccelPlot::LegendModel::count</qualifiedname>
+        <read>count</read>
+        <briefdescription>
+<para>Read-only: number of rows. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="44" column="5" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1LegendModel_1a9b983b31d85fbb8b80f4a5a4ca68cf64" prot="private" static="no" mutable="no">
+        <type>QList&lt; QPointer&lt; <ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> &gt; &gt;</type>
+        <definition>QList&lt;QPointer&lt;PlotSeries&gt; &gt; QAccelPlot::LegendModel::series_</definition>
+        <argsstring></argsstring>
+        <name>series_</name>
+        <qualifiedname>QAccelPlot::LegendModel::series_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="93" column="11" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1LegendModel_1a08b8b62529e6695216dae22c7f2b74dc" prot="private" static="no" mutable="no">
+        <type>QList&lt; Row &gt;</type>
+        <definition>QList&lt;Row&gt; QAccelPlot::LegendModel::rows_</definition>
+        <argsstring></argsstring>
+        <name>rows_</name>
+        <qualifiedname>QAccelPlot::LegendModel::rows_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="94" column="11" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" bodystart="94" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1LegendModel_1a140c9400acba7f82e62896e09547172e" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::LegendModel::LegendModel</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>LegendModel</name>
+        <qualifiedname>QAccelPlot::LegendModel::LegendModel</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs an empty model with the given <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="55" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1LegendModel_1a65592775c901e6c233df7264bdf56628" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QList&lt; <ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> * &gt;</type>
+        <definition>QList&lt; PlotSeries * &gt; QAccelPlot::LegendModel::series</definition>
+        <argsstring>() const</argsstring>
+        <name>series</name>
+        <qualifiedname>QAccelPlot::LegendModel::series</qualifiedname>
+        <briefdescription>
+<para>Returns the listed series. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="58" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1LegendModel_1a13acf6d15ac044d3bdc3b76b4856b922" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::LegendModel::setSeries</definition>
+        <argsstring>(const QList&lt; PlotSeries * &gt; &amp;series)</argsstring>
+        <name>setSeries</name>
+        <qualifiedname>QAccelPlot::LegendModel::setSeries</qualifiedname>
+        <param>
+          <type>const QList&lt; <ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> * &gt; &amp;</type>
+          <declname>series</declname>
+        </param>
+        <briefdescription>
+<para>Sets the listed series to <emphasis>series</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="60" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1LegendModel_1a5213a80bcfbac4888b5a63b54cfcea2b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::LegendModel::count</definition>
+        <argsstring>() const</argsstring>
+        <name>count</name>
+        <qualifiedname>QAccelPlot::LegendModel::count</qualifiedname>
+        <briefdescription>
+<para>Returns the number of rows. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="63" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1LegendModel_1a5c68fbe606bbed5d5574c6bbf3fc5150" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::LegendModel::rowCount</definition>
+        <argsstring>(const QModelIndex &amp;parent={}) const override</argsstring>
+        <name>rowCount</name>
+        <qualifiedname>QAccelPlot::LegendModel::rowCount</qualifiedname>
+        <param>
+          <type>const QModelIndex &amp;</type>
+          <declname>parent</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+<para>Returns the number of rows; <emphasis>parent</emphasis> must be invalid. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="66" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1LegendModel_1af55f9d1cf1feb34769705a26c02aa47b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QVariant</type>
+        <definition>QVariant QAccelPlot::LegendModel::data</definition>
+        <argsstring>(const QModelIndex &amp;index, int role) const override</argsstring>
+        <name>data</name>
+        <qualifiedname>QAccelPlot::LegendModel::data</qualifiedname>
+        <param>
+          <type>const QModelIndex &amp;</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>role</declname>
+        </param>
+        <briefdescription>
+<para>Returns the value of <emphasis>role</emphasis> for the row at <emphasis>index</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="68" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1LegendModel_1aafa70054d0d07cd87275e6c415b123f1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QHash&lt; int, QByteArray &gt;</type>
+        <definition>QHash&lt; int, QByteArray &gt; QAccelPlot::LegendModel::roleNames</definition>
+        <argsstring>() const override</argsstring>
+        <name>roleNames</name>
+        <qualifiedname>QAccelPlot::LegendModel::roleNames</qualifiedname>
+        <briefdescription>
+<para>Returns the QML role names. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="70" column="11"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1LegendModel_1a391381008f120c0272036c1851e6f8dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::LegendModel::seriesChanged</definition>
+        <argsstring>()</argsstring>
+        <name>seriesChanged</name>
+        <qualifiedname>QAccelPlot::LegendModel::seriesChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the series property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="74" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1LegendModel_1a82ab7fc1396d89d0fe4286824c4925fc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::LegendModel::countChanged</definition>
+        <argsstring>()</argsstring>
+        <name>countChanged</name>
+        <qualifiedname>QAccelPlot::LegendModel::countChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the number of rows changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="76" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1LegendModel_1ad5b40bc02da353597a060d3dd2439612" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::LegendModel::watchSeries</definition>
+        <argsstring>(PlotSeries *series) const</argsstring>
+        <name>watchSeries</name>
+        <qualifiedname>QAccelPlot::LegendModel::watchSeries</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> *</type>
+          <declname>series</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="79" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1LegendModel_1afde8d0e08d1de81fd0c151397b247cb0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::LegendModel::unwatchSeries</definition>
+        <argsstring>(PlotSeries *series)</argsstring>
+        <name>unwatchSeries</name>
+        <qualifiedname>QAccelPlot::LegendModel::unwatchSeries</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> *</type>
+          <declname>series</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="80" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1LegendModel_1a1644ac4d34ae27ee2dde6d800377f2b1" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::LegendModel::onSeriesDestroyed</definition>
+        <argsstring>()</argsstring>
+        <name>onSeriesDestroyed</name>
+        <qualifiedname>QAccelPlot::LegendModel::onSeriesDestroyed</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="81" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1LegendModel_1a257832b37a8bf1556a36859d9d019952" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::LegendModel::refreshRows</definition>
+        <argsstring>()</argsstring>
+        <name>refreshRows</name>
+        <qualifiedname>QAccelPlot::LegendModel::refreshRows</qualifiedname>
+        <briefdescription>
+<para>Recomputes the rows: resets the model when the listed rows change, and reports changed data otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="83" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>List model of the legend entries of a list of series. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Has one row per <computeroutput><ref refid="classQAccelPlot_1_1PlotSeries_1a65b522c090eb4baa8377ea2fea24e2ab" kindref="member">PlotSeries::legendEntries()</ref></computeroutput> entry of each visible series in <computeroutput>series:</computeroutput> one row for most series, and one per category for a series colored by category. Series without an entry, such as <computeroutput><ref refid="classQAccelPlot_1_1HeatmapSeries" kindref="compound">HeatmapSeries</ref></computeroutput>, and hidden series have no row. Rows follow changes of the series&apos; entries, names, and visibility.</para>
+<para>Roles: <computeroutput>series</computeroutput>, <computeroutput>name</computeroutput> (the entry&apos;s <computeroutput>name</computeroutput>, else the series&apos; <computeroutput>name</computeroutput>, its <computeroutput>objectName</computeroutput>, or &quot;Series N&quot;), and <computeroutput>entry</computeroutput> (a <computeroutput><ref refid="structQAccelPlot_1_1LegendEntry" kindref="compound">LegendEntry</ref></computeroutput>). <computeroutput>Plot</computeroutput> provides one over all its series as <computeroutput>legendModel:</computeroutput> </para>
+<para><programlisting><codeline><highlight class="normal">QAccelPlot.Plot<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>id:<sp/>plot</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>legend:<sp/>QAccelPlot.Legend<sp/>{<sp/>model:<sp/>QAccelPlot.LegendModel<sp/>{<sp/><ref refid="classQAccelPlot_1_1LegendModel_1aa4ec20f016cd7fc60ea0dd771cab5f29" kindref="member">series</ref>:<sp/>[signal,<sp/>fit]<sp/>}<sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="structQAccelPlot_1_1LegendEntry" kindref="compound">LegendEntry</ref>, <ref refid="classQAccelPlot_1_1PlotSeries_1a65b522c090eb4baa8377ea2fea24e2ab" kindref="member">PlotSeries::legendEntries()</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>QAbstractListModel</label>
+      </node>
+      <node id="1">
+        <label>QAccelPlot::LegendModel</label>
+        <link refid="classQAccelPlot_1_1LegendModel"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>QAbstractListModel</label>
+      </node>
+      <node id="1">
+        <label>QAccelPlot::LegendModel</label>
+        <link refid="classQAccelPlot_1_1LegendModel"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" line="37" column="1" bodyfile="QAccelPlot/src/QAccelPlot/legend/LegendModel.hpp" bodystart="37" bodyend="95"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1LegendModel_1a20ee439311d814eec70a568bedac2622" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendModel</scope><name>count</name></member>
+      <member refid="classQAccelPlot_1_1LegendModel_1a5213a80bcfbac4888b5a63b54cfcea2b" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendModel</scope><name>count</name></member>
+      <member refid="classQAccelPlot_1_1LegendModel_1a82ab7fc1396d89d0fe4286824c4925fc" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendModel</scope><name>countChanged</name></member>
+      <member refid="classQAccelPlot_1_1LegendModel_1af55f9d1cf1feb34769705a26c02aa47b" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendModel</scope><name>data</name></member>
+      <member refid="classQAccelPlot_1_1LegendModel_1a82e1c0fb48ff48fbb0bc9779b1e3865ea7e2a24a4d9869b488ace6605f23e9b9e" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendModel</scope><name>EntryRole</name></member>
+      <member refid="classQAccelPlot_1_1LegendModel_1a140c9400acba7f82e62896e09547172e" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendModel</scope><name>LegendModel</name></member>
+      <member refid="classQAccelPlot_1_1LegendModel_1a82e1c0fb48ff48fbb0bc9779b1e3865ea62d83a25f013869b4c2c89db3f8e8345" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendModel</scope><name>NameRole</name></member>
+      <member refid="classQAccelPlot_1_1LegendModel_1a1644ac4d34ae27ee2dde6d800377f2b1" prot="private" virt="non-virtual"><scope>QAccelPlot::LegendModel</scope><name>onSeriesDestroyed</name></member>
+      <member refid="classQAccelPlot_1_1LegendModel_1a257832b37a8bf1556a36859d9d019952" prot="private" virt="non-virtual"><scope>QAccelPlot::LegendModel</scope><name>refreshRows</name></member>
+      <member refid="classQAccelPlot_1_1LegendModel_1a82e1c0fb48ff48fbb0bc9779b1e3865e" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendModel</scope><name>Role</name></member>
+      <member refid="classQAccelPlot_1_1LegendModel_1aafa70054d0d07cd87275e6c415b123f1" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendModel</scope><name>roleNames</name></member>
+      <member refid="classQAccelPlot_1_1LegendModel_1a5c68fbe606bbed5d5574c6bbf3fc5150" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendModel</scope><name>rowCount</name></member>
+      <member refid="classQAccelPlot_1_1LegendModel_1a08b8b62529e6695216dae22c7f2b74dc" prot="private" virt="non-virtual"><scope>QAccelPlot::LegendModel</scope><name>rows_</name></member>
+      <member refid="classQAccelPlot_1_1LegendModel_1aa4ec20f016cd7fc60ea0dd771cab5f29" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendModel</scope><name>series</name></member>
+      <member refid="classQAccelPlot_1_1LegendModel_1a65592775c901e6c233df7264bdf56628" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendModel</scope><name>series</name></member>
+      <member refid="classQAccelPlot_1_1LegendModel_1a9b983b31d85fbb8b80f4a5a4ca68cf64" prot="private" virt="non-virtual"><scope>QAccelPlot::LegendModel</scope><name>series_</name></member>
+      <member refid="classQAccelPlot_1_1LegendModel_1a391381008f120c0272036c1851e6f8dc" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendModel</scope><name>seriesChanged</name></member>
+      <member refid="classQAccelPlot_1_1LegendModel_1a82e1c0fb48ff48fbb0bc9779b1e3865ea50971a42c9b99ce6af7f063ab02fc3b1" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendModel</scope><name>SeriesRole</name></member>
+      <member refid="classQAccelPlot_1_1LegendModel_1a13acf6d15ac044d3bdc3b76b4856b922" prot="public" virt="non-virtual"><scope>QAccelPlot::LegendModel</scope><name>setSeries</name></member>
+      <member refid="classQAccelPlot_1_1LegendModel_1afde8d0e08d1de81fd0c151397b247cb0" prot="private" virt="non-virtual"><scope>QAccelPlot::LegendModel</scope><name>unwatchSeries</name></member>
+      <member refid="classQAccelPlot_1_1LegendModel_1ad5b40bc02da353597a060d3dd2439612" prot="private" virt="non-virtual"><scope>QAccelPlot::LegendModel</scope><name>watchSeries</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

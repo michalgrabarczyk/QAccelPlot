@@ -27,11 +27,9 @@ class LineCurveVertexCache final {
 public:
     enum class Layout { None, Line, Points };
 
-    using Builder = std::function<void(std::vector<char>&)>;
+    using Writer = std::function<void(std::vector<char>& bytes, int firstPoint)>;
 
-    [[nodiscard]] bool install(std::vector<char>&& bytes, Layout layout, int pointCount, std::size_t expectedSize);
-
-    void rebuild(Layout layout, int pointCount, const Builder& builder);
+    void update(Layout layout, int pointCount, std::size_t bytesPerPoint, const Writer& writer);
 
     [[nodiscard]] bool isReusableForDataChange(Layout requiredLayout, int pointCount) const noexcept;
 
@@ -54,6 +52,7 @@ private:
     bool valid_{false};
     Layout layout_{Layout::None};
     int pointCount_{0};
+    std::size_t bytesPerPoint_{0};
 };
 
 } // namespace QAccelPlot

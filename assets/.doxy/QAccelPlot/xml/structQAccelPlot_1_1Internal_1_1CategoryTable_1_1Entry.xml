@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1Internal_1_1CategoryTable_1_1Entry" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::CategoryTable::Entry</compoundname>
+    <includes local="no">CategoryTable.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1CategoryTable_1_1Entry_1aa37e8485073a45eff5651a95266d6784" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::CategoryTable::Entry::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <qualifiedname>QAccelPlot::Internal::CategoryTable::Entry::value</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+<para>Value that data points carry. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryTable.hpp" line="33" column="13" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/CategoryTable.hpp" bodystart="33" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1CategoryTable_1_1Entry_1a3640a4bb6ccfcfb02decdc7cb325d790" prot="public" static="no" mutable="no">
+        <type>QString</type>
+        <definition>QString QAccelPlot::Internal::CategoryTable::Entry::name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <qualifiedname>QAccelPlot::Internal::CategoryTable::Entry::name</qualifiedname>
+        <briefdescription>
+<para>Name, or empty. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryTable.hpp" line="34" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/CategoryTable.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1CategoryTable_1_1Entry_1ae7026e925102230644ad8ab121999bfb" prot="public" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::Internal::CategoryTable::Entry::color</definition>
+        <argsstring></argsstring>
+        <name>color</name>
+        <qualifiedname>QAccelPlot::Internal::CategoryTable::Entry::color</qualifiedname>
+        <briefdescription>
+<para>Fill color, or invalid to use the series color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryTable.hpp" line="35" column="16" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/CategoryTable.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>One category: the value data points carry, an optional name, and an optional color. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryTable.hpp" line="32" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/CategoryTable.hpp" bodystart="32" bodyend="36"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1Internal_1_1CategoryTable_1_1Entry_1ae7026e925102230644ad8ab121999bfb" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::CategoryTable::Entry</scope><name>color</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1CategoryTable_1_1Entry_1a3640a4bb6ccfcfb02decdc7cb325d790" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::CategoryTable::Entry</scope><name>name</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1CategoryTable_1_1Entry_1aa37e8485073a45eff5651a95266d6784" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::CategoryTable::Entry</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

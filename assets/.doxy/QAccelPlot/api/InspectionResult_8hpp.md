@@ -19,7 +19,6 @@
 
 * `#include <QList>`
 * `#include <QObject>`
-* `#include <QPointF>`
 * `#include <QVariantMap>`
 * `#include <QtQml/qqmlregistration.h>`
 * `#include <limits>`

@@ -17,7 +17,7 @@
 //
 #pragma once
 
-#include "QAccelPlot/QAccelPlot.hpp"
+#include "QAccelPlot/PlotView.hpp"
 #include "QAccelPlot/inspection/InspectionRowModel.hpp"
 
 #include <QQmlListProperty>
@@ -27,14 +27,16 @@
 
 namespace QAccelPlot {
 
+namespace Internal {
 class OverlayChildren;
+} // namespace Internal
 
 class PlotInspector : public QObject {
     Q_OBJECT
     QML_NAMED_ELEMENT(PlotInspector)
     Q_CLASSINFO("DefaultProperty", "data")
     Q_PROPERTY(QQmlListProperty<QObject> data READ data)
-    Q_PROPERTY(::QAccelPlot::QAccelPlot* plot READ plot WRITE setPlot NOTIFY plotChanged)
+    Q_PROPERTY(PlotView* plot READ plot WRITE setPlot NOTIFY plotChanged)
     Q_PROPERTY(bool enabled READ enabled WRITE setEnabled NOTIFY enabledChanged)
     Q_PROPERTY(Mode mode READ mode WRITE setMode NOTIFY modeChanged)
     Q_PROPERTY(qreal radius READ radius WRITE setRadius NOTIFY radiusChanged)
@@ -47,11 +49,13 @@ class PlotInspector : public QObject {
     Q_PROPERTY(bool followPointer READ followPointer WRITE setFollowPointer NOTIFY followPointerChanged)
     Q_PROPERTY(qreal cursorX READ cursorX WRITE setCursorX NOTIFY cursorChanged)
     Q_PROPERTY(qreal cursorY READ cursorY WRITE setCursorY NOTIFY cursorChanged)
+    Q_PROPERTY(qreal cursorPixelX READ cursorPixelX WRITE setCursorPixelX NOTIFY cursorChanged)
+    Q_PROPERTY(qreal cursorPixelY READ cursorPixelY WRITE setCursorPixelY NOTIFY cursorChanged)
     Q_PROPERTY(QString cursorXText READ cursorXText NOTIFY cursorChanged)
     Q_PROPERTY(QString cursorYText READ cursorYText NOTIFY cursorChanged)
     Q_PROPERTY(bool active READ active NOTIFY activeChanged)
-    Q_PROPERTY(QPointF position READ position NOTIFY positionChanged)
-    Q_PROPERTY(::QAccelPlot::InspectionRowModel* model READ model CONSTANT)
+    Q_PROPERTY(QPointF crosshairPosition READ crosshairPosition NOTIFY crosshairPositionChanged)
+    Q_PROPERTY(InspectionRowModel* model READ model CONSTANT)
     Q_PROPERTY(int validCount READ validCount NOTIFY validCountChanged)
 
 public:
@@ -68,8 +72,8 @@ public:
 
     QQmlListProperty<QObject> data();
 
-    ::QAccelPlot::QAccelPlot* plot() const;
-    void setPlot(::QAccelPlot::QAccelPlot* plot);
+    PlotView* plot() const;
+    void setPlot(PlotView* plot);
     bool enabled() const;
     void setEnabled(bool enabled);
     Mode mode() const;
@@ -94,10 +98,14 @@ public:
     void setCursorX(qreal x);
     qreal cursorY() const;
     void setCursorY(qreal y);
+    qreal cursorPixelX() const;
+    void setCursorPixelX(qreal x);
+    qreal cursorPixelY() const;
+    void setCursorPixelY(qreal y);
     QString cursorXText() const;
     QString cursorYText() const;
     bool active() const;
-    QPointF position() const;
+    QPointF crosshairPosition() const;
     InspectionRowModel* model() const;
     int validCount() const;
 
@@ -118,7 +126,7 @@ signals:
     void followPointerChanged();
     void cursorChanged();
     void activeChanged();
-    void positionChanged();
+    void crosshairPositionChanged();
     void validCountChanged();
     void refreshed();
 
@@ -133,13 +141,20 @@ private:
     void connectSeries(PlotSeries* series);
     bool inspects(PlotSeries* series) const;
     QList<PlotSeries*> inspectedSeries() const;
+    // Returns the cursor set from code in data units and in plot-local pixels; a coordinate it lacks, or that cannot be mapped, is NaN.
+    QPointF pinnedData() const;
+    QPointF pinnedPixel() const;
     // Returns the cursor in plot-local pixels, or nothing while the inspector is inactive. A coordinate that a cursor set from code lacks is NaN.
-    std::optional<QPointF> cursorPosition() const;
+    std::optional<QPointF> activeCursor() const;
     // Returns the mode the cursor allows: without one of its coordinates, series are matched along the other axis.
     Mode effectiveMode(const QPointF& cursor) const;
+    // Returns the source index of the data point at or before an interpolated dataPoint. On a step line its index can be the one after.
+    int lowerNeighborIndex(SeriesInspection& inspection, const InspectionDataPoint& dataPoint) const;
     // Fills state with the results at cursor. Returns false when user code run by a label formatter invalidated them.
     bool inspect(const QPointF& cursor, State& state) const;
     QList<Query> queryRows(const QPointF& cursor) const;
+    // Series matched by position report the record under a cursor with both coordinates, in every mode.
+    InspectionDataPoint matchDataPoint(PlotSeries& series, Mode mode, const QPointF& cursor, const QPointF& local) const;
     // Between two data points a series always matches; the radius only limits how far past its ends it still does.
     InspectionDataPoint dataPointAlong(SeriesInspection& inspection, Mode mode, const QPointF& local) const;
     InspectionSummary summarize(PlotSeries& series, const QPointF& local, Mode mode) const;
@@ -148,7 +163,7 @@ private:
     QPointF snappedPosition(const QList<Query>& queries, const QPointF& cursor) const;
     void publish(const State& state);
 
-    QPointer<::QAccelPlot::QAccelPlot> plot_;
+    QPointer<PlotView> plot_;
     bool enabled_{true};
     Mode mode_{NearestX};
     qreal radius_{16};
@@ -163,17 +178,20 @@ private:
     bool pending_{false};
     bool refreshing_{false};
     bool active_{false};
-    QPointF position_;
+    QPointF crosshairPosition_;
     qreal cursorX_;
     qreal cursorY_;
-    // Cursor set from code; used while followPointer_ is false.
+    QPointF cursorPixel_;
+    // Cursor set from code; used while followPointer_ is false. Each coordinate is in data units, or in plot-local pixels when its flag is set.
     qreal pinnedX_;
     qreal pinnedY_;
+    bool pinnedXInPixels_{false};
+    bool pinnedYInPixels_{false};
     QString cursorXText_;
     QString cursorYText_;
     int validCount_{0};
     InspectionRowModel* model_;
-    std::unique_ptr<OverlayChildren> children_;
+    std::unique_ptr<Internal::OverlayChildren> children_;
 };
 
 } // namespace QAccelPlot

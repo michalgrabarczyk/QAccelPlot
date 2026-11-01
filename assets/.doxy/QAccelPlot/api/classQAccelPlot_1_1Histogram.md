@@ -75,7 +75,7 @@ _Samples counted into bins, convertible to_ `BarSeries` _data._[More...](#detail
 |  Q\_INVOKABLE QVariantList | [**bars**](#function-bars) () const<br>_Returns one object per bin with_ `from` _,_`to` _, and_`value` _, for the QML_`BarSeries.setData()` _._ |
 |  int | [**binCount**](#function-bincount-22) () const<br>_Returns the number of bins; 0 for an invalid histogram._  |
 |  double | [**binWidth**](#function-binwidth-22) () const<br>_Returns the width of every bin, or NaN when the bins are not uniform._  |
-|  Q\_INVOKABLE::QAccelPlot::Histogram | [**density**](#function-density) () const<br>_Returns a copy whose values are densities: count / (_ `total()` _× bin width)._ |
+|  Q\_INVOKABLE [**Histogram**](classQAccelPlot_1_1Histogram.md) | [**density**](#function-density) () const<br>_Returns a copy whose values are densities: count / (_ `total()` _× bin width)._ |
 |  const std::vector&lt; double &gt; & | [**edges**](#function-edges-22) () const<br>_Returns the_ `binCount()` _+ 1 bin edges in ascending order._ |
 |  bool | [**isUniform**](#function-isuniform) () const<br>_Returns true when all bins have the same width._  |
 |  double | [**total**](#function-total-22) () const<br>_Returns the sum of the bin counts, the number of samples inside the edges._  |
@@ -311,7 +311,7 @@ double QAccelPlot::Histogram::binWidth () const
 
 _Returns a copy whose values are densities: count / (_ `total()` _× bin width)._
 ```C++
-Q_INVOKABLE::QAccelPlot::Histogram QAccelPlot::Histogram::density () const
+Q_INVOKABLE Histogram QAccelPlot::Histogram::density () const
 ```
 
 

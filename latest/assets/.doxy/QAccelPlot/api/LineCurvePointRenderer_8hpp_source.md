@@ -25,15 +25,22 @@
 #include <QSGNode>
 #include <QVector2D>
 
+#include <cstddef>
+#include <memory>
 #include <vector>
+
+QT_FORWARD_DECLARE_CLASS(QQuickWindow)
 
 namespace QAccelPlot {
 
+class DataTexture;
+
 struct PointCurveRenderParams {
+    QQuickWindow* window;                        
     const std::vector<float>& data;              
-    CurveDataView sourceData;                    
     int pointCount;                              
     bool dataChanged;                            
+    std::shared_ptr<DataTexture> dataTexture;    
     QColor color;                                
     bool hovered;                                
     qreal markerSize;                            
@@ -52,19 +59,16 @@ struct PointCurveRenderParams {
 };
 
 struct PointVertex {
-    float x;       
-    float y;       
-    float cornerX; 
-    float cornerY; 
-    float r;       
-    float g;       
-    float b;       
-    float a;       
+    unsigned char padding[4]; 
 };
 
 class LineCurvePointRenderer {
 public:
-    void buildVertexCache(const std::vector<float>& data, int pointCount, std::vector<char>& cache) const;
+    static constexpr int kVerticesPerPoint{6};
+
+    static constexpr std::size_t kVertexCacheBytesPerPoint{kVerticesPerPoint * sizeof(PointVertex)};
+
+    static void writeVertexCache(std::vector<char>& cache, int firstPoint, int pointCount);
 
     bool contains(const QPointF& point, const CurveHitTestParams& params) const;
 

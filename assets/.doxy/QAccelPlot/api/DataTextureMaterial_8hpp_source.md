@@ -45,6 +45,8 @@ public:
 
     static const QSGGeometry::AttributeSet& attributeSet();
 
+    static const QSGGeometry::AttributeSet& vertexIndexAttributeSet();
+
     QSGTexture* sampledTexture() const;
 
 protected:

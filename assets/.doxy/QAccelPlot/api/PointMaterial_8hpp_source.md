@@ -17,35 +17,31 @@
 //
 #pragma once
 
-#include <QColor>
-#include <QSGMaterial>
-#include <QSGMaterialShader>
-#include <QVector2D>
+#include "QAccelPlot/materials/DataTextureMaterial.hpp"
+#include "QAccelPlot/materials/GradientTexture.hpp"
 
 namespace QAccelPlot {
 
-class PointMaterial : public QSGMaterial {
+class PointMaterial : public DataTextureMaterial {
 public:
     PointMaterial();
-    ~PointMaterial() override = default;
 
     QSGMaterialType* type() const override;
     QSGMaterialShader* createShader(QSGRendererInterface::RenderMode) const override;
-    int compare(const QSGMaterial* other) const override;
 
-    QColor color{Qt::blue};                 
-    QVector2D domainMin{0.0f, 0.0f};        
-    QVector2D domainMax{1.0f, 1.0f};        
-    QVector2D viewportSize{800.0f, 600.0f}; 
-    float markerSize{4.0f};                 
-    float logScaleX{0.0f};                  
-    float logScaleY{0.0f};                  
-    float useVertexColor{0.0f};             
-    float antialiasingEnabled{1.0f};        
-    float antialiasingFeather{1.0f};        
-    int shapeType{0};                       
-    float markerStrokeWidth{1.0f};          
-    float markerFilled{1.0f};               
+    float markerSize{4.0f};          
+    float antialiasingEnabled{1.0f}; 
+    float antialiasingFeather{1.0f}; 
+    int shapeType{0};                
+    float markerStrokeWidth{1.0f};   
+    float markerFilled{1.0f};        
+    float gradientDirection{0.0f};   
+    float gradientValueMin{0.0f};    
+    float gradientValueMax{1.0f};    
+    GradientTexture gradientTexture; 
+
+protected:
+    int compareExtra(const QSGMaterial* other) const override;
 };
 
 } // namespace QAccelPlot

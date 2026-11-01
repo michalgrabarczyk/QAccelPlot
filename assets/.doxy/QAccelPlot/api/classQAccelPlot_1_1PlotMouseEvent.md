@@ -65,7 +65,8 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 | property bool | [**accepted**](classQAccelPlot_1_1PlotMouseEvent.md#property-accepted)  <br>_Whether this event has been accepted by a handler. Read via_ `isAccepted()` _; set via_`accept()` _or_`ignore()` _._ |
-| property Qt::MouseButton | [**button**](classQAccelPlot_1_1PlotMouseEvent.md#property-button-12)  <br>_The mouse button that caused the event. A move reports the buttons held down, combined._  |
+| property Qt::MouseButton | [**button**](classQAccelPlot_1_1PlotMouseEvent.md#property-button-12)  <br>_The mouse button that caused the event;_ `Qt.NoButton` _for a move._ |
+| property Qt::MouseButtons | [**buttons**](classQAccelPlot_1_1PlotMouseEvent.md#property-buttons-12)  <br>_The mouse buttons held down during the event._  |
 | property Qt::KeyboardModifiers | [**modifiers**](classQAccelPlot_1_1PlotMouseEvent.md#property-modifiers-12)  <br>_Active keyboard modifiers at the time of the event._  |
 | property qreal | [**x**](classQAccelPlot_1_1PlotMouseEvent.md#property-x-12)  <br>_Item-local pixel X coordinate of the event._  |
 | property qreal | [**y**](classQAccelPlot_1_1PlotMouseEvent.md#property-y-12)  <br>_Item-local pixel Y coordinate of the event._  |
@@ -83,11 +84,11 @@ flowchart TB
 | ---: | :--- |
 |   | [**PlotMouseEvent**](#function-plotmouseevent) (QObject \* parent=nullptr) <br>_Constructs a_ [_**PlotMouseEvent**_](classQAccelPlot_1_1PlotMouseEvent.md) _with an optional_`parent` _._ |
 |  Q\_INVOKABLE void | [**accept**](#function-accept) () <br>_Accepts the event, suppressing the plot's built-in handling._  |
-|  Qt::MouseButton | [**button**](#function-button-22) () const<br>_Returns the mouse button that caused the event; for a move, the buttons held down, combined._  |
+|  Qt::MouseButton | [**button**](#function-button-22) () const<br>_Returns the mouse button that caused the event;_ `Qt::NoButton` _for a move._ |
+|  Qt::MouseButtons | [**buttons**](#function-buttons-22) () const<br>_Returns the mouse buttons held down during the event._  |
 |  Q\_INVOKABLE void | [**ignore**](#function-ignore) () <br>_Ignores the event, allowing the plot's built-in handling to proceed._  |
 |  bool | [**isAccepted**](#function-isaccepted) () const<br>_Returns true if the event has been accepted by a handler._  |
 |  Qt::KeyboardModifiers | [**modifiers**](#function-modifiers-22) () const<br>_Returns the active keyboard modifiers at the time of the event._  |
-|  void | [**reset**](#function-reset) (Qt::MouseButton button, qreal x, qreal y, Qt::KeyboardModifiers modifiers) <br>_Resets the event data for a new event. Called by_ [_**QAccelPlot**_](classQAccelPlot_1_1QAccelPlot.md) _before emitting mouse signals._ |
 |  void | [**setAccepted**](#function-setaccepted) (bool accepted) <br>_Sets whether the event is accepted. Equivalent to_ `accept()` _if_`accepted` _is true, or_`ignore()` _if false._ |
 |  qreal | [**x**](#function-x-22) () const<br>_Returns the item-local pixel X coordinate of the event._  |
 |  qreal | [**y**](#function-y-22) () const<br>_Returns the item-local pixel Y coordinate of the event._  |
@@ -159,9 +160,24 @@ bool QAccelPlot::PlotMouseEvent::accepted;
 
 ### property button {#property-button-12}
 
-_The mouse button that caused the event. A move reports the buttons held down, combined._ 
+_The mouse button that caused the event;_ `Qt.NoButton` _for a move._
 ```C++
 Qt::MouseButton QAccelPlot::PlotMouseEvent::button;
+```
+
+
+
+
+<hr>
+
+
+
+
+### property buttons {#property-buttons-12}
+
+_The mouse buttons held down during the event._ 
+```C++
+Qt::MouseButtons QAccelPlot::PlotMouseEvent::buttons;
 ```
 
 
@@ -253,9 +269,24 @@ Q_INVOKABLE void QAccelPlot::PlotMouseEvent::accept ()
 
 ### function button {#function-button-22}
 
-_Returns the mouse button that caused the event; for a move, the buttons held down, combined._ 
+_Returns the mouse button that caused the event;_ `Qt::NoButton` _for a move._
 ```C++
 Qt::MouseButton QAccelPlot::PlotMouseEvent::button () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function buttons {#function-buttons-22}
+
+_Returns the mouse buttons held down during the event._ 
+```C++
+Qt::MouseButtons QAccelPlot::PlotMouseEvent::buttons () const
 ```
 
 
@@ -301,26 +332,6 @@ bool QAccelPlot::PlotMouseEvent::isAccepted () const
 _Returns the active keyboard modifiers at the time of the event._ 
 ```C++
 Qt::KeyboardModifiers QAccelPlot::PlotMouseEvent::modifiers () const
-```
-
-
-
-
-<hr>
-
-
-
-
-### function reset {#function-reset}
-
-_Resets the event data for a new event. Called by_ [_**QAccelPlot**_](classQAccelPlot_1_1QAccelPlot.md) _before emitting mouse signals._
-```C++
-void QAccelPlot::PlotMouseEvent::reset (
-    Qt::MouseButton button,
-    qreal x,
-    qreal y,
-    Qt::KeyboardModifiers modifiers
-) 
 ```
 
 

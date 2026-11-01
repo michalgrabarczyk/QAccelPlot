@@ -20,6 +20,7 @@
 * `#include "QAccelPlot/effects/GradientColorTypes.hpp"`
 * `#include <QObject>`
 * `#include <QQmlListProperty>`
+* `#include <QQmlParserStatus>`
 * `#include <QtQml/qqmlregistration.h>`
 * `#include <vector>`
 

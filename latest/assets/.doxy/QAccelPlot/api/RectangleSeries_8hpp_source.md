@@ -17,9 +17,9 @@
 //
 #pragma once
 
+#include "QAccelPlot/Border.hpp"
+#include "QAccelPlot/series/Category.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
-#include "QAccelPlot/series/RectVertexCache.hpp"
-#include "QAccelPlot/series/RectangleBorder.hpp"
 #include "QAccelPlot/series/SpatialGrid.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 
@@ -29,7 +29,9 @@
 #include <QtQml/qqmlregistration.h>
 #endif
 
+#include <QList>
 #include <QPointF>
+#include <QQmlListProperty>
 #include <QSizeF>
 
 #include <memory>
@@ -39,7 +41,9 @@
 namespace QAccelPlot {
 
 namespace Internal {
+class CategoryList;
 class HoverIndexBudget;
+class RectVertexCache;
 }
 class RectMaterial;
 
@@ -49,12 +53,11 @@ class RectangleSeries : public PlotSeries {
 
     
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
-    Q_PROPERTY(QList<QColor> categoryColors READ categoryColors WRITE setCategoryColors NOTIFY categoryColorsChanged)
-    Q_PROPERTY(RectangleBorder* border READ border CONSTANT)
+    Q_PROPERTY(QQmlListProperty<Category> categories READ categories NOTIFY categoriesChanged)
+    Q_PROPERTY(Border* border READ border CONSTANT)
     Q_PROPERTY(QColor hoverColor READ hoverColor WRITE setHoverColor NOTIFY hoverColorChanged)
     Q_PROPERTY(qreal minimumWidth READ minimumWidth WRITE setMinimumWidth NOTIFY minimumWidthChanged)
     Q_PROPERTY(qreal minimumHeight READ minimumHeight WRITE setMinimumHeight NOTIFY minimumHeightChanged)
-    Q_PROPERTY(int count READ count NOTIFY countChanged)
     Q_PROPERTY(int hoveredIndex READ hoveredIndex NOTIFY hoveredIndexChanged)
 
 public:
@@ -64,10 +67,10 @@ public:
     QColor color() const;
     void setColor(const QColor& color);
 
-    QList<QColor> categoryColors() const;
-    void setCategoryColors(const QList<QColor>& colors);
+    QQmlListProperty<Category> categories();
+    void setCategories(const QList<Category*>& categories);
 
-    RectangleBorder* border() const;
+    Border* border() const;
 
     QColor hoverColor() const;
     void setHoverColor(const QColor& color);
@@ -78,13 +81,12 @@ public:
     qreal minimumHeight() const;
     void setMinimumHeight(qreal height);
 
-    int count() const;
     int hoveredIndex() const;
 
     Q_INVOKABLE void setData(const QVariantList& rects);
 
     // The PlotSeries overloads take interleaved (x1, y1, x2, y2) rectangles, as doubles or floats,
-    // and clear the categories.
+    // and clear the rectangles' categories.
     using PlotSeries::postData;
     using PlotSeries::setData;
     using PlotSeries::setDataF;
@@ -98,8 +100,10 @@ public:
     void postData(std::vector<float>&& data, std::vector<int>&& categories, int rectCount);
 
     Q_INVOKABLE void clearData() override;
+    std::optional<LegendEntry> legendEntry() const override;
+    QList<LegendEntry> legendEntries() const override;
 
-    Q_INVOKABLE void setCategories(const QList<int>& categories);
+    Q_INVOKABLE void setDataPointCategories(const QVariantList& categories);
 
     Q_INVOKABLE QVariantMap rectangleAt(int index) const;
 
@@ -108,15 +112,15 @@ public:
 
 signals:
     void colorChanged();
-    void categoryColorsChanged();
+    void categoriesChanged();
     void hoverColorChanged();
     void minimumWidthChanged();
     void minimumHeightChanged();
-    void countChanged();
     void hoveredIndexChanged();
 
 protected:
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*) override;
+    bool recordInspectionSupported() const override;
     InspectionRecord inspectionRecord(int index) const override;
     InspectionRecord inspectionRecordAt(const QPointF& position) const override;
     void hoverEnterEvent(QHoverEvent* event) override;
@@ -126,6 +130,7 @@ protected:
     void onDataPointsChanged(DataChange change, int previousCount) override;
 
 private:
+    void onCategoriesChanged();
     bool validateCategories(std::size_t categoryCount, int rectCount) const;
     void applyData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
     void applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, int rectCount);
@@ -163,18 +168,16 @@ private:
     void buildVertexCache(int rectCount);
 
     QColor color_;
-    QList<QColor> categoryColors_;
-    RectangleBorder* border_{new RectangleBorder{this}};
+    std::unique_ptr<Internal::CategoryList> categories_;
+    Border* border_{new Border{Qt::black, 0.0, this}};
     QColor hoverColor_;
     qreal minimumWidth_{1.0};
     qreal minimumHeight_{1.0};
     int hoveredIndex_{-1};
     // Render revision of the rectangles last uploaded to the GPU.
     std::uint64_t uploadedRevision_{0};
-    // Whether the last frame held more records than the GPU buffers do; warns on each crossing.
-    bool overCapacity_{false};
     // Vertex colors are category colors when categories are set; otherwise \c color is a uniform.
-    RectVertexCache vertexCache_;
+    std::unique_ptr<Internal::RectVertexCache> vertexCache_;
     // Whether the vertex cache holds category colors.
     bool vertexCacheHasCategories_{false};
     // Built once scanning the same data has cost as much as the build, so streaming skips it.

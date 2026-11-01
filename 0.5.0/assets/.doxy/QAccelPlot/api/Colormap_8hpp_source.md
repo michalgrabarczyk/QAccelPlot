@@ -1,0 +1,115 @@
+
+
+# File Colormap.hpp
+
+[**File List**](files.md) **>** [**effects**](dir_2cb1ffa6338b0172fd78b92843e0e53d.md) **>** [**Colormap.hpp**](Colormap_8hpp.md)
+
+[Go to the documentation of this file](Colormap_8hpp.md)
+
+
+```C++
+//
+// SPDX-FileCopyrightText: 2026 Michal Grabarczyk
+// SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
+//
+// This file is also available under a separate commercial license.
+// See COMMERCIAL-LICENSING.md for contact information.
+//
+#pragma once
+
+#include "QAccelPlot/effects/GradientColorTypes.hpp"
+
+#include <QObject>
+#include <QQmlListProperty>
+#include <QQmlParserStatus>
+#include <QtQml/qqmlregistration.h>
+
+#include <vector>
+
+namespace QAccelPlot {
+
+class Colormap : public QObject, public QQmlParserStatus {
+    Q_OBJECT
+    Q_INTERFACES(QQmlParserStatus)
+    QML_NAMED_ELEMENT(Colormap)
+
+    
+    Q_PROPERTY(Preset preset READ preset WRITE setPreset NOTIFY colormapChanged)
+    Q_PROPERTY(QQmlListProperty<QObject> stops READ stops NOTIFY colormapChanged)
+    Q_PROPERTY(bool reversed READ reversed WRITE setReversed NOTIFY colormapChanged)
+    Q_PROPERTY(qreal min READ min WRITE setMin NOTIFY colormapChanged)
+    Q_PROPERTY(qreal max READ max WRITE setMax NOTIFY colormapChanged)
+    Q_PROPERTY(bool logScale READ logScale WRITE setLogScale NOTIFY colormapChanged)
+
+public:
+    enum class Preset {
+        Viridis,   
+        Plasma,    
+        Inferno,   
+        Magma,     
+        Grayscale, 
+        Rainbow    
+    };
+    Q_ENUM(Preset)
+
+    
+    explicit Colormap(QObject* parent = nullptr);
+
+    Preset preset() const;
+    void setPreset(Preset preset);
+
+    QQmlListProperty<QObject> stops();
+
+    bool reversed() const;
+    void setReversed(bool reversed);
+
+    qreal min() const;
+    void setMin(qreal value);
+
+    qreal max() const;
+    void setMax(qreal value);
+
+    Q_INVOKABLE void setRange(qreal min, qreal max);
+
+    bool logScale() const;
+    void setLogScale(bool on);
+
+    const std::vector<GradientStopData>& resolvedStops() const;
+
+signals:
+    void colormapChanged();
+
+protected:
+    void classBegin() override;
+    void componentComplete() override;
+
+private:
+    Q_SLOT void onStopChanged();
+    void onStopDestroyed(QObject* stop);
+    // Tracks the stop's lifetime and its position and color edits.
+    void connectStop(QObject* stop);
+    void disconnectStops();
+    // Moves a GradientStop declared in this list under an internal Gradient, so its edits notify.
+    void adoptStop(QObject* stop);
+    QObject* stopTracker();
+    void rebuildStops();
+    std::vector<GradientStopData> customStops() const;
+
+    static void appendStop(QQmlListProperty<QObject>* list, QObject* stop);
+    static qsizetype stopCount(QQmlListProperty<QObject>* list);
+    static QObject* stopAt(QQmlListProperty<QObject>* list, qsizetype index);
+    static void clearStops(QQmlListProperty<QObject>* list);
+
+    Preset preset_{Preset::Viridis};
+    QList<QObject*> stopObjects_;
+    bool reversed_{false};
+    std::vector<GradientStopData> resolvedStops_;
+    qreal min_;
+    qreal max_;
+    bool logScale_{false};
+};
+
+} // namespace QAccelPlot
+```
+
+

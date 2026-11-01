@@ -26,6 +26,7 @@
 #include "QAccelPlot/series/LineCurveVertexCache.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
 #include "QAccelPlot/series/SeriesMarker.hpp"
+#include "QAccelPlot/series/StepMode.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 #include "QAccelPlot/transitions/DataTransition.hpp"
 
@@ -50,15 +51,14 @@ class LineCurve : public PlotSeries {
     
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
     Q_PROPERTY(qreal lineWidth READ lineWidth WRITE setLineWidth NOTIFY lineWidthChanged)
-    Q_PROPERTY(bool hovered READ hovered NOTIFY hoveredChanged)
     Q_PROPERTY(qreal hoverRadius READ hoverRadius WRITE setHoverRadius NOTIFY hoverRadiusChanged)
     Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
     Q_PROPERTY(LineStyle* lineStyle READ lineStyle WRITE setLineStyle NOTIFY lineStyleChanged)
-    Q_PROPERTY(bool antialiasingEnabled READ antialiasingEnabled WRITE setAntialiasingEnabled NOTIFY antialiasingEnabledChanged)
     Q_PROPERTY(qreal antialiasingFeather READ antialiasingFeather WRITE setAntialiasingFeather NOTIFY antialiasingFeatherChanged)
     Q_PROPERTY(QQmlListProperty<LineCurveEffect> effects READ effects)
     Q_PROPERTY(LineCurveGaps* gaps READ gaps CONSTANT)
     Q_PROPERTY(SeriesMarker* marker READ marker CONSTANT)
+    Q_PROPERTY(StepMode stepMode READ stepMode WRITE setStepMode NOTIFY stepModeChanged)
 
 public:
     explicit LineCurve(QQuickItem* parent = nullptr);
@@ -70,8 +70,6 @@ public:
     qreal lineWidth() const;
     void setLineWidth(qreal w);
 
-    bool hovered() const;
-
     qreal hoverRadius() const;
     void setHoverRadius(qreal radius);
 
@@ -80,9 +78,6 @@ public:
 
     LineStyle* lineStyle() const;
     void setLineStyle(LineStyle* style);
-
-    bool antialiasingEnabled() const;
-    void setAntialiasingEnabled(bool enabled);
 
     qreal antialiasingFeather() const;
     void setAntialiasingFeather(qreal feather);
@@ -93,18 +88,20 @@ public:
 
     SeriesMarker* marker() const;
 
+    StepMode stepMode() const;
+    void setStepMode(StepMode mode);
+
     Q_INVOKABLE void appendData(qreal x, qreal y);
     Q_INVOKABLE void setData(const QList<QPointF>& data);
     void setData(const std::vector<double>& xs, const std::vector<double>& ys);
     using PlotSeries::postData;
     using PlotSeries::setData;
     using PlotSeries::setDataF;
-    void setDataFWithCache(std::vector<float>&& data, int pointCount, std::vector<char>&& vertexCache);
-    void setDataFWithCache(const float* xyInterleaved, int pointCount, std::vector<char>&& vertexCache);
     Q_INVOKABLE void clearData() override;
+    std::optional<LegendEntry> legendEntry() const override;
 
 protected:
-    InspectionSource inspectionSource() const override;
+    Internal::InspectionSource inspectionSource() const override;
     bool inspectionAvailable() const override;
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updatePaintNodeData) override;
     void itemChange(ItemChange change, const ItemChangeData& value) override;
@@ -118,12 +115,11 @@ protected:
 signals:
     void colorChanged();
     void lineWidthChanged();
-    void hoveredChanged();
     void hoverRadiusChanged();
     void transitionChanged();
     void lineStyleChanged();
-    void antialiasingEnabledChanged();
     void antialiasingFeatherChanged();
+    void stepModeChanged();
 
 private:
     void onTransitionDestroyed();
@@ -152,11 +148,8 @@ private:
     // when NanGapMode::Connect has removed invalid data points.
     int renderPointCount() const;
     void refreshVertexCacheForDataChange();
-    void installVertexCache(std::vector<char>&& vertexCache);
-    std::size_t expectedVertexCacheSize() const;
-    // Rebuilds vertexCache_ from the current GPU-ready data and color on the calling thread.
-    // Used after color/hover changes when no new data is arriving.
-    void rebuildVertexCache();
+    // Sizes vertexCache_ for the render points, writing only the points it does not hold yet.
+    void updateVertexCache();
     void rebuildChunks() const;
     void invalidateVertices();
     void invalidateData();
@@ -172,21 +165,18 @@ private:
 
     QColor color_{ColorPalette::dark().seriesPrimary};
     qreal lineWidth_{1.0};
-    bool hovered_{false};
     qreal hoverRadius_{10.0};
     // While its run is pending, the frames are the store's drawn points; the stored points are its target.
     std::unique_ptr<TransitionRunner> transition_;
     // The previous transition frame, reused for the next one.
     std::vector<double> frameBuffer_;
-    // A vertex cache passed with the data, installed once the data points changed.
-    std::optional<std::vector<char>> pendingVertexCache_;
     QPointer<QQuickWindow> animationTickWindow_;
     QPointer<LineStyle> lineStyle_{new SolidLine{this}};
-    bool antialiasingEnabled_{true};
     qreal antialiasingFeather_{1.0};
     bool styleChanged_{false};
     LineCurveGaps* gaps_{new LineCurveGaps{this}};
     SeriesMarker* marker_{new SeriesMarker{MarkerShape::None, 4.0, SeriesMarker::NoneShape::Accepted, this}};
+    StepMode stepMode_{StepMode::None};
     QList<LineCurveEffect*> effects_;
     LineCurveLineRenderer lineRenderer_;
     LineCurvePointRenderer pointRenderer_;
@@ -199,8 +189,6 @@ private:
     std::uint64_t uploadedRevision_{0};
     // Render revision of the points the vertex cache was built from.
     std::uint64_t vertexCacheRevision_{0};
-    // Whether the last frame held more records than the GPU buffers do; warns on each crossing.
-    bool overCapacity_{false};
 
     // Pre-built vertex cache. The render thread consumes it via a single memcpy, which is
     // significantly faster than writing to GPU-mapped memory struct-by-struct.

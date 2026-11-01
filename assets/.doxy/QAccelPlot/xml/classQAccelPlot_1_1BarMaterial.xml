@@ -19,7 +19,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" line="28" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" bodystart="28" bodyend="28"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" line="30" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" bodystart="30" bodyend="30"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1BarMaterial_1ac1665b6c3fef246ae264c342729b6c85" prot="public" static="no" mutable="no">
         <type>float</type>
@@ -35,7 +35,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" line="29" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" bodystart="29" bodyend="29"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" line="31" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" bodystart="31" bodyend="31"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1BarMaterial_1ae78350297198212525029d71a35f890a" prot="public" static="no" mutable="no">
         <type>float</type>
@@ -51,7 +51,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" line="30" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" bodystart="30" bodyend="30"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" line="32" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" bodystart="32" bodyend="32"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1BarMaterial_1a67e221e8b0c735e95905dfdb7d041c33" prot="public" static="no" mutable="no">
         <type>float</type>
@@ -67,7 +67,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" line="31" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" bodystart="31" bodyend="31"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" line="33" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" bodystart="33" bodyend="33"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1BarMaterial_1aebde3872c93695ff6b9b14658ae45639" prot="public" static="no" mutable="no">
         <type>float</type>
@@ -83,7 +83,102 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" line="32" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" bodystart="32" bodyend="32"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" line="34" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" bodystart="34" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BarMaterial_1a09710fd1bf4f22eef3104361e1ea619b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::BarMaterial::colorSource</definition>
+        <argsstring></argsstring>
+        <name>colorSource</name>
+        <qualifiedname>QAccelPlot::BarMaterial::colorSource</qualifiedname>
+        <initializer>{0.0f}</initializer>
+        <briefdescription>
+<para>What <computeroutput>colorMap</computeroutput> maps: 0 nothing (the rectangle colors apply), 1 the value, 2 the position. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" line="36" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" bodystart="36" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BarMaterial_1ad84906e9ead98061adf746b3f487eab5" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::BarMaterial::valueMin</definition>
+        <argsstring></argsstring>
+        <name>valueMin</name>
+        <qualifiedname>QAccelPlot::BarMaterial::valueMin</qualifiedname>
+        <initializer>{0.0f}</initializer>
+        <briefdescription>
+<para>Value at colormap position 0, shifted like the data unless <computeroutput>valueLogScale</computeroutput> is set. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" line="37" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" bodystart="37" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BarMaterial_1a9676a83453eb3a6ae614b4340d9aa1c0" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::BarMaterial::valueMax</definition>
+        <argsstring></argsstring>
+        <name>valueMax</name>
+        <qualifiedname>QAccelPlot::BarMaterial::valueMax</qualifiedname>
+        <initializer>{1.0f}</initializer>
+        <briefdescription>
+<para>Value at colormap position 1, shifted like <computeroutput>valueMin</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" line="38" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BarMaterial_1a9b549cafa145961f9f07711b269641f2" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::BarMaterial::valueOrigin</definition>
+        <argsstring></argsstring>
+        <name>valueOrigin</name>
+        <qualifiedname>QAccelPlot::BarMaterial::valueOrigin</qualifiedname>
+        <initializer>{0.0f}</initializer>
+        <briefdescription>
+<para>Added to the mapped data before a log normalization, which needs the absolute value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" line="39" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" bodystart="39" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BarMaterial_1a147cf39a158b46fcf93d6ac69c6fc275" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::BarMaterial::valueLogScale</definition>
+        <argsstring></argsstring>
+        <name>valueLogScale</name>
+        <qualifiedname>QAccelPlot::BarMaterial::valueLogScale</qualifiedname>
+        <initializer>{0.0f}</initializer>
+        <briefdescription>
+<para>1.0 to place values on the colormap in log10. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" line="40" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BarMaterial_1a7e5f690a435bfe63c1dc73a45c582ccf" prot="public" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1GradientTexture" kindref="compound">GradientTexture</ref></type>
+        <definition>GradientTexture QAccelPlot::BarMaterial::colorMap</definition>
+        <argsstring></argsstring>
+        <name>colorMap</name>
+        <qualifiedname>QAccelPlot::BarMaterial::colorMap</qualifiedname>
+        <briefdescription>
+<para><ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref> lookup texture sampled at binding 2. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" line="41" column="21" bodyfile="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" bodystart="41" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -100,7 +195,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" line="21" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" line="23" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BarMaterial_1ac841bd6baca46d3aac94cd25eb40ec12" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QSGMaterialType *</type>
@@ -115,7 +210,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" line="24" column="21"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" line="26" column="21"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1BarMaterial_1a613588ce765d5bfa2f6f1c4cda5e6bb5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QSGMaterialShader *</type>
@@ -133,7 +228,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" line="26" column="23"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" line="28" column="23"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="protected-func">
@@ -149,20 +244,20 @@
           <declname>other</declname>
         </param>
         <briefdescription>
-<para>Compares the bar-specific uniforms after the rectangle uniforms compare equal. </para>
+<para>Compares the bar-specific uniforms and the colormap texture after the rectangle uniforms compare equal. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" line="36" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" line="45" column="9"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
-<para>QSGMaterial for bar series rendering, extending <ref refid="classQAccelPlot_1_1RectMaterial" kindref="compound">RectMaterial</ref> with the bar geometry uniforms. </para>
+<para>QSGMaterial for bar series rendering, extending <ref refid="classQAccelPlot_1_1RectMaterial" kindref="compound">RectMaterial</ref> with the bar geometry and colormap uniforms. </para>
     </briefdescription>
     <detaileddescription>
-<para>The data texture holds (position, value) pairs, or (from, to, value) triples when <computeroutput>ranged</computeroutput> is set; the shader turns each into a rectangle. </para>
+<para>The data texture holds (position, value) pairs, or (from, to, value) triples when <computeroutput>ranged</computeroutput> is set; the shader turns each into a rectangle. When <computeroutput>colorSource</computeroutput> is set, the vertex shader colors each bar from <computeroutput>colorMap</computeroutput>. </para>
     </detaileddescription>
     <inheritancegraph>
       <node id="1">
@@ -193,12 +288,19 @@
         <link refid="classQAccelPlot_1_1BarMaterial"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>colorMap</edgelabel>
+        </childnode>
       </node>
       <node id="3">
         <label>QAccelPlot::DataTextureMaterial</label>
         <link refid="classQAccelPlot_1_1DataTextureMaterial"/>
         <childnode refid="4" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="5">
+        <label>QAccelPlot::GradientTexture</label>
+        <link refid="classQAccelPlot_1_1GradientTexture"/>
       </node>
       <node id="2">
         <label>QAccelPlot::RectMaterial</label>
@@ -210,8 +312,9 @@
         <label>QSGMaterial</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" line="18" column="1" bodyfile="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" bodystart="18" bodyend="37"/>
+    <location file="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" line="20" column="1" bodyfile="QAccelPlot/src/QAccelPlot/materials/BarMaterial.hpp" bodystart="20" bodyend="46"/>
     <listofallmembers>
+      <member refid="classQAccelPlot_1_1RectMaterial_1acdaa7365d37a6a3b62745156c550d04f" prot="public" virt="non-virtual"><scope>QAccelPlot::BarMaterial</scope><name>antialiasing</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1ac078fe555ea028d1a7aa0d2b3d5d4a25" prot="public" virt="non-virtual"><scope>QAccelPlot::BarMaterial</scope><name>attributeSet</name></member>
       <member refid="classQAccelPlot_1_1BarMaterial_1a2e8cd8df600845fba83ac90208d61215" prot="public" virt="non-virtual"><scope>QAccelPlot::BarMaterial</scope><name>BarMaterial</name></member>
       <member refid="classQAccelPlot_1_1BarMaterial_1ac1665b6c3fef246ae264c342729b6c85" prot="public" virt="non-virtual"><scope>QAccelPlot::BarMaterial</scope><name>barOffset</name></member>
@@ -220,6 +323,8 @@
       <member refid="classQAccelPlot_1_1RectMaterial_1aded43fc5644be7a0210f2d54a1513de1" prot="public" virt="non-virtual"><scope>QAccelPlot::BarMaterial</scope><name>borderColor</name></member>
       <member refid="classQAccelPlot_1_1RectMaterial_1a7d1b3c0ec82e4851ccc53fc0547f3152" prot="public" virt="non-virtual"><scope>QAccelPlot::BarMaterial</scope><name>borderWidth</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a121c04af7cb73165e87449c986e03d83" prot="public" virt="non-virtual"><scope>QAccelPlot::BarMaterial</scope><name>color</name></member>
+      <member refid="classQAccelPlot_1_1BarMaterial_1a7e5f690a435bfe63c1dc73a45c582ccf" prot="public" virt="non-virtual"><scope>QAccelPlot::BarMaterial</scope><name>colorMap</name></member>
+      <member refid="classQAccelPlot_1_1BarMaterial_1a09710fd1bf4f22eef3104361e1ea619b" prot="public" virt="non-virtual"><scope>QAccelPlot::BarMaterial</scope><name>colorSource</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1ab9ea2c6bb472ce5d1f3ed968c4dfb68f" prot="public" virt="non-virtual"><scope>QAccelPlot::BarMaterial</scope><name>commitTexture</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a2484cf817f49a5f6e3343c8f263e7d9d" prot="public" virt="non-virtual"><scope>QAccelPlot::BarMaterial</scope><name>compare</name></member>
       <member refid="classQAccelPlot_1_1BarMaterial_1a69a4d646d25a5f2bb6eed58351481d86" prot="protected" virt="virtual"><scope>QAccelPlot::BarMaterial</scope><name>compareExtra</name></member>
@@ -241,6 +346,11 @@
       <member refid="classQAccelPlot_1_1BarMaterial_1ac841bd6baca46d3aac94cd25eb40ec12" prot="public" virt="non-virtual"><scope>QAccelPlot::BarMaterial</scope><name>type</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a98644bbb664529ed4fa2003f1842bac4" prot="public" virt="non-virtual"><scope>QAccelPlot::BarMaterial</scope><name>uploadTexture</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1aeca4b9436551afba413a9739957b3b9a" prot="public" virt="non-virtual"><scope>QAccelPlot::BarMaterial</scope><name>useVertexColor</name></member>
+      <member refid="classQAccelPlot_1_1BarMaterial_1a147cf39a158b46fcf93d6ac69c6fc275" prot="public" virt="non-virtual"><scope>QAccelPlot::BarMaterial</scope><name>valueLogScale</name></member>
+      <member refid="classQAccelPlot_1_1BarMaterial_1a9676a83453eb3a6ae614b4340d9aa1c0" prot="public" virt="non-virtual"><scope>QAccelPlot::BarMaterial</scope><name>valueMax</name></member>
+      <member refid="classQAccelPlot_1_1BarMaterial_1ad84906e9ead98061adf746b3f487eab5" prot="public" virt="non-virtual"><scope>QAccelPlot::BarMaterial</scope><name>valueMin</name></member>
+      <member refid="classQAccelPlot_1_1BarMaterial_1a9b549cafa145961f9f07711b269641f2" prot="public" virt="non-virtual"><scope>QAccelPlot::BarMaterial</scope><name>valueOrigin</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1ab3956754bb359cdee269e210cff6c157" prot="public" virt="non-virtual"><scope>QAccelPlot::BarMaterial</scope><name>vertexIndexAttributeSet</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a33c065d9638eb6faf76732bae044d19e" prot="public" virt="non-virtual"><scope>QAccelPlot::BarMaterial</scope><name>viewportSize</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a3c4115d0b9f08938db44fd529c10f24b" prot="public" virt="non-virtual"><scope>QAccelPlot::BarMaterial</scope><name>writeCommonUniforms</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a6434926c1121e31da48ecb56b6b427e5" prot="public" virt="non-virtual"><scope>QAccelPlot::BarMaterial</scope><name>~DataTextureMaterial</name></member>

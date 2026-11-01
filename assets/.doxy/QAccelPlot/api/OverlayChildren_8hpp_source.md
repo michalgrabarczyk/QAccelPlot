@@ -23,7 +23,7 @@
 #include <QQuickItem>
 #include <QVariant>
 
-namespace QAccelPlot {
+namespace QAccelPlot::Internal {
 
 class OverlayChildren {
 public:
@@ -45,7 +45,7 @@ private:
     QList<QPointer<QObject>> objects_;
 };
 
-} // namespace QAccelPlot
+} // namespace QAccelPlot::Internal
 ```
 
 

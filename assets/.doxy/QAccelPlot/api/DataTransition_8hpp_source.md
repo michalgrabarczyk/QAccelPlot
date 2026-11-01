@@ -18,12 +18,13 @@
 #pragma once
 
 #include <QEasingCurve>
-#include <QElapsedTimer>
 #include <QList>
 #include <QObject>
 #include <QtQml/qqmlregistration.h>
 
 #include <vector>
+
+QT_FORWARD_DECLARE_CLASS(QAbstractAnimation)
 
 namespace QAccelPlot {
 
@@ -68,7 +69,7 @@ public:
         bool pending_{false};
         Dataset from_;
         Dataset to_;
-        QElapsedTimer timer_;
+        int startTime_{0};
     };
 
     explicit DataTransition(QObject* parent = nullptr);
@@ -109,6 +110,7 @@ private:
     bool enabled_{true};
     bool running_{false};
     QList<Run*> runs_;
+    QAbstractAnimation* clock_;
 };
 
 } // namespace QAccelPlot

@@ -66,7 +66,7 @@ _Data-point-weighted Y statistics over the valid data points inside a region._
 | property qreal | [**minimum**](structQAccelPlot_1_1InspectionSummary.md#property-minimum)  <br>_Smallest Y; NaN for an empty region._  |
 | property int | [**minimumIndex**](structQAccelPlot_1_1InspectionSummary.md#property-minimumindex)  <br>_Source index of the smallest Y, highest index on ties._  |
 | property qreal | [**standardDeviation**](structQAccelPlot_1_1InspectionSummary.md#property-standarddeviation)  <br>_Population standard deviation of Y; NaN for an empty region._  |
-| property QML\_ANONYMOUSQAccelPlot::InspectionNS::Status | [**status**](structQAccelPlot_1_1InspectionSummary.md#property-status-12)  <br>_Query outcome;_ `NoMatch` _for an empty region._ |
+| property QML\_ANONYMOUSInspectionNS::Status | [**status**](structQAccelPlot_1_1InspectionSummary.md#property-status-12)  <br>_Query outcome;_ `NoMatch` _for an empty region._ |
 | property bool | [**valid**](structQAccelPlot_1_1InspectionSummary.md#property-valid-12)  <br>_True when status is_ `Ready` _._ |
 
 
@@ -288,7 +288,7 @@ Population standard deviation.
 
 _Query outcome;_ `NoMatch` _for an empty region._
 ```C++
-QML_ANONYMOUSQAccelPlot::InspectionNS::Status QAccelPlot::InspectionSummary::status;
+QML_ANONYMOUSInspectionNS::Status QAccelPlot::InspectionSummary::status;
 ```
 
 

@@ -21,6 +21,7 @@
 #include "QAccelPlot/inspection/SeriesInspection.hpp"
 #include "QAccelPlot/series/DataPointStore.hpp"
 
+#include <QList>
 #include <QPointer>
 #include <QQuickItem>
 #include <QRectF>
@@ -38,6 +39,8 @@
 
 namespace QAccelPlot {
 
+struct LegendEntry;
+
 class PlotSeries : public QQuickItem {
     Q_OBJECT
     QML_NAMED_ELEMENT(PlotSeries)
@@ -49,36 +52,17 @@ class PlotSeries : public QQuickItem {
     Q_PROPERTY(Axis* yAxis READ yAxis WRITE setYAxis NOTIFY yAxisChanged)
     Q_PROPERTY(QRectF plotRect READ plotRect WRITE setPlotRect NOTIFY plotRectChanged)
     Q_PROPERTY(LegendSymbol legendSymbol READ legendSymbol WRITE setLegendSymbol NOTIFY legendSymbolChanged)
+    Q_PROPERTY(bool hoverEnabled READ hoverEnabled WRITE setHoverEnabled NOTIFY hoverEnabledChanged)
+    Q_PROPERTY(bool hovered READ hovered NOTIFY hoveredChanged)
 
     
     Q_PROPERTY(quint64 dataRevision READ dataRevision NOTIFY dataRevisionChanged)
-    Q_PROPERTY(::QAccelPlot::SeriesInspection* inspection READ inspection CONSTANT)
+    Q_PROPERTY(SeriesInspection* inspection READ inspection CONSTANT)
+    Q_PROPERTY(int count READ count NOTIFY countChanged)
 
 public:
     enum class LegendSymbol { Line, Fill, Marker };
     Q_ENUM(LegendSymbol)
-
-    
-    enum class MarkerShape {
-        None,          
-        Circle,        
-        Square,        
-        Diamond,       
-        TriangleUp,    
-        TriangleDown,  
-        TriangleLeft,  
-        TriangleRight, 
-        Cross,         
-        XCross,        
-        HLine,         
-        VLine,         
-        Star,          
-        Asterisk,      
-        Pixel,         
-        Hexagon,       
-        Pentagon       
-    };
-    Q_ENUM(MarkerShape)
 
     
     struct DataExtent {
@@ -98,6 +82,7 @@ public:
 
     quint64 dataRevision() const;
     SeriesInspection* inspection() const;
+    virtual int count() const;
 
     QString name() const;
     void setName(const QString& name);
@@ -113,6 +98,13 @@ public:
 
     LegendSymbol legendSymbol() const;
     void setLegendSymbol(LegendSymbol symbol);
+
+    bool hoverEnabled() const;
+    void setHoverEnabled(bool enabled);
+    bool hovered() const;
+
+    virtual std::optional<LegendEntry> legendEntry() const;
+    virtual QList<LegendEntry> legendEntries() const;
 
     void setData(const double* data, int count);
     void setData(std::vector<double>&& data, int count);
@@ -131,11 +123,15 @@ public:
 
 signals:
     void dataRevisionChanged();
+    void countChanged();
     void nameChanged();
     void xAxisChanged();
     void yAxisChanged();
     void plotRectChanged();
     void legendSymbolChanged();
+    void hoverEnabledChanged();
+    void hoveredChanged();
+    void legendEntryChanged();
 
 protected:
     struct DataPointWording {
@@ -180,10 +176,13 @@ protected:
 
     void inspectionDataChanged(DataChange change = DataChange::Replaced);
     void invalidateInspection();
-    virtual InspectionSource inspectionSource() const;
+    virtual Internal::InspectionSource inspectionSource() const;
     virtual bool inspectionAvailable() const;
+    virtual bool recordInspectionSupported() const;
     virtual InspectionRecord inspectionRecord(int index) const;
     virtual InspectionRecord inspectionRecordAt(const QPointF& position) const;
+    virtual bool positionInspectionSupported() const;
+    virtual InspectionDataPoint inspectionDataPointAt(const QPointF& position) const;
 
     struct DataRanges {
         std::optional<DataExtent> x; 
@@ -197,7 +196,17 @@ protected:
     virtual void onAxisScaleChanged();
     virtual void onAxisRangeChanged();
     QRectF resolvePlotRect() const;
+    enum class CapacityOverflow {
+        DropsExcess, 
+        DropsAll,    
+    };
+    void updateRenderCapacity(int capacity, int recordCount, CapacityOverflow overflow = CapacityOverflow::DropsExcess);
+    void supportHover();
+    void setHovered(bool hovered);
     bool event(QEvent* event) override;
+
+    int renderCapacity_{std::numeric_limits<int>::max()};
+    bool overRenderCapacity_{false};
 
 private:
     friend class SeriesInspection;
@@ -210,7 +219,11 @@ private:
     void reportDataRangesChanged() const;
     void deliverTopmostHover(QHoverEvent* event);
     bool coveredBySeriesAbove(const QPointF& position) const;
+    void updateAcceptHoverEvents();
 
+    bool hoverSupported_{false};
+    bool hoverEnabled_{true};
+    bool hovered_{false};
     bool hoverDelivered_{false};
     quint64 dataRevision_{0};
     mutable SeriesInspection* inspection_{nullptr};

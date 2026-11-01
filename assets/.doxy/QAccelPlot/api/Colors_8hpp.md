@@ -47,7 +47,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| class | [**Colors**](classQAccelPlot_1_1Colors.md) <br>_QML singleton exposing_ [_**QAccelPlot**_](classQAccelPlot_1_1QAccelPlot.md) _'s built-in color palettes._ |
+| class | [**Colors**](classQAccelPlot_1_1Colors.md) <br>_QML singleton exposing QAccelPlot's built-in color palettes._  |
 
 
 

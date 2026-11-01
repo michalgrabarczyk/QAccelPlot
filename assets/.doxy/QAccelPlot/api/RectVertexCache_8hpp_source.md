@@ -2,7 +2,7 @@
 
 # File RectVertexCache.hpp
 
-[**File List**](files.md) **>** [**QAccelPlot**](dir_84505bf06e96cd50072ae15b96eb466a.md) **>** [**src**](dir_3588d0448386bbe164b4703bb7530415.md) **>** [**QAccelPlot**](dir_0cbea278626d30118177d562182e643b.md) **>** [**series**](dir_70064bc2bead69da871bd372e93dce80.md) **>** [**RectVertexCache.hpp**](RectVertexCache_8hpp.md)
+[**File List**](files.md) **>** [**internal**](dir_70e6e0d61970c92b37b608a046280901.md) **>** [**RectVertexCache.hpp**](RectVertexCache_8hpp.md)
 
 [Go to the documentation of this file](RectVertexCache_8hpp.md)
 
@@ -24,7 +24,7 @@
 
 class QSGGeometry;
 
-namespace QAccelPlot {
+namespace QAccelPlot::Internal {
 
 class RectVertexCache final {
 public:
@@ -54,7 +54,7 @@ private:
     bool valid_{false};
 };
 
-} // namespace QAccelPlot
+} // namespace QAccelPlot::Internal
 ```
 
 

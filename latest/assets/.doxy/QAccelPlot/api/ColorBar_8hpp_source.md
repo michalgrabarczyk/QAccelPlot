@@ -17,10 +17,11 @@
 //
 #pragma once
 
+#include "QAccelPlot/Border.hpp"
 #include "QAccelPlot/axis/AxisTicker.hpp"
 #include "QAccelPlot/axis/AxisTicks.hpp"
 #include "QAccelPlot/effects/GradientColorTypes.hpp"
-#include "QAccelPlot/series/PointCloud.hpp"
+#include "QAccelPlot/series/ColormappedSeries.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 
 #include <QColor>
@@ -40,15 +41,14 @@ class ColorBar : public QQuickPaintedItem {
     QML_NAMED_ELEMENT(ColorBar)
 
     
-    Q_PROPERTY(PointCloud* series READ series WRITE setSeries NOTIFY seriesChanged)
+    Q_PROPERTY(ColormappedSeries* series READ series WRITE setSeries NOTIFY seriesChanged)
     Q_PROPERTY(Qt::Orientation orientation READ orientation WRITE setOrientation NOTIFY orientationChanged)
     Q_PROPERTY(QString label READ label WRITE setLabel NOTIFY labelChanged)
     Q_PROPERTY(QFont labelFont READ labelFont WRITE setLabelFont NOTIFY labelFontChanged)
     Q_PROPERTY(QColor labelColor READ labelColor WRITE setLabelColor NOTIFY labelColorChanged)
     Q_PROPERTY(qreal labelPadding READ labelPadding WRITE setLabelPadding NOTIFY labelPaddingChanged)
     Q_PROPERTY(qreal barThickness READ barThickness WRITE setBarThickness NOTIFY barThicknessChanged)
-    Q_PROPERTY(QColor borderColor READ borderColor WRITE setBorderColor NOTIFY borderColorChanged)
-    Q_PROPERTY(qreal borderWidth READ borderWidth WRITE setBorderWidth NOTIFY borderWidthChanged)
+    Q_PROPERTY(Border* border READ border CONSTANT)
     Q_PROPERTY(qreal tickLabelWidth READ tickLabelWidth WRITE setTickLabelWidth NOTIFY tickLabelWidthChanged)
     Q_PROPERTY(bool interactive READ interactive WRITE setInteractive NOTIFY interactiveChanged)
     Q_PROPERTY(qreal zoomScaleFactor READ zoomScaleFactor WRITE setZoomScaleFactor NOTIFY zoomScaleFactorChanged)
@@ -58,8 +58,8 @@ class ColorBar : public QQuickPaintedItem {
 public:
     explicit ColorBar(QQuickItem* parent = nullptr);
 
-    PointCloud* series() const;
-    void setSeries(PointCloud* series);
+    ColormappedSeries* series() const;
+    void setSeries(ColormappedSeries* series);
 
     Qt::Orientation orientation() const;
     void setOrientation(Qt::Orientation orientation);
@@ -79,11 +79,7 @@ public:
     qreal barThickness() const;
     void setBarThickness(qreal thickness);
 
-    QColor borderColor() const;
-    void setBorderColor(const QColor& color);
-
-    qreal borderWidth() const;
-    void setBorderWidth(qreal width);
+    Border* border() const;
 
     qreal tickLabelWidth() const;
     void setTickLabelWidth(qreal width);
@@ -113,8 +109,6 @@ signals:
     void labelColorChanged();
     void labelPaddingChanged();
     void barThicknessChanged();
-    void borderColorChanged();
-    void borderWidthChanged();
     void tickLabelWidthChanged();
     void interactiveChanged();
     void zoomScaleFactorChanged();
@@ -162,7 +156,7 @@ private:
     void paintTicks(QPainter* painter) const;
     void paintTitle(QPainter* painter) const;
 
-    QPointer<PointCloud> series_;
+    QPointer<ColormappedSeries> series_;
     QList<QMetaObject::Connection> seriesConnections_;
     QMetaObject::Connection colormapConnection_;
     Qt::Orientation orientation_{Qt::Vertical};
@@ -171,8 +165,7 @@ private:
     QColor labelColor_{ColorPalette::dark().axisLine};
     qreal labelPadding_{6.0};
     qreal barThickness_{12.0};
-    QColor borderColor_{ColorPalette::dark().axisLine};
-    qreal borderWidth_{1.0};
+    Border* border_{new Border{ColorPalette::dark().axisLine, 1.0, this}};
     qreal tickLabelWidth_{16.0};
     bool interactive_{false};
     qreal zoomScaleFactor_{0.9};

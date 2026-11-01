@@ -18,6 +18,7 @@
 #pragma once
 
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/series/StepMode.hpp"
 
 #include <vector>
 
@@ -60,6 +61,7 @@ struct CurveHitTestParams {
     qreal hitThreshold;                    
     bool nonPositiveXInvalid;              
     bool nonPositiveYInvalid;              
+    StepMode stepMode{StepMode::None};     
 };
 
 inline bool isEmptyChunk(const CurveChunk& chunk)

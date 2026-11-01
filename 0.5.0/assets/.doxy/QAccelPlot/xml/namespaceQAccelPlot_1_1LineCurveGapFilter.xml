@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespaceQAccelPlot_1_1LineCurveGapFilter" kind="namespace" language="C++">
+    <compoundname>QAccelPlot::LineCurveGapFilter</compoundname>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="namespaceQAccelPlot_1_1LineCurveGapFilter_1a86cea55256cf82fcf5f4be05f163607f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::LineCurveGapFilter::isValidPoint</definition>
+        <argsstring>(const CurveDataView &amp;data, int index, bool logScaleX, bool logScaleY)</argsstring>
+        <name>isValidPoint</name>
+        <qualifiedname>QAccelPlot::LineCurveGapFilter::isValidPoint</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1CurveDataView" kindref="compound">CurveDataView</ref> &amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>logScaleX</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>logScaleY</declname>
+        </param>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> when both coordinates of data point <emphasis>index</emphasis> in <emphasis>data</emphasis> are valid. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurveGapFilter.hpp" line="29" column="7" declfile="QAccelPlot/src/QAccelPlot/series/LineCurveGapFilter.hpp" declline="29" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceQAccelPlot_1_1LineCurveGapFilter_1a4061107dadd0fc748aeefb88dc243b8b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="structQAccelPlot_1_1DataPointRun" kindref="compound">DataPointRun</ref> &gt;</type>
+        <definition>std::vector&lt; DataPointRun &gt; QAccelPlot::LineCurveGapFilter::findValidRuns</definition>
+        <argsstring>(const CurveDataView &amp;data, int pointCount, bool logScaleX, bool logScaleY)</argsstring>
+        <name>findValidRuns</name>
+        <qualifiedname>QAccelPlot::LineCurveGapFilter::findValidRuns</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1CurveDataView" kindref="compound">CurveDataView</ref> &amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>pointCount</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>logScaleX</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>logScaleY</declname>
+        </param>
+        <briefdescription>
+<para>Returns the maximal runs of consecutive valid data points in <emphasis>data</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurveGapFilter.hpp" line="32" column="14" declfile="QAccelPlot/src/QAccelPlot/series/LineCurveGapFilter.hpp" declline="32" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceQAccelPlot_1_1LineCurveGapFilter_1aafd3c0eaf575ec8341be702f2667aad8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; int &gt;</type>
+        <definition>std::vector&lt; int &gt; QAccelPlot::LineCurveGapFilter::planRunSampling</definition>
+        <argsstring>(const std::vector&lt; DataPointRun &gt; &amp;runs, int maxSampledPoints)</argsstring>
+        <name>planRunSampling</name>
+        <qualifiedname>QAccelPlot::LineCurveGapFilter::planRunSampling</qualifiedname>
+        <param>
+          <type>const std::vector&lt; <ref refid="structQAccelPlot_1_1DataPointRun" kindref="compound">DataPointRun</ref> &gt; &amp;</type>
+          <declname>runs</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>maxSampledPoints</declname>
+        </param>
+        <briefdescription>
+<para>Distributes a budget of <emphasis>maxSampledPoints</emphasis> across <emphasis>runs</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns one sampled count per run. Runs with fewer than two samples receive zero (they cannot form an area). Every other run keeps at least its first and last data point, so the total may exceed the budget by at most two data points per run when a curve contains very many gaps. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurveGapFilter.hpp" line="39" column="14" declfile="QAccelPlot/src/QAccelPlot/series/LineCurveGapFilter.hpp" declline="39" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceQAccelPlot_1_1LineCurveGapFilter_1a4f05f8b7ac036b06a59fb9b3aeade13e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::LineCurveGapFilter::appendEnvelopeSamples</definition>
+        <argsstring>(const CurveDataView &amp;data, const DataPointRun &amp;run, int sampledCount, std::vector&lt; int &gt; &amp;indices)</argsstring>
+        <name>appendEnvelopeSamples</name>
+        <qualifiedname>QAccelPlot::LineCurveGapFilter::appendEnvelopeSamples</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1CurveDataView" kindref="compound">CurveDataView</ref> &amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1DataPointRun" kindref="compound">DataPointRun</ref> &amp;</type>
+          <declname>run</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sampledCount</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; int &gt; &amp;</type>
+          <declname>indices</declname>
+        </param>
+        <briefdescription>
+<para>Appends <emphasis>sampledCount</emphasis> source indices of <emphasis>run</emphasis> in <emphasis>data</emphasis> to <emphasis>indices</emphasis>, in index order. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Keeps every sample when <emphasis>sampledCount</emphasis> covers the run. Otherwise keeps the run&apos;s endpoints and the lowest and highest Y data point of equally sized buckets, so the decimated curve keeps its peaks. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurveGapFilter.hpp" line="45" column="6" declfile="QAccelPlot/src/QAccelPlot/series/LineCurveGapFilter.hpp" declline="45" declcolumn="6"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Stateless helpers implementing the invalid-data-point contract shared by <ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref> subsystems. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>A data point is invalid when either coordinate is non-finite, or is not strictly positive on a logarithmic dimension. See <computeroutput>isValidCoordinate()</computeroutput> in <computeroutput>MathUtils.hpp</computeroutput>. </para>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/series/LineCurveGapFilter.hpp" line="26" column="1"/>
+  </compounddef>
+</doxygen>

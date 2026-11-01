@@ -45,6 +45,7 @@ _Mirrors the std140 uniform block of rect.vert._ [More...](#detailed-description
 
 | Type | Name |
 | ---: | :--- |
+|  float | [**antialiasing**](#variable-antialiasing)  <br> |
 |  float | [**borderColor**](#variable-bordercolor)  <br> |
 |  float | [**borderWidth**](#variable-borderwidth)  <br> |
 |  float | [**color**](#variable-color)  <br> |
@@ -113,6 +114,20 @@ Members are ordered by alignment (mat4, vec4, vec2, float), so every offset is a
     
 ## Public Attributes Documentation
 
+
+
+
+
+### variable antialiasing {#variable-antialiasing}
+
+```C++
+float QAccelPlot::Internal::RectUbo::antialiasing;
+```
+
+
+
+
+<hr>
 
 
 

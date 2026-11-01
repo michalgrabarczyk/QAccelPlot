@@ -727,7 +727,7 @@
 <para>A QQuickItem that tracks a data-coordinate rectangle in pixel space. </para>
     </briefdescription>
     <detaileddescription>
-<para>Declare <ref refid="classQAccelPlot_1_1DataAnchor" kindref="compound">DataAnchor</ref> as a direct child of PlotView and nest any visual QML items (Rectangle, Text, HoverHandler, TapHandler …) inside it — they will follow pan and zoom automatically as the axes change.</para>
+<para>Declare <ref refid="classQAccelPlot_1_1DataAnchor" kindref="compound">DataAnchor</ref> as a direct child of <ref refid="classQAccelPlot_1_1PlotView" kindref="compound">PlotView</ref> and nest any visual QML items (Rectangle, Text, HoverHandler, TapHandler …) inside it — they will follow pan and zoom automatically as the axes change.</para>
 <para><simplesect kind="par"><title>Usage patterns</title><para><itemizedlist>
 <listitem><para><bold>Point annotation</bold>: set <computeroutput>dataX1</computeroutput> == <computeroutput>dataX2</computeroutput> and <computeroutput>dataY1</computeroutput> == <computeroutput>dataY2</computeroutput>. The item has zero size but <ref refid="classQAccelPlot_1_1DataAnchor_1a2d4ff666ce153eb6f08813e2dbcb20d6" kindref="member">contains()</ref> still responds within hoverThreshold.</para>
 </listitem><listitem><para><bold>Vertical line</bold>: set <computeroutput>dataX1</computeroutput> == <computeroutput>dataX2</computeroutput> and different Y values. The item has zero width but a non-zero height.</para>

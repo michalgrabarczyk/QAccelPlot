@@ -29,8 +29,6 @@ public:
     QSGMaterialType* type() const override;
     QSGMaterialShader* createShader(QSGRendererInterface::RenderMode) const override;
 
-    static const QSGGeometry::AttributeSet& attributeSet();
-
     float markerSize{3.0f};          
     float antialiasingEnabled{1.0f}; 
     float antialiasingFeather{1.0f}; 

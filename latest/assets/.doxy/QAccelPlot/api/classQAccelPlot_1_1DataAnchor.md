@@ -145,7 +145,7 @@ flowchart TB
 ## Detailed Description
 
 
-Declare [**DataAnchor**](classQAccelPlot_1_1DataAnchor.md) as a direct child of PlotView and nest any visual QML items (Rectangle, Text, HoverHandler, TapHandler …) inside it — they will follow pan and zoom automatically as the axes change.
+Declare [**DataAnchor**](classQAccelPlot_1_1DataAnchor.md) as a direct child of [**PlotView**](classQAccelPlot_1_1PlotView.md) and nest any visual QML items (Rectangle, Text, HoverHandler, TapHandler …) inside it — they will follow pan and zoom automatically as the axes change.
 
 
 

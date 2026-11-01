@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Draw bar charts in QAccelPlot with BarSeries: vertical and horizontal bars, grouped bars, custom baselines, colors by category, hover, animated updates, and C++ data paths.">
+        <meta name="description" content="Draw bar charts in QAccelPlot with BarSeries: vertical and horizontal bars, grouped bars, custom baselines, colors by category or through a colormap, hover, animated updates, and C++ data paths.">
       
       
       
@@ -27,7 +27,7 @@
     
     
       
-        <title>Bar charts - QAccelPlot v0.4.0 Documentation</title>
+        <title>Bar charts - QAccelPlot v0.5.0 Documentation</title>
       
     
     
@@ -64,7 +64,7 @@
     
     
 
-<meta property="og:description" content="Draw bar charts in QAccelPlot with BarSeries: vertical and horizontal bars, grouped bars, custom baselines, colors by category, hover, animated updates, and C++ data paths.">
+<meta property="og:description" content="Draw bar charts in QAccelPlot with BarSeries: vertical and horizontal bars, grouped bars, custom baselines, colors by category or through a colormap, hover, animated updates, and C++ data paths.">
 
 <script type="application/ld+json">
 {
@@ -81,7 +81,7 @@
     "@type": "Person",
     "name": "Michal Grabarczyk"
   },
-  "softwareVersion": "0.4.0",
+  "softwareVersion": "0.5.0",
   "operatingSystem": "Cross-platform (Windows, Linux, macOS)",
   "applicationCategory": "DeveloperApplication",
   "keywords": ["plotting", "Qt Quick", "QML", "Scene Graph", "GPU", "real-time", "data visualization", "C++"]
@@ -133,7 +133,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="QAccelPlot v0.4.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.4.0 Documentation" data-md-component="logo">
+    <a href="../.." title="QAccelPlot v0.5.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.5.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -147,7 +147,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            QAccelPlot v0.4.0 Documentation
+            QAccelPlot v0.5.0 Documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -271,13 +271,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="QAccelPlot v0.4.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.4.0 Documentation" data-md-component="logo">
+    <a href="../.." title="QAccelPlot v0.5.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.5.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    QAccelPlot v0.4.0 Documentation
+    QAccelPlot v0.5.0 Documentation
   </label>
   
     <div class="md-nav__source">
@@ -406,33 +406,6 @@
       
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../../performance-comparison/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Performance comparison
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
     
   
   
@@ -442,6 +415,12 @@
       
         
           
+        
+      
+        
+      
+        
+      
         
       
         
@@ -483,7 +462,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <div class="md-nav__link md-nav__container">
@@ -505,14 +484,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_6">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -755,6 +734,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../heatmaps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Heatmaps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../rectangle-zoom/" class="md-nav__link">
         
   
@@ -887,6 +894,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#color-bars-by-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Color bars by value
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#hover" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1002,6 +1020,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../error-bars/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error bars
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../background-data/" class="md-nav__link">
         
   
@@ -1023,9 +1069,64 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../export/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exporting images
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Example gallery
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1450,6 +1551,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#color-bars-by-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Color bars by value
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#hover" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1607,22 +1719,78 @@ being centered on a position:</p>
 ranged bars or position bars: when any object has <code>from</code> or <code>to</code>, all of them
 are ranged. <a href="../histograms/">Histograms</a> are drawn this way.</p>
 <h2 id="color-bars-by-category">Color bars by category<a class="headerlink" href="#color-bars-by-category" title="Permanent link">&para;</a></h2>
-<p>Give bars a <code>category</code> and list the colors in <code>categoryColors</code>. Bars without a
-category, or with one outside the list, use <code>color</code>.</p>
+<p>List the categories in <code>categories</code> as <code>Category</code> objects and give each bar a
+<code>category</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">BarSeries</span> <span class="p">{</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="k">categoryColors:</span> <span class="p">[</span><span class="s2">"#4ade80"</span><span class="p">,</span> <span class="s2">"#f87171"</span><span class="p">]</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="k">Component.onCompleted:</span> <span class="nx">setData</span><span class="p">(</span><span class="nx">profit</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">value</span><span class="p">,</span> <span class="nx">month</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>        <span class="k">position:</span> <span class="nx">month</span><span class="p">,</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>        <span class="k">value:</span> <span class="nx">value</span><span class="p">,</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>        <span class="k">category:</span> <span class="nx">value</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="p">})))</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="p">}</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="k">categories:</span> <span class="p">[</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>        <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Category</span> <span class="p">{</span> <span class="k">value:</span> <span class="mi">0</span><span class="p">;</span> <span class="k">name:</span> <span class="s2">"Profit"</span><span class="p">;</span> <span class="k">color:</span> <span class="s2">"#4ade80"</span> <span class="p">},</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>        <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Category</span> <span class="p">{</span> <span class="k">value:</span> <span class="mi">1</span><span class="p">;</span> <span class="k">name:</span> <span class="s2">"Loss"</span><span class="p">;</span> <span class="k">color:</span> <span class="s2">"#f87171"</span> <span class="p">}</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="p">]</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="k">Component.onCompleted:</span> <span class="nx">setData</span><span class="p">(</span><span class="nx">profit</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">value</span><span class="p">,</span> <span class="nx">month</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>        <span class="k">position:</span> <span class="nx">month</span><span class="p">,</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>        <span class="k">value:</span> <span class="nx">value</span><span class="p">,</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>        <span class="k">category:</span> <span class="nx">value</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">?</span> <span class="s2">"Profit"</span> <span class="o">:</span> <span class="s2">"Loss"</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="p">})))</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="p">}</span>
 </code></pre></div>
-<p><code>setCategories()</code> replaces the categories without changing the data. Outlines
-are set with <code>border.width</code> and <code>border.color</code>.</p>
+<ul>
+<li>Each <code>Category</code> has an integer <code>value</code> and an optional <code>name</code> and <code>color</code>.</li>
+<li>A bar's <code>category</code> is a <code>value</code> or, in QML, a <code>name</code>. Names resolve when the
+  data is set; an unknown name or a non-whole number is ignored with a warning.</li>
+<li>Bars without a category, or whose category has no color or is not listed,
+  use <code>color</code>.</li>
+<li><code>setDataPointCategories()</code> replaces the bars' categories without changing
+  the data.</li>
+<li>The legend shows one row per category.</li>
+</ul>
+<p>Outlines are set with <code>border.width</code> and <code>border.color</code>.</p>
+<h2 id="color-bars-by-value">Color bars by value<a class="headerlink" href="#color-bars-by-value" title="Permanent link">&para;</a></h2>
+<p>Assign a <a href="../../api/classQAccelPlot_1_1Colormap/"><code>Colormap</code></a> to color each bar from <code>colorSource</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">BarSeries</span> <span class="p">{</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="k">colorSource:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">BarSeries</span><span class="p">.</span><span class="nx">Position</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="k">colormap:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Colormap</span> <span class="p">{</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>        <span class="k">preset:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Colormap</span><span class="p">.</span><span class="nx">Viridis</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>        <span class="k">min:</span> <span class="mi">0</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>        <span class="k">max:</span> <span class="mi">10</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="p">}</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="p">}</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th><code>colorSource</code></th>
+<th>Mapped to a color</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BarSeries.Value</code> (default)</td>
+<td>The bar's value</td>
+</tr>
+<tr>
+<td><code>BarSeries.Position</code></td>
+<td>The bar's position; for a ranged bar, the middle of its edges as the colormap places them</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>The colormap overrides <code>color</code> and the category colors, and the legend shows
+  one row for the series; <code>hoverColor</code> still marks the hovered bar.</li>
+<li><code>min</code> and <code>max</code> work as for <a href="../point-clouds/#color-points-by-value">point clouds</a>.
+  An unset bound resolves from the data, and ranged bars contribute both edges.
+  <code>dataValueMin</code> and <code>dataValueMax</code> expose the resolved range.</li>
+<li>Values outside the range take the color at its nearer end.</li>
+<li><code>barOffset</code> does not move a bar's position on the colormap.</li>
+<li>Under <code>logScale: true</code>, a bar at or below zero keeps <code>color</code> or its
+  category color. If an unset bound resolves from such a bar, the range is not
+  positive and every bar keeps its color; set <code>min</code> above zero.</li>
+<li>A <a href="../point-clouds/#show-a-color-bar"><code>ColorBar</code></a> keys the series. To key a
+  heatmap with a histogram of its values instead, see
+  <a href="../histograms/#use-a-histogram-as-a-color-bar">Use a histogram as a color bar</a>.</li>
+</ul>
 <h2 id="hover">Hover<a class="headerlink" href="#hover" title="Permanent link">&para;</a></h2>
 <p><code>hoveredIndex</code> is the bar under the mouse pointer, or -1. <code>barAt(index)</code>
-returns its <code>position</code>, <code>value</code>, and <code>category</code>; a ranged bar has <code>from</code> and
+returns its <code>position</code>, <code>value</code>, <code>category</code>, and <code>categoryName</code>; a ranged bar has <code>from</code> and
 <code>to</code> instead of <code>position</code>. Set <code>hoverColor</code> to highlight it.
 <code>minimumWidth</code> also widens the hover area.</p>
 <h2 id="animate-data-changes">Animate data changes<a class="headerlink" href="#animate-data-changes" title="Permanent link">&para;</a></h2>
@@ -1639,9 +1807,9 @@ returns its <code>position</code>, <code>value</code>, and <code>category</code>
 </ul>
 <h2 id="feed-data-from-c">Feed data from C++<a class="headerlink" href="#feed-data-from-c" title="Permanent link">&para;</a></h2>
 <p>Pass a vector of interleaved <code>(position, value)</code> pairs to <code>setData()</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// Three bars: 4 at position 0, 7 at position 1, 5 at position 2.</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">auto</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">{</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">4.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">7.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">5.0</span><span class="p">};</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">bars</span><span class="o">-&gt;</span><span class="n">setData</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">data</span><span class="p">),</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">// Three bars: 4 at position 0, 7 at position 1, 5 at position 2.</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">auto</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">{</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">4.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">7.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">5.0</span><span class="p">};</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">bars</span><span class="o">-&gt;</span><span class="n">setData</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">data</span><span class="p">),</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
 </code></pre></div>
 <p><code>setData()</code> keeps doubles and uploads them relative to an origin near the
 data, so large positions such as epoch timestamps stay precise.</p>

@@ -28,6 +28,8 @@
 * `#include <QSGGeometry>`
 * `#include <QSGNode>`
 * `#include <QVector2D>`
+* `#include <cstddef>`
+* `#include <memory>`
 * `#include <vector>`
 
 
@@ -55,7 +57,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| struct | [**FillSamples**](structQAccelPlot_1_1FillSamples.md) <br>_Data points of a gradient fill: one group per run of valid data points, broken at gaps._  |
+| struct | [**FillSamples**](structQAccelPlot_1_1FillSamples.md) <br>_Outline of a gradient fill in data space: one group of points per run of valid data points, broken at gaps._  |
 | class | [**LineCurveLineRenderer**](classQAccelPlot_1_1LineCurveLineRenderer.md) <br>_Internal renderer responsible for building and updating QSGNode line geometry for a_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _._ |
 | struct | [**LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md) <br>_Input parameters for_ [_**LineCurveLineRenderer::paint()**_](classQAccelPlot_1_1LineCurveLineRenderer.md#function-paint) _, assembled on the main thread._ |
 

@@ -81,11 +81,11 @@
 <para>Returns the visible tick and subtick values for the <emphasis>viewportMin</emphasis> to <emphasis>viewportMax</emphasis> range, without labels. </para>
         </briefdescription>
         <detaileddescription>
-<para>Does not call the label formatter, so it is safe on the render thread. Empty when <emphasis>ticker</emphasis> is null or has no major ticks, and for a collapsed or nonfinite viewport. </para>
+<para>Does not format labels, so it is safe on the render thread. A linear step never goes below the formatter&apos;s <computeroutput><ref refid="classQAccelPlot_1_1TickLabelFormatter_1aec4690678e7b36534945a3122de8322e" kindref="member">TickLabelFormatter::minimumTickStep()</ref></computeroutput>. Empty when <emphasis>ticker</emphasis> is null or has no major ticks, and for a collapsed or nonfinite viewport. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="66" column="27"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="67" column="27"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1AxisTickPainter_1ac1c0a474b369ec774d8e969ce16b91a0" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -128,7 +128,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="69" column="17"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="70" column="17"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1AxisTickPainter_1abcb7eeba5fcb783759bbe4c62413bf40" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -155,7 +155,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="73" column="18"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="74" column="18"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1AxisTickPainter_1a51a073feeab54964b7384724777edfd4" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>QSizeF</type>
@@ -178,7 +178,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="76" column="19"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="77" column="19"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-static-func">
@@ -206,7 +206,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="79" column="27"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="80" column="27"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1AxisTickPainter_1af09d6c027ac09a53e80ca2321255b42f" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structQAccelPlot_1_1AxisTickValues" kindref="compound">AxisTickValues</ref></type>
@@ -232,7 +232,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="80" column="27"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="81" column="27"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1AxisTickPainter_1a8d6b6ad233c09a08397023116bbd1a1b" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -262,7 +262,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="81" column="17"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="82" column="17"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1AxisTickPainter_1acd9fc3813a7ab9d4a2e391e523d27cec" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -292,7 +292,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="82" column="17"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="83" column="17"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1AxisTickPainter_1a2d26f0fe16b8e81e1de7ba0525472531" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -326,7 +326,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="83" column="17"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="84" column="17"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -335,7 +335,7 @@
     <detaileddescription>
 <para>Tick computation and painting are split: <computeroutput><ref refid="classQAccelPlot_1_1AxisTickPainter_1ab562bfd5e90de190ede26dee32247ae7" kindref="member">computeTicks()</ref></computeroutput> formats labels and must run on the formatter&apos;s (GUI) thread, while <computeroutput><ref refid="classQAccelPlot_1_1AxisTickPainter_1ac1c0a474b369ec774d8e969ce16b91a0" kindref="member">paintTicks()</ref></computeroutput> only draws precomputed ticks and is safe to call from <computeroutput><ref refid="classQAccelPlot_1_1Axis_1a3613ed1b3cae19f09cc42571153a751c" kindref="member">Axis::paint()</ref></computeroutput> on the render thread. <computeroutput><ref refid="classQAccelPlot_1_1AxisTickPainter_1aa8dd989ea1edb1442179ac87ac00bb5c" kindref="member">computeTickValues()</ref></computeroutput> is the single source of tick positions, shared with <computeroutput><ref refid="classQAccelPlot_1_1GridNode" kindref="compound">GridNode</ref></computeroutput> so grid lines stay aligned with the tick marks. </para>
     </detaileddescription>
-    <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="31" column="1" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" bodystart="31" bodyend="84"/>
+    <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="31" column="1" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" bodystart="31" bodyend="85"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1AxisTickPainter_1af09d6c027ac09a53e80ca2321255b42f" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter</scope><name>computeLinearTickValues</name></member>
       <member refid="classQAccelPlot_1_1AxisTickPainter_1a71cd5d66792fa3430cbd9c6d472ebefa" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter</scope><name>computeLogScaleTickValues</name></member>

@@ -1,0 +1,235 @@
+
+
+# File Axis.hpp
+
+[**File List**](files.md) **>** [**axis**](dir_4047c0a16b95170c37806a99233d1784.md) **>** [**Axis.hpp**](Axis_8hpp.md)
+
+[Go to the documentation of this file](Axis_8hpp.md)
+
+
+```C++
+//
+// SPDX-FileCopyrightText: 2026 Michal Grabarczyk
+// SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
+//
+// This file is also available under a separate commercial license.
+// See COMMERCIAL-LICENSING.md for contact information.
+//
+#pragma once
+
+#include "QAccelPlot/axis/AxisMapping.hpp"
+#include "QAccelPlot/axis/AxisTicker.hpp"
+#include "QAccelPlot/axis/AxisTicks.hpp"
+#include "QAccelPlot/theme/ColorPalette.hpp"
+
+#include <QColor>
+#include <QFont>
+#include <QList>
+#include <QQuickPaintedItem>
+
+namespace QAccelPlot {
+
+class PlotSeries;
+
+class Axis : public QQuickPaintedItem {
+    Q_OBJECT
+    QML_NAMED_ELEMENT(Axis)
+    Q_PROPERTY(qreal viewportMin READ viewportMin WRITE setViewportMin NOTIFY viewportMinChanged)
+    Q_PROPERTY(qreal viewportMax READ viewportMax WRITE setViewportMax NOTIFY viewportMaxChanged)
+    Q_PROPERTY(qreal dataMin READ dataMin WRITE setDataMin NOTIFY dataMinChanged)
+    Q_PROPERTY(qreal dataMax READ dataMax WRITE setDataMax NOTIFY dataMaxChanged)
+    Q_PROPERTY(Qt::Orientation orientation READ orientation WRITE setOrientation NOTIFY orientationChanged)
+    Q_PROPERTY(QString label READ label WRITE setLabel NOTIFY labelChanged)
+    Q_PROPERTY(QFont labelFont READ labelFont WRITE setLabelFont NOTIFY labelFontChanged)
+    Q_PROPERTY(bool hovered READ hovered NOTIFY hoveredChanged)
+    Q_PROPERTY(QColor baselineColor READ baselineColor WRITE setBaselineColor NOTIFY baselineColorChanged)
+    Q_PROPERTY(QColor labelColor READ labelColor WRITE setLabelColor NOTIFY labelColorChanged)
+    Q_PROPERTY(qreal baselineWidth READ baselineWidth WRITE setBaselineWidth NOTIFY baselineWidthChanged)
+    Q_PROPERTY(QColor hoverColor READ hoverColor WRITE setHoverColor NOTIFY hoverColorChanged)
+    Q_PROPERTY(Side side READ side WRITE setSide NOTIFY sideChanged)
+    Q_PROPERTY(qreal labelPadding READ labelPadding WRITE setLabelPadding NOTIFY labelPaddingChanged)
+    Q_PROPERTY(qreal baselinePadding READ baselinePadding WRITE setBaselinePadding NOTIFY baselinePaddingChanged)
+    Q_PROPERTY(qreal layoutSize READ layoutSize WRITE setLayoutSize NOTIFY layoutSizeChanged)
+    Q_PROPERTY(AxisTicker* ticker READ ticker CONSTANT)
+    Q_PROPERTY(bool logScale READ logScale WRITE setLogScale NOTIFY logScaleChanged)
+    Q_PROPERTY(qreal zoomScaleFactor READ zoomScaleFactor WRITE setZoomScaleFactor NOTIFY zoomScaleFactorChanged)
+    Q_PROPERTY(bool autoRescale READ autoRescale WRITE setAutoRescale NOTIFY autoRescaleChanged)
+
+public:
+    enum Side { Left, Top, Right, Bottom };
+    Q_ENUM(Side)
+
+    
+    explicit Axis(QQuickItem* parent = nullptr, Side side = Bottom);
+
+    qreal viewportMin() const;
+    void setViewportMin(qreal m);
+
+    qreal viewportMax() const;
+    void setViewportMax(qreal m);
+
+    qreal dataMin() const;
+    void setDataMin(qreal m);
+
+    qreal dataMax() const;
+    void setDataMax(qreal m);
+
+    Q_INVOKABLE void setDataRange(qreal min, qreal max);
+
+    Qt::Orientation orientation() const;
+    void setOrientation(Qt::Orientation o);
+
+    QString label() const;
+    void setLabel(const QString& t);
+
+    QFont labelFont() const;
+    void setLabelFont(const QFont& f);
+
+    Side side() const;
+    void setSide(Side s);
+
+    bool hovered() const;
+
+    QColor baselineColor() const;
+    void setBaselineColor(const QColor& c);
+
+    QColor labelColor() const;
+    void setLabelColor(const QColor& c);
+
+    qreal baselineWidth() const;
+    void setBaselineWidth(qreal width);
+
+    QColor hoverColor() const;
+    void setHoverColor(const QColor& c);
+
+    qreal labelPadding() const;
+    void setLabelPadding(qreal padding);
+
+    qreal baselinePadding() const;
+    void setBaselinePadding(qreal padding);
+
+    qreal layoutSize() const;
+    void setLayoutSize(qreal size);
+
+    AxisTicker* ticker() const;
+
+    bool logScale() const;
+    void setLogScale(bool on);
+    qreal zoomScaleFactor() const;
+    void setZoomScaleFactor(qreal factor);
+
+    bool autoRescale() const;
+    void setAutoRescale(bool on);
+
+    Q_INVOKABLE void toggleLogScale();
+
+    Q_INVOKABLE void rescaleToData();
+
+    void paint(QPainter* painter) override;
+
+    qreal inwardTickOverlap() const;
+
+    qreal labelOverflow() const;
+
+    AxisMapping mapping() const;
+    Q_INVOKABLE qreal coordToPixel(qreal value, qreal length) const;
+    Q_INVOKABLE qreal pixelToCoord(qreal pos, qreal length) const;
+    Q_INVOKABLE QString formatValue(qreal value, qreal length) const;
+
+signals:
+    void viewportMinChanged();
+    void viewportMaxChanged();
+    void dataMinChanged();
+    void dataMaxChanged();
+    void orientationChanged();
+    void labelChanged();
+    void labelFontChanged();
+    void hoveredChanged();
+    void rangeChanged();
+
+    void baselineColorChanged();
+    void labelColorChanged();
+    void baselineWidthChanged();
+    void hoverColorChanged();
+    void sideChanged();
+    void labelPaddingChanged();
+    void baselinePaddingChanged();
+    void layoutSizeChanged();
+    void logScaleChanged();
+    void zoomScaleFactorChanged();
+    void autoRescaleChanged();
+    void doubleClicked();
+
+protected:
+    void hoverEnterEvent(QHoverEvent* event) override;
+    void hoverLeaveEvent(QHoverEvent* event) override;
+    void mousePressEvent(QMouseEvent* event) override;
+    void mouseMoveEvent(QMouseEvent* event) override;
+    void mouseReleaseEvent(QMouseEvent* event) override;
+    void mouseDoubleClickEvent(QMouseEvent* event) override;
+    void keyPressEvent(QKeyEvent* event) override;
+    void updatePolish() override;
+    void componentComplete() override;
+
+private:
+    friend class PlotSeries;
+
+    struct DataRange {
+        qreal min;
+        qreal max;
+    };
+
+    struct DataRangeSource {
+        const PlotSeries* series;
+        Qt::Orientation dimension;
+    };
+
+    void addDataRangeSource(const PlotSeries* series, Qt::Orientation dimension);
+    void removeDataRangeSource(const PlotSeries* series, Qt::Orientation dimension);
+    void invalidateDataRange();
+    void ensureDataRange() const;
+    void setDataRangeValues(qreal min, qreal max);
+    DataRange dataFitRange() const;
+    void setViewportRange(qreal min, qreal max);
+    void autoRescaleToData();
+    qreal valueResolution(qreal value, qreal length) const;
+    void paintLabel(QPainter* painter, const QRectF& r, qreal axisX, qreal axisY) const;
+    void invalidateTicks();
+
+    qreal viewportMin_{0.0};
+    qreal viewportMax_{1.0};
+    // The data range is a cache of the series' extents, refreshed by const readers.
+    mutable qreal dataMin_{0.0};
+    mutable qreal dataMax_{1.0};
+    // True while a series changed its records since the data range was last computed.
+    mutable bool dataRangeStale_{false};
+    // True when the data range came from the series rather than from the application.
+    mutable bool dataRangeFromSeries_{false};
+    QList<DataRangeSource> dataRangeSources_;
+    QString label_;
+    QFont labelFont_;
+    bool hovered_{false};
+    bool isDragging_{false};
+    QPointF lastMousePos_;
+    QColor baselineColor_{ColorPalette::dark().axisLine};
+    QColor labelColor_;
+    qreal baselineWidth_{2.0};
+    QColor hoverColor_{ColorPalette::dark().hover};
+    qreal labelPadding_{30.0};
+    qreal baselinePadding_{0.0};
+    qreal layoutSize_{50.0};
+    bool logScale_{false};
+    qreal zoomScaleFactor_{0.9};
+    bool autoRescale_{false};
+    bool extendWidgetForLabels_{true};
+    bool clampEdgeLabels_{true};
+    Qt::Orientation orientation_{Qt::Horizontal};
+    Side side_{Bottom};
+    AxisTicker* ticker_;
+    AxisTicks ticks_;
+};
+
+} // namespace QAccelPlot
+```
+
+

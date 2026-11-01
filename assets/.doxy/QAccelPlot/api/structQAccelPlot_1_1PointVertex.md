@@ -15,7 +15,7 @@
 
 
 
-_Vertex layout for point (marker) geometry, shared with the main thread for vertex caches._ 
+_Placeholder vertex of a marker quad, shared with the main thread for vertex caches._ [More...](#detailed-description)
 
 * `#include <LineCurvePointRenderer.hpp>`
 
@@ -45,14 +45,7 @@ _Vertex layout for point (marker) geometry, shared with the main thread for vert
 
 | Type | Name |
 | ---: | :--- |
-|  float | [**a**](#variable-a)  <br>_Alpha channel._  |
-|  float | [**b**](#variable-b)  <br>_Blue channel._  |
-|  float | [**cornerX**](#variable-cornerx)  <br>_Screen-space X corner offset for quad expansion._  |
-|  float | [**cornerY**](#variable-cornery)  <br>_Screen-space Y corner offset for quad expansion._  |
-|  float | [**g**](#variable-g)  <br>_Green channel._  |
-|  float | [**r**](#variable-r)  <br>_Red channel._  |
-|  float | [**x**](#variable-x)  <br>_Data-space X coordinate._  |
-|  float | [**y**](#variable-y)  <br>_Data-space Y coordinate._  |
+|  unsigned char | [**padding**](#variable-padding)  <br>_Ignored; written as zero._  |
 
 
 
@@ -97,122 +90,24 @@ _Vertex layout for point (marker) geometry, shared with the main thread for vert
 
 
 
+## Detailed Description
+
+
+The marker shader reads the point from the data texture and derives the point index and quad corner from the vertex index, so it ignores the vertex content. 
+
+
+    
 ## Public Attributes Documentation
 
 
 
 
 
-### variable a {#variable-a}
+### variable padding {#variable-padding}
 
-_Alpha channel._ 
+_Ignored; written as zero._ 
 ```C++
-float QAccelPlot::PointVertex::a;
-```
-
-
-
-
-<hr>
-
-
-
-
-### variable b {#variable-b}
-
-_Blue channel._ 
-```C++
-float QAccelPlot::PointVertex::b;
-```
-
-
-
-
-<hr>
-
-
-
-
-### variable cornerX {#variable-cornerx}
-
-_Screen-space X corner offset for quad expansion._ 
-```C++
-float QAccelPlot::PointVertex::cornerX;
-```
-
-
-
-
-<hr>
-
-
-
-
-### variable cornerY {#variable-cornery}
-
-_Screen-space Y corner offset for quad expansion._ 
-```C++
-float QAccelPlot::PointVertex::cornerY;
-```
-
-
-
-
-<hr>
-
-
-
-
-### variable g {#variable-g}
-
-_Green channel._ 
-```C++
-float QAccelPlot::PointVertex::g;
-```
-
-
-
-
-<hr>
-
-
-
-
-### variable r {#variable-r}
-
-_Red channel._ 
-```C++
-float QAccelPlot::PointVertex::r;
-```
-
-
-
-
-<hr>
-
-
-
-
-### variable x {#variable-x}
-
-_Data-space X coordinate._ 
-```C++
-float QAccelPlot::PointVertex::x;
-```
-
-
-
-
-<hr>
-
-
-
-
-### variable y {#variable-y}
-
-_Data-space Y coordinate._ 
-```C++
-float QAccelPlot::PointVertex::y;
+unsigned char QAccelPlot::PointVertex::padding[4];
 ```
 
 

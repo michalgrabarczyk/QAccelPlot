@@ -69,23 +69,23 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-| property QColor | [**borderColor**](classQAccelPlot_1_1SelectionTool.md#property-bordercolor-12)  <br>_Outline color of the rectangle. Default:_ `Colors.dark.selectionBorder` _._ |
+| property [**Border**](classQAccelPlot_1_1Border.md) \* | [**border**](classQAccelPlot_1_1SelectionTool.md#property-border-12)  <br>_Outline inside the rectangle's edges. Default:_ `Colors.dark.selectionBorder` _, width 1._ |
 | property Qt::MouseButton | [**button**](classQAccelPlot_1_1SelectionTool.md#property-button-12)  <br>_Mouse button that starts a gesture. Default: Qt.LeftButton._  |
 | property bool | [**enabled**](classQAccelPlot_1_1SelectionTool.md#property-enabled-12)  <br>_Enables gestures; disabling cancels a gesture in progress and keeps the selection. Default: true._  |
 | property QColor | [**fillColor**](classQAccelPlot_1_1SelectionTool.md#property-fillcolor-12)  <br>_Fill color of the rectangle. Default:_ `Colors.dark.selectionFill` _._ |
 | property bool | [**hasSelection**](classQAccelPlot_1_1SelectionTool.md#property-hasselection-12)  <br>_True while a region is selected._  |
 | property qreal | [**minimumSize**](classQAccelPlot_1_1SelectionTool.md#property-minimumsize-12)  <br>_Smallest gesture in logical pixels that selects; a smaller one only clears the selection. Default: 6._  |
 | property [**Mode**](classQAccelPlot_1_1SelectionTool.md#enum-mode) | [**mode**](classQAccelPlot_1_1SelectionTool.md#property-mode-12)  <br>_Region a gesture selects: a box, an X range, or a Y range. Default: Box._  |
-| property [**QAccelPlot::InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md) \* | [**model**](classQAccelPlot_1_1SelectionTool.md#property-model-12)  <br>_Read-only constant: one row of region statistics per selected series._  |
+| property [**InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md) \* | [**model**](classQAccelPlot_1_1SelectionTool.md#property-model-12)  <br>_Read-only constant: one row of region statistics per selected series._  |
 | property Qt::KeyboardModifiers | [**modifiers**](classQAccelPlot_1_1SelectionTool.md#property-modifiers-12)  <br>_Exact Qt::KeyboardModifiers required at press time. Default: Qt.ShiftModifier._  |
-| property QRectF | [**pixelRect**](classQAccelPlot_1_1SelectionTool.md#property-pixelrect-12)  <br>_Gesture or selected region in plot-local logical pixels; empty without either._  |
-| property [**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) \* | [**plot**](classQAccelPlot_1_1SelectionTool.md#property-plot-12)  <br>_Plot receiving the selection gestures._  |
-| property bool | [**rectangleVisible**](classQAccelPlot_1_1SelectionTool.md#property-rectanglevisible-12)  <br>_Draws the gesture and the selected region. Disable it to draw_ `pixelRect` _yourself. Default: true._ |
+| property [**PlotView**](classQAccelPlot_1_1PlotView.md) \* | [**plot**](classQAccelPlot_1_1SelectionTool.md#property-plot-12)  <br>_Plot receiving the selection gestures._  |
 | property bool | [**selecting**](classQAccelPlot_1_1SelectionTool.md#property-selecting-12)  <br>_True while a gesture is in progress._  |
-| property [**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md) \* | [**xAxis**](classQAccelPlot_1_1SelectionTool.md#property-xaxis-12)  <br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _the X limits refer to; unset uses the plot's primary X axis._ |
+| property QRectF | [**selectionRect**](classQAccelPlot_1_1SelectionTool.md#property-selectionrect-12)  <br>_Gesture or selected region in the plot's coordinates, in logical pixels; empty without either._  |
+| property bool | [**visible**](classQAccelPlot_1_1SelectionTool.md#property-visible)  <br>_Draws the gesture and the selected region with_ `fillColor` _and_`border` _. Default: true._ |
+| property [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**xAxis**](classQAccelPlot_1_1SelectionTool.md#property-xaxis-12)  <br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _the X limits refer to; unset uses the plot's primary X axis._ |
 | property qreal | [**xMax**](classQAccelPlot_1_1SelectionTool.md#property-xmax-12)  <br>_Upper X limit of the selection; Infinity when unbounded, NaN without a selection._  |
 | property qreal | [**xMin**](classQAccelPlot_1_1SelectionTool.md#property-xmin-12)  <br>_Lower X limit of the selection; -Infinity when unbounded, NaN without a selection._  |
-| property [**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md) \* | [**yAxis**](classQAccelPlot_1_1SelectionTool.md#property-yaxis-12)  <br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _the Y limits refer to; unset uses the plot's primary Y axis._ |
+| property [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**yAxis**](classQAccelPlot_1_1SelectionTool.md#property-yaxis-12)  <br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _the Y limits refer to; unset uses the plot's primary Y axis._ |
 | property qreal | [**yMax**](classQAccelPlot_1_1SelectionTool.md#property-ymax-12)  <br>_Upper Y limit of the selection; Infinity when unbounded, NaN without a selection._  |
 | property qreal | [**yMin**](classQAccelPlot_1_1SelectionTool.md#property-ymin-12)  <br>_Lower Y limit of the selection; -Infinity when unbounded, NaN without a selection._  |
 
@@ -96,7 +96,6 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-| signal void | [**borderColorChanged**](classQAccelPlot_1_1SelectionTool.md#signal-bordercolorchanged)  <br>_Emitted when the borderColor property changes._  |
 | signal void | [**buttonChanged**](classQAccelPlot_1_1SelectionTool.md#signal-buttonchanged)  <br>_Emitted when the button property changes._  |
 | signal void | [**completed**](classQAccelPlot_1_1SelectionTool.md#signal-completed)  <br>_Emitted when a gesture selected a region. Rows of series that are still preparing follow later._  |
 | signal void | [**enabledChanged**](classQAccelPlot_1_1SelectionTool.md#signal-enabledchanged)  <br>_Emitted when the enabled property changes._  |
@@ -104,11 +103,11 @@ flowchart TB
 | signal void | [**minimumSizeChanged**](classQAccelPlot_1_1SelectionTool.md#signal-minimumsizechanged)  <br>_Emitted when the minimumSize property changes._  |
 | signal void | [**modeChanged**](classQAccelPlot_1_1SelectionTool.md#signal-modechanged)  <br>_Emitted when the mode property changes._  |
 | signal void | [**modifiersChanged**](classQAccelPlot_1_1SelectionTool.md#signal-modifierschanged)  <br>_Emitted when the modifiers property changes._  |
-| signal void | [**pixelRectChanged**](classQAccelPlot_1_1SelectionTool.md#signal-pixelrectchanged)  <br>_Emitted when the pixelRect property changes._  |
 | signal void | [**plotChanged**](classQAccelPlot_1_1SelectionTool.md#signal-plotchanged)  <br>_Emitted when the plot property changes._  |
-| signal void | [**rectangleVisibleChanged**](classQAccelPlot_1_1SelectionTool.md#signal-rectanglevisiblechanged)  <br>_Emitted when the rectangleVisible property changes._  |
 | signal void | [**selectingChanged**](classQAccelPlot_1_1SelectionTool.md#signal-selectingchanged)  <br>_Emitted when a gesture starts or ends._  |
 | signal void | [**selectionChanged**](classQAccelPlot_1_1SelectionTool.md#signal-selectionchanged)  <br>_Emitted when the selected region is set, changed, or cleared._  |
+| signal void | [**selectionRectChanged**](classQAccelPlot_1_1SelectionTool.md#signal-selectionrectchanged)  <br>_Emitted when the selectionRect property changes._  |
+| signal void | [**visibleChanged**](classQAccelPlot_1_1SelectionTool.md#signal-visiblechanged)  <br>_Emitted when the visible property changes._  |
 | signal void | [**xAxisChanged**](classQAccelPlot_1_1SelectionTool.md#signal-xaxischanged)  <br>_Emitted when the axis the X limits refer to changes._  |
 | signal void | [**yAxisChanged**](classQAccelPlot_1_1SelectionTool.md#signal-yaxischanged)  <br>_Emitted when the axis the Y limits refer to changes._  |
 
@@ -120,31 +119,30 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 |   | [**SelectionTool**](#function-selectiontool) (QObject \* parent=nullptr) <br>_Constructs a tool without a plot._  |
-|  QColor | [**borderColor**](#function-bordercolor-22) () const<br>_Returns the rectangle's outline color._  |
+|  [**Border**](classQAccelPlot_1_1Border.md) \* | [**border**](#function-border-22) () const<br>_Returns the rectangle's outline settings. The object is owned by the tool._  |
 |  Qt::MouseButton | [**button**](#function-button-22) () const<br>_Returns the mouse button that starts a gesture._  |
 |  Q\_INVOKABLE void | [**clear**](#function-clear) () <br>_Cancels a gesture in progress and clears the selection._  |
 |  bool | [**enabled**](#function-enabled-22) () const<br>_Returns whether gestures are enabled._  |
 |  QColor | [**fillColor**](#function-fillcolor-22) () const<br>_Returns the rectangle's fill color._  |
 |  bool | [**hasSelection**](#function-hasselection-22) () const<br>_Returns true while a region is selected._  |
-|  Q\_INVOKABLE::QAccelPlot::InspectionPage | [**indices**](#function-indices) ([**::QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md) \* series, int offset=0, int limit=4096) <br>_Returns one page of_ _series'_ _source indices inside the selection, against its current data._ |
+|  Q\_INVOKABLE [**InspectionPage**](structQAccelPlot_1_1InspectionPage.md) | [**indices**](#function-indices) ([**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) \* series, int offset=0, int limit=4096) <br>_Returns one page of_ _series'_ _source indices inside the selection, against its current data._ |
+|  bool | [**isVisible**](#function-isvisible) () const<br>_Returns whether the tool draws the gesture and the selected region._  |
 |  qreal | [**minimumSize**](#function-minimumsize-22) () const<br>_Returns the smallest selecting gesture in logical pixels._  |
 |  [**Mode**](classQAccelPlot_1_1SelectionTool.md#enum-mode) | [**mode**](#function-mode-22) () const<br>_Returns the region a gesture selects._  |
 |  [**InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md) \* | [**model**](#function-model-22) () const<br>_Returns the model of per-series region statistics._  |
 |  Qt::KeyboardModifiers | [**modifiers**](#function-modifiers-22) () const<br>_Returns the required keyboard modifiers._  |
-|  QRectF | [**pixelRect**](#function-pixelrect-22) () const<br>_Returns the gesture or selected region in plot-local logical pixels._  |
-|  [**::QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) \* | [**plot**](#function-plot-22) () const<br>_Returns the attached plot._  |
-|  bool | [**rectangleVisible**](#function-rectanglevisible-22) () const<br>_Returns whether the tool draws its rectangle._  |
+|  [**PlotView**](classQAccelPlot_1_1PlotView.md) \* | [**plot**](#function-plot-22) () const<br>_Returns the attached plot._  |
 |  Q\_INVOKABLE bool | [**select**](#function-select) (qreal xMin, qreal xMax, qreal yMin, qreal yMax) <br>_Selects the region with the given limits; returns false when a limit is NaN._  |
 |  bool | [**selecting**](#function-selecting-22) () const<br>_Returns true while a gesture is in progress._  |
-|  void | [**setBorderColor**](#function-setbordercolor) (const QColor & color) <br>_Sets the rectangle's outline color._  |
+|  QRectF | [**selectionRect**](#function-selectionrect-22) () const<br>_Returns the gesture or selected region in the plot's coordinates, in logical pixels._  |
 |  void | [**setButton**](#function-setbutton) (Qt::MouseButton button) <br>_Sets the mouse button that starts a gesture._  |
 |  void | [**setEnabled**](#function-setenabled) (bool enabled) <br>_Enables or disables gestures._  |
 |  void | [**setFillColor**](#function-setfillcolor) (const QColor & color) <br>_Sets the rectangle's fill color._  |
 |  void | [**setMinimumSize**](#function-setminimumsize) (qreal size) <br>_Sets the smallest selecting gesture, clamping negative values to zero and ignoring nonfinite values._  |
 |  void | [**setMode**](#function-setmode) ([**Mode**](classQAccelPlot_1_1SelectionTool.md#enum-mode) mode) <br>_Sets the region a gesture selects and cancels a gesture in progress._  |
 |  void | [**setModifiers**](#function-setmodifiers) (Qt::KeyboardModifiers modifiers) <br>_Sets the exact keyboard modifiers required at press time._  |
-|  void | [**setPlot**](#function-setplot) ([**::QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) \* plot) <br>_Attaches to_ _plot_ _and clears the selection._ |
-|  void | [**setRectangleVisible**](#function-setrectanglevisible) (bool visible) <br>_Shows or hides the tool's rectangle._  |
+|  void | [**setPlot**](#function-setplot) ([**PlotView**](classQAccelPlot_1_1PlotView.md) \* plot) <br>_Attaches to_ _plot_ _and clears the selection._ |
+|  void | [**setVisible**](#function-setvisible) (bool visible) <br>_Shows or hides the tool's drawing without affecting gestures or the selection._  |
 |  void | [**setXAxis**](#function-setxaxis) ([**Axis**](classQAccelPlot_1_1Axis.md) \* axis) <br>_Sets the X axis and clears the selection; null uses the plot's primary X axis._  |
 |  void | [**setYAxis**](#function-setyaxis) ([**Axis**](classQAccelPlot_1_1Axis.md) \* axis) <br>_Sets the Y axis and clears the selection; null uses the plot's primary Y axis._  |
 |  [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**xAxis**](#function-xaxis-22) () const<br>_Returns the axis the X limits refer to._  |
@@ -184,7 +182,7 @@ flowchart TB
 ## Detailed Description
 
 
-The tool draws the gesture and the selected region in the plot's overlay, below the overlay's other children. The region is kept in data coordinates, so it follows panning and zooming and survives data updates: the model rows are recomputed whenever a series changes. An infinite limit leaves that side of the region unbounded, as a range selection does for its other dimension.
+The tool draws the gesture and the selected region in the plot's overlay, below the overlay's other children. To draw them yourself, set `visible` to false and bind an overlay item to `selectionRect`. The region is kept in data coordinates, so it follows panning and zooming and survives data updates: the model rows are recomputed whenever a series changes. An infinite limit leaves that side of the region unbounded, as a range selection does for its other dimension.
 
 
 
@@ -221,11 +219,11 @@ enum QAccelPlot::SelectionTool::Mode {
 
 
 
-### property borderColor {#property-bordercolor-12}
+### property border {#property-border-12}
 
-_Outline color of the rectangle. Default:_ `Colors.dark.selectionBorder` _._
+_Outline inside the rectangle's edges. Default:_ `Colors.dark.selectionBorder` _, width 1._
 ```C++
-QColor QAccelPlot::SelectionTool::borderColor;
+Border* QAccelPlot::SelectionTool::border;
 ```
 
 
@@ -330,7 +328,7 @@ Mode QAccelPlot::SelectionTool::mode;
 
 _Read-only constant: one row of region statistics per selected series._ 
 ```C++
-QAccelPlot::InspectionRowModel* QAccelPlot::SelectionTool::model;
+InspectionRowModel* QAccelPlot::SelectionTool::model;
 ```
 
 
@@ -356,41 +354,11 @@ Qt::KeyboardModifiers QAccelPlot::SelectionTool::modifiers;
 
 
 
-### property pixelRect {#property-pixelrect-12}
-
-_Gesture or selected region in plot-local logical pixels; empty without either._ 
-```C++
-QRectF QAccelPlot::SelectionTool::pixelRect;
-```
-
-
-
-
-<hr>
-
-
-
-
 ### property plot {#property-plot-12}
 
 _Plot receiving the selection gestures._ 
 ```C++
-QAccelPlot::QAccelPlot* QAccelPlot::SelectionTool::plot;
-```
-
-
-
-
-<hr>
-
-
-
-
-### property rectangleVisible {#property-rectanglevisible-12}
-
-_Draws the gesture and the selected region. Disable it to draw_ `pixelRect` _yourself. Default: true._
-```C++
-bool QAccelPlot::SelectionTool::rectangleVisible;
+PlotView* QAccelPlot::SelectionTool::plot;
 ```
 
 
@@ -416,11 +384,49 @@ bool QAccelPlot::SelectionTool::selecting;
 
 
 
+### property selectionRect {#property-selectionrect-12}
+
+_Gesture or selected region in the plot's coordinates, in logical pixels; empty without either._ 
+```C++
+QRectF QAccelPlot::SelectionTool::selectionRect;
+```
+
+
+
+This is the rectangle the tool draws. It follows panning and zooming, and an unbounded side lies on the plot-area edge. It extends past `plotRect` when the region is partly out of view; the tool clips its drawing to the plot area. The plot's `overlay` shares these coordinates, so an item there can bind to it directly. 
+
+
+        
+
+<hr>
+
+
+
+
+### property visible {#property-visible}
+
+_Draws the gesture and the selected region with_ `fillColor` _and_`border` _. Default: true._
+```C++
+bool QAccelPlot::SelectionTool::visible;
+```
+
+
+
+Gestures and the selection work either way. Set it to false to draw `selectionRect` with your own item. 
+
+
+        
+
+<hr>
+
+
+
+
 ### property xAxis {#property-xaxis-12}
 
 [_**Axis**_](classQAccelPlot_1_1Axis.md) _the X limits refer to; unset uses the plot's primary X axis._
 ```C++
-QAccelPlot::Axis* QAccelPlot::SelectionTool::xAxis;
+Axis* QAccelPlot::SelectionTool::xAxis;
 ```
 
 
@@ -465,7 +471,7 @@ qreal QAccelPlot::SelectionTool::xMin;
 
 [_**Axis**_](classQAccelPlot_1_1Axis.md) _the Y limits refer to; unset uses the plot's primary Y axis._
 ```C++
-QAccelPlot::Axis* QAccelPlot::SelectionTool::yAxis;
+Axis* QAccelPlot::SelectionTool::yAxis;
 ```
 
 
@@ -504,21 +510,6 @@ qreal QAccelPlot::SelectionTool::yMin;
 <hr>
 ## Public Signals Documentation
 
-
-
-
-
-### signal borderColorChanged {#signal-bordercolorchanged}
-
-_Emitted when the borderColor property changes._ 
-```C++
-void QAccelPlot::SelectionTool::borderColorChanged;
-```
-
-
-
-
-<hr>
 
 
 
@@ -628,41 +619,11 @@ void QAccelPlot::SelectionTool::modifiersChanged;
 
 
 
-### signal pixelRectChanged {#signal-pixelrectchanged}
-
-_Emitted when the pixelRect property changes._ 
-```C++
-void QAccelPlot::SelectionTool::pixelRectChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
 ### signal plotChanged {#signal-plotchanged}
 
 _Emitted when the plot property changes._ 
 ```C++
 void QAccelPlot::SelectionTool::plotChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
-### signal rectangleVisibleChanged {#signal-rectanglevisiblechanged}
-
-_Emitted when the rectangleVisible property changes._ 
-```C++
-void QAccelPlot::SelectionTool::rectangleVisibleChanged;
 ```
 
 
@@ -693,6 +654,36 @@ void QAccelPlot::SelectionTool::selectingChanged;
 _Emitted when the selected region is set, changed, or cleared._ 
 ```C++
 void QAccelPlot::SelectionTool::selectionChanged;
+```
+
+
+
+
+<hr>
+
+
+
+
+### signal selectionRectChanged {#signal-selectionrectchanged}
+
+_Emitted when the selectionRect property changes._ 
+```C++
+void QAccelPlot::SelectionTool::selectionRectChanged;
+```
+
+
+
+
+<hr>
+
+
+
+
+### signal visibleChanged {#signal-visiblechanged}
+
+_Emitted when the visible property changes._ 
+```C++
+void QAccelPlot::SelectionTool::visibleChanged;
 ```
 
 
@@ -752,11 +743,11 @@ explicit QAccelPlot::SelectionTool::SelectionTool (
 
 
 
-### function borderColor {#function-bordercolor-22}
+### function border {#function-border-22}
 
-_Returns the rectangle's outline color._ 
+_Returns the rectangle's outline settings. The object is owned by the tool._ 
 ```C++
-QColor QAccelPlot::SelectionTool::borderColor () const
+Border * QAccelPlot::SelectionTool::border () const
 ```
 
 
@@ -846,11 +837,30 @@ bool QAccelPlot::SelectionTool::hasSelection () const
 
 _Returns one page of_ _series'_ _source indices inside the selection, against its current data._
 ```C++
-Q_INVOKABLE::QAccelPlot::InspectionPage QAccelPlot::SelectionTool::indices (
-    ::QAccelPlot::PlotSeries * series,
+Q_INVOKABLE InspectionPage QAccelPlot::SelectionTool::indices (
+    PlotSeries * series,
     int offset=0,
     int limit=4096
 ) 
+```
+
+
+
+Pages like `SeriesInspection::indices()`: _limit_ must be positive and is capped at 4096. 
+
+
+        
+
+<hr>
+
+
+
+
+### function isVisible {#function-isvisible}
+
+_Returns whether the tool draws the gesture and the selected region._ 
+```C++
+bool QAccelPlot::SelectionTool::isVisible () const
 ```
 
 
@@ -921,41 +931,11 @@ Qt::KeyboardModifiers QAccelPlot::SelectionTool::modifiers () const
 
 
 
-### function pixelRect {#function-pixelrect-22}
-
-_Returns the gesture or selected region in plot-local logical pixels._ 
-```C++
-QRectF QAccelPlot::SelectionTool::pixelRect () const
-```
-
-
-
-
-<hr>
-
-
-
-
 ### function plot {#function-plot-22}
 
 _Returns the attached plot._ 
 ```C++
-::QAccelPlot::QAccelPlot * QAccelPlot::SelectionTool::plot () const
-```
-
-
-
-
-<hr>
-
-
-
-
-### function rectangleVisible {#function-rectanglevisible-22}
-
-_Returns whether the tool draws its rectangle._ 
-```C++
-bool QAccelPlot::SelectionTool::rectangleVisible () const
+PlotView * QAccelPlot::SelectionTool::plot () const
 ```
 
 
@@ -1001,13 +981,11 @@ bool QAccelPlot::SelectionTool::selecting () const
 
 
 
-### function setBorderColor {#function-setbordercolor}
+### function selectionRect {#function-selectionrect-22}
 
-_Sets the rectangle's outline color._ 
+_Returns the gesture or selected region in the plot's coordinates, in logical pixels._ 
 ```C++
-void QAccelPlot::SelectionTool::setBorderColor (
-    const QColor & color
-) 
+QRectF QAccelPlot::SelectionTool::selectionRect () const
 ```
 
 
@@ -1125,7 +1103,7 @@ void QAccelPlot::SelectionTool::setModifiers (
 _Attaches to_ _plot_ _and clears the selection._
 ```C++
 void QAccelPlot::SelectionTool::setPlot (
-    ::QAccelPlot::QAccelPlot * plot
+    PlotView * plot
 ) 
 ```
 
@@ -1137,11 +1115,11 @@ void QAccelPlot::SelectionTool::setPlot (
 
 
 
-### function setRectangleVisible {#function-setrectanglevisible}
+### function setVisible {#function-setvisible}
 
-_Shows or hides the tool's rectangle._ 
+_Shows or hides the tool's drawing without affecting gestures or the selection._ 
 ```C++
-void QAccelPlot::SelectionTool::setRectangleVisible (
+void QAccelPlot::SelectionTool::setVisible (
     bool visible
 ) 
 ```

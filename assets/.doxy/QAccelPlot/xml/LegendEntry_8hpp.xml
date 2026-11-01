@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="LegendEntry_8hpp" kind="file" language="C++">
+    <compoundname>LegendEntry.hpp</compoundname>
+    <includes refid="LineStyle_8hpp" local="yes">QAccelPlot/linestyles/LineStyle.hpp</includes>
+    <includes refid="MarkerShape_8hpp" local="yes">QAccelPlot/series/MarkerShape.hpp</includes>
+    <includes refid="PlotSeries_8hpp" local="yes">QAccelPlot/series/PlotSeries.hpp</includes>
+    <includes local="no">QColor</includes>
+    <includes local="no">QObject</includes>
+    <includes local="no">QString</includes>
+    <includedby refid="CategoryTable_8hpp" local="yes">QAccelPlot/src/QAccelPlot/series/internal/CategoryTable.hpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp</label>
+        <link refid="LegendEntry_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QColor</label>
+      </node>
+      <node id="3">
+        <label>QObject</label>
+      </node>
+      <node id="4">
+        <label>QString</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structQAccelPlot_1_1LegendEntry" prot="public">QAccelPlot::LegendEntry</innerclass>
+    <innernamespace refid="namespaceQAccelPlot">QAccelPlot</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-FileCopyrightText:<sp/>2026<sp/>Michal<sp/>Grabarczyk</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>GPL-3.0-only<sp/>WITH<sp/>Universal-FOSS-exception-1.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>file<sp/>is<sp/>also<sp/>available<sp/>under<sp/>a<sp/>separate<sp/>commercial<sp/>license.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>See<sp/>COMMERCIAL-LICENSING.md<sp/>for<sp/>contact<sp/>information.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/linestyles/LineStyle.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/series/MarkerShape.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/series/PlotSeries.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QColor&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QObject&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QString&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="structQAccelPlot_1_1LegendEntry" refkind="compound"><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structQAccelPlot_1_1LegendEntry" kindref="compound">LegendEntry</ref><sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_GADGET</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_ANONYMOUS</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QString<sp/><ref refid="structQAccelPlot_1_1LegendEntry_1ae0d6a6733c0af103f06402a7081b017f" kindref="member">name</ref><sp/>MEMBER<sp/><ref refid="structQAccelPlot_1_1LegendEntry_1ae0d6a6733c0af103f06402a7081b017f" kindref="member">name</ref><sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(<ref refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" kindref="member">PlotSeries::LegendSymbol</ref><sp/><ref refid="structQAccelPlot_1_1LegendEntry_1a760add19503952cbbb1506c1ca023ada" kindref="member">symbol</ref><sp/>MEMBER<sp/><ref refid="structQAccelPlot_1_1LegendEntry_1a760add19503952cbbb1506c1ca023ada" kindref="member">symbol</ref><sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/><ref refid="structQAccelPlot_1_1LegendEntry_1add88ed743f9ae26708ca5b69dd7fe1c6" kindref="member">color</ref><sp/>MEMBER<sp/><ref refid="structQAccelPlot_1_1LegendEntry_1add88ed743f9ae26708ca5b69dd7fe1c6" kindref="member">color</ref><sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(qreal<sp/><ref refid="structQAccelPlot_1_1LegendEntry_1ae16cda2d7b3d8342192357a92cff6992" kindref="member">lineWidth</ref><sp/>MEMBER<sp/><ref refid="structQAccelPlot_1_1LegendEntry_1ae16cda2d7b3d8342192357a92cff6992" kindref="member">lineWidth</ref><sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(<ref refid="classQAccelPlot_1_1LineStyle" kindref="compound">LineStyle</ref>*<sp/><ref refid="structQAccelPlot_1_1LegendEntry_1aac2cd9c9c62dfc8e9bf57c1a0a60c98e" kindref="member">lineStyle</ref><sp/>MEMBER<sp/><ref refid="structQAccelPlot_1_1LegendEntry_1aac2cd9c9c62dfc8e9bf57c1a0a60c98e" kindref="member">lineStyle</ref><sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(<ref refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fd" kindref="member">MarkerShape</ref><sp/><ref refid="structQAccelPlot_1_1LegendEntry_1a57a60253c4eb48d4cea7c959270b42b6" kindref="member">markerShape</ref><sp/>MEMBER<sp/><ref refid="structQAccelPlot_1_1LegendEntry_1a57a60253c4eb48d4cea7c959270b42b6" kindref="member">markerShape</ref><sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(qreal<sp/><ref refid="structQAccelPlot_1_1LegendEntry_1a79747b9594f64f093ceea4391f2e0991" kindref="member">markerSize</ref><sp/>MEMBER<sp/><ref refid="structQAccelPlot_1_1LegendEntry_1a79747b9594f64f093ceea4391f2e0991" kindref="member">markerSize</ref><sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1LegendEntry_1af00e03e8e4f28981493e9a89016893b0" kindref="member">markerFilled</ref><sp/>MEMBER<sp/><ref refid="structQAccelPlot_1_1LegendEntry_1af00e03e8e4f28981493e9a89016893b0" kindref="member">markerFilled</ref><sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(qreal<sp/><ref refid="structQAccelPlot_1_1LegendEntry_1ab4900281705f82ddbba3f7dbcb5557f0" kindref="member">markerStrokeWidth</ref><sp/>MEMBER<sp/><ref refid="structQAccelPlot_1_1LegendEntry_1ab4900281705f82ddbba3f7dbcb5557f0" kindref="member">markerStrokeWidth</ref><sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1LegendEntry_1ae1747530af5a615b6257d43482ec6d9a" kindref="member">antialiasing</ref><sp/>MEMBER<sp/><ref refid="structQAccelPlot_1_1LegendEntry_1ae1747530af5a615b6257d43482ec6d9a" kindref="member">antialiasing</ref><sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(qreal<sp/><ref refid="structQAccelPlot_1_1LegendEntry_1af420c8714795ad5dd236894872e93390" kindref="member">antialiasingFeather</ref><sp/>MEMBER<sp/><ref refid="structQAccelPlot_1_1LegendEntry_1af420c8714795ad5dd236894872e93390" kindref="member">antialiasingFeather</ref><sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>QString<sp/><ref refid="structQAccelPlot_1_1LegendEntry_1ae0d6a6733c0af103f06402a7081b017f" kindref="member">name</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" kindref="member">PlotSeries::LegendSymbol</ref><sp/><ref refid="structQAccelPlot_1_1LegendEntry_1a760add19503952cbbb1506c1ca023ada" kindref="member">symbol</ref>{PlotSeries::LegendSymbol::Line};<sp/></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/><ref refid="structQAccelPlot_1_1LegendEntry_1add88ed743f9ae26708ca5b69dd7fe1c6" kindref="member">color</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/><ref refid="structQAccelPlot_1_1LegendEntry_1ae16cda2d7b3d8342192357a92cff6992" kindref="member">lineWidth</ref>{1.0};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1LineStyle" kindref="compound">LineStyle</ref>*<sp/><ref refid="structQAccelPlot_1_1LegendEntry_1aac2cd9c9c62dfc8e9bf57c1a0a60c98e" kindref="member">lineStyle</ref>{</highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fd" kindref="member">MarkerShape</ref><sp/><ref refid="structQAccelPlot_1_1LegendEntry_1a57a60253c4eb48d4cea7c959270b42b6" kindref="member">markerShape</ref>{MarkerShape::None};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/><ref refid="structQAccelPlot_1_1LegendEntry_1a79747b9594f64f093ceea4391f2e0991" kindref="member">markerSize</ref>{0.0};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1LegendEntry_1af00e03e8e4f28981493e9a89016893b0" kindref="member">markerFilled</ref>{</highlight><highlight class="keyword">true</highlight><highlight class="normal">};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/><ref refid="structQAccelPlot_1_1LegendEntry_1ab4900281705f82ddbba3f7dbcb5557f0" kindref="member">markerStrokeWidth</ref>{1.0};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1LegendEntry_1ae1747530af5a615b6257d43482ec6d9a" kindref="member">antialiasing</ref>{</highlight><highlight class="keyword">true</highlight><highlight class="normal">};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/><ref refid="structQAccelPlot_1_1LegendEntry_1af420c8714795ad5dd236894872e93390" kindref="member">antialiasingFeather</ref>{1.0};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="65"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="QAccelPlot/src/QAccelPlot/legend/LegendEntry.hpp"/>
+  </compounddef>
+</doxygen>

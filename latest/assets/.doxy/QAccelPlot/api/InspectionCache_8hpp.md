@@ -41,14 +41,15 @@
 | Type | Name |
 | ---: | :--- |
 | namespace | [**QAccelPlot**](namespaceQAccelPlot.md) <br> |
+| namespace | [**Internal**](namespaceQAccelPlot_1_1Internal.md) <br> |
 
 
 ## Classes
 
 | Type | Name |
 | ---: | :--- |
-| class | [**InspectionCache**](classQAccelPlot_1_1InspectionCache.md) <br>_Builds an_ `InspectionIndex` _on a worker thread from a snapshot of a series' records._ |
-| class | [**Host**](classQAccelPlot_1_1InspectionCache_1_1Host.md) <br>_Series-side callbacks; all are invoked on the series' thread._  |
+| class | [**InspectionCache**](classQAccelPlot_1_1Internal_1_1InspectionCache.md) <br>_Builds an_ `InspectionIndex` _on a worker thread from a snapshot of a series' records._ |
+| class | [**Host**](classQAccelPlot_1_1Internal_1_1InspectionCache_1_1Host.md) <br>_Series-side callbacks; all are invoked on the series' thread._  |
 
 
 

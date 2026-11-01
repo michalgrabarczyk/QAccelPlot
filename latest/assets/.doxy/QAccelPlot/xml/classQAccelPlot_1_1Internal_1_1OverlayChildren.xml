@@ -1,0 +1,243 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1Internal_1_1OverlayChildren" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::OverlayChildren</compoundname>
+    <includes local="no">OverlayChildren.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1OverlayChildren_1ac58faa88bd415a2cd6cf57b107ef47ce" prot="private" static="no" mutable="no">
+        <type>QObject &amp;</type>
+        <definition>QObject&amp; QAccelPlot::Internal::OverlayChildren::owner_</definition>
+        <argsstring></argsstring>
+        <name>owner_</name>
+        <qualifiedname>QAccelPlot::Internal::OverlayChildren::owner_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/OverlayChildren.hpp" line="38" column="13" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/OverlayChildren.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1OverlayChildren_1adb67426328b299dc7f567aa6f16c5d0f" prot="private" static="no" mutable="no">
+        <type>QVariant</type>
+        <definition>QVariant QAccelPlot::Internal::OverlayChildren::tool_</definition>
+        <argsstring></argsstring>
+        <name>tool_</name>
+        <qualifiedname>QAccelPlot::Internal::OverlayChildren::tool_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/OverlayChildren.hpp" line="39" column="14" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/OverlayChildren.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1OverlayChildren_1a486aff4bc192facdcd305bde457225fd" prot="private" static="no" mutable="no">
+        <type>const char *</type>
+        <definition>const char* QAccelPlot::Internal::OverlayChildren::toolProperty_</definition>
+        <argsstring></argsstring>
+        <name>toolProperty_</name>
+        <qualifiedname>QAccelPlot::Internal::OverlayChildren::toolProperty_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/OverlayChildren.hpp" line="40" column="16" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/OverlayChildren.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1OverlayChildren_1a3da4b3ac7ca1d1139ab4c18672232792" prot="private" static="no" mutable="no">
+        <type>QPointer&lt; QQuickItem &gt;</type>
+        <definition>QPointer&lt;QQuickItem&gt; QAccelPlot::Internal::OverlayChildren::overlay_</definition>
+        <argsstring></argsstring>
+        <name>overlay_</name>
+        <qualifiedname>QAccelPlot::Internal::OverlayChildren::overlay_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/OverlayChildren.hpp" line="41" column="14" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/OverlayChildren.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1OverlayChildren_1adaad27b2e9dd2502e40f7ebbce15c46a" prot="private" static="no" mutable="no">
+        <type>QList&lt; QPointer&lt; QObject &gt; &gt;</type>
+        <definition>QList&lt;QPointer&lt;QObject&gt; &gt; QAccelPlot::Internal::OverlayChildren::objects_</definition>
+        <argsstring></argsstring>
+        <name>objects_</name>
+        <qualifiedname>QAccelPlot::Internal::OverlayChildren::objects_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/OverlayChildren.hpp" line="42" column="11" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/OverlayChildren.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1OverlayChildren_1af23d70310a46a5be388e8fc0242b26e9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::Internal::OverlayChildren::OverlayChildren</definition>
+        <argsstring>(QObject &amp;owner, QVariant tool, const char *toolProperty)</argsstring>
+        <name>OverlayChildren</name>
+        <qualifiedname>QAccelPlot::Internal::OverlayChildren::OverlayChildren</qualifiedname>
+        <param>
+          <type>QObject &amp;</type>
+          <declname>owner</declname>
+        </param>
+        <param>
+          <type>QVariant</type>
+          <declname>tool</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>toolProperty</declname>
+        </param>
+        <briefdescription>
+<para><emphasis>tool</emphasis> holds <emphasis>owner</emphasis> and is written to the property <emphasis>toolProperty</emphasis> of every object. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/OverlayChildren.hpp" line="25" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1OverlayChildren_1a735cb79f9445954bcb9bf365708d94c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QQmlListProperty&lt; QObject &gt;</type>
+        <definition>QQmlListProperty&lt; QObject &gt; QAccelPlot::Internal::OverlayChildren::list</definition>
+        <argsstring>()</argsstring>
+        <name>list</name>
+        <qualifiedname>QAccelPlot::Internal::OverlayChildren::list</qualifiedname>
+        <briefdescription>
+<para>Returns the list property that appends to these objects. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/OverlayChildren.hpp" line="28" column="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1OverlayChildren_1a00b3abcf696e7ab6e2eec70c1e0ea959" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::OverlayChildren::setOverlay</definition>
+        <argsstring>(QQuickItem *overlay)</argsstring>
+        <name>setOverlay</name>
+        <qualifiedname>QAccelPlot::Internal::OverlayChildren::setOverlay</qualifiedname>
+        <param>
+          <type>QQuickItem *</type>
+          <declname>overlay</declname>
+        </param>
+        <briefdescription>
+<para>Sets the plot overlay whose children are stacked. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/OverlayChildren.hpp" line="30" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1OverlayChildren_1a4c56dd63304326c6d865c49e1ae6c9e1" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void QAccelPlot::Internal::OverlayChildren::append</definition>
+        <argsstring>(QQmlListProperty&lt; QObject &gt; *list, QObject *object)</argsstring>
+        <name>append</name>
+        <qualifiedname>QAccelPlot::Internal::OverlayChildren::append</qualifiedname>
+        <param>
+          <type>QQmlListProperty&lt; QObject &gt; *</type>
+          <declname>list</declname>
+        </param>
+        <param>
+          <type>QObject *</type>
+          <declname>object</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/OverlayChildren.hpp" line="33" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1OverlayChildren_1a6f8e742d484ee879fcbf14f0636e932e" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>qsizetype</type>
+        <definition>static qsizetype QAccelPlot::Internal::OverlayChildren::count</definition>
+        <argsstring>(QQmlListProperty&lt; QObject &gt; *list)</argsstring>
+        <name>count</name>
+        <qualifiedname>QAccelPlot::Internal::OverlayChildren::count</qualifiedname>
+        <param>
+          <type>QQmlListProperty&lt; QObject &gt; *</type>
+          <declname>list</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/OverlayChildren.hpp" line="34" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1OverlayChildren_1a805b1a32eb7a0562aaca3ed147fc554e" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QObject *</type>
+        <definition>static QObject * QAccelPlot::Internal::OverlayChildren::at</definition>
+        <argsstring>(QQmlListProperty&lt; QObject &gt; *list, qsizetype index)</argsstring>
+        <name>at</name>
+        <qualifiedname>QAccelPlot::Internal::OverlayChildren::at</qualifiedname>
+        <param>
+          <type>QQmlListProperty&lt; QObject &gt; *</type>
+          <declname>list</declname>
+        </param>
+        <param>
+          <type>qsizetype</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/OverlayChildren.hpp" line="35" column="20"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1OverlayChildren_1a425ad5b14e8be49d5081104f470408db" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::OverlayChildren::restack</definition>
+        <argsstring>()</argsstring>
+        <name>restack</name>
+        <qualifiedname>QAccelPlot::Internal::OverlayChildren::restack</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/OverlayChildren.hpp" line="36" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Objects declared inside an inspection tool in QML. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Every object that has the tool&apos;s property receives the tool. Items among them that are children of the plot&apos;s overlay are kept stacked in declaration order above its other children. </para>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/inspection/internal/OverlayChildren.hpp" line="22" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/OverlayChildren.hpp" bodystart="22" bodyend="43"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1Internal_1_1OverlayChildren_1a4c56dd63304326c6d865c49e1ae6c9e1" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::OverlayChildren</scope><name>append</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1OverlayChildren_1a805b1a32eb7a0562aaca3ed147fc554e" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::OverlayChildren</scope><name>at</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1OverlayChildren_1a6f8e742d484ee879fcbf14f0636e932e" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::OverlayChildren</scope><name>count</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1OverlayChildren_1a735cb79f9445954bcb9bf365708d94c7" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::OverlayChildren</scope><name>list</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1OverlayChildren_1adaad27b2e9dd2502e40f7ebbce15c46a" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::OverlayChildren</scope><name>objects_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1OverlayChildren_1a3da4b3ac7ca1d1139ab4c18672232792" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::OverlayChildren</scope><name>overlay_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1OverlayChildren_1af23d70310a46a5be388e8fc0242b26e9" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::OverlayChildren</scope><name>OverlayChildren</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1OverlayChildren_1ac58faa88bd415a2cd6cf57b107ef47ce" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::OverlayChildren</scope><name>owner_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1OverlayChildren_1a425ad5b14e8be49d5081104f470408db" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::OverlayChildren</scope><name>restack</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1OverlayChildren_1a00b3abcf696e7ab6e2eec70c1e0ea959" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::OverlayChildren</scope><name>setOverlay</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1OverlayChildren_1adb67426328b299dc7f567aa6f16c5d0f" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::OverlayChildren</scope><name>tool_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1OverlayChildren_1a486aff4bc192facdcd305bde457225fd" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::OverlayChildren</scope><name>toolProperty_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

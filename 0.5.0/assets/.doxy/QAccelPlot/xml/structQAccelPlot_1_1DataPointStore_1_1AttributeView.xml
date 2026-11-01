@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1DataPointStore_1_1AttributeView" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::DataPointStore::AttributeView</compoundname>
+    <includes local="no">DataPointStore.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1DataPointStore_1_1AttributeView_1a4bbf3216c87e0a8d048498a6add224ac" prot="public" static="no" mutable="no">
+        <type>const float *</type>
+        <definition>const float* QAccelPlot::DataPointStore::AttributeView::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <qualifiedname>QAccelPlot::DataPointStore::AttributeView::data</qualifiedname>
+        <initializer>{nullptr}</initializer>
+        <briefdescription>
+<para>First attribute of the first data point, or <computeroutput>nullptr</computeroutput> without attributes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="92" column="21" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="92" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1DataPointStore_1_1AttributeView_1a02190ed09f04f69863c69ec627e36ca5" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::DataPointStore::AttributeView::stride</definition>
+        <argsstring></argsstring>
+        <name>stride</name>
+        <qualifiedname>QAccelPlot::DataPointStore::AttributeView::stride</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+<para>Floats between the attributes of consecutive data points. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="93" column="13" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="93" bodyend="93"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Read-only view over the float attributes of the stored data points. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="91" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="91" bodyend="94"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1DataPointStore_1_1AttributeView_1a4bbf3216c87e0a8d048498a6add224ac" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore::AttributeView</scope><name>data</name></member>
+      <member refid="structQAccelPlot_1_1DataPointStore_1_1AttributeView_1a02190ed09f04f69863c69ec627e36ca5" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore::AttributeView</scope><name>stride</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

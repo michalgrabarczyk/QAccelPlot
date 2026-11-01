@@ -92,6 +92,7 @@ See [QAccelPlot::LineMaterial](classQAccelPlot_1_1LineMaterial.md)
 |  float | [**dashPeriod**](classQAccelPlot_1_1LineMaterial.md#variable-dashperiod)   = `{0.0f}`<br>_Total dash+gap cycle length in pixels._  |
 |  float | [**lineWidth**](classQAccelPlot_1_1LineMaterial.md#variable-linewidth)   = `{1.0f}`<br>_Rendered line width in pixels._  |
 |  float | [**pointCount**](classQAccelPlot_1_1LineMaterial.md#variable-pointcount)   = `{0.0f}`<br>_Number of data points (used to index the data texture)._  |
+|  float | [**stepMode**](classQAccelPlot_1_1LineMaterial.md#variable-stepmode)   = `{0.0f}`<br>`StepMode` _of the line, as a float (std140 offset 180 in the UBO)._ |
 
 
 ## Public Attributes inherited from QAccelPlot::DataTextureMaterial
@@ -196,6 +197,7 @@ See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 | ---: | :--- |
 |  const QSGGeometry::AttributeSet & | [**attributeSet**](classQAccelPlot_1_1DataTextureMaterial.md#function-attributeset) () <br>_Returns the shared vertex attribute set:_ `{float` _id, float param, uchar4 color} (12 bytes)._ |
 |  void | [**commitTexture**](classQAccelPlot_1_1DataTextureMaterial.md#function-committexture) (QSGMaterialShader::RenderState & state, int binding, QSGTexture \*\* texture, const [**DataTexture**](classQAccelPlot_1_1DataTexture.md) \* data) <br>_Commits the texture of_ _data_ _to sampler__binding_ _(call from_`updateSampledImage` _). Does nothing before an upload._ |
+|  const QSGGeometry::AttributeSet & | [**vertexIndexAttributeSet**](classQAccelPlot_1_1DataTextureMaterial.md#function-vertexindexattributeset) () <br>_Returns the attribute set of marker quads: one ignored_ `uchar4` _placeholder (4 bytes)._ |
 |  bool | [**writeCommonUniforms**](classQAccelPlot_1_1DataTextureMaterial.md#function-writecommonuniforms) (char \* buf, int bufSize, const QMatrix4x4 & matrix, const [**DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) \* mat) <br>_Writes the shared UBO prefix (transform + color + domain + flags) into_ _buf_ _._ |
 
 

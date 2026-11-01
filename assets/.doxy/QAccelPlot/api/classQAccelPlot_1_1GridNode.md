@@ -72,7 +72,7 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-|   | [**GridNode**](#function-gridnode) () = default<br>_Constructs an empty_ [_**GridNode**_](classQAccelPlot_1_1GridNode.md) _._ |
+|   | [**GridNode**](#function-gridnode) () <br>_Constructs a_ [_**GridNode**_](classQAccelPlot_1_1GridNode.md) _with empty sub-grid and main grid children._ |
 |  void | [**update**](#function-update) (const [**Grid**](classQAccelPlot_1_1Grid.md) \* grid, const [**Axis**](classQAccelPlot_1_1Axis.md) \* xAxis, const [**Axis**](classQAccelPlot_1_1Axis.md) \* yAxis, const QRectF & plotRect) <br>_Recomputes and updates all grid geometry from the supplied configuration objects._  |
 
 
@@ -105,7 +105,10 @@ flowchart TB
 ## Detailed Description
 
 
-Draws grid lines at the tick values from `AxisTickPainter::computeTickValues()`, the same values the axis places its tick marks at, so both stay aligned under all zoom levels, including log scale. 
+Draws grid lines at the tick values from `AxisTickPainter::computeTickValues()`, the same values the axis places its tick marks at, so both stay aligned under all zoom levels, including log scale.
+
+
+Keeps two child geometry nodes, sub-grid first and main grid second, for its whole lifetime and updates them in place. A hidden layer keeps its node with no vertices. Adding or removing nodes would make the Qt Quick renderer rebuild all batches and re-upload every series' vertex data. 
 
 
     
@@ -117,9 +120,9 @@ Draws grid lines at the tick values from `AxisTickPainter::computeTickValues()`,
 
 ### function GridNode {#function-gridnode}
 
-_Constructs an empty_ [_**GridNode**_](classQAccelPlot_1_1GridNode.md) _._
+_Constructs a_ [_**GridNode**_](classQAccelPlot_1_1GridNode.md) _with empty sub-grid and main grid children._
 ```C++
-explicit QAccelPlot::GridNode::GridNode () = default
+explicit QAccelPlot::GridNode::GridNode () 
 ```
 
 

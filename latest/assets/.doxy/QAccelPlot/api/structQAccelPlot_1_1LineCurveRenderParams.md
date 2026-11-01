@@ -61,6 +61,7 @@ _Input parameters for_ [_**LineCurveLineRenderer::paint()**_](classQAccelPlot_1_
 |  bool | [**logScaleY**](#variable-logscaley)  <br>_Whether the Y axis uses log scale._  |
 |  int | [**pointCount**](#variable-pointcount)  <br>_Number of points in_ `data` _._ |
 |  [**CurveDataView**](structQAccelPlot_1_1CurveDataView.md) | [**sourceData**](#variable-sourcedata)  <br>_Original float or double data used by CPU-side operations._  |
+|  [**StepMode**](namespaceQAccelPlot_1_1StepModeNS.md#enum-mode) | [**stepMode**](#variable-stepmode)   = `{StepMode::None}`<br>_How the line joins consecutive data points._  |
 |  const std::vector&lt; char &gt; \* | [**vertexCache**](#variable-vertexcache)  <br>_Pre-built vertex buffer, or_ `nullptr` _to build on the render thread._ |
 |  QVector2D | [**viewportSize**](#variable-viewportsize)  <br>_Viewport size in pixels._  |
 |  QQuickWindow \* | [**window**](#variable-window)  <br>_Window providing the texture upload context._  |
@@ -346,6 +347,21 @@ int QAccelPlot::LineCurveRenderParams::pointCount;
 _Original float or double data used by CPU-side operations._ 
 ```C++
 CurveDataView QAccelPlot::LineCurveRenderParams::sourceData;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable stepMode {#variable-stepmode}
+
+_How the line joins consecutive data points._ 
+```C++
+StepMode QAccelPlot::LineCurveRenderParams::stepMode;
 ```
 
 

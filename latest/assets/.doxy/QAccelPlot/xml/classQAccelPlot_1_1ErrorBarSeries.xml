@@ -1,0 +1,1949 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1ErrorBarSeries" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::ErrorBarSeries</compoundname>
+    <basecompoundref refid="classQAccelPlot_1_1PlotSeries" prot="public" virt="non-virtual">QAccelPlot::PlotSeries</basecompoundref>
+    <includes local="no">ErrorBarSeries.hpp</includes>
+    <innerclass refid="structQAccelPlot_1_1ErrorBarSeries_1_1DataBar" prot="private">QAccelPlot::ErrorBarSeries::DataBar</innerclass>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1ErrorBarSeries_1a9f68c5c4a8810ad9a9b4e5f5ad66704e" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>Qt::Orientation</type>
+        <definition>Qt::Orientation QAccelPlot::ErrorBarSeries::orientation</definition>
+        <argsstring></argsstring>
+        <name>orientation</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::orientation</qualifiedname>
+        <read>orientation</read>
+        <write>setOrientation</write>
+        <briefdescription>
+<para><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> the bounds lie on: <computeroutput>Qt.Vertical</computeroutput> for the Y axis, <computeroutput>Qt.Horizontal</computeroutput> for the X axis. Default: <computeroutput>Qt.Vertical</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="96" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1ErrorBarSeries_1a0b551d7a0a622deaf3ba7e98a948240d" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::ErrorBarSeries::color</definition>
+        <argsstring></argsstring>
+        <name>color</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::color</qualifiedname>
+        <read>color</read>
+        <write>setColor</write>
+        <briefdescription>
+<para>Line color. Default: <computeroutput>Colors.dark.seriesPrimary</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="98" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1ErrorBarSeries_1a2b1e16c6281f56f0a1d52e489fdca645" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ErrorBarSeries::lineWidth</definition>
+        <argsstring></argsstring>
+        <name>lineWidth</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::lineWidth</qualifiedname>
+        <read>lineWidth</read>
+        <write>setLineWidth</write>
+        <briefdescription>
+<para>Width in pixels of the error bars and their caps, clamped to at least 0. Default: 1.5. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="100" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1ErrorBarSeries_1a12eec28dee596bb610ceb94f43e45f2e" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ErrorBarSeries::capLength</definition>
+        <argsstring></argsstring>
+        <name>capLength</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::capLength</qualifiedname>
+        <read>capLength</read>
+        <write>setCapLength</write>
+        <briefdescription>
+<para>Length in pixels of the caps across the error bar, clamped to at least 0; 0 hides them. Default: 8. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="102" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1ErrorBarSeries_1a589ef9067e329549a4268c06790149e5" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ErrorBarSeries::offset</definition>
+        <argsstring></argsstring>
+        <name>offset</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::offset</qualifiedname>
+        <read>offset</read>
+        <write>setOffset</write>
+        <briefdescription>
+<para>Shift of every error bar across its bounds, in data units of the other axis. Default: 0. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Bind it to <computeroutput><ref refid="classQAccelPlot_1_1BarSeries_1a6dceb6e0a8ceae14b9529a3006974bdb" kindref="member">BarSeries::barOffset</ref></computeroutput> to center error bars on grouped bars. Auto-ranging ignores it. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="106" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1ErrorBarSeries_1a81a2d7e32086c94eb751cddba7bf165d" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::ErrorBarSeries::hoverColor</definition>
+        <argsstring></argsstring>
+        <name>hoverColor</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::hoverColor</qualifiedname>
+        <read>hoverColor</read>
+        <write>setHoverColor</write>
+        <briefdescription>
+<para>Color of the hovered error bar. Default: <computeroutput>Colors.dark.hover</computeroutput>; an invalid color draws it in <computeroutput>color</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="108" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1ErrorBarSeries_1afc178fec7fe87913a9f6e6b96dc189b9" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ErrorBarSeries::hoverRadius</definition>
+        <argsstring></argsstring>
+        <name>hoverRadius</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::hoverRadius</qualifiedname>
+        <read>hoverRadius</read>
+        <write>setHoverRadius</write>
+        <briefdescription>
+<para>Pick distance in pixels from an error bar or its caps, clamped to at least 0. Default: 6. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="110" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1ErrorBarSeries_1a7515758a84da560d12a07dc0b6537f17" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1DataTransition" kindref="compound">DataTransition</ref> *</type>
+        <definition>DataTransition* QAccelPlot::ErrorBarSeries::transition</definition>
+        <argsstring></argsstring>
+        <name>transition</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::transition</qualifiedname>
+        <read>transition</read>
+        <write>setTransition</write>
+        <briefdescription>
+<para>Optional data transition animation applied when new data arrives. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="112" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1ErrorBarSeries_1ad67f3fe8da99d0de4180dbbaefc78b98" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::ErrorBarSeries::hoveredIndex</definition>
+        <argsstring></argsstring>
+        <name>hoveredIndex</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::hoveredIndex</qualifiedname>
+        <read>hoveredIndex</read>
+        <briefdescription>
+<para>Read-only: index of the error bar under the cursor, or -1 when none. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="114" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" bodystart="114" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1ErrorBarSeries_1a07f13cf2a2347e44222451bfd9cdb9c5" prot="private" static="no" mutable="no">
+        <type>Qt::Orientation</type>
+        <definition>Qt::Orientation QAccelPlot::ErrorBarSeries::orientation_</definition>
+        <argsstring></argsstring>
+        <name>orientation_</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::orientation_</qualifiedname>
+        <initializer>{Qt::Vertical}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="277" column="21" bodyfile="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" bodystart="277" bodyend="277"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ErrorBarSeries_1a84f62b1b84fefe1b4f032c8112d88aac" prot="private" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::ErrorBarSeries::color_</definition>
+        <argsstring></argsstring>
+        <name>color_</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::color_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="278" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" bodystart="278" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ErrorBarSeries_1a1b0b5cbe967a492b7a625fd111d46c8f" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ErrorBarSeries::lineWidth_</definition>
+        <argsstring></argsstring>
+        <name>lineWidth_</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::lineWidth_</qualifiedname>
+        <initializer>{1.5}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="279" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" bodystart="279" bodyend="279"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ErrorBarSeries_1a5d9d496d03be588e13543d7764264ccb" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ErrorBarSeries::capLength_</definition>
+        <argsstring></argsstring>
+        <name>capLength_</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::capLength_</qualifiedname>
+        <initializer>{8.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="280" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" bodystart="280" bodyend="280"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ErrorBarSeries_1a90a5274db07c316528a34293d129ef67" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ErrorBarSeries::offset_</definition>
+        <argsstring></argsstring>
+        <name>offset_</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::offset_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="281" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" bodystart="281" bodyend="281"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ErrorBarSeries_1a36e5ae7a3e79a7b0cabe3a3ef8742896" prot="private" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::ErrorBarSeries::hoverColor_</definition>
+        <argsstring></argsstring>
+        <name>hoverColor_</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::hoverColor_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="282" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" bodystart="282" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ErrorBarSeries_1a21b3684e28ea81583ef08e0d12243842" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ErrorBarSeries::hoverRadius_</definition>
+        <argsstring></argsstring>
+        <name>hoverRadius_</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::hoverRadius_</qualifiedname>
+        <initializer>{6.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="283" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" bodystart="283" bodyend="283"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ErrorBarSeries_1a7427ca78e12c09d196071ddeafea792b" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::ErrorBarSeries::hoveredIndex_</definition>
+        <argsstring></argsstring>
+        <name>hoveredIndex_</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::hoveredIndex_</qualifiedname>
+        <initializer>{-1}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="284" column="9" bodyfile="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" bodystart="284" bodyend="284"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ErrorBarSeries_1a90c718bd8302f899c3ea731ecb0925a7" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; <ref refid="classQAccelPlot_1_1TransitionRunner" kindref="compound">TransitionRunner</ref> &gt;</type>
+        <definition>std::unique_ptr&lt;TransitionRunner&gt; QAccelPlot::ErrorBarSeries::transition_</definition>
+        <argsstring></argsstring>
+        <name>transition_</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::transition_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="285" column="21" bodyfile="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" bodystart="285" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ErrorBarSeries_1a56a86b7113960569a7d70e46d41023ac" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; QAccelPlot::ErrorBarSeries::frameBuffer_</definition>
+        <argsstring></argsstring>
+        <name>frameBuffer_</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::frameBuffer_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="287" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" bodystart="287" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ErrorBarSeries_1a328ac7acdd9992dd711666f934a0c0a8" prot="private" static="no" mutable="no">
+        <type>std::uint64_t</type>
+        <definition>std::uint64_t QAccelPlot::ErrorBarSeries::uploadedRevision_</definition>
+        <argsstring></argsstring>
+        <name>uploadedRevision_</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::uploadedRevision_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="289" column="19" bodyfile="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" bodystart="289" bodyend="289"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ErrorBarSeries_1a55d05989095168478b193c66fd9c1556" prot="private" static="no" mutable="yes">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; QAccelPlot::ErrorBarSeries::hitRects_</definition>
+        <argsstring></argsstring>
+        <name>hitRects_</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::hitRects_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="291" column="25" bodyfile="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" bodystart="291" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ErrorBarSeries_1a9095c66155eab4ae3d9b6ab84aa4d46b" prot="private" static="no" mutable="yes">
+        <type><ref refid="classQAccelPlot_1_1SpatialGrid" kindref="compound">SpatialGrid</ref></type>
+        <definition>SpatialGrid QAccelPlot::ErrorBarSeries::spatialGrid_</definition>
+        <argsstring></argsstring>
+        <name>spatialGrid_</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::spatialGrid_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="292" column="25" bodyfile="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" bodystart="292" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ErrorBarSeries_1a9ba221f6e430885b6161856b12b6872b" prot="private" static="no" mutable="yes">
+        <type>bool</type>
+        <definition>bool QAccelPlot::ErrorBarSeries::spatialGridValid_</definition>
+        <argsstring></argsstring>
+        <name>spatialGridValid_</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::spatialGridValid_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="293" column="18" bodyfile="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" bodystart="293" bodyend="293"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a717a05102f19d67a531834e835b334af" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::ErrorBarSeries::ErrorBarSeries</definition>
+        <argsstring>(QQuickItem *parent=nullptr)</argsstring>
+        <name>ErrorBarSeries</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::ErrorBarSeries</qualifiedname>
+        <param>
+          <type>QQuickItem *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs an <ref refid="classQAccelPlot_1_1ErrorBarSeries" kindref="compound">ErrorBarSeries</ref> with the given <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="118" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a1fdf5b368d996667129718483c4c8967" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::ErrorBarSeries::~ErrorBarSeries</definition>
+        <argsstring>() override</argsstring>
+        <name>~ErrorBarSeries</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::~ErrorBarSeries</qualifiedname>
+        <briefdescription>
+<para>Destroys the series, ending its animation on the assigned transition. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="120" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a404c68c3e0956081def575b5cb117315" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Qt::Orientation</type>
+        <definition>Qt::Orientation QAccelPlot::ErrorBarSeries::orientation</definition>
+        <argsstring>() const</argsstring>
+        <name>orientation</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::orientation</qualifiedname>
+        <briefdescription>
+<para>Returns the axis the bounds lie on. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="123" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1acd8ec1b2f00a5b100880cd76d1a1d648" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::setOrientation</definition>
+        <argsstring>(Qt::Orientation orientation)</argsstring>
+        <name>setOrientation</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::setOrientation</qualifiedname>
+        <param>
+          <type>Qt::Orientation</type>
+          <declname>orientation</declname>
+        </param>
+        <briefdescription>
+<para>Sets the axis the bounds lie on to <emphasis>orientation</emphasis>. The stored data points are kept. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="125" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a1f8260d4f31739d7d3288506ac9cad74" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::ErrorBarSeries::color</definition>
+        <argsstring>() const</argsstring>
+        <name>color</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::color</qualifiedname>
+        <briefdescription>
+<para>Returns the line color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="128" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a1f60a77f6ea250dda55c6e994fd7414e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::setColor</definition>
+        <argsstring>(const QColor &amp;color)</argsstring>
+        <name>setColor</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::setColor</qualifiedname>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>color</declname>
+        </param>
+        <briefdescription>
+<para>Sets the line color to <emphasis>color</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="130" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a923102410ad3b86df4575cd943258242" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ErrorBarSeries::lineWidth</definition>
+        <argsstring>() const</argsstring>
+        <name>lineWidth</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::lineWidth</qualifiedname>
+        <briefdescription>
+<para>Returns the line width in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="133" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a354c9c477530dfaea5d12006ca5793d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::setLineWidth</definition>
+        <argsstring>(qreal width)</argsstring>
+        <name>setLineWidth</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::setLineWidth</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>width</declname>
+        </param>
+        <briefdescription>
+<para>Sets the line width to <emphasis>width</emphasis> pixels. Negative values are clamped to 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="135" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a8a31fdaa23e0ddc98f41eca0bbdb0400" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ErrorBarSeries::capLength</definition>
+        <argsstring>() const</argsstring>
+        <name>capLength</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::capLength</qualifiedname>
+        <briefdescription>
+<para>Returns the cap length in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="138" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a37cd05079e0a0812ee295f4e72e8d630" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::setCapLength</definition>
+        <argsstring>(qreal length)</argsstring>
+        <name>setCapLength</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::setCapLength</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>Sets the cap length to <emphasis>length</emphasis> pixels. Negative values are clamped to 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="140" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a70a0e6ac7577b82c4db437902bb933d1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ErrorBarSeries::offset</definition>
+        <argsstring>() const</argsstring>
+        <name>offset</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::offset</qualifiedname>
+        <briefdescription>
+<para>Returns the shift of every error bar across its bounds, in data units. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="143" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1abd916f4be75f231927f6d3c7df97a3b5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::setOffset</definition>
+        <argsstring>(qreal offset)</argsstring>
+        <name>setOffset</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::setOffset</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>offset</declname>
+        </param>
+        <briefdescription>
+<para>Sets the shift of every error bar across its bounds to <emphasis>offset</emphasis> data units. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="145" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a5774e010166fd732fed18eff0f5e16eb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::ErrorBarSeries::hoverColor</definition>
+        <argsstring>() const</argsstring>
+        <name>hoverColor</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::hoverColor</qualifiedname>
+        <briefdescription>
+<para>Returns the color of the hovered error bar. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="148" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a9d3b289d048aad0d6fa86d003546dcc0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::setHoverColor</definition>
+        <argsstring>(const QColor &amp;color)</argsstring>
+        <name>setHoverColor</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::setHoverColor</qualifiedname>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>color</declname>
+        </param>
+        <briefdescription>
+<para>Sets the color of the hovered error bar to <emphasis>color</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="150" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a8fa1386d0aa06001cad73c4dbf6c4674" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ErrorBarSeries::hoverRadius</definition>
+        <argsstring>() const</argsstring>
+        <name>hoverRadius</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::hoverRadius</qualifiedname>
+        <briefdescription>
+<para>Returns the hover pick distance in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="153" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a1ef0e0425a37a7d3568b46d42afa8e38" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::setHoverRadius</definition>
+        <argsstring>(qreal radius)</argsstring>
+        <name>setHoverRadius</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::setHoverRadius</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>radius</declname>
+        </param>
+        <briefdescription>
+<para>Sets the hover pick distance to <emphasis>radius</emphasis> pixels. Negative values are clamped to 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="155" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a39ef50a6045db82cad007268431e55e3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1DataTransition" kindref="compound">DataTransition</ref> *</type>
+        <definition>DataTransition * QAccelPlot::ErrorBarSeries::transition</definition>
+        <argsstring>() const</argsstring>
+        <name>transition</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::transition</qualifiedname>
+        <briefdescription>
+<para>Returns the active data transition, or <computeroutput>nullptr</computeroutput> if none. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="158" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1adc195b79b4d74ac827a5291f9988b3d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::setTransition</definition>
+        <argsstring>(DataTransition *transition)</argsstring>
+        <name>setTransition</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::setTransition</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1DataTransition" kindref="compound">DataTransition</ref> *</type>
+          <declname>transition</declname>
+        </param>
+        <briefdescription>
+<para>Sets the data transition to <emphasis>transition</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="160" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1af3d1338b15d55ec86694a2af4999f419" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::ErrorBarSeries::hoveredIndex</definition>
+        <argsstring>() const</argsstring>
+        <name>hoveredIndex</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::hoveredIndex</qualifiedname>
+        <briefdescription>
+<para>Returns the index of the hovered error bar, or -1 if none. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="163" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a7cf77f3a63249dc87bbc2560f6cc055e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE void</type>
+        <definition>Q_INVOKABLE void QAccelPlot::ErrorBarSeries::appendData</definition>
+        <argsstring>(qreal x, qreal y, qreal low, qreal high)</argsstring>
+        <name>appendData</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::appendData</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>low</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>high</declname>
+        </param>
+        <briefdescription>
+<para>Appends the data point (<emphasis>x</emphasis>, <emphasis>y</emphasis>, <emphasis>low</emphasis>, <emphasis>high</emphasis>). Triggers a redraw. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="166" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a27e58b345547c3ea5b0ebae4f86513a9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE void</type>
+        <definition>Q_INVOKABLE void QAccelPlot::ErrorBarSeries::setData</definition>
+        <argsstring>(const QList&lt; qreal &gt; &amp;xs, const QList&lt; qreal &gt; &amp;ys, const QList&lt; qreal &gt; &amp;lows, const QList&lt; qreal &gt; &amp;highs)</argsstring>
+        <name>setData</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::setData</qualifiedname>
+        <param>
+          <type>const QList&lt; qreal &gt; &amp;</type>
+          <declname>xs</declname>
+        </param>
+        <param>
+          <type>const QList&lt; qreal &gt; &amp;</type>
+          <declname>ys</declname>
+        </param>
+        <param>
+          <type>const QList&lt; qreal &gt; &amp;</type>
+          <declname>lows</declname>
+        </param>
+        <param>
+          <type>const QList&lt; qreal &gt; &amp;</type>
+          <declname>highs</declname>
+        </param>
+        <briefdescription>
+<para>Replaces the data points with <emphasis>xs</emphasis>, <emphasis>ys</emphasis>, <emphasis>lows</emphasis>, and <emphasis>highs</emphasis>. If the sizes differ, the shortest length is used. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="168" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a5bbb2aa64b4725de03af39ceba68812f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::setData</definition>
+        <argsstring>(const std::vector&lt; double &gt; &amp;xs, const std::vector&lt; double &gt; &amp;ys, const std::vector&lt; double &gt; &amp;lows, const std::vector&lt; double &gt; &amp;highs)</argsstring>
+        <name>setData</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::setData</qualifiedname>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>xs</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>ys</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>lows</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>highs</declname>
+        </param>
+        <briefdescription>
+<para>Replaces the data points with <emphasis>xs</emphasis>, <emphasis>ys</emphasis>, <emphasis>lows</emphasis>, and <emphasis>highs</emphasis>. If the sizes differ, the shortest length is used. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="170" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1ac0023d9bcc86727593111f585a0a00d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE void</type>
+        <definition>Q_INVOKABLE void QAccelPlot::ErrorBarSeries::appendErrorData</definition>
+        <argsstring>(qreal x, qreal y, qreal error)</argsstring>
+        <name>appendErrorData</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::appendErrorData</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>error</declname>
+        </param>
+        <briefdescription>
+<para>Appends a data point at (<emphasis>x</emphasis>, <emphasis>y</emphasis>) with <emphasis>error</emphasis> on both sides of the value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The value is <emphasis>y</emphasis> for vertical and <emphasis>x</emphasis> for horizontal error bars. The sign of <emphasis>error</emphasis> is ignored. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="178" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1ae07357ce6dfb668a30e8f4a31556d59c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE void</type>
+        <definition>Q_INVOKABLE void QAccelPlot::ErrorBarSeries::appendErrorData</definition>
+        <argsstring>(qreal x, qreal y, qreal minus, qreal plus)</argsstring>
+        <name>appendErrorData</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::appendErrorData</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>minus</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>plus</declname>
+        </param>
+        <briefdescription>
+<para>Appends a data point at (<emphasis>x</emphasis>, <emphasis>y</emphasis>) with <emphasis>minus</emphasis> below and <emphasis>plus</emphasis> above the value. Signs are ignored. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="180" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a56dee19fb2f3b7624bf84a5fb067aff3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE void</type>
+        <definition>Q_INVOKABLE void QAccelPlot::ErrorBarSeries::setErrorData</definition>
+        <argsstring>(const QList&lt; qreal &gt; &amp;xs, const QList&lt; qreal &gt; &amp;ys, const QList&lt; qreal &gt; &amp;errors)</argsstring>
+        <name>setErrorData</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::setErrorData</qualifiedname>
+        <param>
+          <type>const QList&lt; qreal &gt; &amp;</type>
+          <declname>xs</declname>
+        </param>
+        <param>
+          <type>const QList&lt; qreal &gt; &amp;</type>
+          <declname>ys</declname>
+        </param>
+        <param>
+          <type>const QList&lt; qreal &gt; &amp;</type>
+          <declname>errors</declname>
+        </param>
+        <briefdescription>
+<para>Replaces the data points with <emphasis>xs</emphasis> and <emphasis>ys</emphasis>, each with an error from <emphasis>errors</emphasis> on both sides of the value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If the sizes differ, the shortest length is used. The signs of the errors are ignored. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="184" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1ab67b49b2883225a981f2500f0b52f79e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE void</type>
+        <definition>Q_INVOKABLE void QAccelPlot::ErrorBarSeries::setErrorData</definition>
+        <argsstring>(const QList&lt; qreal &gt; &amp;xs, const QList&lt; qreal &gt; &amp;ys, const QList&lt; qreal &gt; &amp;minuses, const QList&lt; qreal &gt; &amp;pluses)</argsstring>
+        <name>setErrorData</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::setErrorData</qualifiedname>
+        <param>
+          <type>const QList&lt; qreal &gt; &amp;</type>
+          <declname>xs</declname>
+        </param>
+        <param>
+          <type>const QList&lt; qreal &gt; &amp;</type>
+          <declname>ys</declname>
+        </param>
+        <param>
+          <type>const QList&lt; qreal &gt; &amp;</type>
+          <declname>minuses</declname>
+        </param>
+        <param>
+          <type>const QList&lt; qreal &gt; &amp;</type>
+          <declname>pluses</declname>
+        </param>
+        <briefdescription>
+<para>Replaces the data points with <emphasis>xs</emphasis> and <emphasis>ys</emphasis>, each with an error from <emphasis>minuses</emphasis> below and <emphasis>pluses</emphasis> above the value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If the sizes differ, the shortest length is used. The signs of the errors are ignored. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="188" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a1afe50eeee84c01ba9bac3937912f801" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::setErrorData</definition>
+        <argsstring>(const std::vector&lt; double &gt; &amp;xs, const std::vector&lt; double &gt; &amp;ys, const std::vector&lt; double &gt; &amp;errors)</argsstring>
+        <name>setErrorData</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::setErrorData</qualifiedname>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>xs</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>ys</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>errors</declname>
+        </param>
+        <briefdescription>
+<para>Replaces the data points with <emphasis>xs</emphasis> and <emphasis>ys</emphasis>, each with an error from <emphasis>errors</emphasis> on both sides of the value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="190" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a8b6b211aae5bf24d6be51d949b545978" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::setErrorData</definition>
+        <argsstring>(const std::vector&lt; double &gt; &amp;xs, const std::vector&lt; double &gt; &amp;ys, const std::vector&lt; double &gt; &amp;minuses, const std::vector&lt; double &gt; &amp;pluses)</argsstring>
+        <name>setErrorData</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::setErrorData</qualifiedname>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>xs</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>ys</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>minuses</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>pluses</declname>
+        </param>
+        <briefdescription>
+<para>Replaces the data points with <emphasis>xs</emphasis> and <emphasis>ys</emphasis>, each with an error from <emphasis>minuses</emphasis> below and <emphasis>pluses</emphasis> above the value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="192" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a2903bb0c8af9b45487a6f62ffc6c3fda" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>Q_INVOKABLE void</type>
+        <definition>Q_INVOKABLE void QAccelPlot::ErrorBarSeries::clearData</definition>
+        <argsstring>() override</argsstring>
+        <name>clearData</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::clearData</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1ab8783373622d6edb7e55c3dd435fc399">clearData</reimplements>
+        <briefdescription>
+<para>Removes all data points. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="195" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1ad0fb0bc9e338f798fabb5f418eb9ab9b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE QVariantMap</type>
+        <definition>Q_INVOKABLE QVariantMap QAccelPlot::ErrorBarSeries::errorBarAt</definition>
+        <argsstring>(int index) const</argsstring>
+        <name>errorBarAt</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::errorBarAt</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Returns data point <emphasis>index</emphasis> as an object with <computeroutput>x</computeroutput>, <computeroutput>y</computeroutput>, <computeroutput>low</computeroutput>, and <computeroutput>high</computeroutput> properties, or an empty object when out of range. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="198" column="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1adfa0d7bc09c2f9576a2f439ac268b37d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE int</type>
+        <definition>Q_INVOKABLE int QAccelPlot::ErrorBarSeries::errorBarIndexAt</definition>
+        <argsstring>(const QPointF &amp;position) const</argsstring>
+        <name>errorBarIndexAt</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::errorBarIndexAt</qualifiedname>
+        <param>
+          <type>const QPointF &amp;</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+<para>Returns the index of the error bar within <computeroutput>hoverRadius</computeroutput> of item position <emphasis>position</emphasis>, or -1. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The nearest error bar wins; on a tie, the one with the highest index. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="202" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a3f42e7b11335dffbd771a6829a9d9838" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::ErrorBarSeries::contains</definition>
+        <argsstring>(const QPointF &amp;point) const override</argsstring>
+        <name>contains</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::contains</qualifiedname>
+        <param>
+          <type>const QPointF &amp;</type>
+          <declname>point</declname>
+        </param>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> when an error bar lies within <computeroutput>hoverRadius</computeroutput> of item position <emphasis>point</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Hover delivery uses this test, so stacked series underneath still receive hover events away from the error bars. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="207" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a5615889cceabfee35f5e3e2dbd25f455" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotSeries::setData</definition>
+        <argsstring>(const double *data, int count)</argsstring>
+        <name>setData</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::setData</qualifiedname>
+        <param>
+          <type>const double *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+<para>Replaces the series data with <emphasis>count</emphasis> data points copied from an interleaved double array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>See the class description for the data point layout of each series. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="172" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1af143a846c63372800995a0bd4f058598" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotSeries::setData</definition>
+        <argsstring>(std::vector&lt; double &gt; &amp;&amp;data, int count)</argsstring>
+        <name>setData</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::setData</qualifiedname>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;&amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+<para>Replaces the series data by moving an interleaved double buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="172" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a683165ce25c4f4a2f0cf3a36852c3721" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotSeries::setData</definition>
+        <argsstring>(const double *data, int count, const DataBounds &amp;bounds)</argsstring>
+        <name>setData</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::setData</qualifiedname>
+        <param>
+          <type>const double *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1PlotSeries_1_1DataBounds" kindref="compound">DataBounds</ref> &amp;</type>
+          <declname>bounds</declname>
+        </param>
+        <briefdescription>
+<para>Like <computeroutput>setData</computeroutput>(<emphasis>data</emphasis>, <emphasis>count</emphasis>), with the data extents given as <emphasis>bounds</emphasis> instead of scanned for. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="172" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1ad10aa7307918305c127eb0b98c962484" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotSeries::setData</definition>
+        <argsstring>(std::vector&lt; double &gt; &amp;&amp;data, int count, const DataBounds &amp;bounds)</argsstring>
+        <name>setData</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::setData</qualifiedname>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;&amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1PlotSeries_1_1DataBounds" kindref="compound">DataBounds</ref> &amp;</type>
+          <declname>bounds</declname>
+        </param>
+        <briefdescription>
+<para>Like <computeroutput>setData</computeroutput>(<emphasis>data</emphasis>, <emphasis>count</emphasis>), with the data extents given as <emphasis>bounds</emphasis> instead of scanned for. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="172" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1aa3475ca31d506b1b1c28ea586d61402e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotSeries::setDataF</definition>
+        <argsstring>(const float *data, int count)</argsstring>
+        <name>setDataF</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::setDataF</qualifiedname>
+        <param>
+          <type>const float *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+<para>Replaces the series data with <emphasis>count</emphasis> data points copied from an interleaved float array. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="173" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a1180d75ce402fbf92fd7d95a4d0acda4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotSeries::setDataF</definition>
+        <argsstring>(std::vector&lt; float &gt; &amp;&amp;data, int count)</argsstring>
+        <name>setDataF</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::setDataF</qualifiedname>
+        <param>
+          <type>std::vector&lt; float &gt; &amp;&amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+<para>Replaces the series data by moving an interleaved float buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="173" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1ab0d977683b1b06807842ade3c6011a3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotSeries::setDataF</definition>
+        <argsstring>(const float *data, int count, const DataBounds &amp;bounds)</argsstring>
+        <name>setDataF</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::setDataF</qualifiedname>
+        <param>
+          <type>const float *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1PlotSeries_1_1DataBounds" kindref="compound">DataBounds</ref> &amp;</type>
+          <declname>bounds</declname>
+        </param>
+        <briefdescription>
+<para>Like <computeroutput>setDataF</computeroutput>(<emphasis>data</emphasis>, <emphasis>count</emphasis>), with the data extents given as <emphasis>bounds</emphasis> instead of scanned for. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="173" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a795dc3374e83da98b6a471bb55f51fbd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotSeries::setDataF</definition>
+        <argsstring>(std::vector&lt; float &gt; &amp;&amp;data, int count, const DataBounds &amp;bounds)</argsstring>
+        <name>setDataF</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::setDataF</qualifiedname>
+        <param>
+          <type>std::vector&lt; float &gt; &amp;&amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1PlotSeries_1_1DataBounds" kindref="compound">DataBounds</ref> &amp;</type>
+          <declname>bounds</declname>
+        </param>
+        <briefdescription>
+<para>Like <computeroutput>setDataF</computeroutput>(<emphasis>data</emphasis>, <emphasis>count</emphasis>), with the data extents given as <emphasis>bounds</emphasis> instead of scanned for. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="173" column="5"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1ErrorBarSeries_1ad0708684b4fbed9038daed4680bf300b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::orientationChanged</definition>
+        <argsstring>()</argsstring>
+        <name>orientationChanged</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::orientationChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the orientation property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="211" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1ErrorBarSeries_1a6d30c5733a1262e7a08e6fa4c9693161" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::colorChanged</definition>
+        <argsstring>()</argsstring>
+        <name>colorChanged</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::colorChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the color property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="213" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1ErrorBarSeries_1a40dd6b7d6b833ffa052294119ed7016a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::lineWidthChanged</definition>
+        <argsstring>()</argsstring>
+        <name>lineWidthChanged</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::lineWidthChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the lineWidth property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="215" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1ErrorBarSeries_1a7e76ff1412f00bd0a48f07abf1ea8b7a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::capLengthChanged</definition>
+        <argsstring>()</argsstring>
+        <name>capLengthChanged</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::capLengthChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the capLength property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="217" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1ErrorBarSeries_1a01d2b578e8f3cdd31a37254cc8ecbf49" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::offsetChanged</definition>
+        <argsstring>()</argsstring>
+        <name>offsetChanged</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::offsetChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the offset property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="219" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1ErrorBarSeries_1a5d24dd87da8a503a48ba1692dd61a604" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::hoverColorChanged</definition>
+        <argsstring>()</argsstring>
+        <name>hoverColorChanged</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::hoverColorChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the hoverColor property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="221" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1ErrorBarSeries_1aeacf42acc145e499bd9b5114634d0c8c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::hoverRadiusChanged</definition>
+        <argsstring>()</argsstring>
+        <name>hoverRadiusChanged</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::hoverRadiusChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the hoverRadius property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="223" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1ErrorBarSeries_1ab7abd16e3f71563e7c16109db674aaae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::transitionChanged</definition>
+        <argsstring>()</argsstring>
+        <name>transitionChanged</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::transitionChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the transition property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="225" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1ErrorBarSeries_1abbf7f27cb514522edee0c5deaf64e0aa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::hoveredIndexChanged</definition>
+        <argsstring>()</argsstring>
+        <name>hoveredIndexChanged</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::hoveredIndexChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the hovered error bar changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="227" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a40a9bd89f20f9011b2f4fa66f38b8df8" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::applyDataPoints</definition>
+        <argsstring>(DataPointInput &amp;&amp;input) override</argsstring>
+        <name>applyDataPoints</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::applyDataPoints</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1ac760dabf61aac4bad4cc5e93ad4dae43">applyDataPoints</reimplements>
+        <param>
+          <type><ref refid="structQAccelPlot_1_1PlotSeries_1_1DataPointInput" kindref="compound">DataPointInput</ref> &amp;&amp;</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+<para>Stores <emphasis>input</emphasis>, animating it from the drawn error bars while a transition is enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="240" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a783ee7172e96b003944bc8ef081bf263" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::onAxisScaleChanged</definition>
+        <argsstring>() override</argsstring>
+        <name>onAxisScaleChanged</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::onAxisScaleChanged</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1a151516370fa311775c91c9cd7992e25e">onAxisScaleChanged</reimplements>
+        <briefdescription>
+<para>Refreshes the hover lookup and repaints after a bound axis changes between linear and log scale. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="242" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a744ac86bc9720565345e336e1354cd30" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::onDataPointsChanged</definition>
+        <argsstring>(DataChange change, int previousCount) override</argsstring>
+        <name>onDataPointsChanged</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::onDataPointsChanged</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1a6aa2a1a96940b34ac259143005b0aa47">onDataPointsChanged</reimplements>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1PlotSeries_1a7f2b4290f315a7c3d22b7982763b8bc8" kindref="member">DataChange</ref></type>
+          <declname>change</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>previousCount</declname>
+        </param>
+        <briefdescription>
+<para>Refreshes the hover lookup and the count after the data points changed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="244" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1aed0a8083d30608072a9039b2c987504b" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::ErrorBarSeries::isHorizontal</definition>
+        <argsstring>() const</argsstring>
+        <name>isHorizontal</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::isHorizontal</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="257" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1ab3b54961783bf316f6b3d7d42ece4422" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::ErrorBarSeries::component</definition>
+        <argsstring>(int index, int column) const</argsstring>
+        <name>component</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::component</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>column</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="258" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1ab3cf41eddce49ead7366dacb8bacce6f" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::optional&lt; DataBar &gt;</type>
+        <definition>std::optional&lt; DataBar &gt; QAccelPlot::ErrorBarSeries::dataBar</definition>
+        <argsstring>(const DataPointStore::View &amp;dataPoints, int index) const</argsstring>
+        <name>dataBar</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::dataBar</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1DataPointStore_1_1View" kindref="compound">DataPointStore::View</ref> &amp;</type>
+          <declname>dataPoints</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="260" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a1cfa4f16b47c465e1780be74c67ef2e6" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::optional&lt; qreal &gt;</type>
+        <definition>std::optional&lt; qreal &gt; QAccelPlot::ErrorBarSeries::pixelDistance</definition>
+        <argsstring>(int index, const QPointF &amp;position) const</argsstring>
+        <name>pixelDistance</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::pixelDistance</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>const QPointF &amp;</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="262" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a269b9f585eef287d29e7c4f33e65af36" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::applyInterleavedData</definition>
+        <argsstring>(std::vector&lt; double &gt; &amp;&amp;data)</argsstring>
+        <name>applyInterleavedData</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::applyInterleavedData</qualifiedname>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;&amp;</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="263" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1aa6e744ce37c31ae89e7f09db458acbe8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::applyDoubleData</definition>
+        <argsstring>(std::vector&lt; double &gt; &amp;&amp;data, int dataPointCount)</argsstring>
+        <name>applyDoubleData</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::applyDoubleData</qualifiedname>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;&amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>dataPointCount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="264" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1afc39fa67ca99e8dcfde2f1be0e0940b3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::startTransition</definition>
+        <argsstring>(const std::vector&lt; double &gt; &amp;drawn, int drawnCount)</argsstring>
+        <name>startTransition</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::startTransition</qualifiedname>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>drawn</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>drawnCount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="266" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a2c019a355b70c20159ddbcbfac9f40be" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::advanceTransition</definition>
+        <argsstring>()</argsstring>
+        <name>advanceTransition</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::advanceTransition</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="267" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a56bd84a7a1f3293660b923b2399c53a3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::endTransition</definition>
+        <argsstring>()</argsstring>
+        <name>endTransition</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::endTransition</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="269" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a81d2e656ede6f2475c5f6d8b1a6f7b97" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::discardTransition</definition>
+        <argsstring>()</argsstring>
+        <name>discardTransition</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::discardTransition</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="270" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a3fb1b2fb4ff22323e2dbfe59f31558d1" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::setHoveredIndex</definition>
+        <argsstring>(int index)</argsstring>
+        <name>setHoveredIndex</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::setHoveredIndex</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="271" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1acf307cd704d100eea2de2518d0c76a52" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::onGeometryChanged</definition>
+        <argsstring>()</argsstring>
+        <name>onGeometryChanged</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::onGeometryChanged</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="272" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a5df60ce16c9be9dd733c439b26ce9b47" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::ensureSpatialGrid</definition>
+        <argsstring>() const</argsstring>
+        <name>ensureSpatialGrid</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::ensureSpatialGrid</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="273" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a26a1857185a30ca5e863bc1bb5321010" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::updateVertices</definition>
+        <argsstring>(QSGGeometryNode &amp;node, int drawnCount) const</argsstring>
+        <name>updateVertices</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::updateVertices</qualifiedname>
+        <param>
+          <type>QSGGeometryNode &amp;</type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>drawnCount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="274" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ErrorBarSeries_1a33cad19a1e8091197dedc82b01c1f747" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ErrorBarSeries::updateMaterial</definition>
+        <argsstring>(ErrorBarMaterial &amp;material, int drawnCount) const</argsstring>
+        <name>updateMaterial</name>
+        <qualifiedname>QAccelPlot::ErrorBarSeries::updateMaterial</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1ErrorBarMaterial" kindref="compound">ErrorBarMaterial</ref> &amp;</type>
+          <declname>material</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>drawnCount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="275" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A hardware-accelerated QML item that draws error bars: a line from a low to a high bound at each data point, capped at both ends. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Each data point is an <computeroutput>(x, y, low, high)</computeroutput> quadruple. <computeroutput>orientation</computeroutput> selects the axis that <computeroutput>low</computeroutput> and <computeroutput>high</computeroutput> lie on: a vertical error bar is drawn at <computeroutput>x</computeroutput> from <computeroutput>low</computeroutput> to <computeroutput>high</computeroutput> along the Y axis, and a horizontal one at <computeroutput>y</computeroutput> from <computeroutput>low</computeroutput> to <computeroutput>high</computeroutput> along the X axis. The other coordinate, <computeroutput>y</computeroutput> for vertical and <computeroutput>x</computeroutput> for horizontal error bars, is the value the bounds belong to. The series does not draw it: draw the values with a <computeroutput><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref></computeroutput> or <computeroutput><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref></computeroutput> declared after the error bars, so that its markers are drawn and hovered on top. The same <computeroutput>xs</computeroutput> and <computeroutput>ys</computeroutput> then feed both series.</para>
+<para><computeroutput><ref refid="classQAccelPlot_1_1ErrorBarSeries_1a56dee19fb2f3b7624bf84a5fb067aff3" kindref="member">setErrorData()</ref></computeroutput> and <computeroutput><ref refid="classQAccelPlot_1_1ErrorBarSeries_1ac0023d9bcc86727593111f585a0a00d0" kindref="member">appendErrorData()</ref></computeroutput> take errors relative to the value instead of bounds, one for both sides or one per side, and store the bounds they give. A NaN error gives a NaN bound.</para>
+<para>Data points are uploaded to the GPU as a float data texture once per data change; panning, zooming, and changing <computeroutput>lineWidth</computeroutput>, <computeroutput>capLength</computeroutput>, or <computeroutput>offset</computeroutput> only change shader uniforms. The <computeroutput><ref refid="classQAccelPlot_1_1ErrorBarSeries_1a27e58b345547c3ea5b0ebae4f86513a9" kindref="member">setData()</ref></computeroutput> overloads keep doubles and upload them relative to an origin near the viewport, so large coordinates such as epoch timestamps stay precise. The <computeroutput><ref refid="classQAccelPlot_1_1ErrorBarSeries_1aa3475ca31d506b1b1c28ea586d61402e" kindref="member">setDataF()</ref></computeroutput> overloads store floats and upload them without conversion.</para>
+<para><programlisting><codeline><highlight class="normal">QAccelPlot.ErrorBarSeries<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a250150d8eaea44c2608375839747b2b2" kindref="member">xAxis</ref>:<sp/>plot.xAxis</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1ae021f84424e1ea4ad44576961ac7d402" kindref="member">yAxis</ref>:<sp/>plot.yAxis</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Component.onCompleted:<sp/><ref refid="classQAccelPlot_1_1ErrorBarSeries_1a56dee19fb2f3b7624bf84a5fb067aff3" kindref="member">setErrorData</ref>([1,<sp/>2,<sp/>3],<sp/>[4.2,<sp/>5.1,<sp/>4.7],<sp/>[0.3,<sp/>0.5,<sp/>0.2])</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="par"><title>Invalid data points</title><para>A data point is not drawn or hovered when its position (<computeroutput>x</computeroutput> for vertical, <computeroutput>y</computeroutput> for horizontal error bars) is NaN or ±Inf, or not strictly positive on a log-scale axis, or when its value is NaN. A NaN bound leaves out that half of the error bar, which then runs from the value to the other bound. An infinite bound, and a bound that is not strictly positive on a log-scale axis, extends the error bar past the plot edge without a cap. <computeroutput>low</computeroutput> may be above <computeroutput>high</computeroutput>. Auto-ranging counts every valid coordinate on its own.</para>
+</simplesect>
+<simplesect kind="par"><title>Hover</title><para><computeroutput>hoveredIndex</computeroutput> is the error bar within <computeroutput>hoverRadius</computeroutput> pixels of the cursor, the nearest one when several are, and the one with the highest index on a tie. <computeroutput>hoverColor</computeroutput> draws it. Only the topmost series under the cursor is hovered: set <computeroutput>hoverEnabled</computeroutput> to <computeroutput>false</computeroutput> to leave hover to the series beneath.</para>
+</simplesect>
+<simplesect kind="par"><title>Transitions</title><para>Assign a <computeroutput><ref refid="classQAccelPlot_1_1MorphTransition" kindref="compound">MorphTransition</ref></computeroutput> or <computeroutput><ref refid="classQAccelPlot_1_1DrawTransition" kindref="compound">DrawTransition</ref></computeroutput> to <computeroutput>transition</computeroutput> to animate data updates. With <computeroutput><ref refid="classQAccelPlot_1_1MorphTransition" kindref="compound">MorphTransition</ref></computeroutput>, error bars move to their new position, value, and bounds. New error bars appear, and removed ones disappear, at once. <computeroutput>count</computeroutput>, <computeroutput><ref refid="classQAccelPlot_1_1ErrorBarSeries_1ad0fb0bc9e338f798fabb5f418eb9ab9b" kindref="member">errorBarAt()</ref></computeroutput>, the data ranges, and inspection use the new data from the start of the animation, while hover picks the error bars as drawn. While a transition is enabled, the <computeroutput><ref refid="classQAccelPlot_1_1ErrorBarSeries_1aa3475ca31d506b1b1c28ea586d61402e" kindref="member">setDataF()</ref></computeroutput> overloads store doubles. <computeroutput><ref refid="classQAccelPlot_1_1ErrorBarSeries_1a7cf77f3a63249dc87bbc2560f6cc055e" kindref="member">appendData()</ref></computeroutput>, <computeroutput><ref refid="classQAccelPlot_1_1ErrorBarSeries_1ac0023d9bcc86727593111f585a0a00d0" kindref="member">appendErrorData()</ref></computeroutput>, <computeroutput><ref refid="classQAccelPlot_1_1ErrorBarSeries_1a2903bb0c8af9b45487a6f62ffc6c3fda" kindref="member">clearData()</ref></computeroutput>, and replacing, clearing, or cancelling <computeroutput>transition</computeroutput>, skip to the new data.</para>
+</simplesect>
+<simplesect kind="par"><title>Limits</title><para>At most 16,777,216 (2^24) error bars are drawn, fewer on GPUs whose maximum texture size is below<orderedlist>
+<listitem><para>Error bars beyond the limit are not drawn or hovered, and a warning is logged once.</para>
+</listitem></orderedlist>
+</para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref>, <ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref>, <ref refid="classQAccelPlot_1_1BandSeries" kindref="compound">BandSeries</ref>, <ref refid="classQAccelPlot_1_1MorphTransition" kindref="compound">MorphTransition</ref>, <ref refid="classQAccelPlot_1_1DrawTransition" kindref="compound">DrawTransition</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::ErrorBarSeries</label>
+        <link refid="classQAccelPlot_1_1ErrorBarSeries"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::PlotSeries</label>
+        <link refid="classQAccelPlot_1_1PlotSeries"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QQuickItem</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::ErrorBarSeries</label>
+        <link refid="classQAccelPlot_1_1ErrorBarSeries"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::PlotSeries</label>
+        <link refid="classQAccelPlot_1_1PlotSeries"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QQuickItem</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" line="91" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp" bodystart="91" bodyend="294"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a2c019a355b70c20159ddbcbfac9f40be" prot="private" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>advanceTransition</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a7cf77f3a63249dc87bbc2560f6cc055e" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>appendData</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1afb31a972c88456df230348f4e3794ab5" prot="protected" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>appendDataPoint</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1ac0023d9bcc86727593111f585a0a00d0" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>appendErrorData</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1ae07357ce6dfb668a30e8f4a31556d59c" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>appendErrorData</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a40a9bd89f20f9011b2f4fa66f38b8df8" prot="protected" virt="virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>applyDataPoints</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1aa6e744ce37c31ae89e7f09db458acbe8" prot="private" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>applyDoubleData</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a269b9f585eef287d29e7c4f33e65af36" prot="private" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>applyInterleavedData</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a8e2bc0b299f2d8b1d1c489cd532c10c7" prot="protected" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>CapacityOverflow</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a12eec28dee596bb610ceb94f43e45f2e" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>capLength</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a8a31fdaa23e0ddc98f41eca0bbdb0400" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>capLength</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a5d9d496d03be588e13543d7764264ccb" prot="private" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>capLength_</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a7e76ff1412f00bd0a48f07abf1ea8b7a" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>capLengthChanged</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a2903bb0c8af9b45487a6f62ffc6c3fda" prot="public" virt="virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>clearData</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a0b551d7a0a622deaf3ba7e98a948240d" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>color</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a1f8260d4f31739d7d3288506ac9cad74" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>color</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a84f62b1b84fefe1b4f032c8112d88aac" prot="private" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>color_</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a6d30c5733a1262e7a08e6fa4c9693161" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>colorChanged</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1ab3b54961783bf316f6b3d7d42ece4422" prot="private" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>component</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a5fcaa8127513e48c7c67443782811a1e" prot="protected" virt="virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>computeDataRanges</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a3f42e7b11335dffbd771a6829a9d9838" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>contains</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a53e3980416791cdfa11e95ddf45f51a6" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>count</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1aeb5ea2178ca0117bb4a308ab5e0625d6" prot="public" virt="virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>count</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a4ab130c4ee8aafee3cc274bee94b0633" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>countChanged</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1ab3cf41eddce49ead7366dacb8bacce6f" prot="private" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>dataBar</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a7f2b4290f315a7c3d22b7982763b8bc8" prot="protected" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>DataChange</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a92ba17a411311bfe937b241a8b470bae" prot="protected" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>dataPoints</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a6d99b3e386cc6e8d703e590c83a3332b" prot="protected" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>dataPoints</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a77d9c4792d45233735cfe620491fc8fc" prot="protected" virt="virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>dataPointValueCount</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a74c197e04386613b694bd8a63963c479" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>dataRevision</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a711dd6e106d9bf300932f06a499d0ead" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>dataRevision</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ae08fae615331785b023882afef1a4fa1" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>dataRevisionChanged</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a81d2e656ede6f2475c5f6d8b1a6f7b97" prot="private" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>discardTransition</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a56bd84a7a1f3293660b923b2399c53a3" prot="private" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>endTransition</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a5df60ce16c9be9dd733c439b26ce9b47" prot="private" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>ensureSpatialGrid</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1ad0fb0bc9e338f798fabb5f418eb9ab9b" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>errorBarAt</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1adfa0d7bc09c2f9576a2f439ac268b37d" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>errorBarIndexAt</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a717a05102f19d67a531834e835b334af" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>ErrorBarSeries</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a9c39c6af8c52c7efd9b75935c4d69110" prot="protected" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>event</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ab4c3a9f96024e2929e8122ac37cb69d3" prot="protected" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>extendXDataRange</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a8b6aac884387c8f8471b1eaab5557872" prot="protected" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>extendYDataRange</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a56a86b7113960569a7d70e46d41023ac" prot="private" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>frameBuffer_</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a55d05989095168478b193c66fd9c1556" prot="private" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>hitRects_</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a81a2d7e32086c94eb751cddba7bf165d" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>hoverColor</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a5774e010166fd732fed18eff0f5e16eb" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>hoverColor</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a36e5ae7a3e79a7b0cabe3a3ef8742896" prot="private" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>hoverColor_</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a5d24dd87da8a503a48ba1692dd61a604" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>hoverColorChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a2d17eca751f181d61dab1ad6ab95936c" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>hovered</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a1edf0373b587b3f3373048e4d0b707ed" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>hovered</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ac9f85caffff66a6a9afc05fbb79ca321" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>hoveredChanged</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1ad67f3fe8da99d0de4180dbbaefc78b98" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>hoveredIndex</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1af3d1338b15d55ec86694a2af4999f419" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>hoveredIndex</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a7427ca78e12c09d196071ddeafea792b" prot="private" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>hoveredIndex_</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1abbf7f27cb514522edee0c5deaf64e0aa" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>hoveredIndexChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a053ad70c74d104b5083006e44698ece1" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>hoverEnabled</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a1061620ba946d66043941e81e0a85ebb" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>hoverEnabled</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a4e3f4fcdbad0963b70f29169d4026a0a" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>hoverEnabledChanged</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1afc178fec7fe87913a9f6e6b96dc189b9" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>hoverRadius</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a8fa1386d0aa06001cad73c4dbf6c4674" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>hoverRadius</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a21b3684e28ea81583ef08e0d12243842" prot="private" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>hoverRadius_</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1aeacf42acc145e499bd9b5114634d0c8c" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>hoverRadiusChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1addb81876423cd48343592cfce8c19d5b" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>inspection</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a00a3d60288b86fd54569387281355060" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>inspection</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a32638eb7718d210d95fa70351696441d" prot="protected" virt="virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>inspectionAvailable</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a10efc3369e62d44c163ca7bdcd39fb26" prot="protected" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>inspectionDataChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1aa12ee9f8a4fb237b8cf8789ae1a9df7e" prot="protected" virt="virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>inspectionDataPointAt</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a9f822a232d100806927a0a34f0ca1a5e" prot="protected" virt="virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>inspectionRecord</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a56c10df5cbc0648557caa5d40153ace8" prot="protected" virt="virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>inspectionRecordAt</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1abeaff71c0af0468b6923e90324d15ca8" prot="protected" virt="virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>inspectionSource</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a6d479055f9c3acfd2be5befa8cf6d1a8" prot="protected" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>invalidateDataRanges</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a5d56c6f054d6dba8b905f0cb49e188d7" prot="protected" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>invalidateInspection</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1aed0a8083d30608072a9039b2c987504b" prot="private" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>isHorizontal</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a65b522c090eb4baa8377ea2fea24e2ab" prot="public" virt="virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>legendEntries</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a4e5a53df93bf478ae4b3f2f53ee4ff37" prot="public" virt="virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>legendEntry</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a1dbdd720bb06d07672267cfc603b932b" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>legendEntryChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ada3d9fd14934647c0f31870184f5eff5" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>legendSymbol</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a37f1fe5cb9f339d593147cd47b75d180" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>legendSymbol</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>LegendSymbol</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a2b88cb6eac8d12cf02b6daf37460150e" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>legendSymbolChanged</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a2b1e16c6281f56f0a1d52e489fdca645" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>lineWidth</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a923102410ad3b86df4575cd943258242" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>lineWidth</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a1b0b5cbe967a492b7a625fd111d46c8f" prot="private" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>lineWidth_</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a40dd6b7d6b833ffa052294119ed7016a" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>lineWidthChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ad85ffb96b1c9ee3d13a25c412db1eac6" prot="protected" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>logScaleX</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a23f7dd78fbc4e5e03d2537ee2e40707c" prot="protected" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>logScaleY</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a71b82b1a4372d71c848a3a09c59b20b0" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>name</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1abfa3199d6097eb55cf17697eff2be090" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>name</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1acd842870d90a7ece81859be06effe0a7" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>nameChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a76f0a354a43064f857553ffb2997b6da" prot="protected" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>notifyDataPointsChanged</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a589ef9067e329549a4268c06790149e5" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>offset</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a70a0e6ac7577b82c4db437902bb933d1" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>offset</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a90a5274db07c316528a34293d129ef67" prot="private" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>offset_</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a01d2b578e8f3cdd31a37254cc8ecbf49" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>offsetChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a0d37e4fd843acbd10bd9c5d0bf2300c9" prot="protected" virt="virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>onAxisRangeChanged</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a783ee7172e96b003944bc8ef081bf263" prot="protected" virt="virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>onAxisScaleChanged</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a744ac86bc9720565345e336e1354cd30" prot="protected" virt="virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>onDataPointsChanged</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1acf307cd704d100eea2de2518d0c76a52" prot="private" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>onGeometryChanged</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a9f68c5c4a8810ad9a9b4e5f5ad66704e" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>orientation</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a404c68c3e0956081def575b5cb117315" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>orientation</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a07f13cf2a2347e44222451bfd9cdb9c5" prot="private" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>orientation_</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1ad0708684b4fbed9038daed4680bf300b" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>orientationChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a7e959948dfdc3fded2cfd5819c62ee61" prot="protected" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>overRenderCapacity_</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a1cfa4f16b47c465e1780be74c67ef2e6" prot="private" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>pixelDistance</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1aef0398b7a4f807870dd88a326c0e7d0d" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>plotRect</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1abf3aa64b08afe4f5d2a1728d035665b2" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>plotRect</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a9d58451724a7e0b06d7f04aeba101856" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>plotRectChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1aea1937eafb72c04be5befad4d37e3aac" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>PlotSeries</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a041d4bdadcfef0b798f785ec9c65d933" prot="protected" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>PlotSeries</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a9bc3829157d222d0382bca8fd0025c54" prot="protected" virt="virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>positionInspectionSupported</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1acbf8fb06d9d8ca2a5ab3a0c4e060a4b4" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>postData</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1aad3e05b7da4d8c16ca53819017e7b6e0" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>postData</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a11565c208e7f6c2615d367e96b133fd9" prot="protected" virt="virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>recordInspectionSupported</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1af46b6cad22a7db687f5b6a93c960abd4" prot="protected" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>renderCapacity_</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a956e8eb1ca7398b6b5f8022225d6edf7" prot="protected" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>resolvePlotRect</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a37cd05079e0a0812ee295f4e72e8d630" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>setCapLength</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a1f60a77f6ea250dda55c6e994fd7414e" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>setColor</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a27e58b345547c3ea5b0ebae4f86513a9" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>setData</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a5bbb2aa64b4725de03af39ceba68812f" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>setData</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a5615889cceabfee35f5e3e2dbd25f455" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>setData</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1af143a846c63372800995a0bd4f058598" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>setData</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a683165ce25c4f4a2f0cf3a36852c3721" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>setData</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1ad10aa7307918305c127eb0b98c962484" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>setData</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1aa3475ca31d506b1b1c28ea586d61402e" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>setDataF</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a1180d75ce402fbf92fd7d95a4d0acda4" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>setDataF</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1ab0d977683b1b06807842ade3c6011a3a" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>setDataF</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a795dc3374e83da98b6a471bb55f51fbd" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>setDataF</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a56dee19fb2f3b7624bf84a5fb067aff3" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>setErrorData</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1ab67b49b2883225a981f2500f0b52f79e" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>setErrorData</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a1afe50eeee84c01ba9bac3937912f801" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>setErrorData</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a8b6b211aae5bf24d6be51d949b545978" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>setErrorData</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a9d3b289d048aad0d6fa86d003546dcc0" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>setHoverColor</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1adb4f416b8f3104004eb4611b4d0b7f85" prot="protected" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>setHovered</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a3fb1b2fb4ff22323e2dbfe59f31558d1" prot="private" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>setHoveredIndex</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a085c9270fc300894598ebe442e2d019c" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>setHoverEnabled</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a1ef0e0425a37a7d3568b46d42afa8e38" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>setHoverRadius</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a75695e62b548ccf79a1fe9c1f477a502" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>setLegendSymbol</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a354c9c477530dfaea5d12006ca5793d5" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>setLineWidth</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a239ef82d18c15985a337307cbc7872b4" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>setName</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1abd916f4be75f231927f6d3c7df97a3b5" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>setOffset</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1acd8ec1b2f00a5b100880cd76d1a1d648" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>setOrientation</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a812c27ea194ec2f2c4bedde2cafb93f8" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>setPlotRect</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1adc195b79b4d74ac827a5291f9988b3d0" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>setTransition</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1acf14fd9c979717d73a9ab75bf3b763d4" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>setXAxis</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a871398840ba7045c168c79a78d564416" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>setYAxis</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a9095c66155eab4ae3d9b6ab84aa4d46b" prot="private" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>spatialGrid_</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a9ba221f6e430885b6161856b12b6872b" prot="private" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>spatialGridValid_</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1afc39fa67ca99e8dcfde2f1be0e0940b3" prot="private" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>startTransition</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a1957171db65a1684ebd515948dfb375d" prot="protected" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>storeDataPoints</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1aa443c35379a9aa2df5da14a5b87a7417" prot="protected" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>supportHover</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a7515758a84da560d12a07dc0b6537f17" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>transition</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a39ef50a6045db82cad007268431e55e3" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>transition</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a90c718bd8302f899c3ea731ecb0925a7" prot="private" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>transition_</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1ab7abd16e3f71563e7c16109db674aaae" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>transitionChanged</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a33cad19a1e8091197dedc82b01c1f747" prot="private" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>updateMaterial</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ae657768ad16fcf2b26eac4ce2f6cfd75" prot="protected" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>updateRenderCapacity</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a26a1857185a30ca5e863bc1bb5321010" prot="private" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>updateVertices</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a328ac7acdd9992dd711666f934a0c0a8" prot="private" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>uploadedRevision_</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a6c7c2ca488f737cd30ee447439441682" prot="protected" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>validateDataSize</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ac9c532c2c9fec18c4aa53252cda99b9c" prot="protected" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>validateRawDataArguments</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a250150d8eaea44c2608375839747b2b2" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>xAxis</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1afb85ad640494dbeaa616493a1bd4b966" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>xAxis</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ad43d8ab3035bab188de0a76ec2920267" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>xAxisChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a07181531fadaf89fd7140283ac91a563" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>xDataRange</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ae021f84424e1ea4ad44576961ac7d402" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>yAxis</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a63d01fc1b2581de3c4332aaf8fa90833" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>yAxis</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a860a8fdde757aaa1295cd2347f606685" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>yAxisChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a5d37db52b29132cab6e57ba335e30beb" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>yDataRange</name></member>
+      <member refid="classQAccelPlot_1_1ErrorBarSeries_1a1fdf5b368d996667129718483c4c8967" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>~ErrorBarSeries</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1aa42c9fdd09671734e0a752cad366a304" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarSeries</scope><name>~PlotSeries</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

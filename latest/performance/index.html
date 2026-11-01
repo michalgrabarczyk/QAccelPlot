@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="QAccelPlot performance guide — data-ingestion API comparison, efficient buffer strategies, worker-thread handoff, hover cost analysis, and benchmarking methodology.">
+        <meta name="description" content="QAccelPlot performance guide — data-ingestion API comparison, efficient buffer strategies, worker-thread handoff, hover cost analysis, and the Performance Lab.">
       
       
       
@@ -16,7 +16,7 @@
         <link rel="prev" href="../concepts/">
       
       
-        <link rel="next" href="../performance-comparison/">
+        <link rel="next" href="../cookbook/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Performance - QAccelPlot v0.4.0 Documentation</title>
+        <title>Performance - QAccelPlot v0.5.0 Documentation</title>
       
     
     
@@ -64,7 +64,7 @@
     
     
 
-<meta property="og:description" content="QAccelPlot performance guide — data-ingestion API comparison, efficient buffer strategies, worker-thread handoff, hover cost analysis, and benchmarking methodology.">
+<meta property="og:description" content="QAccelPlot performance guide — data-ingestion API comparison, efficient buffer strategies, worker-thread handoff, hover cost analysis, and the Performance Lab.">
 
 <script type="application/ld+json">
 {
@@ -81,7 +81,7 @@
     "@type": "Person",
     "name": "Michal Grabarczyk"
   },
-  "softwareVersion": "0.4.0",
+  "softwareVersion": "0.5.0",
   "operatingSystem": "Cross-platform (Windows, Linux, macOS)",
   "applicationCategory": "DeveloperApplication",
   "keywords": ["plotting", "Qt Quick", "QML", "Scene Graph", "GPU", "real-time", "data visualization", "C++"]
@@ -133,7 +133,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="QAccelPlot v0.4.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.4.0 Documentation" data-md-component="logo">
+    <a href=".." title="QAccelPlot v0.5.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.5.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -147,7 +147,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            QAccelPlot v0.4.0 Documentation
+            QAccelPlot v0.5.0 Documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -271,13 +271,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="QAccelPlot v0.4.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.4.0 Documentation" data-md-component="logo">
+    <a href=".." title="QAccelPlot v0.5.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.5.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    QAccelPlot v0.4.0 Documentation
+    QAccelPlot v0.5.0 Documentation
   </label>
   
     <div class="md-nav__source">
@@ -547,18 +547,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#benchmarking" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Benchmarking
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Benchmarking">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#performance-lab" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -566,22 +554,6 @@
       
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#included-benchmarks" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Included benchmarks
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -599,38 +571,17 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../performance-comparison/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Performance comparison
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
     
     
       
         
           
+        
+      
+        
+      
+        
+      
         
       
         
@@ -672,7 +623,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -694,14 +645,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -944,6 +895,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../cookbook/heatmaps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Heatmaps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../cookbook/rectangle-zoom/" class="md-nav__link">
         
   
@@ -1056,6 +1035,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../cookbook/error-bars/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error bars
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../cookbook/background-data/" class="md-nav__link">
         
   
@@ -1077,9 +1084,64 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/export/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exporting images
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Example gallery
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1565,18 +1627,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#benchmarking" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Benchmarking
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Benchmarking">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#performance-lab" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1584,22 +1634,6 @@
       
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#included-benchmarks" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Included benchmarks
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1626,10 +1660,12 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 -->
 
 <h1 id="performance">Performance<a class="headerlink" href="#performance" title="Permanent link">&para;</a></h1>
-<p>Throughput depends on point count, update rate, data conversion, range scans,
-series count, line style, effects, window size, graphics backend, and refresh
-rate. Measure a workload that matches your application. For cross-library
-numbers, see the <a href="../performance-comparison/">performance comparison</a>.</p>
+<p>Typically 1–10M points can be replaced and drawn every frame at 60 FPS; above
+that, frames stop being smooth. Where a plot lands in that range depends on
+point count, update rate, data conversion, range scans, series count, line
+style, effects, window size, graphics backend, and refresh rate. Measure a
+workload that matches your application, for example in the
+<a href="#performance-lab">Performance Lab</a>.</p>
 <h2 id="select-the-data-path">Select the data path<a class="headerlink" href="#select-the-data-path" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1680,11 +1716,8 @@ and rebase the GPU buffer so nearby values stay distinct. The <code>F</code> API
 floats.</p>
 <p>The table shows <code>LineCurve</code>. Every series has <code>setData()</code>,
 <code>setDataF()</code>, and <code>postData()</code> overloads for its own record layout.</p>
-<p><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafwithcache-12"><code>setDataFWithCache()</code></a> also accepts a
-prebuilt vertex cache, so vertex assembly can move off the UI and render
-threads. It ties application code to renderer details; use it only when
-measurements justify it. The cache must match the current point count and
-renderer layout, otherwise it is rejected and normal vertex assembly runs.</p>
+<p>A <code>LineCurve</code> builds its own vertex buffer. Updates with the same point count
+reuse it, and a growing point count writes vertices only for the added points.</p>
 <h2 id="data-ranges-are-computed-on-demand">Data ranges are computed on demand<a class="headerlink" href="#data-ranges-are-computed-on-demand" title="Permanent link">&para;</a></h2>
 <p>No setter scans the data for its range. After an update, a series scans its
 records the first time something reads the range:</p>
@@ -1762,14 +1795,15 @@ batch; see <a href="../cookbook/background-data/">Background data production</a>
 </table>
 <p>A <code>RectangleSeries</code> also tests every rectangle spanning more than 64 grid
 cells, so many long rectangles make its lookup <code>O(N)</code>.</p>
-<p>Set the environment variable <code>QACCELPLOT_HOVER_ENABLED=0</code> to turn hover off for
-every series and axis, for example in streaming-only views.</p>
+<p>Set <code>hoverEnabled: false</code> to turn hover off for one series. Set the environment
+variable <code>QACCELPLOT_HOVER_ENABLED=0</code> to turn it off for every series and axis,
+for example in streaming-only views.</p>
 <h3 id="other-rendering-costs">Other rendering costs<a class="headerlink" href="#other-rendering-costs" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Markers add geometry and fragment work per visible point. Fragment work grows
-  with marker size; <code>LineCurve.Pixel</code> markers shade one pixel per point and
+  with marker size; <code>MarkerShape.Pixel</code> markers shade one pixel per point and
   suit very dense scatter plots.</li>
-<li>A <code>PointCloud</code> whose <code>Colormap</code> leaves <code>min</code> or <code>max</code> unset scans every value
+<li>A <code>PointCloud</code> or <code>HeatmapSeries</code> whose <code>Colormap</code> leaves <code>min</code> or <code>max</code> unset scans every value
   on each data update to resolve the range. Set both when the bounds of
   streaming values are known.</li>
 <li>Gradient effects add material and domain work.</li>
@@ -1811,55 +1845,23 @@ on <code>QACCELPLOT_USE_QT_PRIVATE_API</code>:</p>
 </table>
 <p>No private Qt types appear in public headers or ABI. Gradient textures always
 use the public path.</p>
-<p>Benchmark both modes with your workload, or configure the
-<a href="#included-benchmarks">included benchmarks</a> once with each value.</p>
-<h2 id="benchmarking">Benchmarking<a class="headerlink" href="#benchmarking" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Build QAccelPlot and the application in Release mode, and warm up shaders,
-  allocations, and caches before recording.</li>
-<li>Record presented frames (<a href="https://doc.qt.io/qt-6/qquickwindow.html#frameSwapped"><code>QQuickWindow::frameSwapped</code></a>), not
-  timer callbacks, and report the frame-time distribution as well as the
-  average.</li>
-<li>For streamed data, also report how many new datasets are applied per second:
-  several presented frames can show the same dataset.</li>
-<li>Record the Qt version, OS, GPU, driver, graphics API, resolution, and device
-  pixel ratio with the result.</li>
-</ul>
-<h3 id="performance-lab">Performance Lab<a class="headerlink" href="#performance-lab" title="Permanent link">&para;</a></h3>
+<p>Compare both modes with your workload, or build the
+<a href="#performance-lab">Performance Lab</a> once with each value.</p>
+<h2 id="performance-lab">Performance Lab<a class="headerlink" href="#performance-lab" title="Permanent link">&para;</a></h2>
 <p><a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/showcases/performance"><code>examples/showcases/performance</code></a>
-streams a <code>LineCurve</code>, a <code>PointCloud</code>, a <code>RectangleSeries</code>, and a <code>BarSeries</code>,
-one per tab, with options for record and series count, ingestion API, hover,
-and rendering. Change one option at a time, at a record count that keeps
-display FPS below the refresh rate. The lab reports:</p>
+streams a <code>LineCurve</code>, a <code>PointCloud</code>, a <code>RectangleSeries</code>, a <code>BarSeries</code>, and
+a <code>HeatmapSeries</code>, one per tab, with options for record and series count, ingestion API, hover,
+and rendering. It presents without vsync, so the display's refresh rate does
+not cap display FPS. Change one option at a time. The lab reports:</p>
 <ul>
 <li><strong>Display FPS</strong> — frames presented to the screen.</li>
 <li><strong>Data Update Rate</strong> (Hz) — new datasets applied to the plot per second,
   including worker-side generation.</li>
 <li><strong>Peak update gap</strong> — the longest interval between two dataset applications
   in the last reporting period.</li>
-<li><strong>Throughput</strong> — points, rectangles, or bars updated per second.</li>
+<li><strong>Throughput</strong> — points, rectangles, bars, or heatmap cells updated per
+  second.</li>
 </ul>
-<h3 id="included-benchmarks">Included benchmarks<a class="headerlink" href="#included-benchmarks" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Frame time runs from just before the data or viewport update until
-  <code>QQuickRenderControl::endFrame()</code> returns: data copy, scene-graph sync,
-  texture staging, rendering, command submission, and GPU completion. Data
-  generation is excluded.</li>
-<li>Live scenarios cover 1M, 2M, 5M, and 10M points; static scenarios
-  pan the viewport over one fixed buffer.</li>
-<li>Multi-curve throughput counts points across all curves.</li>
-<li>Separate executables measure CPU ingestion and vertex-cache building without
-  rendering.</li>
-</ul>
-<p>Build them with:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>cmake<span class="w"> </span>-S<span class="w"> </span>.<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>-DQACCELPLOT_BUILD_BENCHMARKS<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>-DQACCELPLOT_BUILD_EXAMPLES<span class="o">=</span>OFF<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span>-DQACCELPLOT_BUILD_TESTS<span class="o">=</span>OFF
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>cmake<span class="w"> </span>--build<span class="w"> </span>build<span class="w"> </span>--config<span class="w"> </span>Release
-</code></pre></div>
-<p>Scenarios are defined in
-<a href="https://github.com/michalgrabarczyk/QAccelPlot/blob/main/benchmarks/common/BenchmarkScenario.cpp"><code>benchmarks/common/BenchmarkScenario.cpp</code></a>.</p>
 
 
 
@@ -1915,13 +1917,13 @@ display FPS below the refresh rate. The lab reports:</p>
         
         
           
-          <a href="../performance-comparison/" class="md-footer__link md-footer__link--next" aria-label="Next: Performance comparison">
+          <a href="../cookbook/" class="md-footer__link md-footer__link--next" aria-label="Next: Index">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Performance comparison
+                Index
               </div>
             </div>
             <div class="md-footer__button md-icon">

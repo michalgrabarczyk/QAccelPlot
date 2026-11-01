@@ -34,6 +34,7 @@ public:
     QColor borderColor{Qt::black};      
     QColor hoverColor{Qt::transparent}; 
     float hoveredIndex{-1.0f};          
+    float antialiasing{0.0f};           
 
 protected:
     int compareExtra(const QSGMaterial* other) const override;

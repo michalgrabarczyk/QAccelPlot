@@ -39,6 +39,8 @@ public:
     int dashPatternSize{0}; 
     float dashPattern[8]{}; 
 
+    float stepMode{0.0f};   
+
 protected:
     static QSGMaterialShader* createLineShader(const QString& vertexShaderFileName);
     int compareExtra(const QSGMaterial* other) const override;

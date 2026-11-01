@@ -26,7 +26,7 @@
         <name>side</name>
         <qualifiedname>QAccelPlot::LineVertex::side</qualifiedname>
         <briefdescription>
-<para>Side of the line (-0.5 or +0.5) for screen-space extrusion. </para>
+<para><computeroutput>±(1 + corner)</computeroutput>: the sign is the ribbon side, <computeroutput>corner</computeroutput> the step corner after the point (0 for the point itself). </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
