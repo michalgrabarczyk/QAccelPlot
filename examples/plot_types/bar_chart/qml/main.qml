@@ -47,7 +47,7 @@ Window {
 
     // The category of a profit bar tells whether it meets the target.
     function profitCategory(value) {
-        return value >= targetSlider.value ? 0 : 1;
+        return value >= targetSlider.value ? "Meets target" : "Below target";
     }
 
     function updateProfitBars() {
@@ -156,7 +156,7 @@ Window {
                 value: 0
                 Layout.preferredWidth: 120
                 // The bars keep their values, so only their categories are replaced.
-                onValueChanged: profitBars.setCategories(window.profit[window.year].map(window.profitCategory))
+                onValueChanged: profitBars.setDataPointCategories(window.profit[window.year].map(window.profitCategory))
             }
         }
 
@@ -258,7 +258,10 @@ Window {
                 xAxis: profitPlot.xAxis
                 yAxis: profitPlot.yAxis
                 baselineValue: targetSlider.value
-                categoryColors: [colorPalette.statusGood, colorPalette.statusError]
+                categories: [
+                    QAccelPlot.Category { value: 0; name: "Meets target"; color: colorPalette.statusGood },
+                    QAccelPlot.Category { value: 1; name: "Below target"; color: colorPalette.statusError }
+                ]
                 transition: window.barTransition
                 hoverColor: colorPalette.text
                 border.width: outlineCheck.checked ? 1 : 0

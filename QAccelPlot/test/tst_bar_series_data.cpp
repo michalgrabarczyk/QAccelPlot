@@ -7,6 +7,7 @@
 //
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/effects/Colormap.hpp"
+#include "QAccelPlot/legend/LegendEntry.hpp"
 #include "QAccelPlot/materials/BarMaterial.hpp"
 #include "QAccelPlot/series/BarSeries.hpp"
 
@@ -52,6 +53,8 @@ private slots:
     void defaultsMatchDocumentation();
     void variantListNumbersUseIndexPositions();
     void variantListObjectsReadPositionValueAndCategory();
+    void variantListCategoriesAreValuesOrNames();
+    void colormapReplacesCategoryLegendEntries();
     void movedDataWithWrongSizeIsRejected();
     void floatDataIsApplied();
     void postedDataIsAppliedFromWorkerThread();
@@ -129,6 +132,45 @@ void BarSeriesDataTest::variantListObjectsReadPositionValueAndCategory()
     QVERIFY(!bars.barAt(0).contains(QStringLiteral("category")));
 }
 
+void BarSeriesDataTest::variantListCategoriesAreValuesOrNames()
+{
+    auto named = bar(0.0, 1.0);
+    named.insert(QStringLiteral("category"), QStringLiteral("Loss"));
+    auto unknown = bar(1.0, 1.0);
+    unknown.insert(QStringLiteral("category"), QStringLiteral("Profit"));
+    auto numbered = bar(2.0, 1.0);
+    numbered.insert(QStringLiteral("category"), 1);
+    auto bars = BarSeries{};
+    bars.setCategories({new Category{5, QStringLiteral("Loss"), {}, &bars}});
+
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("BarSeries ignores the category of data point 1: no category is named \"Profit\""));
+    bars.setData(QVariantList{named, unknown, numbered});
+
+    QCOMPARE(bars.barAt(0).value(QStringLiteral("category")).toInt(), 5);
+    QCOMPARE(bars.barAt(0).value(QStringLiteral("categoryName")).toString(), QStringLiteral("Loss"));
+    QCOMPARE(bars.barAt(1).value(QStringLiteral("category")).toInt(), -1);
+    QCOMPARE(bars.barAt(2).value(QStringLiteral("category")).toInt(), 1);
+
+    bars.setDataPointCategories({QStringLiteral("Loss"), 2, QVariant{}});
+    QCOMPARE(bars.barAt(1).value(QStringLiteral("category")).toInt(), 2);
+    QCOMPARE(bars.barAt(2).value(QStringLiteral("category")).toInt(), -1);
+}
+
+void BarSeriesDataTest::colormapReplacesCategoryLegendEntries()
+{
+    auto bars = BarSeries{};
+    bars.setCategories({new Category{0, QStringLiteral("Profit"), {}, &bars}, new Category{1, QStringLiteral("Loss"), {}, &bars}});
+    QCOMPARE(bars.legendEntries().size(), 2);
+    QCOMPARE(bars.legendEntries()[1].name, QStringLiteral("Loss"));
+
+    auto legendChanged = QSignalSpy{&bars, &PlotSeries::legendEntryChanged};
+    auto colormap = Colormap{};
+    bars.setColormap(&colormap);
+    QCOMPARE(legendChanged.count(), 1);
+    QCOMPARE(bars.legendEntries().size(), 1);
+    QVERIFY(bars.legendEntries()[0].name.isEmpty());
+}
+
 void BarSeriesDataTest::movedDataWithWrongSizeIsRejected()
 {
     auto bars = BarSeries{};
@@ -202,12 +244,12 @@ void BarSeriesDataTest::mismatchedCategoriesAreRejected()
     auto bars = BarSeries{};
     bars.setData(QVariantList{1.0, 2.0});
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression("BarSeries received 1 categories for 2 bars"));
-    bars.setCategories({0});
+    bars.setDataPointCategories({0});
     QVERIFY(!bars.barAt(0).contains(QStringLiteral("category")));
 
-    bars.setCategories({0, 1});
+    bars.setDataPointCategories({0, 1});
     QCOMPARE(bars.barAt(1).value(QStringLiteral("category")).toInt(), 1);
-    bars.setCategories({});
+    bars.setDataPointCategories({});
     QVERIFY(!bars.barAt(1).contains(QStringLiteral("category")));
 }
 

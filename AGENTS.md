@@ -95,6 +95,7 @@ QAccelPlot/
 │       │                           LineCurveGaps (gaps grouped property),
 │       │                           StepMode (how a line joins data points),
 │       │                           MarkerShape, SeriesMarker (marker grouped property),
+│       │                           Category (one category of a bar or rectangle series),
 │       │                           LineCurveGapFilter (invalid-sample contract),
 │       │                           SpatialGrid, PointSpatialIndex (hover hit testing),
 │       │                           internal/ (rectangle vertices and geometry, step paths,

@@ -56,8 +56,9 @@ QAccelPlot.Plot {
 }
 ```
 
-`Plot` shows a legend entry for every visible series that has one; a heatmap
-has none, because its color bar is its key. Set `legendVisible: false` to hide
+`Plot` shows a legend entry for every visible series that has one, and one per
+category for a series with `categories`; a heatmap has none, because its color
+bar is its key. Set `legendVisible: false` to hide
 the legend, or assign `legend` to replace it. `Plot.legendModel` lists every
 entry; a `LegendModel` of your own lists a subset:
 

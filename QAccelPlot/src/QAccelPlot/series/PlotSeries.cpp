@@ -266,6 +266,12 @@ std::optional<LegendEntry> PlotSeries::legendEntry() const
     return std::nullopt;
 }
 
+QList<LegendEntry> PlotSeries::legendEntries() const
+{
+    const auto entry = legendEntry();
+    return entry ? QList<LegendEntry>{*entry} : QList<LegendEntry>{};
+}
+
 void PlotSeries::setData(const double* data, const int count)
 {
     if (!validateRawDataArguments(data, count)) {

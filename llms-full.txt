@@ -889,8 +889,9 @@ QAccelPlot.Plot {
 }
 ```
 
-`Plot` shows a legend entry for every visible series that has one; a heatmap
-has none, because its color bar is its key. Set `legendVisible: false` to hide
+`Plot` shows a legend entry for every visible series that has one, and one per
+category for a series with `categories`; a heatmap has none, because its color
+bar is its key. Set `legendVisible: false` to hide
 the legend, or assign `legend` to replace it. `Plot.legendModel` lists every
 entry; a `LegendModel` of your own lists a subset:
 
@@ -1506,7 +1507,7 @@ Infinite edges don't change the axes' data ranges.
 
 | Property | Use |
 | :--- | :--- |
-| `category`, `categoryColors` | Per-rectangle color: `category` indexes `categoryColors`; others use `color` |
+| `categories`, `category` | Per-rectangle color and name: a rectangle's `category` picks the entry with that `value`; others use `color` |
 | `minimumWidth`, `minimumHeight` | Minimum drawn size in pixels (default 1), so short events stay visible |
 | `border.width`, `border.color` | Outline inside each rectangle, e.g. to separate adjacent states |
 | `hoverColor` | Fill of the hovered rectangle |
@@ -1518,21 +1519,37 @@ A state timeline puts one lane per row, colored by category:
 QAccelPlot.RectangleSeries {
     xAxis: plot.xAxis
     yAxis: plot.yAxis
-    categoryColors: ["seagreen", "slategray", "firebrick"] // Running, Idle, Alarm
+    categories: [
+        QAccelPlot.Category { value: 0; name: "Running"; color: "seagreen" },
+        QAccelPlot.Category { value: 1; name: "Idle"; color: "slategray" },
+        QAccelPlot.Category { value: 2; name: "Alarm"; color: "firebrick" }
+    ]
     border.width: 1
 
     Component.onCompleted: setData([
-        { x1: 0, x2: 40, y1: -0.4, y2: 0.4, category: 0 },
-        { x1: 40, x2: 43, y1: -0.4, y2: 0.4, category: 2 },
+        { x1: 0, x2: 40, y1: -0.4, y2: 0.4, category: "Running" },
+        { x1: 40, x2: 43, y1: -0.4, y2: 0.4, category: "Alarm" },
         { x1: 0, x2: 25, y1: 0.6, y2: 1.4, category: 1 }
     ])
 }
 ```
 
+- Each `Category` has an integer `value` and an optional `name` and `color`.
+  Values need not be consecutive, so they can be C++ enum values. Edits to a
+  `Category`, such as a theme color, apply at once.
+- In QML data, `category` is a `value` or a `name`. Names resolve when the data
+  is set; an unknown name or a non-whole number is ignored with a warning.
+- Rectangles without a category, or whose category has no color or is not
+  listed, use `color`.
+- `setDataPointCategories()` replaces the rectangles' categories without
+  changing their bounds.
+- `rectangleAt()` returns `category` and, for a named category, `categoryName`.
+- The legend shows one row per category.
+
 Label the lanes with a [`TextTickLabelFormatter`](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/axis-formats/#categories) on the
 Y axis. From C++, `setData(std::vector<double>&&, std::vector<int>&&, int)`
-moves bounds and categories in without copying; `postData()` hands them off
-from a worker thread.
+moves bounds and category values in without copying; `postData()` hands them
+off from a worker thread.
 
 RectangleSeries only accepts hover over its rectangles, so series underneath
 still receive hover elsewhere. Hover lookup uses a spatial grid, so it stays
@@ -2330,22 +2347,33 @@ are ranged. [Histograms](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/
 
 ## Color bars by category
 
-Give bars a `category` and list the colors in `categoryColors`. Bars without a
-category, or with one outside the list, use `color`.
+List the categories in `categories` as `Category` objects and give each bar a
+`category`:
 
 ```qml
 QAccelPlot.BarSeries {
-    categoryColors: ["#4ade80", "#f87171"]
+    categories: [
+        QAccelPlot.Category { value: 0; name: "Profit"; color: "#4ade80" },
+        QAccelPlot.Category { value: 1; name: "Loss"; color: "#f87171" }
+    ]
     Component.onCompleted: setData(profit.map((value, month) => ({
         position: month,
         value: value,
-        category: value >= 0 ? 0 : 1
+        category: value >= 0 ? "Profit" : "Loss"
     })))
 }
 ```
 
-`setCategories()` replaces the categories without changing the data. Outlines
-are set with `border.width` and `border.color`.
+- Each `Category` has an integer `value` and an optional `name` and `color`.
+- A bar's `category` is a `value` or, in QML, a `name`. Names resolve when the
+  data is set; an unknown name or a non-whole number is ignored with a warning.
+- Bars without a category, or whose category has no color or is not listed,
+  use `color`.
+- `setDataPointCategories()` replaces the bars' categories without changing
+  the data.
+- The legend shows one row per category.
+
+Outlines are set with `border.width` and `border.color`.
 
 ## Color bars by value
 
@@ -2367,8 +2395,8 @@ QAccelPlot.BarSeries {
 | `BarSeries.Value` (default) | The bar's value |
 | `BarSeries.Position` | The bar's position; for a ranged bar, the middle of its edges as the colormap places them |
 
-- The colormap overrides `color` and `categoryColors`; `hoverColor` still
-  marks the hovered bar.
+- The colormap overrides `color` and the category colors, and the legend shows
+  one row for the series; `hoverColor` still marks the hovered bar.
 - `min` and `max` work as for [point clouds](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/point-clouds/#color-points-by-value).
   An unset bound resolves from the data, and ranged bars contribute both edges.
   `dataValueMin` and `dataValueMax` expose the resolved range.
@@ -2384,7 +2412,7 @@ QAccelPlot.BarSeries {
 ## Hover
 
 `hoveredIndex` is the bar under the mouse pointer, or -1. `barAt(index)`
-returns its `position`, `value`, and `category`; a ranged bar has `from` and
+returns its `position`, `value`, `category`, and `categoryName`; a ranged bar has `from` and
 `to` instead of `position`. Set `hoverColor` to highlight it.
 `minimumWidth` also widens the hover area.
 

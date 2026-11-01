@@ -78,7 +78,7 @@ Infinite edges don't change the axes' data ranges.
 
 | Property | Use |
 | :--- | :--- |
-| `category`, `categoryColors` | Per-rectangle color: `category` indexes `categoryColors`; others use `color` |
+| `categories`, `category` | Per-rectangle color and name: a rectangle's `category` picks the entry with that `value`; others use `color` |
 | `minimumWidth`, `minimumHeight` | Minimum drawn size in pixels (default 1), so short events stay visible |
 | `border.width`, `border.color` | Outline inside each rectangle, e.g. to separate adjacent states |
 | `hoverColor` | Fill of the hovered rectangle |
@@ -90,21 +90,37 @@ A state timeline puts one lane per row, colored by category:
 QAccelPlot.RectangleSeries {
     xAxis: plot.xAxis
     yAxis: plot.yAxis
-    categoryColors: ["seagreen", "slategray", "firebrick"] // Running, Idle, Alarm
+    categories: [
+        QAccelPlot.Category { value: 0; name: "Running"; color: "seagreen" },
+        QAccelPlot.Category { value: 1; name: "Idle"; color: "slategray" },
+        QAccelPlot.Category { value: 2; name: "Alarm"; color: "firebrick" }
+    ]
     border.width: 1
 
     Component.onCompleted: setData([
-        { x1: 0, x2: 40, y1: -0.4, y2: 0.4, category: 0 },
-        { x1: 40, x2: 43, y1: -0.4, y2: 0.4, category: 2 },
+        { x1: 0, x2: 40, y1: -0.4, y2: 0.4, category: "Running" },
+        { x1: 40, x2: 43, y1: -0.4, y2: 0.4, category: "Alarm" },
         { x1: 0, x2: 25, y1: 0.6, y2: 1.4, category: 1 }
     ])
 }
 ```
 
+- Each `Category` has an integer `value` and an optional `name` and `color`.
+  Values need not be consecutive, so they can be C++ enum values. Edits to a
+  `Category`, such as a theme color, apply at once.
+- In QML data, `category` is a `value` or a `name`. Names resolve when the data
+  is set; an unknown name or a non-whole number is ignored with a warning.
+- Rectangles without a category, or whose category has no color or is not
+  listed, use `color`.
+- `setDataPointCategories()` replaces the rectangles' categories without
+  changing their bounds.
+- `rectangleAt()` returns `category` and, for a named category, `categoryName`.
+- The legend shows one row per category.
+
 Label the lanes with a [`TextTickLabelFormatter`](axis-formats.md#categories) on the
 Y axis. From C++, `setData(std::vector<double>&&, std::vector<int>&&, int)`
-moves bounds and categories in without copying; `postData()` hands them off
-from a worker thread.
+moves bounds and category values in without copying; `postData()` hands them
+off from a worker thread.
 
 RectangleSeries only accepts hover over its rectangles, so series underneath
 still receive hover elsewhere. Hover lookup uses a spatial grid, so it stays

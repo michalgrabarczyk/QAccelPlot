@@ -189,7 +189,7 @@ void BarSeriesTransitionsTest::removedBarsShrinkToTheBaseline()
 void BarSeriesTransitionsTest::removedBarsKeepTheirCategoryColor()
 {
     auto morph = HeldAt<MorphTransition>{0.5};
-    scene_.bars->setCategoryColors({Qt::blue});
+    scene_.bars->setCategories({new Category{0, QString{}, Qt::blue, scene_.bars.get()}});
     scene_.bars->setData(std::vector<double>{2.0, 8.0, 7.0, 8.0}, std::vector<int>{-1, 0}, 2);
     scene_.bars->setTransition(&morph);
 
@@ -202,12 +202,12 @@ void BarSeriesTransitionsTest::removedBarsKeepTheirCategoryColor()
 void BarSeriesTransitionsTest::categoriesSetDuringAnAnimationApply()
 {
     auto morph = HeldAt<MorphTransition>{0.5};
-    scene_.bars->setCategoryColors({Qt::blue});
+    scene_.bars->setCategories({new Category{0, QString{}, Qt::blue, scene_.bars.get()}});
     scene_.bars->setTransition(&morph);
     scene_.bars->setData(std::vector<double>{2.0, 8.0, 7.0, 8.0}, 2);
     QTRY_VERIFY(shows({{2.0, 3.5, Qt::red}, {7.0, 3.5, Qt::red}}));
 
-    scene_.bars->setCategories({-1, 0});
+    scene_.bars->setDataPointCategories({-1, 0});
 
     QTRY_VERIFY(shows({{2.0, 3.5, Qt::red}, {7.0, 3.5, Qt::blue}, {7.0, 4.5, Qt::black}}));
     scene_.bars->setTransition(nullptr);

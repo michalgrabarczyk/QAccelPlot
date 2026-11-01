@@ -8,6 +8,7 @@
 #pragma once
 
 #include "QAccelPlot/Border.hpp"
+#include "QAccelPlot/series/Category.hpp"
 #include "QAccelPlot/series/ColormappedSeries.hpp"
 #include "QAccelPlot/series/SpatialGrid.hpp"
 #include "QAccelPlot/transitions/DataTransition.hpp"
@@ -18,6 +19,9 @@
 #include <QtQml/qqmlregistration.h>
 #endif
 
+#include <QList>
+#include <QQmlListProperty>
+
 #include <array>
 #include <memory>
 #include <vector>
@@ -25,6 +29,7 @@
 namespace QAccelPlot {
 
 namespace Internal {
+class CategoryList;
 class RectVertexCache;
 }
 class BarMaterial;
@@ -47,9 +52,10 @@ class TransitionRunner;
 /// with a NaN edge is not drawn, and an infinite edge extends it to the plot edge. A series holds
 /// either ranged bars or (position, value) bars.
 ///
-/// Each bar can carry a \c category, an index into \c categoryColors. Bars without a category, or
-/// with one outside \c categoryColors, use \c color. For grouped bars, use one series per group
-/// with a narrower \c barWidth and a different \c barOffset.
+/// Each bar can carry a \c category. List the categories in \c categories as \c Category objects,
+/// as in <tt>QAccelPlot.Category { value: 0; name: "Loss"; color: "red" }</tt>. A bar is filled with the color of the category whose \c value equals its \c
+/// category. Bars without a category, or whose category has no color or is not listed, use \c color. The legend shows one row per category unless a \c colormap
+/// is assigned. For grouped bars, use one series per group with a narrower \c barWidth and a different \c barOffset.
 ///
 /// Set \c antialiasing to smooth edges that fall between pixels. It is off by default because
 /// bars that touch, such as histogram bins, then show faint seams.
@@ -57,8 +63,8 @@ class TransitionRunner;
 /// \par Colormap
 /// Assign a \c colormap to color each bar by \c colorSource: its \c value, or its \c position. The
 /// position of a ranged bar is the middle of its edges as the colormap places them, and
-/// \c barOffset does not apply. A colormap with at least two stops overrides \c color and
-/// \c categoryColors, and \c hoverColor still marks the hovered bar. Values outside the value range
+/// \c barOffset does not apply. A colormap with at least two stops overrides \c color and the
+/// category colors, and \c hoverColor still marks the hovered bar. Values outside the value range
 /// take the color at its nearer end. A bar whose source the colormap cannot map, such as a
 /// non-positive one under \c Colormap::logScale, keeps \c color or its category color. Under
 /// \c logScale, an unset bound resolved from such a bar is not positive, so every bar keeps its
@@ -108,8 +114,11 @@ class BarSeries : public ColormappedSeries {
     Q_PROPERTY(qreal minimumWidth READ minimumWidth WRITE setMinimumWidth NOTIFY minimumWidthChanged)
     /// \brief Fill color of bars without a category color. Default: \c Colors.dark.seriesPrimary.
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
-    /// \brief Fill colors indexed by each bar's \c category. Default: empty.
-    Q_PROPERTY(QList<QColor> categoryColors READ categoryColors WRITE setCategoryColors NOTIFY categoryColorsChanged)
+    /// \brief The bars' categories. Default: empty.
+    ///
+    /// The first of categories that share a value or a name wins, and the others log a warning.
+    /// Edits to a listed \c Category apply at once.
+    Q_PROPERTY(QQmlListProperty<Category> categories READ categories NOTIFY categoriesChanged)
     /// \brief What the \c colormap maps to a bar's color. Default: \c Value.
     Q_PROPERTY(ColorSource colorSource READ colorSource WRITE setColorSource NOTIFY colorSourceChanged)
     /// \brief Outline inside each bar's edges, e.g. <tt>border.width: 1</tt>. Default: black, width 0.
@@ -166,10 +175,10 @@ public:
     /// \brief Sets the fill color to \a color.
     void setColor(const QColor& color);
 
-    /// \brief Returns the fill colors indexed by category.
-    QList<QColor> categoryColors() const;
-    /// \brief Sets the fill colors indexed by category to \a colors.
-    void setCategoryColors(const QList<QColor>& colors);
+    /// \brief Returns the categories as a QML list.
+    QQmlListProperty<Category> categories();
+    /// \brief Replaces the categories with \a categories. The series does not take ownership.
+    void setCategories(const QList<Category*>& categories);
 
     /// \brief Returns what the colormap maps to a bar's color.
     ColorSource colorSource() const;
@@ -195,17 +204,18 @@ public:
     /// \brief Loads bars from \a bars, a QML list of numbers or objects.
     ///
     /// A number is the value of a bar at position = its list index. An object has \c position,
-    /// \c value, and an optional integer \c category that selects the fill color from
-    /// \c categoryColors. A missing \c position is the list index; a missing \c value is NaN.
+    /// \c value, and an optional \c category: a category \c value or \c name, with names resolved
+    /// against \c categories now. A missing \c position is the list index; a missing \c value is
+    /// NaN. Any other \c category is ignored with a warning.
     ///
     /// When any object has \c from or \c to, all bars are ranged: each object has \c from, \c to,
     /// \c value, and an optional \c category, and a missing \c from or \c to is NaN.
     Q_INVOKABLE void setData(const QVariantList& bars);
 
-    /// \brief Moves \a data and per-bar \a categories (empty, or exactly \a barCount) into the series.
+    /// \brief Moves \a data and per-bar category values \a categories (empty, or exactly \a barCount) into the series.
     void setData(std::vector<double>&& data, std::vector<int>&& categories, int barCount);
 
-    /// \brief Like \c setDataF(\a data, \a barCount) and also moves per-bar \a categories (empty, or exactly \a barCount) into the series.
+    /// \brief Like \c setDataF(\a data, \a barCount) and also moves per-bar category values \a categories (empty, or exactly \a barCount) into the series.
     void setDataF(std::vector<float>&& data, std::vector<int>&& categories, int barCount);
 
     using PlotSeries::postData;
@@ -220,7 +230,7 @@ public:
 
     /// \brief Moves ranged bars into the series: \a data holds \a barCount × 3 doubles (from, to, value). Clears categories.
     void setRangedData(std::vector<double>&& data, int barCount);
-    /// \brief Like \c setRangedData(\a data, \a barCount) and also moves per-bar \a categories (empty, or exactly \a barCount) into the series.
+    /// \brief Like \c setRangedData(\a data, \a barCount) and also moves per-bar category values \a categories (empty, or exactly \a barCount) into the series.
     void setRangedData(std::vector<double>&& data, std::vector<int>&& categories, int barCount);
     /// \brief Thread-safe: queues \c setRangedData(\a data, \a barCount) to the item's thread.
     void postRangedData(std::vector<double>&& data, int barCount);
@@ -229,13 +239,19 @@ public:
     Q_INVOKABLE void clearData() override;
     /// \brief Returns the legend entry: the symbol and color of the bars.
     std::optional<LegendEntry> legendEntry() const override;
+    /// \brief Returns one legend entry per category, or the \c legendEntry() when there are no categories or a \c colormap is assigned.
+    QList<LegendEntry> legendEntries() const override;
 
-    /// \brief Sets one category per bar. An empty list clears categories; any other size must equal \c count.
-    Q_INVOKABLE void setCategories(const QList<int>& categories);
+    /// \brief Sets one category per bar, each a category \c value or \c name.
+    ///
+    /// An empty list clears them; any other size must equal \c count. Other values leave their bar
+    /// without a category and log a warning.
+    Q_INVOKABLE void setDataPointCategories(const QVariantList& categories);
 
     /// \brief Returns bar \a index as an object with \c position and \c value, or \c from, \c to, and \c value for a ranged bar.
     ///
-    /// Includes \c category when categories are set. Returns an empty object when \a index is out of range.
+    /// Includes \c category when the bars have categories, and \c categoryName when that category
+    /// has a name. Returns an empty object when \a index is out of range.
     Q_INVOKABLE QVariantMap barAt(int index) const;
 
     /// \brief Returns the index of the topmost bar under item position \a position, or -1.
@@ -258,8 +274,8 @@ signals:
     void minimumWidthChanged();
     /// \brief Emitted when the color property changes.
     void colorChanged();
-    /// \brief Emitted when the categoryColors property changes.
-    void categoryColorsChanged();
+    /// \brief Emitted when a category is added, removed, or edited.
+    void categoriesChanged();
     /// \brief Emitted when the colorSource property changes.
     void colorSourceChanged();
     /// \brief Emitted when the hoverColor property changes.
@@ -303,6 +319,7 @@ private:
         int stride{2};
     };
 
+    void onCategoriesChanged();
     bool validateDataArguments(std::size_t valueCount, std::size_t categoryCount, int barCount, int barValueCount = 2) const;
     // Switches between (position, value) and (from, to, value) bars; dropping the bars when it changes.
     void setRanged(bool ranged);
@@ -352,7 +369,7 @@ private:
     void updateMaterial(BarMaterial& material, int renderCount) const;
     // Uploads the colormap ramp and sets the uniforms that place each bar on it.
     void updateColormapUniforms(BarMaterial& material, QQuickWindow* window) const;
-    // True when the colormap colors the bars instead of color and categoryColors.
+    // True when the colormap colors the bars instead of color and the category colors.
     bool colormapped() const;
     void ensureSpatialGrid() const;
     // Builds the vertices of the first \a barCount of the drawn bars.
@@ -364,7 +381,7 @@ private:
     qreal baselineValue_{0.0};
     qreal minimumWidth_{1.0};
     QColor color_;
-    QList<QColor> categoryColors_;
+    std::unique_ptr<Internal::CategoryList> categories_;
     ColorSource colorSource_{ColorSource::Value};
     Border* border_{new Border{Qt::black, 0.0, this}};
     QColor hoverColor_;

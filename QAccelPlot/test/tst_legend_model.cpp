@@ -12,6 +12,7 @@
 #include "QAccelPlot/series/HeatmapSeries.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
 #include "QAccelPlot/series/PointCloud.hpp"
+#include "QAccelPlot/series/RectangleSeries.hpp"
 
 #include <QQmlComponent>
 #include <QQmlEngine>
@@ -47,6 +48,8 @@ private slots:
     void lineCurveEntryDescribesLineAndMarker();
     void pointCloudAndBarEntriesUseTheirSymbol();
     void namesFallBackToObjectNameAndPosition();
+    void categoriesGiveOneRowEach();
+    void qmlCategoriesFollowDeclarationsAndGeneratedLists();
     void destroyedSeriesLeaveTheModel();
     void plotLegendHidesWithoutEntries();
 };
@@ -177,6 +180,90 @@ void LegendModelTest::namesFallBackToObjectNameAndPosition()
     QCOMPARE(model.data(model.index(1), LegendModel::NameRole).toString(), QStringLiteral("fit"));
     QCOMPARE(model.data(model.index(2), LegendModel::NameRole).toString(), QStringLiteral("Series 3"));
     QCOMPARE(model.roleNames().value(LegendModel::EntryRole), QByteArray{"entry"});
+}
+
+void LegendModelTest::categoriesGiveOneRowEach()
+{
+    auto curve = LineCurve{};
+    curve.setName(QStringLiteral("signal"));
+    auto states = RectangleSeries{};
+    states.setName(QStringLiteral("states"));
+    auto model = LegendModel{};
+    model.setSeries({&curve, &states});
+    QCOMPARE(model.count(), 2);
+    auto countSpy = QSignalSpy{&model, &LegendModel::countChanged};
+
+    states.setCategories({new Category{0, QStringLiteral("Running"), Qt::green, &states}, new Category{1, QStringLiteral("Alarm"), Qt::red, &states}});
+    QCOMPARE(model.count(), 3);
+    QCOMPARE(countSpy.count(), 1);
+    QCOMPARE(model.data(model.index(0), LegendModel::NameRole).toString(), QStringLiteral("signal"));
+    QCOMPARE(model.data(model.index(1), LegendModel::NameRole).toString(), QStringLiteral("Running"));
+    QCOMPARE(model.data(model.index(2), LegendModel::NameRole).toString(), QStringLiteral("Alarm"));
+    QCOMPARE(seriesAt(model, 2), &states);
+    QCOMPARE(entryAt(model, 2).color, QColor{Qt::red});
+    QCOMPARE(entryAt(model, 2).symbol, PlotSeries::LegendSymbol::Fill);
+
+    states.setCategories({});
+    QCOMPARE(model.count(), 2);
+    QCOMPARE(model.data(model.index(1), LegendModel::NameRole).toString(), QStringLiteral("states"));
+}
+
+void LegendModelTest::qmlCategoriesFollowDeclarationsAndGeneratedLists()
+{
+    auto engine = QQmlEngine{};
+    auto component = QQmlComponent{&engine};
+    component.setData(R"(
+        import QtQml.Models
+        import QtQuick
+        import QAccelPlot as QAccelPlot
+        QAccelPlot.Plot {
+            property int levelCount: 2
+            property var stateValues: ({ Running: 4, Alarm: 9 })
+            xAxis: QAccelPlot.Axis {}
+            yAxis: QAccelPlot.Axis {}
+            QAccelPlot.RectangleSeries {
+                objectName: "declared"
+                categories: [
+                    QAccelPlot.Category { value: stateValues.Running; name: "Running"; color: "green" },
+                    QAccelPlot.Category { value: stateValues.Alarm; name: "Alarm"; color: "red" }
+                ]
+            }
+            Instantiator {
+                id: levels
+                model: levelCount
+                QAccelPlot.Category { required property int index; value: index; color: Qt.rgba(0, 0, index / 4, 1) }
+            }
+            QAccelPlot.BarSeries {
+                objectName: "generated"
+                categories: Array.from({ length: levels.count }, (_, index) => levels.objectAt(index))
+            }
+        }
+    )",
+        QUrl{});
+    const auto root = std::unique_ptr<QObject>{component.create()};
+    QVERIFY2(root, qPrintable(component.errorString()));
+    auto* declared = root->findChild<RectangleSeries*>(QStringLiteral("declared"));
+    auto* generated = root->findChild<BarSeries*>(QStringLiteral("generated"));
+    QVERIFY(declared && generated);
+
+    // Bindings on declared categories are evaluated after the list is filled, so values arrive late
+    // and the series must not report the early duplicates.
+    static auto warnings = QStringList{};
+    warnings.clear();
+    const auto previousHandler = qInstallMessageHandler([](QtMsgType, const QMessageLogContext&, const QString& message) { warnings.append(message); });
+    QCoreApplication::processEvents();
+    qInstallMessageHandler(previousHandler);
+    QVERIFY2(warnings.isEmpty(), qPrintable(warnings.join(u'\n')));
+    const auto entries = declared->legendEntries();
+    QCOMPARE(entries.size(), 2);
+    QCOMPARE(entries[1].name, QStringLiteral("Alarm"));
+    declared->setData(QVariantList{QVariantMap{{QStringLiteral("x2"), 1.0}, {QStringLiteral("category"), QStringLiteral("Alarm")}}});
+    QCOMPARE(declared->rectangleAt(0).value(QStringLiteral("category")).toInt(), 9);
+
+    QCOMPARE(generated->legendEntries().size(), 2);
+    QVERIFY(root->setProperty("levelCount", 4));
+    QCOMPARE(generated->legendEntries().size(), 4);
+    QCOMPARE(generated->legendEntries()[3].name, QStringLiteral("3"));
 }
 
 void LegendModelTest::destroyedSeriesLeaveTheModel()

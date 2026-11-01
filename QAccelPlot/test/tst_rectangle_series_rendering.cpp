@@ -8,6 +8,7 @@
 #include "HoverEvents.hpp"
 #include "QAccelPlot/PlotView.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/series/Category.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
 
 #include <QGuiApplication>
@@ -82,17 +83,17 @@ constexpr auto kNarrowScene = R"(
 }
 )";
 
-// Full-height spans in categories 0 and 1, and one without a category.
+// Full-height spans in categories 10, named "Run", and 20, and one without a category.
 constexpr auto kCategoryScene = R"(
     RectangleSeries {
         objectName: "categorized"
         xAxis: plot.xAxis
         yAxis: plot.yAxis
         color: "blue"
-        categoryColors: ["red", "lime"]
+        categories: [Category { objectName: "run"; value: 10; name: "Run"; color: "red" }, Category { value: 20; color: "lime" }]
         Component.onCompleted: setData([
-            { x1: 1, x2: 2, category: 0 },
-            { x1: 4, x2: 5, category: 1 },
+            { x1: 1, x2: 2, category: "Run" },
+            { x1: 4, x2: 5, category: 20 },
             { x1: 7, x2: 8 }
         ])
     }
@@ -148,7 +149,7 @@ constexpr auto kWideTextureScene = R"(
         xAxis: plot.xAxis
         yAxis: plot.yAxis
         color: "red"
-        categoryColors: ["blue"]
+        categories: [Category { value: 0; color: "blue" }]
         Component.onCompleted: {
             const rectangles = [];
             for (let i = 0; i < 3000; ++i) {
@@ -371,13 +372,16 @@ void RectangleSeriesRenderingTest::categoriesSelectFillColors()
     QVERIFY(isColor(image.pixelColor(second), Qt::green));
     QVERIFY(isColor(image.pixelColor(uncategorized), Qt::blue));
 
-    rectangles->setProperty("categoryColors", QVariant::fromValue(QList<QColor>{Qt::yellow, Qt::green}));
+    auto* run = rectangles->findChild<Category*>(QStringLiteral("run"));
+    QVERIFY(run);
+    run->setColor(Qt::yellow);
     rectangles->setProperty("color", QColor{Qt::white});
     image = scene.grab();
     QVERIFY(isColor(image.pixelColor(first), Qt::yellow));
     QVERIFY(isColor(image.pixelColor(uncategorized), Qt::white));
 
-    QVERIFY(QMetaObject::invokeMethod(rectangles, "setCategories", Q_ARG(QList<int>, (QList<int>{1, 5, 0}))));
+    const auto pointCategories = QVariantList{20, 5, QStringLiteral("Run")};
+    QVERIFY(QMetaObject::invokeMethod(rectangles, "setDataPointCategories", Q_ARG(QVariantList, pointCategories)));
     image = scene.grab();
     QVERIFY(isColor(image.pixelColor(first), Qt::green));
     QVERIFY(isColor(image.pixelColor(second), Qt::white));
