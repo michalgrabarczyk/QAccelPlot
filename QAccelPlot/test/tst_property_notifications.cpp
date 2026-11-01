@@ -139,7 +139,7 @@ void PropertyNotificationsTest::writeNotifiesOnceAndRoundTrips_data()
     row("GradientStroke", "valueMax", 8.0);
     row("GradientStroke", "enabled", false);
 
-    row("Grid", "lineWidth", 3.0);
+    row("Grid", "gridLineWidth", 3.0);
     row("Grid", "subGridLineWidth", 2.0);
     row("Grid", "gridColor", QColor{Qt::red});
     row("Grid", "subGridColor", QColor{Qt::blue});

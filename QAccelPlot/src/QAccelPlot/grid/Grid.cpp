@@ -16,18 +16,18 @@ Grid::Grid(QObject* parent)
 {
 }
 
-qreal Grid::lineWidth() const
+qreal Grid::gridLineWidth() const
 {
-    return lineWidth_;
+    return gridLineWidth_;
 }
 
-void Grid::setLineWidth(qreal w)
+void Grid::setGridLineWidth(qreal w)
 {
-    if (nearlyEqual(lineWidth_, w)) {
+    if (nearlyEqual(gridLineWidth_, w)) {
         return;
     }
-    lineWidth_ = w;
-    emit lineWidthChanged();
+    gridLineWidth_ = w;
+    emit gridLineWidthChanged();
 }
 
 qreal Grid::subGridLineWidth() const

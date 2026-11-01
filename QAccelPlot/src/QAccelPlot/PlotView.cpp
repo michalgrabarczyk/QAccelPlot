@@ -91,7 +91,7 @@ PlotView::PlotView(QQuickItem* parent)
     connect(rectangleZoom_, &PlotRectangleZoom::enabledChanged, this, &PlotView::cancelRectangleSelection);
     connect(this, &QQuickItem::visibleChanged, this, &PlotView::cancelRectangleSelection);
     connect(this, &QQuickItem::enabledChanged, this, &PlotView::cancelRectangleSelection);
-    connect(grid_, &Grid::lineWidthChanged, this, &PlotView::update);
+    connect(grid_, &Grid::gridLineWidthChanged, this, &PlotView::update);
     connect(grid_, &Grid::subGridLineWidthChanged, this, &PlotView::update);
     connect(grid_, &Grid::gridColorChanged, this, &PlotView::update);
     connect(grid_, &Grid::subGridColorChanged, this, &PlotView::update);
