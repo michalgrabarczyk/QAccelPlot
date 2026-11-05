@@ -63,15 +63,15 @@ Item {
             xAxis: ExampleAxis {
                 viewportMin: 0
                 viewportMax: 600
-                label: "Time (s)"
+                label.text: "Time (s)"
             }
 
             yAxis: ExampleAxis {
                 viewportMin: -2.5
                 viewportMax: 4
-                labelPadding: 40
+                label.text: "Acceleration (g)"
+                label.padding: 40
                 layoutSize: 60
-                label: "Acceleration (g)"
             }
 
             // The lines give up hover so that the band beneath them receives it.

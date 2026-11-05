@@ -20,12 +20,12 @@ horizontal axis or the width of a vertical axis:
 ```qml
 yAxis: QAccelPlot.Axis {
     layoutSize: 90
-    label: "Temperature"
+    label.text: "Temperature"
 }
 
 xAxis: QAccelPlot.Axis {
     layoutSize: 70
-    label: "Time"
+    label.text: "Time"
 }
 ```
 
@@ -48,7 +48,7 @@ QAccelPlot.Plot {
     y2Axis: QAccelPlot.Axis {
         viewportMin: 0
         viewportMax: 100
-        label: "Load (%)"
+        label.text: "Load (%)"
     }
 
     QAccelPlot.LineCurve {
@@ -80,7 +80,7 @@ QAccelPlot.Plot {
     xAxis: QAccelPlot.Axis {
         viewportMin: 0
         viewportMax: 10
-        label: "Slow time (s)"
+        label.text: "Slow time (s)"
     }
 
     extraAxes: [
@@ -90,7 +90,7 @@ QAccelPlot.Plot {
             side: QAccelPlot.Axis.Bottom
             viewportMin: 0
             viewportMax: 0.5
-            label: "Fast time (s)"
+            label.text: "Fast time (s)"
         }
     ]
 

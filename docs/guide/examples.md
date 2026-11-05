@@ -162,6 +162,12 @@ Each executable is named after its example, for example
 
     Category, logarithmic, and date/time tick labels. Recipe: [Axis formats](cookbook/axis-formats.md).
 
+-   ![Axis Labels](assets/examples/axis_labels.webp)
+
+    **[Axis Labels](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/axes/axis_labels)**
+
+    Axis label alignment, rotation, and padding, and custom label items. Recipe: [Axis labels](cookbook/axis-labels.md).
+
 -   ![Multiple Axes](assets/examples/multiple_axes.webp)
 
     **[Multiple Axes](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/axes/multiple_axes)**

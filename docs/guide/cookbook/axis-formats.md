@@ -75,7 +75,7 @@ cheap:
 yAxis: QAccelPlot.Axis {
     viewportMin: 18
     viewportMax: 26
-    label: "Temperature"
+    label.text: "Temperature"
 
     ticker.tickLabelFormatter: QAccelPlot.NumericTickLabelFormatter {
         tickLabel: function (temperature) {

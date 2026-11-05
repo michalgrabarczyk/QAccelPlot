@@ -40,13 +40,13 @@ Item {
             xAxis: ExampleAxis {
                 viewportMin: -10
                 viewportMax: 10
-                label: "x (m)"
+                label.text: "x (m)"
             }
 
             yAxis: ExampleAxis {
                 viewportMin: -7.5
                 viewportMax: 7.5
-                label: "y (m)"
+                label.text: "y (m)"
             }
 
             // Filled from C++ with setValues(), 400 columns by 300 rows.

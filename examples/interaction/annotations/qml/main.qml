@@ -89,16 +89,16 @@ Window {
             xAxis: ExampleAxis {
                 viewportMin: 0
                 viewportMax: 100
-                label: "Process time (s)"
+                label.text: "Process time (s)"
                 baselineWidth: 3
             }
 
             yAxis: ExampleAxis {
                 viewportMin: -6
                 viewportMax: 8
-                labelPadding: 40
+                label.text: "Pressure response (units)"
+                label.padding: 40
                 layoutSize: 60
-                label: "Pressure response (units)"
                 baselineWidth: 3
             }
 

@@ -56,15 +56,15 @@ Item {
                 viewportMin: 20
                 viewportMax: 20000
                 logScale: root.logarithmic
-                label: "Frequency (Hz)"
+                label.text: "Frequency (Hz)"
             }
 
             yAxis: ExampleAxis {
                 viewportMin: -18
                 viewportMax: 3
-                labelPadding: 40
+                label.text: "Relative level (dB)"
+                label.padding: 40
                 layoutSize: 60
-                label: "Relative level (dB)"
             }
 
             QAccelPlot.LineCurve {

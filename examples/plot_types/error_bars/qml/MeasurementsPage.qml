@@ -120,15 +120,15 @@ Item {
             xAxis: ExampleAxis {
                 viewportMin: 0
                 viewportMax: 6.5
-                label: "Reference concentration (mg/L)"
+                label.text: "Reference concentration (mg/L)"
             }
 
             yAxis: ExampleAxis {
                 viewportMin: 0
                 viewportMax: 18
-                labelPadding: 40
+                label.text: "Sensor reading (mV)"
+                label.padding: 40
                 layoutSize: 60
-                label: "Sensor reading (mV)"
             }
 
             QAccelPlot.LineCurve {

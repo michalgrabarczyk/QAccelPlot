@@ -38,13 +38,13 @@ Window {
     component SampleAxis: ExampleAxis {
         viewportMin: 0
         viewportMax: 11
-        label: "Sample"
+        label.text: "Sample"
     }
 
     component OffsetAxis: ExampleAxis {
         viewportMin: -0.1
         viewportMax: 4.1
-        labelPadding: 40
+        label.padding: 40
         layoutSize: 60
     }
 
@@ -105,7 +105,7 @@ Window {
 
             xAxis: SampleAxis {}
             yAxis: OffsetAxis {
-                label: "Style offset"
+                label.text: "Style offset"
             }
 
             StyledCurve {
@@ -163,7 +163,7 @@ Window {
 
             xAxis: SampleAxis {}
             yAxis: OffsetAxis {
-                label: "Line weight"
+                label.text: "Line weight"
             }
 
             StyledCurve {

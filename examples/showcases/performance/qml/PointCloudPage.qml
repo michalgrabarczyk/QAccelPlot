@@ -25,15 +25,15 @@ QAccelPlot.Plot {
     xAxis: ExampleAxis {
         viewportMin: -plot.xHalfRange
         viewportMax: plot.xHalfRange
-        label: "x"
+        label.text: "x"
     }
 
     yAxis: ExampleAxis {
         viewportMin: -1.15
         viewportMax: 1.15
-        labelPadding: 40
+        label.text: "y"
+        label.padding: 40
         layoutSize: 60
-        label: "y"
     }
 
     // Warm core, blue arms, and violet rim; pink marks star-forming regions in the arms.

@@ -13,8 +13,8 @@ QAccelPlot.Axis {
 
     baselineColor: colorPalette.axisLine
     hoverColor: colorPalette.hover
-    labelColor: colorPalette.axisLabel
-    labelFont: Qt.font({
+    label.color: colorPalette.axisLabel
+    label.font: Qt.font({
         pixelSize: 13,
         weight: Font.Normal
     })

@@ -100,13 +100,13 @@ Window {
             xAxis: ExampleAxis {
                 viewportMin: -3.2
                 viewportMax: 3.2
-                label: "x"
+                label.text: "x"
             }
 
             yAxis: ExampleAxis {
                 viewportMin: -1.6
                 viewportMax: 1.6
-                label: "y"
+                label.text: "y"
             }
 
             // Filled from C++ with setDataF(), which also passes one value per point.
@@ -162,8 +162,8 @@ Window {
                         barThickness: 24
                         series: cloud
                         interactive: true
-                        label: "Step length"
-                        labelColor: colorPalette.axisLabel
+                        label.text: "Step length"
+                        label.color: colorPalette.axisLabel
                         border.color: hovered ? colorPalette.hover : colorPalette.axisLine
                         ticker.tickColor: colorPalette.tick
                         ticker.tickLabelColor: colorPalette.axisTickLabel

@@ -43,8 +43,8 @@ Item {
             tickLabelWidth: 30
             series: overlay.heatmap
             interactive: true
-            label: overlay.barLabel
-            labelColor: colorPalette.axisLabel
+            label.text: overlay.barLabel
+            label.color: colorPalette.axisLabel
             border.color: hovered ? colorPalette.hover : colorPalette.axisLine
             ticker.tickColor: colorPalette.tick
             ticker.tickLabelColor: colorPalette.axisTickLabel

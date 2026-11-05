@@ -25,14 +25,14 @@ Item {
         xAxis: ExampleAxis {
             viewportMin: 0
             viewportMax: 10
-            label: "Time (s)"
+            label.text: "Time (s)"
         }
 
         yAxis: ExampleAxis {
             viewportMin: 20
             viewportMax: 20000
             logScale: true
-            label: "Frequency (Hz)"
+            label.text: "Frequency (Hz)"
         }
 
         // Filled from C++ with setValues(): 60 rows per decade, each spanning the same frequency ratio.

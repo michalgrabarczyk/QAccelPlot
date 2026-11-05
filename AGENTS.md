@@ -67,8 +67,9 @@ QAccelPlot/
 │       ├── internal/             — Helpers shared across folders or used by PlotView: pointer tracking,
 │       │                           outlined rectangle item, rectangle zoom overlay
 │       ├── annotations/          — DataAnchor (attach QML items to data coords)
-│       ├── axis/                 — Axis, AxisTicker, AxisTickPainter, ColorBar,
-│       │                           internal/ (pan and zoom range math)
+│       ├── axis/                 — Axis, AxisLabel and TextLabel (label grouped properties),
+│       │                           AxisTicker, AxisTickPainter, ColorBar,
+│       │                           internal/ (pan and zoom range math, axis label placement)
 │       ├── data/                 — Histogram (binning samples into BarSeries data),
 │       │                           HistogramFactory (QML Histogram singleton)
 │       ├── effects/              — GradientFill, GradientStroke, LineCurveEffect

@@ -159,15 +159,15 @@ Window {
                 xAxis: ExampleAxis {
                     viewportMin: -6
                     viewportMax: 6
-                    label: "Hours from solar noon"
+                    label.text: "Hours from solar noon"
                 }
 
                 yAxis: ExampleAxis {
                     viewportMin: -4
                     viewportMax: 6
-                    labelPadding: 40
+                    label.text: "Net grid power (kW)"
+                    label.padding: 40
                     layoutSize: 60
-                    label: "Net grid power (kW)"
                 }
 
                 QAccelPlot.LineCurve {
@@ -216,15 +216,15 @@ Window {
                 xAxis: ExampleAxis {
                     viewportMin: 0
                     viewportMax: 100
-                    label: "State of charge (%)"
+                    label.text: "State of charge (%)"
                 }
 
                 yAxis: ExampleAxis {
                     viewportMin: 20
                     viewportMax: 30
-                    labelPadding: 40
+                    label.text: "Battery temperature (°C)"
+                    label.padding: 40
                     layoutSize: 60
-                    label: "Battery temperature (°C)"
                 }
 
                 QAccelPlot.LineCurve {

@@ -173,7 +173,7 @@ Window {
             xAxis: ExampleAxis {
                 viewportMin: window.horizontal ? 0 : -0.5
                 viewportMax: window.horizontal ? 160 : 11.5
-                label: window.horizontal ? "Revenue (k$)" : "Month"
+                label.text: window.horizontal ? "Revenue (k$)" : "Month"
                 ticker.tickCount: window.horizontal ? 9 : 12
                 ticker.subtickCount: window.horizontal ? 4 : 0
                 ticker.tickLabelFormatter: window.horizontal ? revenueLabels : monthLabels
@@ -183,8 +183,8 @@ Window {
                 viewportMin: window.horizontal ? -0.5 : 0
                 viewportMax: window.horizontal ? 11.5 : 160
                 layoutSize: 70
-                labelPadding: 50
-                label: window.horizontal ? "Month" : "Revenue (k$)"
+                label.text: window.horizontal ? "Month" : "Revenue (k$)"
+                label.padding: 50
                 ticker.tickCount: window.horizontal ? 12 : 9
                 ticker.subtickCount: window.horizontal ? 0 : 4
                 ticker.tickLabelFormatter: window.horizontal ? monthLabels : revenueLabels
@@ -236,7 +236,7 @@ Window {
             xAxis: ExampleAxis {
                 viewportMin: -0.5
                 viewportMax: 11.5
-                label: "Month"
+                label.text: "Month"
                 ticker.tickCount: 12
                 ticker.subtickCount: 0
                 ticker.tickLabelFormatter: QAccelPlot.TextTickLabelFormatter {
@@ -248,8 +248,8 @@ Window {
                 viewportMin: -15
                 viewportMax: 35
                 layoutSize: 70
-                labelPadding: 50
-                label: "Profit (k$)"
+                label.text: "Profit (k$)"
+                label.padding: 50
             }
 
             QAccelPlot.BarSeries {

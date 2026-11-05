@@ -57,6 +57,7 @@ target_include_directories(tst_data_delivery_metrics PRIVATE
 if(QACCELPLOT_BUILD_VISUAL_TESTS)
     # Scenario names are described in cmake/QAccelPlotTestHelpers.cmake.
     add_qaccelplot_example_visual_tests(QAccelPlotExampleQuickstart             quickstart)
+    add_qaccelplot_example_visual_tests(QAccelPlotExampleAxisLabels             axis_labels PAGES painted delegate)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleMultipleAxes           multiple_axes PAGES dualScale multiRate sharedTime)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleTickFormats            tick_formats PAGES dateTime logarithmic categories)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleRealtime               realtime)

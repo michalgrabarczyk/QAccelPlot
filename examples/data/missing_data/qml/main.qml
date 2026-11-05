@@ -116,15 +116,15 @@ Window {
                 xAxis: ExampleAxis {
                     viewportMin: 0
                     viewportMax: 120
-                    label: "Time (s)"
+                    label.text: "Time (s)"
                 }
 
                 yAxis: ExampleAxis {
                     viewportMin: 2
                     viewportMax: 6.5
-                    labelPadding: 40
+                    label.text: "Pressure (bar)"
+                    label.padding: 40
                     layoutSize: 60
-                    label: "Pressure (bar)"
                 }
 
                 QAccelPlot.LineCurve {
@@ -147,15 +147,15 @@ Window {
                 xAxis: ExampleAxis {
                     viewportMin: 0
                     viewportMax: 120
-                    label: "Time (s)"
+                    label.text: "Time (s)"
                 }
 
                 yAxis: ExampleAxis {
                     viewportMin: 2
                     viewportMax: 6.5
-                    labelPadding: 40
+                    label.text: "Pressure (bar)"
+                    label.padding: 40
                     layoutSize: 60
-                    label: "Pressure (bar)"
                 }
 
                 QAccelPlot.LineCurve {
@@ -183,16 +183,16 @@ Window {
                 xAxis: ExampleAxis {
                     viewportMin: 0
                     viewportMax: 200
-                    label: "Frequency (Hz)"
+                    label.text: "Frequency (Hz)"
                 }
 
                 yAxis: ExampleAxis {
                     viewportMin: 0.01
                     viewportMax: 100
                     logScale: true
-                    labelPadding: 40
+                    label.text: "Amplitude (log)"
+                    label.padding: 40
                     layoutSize: 60
-                    label: "Amplitude (log)"
                 }
 
                 QAccelPlot.LineCurve {

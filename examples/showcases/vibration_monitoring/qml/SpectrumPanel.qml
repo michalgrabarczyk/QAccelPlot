@@ -66,8 +66,8 @@ DashboardPanel {
             viewportMin: panel.defaultYMin
             viewportMax: panel.defaultYMax
             layoutSize: 46
-            labelPadding: 36
-            label: "g"
+            label.text: "g"
+            label.padding: 36
         }
 
         onMouseDoubleClicked: event => {

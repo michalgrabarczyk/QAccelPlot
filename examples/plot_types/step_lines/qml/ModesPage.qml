@@ -93,13 +93,13 @@ Item {
                         xAxis: ExampleAxis {
                             viewportMin: -0.5
                             viewportMax: 12.5
-                            label: "Hour"
+                            label.text: "Hour"
                         }
 
                         yAxis: ExampleAxis {
                             viewportMin: 10
                             viewportMax: 40
-                            label: "ct/kWh"
+                            label.text: "ct/kWh"
                         }
 
                         QAccelPlot.LineCurve {

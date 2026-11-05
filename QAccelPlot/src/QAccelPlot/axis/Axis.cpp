@@ -8,7 +8,9 @@
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/QAccelPlotLogging.hpp"
+#include "QAccelPlot/axis/AxisLabel.hpp"
 #include "QAccelPlot/axis/AxisTickPainter.hpp"
+#include "QAccelPlot/axis/internal/AxisLabelLayout.hpp"
 #include "QAccelPlot/axis/internal/RangeGesture.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
 
@@ -16,6 +18,7 @@
 #include <limits>
 #include <utility>
 
+#include <QFontMetricsF>
 #include <QMouseEvent>
 #include <QPainter>
 #include <QPen>
@@ -50,10 +53,25 @@ bool hoverEnabled()
     return !isInteger || value != 0;
 }
 
+/// \brief Returns the position along the axis for \a alignment: 0 at the minimum-value end, 1 at the maximum-value end.
+qreal alignmentFraction(const Axis::LabelAlignment alignment)
+{
+    switch (alignment) {
+    case Axis::Start:
+        return 0.0;
+    case Axis::End:
+        return 1.0;
+    case Axis::Center:
+        break;
+    }
+    return 0.5;
+}
+
 }
 
 Axis::Axis(QQuickItem* parent, Side side)
     : QQuickPaintedItem(parent)
+    , label_(new AxisLabel(this))
     , ticker_(new AxisTicker(this))
 {
     setAcceptHoverEvents(hoverEnabled());
@@ -76,6 +94,7 @@ Axis::Axis(QQuickItem* parent, Side side)
     connect(ticker_, &AxisTicker::tickLabelFontChanged, this, [this]() { update(); });
     connect(ticker_, &AxisTicker::tickLabelFormatterChanged, this, &Axis::invalidateTicks);
     connect(ticker_, &AxisTicker::tickLabelFormatChanged, this, &Axis::invalidateTicks);
+    connectLabel();
     setSide(side);
     invalidateTicks();
 }
@@ -165,37 +184,13 @@ void Axis::setOrientation(const Qt::Orientation o)
     }
     orientation_ = o;
     emit orientationChanged();
+    label_->setDefaultRotation(defaultLabelRotation());
     update();
 }
 
-QString Axis::label() const
+AxisLabel* Axis::label() const
 {
     return label_;
-}
-
-void Axis::setLabel(const QString& t)
-{
-    if (label_ == t) {
-        return;
-    }
-    label_ = t;
-    emit labelChanged();
-    update();
-}
-
-QFont Axis::labelFont() const
-{
-    return labelFont_;
-}
-
-void Axis::setLabelFont(const QFont& f)
-{
-    if (labelFont_ == f) {
-        return;
-    }
-    labelFont_ = f;
-    emit labelFontChanged();
-    update();
 }
 
 Axis::Side Axis::side() const
@@ -214,6 +209,7 @@ void Axis::setSide(Side s)
     } else {
         setOrientation(Qt::Horizontal);
     }
+    label_->setDefaultRotation(defaultLabelRotation());
     emit sideChanged();
     update();
 }
@@ -235,21 +231,6 @@ void Axis::setBaselineColor(const QColor& c)
     }
     baselineColor_ = c;
     emit baselineColorChanged();
-    update();
-}
-
-QColor Axis::labelColor() const
-{
-    return labelColor_;
-}
-
-void Axis::setLabelColor(const QColor& c)
-{
-    if (labelColor_ == c) {
-        return;
-    }
-    labelColor_ = c;
-    emit labelColorChanged();
     update();
 }
 
@@ -281,21 +262,6 @@ void Axis::setHoverColor(const QColor& c)
     }
     hoverColor_ = c;
     emit hoverColorChanged();
-    update();
-}
-
-qreal Axis::labelPadding() const
-{
-    return labelPadding_;
-}
-
-void Axis::setLabelPadding(const qreal padding)
-{
-    if (nearlyEqual(labelPadding_, padding)) {
-        return;
-    }
-    labelPadding_ = padding;
-    emit labelPaddingChanged();
     update();
 }
 
@@ -766,6 +732,7 @@ void Axis::componentComplete()
     QQuickPaintedItem::componentComplete();
     // QML assigns autoRescale and the declared ranges in no guaranteed order; fit once all are set.
     autoRescaleToData();
+    createLabelItem();
 }
 
 qreal Axis::valueResolution(const qreal value, const qreal length) const
@@ -786,44 +753,97 @@ qreal Axis::valueResolution(const qreal value, const qreal length) const
     return std::pow(10.0, std::floor(std::log10(perPixel)) - 1.0);
 }
 
+qreal Axis::defaultLabelRotation() const
+{
+    constexpr auto kVerticalLabelRotation = qreal{90.0};
+    if (orientation_ == Qt::Horizontal) {
+        return 0.0;
+    }
+    return side_ == Left ? -kVerticalLabelRotation : kVerticalLabelRotation;
+}
+
 void Axis::paintLabel(QPainter* painter, const QRectF& r, const qreal axisX, const qreal axisY) const
 {
-    if (label_.isEmpty()) {
+    const auto text = label_->text();
+    if (text.isEmpty() || labelItem_) {
         return;
     }
-    painter->save();
-    painter->setFont(labelFont_);
-    const auto labelColor = labelColor_.isValid() ? labelColor_ : baselineColor_;
-    painter->setPen(hovered_ ? hoverColor_ : labelColor);
+    const auto font = label_->font();
+    const auto textSize = QFontMetricsF(font, painter->device()).size(0, text);
+    auto params = Internal::AxisLabelLayoutParams{};
+    params.dataRect = r;
     if (orientation_ == Qt::Horizontal) {
-        if (side_ == Bottom) {
-            const auto titleRect = QRectF(r.x(), axisY + labelPadding_, r.width(), r.height() - (axisY + labelPadding_));
-            painter->drawText(titleRect, Qt::AlignTop | Qt::AlignHCenter, label_);
-        } else { // Top
-            const auto titleRect = QRectF(r.x(), r.y(), r.width(), axisY - labelPadding_);
-            painter->drawText(titleRect, Qt::AlignBottom | Qt::AlignHCenter, label_);
-        }
+        params.baseline = axisY;
+        params.outward = side_ == Bottom ? Qt::BottomEdge : Qt::TopEdge;
     } else {
-        const auto fm = painter->fontMetrics();
-        const auto titleLineHeight = static_cast<qreal>(fm.height());
-        const auto titleLineHalfHeight = titleLineHeight / 2.0;
-        if (side_ == Left) {
-            painter->save();
-            painter->translate(axisX - labelPadding_ - titleLineHalfHeight, r.y() + r.height() / 2);
-            painter->rotate(-90);
-            const auto titleRect = QRectF(-r.height() / 2, -titleLineHalfHeight, r.height(), titleLineHeight);
-            painter->drawText(titleRect, Qt::AlignCenter, label_);
-            painter->restore();
-        } else { // Right
-            painter->save();
-            painter->translate(axisX + labelPadding_ + titleLineHalfHeight, r.y() + r.height() / 2);
-            painter->rotate(90);
-            const auto titleRect = QRectF(-r.height() / 2, -titleLineHalfHeight, r.height(), titleLineHeight);
-            painter->drawText(titleRect, Qt::AlignCenter, label_);
-            painter->restore();
-        }
+        params.baseline = axisX;
+        params.outward = side_ == Left ? Qt::LeftEdge : Qt::RightEdge;
     }
+    params.alongFraction = alignmentFraction(label_->alignment());
+    params.textSize = textSize;
+    params.rotation = label_->rotation();
+    params.padding = label_->padding();
+    params.offset = label_->offset();
+
+    painter->save();
+    painter->setFont(font);
+    const auto labelColor = label_->color().isValid() ? label_->color() : baselineColor_;
+    painter->setPen(hovered_ ? hoverColor_ : labelColor);
+    painter->translate(Internal::axisLabelCenter(params));
+    painter->rotate(params.rotation);
+    const auto textRect = QRectF(QPointF{-textSize.width() / 2.0, -textSize.height() / 2.0}, textSize);
+    painter->drawText(textRect, Qt::AlignCenter, text);
     painter->restore();
+}
+
+void Axis::createLabelItem()
+{
+    if (labelItem_) {
+        // Unparenting would re-evaluate the delegate's parent bindings against null.
+        labelItem_->setVisible(false);
+        labelItem_->deleteLater();
+        labelItem_ = nullptr;
+    }
+    auto* delegate = label_->delegate();
+    if (!delegate) {
+        return;
+    }
+    auto* context = delegate->creationContext();
+    if (!context) {
+        context = qmlContext(this);
+    }
+    if (!context) {
+        qCWarning(lcQAccelPlot) << "Axis label.delegate needs a QML context";
+        return;
+    }
+    // Passing the parent up front lets the delegate's anchors and bindings see it on first evaluation.
+    auto* object = delegate->createWithInitialProperties({{QStringLiteral("parent"), QVariant::fromValue<QObject*>(this)}}, context);
+    auto* item = qobject_cast<QQuickItem*>(object);
+    if (!item) {
+        qCWarning(lcQAccelPlot) << "Axis label.delegate must create an Item:" << delegate->errorString();
+        delete object;
+        return;
+    }
+    item->setParent(this);
+    labelItem_ = item;
+}
+
+void Axis::connectLabel()
+{
+    const auto repaint = [this]() { update(); };
+    connect(label_, &AxisLabel::textChanged, this, repaint);
+    connect(label_, &AxisLabel::fontChanged, this, repaint);
+    connect(label_, &AxisLabel::colorChanged, this, repaint);
+    connect(label_, &AxisLabel::paddingChanged, this, repaint);
+    connect(label_, &AxisLabel::alignmentChanged, this, repaint);
+    connect(label_, &AxisLabel::rotationChanged, this, repaint);
+    connect(label_, &AxisLabel::offsetChanged, this, repaint);
+    connect(label_, &AxisLabel::delegateChanged, this, [this]() {
+        if (isComponentComplete()) {
+            createLabelItem();
+        }
+        update();
+    });
 }
 
 void Axis::invalidateTicks()

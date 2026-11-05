@@ -6,6 +6,7 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #include "HoverEvents.hpp"
+#include "QAccelPlot/axis/AxisLabel.hpp"
 #include "QAccelPlot/axis/AxisTickPainter.hpp"
 #include "QAccelPlot/formatters/TextTickLabelFormatter.hpp"
 #include "QAccelPlot/formatters/TickLabelFormatter.hpp"
@@ -733,8 +734,8 @@ void TestAxisTickPainter::axis_paintsTitleOnEverySide()
     axis.setSize(axis.orientation() == Qt::Horizontal ? QSizeF{200, 80} : QSizeF{80, 200});
     axis.ticker()->setTickCount(0);
     axis.setBaselineColor(Qt::green);
-    axis.setLabel(QStringLiteral("Title"));
-    axis.setLabelColor(titleColor);
+    axis.label()->setText(QStringLiteral("Title"));
+    axis.label()->setColor(titleColor);
     axis.setHoverColor(hoverColor);
     auto hoveredSpy = QSignalSpy{&axis, &QAccelPlot::Axis::hoveredChanged};
 

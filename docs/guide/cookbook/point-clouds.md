@@ -112,7 +112,7 @@ QAccelPlot.Plot {
 
     QAccelPlot.ColorBar {
         series: cloud
-        label: "Intensity"
+        label.text: "Intensity"
         x: plot.plotRect.left + 8
         y: plot.plotRect.top + 8
     }

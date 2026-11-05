@@ -5,5 +5,6 @@
 # This file is also available under a separate commercial license.
 # See COMMERCIAL-LICENSING.md for contact information.
 #
+add_subdirectory(axis_labels)
 add_subdirectory(multiple_axes)
 add_subdirectory(tick_formats)

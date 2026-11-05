@@ -21,15 +21,15 @@ QAccelPlot.Plot {
     xAxis: ExampleAxis {
         viewportMin: 0
         viewportMax: 1000
-        label: "Sample domain"
+        label.text: "Sample domain"
     }
 
     yAxis: ExampleAxis {
         viewportMin: -10
         viewportMax: 10
-        labelPadding: 40
+        label.text: "Amplitude"
+        label.padding: 40
         layoutSize: 60
-        label: "Amplitude"
     }
 
     // The curves share the wave: each draws one stretch of it.

@@ -1,5 +1,5 @@
 ---
-description: "QAccelPlot cookbook — recipes for static plots, real-time scrolling data, axis formats, multiple axes, styling, annotations, data inspection, point clouds, heatmaps, rectangle zoom, bar charts, histograms, bands, error bars, background data production, and exporting images."
+description: "QAccelPlot cookbook — recipes for static plots, real-time scrolling data, axis formats, axis labels, multiple axes, styling, annotations, data inspection, point clouds, heatmaps, rectangle zoom, bar charts, histograms, bands, error bars, background data production, and exporting images."
 ---
 
 <!--
@@ -16,6 +16,7 @@ Each recipe links to a complete runnable example.
 | [Basic static plot](basic-plot.md) | Axes, several curves, markers, and a legend |
 | [Real-time scrolling data](realtime.md) | A fixed window updated once per rendered frame, with dropouts as gaps |
 | [Axis formats](axis-formats.md) | Date/time, categories, logarithmic scales, and custom labels |
+| [Axis labels](axis-labels.md) | Label alignment, rotation, padding, and custom label items |
 | [Multiple axes](multiple-axes.md) | Secondary scales and signals with different domains |
 | [Styling and transitions](styling.md) | Dashes, markers, gradients, fills, and animated updates |
 | [Annotations and tools](annotations.md) | Data-attached labels, regions, measurement tools, and mouse handling |

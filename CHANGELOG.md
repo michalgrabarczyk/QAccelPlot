@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added
+
+- Axis label placement: `label.alignment`, `label.rotation`, and
+  `label.offset` move the painted axis title, and `label.delegate` replaces it
+  with a custom QML item. Includes an Axis Labels example.
+
+### Changed
+
+- `Axis.label` and `ColorBar.label` are grouped properties. Use `label.text`,
+  `label.font`, `label.color`, and `label.padding` instead of `label`,
+  `labelFont`, `labelColor`, and `labelPadding`. In C++, `label()` returns the
+  group, for example `axis->label()->setText()` with `AxisLabel.hpp` included.
+
 ## [0.5.0] — 2026-11-01
 
 ### Added

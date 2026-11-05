@@ -68,7 +68,7 @@ Item {
             xAxis: ExampleAxis {
                 viewportMin: root.horizontal ? 0 : -0.5
                 viewportMax: root.horizontal ? 50 : 3.5
-                label: root.horizontal ? "Height (cm)" : ""
+                label.text: root.horizontal ? "Height (cm)" : ""
                 ticker.tickCount: root.horizontal ? 11 : 4
                 ticker.subtickCount: 0
                 ticker.tickLabelFormatter: root.horizontal ? heightLabels : weekLabels
@@ -77,9 +77,9 @@ Item {
             yAxis: ExampleAxis {
                 viewportMin: root.horizontal ? -0.5 : 0
                 viewportMax: root.horizontal ? 3.5 : 50
-                labelPadding: 40
+                label.text: root.horizontal ? "" : "Height (cm)"
+                label.padding: 40
                 layoutSize: 70
-                label: root.horizontal ? "" : "Height (cm)"
                 ticker.tickCount: root.horizontal ? 4 : 11
                 ticker.subtickCount: 0
                 ticker.tickLabelFormatter: root.horizontal ? weekLabels : heightLabels

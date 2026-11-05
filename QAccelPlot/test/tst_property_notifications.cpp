@@ -8,8 +8,10 @@
 #include "QAccelPlot/PlotView.hpp"
 #include "QAccelPlot/annotations/DataAnchor.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/axis/AxisLabel.hpp"
 #include "QAccelPlot/axis/AxisTicker.hpp"
 #include "QAccelPlot/axis/ColorBar.hpp"
+#include "QAccelPlot/axis/TextLabel.hpp"
 #include "QAccelPlot/effects/Colormap.hpp"
 #include "QAccelPlot/effects/GradientFill.hpp"
 #include "QAccelPlot/effects/GradientStroke.hpp"
@@ -48,6 +50,7 @@ const std::map<QString, Factory>& factories()
 {
     static const auto instances = std::map<QString, Factory>{
         {QStringLiteral("Axis"), make<Axis>()},
+        {QStringLiteral("AxisLabel"), make<AxisLabel>()},
         {QStringLiteral("BandEdges"), make<BandEdges>()},
         {QStringLiteral("BandSeries"), make<BandSeries>()},
         {QStringLiteral("Category"), make<Category>()},
@@ -65,6 +68,7 @@ const std::map<QString, Factory>& factories()
         {QStringLiteral("MorphTransition"), make<MorphTransition>()},
         {QStringLiteral("PlotView"), make<PlotView>()},
         {QStringLiteral("RectangleSeries"), make<RectangleSeries>()},
+        {QStringLiteral("TextLabel"), make<TextLabel>()},
         {QStringLiteral("TextTickLabelFormatter"), make<TextTickLabelFormatter>()},
     };
     return instances;
@@ -90,28 +94,33 @@ void PropertyNotificationsTest::writeNotifiesOnceAndRoundTrips_data()
         QTest::addRow("%s.%s", type, property) << QString::fromLatin1(type) << QByteArray{property} << value;
     };
 
-    row("Axis", "label", QStringLiteral("Time"));
-    row("Axis", "labelFont", QFont{QStringLiteral("Arial"), 17});
-    row("Axis", "labelColor", QColor{Qt::cyan});
     row("Axis", "baselineColor", QColor{Qt::magenta});
     row("Axis", "hoverColor", QColor{Qt::yellow});
-    row("Axis", "labelPadding", 13.0);
     row("Axis", "baselinePadding", 9.0);
+
+    row("AxisLabel", "text", QStringLiteral("Time"));
+    row("AxisLabel", "font", QFont{QStringLiteral("Arial"), 17});
+    row("AxisLabel", "color", QColor{Qt::cyan});
+    row("AxisLabel", "padding", 13.0);
+    row("AxisLabel", "alignment", QVariant::fromValue(Axis::End));
+    row("AxisLabel", "rotation", 30.0);
+    row("AxisLabel", "offset", QPointF{3.0, -4.0});
 
     row("AxisTicker", "subtickLengthIn", 7.0);
     row("AxisTicker", "subtickLengthOut", 6.0);
     row("AxisTicker", "subtickColor", QColor{Qt::darkRed});
     row("AxisTicker", "subtickWidth", 3.0);
 
+    row("TextLabel", "text", QStringLiteral("Intensity"));
+    row("TextLabel", "font", QFont{QStringLiteral("Arial"), 17});
+    row("TextLabel", "color", QColor{Qt::cyan});
+    row("TextLabel", "padding", 9.0);
+
     row("Category", "value", 3);
     row("Category", "name", QStringLiteral("Idle"));
     row("Category", "color", QColor{Qt::gray});
 
     row("ColorBar", "orientation", QVariant::fromValue(Qt::Horizontal));
-    row("ColorBar", "label", QStringLiteral("Intensity"));
-    row("ColorBar", "labelFont", QFont{QStringLiteral("Arial"), 17});
-    row("ColorBar", "labelColor", QColor{Qt::cyan});
-    row("ColorBar", "labelPadding", 9.0);
     row("ColorBar", "barThickness", 20.0);
     row("ColorBar", "tickLabelWidth", 30.0);
     row("ColorBar", "interactive", true);

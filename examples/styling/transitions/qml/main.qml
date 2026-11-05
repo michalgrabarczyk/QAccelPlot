@@ -118,15 +118,15 @@ Window {
             xAxis: ExampleAxis {
                 viewportMin: 0
                 viewportMax: 8
-                label: "x"
+                label.text: "x"
             }
 
             yAxis: ExampleAxis {
                 viewportMin: -1.2
                 viewportMax: 1.2
-                labelPadding: 40
+                label.text: "Value"
+                label.padding: 40
                 layoutSize: 60
-                label: "Value"
             }
 
             QAccelPlot.LineCurve {

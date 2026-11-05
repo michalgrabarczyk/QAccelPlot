@@ -111,15 +111,15 @@ Window {
                 xAxis: ExampleAxis {
                     viewportMin: -3
                     viewportMax: 3
-                    label: "Sensor noise (mV), equal bins"
+                    label.text: "Sensor noise (mV), equal bins"
                 }
 
                 yAxis: ExampleAxis {
                     viewportMin: 0
                     viewportMax: 1.1 * window.largest(window.noiseHistogram.values) || 1
                     layoutSize: 70
-                    labelPadding: 50
-                    label: "Count"
+                    label.text: "Count"
+                    label.padding: 50
                 }
 
                 QAccelPlot.BarSeries {
@@ -151,15 +151,15 @@ Window {
                     logScale: true
                     viewportMin: 1
                     viewportMax: 10000
-                    label: "Request latency (ms), " + (window.tickBins ? "bins on the axis ticks" : "logarithmic bins")
+                    label.text: "Request latency (ms), " + (window.tickBins ? "bins on the axis ticks" : "logarithmic bins")
                 }
 
                 yAxis: ExampleAxis {
                     viewportMin: 0
                     viewportMax: 1.1 * window.largest(window.latencyHistogram.values) || 1
                     layoutSize: 70
-                    labelPadding: 50
-                    label: window.tickBins ? "Density (1/ms)" : "Count"
+                    label.text: window.tickBins ? "Density (1/ms)" : "Count"
+                    label.padding: 50
                 }
 
                 QAccelPlot.BarSeries {
