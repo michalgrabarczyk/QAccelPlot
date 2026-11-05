@@ -87,15 +87,15 @@ Item {
             xAxis: ExampleAxis {
                 viewportMin: 0
                 viewportMax: 60
-                label: "Month"
+                label.text: "Month"
             }
 
             yAxis: ExampleAxis {
                 viewportMin: 80
                 viewportMax: 280
-                labelPadding: 40
+                label.text: "Demand (units)"
+                label.padding: 40
                 layoutSize: 60
-                label: "Demand (units)"
             }
 
             QAccelPlot.BandSeries {

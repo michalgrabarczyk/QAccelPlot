@@ -46,10 +46,10 @@ PlotView {
 
     property alias fillStop: fillStop
 
-    xAxis: Axis { label: "X"; viewportMin: 0; viewportMax: 10 }
-    yAxis: Axis { label: "Y"; viewportMin: 0; viewportMax: 10 }
-    x2Axis: Axis { label: "X2"; viewportMin: 0; viewportMax: 10 }
-    y2Axis: Axis { label: "Y2"; viewportMin: 0; viewportMax: 10 }
+    xAxis: Axis { label.text: "X"; viewportMin: 0; viewportMax: 10 }
+    yAxis: Axis { label.text: "Y"; viewportMin: 0; viewportMax: 10 }
+    x2Axis: Axis { label.text: "X2"; viewportMin: 0; viewportMax: 10 }
+    y2Axis: Axis { label.text: "Y2"; viewportMin: 0; viewportMax: 10 }
 
     LineCurve {
         xAxis: plot.xAxis

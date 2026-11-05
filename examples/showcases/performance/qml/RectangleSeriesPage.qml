@@ -36,15 +36,15 @@ QAccelPlot.Plot {
     xAxis: ExampleAxis {
         viewportMin: 0
         viewportMax: 160
-        label: "x"
+        label.text: "x"
     }
 
     yAxis: ExampleAxis {
         viewportMin: 0
         viewportMax: 100
-        labelPadding: 40
+        label.text: "y"
+        label.padding: 40
         layoutSize: 60
-        label: "y"
     }
 
     // The series share the tile grid: each draws a run of its rows.

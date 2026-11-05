@@ -62,16 +62,16 @@ Window {
             xAxis: ExampleAxis {
                 viewportMin: -20
                 viewportMax: 0
-                label: "Time before present (s)"
+                label.text: "Time before present (s)"
                 ticker.tickCount: 6
             }
 
             yAxis: ExampleAxis {
                 viewportMin: -2.5
                 viewportMax: 2.5
-                labelPadding: 40
+                label.text: "Acceleration (g)"
+                label.padding: 40
                 layoutSize: 60
-                label: "Acceleration (g)"
             }
 
             QAccelPlot.LineCurve {

@@ -48,9 +48,9 @@ Item {
             yAxis: ExampleAxis {
                 viewportMin: -0.5
                 viewportMax: 1.2
-                labelPadding: 40
+                label.text: "Lead I (mV)"
+                label.padding: 40
                 layoutSize: 60
-                label: "Lead I (mV)"
                 ticker.tickCount: 4
             }
 
@@ -80,9 +80,9 @@ Item {
             yAxis: ExampleAxis {
                 viewportMin: -0.7
                 viewportMax: 1.5
-                labelPadding: 40
+                label.text: "Lead II (mV)"
+                label.padding: 40
                 layoutSize: 60
-                label: "Lead II (mV)"
                 ticker.tickCount: 4
             }
 
@@ -112,16 +112,16 @@ Item {
             xAxis: ExampleAxis {
                 viewportMin: 0
                 viewportMax: 10
-                label: "Shared time (s) — pan or zoom here"
+                label.text: "Shared time (s) — pan or zoom here"
                 baselineWidth: 2
             }
 
             yAxis: ExampleAxis {
                 viewportMin: -1
                 viewportMax: 1
-                labelPadding: 40
+                label.text: "Respiration"
+                label.padding: 40
                 layoutSize: 60
-                label: "Respiration"
                 ticker.tickCount: 4
             }
 

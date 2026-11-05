@@ -34,7 +34,7 @@ Item {
             xAxis: ExampleAxis {
                 viewportMin: 0
                 viewportMax: 6
-                label: "Day of week"
+                label.text: "Day of week"
                 ticker.tickCount: 6
                 ticker.subtickCount: 0
                 ticker.tickLabelFormatter: QAccelPlot.TextTickLabelFormatter {
@@ -45,9 +45,9 @@ Item {
             yAxis: ExampleAxis {
                 viewportMin: 20
                 viewportMax: 55
-                labelPadding: 40
+                label.text: "Electricity use (kWh)"
+                label.padding: 40
                 layoutSize: 60
-                label: "Electricity use (kWh)"
             }
 
             QAccelPlot.LineCurve {

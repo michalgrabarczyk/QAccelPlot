@@ -36,7 +36,7 @@ Window {
     component ThemedAxis: QAccelPlot.Axis {
         baselineColor: colorPalette.axisLine
         hoverColor: colorPalette.hover
-        labelColor: colorPalette.axisLabel
+        label.color: colorPalette.axisLabel
         ticker.tickColor: colorPalette.tick
         ticker.subtickColor: colorPalette.subtick
         ticker.tickLabelColor: colorPalette.axisTickLabel
@@ -82,15 +82,15 @@ Window {
             xAxis: ThemedAxis {
                 viewportMin: 0
                 viewportMax: 12
-                label: "Month"
+                label.text: "Month"
             }
 
             yAxis: ThemedAxis {
                 viewportMin: -5
                 viewportMax: 30
-                labelPadding: 40
+                label.text: "Temperature (°C)"
+                label.padding: 40
                 layoutSize: 60
-                label: "Temperature (°C)"
             }
 
             QAccelPlot.LineCurve {

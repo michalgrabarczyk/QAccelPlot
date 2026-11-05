@@ -37,15 +37,15 @@ QAccelPlot.Plot {
     xAxis: ExampleAxis {
         viewportMin: -0.5
         viewportMax: plot.settings.count - 0.5
-        label: "Bar"
+        label.text: "Bar"
     }
 
     yAxis: ExampleAxis {
         viewportMin: 0
         viewportMax: 1
-        labelPadding: 40
+        label.text: "Value"
+        label.padding: 40
         layoutSize: 60
-        label: "Value"
     }
 
     // The series share the bars: each draws one run of them.

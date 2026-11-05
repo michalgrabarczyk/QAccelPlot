@@ -113,13 +113,13 @@ Item {
             xAxis: ExampleAxis {
                 viewportMin: Math.max(0, root.time - root.windowSeconds)
                 viewportMax: Math.max(root.windowSeconds, root.time)
-                label: "Time (s)"
+                label.text: "Time (s)"
             }
 
             yAxis: ExampleAxis {
                 viewportMin: 16
                 viewportMax: 27
-                label: "Temperature (°C)"
+                label.text: "Temperature (°C)"
             }
 
             QAccelPlot.LineCurve {

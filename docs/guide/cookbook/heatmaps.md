@@ -116,7 +116,7 @@ A [`ColorBar`][color-bar] keys a heatmap as it keys a point cloud; see
 ```qml
 QAccelPlot.ColorBar {
     series: heatmap
-    label: "Amplitude"
+    label.text: "Amplitude"
     interactive: true
 }
 ```

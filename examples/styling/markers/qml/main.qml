@@ -194,15 +194,15 @@ Window {
                 xAxis: ExampleAxis {
                     viewportMin: -8
                     viewportMax: 8
-                    label: "X"
+                    label.text: "X"
                 }
 
                 yAxis: ExampleAxis {
                     viewportMin: -5
                     viewportMax: 5
-                    labelPadding: 40
+                    label.text: "Y"
+                    label.padding: 40
                     layoutSize: 60
-                    label: "Y"
                 }
 
                 QAccelPlot.LineCurve {
@@ -250,8 +250,8 @@ Window {
                     viewportMin: -0.6
                     viewportMax: window.shapes.length - 0.4
                     layoutSize: 118
-                    labelPadding: 100
-                    label: "Shape"
+                    label.text: "Shape"
+                    label.padding: 100
                     // One tick per shape: range / tickCount must stay at or below 1.
                     ticker.tickCount: window.shapes.length + 1
                     ticker.subtickCount: 0

@@ -200,8 +200,8 @@ PlotView {
     id: plot
     width: %1
     height: %2
-    xAxis: Axis { label: "X"; viewportMin: 0; viewportMax: 1 }
-    yAxis: Axis { label: "Y"; viewportMin: -2; viewportMax: 2 }
+    xAxis: Axis { label.text: "X"; viewportMin: 0; viewportMax: 1 }
+    yAxis: Axis { label.text: "Y"; viewportMin: -2; viewportMax: 2 }
 %3}
 )")
         .arg(kWindowWidth)

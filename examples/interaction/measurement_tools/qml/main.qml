@@ -226,16 +226,16 @@ Window {
             xAxis: ExampleAxis {
                 viewportMin: 0
                 viewportMax: 1000
-                label: "Distance (m)"
+                label.text: "Distance (m)"
                 baselineWidth: 2
             }
 
             yAxis: ExampleAxis {
                 viewportMin: 0
                 viewportMax: 80
-                labelPadding: 40
+                label.text: "Elevation (m)"
+                label.padding: 40
                 layoutSize: 60
-                label: "Elevation (m)"
                 baselineWidth: 2
             }
 

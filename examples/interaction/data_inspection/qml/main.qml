@@ -98,13 +98,13 @@ Window {
             xAxis: ExampleAxis {
                 viewportMin: 0
                 viewportMax: 50
-                label: "Time (s)"
+                label.text: "Time (s)"
             }
 
             yAxis: ExampleAxis {
                 viewportMin: -2
                 viewportMax: 5
-                label: "Amplitude"
+                label.text: "Amplitude"
             }
 
             QAccelPlot.LineCurve {

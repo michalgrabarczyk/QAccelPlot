@@ -212,14 +212,14 @@ Window {
         xAxis: QAccelPlot.Axis {
             viewportMin: 0
             viewportMax: 10
-            label: "Time (s)"
+            label.text: "Time (s)"
         }
 
         yAxis: QAccelPlot.Axis {
             viewportMin: -1.2
             viewportMax: 1.2
-            label: "Amplitude"
-            labelPadding: 34
+            label.text: "Amplitude"
+            label.padding: 34
         }
 
         QAccelPlot.LineCurve {
@@ -818,6 +818,7 @@ Each recipe links to a complete runnable example.
 | [Basic static plot](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/basic-plot/) | Axes, several curves, markers, and a legend |
 | [Real-time scrolling data](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/realtime/) | A fixed window updated once per rendered frame, with dropouts as gaps |
 | [Axis formats](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/axis-formats/) | Date/time, categories, logarithmic scales, and custom labels |
+| [Axis labels](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/axis-labels/) | Label alignment, rotation, padding, and custom label items |
 | [Multiple axes](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/multiple-axes/) | Secondary scales and signals with different domains |
 | [Styling and transitions](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/styling/) | Dashes, markers, gradients, fills, and animated updates |
 | [Annotations and tools](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/annotations/) | Data-attached labels, regions, measurement tools, and mouse handling |
@@ -855,13 +856,13 @@ QAccelPlot.Plot {
     xAxis: QAccelPlot.Axis {
         viewportMin: 0
         viewportMax: 24
-        label: "Time of day (h)"
+        label.text: "Time of day (h)"
     }
 
     yAxis: QAccelPlot.Axis {
         viewportMin: 16
         viewportMax: 27
-        label: "Temperature (°C)"
+        label.text: "Temperature (°C)"
     }
 
     QAccelPlot.LineCurve {
@@ -928,13 +929,13 @@ QAccelPlot.Plot {
     xAxis: QAccelPlot.Axis {
         viewportMin: -20
         viewportMax: 0
-        label: "Time before present (s)"
+        label.text: "Time before present (s)"
     }
 
     yAxis: QAccelPlot.Axis {
         viewportMin: -2.5
         viewportMax: 2.5
-        label: "Acceleration (g)"
+        label.text: "Acceleration (g)"
     }
 
     QAccelPlot.LineCurve {
@@ -1085,7 +1086,7 @@ cheap:
 yAxis: QAccelPlot.Axis {
     viewportMin: 18
     viewportMax: 26
-    label: "Temperature"
+    label.text: "Temperature"
 
     ticker.tickLabelFormatter: QAccelPlot.NumericTickLabelFormatter {
         tickLabel: function (temperature) {
@@ -1117,12 +1118,12 @@ horizontal axis or the width of a vertical axis:
 ```qml
 yAxis: QAccelPlot.Axis {
     layoutSize: 90
-    label: "Temperature"
+    label.text: "Temperature"
 }
 
 xAxis: QAccelPlot.Axis {
     layoutSize: 70
-    label: "Time"
+    label.text: "Time"
 }
 ```
 
@@ -1145,7 +1146,7 @@ QAccelPlot.Plot {
     y2Axis: QAccelPlot.Axis {
         viewportMin: 0
         viewportMax: 100
-        label: "Load (%)"
+        label.text: "Load (%)"
     }
 
     QAccelPlot.LineCurve {
@@ -1177,7 +1178,7 @@ QAccelPlot.Plot {
     xAxis: QAccelPlot.Axis {
         viewportMin: 0
         viewportMax: 10
-        label: "Slow time (s)"
+        label.text: "Slow time (s)"
     }
 
     extraAxes: [
@@ -1187,7 +1188,7 @@ QAccelPlot.Plot {
             side: QAccelPlot.Axis.Bottom
             viewportMin: 0
             viewportMax: 0.5
-            label: "Fast time (s)"
+            label.text: "Fast time (s)"
         }
     ]
 
@@ -1931,7 +1932,7 @@ QAccelPlot.Plot {
 
     QAccelPlot.ColorBar {
         series: cloud
-        label: "Intensity"
+        label.text: "Intensity"
         x: plot.plotRect.left + 8
         y: plot.plotRect.top + 8
     }
@@ -2143,7 +2144,7 @@ A [`ColorBar`][color-bar] keys a heatmap as it keys a point cloud; see
 ```qml
 QAccelPlot.ColorBar {
     series: heatmap
-    label: "Amplitude"
+    label.text: "Amplitude"
     interactive: true
 }
 ```

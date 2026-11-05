@@ -222,15 +222,15 @@ Window {
             viewportMax: equalAspectPlot.span * equalAspectPlot.aspect
             dataMin: -equalAspectPlot.span * equalAspectPlot.aspect
             dataMax: equalAspectPlot.span * equalAspectPlot.aspect
-            label: equalAspectPlot.xLabel
+            label.text: equalAspectPlot.xLabel
         }
 
         yAxis: ExampleAxis {
             viewportMin: -equalAspectPlot.span
             viewportMax: equalAspectPlot.span
-            labelPadding: 34
+            label.text: equalAspectPlot.yLabel
+            label.padding: 34
             layoutSize: 54
-            label: equalAspectPlot.yLabel
         }
     }
 
@@ -385,15 +385,15 @@ Window {
                     xAxis: ExampleAxis {
                         viewportMin: -1.2
                         viewportMax: 1.2
-                        label: "Channel X (V)"
+                        label.text: "Channel X (V)"
                     }
 
                     yAxis: ExampleAxis {
                         viewportMin: -1.2
                         viewportMax: 1.2
-                        labelPadding: 34
+                        label.text: "Channel Y (V)"
+                        label.padding: 34
                         layoutSize: 54
-                        label: "Channel Y (V)"
                     }
 
                     QAccelPlot.LineCurve {
@@ -535,15 +535,15 @@ Window {
                     xAxis: ExampleAxis {
                         viewportMin: -4
                         viewportMax: 4
-                        label: "Position x"
+                        label.text: "Position x"
                     }
 
                     yAxis: ExampleAxis {
                         viewportMin: -window.vanDerPolYSpan
                         viewportMax: window.vanDerPolYSpan
-                        labelPadding: 34
+                        label.text: "Velocity dx/dt"
+                        label.padding: 34
                         layoutSize: 54
-                        label: "Velocity dx/dt"
                     }
 
                     onMouseDoubleClicked: event => {

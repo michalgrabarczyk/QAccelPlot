@@ -23,13 +23,13 @@ QAccelPlot.Plot {
     xAxis: QAccelPlot.Axis {
         viewportMin: -20
         viewportMax: 0
-        label: "Time before present (s)"
+        label.text: "Time before present (s)"
     }
 
     yAxis: QAccelPlot.Axis {
         viewportMin: -2.5
         viewportMax: 2.5
-        label: "Acceleration (g)"
+        label.text: "Acceleration (g)"
     }
 
     QAccelPlot.LineCurve {

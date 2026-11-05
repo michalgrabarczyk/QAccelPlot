@@ -15,10 +15,15 @@
 #include <QColor>
 #include <QFont>
 #include <QList>
+#include <QPointer>
 #include <QQuickPaintedItem>
+
+// AxisLabel uses Axis::LabelAlignment, so this header only declares it.
+Q_MOC_INCLUDE("QAccelPlot/axis/AxisLabel.hpp")
 
 namespace QAccelPlot {
 
+class AxisLabel;
 class PlotSeries;
 
 /// \brief A visual axis item that maps a data-space range to pixel coordinates and renders tick marks and labels.
@@ -47,16 +52,12 @@ class Axis : public QQuickPaintedItem {
     Q_PROPERTY(qreal dataMax READ dataMax WRITE setDataMax NOTIFY dataMaxChanged)
     /// \brief Axis orientation: \c Qt.Horizontal or \c Qt.Vertical.
     Q_PROPERTY(Qt::Orientation orientation READ orientation WRITE setOrientation NOTIFY orientationChanged)
-    /// \brief Optional axis label displayed alongside the axis line.
-    Q_PROPERTY(QString label READ label WRITE setLabel NOTIFY labelChanged)
-    /// \brief Font used to render the axis label text. Default: application default font.
-    Q_PROPERTY(QFont labelFont READ labelFont WRITE setLabelFont NOTIFY labelFontChanged)
+    /// \brief Read-only constant: axis title and its placement, e.g. <tt>label.text: "Time (s)"</tt>.
+    Q_PROPERTY(AxisLabel* label READ label CONSTANT)
     /// \brief Read-only: \c true while the mouse cursor is over the axis widget.
     Q_PROPERTY(bool hovered READ hovered NOTIFY hoveredChanged)
     /// \brief Color of the axis baseline. Default: \c Colors.dark.axisLine.
     Q_PROPERTY(QColor baselineColor READ baselineColor WRITE setBaselineColor NOTIFY baselineColorChanged)
-    /// \brief Optional axis-label color. When invalid, the baselineColor is used.
-    Q_PROPERTY(QColor labelColor READ labelColor WRITE setLabelColor NOTIFY labelColorChanged)
     /// \brief Width in pixels of the axis baseline. Default: 2.
     Q_PROPERTY(qreal baselineWidth READ baselineWidth WRITE setBaselineWidth NOTIFY baselineWidthChanged)
     /// \brief Tick and label color applied when the axis is hovered. Default: \c Colors.dark.hover.
@@ -64,8 +65,6 @@ class Axis : public QQuickPaintedItem {
     /// \brief Side of the plot on which the axis is drawn: Left, Top, Right, or Bottom. Assigned automatically for xAxis, yAxis, x2Axis,
     /// and y2Axis; set explicitly for an axis placed in extraAxes.
     Q_PROPERTY(Side side READ side WRITE setSide NOTIFY sideChanged)
-    /// \brief Pixels of padding between the baseline and the axis label. Default: 30.
-    Q_PROPERTY(qreal labelPadding READ labelPadding WRITE setLabelPadding NOTIFY labelPaddingChanged)
     /// \brief Pixels of padding between the plot area edge and the baseline. Default: 0.
     Q_PROPERTY(qreal baselinePadding READ baselinePadding WRITE setBaselinePadding NOTIFY baselinePaddingChanged)
     /// \brief Layout thickness in pixels: width for vertical axes and height for horizontal axes. Default: 50.
@@ -91,6 +90,14 @@ public:
     /// \brief Side of the plot on which the axis is positioned.
     enum Side { Left, Top, Right, Bottom };
     Q_ENUM(Side)
+
+    /// \brief Position of the axis label along the axis.
+    enum LabelAlignment {
+        Start,  ///< At the \c viewportMin end: left on horizontal axes, bottom on vertical axes.
+        Center, ///< Centered on the axis.
+        End     ///< At the \c viewportMax end: right on horizontal axes, top on vertical axes.
+    };
+    Q_ENUM(LabelAlignment)
 
     /// \brief Constructs an Axis with the given \a parent and initial \a side.
     explicit Axis(QQuickItem* parent = nullptr, Side side = Bottom);
@@ -125,15 +132,8 @@ public:
     /// \brief Sets the axis orientation to \a o.
     void setOrientation(Qt::Orientation o);
 
-    /// \brief Returns the axis label string.
-    QString label() const;
-    /// \brief Sets the axis label to \a t.
-    void setLabel(const QString& t);
-
-    /// \brief Returns the axis label font.
-    QFont labelFont() const;
-    /// \brief Sets the axis label font to \a f.
-    void setLabelFont(const QFont& f);
+    /// \brief Returns the axis title configuration object. Include \c AxisLabel.hpp to use it.
+    AxisLabel* label() const;
 
     /// \brief Returns the axis side.
     Side side() const;
@@ -148,11 +148,6 @@ public:
     /// \brief Sets the axis baseline color to \a c.
     void setBaselineColor(const QColor& c);
 
-    /// \brief Returns the axis-label color, or an invalid color when it follows baselineColor.
-    QColor labelColor() const;
-    /// \brief Sets the axis-label color to \a c. An invalid color restores the baselineColor fallback.
-    void setLabelColor(const QColor& c);
-
     /// \brief Returns the axis baseline width in pixels.
     qreal baselineWidth() const;
     /// \brief Sets the axis baseline width to \a width pixels. Negative values are clamped to zero.
@@ -162,11 +157,6 @@ public:
     QColor hoverColor() const;
     /// \brief Sets the hovered color to \a c.
     void setHoverColor(const QColor& c);
-
-    /// \brief Returns the padding between the baseline and the axis label in pixels.
-    qreal labelPadding() const;
-    /// \brief Sets the padding between the baseline and the axis label to \a padding pixels.
-    void setLabelPadding(qreal padding);
 
     /// \brief Returns the padding between the plot area edge and the baseline in pixels.
     qreal baselinePadding() const;
@@ -240,10 +230,6 @@ signals:
     void dataMaxChanged();
     /// \brief Emitted when the orientation property changes.
     void orientationChanged();
-    /// \brief Emitted when the label property changes.
-    void labelChanged();
-    /// \brief Emitted when the labelFont property changes.
-    void labelFontChanged();
     /// \brief Emitted when the hovered property changes.
     void hoveredChanged();
     /// \brief Emitted when either viewportMin or viewportMax changes.
@@ -251,16 +237,12 @@ signals:
 
     /// \brief Emitted when the baselineColor property changes.
     void baselineColorChanged();
-    /// \brief Emitted when the labelColor property changes.
-    void labelColorChanged();
     /// \brief Emitted when the baselineWidth property changes.
     void baselineWidthChanged();
     /// \brief Emitted when the hoverColor property changes.
     void hoverColorChanged();
     /// \brief Emitted when the side property changes.
     void sideChanged();
-    /// \brief Emitted when the labelPadding property changes.
-    void labelPaddingChanged();
     /// \brief Emitted when the baselinePadding property changes.
     void baselinePaddingChanged();
     /// \brief Emitted when the layoutSize property changes.
@@ -308,7 +290,10 @@ private:
     void setViewportRange(qreal min, qreal max);
     void autoRescaleToData();
     qreal valueResolution(qreal value, qreal length) const;
+    qreal defaultLabelRotation() const;
     void paintLabel(QPainter* painter, const QRectF& r, qreal axisX, qreal axisY) const;
+    void createLabelItem();
+    void connectLabel();
     void invalidateTicks();
 
     qreal viewportMin_{0.0};
@@ -321,16 +306,15 @@ private:
     // True when the data range came from the series rather than from the application.
     mutable bool dataRangeFromSeries_{false};
     QList<DataRangeSource> dataRangeSources_;
-    QString label_;
-    QFont labelFont_;
     bool hovered_{false};
     bool isDragging_{false};
     QPointF lastMousePos_;
     QColor baselineColor_{ColorPalette::dark().axisLine};
-    QColor labelColor_;
     qreal baselineWidth_{2.0};
     QColor hoverColor_{ColorPalette::dark().hover};
-    qreal labelPadding_{30.0};
+    AxisLabel* label_;
+    // Instance of the label delegate, if one is set.
+    QPointer<QQuickItem> labelItem_;
     qreal baselinePadding_{0.0};
     qreal layoutSize_{50.0};
     bool logScale_{false};

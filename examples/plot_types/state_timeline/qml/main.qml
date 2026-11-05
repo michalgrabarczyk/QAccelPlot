@@ -121,7 +121,7 @@ Window {
             xAxis: ExampleAxis {
                 viewportMin: window.timelineStart
                 viewportMax: window.timelineEnd
-                label: "Time"
+                label.text: "Time"
                 ticker.tickLabelFormatter: QAccelPlot.DateTimeTickLabelFormatter {
                     dateTimeFormat: "ddd d MMM"
                 }
@@ -130,9 +130,9 @@ Window {
             yAxis: ExampleAxis {
                 viewportMin: -0.5
                 viewportMax: window.machineNames.length - 0.5
-                labelPadding: 60
+                label.text: "Machine"
+                label.padding: 60
                 layoutSize: 80
-                label: "Machine"
                 ticker.tickCount: window.machineNames.length
                 ticker.subtickCount: 0
                 ticker.tickLabelFormatter: QAccelPlot.TextTickLabelFormatter {

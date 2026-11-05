@@ -117,7 +117,7 @@ DashboardPanel {
             viewportMin: 0
             viewportMax: panel.monitor.maxFrequencyHz
             layoutSize: 46
-            label: "Frequency (Hz)"
+            label.text: "Frequency (Hz)"
         }
 
         // As wide as the spectrum's level axis, so both plot areas line up.
@@ -126,8 +126,8 @@ DashboardPanel {
             viewportMin: -panel.monitor.windowSeconds
             viewportMax: 0
             layoutSize: 46
-            labelPadding: 36
-            label: "s"
+            label.text: "s"
+            label.padding: 36
         }
 
         onMouseDoubleClicked: event => {

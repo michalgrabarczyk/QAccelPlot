@@ -23,15 +23,15 @@ QAccelPlot.Plot {
     xAxis: ExampleAxis {
         viewportMin: 0
         viewportMax: plot.side
-        label: "frequency"
+        label.text: "frequency"
     }
 
     yAxis: ExampleAxis {
         viewportMin: 0
         viewportMax: plot.side
-        labelPadding: 40
+        label.text: "time"
+        label.padding: 40
         layoutSize: 60
-        label: "time"
     }
 
     QAccelPlot.Colormap {
@@ -79,8 +79,8 @@ QAccelPlot.Plot {
             series: plot.keySeries
             // Writes the shared colormap's range until "Auto color range" is next toggled.
             interactive: true
-            label: "level"
-            labelColor: QAccelPlot.Colors.dark.axisLabel
+            label.text: "level"
+            label.color: QAccelPlot.Colors.dark.axisLabel
             border.color: hovered ? QAccelPlot.Colors.dark.hover : QAccelPlot.Colors.dark.axisLine
             ticker.tickColor: QAccelPlot.Colors.dark.tick
             ticker.tickLabelColor: QAccelPlot.Colors.dark.axisTickLabel

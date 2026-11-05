@@ -63,7 +63,7 @@ Item {
                 id: wavelengthAxis
                 viewportMin: 400
                 viewportMax: 700
-                label: "Wavelength (nm)"
+                label.text: "Wavelength (nm)"
                 baselineColor: root.colorPalette.seriesPrimary
                 baselineWidth: 2
                 ticker.tickColor: root.colorPalette.seriesPrimary
@@ -72,9 +72,9 @@ Item {
             yAxis: ExampleAxis {
                 viewportMin: 0
                 viewportMax: 1.1
-                labelPadding: 40
+                label.text: "Relative intensity"
+                label.padding: 40
                 layoutSize: 60
-                label: "Relative intensity"
                 baselineWidth: 2
             }
 
@@ -89,7 +89,7 @@ Item {
                     dataMax: 700
                     orientation: Qt.Horizontal
                     side: QAccelPlot.Axis.Bottom
-                    label: "Frequency (THz)"
+                    label.text: "Frequency (THz)"
                     baselineColor: root.colorPalette.seriesCyan
                     baselineWidth: 2
                     ticker.tickColor: root.colorPalette.seriesCyan

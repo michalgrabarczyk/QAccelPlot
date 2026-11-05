@@ -22,12 +22,12 @@ QAccelPlot.Plot {
 
     xAxis: ExampleAxis {
         autoRescale: true
-        label: "Cells in view"
+        label.text: "Cells in view"
         ticker.subtickCount: 1
     }
 
     yAxis: ExampleAxis {
-        label: "Amplitude"
+        label.text: "Amplitude"
     }
 
     // Filled from C++ by VisibleHistogram.

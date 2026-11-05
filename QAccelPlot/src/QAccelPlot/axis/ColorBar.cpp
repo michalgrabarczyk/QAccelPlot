@@ -111,6 +111,10 @@ ColorBar::ColorBar(QQuickItem* parent)
     }
     connect(border_, &Border::colorChanged, this, [this]() { update(); });
     connect(border_, &Border::widthChanged, this, &ColorBar::invalidate);
+    connect(label_, &TextLabel::textChanged, this, &ColorBar::invalidate);
+    connect(label_, &TextLabel::fontChanged, this, &ColorBar::invalidate);
+    connect(label_, &TextLabel::paddingChanged, this, &ColorBar::invalidate);
+    connect(label_, &TextLabel::colorChanged, this, [this]() { update(); });
     invalidate();
 }
 
@@ -145,65 +149,9 @@ void ColorBar::setOrientation(const Qt::Orientation orientation)
     invalidate();
 }
 
-QString ColorBar::label() const
+TextLabel* ColorBar::label() const
 {
     return label_;
-}
-
-void ColorBar::setLabel(const QString& label)
-{
-    if (label_ == label) {
-        return;
-    }
-    label_ = label;
-    emit labelChanged();
-    invalidate();
-}
-
-QFont ColorBar::labelFont() const
-{
-    return labelFont_;
-}
-
-void ColorBar::setLabelFont(const QFont& font)
-{
-    if (labelFont_ == font) {
-        return;
-    }
-    labelFont_ = font;
-    emit labelFontChanged();
-    invalidate();
-}
-
-QColor ColorBar::labelColor() const
-{
-    return labelColor_;
-}
-
-void ColorBar::setLabelColor(const QColor& color)
-{
-    if (labelColor_ == color) {
-        return;
-    }
-    labelColor_ = color;
-    emit labelColorChanged();
-    update();
-}
-
-qreal ColorBar::labelPadding() const
-{
-    return labelPadding_;
-}
-
-void ColorBar::setLabelPadding(const qreal padding)
-{
-    const auto clampedPadding = std::max(qreal{0.0}, padding);
-    if (nearlyEqual(labelPadding_, clampedPadding)) {
-        return;
-    }
-    labelPadding_ = clampedPadding;
-    emit labelPaddingChanged();
-    invalidate();
 }
 
 qreal ColorBar::barThickness() const
@@ -517,8 +465,8 @@ void ColorBar::captureColormap()
 
 void ColorBar::updateImplicitSize()
 {
-    const auto titleExtent = label_.isEmpty() ? qreal{0.0} : labelPadding_ + titleThickness();
-    const auto thickness = std::ceil(titleOffset() - labelPadding_ + titleExtent);
+    const auto titleExtent = label_->text().isEmpty() ? qreal{0.0} : titlePadding() + titleThickness();
+    const auto thickness = std::ceil(titleOffset() - titlePadding() + titleExtent);
     if (orientation_ == Qt::Vertical) {
         setImplicitSize(thickness, kDefaultLength);
     } else {
@@ -535,7 +483,7 @@ ColorBar::Layout ColorBar::computeLayout() const
         layout.strip = QRectF{0.0, layout.endInset, barThickness_, length};
         layout.tickArea = QRectF{0.0, layout.endInset, width(), length};
         layout.title = QRectF{titleOffset(), layout.endInset, titleThickness(), length};
-        layout.tickClip = QRectF{0.0, 0.0, titleOffset() - labelPadding_, height()};
+        layout.tickClip = QRectF{0.0, 0.0, titleOffset() - titlePadding(), height()};
     } else {
         const auto length = std::max(qreal{0.0}, width() - 2.0 * layout.endInset);
         layout.strip = QRectF{layout.endInset, 0.0, length, barThickness_};
@@ -564,14 +512,19 @@ qreal ColorBar::tickLabelThickness() const
     return orientation_ == Qt::Vertical ? tickLabelWidth_ : tickLabelHeight();
 }
 
+qreal ColorBar::titlePadding() const
+{
+    return std::max(qreal{0.0}, label_->padding());
+}
+
 qreal ColorBar::titleThickness() const
 {
-    return std::ceil(QFontMetricsF{labelFont_}.height());
+    return std::ceil(QFontMetricsF{label_->font()}.height());
 }
 
 qreal ColorBar::titleOffset() const
 {
-    return barThickness_ + ticker_->tickLengthOut() + ticker_->tickLabelPadding() + tickLabelThickness() + labelPadding_;
+    return barThickness_ + ticker_->tickLengthOut() + ticker_->tickLabelPadding() + tickLabelThickness() + titlePadding();
 }
 
 void ColorBar::paintStrip(QPainter* painter) const
@@ -631,20 +584,20 @@ void ColorBar::paintTicks(QPainter* painter) const
 
 void ColorBar::paintTitle(QPainter* painter) const
 {
-    if (label_.isEmpty()) {
+    if (label_->text().isEmpty()) {
         return;
     }
     const auto& title = layout_.title;
     painter->save();
-    painter->setFont(labelFont_);
-    painter->setPen(labelColor_);
+    painter->setFont(label_->font());
+    painter->setPen(label_->color());
     if (orientation_ == Qt::Vertical) {
         // Reads top to bottom, like a right-side axis title.
         painter->translate(title.center());
         painter->rotate(90.0);
-        painter->drawText(QRectF{-title.height() / 2.0, -title.width() / 2.0, title.height(), title.width()}, Qt::AlignCenter, label_);
+        painter->drawText(QRectF{-title.height() / 2.0, -title.width() / 2.0, title.height(), title.width()}, Qt::AlignCenter, label_->text());
     } else {
-        painter->drawText(title, Qt::AlignHCenter | Qt::AlignTop, label_);
+        painter->drawText(title, Qt::AlignHCenter | Qt::AlignTop, label_->text());
     }
     painter->restore();
 }

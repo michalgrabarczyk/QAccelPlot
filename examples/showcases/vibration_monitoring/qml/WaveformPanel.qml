@@ -67,7 +67,7 @@ DashboardPanel {
             viewportMin: -panel.monitor.windowSeconds
             viewportMax: 0
             layoutSize: 46
-            label: "Time (s)"
+            label.text: "Time (s)"
         }
 
         yAxis: ExampleAxis {

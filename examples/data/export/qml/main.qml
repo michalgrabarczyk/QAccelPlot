@@ -130,14 +130,14 @@ Window {
             xAxis: ExampleAxis {
                 viewportMin: 0
                 viewportMax: 24
-                label: "Time of day (h)"
+                label.text: "Time of day (h)"
                 ticker.tickCount: 7
             }
 
             yAxis: ExampleAxis {
                 viewportMin: 0
                 viewportMax: 1000
-                label: "Power (W)"
+                label.text: "Power (W)"
             }
 
             QAccelPlot.LineCurve {

@@ -22,13 +22,13 @@ QAccelPlot.Plot {
     xAxis: QAccelPlot.Axis {
         viewportMin: 0
         viewportMax: 24
-        label: "Time of day (h)"
+        label.text: "Time of day (h)"
     }
 
     yAxis: QAccelPlot.Axis {
         viewportMin: 16
         viewportMax: 27
-        label: "Temperature (°C)"
+        label.text: "Temperature (°C)"
     }
 
     QAccelPlot.LineCurve {

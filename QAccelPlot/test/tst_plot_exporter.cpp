@@ -46,8 +46,8 @@ PlotView {
     grid.gridVisible: false
     grid.subGridVisible: false
     border.width: 0
-    xAxis: Axis { label: "X"; viewportMin: 0; viewportMax: 10 }
-    yAxis: Axis { label: "Y"; viewportMin: 0; viewportMax: 10 }
+    xAxis: Axis { label.text: "X"; viewportMin: 0; viewportMax: 10 }
+    yAxis: Axis { label.text: "Y"; viewportMin: 0; viewportMax: 10 }
 
     RectangleSeries {
         xAxis: plot.xAxis

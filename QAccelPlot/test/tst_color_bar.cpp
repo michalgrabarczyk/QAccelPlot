@@ -248,9 +248,9 @@ void ColorBarTest::defaults()
     QCOMPARE(bar.orientation(), Qt::Vertical);
     QCOMPARE(bar.barThickness(), 12.0);
     QCOMPARE(bar.border()->width(), 1.0);
-    QCOMPARE(bar.labelPadding(), 6.0);
+    QCOMPARE(bar.label()->padding(), 6.0);
     QCOMPARE(bar.tickLabelWidth(), 16.0);
-    QCOMPARE(bar.labelColor(), ColorPalette::dark().axisLine);
+    QCOMPARE(bar.label()->color(), ColorPalette::dark().axisLine);
     QCOMPARE(bar.border()->color(), ColorPalette::dark().axisLine);
     QCOMPARE(bar.ticker()->tickLengthIn(), 0.0);
     QCOMPARE(bar.ticker()->tickLengthOut(), 4.0);
@@ -270,12 +270,10 @@ void ColorBarTest::negativeSizesAreClamped()
     auto bar = ColorBar{};
     bar.setBarThickness(-3.0);
     bar.border()->setWidth(-1.0);
-    bar.setLabelPadding(-2.0);
     bar.setTickLabelWidth(-5.0);
 
     QCOMPARE(bar.barThickness(), 0.0);
     QCOMPARE(bar.border()->width(), 0.0);
-    QCOMPARE(bar.labelPadding(), 0.0);
     QCOMPARE(bar.tickLabelWidth(), 0.0);
 }
 
@@ -334,7 +332,7 @@ void ColorBarTest::reversedColormapFlipsStrip()
 void ColorBarTest::drawsNothingWithoutColormap()
 {
     auto scene = Scene{Qt::Vertical, QSize{100, 200}};
-    scene.bar.setLabel(QStringLiteral("Value"));
+    scene.bar.label()->setText(QStringLiteral("Value"));
     scene.cloud.setColormap(nullptr);
     const auto image = scene.render();
     QVERIFY(!image.isNull());
@@ -412,9 +410,14 @@ void ColorBarTest::implicitSizeFitsContents()
     QCOMPARE(vertical.bar.implicitWidth(), 12.0 + 4.0 + vertical.bar.ticker()->tickLabelPadding() + 16.0);
 
     const auto withoutTitle = vertical.bar.implicitWidth();
-    vertical.bar.setLabel(QStringLiteral("Value"));
+    vertical.bar.label()->setText(QStringLiteral("Value"));
     vertical.render();
-    QVERIFY(vertical.bar.implicitWidth() >= withoutTitle + vertical.bar.labelPadding() + QFontMetricsF{vertical.bar.labelFont()}.height());
+    QVERIFY(vertical.bar.implicitWidth() >= withoutTitle + vertical.bar.label()->padding() + QFontMetricsF{vertical.bar.label()->font()}.height());
+    const auto withTitle = vertical.bar.implicitWidth();
+    // Negative title padding counts as 0.
+    vertical.bar.label()->setPadding(-2.0);
+    vertical.render();
+    QCOMPARE(vertical.bar.implicitWidth(), withTitle - 6.0);
 
     auto horizontal = Scene{Qt::Horizontal, QSize{200, 60}};
     QVERIFY(!horizontal.render().isNull());
@@ -476,8 +479,8 @@ void ColorBarTest::drawsTitleBesideTickLabels()
     const auto titleColumn = static_cast<int>(scene.bar.implicitWidth());
 
     QVERIFY(!hasContentFrom(scene.render(), titleColumn));
-    scene.bar.setLabelColor(Qt::white);
-    scene.bar.setLabel(QStringLiteral("Value"));
+    scene.bar.label()->setColor(Qt::white);
+    scene.bar.label()->setText(QStringLiteral("Value"));
     QVERIFY(hasContentFrom(scene.render(), titleColumn));
 }
 
@@ -501,7 +504,7 @@ void ColorBarTest::qmlColorBarInsidePlot()
                 objectName: "bar"
                 series: cloud
                 orientation: Qt.Horizontal
-                label: "Jump length"
+                label.text: "Jump length"
             }
         }
     )",
@@ -515,7 +518,7 @@ void ColorBarTest::qmlColorBarInsidePlot()
     QVERIFY(cloud);
     QCOMPARE(bar->series(), cloud);
     QCOMPARE(bar->orientation(), Qt::Horizontal);
-    QCOMPARE(bar->label(), QStringLiteral("Jump length"));
+    QCOMPARE(bar->label()->text(), QStringLiteral("Jump length"));
     QCOMPARE(root->property("series").value<QList<PlotSeries*>>().size(), 1);
 }
 

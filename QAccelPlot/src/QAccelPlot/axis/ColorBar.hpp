@@ -10,6 +10,7 @@
 #include "QAccelPlot/Border.hpp"
 #include "QAccelPlot/axis/AxisTicker.hpp"
 #include "QAccelPlot/axis/AxisTicks.hpp"
+#include "QAccelPlot/axis/TextLabel.hpp"
 #include "QAccelPlot/effects/GradientColorTypes.hpp"
 #include "QAccelPlot/series/ColormappedSeries.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
@@ -66,14 +67,8 @@ class ColorBar : public QQuickPaintedItem {
     Q_PROPERTY(ColormappedSeries* series READ series WRITE setSeries NOTIFY seriesChanged)
     /// \brief Direction of the ramp: \c Qt.Vertical or \c Qt.Horizontal. Default: \c Qt.Vertical.
     Q_PROPERTY(Qt::Orientation orientation READ orientation WRITE setOrientation NOTIFY orientationChanged)
-    /// \brief Optional title drawn beside the tick labels. Default: empty.
-    Q_PROPERTY(QString label READ label WRITE setLabel NOTIFY labelChanged)
-    /// \brief Font of the title. Default: application default font.
-    Q_PROPERTY(QFont labelFont READ labelFont WRITE setLabelFont NOTIFY labelFontChanged)
-    /// \brief Color of the title. Default: \c Colors.dark.axisLine.
-    Q_PROPERTY(QColor labelColor READ labelColor WRITE setLabelColor NOTIFY labelColorChanged)
-    /// \brief Gap in pixels between the tick labels and the title. Default: 6.
-    Q_PROPERTY(qreal labelPadding READ labelPadding WRITE setLabelPadding NOTIFY labelPaddingChanged)
+    /// \brief Title drawn beside the tick labels, e.g. <tt>label.text: "Intensity"</tt>. Negative padding counts as 0.
+    Q_PROPERTY(TextLabel* label READ label CONSTANT)
     /// \brief Thickness in pixels of the color strip across the ramp direction. Default: 12.
     Q_PROPERTY(qreal barThickness READ barThickness WRITE setBarThickness NOTIFY barThicknessChanged)
     /// \brief Outline inside the strip's edges, e.g. <tt>border.width: 2</tt>. Default: \c Colors.dark.axisLine, width 1.
@@ -113,25 +108,8 @@ public:
     /// \brief Sets the ramp direction to \a orientation.
     void setOrientation(Qt::Orientation orientation);
 
-    /// \brief Returns the title.
-    QString label() const;
-    /// \brief Sets the title to \a label.
-    void setLabel(const QString& label);
-
-    /// \brief Returns the title font.
-    QFont labelFont() const;
-    /// \brief Sets the title font to \a font.
-    void setLabelFont(const QFont& font);
-
-    /// \brief Returns the title color.
-    QColor labelColor() const;
-    /// \brief Sets the title color to \a color.
-    void setLabelColor(const QColor& color);
-
-    /// \brief Returns the gap between the tick labels and the title in pixels.
-    qreal labelPadding() const;
-    /// \brief Sets the gap between the tick labels and the title to \a padding pixels. Negative values are clamped to 0.
-    void setLabelPadding(qreal padding);
+    /// \brief Returns the title settings. The object is owned by the bar.
+    TextLabel* label() const;
 
     /// \brief Returns the strip thickness in pixels.
     qreal barThickness() const;
@@ -183,14 +161,6 @@ signals:
     void seriesChanged();
     /// \brief Emitted when the orientation property changes.
     void orientationChanged();
-    /// \brief Emitted when the label property changes.
-    void labelChanged();
-    /// \brief Emitted when the labelFont property changes.
-    void labelFontChanged();
-    /// \brief Emitted when the labelColor property changes.
-    void labelColorChanged();
-    /// \brief Emitted when the labelPadding property changes.
-    void labelPaddingChanged();
     /// \brief Emitted when the barThickness property changes.
     void barThicknessChanged();
     /// \brief Emitted when the tickLabelWidth property changes.
@@ -248,6 +218,7 @@ private:
     qreal endInset() const;
     qreal tickLabelHeight() const;
     qreal tickLabelThickness() const;
+    qreal titlePadding() const;
     qreal titleThickness() const;
     qreal titleOffset() const;
     void paintStrip(QPainter* painter) const;
@@ -258,10 +229,7 @@ private:
     QList<QMetaObject::Connection> seriesConnections_;
     QMetaObject::Connection colormapConnection_;
     Qt::Orientation orientation_{Qt::Vertical};
-    QString label_;
-    QFont labelFont_;
-    QColor labelColor_{ColorPalette::dark().axisLine};
-    qreal labelPadding_{6.0};
+    TextLabel* label_{new TextLabel{ColorPalette::dark().axisLine, 6.0, this}};
     qreal barThickness_{12.0};
     Border* border_{new Border{ColorPalette::dark().axisLine, 1.0, this}};
     qreal tickLabelWidth_{16.0};
