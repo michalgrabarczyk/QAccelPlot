@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="ColorPalette_8hpp" kind="file" language="C++">
     <compoundname>ColorPalette.hpp</compoundname>
     <includes local="no">QColor</includes>
@@ -63,9 +63,9 @@
 <codeline lineno="18"><highlight class="normal"></highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
 <codeline lineno="20"><highlight class="normal"></highlight></codeline>
-<codeline lineno="28" refid="classQAccelPlot_1_1ColorPalette" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1ColorPalette" kindref="compound">ColorPalette</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QObject<sp/>{</highlight></codeline>
+<codeline lineno="28" refid="classQAccelPlot_1_1ColorPalette" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">ColorPalette<sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QObject<sp/>{</highlight></codeline>
 <codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_OBJECT</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_NAMED_ELEMENT(<ref refid="classQAccelPlot_1_1ColorPalette" kindref="compound">ColorPalette</ref>)</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_NAMED_ELEMENT(ColorPalette)</highlight></codeline>
 <codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_UNCREATABLE(</highlight><highlight class="stringliteral">&quot;ColorPalette<sp/>instances<sp/>are<sp/>provided<sp/>by<sp/>the<sp/>Colors<sp/>singleton.&quot;</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
 <codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Surfaces</highlight><highlight class="normal"></highlight></codeline>
@@ -131,8 +131,8 @@
 <codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>selectionFill<sp/>MEMBER<sp/>selectionFill<sp/>CONSTANT)</highlight></codeline>
 <codeline lineno="94"><highlight class="normal"></highlight></codeline>
 <codeline lineno="95"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColorPalette" kindref="compound">ColorPalette</ref>&amp;<sp/><ref refid="classQAccelPlot_1_1ColorPalette_1ab932bbb47c7cf2198f0cd6930b53788e" kindref="member">dark</ref>();</highlight></codeline>
-<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColorPalette" kindref="compound">ColorPalette</ref>&amp;<sp/><ref refid="classQAccelPlot_1_1ColorPalette_1a62f051e10663e15bc363425b4cc410d8" kindref="member">light</ref>();</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ColorPalette&amp;<sp/><ref refid="classQAccelPlot_1_1ColorPalette_1ab932bbb47c7cf2198f0cd6930b53788e" kindref="member">dark</ref>();</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ColorPalette&amp;<sp/><ref refid="classQAccelPlot_1_1ColorPalette_1a62f051e10663e15bc363425b4cc410d8" kindref="member">light</ref>();</highlight></codeline>
 <codeline lineno="100"><highlight class="normal"></highlight></codeline>
 <codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>window;</highlight></codeline>
 <codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>plotArea;</highlight></codeline>
@@ -190,10 +190,10 @@
 <codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>selectionFill;</highlight></codeline>
 <codeline lineno="155"><highlight class="normal"></highlight></codeline>
 <codeline lineno="156"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1ColorPalette" kindref="compound">ColorPalette</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>ColorPalette()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="158"><highlight class="normal"></highlight></codeline>
-<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColorPalette" kindref="compound">ColorPalette</ref>*<sp/>createDark();</highlight></codeline>
-<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColorPalette" kindref="compound">ColorPalette</ref>*<sp/>createLight();</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>ColorPalette*<sp/>createDark();</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>ColorPalette*<sp/>createLight();</highlight></codeline>
 <codeline lineno="161"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="162"><highlight class="normal"></highlight></codeline>
 <codeline lineno="163"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>

@@ -95,14 +95,14 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 |   | [**PlotExporter**](#function-plotexporter-13) (QObject \* parent=nullptr) <br>_Constructs an exporter without a plot._  |
-|   | [**PlotExporter**](#function-plotexporter-23) (const [**PlotExporter**](classQAccelPlot_1_1PlotExporter.md) &) = delete<br> |
-|   | [**PlotExporter**](#function-plotexporter-33) ([**PlotExporter**](classQAccelPlot_1_1PlotExporter.md) &&) = delete<br> |
+|   | [**PlotExporter**](#function-plotexporter-23) (const PlotExporter &) = delete<br> |
+|   | [**PlotExporter**](#function-plotexporter-33) (PlotExporter &&) = delete<br> |
 |  bool | [**busy**](#function-busy-22) () const<br>_Returns true while a request is in progress._  |
 |  Q\_INVOKABLE bool | [**copyToClipboard**](#function-copytoclipboard) () <br>_Copies the plot image to the clipboard; returns false when the request fails immediately._  |
 |  qreal | [**dpi**](#function-dpi-22) () const<br>_Returns the resolution stored in saved files; 0 means 96 times the effective scale._  |
 |  Q\_INVOKABLE bool | [**grabImage**](#function-grabimage) () <br>_Captures the plot and emits_ `imageReady()` _; returns false when the request fails immediately._ |
-|  [**PlotExporter**](classQAccelPlot_1_1PlotExporter.md) & | [**operator=**](#function-operator) (const [**PlotExporter**](classQAccelPlot_1_1PlotExporter.md) &) = delete<br> |
-|  [**PlotExporter**](classQAccelPlot_1_1PlotExporter.md) & | [**operator=**](#function-operator_1) ([**PlotExporter**](classQAccelPlot_1_1PlotExporter.md) &&) = delete<br> |
+|  [**PlotExporter**](classQAccelPlot_1_1PlotExporter.md#function-plotexporter-13) & | [**operator=**](#function-operator) (const [**PlotExporter**](classQAccelPlot_1_1PlotExporter.md#function-plotexporter-13) &) = delete<br> |
+|  [**PlotExporter**](classQAccelPlot_1_1PlotExporter.md#function-plotexporter-13) & | [**operator=**](#function-operator_1) ([**PlotExporter**](classQAccelPlot_1_1PlotExporter.md#function-plotexporter-13) &&) = delete<br> |
 |  [**PlotView**](classQAccelPlot_1_1PlotView.md) \* | [**plot**](#function-plot-22) () const<br>_Returns the plot to export._  |
 |  int | [**quality**](#function-quality-22) () const<br>_Returns the encoder quality._  |
 |  Q\_INVOKABLE bool | [**save**](#function-save) (const QString & path) <br>_Saves the plot to_ _path_ _in the format its suffix names._ |

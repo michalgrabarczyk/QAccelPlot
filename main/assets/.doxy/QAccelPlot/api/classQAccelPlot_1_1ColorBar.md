@@ -68,10 +68,7 @@ flowchart TB
 | property [**Border**](classQAccelPlot_1_1Border.md) \* | [**border**](classQAccelPlot_1_1ColorBar.md#property-border-12)  <br>_Outline inside the strip's edges, e.g._ `border.width: 2` _. Default:_`Colors.dark.axisLine` _, width 1._ |
 | property bool | [**hovered**](classQAccelPlot_1_1ColorBar.md#property-hovered-12)  <br>_Read-only:_ `true` _while the mouse cursor is over the bar. Reported only while_`interactive` _is set._ |
 | property bool | [**interactive**](classQAccelPlot_1_1ColorBar.md#property-interactive-12)  <br>_Whether dragging, the mouse wheel, and double-clicking change the colormap's value range. Default:_ `false` _._ |
-| property QString | [**label**](classQAccelPlot_1_1ColorBar.md#property-label-12)  <br>_Optional title drawn beside the tick labels. Default: empty._  |
-| property QColor | [**labelColor**](classQAccelPlot_1_1ColorBar.md#property-labelcolor-12)  <br>_Color of the title. Default:_ `Colors.dark.axisLine` _._ |
-| property QFont | [**labelFont**](classQAccelPlot_1_1ColorBar.md#property-labelfont-12)  <br>_Font of the title. Default: application default font._  |
-| property qreal | [**labelPadding**](classQAccelPlot_1_1ColorBar.md#property-labelpadding-12)  <br>_Gap in pixels between the tick labels and the title. Default: 6._  |
+| property [**TextLabel**](classQAccelPlot_1_1TextLabel.md) \* | [**label**](classQAccelPlot_1_1ColorBar.md#property-label-12)  <br>_Title drawn beside the tick labels, e.g._ `label.text: "Intensity"` _. Negative padding counts as 0._ |
 | property Qt::Orientation | [**orientation**](classQAccelPlot_1_1ColorBar.md#property-orientation-12)  <br>_Direction of the ramp:_ `Qt.Vertical` _or_`Qt.Horizontal` _. Default:_`Qt.Vertical` _._ |
 | property [**ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md) \* | [**series**](classQAccelPlot_1_1ColorBar.md#property-series-12)  <br>_Series whose colormap and resolved value range are shown. Default: null._  |
 | property qreal | [**tickLabelWidth**](classQAccelPlot_1_1ColorBar.md#property-ticklabelwidth-12)  <br>_Width in pixels reserved for the tick labels of a vertical bar. Default: 16._  |
@@ -88,10 +85,6 @@ flowchart TB
 | signal void | [**barThicknessChanged**](classQAccelPlot_1_1ColorBar.md#signal-barthicknesschanged)  <br>_Emitted when the barThickness property changes._  |
 | signal void | [**hoveredChanged**](classQAccelPlot_1_1ColorBar.md#signal-hoveredchanged)  <br>_Emitted when the hovered property changes._  |
 | signal void | [**interactiveChanged**](classQAccelPlot_1_1ColorBar.md#signal-interactivechanged)  <br>_Emitted when the interactive property changes._  |
-| signal void | [**labelChanged**](classQAccelPlot_1_1ColorBar.md#signal-labelchanged)  <br>_Emitted when the label property changes._  |
-| signal void | [**labelColorChanged**](classQAccelPlot_1_1ColorBar.md#signal-labelcolorchanged)  <br>_Emitted when the labelColor property changes._  |
-| signal void | [**labelFontChanged**](classQAccelPlot_1_1ColorBar.md#signal-labelfontchanged)  <br>_Emitted when the labelFont property changes._  |
-| signal void | [**labelPaddingChanged**](classQAccelPlot_1_1ColorBar.md#signal-labelpaddingchanged)  <br>_Emitted when the labelPadding property changes._  |
 | signal void | [**orientationChanged**](classQAccelPlot_1_1ColorBar.md#signal-orientationchanged)  <br>_Emitted when the orientation property changes._  |
 | signal void | [**seriesChanged**](classQAccelPlot_1_1ColorBar.md#signal-serieschanged)  <br>_Emitted when the series property changes._  |
 | signal void | [**tickLabelWidthChanged**](classQAccelPlot_1_1ColorBar.md#signal-ticklabelwidthchanged)  <br>_Emitted when the tickLabelWidth property changes._  |
@@ -109,10 +102,7 @@ flowchart TB
 |  [**Border**](classQAccelPlot_1_1Border.md) \* | [**border**](#function-border-22) () const<br>_Returns the strip outline settings. The object is owned by the bar._  |
 |  bool | [**hovered**](#function-hovered-22) () const<br>_Returns_ `true` _while the mouse cursor is over an interactive bar._ |
 |  bool | [**interactive**](#function-interactive-22) () const<br>_Returns whether the gestures that change the colormap's value range are enabled._  |
-|  QString | [**label**](#function-label-22) () const<br>_Returns the title._  |
-|  QColor | [**labelColor**](#function-labelcolor-22) () const<br>_Returns the title color._  |
-|  QFont | [**labelFont**](#function-labelfont-22) () const<br>_Returns the title font._  |
-|  qreal | [**labelPadding**](#function-labelpadding-22) () const<br>_Returns the gap between the tick labels and the title in pixels._  |
+|  [**TextLabel**](classQAccelPlot_1_1TextLabel.md) \* | [**label**](#function-label-22) () const<br>_Returns the title settings. The object is owned by the bar._  |
 |  Qt::Orientation | [**orientation**](#function-orientation-22) () const<br>_Returns the ramp direction._  |
 |  void | [**paint**](#function-paint) (QPainter \* painter) override<br>_Paints the strip, ticks, tick labels, and title computed in_ `updatePolish()` _._ |
 |  qreal | [**pixelToValue**](#function-pixeltovalue) (qreal pixel, qreal length) const<br>_Maps a_ _pixel_ _position along a strip of__length_ _pixels back to a value._ |
@@ -120,10 +110,6 @@ flowchart TB
 |  [**ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md) \* | [**series**](#function-series-22) () const<br>_Returns the series whose colormap is shown, or_ `nullptr` _._ |
 |  void | [**setBarThickness**](#function-setbarthickness) (qreal thickness) <br>_Sets the strip thickness to_ _thickness_ _pixels. Negative values are clamped to 0._ |
 |  void | [**setInteractive**](#function-setinteractive) (bool interactive) <br>_Sets whether the gestures that change the colormap's value range are enabled to_ _interactive_ _._ |
-|  void | [**setLabel**](#function-setlabel) (const QString & label) <br>_Sets the title to_ _label_ _._ |
-|  void | [**setLabelColor**](#function-setlabelcolor) (const QColor & color) <br>_Sets the title color to_ _color_ _._ |
-|  void | [**setLabelFont**](#function-setlabelfont) (const QFont & font) <br>_Sets the title font to_ _font_ _._ |
-|  void | [**setLabelPadding**](#function-setlabelpadding) (qreal padding) <br>_Sets the gap between the tick labels and the title to_ _padding_ _pixels. Negative values are clamped to 0._ |
 |  void | [**setOrientation**](#function-setorientation) (Qt::Orientation orientation) <br>_Sets the ramp direction to_ _orientation_ _._ |
 |  void | [**setSeries**](#function-setseries) ([**ColormappedSeries**](classQAccelPlot_1_1ColormappedSeries.md) \* series) <br>_Sets the series whose colormap is shown to_ _series_ _._ |
 |  void | [**setTickLabelWidth**](#function-setticklabelwidth) (qreal width) <br>_Sets the width reserved for tick labels to_ _width_ _pixels. Negative values are clamped to 0._ |
@@ -280,54 +266,9 @@ While `false`, the bar leaves mouse and wheel events to the items below it.
 
 ### property label {#property-label-12}
 
-_Optional title drawn beside the tick labels. Default: empty._ 
+_Title drawn beside the tick labels, e.g._ `label.text: "Intensity"` _. Negative padding counts as 0._
 ```C++
-QString QAccelPlot::ColorBar::label;
-```
-
-
-
-
-<hr>
-
-
-
-
-### property labelColor {#property-labelcolor-12}
-
-_Color of the title. Default:_ `Colors.dark.axisLine` _._
-```C++
-QColor QAccelPlot::ColorBar::labelColor;
-```
-
-
-
-
-<hr>
-
-
-
-
-### property labelFont {#property-labelfont-12}
-
-_Font of the title. Default: application default font._ 
-```C++
-QFont QAccelPlot::ColorBar::labelFont;
-```
-
-
-
-
-<hr>
-
-
-
-
-### property labelPadding {#property-labelpadding-12}
-
-_Gap in pixels between the tick labels and the title. Default: 6._ 
-```C++
-qreal QAccelPlot::ColorBar::labelPadding;
+TextLabel* QAccelPlot::ColorBar::label;
 ```
 
 
@@ -462,66 +403,6 @@ void QAccelPlot::ColorBar::hoveredChanged;
 _Emitted when the interactive property changes._ 
 ```C++
 void QAccelPlot::ColorBar::interactiveChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
-### signal labelChanged {#signal-labelchanged}
-
-_Emitted when the label property changes._ 
-```C++
-void QAccelPlot::ColorBar::labelChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
-### signal labelColorChanged {#signal-labelcolorchanged}
-
-_Emitted when the labelColor property changes._ 
-```C++
-void QAccelPlot::ColorBar::labelColorChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
-### signal labelFontChanged {#signal-labelfontchanged}
-
-_Emitted when the labelFont property changes._ 
-```C++
-void QAccelPlot::ColorBar::labelFontChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
-### signal labelPaddingChanged {#signal-labelpaddingchanged}
-
-_Emitted when the labelPadding property changes._ 
-```C++
-void QAccelPlot::ColorBar::labelPaddingChanged;
 ```
 
 
@@ -673,54 +554,9 @@ bool QAccelPlot::ColorBar::interactive () const
 
 ### function label {#function-label-22}
 
-_Returns the title._ 
+_Returns the title settings. The object is owned by the bar._ 
 ```C++
-QString QAccelPlot::ColorBar::label () const
-```
-
-
-
-
-<hr>
-
-
-
-
-### function labelColor {#function-labelcolor-22}
-
-_Returns the title color._ 
-```C++
-QColor QAccelPlot::ColorBar::labelColor () const
-```
-
-
-
-
-<hr>
-
-
-
-
-### function labelFont {#function-labelfont-22}
-
-_Returns the title font._ 
-```C++
-QFont QAccelPlot::ColorBar::labelFont () const
-```
-
-
-
-
-<hr>
-
-
-
-
-### function labelPadding {#function-labelpadding-22}
-
-_Returns the gap between the tick labels and the title in pixels._ 
-```C++
-qreal QAccelPlot::ColorBar::labelPadding () const
+TextLabel * QAccelPlot::ColorBar::label () const
 ```
 
 
@@ -838,74 +674,6 @@ _Sets whether the gestures that change the colormap's value range are enabled to
 ```C++
 void QAccelPlot::ColorBar::setInteractive (
     bool interactive
-) 
-```
-
-
-
-
-<hr>
-
-
-
-
-### function setLabel {#function-setlabel}
-
-_Sets the title to_ _label_ _._
-```C++
-void QAccelPlot::ColorBar::setLabel (
-    const QString & label
-) 
-```
-
-
-
-
-<hr>
-
-
-
-
-### function setLabelColor {#function-setlabelcolor}
-
-_Sets the title color to_ _color_ _._
-```C++
-void QAccelPlot::ColorBar::setLabelColor (
-    const QColor & color
-) 
-```
-
-
-
-
-<hr>
-
-
-
-
-### function setLabelFont {#function-setlabelfont}
-
-_Sets the title font to_ _font_ _._
-```C++
-void QAccelPlot::ColorBar::setLabelFont (
-    const QFont & font
-) 
-```
-
-
-
-
-<hr>
-
-
-
-
-### function setLabelPadding {#function-setlabelpadding}
-
-_Sets the gap between the tick labels and the title to_ _padding_ _pixels. Negative values are clamped to 0._
-```C++
-void QAccelPlot::ColorBar::setLabelPadding (
-    qreal padding
 ) 
 ```
 

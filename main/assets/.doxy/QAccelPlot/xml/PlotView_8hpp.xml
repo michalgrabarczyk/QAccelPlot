@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="PlotView_8hpp" kind="file" language="C++">
     <compoundname>PlotView.hpp</compoundname>
     <includes refid="Border_8hpp" local="yes">QAccelPlot/Border.hpp</includes>
@@ -90,18 +90,18 @@
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">GridNode;</highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">PlotExporter;</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">PlotInspector;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1GridNode" kindref="compound">GridNode</ref>;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1PlotExporter" kindref="compound">PlotExporter</ref>;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1PlotInspector" kindref="compound">PlotInspector</ref>;</highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Internal<sp/>{</highlight></codeline>
-<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">PointerTracker;</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">RectangleZoomOverlay;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1Internal_1_1PointerTracker" kindref="compound">PointerTracker</ref>;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1Internal_1_1RectangleZoomOverlay" kindref="compound">RectangleZoomOverlay</ref>;</highlight></codeline>
 <codeline lineno="35"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>Internal</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="36"><highlight class="normal"></highlight></codeline>
-<codeline lineno="56" refid="classQAccelPlot_1_1PlotView" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1PlotView" kindref="compound">PlotView</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QQuickItem<sp/>{</highlight></codeline>
+<codeline lineno="56" refid="classQAccelPlot_1_1PlotView" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1PlotView_1a0c4eaf9026edfbbc8fe68ac800509215" kindref="member">PlotView</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QQuickItem<sp/>{</highlight></codeline>
 <codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_OBJECT</highlight></codeline>
-<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_NAMED_ELEMENT(<ref refid="classQAccelPlot_1_1PlotView" kindref="compound">PlotView</ref>)</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_NAMED_ELEMENT(<ref refid="classQAccelPlot_1_1PlotView_1a0c4eaf9026edfbbc8fe68ac800509215" kindref="member">PlotView</ref>)</highlight></codeline>
 <codeline lineno="59"><highlight class="normal"></highlight></codeline>
 <codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(<ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref>*<sp/><ref refid="classQAccelPlot_1_1PlotView_1ad33a9c5ffe1dd23ebce46c4d9c69ad30" kindref="member">xAxis</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1PlotView_1ad33a9c5ffe1dd23ebce46c4d9c69ad30" kindref="member">xAxis</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1PlotView_1a977710ebd6c632ec5d6a76493b41856f" kindref="member">setXAxis</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1PlotView_1a05f8b2314ebe7ea1d92fdf5b4b8b365a" kindref="member">xAxisChanged</ref>)</highlight></codeline>
@@ -120,7 +120,7 @@
 <codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QQuickItem*<sp/><ref refid="classQAccelPlot_1_1PlotView_1a5ad7d4385460b73d184d71da82f6b8e0" kindref="member">overlay</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1PlotView_1a5ad7d4385460b73d184d71da82f6b8e0" kindref="member">overlay</ref><sp/>CONSTANT)</highlight></codeline>
 <codeline lineno="90"><highlight class="normal"></highlight></codeline>
 <codeline lineno="91"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotView" kindref="compound">PlotView</ref>(QQuickItem*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotView_1a0c4eaf9026edfbbc8fe68ac800509215" kindref="member">PlotView</ref>(QQuickItem*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotView_1aac4959fa2bce626eaed68ff06b833d80" kindref="member">~PlotView</ref>()<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="96"><highlight class="normal"></highlight></codeline>
 <codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_INVOKABLE<sp/>qreal<sp/><ref refid="classQAccelPlot_1_1PlotView_1a8c154ea8115e7187d08dc69c5adcdb03" kindref="member">dataToPixelX</ref>(qreal<sp/>dataValue)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
@@ -200,8 +200,8 @@
 <codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/>QSGNode*<sp/>updatePaintNode(QSGNode*<sp/>oldNode,<sp/>UpdatePaintNodeData*)<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="223"><highlight class="normal"></highlight></codeline>
 <codeline lineno="224"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1PlotExporter" kindref="compound">PlotExporter</ref>;</highlight></codeline>
-<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1PlotInspector" kindref="compound">PlotInspector</ref>;</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">PlotExporter;</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">PlotInspector;</highlight></codeline>
 <codeline lineno="227"><highlight class="normal"></highlight></codeline>
 <codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/>DragMode<sp/>{<sp/>Idle,<sp/>Pan,<sp/>RectangleZoom<sp/>};</highlight></codeline>
 <codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>isAxisRegistered(<ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref>*<sp/>axis)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>

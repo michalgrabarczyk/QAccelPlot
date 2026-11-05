@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="PlotSeries_8hpp" kind="file" language="C++">
     <compoundname>PlotSeries.hpp</compoundname>
     <includes refid="Axis_8hpp" local="yes">QAccelPlot/axis/Axis.hpp</includes>
@@ -123,11 +123,11 @@
 <codeline lineno="29"><highlight class="normal"></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight></codeline>
-<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">LegendEntry;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structQAccelPlot_1_1LegendEntry" kindref="compound">LegendEntry</ref>;</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
-<codeline lineno="70" refid="classQAccelPlot_1_1PlotSeries" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QQuickItem<sp/>{</highlight></codeline>
+<codeline lineno="70" refid="classQAccelPlot_1_1PlotSeries" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">PlotSeries<sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QQuickItem<sp/>{</highlight></codeline>
 <codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_OBJECT</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_NAMED_ELEMENT(<ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref>)</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_NAMED_ELEMENT(PlotSeries)</highlight></codeline>
 <codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_UNCREATABLE(</highlight><highlight class="stringliteral">&quot;PlotSeries<sp/>is<sp/>a<sp/>base<sp/>class<sp/>for<sp/>concrete<sp/>plot<sp/>series.&quot;</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="74"><highlight class="normal"></highlight></codeline>
 <codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
@@ -141,7 +141,7 @@
 <codeline lineno="96"><highlight class="normal"></highlight></codeline>
 <codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(quint64<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a74c197e04386613b694bd8a63963c479" kindref="member">dataRevision</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a74c197e04386613b694bd8a63963c479" kindref="member">dataRevision</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1ae08fae615331785b023882afef1a4fa1" kindref="member">dataRevisionChanged</ref>)</highlight></codeline>
-<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(<ref refid="classQAccelPlot_1_1SeriesInspection" kindref="compound">SeriesInspection</ref>*<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1addb81876423cd48343592cfce8c19d5b" kindref="member">inspection</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1addb81876423cd48343592cfce8c19d5b" kindref="member">inspection</ref><sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(SeriesInspection*<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1addb81876423cd48343592cfce8c19d5b" kindref="member">inspection</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1addb81876423cd48343592cfce8c19d5b" kindref="member">inspection</ref><sp/>CONSTANT)</highlight></codeline>
 <codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a53e3980416791cdfa11e95ddf45f51a6" kindref="member">count</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a53e3980416791cdfa11e95ddf45f51a6" kindref="member">count</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a4ab130c4ee8aafee3cc274bee94b0633" kindref="member">countChanged</ref>)</highlight></codeline>
 <codeline lineno="107"><highlight class="normal"></highlight></codeline>
 <codeline lineno="108"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
@@ -150,8 +150,8 @@
 <codeline lineno="115"><highlight class="normal"></highlight></codeline>
 <codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="117" refid="structQAccelPlot_1_1PlotSeries_1_1DataExtent" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/>struct<sp/><ref refid="structQAccelPlot_1_1PlotSeries_1_1DataExtent" kindref="compound">DataExtent</ref><sp/>{</highlight></codeline>
-<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>qreal<sp/>min;<sp/></highlight></codeline>
-<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>qreal<sp/>max;<sp/></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>qreal<sp/><ref refid="structQAccelPlot_1_1PlotSeries_1_1DataExtent_1a38c5fa456f786ce2cc0e0e5b119666a6" kindref="member">min</ref>;<sp/></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>qreal<sp/><ref refid="structQAccelPlot_1_1PlotSeries_1_1DataExtent_1a0de2a64b24b0f548a6e7a213d944f5e3" kindref="member">max</ref>;<sp/></highlight></codeline>
 <codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
 <codeline lineno="121"><highlight class="normal"></highlight></codeline>
 <codeline lineno="126" refid="structQAccelPlot_1_1PlotSeries_1_1DataBounds" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structQAccelPlot_1_1PlotSeries_1_1DataBounds" kindref="compound">DataBounds</ref><sp/>{</highlight></codeline>
@@ -161,11 +161,11 @@
 <codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>qreal<sp/><ref refid="structQAccelPlot_1_1PlotSeries_1_1DataBounds_1a84fe85dea7498162621241056b82b5e1" kindref="member">yMax</ref>;<sp/></highlight></codeline>
 <codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
 <codeline lineno="132"><highlight class="normal"></highlight></codeline>
-<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref>(QQuickItem*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">~PlotSeries</ref>()<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/>PlotSeries(QQuickItem*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>~PlotSeries()<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="135"><highlight class="normal"></highlight></codeline>
 <codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>quint64<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a74c197e04386613b694bd8a63963c479" kindref="member">dataRevision</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1SeriesInspection" kindref="compound">SeriesInspection</ref>*<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1addb81876423cd48343592cfce8c19d5b" kindref="member">inspection</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>SeriesInspection*<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1addb81876423cd48343592cfce8c19d5b" kindref="member">inspection</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a53e3980416791cdfa11e95ddf45f51a6" kindref="member">count</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="142"><highlight class="normal"></highlight></codeline>
 <codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>QString<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a71b82b1a4372d71c848a3a09c59b20b0" kindref="member">name</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
@@ -225,7 +225,7 @@
 <codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="structQAccelPlot_1_1PlotSeries_1_1DataPointWording_1a0912e4d212a60963b6d00df848fffba9" kindref="member">floatUnit</ref>;<sp/><sp/></highlight></codeline>
 <codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
 <codeline lineno="235"><highlight class="normal"></highlight></codeline>
-<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref>(<ref refid="structQAccelPlot_1_1DataPointStore_1_1Layout" kindref="compound">DataPointStore::Layout</ref><sp/>layout,<sp/><ref refid="structQAccelPlot_1_1PlotSeries_1_1DataPointWording" kindref="compound">DataPointWording</ref><sp/>wording,<sp/>QQuickItem*<sp/>parent);</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/>PlotSeries(<ref refid="structQAccelPlot_1_1DataPointStore_1_1Layout" kindref="compound">DataPointStore::Layout</ref><sp/>layout,<sp/><ref refid="structQAccelPlot_1_1PlotSeries_1_1DataPointWording" kindref="compound">DataPointWording</ref><sp/>wording,<sp/>QQuickItem*<sp/>parent);</highlight></codeline>
 <codeline lineno="238"><highlight class="normal"></highlight></codeline>
 <codeline lineno="242" refid="structQAccelPlot_1_1PlotSeries_1_1DataPointInput" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structQAccelPlot_1_1PlotSeries_1_1DataPointInput" kindref="compound">DataPointInput</ref><sp/>{</highlight></codeline>
 <codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/><ref refid="structQAccelPlot_1_1PlotSeries_1_1DataPointInput_1a3f18cb0815ff9fbef5a96725ad3f8386" kindref="member">doubles</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
@@ -325,7 +325,7 @@
 <codeline lineno="407"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Bounds<sp/>given<sp/>with<sp/>the<sp/>data<sp/>update<sp/>in<sp/>progress;<sp/>they<sp/>replace<sp/>its<sp/>scan.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="408"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;DataBounds&gt;<sp/>updateBounds_;</highlight></codeline>
 <codeline lineno="409"><highlight class="normal"><sp/><sp/><sp/><sp/>DataPointStore<sp/>dataPoints_;</highlight></codeline>
-<codeline lineno="410"><highlight class="normal"><sp/><sp/><sp/><sp/>DataPointWording<sp/>wording_;</highlight></codeline>
+<codeline lineno="410"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structQAccelPlot_1_1PlotSeries_1_1DataPointWording" kindref="compound">DataPointWording</ref><sp/>wording_;</highlight></codeline>
 <codeline lineno="411"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="412"><highlight class="normal"></highlight></codeline>
 <codeline lineno="413"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>

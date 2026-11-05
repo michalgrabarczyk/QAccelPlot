@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping" kind="struct" language="C++" prot="public">
     <compoundname>QAccelPlot::Internal::HeatmapShaderMapping</compoundname>
     <includes local="no">HeatmapGrid.hpp</includes>
@@ -12,7 +12,7 @@
           <name>Affine</name>
           <initializer>= 0</initializer>
           <briefdescription>
-<para><computeroutput>offset + scale * p</computeroutput>: the cell spacing matches the axis scale. </para>
+<para><computeroutput><ref refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1abf8e20b4d86152e274ff01756e65cd78" kindref="member">offset</ref> + <ref refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1a977b4c26bf412400701b815c5b112ebe" kindref="member">scale</ref> * p</computeroutput>: the cell spacing matches the axis scale. </para>
           </briefdescription>
           <detaileddescription>
           </detaileddescription>
@@ -21,7 +21,7 @@
           <name>Exponential</name>
           <initializer>= 1</initializer>
           <briefdescription>
-<para><computeroutput>offset + scale * expm1(rate * p)</computeroutput>: linear cells on a log axis. </para>
+<para><computeroutput><ref refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1abf8e20b4d86152e274ff01756e65cd78" kindref="member">offset</ref> + <ref refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1a977b4c26bf412400701b815c5b112ebe" kindref="member">scale</ref> * expm1(rate * p)</computeroutput>: linear cells on a log axis. </para>
           </briefdescription>
           <detaileddescription>
           </detaileddescription>
@@ -30,7 +30,7 @@
           <name>Logarithmic</name>
           <initializer>= 2</initializer>
           <briefdescription>
-<para><computeroutput>offset + scale * log1p(shift + rate * p)</computeroutput>: log cells on a linear axis. </para>
+<para><computeroutput><ref refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1abf8e20b4d86152e274ff01756e65cd78" kindref="member">offset</ref> + <ref refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1a977b4c26bf412400701b815c5b112ebe" kindref="member">scale</ref> * log1p(<ref refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1ac224744b45687ba406fd07cf57258a30" kindref="member">shift</ref> + <ref refid="structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping_1a3564738f42681c7d36fc5e6252159bb4" kindref="member">rate</ref> * p)</computeroutput>: log cells on a linear axis. </para>
           </briefdescription>
           <detaileddescription>
           </detaileddescription>

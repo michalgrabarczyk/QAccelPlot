@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="CategoryTable_8hpp" kind="file" language="C++">
     <compoundname>CategoryTable.hpp</compoundname>
     <includes refid="LegendEntry_8hpp" local="yes">QAccelPlot/legend/LegendEntry.hpp</includes>
@@ -90,16 +90,16 @@
 <codeline lineno="21"><highlight class="normal"></highlight></codeline>
 <codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">Category;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1Category" kindref="compound">Category</ref>;</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Internal<sp/>{</highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29" refid="classQAccelPlot_1_1Internal_1_1CategoryTable" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1Internal_1_1CategoryTable" kindref="compound">CategoryTable</ref><sp/>{</highlight></codeline>
+<codeline lineno="29" refid="classQAccelPlot_1_1Internal_1_1CategoryTable" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1Internal_1_1CategoryTable" kindref="compound">CategoryTable</ref><sp/>{</highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="32" refid="structQAccelPlot_1_1Internal_1_1CategoryTable_1_1Entry" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structQAccelPlot_1_1Internal_1_1CategoryTable_1_1Entry" kindref="compound">Entry</ref><sp/>{</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1CategoryTable_1_1Entry_1aa37e8485073a45eff5651a95266d6784" kindref="member">value</ref>{0};<sp/></highlight></codeline>
-<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structQAccelPlot_1_1Internal_1_1CategoryTable_1_1Entry_1aa37e8485073a45eff5651a95266d6784" kindref="member">QString</ref><sp/><ref refid="structQAccelPlot_1_1Internal_1_1CategoryTable_1_1Entry_1a3640a4bb6ccfcfb02decdc7cb325d790" kindref="member">name</ref>;<sp/></highlight></codeline>
-<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structQAccelPlot_1_1Internal_1_1CategoryTable_1_1Entry_1aa37e8485073a45eff5651a95266d6784" kindref="member">QColor</ref><sp/><ref refid="structQAccelPlot_1_1Internal_1_1CategoryTable_1_1Entry_1ae7026e925102230644ad8ab121999bfb" kindref="member">color</ref>;<sp/></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QString<sp/><ref refid="structQAccelPlot_1_1Internal_1_1CategoryTable_1_1Entry_1a3640a4bb6ccfcfb02decdc7cb325d790" kindref="member">name</ref>;<sp/></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QColor<sp/><ref refid="structQAccelPlot_1_1Internal_1_1CategoryTable_1_1Entry_1ae7026e925102230644ad8ab121999bfb" kindref="member">color</ref>;<sp/></highlight></codeline>
 <codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
 <codeline lineno="37"><highlight class="normal"></highlight></codeline>
 <codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Internal_1_1CategoryTable" kindref="compound">CategoryTable</ref><sp/><ref refid="classQAccelPlot_1_1Internal_1_1CategoryTable_1a83c52218bffdb2e28f0ff031fbc9bee2" kindref="member">fromCategories</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QList&lt;Category*&gt;&amp;<sp/>categories);</highlight></codeline>

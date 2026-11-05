@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://michalgrabarczyk.github.io/QAccelPlot/cookbook/multiple-axes/">
       
       
-        <link rel="prev" href="../axis-formats/">
+        <link rel="prev" href="../axis-labels/">
       
       
         <link rel="next" href="../styling/">
@@ -452,6 +452,8 @@
       
         
       
+        
+      
     
     
     
@@ -577,6 +579,34 @@
     
   
     Axis formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../axis-labels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Axis labels
   
 
     
@@ -1506,12 +1536,12 @@ can share one plot area.</p>
 horizontal axis or the width of a vertical axis:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">yAxis:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Axis</span> <span class="p">{</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">layoutSize:</span> <span class="mi">90</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="k">label:</span> <span class="s2">"Temperature"</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="k">label.text:</span> <span class="s2">"Temperature"</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">}</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">xAxis:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Axis</span> <span class="p">{</span>
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="k">layoutSize:</span> <span class="mi">70</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="k">label:</span> <span class="s2">"Time"</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="k">label.text:</span> <span class="s2">"Time"</span>
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">}</span>
 </code></pre></div>
 <p><code>layoutSize</code> does not grow with label text, fonts, or formatters. Choose a value
@@ -1529,7 +1559,7 @@ that fits the tick labels and axis title.</p>
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="k">y2Axis:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Axis</span> <span class="p">{</span>
 <a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        <span class="k">viewportMin:</span> <span class="mi">0</span>
 <a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>        <span class="k">viewportMax:</span> <span class="mi">100</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>        <span class="k">label:</span> <span class="s2">"Load (%)"</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>        <span class="k">label.text:</span> <span class="s2">"Load (%)"</span>
 <a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="p">}</span>
 <a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
 <a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">LineCurve</span> <span class="p">{</span>
@@ -1557,7 +1587,7 @@ the plot's left edge inward.</p>
 <a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="k">xAxis:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Axis</span> <span class="p">{</span>
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        <span class="k">viewportMin:</span> <span class="mi">0</span>
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        <span class="k">viewportMax:</span> <span class="mi">10</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        <span class="k">label:</span> <span class="s2">"Slow time (s)"</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        <span class="k">label.text:</span> <span class="s2">"Slow time (s)"</span>
 <a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="p">}</span>
 <a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
 <a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="k">extraAxes:</span> <span class="p">[</span>
@@ -1567,7 +1597,7 @@ the plot's left edge inward.</p>
 <a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>            <span class="k">side:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Axis</span><span class="p">.</span><span class="nx">Bottom</span>
 <a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>            <span class="k">viewportMin:</span> <span class="mi">0</span>
 <a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>            <span class="k">viewportMax:</span> <span class="mf">0.5</span>
-<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>            <span class="k">label:</span> <span class="s2">"Fast time (s)"</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>            <span class="k">label.text:</span> <span class="s2">"Fast time (s)"</span>
 <a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>        <span class="p">}</span>
 <a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>    <span class="p">]</span>
 <a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>
@@ -1616,7 +1646,7 @@ the plot's left edge inward.</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../axis-formats/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Axis formats">
+          <a href="../axis-labels/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Axis labels">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1626,7 +1656,7 @@ the plot's left edge inward.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Axis formats
+                Axis labels
               </div>
             </div>
           </a>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="Colormap_8hpp" kind="file" language="C++">
     <compoundname>Colormap.hpp</compoundname>
     <includes refid="GradientColorTypes_8hpp" local="yes">QAccelPlot/effects/GradientColorTypes.hpp</includes>
@@ -69,10 +69,10 @@
 <codeline lineno="18"><highlight class="normal"></highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
 <codeline lineno="20"><highlight class="normal"></highlight></codeline>
-<codeline lineno="35" refid="classQAccelPlot_1_1Colormap" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QObject,<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QQmlParserStatus<sp/>{</highlight></codeline>
+<codeline lineno="35" refid="classQAccelPlot_1_1Colormap" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1Colormap_1ae7c1783f5a837e0b68219cec77c5e0df" kindref="member">Colormap</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QObject,<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QQmlParserStatus<sp/>{</highlight></codeline>
 <codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_OBJECT</highlight></codeline>
 <codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_INTERFACES(QQmlParserStatus)</highlight></codeline>
-<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_NAMED_ELEMENT(<ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref>)</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_NAMED_ELEMENT(<ref refid="classQAccelPlot_1_1Colormap_1ae7c1783f5a837e0b68219cec77c5e0df" kindref="member">Colormap</ref>)</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight></codeline>
 <codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(<ref refid="classQAccelPlot_1_1Colormap_1aa15fef934b0935f5a3b0f904b849f4fd" kindref="member">Preset</ref><sp/><ref refid="classQAccelPlot_1_1Colormap_1a67a5ff395bc2320f2fa84e6087b7f6c7" kindref="member">preset</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1Colormap_1a67a5ff395bc2320f2fa84e6087b7f6c7" kindref="member">preset</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1Colormap_1a6d890738d894bf61e553d1f782ddfbe7" kindref="member">setPreset</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1Colormap_1adb30844fc484d5c9fc331388c6b80a71" kindref="member">colormapChanged</ref>)</highlight></codeline>
@@ -94,7 +94,7 @@
 <codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_ENUM(<ref refid="classQAccelPlot_1_1Colormap_1aa15fef934b0935f5a3b0f904b849f4fd" kindref="member">Preset</ref>)</highlight></codeline>
 <codeline lineno="73"><highlight class="normal"></highlight></codeline>
 <codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref>(QObject*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Colormap_1ae7c1783f5a837e0b68219cec77c5e0df" kindref="member">Colormap</ref>(QObject*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="76"><highlight class="normal"></highlight></codeline>
 <codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Colormap_1aa15fef934b0935f5a3b0f904b849f4fd" kindref="member">Preset</ref><sp/><ref refid="classQAccelPlot_1_1Colormap_1a67a5ff395bc2320f2fa84e6087b7f6c7" kindref="member">preset</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Colormap_1a6d890738d894bf61e553d1f782ddfbe7" kindref="member">setPreset</ref>(<ref refid="classQAccelPlot_1_1Colormap_1aa15fef934b0935f5a3b0f904b849f4fd" kindref="member">Preset</ref><sp/><ref refid="classQAccelPlot_1_1Colormap_1a67a5ff395bc2320f2fa84e6087b7f6c7" kindref="member">preset</ref>);</highlight></codeline>

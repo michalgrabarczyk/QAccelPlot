@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="classQAccelPlot_1_1LineCurvePointRenderer" kind="class" language="C++" prot="public">
     <compoundname>QAccelPlot::LineCurvePointRenderer</compoundname>
     <includes local="no">LineCurvePointRenderer.hpp</includes>
     <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="classQAccelPlot_1_1LineCurvePointRenderer_1afa3b3e044ac5e0485d43f1f22a7015c9" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type>constexpr int</type>
-        <definition>constexpr int QAccelPlot::LineCurvePointRenderer::kVerticesPerPoint</definition>
+        <type>int</type>
+        <definition>int QAccelPlot::LineCurvePointRenderer::kVerticesPerPoint</definition>
         <argsstring></argsstring>
         <name>kVerticesPerPoint</name>
         <qualifiedname>QAccelPlot::LineCurvePointRenderer::kVerticesPerPoint</qualifiedname>
@@ -21,8 +21,8 @@
         <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="67" column="26" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="67" bodyend="67"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1LineCurvePointRenderer_1a5d24c4fdfd3c22624a0463abb68ff258" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type>constexpr std::size_t</type>
-        <definition>constexpr std::size_t QAccelPlot::LineCurvePointRenderer::kVertexCacheBytesPerPoint</definition>
+        <type>std::size_t</type>
+        <definition>std::size_t QAccelPlot::LineCurvePointRenderer::kVertexCacheBytesPerPoint</definition>
         <argsstring></argsstring>
         <name>kVertexCacheBytesPerPoint</name>
         <qualifiedname>QAccelPlot::LineCurvePointRenderer::kVertexCacheBytesPerPoint</qualifiedname>

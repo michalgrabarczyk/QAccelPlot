@@ -444,6 +444,8 @@
       
         
       
+        
+      
     
     
     
@@ -569,6 +571,34 @@
     
   
     Axis formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/axis-labels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Axis labels
   
 
     
@@ -2764,7 +2794,7 @@
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-hovered-12"><strong>hovered</strong></a>  <br><em>Read-only:</em> <code>true</code> <em>while the mouse cursor is over the series.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">property <a href="../classQAccelPlot_1_1SeriesInspection/"><strong>SeriesInspection</strong></a> *</td>
+<td style="text-align: right;">property SeriesInspection *</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-inspection-12"><strong>inspection</strong></a>  <br><em>Read-only constant: data queries for this series.</em></td>
 </tr>
 <tr>
@@ -3186,7 +3216,7 @@
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-hovered-22"><strong>hovered</strong></a> () const<br><em>Returns whether the mouse cursor is over the series.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classQAccelPlot_1_1SeriesInspection/"><strong>SeriesInspection</strong></a> *</td>
+<td style="text-align: right;">SeriesInspection *</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-inspection-22"><strong>inspection</strong></a> () const<br><em>Returns the data queries for this series; created on first use and owned by the series.</em></td>
 </tr>
 <tr>
@@ -3574,7 +3604,7 @@
 <p>Each bar is a (position, value) pair. A vertical bar is centered on <code>position</code> along the X axis and spans from <code>baselineValue</code> to <code>value</code> along the Y axis; <code>orientation</code> <code>Qt.Horizontal</code> swaps the axes. Bars are uploaded to the GPU as a float data texture of two floats per bar, and <code>barWidth</code>, <code>barOffset</code>, and <code>baselineValue</code> are applied in the shader, so changing them does not re-upload the data. The <code>setData()</code> overloads keep doubles and upload them relative to an origin near the data, so large positions such as epoch timestamps stay precise.</p>
 <p>Bars with a NaN or infinite position, or a NaN value, are not drawn or hovered. An infinite value extends the bar to the plot edge. Values below <code>baselineValue</code> extend the bar the other way.</p>
 <p>A ranged bar is a (from, to, value) triple that spans from <code>from</code> to <code>to</code> along the position axis, e.g. a histogram bin. <code>barWidth</code> and <code>barOffset</code> do not apply to ranged bars. A ranged bar with a NaN edge is not drawn, and an infinite edge extends it to the plot edge. A series holds either ranged bars or (position, value) bars.</p>
-<p>Each bar can carry a <code>category</code>. List the categories in <code>categories</code> as <code>Category</code> objects, as in <code>QAccelPlot.Category { value: 0; name: "Loss"; color: "red" }</code>. A bar is filled with the color of the category whose <code>value</code> equals its <code>category</code>. Bars without a category, or whose category has no color or is not listed, use <code>color</code>. The legend shows one row per category unless a <code>colormap</code> is assigned. For grouped bars, use one series per group with a narrower <code>barWidth</code> and a different <code>barOffset</code>.</p>
+<p>Each bar can carry a <code>category</code>. List the categories in <code>categories</code> as <code>Category</code> objects, as in <code>QAccelPlot.Category { value: 0; name : "Loss"; color : "red" }</code>. A bar is filled with the color of the category whose <code>value</code> equals its <code>category</code>. Bars without a category, or whose category has no color or is not listed, use <code>color</code>. The legend shows one row per category unless a <code>colormap</code> is assigned. For grouped bars, use one series per group with a narrower <code>barWidth</code> and a different <code>barOffset</code>.</p>
 <p>Set <code>antialiasing</code> to smooth edges that fall between pixels. It is off by default because bars that touch, such as histogram bins, then show faint seams.</p>
 <p>**
 **</p>

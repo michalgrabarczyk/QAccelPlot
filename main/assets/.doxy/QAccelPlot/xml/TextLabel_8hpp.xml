@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="TextLabel_8hpp" kind="file" language="C++">
+    <compoundname>TextLabel.hpp</compoundname>
+    <includes local="no">QColor</includes>
+    <includes local="no">QFont</includes>
+    <includes local="no">QObject</includes>
+    <includes local="no">QString</includes>
+    <includes local="no">QtQml/qqmlregistration.h</includes>
+    <includedby refid="AxisLabel_8hpp" local="yes">QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp</includedby>
+    <includedby refid="ColorBar_8hpp" local="yes">QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp</label>
+        <link refid="TextLabel_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QColor</label>
+      </node>
+      <node id="3">
+        <label>QFont</label>
+      </node>
+      <node id="4">
+        <label>QObject</label>
+      </node>
+      <node id="5">
+        <label>QString</label>
+      </node>
+      <node id="6">
+        <label>QtQml/qqmlregistration.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classQAccelPlot_1_1TextLabel" prot="public">QAccelPlot::TextLabel</innerclass>
+    <innernamespace refid="namespaceQAccelPlot">QAccelPlot</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-FileCopyrightText:<sp/>2026<sp/>Michal<sp/>Grabarczyk</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>GPL-3.0-only<sp/>WITH<sp/>Universal-FOSS-exception-1.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>file<sp/>is<sp/>also<sp/>available<sp/>under<sp/>a<sp/>separate<sp/>commercial<sp/>license.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>See<sp/>COMMERCIAL-LICENSING.md<sp/>for<sp/>contact<sp/>information.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QColor&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QFont&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QObject&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QString&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QtQml/qqmlregistration.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="classQAccelPlot_1_1TextLabel" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1TextLabel_1a015af2ca9bb81ed57c28efdb2ae65eb3" kindref="member">TextLabel</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QObject<sp/>{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_OBJECT</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_ANONYMOUS</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QString<sp/><ref refid="classQAccelPlot_1_1TextLabel_1afeb0c659ab73eda4212bb6bacbaa6628" kindref="member">text</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1TextLabel_1afeb0c659ab73eda4212bb6bacbaa6628" kindref="member">text</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1TextLabel_1aa4e03c2533875c520e43be3fc189ca02" kindref="member">setText</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1TextLabel_1a966e1b6ae8d29f1e6b950ad1c0998e00" kindref="member">textChanged</ref>)</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QFont<sp/><ref refid="classQAccelPlot_1_1TextLabel_1a834b04ff20fcd2780af4aaf05a9d0f17" kindref="member">font</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1TextLabel_1a834b04ff20fcd2780af4aaf05a9d0f17" kindref="member">font</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1TextLabel_1a88008a2c41f97c2550b0239c7e3d744f" kindref="member">setFont</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1TextLabel_1abe8083ba51680ea33693d057b7070268" kindref="member">fontChanged</ref>)</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/><ref refid="classQAccelPlot_1_1TextLabel_1a8aa743c1cda93be9ccdd03a4e2b7e067" kindref="member">color</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1TextLabel_1a8aa743c1cda93be9ccdd03a4e2b7e067" kindref="member">color</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1TextLabel_1ae6dfc3fc08063f86f7bd794393987f06" kindref="member">setColor</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1TextLabel_1a87e0025dbc876c48e2805b4bd321610f" kindref="member">colorChanged</ref>)</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(qreal<sp/><ref refid="classQAccelPlot_1_1TextLabel_1a131eb4ee32f7f92c8bb7dc4aba680e3d" kindref="member">padding</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1TextLabel_1a131eb4ee32f7f92c8bb7dc4aba680e3d" kindref="member">padding</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1TextLabel_1aca6e700adbd19d73478c7e0296206204" kindref="member">setPadding</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1TextLabel_1accfee0e23bf6118a9cd2aa032a826c7f" kindref="member">paddingChanged</ref>)</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TextLabel_1a015af2ca9bb81ed57c28efdb2ae65eb3" kindref="member">TextLabel</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QColor&amp;<sp/><ref refid="classQAccelPlot_1_1TextLabel_1a8aa743c1cda93be9ccdd03a4e2b7e067" kindref="member">color</ref><sp/>=<sp/>{},<sp/>qreal<sp/><ref refid="classQAccelPlot_1_1TextLabel_1a131eb4ee32f7f92c8bb7dc4aba680e3d" kindref="member">padding</ref><sp/>=<sp/>0.0,<sp/>QObject*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>QString<sp/><ref refid="classQAccelPlot_1_1TextLabel_1afeb0c659ab73eda4212bb6bacbaa6628" kindref="member">text</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TextLabel_1aa4e03c2533875c520e43be3fc189ca02" kindref="member">setText</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QString&amp;<sp/><ref refid="classQAccelPlot_1_1TextLabel_1afeb0c659ab73eda4212bb6bacbaa6628" kindref="member">text</ref>);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>QFont<sp/><ref refid="classQAccelPlot_1_1TextLabel_1a834b04ff20fcd2780af4aaf05a9d0f17" kindref="member">font</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TextLabel_1a88008a2c41f97c2550b0239c7e3d744f" kindref="member">setFont</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QFont&amp;<sp/><ref refid="classQAccelPlot_1_1TextLabel_1a834b04ff20fcd2780af4aaf05a9d0f17" kindref="member">font</ref>);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/><ref refid="classQAccelPlot_1_1TextLabel_1a8aa743c1cda93be9ccdd03a4e2b7e067" kindref="member">color</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TextLabel_1ae6dfc3fc08063f86f7bd794393987f06" kindref="member">setColor</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QColor&amp;<sp/><ref refid="classQAccelPlot_1_1TextLabel_1a8aa743c1cda93be9ccdd03a4e2b7e067" kindref="member">color</ref>);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/><ref refid="classQAccelPlot_1_1TextLabel_1a131eb4ee32f7f92c8bb7dc4aba680e3d" kindref="member">padding</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TextLabel_1aca6e700adbd19d73478c7e0296206204" kindref="member">setPadding</ref>(qreal<sp/><ref refid="classQAccelPlot_1_1TextLabel_1a131eb4ee32f7f92c8bb7dc4aba680e3d" kindref="member">padding</ref>);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal">signals:</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TextLabel_1a966e1b6ae8d29f1e6b950ad1c0998e00" kindref="member">textChanged</ref>();</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TextLabel_1abe8083ba51680ea33693d057b7070268" kindref="member">fontChanged</ref>();</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TextLabel_1a87e0025dbc876c48e2805b4bd321610f" kindref="member">colorChanged</ref>();</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TextLabel_1accfee0e23bf6118a9cd2aa032a826c7f" kindref="member">paddingChanged</ref>();</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>QString<sp/>text_;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>QFont<sp/>font_;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>color_;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>padding_;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp"/>
+  </compounddef>
+</doxygen>

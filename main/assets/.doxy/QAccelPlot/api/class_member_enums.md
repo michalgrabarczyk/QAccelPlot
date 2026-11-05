@@ -24,6 +24,7 @@
 
 ## l
 
+* **LabelAlignment** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
 * **Layout** ([**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md))
 * **LegendSymbol** ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
 

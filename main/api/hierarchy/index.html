@@ -448,6 +448,8 @@
       
         
       
+        
+      
     
     
     
@@ -573,6 +575,34 @@
     
   
     Axis formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/axis-labels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Axis labels
   
 
     
@@ -1436,6 +1466,7 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionRecord/"><strong>QAccelPlot::InspectionRecord</strong></a> <em>A native record of a series that is not a plain XY series, such as a bar, rectangle, or band.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionRow/"><strong>QAccelPlot::InspectionRow</strong></a> <em>Inspection result of one series, as shown by one row of an</em> <code>InspectionRowModel</code> <em>.</em></li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionSummary/"><strong>QAccelPlot::InspectionSummary</strong></a> <em>Data-point-weighted Y statistics over the valid data points inside a region.</em> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1AxisLabelLayoutParams/"><strong>QAccelPlot::Internal::AxisLabelLayoutParams</strong></a> <em>Inputs that place an axis label relative to the axis baseline.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1CategoryTable_1_1Entry/"><strong>QAccelPlot::Internal::CategoryTable::Entry</strong></a> <em>One category: the value data points carry, an optional name, and an optional color.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals/"><strong>QAccelPlot::Internal::DataTextureUploadTotals</strong></a> <em>How many data textures were uploaded since the last reset, and how many bytes they held.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1GrabSize/"><strong>QAccelPlot::Internal::GrabSize</strong></a> <em>Sizes of one item grab.</em> </li>
@@ -1493,6 +1524,10 @@
 </ul>
 </li>
 <li><strong>class</strong> <strong>QObject</strong>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1TextLabel/"><strong>QAccelPlot::TextLabel</strong></a> <em>Text, font, color, and padding of a title, grouped as the</em> <code>label</code> <em>property of</em><a href="../classQAccelPlot_1_1ColorBar/"><em><strong>ColorBar</strong></em></a> <em>and</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1AxisLabel/"><strong>QAccelPlot::AxisLabel</strong></a> <a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>title and its placement, grouped as the</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> __<code>label</code> <em>property, e.g.</em><code>label.text: "Time (s)"</code> <em>.</em></li>
+</ul>
+</li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a> <em>Controls the visual appearance of ticks, sub-ticks, and tick labels on an</em> <code>Axis</code> <em>.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BandEdges/"><strong>QAccelPlot::BandEdges</strong></a> <em>Controls the lines a</em> <code>BandSeries</code> <em>draws along its lower and upper edges.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Border/"><strong>QAccelPlot::Border</strong></a> <em>Outline color and width, exposed as a</em> <code>border</code> <em>grouped property, for example</em><code>border.width: 1</code> <em>.</em></li>
@@ -1577,6 +1612,10 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1DashLine/"><strong>QAccelPlot::DashLine</strong></a> <em>A line style that renders the curve as a customisable dashed line.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1NoLine/"><strong>QAccelPlot::NoLine</strong></a> <em>A line style that suppresses line rendering entirely, leaving only markers visible.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1SolidLine/"><strong>QAccelPlot::SolidLine</strong></a> <em>The default line style — renders a continuous solid line with no gaps.</em> </li>
+</ul>
+</li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1TextLabel/"><strong>QAccelPlot::TextLabel</strong></a> <em>Text, font, color, and padding of a title, grouped as the</em> <code>label</code> <em>property of</em><a href="../classQAccelPlot_1_1ColorBar/"><em><strong>ColorBar</strong></em></a> <em>and</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1AxisLabel/"><strong>QAccelPlot::AxisLabel</strong></a> <a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>title and its placement, grouped as the</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> __<code>label</code> <em>property, e.g.</em><code>label.text: "Time (s)"</code> <em>.</em></li>
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1TickLabelFormatter/"><strong>QAccelPlot::TickLabelFormatter</strong></a> <em>Abstract base class for tick label formatters.</em>     <ul>

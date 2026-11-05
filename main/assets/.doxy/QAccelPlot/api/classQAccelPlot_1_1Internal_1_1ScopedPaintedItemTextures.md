@@ -62,10 +62,10 @@ _Rasterizes the painted items under a root item at a capture scale until destroy
 | Type | Name |
 | ---: | :--- |
 |   | [**ScopedPaintedItemTextures**](#function-scopedpainteditemtextures-13) (QQuickItem \* root, qreal pixelsPerLogicalPixel, qreal devicePixelRatio) <br>_Resizes the textures of_ _root_ _and its painted descendants rendered at__devicePixelRatio_ _._ |
-|   | [**ScopedPaintedItemTextures**](#function-scopedpainteditemtextures-23) (const [**ScopedPaintedItemTextures**](classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures.md) &) = delete<br> |
-|   | [**ScopedPaintedItemTextures**](#function-scopedpainteditemtextures-33) ([**ScopedPaintedItemTextures**](classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures.md) &&) = delete<br> |
-|  [**ScopedPaintedItemTextures**](classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures.md) & | [**operator=**](#function-operator) (const [**ScopedPaintedItemTextures**](classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures.md) &) = delete<br> |
-|  [**ScopedPaintedItemTextures**](classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures.md) & | [**operator=**](#function-operator_1) ([**ScopedPaintedItemTextures**](classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures.md) &&) = delete<br> |
+|   | [**ScopedPaintedItemTextures**](#function-scopedpainteditemtextures-23) (const ScopedPaintedItemTextures &) = delete<br> |
+|   | [**ScopedPaintedItemTextures**](#function-scopedpainteditemtextures-33) (ScopedPaintedItemTextures &&) = delete<br> |
+|  [**ScopedPaintedItemTextures**](classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures.md#function-scopedpainteditemtextures-13) & | [**operator=**](#function-operator) (const [**ScopedPaintedItemTextures**](classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures.md#function-scopedpainteditemtextures-13) &) = delete<br> |
+|  [**ScopedPaintedItemTextures**](classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures.md#function-scopedpainteditemtextures-13) & | [**operator=**](#function-operator_1) ([**ScopedPaintedItemTextures**](classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures.md#function-scopedpainteditemtextures-13) &&) = delete<br> |
 |   | [**~ScopedPaintedItemTextures**](#function-scopedpainteditemtextures) () <br>_Restores the previous texture sizes of the items that still exist._  |
 
 

@@ -62,11 +62,11 @@ _One animation of a transition on one host element._ [More...](#detailed-descrip
 | Type | Name |
 | ---: | :--- |
 |   | [**Run**](#function-run-12) () = default<br>_Constructs an idle run._  |
-|   | [**Run**](#function-run-22) (const [**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md) &) = delete<br> |
+|   | [**Run**](#function-run-22) (const Run &) = delete<br> |
 |  bool | [**active**](#function-active) () const<br>_Returns_ `true` _while the transition advances this run._ |
 |  void | [**cancel**](#function-cancel) () <br>_Ends the run and discards its data._  |
 |  bool | [**finish**](#function-finish) (std::vector&lt; double &gt; & outData, int & outPointCount) <br>_Ends the run and moves its target data into_ _outData_ _and__outPointCount_ _._ |
-|  [**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md) & | [**operator=**](#function-operator) (const [**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md) &) = delete<br> |
+|  [**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md#function-run-12) & | [**operator=**](#function-operator) (const [**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md#function-run-12) &) = delete<br> |
 |  bool | [**pending**](#function-pending) () const<br>_Returns_ `true` _while the run holds target data that_`finish()` _has not taken._ |
 |  const std::vector&lt; double &gt; & | [**targetData**](#function-targetdata) () const<br>_Returns the target data. Valid while_ `pending()` _is_`true` _._ |
 |  int | [**targetPointCount**](#function-targetpointcount) () const<br>_Returns the number of points in_ `targetData()` _._ |

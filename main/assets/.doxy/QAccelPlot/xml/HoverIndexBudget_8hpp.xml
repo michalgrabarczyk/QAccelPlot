@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="HoverIndexBudget_8hpp" kind="file" language="C++">
     <compoundname>HoverIndexBudget.hpp</compoundname>
     <includes local="no">chrono</includes>
@@ -42,11 +42,11 @@
 <codeline lineno="12"><highlight class="normal"></highlight></codeline>
 <codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot::Internal<sp/>{</highlight></codeline>
 <codeline lineno="14"><highlight class="normal"></highlight></codeline>
-<codeline lineno="21" refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget" kindref="compound">HoverIndexBudget</ref><sp/>{</highlight></codeline>
+<codeline lineno="21" refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1a30c27b2df10b997807d5028c125c60fe" kindref="member">HoverIndexBudget</ref><sp/>{</highlight></codeline>
 <codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1ab99e36b32a1a70f1eacb8540fbb7fe6b" kindref="member">CostPerRecord</ref><sp/>=<sp/>std::chrono::duration&lt;double,<sp/>std::nano&gt;;</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget" kindref="compound">HoverIndexBudget</ref>(<ref refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1ab99e36b32a1a70f1eacb8540fbb7fe6b" kindref="member">CostPerRecord</ref><sp/>assumedBuildCostPerRecord);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1a30c27b2df10b997807d5028c125c60fe" kindref="member">HoverIndexBudget</ref>(<ref refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1ab99e36b32a1a70f1eacb8540fbb7fe6b" kindref="member">CostPerRecord</ref><sp/>assumedBuildCostPerRecord);</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1a64d542990bb3b563d9bf8c7bb43e5d9d" kindref="member">reset</ref>();</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1a6fad11b566bf5ddfa6aa9b9d5669969a" kindref="member">buildDue</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>recordCount)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="LegendModel_8hpp" kind="file" language="C++">
     <compoundname>LegendModel.hpp</compoundname>
     <includes refid="PlotSeries_8hpp" local="yes">QAccelPlot/series/PlotSeries.hpp</includes>
@@ -52,9 +52,9 @@
 <codeline lineno="15"><highlight class="normal"></highlight></codeline>
 <codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
 <codeline lineno="17"><highlight class="normal"></highlight></codeline>
-<codeline lineno="37" refid="classQAccelPlot_1_1LegendModel" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1LegendModel" kindref="compound">LegendModel</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QAbstractListModel<sp/>{</highlight></codeline>
+<codeline lineno="37" refid="classQAccelPlot_1_1LegendModel" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1LegendModel_1a140c9400acba7f82e62896e09547172e" kindref="member">LegendModel</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QAbstractListModel<sp/>{</highlight></codeline>
 <codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_OBJECT</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_NAMED_ELEMENT(<ref refid="classQAccelPlot_1_1LegendModel" kindref="compound">LegendModel</ref>)</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_NAMED_ELEMENT(<ref refid="classQAccelPlot_1_1LegendModel_1a140c9400acba7f82e62896e09547172e" kindref="member">LegendModel</ref>)</highlight></codeline>
 <codeline lineno="40"><highlight class="normal"></highlight></codeline>
 <codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QList&lt;PlotSeries*&gt;<sp/><ref refid="classQAccelPlot_1_1LegendModel_1aa4ec20f016cd7fc60ea0dd771cab5f29" kindref="member">series</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1LegendModel_1aa4ec20f016cd7fc60ea0dd771cab5f29" kindref="member">series</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1LegendModel_1a13acf6d15ac044d3bdc3b76b4856b922" kindref="member">setSeries</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1LegendModel_1a391381008f120c0272036c1851e6f8dc" kindref="member">seriesChanged</ref>)</highlight></codeline>
@@ -67,7 +67,7 @@
 <codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>EntryRole,</highlight></codeline>
 <codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
 <codeline lineno="53"><highlight class="normal"></highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1LegendModel" kindref="compound">LegendModel</ref>(QObject*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1LegendModel_1a140c9400acba7f82e62896e09547172e" kindref="member">LegendModel</ref>(QObject*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="56"><highlight class="normal"></highlight></codeline>
 <codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>QList&lt;PlotSeries*&gt;<sp/><ref refid="classQAccelPlot_1_1LegendModel_1aa4ec20f016cd7fc60ea0dd771cab5f29" kindref="member">series</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1LegendModel_1a13acf6d15ac044d3bdc3b76b4856b922" kindref="member">setSeries</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QList&lt;PlotSeries*&gt;&amp;<sp/><ref refid="classQAccelPlot_1_1LegendModel_1aa4ec20f016cd7fc60ea0dd771cab5f29" kindref="member">series</ref>);</highlight></codeline>
@@ -90,7 +90,7 @@
 <codeline lineno="84"><highlight class="normal"></highlight></codeline>
 <codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>One<sp/>legend<sp/>row:<sp/>entry<sp/>\c<sp/>entry<sp/>of<sp/>\c<sp/>series&apos;<sp/>legendEntries().</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">Row<sp/>{</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QPointer&lt;PlotSeries&gt;<sp/>series;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QPointer&lt;PlotSeries&gt;<sp/><ref refid="classQAccelPlot_1_1LegendModel_1aa4ec20f016cd7fc60ea0dd771cab5f29" kindref="member">series</ref>;</highlight></codeline>
 <codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>entry{0};</highlight></codeline>
 <codeline lineno="89"><highlight class="normal"></highlight></codeline>
 <codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>operator==(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Row&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>

@@ -444,6 +444,8 @@
       
         
       
+        
+      
     
     
     
@@ -569,6 +571,34 @@
     
   
     Axis formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/axis-labels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Axis labels
   
 
     
@@ -2341,7 +2371,7 @@
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-hovered-12"><strong>hovered</strong></a>  <br><em>Read-only:</em> <code>true</code> <em>while the mouse cursor is over the series.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">property <a href="../classQAccelPlot_1_1SeriesInspection/"><strong>SeriesInspection</strong></a> *</td>
+<td style="text-align: right;">property SeriesInspection *</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-inspection-12"><strong>inspection</strong></a>  <br><em>Read-only constant: data queries for this series.</em></td>
 </tr>
 <tr>
@@ -2643,7 +2673,7 @@
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-hovered-22"><strong>hovered</strong></a> () const<br><em>Returns whether the mouse cursor is over the series.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classQAccelPlot_1_1SeriesInspection/"><strong>SeriesInspection</strong></a> *</td>
+<td style="text-align: right;">SeriesInspection *</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-inspection-22"><strong>inspection</strong></a> () const<br><em>Returns the data queries for this series; created on first use and owned by the series.</em></td>
 </tr>
 <tr>
@@ -3016,7 +3046,7 @@
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
-<p>The grid has <code>columns</code> cells per row and <code>rows</code> rows of cells. Values are stored row by row: the value of a cell has index <code>row * columns + column</code>, with row 0 at <code>yMin</code> and column 0 at <code>xMin</code>. <code>xMin</code>, <code>xMax</code>, <code>yMin</code>, and <code>yMax</code> are the outer edges of the grid; an unset bound places the grid in index space, so column <em>c</em> spans [c, c + 1].</p>
+<p>The grid has <code>columns</code> cells per row and <code>rows</code> rows of cells. Values are stored row by row: the value of a cell has index <code>row *  columns + column</code>, with row 0 at <code>yMin</code> and column 0 at <code>xMin</code>. <code>xMin</code>, <code>xMax</code>, <code>yMin</code>, and <code>yMax</code> are the outer edges of the grid; an unset bound places the grid in index space, so column <em>c</em> spans [c, c + 1].</p>
 <p>Each cell is colored by mapping its value through <code>colormap</code>. The series starts with a Viridis colormap of its own whose range is resolved from the data; assign a shared <code>Colormap</code> to replace it. Nothing is drawn while <code>colormap</code> is null. The series has no legend entry: a <code>ColorBar</code> is its key.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">QAccelPlot</span><span class="p">.</span><span class="n">HeatmapSeries</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nl">xMin</span><span class="p">:</span><span class="w"> </span><span class="mi">-10</span><span class="p">;</span><span class="w"> </span><span class="n">xMax</span><span class="o">:</span><span class="w"> </span><span class="mi">10</span>
@@ -3036,7 +3066,7 @@
 <p><code>xSpacing</code> and <code>ySpacing</code> space the cells evenly in data or in log10, independently of the axis scale. On a log axis, <code>Log</code> cells have equal widths, <code>Linear</code> cells narrow toward larger values, and the parts of cells at or below zero are not drawn; the data range starts at the first cell edge above zero. Under <code>Log</code> spacing, both edges of that dimension must be positive, so set them: an unset edge resolves to index space, which starts at 0. Otherwise the series draws nothing, reports no data range in that dimension, and logs a warning.</p>
 <p>**
 **</p>
-<p><code>inspection.recordAt()</code> and <code>inspection.recordAtPosition()</code> return a record with the fields <code>x</code> and <code>y</code> (the cell center, geometric under <code>Log</code> spacing), <code>value</code>, <code>row</code>, and <code>column</code>. <code>inspection.dataPointAtPosition()</code> returns the cell as a data point at its center, with <code>index</code> <code>row * columns + column</code>, which <code>PlotInspector</code> reports in every mode. A cell with a non-finite value is still a match. While a grid edge is not finite, or not positive under <code>Log</code> spacing, <code>recordAt()</code> returns <code>Unavailable</code> and no position matches a cell.</p>
+<p><code>inspection.recordAt()</code> and <code>inspection.recordAtPosition()</code> return a record with the fields <code>x</code> and <code>y</code> (the cell center, geometric under <code>Log</code> spacing), <code>value</code>, <code>row</code>, and <code>column</code>. <code>inspection.dataPointAtPosition()</code> returns the cell as a data point at its center, with <code>index</code> <code>row *  columns + column</code>, which <code>PlotInspector</code> reports in every mode. A cell with a non-finite value is still a match. While a grid edge is not finite, or not positive under <code>Log</code> spacing, <code>recordAt()</code> returns <code>Unavailable</code> and no position matches a cell.</p>
 <p>**
 **</p>
 <p>Each pixel takes the color of the cell under its center, without interpolation, and <code>antialiasing</code> has no effect. A grid with an infinite edge draws nothing. A grid of more than 16,777,216 (2^24) columns or rows, or of more cells than the GPU data texture holds, about 67 million for an 8192-pixel texture limit, draws nothing and logs a warning.</p>

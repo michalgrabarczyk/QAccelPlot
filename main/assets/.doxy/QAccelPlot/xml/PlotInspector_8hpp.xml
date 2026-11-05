@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="PlotInspector_8hpp" kind="file" language="C++">
     <compoundname>PlotInspector.hpp</compoundname>
     <includes refid="PlotView_8hpp" local="yes">QAccelPlot/PlotView.hpp</includes>
@@ -56,12 +56,12 @@
 <codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight></codeline>
 <codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Internal<sp/>{</highlight></codeline>
-<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">OverlayChildren;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1Internal_1_1OverlayChildren" kindref="compound">OverlayChildren</ref>;</highlight></codeline>
 <codeline lineno="22"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>Internal</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight></codeline>
-<codeline lineno="40" refid="classQAccelPlot_1_1PlotInspector" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1PlotInspector" kindref="compound">PlotInspector</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QObject<sp/>{</highlight></codeline>
+<codeline lineno="40" refid="classQAccelPlot_1_1PlotInspector" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1PlotInspector_1a0c6f9457f166204f3b22a0e819a47390" kindref="member">PlotInspector</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QObject<sp/>{</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_OBJECT</highlight></codeline>
-<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_NAMED_ELEMENT(<ref refid="classQAccelPlot_1_1PlotInspector" kindref="compound">PlotInspector</ref>)</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_NAMED_ELEMENT(<ref refid="classQAccelPlot_1_1PlotInspector_1a0c6f9457f166204f3b22a0e819a47390" kindref="member">PlotInspector</ref>)</highlight></codeline>
 <codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_CLASSINFO(</highlight><highlight class="stringliteral">&quot;DefaultProperty&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;data&quot;</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QQmlListProperty&lt;QObject&gt;<sp/><ref refid="classQAccelPlot_1_1PlotInspector_1a4041c62417d75270e7a056a68c9dabdf" kindref="member">data</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1PlotInspector_1a4041c62417d75270e7a056a68c9dabdf" kindref="member">data</ref>)</highlight></codeline>
 <codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(<ref refid="classQAccelPlot_1_1PlotView" kindref="compound">PlotView</ref>*<sp/><ref refid="classQAccelPlot_1_1PlotInspector_1abff7afec07c633dc6f8b682ac0221cf1" kindref="member">plot</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1PlotInspector_1abff7afec07c633dc6f8b682ac0221cf1" kindref="member">plot</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1PlotInspector_1aac6aaff24e79ed6c1cadb16cb9e40c88" kindref="member">setPlot</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1PlotInspector_1af1d2396c9a3ca7826f7676f66ebc98f9" kindref="member">plotChanged</ref>)</highlight></codeline>
@@ -95,7 +95,7 @@
 <codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_ENUM(<ref refid="classQAccelPlot_1_1PlotInspector_1abce6e3e87608cfa715f2e3700a3e55b1" kindref="member">Mode</ref>)</highlight></codeline>
 <codeline lineno="107"><highlight class="normal"></highlight></codeline>
 <codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotInspector" kindref="compound">PlotInspector</ref>(QObject*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotInspector_1a0c6f9457f166204f3b22a0e819a47390" kindref="member">PlotInspector</ref>(QObject*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotInspector_1aa43495de1c8964b86c2833327b624267" kindref="member">~PlotInspector</ref>()<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="112"><highlight class="normal"></highlight></codeline>
 <codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>QQmlListProperty&lt;QObject&gt;<sp/><ref refid="classQAccelPlot_1_1PlotInspector_1a4041c62417d75270e7a056a68c9dabdf" kindref="member">data</ref>();</highlight></codeline>

@@ -45,7 +45,7 @@
 | Type | Name |
 | ---: | :--- |
 |  Qt::Orientation | [**dimension**](#variable-dimension)  <br> |
-|  const [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) \* | [**series**](#variable-series)  <br> |
+|  const PlotSeries \* | [**series**](#variable-series)  <br> |
 
 
 

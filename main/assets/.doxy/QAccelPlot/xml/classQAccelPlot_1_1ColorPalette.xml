@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="classQAccelPlot_1_1ColorPalette" kind="class" language="C++" prot="public">
     <compoundname>QAccelPlot::ColorPalette</compoundname>
     <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
@@ -680,7 +680,7 @@
     </sectiondef>
     <sectiondef kind="public-static-func">
       <memberdef kind="function" id="classQAccelPlot_1_1ColorPalette_1ab932bbb47c7cf2198f0cd6930b53788e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>const <ref refid="classQAccelPlot_1_1ColorPalette" kindref="compound">ColorPalette</ref> &amp;</type>
+        <type>const ColorPalette &amp;</type>
         <definition>static const ColorPalette &amp; QAccelPlot::ColorPalette::dark</definition>
         <argsstring>()</argsstring>
         <name>dark</name>
@@ -695,7 +695,7 @@
         <location file="QAccelPlot/src/QAccelPlot/theme/ColorPalette.hpp" line="97" column="31"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorPalette_1a62f051e10663e15bc363425b4cc410d8" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>const <ref refid="classQAccelPlot_1_1ColorPalette" kindref="compound">ColorPalette</ref> &amp;</type>
+        <type>const ColorPalette &amp;</type>
         <definition>static const ColorPalette &amp; QAccelPlot::ColorPalette::light</definition>
         <argsstring>()</argsstring>
         <name>light</name>
@@ -728,7 +728,7 @@
     </sectiondef>
     <sectiondef kind="private-static-func">
       <memberdef kind="function" id="classQAccelPlot_1_1ColorPalette_1ab8e1259cc73e644296e7e81bafb368fa" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classQAccelPlot_1_1ColorPalette" kindref="compound">ColorPalette</ref> *</type>
+        <type>ColorPalette *</type>
         <definition>static ColorPalette * QAccelPlot::ColorPalette::createDark</definition>
         <argsstring>()</argsstring>
         <name>createDark</name>
@@ -742,7 +742,7 @@
         <location file="QAccelPlot/src/QAccelPlot/theme/ColorPalette.hpp" line="159" column="25"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorPalette_1a7cb8e08bbfa063403455217d7e928ea8" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classQAccelPlot_1_1ColorPalette" kindref="compound">ColorPalette</ref> *</type>
+        <type>ColorPalette *</type>
         <definition>static ColorPalette * QAccelPlot::ColorPalette::createLight</definition>
         <argsstring>()</argsstring>
         <name>createLight</name>

@@ -20,6 +20,7 @@
 #include "QAccelPlot/Border.hpp"
 #include "QAccelPlot/axis/AxisTicker.hpp"
 #include "QAccelPlot/axis/AxisTicks.hpp"
+#include "QAccelPlot/axis/TextLabel.hpp"
 #include "QAccelPlot/effects/GradientColorTypes.hpp"
 #include "QAccelPlot/series/ColormappedSeries.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
@@ -43,10 +44,7 @@ class ColorBar : public QQuickPaintedItem {
     
     Q_PROPERTY(ColormappedSeries* series READ series WRITE setSeries NOTIFY seriesChanged)
     Q_PROPERTY(Qt::Orientation orientation READ orientation WRITE setOrientation NOTIFY orientationChanged)
-    Q_PROPERTY(QString label READ label WRITE setLabel NOTIFY labelChanged)
-    Q_PROPERTY(QFont labelFont READ labelFont WRITE setLabelFont NOTIFY labelFontChanged)
-    Q_PROPERTY(QColor labelColor READ labelColor WRITE setLabelColor NOTIFY labelColorChanged)
-    Q_PROPERTY(qreal labelPadding READ labelPadding WRITE setLabelPadding NOTIFY labelPaddingChanged)
+    Q_PROPERTY(TextLabel* label READ label CONSTANT)
     Q_PROPERTY(qreal barThickness READ barThickness WRITE setBarThickness NOTIFY barThicknessChanged)
     Q_PROPERTY(Border* border READ border CONSTANT)
     Q_PROPERTY(qreal tickLabelWidth READ tickLabelWidth WRITE setTickLabelWidth NOTIFY tickLabelWidthChanged)
@@ -64,17 +62,7 @@ public:
     Qt::Orientation orientation() const;
     void setOrientation(Qt::Orientation orientation);
 
-    QString label() const;
-    void setLabel(const QString& label);
-
-    QFont labelFont() const;
-    void setLabelFont(const QFont& font);
-
-    QColor labelColor() const;
-    void setLabelColor(const QColor& color);
-
-    qreal labelPadding() const;
-    void setLabelPadding(qreal padding);
+    TextLabel* label() const;
 
     qreal barThickness() const;
     void setBarThickness(qreal thickness);
@@ -104,10 +92,6 @@ public:
 signals:
     void seriesChanged();
     void orientationChanged();
-    void labelChanged();
-    void labelFontChanged();
-    void labelColorChanged();
-    void labelPaddingChanged();
     void barThicknessChanged();
     void tickLabelWidthChanged();
     void interactiveChanged();
@@ -150,6 +134,7 @@ private:
     qreal endInset() const;
     qreal tickLabelHeight() const;
     qreal tickLabelThickness() const;
+    qreal titlePadding() const;
     qreal titleThickness() const;
     qreal titleOffset() const;
     void paintStrip(QPainter* painter) const;
@@ -160,10 +145,7 @@ private:
     QList<QMetaObject::Connection> seriesConnections_;
     QMetaObject::Connection colormapConnection_;
     Qt::Orientation orientation_{Qt::Vertical};
-    QString label_;
-    QFont labelFont_;
-    QColor labelColor_{ColorPalette::dark().axisLine};
-    qreal labelPadding_{6.0};
+    TextLabel* label_{new TextLabel{ColorPalette::dark().axisLine, 6.0, this}};
     qreal barThickness_{12.0};
     Border* border_{new Border{ColorPalette::dark().axisLine, 1.0, this}};
     qreal tickLabelWidth_{16.0};

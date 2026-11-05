@@ -25,10 +25,15 @@
 #include <QColor>
 #include <QFont>
 #include <QList>
+#include <QPointer>
 #include <QQuickPaintedItem>
+
+// AxisLabel uses Axis::LabelAlignment, so this header only declares it.
+Q_MOC_INCLUDE("QAccelPlot/axis/AxisLabel.hpp")
 
 namespace QAccelPlot {
 
+class AxisLabel;
 class PlotSeries;
 
 class Axis : public QQuickPaintedItem {
@@ -39,15 +44,12 @@ class Axis : public QQuickPaintedItem {
     Q_PROPERTY(qreal dataMin READ dataMin WRITE setDataMin NOTIFY dataMinChanged)
     Q_PROPERTY(qreal dataMax READ dataMax WRITE setDataMax NOTIFY dataMaxChanged)
     Q_PROPERTY(Qt::Orientation orientation READ orientation WRITE setOrientation NOTIFY orientationChanged)
-    Q_PROPERTY(QString label READ label WRITE setLabel NOTIFY labelChanged)
-    Q_PROPERTY(QFont labelFont READ labelFont WRITE setLabelFont NOTIFY labelFontChanged)
+    Q_PROPERTY(AxisLabel* label READ label CONSTANT)
     Q_PROPERTY(bool hovered READ hovered NOTIFY hoveredChanged)
     Q_PROPERTY(QColor baselineColor READ baselineColor WRITE setBaselineColor NOTIFY baselineColorChanged)
-    Q_PROPERTY(QColor labelColor READ labelColor WRITE setLabelColor NOTIFY labelColorChanged)
     Q_PROPERTY(qreal baselineWidth READ baselineWidth WRITE setBaselineWidth NOTIFY baselineWidthChanged)
     Q_PROPERTY(QColor hoverColor READ hoverColor WRITE setHoverColor NOTIFY hoverColorChanged)
     Q_PROPERTY(Side side READ side WRITE setSide NOTIFY sideChanged)
-    Q_PROPERTY(qreal labelPadding READ labelPadding WRITE setLabelPadding NOTIFY labelPaddingChanged)
     Q_PROPERTY(qreal baselinePadding READ baselinePadding WRITE setBaselinePadding NOTIFY baselinePaddingChanged)
     Q_PROPERTY(qreal layoutSize READ layoutSize WRITE setLayoutSize NOTIFY layoutSizeChanged)
     Q_PROPERTY(AxisTicker* ticker READ ticker CONSTANT)
@@ -58,6 +60,14 @@ class Axis : public QQuickPaintedItem {
 public:
     enum Side { Left, Top, Right, Bottom };
     Q_ENUM(Side)
+
+    
+    enum LabelAlignment {
+        Start,  
+        Center, 
+        End     
+    };
+    Q_ENUM(LabelAlignment)
 
     
     explicit Axis(QQuickItem* parent = nullptr, Side side = Bottom);
@@ -79,11 +89,7 @@ public:
     Qt::Orientation orientation() const;
     void setOrientation(Qt::Orientation o);
 
-    QString label() const;
-    void setLabel(const QString& t);
-
-    QFont labelFont() const;
-    void setLabelFont(const QFont& f);
+    AxisLabel* label() const;
 
     Side side() const;
     void setSide(Side s);
@@ -93,17 +99,11 @@ public:
     QColor baselineColor() const;
     void setBaselineColor(const QColor& c);
 
-    QColor labelColor() const;
-    void setLabelColor(const QColor& c);
-
     qreal baselineWidth() const;
     void setBaselineWidth(qreal width);
 
     QColor hoverColor() const;
     void setHoverColor(const QColor& c);
-
-    qreal labelPadding() const;
-    void setLabelPadding(qreal padding);
 
     qreal baselinePadding() const;
     void setBaselinePadding(qreal padding);
@@ -142,17 +142,13 @@ signals:
     void dataMinChanged();
     void dataMaxChanged();
     void orientationChanged();
-    void labelChanged();
-    void labelFontChanged();
     void hoveredChanged();
     void rangeChanged();
 
     void baselineColorChanged();
-    void labelColorChanged();
     void baselineWidthChanged();
     void hoverColorChanged();
     void sideChanged();
-    void labelPaddingChanged();
     void baselinePaddingChanged();
     void layoutSizeChanged();
     void logScaleChanged();
@@ -193,7 +189,10 @@ private:
     void setViewportRange(qreal min, qreal max);
     void autoRescaleToData();
     qreal valueResolution(qreal value, qreal length) const;
+    qreal defaultLabelRotation() const;
     void paintLabel(QPainter* painter, const QRectF& r, qreal axisX, qreal axisY) const;
+    void createLabelItem();
+    void connectLabel();
     void invalidateTicks();
 
     qreal viewportMin_{0.0};
@@ -206,16 +205,15 @@ private:
     // True when the data range came from the series rather than from the application.
     mutable bool dataRangeFromSeries_{false};
     QList<DataRangeSource> dataRangeSources_;
-    QString label_;
-    QFont labelFont_;
     bool hovered_{false};
     bool isDragging_{false};
     QPointF lastMousePos_;
     QColor baselineColor_{ColorPalette::dark().axisLine};
-    QColor labelColor_;
     qreal baselineWidth_{2.0};
     QColor hoverColor_{ColorPalette::dark().hover};
-    qreal labelPadding_{30.0};
+    AxisLabel* label_;
+    // Instance of the label delegate, if one is set.
+    QPointer<QQuickItem> labelItem_;
     qreal baselinePadding_{0.0};
     qreal layoutSize_{50.0};
     bool logScale_{false};

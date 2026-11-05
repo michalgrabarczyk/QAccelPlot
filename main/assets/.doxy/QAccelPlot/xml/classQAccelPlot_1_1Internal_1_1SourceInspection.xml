@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="classQAccelPlot_1_1Internal_1_1SourceInspection" kind="class" language="C++" prot="public">
     <compoundname>QAccelPlot::Internal::SourceInspection</compoundname>
     <includes local="no">SourceInspection.hpp</includes>
@@ -56,7 +56,7 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1SourceInspection_1a2cef7f1e7022470d467f318c1b60e4ff" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1SourceInspection_1a2cef7f1e7022470d467f318c1b60e4ff" prot="public" static="yes" nodiscard="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
         <definition>static bool QAccelPlot::Internal::SourceInspection::isSorted</definition>
         <argsstring>(const InspectionSource &amp;source, InspectionAxis axis)</argsstring>
@@ -115,7 +115,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/internal/SourceInspection.hpp" line="32" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1SourceInspection_1afcd7b9bdbd8f746802441e5b9fa763fa" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1SourceInspection_1afcd7b9bdbd8f746802441e5b9fa763fa" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::size_t</type>
         <definition>std::size_t QAccelPlot::Internal::SourceInspection::storageBytes</definition>
         <argsstring>() const</argsstring>
@@ -130,7 +130,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/internal/SourceInspection.hpp" line="34" column="18"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1SourceInspection_1abb679639fc8f1eb4ba57095f8e735510" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1SourceInspection_1abb679639fc8f1eb4ba57095f8e735510" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structQAccelPlot_1_1Internal_1_1InspectionHit" kindref="compound">InspectionHit</ref></type>
         <definition>InspectionHit QAccelPlot::Internal::SourceInspection::nearestAlong</definition>
         <argsstring>(const InspectionSource &amp;source, const InspectionMetric &amp;metric, InspectionAxis order, double pixel, double radius) const</argsstring>
@@ -165,7 +165,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/internal/SourceInspection.hpp" line="37" column="20"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1SourceInspection_1ab182108d54f4bb80ecd350866df2bd75" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1SourceInspection_1ab182108d54f4bb80ecd350866df2bd75" prot="public" static="no" nodiscard="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structQAccelPlot_1_1Internal_1_1InspectionHit" kindref="compound">InspectionHit</ref></type>
         <definition>InspectionHit QAccelPlot::Internal::SourceInspection::nearest</definition>
         <argsstring>(const InspectionSource &amp;source, const InspectionMetric &amp;metric, InspectionAxis order, const QPointF &amp;position, double radius)</argsstring>
@@ -199,7 +199,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/internal/SourceInspection.hpp" line="39" column="20"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1SourceInspection_1a1071f002d8f43f5577df2aad0e5021f5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1SourceInspection_1a1071f002d8f43f5577df2aad0e5021f5" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structQAccelPlot_1_1Internal_1_1InspectionNeighbors" kindref="compound">InspectionNeighbors</ref></type>
         <definition>InspectionNeighbors QAccelPlot::Internal::SourceInspection::neighbors</definition>
         <argsstring>(const InspectionSource &amp;source, InspectionAxis order, double value) const</argsstring>
@@ -226,7 +226,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/internal/SourceInspection.hpp" line="42" column="26"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1SourceInspection_1af718ae9861d6829be27af380da77883e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1SourceInspection_1af718ae9861d6829be27af380da77883e" prot="public" static="no" nodiscard="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structQAccelPlot_1_1Internal_1_1SummaryAccumulator" kindref="compound">SummaryAccumulator</ref></type>
         <definition>SummaryAccumulator QAccelPlot::Internal::SourceInspection::summarize</definition>
         <argsstring>(const InspectionSource &amp;source, InspectionAxis order, const InspectionBounds &amp;bounds)</argsstring>

@@ -1,0 +1,496 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1AxisLabel" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::AxisLabel</compoundname>
+    <basecompoundref refid="classQAccelPlot_1_1TextLabel" prot="public" virt="non-virtual">QAccelPlot::TextLabel</basecompoundref>
+    <includes local="no">AxisLabel.hpp</includes>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1AxisLabel_1a7b865fc92932e4290befa0c0c6936470" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QML_ANONYMOUSAxis::LabelAlignment</type>
+        <definition>QML_ANONYMOUSAxis::LabelAlignment QAccelPlot::AxisLabel::alignment</definition>
+        <argsstring></argsstring>
+        <name>alignment</name>
+        <qualifiedname>QAccelPlot::AxisLabel::alignment</qualifiedname>
+        <read>alignment</read>
+        <write>setAlignment</write>
+        <briefdescription>
+<para>Position of the title along the axis. Default: <computeroutput><ref refid="classQAccelPlot_1_1Axis_1abeb42076f0b2796e528aed24e345244dacf791c17ba1f95cb5ea3cdbac59d91e5" kindref="member">Axis.Center</ref></computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" line="30" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1AxisLabel_1a04b59a7675f6fbea91525908c3c15e00" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisLabel::rotation</definition>
+        <argsstring></argsstring>
+        <name>rotation</name>
+        <qualifiedname>QAccelPlot::AxisLabel::rotation</qualifiedname>
+        <read>rotation</read>
+        <write>setRotation</write>
+        <briefdescription>
+<para>Clockwise rotation of the title in degrees. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Defaults to the side&apos;s rotation: 0 on horizontal axes, -90 on the left, and 90 on the right. Assign <computeroutput>undefined</computeroutput> to return to it. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" line="35" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1AxisLabel_1a46759c980d66065a8e8cbf3b5a967c9d" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QPointF</type>
+        <definition>QPointF QAccelPlot::AxisLabel::offset</definition>
+        <argsstring></argsstring>
+        <name>offset</name>
+        <qualifiedname>QAccelPlot::AxisLabel::offset</qualifiedname>
+        <read>offset</read>
+        <write>setOffset</write>
+        <briefdescription>
+<para>Pixel offset added to the title position after alignment and padding. Default: (0, 0). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" line="37" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1AxisLabel_1aa64cea6ede6785e958994065b05ad0da" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QQmlComponent *</type>
+        <definition>QQmlComponent* QAccelPlot::AxisLabel::delegate</definition>
+        <argsstring></argsstring>
+        <name>delegate</name>
+        <qualifiedname>QAccelPlot::AxisLabel::delegate</qualifiedname>
+        <read>delegate</read>
+        <write>setDelegate</write>
+        <briefdescription>
+<para>Optional component that replaces the painted title. Default: <computeroutput>null</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The axis creates one instance as its child item, so <computeroutput>parent</computeroutput> is the axis and anchors, <computeroutput>x</computeroutput>, <computeroutput>y</computeroutput>, and <computeroutput>rotation</computeroutput> position it. The instance may extend beyond the axis. While a delegate is set, the axis paints no title and ignores <computeroutput>alignment</computeroutput>, <computeroutput>rotation</computeroutput>, <computeroutput>offset</computeroutput>, and <computeroutput>padding</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" line="43" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1AxisLabel_1ad7082fc536f988e6692900c9ebe9ac23" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1Axis_1abeb42076f0b2796e528aed24e345244d" kindref="member">Axis::LabelAlignment</ref></type>
+        <definition>Axis::LabelAlignment QAccelPlot::AxisLabel::alignment_</definition>
+        <argsstring></argsstring>
+        <name>alignment_</name>
+        <qualifiedname>QAccelPlot::AxisLabel::alignment_</qualifiedname>
+        <initializer>{<ref refid="classQAccelPlot_1_1Axis_1abeb42076f0b2796e528aed24e345244dacf791c17ba1f95cb5ea3cdbac59d91e5" kindref="member">Axis::Center</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" line="84" column="26" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" bodystart="84" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1AxisLabel_1a60f458e65017230019e9dfa7a84e5468" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisLabel::rotation_</definition>
+        <argsstring></argsstring>
+        <name>rotation_</name>
+        <qualifiedname>QAccelPlot::AxisLabel::rotation_</qualifiedname>
+        <initializer>{std::numeric_limits&lt;qreal&gt;::quiet_NaN()}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" line="86" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" bodystart="86" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1AxisLabel_1ad6501e778faeb59d9bcc2421406a3c70" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisLabel::defaultRotation_</definition>
+        <argsstring></argsstring>
+        <name>defaultRotation_</name>
+        <qualifiedname>QAccelPlot::AxisLabel::defaultRotation_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" line="87" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" bodystart="87" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1AxisLabel_1a0358cd035bed209185ac2ab0fd18aab9" prot="private" static="no" mutable="no">
+        <type>QPointF</type>
+        <definition>QPointF QAccelPlot::AxisLabel::offset_</definition>
+        <argsstring></argsstring>
+        <name>offset_</name>
+        <qualifiedname>QAccelPlot::AxisLabel::offset_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" line="88" column="13" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1AxisLabel_1a91491e33a69cb17556116d50dc874242" prot="private" static="no" mutable="no">
+        <type>QPointer&lt; QQmlComponent &gt;</type>
+        <definition>QPointer&lt;QQmlComponent&gt; QAccelPlot::AxisLabel::delegate_</definition>
+        <argsstring></argsstring>
+        <name>delegate_</name>
+        <qualifiedname>QAccelPlot::AxisLabel::delegate_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" line="89" column="14" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" bodystart="89" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisLabel_1ad0cc9761bfae498bb793c7d6eccfe39c" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::AxisLabel::AxisLabel</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>AxisLabel</name>
+        <qualifiedname>QAccelPlot::AxisLabel::AxisLabel</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs an axis label owned by <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" line="47" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisLabel_1a202669c35e2e617cad38cea5b52e8cb5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1Axis_1abeb42076f0b2796e528aed24e345244d" kindref="member">Axis::LabelAlignment</ref></type>
+        <definition>Axis::LabelAlignment QAccelPlot::AxisLabel::alignment</definition>
+        <argsstring>() const</argsstring>
+        <name>alignment</name>
+        <qualifiedname>QAccelPlot::AxisLabel::alignment</qualifiedname>
+        <briefdescription>
+<para>Returns the position of the title along the axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" line="50" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisLabel_1ae69f1c599372e67352602fcf6410e2cb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisLabel::setAlignment</definition>
+        <argsstring>(Axis::LabelAlignment alignment)</argsstring>
+        <name>setAlignment</name>
+        <qualifiedname>QAccelPlot::AxisLabel::setAlignment</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1Axis_1abeb42076f0b2796e528aed24e345244d" kindref="member">Axis::LabelAlignment</ref></type>
+          <declname>alignment</declname>
+        </param>
+        <briefdescription>
+<para>Sets the position of the title along the axis to <emphasis>alignment</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" line="52" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisLabel_1adbc448c57dcf09fb43c707dd94aabc28" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisLabel::rotation</definition>
+        <argsstring>() const</argsstring>
+        <name>rotation</name>
+        <qualifiedname>QAccelPlot::AxisLabel::rotation</qualifiedname>
+        <briefdescription>
+<para>Returns the title rotation in degrees, including the side&apos;s default rotation. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" line="55" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisLabel_1af635b45b62f9c39b0f56a6580108620e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisLabel::setRotation</definition>
+        <argsstring>(qreal degrees)</argsstring>
+        <name>setRotation</name>
+        <qualifiedname>QAccelPlot::AxisLabel::setRotation</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>degrees</declname>
+        </param>
+        <briefdescription>
+<para>Sets the title rotation to <emphasis>degrees</emphasis>. A non-finite value restores the side&apos;s default rotation. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" line="57" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisLabel_1a13dd624885d7c7db70d2e2b806cea759" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisLabel::resetRotation</definition>
+        <argsstring>()</argsstring>
+        <name>resetRotation</name>
+        <qualifiedname>QAccelPlot::AxisLabel::resetRotation</qualifiedname>
+        <briefdescription>
+<para>Restores the side&apos;s default title rotation. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" line="59" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisLabel_1ae9423e9735ef54506f87dd8a5893b1ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisLabel::setDefaultRotation</definition>
+        <argsstring>(qreal degrees)</argsstring>
+        <name>setDefaultRotation</name>
+        <qualifiedname>QAccelPlot::AxisLabel::setDefaultRotation</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>degrees</declname>
+        </param>
+        <briefdescription>
+<para>Sets the rotation used while none is set to <emphasis>degrees</emphasis>. Called by the owning <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> when its side changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" line="61" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisLabel_1a24ca7739ef14fdd072dab55197025af5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QPointF</type>
+        <definition>QPointF QAccelPlot::AxisLabel::offset</definition>
+        <argsstring>() const</argsstring>
+        <name>offset</name>
+        <qualifiedname>QAccelPlot::AxisLabel::offset</qualifiedname>
+        <briefdescription>
+<para>Returns the pixel offset of the title. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" line="64" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisLabel_1a18ecf5f456fd80315084d99a8ca5b341" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisLabel::setOffset</definition>
+        <argsstring>(const QPointF &amp;offset)</argsstring>
+        <name>setOffset</name>
+        <qualifiedname>QAccelPlot::AxisLabel::setOffset</qualifiedname>
+        <param>
+          <type>const QPointF &amp;</type>
+          <declname>offset</declname>
+        </param>
+        <briefdescription>
+<para>Sets the pixel offset of the title to <emphasis>offset</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" line="66" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisLabel_1ad656ba87e52a106a3e3f6d0e72c41eb8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QQmlComponent *</type>
+        <definition>QQmlComponent * QAccelPlot::AxisLabel::delegate</definition>
+        <argsstring>() const</argsstring>
+        <name>delegate</name>
+        <qualifiedname>QAccelPlot::AxisLabel::delegate</qualifiedname>
+        <briefdescription>
+<para>Returns the component that replaces the painted title, or <computeroutput>nullptr</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" line="69" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisLabel_1ade0d313daddf48eaa02259d629398111" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisLabel::setDelegate</definition>
+        <argsstring>(QQmlComponent *delegate)</argsstring>
+        <name>setDelegate</name>
+        <qualifiedname>QAccelPlot::AxisLabel::setDelegate</qualifiedname>
+        <param>
+          <type>QQmlComponent *</type>
+          <declname>delegate</declname>
+        </param>
+        <briefdescription>
+<para>Sets the component that replaces the painted title to <emphasis>delegate</emphasis>. <computeroutput>nullptr</computeroutput> restores the painted title. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" line="71" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1AxisLabel_1ae88ee8cb8e705229970fa13f758c34c2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisLabel::alignmentChanged</definition>
+        <argsstring>()</argsstring>
+        <name>alignmentChanged</name>
+        <qualifiedname>QAccelPlot::AxisLabel::alignmentChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the alignment property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" line="75" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1AxisLabel_1a3ac2f79d4b8d6195b46c865153482c0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisLabel::rotationChanged</definition>
+        <argsstring>()</argsstring>
+        <name>rotationChanged</name>
+        <qualifiedname>QAccelPlot::AxisLabel::rotationChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the rotation property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" line="77" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1AxisLabel_1a58c412d99aa49c67d2e775deb1191691" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisLabel::offsetChanged</definition>
+        <argsstring>()</argsstring>
+        <name>offsetChanged</name>
+        <qualifiedname>QAccelPlot::AxisLabel::offsetChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the offset property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" line="79" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1AxisLabel_1adeb1bb41cd851999aae07b2a1369c511" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisLabel::delegateChanged</definition>
+        <argsstring>()</argsstring>
+        <name>delegateChanged</name>
+        <qualifiedname>QAccelPlot::AxisLabel::delegateChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the delegate property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" line="81" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> title and its placement, grouped as the <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> <computeroutput>label</computeroutput> property, e.g. <computeroutput>label.text: &quot;Time (s)&quot;</computeroutput>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The title is painted inside the axis item and clipped to it. <computeroutput>delegate</computeroutput> replaces it with a QML item.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::AxisLabel</label>
+        <link refid="classQAccelPlot_1_1AxisLabel"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::TextLabel</label>
+        <link refid="classQAccelPlot_1_1TextLabel"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::AxisLabel</label>
+        <link refid="classQAccelPlot_1_1AxisLabel"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::TextLabel</label>
+        <link refid="classQAccelPlot_1_1TextLabel"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" line="26" column="1" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp" bodystart="26" bodyend="90"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1AxisLabel_1a7b865fc92932e4290befa0c0c6936470" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>alignment</name></member>
+      <member refid="classQAccelPlot_1_1AxisLabel_1a202669c35e2e617cad38cea5b52e8cb5" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>alignment</name></member>
+      <member refid="classQAccelPlot_1_1AxisLabel_1ad7082fc536f988e6692900c9ebe9ac23" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>alignment_</name></member>
+      <member refid="classQAccelPlot_1_1AxisLabel_1ae88ee8cb8e705229970fa13f758c34c2" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>alignmentChanged</name></member>
+      <member refid="classQAccelPlot_1_1AxisLabel_1ad0cc9761bfae498bb793c7d6eccfe39c" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>AxisLabel</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1a8aa743c1cda93be9ccdd03a4e2b7e067" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>color</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1a5049800abe40bd73d70a8c3439c4f7ab" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>color</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1a87e0025dbc876c48e2805b4bd321610f" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>colorChanged</name></member>
+      <member refid="classQAccelPlot_1_1AxisLabel_1ad6501e778faeb59d9bcc2421406a3c70" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>defaultRotation_</name></member>
+      <member refid="classQAccelPlot_1_1AxisLabel_1aa64cea6ede6785e958994065b05ad0da" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>delegate</name></member>
+      <member refid="classQAccelPlot_1_1AxisLabel_1ad656ba87e52a106a3e3f6d0e72c41eb8" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>delegate</name></member>
+      <member refid="classQAccelPlot_1_1AxisLabel_1a91491e33a69cb17556116d50dc874242" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>delegate_</name></member>
+      <member refid="classQAccelPlot_1_1AxisLabel_1adeb1bb41cd851999aae07b2a1369c511" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>delegateChanged</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1a834b04ff20fcd2780af4aaf05a9d0f17" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>font</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1ac3c5ec3d56bf5a6a6faff8a7dd4a0362" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>font</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1abe8083ba51680ea33693d057b7070268" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>fontChanged</name></member>
+      <member refid="classQAccelPlot_1_1AxisLabel_1a46759c980d66065a8e8cbf3b5a967c9d" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>offset</name></member>
+      <member refid="classQAccelPlot_1_1AxisLabel_1a24ca7739ef14fdd072dab55197025af5" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>offset</name></member>
+      <member refid="classQAccelPlot_1_1AxisLabel_1a0358cd035bed209185ac2ab0fd18aab9" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>offset_</name></member>
+      <member refid="classQAccelPlot_1_1AxisLabel_1a58c412d99aa49c67d2e775deb1191691" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>offsetChanged</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1a131eb4ee32f7f92c8bb7dc4aba680e3d" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>padding</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1a84c143c4c41e1c253cb76869d8df2a59" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>padding</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1accfee0e23bf6118a9cd2aa032a826c7f" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>paddingChanged</name></member>
+      <member refid="classQAccelPlot_1_1AxisLabel_1a13dd624885d7c7db70d2e2b806cea759" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>resetRotation</name></member>
+      <member refid="classQAccelPlot_1_1AxisLabel_1a04b59a7675f6fbea91525908c3c15e00" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>rotation</name></member>
+      <member refid="classQAccelPlot_1_1AxisLabel_1adbc448c57dcf09fb43c707dd94aabc28" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>rotation</name></member>
+      <member refid="classQAccelPlot_1_1AxisLabel_1a60f458e65017230019e9dfa7a84e5468" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>rotation_</name></member>
+      <member refid="classQAccelPlot_1_1AxisLabel_1a3ac2f79d4b8d6195b46c865153482c0e" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>rotationChanged</name></member>
+      <member refid="classQAccelPlot_1_1AxisLabel_1ae69f1c599372e67352602fcf6410e2cb" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>setAlignment</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1ae6dfc3fc08063f86f7bd794393987f06" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>setColor</name></member>
+      <member refid="classQAccelPlot_1_1AxisLabel_1ae9423e9735ef54506f87dd8a5893b1ea" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>setDefaultRotation</name></member>
+      <member refid="classQAccelPlot_1_1AxisLabel_1ade0d313daddf48eaa02259d629398111" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>setDelegate</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1a88008a2c41f97c2550b0239c7e3d744f" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>setFont</name></member>
+      <member refid="classQAccelPlot_1_1AxisLabel_1a18ecf5f456fd80315084d99a8ca5b341" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>setOffset</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1aca6e700adbd19d73478c7e0296206204" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>setPadding</name></member>
+      <member refid="classQAccelPlot_1_1AxisLabel_1af635b45b62f9c39b0f56a6580108620e" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>setRotation</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1aa4e03c2533875c520e43be3fc189ca02" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>setText</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1afeb0c659ab73eda4212bb6bacbaa6628" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>text</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1a6a0b5361366e1adfd54b144547e809d6" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>text</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1a966e1b6ae8d29f1e6b950ad1c0998e00" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>textChanged</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1a015af2ca9bb81ed57c28efdb2ae65eb3" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisLabel</scope><name>TextLabel</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="structQAccelPlot_1_1Internal_1_1InspectionBounds" kind="struct" language="C++" prot="public">
     <compoundname>QAccelPlot::Internal::InspectionBounds</compoundname>
     <includes local="no">InspectionTypes.hpp</includes>
@@ -62,7 +62,7 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
-      <memberdef kind="function" id="structQAccelPlot_1_1Internal_1_1InspectionBounds_1a35d5ffaf41f660f48b4dc4d77ed7b81a" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="structQAccelPlot_1_1Internal_1_1InspectionBounds_1a35d5ffaf41f660f48b4dc4d77ed7b81a" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>bool</type>
         <definition>bool QAccelPlot::Internal::InspectionBounds::contains</definition>
         <argsstring>(double x, double y) const noexcept</argsstring>

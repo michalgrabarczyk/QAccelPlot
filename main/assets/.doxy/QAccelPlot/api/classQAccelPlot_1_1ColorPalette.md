@@ -126,8 +126,8 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-|  const [**ColorPalette**](classQAccelPlot_1_1ColorPalette.md) & | [**dark**](#function-dark) () <br>_Returns the dark palette. Used for C++ property defaults._  |
-|  const [**ColorPalette**](classQAccelPlot_1_1ColorPalette.md) & | [**light**](#function-light) () <br>_Returns the light palette._  |
+|  const ColorPalette & | [**dark**](#function-dark) () <br>_Returns the dark palette. Used for C++ property defaults._  |
+|  const ColorPalette & | [**light**](#function-light) () <br>_Returns the light palette._  |
 
 
 

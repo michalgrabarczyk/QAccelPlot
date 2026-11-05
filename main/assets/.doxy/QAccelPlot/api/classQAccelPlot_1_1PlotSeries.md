@@ -112,7 +112,7 @@ flowchart TB
 | property quint64 | [**dataRevision**](classQAccelPlot_1_1PlotSeries.md#property-datarevision-12)  <br>_Revision incremented by every accepted change of the series' records._  |
 | property bool | [**hoverEnabled**](classQAccelPlot_1_1PlotSeries.md#property-hoverenabled-12)  <br>_Whether the series reacts to the mouse cursor. Default:_ `true` _._ |
 | property bool | [**hovered**](classQAccelPlot_1_1PlotSeries.md#property-hovered-12)  <br>_Read-only:_ `true` _while the mouse cursor is over the series._ |
-| property [**SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) \* | [**inspection**](classQAccelPlot_1_1PlotSeries.md#property-inspection-12)  <br>_Read-only constant: data queries for this series._  |
+| property SeriesInspection \* | [**inspection**](classQAccelPlot_1_1PlotSeries.md#property-inspection-12)  <br>_Read-only constant: data queries for this series._  |
 | property [**LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol) | [**legendSymbol**](classQAccelPlot_1_1PlotSeries.md#property-legendsymbol-12)  <br>_Symbol style requested from the default legend._  |
 | property QString | [**name**](classQAccelPlot_1_1PlotSeries.md#property-name-12)  <br>_Identifying name used by the default legend._  |
 | property QRectF | [**plotRect**](classQAccelPlot_1_1PlotSeries.md#property-plotrect-12)  <br>_Plot area in parent-item coordinates, assigned by_ `PlotView` _._ |
@@ -150,7 +150,7 @@ flowchart TB
 |  quint64 | [**dataRevision**](#function-datarevision-22) () const<br>_Returns the current data revision._  |
 |  bool | [**hoverEnabled**](#function-hoverenabled-22) () const<br>_Returns whether the series reacts to the mouse cursor._  |
 |  bool | [**hovered**](#function-hovered-22) () const<br>_Returns whether the mouse cursor is over the series._  |
-|  [**SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) \* | [**inspection**](#function-inspection-22) () const<br>_Returns the data queries for this series; created on first use and owned by the series._  |
+|  SeriesInspection \* | [**inspection**](#function-inspection-22) () const<br>_Returns the data queries for this series; created on first use and owned by the series._  |
 | virtual QList&lt; [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md) &gt; | [**legendEntries**](#function-legendentries) () const<br>_Returns the legend rows of the series. Default: the_ `legendEntry()` _, if any._ |
 | virtual std::optional&lt; [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md) &gt; | [**legendEntry**](#function-legendentry) () const<br>_Returns how a legend draws the series, or_ `std::nullopt` _for no legend entry. Default: no entry._ |
 |  [**LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol) | [**legendSymbol**](#function-legendsymbol-22) () const<br> |
@@ -264,15 +264,15 @@ flowchart TB
 
 
 
-|Series   |Data point   |Values    |
+|Series  |Data point  |Values  |
 |-----|-----|-----|
-|`LineCurve`   |(x, y)   |2    |
-|`PointCloud`   |(x, y)   |2    |
-|`RectangleSeries`   |(x1, y1, x2, y2)   |4    |
-|`BarSeries`   |(position, value)   |2    |
-|`BandSeries`   |(x, low, high)   |3    |
-|`ErrorBarSeries`   |(x, y, low, high)   |4    |
-|`HeatmapSeries`   |cell value   |1   |
+|`LineCurve`  |(x, y)  |2  |
+|`PointCloud`  |(x, y)  |2  |
+|`RectangleSeries`  |(x1, y1, x2, y2)  |4  |
+|`BarSeries`  |(position, value)  |2  |
+|`BandSeries`  |(x, low, high)  |3  |
+|`ErrorBarSeries`  |(x, y, low, high)  |4  |
+|`HeatmapSeries`  |cell value  |1  |
 
 
 
@@ -286,14 +286,14 @@ Series smooth their edges with the inherited `antialiasing` property. `HeatmapSe
 
 
 
-|Series   |Default `antialiasing`   |Smoothed edges    |
+|Series  |Default `antialiasing`  |Smoothed edges  |
 |-----|-----|-----|
-|`LineCurve`   |`true`   |lines and markers    |
-|`PointCloud`   |`true`   |markers    |
-|`BandSeries`   |`true`   |edge lines    |
-|`ErrorBarSeries`   |`true`   |lines and caps    |
-|`RectangleSeries`   |`false`   |rectangles and their border    |
-|`BarSeries`   |`false`   |bars and their border   |
+|`LineCurve`  |`true`  |lines and markers  |
+|`PointCloud`  |`true`  |markers  |
+|`BandSeries`  |`true`  |edge lines  |
+|`ErrorBarSeries`  |`true`  |lines and caps  |
+|`RectangleSeries`  |`false`  |rectangles and their border  |
+|`BarSeries`  |`false`  |bars and their border  |
 
 
 

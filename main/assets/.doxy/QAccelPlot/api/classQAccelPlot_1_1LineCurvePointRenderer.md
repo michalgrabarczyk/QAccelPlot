@@ -47,8 +47,8 @@ _Internal renderer responsible for building and updating QSGNode marker geometry
 
 | Type | Name |
 | ---: | :--- |
-|  constexpr std::size\_t | [**kVertexCacheBytesPerPoint**](#variable-kvertexcachebytesperpoint)   = `{[**kVerticesPerPoint**](classQAccelPlot_1_1LineCurvePointRenderer.md#variable-kverticesperpoint) \* sizeof([**PointVertex**](structQAccelPlot_1_1PointVertex.md))}`<br>_Vertex cache bytes per marker._  |
-|  constexpr int | [**kVerticesPerPoint**](#variable-kverticesperpoint)   = `{6}`<br>_Number of vertices drawn per marker._  |
+|  std::size\_t | [**kVertexCacheBytesPerPoint**](#variable-kvertexcachebytesperpoint)   = `{[**kVerticesPerPoint**](classQAccelPlot_1_1LineCurvePointRenderer.md#variable-kverticesperpoint) \* sizeof([**PointVertex**](structQAccelPlot_1_1PointVertex.md))}`<br>_Vertex cache bytes per marker._  |
+|  int | [**kVerticesPerPoint**](#variable-kverticesperpoint)   = `{6}`<br>_Number of vertices drawn per marker._  |
 
 
 
@@ -119,7 +119,7 @@ Renders per-point markers as two triangles per point. The vertex buffer depends 
 
 _Vertex cache bytes per marker._ 
 ```C++
-constexpr std::size_t QAccelPlot::LineCurvePointRenderer::kVertexCacheBytesPerPoint;
+std::size_t QAccelPlot::LineCurvePointRenderer::kVertexCacheBytesPerPoint;
 ```
 
 
@@ -134,7 +134,7 @@ constexpr std::size_t QAccelPlot::LineCurvePointRenderer::kVertexCacheBytesPerPo
 
 _Number of vertices drawn per marker._ 
 ```C++
-constexpr int QAccelPlot::LineCurvePointRenderer::kVerticesPerPoint;
+int QAccelPlot::LineCurvePointRenderer::kVerticesPerPoint;
 ```
 
 

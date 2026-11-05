@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="classQAccelPlot_1_1Internal_1_1PointerTracker" kind="class" language="C++" prot="public" final="yes">
     <compoundname>QAccelPlot::Internal::PointerTracker</compoundname>
     <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
@@ -71,7 +71,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/internal/PointerTracker.hpp" line="28" column="14"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1PointerTracker_1aa9210b8969e41628d2dd4d7e7739e033" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1PointerTracker_1aa9210b8969e41628d2dd4d7e7739e033" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::optional&lt; QPointF &gt;</type>
         <definition>std::optional&lt; QPointF &gt; QAccelPlot::Internal::PointerTracker::position</definition>
         <argsstring>() const</argsstring>

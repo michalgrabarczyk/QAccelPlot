@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="DataAnchor_8hpp" kind="file" language="C++">
     <compoundname>DataAnchor.hpp</compoundname>
     <includes refid="Axis_8hpp" local="yes">QAccelPlot/axis/Axis.hpp</includes>
@@ -62,9 +62,9 @@
 <codeline lineno="20"><highlight class="normal"></highlight></codeline>
 <codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
 <codeline lineno="22"><highlight class="normal"></highlight></codeline>
-<codeline lineno="40" refid="classQAccelPlot_1_1DataAnchor" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1DataAnchor" kindref="compound">DataAnchor</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QQuickItem<sp/>{</highlight></codeline>
+<codeline lineno="40" refid="classQAccelPlot_1_1DataAnchor" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1DataAnchor_1ad4dcfe67c9deefef397eca9a240cc390" kindref="member">DataAnchor</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QQuickItem<sp/>{</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_OBJECT</highlight></codeline>
-<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_NAMED_ELEMENT(<ref refid="classQAccelPlot_1_1DataAnchor" kindref="compound">DataAnchor</ref>)</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_NAMED_ELEMENT(<ref refid="classQAccelPlot_1_1DataAnchor_1ad4dcfe67c9deefef397eca9a240cc390" kindref="member">DataAnchor</ref>)</highlight></codeline>
 <codeline lineno="43"><highlight class="normal"></highlight></codeline>
 <codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(<ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref>*<sp/><ref refid="classQAccelPlot_1_1DataAnchor_1a37fd52f63d507c55b6b0ab789eed07f1" kindref="member">xAxis</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1DataAnchor_1a37fd52f63d507c55b6b0ab789eed07f1" kindref="member">xAxis</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1DataAnchor_1ac836d2cdaf3c2b368812203e46b1c381" kindref="member">setXAxis</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1DataAnchor_1a6d1a1bc806312b82115e1e40d941f263" kindref="member">xAxisChanged</ref>)</highlight></codeline>
@@ -91,7 +91,7 @@
 <codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(qreal<sp/><ref refid="classQAccelPlot_1_1DataAnchor_1ae24e2c6d74b7516db139408815c991cf" kindref="member">hoverThreshold</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1DataAnchor_1ae24e2c6d74b7516db139408815c991cf" kindref="member">hoverThreshold</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1DataAnchor_1af564a6f49b5acb3fbc79caf495fe6a3d" kindref="member">setHoverThreshold</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1DataAnchor_1a3b62c968bf2e879ab6c9bf25a9ad8ba3" kindref="member">hoverThresholdChanged</ref>)</highlight></codeline>
 <codeline lineno="71"><highlight class="normal"></highlight></codeline>
 <codeline lineno="72"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1DataAnchor" kindref="compound">DataAnchor</ref>(QQuickItem*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1DataAnchor_1ad4dcfe67c9deefef397eca9a240cc390" kindref="member">DataAnchor</ref>(QQuickItem*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="75"><highlight class="normal"></highlight></codeline>
 <codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref>*<sp/><ref refid="classQAccelPlot_1_1DataAnchor_1a37fd52f63d507c55b6b0ab789eed07f1" kindref="member">xAxis</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1DataAnchor_1ac836d2cdaf3c2b368812203e46b1c381" kindref="member">setXAxis</ref>(<ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref>*<sp/>axis);</highlight></codeline>

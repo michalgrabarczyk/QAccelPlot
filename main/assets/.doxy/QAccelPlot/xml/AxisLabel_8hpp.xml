@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="AxisLabel_8hpp" kind="file" language="C++">
+    <compoundname>AxisLabel.hpp</compoundname>
+    <includes refid="Axis_8hpp" local="yes">QAccelPlot/axis/Axis.hpp</includes>
+    <includes refid="TextLabel_8hpp" local="yes">QAccelPlot/axis/TextLabel.hpp</includes>
+    <includes local="no">QPointF</includes>
+    <includes local="no">QPointer</includes>
+    <includes local="no">QQmlComponent</includes>
+    <includes local="no">limits</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp</label>
+        <link refid="AxisLabel_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QPointF</label>
+      </node>
+      <node id="3">
+        <label>QPointer</label>
+      </node>
+      <node id="4">
+        <label>QQmlComponent</label>
+      </node>
+      <node id="5">
+        <label>limits</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classQAccelPlot_1_1AxisLabel" prot="public">QAccelPlot::AxisLabel</innerclass>
+    <innernamespace refid="namespaceQAccelPlot">QAccelPlot</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-FileCopyrightText:<sp/>2026<sp/>Michal<sp/>Grabarczyk</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>GPL-3.0-only<sp/>WITH<sp/>Universal-FOSS-exception-1.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>file<sp/>is<sp/>also<sp/>available<sp/>under<sp/>a<sp/>separate<sp/>commercial<sp/>license.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>See<sp/>COMMERCIAL-LICENSING.md<sp/>for<sp/>contact<sp/>information.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/axis/Axis.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/axis/TextLabel.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QPointF&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QPointer&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QQmlComponent&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;limits&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="classQAccelPlot_1_1AxisLabel" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1AxisLabel_1ad0cc9761bfae498bb793c7d6eccfe39c" kindref="member">AxisLabel</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TextLabel_1a015af2ca9bb81ed57c28efdb2ae65eb3" kindref="member">TextLabel</ref><sp/>{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_OBJECT</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_ANONYMOUS</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(<ref refid="classQAccelPlot_1_1Axis_1abeb42076f0b2796e528aed24e345244d" kindref="member">Axis::LabelAlignment</ref><sp/><ref refid="classQAccelPlot_1_1AxisLabel_1a7b865fc92932e4290befa0c0c6936470" kindref="member">alignment</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1AxisLabel_1a7b865fc92932e4290befa0c0c6936470" kindref="member">alignment</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1AxisLabel_1ae69f1c599372e67352602fcf6410e2cb" kindref="member">setAlignment</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1AxisLabel_1ae88ee8cb8e705229970fa13f758c34c2" kindref="member">alignmentChanged</ref>)</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(qreal<sp/><ref refid="classQAccelPlot_1_1AxisLabel_1a04b59a7675f6fbea91525908c3c15e00" kindref="member">rotation</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1AxisLabel_1a04b59a7675f6fbea91525908c3c15e00" kindref="member">rotation</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1AxisLabel_1af635b45b62f9c39b0f56a6580108620e" kindref="member">setRotation</ref><sp/>RESET<sp/><ref refid="classQAccelPlot_1_1AxisLabel_1a13dd624885d7c7db70d2e2b806cea759" kindref="member">resetRotation</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1AxisLabel_1a3ac2f79d4b8d6195b46c865153482c0e" kindref="member">rotationChanged</ref>)</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QPointF<sp/><ref refid="classQAccelPlot_1_1AxisLabel_1a46759c980d66065a8e8cbf3b5a967c9d" kindref="member">offset</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1AxisLabel_1a46759c980d66065a8e8cbf3b5a967c9d" kindref="member">offset</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1AxisLabel_1a18ecf5f456fd80315084d99a8ca5b341" kindref="member">setOffset</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1AxisLabel_1a58c412d99aa49c67d2e775deb1191691" kindref="member">offsetChanged</ref>)</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QQmlComponent*<sp/><ref refid="classQAccelPlot_1_1AxisLabel_1aa64cea6ede6785e958994065b05ad0da" kindref="member">delegate</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1AxisLabel_1aa64cea6ede6785e958994065b05ad0da" kindref="member">delegate</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1AxisLabel_1ade0d313daddf48eaa02259d629398111" kindref="member">setDelegate</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1AxisLabel_1adeb1bb41cd851999aae07b2a1369c511" kindref="member">delegateChanged</ref>)</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1AxisLabel_1ad0cc9761bfae498bb793c7d6eccfe39c" kindref="member">AxisLabel</ref>(QObject*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Axis_1abeb42076f0b2796e528aed24e345244d" kindref="member">Axis::LabelAlignment</ref><sp/><ref refid="classQAccelPlot_1_1AxisLabel_1a7b865fc92932e4290befa0c0c6936470" kindref="member">alignment</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1AxisLabel_1ae69f1c599372e67352602fcf6410e2cb" kindref="member">setAlignment</ref>(<ref refid="classQAccelPlot_1_1Axis_1abeb42076f0b2796e528aed24e345244d" kindref="member">Axis::LabelAlignment</ref><sp/><ref refid="classQAccelPlot_1_1AxisLabel_1a7b865fc92932e4290befa0c0c6936470" kindref="member">alignment</ref>);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/><ref refid="classQAccelPlot_1_1AxisLabel_1a04b59a7675f6fbea91525908c3c15e00" kindref="member">rotation</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1AxisLabel_1af635b45b62f9c39b0f56a6580108620e" kindref="member">setRotation</ref>(qreal<sp/>degrees);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1AxisLabel_1a13dd624885d7c7db70d2e2b806cea759" kindref="member">resetRotation</ref>();</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1AxisLabel_1ae9423e9735ef54506f87dd8a5893b1ea" kindref="member">setDefaultRotation</ref>(qreal<sp/>degrees);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>QPointF<sp/><ref refid="classQAccelPlot_1_1AxisLabel_1a46759c980d66065a8e8cbf3b5a967c9d" kindref="member">offset</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1AxisLabel_1a18ecf5f456fd80315084d99a8ca5b341" kindref="member">setOffset</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QPointF&amp;<sp/><ref refid="classQAccelPlot_1_1AxisLabel_1a46759c980d66065a8e8cbf3b5a967c9d" kindref="member">offset</ref>);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>QQmlComponent*<sp/><ref refid="classQAccelPlot_1_1AxisLabel_1aa64cea6ede6785e958994065b05ad0da" kindref="member">delegate</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1AxisLabel_1ade0d313daddf48eaa02259d629398111" kindref="member">setDelegate</ref>(QQmlComponent*<sp/><ref refid="classQAccelPlot_1_1AxisLabel_1aa64cea6ede6785e958994065b05ad0da" kindref="member">delegate</ref>);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal">signals:</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1AxisLabel_1ae88ee8cb8e705229970fa13f758c34c2" kindref="member">alignmentChanged</ref>();</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1AxisLabel_1a3ac2f79d4b8d6195b46c865153482c0e" kindref="member">rotationChanged</ref>();</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1AxisLabel_1a58c412d99aa49c67d2e775deb1191691" kindref="member">offsetChanged</ref>();</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1AxisLabel_1adeb1bb41cd851999aae07b2a1369c511" kindref="member">delegateChanged</ref>();</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Axis_1abeb42076f0b2796e528aed24e345244d" kindref="member">Axis::LabelAlignment</ref><sp/>alignment_{<ref refid="classQAccelPlot_1_1Axis_1abeb42076f0b2796e528aed24e345244dacf791c17ba1f95cb5ea3cdbac59d91e5" kindref="member">Axis::Center</ref>};</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>NaN<sp/>while<sp/>the<sp/>title<sp/>follows<sp/>the<sp/>side&apos;s<sp/>default<sp/>rotation.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>rotation_{std::numeric_limits&lt;qreal&gt;::quiet_NaN()};</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>defaultRotation_{0.0};</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>QPointF<sp/>offset_;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>QPointer&lt;QQmlComponent&gt;<sp/>delegate_;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="QAccelPlot/src/QAccelPlot/axis/AxisLabel.hpp"/>
+  </compounddef>
+</doxygen>

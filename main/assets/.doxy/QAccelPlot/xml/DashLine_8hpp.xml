@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="DashLine_8hpp" kind="file" language="C++">
     <compoundname>DashLine.hpp</compoundname>
     <includes refid="LineStyle_8hpp" local="yes">QAccelPlot/linestyles/LineStyle.hpp</includes>
@@ -37,15 +37,15 @@
 <codeline lineno="13"><highlight class="normal"></highlight></codeline>
 <codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight></codeline>
-<codeline lineno="22" refid="classQAccelPlot_1_1DashLine" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1DashLine" kindref="compound">DashLine</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1LineStyle" kindref="compound">LineStyle</ref><sp/>{</highlight></codeline>
+<codeline lineno="22" refid="classQAccelPlot_1_1DashLine" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1DashLine_1af61bd74d6f50b76371090b6165801aeb" kindref="member">DashLine</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1LineStyle_1a357f724b6e64b57101b966163fe8c231" kindref="member">LineStyle</ref><sp/>{</highlight></codeline>
 <codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_OBJECT</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_NAMED_ELEMENT(<ref refid="classQAccelPlot_1_1DashLine" kindref="compound">DashLine</ref>)</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_NAMED_ELEMENT(<ref refid="classQAccelPlot_1_1DashLine_1af61bd74d6f50b76371090b6165801aeb" kindref="member">DashLine</ref>)</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QList&lt;qreal&gt;<sp/><ref refid="classQAccelPlot_1_1DashLine_1a14b888662b5d21842fe482d174e64c83" kindref="member">pattern</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1DashLine_1a14b888662b5d21842fe482d174e64c83" kindref="member">pattern</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1DashLine_1a40c09a924c79205d9816176e8fd15837" kindref="member">setPattern</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1DashLine_1a312a97e3ebdd73f3991e6b296e3b4ebd" kindref="member">patternChanged</ref>)</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
 <codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1DashLine" kindref="compound">DashLine</ref>(QObject*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1DashLine_1af61bd74d6f50b76371090b6165801aeb" kindref="member">DashLine</ref>(QObject*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
 <codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>QList&lt;qreal&gt;<sp/><ref refid="classQAccelPlot_1_1DashLine_1a14b888662b5d21842fe482d174e64c83" kindref="member">pattern</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1DashLine_1a40c09a924c79205d9816176e8fd15837" kindref="member">setPattern</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QList&lt;qreal&gt;&amp;<sp/><ref refid="classQAccelPlot_1_1DashLine_1a14b888662b5d21842fe482d174e64c83" kindref="member">pattern</ref>);</highlight></codeline>

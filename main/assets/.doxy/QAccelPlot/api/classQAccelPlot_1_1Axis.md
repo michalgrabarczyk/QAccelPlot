@@ -52,7 +52,8 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-| enum  | [**Side**](#enum-side)  <br>_Side of the plot on which the axis is positioned._  |
+| enum  | [**LabelAlignment**](#enum-labelalignment)  <br>_Position of the axis label along the axis._  |
+| enum  | [**Side**](#enum-side)  <br>[_**Side**_](classQAccelPlot_1_1Axis.md#enum-side) _of the plot on which the axis is positioned._ |
 
 
 
@@ -77,14 +78,11 @@ flowchart TB
 | property qreal | [**dataMin**](classQAccelPlot_1_1Axis.md#property-datamin-12)  <br>_Minimum data value of the series bound to this axis. Default: 0._  |
 | property QColor | [**hoverColor**](classQAccelPlot_1_1Axis.md#property-hovercolor-12)  <br>_Tick and label color applied when the axis is hovered. Default:_ `Colors.dark.hover` _._ |
 | property bool | [**hovered**](classQAccelPlot_1_1Axis.md#property-hovered-12)  <br>_Read-only:_ `true` _while the mouse cursor is over the axis widget._ |
-| property QString | [**label**](classQAccelPlot_1_1Axis.md#property-label-12)  <br>_Optional axis label displayed alongside the axis line._  |
-| property QColor | [**labelColor**](classQAccelPlot_1_1Axis.md#property-labelcolor-12)  <br>_Optional axis-label color. When invalid, the baselineColor is used._  |
-| property QFont | [**labelFont**](classQAccelPlot_1_1Axis.md#property-labelfont-12)  <br>_Font used to render the axis label text. Default: application default font._  |
-| property qreal | [**labelPadding**](classQAccelPlot_1_1Axis.md#property-labelpadding-12)  <br>_Pixels of padding between the baseline and the axis label. Default: 30._  |
+| property [**AxisLabel**](classQAccelPlot_1_1AxisLabel.md) \* | [**label**](classQAccelPlot_1_1Axis.md#property-label-12)  <br>_Read-only constant: axis title and its placement, e.g._ `label.text: "Time (s)"` _._ |
 | property qreal | [**layoutSize**](classQAccelPlot_1_1Axis.md#property-layoutsize-12)  <br>_Layout thickness in pixels: width for vertical axes and height for horizontal axes. Default: 50._  |
 | property bool | [**logScale**](classQAccelPlot_1_1Axis.md#property-logscale-12)  <br>_Whether the axis uses a base-10 logarithmic scale. Default:_ `false` _._ |
 | property Qt::Orientation | [**orientation**](classQAccelPlot_1_1Axis.md#property-orientation-12)  <br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _orientation:_`Qt.Horizontal` _or_`Qt.Vertical` _._ |
-| property [**Side**](classQAccelPlot_1_1Axis.md#enum-side) | [**side**](classQAccelPlot_1_1Axis.md#property-side-12)  <br>_Side of the plot on which the axis is drawn: Left, Top, Right, or Bottom. Assigned automatically for xAxis, yAxis, x2Axis, and y2Axis; set explicitly for an axis placed in extraAxes._  |
+| property [**Side**](classQAccelPlot_1_1Axis.md#enum-side) | [**side**](classQAccelPlot_1_1Axis.md#property-side-12)  <br>[_**Side**_](classQAccelPlot_1_1Axis.md#enum-side) _of the plot on which the axis is drawn: Left, Top, Right, or Bottom. Assigned automatically for xAxis, yAxis, x2Axis, and y2Axis; set explicitly for an axis placed in extraAxes._ |
 | property [**AxisTicker**](classQAccelPlot_1_1AxisTicker.md) \* | [**ticker**](classQAccelPlot_1_1Axis.md#property-ticker-12)  <br>_Read-only constant: tick appearance configuration object._  |
 | property qreal | [**viewportMax**](classQAccelPlot_1_1Axis.md#property-viewportmax-12)  <br>_Upper bound of the visible range. Default: 1._  |
 | property qreal | [**viewportMin**](classQAccelPlot_1_1Axis.md#property-viewportmin-12)  <br>_Lower bound of the visible range. Default: 0._  |
@@ -106,10 +104,6 @@ flowchart TB
 | signal void | [**doubleClicked**](classQAccelPlot_1_1Axis.md#signal-doubleclicked)  <br>_Emitted when the user double-clicks the axis widget._  |
 | signal void | [**hoverColorChanged**](classQAccelPlot_1_1Axis.md#signal-hovercolorchanged)  <br>_Emitted when the hoverColor property changes._  |
 | signal void | [**hoveredChanged**](classQAccelPlot_1_1Axis.md#signal-hoveredchanged)  <br>_Emitted when the hovered property changes._  |
-| signal void | [**labelChanged**](classQAccelPlot_1_1Axis.md#signal-labelchanged)  <br>_Emitted when the label property changes._  |
-| signal void | [**labelColorChanged**](classQAccelPlot_1_1Axis.md#signal-labelcolorchanged)  <br>_Emitted when the labelColor property changes._  |
-| signal void | [**labelFontChanged**](classQAccelPlot_1_1Axis.md#signal-labelfontchanged)  <br>_Emitted when the labelFont property changes._  |
-| signal void | [**labelPaddingChanged**](classQAccelPlot_1_1Axis.md#signal-labelpaddingchanged)  <br>_Emitted when the labelPadding property changes._  |
 | signal void | [**layoutSizeChanged**](classQAccelPlot_1_1Axis.md#signal-layoutsizechanged)  <br>_Emitted when the layoutSize property changes._  |
 | signal void | [**logScaleChanged**](classQAccelPlot_1_1Axis.md#signal-logscalechanged)  <br>_Emitted when the logScale property changes._  |
 | signal void | [**orientationChanged**](classQAccelPlot_1_1Axis.md#signal-orientationchanged)  <br>_Emitted when the orientation property changes._  |
@@ -138,11 +132,8 @@ flowchart TB
 |  QColor | [**hoverColor**](#function-hovercolor-22) () const<br>_Returns the hovered tick/label color._  |
 |  bool | [**hovered**](#function-hovered-22) () const<br>_Returns_ `true` _if the mouse is currently over the axis widget._ |
 |  qreal | [**inwardTickOverlap**](#function-inwardtickoverlap) () const<br>_Returns the inward tick overlap beyond_ `baselinePadding` _, used by_[_**PlotView**_](classQAccelPlot_1_1PlotView.md) _to size the plot area._ |
-|  QString | [**label**](#function-label-22) () const<br>_Returns the axis label string._  |
-|  QColor | [**labelColor**](#function-labelcolor-22) () const<br>_Returns the axis-label color, or an invalid color when it follows baselineColor._  |
-|  QFont | [**labelFont**](#function-labelfont-22) () const<br>_Returns the axis label font._  |
+|  [**AxisLabel**](classQAccelPlot_1_1AxisLabel.md) \* | [**label**](#function-label-22) () const<br>_Returns the axis title configuration object. Include_ `AxisLabel.hpp` _to use it._ |
 |  qreal | [**labelOverflow**](#function-labeloverflow) () const<br>_Returns extra width/height needed to accommodate edge tick labels that extend beyond the axis bounds._  |
-|  qreal | [**labelPadding**](#function-labelpadding-22) () const<br>_Returns the padding between the baseline and the axis label in pixels._  |
 |  qreal | [**layoutSize**](#function-layoutsize-22) () const<br>_Returns the layout thickness in pixels._  |
 |  bool | [**logScale**](#function-logscale-22) () const<br>_Returns_ `true` _when log scale is active._ |
 |  [**AxisMapping**](structQAccelPlot_1_1AxisMapping.md) | [**mapping**](#function-mapping) () const<br>_Returns a snapshot of the current viewport mapping._  |
@@ -158,10 +149,6 @@ flowchart TB
 |  void | [**setDataMin**](#function-setdatamin) (qreal m) <br>_Sets the data minimum to_ _m_ _until a bound series with data changes its records._ |
 |  Q\_INVOKABLE void | [**setDataRange**](#function-setdatarange) (qreal min, qreal max) <br>_Sets the data range to [_ _min_ _,__max_ _] until a bound series with data changes its records._ |
 |  void | [**setHoverColor**](#function-sethovercolor) (const QColor & c) <br>_Sets the hovered color to_ _c_ _._ |
-|  void | [**setLabel**](#function-setlabel) (const QString & t) <br>_Sets the axis label to_ _t_ _._ |
-|  void | [**setLabelColor**](#function-setlabelcolor) (const QColor & c) <br>_Sets the axis-label color to_ _c_ _. An invalid color restores the baselineColor fallback._ |
-|  void | [**setLabelFont**](#function-setlabelfont) (const QFont & f) <br>_Sets the axis label font to_ _f_ _._ |
-|  void | [**setLabelPadding**](#function-setlabelpadding) (qreal padding) <br>_Sets the padding between the baseline and the axis label to_ _padding_ _pixels._ |
 |  void | [**setLayoutSize**](#function-setlayoutsize) (qreal size) <br>_Sets the layout thickness to_ _size_ _pixels. Negative values are clamped to zero._ |
 |  void | [**setLogScale**](#function-setlogscale) (bool on) <br>_Sets log-scale mode to_ _on_ _._ |
 |  void | [**setOrientation**](#function-setorientation) (Qt::Orientation o) <br>_Sets the axis orientation to_ _o_ _._ |
@@ -235,9 +222,28 @@ Assign an [**Axis**](classQAccelPlot_1_1Axis.md) to the corresponding property o
 
 
 
+### enum LabelAlignment {#enum-labelalignment}
+
+_Position of the axis label along the axis._ 
+```C++
+enum QAccelPlot::Axis::LabelAlignment {
+    Start,
+    Center,
+    End
+};
+```
+
+
+
+
+<hr>
+
+
+
+
 ### enum Side {#enum-side}
 
-_Side of the plot on which the axis is positioned._ 
+[_**Side**_](classQAccelPlot_1_1Axis.md#enum-side) _of the plot on which the axis is positioned._
 ```C++
 enum QAccelPlot::Axis::Side {
     Left,
@@ -387,54 +393,9 @@ bool QAccelPlot::Axis::hovered;
 
 ### property label {#property-label-12}
 
-_Optional axis label displayed alongside the axis line._ 
+_Read-only constant: axis title and its placement, e.g._ `label.text: "Time (s)"` _._
 ```C++
-QString QAccelPlot::Axis::label;
-```
-
-
-
-
-<hr>
-
-
-
-
-### property labelColor {#property-labelcolor-12}
-
-_Optional axis-label color. When invalid, the baselineColor is used._ 
-```C++
-QColor QAccelPlot::Axis::labelColor;
-```
-
-
-
-
-<hr>
-
-
-
-
-### property labelFont {#property-labelfont-12}
-
-_Font used to render the axis label text. Default: application default font._ 
-```C++
-QFont QAccelPlot::Axis::labelFont;
-```
-
-
-
-
-<hr>
-
-
-
-
-### property labelPadding {#property-labelpadding-12}
-
-_Pixels of padding between the baseline and the axis label. Default: 30._ 
-```C++
-qreal QAccelPlot::Axis::labelPadding;
+AxisLabel* QAccelPlot::Axis::label;
 ```
 
 
@@ -492,7 +453,7 @@ Qt::Orientation QAccelPlot::Axis::orientation;
 
 ### property side {#property-side-12}
 
-_Side of the plot on which the axis is drawn: Left, Top, Right, or Bottom. Assigned automatically for xAxis, yAxis, x2Axis, and y2Axis; set explicitly for an axis placed in extraAxes._ 
+[_**Side**_](classQAccelPlot_1_1Axis.md#enum-side) _of the plot on which the axis is drawn: Left, Top, Right, or Bottom. Assigned automatically for xAxis, yAxis, x2Axis, and y2Axis; set explicitly for an axis placed in extraAxes._
 ```C++
 Side QAccelPlot::Axis::side;
 ```
@@ -696,66 +657,6 @@ void QAccelPlot::Axis::hoverColorChanged;
 _Emitted when the hovered property changes._ 
 ```C++
 void QAccelPlot::Axis::hoveredChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
-### signal labelChanged {#signal-labelchanged}
-
-_Emitted when the label property changes._ 
-```C++
-void QAccelPlot::Axis::labelChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
-### signal labelColorChanged {#signal-labelcolorchanged}
-
-_Emitted when the labelColor property changes._ 
-```C++
-void QAccelPlot::Axis::labelColorChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
-### signal labelFontChanged {#signal-labelfontchanged}
-
-_Emitted when the labelFont property changes._ 
-```C++
-void QAccelPlot::Axis::labelFontChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
-### signal labelPaddingChanged {#signal-labelpaddingchanged}
-
-_Emitted when the labelPadding property changes._ 
-```C++
-void QAccelPlot::Axis::labelPaddingChanged;
 ```
 
 
@@ -1083,39 +984,9 @@ qreal QAccelPlot::Axis::inwardTickOverlap () const
 
 ### function label {#function-label-22}
 
-_Returns the axis label string._ 
+_Returns the axis title configuration object. Include_ `AxisLabel.hpp` _to use it._
 ```C++
-QString QAccelPlot::Axis::label () const
-```
-
-
-
-
-<hr>
-
-
-
-
-### function labelColor {#function-labelcolor-22}
-
-_Returns the axis-label color, or an invalid color when it follows baselineColor._ 
-```C++
-QColor QAccelPlot::Axis::labelColor () const
-```
-
-
-
-
-<hr>
-
-
-
-
-### function labelFont {#function-labelfont-22}
-
-_Returns the axis label font._ 
-```C++
-QFont QAccelPlot::Axis::labelFont () const
+AxisLabel * QAccelPlot::Axis::label () const
 ```
 
 
@@ -1131,21 +1002,6 @@ QFont QAccelPlot::Axis::labelFont () const
 _Returns extra width/height needed to accommodate edge tick labels that extend beyond the axis bounds._ 
 ```C++
 qreal QAccelPlot::Axis::labelOverflow () const
-```
-
-
-
-
-<hr>
-
-
-
-
-### function labelPadding {#function-labelpadding-22}
-
-_Returns the padding between the baseline and the axis label in pixels._ 
-```C++
-qreal QAccelPlot::Axis::labelPadding () const
 ```
 
 
@@ -1404,74 +1260,6 @@ _Sets the hovered color to_ _c_ _._
 ```C++
 void QAccelPlot::Axis::setHoverColor (
     const QColor & c
-) 
-```
-
-
-
-
-<hr>
-
-
-
-
-### function setLabel {#function-setlabel}
-
-_Sets the axis label to_ _t_ _._
-```C++
-void QAccelPlot::Axis::setLabel (
-    const QString & t
-) 
-```
-
-
-
-
-<hr>
-
-
-
-
-### function setLabelColor {#function-setlabelcolor}
-
-_Sets the axis-label color to_ _c_ _. An invalid color restores the baselineColor fallback._
-```C++
-void QAccelPlot::Axis::setLabelColor (
-    const QColor & c
-) 
-```
-
-
-
-
-<hr>
-
-
-
-
-### function setLabelFont {#function-setlabelfont}
-
-_Sets the axis label font to_ _f_ _._
-```C++
-void QAccelPlot::Axis::setLabelFont (
-    const QFont & f
-) 
-```
-
-
-
-
-<hr>
-
-
-
-
-### function setLabelPadding {#function-setlabelpadding}
-
-_Sets the padding between the baseline and the axis label to_ _padding_ _pixels._
-```C++
-void QAccelPlot::Axis::setLabelPadding (
-    qreal padding
 ) 
 ```
 

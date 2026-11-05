@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="classQAccelPlot_1_1DataTransition_1_1Run" kind="class" language="C++" prot="public">
     <compoundname>QAccelPlot::DataTransition::Run</compoundname>
     <includes local="no">DataTransition.hpp</includes>
@@ -11,7 +11,7 @@
         <name>DataTransition</name>
         <qualifiedname>QAccelPlot::DataTransition::Run::DataTransition</qualifiedname>
         <param>
-          <type><ref refid="classQAccelPlot_1_1DataTransition" kindref="compound">DataTransition</ref></type>
+          <type>DataTransition</type>
         </param>
         <briefdescription>
         </briefdescription>
@@ -24,7 +24,7 @@
     </sectiondef>
     <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classQAccelPlot_1_1DataTransition_1_1Run_1a800dcd4f3ac2da0f2dab81f448f3043d" prot="private" static="no" mutable="no">
-        <type><ref refid="classQAccelPlot_1_1DataTransition" kindref="compound">DataTransition</ref> *</type>
+        <type>DataTransition *</type>
         <definition>DataTransition* QAccelPlot::DataTransition::Run::transition_</definition>
         <argsstring></argsstring>
         <name>transition_</name>
@@ -135,7 +135,7 @@
         <name>Run</name>
         <qualifiedname>QAccelPlot::DataTransition::Run::Run</qualifiedname>
         <param>
-          <type>const <ref refid="classQAccelPlot_1_1DataTransition_1_1Run" kindref="compound">Run</ref> &amp;</type>
+          <type>const Run &amp;</type>
         </param>
         <briefdescription>
         </briefdescription>
@@ -146,13 +146,13 @@
         <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="75" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1_1Run_1a73550e4e14b8102cad9d1ec96322a99a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classQAccelPlot_1_1DataTransition_1_1Run" kindref="compound">Run</ref> &amp;</type>
+        <type><ref refid="classQAccelPlot_1_1DataTransition_1_1Run_1aa36e282c925ae7e71551aef5e52306df" kindref="member">Run</ref> &amp;</type>
         <definition>Run &amp; QAccelPlot::DataTransition::Run::operator=</definition>
         <argsstring>(const Run &amp;)=delete</argsstring>
         <name>operator=</name>
         <qualifiedname>QAccelPlot::DataTransition::Run::operator=</qualifiedname>
         <param>
-          <type>const <ref refid="classQAccelPlot_1_1DataTransition_1_1Run" kindref="compound">Run</ref> &amp;</type>
+          <type>const <ref refid="classQAccelPlot_1_1DataTransition_1_1Run_1aa36e282c925ae7e71551aef5e52306df" kindref="member">Run</ref> &amp;</type>
         </param>
         <briefdescription>
         </briefdescription>

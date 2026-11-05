@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="Grid_8hpp" kind="file" language="C++">
     <compoundname>Grid.hpp</compoundname>
     <includes refid="ColorPalette_8hpp" local="yes">QAccelPlot/theme/ColorPalette.hpp</includes>
@@ -52,7 +52,7 @@
 <codeline lineno="15"><highlight class="normal"></highlight></codeline>
 <codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
 <codeline lineno="17"><highlight class="normal"></highlight></codeline>
-<codeline lineno="24" refid="classQAccelPlot_1_1Grid" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1Grid" kindref="compound">Grid</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QObject<sp/>{</highlight></codeline>
+<codeline lineno="24" refid="classQAccelPlot_1_1Grid" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1Grid_1af8f709a023a9ca32d784ed692372bb0d" kindref="member">Grid</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QObject<sp/>{</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_OBJECT</highlight></codeline>
 <codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_ANONYMOUS</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(qreal<sp/><ref refid="classQAccelPlot_1_1Grid_1a5464394fa126769db199444d667b740c" kindref="member">gridLineWidth</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1Grid_1a5464394fa126769db199444d667b740c" kindref="member">gridLineWidth</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1Grid_1a4aa7e1162a1dbae14881fc2f01a2bdba" kindref="member">setGridLineWidth</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1Grid_1a4ee5ffd331779ed77fbf50eb87816ba0" kindref="member">gridLineWidthChanged</ref>)</highlight></codeline>
@@ -68,7 +68,7 @@
 <codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Grid_1a5b712ac38a46a71d125ed6e45ee48437" kindref="member">subGridVerticalLinesVisible</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1Grid_1a5b712ac38a46a71d125ed6e45ee48437" kindref="member">subGridVerticalLinesVisible</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1Grid_1a0731725661e361a2da448e8dbedd1f80" kindref="member">setSubGridVerticalLinesVisible</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1Grid_1a229cba323065b9a07db1ed052ed3a1f3" kindref="member">subGridVerticalLinesVisibleChanged</ref>)</highlight></codeline>
 <codeline lineno="48"><highlight class="normal"></highlight></codeline>
 <codeline lineno="49"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Grid" kindref="compound">Grid</ref>(QObject*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Grid_1af8f709a023a9ca32d784ed692372bb0d" kindref="member">Grid</ref>(QObject*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="52"><highlight class="normal"></highlight></codeline>
 <codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/><ref refid="classQAccelPlot_1_1Grid_1a5464394fa126769db199444d667b740c" kindref="member">gridLineWidth</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Grid_1a4aa7e1162a1dbae14881fc2f01a2bdba" kindref="member">setGridLineWidth</ref>(qreal<sp/>w);</highlight></codeline>

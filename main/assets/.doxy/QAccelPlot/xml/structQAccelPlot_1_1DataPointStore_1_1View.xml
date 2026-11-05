@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="structQAccelPlot_1_1DataPointStore_1_1View" kind="struct" language="C++" prot="public">
     <compoundname>QAccelPlot::DataPointStore::View</compoundname>
     <includes local="no">DataPointStore.hpp</includes>
@@ -70,7 +70,7 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
-      <memberdef kind="function" id="structQAccelPlot_1_1DataPointStore_1_1View_1afb9f0f1ff361d65e1ad61f15b80fc1b8" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="structQAccelPlot_1_1DataPointStore_1_1View_1afb9f0f1ff361d65e1ad61f15b80fc1b8" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>double</type>
         <definition>double QAccelPlot::DataPointStore::View::value</definition>
         <argsstring>(int index, int column) const noexcept</argsstring>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="TickLabelFormatter_8hpp" kind="file" language="C++">
     <compoundname>TickLabelFormatter.hpp</compoundname>
     <includes local="no">QJSValue</includes>
@@ -52,14 +52,14 @@
 <codeline lineno="13"><highlight class="normal"></highlight></codeline>
 <codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight></codeline>
-<codeline lineno="22" refid="classQAccelPlot_1_1TickLabelFormatter" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1TickLabelFormatter" kindref="compound">TickLabelFormatter</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QObject<sp/>{</highlight></codeline>
+<codeline lineno="22" refid="classQAccelPlot_1_1TickLabelFormatter" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a6abf21321f9724038fa9ac3ddc246344" kindref="member">TickLabelFormatter</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QObject<sp/>{</highlight></codeline>
 <codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_OBJECT</highlight></codeline>
 <codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_ANONYMOUS</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QJSValue<sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1ac653e2484200ea89af8facc8cffab00b" kindref="member">tickLabel</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1ac653e2484200ea89af8facc8cffab00b" kindref="member">tickLabel</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a1d838ad53d9751fc656b24b6c5e9df9a" kindref="member">setTickLabel</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a9bf9272bca76afa4a3b51b711e90e077" kindref="member">tickLabelChanged</ref>)</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
 <codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter" kindref="compound">TickLabelFormatter</ref>(QObject*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a6abf21321f9724038fa9ac3ddc246344" kindref="member">TickLabelFormatter</ref>(QObject*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
 <codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>QString<sp/><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a917283d2336c53aefad3317824c48083" kindref="member">format</ref>(qreal<sp/>value,<sp/>qreal<sp/>tickStep)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="37"><highlight class="normal"></highlight></codeline>

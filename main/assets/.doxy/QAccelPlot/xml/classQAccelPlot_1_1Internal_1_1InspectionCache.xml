@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="classQAccelPlot_1_1Internal_1_1InspectionCache" kind="class" language="C++" prot="public">
     <compoundname>QAccelPlot::Internal::InspectionCache</compoundname>
     <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
@@ -157,7 +157,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="37" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionCache_1a54ebb2c5709a95193c70886eb7a1f07a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionCache_1a54ebb2c5709a95193c70886eb7a1f07a" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
         <definition>bool QAccelPlot::Internal::InspectionCache::requested</definition>
         <argsstring>() const</argsstring>
@@ -171,7 +171,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="38" column="11"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionCache_1a91a3e787e63da64ee9fc1a0e15e59b7c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionCache_1a91a3e787e63da64ee9fc1a0e15e59b7c" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>const <ref refid="classQAccelPlot_1_1Internal_1_1InspectionIndex" kindref="compound">InspectionIndex</ref> *</type>
         <definition>const InspectionIndex * QAccelPlot::Internal::InspectionCache::index</definition>
         <argsstring>() const</argsstring>

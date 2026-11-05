@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="BandEdgeRenderer_8hpp" kind="file" language="C++">
     <compoundname>BandEdgeRenderer.hpp</compoundname>
     <includes refid="BandEdgeMaterial_8hpp" local="yes">QAccelPlot/materials/BandEdgeMaterial.hpp</includes>
@@ -73,10 +73,10 @@
 <codeline lineno="20"><highlight class="normal"></highlight></codeline>
 <codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
 <codeline lineno="22"><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">Axis;</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">DataTexture;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref>;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1DataTexture" kindref="compound">DataTexture</ref>;</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
-<codeline lineno="27" refid="structQAccelPlot_1_1BandEdgeRenderParams" refkind="compound"><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structQAccelPlot_1_1BandEdgeRenderParams" kindref="compound">BandEdgeRenderParams</ref><sp/>{</highlight></codeline>
+<codeline lineno="27" refid="structQAccelPlot_1_1BandEdgeRenderParams" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structQAccelPlot_1_1BandEdgeRenderParams" kindref="compound">BandEdgeRenderParams</ref><sp/>{</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>std::shared_ptr&lt;DataTexture&gt;<sp/><ref refid="structQAccelPlot_1_1BandEdgeRenderParams_1ac283850cf0e04b038d68af31ce4e92cb" kindref="member">dataTexture</ref>;<sp/></highlight></codeline>
 <codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structQAccelPlot_1_1DataPointStore_1_1View" kindref="compound">DataPointStore::View</ref><sp/><ref refid="structQAccelPlot_1_1BandEdgeRenderParams_1a814196d856d640778bbf3ced71c2ca97" kindref="member">dataPoints</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structQAccelPlot_1_1LineStroke_1_1Uniforms" kindref="compound">LineStroke::Uniforms</ref><sp/><ref refid="structQAccelPlot_1_1BandEdgeRenderParams_1aa5421cb49415855e7a9d5a95af46e8c0" kindref="member">uniforms</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
@@ -86,9 +86,9 @@
 <codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1BandEdgeRenderParams_1a84dd6b750fb5c48cca01e1ba8481fc64" kindref="member">reservedCount</ref>;</highlight></codeline>
 <codeline lineno="36"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="37"><highlight class="normal"></highlight></codeline>
-<codeline lineno="41" refid="classQAccelPlot_1_1BandEdgeRenderer" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1BandEdgeRenderer" kindref="compound">BandEdgeRenderer</ref><sp/>{</highlight></codeline>
+<codeline lineno="41" refid="classQAccelPlot_1_1BandEdgeRenderer" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1BandEdgeRenderer_1af1d091c596c11d665aad35aaafee8fbc" kindref="member">BandEdgeRenderer</ref><sp/>{</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1BandEdgeRenderer" kindref="compound">BandEdgeRenderer</ref>(<ref refid="classQAccelPlot_1_1BandEdgeMaterial_1a132219890ce800578cec91df33a814f7" kindref="member">BandEdgeMaterial::Edge</ref><sp/>edge);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1BandEdgeRenderer_1af1d091c596c11d665aad35aaafee8fbc" kindref="member">BandEdgeRenderer</ref>(<ref refid="classQAccelPlot_1_1BandEdgeMaterial_1a132219890ce800578cec91df33a814f7" kindref="member">BandEdgeMaterial::Edge</ref><sp/>edge);</highlight></codeline>
 <codeline lineno="45"><highlight class="normal"></highlight></codeline>
 <codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>QSGGeometryNode*<sp/><ref refid="classQAccelPlot_1_1BandEdgeRenderer_1a05c6418d92157b0ddc4be7edf2a6fb73" kindref="member">paint</ref>(QSGGeometryNode*<sp/>oldNode,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1BandEdgeRenderParams" kindref="compound">BandEdgeRenderParams</ref>&amp;<sp/>params)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="48"><highlight class="normal"></highlight></codeline>

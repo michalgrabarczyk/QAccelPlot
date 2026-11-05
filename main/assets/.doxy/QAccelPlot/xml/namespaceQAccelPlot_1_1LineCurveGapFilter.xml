@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="namespaceQAccelPlot_1_1LineCurveGapFilter" kind="namespace" language="C++">
     <compoundname>QAccelPlot::LineCurveGapFilter</compoundname>
     <sectiondef kind="func">
-      <memberdef kind="function" id="namespaceQAccelPlot_1_1LineCurveGapFilter_1a86cea55256cf82fcf5f4be05f163607f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespaceQAccelPlot_1_1LineCurveGapFilter_1a86cea55256cf82fcf5f4be05f163607f" prot="public" static="no" nodiscard="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
         <definition>bool QAccelPlot::LineCurveGapFilter::isValidPoint</definition>
         <argsstring>(const CurveDataView &amp;data, int index, bool logScaleX, bool logScaleY)</argsstring>
@@ -34,7 +34,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/LineCurveGapFilter.hpp" line="29" column="7" declfile="QAccelPlot/src/QAccelPlot/series/LineCurveGapFilter.hpp" declline="29" declcolumn="7"/>
       </memberdef>
-      <memberdef kind="function" id="namespaceQAccelPlot_1_1LineCurveGapFilter_1a4061107dadd0fc748aeefb88dc243b8b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespaceQAccelPlot_1_1LineCurveGapFilter_1a4061107dadd0fc748aeefb88dc243b8b" prot="public" static="no" nodiscard="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; <ref refid="structQAccelPlot_1_1DataPointRun" kindref="compound">DataPointRun</ref> &gt;</type>
         <definition>std::vector&lt; DataPointRun &gt; QAccelPlot::LineCurveGapFilter::findValidRuns</definition>
         <argsstring>(const CurveDataView &amp;data, int pointCount, bool logScaleX, bool logScaleY)</argsstring>
@@ -65,7 +65,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/LineCurveGapFilter.hpp" line="32" column="14" declfile="QAccelPlot/src/QAccelPlot/series/LineCurveGapFilter.hpp" declline="32" declcolumn="14"/>
       </memberdef>
-      <memberdef kind="function" id="namespaceQAccelPlot_1_1LineCurveGapFilter_1aafd3c0eaf575ec8341be702f2667aad8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespaceQAccelPlot_1_1LineCurveGapFilter_1aafd3c0eaf575ec8341be702f2667aad8" prot="public" static="no" nodiscard="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; int &gt;</type>
         <definition>std::vector&lt; int &gt; QAccelPlot::LineCurveGapFilter::planRunSampling</definition>
         <argsstring>(const std::vector&lt; DataPointRun &gt; &amp;runs, int maxSampledPoints)</argsstring>

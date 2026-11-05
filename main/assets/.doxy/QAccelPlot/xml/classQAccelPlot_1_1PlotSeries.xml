@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="classQAccelPlot_1_1PlotSeries" kind="class" language="C++" prot="public">
     <compoundname>QAccelPlot::PlotSeries</compoundname>
     <basecompoundref prot="public" virt="non-virtual">QQuickItem</basecompoundref>
@@ -9,10 +9,10 @@
     <derivedcompoundref refid="classQAccelPlot_1_1LineCurve" prot="public" virt="non-virtual">QAccelPlot::LineCurve</derivedcompoundref>
     <derivedcompoundref refid="classQAccelPlot_1_1RectangleSeries" prot="public" virt="non-virtual">QAccelPlot::RectangleSeries</derivedcompoundref>
     <includes local="no">PlotSeries.hpp</includes>
-    <innerclass refid="structQAccelPlot_1_1PlotSeries_1_1DataBounds" prot="public">QAccelPlot::PlotSeries::DataBounds</innerclass>
     <innerclass refid="structQAccelPlot_1_1PlotSeries_1_1DataExtent" prot="public">QAccelPlot::PlotSeries::DataExtent</innerclass>
-    <innerclass refid="structQAccelPlot_1_1PlotSeries_1_1DataPointInput" prot="protected">QAccelPlot::PlotSeries::DataPointInput</innerclass>
+    <innerclass refid="structQAccelPlot_1_1PlotSeries_1_1DataBounds" prot="public">QAccelPlot::PlotSeries::DataBounds</innerclass>
     <innerclass refid="structQAccelPlot_1_1PlotSeries_1_1DataPointWording" prot="protected">QAccelPlot::PlotSeries::DataPointWording</innerclass>
+    <innerclass refid="structQAccelPlot_1_1PlotSeries_1_1DataPointInput" prot="protected">QAccelPlot::PlotSeries::DataPointInput</innerclass>
     <innerclass refid="structQAccelPlot_1_1PlotSeries_1_1DataRanges" prot="protected">QAccelPlot::PlotSeries::DataRanges</innerclass>
     <sectiondef kind="public-type">
       <memberdef kind="enum" id="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" prot="public" static="no" strong="yes">
@@ -249,7 +249,7 @@
         <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="98" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="98" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1PlotSeries_1addb81876423cd48343592cfce8c19d5b" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type><ref refid="classQAccelPlot_1_1SeriesInspection" kindref="compound">SeriesInspection</ref> *</type>
+        <type>SeriesInspection *</type>
         <definition>SeriesInspection* QAccelPlot::PlotSeries::inspection</definition>
         <argsstring></argsstring>
         <name>inspection</name>
@@ -324,7 +324,7 @@
         <name>SeriesInspection</name>
         <qualifiedname>QAccelPlot::PlotSeries::SeriesInspection</qualifiedname>
         <param>
-          <type><ref refid="classQAccelPlot_1_1SeriesInspection" kindref="compound">SeriesInspection</ref></type>
+          <type>SeriesInspection</type>
         </param>
         <briefdescription>
         </briefdescription>
@@ -412,7 +412,7 @@
         <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="394" column="13" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="394" bodyend="394"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1PlotSeries_1a2abb726bf878eed8dad217273f2ebe29" prot="private" static="no" mutable="yes">
-        <type><ref refid="classQAccelPlot_1_1SeriesInspection" kindref="compound">SeriesInspection</ref> *</type>
+        <type>SeriesInspection *</type>
         <definition>SeriesInspection* QAccelPlot::PlotSeries::inspection_</definition>
         <argsstring></argsstring>
         <name>inspection_</name>
@@ -661,7 +661,7 @@
         <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="137" column="13"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a00a3d60288b86fd54569387281355060" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classQAccelPlot_1_1SeriesInspection" kindref="compound">SeriesInspection</ref> *</type>
+        <type>SeriesInspection *</type>
         <definition>SeriesInspection * QAccelPlot::PlotSeries::inspection</definition>
         <argsstring>() const</argsstring>
         <name>inspection</name>
@@ -2171,83 +2171,83 @@
 <para><ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> owns the integration shared by every plot type: axis bindings, plot-area layout, data-range reporting, legend metadata, and a common C++ data-setting API backed by the series&apos; data points. Concrete series define their data point layout, rendering, and hit testing.</para>
 <para><computeroutput><ref refid="classQAccelPlot_1_1PlotSeries_1a5615889cceabfee35f5e3e2dbd25f455" kindref="member">setData()</ref></computeroutput>, <computeroutput><ref refid="classQAccelPlot_1_1PlotSeries_1aa3475ca31d506b1b1c28ea586d61402e" kindref="member">setDataF()</ref></computeroutput>, and <computeroutput><ref refid="classQAccelPlot_1_1PlotSeries_1acbf8fb06d9d8ca2a5ab3a0c4e060a4b4" kindref="member">postData()</ref></computeroutput> take interleaved values, one data point after another, in the layout of the series:</para>
 <para><table rows="8" cols="3"><row>
-<entry thead="yes"><para>Series   </para>
-</entry><entry thead="yes"><para>Data point   </para>
-</entry><entry thead="yes"><para>Values    </para>
+<entry thead="yes"><para>Series  </para>
+</entry><entry thead="yes"><para>Data point  </para>
+</entry><entry thead="yes"><para>Values  </para>
 </entry></row>
 <row>
-<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref></computeroutput>   </para>
-</entry><entry thead="no"><para>(x, y)   </para>
-</entry><entry thead="no"><para>2    </para>
+<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref></computeroutput>  </para>
+</entry><entry thead="no"><para>(x, y)  </para>
+</entry><entry thead="no"><para>2  </para>
 </entry></row>
 <row>
-<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref></computeroutput>   </para>
-</entry><entry thead="no"><para>(x, y)   </para>
-</entry><entry thead="no"><para>2    </para>
+<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref></computeroutput>  </para>
+</entry><entry thead="no"><para>(x, y)  </para>
+</entry><entry thead="no"><para>2  </para>
 </entry></row>
 <row>
-<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1RectangleSeries" kindref="compound">RectangleSeries</ref></computeroutput>   </para>
-</entry><entry thead="no"><para>(x1, y1, x2, y2)   </para>
-</entry><entry thead="no"><para>4    </para>
+<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1RectangleSeries" kindref="compound">RectangleSeries</ref></computeroutput>  </para>
+</entry><entry thead="no"><para>(x1, y1, x2, y2)  </para>
+</entry><entry thead="no"><para>4  </para>
 </entry></row>
 <row>
-<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1BarSeries" kindref="compound">BarSeries</ref></computeroutput>   </para>
-</entry><entry thead="no"><para>(position, value)   </para>
-</entry><entry thead="no"><para>2    </para>
+<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1BarSeries" kindref="compound">BarSeries</ref></computeroutput>  </para>
+</entry><entry thead="no"><para>(position, value)  </para>
+</entry><entry thead="no"><para>2  </para>
 </entry></row>
 <row>
-<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1BandSeries" kindref="compound">BandSeries</ref></computeroutput>   </para>
-</entry><entry thead="no"><para>(x, low, high)   </para>
-</entry><entry thead="no"><para>3    </para>
+<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1BandSeries" kindref="compound">BandSeries</ref></computeroutput>  </para>
+</entry><entry thead="no"><para>(x, low, high)  </para>
+</entry><entry thead="no"><para>3  </para>
 </entry></row>
 <row>
-<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1ErrorBarSeries" kindref="compound">ErrorBarSeries</ref></computeroutput>   </para>
-</entry><entry thead="no"><para>(x, y, low, high)   </para>
-</entry><entry thead="no"><para>4    </para>
+<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1ErrorBarSeries" kindref="compound">ErrorBarSeries</ref></computeroutput>  </para>
+</entry><entry thead="no"><para>(x, y, low, high)  </para>
+</entry><entry thead="no"><para>4  </para>
 </entry></row>
 <row>
-<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1HeatmapSeries" kindref="compound">HeatmapSeries</ref></computeroutput>   </para>
-</entry><entry thead="no"><para>cell value   </para>
-</entry><entry thead="no"><para>1   </para>
+<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1HeatmapSeries" kindref="compound">HeatmapSeries</ref></computeroutput>  </para>
+</entry><entry thead="no"><para>cell value  </para>
+</entry><entry thead="no"><para>1  </para>
 </entry></row>
 </table>
 </para>
 <para>The buffer holds <emphasis>count</emphasis> times that many values. A <computeroutput><ref refid="classQAccelPlot_1_1HeatmapSeries" kindref="compound">HeatmapSeries</ref></computeroutput> takes its cells row by row, <computeroutput>columns</computeroutput> per row. Series-specific setters take other layouts, such as point values, categories, or ranged bars.</para>
 <para>Series smooth their edges with the inherited <computeroutput>antialiasing</computeroutput> property. <computeroutput><ref refid="classQAccelPlot_1_1HeatmapSeries" kindref="compound">HeatmapSeries</ref></computeroutput> ignores it.</para>
 <para><table rows="7" cols="3"><row>
-<entry thead="yes"><para>Series   </para>
-</entry><entry thead="yes"><para>Default <computeroutput>antialiasing</computeroutput>   </para>
-</entry><entry thead="yes"><para>Smoothed edges    </para>
+<entry thead="yes"><para>Series  </para>
+</entry><entry thead="yes"><para>Default <computeroutput>antialiasing</computeroutput>  </para>
+</entry><entry thead="yes"><para>Smoothed edges  </para>
 </entry></row>
 <row>
-<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref></computeroutput>   </para>
-</entry><entry thead="no"><para><computeroutput>true</computeroutput>   </para>
-</entry><entry thead="no"><para>lines and markers    </para>
+<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref></computeroutput>  </para>
+</entry><entry thead="no"><para><computeroutput>true</computeroutput>  </para>
+</entry><entry thead="no"><para>lines and markers  </para>
 </entry></row>
 <row>
-<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref></computeroutput>   </para>
-</entry><entry thead="no"><para><computeroutput>true</computeroutput>   </para>
-</entry><entry thead="no"><para>markers    </para>
+<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref></computeroutput>  </para>
+</entry><entry thead="no"><para><computeroutput>true</computeroutput>  </para>
+</entry><entry thead="no"><para>markers  </para>
 </entry></row>
 <row>
-<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1BandSeries" kindref="compound">BandSeries</ref></computeroutput>   </para>
-</entry><entry thead="no"><para><computeroutput>true</computeroutput>   </para>
-</entry><entry thead="no"><para>edge lines    </para>
+<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1BandSeries" kindref="compound">BandSeries</ref></computeroutput>  </para>
+</entry><entry thead="no"><para><computeroutput>true</computeroutput>  </para>
+</entry><entry thead="no"><para>edge lines  </para>
 </entry></row>
 <row>
-<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1ErrorBarSeries" kindref="compound">ErrorBarSeries</ref></computeroutput>   </para>
-</entry><entry thead="no"><para><computeroutput>true</computeroutput>   </para>
-</entry><entry thead="no"><para>lines and caps    </para>
+<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1ErrorBarSeries" kindref="compound">ErrorBarSeries</ref></computeroutput>  </para>
+</entry><entry thead="no"><para><computeroutput>true</computeroutput>  </para>
+</entry><entry thead="no"><para>lines and caps  </para>
 </entry></row>
 <row>
-<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1RectangleSeries" kindref="compound">RectangleSeries</ref></computeroutput>   </para>
-</entry><entry thead="no"><para><computeroutput>false</computeroutput>   </para>
-</entry><entry thead="no"><para>rectangles and their border    </para>
+<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1RectangleSeries" kindref="compound">RectangleSeries</ref></computeroutput>  </para>
+</entry><entry thead="no"><para><computeroutput>false</computeroutput>  </para>
+</entry><entry thead="no"><para>rectangles and their border  </para>
 </entry></row>
 <row>
-<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1BarSeries" kindref="compound">BarSeries</ref></computeroutput>   </para>
-</entry><entry thead="no"><para><computeroutput>false</computeroutput>   </para>
-</entry><entry thead="no"><para>bars and their border   </para>
+<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1BarSeries" kindref="compound">BarSeries</ref></computeroutput>  </para>
+</entry><entry thead="no"><para><computeroutput>false</computeroutput>  </para>
+</entry><entry thead="no"><para>bars and their border  </para>
 </entry></row>
 </table>
 </para>

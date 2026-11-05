@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="classQAccelPlot_1_1Internal_1_1RectVertexCache" kind="class" language="C++" prot="public" final="yes">
     <compoundname>QAccelPlot::Internal::RectVertexCache</compoundname>
     <includes local="no">RectVertexCache.hpp</includes>
@@ -23,8 +23,8 @@
     </sectiondef>
     <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1RectVertexCache_1a35c27fa76eca2ac2378399070a8f73d4" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type>constexpr int</type>
-        <definition>constexpr int QAccelPlot::Internal::RectVertexCache::kVerticesPerRect</definition>
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::RectVertexCache::kVerticesPerRect</definition>
         <argsstring></argsstring>
         <name>kVerticesPerRect</name>
         <qualifiedname>QAccelPlot::Internal::RectVertexCache::kVerticesPerRect</qualifiedname>
@@ -39,8 +39,8 @@
         <location file="QAccelPlot/src/QAccelPlot/series/internal/RectVertexCache.hpp" line="30" column="26" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/RectVertexCache.hpp" bodystart="30" bodyend="30"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1RectVertexCache_1a2154209ab99cb93e6bb43cd0fb7f9b45" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type>constexpr int</type>
-        <definition>constexpr int QAccelPlot::Internal::RectVertexCache::kBytesPerRect</definition>
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::RectVertexCache::kBytesPerRect</definition>
         <argsstring></argsstring>
         <name>kBytesPerRect</name>
         <qualifiedname>QAccelPlot::Internal::RectVertexCache::kBytesPerRect</qualifiedname>
@@ -126,7 +126,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/internal/RectVertexCache.hpp" line="41" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1RectVertexCache_1ab34d5f7589be16cbad1bab022a71ce4c" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1RectVertexCache_1ab34d5f7589be16cbad1bab022a71ce4c" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>bool</type>
         <definition>bool QAccelPlot::Internal::RectVertexCache::valid</definition>
         <argsstring>() const noexcept</argsstring>
@@ -141,7 +141,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/internal/RectVertexCache.hpp" line="44" column="11"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1RectVertexCache_1af49c999cddfab0319c06b81b929cdfad" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1RectVertexCache_1af49c999cddfab0319c06b81b929cdfad" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>int</type>
         <definition>int QAccelPlot::Internal::RectVertexCache::vertexCount</definition>
         <argsstring>() const noexcept</argsstring>

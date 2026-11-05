@@ -6,6 +6,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
 
 * **namespace** [**QAccelPlot**](namespaceQAccelPlot.md)     
     * **class** [**Axis**](classQAccelPlot_1_1Axis.md) _A visual axis item that maps a data-space range to pixel coordinates and renders tick marks and labels._     
+    * **class** [**AxisLabel**](classQAccelPlot_1_1AxisLabel.md) [_**Axis**_](classQAccelPlot_1_1Axis.md) _title and its placement, grouped as the_[_**Axis**_](classQAccelPlot_1_1Axis.md) __`label` _property, e.g._`label.text: "Time (s)"` _._    
     * **struct** [**AxisMapping**](structQAccelPlot_1_1AxisMapping.md) _Snapshot of an axis viewport that maps between data values and pixel positions._     
     * **struct** [**AxisTick**](structQAccelPlot_1_1AxisTick.md) _A single major tick: its data-space value and its formatted label._     
     * **class** [**AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md) _Internal helper that computes and paints tick marks and labels for a single_ [_**Axis**_](classQAccelPlot_1_1Axis.md) _._    
@@ -81,6 +82,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **class** [**InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md) _List model with one stable row per inspected series._     
     * **struct** [**InspectionSummary**](structQAccelPlot_1_1InspectionSummary.md) _Data-point-weighted Y statistics over the valid data points inside a region._     
     * **namespace** [**Internal**](namespaceQAccelPlot_1_1Internal.md)     
+        * **struct** [**AxisLabelLayoutParams**](structQAccelPlot_1_1Internal_1_1AxisLabelLayoutParams.md) _Inputs that place an axis label relative to the axis baseline._     
         * **class** [**CategoryList**](classQAccelPlot_1_1Internal_1_1CategoryList.md) _The_ `categories` _list of a series: the_`Category` _objects and a lookup table that follows their edits._    
         * **class** [**CategoryTable**](classQAccelPlot_1_1Internal_1_1CategoryTable.md) _A snapshot of the categories of a series, looked up by value or name._     
             * **struct** [**Entry**](structQAccelPlot_1_1Internal_1_1CategoryTable_1_1Entry.md) _One category: the value data points carry, an optional name, and an optional color._     
@@ -157,6 +159,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **class** [**SolidLine**](classQAccelPlot_1_1SolidLine.md) _The default line style — renders a continuous solid line with no gaps._     
     * **class** [**SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md) _Uniform-grid spatial index with bounded per-rectangle storage._     
     * **namespace** [**StepModeNS**](namespaceQAccelPlot_1_1StepModeNS.md) _Namespace exposing the_ `StepMode` _enum to QML._    
+    * **class** [**TextLabel**](classQAccelPlot_1_1TextLabel.md) _Text, font, color, and padding of a title, grouped as the_ `label` _property of_[_**ColorBar**_](classQAccelPlot_1_1ColorBar.md) _and_[_**Axis**_](classQAccelPlot_1_1Axis.md) _._    
     * **class** [**TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md) _A tick label formatter that maps integer tick indices to a user-supplied list of strings._     
     * **class** [**TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md) _Abstract base class for tick label formatters._     
     * **class** [**TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md) _Runs the_ `DataTransition` _assigned to one item, such as a custom series._    

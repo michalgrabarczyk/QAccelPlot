@@ -52,6 +52,7 @@
 | Type | Name |
 | ---: | :--- |
 | class | [**Axis**](classQAccelPlot_1_1Axis.md) <br>_A visual axis item that maps a data-space range to pixel coordinates and renders tick marks and labels._  |
+| class | [**AxisLabel**](classQAccelPlot_1_1AxisLabel.md) <br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _title and its placement, grouped as the_[_**Axis**_](classQAccelPlot_1_1Axis.md) __`label` _property, e.g._`label.text: "Time (s)"` _._ |
 | struct | [**AxisMapping**](structQAccelPlot_1_1AxisMapping.md) <br>_Snapshot of an axis viewport that maps between data values and pixel positions._  |
 | struct | [**AxisTick**](structQAccelPlot_1_1AxisTick.md) <br>_A single major tick: its data-space value and its formatted label._  |
 | class | [**AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md) <br>_Internal helper that computes and paints tick marks and labels for a single_ [_**Axis**_](classQAccelPlot_1_1Axis.md) _._ |
@@ -145,6 +146,7 @@
 | class | [**SeriesMarker**](classQAccelPlot_1_1SeriesMarker.md) <br>_Controls the markers a series draws at its data points._  |
 | class | [**SolidLine**](classQAccelPlot_1_1SolidLine.md) <br>_The default line style — renders a continuous solid line with no gaps._  |
 | class | [**SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md) <br>_Uniform-grid spatial index with bounded per-rectangle storage._  |
+| class | [**TextLabel**](classQAccelPlot_1_1TextLabel.md) <br>_Text, font, color, and padding of a title, grouped as the_ `label` _property of_[_**ColorBar**_](classQAccelPlot_1_1ColorBar.md) _and_[_**Axis**_](classQAccelPlot_1_1Axis.md) _._ |
 | class | [**TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md) <br>_A tick label formatter that maps integer tick indices to a user-supplied list of strings._  |
 | class | [**TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md) <br>_Abstract base class for tick label formatters._  |
 | class | [**TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md) <br>_Runs the_ `DataTransition` _assigned to one item, such as a custom series._ |
@@ -168,8 +170,8 @@
 
 | Type | Name |
 | ---: | :--- |
-|  constexpr int | [**kMaxDashPatternSize**](#variable-kmaxdashpatternsize)   = `8`<br>_Largest dash pattern the renderer can carry to the shader._  |
-|  constexpr double | [**kNearlyEqualEpsilon**](#variable-knearlyequalepsilon)   = `2.0 \* std::numeric\_limits&lt;double&gt;::epsilon()`<br> |
+|  int | [**kMaxDashPatternSize**](#variable-kmaxdashpatternsize)   = `8`<br>_Largest dash pattern the renderer can carry to the shader._  |
+|  double | [**kNearlyEqualEpsilon**](#variable-knearlyequalepsilon)   = `2.0 \* std::numeric\_limits&lt;double&gt;::epsilon()`<br> |
 
 
 
@@ -232,7 +234,7 @@
 ### typedef GradientFillBaseline {#typedef-gradientfillbaseline}
 
 ```C++
-using QAccelPlot::GradientFillBaseline = typedef GradientFillBaselineNS::Mode;
+using QAccelPlot::GradientFillBaseline =  GradientFillBaselineNS::Mode;
 ```
 
 
@@ -246,7 +248,7 @@ using QAccelPlot::GradientFillBaseline = typedef GradientFillBaselineNS::Mode;
 ### typedef GradientValueSource {#typedef-gradientvaluesource}
 
 ```C++
-using QAccelPlot::GradientValueSource = typedef GradientValueSourceNS::Source;
+using QAccelPlot::GradientValueSource =  GradientValueSourceNS::Source;
 ```
 
 
@@ -260,7 +262,7 @@ using QAccelPlot::GradientValueSource = typedef GradientValueSourceNS::Source;
 ### typedef InspectionStatus {#typedef-inspectionstatus}
 
 ```C++
-using QAccelPlot::InspectionStatus = typedef InspectionNS::Status;
+using QAccelPlot::InspectionStatus =  InspectionNS::Status;
 ```
 
 
@@ -274,7 +276,7 @@ using QAccelPlot::InspectionStatus = typedef InspectionNS::Status;
 ### typedef MarkerShape {#typedef-markershape}
 
 ```C++
-using QAccelPlot::MarkerShape = typedef MarkerShapeNS::Shape;
+using QAccelPlot::MarkerShape =  MarkerShapeNS::Shape;
 ```
 
 
@@ -288,7 +290,7 @@ using QAccelPlot::MarkerShape = typedef MarkerShapeNS::Shape;
 ### typedef NanGapMode {#typedef-nangapmode}
 
 ```C++
-using QAccelPlot::NanGapMode = typedef NanGapModeNS::Mode;
+using QAccelPlot::NanGapMode =  NanGapModeNS::Mode;
 ```
 
 
@@ -302,7 +304,7 @@ using QAccelPlot::NanGapMode = typedef NanGapModeNS::Mode;
 ### typedef StepMode {#typedef-stepmode}
 
 ```C++
-using QAccelPlot::StepMode = typedef StepModeNS::Mode;
+using QAccelPlot::StepMode =  StepModeNS::Mode;
 ```
 
 
@@ -319,7 +321,7 @@ using QAccelPlot::StepMode = typedef StepModeNS::Mode;
 
 _Largest dash pattern the renderer can carry to the shader._ 
 ```C++
-constexpr int QAccelPlot::kMaxDashPatternSize;
+int QAccelPlot::kMaxDashPatternSize;
 ```
 
 
@@ -333,7 +335,7 @@ constexpr int QAccelPlot::kMaxDashPatternSize;
 ### variable kNearlyEqualEpsilon {#variable-knearlyequalepsilon}
 
 ```C++
-constexpr double QAccelPlot::kNearlyEqualEpsilon;
+double QAccelPlot::kNearlyEqualEpsilon;
 ```
 
 

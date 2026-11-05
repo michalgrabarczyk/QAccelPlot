@@ -43,6 +43,7 @@
 
 | Type | Name |
 | ---: | :--- |
+| struct | [**AxisLabelLayoutParams**](structQAccelPlot_1_1Internal_1_1AxisLabelLayoutParams.md) <br>_Inputs that place an axis label relative to the axis baseline._  |
 | class | [**CategoryList**](classQAccelPlot_1_1Internal_1_1CategoryList.md) <br>_The_ `categories` _list of a series: the_`Category` _objects and a lookup table that follows their edits._ |
 | class | [**CategoryTable**](classQAccelPlot_1_1Internal_1_1CategoryTable.md) <br>_A snapshot of the categories of a series, looked up by value or name._  |
 | struct | [**DataTextureUploadTotals**](structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals.md) <br>_How many data textures were uploaded since the last reset, and how many bytes they held._  |
@@ -84,7 +85,7 @@
 
 | Type | Name |
 | ---: | :--- |
-|  constexpr int | [**kDataTextureWidth**](#variable-kdatatexturewidth)   = `{8192}`<br>_Number of floats stored per data texture row, one float per RGBA8 texel._  |
+|  int | [**kDataTextureWidth**](#variable-kdatatexturewidth)   = `{8192}`<br>_Number of floats stored per data texture row, one float per RGBA8 texel._  |
 
 
 
@@ -105,9 +106,10 @@
 
 | Type | Name |
 | ---: | :--- |
+|  QPointF | [**axisLabelCenter**](#function-axislabelcenter) (const [**AxisLabelLayoutParams**](structQAccelPlot_1_1Internal_1_1AxisLabelLayoutParams.md) & params) <br>_Returns the center of the axis label described by_ _params_ _, in item coordinates._ |
 |  qreal | [**clampAntialiasingFeather**](#function-clampantialiasingfeather) (qreal feather) <br>_Returns_ _feather_ _clamped to the [0, 10] pixel range of the series'_`antialiasingFeather` _properties._ |
-|  constexpr int | [**dataTextureHeight**](#function-datatextureheight) (const int floatCount) <br>_Returns the number of data texture rows needed to store_ _floatCount_ _floats._ |
-|  constexpr qint64 | [**dataTextureItemCapacity**](#function-datatextureitemcapacity) (const int maxHeight, const int floatsPerItem) <br>_Returns how many items of_ _floatsPerItem_ _floats fit in a data texture at most__maxHeight_ _rows tall._ |
+|  int | [**dataTextureHeight**](#function-datatextureheight) (const int floatCount) <br>_Returns the number of data texture rows needed to store_ _floatCount_ _floats._ |
+|  qint64 | [**dataTextureItemCapacity**](#function-datatextureitemcapacity) (const int maxHeight, const int floatsPerItem) <br>_Returns how many items of_ _floatsPerItem_ _floats fit in a data texture at most__maxHeight_ _rows tall._ |
 |  [**DataTextureUploadTotals**](structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals.md) | [**dataTextureUploadTotals**](#function-datatextureuploadtotals) () <br>_Returns the totals since the last reset. Thread-safe._  |
 |  double | [**distanceToInterval**](#function-distancetointerval) (double position, double a, double b) noexcept<br>_Returns the signed distance from_ _position_ _to the closed interval between__a_ _and__b_ _._ |
 |  qreal | [**edgePixel**](#function-edgepixel) (double value, const [**Axis**](classQAccelPlot_1_1Axis.md) & axis, qreal length) <br>_Maps rectangle edge_ _value_ _on__axis_ _to item pixels along an item side__length_ _pixels long._ |
@@ -124,6 +126,7 @@
 |  void | [**recordDataTextureUpload**](#function-recorddatatextureupload) (std::int64\_t bytes) <br>_Adds one upload of_ _bytes_ _to the totals. Thread-safe._ |
 |  void | [**resetDataTextureUploadTotals**](#function-resetdatatextureuploadtotals) () <br>_Sets the totals back to zero. Thread-safe._  |
 |  void | [**resolveGradientValueRange**](#function-resolvegradientvaluerange) (Payload & payload, const qreal dataMin, const qreal dataMax) <br>_Fills each unset gradient value bound of_ _payload_ _from [__dataMin_ _,__dataMax_ _]._ |
+|  QSizeF | [**rotatedBoundingSize**](#function-rotatedboundingsize) (const QSizeF & size, qreal degrees) <br>_Returns the size of the box that holds_ _size_ _rotated by__degrees_ _._ |
 |  void | [**setImageResolution**](#function-setimageresolution) (QImage & image, qreal dpi) <br>_Sets the resolution stored with_ _image_ _to__dpi_ _dots per inch._ |
 |  std::optional&lt; QPointF &gt; | [**stepCorner**](#function-stepcorner) (const [**CurveDataView**](structQAccelPlot_1_1CurveDataView.md) & data, int from, int to, int corner, [**StepMode**](namespaceQAccelPlot_1_1StepModeNS.md#enum-mode) mode, bool logScaleX, bool logScaleY) <br>_Returns corner_ _corner_ _of the step from data point__from_ _to data point__to_ _, in data space._ |
 |  int | [**stepCornerCount**](#function-stepcornercount) ([**StepMode**](namespaceQAccelPlot_1_1StepModeNS.md#enum-mode) mode) noexcept<br>_Returns the number of line path points per data point for_ _mode:_ _the data point and the step corners after it._ |
@@ -212,7 +215,7 @@ enum QAccelPlot::Internal::InspectionMatching {
 
 _Number of floats stored per data texture row, one float per RGBA8 texel._ 
 ```C++
-constexpr int QAccelPlot::Internal::kDataTextureWidth;
+int QAccelPlot::Internal::kDataTextureWidth;
 ```
 
 
@@ -225,6 +228,27 @@ data\_texture.glsl reads the width from the bound texture, so this is the only d
 <hr>
 ## Public Functions Documentation
 
+
+
+
+
+### function axisLabelCenter {#function-axislabelcenter}
+
+_Returns the center of the axis label described by_ _params_ _, in item coordinates._
+```C++
+QPointF QAccelPlot::Internal::axisLabelCenter (
+    const AxisLabelLayoutParams & params
+) 
+```
+
+
+
+The rotated text box is kept flush with the axis ends: at fraction 0 or 1 its edge meets the end of `dataRect`. On vertical axes the minimum-value end is the bottom. 
+
+
+        
+
+<hr>
 
 
 
@@ -250,7 +274,7 @@ qreal QAccelPlot::Internal::clampAntialiasingFeather (
 
 _Returns the number of data texture rows needed to store_ _floatCount_ _floats._
 ```C++
-constexpr int QAccelPlot::Internal::dataTextureHeight (
+int QAccelPlot::Internal::dataTextureHeight (
     const int floatCount
 ) 
 ```
@@ -267,7 +291,7 @@ constexpr int QAccelPlot::Internal::dataTextureHeight (
 
 _Returns how many items of_ _floatsPerItem_ _floats fit in a data texture at most__maxHeight_ _rows tall._
 ```C++
-constexpr qint64 QAccelPlot::Internal::dataTextureItemCapacity (
+qint64 QAccelPlot::Internal::dataTextureItemCapacity (
     const int maxHeight,
     const int floatsPerItem
 ) 
@@ -614,6 +638,24 @@ Bounds resolve independently, so a `Fixed` bound is kept when the other bound us
 
 
 
+### function rotatedBoundingSize {#function-rotatedboundingsize}
+
+_Returns the size of the box that holds_ _size_ _rotated by__degrees_ _._
+```C++
+QSizeF QAccelPlot::Internal::rotatedBoundingSize (
+    const QSizeF & size,
+    qreal degrees
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function setImageResolution {#function-setimageresolution}
 
 _Sets the resolution stored with_ _image_ _to__dpi_ _dots per inch._
@@ -847,5 +889,5 @@ _anchorRatio_ is a position inside the range: 0 at `min` and 1 at `max`. With _l
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/axis/internal/AxisLabelLayout.hpp`
 

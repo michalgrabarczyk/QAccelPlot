@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="classQAccelPlot_1_1Axis" kind="class" language="C++" prot="public">
     <compoundname>QAccelPlot::Axis</compoundname>
     <basecompoundref prot="public" virt="non-virtual">QQuickPaintedItem</basecompoundref>
@@ -40,13 +40,50 @@
           </detaileddescription>
         </enumvalue>
         <briefdescription>
-<para>Side of the plot on which the axis is positioned. </para>
+<para><ref refid="classQAccelPlot_1_1Axis_1a53608b3c6fe0e1d195faa9b0c3b7a233" kindref="member">Side</ref> of the plot on which the axis is positioned. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="92" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="92" bodyend="92"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="91" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="91" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="enum" id="classQAccelPlot_1_1Axis_1abeb42076f0b2796e528aed24e345244d" prot="public" static="no" strong="no">
+        <type></type>
+        <name>LabelAlignment</name>
+        <qualifiedname>QAccelPlot::Axis::LabelAlignment</qualifiedname>
+        <enumvalue id="classQAccelPlot_1_1Axis_1abeb42076f0b2796e528aed24e345244daebac4202a45343a82ddad8760797597f" prot="public">
+          <name>Start</name>
+          <briefdescription>
+<para>At the <computeroutput>viewportMin</computeroutput> end: left on horizontal axes, bottom on vertical axes. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1Axis_1abeb42076f0b2796e528aed24e345244dacf791c17ba1f95cb5ea3cdbac59d91e5" prot="public">
+          <name>Center</name>
+          <briefdescription>
+<para>Centered on the axis. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1Axis_1abeb42076f0b2796e528aed24e345244da1dd0df1f69e53943f970b69183528f08" prot="public">
+          <name>End</name>
+          <briefdescription>
+<para>At the <computeroutput>viewportMax</computeroutput> end: right on horizontal axes, top on vertical axes. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Position of the axis label along the axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="95" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="95" bodyend="99"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="property">
@@ -65,7 +102,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="37" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="37" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="42" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="42" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1Axis_1ae7112f0aac515a9fad256f21696f3e31" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>qreal</type>
@@ -82,7 +119,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="39" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="39" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="44" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="44" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1Axis_1a7ff8bbf8f594cce69d3a56c9b7f7dc25" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>qreal</type>
@@ -100,7 +137,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="45" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="45" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="50" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="50" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1Axis_1ab9a1549ca7fa37509039903052111c85" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>qreal</type>
@@ -117,7 +154,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="47" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="47" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="52" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="52" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1Axis_1a2856ab0094d88f434df147328a442a80" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>Qt::Orientation</type>
@@ -134,41 +171,23 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="49" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="49" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="54" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="54" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="classQAccelPlot_1_1Axis_1ae33073d2747e83d3efcbe622cff56256" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type>QString</type>
-        <definition>QString QAccelPlot::Axis::label</definition>
+      <memberdef kind="property" id="classQAccelPlot_1_1Axis_1ad2e227fdbf07feaaa52588fa7b87ca67" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1AxisLabel" kindref="compound">AxisLabel</ref> *</type>
+        <definition>AxisLabel* QAccelPlot::Axis::label</definition>
         <argsstring></argsstring>
         <name>label</name>
         <qualifiedname>QAccelPlot::Axis::label</qualifiedname>
         <read>label</read>
-        <write>setLabel</write>
         <briefdescription>
-<para>Optional axis label displayed alongside the axis line. </para>
+<para>Read-only constant: axis title and its placement, e.g. <computeroutput>label.text: &quot;Time (s)&quot;</computeroutput>. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="51" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="51" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="classQAccelPlot_1_1Axis_1a2abbdb25270d46244700356f0924cb61" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type>QFont</type>
-        <definition>QFont QAccelPlot::Axis::labelFont</definition>
-        <argsstring></argsstring>
-        <name>labelFont</name>
-        <qualifiedname>QAccelPlot::Axis::labelFont</qualifiedname>
-        <read>labelFont</read>
-        <write>setLabelFont</write>
-        <briefdescription>
-<para>Font used to render the axis label text. Default: application default font. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="53" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="53" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="56" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="56" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1Axis_1ac68c93c1a95fc00a48820096890e6bcf" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>bool</type>
@@ -184,7 +203,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="55" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="55" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="58" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="58" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1Axis_1a3f981525a5587cef62aca0b8d993374f" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>QColor</type>
@@ -201,24 +220,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="57" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="57" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="classQAccelPlot_1_1Axis_1aaa3bd1ea8471f9a1d76132e63189426f" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type>QColor</type>
-        <definition>QColor QAccelPlot::Axis::labelColor</definition>
-        <argsstring></argsstring>
-        <name>labelColor</name>
-        <qualifiedname>QAccelPlot::Axis::labelColor</qualifiedname>
-        <read>labelColor</read>
-        <write>setLabelColor</write>
-        <briefdescription>
-<para>Optional axis-label color. When invalid, the baselineColor is used. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="59" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="59" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="60" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="60" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1Axis_1a30a5e9496a5e1a9829fe94fbefd249da" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>qreal</type>
@@ -235,7 +237,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="61" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="61" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="62" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="62" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1Axis_1afddc8eb581624d62ec31c8b40046814c" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>QColor</type>
@@ -252,7 +254,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="63" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="63" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="64" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="64" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1Axis_1a6d5dd52c2e067a309ed0015cf6a58770" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type><ref refid="classQAccelPlot_1_1Axis_1a53608b3c6fe0e1d195faa9b0c3b7a233" kindref="member">Side</ref></type>
@@ -263,30 +265,13 @@
         <read>side</read>
         <write>setSide</write>
         <briefdescription>
-<para>Side of the plot on which the axis is drawn: Left, Top, Right, or Bottom. Assigned automatically for xAxis, yAxis, x2Axis, and y2Axis; set explicitly for an axis placed in extraAxes. </para>
+<para><ref refid="classQAccelPlot_1_1Axis_1a53608b3c6fe0e1d195faa9b0c3b7a233" kindref="member">Side</ref> of the plot on which the axis is drawn: Left, Top, Right, or Bottom. Assigned automatically for xAxis, yAxis, x2Axis, and y2Axis; set explicitly for an axis placed in extraAxes. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="66" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="66" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="classQAccelPlot_1_1Axis_1a781f80dc51fa720d8ee2650f1cc52df5" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type>qreal</type>
-        <definition>qreal QAccelPlot::Axis::labelPadding</definition>
-        <argsstring></argsstring>
-        <name>labelPadding</name>
-        <qualifiedname>QAccelPlot::Axis::labelPadding</qualifiedname>
-        <read>labelPadding</read>
-        <write>setLabelPadding</write>
-        <briefdescription>
-<para>Pixels of padding between the baseline and the axis label. Default: 30. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="68" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="68" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="67" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="67" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1Axis_1af732e7b0478377c913561d23e563970e" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>qreal</type>
@@ -303,7 +288,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="70" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="70" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="69" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="69" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1Axis_1a8551f09e2566c991e79177fd0616abac" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>qreal</type>
@@ -320,7 +305,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="72" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="72" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="71" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="71" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1Axis_1a6873a52bfe65db20dda17a9f5c535bc4" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type><ref refid="classQAccelPlot_1_1AxisTicker" kindref="compound">AxisTicker</ref> *</type>
@@ -336,7 +321,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="74" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="74" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="73" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="73" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1Axis_1a1f8a7a973efc3e0f2c248e6630dcb4b2" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>bool</type>
@@ -353,7 +338,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="76" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="76" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="75" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="75" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1Axis_1ac4b649e375037e2df64828c5f33ad4ae" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>qreal</type>
@@ -371,7 +356,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="81" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="81" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="80" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="80" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1Axis_1ad7702f08894d50dc7da91d6669977321" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>bool</type>
@@ -389,7 +374,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="88" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="88" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="87" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="87" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="friend">
@@ -400,7 +385,7 @@
         <name>PlotSeries</name>
         <qualifiedname>QAccelPlot::Axis::PlotSeries</qualifiedname>
         <param>
-          <type><ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref></type>
+          <type>PlotSeries</type>
         </param>
         <briefdescription>
         </briefdescription>
@@ -408,7 +393,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="290" column="18" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="290" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="272" column="18" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="272" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-attrib">
@@ -425,7 +410,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="314" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="314" bodyend="314"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="299" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="299" bodyend="299"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1aa47f4dc54d2030239accd1015c71aa60" prot="private" static="no" mutable="no">
         <type>qreal</type>
@@ -440,7 +425,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="315" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="315" bodyend="315"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="300" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="300" bodyend="300"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a495dabe0e0bf8870e2bb07e4e215f52c" prot="private" static="no" mutable="yes">
         <type>qreal</type>
@@ -455,7 +440,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="317" column="19" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="317" bodyend="317"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="302" column="19" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="302" bodyend="302"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a0cc25df16f162e4759e2256b6b8dc223" prot="private" static="no" mutable="yes">
         <type>qreal</type>
@@ -470,7 +455,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="318" column="19" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="318" bodyend="318"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="303" column="19" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="303" bodyend="303"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a91b5c61fad6a70a5cc76f25f1688ba37" prot="private" static="no" mutable="yes">
         <type>bool</type>
@@ -485,7 +470,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="320" column="18" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="320" bodyend="320"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="305" column="18" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="305" bodyend="305"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a15ca6a746e464d3cd06c1283b25ae463" prot="private" static="no" mutable="yes">
         <type>bool</type>
@@ -500,7 +485,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="322" column="18" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="322" bodyend="322"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="307" column="18" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="307" bodyend="307"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a2a814e688b01678392bef9d96eca2786" prot="private" static="no" mutable="no">
         <type>QList&lt; DataRangeSource &gt;</type>
@@ -514,35 +499,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="323" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="323" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1aaff783da4f239617fbac94a6bbbd1a1b" prot="private" static="no" mutable="no">
-        <type>QString</type>
-        <definition>QString QAccelPlot::Axis::label_</definition>
-        <argsstring></argsstring>
-        <name>label_</name>
-        <qualifiedname>QAccelPlot::Axis::label_</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="324" column="13" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="324" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a34ee74a3f675f99c7336966e41d7ddf9" prot="private" static="no" mutable="no">
-        <type>QFont</type>
-        <definition>QFont QAccelPlot::Axis::labelFont_</definition>
-        <argsstring></argsstring>
-        <name>labelFont_</name>
-        <qualifiedname>QAccelPlot::Axis::labelFont_</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="325" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="325" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="308" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="308" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a82e738c90d9c07a2a7601d2635cc9e5f" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -557,7 +514,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="326" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="326" bodyend="326"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="309" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="309" bodyend="309"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a8199c37c2877e916ce3cf3fb330f667c" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -572,7 +529,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="327" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="327" bodyend="327"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="310" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="310" bodyend="310"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1afea28799a964d4c31c0f95fee42a73bd" prot="private" static="no" mutable="no">
         <type>QPointF</type>
@@ -586,7 +543,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="328" column="13" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="328" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="311" column="13" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="311" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1abefbcbffaea39bfdd9ac2fc75fe21235" prot="private" static="no" mutable="no">
         <type>QColor</type>
@@ -601,21 +558,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="329" column="12" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="329" bodyend="329"/>
-      </memberdef>
-      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a30a9e3c355e35ee6373c010a141896f2" prot="private" static="no" mutable="no">
-        <type>QColor</type>
-        <definition>QColor QAccelPlot::Axis::labelColor_</definition>
-        <argsstring></argsstring>
-        <name>labelColor_</name>
-        <qualifiedname>QAccelPlot::Axis::labelColor_</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="330" column="12" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="330" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="312" column="12" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="312" bodyend="312"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1abe4c0dde962c15029d020a438192aa01" prot="private" static="no" mutable="no">
         <type>qreal</type>
@@ -630,7 +573,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="331" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="331" bodyend="331"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="313" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="313" bodyend="313"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a19be585746339b50deb6df0c8c3ee1a2" prot="private" static="no" mutable="no">
         <type>QColor</type>
@@ -645,22 +588,35 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="332" column="12" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="332" bodyend="332"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="314" column="12" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="314" bodyend="314"/>
       </memberdef>
-      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a424bc748bb483bed13427ed941fef6ca" prot="private" static="no" mutable="no">
-        <type>qreal</type>
-        <definition>qreal QAccelPlot::Axis::labelPadding_</definition>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1afbe08dd890183f75dfed1f4453e3cf7f" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1AxisLabel" kindref="compound">AxisLabel</ref> *</type>
+        <definition>AxisLabel* QAccelPlot::Axis::label_</definition>
         <argsstring></argsstring>
-        <name>labelPadding_</name>
-        <qualifiedname>QAccelPlot::Axis::labelPadding_</qualifiedname>
-        <initializer>{30.0}</initializer>
+        <name>label_</name>
+        <qualifiedname>QAccelPlot::Axis::label_</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="333" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="333" bodyend="333"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="315" column="15" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="315" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1adf956addb58f9b3681645f3ce25899ca" prot="private" static="no" mutable="no">
+        <type>QPointer&lt; QQuickItem &gt;</type>
+        <definition>QPointer&lt;QQuickItem&gt; QAccelPlot::Axis::labelItem_</definition>
+        <argsstring></argsstring>
+        <name>labelItem_</name>
+        <qualifiedname>QAccelPlot::Axis::labelItem_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="317" column="14" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="317" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1abc94b04ba6c4e6a95cf89ff38a4f725c" prot="private" static="no" mutable="no">
         <type>qreal</type>
@@ -675,7 +631,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="334" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="334" bodyend="334"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="318" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="318" bodyend="318"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a0ee957337ccb7f3ed3ac51fda3c4145e" prot="private" static="no" mutable="no">
         <type>qreal</type>
@@ -690,7 +646,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="335" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="335" bodyend="335"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="319" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="319" bodyend="319"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a0ef1ac26f84ff9d0e2ac2d25410ffa2a" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -705,7 +661,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="336" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="336" bodyend="336"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="320" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="320" bodyend="320"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1aa0b8950516ae8fc1adcf51b01014e58d" prot="private" static="no" mutable="no">
         <type>qreal</type>
@@ -720,7 +676,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="337" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="337" bodyend="337"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="321" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="321" bodyend="321"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a79831af4bb3994c20da40d3c1cf81e6a" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -735,7 +691,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="338" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="338" bodyend="338"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="322" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="322" bodyend="322"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a5958ade0438ee967831eb048ceeac036" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -750,7 +706,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="339" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="339" bodyend="339"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="323" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="323" bodyend="323"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1ae1a49787707d94d4cb5497ce0e9dabf5" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -765,7 +721,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="340" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="340" bodyend="340"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="324" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="324" bodyend="324"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1ab8a1514a770269981de531feec574096" prot="private" static="no" mutable="no">
         <type>Qt::Orientation</type>
@@ -780,7 +736,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="341" column="21" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="341" bodyend="341"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="325" column="21" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="325" bodyend="325"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a4375e365fad1d36eca25876049ada22d" prot="private" static="no" mutable="no">
         <type><ref refid="classQAccelPlot_1_1Axis_1a53608b3c6fe0e1d195faa9b0c3b7a233" kindref="member">Side</ref></type>
@@ -795,7 +751,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="342" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="342" bodyend="342"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="326" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="326" bodyend="326"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1a62984c5e09ddb1de57d6d49e6f5b421a" prot="private" static="no" mutable="no">
         <type><ref refid="classQAccelPlot_1_1AxisTicker" kindref="compound">AxisTicker</ref> *</type>
@@ -809,7 +765,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="343" column="16" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="343" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="327" column="16" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="327" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Axis_1ae8d8683ddaacb4d5d390eac0fb9b6ef9" prot="private" static="no" mutable="no">
         <type><ref refid="structQAccelPlot_1_1AxisTicks" kindref="compound">AxisTicks</ref></type>
@@ -823,7 +779,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="344" column="15" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="344" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="328" column="15" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="328" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -850,7 +806,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="96" column="14"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="103" column="14"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a7e609c5b9eefca817ca60c2d3bce8286" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -865,7 +821,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="99" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="106" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a6a6f58d339c5e3449b9af4a88e9d07ee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -884,7 +840,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="101" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="108" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a0e36fc39ef75b402bc6d313ec034a6c0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -899,7 +855,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="104" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="111" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a247e0e74dc8792a802a69c19cf7a938c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -918,7 +874,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="106" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="113" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a21aedd2ddaa592838b848cd1337be96f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -933,7 +889,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="109" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="116" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1aabc10f0d12e9f6ce28c8b90d7909fd10" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -952,7 +908,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="111" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="118" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a160ec813704b49d4a7906aac7badb3f2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -967,7 +923,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="114" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="121" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1af9d7c5d69a2fd822642cb82b3e9d0323" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -986,7 +942,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="116" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="123" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1accbd16f06365bf877e5a19f3da91fd59" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE void</type>
@@ -1010,7 +966,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="121" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="128" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a380d835e16ec218eec1c3818620fa939" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Qt::Orientation</type>
@@ -1025,7 +981,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="124" column="21"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="131" column="21"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a0eea4717445edb64d3eeaef12916042d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1044,75 +1000,22 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="126" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="133" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a161a60a8013f765854d605d944a4d641" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>QString</type>
-        <definition>QString QAccelPlot::Axis::label</definition>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a5356937718bcc7cb8d7fd9ede9308a7e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1AxisLabel" kindref="compound">AxisLabel</ref> *</type>
+        <definition>AxisLabel * QAccelPlot::Axis::label</definition>
         <argsstring>() const</argsstring>
         <name>label</name>
         <qualifiedname>QAccelPlot::Axis::label</qualifiedname>
         <briefdescription>
-<para>Returns the axis label string. </para>
+<para>Returns the axis title configuration object. Include <computeroutput>AxisLabel.hpp</computeroutput> to use it. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="129" column="13"/>
-      </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1ae944337cd4076a43020727eacb4d048b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void QAccelPlot::Axis::setLabel</definition>
-        <argsstring>(const QString &amp;t)</argsstring>
-        <name>setLabel</name>
-        <qualifiedname>QAccelPlot::Axis::setLabel</qualifiedname>
-        <param>
-          <type>const QString &amp;</type>
-          <declname>t</declname>
-        </param>
-        <briefdescription>
-<para>Sets the axis label to <emphasis>t</emphasis>. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="131" column="10"/>
-      </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1aadb5be2730c0db9c8ddca104c021dbc8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>QFont</type>
-        <definition>QFont QAccelPlot::Axis::labelFont</definition>
-        <argsstring>() const</argsstring>
-        <name>labelFont</name>
-        <qualifiedname>QAccelPlot::Axis::labelFont</qualifiedname>
-        <briefdescription>
-<para>Returns the axis label font. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="134" column="11"/>
-      </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a5f9558175769f1f8c2881ea91f3014a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void QAccelPlot::Axis::setLabelFont</definition>
-        <argsstring>(const QFont &amp;f)</argsstring>
-        <name>setLabelFont</name>
-        <qualifiedname>QAccelPlot::Axis::setLabelFont</qualifiedname>
-        <param>
-          <type>const QFont &amp;</type>
-          <declname>f</declname>
-        </param>
-        <briefdescription>
-<para>Sets the axis label font to <emphasis>f</emphasis>. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="136" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="136" column="15"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a79634c657c31eb3071ed636e44bc8fff" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classQAccelPlot_1_1Axis_1a53608b3c6fe0e1d195faa9b0c3b7a233" kindref="member">Side</ref></type>
@@ -1197,40 +1100,6 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="149" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a8996be822df98d52f94c63b189bfbd7c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>QColor</type>
-        <definition>QColor QAccelPlot::Axis::labelColor</definition>
-        <argsstring>() const</argsstring>
-        <name>labelColor</name>
-        <qualifiedname>QAccelPlot::Axis::labelColor</qualifiedname>
-        <briefdescription>
-<para>Returns the axis-label color, or an invalid color when it follows baselineColor. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="152" column="12"/>
-      </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a886a43206cdde2bbf3c8762c4c546573" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void QAccelPlot::Axis::setLabelColor</definition>
-        <argsstring>(const QColor &amp;c)</argsstring>
-        <name>setLabelColor</name>
-        <qualifiedname>QAccelPlot::Axis::setLabelColor</qualifiedname>
-        <param>
-          <type>const QColor &amp;</type>
-          <declname>c</declname>
-        </param>
-        <briefdescription>
-<para>Sets the axis-label color to <emphasis>c</emphasis>. An invalid color restores the baselineColor fallback. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="154" column="10"/>
-      </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1adb071f0734b0110e16b697567c722075" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
         <definition>qreal QAccelPlot::Axis::baselineWidth</definition>
@@ -1244,7 +1113,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="157" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="152" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a5c16745cd23a1e6a0aa9f5c04c59621b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1263,7 +1132,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="159" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="154" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a76dbcd6d6b31efd6ce1b0dde8a74ae16" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QColor</type>
@@ -1278,7 +1147,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="162" column="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="157" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a05395fcd9c59730a8a526259320be246" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1297,41 +1166,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="164" column="10"/>
-      </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1aa217108bd9be218fdff20825ccfa3e1c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>qreal</type>
-        <definition>qreal QAccelPlot::Axis::labelPadding</definition>
-        <argsstring>() const</argsstring>
-        <name>labelPadding</name>
-        <qualifiedname>QAccelPlot::Axis::labelPadding</qualifiedname>
-        <briefdescription>
-<para>Returns the padding between the baseline and the axis label in pixels. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="167" column="11"/>
-      </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a531f9f09061f99f0b73d3a4613e56a2f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void QAccelPlot::Axis::setLabelPadding</definition>
-        <argsstring>(qreal padding)</argsstring>
-        <name>setLabelPadding</name>
-        <qualifiedname>QAccelPlot::Axis::setLabelPadding</qualifiedname>
-        <param>
-          <type>qreal</type>
-          <declname>padding</declname>
-        </param>
-        <briefdescription>
-<para>Sets the padding between the baseline and the axis label to <emphasis>padding</emphasis> pixels. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="169" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="159" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a4714bfe57cde838f5c30368fdd617523" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -1346,7 +1181,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="172" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="162" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1aad66fffb0a122f1bf8f2bb9ab2220ab5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1365,7 +1200,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="174" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="164" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1adb52d6a8bee3ca1d8d3b79236fcc208f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -1380,7 +1215,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="177" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="167" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a9157d5dc4cf978b807650e083baab6c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1399,7 +1234,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="179" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="169" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a7e14dd389bbd1c794e12ca490c54c8ae" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classQAccelPlot_1_1AxisTicker" kindref="compound">AxisTicker</ref> *</type>
@@ -1414,7 +1249,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="182" column="16"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="172" column="16"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a3c5174df0cfb8a7f70c54e57b841ea79" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -1429,7 +1264,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="185" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="175" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1ae1341d0c24822f541050b2d7cd421abe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1448,7 +1283,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="187" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="177" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a26713372b37ed827412403426483e3e4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -1463,7 +1298,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="189" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="179" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a7f1db08361f435c278167ede2a7e6356" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1483,7 +1318,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="193" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="183" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1adbb5d4c35d24c26bce8a7b32d372e327" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -1498,7 +1333,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="196" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="186" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1ae901b2a7615399c057fcb9b1790ae55f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1517,7 +1352,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="198" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="188" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a9316e91abccde24af6b84cc454850aa7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE void</type>
@@ -1532,7 +1367,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="201" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="191" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a1a4057e12caae2776590a0ce4bc38a84" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE void</type>
@@ -1548,7 +1383,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="206" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="196" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a3613ed1b3cae19f09cc42571153a751c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1568,7 +1403,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="211" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="201" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a20f7bccae411aaa8ec9bf5f3072731eb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -1583,7 +1418,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="214" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="204" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1ab7ea9c1ed6c2a558eb24178898236b43" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -1598,7 +1433,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="217" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="207" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a3e3bc4bd0b8d4ee0342dde118337981a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structQAccelPlot_1_1AxisMapping" kindref="compound">AxisMapping</ref></type>
@@ -1613,7 +1448,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="220" column="17"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="210" column="17"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a62a5083556a2099f19b07964df065c2b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE qreal</type>
@@ -1636,7 +1471,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="222" column="23"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="212" column="23"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a23e6adca53e163e30d607846d01f7c05" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE qreal</type>
@@ -1659,7 +1494,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="224" column="23"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="214" column="23"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a383747084cfb3eba248740336d5dee3a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE QString</type>
@@ -1683,7 +1518,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="230" column="25"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="220" column="25"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="signal">
@@ -1700,7 +1535,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="234" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="224" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1a2761f073b29c720b39edec4d99601e6f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1715,7 +1550,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="236" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="226" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1a299cb2f85ca1cc0a7f139796ca99d740" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1730,7 +1565,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="238" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="228" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1a579449acd0f6d993f8b60a10360cc398" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1745,7 +1580,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="240" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="230" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1a905fe22dd74642fbafe363a5a3a0ef68" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1760,37 +1595,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="242" column="10"/>
-      </memberdef>
-      <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1a433aa0b5d46f0f864c2888e56dee9213" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void QAccelPlot::Axis::labelChanged</definition>
-        <argsstring>()</argsstring>
-        <name>labelChanged</name>
-        <qualifiedname>QAccelPlot::Axis::labelChanged</qualifiedname>
-        <briefdescription>
-<para>Emitted when the label property changes. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="244" column="10"/>
-      </memberdef>
-      <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1aac5d9dc096f3b72f739a38aca966be05" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void QAccelPlot::Axis::labelFontChanged</definition>
-        <argsstring>()</argsstring>
-        <name>labelFontChanged</name>
-        <qualifiedname>QAccelPlot::Axis::labelFontChanged</qualifiedname>
-        <briefdescription>
-<para>Emitted when the labelFont property changes. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="246" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="232" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1aabbc08f20680daebe4cef93bee76ae8d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1805,7 +1610,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="248" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="234" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1a5ba9fb9bcadc5833267ebd0312df1a50" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1820,7 +1625,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="250" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="236" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1a940d8dfff84472bdbeb7121fdc58e9f1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1835,22 +1640,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="253" column="10"/>
-      </memberdef>
-      <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1a90e7de0ca043e8247857c4b59b92c329" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void QAccelPlot::Axis::labelColorChanged</definition>
-        <argsstring>()</argsstring>
-        <name>labelColorChanged</name>
-        <qualifiedname>QAccelPlot::Axis::labelColorChanged</qualifiedname>
-        <briefdescription>
-<para>Emitted when the labelColor property changes. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="255" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="239" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1a43adeff2b46dc6dc39bb86040133b04b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1865,7 +1655,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="257" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="241" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1a491189d48850d69cf356f3ee10b32efe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1880,7 +1670,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="259" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="243" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1a7b1793813fac9450c071da4ca3ad61ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1895,22 +1685,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="261" column="10"/>
-      </memberdef>
-      <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1af7eeeb37b64310da3b5550c2cfdbe9f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void QAccelPlot::Axis::labelPaddingChanged</definition>
-        <argsstring>()</argsstring>
-        <name>labelPaddingChanged</name>
-        <qualifiedname>QAccelPlot::Axis::labelPaddingChanged</qualifiedname>
-        <briefdescription>
-<para>Emitted when the labelPadding property changes. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="263" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="245" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1af8f3ee95069edca12e65a024a56d8896" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1925,7 +1700,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="265" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="247" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1aa543a9309019f009654cd0eb329622d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1940,7 +1715,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="267" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="249" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1a8067516775c316543db13099af942265" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1955,7 +1730,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="269" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="251" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1a490f2dbfdea8b031eab016501e9ca4b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1970,7 +1745,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="271" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="253" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1a029dbdda23dd9ef85b476e67aaf99743" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1985,7 +1760,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="273" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="255" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1Axis_1a269d9633b8dfcdb7a2041d7d990bfa3f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2000,7 +1775,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="275" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="257" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="protected-func">
@@ -2020,7 +1795,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="278" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="260" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1ab5c3aacde298f6a0772378d354914fcc" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2038,7 +1813,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="279" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="261" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1ab0059b73141e10799436102f3ba75848" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2056,7 +1831,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="280" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="262" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a60b4e069c81edc29aad7d6ff72a1e0b1" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2074,7 +1849,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="281" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="263" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a9ab1b12201f190a7a02914a9321b6462" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2092,7 +1867,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="282" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="264" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a73addc8f4c2e5f09f0a9f85c80345767" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2110,7 +1885,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="283" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="265" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a7d6eb39b3c0bfab837de222d5f220ace" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2128,7 +1903,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="284" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="266" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a354a8d09a5fc915eddfb161de29564ab" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2143,7 +1918,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="286" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="268" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a725543d9fe6738ecb2bb3608e15f2378" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2157,7 +1932,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="287" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="269" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
@@ -2168,7 +1943,7 @@
         <name>addDataRangeSource</name>
         <qualifiedname>QAccelPlot::Axis::addDataRangeSource</qualifiedname>
         <param>
-          <type>const <ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> *</type>
+          <type>const PlotSeries *</type>
           <declname>series</declname>
         </param>
         <param>
@@ -2181,7 +1956,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="302" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="284" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1ab041d28c28d134a26cd42222c6585b54" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2190,7 +1965,7 @@
         <name>removeDataRangeSource</name>
         <qualifiedname>QAccelPlot::Axis::removeDataRangeSource</qualifiedname>
         <param>
-          <type>const <ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> *</type>
+          <type>const PlotSeries *</type>
           <declname>series</declname>
         </param>
         <param>
@@ -2203,7 +1978,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="303" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="285" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a27f34309001173545b6ed448c225d315" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2217,7 +1992,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="304" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="286" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a4c1405b3ab187d674906c8a292981483" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2231,7 +2006,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="305" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="287" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1afa568c5d7e9bb84b6c29282c278477e0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2253,7 +2028,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="306" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="288" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1abc0a691d1617d35784f65fa1b3cc9418" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>DataRange</type>
@@ -2267,7 +2042,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="307" column="15"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="289" column="15"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a5f423ba946e6e70ad91a8bf845d8eb90" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2289,7 +2064,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="308" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="290" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1af39f6cbab3836a0c97a71ea3be8af174" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2303,7 +2078,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="309" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="291" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a42b69b0e37fb6bbc286fba9b117b325d" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -2325,7 +2100,21 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="310" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="292" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a01ceb647ed19e6f9ebbbed30a742b496" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Axis::defaultLabelRotation</definition>
+        <argsstring>() const</argsstring>
+        <name>defaultLabelRotation</name>
+        <qualifiedname>QAccelPlot::Axis::defaultLabelRotation</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="293" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a35a896b9c6def08c3be566a8bb7774c0" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2355,7 +2144,35 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="311" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="294" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1ae3513c629191a3b4efde468844b79454" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::createLabelItem</definition>
+        <argsstring>()</argsstring>
+        <name>createLabelItem</name>
+        <qualifiedname>QAccelPlot::Axis::createLabelItem</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="295" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Axis_1afc375affd5d4f9f19588d63199c0bc45" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Axis::connectLabel</definition>
+        <argsstring>()</argsstring>
+        <name>connectLabel</name>
+        <qualifiedname>QAccelPlot::Axis::connectLabel</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="296" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Axis_1a47d127dfb87d7401ce91e52300d1db68" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2369,7 +2186,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="312" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="297" column="10"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -2403,7 +2220,7 @@
         <label>QQuickPaintedItem</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="33" column="1" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="33" bodyend="345"/>
+    <location file="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" line="38" column="1" bodyfile="QAccelPlot/src/QAccelPlot/axis/Axis.hpp" bodystart="38" bodyend="329"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1Axis_1a77debf2367bf95fd686cff8e6858de78" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>addDataRangeSource</name></member>
       <member refid="classQAccelPlot_1_1Axis_1ad7702f08894d50dc7da91d6669977321" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>autoRescale</name></member>
@@ -2425,9 +2242,12 @@
       <member refid="classQAccelPlot_1_1Axis_1abe4c0dde962c15029d020a438192aa01" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>baselineWidth_</name></member>
       <member refid="classQAccelPlot_1_1Axis_1a43adeff2b46dc6dc39bb86040133b04b" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>baselineWidthChanged</name></member>
       <member refid="classQAccelPlot_1_1Axis_1a53608b3c6fe0e1d195faa9b0c3b7a233aa5320d788f7ccc1c323cbde44b1ac904" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>Bottom</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1abeb42076f0b2796e528aed24e345244dacf791c17ba1f95cb5ea3cdbac59d91e5" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>Center</name></member>
       <member refid="classQAccelPlot_1_1Axis_1ae1a49787707d94d4cb5497ce0e9dabf5" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>clampEdgeLabels_</name></member>
       <member refid="classQAccelPlot_1_1Axis_1a725543d9fe6738ecb2bb3608e15f2378" prot="protected" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>componentComplete</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1afc375affd5d4f9f19588d63199c0bc45" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>connectLabel</name></member>
       <member refid="classQAccelPlot_1_1Axis_1a62a5083556a2099f19b07964df065c2b" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>coordToPixel</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1ae3513c629191a3b4efde468844b79454" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>createLabelItem</name></member>
       <member refid="classQAccelPlot_1_1Axis_1abc0a691d1617d35784f65fa1b3cc9418" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>dataFitRange</name></member>
       <member refid="classQAccelPlot_1_1Axis_1ab9a1549ca7fa37509039903052111c85" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>dataMax</name></member>
       <member refid="classQAccelPlot_1_1Axis_1a160ec813704b49d4a7906aac7badb3f2" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>dataMax</name></member>
@@ -2440,7 +2260,9 @@
       <member refid="classQAccelPlot_1_1Axis_1a15ca6a746e464d3cd06c1283b25ae463" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>dataRangeFromSeries_</name></member>
       <member refid="classQAccelPlot_1_1Axis_1a2a814e688b01678392bef9d96eca2786" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>dataRangeSources_</name></member>
       <member refid="classQAccelPlot_1_1Axis_1a91b5c61fad6a70a5cc76f25f1688ba37" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>dataRangeStale_</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a01ceb647ed19e6f9ebbbed30a742b496" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>defaultLabelRotation</name></member>
       <member refid="classQAccelPlot_1_1Axis_1a269d9633b8dfcdb7a2041d7d990bfa3f" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>doubleClicked</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1abeb42076f0b2796e528aed24e345244da1dd0df1f69e53943f970b69183528f08" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>End</name></member>
       <member refid="classQAccelPlot_1_1Axis_1a4c1405b3ab187d674906c8a292981483" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>ensureDataRange</name></member>
       <member refid="classQAccelPlot_1_1Axis_1a5958ade0438ee967831eb048ceeac036" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>extendWidgetForLabels_</name></member>
       <member refid="classQAccelPlot_1_1Axis_1a383747084cfb3eba248740336d5dee3a" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>formatValue</name></member>
@@ -2459,23 +2281,12 @@
       <member refid="classQAccelPlot_1_1Axis_1a20f7bccae411aaa8ec9bf5f3072731eb" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>inwardTickOverlap</name></member>
       <member refid="classQAccelPlot_1_1Axis_1a8199c37c2877e916ce3cf3fb330f667c" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>isDragging_</name></member>
       <member refid="classQAccelPlot_1_1Axis_1a7d6eb39b3c0bfab837de222d5f220ace" prot="protected" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>keyPressEvent</name></member>
-      <member refid="classQAccelPlot_1_1Axis_1ae33073d2747e83d3efcbe622cff56256" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>label</name></member>
-      <member refid="classQAccelPlot_1_1Axis_1a161a60a8013f765854d605d944a4d641" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>label</name></member>
-      <member refid="classQAccelPlot_1_1Axis_1aaff783da4f239617fbac94a6bbbd1a1b" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>label_</name></member>
-      <member refid="classQAccelPlot_1_1Axis_1a433aa0b5d46f0f864c2888e56dee9213" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>labelChanged</name></member>
-      <member refid="classQAccelPlot_1_1Axis_1aaa3bd1ea8471f9a1d76132e63189426f" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>labelColor</name></member>
-      <member refid="classQAccelPlot_1_1Axis_1a8996be822df98d52f94c63b189bfbd7c" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>labelColor</name></member>
-      <member refid="classQAccelPlot_1_1Axis_1a30a9e3c355e35ee6373c010a141896f2" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>labelColor_</name></member>
-      <member refid="classQAccelPlot_1_1Axis_1a90e7de0ca043e8247857c4b59b92c329" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>labelColorChanged</name></member>
-      <member refid="classQAccelPlot_1_1Axis_1a2abbdb25270d46244700356f0924cb61" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>labelFont</name></member>
-      <member refid="classQAccelPlot_1_1Axis_1aadb5be2730c0db9c8ddca104c021dbc8" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>labelFont</name></member>
-      <member refid="classQAccelPlot_1_1Axis_1a34ee74a3f675f99c7336966e41d7ddf9" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>labelFont_</name></member>
-      <member refid="classQAccelPlot_1_1Axis_1aac5d9dc096f3b72f739a38aca966be05" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>labelFontChanged</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1ad2e227fdbf07feaaa52588fa7b87ca67" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>label</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a5356937718bcc7cb8d7fd9ede9308a7e" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>label</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1afbe08dd890183f75dfed1f4453e3cf7f" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>label_</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1abeb42076f0b2796e528aed24e345244d" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>LabelAlignment</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1adf956addb58f9b3681645f3ce25899ca" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>labelItem_</name></member>
       <member refid="classQAccelPlot_1_1Axis_1ab7ea9c1ed6c2a558eb24178898236b43" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>labelOverflow</name></member>
-      <member refid="classQAccelPlot_1_1Axis_1a781f80dc51fa720d8ee2650f1cc52df5" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>labelPadding</name></member>
-      <member refid="classQAccelPlot_1_1Axis_1aa217108bd9be218fdff20825ccfa3e1c" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>labelPadding</name></member>
-      <member refid="classQAccelPlot_1_1Axis_1a424bc748bb483bed13427ed941fef6ca" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>labelPadding_</name></member>
-      <member refid="classQAccelPlot_1_1Axis_1af7eeeb37b64310da3b5550c2cfdbe9f9" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>labelPaddingChanged</name></member>
       <member refid="classQAccelPlot_1_1Axis_1afea28799a964d4c31c0f95fee42a73bd" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>lastMousePos_</name></member>
       <member refid="classQAccelPlot_1_1Axis_1a8551f09e2566c991e79177fd0616abac" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>layoutSize</name></member>
       <member refid="classQAccelPlot_1_1Axis_1adb52d6a8bee3ca1d8d3b79236fcc208f" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>layoutSize</name></member>
@@ -2512,10 +2323,6 @@
       <member refid="classQAccelPlot_1_1Axis_1accbd16f06365bf877e5a19f3da91fd59" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setDataRange</name></member>
       <member refid="classQAccelPlot_1_1Axis_1afa568c5d7e9bb84b6c29282c278477e0" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setDataRangeValues</name></member>
       <member refid="classQAccelPlot_1_1Axis_1a05395fcd9c59730a8a526259320be246" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setHoverColor</name></member>
-      <member refid="classQAccelPlot_1_1Axis_1ae944337cd4076a43020727eacb4d048b" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setLabel</name></member>
-      <member refid="classQAccelPlot_1_1Axis_1a886a43206cdde2bbf3c8762c4c546573" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setLabelColor</name></member>
-      <member refid="classQAccelPlot_1_1Axis_1a5f9558175769f1f8c2881ea91f3014a0" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setLabelFont</name></member>
-      <member refid="classQAccelPlot_1_1Axis_1a531f9f09061f99f0b73d3a4613e56a2f" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setLabelPadding</name></member>
       <member refid="classQAccelPlot_1_1Axis_1a9157d5dc4cf978b807650e083baab6c6" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setLayoutSize</name></member>
       <member refid="classQAccelPlot_1_1Axis_1ae1341d0c24822f541050b2d7cd421abe" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setLogScale</name></member>
       <member refid="classQAccelPlot_1_1Axis_1a0eea4717445edb64d3eeaef12916042d" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setOrientation</name></member>
@@ -2524,11 +2331,12 @@
       <member refid="classQAccelPlot_1_1Axis_1a6a6f58d339c5e3449b9af4a88e9d07ee" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setViewportMin</name></member>
       <member refid="classQAccelPlot_1_1Axis_1a5f423ba946e6e70ad91a8bf845d8eb90" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setViewportRange</name></member>
       <member refid="classQAccelPlot_1_1Axis_1a7f1db08361f435c278167ede2a7e6356" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>setZoomScaleFactor</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1a53608b3c6fe0e1d195faa9b0c3b7a233" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>Side</name></member>
       <member refid="classQAccelPlot_1_1Axis_1a6d5dd52c2e067a309ed0015cf6a58770" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>side</name></member>
       <member refid="classQAccelPlot_1_1Axis_1a79634c657c31eb3071ed636e44bc8fff" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>side</name></member>
-      <member refid="classQAccelPlot_1_1Axis_1a53608b3c6fe0e1d195faa9b0c3b7a233" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>Side</name></member>
       <member refid="classQAccelPlot_1_1Axis_1a4375e365fad1d36eca25876049ada22d" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>side_</name></member>
       <member refid="classQAccelPlot_1_1Axis_1a7b1793813fac9450c071da4ca3ad61ea" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>sideChanged</name></member>
+      <member refid="classQAccelPlot_1_1Axis_1abeb42076f0b2796e528aed24e345244daebac4202a45343a82ddad8760797597f" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>Start</name></member>
       <member refid="classQAccelPlot_1_1Axis_1a6873a52bfe65db20dda17a9f5c535bc4" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>ticker</name></member>
       <member refid="classQAccelPlot_1_1Axis_1a7e14dd389bbd1c794e12ca490c54c8ae" prot="public" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>ticker</name></member>
       <member refid="classQAccelPlot_1_1Axis_1a62984c5e09ddb1de57d6d49e6f5b421a" prot="private" virt="non-virtual"><scope>QAccelPlot::Axis</scope><name>ticker_</name></member>

@@ -444,6 +444,8 @@
       
         
       
+        
+      
     
     
     
@@ -569,6 +571,34 @@
     
   
     Axis formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/axis-labels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Axis labels
   
 
     
@@ -1665,6 +1695,8 @@
 <li><strong>addDataRangeSource</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
 <li><strong>autoRescale</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
 <li><strong>autoRescaleToData</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+<li><strong>AxisLabel</strong> (<a href="../classQAccelPlot_1_1AxisLabel/"><strong>QAccelPlot::AxisLabel</strong></a>)</li>
+<li><strong>alignment</strong> (<a href="../classQAccelPlot_1_1AxisLabel/"><strong>QAccelPlot::AxisLabel</strong></a>)</li>
 <li><strong>AxisTicker</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
 <li><strong>arcLengthScale</strong> (<a href="../classQAccelPlot_1_1BandEdgeRenderer/"><strong>QAccelPlot::BandEdgeRenderer</strong></a>)</li>
 <li><strong>arcLengths</strong> (<a href="../classQAccelPlot_1_1BandEdgeRenderer/"><strong>QAccelPlot::BandEdgeRenderer</strong></a>)</li>
@@ -1762,14 +1794,16 @@
 <h2 id="c">c<a class="headerlink" href="#c" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>componentComplete</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>, <a href="../classQAccelPlot_1_1Colormap/"><strong>QAccelPlot::Colormap</strong></a>)</li>
+<li><strong>connectLabel</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
 <li><strong>coordToPixel</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+<li><strong>createLabelItem</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
 <li><strong>computeLinearTickValues</strong> (<a href="../classQAccelPlot_1_1AxisTickPainter/"><strong>QAccelPlot::AxisTickPainter</strong></a>)</li>
 <li><strong>computeLogScaleTickValues</strong> (<a href="../classQAccelPlot_1_1AxisTickPainter/"><strong>QAccelPlot::AxisTickPainter</strong></a>)</li>
 <li><strong>computeNiceStep</strong> (<a href="../classQAccelPlot_1_1AxisTickPainter/"><strong>QAccelPlot::AxisTickPainter</strong></a>)</li>
 <li><strong>computeTickValues</strong> (<a href="../classQAccelPlot_1_1AxisTickPainter/"><strong>QAccelPlot::AxisTickPainter</strong></a>)</li>
 <li><strong>computeTicks</strong> (<a href="../classQAccelPlot_1_1AxisTickPainter/"><strong>QAccelPlot::AxisTickPainter</strong></a>)</li>
 <li><strong>createShader</strong> (<a href="../classQAccelPlot_1_1BandEdgeMaterial/"><strong>QAccelPlot::BandEdgeMaterial</strong></a>, <a href="../classQAccelPlot_1_1BandMaterial/"><strong>QAccelPlot::BandMaterial</strong></a>, <a href="../classQAccelPlot_1_1BarMaterial/"><strong>QAccelPlot::BarMaterial</strong></a>, <a href="../classQAccelPlot_1_1ErrorBarMaterial/"><strong>QAccelPlot::ErrorBarMaterial</strong></a>, <a href="../classQAccelPlot_1_1GradientFillMaterial/"><strong>QAccelPlot::GradientFillMaterial</strong></a>, <a href="../classQAccelPlot_1_1GradientLineMaterial/"><strong>QAccelPlot::GradientLineMaterial</strong></a>, <a href="../classQAccelPlot_1_1HeatmapMaterial/"><strong>QAccelPlot::HeatmapMaterial</strong></a>, <a href="../classQAccelPlot_1_1LineMaterial/"><strong>QAccelPlot::LineMaterial</strong></a>, <a href="../classQAccelPlot_1_1PointCloudMaterial/"><strong>QAccelPlot::PointCloudMaterial</strong></a>, <a href="../classQAccelPlot_1_1PointMaterial/"><strong>QAccelPlot::PointMaterial</strong></a>, <a href="../classQAccelPlot_1_1RectMaterial/"><strong>QAccelPlot::RectMaterial</strong></a>)</li>
-<li><strong>color</strong> (<a href="../classQAccelPlot_1_1BandEdges/"><strong>QAccelPlot::BandEdges</strong></a>, <a href="../classQAccelPlot_1_1BandSeries/"><strong>QAccelPlot::BandSeries</strong></a>, <a href="../classQAccelPlot_1_1BarSeries/"><strong>QAccelPlot::BarSeries</strong></a>, <a href="../classQAccelPlot_1_1Border/"><strong>QAccelPlot::Border</strong></a>, <a href="../classQAccelPlot_1_1Category/"><strong>QAccelPlot::Category</strong></a>, <a href="../classQAccelPlot_1_1ErrorBarSeries/"><strong>QAccelPlot::ErrorBarSeries</strong></a>, <a href="../classQAccelPlot_1_1Internal_1_1CategoryTable/"><strong>QAccelPlot::Internal::CategoryTable</strong></a>, <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>, <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a>, <a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a>)</li>
+<li><strong>color</strong> (<a href="../classQAccelPlot_1_1BandEdges/"><strong>QAccelPlot::BandEdges</strong></a>, <a href="../classQAccelPlot_1_1BandSeries/"><strong>QAccelPlot::BandSeries</strong></a>, <a href="../classQAccelPlot_1_1BarSeries/"><strong>QAccelPlot::BarSeries</strong></a>, <a href="../classQAccelPlot_1_1Border/"><strong>QAccelPlot::Border</strong></a>, <a href="../classQAccelPlot_1_1Category/"><strong>QAccelPlot::Category</strong></a>, <a href="../classQAccelPlot_1_1ErrorBarSeries/"><strong>QAccelPlot::ErrorBarSeries</strong></a>, <a href="../classQAccelPlot_1_1Internal_1_1CategoryTable/"><strong>QAccelPlot::Internal::CategoryTable</strong></a>, <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>, <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a>, <a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a>, <a href="../classQAccelPlot_1_1TextLabel/"><strong>QAccelPlot::TextLabel</strong></a>)</li>
 <li><strong>compareExtra</strong> (<a href="../classQAccelPlot_1_1BandMaterial/"><strong>QAccelPlot::BandMaterial</strong></a>, <a href="../classQAccelPlot_1_1BarMaterial/"><strong>QAccelPlot::BarMaterial</strong></a>, <a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a>, <a href="../classQAccelPlot_1_1ErrorBarMaterial/"><strong>QAccelPlot::ErrorBarMaterial</strong></a>, <a href="../classQAccelPlot_1_1GradientLineMaterial/"><strong>QAccelPlot::GradientLineMaterial</strong></a>, <a href="../classQAccelPlot_1_1LineMaterial/"><strong>QAccelPlot::LineMaterial</strong></a>, <a href="../classQAccelPlot_1_1PointCloudMaterial/"><strong>QAccelPlot::PointCloudMaterial</strong></a>, <a href="../classQAccelPlot_1_1PointMaterial/"><strong>QAccelPlot::PointMaterial</strong></a>, <a href="../classQAccelPlot_1_1RectMaterial/"><strong>QAccelPlot::RectMaterial</strong></a>)</li>
 <li><strong>clearData</strong> (<a href="../classQAccelPlot_1_1BandSeries/"><strong>QAccelPlot::BandSeries</strong></a>, <a href="../classQAccelPlot_1_1BarSeries/"><strong>QAccelPlot::BarSeries</strong></a>, <a href="../classQAccelPlot_1_1ErrorBarSeries/"><strong>QAccelPlot::ErrorBarSeries</strong></a>, <a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>, <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>, <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>, <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a>, <a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a>)</li>
 <li><strong>contains</strong> (<a href="../classQAccelPlot_1_1BandSeries/"><strong>QAccelPlot::BandSeries</strong></a>, <a href="../classQAccelPlot_1_1BarSeries/"><strong>QAccelPlot::BarSeries</strong></a>, <a href="../classQAccelPlot_1_1DataAnchor/"><strong>QAccelPlot::DataAnchor</strong></a>, <a href="../classQAccelPlot_1_1ErrorBarSeries/"><strong>QAccelPlot::ErrorBarSeries</strong></a>, <a href="../structQAccelPlot_1_1Internal_1_1InspectionBounds/"><strong>QAccelPlot::Internal::InspectionBounds</strong></a>, <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>, <a href="../classQAccelPlot_1_1LineCurveLineRenderer/"><strong>QAccelPlot::LineCurveLineRenderer</strong></a>, <a href="../classQAccelPlot_1_1LineCurvePointRenderer/"><strong>QAccelPlot::LineCurvePointRenderer</strong></a>, <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a>, <a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a>, <a href="../structQAccelPlot_1_1SpatialGrid_1_1ItemBounds/"><strong>QAccelPlot::SpatialGrid::ItemBounds</strong></a>)</li>
@@ -1862,6 +1896,8 @@
 <li><strong>dataFitRange</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
 <li><strong>dataMax</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
 <li><strong>dataMin</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+<li><strong>defaultLabelRotation</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+<li><strong>delegate</strong> (<a href="../classQAccelPlot_1_1AxisLabel/"><strong>QAccelPlot::AxisLabel</strong></a>)</li>
 <li><strong>drawTickLabel</strong> (<a href="../classQAccelPlot_1_1AxisTickPainter/"><strong>QAccelPlot::AxisTickPainter</strong></a>)</li>
 <li><strong>dataPointValid</strong> (<a href="../classQAccelPlot_1_1BandSeries/"><strong>QAccelPlot::BandSeries</strong></a>, <a href="../classQAccelPlot_1_1DataPointStore/"><strong>QAccelPlot::DataPointStore</strong></a>)</li>
 <li><strong>dataPointValueCount</strong> (<a href="../classQAccelPlot_1_1BarSeries/"><strong>QAccelPlot::BarSeries</strong></a>, <a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>, <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>)</li>
@@ -1976,6 +2012,7 @@
 <li><strong>fillCells</strong> (<a href="../classQAccelPlot_1_1PointSpatialIndex/"><strong>QAccelPlot::PointSpatialIndex</strong></a>)</li>
 <li><strong>filled</strong> (<a href="../classQAccelPlot_1_1SeriesMarker/"><strong>QAccelPlot::SeriesMarker</strong></a>)</li>
 <li><strong>fillSpatialGrid</strong> (<a href="../classQAccelPlot_1_1SpatialGrid/"><strong>QAccelPlot::SpatialGrid</strong></a>)</li>
+<li><strong>font</strong> (<a href="../classQAccelPlot_1_1TextLabel/"><strong>QAccelPlot::TextLabel</strong></a>)</li>
 <li><strong>format</strong> (<a href="../classQAccelPlot_1_1TickLabelFormatter/"><strong>QAccelPlot::TickLabelFormatter</strong></a>)</li>
 <li><strong>formatLogTick</strong> (<a href="../classQAccelPlot_1_1TickLabelFormatter/"><strong>QAccelPlot::TickLabelFormatter</strong></a>)</li>
 </ul>
@@ -2088,10 +2125,7 @@
 <h2 id="l">l<a class="headerlink" href="#l" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>label</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>, <a href="../classQAccelPlot_1_1ColorBar/"><strong>QAccelPlot::ColorBar</strong></a>)</li>
-<li><strong>labelColor</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>, <a href="../classQAccelPlot_1_1ColorBar/"><strong>QAccelPlot::ColorBar</strong></a>)</li>
-<li><strong>labelFont</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>, <a href="../classQAccelPlot_1_1ColorBar/"><strong>QAccelPlot::ColorBar</strong></a>)</li>
 <li><strong>labelOverflow</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
-<li><strong>labelPadding</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>, <a href="../classQAccelPlot_1_1ColorBar/"><strong>QAccelPlot::ColorBar</strong></a>)</li>
 <li><strong>layoutSize</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
 <li><strong>logScale</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>, <a href="../classQAccelPlot_1_1Colormap/"><strong>QAccelPlot::Colormap</strong></a>)</li>
 <li><strong>lineStyle</strong> (<a href="../classQAccelPlot_1_1BandEdges/"><strong>QAccelPlot::BandEdges</strong></a>, <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>)</li>
@@ -2171,6 +2205,7 @@
 <h2 id="o">o<a class="headerlink" href="#o" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>orientation</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>, <a href="../classQAccelPlot_1_1BarSeries/"><strong>QAccelPlot::BarSeries</strong></a>, <a href="../classQAccelPlot_1_1ColorBar/"><strong>QAccelPlot::ColorBar</strong></a>, <a href="../classQAccelPlot_1_1ErrorBarSeries/"><strong>QAccelPlot::ErrorBarSeries</strong></a>)</li>
+<li><strong>offset</strong> (<a href="../classQAccelPlot_1_1AxisLabel/"><strong>QAccelPlot::AxisLabel</strong></a>, <a href="../classQAccelPlot_1_1ErrorBarSeries/"><strong>QAccelPlot::ErrorBarSeries</strong></a>)</li>
 <li><strong>onLineStyleDestroyed</strong> (<a href="../classQAccelPlot_1_1BandEdges/"><strong>QAccelPlot::BandEdges</strong></a>, <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>)</li>
 <li><strong>onAxisRangeChanged</strong> (<a href="../classQAccelPlot_1_1BandSeries/"><strong>QAccelPlot::BandSeries</strong></a>, <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>)</li>
 <li><strong>onAxisScaleChanged</strong> (<a href="../classQAccelPlot_1_1BandSeries/"><strong>QAccelPlot::BandSeries</strong></a>, <a href="../classQAccelPlot_1_1BarSeries/"><strong>QAccelPlot::BarSeries</strong></a>, <a href="../classQAccelPlot_1_1ErrorBarSeries/"><strong>QAccelPlot::ErrorBarSeries</strong></a>, <a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>, <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>, <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>, <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a>, <a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a>)</li>
@@ -2184,7 +2219,6 @@
 <li><strong>origin</strong> (<a href="../classQAccelPlot_1_1DataPointStore/"><strong>QAccelPlot::DataPointStore</strong></a>)</li>
 <li><strong>originValue</strong> (<a href="../classQAccelPlot_1_1DataPointStore/"><strong>QAccelPlot::DataPointStore</strong></a>)</li>
 <li><strong>operator=</strong> (<a href="../classQAccelPlot_1_1DataTransition_1_1Run/"><strong>QAccelPlot::DataTransition::Run</strong></a>, <a href="../classQAccelPlot_1_1GradientTexture/"><strong>QAccelPlot::GradientTexture</strong></a>, <a href="../classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures/"><strong>QAccelPlot::Internal::ScopedPaintedItemTextures</strong></a>, <a href="../classQAccelPlot_1_1PlotExporter/"><strong>QAccelPlot::PlotExporter</strong></a>)</li>
-<li><strong>offset</strong> (<a href="../classQAccelPlot_1_1ErrorBarSeries/"><strong>QAccelPlot::ErrorBarSeries</strong></a>)</li>
 <li><strong>onGradientObjectChanged</strong> (<a href="../classQAccelPlot_1_1GradientFill/"><strong>QAccelPlot::GradientFill</strong></a>, <a href="../classQAccelPlot_1_1GradientStroke/"><strong>QAccelPlot::GradientStroke</strong></a>)</li>
 <li><strong>opacity</strong> (<a href="../classQAccelPlot_1_1GradientFill/"><strong>QAccelPlot::GradientFill</strong></a>)</li>
 <li><strong>onCategoryDestroyed</strong> (<a href="../classQAccelPlot_1_1Internal_1_1CategoryList/"><strong>QAccelPlot::Internal::CategoryList</strong></a>)</li>
@@ -2245,7 +2279,7 @@
 <li><strong>PlotRectangleZoom</strong> (<a href="../classQAccelPlot_1_1PlotRectangleZoom/"><strong>QAccelPlot::PlotRectangleZoom</strong></a>)</li>
 <li><strong>PlotSeries</strong> (<a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>)</li>
 <li><strong>PlotView</strong> (<a href="../classQAccelPlot_1_1PlotView/"><strong>QAccelPlot::PlotView</strong></a>)</li>
-<li><strong>padding</strong> (<a href="../classQAccelPlot_1_1PlotView/"><strong>QAccelPlot::PlotView</strong></a>)</li>
+<li><strong>padding</strong> (<a href="../classQAccelPlot_1_1PlotView/"><strong>QAccelPlot::PlotView</strong></a>, <a href="../classQAccelPlot_1_1TextLabel/"><strong>QAccelPlot::TextLabel</strong></a>)</li>
 <li><strong>panAxis</strong> (<a href="../classQAccelPlot_1_1PlotView/"><strong>QAccelPlot::PlotView</strong></a>)</li>
 <li><strong>pixelToDataX</strong> (<a href="../classQAccelPlot_1_1PlotView/"><strong>QAccelPlot::PlotView</strong></a>)</li>
 <li><strong>pixelToDataY</strong> (<a href="../classQAccelPlot_1_1PlotView/"><strong>QAccelPlot::PlotView</strong></a>)</li>
@@ -2269,6 +2303,8 @@
 <ul>
 <li><strong>removeDataRangeSource</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
 <li><strong>rescaleToData</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>, <a href="../classQAccelPlot_1_1ColorBar/"><strong>QAccelPlot::ColorBar</strong></a>)</li>
+<li><strong>resetRotation</strong> (<a href="../classQAccelPlot_1_1AxisLabel/"><strong>QAccelPlot::AxisLabel</strong></a>)</li>
+<li><strong>rotation</strong> (<a href="../classQAccelPlot_1_1AxisLabel/"><strong>QAccelPlot::AxisLabel</strong></a>)</li>
 <li><strong>refreshHovered</strong> (<a href="../classQAccelPlot_1_1BandSeries/"><strong>QAccelPlot::BandSeries</strong></a>)</li>
 <li><strong>renderView</strong> (<a href="../classQAccelPlot_1_1BandSeries/"><strong>QAccelPlot::BandSeries</strong></a>)</li>
 <li><strong>recordInspectionSupported</strong> (<a href="../classQAccelPlot_1_1BarSeries/"><strong>QAccelPlot::BarSeries</strong></a>, <a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>QAccelPlot::HeatmapSeries</strong></a>, <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>, <a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a>)</li>
@@ -2346,10 +2382,6 @@
 <li><strong>setDataRange</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
 <li><strong>setDataRangeValues</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
 <li><strong>setHoverColor</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>, <a href="../classQAccelPlot_1_1BarSeries/"><strong>QAccelPlot::BarSeries</strong></a>, <a href="../classQAccelPlot_1_1ErrorBarSeries/"><strong>QAccelPlot::ErrorBarSeries</strong></a>, <a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a>)</li>
-<li><strong>setLabel</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>, <a href="../classQAccelPlot_1_1ColorBar/"><strong>QAccelPlot::ColorBar</strong></a>)</li>
-<li><strong>setLabelColor</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>, <a href="../classQAccelPlot_1_1ColorBar/"><strong>QAccelPlot::ColorBar</strong></a>)</li>
-<li><strong>setLabelFont</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>, <a href="../classQAccelPlot_1_1ColorBar/"><strong>QAccelPlot::ColorBar</strong></a>)</li>
-<li><strong>setLabelPadding</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>, <a href="../classQAccelPlot_1_1ColorBar/"><strong>QAccelPlot::ColorBar</strong></a>)</li>
 <li><strong>setLayoutSize</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
 <li><strong>setLogScale</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>, <a href="../classQAccelPlot_1_1Colormap/"><strong>QAccelPlot::Colormap</strong></a>)</li>
 <li><strong>setOrientation</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>, <a href="../classQAccelPlot_1_1BarSeries/"><strong>QAccelPlot::BarSeries</strong></a>, <a href="../classQAccelPlot_1_1ColorBar/"><strong>QAccelPlot::ColorBar</strong></a>, <a href="../classQAccelPlot_1_1ErrorBarSeries/"><strong>QAccelPlot::ErrorBarSeries</strong></a>)</li>
@@ -2359,6 +2391,11 @@
 <li><strong>setViewportRange</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
 <li><strong>setZoomScaleFactor</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>, <a href="../classQAccelPlot_1_1ColorBar/"><strong>QAccelPlot::ColorBar</strong></a>)</li>
 <li><strong>side</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+<li><strong>setAlignment</strong> (<a href="../classQAccelPlot_1_1AxisLabel/"><strong>QAccelPlot::AxisLabel</strong></a>)</li>
+<li><strong>setDefaultRotation</strong> (<a href="../classQAccelPlot_1_1AxisLabel/"><strong>QAccelPlot::AxisLabel</strong></a>)</li>
+<li><strong>setDelegate</strong> (<a href="../classQAccelPlot_1_1AxisLabel/"><strong>QAccelPlot::AxisLabel</strong></a>)</li>
+<li><strong>setOffset</strong> (<a href="../classQAccelPlot_1_1AxisLabel/"><strong>QAccelPlot::AxisLabel</strong></a>, <a href="../classQAccelPlot_1_1ErrorBarSeries/"><strong>QAccelPlot::ErrorBarSeries</strong></a>)</li>
+<li><strong>setRotation</strong> (<a href="../classQAccelPlot_1_1AxisLabel/"><strong>QAccelPlot::AxisLabel</strong></a>)</li>
 <li><strong>setSubtickColor</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
 <li><strong>setSubtickCount</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
 <li><strong>setSubtickLength</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
@@ -2382,7 +2419,7 @@
 <li><strong>subtickLengthIn</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
 <li><strong>subtickLengthOut</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
 <li><strong>subtickWidth</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
-<li><strong>setColor</strong> (<a href="../classQAccelPlot_1_1BandEdges/"><strong>QAccelPlot::BandEdges</strong></a>, <a href="../classQAccelPlot_1_1BandSeries/"><strong>QAccelPlot::BandSeries</strong></a>, <a href="../classQAccelPlot_1_1BarSeries/"><strong>QAccelPlot::BarSeries</strong></a>, <a href="../classQAccelPlot_1_1Border/"><strong>QAccelPlot::Border</strong></a>, <a href="../classQAccelPlot_1_1Category/"><strong>QAccelPlot::Category</strong></a>, <a href="../classQAccelPlot_1_1ErrorBarSeries/"><strong>QAccelPlot::ErrorBarSeries</strong></a>, <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>, <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a>, <a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a>)</li>
+<li><strong>setColor</strong> (<a href="../classQAccelPlot_1_1BandEdges/"><strong>QAccelPlot::BandEdges</strong></a>, <a href="../classQAccelPlot_1_1BandSeries/"><strong>QAccelPlot::BandSeries</strong></a>, <a href="../classQAccelPlot_1_1BarSeries/"><strong>QAccelPlot::BarSeries</strong></a>, <a href="../classQAccelPlot_1_1Border/"><strong>QAccelPlot::Border</strong></a>, <a href="../classQAccelPlot_1_1Category/"><strong>QAccelPlot::Category</strong></a>, <a href="../classQAccelPlot_1_1ErrorBarSeries/"><strong>QAccelPlot::ErrorBarSeries</strong></a>, <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>, <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a>, <a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a>, <a href="../classQAccelPlot_1_1TextLabel/"><strong>QAccelPlot::TextLabel</strong></a>)</li>
 <li><strong>setLineStyle</strong> (<a href="../classQAccelPlot_1_1BandEdges/"><strong>QAccelPlot::BandEdges</strong></a>, <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>)</li>
 <li><strong>setWidth</strong> (<a href="../classQAccelPlot_1_1BandEdges/"><strong>QAccelPlot::BandEdges</strong></a>, <a href="../classQAccelPlot_1_1Border/"><strong>QAccelPlot::Border</strong></a>)</li>
 <li><strong>setData</strong> (<a href="../classQAccelPlot_1_1BandSeries/"><strong>QAccelPlot::BandSeries</strong></a>, <a href="../classQAccelPlot_1_1BarSeries/"><strong>QAccelPlot::BarSeries</strong></a>, <a href="../classQAccelPlot_1_1ErrorBarSeries/"><strong>QAccelPlot::ErrorBarSeries</strong></a>, <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>, <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>, <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a>, <a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a>)</li>
@@ -2453,7 +2490,6 @@
 <li><strong>setErrorData</strong> (<a href="../classQAccelPlot_1_1ErrorBarSeries/"><strong>QAccelPlot::ErrorBarSeries</strong></a>)</li>
 <li><strong>setHoverRadius</strong> (<a href="../classQAccelPlot_1_1ErrorBarSeries/"><strong>QAccelPlot::ErrorBarSeries</strong></a>, <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>, <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a>)</li>
 <li><strong>setLineWidth</strong> (<a href="../classQAccelPlot_1_1ErrorBarSeries/"><strong>QAccelPlot::ErrorBarSeries</strong></a>, <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>)</li>
-<li><strong>setOffset</strong> (<a href="../classQAccelPlot_1_1ErrorBarSeries/"><strong>QAccelPlot::ErrorBarSeries</strong></a>)</li>
 <li><strong>setBaseline</strong> (<a href="../classQAccelPlot_1_1GradientFill/"><strong>QAccelPlot::GradientFill</strong></a>)</li>
 <li><strong>setDirection</strong> (<a href="../classQAccelPlot_1_1GradientFill/"><strong>QAccelPlot::GradientFill</strong></a>, <a href="../classQAccelPlot_1_1GradientStroke/"><strong>QAccelPlot::GradientStroke</strong></a>)</li>
 <li><strong>setGradient</strong> (<a href="../classQAccelPlot_1_1GradientFill/"><strong>QAccelPlot::GradientFill</strong></a>, <a href="../classQAccelPlot_1_1GradientStroke/"><strong>QAccelPlot::GradientStroke</strong></a>)</li>
@@ -2556,7 +2592,7 @@
 <li><strong>supportHover</strong> (<a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>)</li>
 <li><strong>syncDataPointDimensions</strong> (<a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>)</li>
 <li><strong>setAxesAreaColor</strong> (<a href="../classQAccelPlot_1_1PlotView/"><strong>QAccelPlot::PlotView</strong></a>)</li>
-<li><strong>setPadding</strong> (<a href="../classQAccelPlot_1_1PlotView/"><strong>QAccelPlot::PlotView</strong></a>)</li>
+<li><strong>setPadding</strong> (<a href="../classQAccelPlot_1_1PlotView/"><strong>QAccelPlot::PlotView</strong></a>, <a href="../classQAccelPlot_1_1TextLabel/"><strong>QAccelPlot::TextLabel</strong></a>)</li>
 <li><strong>setPlotAreaColor</strong> (<a href="../classQAccelPlot_1_1PlotView/"><strong>QAccelPlot::PlotView</strong></a>)</li>
 <li><strong>setX2Axis</strong> (<a href="../classQAccelPlot_1_1PlotView/"><strong>QAccelPlot::PlotView</strong></a>)</li>
 <li><strong>setY2Axis</strong> (<a href="../classQAccelPlot_1_1PlotView/"><strong>QAccelPlot::PlotView</strong></a>)</li>
@@ -2586,6 +2622,8 @@
 <li><strong>scanTopmost</strong> (<a href="../classQAccelPlot_1_1SpatialGrid/"><strong>QAccelPlot::SpatialGrid</strong></a>)</li>
 <li><strong>scanTopmostF</strong> (<a href="../classQAccelPlot_1_1SpatialGrid/"><strong>QAccelPlot::SpatialGrid</strong></a>)</li>
 <li><strong>scanTopmostFrom</strong> (<a href="../classQAccelPlot_1_1SpatialGrid/"><strong>QAccelPlot::SpatialGrid</strong></a>)</li>
+<li><strong>setFont</strong> (<a href="../classQAccelPlot_1_1TextLabel/"><strong>QAccelPlot::TextLabel</strong></a>)</li>
+<li><strong>setText</strong> (<a href="../classQAccelPlot_1_1TextLabel/"><strong>QAccelPlot::TextLabel</strong></a>)</li>
 <li><strong>setLabels</strong> (<a href="../classQAccelPlot_1_1TextTickLabelFormatter/"><strong>QAccelPlot::TextTickLabelFormatter</strong></a>)</li>
 <li><strong>setTickLabel</strong> (<a href="../classQAccelPlot_1_1TickLabelFormatter/"><strong>QAccelPlot::TickLabelFormatter</strong></a>)</li>
 </ul>
@@ -2615,6 +2653,7 @@
 <li><strong>tickLabelThickness</strong> (<a href="../classQAccelPlot_1_1ColorBar/"><strong>QAccelPlot::ColorBar</strong></a>)</li>
 <li><strong>tickLabelWidth</strong> (<a href="../classQAccelPlot_1_1ColorBar/"><strong>QAccelPlot::ColorBar</strong></a>)</li>
 <li><strong>titleOffset</strong> (<a href="../classQAccelPlot_1_1ColorBar/"><strong>QAccelPlot::ColorBar</strong></a>)</li>
+<li><strong>titlePadding</strong> (<a href="../classQAccelPlot_1_1ColorBar/"><strong>QAccelPlot::ColorBar</strong></a>)</li>
 <li><strong>titleThickness</strong> (<a href="../classQAccelPlot_1_1ColorBar/"><strong>QAccelPlot::ColorBar</strong></a>)</li>
 <li><strong>texture</strong> (<a href="../classQAccelPlot_1_1DataTexture/"><strong>QAccelPlot::DataTexture</strong></a>)</li>
 <li><strong>targetData</strong> (<a href="../classQAccelPlot_1_1DataTransition_1_1Run/"><strong>QAccelPlot::DataTransition::Run</strong></a>, <a href="../classQAccelPlot_1_1TransitionRunner/"><strong>QAccelPlot::TransitionRunner</strong></a>)</li>
@@ -2629,6 +2668,8 @@
 <li><strong>tryForwardKeyEventToAxis</strong> (<a href="../classQAccelPlot_1_1PlotView/"><strong>QAccelPlot::PlotView</strong></a>)</li>
 <li><strong>tryZoomAxisAtPosition</strong> (<a href="../classQAccelPlot_1_1PlotView/"><strong>QAccelPlot::PlotView</strong></a>)</li>
 <li><strong>topmostRectangleAt</strong> (<a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a>)</li>
+<li><strong>TextLabel</strong> (<a href="../classQAccelPlot_1_1TextLabel/"><strong>QAccelPlot::TextLabel</strong></a>)</li>
+<li><strong>text</strong> (<a href="../classQAccelPlot_1_1TextLabel/"><strong>QAccelPlot::TextLabel</strong></a>)</li>
 <li><strong>TextTickLabelFormatter</strong> (<a href="../classQAccelPlot_1_1TextTickLabelFormatter/"><strong>QAccelPlot::TextTickLabelFormatter</strong></a>)</li>
 <li><strong>TickLabelFormatter</strong> (<a href="../classQAccelPlot_1_1TickLabelFormatter/"><strong>QAccelPlot::TickLabelFormatter</strong></a>)</li>
 <li><strong>tickLabel</strong> (<a href="../classQAccelPlot_1_1TickLabelFormatter/"><strong>QAccelPlot::TickLabelFormatter</strong></a>)</li>

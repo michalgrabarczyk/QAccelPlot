@@ -1,0 +1,427 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1TextLabel" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::TextLabel</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
+    <derivedcompoundref refid="classQAccelPlot_1_1AxisLabel" prot="public" virt="non-virtual">QAccelPlot::AxisLabel</derivedcompoundref>
+    <includes local="no">TextLabel.hpp</includes>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1TextLabel_1afeb0c659ab73eda4212bb6bacbaa6628" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QML_ANONYMOUSQString</type>
+        <definition>QML_ANONYMOUSQString QAccelPlot::TextLabel::text</definition>
+        <argsstring></argsstring>
+        <name>text</name>
+        <qualifiedname>QAccelPlot::TextLabel::text</qualifiedname>
+        <read>text</read>
+        <write>setText</write>
+        <briefdescription>
+<para>Title text. Default: empty, which draws no title. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="25" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1TextLabel_1a834b04ff20fcd2780af4aaf05a9d0f17" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QFont</type>
+        <definition>QFont QAccelPlot::TextLabel::font</definition>
+        <argsstring></argsstring>
+        <name>font</name>
+        <qualifiedname>QAccelPlot::TextLabel::font</qualifiedname>
+        <read>font</read>
+        <write>setFont</write>
+        <briefdescription>
+<para>Title font. Default: application default font. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="27" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1TextLabel_1a8aa743c1cda93be9ccdd03a4e2b7e067" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::TextLabel::color</definition>
+        <argsstring></argsstring>
+        <name>color</name>
+        <qualifiedname>QAccelPlot::TextLabel::color</qualifiedname>
+        <read>color</read>
+        <write>setColor</write>
+        <briefdescription>
+<para>Title color. Default: <computeroutput>Colors.dark.axisLine</computeroutput> on a <ref refid="classQAccelPlot_1_1ColorBar" kindref="compound">ColorBar</ref>; on an <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref>, an invalid color that follows <computeroutput>baselineColor</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="29" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1TextLabel_1a131eb4ee32f7f92c8bb7dc4aba680e3d" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::TextLabel::padding</definition>
+        <argsstring></argsstring>
+        <name>padding</name>
+        <qualifiedname>QAccelPlot::TextLabel::padding</qualifiedname>
+        <read>padding</read>
+        <write>setPadding</write>
+        <briefdescription>
+<para>Gap in pixels between the title and the axis or color strip. Default: 30 on an <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref>, 6 on a <ref refid="classQAccelPlot_1_1ColorBar" kindref="compound">ColorBar</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="31" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1TextLabel_1ae5ce15205ec267e393decf443d828416" prot="private" static="no" mutable="no">
+        <type>QString</type>
+        <definition>QString QAccelPlot::TextLabel::text_</definition>
+        <argsstring></argsstring>
+        <name>text_</name>
+        <qualifiedname>QAccelPlot::TextLabel::text_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="68" column="13" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1TextLabel_1ae8f1d510744ad330be7bd5df139ab123" prot="private" static="no" mutable="no">
+        <type>QFont</type>
+        <definition>QFont QAccelPlot::TextLabel::font_</definition>
+        <argsstring></argsstring>
+        <name>font_</name>
+        <qualifiedname>QAccelPlot::TextLabel::font_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="69" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1TextLabel_1ad05ed8df910482f321b4a77cbb4c7524" prot="private" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::TextLabel::color_</definition>
+        <argsstring></argsstring>
+        <name>color_</name>
+        <qualifiedname>QAccelPlot::TextLabel::color_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="70" column="12" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1TextLabel_1a4b0288a966a3277767cabf56740c37cd" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::TextLabel::padding_</definition>
+        <argsstring></argsstring>
+        <name>padding_</name>
+        <qualifiedname>QAccelPlot::TextLabel::padding_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="71" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="71" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1a015af2ca9bb81ed57c28efdb2ae65eb3" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::TextLabel::TextLabel</definition>
+        <argsstring>(const QColor &amp;color={}, qreal padding=0.0, QObject *parent=nullptr)</argsstring>
+        <name>TextLabel</name>
+        <qualifiedname>QAccelPlot::TextLabel::TextLabel</qualifiedname>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>color</declname>
+          <defval>{}</defval>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>padding</declname>
+          <defval>0.0</defval>
+        </param>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a label with the default <emphasis>color</emphasis> and <emphasis>padding</emphasis>, owned by <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="35" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1a6a0b5361366e1adfd54b144547e809d6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QString</type>
+        <definition>QString QAccelPlot::TextLabel::text</definition>
+        <argsstring>() const</argsstring>
+        <name>text</name>
+        <qualifiedname>QAccelPlot::TextLabel::text</qualifiedname>
+        <briefdescription>
+<para>Returns the title text. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="38" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1aa4e03c2533875c520e43be3fc189ca02" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::TextLabel::setText</definition>
+        <argsstring>(const QString &amp;text)</argsstring>
+        <name>setText</name>
+        <qualifiedname>QAccelPlot::TextLabel::setText</qualifiedname>
+        <param>
+          <type>const QString &amp;</type>
+          <declname>text</declname>
+        </param>
+        <briefdescription>
+<para>Sets the title text to <emphasis>text</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="40" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1ac3c5ec3d56bf5a6a6faff8a7dd4a0362" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QFont</type>
+        <definition>QFont QAccelPlot::TextLabel::font</definition>
+        <argsstring>() const</argsstring>
+        <name>font</name>
+        <qualifiedname>QAccelPlot::TextLabel::font</qualifiedname>
+        <briefdescription>
+<para>Returns the title font. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="43" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1a88008a2c41f97c2550b0239c7e3d744f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::TextLabel::setFont</definition>
+        <argsstring>(const QFont &amp;font)</argsstring>
+        <name>setFont</name>
+        <qualifiedname>QAccelPlot::TextLabel::setFont</qualifiedname>
+        <param>
+          <type>const QFont &amp;</type>
+          <declname>font</declname>
+        </param>
+        <briefdescription>
+<para>Sets the title font to <emphasis>font</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="45" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1a5049800abe40bd73d70a8c3439c4f7ab" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::TextLabel::color</definition>
+        <argsstring>() const</argsstring>
+        <name>color</name>
+        <qualifiedname>QAccelPlot::TextLabel::color</qualifiedname>
+        <briefdescription>
+<para>Returns the title color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="48" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1ae6dfc3fc08063f86f7bd794393987f06" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::TextLabel::setColor</definition>
+        <argsstring>(const QColor &amp;color)</argsstring>
+        <name>setColor</name>
+        <qualifiedname>QAccelPlot::TextLabel::setColor</qualifiedname>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>color</declname>
+        </param>
+        <briefdescription>
+<para>Sets the title color to <emphasis>color</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="50" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1a84c143c4c41e1c253cb76869d8df2a59" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::TextLabel::padding</definition>
+        <argsstring>() const</argsstring>
+        <name>padding</name>
+        <qualifiedname>QAccelPlot::TextLabel::padding</qualifiedname>
+        <briefdescription>
+<para>Returns the gap between the title and the axis or color strip in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="53" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1aca6e700adbd19d73478c7e0296206204" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::TextLabel::setPadding</definition>
+        <argsstring>(qreal padding)</argsstring>
+        <name>setPadding</name>
+        <qualifiedname>QAccelPlot::TextLabel::setPadding</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>padding</declname>
+        </param>
+        <briefdescription>
+<para>Sets the gap between the title and the axis or color strip to <emphasis>padding</emphasis> pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="55" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1TextLabel_1a966e1b6ae8d29f1e6b950ad1c0998e00" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::TextLabel::textChanged</definition>
+        <argsstring>()</argsstring>
+        <name>textChanged</name>
+        <qualifiedname>QAccelPlot::TextLabel::textChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the text property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="59" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1TextLabel_1abe8083ba51680ea33693d057b7070268" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::TextLabel::fontChanged</definition>
+        <argsstring>()</argsstring>
+        <name>fontChanged</name>
+        <qualifiedname>QAccelPlot::TextLabel::fontChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the font property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="61" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1TextLabel_1a87e0025dbc876c48e2805b4bd321610f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::TextLabel::colorChanged</definition>
+        <argsstring>()</argsstring>
+        <name>colorChanged</name>
+        <qualifiedname>QAccelPlot::TextLabel::colorChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the color property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="63" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1TextLabel_1accfee0e23bf6118a9cd2aa032a826c7f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::TextLabel::paddingChanged</definition>
+        <argsstring>()</argsstring>
+        <name>paddingChanged</name>
+        <qualifiedname>QAccelPlot::TextLabel::paddingChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the padding property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="65" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Text, font, color, and padding of a title, grouped as the <computeroutput>label</computeroutput> property of <ref refid="classQAccelPlot_1_1ColorBar" kindref="compound">ColorBar</ref> and <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1AxisLabel" kindref="compound">AxisLabel</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>QAccelPlot::AxisLabel</label>
+        <link refid="classQAccelPlot_1_1AxisLabel"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>QAccelPlot::TextLabel</label>
+        <link refid="classQAccelPlot_1_1TextLabel"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::TextLabel</label>
+        <link refid="classQAccelPlot_1_1TextLabel"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="21" column="1" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="21" bodyend="72"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1TextLabel_1a8aa743c1cda93be9ccdd03a4e2b7e067" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>color</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1a5049800abe40bd73d70a8c3439c4f7ab" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>color</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1ad05ed8df910482f321b4a77cbb4c7524" prot="private" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>color_</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1a87e0025dbc876c48e2805b4bd321610f" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>colorChanged</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1a834b04ff20fcd2780af4aaf05a9d0f17" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>font</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1ac3c5ec3d56bf5a6a6faff8a7dd4a0362" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>font</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1ae8f1d510744ad330be7bd5df139ab123" prot="private" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>font_</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1abe8083ba51680ea33693d057b7070268" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>fontChanged</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1a131eb4ee32f7f92c8bb7dc4aba680e3d" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>padding</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1a84c143c4c41e1c253cb76869d8df2a59" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>padding</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1a4b0288a966a3277767cabf56740c37cd" prot="private" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>padding_</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1accfee0e23bf6118a9cd2aa032a826c7f" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>paddingChanged</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1ae6dfc3fc08063f86f7bd794393987f06" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>setColor</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1a88008a2c41f97c2550b0239c7e3d744f" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>setFont</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1aca6e700adbd19d73478c7e0296206204" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>setPadding</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1aa4e03c2533875c520e43be3fc189ca02" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>setText</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1afeb0c659ab73eda4212bb6bacbaa6628" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>text</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1a6a0b5361366e1adfd54b144547e809d6" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>text</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1ae5ce15205ec267e393decf443d828416" prot="private" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>text_</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1a966e1b6ae8d29f1e6b950ad1c0998e00" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>textChanged</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1a015af2ca9bb81ed57c28efdb2ae65eb3" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>TextLabel</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

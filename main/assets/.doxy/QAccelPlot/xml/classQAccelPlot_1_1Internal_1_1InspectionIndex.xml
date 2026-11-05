@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="classQAccelPlot_1_1Internal_1_1InspectionIndex" kind="class" language="C++" prot="public">
     <compoundname>QAccelPlot::Internal::InspectionIndex</compoundname>
     <includes local="no">InspectionIndex.hpp</includes>
-    <innerclass refid="structQAccelPlot_1_1Internal_1_1InspectionIndex_1_1Node" prot="private">QAccelPlot::Internal::InspectionIndex::Node</innerclass>
     <innerclass refid="structQAccelPlot_1_1Internal_1_1InspectionIndex_1_1Point" prot="public">QAccelPlot::Internal::InspectionIndex::Point</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1InspectionIndex_1_1Node" prot="private">QAccelPlot::Internal::InspectionIndex::Node</innerclass>
     <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1aa3e41f13dc9c868cf66af1896a7bc287" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -125,7 +125,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="29" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1aba37eb05ac28933600af84a4d0c7ee63" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1aba37eb05ac28933600af84a4d0c7ee63" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::size_t</type>
         <definition>std::size_t QAccelPlot::Internal::InspectionIndex::storageBytes</definition>
         <argsstring>() const</argsstring>
@@ -139,7 +139,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="30" column="18"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1acd14c3cbd897f02106cca7526b8a68fa" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1acd14c3cbd897f02106cca7526b8a68fa" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structQAccelPlot_1_1Internal_1_1InspectionHit" kindref="compound">InspectionHit</ref></type>
         <definition>InspectionHit QAccelPlot::Internal::InspectionIndex::nearestAlong</definition>
         <argsstring>(const InspectionMetric &amp;metric, InspectionAxis axis, double pixel, double radius) const</argsstring>
@@ -170,7 +170,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="32" column="20"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a800768752665ebc96c35a81d1b6c00e3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a800768752665ebc96c35a81d1b6c00e3" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structQAccelPlot_1_1Internal_1_1InspectionHit" kindref="compound">InspectionHit</ref></type>
         <definition>InspectionHit QAccelPlot::Internal::InspectionIndex::nearest</definition>
         <argsstring>(const InspectionMetric &amp;metric, const QPointF &amp;position, double radius) const</argsstring>
@@ -196,7 +196,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="33" column="20"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a2e33673333cfcf755a5e5d45eac83eac" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a2e33673333cfcf755a5e5d45eac83eac" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structQAccelPlot_1_1Internal_1_1InspectionNeighbors" kindref="compound">InspectionNeighbors</ref></type>
         <definition>InspectionNeighbors QAccelPlot::Internal::InspectionIndex::neighbors</definition>
         <argsstring>(InspectionAxis axis, double value) const</argsstring>
@@ -219,7 +219,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionIndex.hpp" line="35" column="26"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a729ea72a79748be1512483a8cfaaf3ca" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1InspectionIndex_1a729ea72a79748be1512483a8cfaaf3ca" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structQAccelPlot_1_1Internal_1_1SummaryAccumulator" kindref="compound">SummaryAccumulator</ref></type>
         <definition>SummaryAccumulator QAccelPlot::Internal::InspectionIndex::summarize</definition>
         <argsstring>(const InspectionBounds &amp;bounds) const</argsstring>

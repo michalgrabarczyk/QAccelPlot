@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="MarkerShape_8hpp" kind="file" language="C++">
     <compoundname>MarkerShape.hpp</compoundname>
     <includes local="no">QObject</includes>
@@ -43,12 +43,12 @@
 <codeline lineno="12"><highlight class="normal"></highlight></codeline>
 <codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
 <codeline lineno="14"><highlight class="normal"></highlight></codeline>
-<codeline lineno="16" refid="namespaceQAccelPlot_1_1MarkerShapeNS" refkind="compound"><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">MarkerShapeNS<sp/>{</highlight></codeline>
+<codeline lineno="16" refid="namespaceQAccelPlot_1_1MarkerShapeNS" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceQAccelPlot_1_1MarkerShapeNS" kindref="compound">MarkerShapeNS</ref><sp/>{</highlight></codeline>
 <codeline lineno="17"><highlight class="normal">Q_NAMESPACE</highlight></codeline>
-<codeline lineno="18"><highlight class="normal">QML_NAMED_ELEMENT(<ref refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fd" kindref="member">MarkerShape</ref>)</highlight></codeline>
+<codeline lineno="18"><highlight class="normal">QML_NAMED_ELEMENT(MarkerShape)</highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight></codeline>
 <codeline lineno="20"><highlight class="normal"></highlight></codeline>
-<codeline lineno="25"><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fd" kindref="member">Shape</ref><sp/>{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fd" kindref="member">Shape</ref><sp/>{</highlight></codeline>
 <codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fda6adf97f83acf6453d4a6a4b1070f3754" kindref="member">None</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fda30954d90085f6eaaf5817917fc5fecb3" kindref="member">Circle</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fdaceb46ca115d05c51aa5a16a8867c3304" kindref="member">Square</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
@@ -70,7 +70,7 @@
 <codeline lineno="44"><highlight class="normal">Q_ENUM_NS(<ref refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fd" kindref="member">Shape</ref>)</highlight></codeline>
 <codeline lineno="45"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>MarkerShapeNS</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="46"><highlight class="normal"></highlight></codeline>
-<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fd" kindref="member">MarkerShape</ref><sp/>=<sp/><ref refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fd" kindref="member">MarkerShapeNS::Shape</ref>;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">MarkerShape<sp/>=<sp/><ref refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fd" kindref="member">MarkerShapeNS::Shape</ref>;</highlight></codeline>
 <codeline lineno="48"><highlight class="normal"></highlight></codeline>
 <codeline lineno="49"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>

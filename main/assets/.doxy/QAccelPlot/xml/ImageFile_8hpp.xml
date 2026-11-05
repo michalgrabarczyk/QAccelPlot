@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="ImageFile_8hpp" kind="file" language="C++">
     <compoundname>ImageFile.hpp</compoundname>
     <includes local="no">QByteArray</includes>
@@ -52,7 +52,7 @@
 <codeline lineno="18"><highlight class="normal"></highlight></codeline>
 <codeline lineno="20"><highlight class="normal">QByteArray<sp/>imageFormatForPath(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QString&amp;<sp/>path);</highlight></codeline>
 <codeline lineno="21"><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setImageResolution(QImage&amp;<sp/>image,<sp/>qreal<sp/>dpi);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setImageResolution(QImage&amp;<sp/>image,<sp/>qreal<sp/>dpi);</highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
 <codeline lineno="30"><highlight class="normal">QString<sp/>writeImageFile(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QImage&amp;<sp/>image,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QString&amp;<sp/>path,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QByteArray&amp;<sp/>format,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>quality);</highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight></codeline>

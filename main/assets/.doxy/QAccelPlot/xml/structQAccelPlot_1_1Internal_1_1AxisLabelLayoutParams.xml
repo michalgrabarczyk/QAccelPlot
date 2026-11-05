@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1Internal_1_1AxisLabelLayoutParams" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::AxisLabelLayoutParams</compoundname>
+    <includes local="no">AxisLabelLayout.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1AxisLabelLayoutParams_1af6672f0ea5991f82dff5e3b2623e8b88" prot="public" static="no" mutable="no">
+        <type>QRectF</type>
+        <definition>QRectF QAccelPlot::Internal::AxisLabelLayoutParams::dataRect</definition>
+        <argsstring></argsstring>
+        <name>dataRect</name>
+        <qualifiedname>QAccelPlot::Internal::AxisLabelLayoutParams::dataRect</qualifiedname>
+        <briefdescription>
+<para><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> span the label is aligned along, in item coordinates. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/internal/AxisLabelLayout.hpp" line="19" column="12" bodyfile="QAccelPlot/src/QAccelPlot/axis/internal/AxisLabelLayout.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1AxisLabelLayoutParams_1a59a11cb327d7ab403f1bddff97c3dadb" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Internal::AxisLabelLayoutParams::baseline</definition>
+        <argsstring></argsstring>
+        <name>baseline</name>
+        <qualifiedname>QAccelPlot::Internal::AxisLabelLayoutParams::baseline</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+<para>Baseline position across the axis: y for horizontal axes, x for vertical ones. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/internal/AxisLabelLayout.hpp" line="20" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/internal/AxisLabelLayout.hpp" bodystart="20" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1AxisLabelLayoutParams_1a6b80fca21f82d1afd48c72f39181d1b5" prot="public" static="no" mutable="no">
+        <type>Qt::Edge</type>
+        <definition>Qt::Edge QAccelPlot::Internal::AxisLabelLayoutParams::outward</definition>
+        <argsstring></argsstring>
+        <name>outward</name>
+        <qualifiedname>QAccelPlot::Internal::AxisLabelLayoutParams::outward</qualifiedname>
+        <initializer>{Qt::BottomEdge}</initializer>
+        <briefdescription>
+<para>Direction from the baseline toward the label. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/internal/AxisLabelLayout.hpp" line="21" column="14" bodyfile="QAccelPlot/src/QAccelPlot/axis/internal/AxisLabelLayout.hpp" bodystart="21" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1AxisLabelLayoutParams_1a5bc0490d626ca974edd9feea18723d26" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Internal::AxisLabelLayoutParams::alongFraction</definition>
+        <argsstring></argsstring>
+        <name>alongFraction</name>
+        <qualifiedname>QAccelPlot::Internal::AxisLabelLayoutParams::alongFraction</qualifiedname>
+        <initializer>{0.5}</initializer>
+        <briefdescription>
+<para>Position along the axis: 0 at the minimum-value end, 1 at the maximum-value end. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/internal/AxisLabelLayout.hpp" line="22" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/internal/AxisLabelLayout.hpp" bodystart="22" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1AxisLabelLayoutParams_1a4d97f23fe663c669b7e965fd7dce93c4" prot="public" static="no" mutable="no">
+        <type>QSizeF</type>
+        <definition>QSizeF QAccelPlot::Internal::AxisLabelLayoutParams::textSize</definition>
+        <argsstring></argsstring>
+        <name>textSize</name>
+        <qualifiedname>QAccelPlot::Internal::AxisLabelLayoutParams::textSize</qualifiedname>
+        <briefdescription>
+<para>Unrotated size of the label text. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/internal/AxisLabelLayout.hpp" line="23" column="12" bodyfile="QAccelPlot/src/QAccelPlot/axis/internal/AxisLabelLayout.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1AxisLabelLayoutParams_1a43f402b1374984fafdc3af7e702e557b" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Internal::AxisLabelLayoutParams::rotation</definition>
+        <argsstring></argsstring>
+        <name>rotation</name>
+        <qualifiedname>QAccelPlot::Internal::AxisLabelLayoutParams::rotation</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+<para>Clockwise text rotation in degrees. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/internal/AxisLabelLayout.hpp" line="24" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/internal/AxisLabelLayout.hpp" bodystart="24" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1AxisLabelLayoutParams_1aa992419e14fcd7f3785c7a775c2d7d6a" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Internal::AxisLabelLayoutParams::padding</definition>
+        <argsstring></argsstring>
+        <name>padding</name>
+        <qualifiedname>QAccelPlot::Internal::AxisLabelLayoutParams::padding</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+<para>Gap between the baseline and the near edge of the rotated text. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/internal/AxisLabelLayout.hpp" line="25" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/internal/AxisLabelLayout.hpp" bodystart="25" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1AxisLabelLayoutParams_1a8c430af9a6b07ce17021c869b4e4a2ea" prot="public" static="no" mutable="no">
+        <type>QPointF</type>
+        <definition>QPointF QAccelPlot::Internal::AxisLabelLayoutParams::offset</definition>
+        <argsstring></argsstring>
+        <name>offset</name>
+        <qualifiedname>QAccelPlot::Internal::AxisLabelLayoutParams::offset</qualifiedname>
+        <briefdescription>
+<para>Pixel offset applied after alignment and padding. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/internal/AxisLabelLayout.hpp" line="26" column="13" bodyfile="QAccelPlot/src/QAccelPlot/axis/internal/AxisLabelLayout.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Inputs that place an axis label relative to the axis baseline. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/axis/internal/AxisLabelLayout.hpp" line="18" column="1" bodyfile="QAccelPlot/src/QAccelPlot/axis/internal/AxisLabelLayout.hpp" bodystart="18" bodyend="27"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1Internal_1_1AxisLabelLayoutParams_1a5bc0490d626ca974edd9feea18723d26" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::AxisLabelLayoutParams</scope><name>alongFraction</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1AxisLabelLayoutParams_1a59a11cb327d7ab403f1bddff97c3dadb" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::AxisLabelLayoutParams</scope><name>baseline</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1AxisLabelLayoutParams_1af6672f0ea5991f82dff5e3b2623e8b88" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::AxisLabelLayoutParams</scope><name>dataRect</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1AxisLabelLayoutParams_1a8c430af9a6b07ce17021c869b4e4a2ea" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::AxisLabelLayoutParams</scope><name>offset</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1AxisLabelLayoutParams_1a6b80fca21f82d1afd48c72f39181d1b5" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::AxisLabelLayoutParams</scope><name>outward</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1AxisLabelLayoutParams_1aa992419e14fcd7f3785c7a775c2d7d6a" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::AxisLabelLayoutParams</scope><name>padding</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1AxisLabelLayoutParams_1a43f402b1374984fafdc3af7e702e557b" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::AxisLabelLayoutParams</scope><name>rotation</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1AxisLabelLayoutParams_1a4d97f23fe663c669b7e965fd7dce93c4" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::AxisLabelLayoutParams</scope><name>textSize</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

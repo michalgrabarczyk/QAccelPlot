@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="ErrorBarSeries_8hpp" kind="file" language="C++">
     <compoundname>ErrorBarSeries.hpp</compoundname>
     <includes refid="PlotSeries_8hpp" local="yes">QAccelPlot/series/PlotSeries.hpp</includes>
@@ -99,12 +99,12 @@
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
-<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">ErrorBarMaterial;</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">TransitionRunner;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1ErrorBarMaterial" kindref="compound">ErrorBarMaterial</ref>;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1TransitionRunner" kindref="compound">TransitionRunner</ref>;</highlight></codeline>
 <codeline lineno="35"><highlight class="normal"></highlight></codeline>
-<codeline lineno="91" refid="classQAccelPlot_1_1ErrorBarSeries" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1ErrorBarSeries" kindref="compound">ErrorBarSeries</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref><sp/>{</highlight></codeline>
+<codeline lineno="91" refid="classQAccelPlot_1_1ErrorBarSeries" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1ErrorBarSeries_1a717a05102f19d67a531834e835b334af" kindref="member">ErrorBarSeries</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>PlotSeries<sp/>{</highlight></codeline>
 <codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_OBJECT</highlight></codeline>
-<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_NAMED_ELEMENT(<ref refid="classQAccelPlot_1_1ErrorBarSeries" kindref="compound">ErrorBarSeries</ref>)</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_NAMED_ELEMENT(<ref refid="classQAccelPlot_1_1ErrorBarSeries_1a717a05102f19d67a531834e835b334af" kindref="member">ErrorBarSeries</ref>)</highlight></codeline>
 <codeline lineno="94"><highlight class="normal"></highlight></codeline>
 <codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(Qt::Orientation<sp/><ref refid="classQAccelPlot_1_1ErrorBarSeries_1a9f68c5c4a8810ad9a9b4e5f5ad66704e" kindref="member">orientation</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1ErrorBarSeries_1a9f68c5c4a8810ad9a9b4e5f5ad66704e" kindref="member">orientation</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1ErrorBarSeries_1acd8ec1b2f00a5b100880cd76d1a1d648" kindref="member">setOrientation</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1ErrorBarSeries_1ad0708684b4fbed9038daed4680bf300b" kindref="member">orientationChanged</ref>)</highlight></codeline>
@@ -118,7 +118,7 @@
 <codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ErrorBarSeries_1ad67f3fe8da99d0de4180dbbaefc78b98" kindref="member">hoveredIndex</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1ErrorBarSeries_1ad67f3fe8da99d0de4180dbbaefc78b98" kindref="member">hoveredIndex</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1ErrorBarSeries_1abbf7f27cb514522edee0c5deaf64e0aa" kindref="member">hoveredIndexChanged</ref>)</highlight></codeline>
 <codeline lineno="115"><highlight class="normal"></highlight></codeline>
 <codeline lineno="116"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ErrorBarSeries" kindref="compound">ErrorBarSeries</ref>(QQuickItem*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ErrorBarSeries_1a717a05102f19d67a531834e835b334af" kindref="member">ErrorBarSeries</ref>(QQuickItem*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1ErrorBarSeries_1a1fdf5b368d996667129718483c4c8967" kindref="member">~ErrorBarSeries</ref>()<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="121"><highlight class="normal"></highlight></codeline>
 <codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>Qt::Orientation<sp/><ref refid="classQAccelPlot_1_1ErrorBarSeries_1a9f68c5c4a8810ad9a9b4e5f5ad66704e" kindref="member">orientation</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>

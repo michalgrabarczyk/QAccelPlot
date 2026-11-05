@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="BarSeries_8hpp" kind="file" language="C++">
     <compoundname>BarSeries.hpp</compoundname>
     <includes refid="Border_8hpp" local="yes">QAccelPlot/Border.hpp</includes>
@@ -89,15 +89,15 @@
 <codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Internal<sp/>{</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">CategoryList;</highlight></codeline>
-<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">RectVertexCache;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1Internal_1_1CategoryList" kindref="compound">CategoryList</ref>;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1Internal_1_1RectVertexCache" kindref="compound">RectVertexCache</ref>;</highlight></codeline>
 <codeline lineno="34"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">BarMaterial;</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">TransitionRunner;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1BarMaterial" kindref="compound">BarMaterial</ref>;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1TransitionRunner" kindref="compound">TransitionRunner</ref>;</highlight></codeline>
 <codeline lineno="37"><highlight class="normal"></highlight></codeline>
-<codeline lineno="99" refid="classQAccelPlot_1_1BarSeries" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1BarSeries" kindref="compound">BarSeries</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColormappedSeries" kindref="compound">ColormappedSeries</ref><sp/>{</highlight></codeline>
+<codeline lineno="99" refid="classQAccelPlot_1_1BarSeries" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1BarSeries_1a41ee066282c1eadd1f6cec4e6d6baa2f" kindref="member">BarSeries</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColormappedSeries_1a3d2ebd74bfcb9bc7df347450b5f487e7" kindref="member">ColormappedSeries</ref><sp/>{</highlight></codeline>
 <codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_OBJECT</highlight></codeline>
-<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_NAMED_ELEMENT(<ref refid="classQAccelPlot_1_1BarSeries" kindref="compound">BarSeries</ref>)</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_NAMED_ELEMENT(<ref refid="classQAccelPlot_1_1BarSeries_1a41ee066282c1eadd1f6cec4e6d6baa2f" kindref="member">BarSeries</ref>)</highlight></codeline>
 <codeline lineno="102"><highlight class="normal"></highlight></codeline>
 <codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(Qt::Orientation<sp/><ref refid="classQAccelPlot_1_1BarSeries_1adc6e6e2b190b9cd218abfff9900d04bc" kindref="member">orientation</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1BarSeries_1adc6e6e2b190b9cd218abfff9900d04bc" kindref="member">orientation</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1BarSeries_1a0c8b76d3aee1a15139aa21286972c8a6" kindref="member">setOrientation</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1BarSeries_1ad04297fa776b17d7b5033d9ce6ce2af3" kindref="member">orientationChanged</ref>)</highlight></codeline>
@@ -121,7 +121,7 @@
 <codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_ENUM(<ref refid="classQAccelPlot_1_1BarSeries_1a38d41b31564b97fbce19301120330a64" kindref="member">ColorSource</ref>)</highlight></codeline>
 <codeline lineno="142"><highlight class="normal"></highlight></codeline>
 <codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1BarSeries" kindref="compound">BarSeries</ref>(QQuickItem*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1BarSeries_1a41ee066282c1eadd1f6cec4e6d6baa2f" kindref="member">BarSeries</ref>(QQuickItem*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1BarSeries_1a73beb21ea3cae6c3d912581b871c1882" kindref="member">~BarSeries</ref>()<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="147"><highlight class="normal"></highlight></codeline>
 <codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>Qt::Orientation<sp/><ref refid="classQAccelPlot_1_1BarSeries_1adc6e6e2b190b9cd218abfff9900d04bc" kindref="member">orientation</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
@@ -219,8 +219,8 @@
 <codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>A<sp/>set<sp/>of<sp/>bars:<sp/>count<sp/>bars<sp/>of<sp/>stride<sp/>values<sp/>each,<sp/>with<sp/>one<sp/>category<sp/>per<sp/>bar<sp/>or<sp/>none.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">Bars<sp/>{</highlight></codeline>
 <codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>values;</highlight></codeline>
-<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;int&gt;<sp/>categories;</highlight></codeline>
-<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>count{0};</highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;int&gt;<sp/><ref refid="classQAccelPlot_1_1BarSeries_1ae728069dc8cceeea2cb9bb28e5c0cec8" kindref="member">categories</ref>;</highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a53e3980416791cdfa11e95ddf45f51a6" kindref="member">count</ref>{0};</highlight></codeline>
 <codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>stride{2};</highlight></codeline>
 <codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
 <codeline lineno="321"><highlight class="normal"></highlight></codeline>

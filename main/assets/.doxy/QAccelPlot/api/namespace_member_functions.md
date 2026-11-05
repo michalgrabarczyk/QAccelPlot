@@ -5,6 +5,7 @@
 
 ## a
 
+* **axisLabelCenter** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **appendEnvelopeSamples** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
 * **applyUniforms** ([**QAccelPlot::LineStroke**](namespaceQAccelPlot_1_1LineStroke.md))
 * **arcLengths** ([**QAccelPlot::LineStroke**](namespaceQAccelPlot_1_1LineStroke.md))
@@ -86,6 +87,7 @@
 * **recordDataTextureUpload** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **resetDataTextureUploadTotals** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **resolveGradientValueRange** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **rotatedBoundingSize** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **renderOriginForViewport** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **renderOriginTooFar** ([**QAccelPlot**](namespaceQAccelPlot.md))
 

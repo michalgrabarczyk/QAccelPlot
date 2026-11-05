@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="RectangleSeries_8hpp" kind="file" language="C++">
     <compoundname>RectangleSeries.hpp</compoundname>
     <includes refid="Border_8hpp" local="yes">QAccelPlot/Border.hpp</includes>
@@ -103,15 +103,15 @@
 <codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Internal<sp/>{</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">CategoryList;</highlight></codeline>
-<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">HoverIndexBudget;</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">RectVertexCache;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1Internal_1_1CategoryList" kindref="compound">CategoryList</ref>;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget" kindref="compound">HoverIndexBudget</ref>;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1Internal_1_1RectVertexCache" kindref="compound">RectVertexCache</ref>;</highlight></codeline>
 <codeline lineno="37"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">RectMaterial;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1RectMaterial" kindref="compound">RectMaterial</ref>;</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight></codeline>
-<codeline lineno="77" refid="classQAccelPlot_1_1RectangleSeries" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1RectangleSeries" kindref="compound">RectangleSeries</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref><sp/>{</highlight></codeline>
+<codeline lineno="77" refid="classQAccelPlot_1_1RectangleSeries" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1RectangleSeries_1a35ba4802c433a7fa70bd8dec44a848e0" kindref="member">RectangleSeries</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>PlotSeries<sp/>{</highlight></codeline>
 <codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_OBJECT</highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_NAMED_ELEMENT(<ref refid="classQAccelPlot_1_1RectangleSeries" kindref="compound">RectangleSeries</ref>)</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_NAMED_ELEMENT(<ref refid="classQAccelPlot_1_1RectangleSeries_1a35ba4802c433a7fa70bd8dec44a848e0" kindref="member">RectangleSeries</ref>)</highlight></codeline>
 <codeline lineno="80"><highlight class="normal"></highlight></codeline>
 <codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/><ref refid="classQAccelPlot_1_1RectangleSeries_1a0aa2fb58305e5815f71d8d717dc3821f" kindref="member">color</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1RectangleSeries_1a0aa2fb58305e5815f71d8d717dc3821f" kindref="member">color</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1RectangleSeries_1a3fb2f93716829bf358063859eb333861" kindref="member">setColor</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1RectangleSeries_1aa04ed79550acd5f3920496cf97e6be0c" kindref="member">colorChanged</ref>)</highlight></codeline>
@@ -123,7 +123,7 @@
 <codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1RectangleSeries_1a0d60605cb2fc7c48505f697e5a1d6d9b" kindref="member">hoveredIndex</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1RectangleSeries_1a0d60605cb2fc7c48505f697e5a1d6d9b" kindref="member">hoveredIndex</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1RectangleSeries_1a0c70e2800949f9c27a4a6c744553025a" kindref="member">hoveredIndexChanged</ref>)</highlight></codeline>
 <codeline lineno="102"><highlight class="normal"></highlight></codeline>
 <codeline lineno="103"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1RectangleSeries" kindref="compound">RectangleSeries</ref>(QQuickItem*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1RectangleSeries_1a35ba4802c433a7fa70bd8dec44a848e0" kindref="member">RectangleSeries</ref>(QQuickItem*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1RectangleSeries_1a013b09032bb1aa5ecd60fa712d4fde64" kindref="member">~RectangleSeries</ref>()<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="108"><highlight class="normal"></highlight></codeline>
 <codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/><ref refid="classQAccelPlot_1_1RectangleSeries_1a0aa2fb58305e5815f71d8d717dc3821f" kindref="member">color</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
@@ -218,8 +218,8 @@
 <codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>xAtRight;</highlight></codeline>
 <codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>yAtTop;</highlight></codeline>
 <codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>yAtBottom;</highlight></codeline>
-<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>logScaleX;</highlight></codeline>
-<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>logScaleY;</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1ad85ffb96b1c9ee3d13a25c412db1eac6" kindref="member">logScaleX</ref>;</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a23f7dd78fbc4e5e03d2537ee2e40707c" kindref="member">logScaleY</ref>;</highlight></codeline>
 <codeline lineno="253"><highlight class="normal"></highlight></codeline>
 <codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>operator==(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>HitTestInputs&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>

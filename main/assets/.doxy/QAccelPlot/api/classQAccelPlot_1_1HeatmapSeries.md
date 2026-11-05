@@ -139,7 +139,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | property quint64 | [**dataRevision**](classQAccelPlot_1_1PlotSeries.md#property-datarevision-12)  <br>_Revision incremented by every accepted change of the series' records._  |
 | property bool | [**hoverEnabled**](classQAccelPlot_1_1PlotSeries.md#property-hoverenabled-12)  <br>_Whether the series reacts to the mouse cursor. Default:_ `true` _._ |
 | property bool | [**hovered**](classQAccelPlot_1_1PlotSeries.md#property-hovered-12)  <br>_Read-only:_ `true` _while the mouse cursor is over the series._ |
-| property [**SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) \* | [**inspection**](classQAccelPlot_1_1PlotSeries.md#property-inspection-12)  <br>_Read-only constant: data queries for this series._  |
+| property SeriesInspection \* | [**inspection**](classQAccelPlot_1_1PlotSeries.md#property-inspection-12)  <br>_Read-only constant: data queries for this series._  |
 | property [**LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol) | [**legendSymbol**](classQAccelPlot_1_1PlotSeries.md#property-legendsymbol-12)  <br>_Symbol style requested from the default legend._  |
 | property QString | [**name**](classQAccelPlot_1_1PlotSeries.md#property-name-12)  <br>_Identifying name used by the default legend._  |
 | property QRectF | [**plotRect**](classQAccelPlot_1_1PlotSeries.md#property-plotrect-12)  <br>_Plot area in parent-item coordinates, assigned by_ `PlotView` _._ |
@@ -253,7 +253,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  quint64 | [**dataRevision**](classQAccelPlot_1_1PlotSeries.md#function-datarevision-22) () const<br>_Returns the current data revision._  |
 |  bool | [**hoverEnabled**](classQAccelPlot_1_1PlotSeries.md#function-hoverenabled-22) () const<br>_Returns whether the series reacts to the mouse cursor._  |
 |  bool | [**hovered**](classQAccelPlot_1_1PlotSeries.md#function-hovered-22) () const<br>_Returns whether the mouse cursor is over the series._  |
-|  [**SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) \* | [**inspection**](classQAccelPlot_1_1PlotSeries.md#function-inspection-22) () const<br>_Returns the data queries for this series; created on first use and owned by the series._  |
+|  SeriesInspection \* | [**inspection**](classQAccelPlot_1_1PlotSeries.md#function-inspection-22) () const<br>_Returns the data queries for this series; created on first use and owned by the series._  |
 | virtual QList&lt; [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md) &gt; | [**legendEntries**](classQAccelPlot_1_1PlotSeries.md#function-legendentries) () const<br>_Returns the legend rows of the series. Default: the_ `legendEntry()` _, if any._ |
 | virtual std::optional&lt; [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md) &gt; | [**legendEntry**](classQAccelPlot_1_1PlotSeries.md#function-legendentry) () const<br>_Returns how a legend draws the series, or_ `std::nullopt` _for no legend entry. Default: no entry._ |
 |  [**LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol) | [**legendSymbol**](classQAccelPlot_1_1PlotSeries.md#function-legendsymbol-22) () const<br> |
@@ -442,7 +442,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 ## Detailed Description
 
 
-The grid has `columns` cells per row and `rows` rows of cells. Values are stored row by row: the value of a cell has index `row * columns + column`, with row 0 at `yMin` and column 0 at `xMin`. `xMin`, `xMax`, `yMin`, and `yMax` are the outer edges of the grid; an unset bound places the grid in index space, so column _c_ spans [c, c + 1].
+The grid has `columns` cells per row and `rows` rows of cells. Values are stored row by row: the value of a cell has index `row *  columns + column`, with row 0 at `yMin` and column 0 at `xMin`. `xMin`, `xMax`, `yMin`, and `yMax` are the outer edges of the grid; an unset bound places the grid in index space, so column _c_ spans [c, c + 1].
 
 
 Each cell is colored by mapping its value through `colormap`. The series starts with a Viridis colormap of its own whose range is resolved from the data; assign a shared `Colormap` to replace it. Nothing is drawn while `colormap` is null. The series has no legend entry: a `ColorBar` is its key.
@@ -489,7 +489,7 @@ Cells with a non-finite value, and cells with a value at or below zero under a l
 **
 **
 
-`inspection.recordAt()` and `inspection.recordAtPosition()` return a record with the fields `x` and `y` (the cell center, geometric under `Log` spacing), `value`, `row`, and `column`. `inspection.dataPointAtPosition()` returns the cell as a data point at its center, with `index` `row * columns + column`, which `PlotInspector` reports in every mode. A cell with a non-finite value is still a match. While a grid edge is not finite, or not positive under `Log` spacing, `recordAt()` returns `Unavailable` and no position matches a cell.
+`inspection.recordAt()` and `inspection.recordAtPosition()` return a record with the fields `x` and `y` (the cell center, geometric under `Log` spacing), `value`, `row`, and `column`. `inspection.dataPointAtPosition()` returns the cell as a data point at its center, with `index` `row *  columns + column`, which `PlotInspector` reports in every mode. A cell with a non-finite value is still a match. While a grid edge is not finite, or not positive under `Log` spacing, `recordAt()` returns `Unavailable` and no position matches a cell.
 
 
 

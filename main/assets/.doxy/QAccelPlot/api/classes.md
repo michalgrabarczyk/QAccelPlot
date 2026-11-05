@@ -9,6 +9,10 @@
 ([**QAccelPlot::DataPointStore**](classQAccelPlot_1_1DataPointStore.md))
 * [**Axis**](classQAccelPlot_1_1Axis.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**AxisLabel**](classQAccelPlot_1_1AxisLabel.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**AxisLabelLayoutParams**](structQAccelPlot_1_1Internal_1_1AxisLabelLayoutParams.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * [**AxisMapping**](structQAccelPlot_1_1AxisMapping.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**AxisTick**](structQAccelPlot_1_1AxisTick.md)
@@ -368,6 +372,8 @@
 
 ## t
 
+* [**TextLabel**](classQAccelPlot_1_1TextLabel.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md)

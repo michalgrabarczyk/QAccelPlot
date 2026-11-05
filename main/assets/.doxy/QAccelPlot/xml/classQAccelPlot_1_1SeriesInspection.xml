@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="classQAccelPlot_1_1SeriesInspection" kind="class" language="C++" prot="public">
     <compoundname>QAccelPlot::SeriesInspection</compoundname>
     <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
@@ -31,7 +31,7 @@
         <name>PlotSeries</name>
         <qualifiedname>QAccelPlot::SeriesInspection::PlotSeries</qualifiedname>
         <param>
-          <type><ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref></type>
+          <type>PlotSeries</type>
         </param>
         <briefdescription>
         </briefdescription>
@@ -48,7 +48,7 @@
         <name>PlotInspector</name>
         <qualifiedname>QAccelPlot::SeriesInspection::PlotInspector</qualifiedname>
         <param>
-          <type><ref refid="classQAccelPlot_1_1PlotInspector" kindref="compound">PlotInspector</ref></type>
+          <type>PlotInspector</type>
         </param>
         <briefdescription>
         </briefdescription>
@@ -65,7 +65,7 @@
         <name>SelectionTool</name>
         <qualifiedname>QAccelPlot::SeriesInspection::SelectionTool</qualifiedname>
         <param>
-          <type><ref refid="classQAccelPlot_1_1SelectionTool" kindref="compound">SelectionTool</ref></type>
+          <type>SelectionTool</type>
         </param>
         <briefdescription>
         </briefdescription>
@@ -78,7 +78,7 @@
     </sectiondef>
     <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classQAccelPlot_1_1SeriesInspection_1a3502d0225565f7ff1e2e4bae79a4b8d3" prot="private" static="no" mutable="no">
-        <type><ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> &amp;</type>
+        <type>PlotSeries &amp;</type>
         <definition>PlotSeries&amp; QAccelPlot::SeriesInspection::series_</definition>
         <argsstring></argsstring>
         <name>series_</name>
@@ -481,7 +481,7 @@
         <name>SeriesInspection</name>
         <qualifiedname>QAccelPlot::SeriesInspection::SeriesInspection</qualifiedname>
         <param>
-          <type><ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> &amp;</type>
+          <type>PlotSeries &amp;</type>
           <declname>series</declname>
         </param>
         <briefdescription>

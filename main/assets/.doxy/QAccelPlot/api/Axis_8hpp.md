@@ -24,6 +24,7 @@
 * `#include <QColor>`
 * `#include <QFont>`
 * `#include <QList>`
+* `#include <QPointer>`
 * `#include <QQuickPaintedItem>`
 
 

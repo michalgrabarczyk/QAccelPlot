@@ -1,17 +1,17 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="classQAccelPlot_1_1DataPointStore" kind="class" language="C++" prot="public">
     <compoundname>QAccelPlot::DataPointStore</compoundname>
     <includes local="no">DataPointStore.hpp</includes>
-    <innerclass refid="structQAccelPlot_1_1DataPointStore_1_1AttributeView" prot="public">QAccelPlot::DataPointStore::AttributeView</innerclass>
-    <innerclass refid="structQAccelPlot_1_1DataPointStore_1_1Compacted" prot="private">QAccelPlot::DataPointStore::Compacted</innerclass>
+    <innerclass refid="structQAccelPlot_1_1DataPointStore_1_1Layout" prot="public">QAccelPlot::DataPointStore::Layout</innerclass>
+    <innerclass refid="structQAccelPlot_1_1DataPointStore_1_1Viewport" prot="public">QAccelPlot::DataPointStore::Viewport</innerclass>
     <innerclass refid="structQAccelPlot_1_1DataPointStore_1_1DimensionState" prot="public">QAccelPlot::DataPointStore::DimensionState</innerclass>
     <innerclass refid="structQAccelPlot_1_1DataPointStore_1_1Extent" prot="public">QAccelPlot::DataPointStore::Extent</innerclass>
     <innerclass refid="structQAccelPlot_1_1DataPointStore_1_1Extents" prot="public">QAccelPlot::DataPointStore::Extents</innerclass>
-    <innerclass refid="structQAccelPlot_1_1DataPointStore_1_1Layout" prot="public">QAccelPlot::DataPointStore::Layout</innerclass>
-    <innerclass refid="structQAccelPlot_1_1DataPointStore_1_1Origin" prot="private">QAccelPlot::DataPointStore::Origin</innerclass>
     <innerclass refid="structQAccelPlot_1_1DataPointStore_1_1View" prot="public">QAccelPlot::DataPointStore::View</innerclass>
-    <innerclass refid="structQAccelPlot_1_1DataPointStore_1_1Viewport" prot="public">QAccelPlot::DataPointStore::Viewport</innerclass>
+    <innerclass refid="structQAccelPlot_1_1DataPointStore_1_1AttributeView" prot="public">QAccelPlot::DataPointStore::AttributeView</innerclass>
+    <innerclass refid="structQAccelPlot_1_1DataPointStore_1_1Origin" prot="private">QAccelPlot::DataPointStore::Origin</innerclass>
+    <innerclass refid="structQAccelPlot_1_1DataPointStore_1_1Compacted" prot="private">QAccelPlot::DataPointStore::Compacted</innerclass>
     <sectiondef kind="public-type">
       <memberdef kind="enum" id="classQAccelPlot_1_1DataPointStore_1a2a1f1ed22ed6c76b7068eb753cbb5fef" prot="public" static="no" strong="yes">
         <type></type>
@@ -419,7 +419,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="97" column="14"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a480a0edc00e31c296c544c992a9b26a3" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a480a0edc00e31c296c544c992a9b26a3" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>const <ref refid="structQAccelPlot_1_1DataPointStore_1_1Layout" kindref="compound">Layout</ref> &amp;</type>
         <definition>const Layout &amp; QAccelPlot::DataPointStore::layout</definition>
         <argsstring>() const noexcept</argsstring>
@@ -472,7 +472,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="104" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a45e355925aad4e1a1e9b5e6526ec3d57" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a45e355925aad4e1a1e9b5e6526ec3d57" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>int</type>
         <definition>int QAccelPlot::DataPointStore::columnCount</definition>
         <argsstring>() const noexcept</argsstring>
@@ -680,7 +680,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="134" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a0d8fa0b92f01aed9c5d59d71a2a92ec3" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a0d8fa0b92f01aed9c5d59d71a2a92ec3" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>int</type>
         <definition>int QAccelPlot::DataPointStore::count</definition>
         <argsstring>() const noexcept</argsstring>
@@ -695,7 +695,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="137" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a7ccf36a9748a4261dcdb913593f95a2c" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a7ccf36a9748a4261dcdb913593f95a2c" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>bool</type>
         <definition>bool QAccelPlot::DataPointStore::isPrecise</definition>
         <argsstring>() const noexcept</argsstring>
@@ -710,7 +710,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="139" column="11"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1aa0dd46425346d2ecb2d7f39b012fe4e4" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1aa0dd46425346d2ecb2d7f39b012fe4e4" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>bool</type>
         <definition>bool QAccelPlot::DataPointStore::hasAttributes</definition>
         <argsstring>() const noexcept</argsstring>
@@ -725,7 +725,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="141" column="11"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1ad168da450a38e75dc6f82516450d3466" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1ad168da450a38e75dc6f82516450d3466" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>bool</type>
         <definition>bool QAccelPlot::DataPointStore::hasCategories</definition>
         <argsstring>() const noexcept</argsstring>
@@ -740,7 +740,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="143" column="11"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1aaf6159f19fe1381fe2fb256e3513d81d" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1aaf6159f19fe1381fe2fb256e3513d81d" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type><ref refid="structQAccelPlot_1_1DataPointStore_1_1View" kindref="compound">View</ref></type>
         <definition>View QAccelPlot::DataPointStore::view</definition>
         <argsstring>() const noexcept</argsstring>
@@ -755,7 +755,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="145" column="11"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1acd968d3d0452066398fe1bd6740caff9" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1acd968d3d0452066398fe1bd6740caff9" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>double</type>
         <definition>double QAccelPlot::DataPointStore::value</definition>
         <argsstring>(int index, int column) const noexcept</argsstring>
@@ -778,7 +778,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="147" column="13"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a8b0ba169cf7fce012e47b484a0fb0c1b" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a8b0ba169cf7fce012e47b484a0fb0c1b" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type><ref refid="structQAccelPlot_1_1DataPointStore_1_1AttributeView" kindref="compound">AttributeView</ref></type>
         <definition>AttributeView QAccelPlot::DataPointStore::attributes</definition>
         <argsstring>() const noexcept</argsstring>
@@ -793,7 +793,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="149" column="20"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a41820af6ff5a706eee0d488baba70617" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a41820af6ff5a706eee0d488baba70617" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>float</type>
         <definition>float QAccelPlot::DataPointStore::attribute</definition>
         <argsstring>(int index, int which=0) const noexcept</argsstring>
@@ -817,7 +817,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="151" column="12"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a377d79443cd0fea8adb7ccccd4382bb8" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a377d79443cd0fea8adb7ccccd4382bb8" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>const std::vector&lt; int &gt; &amp;</type>
         <definition>const std::vector&lt; int &gt; &amp; QAccelPlot::DataPointStore::categories</definition>
         <argsstring>() const noexcept</argsstring>
@@ -832,7 +832,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="153" column="24"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a1b469fed2e7dc915318fd18fe46239fe" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a1b469fed2e7dc915318fd18fe46239fe" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structQAccelPlot_1_1DataPointStore_1_1Extents" kindref="compound">Extents</ref></type>
         <definition>Extents QAccelPlot::DataPointStore::extents</definition>
         <argsstring>(bool logScaleX, bool logScaleY, int first=0, int last=-1) const</argsstring>
@@ -905,7 +905,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="169" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1ae33d5dcbdec4afc06f1199e7c7b611a1" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1ae33d5dcbdec4afc06f1199e7c7b611a1" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>bool</type>
         <definition>bool QAccelPlot::DataPointStore::hasDrawn</definition>
         <argsstring>() const noexcept</argsstring>
@@ -920,7 +920,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="171" column="11"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a50728e3e7e83cd632a222d0fe1bed4ab" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a50728e3e7e83cd632a222d0fe1bed4ab" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structQAccelPlot_1_1DataPointStore_1_1View" kindref="compound">View</ref></type>
         <definition>View QAccelPlot::DataPointStore::drawnView</definition>
         <argsstring>() const</argsstring>
@@ -935,7 +935,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="173" column="11"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1aaef1510d2b48065d421a7261c34c3f93" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1aaef1510d2b48065d421a7261c34c3f93" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structQAccelPlot_1_1DataPointStore_1_1View" kindref="compound">View</ref></type>
         <definition>View QAccelPlot::DataPointStore::renderedView</definition>
         <argsstring>() const</argsstring>
@@ -970,7 +970,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="181" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a1188f369679fc9fcdc9a66782a633ee8" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a1188f369679fc9fcdc9a66782a633ee8" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>bool</type>
         <definition>bool QAccelPlot::DataPointStore::skipInvalid</definition>
         <argsstring>() const noexcept</argsstring>
@@ -1009,7 +1009,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="189" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1aba3d7d0b5dc7690c590d5d5ee26ed9cb" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1aba3d7d0b5dc7690c590d5d5ee26ed9cb" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>const <ref refid="structQAccelPlot_1_1DataPointStore_1_1DimensionState" kindref="compound">DimensionState</ref> &amp;</type>
         <definition>const DimensionState &amp; QAccelPlot::DataPointStore::dimensionState</definition>
         <argsstring>(Dimension dimension) const noexcept</argsstring>
@@ -1028,7 +1028,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="191" column="27"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1ab63a5a2b62d46162d79a90f86441a3a7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1ab63a5a2b62d46162d79a90f86441a3a7" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>const std::vector&lt; float &gt; &amp;</type>
         <definition>const std::vector&lt; float &gt; &amp; QAccelPlot::DataPointStore::renderData</definition>
         <argsstring>() const</argsstring>
@@ -1044,7 +1044,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="196" column="24"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a53600d90f7c1908cbc30463ac6d9e920" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a53600d90f7c1908cbc30463ac6d9e920" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>int</type>
         <definition>int QAccelPlot::DataPointStore::renderStride</definition>
         <argsstring>() const noexcept</argsstring>
@@ -1059,7 +1059,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="198" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a73d7472497daf9e3342dc02f96eb7dbd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a73d7472497daf9e3342dc02f96eb7dbd" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
         <definition>int QAccelPlot::DataPointStore::renderCount</definition>
         <argsstring>() const</argsstring>
@@ -1074,7 +1074,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="200" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1ac698cf52e7b989925917252fc6bcff2d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1ac698cf52e7b989925917252fc6bcff2d" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
         <definition>double QAccelPlot::DataPointStore::renderOrigin</definition>
         <argsstring>(Dimension dimension) const</argsstring>
@@ -1094,7 +1094,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="204" column="13"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a5dcfb841854998a3cb931ad42fbde46d" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a5dcfb841854998a3cb931ad42fbde46d" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>std::uint64_t</type>
         <definition>std::uint64_t QAccelPlot::DataPointStore::renderRevision</definition>
         <argsstring>() const noexcept</argsstring>
@@ -1111,7 +1111,7 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
-      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1ae2da8893d241fe14b7fc5e10f2d2f00a" prot="private" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1ae2da8893d241fe14b7fc5e10f2d2f00a" prot="private" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type><ref refid="structQAccelPlot_1_1DataPointStore_1_1View" kindref="compound">View</ref></type>
         <definition>View QAccelPlot::DataPointStore::sourceView</definition>
         <argsstring>() const noexcept</argsstring>
@@ -1125,7 +1125,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="224" column="11"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a500cefc76333964a637cc15cc1eae24d" prot="private" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a500cefc76333964a637cc15cc1eae24d" prot="private" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>bool</type>
         <definition>bool QAccelPlot::DataPointStore::usesOrigin</definition>
         <argsstring>() const noexcept</argsstring>
@@ -1139,7 +1139,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="225" column="11"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1abc6b204552bf324b74ed6a915203378e" prot="private" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1abc6b204552bf324b74ed6a915203378e" prot="private" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>bool</type>
         <definition>bool QAccelPlot::DataPointStore::dataPointValid</definition>
         <argsstring>(const View &amp;view, int index) const noexcept</argsstring>
@@ -1161,7 +1161,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="226" column="11"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a3713d7296a6f5c0b95cd242464eb1ab2" prot="private" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1a3713d7296a6f5c0b95cd242464eb1ab2" prot="private" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>Origin &amp;</type>
         <definition>Origin &amp; QAccelPlot::DataPointStore::origin</definition>
         <argsstring>(Dimension dimension) const noexcept</argsstring>
@@ -1179,7 +1179,7 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="227" column="13"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1aa9679a5975dee45391249163d9002433" prot="private" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataPointStore_1aa9679a5975dee45391249163d9002433" prot="private" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>double</type>
         <definition>double QAccelPlot::DataPointStore::originValue</definition>
         <argsstring>(Dimension dimension) const noexcept</argsstring>

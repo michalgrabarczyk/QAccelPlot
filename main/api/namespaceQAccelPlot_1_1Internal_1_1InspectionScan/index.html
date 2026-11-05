@@ -444,6 +444,8 @@
       
         
       
+        
+      
     
     
     
@@ -569,6 +571,34 @@
     
   
     Axis formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/axis-labels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Axis labels
   
 
     
@@ -1349,6 +1379,97 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#public-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-functions-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Functions Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Functions Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#function-collect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function collect
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-nearest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function nearest
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-nearestalong" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function nearestAlong
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-neighbors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function neighbors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-summarize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function summarize
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1367,6 +1488,89 @@
 <h1 id="namespace-qaccelplotinternalinspectionscan">Namespace QAccelPlot::Internal::InspectionScan<a class="headerlink" href="#namespace-qaccelplotinternalinspectionscan" title="Permanent link">&para;</a></h1>
 <p><a href="../namespaces/"><strong>Namespace List</strong></a> <strong>&gt;</strong> <a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="../namespaceQAccelPlot_1_1Internal/"><strong>Internal</strong></a> <strong>&gt;</strong> <a href="./"><strong>InspectionScan</strong></a></p>
 <p><em>Inspection queries that scan every record; used for small series that are not ordered along the queried axis.</em> </p>
+<h2 id="public-functions">Public Functions<a class="headerlink" href="#public-functions" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-collect"><strong>collect</strong></a> (const <a href="../structQAccelPlot_1_1Internal_1_1InspectionSource/"><strong>InspectionSource</strong></a> &amp; source, const <a href="../structQAccelPlot_1_1Internal_1_1InspectionBounds/"><strong>InspectionBounds</strong></a> &amp; bounds, int offset, int limit, QList&lt; int &gt; &amp; indices) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../structQAccelPlot_1_1Internal_1_1InspectionHit/"><strong>InspectionHit</strong></a></td>
+<td style="text-align: left;"><a href="#function-nearest"><strong>nearest</strong></a> (const <a href="../structQAccelPlot_1_1Internal_1_1InspectionSource/"><strong>InspectionSource</strong></a> &amp; source, const <a href="../structQAccelPlot_1_1Internal_1_1InspectionMetric/"><strong>InspectionMetric</strong></a> &amp; metric, const QPointF &amp; position, double radius) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../structQAccelPlot_1_1Internal_1_1InspectionHit/"><strong>InspectionHit</strong></a></td>
+<td style="text-align: left;"><a href="#function-nearestalong"><strong>nearestAlong</strong></a> (const <a href="../structQAccelPlot_1_1Internal_1_1InspectionSource/"><strong>InspectionSource</strong></a> &amp; source, const <a href="../structQAccelPlot_1_1Internal_1_1InspectionMetric/"><strong>InspectionMetric</strong></a> &amp; metric, InspectionAxis axis, double pixel, double radius) <br><em>Returns the valid data point nearest to</em> <em>pixel</em> <em>along__axis</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../structQAccelPlot_1_1Internal_1_1InspectionNeighbors/"><strong>InspectionNeighbors</strong></a></td>
+<td style="text-align: left;"><a href="#function-neighbors"><strong>neighbors</strong></a> (const <a href="../structQAccelPlot_1_1Internal_1_1InspectionSource/"><strong>InspectionSource</strong></a> &amp; source, InspectionAxis axis, double value) <br><em>Returns the valid data points on either side of</em> <em>value</em> <em>on__axis</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../structQAccelPlot_1_1Internal_1_1SummaryAccumulator/"><strong>SummaryAccumulator</strong></a></td>
+<td style="text-align: left;"><a href="#function-summarize"><strong>summarize</strong></a> (const <a href="../structQAccelPlot_1_1Internal_1_1InspectionSource/"><strong>InspectionSource</strong></a> &amp; source, const <a href="../structQAccelPlot_1_1Internal_1_1InspectionBounds/"><strong>InspectionBounds</strong></a> &amp; bounds) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="function-collect">function collect<a class="headerlink" href="#function-collect" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">InspectionScan</span><span class="o">::</span><span class="n">collect</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">InspectionSource</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">source</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">InspectionBounds</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">bounds</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">offset</span><span class="p">,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">limit</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="n">QList</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">indices</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div>
+<hr>
+
+<h3 id="function-nearest">function nearest<a class="headerlink" href="#function-nearest" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">InspectionHit</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">InspectionScan</span><span class="o">::</span><span class="n">nearest</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">InspectionSource</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">source</span><span class="p">,</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">InspectionMetric</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">metric</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">position</span><span class="p">,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">radius</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div>
+<hr>
+
+<h3 id="function-nearestalong">function nearestAlong<a class="headerlink" href="#function-nearestalong" title="Permanent link">&para;</a></h3>
+<p><em>Returns the valid data point nearest to</em> <em>pixel</em> <em>along__axis</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">InspectionHit</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">InspectionScan</span><span class="o">::</span><span class="n">nearestAlong</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">InspectionSource</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">source</span><span class="p">,</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">InspectionMetric</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">metric</span><span class="p">,</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="n">InspectionAxis</span><span class="w"> </span><span class="n">axis</span><span class="p">,</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">pixel</span><span class="p">,</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">radius</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-neighbors">function neighbors<a class="headerlink" href="#function-neighbors" title="Permanent link">&para;</a></h3>
+<p><em>Returns the valid data points on either side of</em> <em>value</em> <em>on__axis</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">InspectionNeighbors</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">InspectionScan</span><span class="o">::</span><span class="n">neighbors</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">InspectionSource</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">source</span><span class="p">,</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="n">InspectionAxis</span><span class="w"> </span><span class="n">axis</span><span class="p">,</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">value</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-summarize">function summarize<a class="headerlink" href="#function-summarize" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">SummaryAccumulator</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Internal</span><span class="o">::</span><span class="n">InspectionScan</span><span class="o">::</span><span class="n">summarize</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">InspectionSource</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">source</span><span class="p">,</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">InspectionBounds</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">bounds</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div>
+<hr>
+
 <hr />
 <p>The documentation for this class was generated from the following file <code>QAccelPlot/src/QAccelPlot/inspection/internal/SourceInspection.hpp</code></p>
 

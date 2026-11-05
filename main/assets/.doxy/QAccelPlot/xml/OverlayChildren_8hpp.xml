@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="OverlayChildren_8hpp" kind="file" language="C++">
     <compoundname>OverlayChildren.hpp</compoundname>
     <includes local="no">QList</includes>
@@ -63,9 +63,9 @@
 <codeline lineno="15"><highlight class="normal"></highlight></codeline>
 <codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot::Internal<sp/>{</highlight></codeline>
 <codeline lineno="17"><highlight class="normal"></highlight></codeline>
-<codeline lineno="22" refid="classQAccelPlot_1_1Internal_1_1OverlayChildren" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1Internal_1_1OverlayChildren" kindref="compound">OverlayChildren</ref><sp/>{</highlight></codeline>
+<codeline lineno="22" refid="classQAccelPlot_1_1Internal_1_1OverlayChildren" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1Internal_1_1OverlayChildren_1af23d70310a46a5be388e8fc0242b26e9" kindref="member">OverlayChildren</ref><sp/>{</highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Internal_1_1OverlayChildren" kindref="compound">OverlayChildren</ref>(QObject&amp;<sp/>owner,<sp/>QVariant<sp/>tool,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>toolProperty);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Internal_1_1OverlayChildren_1af23d70310a46a5be388e8fc0242b26e9" kindref="member">OverlayChildren</ref>(QObject&amp;<sp/>owner,<sp/>QVariant<sp/>tool,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>toolProperty);</highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight></codeline>
 <codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/>QQmlListProperty&lt;QObject&gt;<sp/><ref refid="classQAccelPlot_1_1Internal_1_1OverlayChildren_1a735cb79f9445954bcb9bf365708d94c7" kindref="member">list</ref>();</highlight></codeline>
 <codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Internal_1_1OverlayChildren_1a00b3abcf696e7ab6e2eec70c1e0ea959" kindref="member">setOverlay</ref>(QQuickItem*<sp/>overlay);</highlight></codeline>
