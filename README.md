@@ -9,9 +9,9 @@
   <a href="#licensing"><img src="https://img.shields.io/badge/License-GPLv3%20%2F%20Commercial-blue.svg" alt="GPLv3 / Commercial License" /></a>
 </p>
 
-**QAccelPlot** is a high-performance, interactive 2D plotting library for
-**Qt Quick (QML & C++)**. It renders through the Qt Scene Graph with GPU shaders and replaces
-and draws **millions of points per frame at 60 FPS** without downsampling or
+**QAccelPlot** is a GPU-accelerated, interactive 2D plotting library for
+**Qt Quick (QML & C++)**. Built on the Qt Scene Graph, it draws
+**millions of points per frame at 60 FPS** without downsampling or
 level-of-detail (LOD) reduction.
 
 ---
@@ -27,12 +27,12 @@ level-of-detail (LOD) reduction.
 
 ## ⚡ Highlights
 
-- **GPU rendering**: Lines, markers, dashes, and gradients are drawn by shaders on OpenGL, OpenGL ES, Direct3D 11/12, Vulkan, and Metal.
+- **GPU rendering**: Hardware accelerated using OpenGL, OpenGL ES, Direct3D 11/12, Vulkan, or Metal.
 - **Series types**: Line curves, point clouds, heatmaps, bars, histograms, bands, error bars, and rectangle spans.
-- **Interactive at full data size**: Pan, cursor-centered zoom, per-axis zoom, and double-click rescale work out of the box. Hover hit testing uses cached block bounds, so it stays responsive on large curves.
-- **Fast data paths**: Move interleaved `float` buffers into a curve, or hand buffers off from worker threads with `postData()`. Data ranges are computed only when needed.
-- **QML-native**: Plots, axes, and series are `QQuickItem`/`QObject` types that compose with Qt Quick layouts and bindings.
-- **Invalid data points**: `NaN`, `±Inf`, and non-positive log-axis values render as gaps or are connected across.
+- **Interactive**: Pan, zoom, hover, and data inspection.
+- **Fast data paths**: Move semantics for data buffers.
+- **QML-native**: Works with Qt Quick layouts and bindings.
+- **Invalid data points**: Handles `NaN` and `±Inf` values.
 
 ---
 
@@ -44,8 +44,8 @@ reduction. About 1–10M points can be replaced and drawn every frame at 60 FPS.
 Exact performance depends on the GPU, the series type, the styling (line width,
 markers, gradients), and how the data is passed in. See the
 [Performance guide](https://michalgrabarczyk.github.io/QAccelPlot/performance/)
-for what each option costs, and run the
-[Performance Lab](examples/showcases/performance/) to measure your hardware.
+for how each of these affects frame time, and run the
+[Performance Lab](examples/showcases/performance/) to measure plotting performance on your machine.
 
 ---
 
