@@ -18,7 +18,7 @@
 #include "QAccelPlot/series/SeriesMarker.hpp"
 #include "QAccelPlot/series/StepMode.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
-#include "QAccelPlot/transitions/DataTransition.hpp"
+#include "QAccelPlot/transitions/TransitionRunner.hpp"
 
 #include <QPointF>
 #include <QPointer>
@@ -31,8 +31,6 @@
 #include <vector>
 
 namespace QAccelPlot {
-
-class TransitionRunner;
 
 /// \brief A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects.
 ///
@@ -52,9 +50,9 @@ class TransitionRunner;
 /// Visual effects (gradient stroke, gradient fill) are attached via the \c effects list property.
 ///
 /// \par Transitions
-/// Animated data updates are enabled by assigning a \c DrawTransition or \c MorphTransition to \c transition.
-/// Several curves can share one transition. Replacing or clearing \c transition, cancelling it, or
-/// appending data during an animation skips to the new data.
+/// \c enterTransition animates added points, \c updateTransition kept points, and \c exitTransition removed
+/// points, matched by index. Several curves can share one transition. Replacing or clearing a transition,
+/// cancelling it, or appending data during an animation skips to the new data.
 ///
 /// \par Step lines
 /// \c stepMode draws the line as steps, for example <tt>stepMode: QAccelPlot.StepMode.After</tt>. The gradient fill,
@@ -69,7 +67,7 @@ class TransitionRunner;
 /// leaves a gap, \c Connect joins the neighboring valid data points. Insert \c NaN to mark missing telemetry explicitly.
 /// With a step mode and \c Break, a value holds up to the X of an invalid neighbor when that X is finite.
 ///
-/// \sa Axis, SeriesMarker, GradientFill, GradientStroke, DrawTransition, MorphTransition
+/// \sa Axis, SeriesMarker, GradientFill, GradientStroke, DrawTransition, GrowTransition, MorphTransition
 class LineCurve : public PlotSeries {
     Q_OBJECT
     QML_NAMED_ELEMENT(LineCurve)
@@ -80,8 +78,12 @@ class LineCurve : public PlotSeries {
     Q_PROPERTY(qreal lineWidth READ lineWidth WRITE setLineWidth NOTIFY lineWidthChanged)
     /// \brief Pick distance in pixels from the line; 0 disables line hover. Markers are picked within their size. Default: 10.
     Q_PROPERTY(qreal hoverRadius READ hoverRadius WRITE setHoverRadius NOTIFY hoverRadiusChanged)
-    /// \brief Optional data transition animation applied when new data arrives.
-    Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
+    /// \brief Transition of the points a data change adds, or \c nullptr to show them at once.
+    Q_PROPERTY(EnterExitTransition* enterTransition READ enterTransition WRITE setEnterTransition NOTIFY enterTransitionChanged)
+    /// \brief Transition of the points a data change keeps, or \c nullptr to move them at once.
+    Q_PROPERTY(DataTransition* updateTransition READ updateTransition WRITE setUpdateTransition NOTIFY updateTransitionChanged)
+    /// \brief Transition of the points a data change removes, or \c nullptr to remove them at once.
+    Q_PROPERTY(EnterExitTransition* exitTransition READ exitTransition WRITE setExitTransition NOTIFY exitTransitionChanged)
     /// \brief Line style (SolidLine, DashLine, or NoLine). Default: SolidLine.
     Q_PROPERTY(LineStyle* lineStyle READ lineStyle WRITE setLineStyle NOTIFY lineStyleChanged)
     /// \brief Antialiasing feather width in pixels, clamped to [0, 10]. Has effect only when the inherited \c antialiasing is \c true. Default: 1.
@@ -117,10 +119,18 @@ public:
     /// Marker hit testing is unaffected.
     void setHoverRadius(qreal radius);
 
-    /// \brief Returns the active data transition, or \c nullptr if none.
-    DataTransition* transition() const;
-    /// \brief Sets the data transition to \a transition.
-    void setTransition(DataTransition* transition);
+    /// \brief Returns the transition of added points, or \c nullptr.
+    EnterExitTransition* enterTransition() const;
+    /// \brief Sets the transition of added points to \a transition.
+    void setEnterTransition(EnterExitTransition* transition);
+    /// \brief Returns the transition of kept points, or \c nullptr.
+    DataTransition* updateTransition() const;
+    /// \brief Sets the transition of kept points to \a transition.
+    void setUpdateTransition(DataTransition* transition);
+    /// \brief Returns the transition of removed points, or \c nullptr.
+    EnterExitTransition* exitTransition() const;
+    /// \brief Sets the transition of removed points to \a transition.
+    void setExitTransition(EnterExitTransition* transition);
 
     /// \brief Returns the active line style.
     LineStyle* lineStyle() const;
@@ -185,8 +195,12 @@ signals:
     void lineWidthChanged();
     /// \brief Emitted when the hoverRadius property changes.
     void hoverRadiusChanged();
-    /// \brief Emitted when the transition property changes.
-    void transitionChanged();
+    /// \brief Emitted when the enterTransition property changes.
+    void enterTransitionChanged();
+    /// \brief Emitted when the updateTransition property changes.
+    void updateTransitionChanged();
+    /// \brief Emitted when the exitTransition property changes.
+    void exitTransitionChanged();
     /// \brief Emitted when the lineStyle property changes.
     void lineStyleChanged();
     /// \brief Emitted when the antialiasingFeather property changes.
@@ -195,7 +209,7 @@ signals:
     void stepModeChanged();
 
 private:
-    void onTransitionDestroyed();
+    void onTransitionDestroyed(TransitionRunner::Slot slot);
     void onLineStyleChanged();
     void onLineStyleDestroyed();
     void onNanGapModeChanged();
@@ -231,6 +245,8 @@ private:
     void finishTransition();
     // Starts a transition from the points drawn now to the stored points, the new data.
     void startTransition(std::vector<double>&& from, int fromCount);
+    // Shows the next frame of the running transition, or the stored points when it ends.
+    void showTransitionFrame();
     // Effects refresh on the GUI thread once per frame, from QQuickWindow::afterAnimating.
     void connectAnimationTicks(QQuickWindow* window);
     void refreshEffects();

@@ -95,7 +95,7 @@ DashboardPanel {
                     }
                 ]
             }
-            transition: QAccelPlot.MorphTransition {
+            updateTransition: QAccelPlot.MorphTransition {
                 duration: 90
             }
         }

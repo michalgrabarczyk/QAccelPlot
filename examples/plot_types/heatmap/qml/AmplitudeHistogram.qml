@@ -39,7 +39,7 @@ QAccelPlot.Plot {
         colorSource: QAccelPlot.BarSeries.Position
         colormap: histogramPlot.colormap
         hoverColor: colorPalette.hover
-        transition: QAccelPlot.MorphTransition {
+        updateTransition: QAccelPlot.MorphTransition {
             duration: 150
         }
     }

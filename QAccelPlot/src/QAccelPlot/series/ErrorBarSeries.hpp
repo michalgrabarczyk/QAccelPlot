@@ -9,7 +9,7 @@
 
 #include "QAccelPlot/series/PlotSeries.hpp"
 #include "QAccelPlot/series/SpatialGrid.hpp"
-#include "QAccelPlot/transitions/DataTransition.hpp"
+#include "QAccelPlot/transitions/TransitionRunner.hpp"
 
 #include <QColor>
 #include <QList>
@@ -31,7 +31,6 @@ class QSGGeometryNode;
 namespace QAccelPlot {
 
 class ErrorBarMaterial;
-class TransitionRunner;
 
 /// \brief A hardware-accelerated QML item that draws error bars: a line from a low to a high bound at each data point, capped at both ends.
 ///
@@ -75,13 +74,13 @@ class TransitionRunner;
 /// beneath.
 ///
 /// \par Transitions
-/// Assign a \c MorphTransition or \c DrawTransition to \c transition to animate data updates. With
-/// \c MorphTransition, error bars move to their new position, value, and bounds. New error bars
-/// appear, and removed ones disappear, at once. \c count, \c errorBarAt(), the data ranges, and
-/// inspection use the new data from the start of the animation, while hover picks the error bars as
-/// drawn. While a transition is enabled, the \c setDataF() overloads store doubles. \c appendData(),
-/// \c appendErrorData(), \c clearData(), and replacing, clearing, or cancelling \c transition, skip
-/// to the new data.
+/// \c enterTransition animates added error bars, \c updateTransition kept ones, and \c exitTransition
+/// removed ones, matched by index. With a \c MorphTransition, kept error bars move to their new
+/// position, value, and bounds; a \c GrowTransition grows the value and both bounds from its baseline.
+/// \c count, \c errorBarAt(), the data ranges, and inspection use the new data from the start of the
+/// animation, while hover picks the error bars as drawn. While a transition is enabled, the
+/// \c setDataF() overloads store doubles. \c appendData(), \c appendErrorData(), and replacing,
+/// clearing, or cancelling a transition skip to the new data; \c clearData() runs the exit transition.
 ///
 /// \par Limits
 /// At most 16,777,216 (2^24) error bars are drawn, fewer on GPUs whose maximum texture size is below
@@ -108,8 +107,12 @@ class ErrorBarSeries : public PlotSeries {
     Q_PROPERTY(QColor hoverColor READ hoverColor WRITE setHoverColor NOTIFY hoverColorChanged)
     /// \brief Pick distance in pixels from an error bar or its caps, clamped to at least 0. Default: 6.
     Q_PROPERTY(qreal hoverRadius READ hoverRadius WRITE setHoverRadius NOTIFY hoverRadiusChanged)
-    /// \brief Optional data transition animation applied when new data arrives.
-    Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
+    /// \brief Transition of the error bars a data change adds, or \c nullptr to show them at once.
+    Q_PROPERTY(EnterExitTransition* enterTransition READ enterTransition WRITE setEnterTransition NOTIFY enterTransitionChanged)
+    /// \brief Transition of the error bars a data change keeps, or \c nullptr to move them at once.
+    Q_PROPERTY(DataTransition* updateTransition READ updateTransition WRITE setUpdateTransition NOTIFY updateTransitionChanged)
+    /// \brief Transition of the error bars a data change removes, or \c nullptr to remove them at once.
+    Q_PROPERTY(EnterExitTransition* exitTransition READ exitTransition WRITE setExitTransition NOTIFY exitTransitionChanged)
     /// \brief Read-only: index of the error bar under the cursor, or -1 when none.
     Q_PROPERTY(int hoveredIndex READ hoveredIndex NOTIFY hoveredIndexChanged)
 
@@ -154,10 +157,18 @@ public:
     /// \brief Sets the hover pick distance to \a radius pixels. Negative values are clamped to 0.
     void setHoverRadius(qreal radius);
 
-    /// \brief Returns the active data transition, or \c nullptr if none.
-    DataTransition* transition() const;
-    /// \brief Sets the data transition to \a transition.
-    void setTransition(DataTransition* transition);
+    /// \brief Returns the transition of added error bars, or \c nullptr.
+    EnterExitTransition* enterTransition() const;
+    /// \brief Sets the transition of added error bars to \a transition.
+    void setEnterTransition(EnterExitTransition* transition);
+    /// \brief Returns the transition of kept error bars, or \c nullptr.
+    DataTransition* updateTransition() const;
+    /// \brief Sets the transition of kept error bars to \a transition.
+    void setUpdateTransition(DataTransition* transition);
+    /// \brief Returns the transition of removed error bars, or \c nullptr.
+    EnterExitTransition* exitTransition() const;
+    /// \brief Sets the transition of removed error bars to \a transition.
+    void setExitTransition(EnterExitTransition* transition);
 
     /// \brief Returns the index of the hovered error bar, or -1 if none.
     int hoveredIndex() const;
@@ -221,8 +232,12 @@ signals:
     void hoverColorChanged();
     /// \brief Emitted when the hoverRadius property changes.
     void hoverRadiusChanged();
-    /// \brief Emitted when the transition property changes.
-    void transitionChanged();
+    /// \brief Emitted when the enterTransition property changes.
+    void enterTransitionChanged();
+    /// \brief Emitted when the updateTransition property changes.
+    void updateTransitionChanged();
+    /// \brief Emitted when the exitTransition property changes.
+    void exitTransitionChanged();
     /// \brief Emitted when the hovered error bar changes.
     void hoveredIndexChanged();
 
@@ -264,7 +279,10 @@ private:
     void applyDoubleData(std::vector<double>&& data, int dataPointCount);
     // Starts animating from the \a drawnCount error bars in \a drawn to the stored ones.
     void startTransition(const std::vector<double>& drawn, int drawnCount);
+    void onTransitionDestroyed(TransitionRunner::Slot slot);
     void advanceTransition();
+    // Draws the next frame of the running transition, or the data when it ends.
+    void showTransitionFrame();
     // Shows the stored data points at once, when a transition was drawing others.
     void endTransition();
     void discardTransition();

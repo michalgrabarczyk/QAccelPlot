@@ -38,7 +38,7 @@ Window {
     }
 
     function animateTo(transition) {
-        transitionCurve.transition = transition;
+        transitionCurve.updateTransition = transition;
         transitionCurve.setData(nextShapeIsB ? shapeB() : shapeA());
         nextShapeIsB = !nextShapeIsB;
     }
@@ -135,7 +135,7 @@ Window {
                 yAxis: plot.yAxis
                 color: colorPalette.seriesPrimary
                 lineWidth: 3
-                transition: morphTransition
+                updateTransition: morphTransition
                 Component.onCompleted: setData(window.shapeA())
             }
 

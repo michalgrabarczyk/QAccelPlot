@@ -7,12 +7,27 @@
 //
 #include "QAccelPlot/transitions/TransitionRunner.hpp"
 
+#include "QAccelPlot/transitions/GrowTransition.hpp"
+
 #include <QQuickItem>
 #include <QQuickWindow>
 
+#include <algorithm>
+#include <cstddef>
 #include <utility>
 
 namespace QAccelPlot {
+
+namespace {
+
+std::size_t slotIndex(const TransitionRunner::Slot slot)
+{
+    return static_cast<std::size_t>(slot);
+}
+
+constexpr auto kSlots = std::array{TransitionRunner::Slot::Enter, TransitionRunner::Slot::Update, TransitionRunner::Slot::Exit};
+
+} // namespace
 
 TransitionRunner::TransitionRunner(QQuickItem* item)
 {
@@ -23,108 +38,229 @@ TransitionRunner::TransitionRunner(QQuickItem* item)
 
 TransitionRunner::~TransitionRunner()
 {
-    // Ending the run emits runningChanged, which must not reach this partly destroyed object.
-    if (transition_) {
-        disconnect(transition_, nullptr, this, nullptr);
+    // Ending the runs emits runningChanged, which must not reach this partly destroyed object.
+    for (const auto& connection : runningConnections_) {
+        disconnect(connection);
     }
-    run_.cancel();
+    for (const auto& connection : destroyedConnections_) {
+        disconnect(connection);
+    }
+    pending_ = false;
+    endRuns();
 }
 
-DataTransition* TransitionRunner::transition() const
+DataTransition* TransitionRunner::transition(const Slot slot) const
 {
-    return transition_;
+    return transitions_[slotIndex(slot)];
 }
 
-bool TransitionRunner::setTransition(DataTransition* transition)
+bool TransitionRunner::setTransition(const Slot slot, DataTransition* transition)
 {
-    if (transition_ == transition) {
+    const auto index = slotIndex(slot);
+    if (transitions_[index] == transition) {
+        return false;
+    }
+    if (slot != Slot::Update && transition && !qobject_cast<EnterExitTransition*>(transition)) {
         return false;
     }
     interrupt();
-    if (transition_) {
-        disconnect(transition_, &QObject::destroyed, this, &TransitionRunner::onTransitionDestroyed);
-        disconnect(transition_, &DataTransition::runningChanged, this, &TransitionRunner::onRunningChanged);
-    }
-    transition_ = transition;
-    if (transition_) {
-        connect(transition_, &QObject::destroyed, this, &TransitionRunner::onTransitionDestroyed);
-        connect(transition_, &DataTransition::runningChanged, this, &TransitionRunner::onRunningChanged);
+    disconnect(destroyedConnections_[index]);
+    disconnect(runningConnections_[index]);
+    transitions_[index] = transition;
+    if (transition) {
+        destroyedConnections_[index] = connect(transition, &QObject::destroyed, this, [this, slot] { onTransitionDestroyed(slot); });
+        runningConnections_[index] = connect(transition, &DataTransition::runningChanged, this, &TransitionRunner::onRunningChanged);
     }
     return true;
 }
 
 bool TransitionRunner::enabled() const
 {
-    return transition_ && transition_->enabled();
+    return std::any_of(kSlots.cbegin(), kSlots.cend(), [this](const Slot slot) { return enabledKind(slot).has_value(); });
 }
 
 bool TransitionRunner::active() const
 {
-    return run_.active();
+    return active_;
 }
 
 bool TransitionRunner::pending() const
 {
-    return run_.pending();
+    return pending_;
 }
 
 const std::vector<double>& TransitionRunner::targetData() const
 {
-    return run_.targetData();
+    return to_;
 }
 
 int TransitionRunner::targetPointCount() const
 {
-    return run_.targetPointCount();
+    return toCount_;
 }
 
-void TransitionRunner::start(
-    const std::vector<double>& currentData, const int currentPointCount, std::vector<double>&& newData, const int newPointCount, const int stride)
+int TransitionRunner::frameCapacity() const
 {
-    Q_ASSERT(transition_);
-    if (!transition_) {
-        return;
+    return std::max(fromCount_, toCount_);
+}
+
+bool TransitionRunner::start(
+    const std::vector<double>& currentData, const int currentPointCount, std::vector<double>&& newData, const int newPointCount, const Layout& layout)
+{
+    Q_ASSERT(layout.stride > 0);
+    // Items still leaving from the previous run follow its target items, and are dropped.
+    const auto fromCount = pending_ ? std::min(currentPointCount, toCount_) : currentPointCount;
+    // Ended without interrupting: the new run replaces the old one.
+    pending_ = false;
+    endRuns();
+    fade_ = {};
+    const auto planned = Internal::plannedSlots(fromCount, newPointCount, enabledKind(Slot::Enter), enabledKind(Slot::Update), enabledKind(Slot::Exit));
+    if (!planned.any()) {
+        cancel();
+        return false;
     }
-    transition_->start(run_, currentData, currentPointCount, std::move(newData), newPointCount, stride);
+    layout_ = layout;
+    from_.assign(currentData.cbegin(), currentData.cbegin() + static_cast<std::ptrdiff_t>(fromCount) * layout.stride);
+    fromCount_ = fromCount;
+    to_ = std::move(newData);
+    toCount_ = newPointCount;
+    pending_ = true;
+    const auto used = std::array{planned.enter, planned.update, planned.exit};
+    for (const auto slot : kSlots) {
+        if (used[slotIndex(slot)]) {
+            transitions_[slotIndex(slot)]->start(runs_[slotIndex(slot)]);
+        }
+    }
+    // Set after all runs started, so runningChanged handlers don't see a used slot without its run.
+    used_ = used;
+    updateActive();
     requestFrame();
+    return true;
 }
 
 bool TransitionRunner::advance(std::vector<double>& outData, int& outPointCount)
 {
-    return transition_ && transition_->advance(run_, outData, outPointCount);
+    if (!pending_) {
+        return false;
+    }
+    if (finished()) {
+        finish(outData, outPointCount);
+        return false;
+    }
+    const auto input = Internal::TransitionFrameInput{Internal::TransitionItems{from_.data(), fromCount_}, Internal::TransitionItems{to_.data(), toCount_},
+        layout_, step(Slot::Enter), step(Slot::Update), step(Slot::Exit)};
+    outPointCount = Internal::writeTransitionFrame(input, outData, fade_);
+    return true;
+}
+
+const Internal::ItemFade& TransitionRunner::fade() const
+{
+    return fade_;
 }
 
 bool TransitionRunner::finish(std::vector<double>& outData, int& outPointCount)
 {
-    return run_.finish(outData, outPointCount);
+    if (!pending_) {
+        return false;
+    }
+    outData = std::move(to_);
+    outPointCount = toCount_;
+    cancel();
+    return true;
 }
 
 void TransitionRunner::cancel()
 {
-    run_.cancel();
+    // Cleared before the runs end, so runningChanged handlers see the run as ended.
+    pending_ = false;
+    endRuns();
+    from_ = std::vector<double>{};
+    to_ = std::vector<double>{};
+    fromCount_ = 0;
+    toCount_ = 0;
+    fade_ = {};
+    updateActive();
+}
+
+std::optional<Internal::TransitionKind> TransitionRunner::enabledKind(const Slot slot) const
+{
+    const auto* transition = transitions_[slotIndex(slot)].data();
+    if (!transition || !transition->enabled()) {
+        return std::nullopt;
+    }
+    return transition->kind();
+}
+
+std::optional<Internal::TransitionStep> TransitionRunner::step(const Slot slot) const
+{
+    const auto index = slotIndex(slot);
+    const auto* transition = transitions_[index].data();
+    if (!used_[index] || !transition) {
+        return std::nullopt;
+    }
+    auto result = Internal::TransitionStep{transition->kind(), transition->progress(runs_[index]), transition->stagger(), transition->easing()};
+    if (const auto* enterExit = qobject_cast<const EnterExitTransition*>(transition)) {
+        result.fade = enterExit->fade();
+    }
+    if (const auto* grow = qobject_cast<const GrowTransition*>(transition)) {
+        result.baseline = grow->baseline();
+    }
+    return result;
+}
+
+bool TransitionRunner::finished() const
+{
+    return std::all_of(kSlots.cbegin(), kSlots.cend(), [this](const Slot slot) {
+        const auto index = slotIndex(slot);
+        return !used_[index] || !transitions_[index] || transitions_[index]->progress(runs_[index]) >= 1.0;
+    });
+}
+
+void TransitionRunner::endRuns()
+{
+    for (auto& run : runs_) {
+        run.end();
+    }
+    used_ = {};
 }
 
 void TransitionRunner::interrupt()
 {
-    if (!run_.pending()) {
+    if (!pending_) {
         return;
     }
     emit interrupted();
-    run_.cancel();
+    cancel();
 }
 
-void TransitionRunner::onTransitionDestroyed()
+void TransitionRunner::onTransitionDestroyed(const Slot slot)
 {
-    interrupt();
-    emit transitionDestroyed();
+    if (used_[slotIndex(slot)]) {
+        interrupt();
+    }
+    emit transitionDestroyed(slot);
 }
 
 void TransitionRunner::onRunningChanged()
 {
     // DataTransition::cancel() ends every run but leaves its data pending for the host.
-    if (!run_.active()) {
-        interrupt();
+    for (const auto slot : kSlots) {
+        const auto index = slotIndex(slot);
+        if (used_[index] && !runs_[index].active()) {
+            interrupt();
+            return;
+        }
     }
+}
+
+void TransitionRunner::updateActive()
+{
+    const auto active = pending_ && std::any_of(runs_.cbegin(), runs_.cend(), [](const DataTransition::Run& run) { return run.active(); });
+    if (active_ == active) {
+        return;
+    }
+    active_ = active;
+    emit activeChanged();
 }
 
 void TransitionRunner::connectWindow(QQuickWindow* window)
@@ -144,7 +280,7 @@ void TransitionRunner::connectWindow(QQuickWindow* window)
 
 void TransitionRunner::onAfterAnimating()
 {
-    if (!transition_ || !run_.active()) {
+    if (!active_) {
         return;
     }
     emit frameDue();
@@ -155,7 +291,7 @@ void TransitionRunner::onAfterAnimating()
 
 void TransitionRunner::requestFrame()
 {
-    if (run_.active() && window_) {
+    if (active_ && window_) {
         window_->update();
     }
 }

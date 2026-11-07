@@ -92,17 +92,6 @@ DataPointStore::Layout barLayout(const Qt::Orientation orientation, const bool r
     return {barColumns(orientation, ranged), DataPointStore::RangeRule::EachCoordinate, 0};
 }
 
-// Appends bars \a begin to \a end of \a source to \a bars with \a restValue as their value: the
-// state a bar grows from, or shrinks to.
-void appendRestingBars(std::vector<double>& bars, const std::vector<double>& source, const int begin, const int end, const int stride, const double restValue)
-{
-    for (auto index = begin; index < end; ++index) {
-        const auto bar = source.cbegin() + static_cast<std::ptrdiff_t>(index) * stride;
-        bars.insert(bars.end(), bar, bar + stride);
-        bars.back() = restValue;
-    }
-}
-
 }
 
 BarSeries::BarSeries(QQuickItem* parent)
@@ -120,7 +109,8 @@ BarSeries::BarSeries(QQuickItem* parent)
     connect(border_, &Border::colorChanged, this, &QQuickItem::update);
     connect(transition_.get(), &TransitionRunner::frameDue, this, &BarSeries::advanceTransition);
     connect(transition_.get(), &TransitionRunner::interrupted, this, &BarSeries::endTransition);
-    connect(transition_.get(), &TransitionRunner::transitionDestroyed, this, &BarSeries::transitionChanged);
+    connect(transition_.get(), &TransitionRunner::transitionDestroyed, this, &BarSeries::onTransitionDestroyed);
+    connect(transition_.get(), &TransitionRunner::activeChanged, this, [this] { setAnimating(transition_->active()); });
     connect(this, &BarSeries::colorChanged, this, &PlotSeries::legendEntryChanged);
     // A colormap replaces the per-category legend entries.
     connect(this, &ColormappedSeries::colormapChanged, this, &PlotSeries::legendEntryChanged);
@@ -275,15 +265,39 @@ void BarSeries::setHoverColor(const QColor& color)
     update();
 }
 
-DataTransition* BarSeries::transition() const
+EnterExitTransition* BarSeries::enterTransition() const
 {
-    return transition_->transition();
+    return qobject_cast<EnterExitTransition*>(transition_->transition(TransitionRunner::Slot::Enter));
 }
 
-void BarSeries::setTransition(DataTransition* transition)
+void BarSeries::setEnterTransition(EnterExitTransition* transition)
 {
-    if (transition_->setTransition(transition)) {
-        emit transitionChanged();
+    if (transition_->setTransition(TransitionRunner::Slot::Enter, transition)) {
+        emit enterTransitionChanged();
+    }
+}
+
+DataTransition* BarSeries::updateTransition() const
+{
+    return transition_->transition(TransitionRunner::Slot::Update);
+}
+
+void BarSeries::setUpdateTransition(DataTransition* transition)
+{
+    if (transition_->setTransition(TransitionRunner::Slot::Update, transition)) {
+        emit updateTransitionChanged();
+    }
+}
+
+EnterExitTransition* BarSeries::exitTransition() const
+{
+    return qobject_cast<EnterExitTransition*>(transition_->transition(TransitionRunner::Slot::Exit));
+}
+
+void BarSeries::setExitTransition(EnterExitTransition* transition)
+{
+    if (transition_->setTransition(TransitionRunner::Slot::Exit, transition)) {
+        emit exitTransitionChanged();
     }
 }
 
@@ -382,7 +396,8 @@ void BarSeries::postRangedData(std::vector<double>&& data, const int barCount)
 
 void BarSeries::clearData()
 {
-    applyBars({}, false, {}, 0, false);
+    // Every bar is removed, so the exit transition animates them.
+    applyBars({}, valuesPerBar() == 3, {}, 0, transition_->enabled());
 }
 
 std::optional<LegendEntry> BarSeries::legendEntry() const
@@ -413,7 +428,7 @@ void BarSeries::setDataPointCategories(const QVariantList& categories)
         values[static_cast<size_t>(i)] = categories_->table().dataPointCategory(categories[i], "BarSeries", i).value_or(-1);
     }
     dataPoints().setCategories(std::move(values));
-    if (animating()) {
+    if (showsTransitionFrame()) {
         transitionCategories_ = transitionCategories(transitionCategories_, drawnBarCount());
     }
     vertexCache_->invalidate();
@@ -727,7 +742,7 @@ std::optional<ColormappedSeries::ValueSpan> BarSeries::scanValueRange() const
     return ValueSpan{span.min, span.max};
 }
 
-bool BarSeries::animating() const
+bool BarSeries::showsTransitionFrame() const
 {
     return dataPoints().hasDrawn();
 }
@@ -744,7 +759,7 @@ std::vector<double> BarSeries::storedBars() const
 
 BarSeries::Bars BarSeries::drawnBars() const
 {
-    if (!animating()) {
+    if (!showsTransitionFrame()) {
         return Bars{storedBars(), dataPoints().categories(), count(), valuesPerBar()};
     }
     const auto drawn = dataPoints().drawnView();
@@ -759,7 +774,7 @@ int BarSeries::drawnBarCount() const
 
 const std::vector<int>& BarSeries::drawnCategories() const
 {
-    return animating() ? transitionCategories_ : dataPoints().categories();
+    return showsTransitionFrame() ? transitionCategories_ : dataPoints().categories();
 }
 
 std::vector<int> BarSeries::transitionCategories(const std::vector<int>& previous, const int transitionBarCount) const
@@ -779,36 +794,53 @@ std::vector<int> BarSeries::transitionCategories(const std::vector<int>& previou
 void BarSeries::startTransition(Bars&& drawn)
 {
     const auto stride = valuesPerBar();
-    // Bars in the other layout have no counterpart, so all the new ones grow in.
+    // Bars in the other layout have no counterpart, so all the new ones are added.
     if (drawn.stride != stride) {
         drawn = Bars{};
     }
-    const auto transitionBarCount = std::max(drawn.count, count());
-    if (transitionBarCount == 0) {
+    // An infinite baseline draws bars from the edge of the value axis, where they grow from.
+    const auto* valueAxis = isHorizontal() ? xAxis() : yAxis();
+    const auto growBaseline = std::isfinite(baselineValue_) ? baselineValue_ : (valueAxis ? valueAxis->viewportMin() : 0.0);
+    const auto layout = TransitionRunner::Layout{stride, {stride - 1}, growBaseline, false};
+    if (!transition_->start(drawn.values, drawn.count, storedBars(), count(), layout)) {
         endTransition();
         return;
     }
-    const auto stored = storedBars();
-    auto target = stored;
-    appendRestingBars(target, drawn.values, count(), transitionBarCount, stride, baselineValue_);
-    appendRestingBars(drawn.values, stored, drawn.count, transitionBarCount, stride, baselineValue_);
-
-    transitionCategories_ = transitionCategories(drawn.categories, transitionBarCount);
+    transitionCategories_ = transitionCategories(drawn.categories, transition_->frameCapacity());
     vertexCache_->invalidate();
-    transition_->start(drawn.values, transitionBarCount, std::move(target), transitionBarCount, stride);
-    frameBuffer_ = dataPoints().setDrawn(std::move(drawn.values), transitionBarCount);
+    showTransitionFrame();
+}
+
+void BarSeries::onTransitionDestroyed(const TransitionRunner::Slot slot)
+{
+    switch (slot) {
+    case TransitionRunner::Slot::Enter:
+        emit enterTransitionChanged();
+        break;
+    case TransitionRunner::Slot::Update:
+        emit updateTransitionChanged();
+        break;
+    case TransitionRunner::Slot::Exit:
+        emit exitTransitionChanged();
+        break;
+    }
 }
 
 void BarSeries::advanceTransition()
 {
-    const auto transitionBarCount = drawnBarCount();
+    showTransitionFrame();
+}
+
+void BarSeries::showTransitionFrame()
+{
     auto shownCount = 0;
     transition_->advance(frameBuffer_, shownCount);
     if (!transition_->pending()) {
         endTransition();
         return;
     }
-    // A transition may show fewer bars, as DrawTransition does; the others are not drawn.
+    // Bars the frame does not show, before they enter or after they exit, are not drawn.
+    const auto transitionBarCount = transition_->frameCapacity();
     frameBuffer_.resize(static_cast<size_t>(transitionBarCount) * static_cast<size_t>(valuesPerBar()), kNaN);
     frameBuffer_ = dataPoints().setDrawn(std::move(frameBuffer_), transitionBarCount);
     update();
@@ -818,7 +850,7 @@ void BarSeries::endTransition()
 {
     // Cancelled even without drawn bars: new bars of another layout drop them first.
     transition_->cancel();
-    if (!animating()) {
+    if (!showsTransitionFrame()) {
         return;
     }
     dataPoints().clearDrawn();

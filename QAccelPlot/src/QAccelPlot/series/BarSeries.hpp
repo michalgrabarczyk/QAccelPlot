@@ -11,7 +11,7 @@
 #include "QAccelPlot/series/Category.hpp"
 #include "QAccelPlot/series/ColormappedSeries.hpp"
 #include "QAccelPlot/series/SpatialGrid.hpp"
-#include "QAccelPlot/transitions/DataTransition.hpp"
+#include "QAccelPlot/transitions/TransitionRunner.hpp"
 
 #if __has_include(<QtQmlIntegration/qqmlintegration.h>)
 #include <QtQmlIntegration/qqmlintegration.h>
@@ -33,7 +33,6 @@ class CategoryList;
 class RectVertexCache;
 }
 class BarMaterial;
-class TransitionRunner;
 
 /// \brief A hardware-accelerated QML item that renders a bar chart.
 ///
@@ -84,18 +83,18 @@ class TransitionRunner;
 /// not scan them. Without a colormap, \c dataValueMin and \c dataValueMax are 0 and 1.
 ///
 /// \par Transitions
-/// Assign a \c MorphTransition or \c DrawTransition to \c transition to animate data updates.
-/// With \c MorphTransition, bars move to their new position and value, new bars grow from
-/// \c baselineValue, and removed bars shrink to it. Bars that change between ranged and
-/// (position, value) all grow in. \c count, \c barAt(), the data ranges, hover, and inspection use
+/// \c enterTransition animates added bars, \c updateTransition kept bars, and \c exitTransition
+/// removed bars, matched by index. A \c GrowTransition grows bars from \c baselineValue, or from
+/// the edge of the value axis when the baseline is infinite. Bars that change between ranged and
+/// (position, value) all enter. \c count, \c barAt(), the data ranges, hover, and inspection use
 /// the new data from the start of the animation. While a transition is enabled, the \c setDataF()
-/// overloads store doubles. \c clearData(), and replacing, clearing, or cancelling \c transition,
-/// skip to the new data.
+/// overloads store doubles. Replacing, clearing, or cancelling a transition skips to the new data;
+/// \c clearData() runs the exit transition.
 ///
 /// \par Limits
 /// Up to 16,777,216 (2^24) bars are drawn correctly, as the shader indexes bars in single precision.
 ///
-/// \sa RectangleSeries, Axis, Colormap, ColorBar, MorphTransition, DrawTransition
+/// \sa RectangleSeries, Axis, Colormap, ColorBar, MorphTransition, DrawTransition, GrowTransition
 class BarSeries : public ColormappedSeries {
     Q_OBJECT
     QML_NAMED_ELEMENT(BarSeries)
@@ -127,8 +126,12 @@ class BarSeries : public ColormappedSeries {
     Q_PROPERTY(Border* border READ border CONSTANT)
     /// \brief Fill color of the bar under the cursor. Default: an invalid color, no highlight.
     Q_PROPERTY(QColor hoverColor READ hoverColor WRITE setHoverColor NOTIFY hoverColorChanged)
-    /// \brief Optional data transition animation applied when new data arrives.
-    Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
+    /// \brief Transition of the bars a data change adds, or \c nullptr to show them at once.
+    Q_PROPERTY(EnterExitTransition* enterTransition READ enterTransition WRITE setEnterTransition NOTIFY enterTransitionChanged)
+    /// \brief Transition of the bars a data change keeps, or \c nullptr to move them at once.
+    Q_PROPERTY(DataTransition* updateTransition READ updateTransition WRITE setUpdateTransition NOTIFY updateTransitionChanged)
+    /// \brief Transition of the bars a data change removes, or \c nullptr to remove them at once.
+    Q_PROPERTY(EnterExitTransition* exitTransition READ exitTransition WRITE setExitTransition NOTIFY exitTransitionChanged)
     /// \brief Read-only: index of the bar under the cursor, or -1 when none.
     Q_PROPERTY(int hoveredIndex READ hoveredIndex NOTIFY hoveredIndexChanged)
 
@@ -193,10 +196,18 @@ public:
     /// \brief Sets the fill color of the hovered bar to \a color. An invalid color disables the highlight.
     void setHoverColor(const QColor& color);
 
-    /// \brief Returns the active data transition, or \c nullptr if none.
-    DataTransition* transition() const;
-    /// \brief Sets the data transition to \a transition.
-    void setTransition(DataTransition* transition);
+    /// \brief Returns the transition of added bars, or \c nullptr.
+    EnterExitTransition* enterTransition() const;
+    /// \brief Sets the transition of added bars to \a transition.
+    void setEnterTransition(EnterExitTransition* transition);
+    /// \brief Returns the transition of kept bars, or \c nullptr.
+    DataTransition* updateTransition() const;
+    /// \brief Sets the transition of kept bars to \a transition.
+    void setUpdateTransition(DataTransition* transition);
+    /// \brief Returns the transition of removed bars, or \c nullptr.
+    EnterExitTransition* exitTransition() const;
+    /// \brief Sets the transition of removed bars to \a transition.
+    void setExitTransition(EnterExitTransition* transition);
 
     /// \brief Returns the index of the hovered bar, or -1 if none.
     int hoveredIndex() const;
@@ -280,8 +291,12 @@ signals:
     void colorSourceChanged();
     /// \brief Emitted when the hoverColor property changes.
     void hoverColorChanged();
-    /// \brief Emitted when the transition property changes.
-    void transitionChanged();
+    /// \brief Emitted when the enterTransition property changes.
+    void enterTransitionChanged();
+    /// \brief Emitted when the updateTransition property changes.
+    void updateTransitionChanged();
+    /// \brief Emitted when the exitTransition property changes.
+    void exitTransitionChanged();
     /// \brief Emitted when the hovered bar index changes.
     void hoveredIndexChanged();
 
@@ -332,7 +347,7 @@ private:
     void applyFloatBars(std::vector<float>&& data, std::vector<int>&& categories, int barCount);
     void setDataFFromArray(const float* data, int barCount);
     // True while transition bars are drawn instead of the data.
-    bool animating() const;
+    bool showsTransitionFrame() const;
     // Returns the stored bars as doubles.
     std::vector<double> storedBars() const;
     // Returns the bars drawn now: the transition bars, or the data.
@@ -340,11 +355,14 @@ private:
     int drawnBarCount() const;
     const std::vector<int>& drawnCategories() const;
     // Returns one category per transition bar: those of the data, then those of \a previous for the bars
-    // that shrink away. Empty when no bar has a category.
+    // that exit. Empty when no bar has a category.
     std::vector<int> transitionCategories(const std::vector<int>& previous, int transitionBarCount) const;
-    // Animates from \a drawn to the data. A bar without a counterpart grows from, or shrinks to, the baseline.
+    // Animates from \a drawn to the data.
     void startTransition(Bars&& drawn);
+    void onTransitionDestroyed(TransitionRunner::Slot slot);
     void advanceTransition();
+    // Draws the next frame of the running transition, or the data when it ends.
+    void showTransitionFrame();
     // Drops the transition bars, so the data is drawn.
     void endTransition();
     // Invalidates what depends on the bar geometry after a barWidth, barOffset, baselineValue, or orientation change.

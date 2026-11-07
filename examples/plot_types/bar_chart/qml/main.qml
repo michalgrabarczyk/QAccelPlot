@@ -200,7 +200,7 @@ Window {
                     required property string modelData
 
                     name: modelData
-                    transition: window.barTransition
+                    updateTransition: window.barTransition
                     xAxis: revenuePlot.xAxis
                     yAxis: revenuePlot.yAxis
                     orientation: window.horizontal ? Qt.Horizontal : Qt.Vertical
@@ -262,7 +262,7 @@ Window {
                     QAccelPlot.Category { value: 0; name: "Meets target"; color: colorPalette.statusGood },
                     QAccelPlot.Category { value: 1; name: "Below target"; color: colorPalette.statusError }
                 ]
-                transition: window.barTransition
+                updateTransition: window.barTransition
                 hoverColor: colorPalette.text
                 border.width: outlineCheck.checked ? 1 : 0
                 border.color: colorPalette.plotArea

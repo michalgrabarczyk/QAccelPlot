@@ -452,10 +452,10 @@ void LineCurveGapsTest::connectModeBridgesFloatDataWhenATransitionStarts()
 
     // A transition animates doubles, so starting one converts the float data it starts from.
     auto transition = MorphTransition{};
-    fixture.curve.setTransition(&transition);
-    fixture.curve.setData(std::vector<double>{0.0, 1.0, 1.0, 1.0, 2.0, 1.0, 3.0, 1.0, 4.0, 1.0}, 5);
+    fixture.curve.setUpdateTransition(&transition);
+    fixture.curve.setData(std::vector<double>{0.0, 1.0, 1.0, 1.0, 2.0, kNaN, 3.0, 1.0, 4.0, 1.0}, 5);
 
-    // Without a frame the curve still shows the data it starts from, with the gap bridged.
+    // Without a frame the curve still shows the data it starts from, with the gap, kept in the target, bridged.
     QVERIFY(fixture.hits({200.0, 50.0}));
     QVERIFY(!fixture.hits({200.0, 90.0}));
 }

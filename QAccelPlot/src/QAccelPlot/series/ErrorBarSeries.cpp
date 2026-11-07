@@ -150,7 +150,8 @@ ErrorBarSeries::ErrorBarSeries(QQuickItem* parent)
     setAcceptedMouseButtons(Qt::NoButton);
     connect(transition_.get(), &TransitionRunner::frameDue, this, &ErrorBarSeries::advanceTransition);
     connect(transition_.get(), &TransitionRunner::interrupted, this, &ErrorBarSeries::endTransition);
-    connect(transition_.get(), &TransitionRunner::transitionDestroyed, this, &ErrorBarSeries::transitionChanged);
+    connect(transition_.get(), &TransitionRunner::transitionDestroyed, this, &ErrorBarSeries::onTransitionDestroyed);
+    connect(transition_.get(), &TransitionRunner::activeChanged, this, [this] { setAnimating(transition_->active()); });
 }
 
 ErrorBarSeries::~ErrorBarSeries()
@@ -269,15 +270,39 @@ void ErrorBarSeries::setHoverRadius(const qreal radius)
     update();
 }
 
-DataTransition* ErrorBarSeries::transition() const
+EnterExitTransition* ErrorBarSeries::enterTransition() const
 {
-    return transition_->transition();
+    return qobject_cast<EnterExitTransition*>(transition_->transition(TransitionRunner::Slot::Enter));
 }
 
-void ErrorBarSeries::setTransition(DataTransition* transition)
+void ErrorBarSeries::setEnterTransition(EnterExitTransition* transition)
 {
-    if (transition_->setTransition(transition)) {
-        emit transitionChanged();
+    if (transition_->setTransition(TransitionRunner::Slot::Enter, transition)) {
+        emit enterTransitionChanged();
+    }
+}
+
+DataTransition* ErrorBarSeries::updateTransition() const
+{
+    return transition_->transition(TransitionRunner::Slot::Update);
+}
+
+void ErrorBarSeries::setUpdateTransition(DataTransition* transition)
+{
+    if (transition_->setTransition(TransitionRunner::Slot::Update, transition)) {
+        emit updateTransitionChanged();
+    }
+}
+
+EnterExitTransition* ErrorBarSeries::exitTransition() const
+{
+    return qobject_cast<EnterExitTransition*>(transition_->transition(TransitionRunner::Slot::Exit));
+}
+
+void ErrorBarSeries::setExitTransition(EnterExitTransition* transition)
+{
+    if (transition_->setTransition(TransitionRunner::Slot::Exit, transition)) {
+        emit exitTransitionChanged();
     }
 }
 
@@ -337,6 +362,11 @@ void ErrorBarSeries::setErrorData(
 
 void ErrorBarSeries::clearData()
 {
+    if (transition_->enabled()) {
+        // Every error bar is removed, so the exit transition animates them.
+        applyDoubleData({}, 0);
+        return;
+    }
     discardTransition();
     PlotSeries::clearData();
 }
@@ -560,23 +590,36 @@ void ErrorBarSeries::applyDoubleData(std::vector<double>&& data, const int dataP
 
 void ErrorBarSeries::startTransition(const std::vector<double>& drawn, const int drawnCount)
 {
-    const auto errorBarCount = count();
-    if (errorBarCount == 0) {
+    // The value and both bounds grow; the position stays.
+    const auto valueColumns = orientation_ == Qt::Vertical ? std::vector<int>{1, 2, 3} : std::vector<int>{0, 2, 3};
+    if (!transition_->start(drawn, drawnCount, doubleData(dataPoints().view()), count(), TransitionRunner::Layout{kStride, valueColumns, 0.0, false})) {
         discardTransition();
         return;
     }
-    // New error bars appear at once, so only those drawn now start elsewhere.
-    auto target = doubleData(dataPoints().view());
-    auto start = target;
-    const auto sharedCount = static_cast<std::ptrdiff_t>(std::min(drawnCount, errorBarCount)) * kStride;
-    std::copy_n(drawn.cbegin(), sharedCount, start.begin());
+    showTransitionFrame();
+}
 
-    transition_->start(start, errorBarCount, std::move(target), errorBarCount, kStride);
-    frameBuffer_ = dataPoints().setDrawn(std::move(start), errorBarCount);
-    spatialGridValid_ = false;
+void ErrorBarSeries::onTransitionDestroyed(const TransitionRunner::Slot slot)
+{
+    switch (slot) {
+    case TransitionRunner::Slot::Enter:
+        emit enterTransitionChanged();
+        break;
+    case TransitionRunner::Slot::Update:
+        emit updateTransitionChanged();
+        break;
+    case TransitionRunner::Slot::Exit:
+        emit exitTransitionChanged();
+        break;
+    }
 }
 
 void ErrorBarSeries::advanceTransition()
+{
+    showTransitionFrame();
+}
+
+void ErrorBarSeries::showTransitionFrame()
 {
     auto shownCount = 0;
     transition_->advance(frameBuffer_, shownCount);
@@ -584,9 +627,10 @@ void ErrorBarSeries::advanceTransition()
         endTransition();
         return;
     }
-    // A transition may show fewer error bars, as DrawTransition does; the others are not drawn.
-    frameBuffer_.resize(static_cast<std::size_t>(count()) * kStride, kNaN);
-    frameBuffer_ = dataPoints().setDrawn(std::move(frameBuffer_), count());
+    // Error bars the frame does not show, before they enter or after they exit, are not drawn.
+    const auto errorBarCount = transition_->frameCapacity();
+    frameBuffer_.resize(static_cast<std::size_t>(errorBarCount) * kStride, kNaN);
+    frameBuffer_ = dataPoints().setDrawn(std::move(frameBuffer_), errorBarCount);
     spatialGridValid_ = false;
     update();
 }

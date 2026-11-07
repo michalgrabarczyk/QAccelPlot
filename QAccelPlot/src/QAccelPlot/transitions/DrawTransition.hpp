@@ -7,17 +7,20 @@
 //
 #pragma once
 
-#include "QAccelPlot/transitions/DataTransition.hpp"
+#include "QAccelPlot/transitions/EnterExitTransition.hpp"
 
 namespace QAccelPlot {
 
-/// \brief An animation transition that reveals the target data point by point from start to end.
+/// \brief A transition that reveals items one after another, in index order.
 ///
-/// Assign to \c LineCurve::transition to draw the new curve in, or to \c BarSeries::transition or
-/// \c PointCloud::transition to show the new bars or points one after another.
+/// As an \c enterTransition it draws the added items in; as an \c exitTransition it hides the
+/// removed items from the last to the first. A line draws its last revealed segment partway.
 ///
-/// \sa MorphTransition, DataTransition
-class DrawTransition : public DataTransition {
+/// \c stagger defaults to 1: each item appears at once, and \c easing shapes how the reveal moves
+/// along the items. With a lower \c stagger and \c fade, each item fades in over its share of the duration.
+///
+/// \sa GrowTransition, MorphTransition, EnterExitTransition
+class DrawTransition : public EnterExitTransition {
     Q_OBJECT
     QML_NAMED_ELEMENT(DrawTransition)
 
@@ -25,9 +28,9 @@ public:
     /// \brief Constructs a DrawTransition with the given \a parent.
     explicit DrawTransition(QObject* parent = nullptr);
 
-protected:
-    /// \brief Writes the first points of \a to into \a out: their share is \a easedProgress, and at least one is kept.
-    void interpolate(double easedProgress, const Dataset& from, const Dataset& to, Dataset& out) override;
+    /// \cond INTERNAL
+    Internal::TransitionKind kind() const override;
+    /// \endcond
 };
 
 } // namespace QAccelPlot

@@ -154,7 +154,7 @@ Item {
                 hoverColor: root.colorPalette.text
                 lineWidth: lineWidthSlider.value
                 capLength: capLengthSlider.value
-                transition: root.sampleTransition
+                updateTransition: root.sampleTransition
             }
 
             QAccelPlot.ErrorBarSeries {
@@ -165,7 +165,7 @@ Item {
                 hoverColor: root.colorPalette.text
                 lineWidth: lineWidthSlider.value
                 capLength: capLengthSlider.value
-                transition: root.sampleTransition
+                updateTransition: root.sampleTransition
             }
 
             QAccelPlot.PointCloud {
@@ -175,7 +175,7 @@ Item {
                 yAxis: plot.yAxis
                 color: root.colorPalette.seriesPrimary
                 marker.size: 4
-                transition: root.sampleTransition
+                updateTransition: root.sampleTransition
             }
 
             HoverHandler {

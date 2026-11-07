@@ -11,16 +11,13 @@
 
 namespace QAccelPlot {
 
-/// \brief An animation transition that smoothly interpolates point positions between two datasets.
+/// \brief An update transition that interpolates each kept item from its old values to its new ones.
 ///
-/// Each point is linearly blended from its old position to its new position.
-/// When the point counts differ, the extra points start from, or end on, the last point of the
-/// shorter dataset. \c BarSeries grows and shrinks such bars at its baseline instead, and
-/// \c PointCloud shows or removes such points at once.
-/// Non-finite coordinates are never interpolated: an invalid target coordinate is applied immediately,
-/// and a valid target coordinate replaces an invalid source coordinate without animation.
+/// Assign it to a series' \c updateTransition. Items are matched by index. Non-finite values are
+/// never interpolated: an invalid target value is applied immediately, and a valid target value
+/// replaces an invalid source value without animation.
 ///
-/// \sa DrawTransition, DataTransition
+/// \sa DrawTransition, GrowTransition, DataTransition
 class MorphTransition : public DataTransition {
     Q_OBJECT
     QML_NAMED_ELEMENT(MorphTransition)
@@ -29,12 +26,12 @@ public:
     /// \brief Constructs a MorphTransition with the given \a parent.
     explicit MorphTransition(QObject* parent = nullptr);
 
-    /// \brief Returns the coordinate between \a from and \a to at \a easedProgress, honoring the invalid-data-point contract.
+    /// \brief Returns the value between \a from and \a to at \a easedProgress, honoring the invalid-data-point contract.
     static double interpolateCoordinate(double from, double to, double easedProgress);
 
-protected:
-    /// \brief Interpolates every value of every point between \a from and \a to at \a easedProgress.
-    void interpolate(double easedProgress, const Dataset& from, const Dataset& to, Dataset& out) override;
+    /// \cond INTERNAL
+    Internal::TransitionKind kind() const override;
+    /// \endcond
 };
 
 } // namespace QAccelPlot

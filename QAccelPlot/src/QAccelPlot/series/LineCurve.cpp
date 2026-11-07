@@ -191,6 +191,7 @@ LineCurve::LineCurve(QQuickItem* parent)
     connect(transition_.get(), &TransitionRunner::frameDue, this, &LineCurve::advanceTransition);
     connect(transition_.get(), &TransitionRunner::interrupted, this, &LineCurve::finishTransition);
     connect(transition_.get(), &TransitionRunner::transitionDestroyed, this, &LineCurve::onTransitionDestroyed);
+    connect(transition_.get(), &TransitionRunner::activeChanged, this, [this] { setAnimating(transition_->active()); });
     for (const auto signal : {&LineCurve::colorChanged, &LineCurve::lineWidthChanged, &LineCurve::lineStyleChanged, &LineCurve::antialiasingFeatherChanged}) {
         connect(this, signal, this, &PlotSeries::legendEntryChanged);
     }
@@ -254,15 +255,39 @@ void LineCurve::setHoverRadius(const qreal radius)
     update();
 }
 
-DataTransition* LineCurve::transition() const
+EnterExitTransition* LineCurve::enterTransition() const
 {
-    return transition_->transition();
+    return qobject_cast<EnterExitTransition*>(transition_->transition(TransitionRunner::Slot::Enter));
 }
 
-void LineCurve::setTransition(DataTransition* transition)
+void LineCurve::setEnterTransition(EnterExitTransition* transition)
 {
-    if (transition_->setTransition(transition)) {
-        emit transitionChanged();
+    if (transition_->setTransition(TransitionRunner::Slot::Enter, transition)) {
+        emit enterTransitionChanged();
+    }
+}
+
+DataTransition* LineCurve::updateTransition() const
+{
+    return transition_->transition(TransitionRunner::Slot::Update);
+}
+
+void LineCurve::setUpdateTransition(DataTransition* transition)
+{
+    if (transition_->setTransition(TransitionRunner::Slot::Update, transition)) {
+        emit updateTransitionChanged();
+    }
+}
+
+EnterExitTransition* LineCurve::exitTransition() const
+{
+    return qobject_cast<EnterExitTransition*>(transition_->transition(TransitionRunner::Slot::Exit));
+}
+
+void LineCurve::setExitTransition(EnterExitTransition* transition)
+{
+    if (transition_->setTransition(TransitionRunner::Slot::Exit, transition)) {
+        emit exitTransitionChanged();
     }
 }
 
@@ -370,6 +395,11 @@ void LineCurve::setData(const std::vector<double>& xs, const std::vector<double>
 
 void LineCurve::clearData()
 {
+    if (transition_->enabled()) {
+        // Every point is removed, so the exit transition animates them.
+        applyNewData(std::vector<double>{}, 0);
+        return;
+    }
     const auto previousCount = dataPoints().count();
     cancelRunningTransition();
     dataPoints().clear();
@@ -646,9 +676,19 @@ void LineCurve::onDataPointsChanged(const DataChange change, [[maybe_unused]] co
     }
 }
 
-void LineCurve::onTransitionDestroyed()
+void LineCurve::onTransitionDestroyed(const TransitionRunner::Slot slot)
 {
-    emit transitionChanged();
+    switch (slot) {
+    case TransitionRunner::Slot::Enter:
+        emit enterTransitionChanged();
+        break;
+    case TransitionRunner::Slot::Update:
+        emit updateTransitionChanged();
+        break;
+    case TransitionRunner::Slot::Exit:
+        emit exitTransitionChanged();
+        break;
+    }
     update();
 }
 
@@ -935,8 +975,27 @@ void LineCurve::finishTransition()
 void LineCurve::startTransition(std::vector<double>&& from, const int fromCount)
 {
     const auto target = dataPoints().view();
-    transition_->start(from, fromCount, std::vector<double>(target.precise, target.precise + static_cast<std::size_t>(target.count) * 2), target.count);
-    frameBuffer_ = dataPoints().setDrawn(std::move(from), fromCount);
+    auto targetPoints = std::vector<double>(target.precise, target.precise + static_cast<std::size_t>(target.count) * 2);
+    if (!transition_->start(from, fromCount, std::move(targetPoints), target.count, TransitionRunner::Layout{2, {1}, 0.0, true})) {
+        dataPoints().clearDrawn();
+        frameBuffer_ = std::vector<double>{};
+        return;
+    }
+    showTransitionFrame();
+}
+
+void LineCurve::showTransitionFrame()
+{
+    auto frameCount = 0;
+    transition_->advance(frameBuffer_, frameCount);
+    if (transition_->pending()) {
+        frameBuffer_ = dataPoints().setDrawn(std::move(frameBuffer_), frameCount);
+        return;
+    }
+    // The run ended at its target, which the stored points already are.
+    dataPoints().clearDrawn();
+    frameBuffer_ = std::vector<double>{};
+    invalidateInspection();
 }
 
 void LineCurve::connectAnimationTicks(QQuickWindow* window)
@@ -964,16 +1023,7 @@ void LineCurve::refreshEffects()
 
 void LineCurve::advanceTransition()
 {
-    auto frameCount = 0;
-    transition_->advance(frameBuffer_, frameCount);
-    if (transition_->pending()) {
-        frameBuffer_ = dataPoints().setDrawn(std::move(frameBuffer_), frameCount);
-    } else {
-        // The run ended at its target, which the stored points already are.
-        dataPoints().clearDrawn();
-        frameBuffer_ = std::vector<double>{};
-        invalidateInspection();
-    }
+    showTransitionFrame();
     invalidateData();
     update();
 }

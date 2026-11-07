@@ -261,6 +261,11 @@ bool PlotSeries::hovered() const
     return hovered_;
 }
 
+bool PlotSeries::animating() const
+{
+    return animating_;
+}
+
 std::optional<LegendEntry> PlotSeries::legendEntry() const
 {
     return std::nullopt;
@@ -663,6 +668,15 @@ void PlotSeries::setHovered(const bool hovered)
     }
     hovered_ = hovered;
     emit hoveredChanged();
+}
+
+void PlotSeries::setAnimating(const bool animating)
+{
+    if (animating_ == animating) {
+        return;
+    }
+    animating_ = animating;
+    emit animatingChanged();
 }
 
 bool PlotSeries::event(QEvent* event)
