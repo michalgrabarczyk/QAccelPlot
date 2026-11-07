@@ -72,7 +72,7 @@ QString requestedGraphicsApiName()
     if (requested.isEmpty() && qEnvironmentVariable("QT_QUICK_BACKEND").compare(QStringLiteral("software"), Qt::CaseInsensitive) == 0) {
         requested = QStringLiteral("software");
     }
-    return requested.isEmpty() ? QStringLiteral("opengl") : requested;
+    return requested.isEmpty() ? graphicsApiName(QQuickWindow::graphicsApi()) : requested;
 }
 
 struct OpenGlesVersion {
@@ -487,10 +487,6 @@ private:
 
 void configureGraphicsApi()
 {
-    if (qEnvironmentVariableIsEmpty("QSG_RHI_BACKEND") && qEnvironmentVariableIsEmpty("QT_QUICK_BACKEND")) {
-        QQuickWindow::setGraphicsApi(QSGRendererInterface::OpenGL);
-    }
-
     // Must run before QGuiApplication: Qt Quick derives its OpenGL context from the default format.
     if (const auto version = requestedOpenGlesVersion()) {
         auto format = QSurfaceFormat::defaultFormat();
