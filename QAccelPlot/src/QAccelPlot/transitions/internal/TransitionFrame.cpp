@@ -12,6 +12,7 @@
 #include <algorithm>
 #include <cmath>
 #include <cstddef>
+#include <optional>
 
 namespace QAccelPlot::Internal {
 
@@ -41,19 +42,68 @@ int staggerOrder(const Group& group, const int index)
     return group.exit ? group.count - 1 - index : index;
 }
 
-/// \brief Returns the eased progress of item \a index of \a group.
-double easedItemProgress(const TransitionStep& step, const Group& group, const int index)
-{
-    return step.easing.valueForProgress(itemProgress(step.progress, staggerOrder(group, index), group.count, step.stagger));
-}
+/// \brief The easing curve of a staggered group, sampled once per frame instead of evaluated once per item.
+class EasingTable {
+public:
+    explicit EasingTable(const QEasingCurve& easing)
+    {
+        for (auto index = 0; index < kSamples; ++index) {
+            samples_[static_cast<std::size_t>(index)] = easing.valueForProgress(static_cast<double>(index) / (kSamples - 1));
+        }
+    }
+
+    /// \brief Returns the eased value at \a progress in [0, 1], interpolated between the samples.
+    double operator()(const double progress) const
+    {
+        const auto position = progress * (kSamples - 1);
+        const auto lower = std::min(static_cast<int>(position), kSamples - 2);
+        const auto a = samples_[static_cast<std::size_t>(lower)];
+        const auto b = samples_[static_cast<std::size_t>(lower) + 1];
+        return a + (position - lower) * (b - a);
+    }
+
+private:
+    static constexpr auto kSamples = 1025;
+    std::array<double, kSamples> samples_{};
+};
+
+/// \brief The progress of the items of one group before easing, see \c itemProgress(), with the per-group arithmetic done once.
+class StaggerTiming {
+public:
+    StaggerTiming(const TransitionStep& step, const int itemCount)
+        : progress_(std::clamp(step.progress, 0.0, 1.0))
+        , delayStep_(itemCount > 1 && step.stagger > 0.0 ? step.stagger / (itemCount - 1) : 0.0)
+        , span_(itemCount > 1 && step.stagger > 0.0 ? 1.0 - step.stagger : 1.0)
+        , inverseSpan_(span_ > 0.0 ? 1.0 / span_ : 0.0)
+    {
+    }
+
+    /// \brief Returns the progress of the item at position \a order of the stagger order.
+    double operator()(const int order) const
+    {
+        const auto delay = delayStep_ * order;
+        if (span_ <= 0.0) {
+            return progress_ >= delay ? 1.0 : 0.0;
+        }
+        return std::clamp((progress_ - delay) * inverseSpan_, 0.0, 1.0);
+    }
+
+private:
+    double progress_;
+    double delayStep_;
+    double span_;
+    double inverseSpan_;
+};
 
 void writeMorph(const TransitionStep& step, const double* from, const double* to, const int count, std::vector<double>& out, const int stride)
 {
     const auto uniform = step.stagger <= 0.0;
     const auto shared = step.easing.valueForProgress(std::clamp(step.progress, 0.0, 1.0));
+    const auto timing = StaggerTiming{step, count};
+    const auto easing = uniform ? std::optional<EasingTable>{} : std::optional<EasingTable>{step.easing};
     const auto values = static_cast<std::size_t>(stride);
     for (auto item = 0; item < count; ++item) {
-        const auto eased = uniform ? shared : step.easing.valueForProgress(itemProgress(step.progress, item, count, step.stagger));
+        const auto eased = uniform ? shared : (*easing)(timing(item));
         const auto offset = static_cast<std::size_t>(item) * values;
         for (auto value = std::size_t{0}; value < values; ++value) {
             out[offset + value] = MorphTransition::interpolateCoordinate(from[offset + value], to[offset + value], eased);
@@ -66,9 +116,11 @@ void writeGrow(const TransitionStep& step, const TransitionLayout& layout, const
     const auto baseline = std::isnan(step.baseline) ? layout.baseline : step.baseline;
     const auto uniform = step.stagger <= 0.0;
     const auto shared = step.easing.valueForProgress(std::clamp(step.progress, 0.0, 1.0));
+    const auto timing = StaggerTiming{step, group.count};
+    const auto easing = uniform ? std::optional<EasingTable>{} : std::optional<EasingTable>{step.easing};
     copyItems(group.source, group.count, out, group.first, layout.stride);
     for (auto item = 0; item < group.count; ++item) {
-        const auto eased = uniform ? shared : easedItemProgress(step, group, item);
+        const auto eased = uniform ? shared : (*easing)(timing(staggerOrder(group, item)));
         const auto scale = group.exit ? 1.0 - eased : eased;
         auto* values = frameItem(out, group.first + item, layout.stride);
         for (const auto column : layout.valueColumns) {
