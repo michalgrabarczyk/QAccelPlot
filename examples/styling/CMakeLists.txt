@@ -5,6 +5,7 @@
 # This file is also available under a separate commercial license.
 # See COMMERCIAL-LICENSING.md for contact information.
 #
+add_subdirectory(effects)
 add_subdirectory(gradients)
 add_subdirectory(line_styles)
 add_subdirectory(markers)
