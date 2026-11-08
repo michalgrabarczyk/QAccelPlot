@@ -212,9 +212,10 @@ LineVertexResult computeLineVertex(int index, int corner, float side) {
     if (abs(miterDot) > 0.15) {
         miterLength = 1.0 / abs(miterDot);
     }
-
-    // Offset in item-local pixel space, then use Qt's matrix to project
-    vec2 offset = normal * lineRibbonHalfExtent() * miterLength * side;
+    // Offset in item-local pixel space, then use Qt's matrix to project. A glow widens the ribbon by
+    // its radius; long miters at sharp turns would stretch that part into spikes, so it is not mitered.
+    float glow = glowActive(ubuf.glowParams.xy) ? ubuf.glowParams.x : 0.0;
+    vec2 offset = normal * ((lineRibbonHalfExtent() - glow) * miterLength + glow) * side;
 
     LineVertexResult result;
     result.position = ubuf.matrix * vec4(p_local + offset, 0.0, 1.0);
