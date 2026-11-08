@@ -8,11 +8,13 @@
 #pragma once
 
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/effects/SeriesEffect.hpp"
 #include "QAccelPlot/inspection/SeriesInspection.hpp"
 #include "QAccelPlot/series/DataPointStore.hpp"
 
 #include <QList>
 #include <QPointer>
+#include <QQmlListProperty>
 #include <QQuickItem>
 #include <QRectF>
 #include <QString>
@@ -28,6 +30,10 @@
 #include <vector>
 
 namespace QAccelPlot {
+
+namespace Internal {
+class SeriesEffectList;
+}
 
 struct LegendEntry;
 
@@ -108,6 +114,11 @@ class PlotSeries : public QQuickItem {
     /// or \c PointCloud, a rectangle, a bar, a band sample, an error bar, or a heatmap cell. A
     /// \c HeatmapSeries counts \c columns × \c rows cells, without an incomplete last row.
     Q_PROPERTY(int count READ count NOTIFY countChanged)
+    /// \brief Visual effects drawn with the series, such as \c GradientFill or \c Glow.
+    ///
+    /// An effect the series does not support logs a warning and is ignored. Of several effects of
+    /// one type, the first enabled one applies. See \c SeriesEffect for the effects each series supports.
+    Q_PROPERTY(QQmlListProperty<SeriesEffect> effects READ effects)
 
 public:
     /// \brief Supported default legend symbols.
@@ -180,6 +191,9 @@ public:
     /// A series colored by category returns one entry per category, labeled by its \c name.
     /// Series that override it emit \c legendEntryChanged() whenever the result changes.
     virtual QList<LegendEntry> legendEntries() const;
+
+    /// \brief Returns the QML list property of the effects.
+    QQmlListProperty<SeriesEffect> effects();
 
     /// \brief Replaces the series data with \a count data points copied from an interleaved double array.
     ///
@@ -378,6 +392,17 @@ protected:
     /// at the topmost hovered item anyway; older versions also deliver the event to the series
     /// beneath, which then see a hover leave instead.
     bool event(QEvent* event) override;
+    /// \brief Holds back the warnings about ignored effects while the component loads.
+    void classBegin() override;
+    /// \brief Reports ignored effects once the component is complete.
+    void componentComplete() override;
+    /// \brief Follows the window, whose frames refresh the effects.
+    void itemChange(ItemChange change, const ItemChangeData& value) override;
+
+    /// \brief Returns whether the series draws \a effect. The default draws none.
+    virtual bool supportsEffect(const SeriesEffect& effect) const;
+    /// \brief Returns the effects of the series.
+    const Internal::SeriesEffectList& effectList() const;
 
     /// \brief Records the GPU buffers hold, as of the last \c updateRenderCapacity(); the largest \c int before the first.
     int renderCapacity_{std::numeric_limits<int>::max()};
@@ -404,6 +429,7 @@ private:
     bool hoverDelivered_{false};
     quint64 dataRevision_{0};
     mutable SeriesInspection* inspection_{nullptr};
+    Internal::SeriesEffectList* effects_;
     QString name_;
     QPointer<Axis> xAxis_;
     QPointer<Axis> yAxis_;

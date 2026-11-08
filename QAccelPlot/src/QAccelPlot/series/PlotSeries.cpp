@@ -11,6 +11,7 @@
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/inspection/internal/InspectionTypes.hpp"
 #include "QAccelPlot/legend/LegendEntry.hpp"
+#include "QAccelPlot/series/internal/SeriesEffectList.hpp"
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
 
 #include <QHoverEvent>
@@ -84,10 +85,14 @@ PlotSeries::PlotSeries(QQuickItem* parent)
 
 PlotSeries::PlotSeries(DataPointStore::Layout layout, DataPointWording wording, QQuickItem* parent)
     : QQuickItem(parent)
+    , effects_(new Internal::SeriesEffectList(this, [this](const SeriesEffect& effect) { return supportsEffect(effect); }))
     , dataPoints_(std::move(layout))
     , wording_(std::move(wording))
 {
     setClip(true);
+    // A parent already in a window adds the series to it from the QQuickItem constructor, where the
+    // ItemSceneChange does not reach this class's itemChange().
+    effects_->connectWindow(window());
     connect(this, &PlotSeries::legendSymbolChanged, this, &PlotSeries::legendEntryChanged);
     // resetAntialiasing() does not mark the item dirty.
     connect(this, &QQuickItem::antialiasingChanged, this, &QQuickItem::update);
@@ -275,6 +280,11 @@ QList<LegendEntry> PlotSeries::legendEntries() const
 {
     const auto entry = legendEntry();
     return entry ? QList<LegendEntry>{*entry} : QList<LegendEntry>{};
+}
+
+QQmlListProperty<SeriesEffect> PlotSeries::effects()
+{
+    return effects_->property();
 }
 
 void PlotSeries::setData(const double* data, const int count)
@@ -693,6 +703,36 @@ bool PlotSeries::event(QEvent* event)
         }
     }
     return QQuickItem::event(event);
+}
+
+void PlotSeries::classBegin()
+{
+    QQuickItem::classBegin();
+    effects_->classBegin();
+}
+
+void PlotSeries::componentComplete()
+{
+    QQuickItem::componentComplete();
+    effects_->componentComplete();
+}
+
+void PlotSeries::itemChange(const ItemChange change, const ItemChangeData& value)
+{
+    QQuickItem::itemChange(change, value);
+    if (change == ItemSceneChange) {
+        effects_->connectWindow(value.window);
+    }
+}
+
+bool PlotSeries::supportsEffect([[maybe_unused]] const SeriesEffect& effect) const
+{
+    return false;
+}
+
+const Internal::SeriesEffectList& PlotSeries::effectList() const
+{
+    return *effects_;
 }
 
 void PlotSeries::handleAxisScaleChanged()

@@ -16,6 +16,7 @@
 #include "QAccelPlot/legend/LegendEntry.hpp"
 #include "QAccelPlot/materials/internal/DataTextureLayout.hpp"
 #include "QAccelPlot/series/LineCurveGapFilter.hpp"
+#include "QAccelPlot/series/internal/SeriesEffectList.hpp"
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
 #include "QAccelPlot/series/internal/StepPath.hpp"
 #include "QAccelPlot/transitions/DataTransition.hpp"
@@ -114,7 +115,7 @@ template <typename T> DataExtents computeChunkExtents(const T* data, const int f
 
 // Returns the first enabled Effect with a valid payload. Effects snapshot their payloads on the
 // GUI thread, so this does not touch QML objects and is safe in updatePaintNode().
-template <typename Effect> const Effect* firstActiveGradientEffect(const QList<LineCurveEffect*>& effects)
+template <typename Effect> const Effect* firstActiveGradientEffect(const QList<SeriesEffect*>& effects)
 {
     for (const auto effect : effects) {
         const auto gradientEffect = qobject_cast<const Effect*>(effect);
@@ -128,7 +129,7 @@ template <typename Effect> const Effect* firstActiveGradientEffect(const QList<L
 
 // Returns the payload of the first active Effect with unset value bounds resolved by
 // rangeFn(direction). Using the data range keeps gradient colors invariant to pan/zoom.
-template <typename Effect, typename Payload, typename RangeFn> Payload resolveGradientPayload(const QList<LineCurveEffect*>& effects, const RangeFn& rangeFn)
+template <typename Effect, typename Payload, typename RangeFn> Payload resolveGradientPayload(const QList<SeriesEffect*>& effects, const RangeFn& rangeFn)
 {
     const auto gradientEffect = firstActiveGradientEffect<Effect>(effects);
     if (!gradientEffect) {
@@ -185,9 +186,6 @@ LineCurve::LineCurve(QQuickItem* parent)
     connect(marker_, &SeriesMarker::sizeChanged, this, &QQuickItem::update);
     connect(marker_, &SeriesMarker::filledChanged, this, &QQuickItem::update);
     connect(marker_, &SeriesMarker::strokeWidthChanged, this, &QQuickItem::update);
-    // A parent already in a window adds the curve to it from the QQuickItem constructor, where the
-    // ItemSceneChange does not reach this class's itemChange().
-    connectAnimationTicks(window());
     connect(transition_.get(), &TransitionRunner::frameDue, this, &LineCurve::advanceTransition);
     connect(transition_.get(), &TransitionRunner::interrupted, this, &LineCurve::finishTransition);
     connect(transition_.get(), &TransitionRunner::transitionDestroyed, this, &LineCurve::onTransitionDestroyed);
@@ -330,11 +328,6 @@ void LineCurve::setAntialiasingFeather(const qreal feather)
     antialiasingFeather_ = clamped;
     emit antialiasingFeatherChanged();
     update();
-}
-
-QQmlListProperty<LineCurveEffect> LineCurve::effects()
-{
-    return QQmlListProperty<LineCurveEffect>(this, this, &LineCurve::appendEffect, &LineCurve::effectCount, &LineCurve::effectAt, &LineCurve::clearEffects);
 }
 
 LineCurveGaps* LineCurve::gaps() const
@@ -579,14 +572,6 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, [[maybe_unused]] UpdatePai
     return node;
 }
 
-void LineCurve::itemChange(const ItemChange change, const ItemChangeData& value)
-{
-    PlotSeries::itemChange(change, value);
-    if (change == ItemSceneChange) {
-        connectAnimationTicks(value.window);
-    }
-}
-
 void LineCurve::hoverEnterEvent(QHoverEvent* event)
 {
     setHovered(true);
@@ -640,6 +625,11 @@ bool LineCurve::contains(const QPointF& point) const
     }
 
     return false;
+}
+
+bool LineCurve::supportsEffect(const SeriesEffect& effect) const
+{
+    return qobject_cast<const GradientFill*>(&effect) || qobject_cast<const GradientStroke*>(&effect);
 }
 
 void LineCurve::applyDataPoints(DataPointInput&& input)
@@ -722,77 +712,22 @@ void LineCurve::onMarkerShapeChanged()
     update();
 }
 
-void LineCurve::appendEffect(QQmlListProperty<LineCurveEffect>* list, LineCurveEffect* effect)
-{
-    if (!list || !effect) {
-        return;
-    }
-
-    const auto curve = static_cast<LineCurve*>(list->data);
-    if (!curve || curve->effects_.contains(effect)) {
-        return;
-    }
-
-    if (!effect->parent()) {
-        effect->setParent(curve);
-    }
-    curve->effects_.append(effect);
-
-    QObject::connect(effect, &LineCurveEffect::effectChanged, curve, [curve]() { curve->update(); });
-    QObject::connect(effect, &QObject::destroyed, curve, [curve, effect]() {
-        curve->effects_.removeAll(effect);
-        curve->update();
-    });
-
-    curve->update();
-}
-
-qsizetype LineCurve::effectCount(QQmlListProperty<LineCurveEffect>* list)
-{
-    const auto curve = list ? static_cast<LineCurve*>(list->data) : nullptr;
-    return curve ? curve->effects_.size() : 0;
-}
-
-LineCurveEffect* LineCurve::effectAt(QQmlListProperty<LineCurveEffect>* list, qsizetype index)
-{
-    const auto curve = list ? static_cast<LineCurve*>(list->data) : nullptr;
-    if (!curve || index < 0 || index >= curve->effects_.size()) {
-        qCDebug(lcQAccelPlot) << "invalid list or out-of-bounds index" << index << ", returning nullptr";
-        return nullptr;
-    }
-
-    return curve->effects_.at(index);
-}
-
-void LineCurve::clearEffects(QQmlListProperty<LineCurveEffect>* list)
-{
-    const auto curve = list ? static_cast<LineCurve*>(list->data) : nullptr;
-    if (!curve) {
-        return;
-    }
-
-    for (const auto effect : std::as_const(curve->effects_)) {
-        QObject::disconnect(effect, nullptr, curve, nullptr);
-    }
-    curve->effects_.clear();
-    curve->update();
-}
-
 bool LineCurve::hasGradientEffect() const
 {
-    return firstActiveGradientEffect<GradientStroke>(effects_) || firstActiveGradientEffect<GradientFill>(effects_);
+    const auto& effects = effectList().effects();
+    return firstActiveGradientEffect<GradientStroke>(effects) || firstActiveGradientEffect<GradientFill>(effects);
 }
 
 GradientColorPayload LineCurve::resolveGradientColorPayload() const
 {
     return resolveGradientPayload<GradientStroke, GradientColorPayload>(
-        effects_, [this](const Qt::Orientation direction) { return gradientDataRange(direction); });
+        effectList().effects(), [this](const Qt::Orientation direction) { return gradientDataRange(direction); });
 }
 
 GradientFillPayload LineCurve::resolveGradientFillPayload() const
 {
     return resolveGradientPayload<GradientFill, GradientFillPayload>(
-        effects_, [this](const Qt::Orientation direction) { return gradientDataRange(direction); });
+        effectList().effects(), [this](const Qt::Orientation direction) { return gradientDataRange(direction); });
 }
 
 std::pair<qreal, qreal> LineCurve::gradientDataRange(const Qt::Orientation direction) const
@@ -1012,29 +947,6 @@ void LineCurve::showTransitionFrame()
     dataPoints().clearDrawn();
     frameBuffer_ = std::vector<double>{};
     invalidateInspection();
-}
-
-void LineCurve::connectAnimationTicks(QQuickWindow* window)
-{
-    if (animationTickWindow_ == window) {
-        return;
-    }
-    if (animationTickWindow_) {
-        disconnect(animationTickWindow_, &QQuickWindow::afterAnimating, this, &LineCurve::refreshEffects);
-    }
-    animationTickWindow_ = window;
-    if (window) {
-        connect(window, &QQuickWindow::afterAnimating, this, &LineCurve::refreshEffects);
-    }
-}
-
-void LineCurve::refreshEffects()
-{
-    // Loop by index rather than range-for: refresh() emits effectChanged(), and a handler that
-    // removes an effect would invalidate the iterators.
-    for (auto i = qsizetype{0}; i < effects_.size(); ++i) {
-        effects_.at(i)->refresh();
-    }
 }
 
 void LineCurve::advanceTransition()
