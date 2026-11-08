@@ -9,6 +9,7 @@
 
 #include "QAccelPlot/internal/ItemFade.hpp"
 #include "QAccelPlot/transitions/DataTransition.hpp"
+#include "QAccelPlot/transitions/internal/OpacityTimeline.hpp"
 
 #include <QEasingCurve>
 
@@ -19,15 +20,7 @@
 
 namespace QAccelPlot::Internal {
 
-/// \brief Returns the progress of item \a item of \a itemCount at transition progress \a progress, before easing.
-///
-/// The start times of the items are spread over the share \a stagger of the duration, in item order.
-double itemProgress(double progress, int item, int itemCount, double stagger);
-
-/// \brief Returns \a easing at \c kFadeEasingSamples evenly spaced progress values from 0 to 1.
-std::array<float, kFadeEasingSamples> easingSamples(const QEasingCurve& easing);
-
-/// \brief How the items of a series animate.
+/// \brief How a series' items animate.
 struct TransitionLayout {
     int stride{2};                    ///< \brief Values per item.
     std::vector<int> valueColumns{1}; ///< \brief Columns a \c GrowTransition grows.
@@ -41,8 +34,58 @@ struct TransitionStep {
     double progress{1.0};                                      ///< \brief Progress of the run, before easing.
     double stagger{0.0};                                       ///< \brief Stagger of the transition.
     QEasingCurve easing;                                       ///< \brief Easing of each item's progress.
-    bool fade{false};                                          ///< \brief Whether items fade.
     double baseline{std::numeric_limits<double>::quiet_NaN()}; ///< \brief \c GrowTransition baseline; NaN for the layout's.
+    OpacityTimeline opacity;                                   ///< \brief Opacity of each item over its own time; empty for none.
+    double duration{0.0};                                      ///< \brief Duration of the run in milliseconds, which times \c opacity.
+};
+
+/// \brief The timing of the items of one group, as shares of the transition duration.
+struct ItemTiming {
+    double motion{1.0}; ///< \brief Time each item takes to move.
+    double length{1.0}; ///< \brief Time each item animates: its movement or its opacity animations, whichever is longer.
+    double spread{0.0}; ///< \brief Time over which the start times of the items spread.
+    bool front{false};  ///< \brief Items start as an eased reveal front reaches them, at a stagger of 1.
+};
+
+/// \brief Returns the timing of a group of \a itemCount items under \a step.
+ItemTiming itemTiming(const TransitionStep& step, int itemCount);
+
+/// \brief When an eased reveal front reaches each share of the items.
+class FrontStarts {
+public:
+    /// \brief Samples the front that \a easing moves.
+    explicit FrontStarts(const QEasingCurve& easing);
+
+    /// \brief Returns the progress in [0, 1] at which the eased progress first reaches \a share.
+    [[nodiscard]] double operator()(double share) const;
+
+private:
+    static constexpr auto kSamples = 1025;
+    std::array<double, kSamples> starts_{};
+};
+
+/// \brief The start time and movement of each item of one group at the frame.
+class ItemClock {
+public:
+    /// \brief Times a group of \a itemCount items under \a step; removed items when \a exit.
+    ItemClock(const TransitionStep& step, int itemCount, bool exit);
+
+    /// \brief Returns the timing of the group.
+    [[nodiscard]] const ItemTiming& timing() const noexcept;
+    /// \brief Returns the start time of the item at position \a order of the stagger order.
+    [[nodiscard]] double start(int order) const;
+    /// \brief Returns the progress of the movement of the item at position \a order, before easing.
+    [[nodiscard]] double motion(int order) const;
+    /// \brief Returns where the front starts the items, or \c nullptr without a front.
+    [[nodiscard]] const FrontStarts* frontStarts() const noexcept;
+
+private:
+    double time_;
+    int count_;
+    bool exit_;
+    ItemTiming timing_;
+    double startStep_;
+    std::optional<FrontStarts> starts_;
 };
 
 /// \brief Items on one side of a transition, \c TransitionLayout::stride values each.
@@ -83,7 +126,8 @@ struct TransitionFrameInput {
 
 /// \brief Writes the frame of \a input into \a out and the items it fades into \a fade.
 ///
-/// The frame holds the kept items, then the shown added or removed items.
+/// The frame holds the kept items, then the shown added or removed items. The first group of
+/// \a fade describes the update slot, the second the enter or exit slot.
 /// \return The number of items in the frame.
 int writeTransitionFrame(const TransitionFrameInput& input, std::vector<double>& out, ItemFade& fade);
 

@@ -5,6 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
+#include "OpacityAnimations.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/effects/Colormap.hpp"
 #include "QAccelPlot/inspection/SeriesInspection.hpp"
@@ -531,7 +532,7 @@ void PointCloudTransitionsTest::fadedEnterStartsTransparent()
     auto draw = DrawTransition{};
     draw.setDuration(kLongDuration);
     draw.setStagger(0.0);
-    draw.setFade(true);
+    Test::addAnimation(draw, R"(NumberAnimation { property: "opacity"; from: 0; duration: 10000 })");
     scene_.cloud->setEnterTransition(&draw);
 
     scene_.cloud->setData(std::vector<double>{5.0, 5.0}, 1);

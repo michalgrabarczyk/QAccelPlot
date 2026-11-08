@@ -41,9 +41,8 @@ layout(std140, binding = 0) uniform buf {
     float horizontal;     // 152-155: 1 when the bounds lie on the X axis
     float errorBarCount;  // 156-159
     float antialiasing;   // 160-163: 1 to smooth the edges
-    vec4 itemFadeRange;     // item opacity, see item_opacity.glsl
-    vec4 itemFadeParams;
-    vec4 itemFadeEasing[4];
+    vec4 itemFadeGroups[28]; // item opacity, see item_opacity.glsl
+    vec4 itemFadeTrail;
     vec4 glowColor;         // Glow effect, see glow.glsl
     vec4 glowParams;
 } ubuf;

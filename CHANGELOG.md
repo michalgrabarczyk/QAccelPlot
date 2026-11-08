@@ -14,7 +14,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Enter, update, and exit transitions: `enterTransition`, `updateTransition`,
   and `exitTransition` animate the items a data change adds, keeps, and
   removes, matched by index. `GrowTransition` grows values from a baseline,
-  `stagger` spreads the items' start times, and `fade` fades items in and out.
+  `stagger` spreads the items' start times, and Qt Quick animations of
+  `"opacity"` declared inside a transition fade each item.
   `clearData()` runs the exit transition. `PlotSeries.animating` reports a
   running transition. The Transitions example shows them on a bar chart.
 - `Glow` and `FadeTrail` effects: a halo around lines, markers, bars, and

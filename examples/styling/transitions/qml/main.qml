@@ -20,12 +20,13 @@ Window {
     property int duration: 900
     property int easingType: Easing.InOutCubic
     property real stagger: 0.5
-    property bool fade: true
+    property int fadeDuration: 300
     property var values: []
 
     // Picks the transitions of the three slots; each slot holds one of the transitions below.
-    readonly property var enterTransitions: [growTransition, drawTransition, null]
+    readonly property var enterTransitions: [growIn, drawIn, null]
     readonly property var updateTransitions: [morphTransition, redrawTransition, null]
+    readonly property var exitTransitions: [growOut, drawOut, null]
 
     function randomValue() {
         return 1.5 + Math.random() * 7.5;
@@ -75,7 +76,7 @@ Window {
             interactions: [
                 "Click <b>Shuffle</b>, <b>Add</b>, or <b>Remove</b> to change the data",
                 "Choose how bars enter, update, and exit",
-                "Drag <b>Stagger</b> and check <b>Fade</b> to spread and fade the animation of each bar",
+                "Drag <b>Stagger</b> and <b>Fade</b> to spread the animation of each bar and fade it",
                 "Drag <b>Duration</b> and choose an easing curve"
             ]
         }
@@ -149,10 +150,18 @@ Window {
                 onMoved: window.stagger = value
             }
 
-            CheckBox {
-                text: "Fade"
-                checked: window.fade
-                onToggled: window.fade = checked
+            Label {
+                text: window.fadeDuration > 0 ? "Fade " + window.fadeDuration + " ms" : "No fade"
+                Layout.preferredWidth: 90
+            }
+
+            Slider {
+                from: 0
+                to: 1000
+                stepSize: 50
+                value: window.fadeDuration
+                Layout.preferredWidth: 160
+                onMoved: window.fadeDuration = value
             }
 
             Item {
@@ -210,7 +219,7 @@ Window {
                 barWidth: 0.7
                 enterTransition: window.enterTransitions[enterBox.currentIndex]
                 updateTransition: window.updateTransitions[updateBox.currentIndex]
-                exitTransition: window.enterTransitions[enterBox.currentIndex]
+                exitTransition: window.exitTransitions[enterBox.currentIndex]
                 Component.onCompleted: window.showValues(Array.from({
                         length: 12
                     }, () => window.randomValue()))
@@ -218,27 +227,79 @@ Window {
         }
     }
 
+    // Opacity animations run on the timeline of each bar, which starts when the bar starts to move.
     QAccelPlot.GrowTransition {
-        id: growTransition
+        id: growIn
         duration: window.duration
         easing.type: window.easingType
         stagger: window.stagger
-        fade: window.fade
+
+        NumberAnimation {
+            property: "opacity"
+            from: 0
+            duration: window.fadeDuration
+        }
     }
 
     QAccelPlot.DrawTransition {
-        id: drawTransition
+        id: drawIn
         duration: window.duration
         easing.type: window.easingType
         stagger: window.stagger
-        fade: window.fade
+
+        NumberAnimation {
+            property: "opacity"
+            from: 0
+            duration: window.fadeDuration
+        }
     }
 
+    // Exits play the movement backwards, but their opacity animations as written.
+    QAccelPlot.GrowTransition {
+        id: growOut
+        duration: window.duration
+        easing.type: window.easingType
+        stagger: window.stagger
+
+        NumberAnimation {
+            property: "opacity"
+            to: window.fadeDuration > 0 ? 0 : 1
+            duration: window.fadeDuration
+        }
+    }
+
+    QAccelPlot.DrawTransition {
+        id: drawOut
+        duration: window.duration
+        easing.type: window.easingType
+        stagger: window.stagger
+
+        NumberAnimation {
+            property: "opacity"
+            to: window.fadeDuration > 0 ? 0 : 1
+            duration: window.fadeDuration
+        }
+    }
+
+    // Kept bars dim while they move, then recover.
     QAccelPlot.MorphTransition {
         id: morphTransition
         duration: window.duration
         easing.type: window.easingType
         stagger: window.stagger
+
+        SequentialAnimation {
+            NumberAnimation {
+                property: "opacity"
+                to: 0.35
+                duration: window.fadeDuration / 2
+            }
+            NumberAnimation {
+                property: "opacity"
+                to: 1
+                duration: window.fadeDuration / 2
+            }
+        }
     }
 
     // As an update transition, a GrowTransition regrows every bar from the baseline.
@@ -247,6 +308,11 @@ Window {
         duration: window.duration
         easing.type: window.easingType
         stagger: window.stagger
-        fade: window.fade
+
+        NumberAnimation {
+            property: "opacity"
+            from: 0
+            duration: window.fadeDuration
+        }
     }
 }

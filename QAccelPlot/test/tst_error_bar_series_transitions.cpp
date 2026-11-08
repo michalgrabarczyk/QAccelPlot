@@ -5,6 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
+#include "OpacityAnimations.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/inspection/InspectionResult.hpp"
 #include "QAccelPlot/inspection/SeriesInspection.hpp"
@@ -397,7 +398,7 @@ void ErrorBarSeriesTransitionsTest::fadedEnterStartsTransparent()
     auto draw = DrawTransition{};
     draw.setDuration(kLongDuration);
     draw.setStagger(0.0);
-    draw.setFade(true);
+    Test::addAnimation(draw, R"(NumberAnimation { property: "opacity"; from: 0; duration: 10000 })");
     bars_->setEnterTransition(&draw);
 
     bars_->setData(errorBarsAt({5.0}), 1);

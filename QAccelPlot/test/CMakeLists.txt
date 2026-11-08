@@ -77,6 +77,10 @@ add_qaccelplot_test(tst_series_effects       core tst_series_effects.cpp)
 # Loads a QML scene, so it needs the QML module plugin.
 target_link_libraries(tst_series_effects PRIVATE QAccelPlot::QAccelPlot)
 qt_import_qml_plugins(tst_series_effects)
+add_qaccelplot_test(tst_opacity_animations   core tst_opacity_animations.cpp)
+# Loads a QML scene, so it needs the QML module plugin.
+target_link_libraries(tst_opacity_animations PRIVATE QAccelPlot::QAccelPlot)
+qt_import_qml_plugins(tst_opacity_animations)
 add_qaccelplot_test(tst_heatmap_series_data  core tst_heatmap_series_data.cpp)
 add_qaccelplot_test(tst_heatmap_series_rendering core tst_heatmap_series_rendering.cpp)
 add_qaccelplot_test(tst_legend_model         core tst_legend_model.cpp)

@@ -17,7 +17,13 @@ namespace QAccelPlot {
 /// removed items from the last to the first. A line draws its last revealed segment partway.
 ///
 /// \c stagger defaults to 1: each item appears at once, and \c easing shapes how the reveal moves
-/// along the items. With a lower \c stagger and \c fade, each item fades in over its share of the duration.
+/// along the items. An opacity animation fades each item in from the moment the reveal reaches it:
+///
+/// \code{.qml}
+/// QAccelPlot.DrawTransition {
+///     NumberAnimation { property: "opacity"; from: 0; duration: 250 }
+/// }
+/// \endcode
 ///
 /// \sa GrowTransition, MorphTransition, EnterExitTransition
 class DrawTransition : public EnterExitTransition {

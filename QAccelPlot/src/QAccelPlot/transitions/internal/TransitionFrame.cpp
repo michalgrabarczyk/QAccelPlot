@@ -23,7 +23,7 @@ struct Group {
     const double* source{nullptr}; ///< \brief Values of the group's first item.
     int count{0};                  ///< \brief Number of items in the group.
     int first{0};                  ///< \brief Frame index of the group's first item.
-    bool exit{false};              ///< \brief \c true for removed items, which play the transition backwards.
+    bool exit{false};              ///< \brief \c true for removed items, which play the movement backwards.
 };
 
 double* frameItem(std::vector<double>& out, const int index, const int stride)
@@ -42,68 +42,69 @@ int staggerOrder(const Group& group, const int index)
     return group.exit ? group.count - 1 - index : index;
 }
 
+/// \brief Returns \a samples, evenly spaced over [0, 1], interpolated at \a position.
+template <std::size_t N> double interpolate(const std::array<double, N>& samples, const double position)
+{
+    const auto scaled = std::clamp(position, 0.0, 1.0) * static_cast<double>(N - 1);
+    const auto lower = std::min(static_cast<std::size_t>(scaled), N - 2);
+    const auto a = samples[lower];
+    const auto b = samples[lower + 1];
+    return a + (scaled - static_cast<double>(lower)) * (b - a);
+}
+
 /// \brief The easing curve of a staggered group, sampled once per frame instead of evaluated once per item.
 class EasingTable {
 public:
     explicit EasingTable(const QEasingCurve& easing)
     {
-        for (auto index = 0; index < kSamples; ++index) {
-            samples_[static_cast<std::size_t>(index)] = easing.valueForProgress(static_cast<double>(index) / (kSamples - 1));
+        for (auto index = std::size_t{0}; index < kSamples; ++index) {
+            samples_[index] = easing.valueForProgress(static_cast<double>(index) / (kSamples - 1));
         }
     }
 
     /// \brief Returns the eased value at \a progress in [0, 1], interpolated between the samples.
     double operator()(const double progress) const
     {
-        const auto position = progress * (kSamples - 1);
-        const auto lower = std::min(static_cast<int>(position), kSamples - 2);
-        const auto a = samples_[static_cast<std::size_t>(lower)];
-        const auto b = samples_[static_cast<std::size_t>(lower) + 1];
-        return a + (position - lower) * (b - a);
+        return interpolate(samples_, progress);
     }
 
 private:
-    static constexpr auto kSamples = 1025;
+    static constexpr auto kSamples = std::size_t{1025};
     std::array<double, kSamples> samples_{};
 };
 
-/// \brief The progress of the items of one group before easing, see \c itemProgress(), with the per-group arithmetic done once.
-class StaggerTiming {
+/// \brief Returns the eased progress of every item of a group, evaluating the curve once when they all move together.
+class ItemEasing {
 public:
-    StaggerTiming(const TransitionStep& step, const int itemCount)
-        : progress_(std::clamp(step.progress, 0.0, 1.0))
-        , delayStep_(itemCount > 1 && step.stagger > 0.0 ? step.stagger / (itemCount - 1) : 0.0)
-        , span_(itemCount > 1 && step.stagger > 0.0 ? 1.0 - step.stagger : 1.0)
-        , inverseSpan_(span_ > 0.0 ? 1.0 / span_ : 0.0)
+    ItemEasing(const TransitionStep& step, const ItemClock& clock)
+        : clock_(clock)
+        , together_(clock.timing().spread <= 0.0 && !clock.timing().front)
+        , shared_(step.easing.valueForProgress(clock.motion(0)))
     {
+        if (!together_) {
+            table_.emplace(step.easing);
+        }
     }
 
-    /// \brief Returns the progress of the item at position \a order of the stagger order.
     double operator()(const int order) const
     {
-        const auto delay = delayStep_ * order;
-        if (span_ <= 0.0) {
-            return progress_ >= delay ? 1.0 : 0.0;
-        }
-        return std::clamp((progress_ - delay) * inverseSpan_, 0.0, 1.0);
+        return together_ ? shared_ : (*table_)(clock_.motion(order));
     }
 
 private:
-    double progress_;
-    double delayStep_;
-    double span_;
-    double inverseSpan_;
+    const ItemClock& clock_;
+    bool together_;
+    double shared_;
+    std::optional<EasingTable> table_;
 };
 
 void writeMorph(const TransitionStep& step, const double* from, const double* to, const int count, std::vector<double>& out, const int stride)
 {
-    const auto uniform = step.stagger <= 0.0;
-    const auto shared = step.easing.valueForProgress(std::clamp(step.progress, 0.0, 1.0));
-    const auto timing = StaggerTiming{step, count};
-    const auto easing = uniform ? std::optional<EasingTable>{} : std::optional<EasingTable>{step.easing};
+    const auto clock = ItemClock{step, count, false};
+    const auto easing = ItemEasing{step, clock};
     const auto values = static_cast<std::size_t>(stride);
     for (auto item = 0; item < count; ++item) {
-        const auto eased = uniform ? shared : (*easing)(timing(item));
+        const auto eased = easing(item);
         const auto offset = static_cast<std::size_t>(item) * values;
         for (auto value = std::size_t{0}; value < values; ++value) {
             out[offset + value] = MorphTransition::interpolateCoordinate(from[offset + value], to[offset + value], eased);
@@ -111,16 +112,13 @@ void writeMorph(const TransitionStep& step, const double* from, const double* to
     }
 }
 
-void writeGrow(const TransitionStep& step, const TransitionLayout& layout, const Group& group, std::vector<double>& out)
+void writeGrow(const TransitionStep& step, const ItemClock& clock, const TransitionLayout& layout, const Group& group, std::vector<double>& out)
 {
     const auto baseline = std::isnan(step.baseline) ? layout.baseline : step.baseline;
-    const auto uniform = step.stagger <= 0.0;
-    const auto shared = step.easing.valueForProgress(std::clamp(step.progress, 0.0, 1.0));
-    const auto timing = StaggerTiming{step, group.count};
-    const auto easing = uniform ? std::optional<EasingTable>{} : std::optional<EasingTable>{step.easing};
+    const auto easing = ItemEasing{step, clock};
     copyItems(group.source, group.count, out, group.first, layout.stride);
     for (auto item = 0; item < group.count; ++item) {
-        const auto eased = uniform ? shared : (*easing)(timing(staggerOrder(group, item)));
+        const auto eased = easing(staggerOrder(group, item));
         const auto scale = group.exit ? 1.0 - eased : eased;
         auto* values = frameItem(out, group.first + item, layout.stride);
         for (const auto column : layout.valueColumns) {
@@ -132,22 +130,39 @@ void writeGrow(const TransitionStep& step, const TransitionLayout& layout, const
     }
 }
 
+/// \brief Returns the reveal front of a \c DrawTransition at a stagger of 1, in items shown.
+double revealFront(const TransitionStep& step, const ItemTiming& timing, const Group& group)
+{
+    const auto time = std::clamp(step.progress, 0.0, 1.0);
+    const auto count = static_cast<double>(group.count);
+    if (!group.exit) {
+        // The front moves over the spread; the opacity animations of the last items fill the rest.
+        const auto eased = timing.spread > 0.0 ? step.easing.valueForProgress(std::clamp(time / timing.spread, 0.0, 1.0)) : 1.0;
+        return std::clamp(eased * count, 0.0, count);
+    }
+    // Removed items leave once their opacity animations end.
+    const auto leaving = time - timing.length;
+    const auto eased = timing.spread > 0.0 ? step.easing.valueForProgress(std::clamp(leaving / timing.spread, 0.0, 1.0)) : (leaving >= 0.0 ? 1.0 : 0.0);
+    return std::clamp((1.0 - eased) * count, 0.0, count);
+}
+
 /// \brief Returns how many items of \a group a \c DrawTransition shows, and the reveal front in items into \a front.
 ///
 /// \a front is negative when items are shown whole. \a keepFirst shows the first item from the start.
-int drawnCount(const TransitionStep& step, const Group& group, const bool keepFirst, double& front)
+int drawnCount(const TransitionStep& step, const ItemClock& clock, const Group& group, const bool keepFirst, double& front)
 {
-    if (step.stagger >= 1.0) {
-        const auto eased = step.easing.valueForProgress(std::clamp(step.progress, 0.0, 1.0));
-        front = std::clamp((group.exit ? 1.0 - eased : eased) * group.count, 0.0, static_cast<double>(group.count));
+    if (clock.timing().front) {
+        front = revealFront(step, clock.timing(), group);
         const auto shown = static_cast<int>(std::ceil(front));
         return keepFirst ? std::max(shown, std::min(group.count, 1)) : shown;
     }
     front = -1.0;
+    const auto time = std::clamp(step.progress, 0.0, 1.0);
+    const auto length = clock.timing().length;
     auto shown = 0;
     for (; shown < group.count; ++shown) {
-        const auto progress = itemProgress(step.progress, staggerOrder(group, shown), group.count, step.stagger);
-        const auto visible = group.exit ? progress < 1.0 : progress > 0.0 || (shown == 0 && keepFirst);
+        const auto start = clock.start(staggerOrder(group, shown));
+        const auto visible = group.exit ? time < start + length : time > start || (shown == 0 && keepFirst);
         if (!visible) {
             break;
         }
@@ -167,10 +182,10 @@ void revealPartway(std::vector<double>& out, const int index, const double fract
     }
 }
 
-int writeDraw(const TransitionStep& step, const TransitionLayout& layout, const Group& group, std::vector<double>& out)
+int writeDraw(const TransitionStep& step, const ItemClock& clock, const TransitionLayout& layout, const Group& group, std::vector<double>& out)
 {
     auto front = 0.0;
-    const auto shown = drawnCount(step, group, !group.exit && group.first == 0, front);
+    const auto shown = drawnCount(step, clock, group, !group.exit && group.first == 0, front);
     copyItems(group.source, shown, out, group.first, layout.stride);
     const auto last = group.first + shown - 1;
     const auto fraction = front - (shown - 1);
@@ -180,23 +195,38 @@ int writeDraw(const TransitionStep& step, const TransitionLayout& layout, const 
     return shown;
 }
 
-ItemFade groupFade(const TransitionStep& step, const Group& group)
+/// \brief Returns how the shaders fade \a count items from frame index \a first under \a step.
+ItemFadeGroup fadeGroup(const TransitionStep& step, const ItemClock& clock, const int first, const int count, const bool exit)
 {
-    if (!step.fade || step.stagger >= 1.0 || group.count == 0) {
+    if (step.opacity.empty() || step.duration <= 0.0 || count == 0) {
         return {};
     }
-    return ItemFade{group.first, group.count, static_cast<float>(step.progress), static_cast<float>(step.stagger), group.exit, easingSamples(step.easing)};
+    const auto& timing = clock.timing();
+    auto group = ItemFadeGroup{first, count, exit, timing.front, static_cast<float>(std::clamp(step.progress, 0.0, 1.0)), static_cast<float>(timing.spread),
+        static_cast<float>(timing.length)};
+    const auto lengthMs = timing.length * step.duration;
+    for (auto index = std::size_t{0}; index < group.curve.size(); ++index) {
+        const auto time = lengthMs * static_cast<double>(index) / static_cast<double>(group.curve.size() - 1);
+        group.curve[index] = static_cast<float>(std::clamp(step.opacity.valueAt(time), 0.0, 1.0));
+    }
+    if (const auto* starts = clock.frontStarts()) {
+        for (auto index = std::size_t{0}; index < group.starts.size(); ++index) {
+            group.starts[index] = static_cast<float>((*starts)(static_cast<double>(index) / static_cast<double>(group.starts.size() - 1)));
+        }
+    }
+    return group;
 }
 
 /// \brief Writes \a group as an \c EnterExitTransition moves it and returns the number of items shown.
-int writeEnterExit(const TransitionStep& step, const TransitionLayout& layout, const Group& group, std::vector<double>& out, ItemFade& fade)
+int writeEnterExit(const TransitionStep& step, const TransitionLayout& layout, const Group& group, std::vector<double>& out, ItemFadeGroup& fade)
 {
-    fade = groupFade(step, group);
+    const auto clock = ItemClock{step, group.count, group.exit};
+    fade = fadeGroup(step, clock, group.first, group.count, group.exit);
     if (step.kind == TransitionKind::Grow) {
-        writeGrow(step, layout, group, out);
+        writeGrow(step, clock, layout, group, out);
         return group.count;
     }
-    return writeDraw(step, layout, group, out);
+    return writeDraw(step, clock, layout, group, out);
 }
 
 const double* sourceItem(const TransitionItems& items, const int index, const int stride)
@@ -206,27 +236,93 @@ const double* sourceItem(const TransitionItems& items, const int index, const in
 
 } // namespace
 
-double itemProgress(const double progress, const int item, const int itemCount, const double stagger)
+ItemTiming itemTiming(const TransitionStep& step, const int itemCount)
 {
-    const auto clamped = std::clamp(progress, 0.0, 1.0);
-    if (itemCount <= 1 || stagger <= 0.0) {
-        return clamped;
+    // A single item moves over the whole duration, except a line segment drawn partway.
+    const auto front = step.stagger >= 1.0 && (itemCount > 1 || step.kind == TransitionKind::Draw);
+    auto motion = 1.0 - step.stagger;
+    if (front) {
+        motion = 0.0;
+    } else if (itemCount <= 1 || step.stagger <= 0.0) {
+        motion = 1.0;
     }
-    const auto delay = stagger * item / (itemCount - 1);
-    const auto span = 1.0 - stagger;
-    if (span <= 0.0) {
-        return clamped >= delay ? 1.0 : 0.0;
-    }
-    return std::clamp((clamped - delay) / span, 0.0, 1.0);
+    const auto opacity = step.opacity.empty() || step.duration <= 0.0 ? 0.0 : step.opacity.length() / step.duration;
+    const auto length = std::clamp(std::max(motion, opacity), 0.0, 1.0);
+    return ItemTiming{motion, length, 1.0 - length, front};
 }
 
-std::array<float, kFadeEasingSamples> easingSamples(const QEasingCurve& easing)
+FrontStarts::FrontStarts(const QEasingCurve& easing)
 {
-    auto samples = std::array<float, kFadeEasingSamples>{};
-    for (auto index = 0; index < kFadeEasingSamples; ++index) {
-        samples[static_cast<std::size_t>(index)] = static_cast<float>(easing.valueForProgress(static_cast<double>(index) / (kFadeEasingSamples - 1)));
+    // The front only moves forward, so it reaches a share when the highest eased value so far does.
+    auto reached = std::array<double, kSamples>{};
+    auto highest = -std::numeric_limits<double>::infinity();
+    for (auto index = std::size_t{0}; index < kSamples; ++index) {
+        highest = std::max(highest, easing.valueForProgress(static_cast<double>(index) / (kSamples - 1)));
+        reached[index] = highest;
     }
-    return samples;
+    auto sample = std::size_t{0};
+    for (auto index = std::size_t{0}; index < kSamples; ++index) {
+        const auto share = static_cast<double>(index) / (kSamples - 1);
+        while (sample < kSamples && reached[sample] < share) {
+            ++sample;
+        }
+        if (sample == 0) {
+            starts_[index] = 0.0;
+        } else if (sample == kSamples) {
+            starts_[index] = 1.0;
+        } else {
+            const auto before = reached[sample - 1];
+            const auto after = reached[sample];
+            const auto fraction = after > before ? (share - before) / (after - before) : 0.0;
+            starts_[index] = (static_cast<double>(sample - 1) + fraction) / (kSamples - 1);
+        }
+    }
+}
+
+double FrontStarts::operator()(const double share) const
+{
+    return interpolate(starts_, share);
+}
+
+ItemClock::ItemClock(const TransitionStep& step, const int itemCount, const bool exit)
+    : time_(std::clamp(step.progress, 0.0, 1.0))
+    , count_(itemCount)
+    , exit_(exit)
+    , timing_(itemTiming(step, itemCount))
+    , startStep_(itemCount > 1 ? timing_.spread / (itemCount - 1) : 0.0)
+{
+    if (timing_.front) {
+        starts_.emplace(step.easing);
+    }
+}
+
+const ItemTiming& ItemClock::timing() const noexcept
+{
+    return timing_;
+}
+
+double ItemClock::start(const int order) const
+{
+    if (!starts_) {
+        return startStep_ * order;
+    }
+    // A removed item starts so that it leaves when the front passes it.
+    const auto share = static_cast<double>(order + (exit_ ? 1 : 0)) / std::max(count_, 1);
+    return timing_.spread * (*starts_)(share);
+}
+
+double ItemClock::motion(const int order) const
+{
+    const auto start = this->start(order);
+    if (timing_.motion <= 0.0) {
+        return time_ >= start ? 1.0 : 0.0;
+    }
+    return std::clamp((time_ - start) / timing_.motion, 0.0, 1.0);
+}
+
+const FrontStarts* ItemClock::frontStarts() const noexcept
+{
+    return starts_ ? &*starts_ : nullptr;
 }
 
 TransitionSlots plannedSlots(const int fromCount, const int toCount, const std::optional<TransitionKind> enter, const std::optional<TransitionKind> update,
@@ -246,15 +342,18 @@ int writeTransitionFrame(const TransitionFrameInput& input, std::vector<double>&
     const auto fromCount = input.from.count;
     const auto toCount = input.to.count;
     fade = {};
+    auto& updateFade = fade.groups[0];
+    auto& enterExitFade = fade.groups[1];
     out.resize(static_cast<std::size_t>(std::max(fromCount, toCount)) * static_cast<std::size_t>(stride));
 
     auto count = 0;
     if (input.update && input.update->kind != TransitionKind::Morph) {
-        count = writeEnterExit(*input.update, input.layout, Group{input.to.values, toCount, 0, false}, out, fade);
+        count = writeEnterExit(*input.update, input.layout, Group{input.to.values, toCount, 0, false}, out, updateFade);
     } else {
         const auto kept = std::min(fromCount, toCount);
         if (input.update) {
             writeMorph(*input.update, input.from.values, input.to.values, kept, out, stride);
+            updateFade = fadeGroup(*input.update, ItemClock{*input.update, kept, false}, 0, kept, false);
         } else {
             copyItems(input.to.values, kept, out, 0, stride);
         }
@@ -262,13 +361,14 @@ int writeTransitionFrame(const TransitionFrameInput& input, std::vector<double>&
         if (toCount > fromCount) {
             const auto added = Group{sourceItem(input.to, kept, stride), toCount - kept, kept, false};
             if (input.enter) {
-                count += writeEnterExit(*input.enter, input.layout, added, out, fade);
+                count += writeEnterExit(*input.enter, input.layout, added, out, enterExitFade);
             } else {
                 copyItems(added.source, added.count, out, kept, stride);
                 count = toCount;
             }
         } else if (fromCount > toCount && input.exit) {
-            count += writeEnterExit(*input.exit, input.layout, Group{sourceItem(input.from, kept, stride), fromCount - kept, kept, true}, out, fade);
+            const auto removed = Group{sourceItem(input.from, kept, stride), fromCount - kept, kept, true};
+            count += writeEnterExit(*input.exit, input.layout, removed, out, enterExitFade);
         }
     }
     out.resize(static_cast<std::size_t>(count) * static_cast<std::size_t>(stride));

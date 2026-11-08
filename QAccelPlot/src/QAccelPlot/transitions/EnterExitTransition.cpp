@@ -9,20 +9,6 @@
 
 namespace QAccelPlot {
 
-bool EnterExitTransition::fade() const
-{
-    return fade_;
-}
-
-void EnterExitTransition::setFade(const bool fade)
-{
-    if (fade_ == fade) {
-        return;
-    }
-    fade_ = fade;
-    emit fadeChanged();
-}
-
 EnterExitTransition::EnterExitTransition(QObject* parent)
     : DataTransition(parent)
 {

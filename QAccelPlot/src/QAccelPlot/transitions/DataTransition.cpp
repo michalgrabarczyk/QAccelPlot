@@ -7,6 +7,9 @@
 //
 #include "QAccelPlot/transitions/DataTransition.hpp"
 
+#include "QAccelPlot/QAccelPlotLogging.hpp"
+#include "QAccelPlot/transitions/internal/OpacityAnimations.hpp"
+
 #include <QAbstractAnimation>
 
 #include <algorithm>
@@ -124,6 +127,12 @@ void DataTransition::setStagger(const qreal stagger)
     emit staggerChanged();
 }
 
+QQmlListProperty<QObject> DataTransition::animations()
+{
+    return QQmlListProperty<QObject>(
+        this, nullptr, &DataTransition::appendAnimation, &DataTransition::animationCount, &DataTransition::animationAt, &DataTransition::clearAnimations);
+}
+
 void DataTransition::start(Run& run)
 {
     if (run.transition_ != this) {
@@ -153,10 +162,62 @@ double DataTransition::progress(const Run& run) const
     return std::clamp(static_cast<double>(elapsed) / duration_, 0.0, 1.0);
 }
 
+Internal::OpacityTimeline DataTransition::opacityTimeline() const
+{
+    return Internal::readOpacityAnimations(animations_);
+}
+
+void DataTransition::classBegin()
+{
+    loading_ = true;
+}
+
+void DataTransition::componentComplete()
+{
+    loading_ = false;
+    warnAboutIgnored(animations_);
+}
+
 DataTransition::DataTransition(QObject* parent)
     : QObject(parent)
     , clock_(new AnimationClock(this))
 {
+}
+
+void DataTransition::appendAnimation(QQmlListProperty<QObject>* list, QObject* animation)
+{
+    auto* self = static_cast<DataTransition*>(list->object);
+    if (!animation || self->animations_.contains(animation)) {
+        return;
+    }
+    if (!animation->parent()) {
+        animation->setParent(self);
+    }
+    self->animations_.append(animation);
+    connect(animation, &QObject::destroyed, self, [self, animation] { self->animations_.removeAll(animation); });
+    // A transition loading from QML reports its animations once its component completes.
+    if (!self->loading_) {
+        self->warnAboutIgnored({animation});
+    }
+}
+
+qsizetype DataTransition::animationCount(QQmlListProperty<QObject>* list)
+{
+    return static_cast<DataTransition*>(list->object)->animations_.size();
+}
+
+QObject* DataTransition::animationAt(QQmlListProperty<QObject>* list, const qsizetype index)
+{
+    return static_cast<DataTransition*>(list->object)->animations_.at(index);
+}
+
+void DataTransition::clearAnimations(QQmlListProperty<QObject>* list)
+{
+    auto* self = static_cast<DataTransition*>(list->object);
+    for (const auto* animation : std::as_const(self->animations_)) {
+        disconnect(animation, nullptr, self, nullptr);
+    }
+    self->animations_.clear();
 }
 
 void DataTransition::removeRun(Run* run)
@@ -178,6 +239,16 @@ void DataTransition::setRunning(const bool running)
         clock_->stop();
     }
     emit runningChanged();
+}
+
+void DataTransition::warnAboutIgnored(const QList<QObject*>& animations) const
+{
+    auto problems = QStringList{};
+    Internal::readOpacityAnimations(animations, &problems);
+    const auto name = QString::fromLatin1(metaObject()->className()).section(QLatin1Char(':'), -1);
+    for (const auto& problem : std::as_const(problems)) {
+        qCWarning(lcQAccelPlot).noquote() << QStringLiteral("%1: %2").arg(name, problem);
+    }
 }
 
 } // namespace QAccelPlot

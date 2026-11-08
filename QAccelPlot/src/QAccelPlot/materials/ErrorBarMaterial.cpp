@@ -35,12 +35,12 @@ struct ErrorBarUbo {
     float errorBarCount;                       // 156–159
     float antialiasing;                        // 160–163
     float padding[3];                          // 164–175
-    Internal::ItemOpacityUniforms itemOpacity; // 176–271
-    Internal::GlowUniforms glow;               // 272–303
+    Internal::ItemOpacityUniforms itemOpacity; // 176–639
+    Internal::GlowUniforms glow;               // 640–671
 };
 
 static_assert(offsetof(ErrorBarUbo, hoverColor) == 128);
-static_assert(sizeof(ErrorBarUbo) == 304);
+static_assert(sizeof(ErrorBarUbo) == 672);
 
 class ErrorBarShader : public QSGMaterialShader {
 public:

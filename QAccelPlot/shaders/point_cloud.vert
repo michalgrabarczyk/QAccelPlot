@@ -33,9 +33,8 @@ layout(std140, binding = 0) uniform buf {
     float markerFilled;        // 148-151
     float valueLogScale;       // 152-155
     float opacity;             // 156-159: inherited item opacity
-    vec4 itemFadeRange;     // item opacity, see item_opacity.glsl
-    vec4 itemFadeParams;
-    vec4 itemFadeEasing[4];
+    vec4 itemFadeGroups[28]; // item opacity, see item_opacity.glsl
+    vec4 itemFadeTrail;
     vec4 glowColor;         // Glow effect, see glow.glsl
     vec4 glowParams;
 } ubuf;

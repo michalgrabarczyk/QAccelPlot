@@ -21,7 +21,10 @@
 
 Q_DECLARE_METATYPE(std::optional<QAccelPlot::Internal::TransitionKind>)
 
+using QAccelPlot::Internal::ItemClock;
 using QAccelPlot::Internal::ItemFade;
+using QAccelPlot::Internal::OpacitySegment;
+using QAccelPlot::Internal::OpacityTimeline;
 using QAccelPlot::Internal::TransitionKind;
 using QAccelPlot::Internal::TransitionLayout;
 using QAccelPlot::Internal::TransitionStep;
@@ -33,6 +36,16 @@ constexpr auto kNaN = std::numeric_limits<double>::quiet_NaN();
 TransitionStep step(const TransitionKind kind, const double progress, const double stagger = 0.0)
 {
     return TransitionStep{kind, progress, stagger, QEasingCurve{QEasingCurve::Linear}};
+}
+
+// A step whose items fade from `from` to `to` over `fadeMs` of a `durationMs` run.
+TransitionStep fadingStep(const TransitionKind kind, const double progress, const double stagger, const double fadeMs, const double durationMs = 1000.0,
+    const double from = 0.0, const double to = 1.0)
+{
+    auto result = step(kind, progress, stagger);
+    result.opacity = OpacityTimeline{{OpacitySegment{0.0, fadeMs, from, to, QEasingCurve{}}}, fadeMs};
+    result.duration = durationMs;
+    return result;
 }
 
 // One frame of a change from `from` to `to`, `stride` values per item.
@@ -67,10 +80,13 @@ class TestTransitions : public QObject {
     Q_OBJECT
 
 private slots:
-    // Per-item progress
-    void itemProgress_data();
-    void itemProgress();
-    void easingSamples_spanTheCurve();
+    // Item timing
+    void itemClock_data();
+    void itemClock();
+    void itemTiming_longerOpacity_narrowsTheSpread();
+    void itemTiming_fullStagger_leavesTimeForTheOpacity();
+    void frontStarts_linear_followsTheShare();
+    void frontStarts_easedFront_startsWhenTheFrontArrives();
 
     // Slot planning
     void plannedSlots_data();
@@ -106,9 +122,14 @@ private slots:
     void growAsUpdate_growsEveryItem();
 
     // Fade
+    void fade_withoutAnimations_isOff();
     void fade_describesTheEnteringGroup();
-    void fade_isOffWithoutStagger();
-    void fade_ofAnExitPlaysBackwards();
+    void fade_atFullStagger_followsTheFront();
+    void fade_ofKeptItems_describesTheUpdateGroup();
+    void fade_ofAnExit_playsAsWritten();
+    void draw_fadeAtFullStagger_revealsOverTheSpread();
+    void draw_exitWithFade_keepsItemsUntilTheirFadeEnds();
+    void grow_longerOpacity_startsItemsTogether();
 
     // DataTransition state
     void transition_startSetsRunning();
@@ -127,10 +148,10 @@ private slots:
     void transition_progress_followsTheAnimationDriver();
 };
 
-void TestTransitions::itemProgress_data()
+void TestTransitions::itemClock_data()
 {
     QTest::addColumn<double>("progress");
-    QTest::addColumn<int>("item");
+    QTest::addColumn<int>("order");
     QTest::addColumn<int>("itemCount");
     QTest::addColumn<double>("stagger");
     QTest::addColumn<double>("expected");
@@ -141,29 +162,59 @@ void TestTransitions::itemProgress_data()
     QTest::newRow("middle item waits") << 0.25 << 1 << 3 << 0.5 << 0.0;
     QTest::newRow("middle item halfway") << 0.5 << 1 << 3 << 0.5 << 0.5;
     QTest::newRow("last item ends with the run") << 1.0 << 2 << 3 << 0.5 << 1.0;
-    QTest::newRow("full stagger before the delay") << 0.4 << 1 << 3 << 1.0 << 0.0;
-    QTest::newRow("full stagger at the delay") << 0.5 << 1 << 3 << 1.0 << 1.0;
+    QTest::newRow("full stagger before the front") << 0.3 << 1 << 3 << 1.0 << 0.0;
+    QTest::newRow("full stagger at the front") << 0.34 << 1 << 3 << 1.0 << 1.0;
     QTest::newRow("progress clamped") << 1.5 << 0 << 3 << 0.0 << 1.0;
 }
 
-void TestTransitions::itemProgress()
+void TestTransitions::itemClock()
 {
     QFETCH(double, progress);
-    QFETCH(int, item);
+    QFETCH(int, order);
     QFETCH(int, itemCount);
     QFETCH(double, stagger);
     QFETCH(double, expected);
 
-    QCOMPARE(QAccelPlot::Internal::itemProgress(progress, item, itemCount, stagger), expected);
+    const auto clock = ItemClock{step(TransitionKind::Morph, progress, stagger), itemCount, false};
+
+    QCOMPARE(clock.motion(order), expected);
 }
 
-void TestTransitions::easingSamples_spanTheCurve()
+void TestTransitions::itemTiming_longerOpacity_narrowsTheSpread()
 {
-    const auto samples = QAccelPlot::Internal::easingSamples(QEasingCurve{QEasingCurve::InQuad});
+    const auto timing = QAccelPlot::Internal::itemTiming(fadingStep(TransitionKind::Grow, 0.0, 0.5, 600.0), 3);
 
-    QCOMPARE(samples.front(), 0.0f);
-    QCOMPARE(samples.back(), 1.0f);
-    QVERIFY(samples[7] < 7.0f / 15.0f);
+    QCOMPARE(timing.motion, 0.5);
+    QCOMPARE(timing.length, 0.6);
+    QCOMPARE(timing.spread, 0.4);
+    QVERIFY(!timing.front);
+}
+
+void TestTransitions::itemTiming_fullStagger_leavesTimeForTheOpacity()
+{
+    const auto timing = QAccelPlot::Internal::itemTiming(fadingStep(TransitionKind::Draw, 0.0, 1.0, 250.0), 3);
+
+    QCOMPARE(timing.motion, 0.0);
+    QCOMPARE(timing.length, 0.25);
+    QCOMPARE(timing.spread, 0.75);
+    QVERIFY(timing.front);
+}
+
+void TestTransitions::frontStarts_linear_followsTheShare()
+{
+    const auto starts = QAccelPlot::Internal::FrontStarts{QEasingCurve{QEasingCurve::Linear}};
+
+    QCOMPARE(starts(0.0), 0.0);
+    QCOMPARE(starts(0.25), 0.25);
+    QCOMPARE(starts(1.0), 1.0);
+}
+
+void TestTransitions::frontStarts_easedFront_startsWhenTheFrontArrives()
+{
+    // InQuad reaches a quarter of the items halfway through.
+    QVERIFY(std::abs(QAccelPlot::Internal::FrontStarts{QEasingCurve{QEasingCurve::InQuad}}(0.25) - 0.5) < 1e-3);
+    // OutBack overshoots, so its front reaches the last item before the end.
+    QVERIFY(QAccelPlot::Internal::FrontStarts{QEasingCurve{QEasingCurve::OutBack}}(1.0) < 0.9);
 }
 
 void TestTransitions::plannedSlots_data()
@@ -454,41 +505,112 @@ void TestTransitions::growAsUpdate_growsEveryItem()
     QCOMPARE(frame.values, (std::vector<double>{0.0, 5.0, 1.0, 10.0}));
 }
 
-void TestTransitions::fade_describesTheEnteringGroup()
-{
-    auto change = Change{{0.0, 0.0}, {0.0, 0.0, 1.0, 1.0, 2.0, 2.0}};
-    change.enter = step(TransitionKind::Draw, 0.25, 0.5);
-    change.enter->fade = true;
-
-    const auto frame = change.frame();
-
-    QCOMPARE(frame.fade.first, 1);
-    QCOMPARE(frame.fade.count, 2);
-    QCOMPARE(frame.fade.progress, 0.25f);
-    QCOMPARE(frame.fade.stagger, 0.5f);
-    QVERIFY(!frame.fade.exit);
-}
-
-void TestTransitions::fade_isOffWithoutStagger()
+void TestTransitions::fade_withoutAnimations_isOff()
 {
     auto change = Change{{}, {0.0, 0.0, 1.0, 1.0}};
-    change.enter = step(TransitionKind::Draw, 0.25, 1.0);
-    change.enter->fade = true;
+    change.enter = step(TransitionKind::Draw, 0.25, 0.5);
 
     QVERIFY(!change.frame().fade.active());
 }
 
-void TestTransitions::fade_ofAnExitPlaysBackwards()
+void TestTransitions::fade_describesTheEnteringGroup()
 {
-    auto change = Change{{0.0, 0.0, 1.0, 1.0}, {}};
-    change.exit = step(TransitionKind::Grow, 0.25);
-    change.exit->fade = true;
+    auto change = Change{{0.0, 0.0}, {0.0, 0.0, 1.0, 1.0, 2.0, 2.0}};
+    change.enter = fadingStep(TransitionKind::Draw, 0.25, 0.5, 100.0);
 
     const auto frame = change.frame();
 
-    QCOMPARE(frame.fade.first, 0);
-    QCOMPARE(frame.fade.count, 2);
-    QVERIFY(frame.fade.exit);
+    const auto& group = frame.fade.groups[1];
+    QVERIFY(!frame.fade.groups[0].active());
+    QCOMPARE(group.first, 1);
+    QCOMPARE(group.count, 2);
+    QCOMPARE(group.time, 0.25f);
+    QCOMPARE(group.spread, 0.5f);
+    QCOMPARE(group.length, 0.5f);
+    QVERIFY(!group.exit);
+    QVERIFY(!group.front);
+    // The fade takes the first fifth of the item's half of the duration.
+    QCOMPARE(group.curve.front(), 0.0f);
+    QCOMPARE(group.curve[7], 1.0f);
+    QCOMPARE(group.curve.back(), 1.0f);
+}
+
+void TestTransitions::fade_atFullStagger_followsTheFront()
+{
+    auto change = Change{{}, {0.0, 0.0, 1.0, 1.0}};
+    change.enter = fadingStep(TransitionKind::Draw, 0.25, 1.0, 250.0);
+
+    const auto& group = change.frame().fade.groups[1];
+
+    QVERIFY(group.active());
+    QVERIFY(group.front);
+    QCOMPARE(group.spread, 0.75f);
+    QCOMPARE(group.length, 0.25f);
+    QCOMPARE(group.starts.front(), 0.0f);
+    QCOMPARE(group.starts.back(), 1.0f);
+}
+
+void TestTransitions::fade_ofKeptItems_describesTheUpdateGroup()
+{
+    auto change = Change{{0.0, 0.0, 1.0, 1.0}, {0.0, 1.0, 1.0, 2.0, 2.0, 3.0}};
+    change.update = fadingStep(TransitionKind::Morph, 0.5, 0.0, 500.0, 1000.0, 1.0, 0.4);
+    change.enter = step(TransitionKind::Draw, 0.5);
+
+    const auto frame = change.frame();
+
+    const auto& kept = frame.fade.groups[0];
+    QCOMPARE(kept.first, 0);
+    QCOMPARE(kept.count, 2);
+    QCOMPARE(kept.curve.front(), 1.0f);
+    QCOMPARE(kept.curve.back(), 0.4f);
+    QVERIFY(!frame.fade.groups[1].active());
+}
+
+void TestTransitions::fade_ofAnExit_playsAsWritten()
+{
+    auto change = Change{{0.0, 0.0, 1.0, 1.0}, {}};
+    change.exit = fadingStep(TransitionKind::Grow, 0.25, 0.0, 1000.0, 1000.0, 1.0, 0.0);
+
+    const auto& group = change.frame().fade.groups[1];
+
+    QCOMPARE(group.first, 0);
+    QCOMPARE(group.count, 2);
+    QVERIFY(group.exit);
+    QCOMPARE(group.curve.front(), 1.0f);
+    QCOMPARE(group.curve.back(), 0.0f);
+}
+
+void TestTransitions::draw_fadeAtFullStagger_revealsOverTheSpread()
+{
+    auto change = Change{{}, {0.0, 0.0, 1.0, 1.0, 2.0, 2.0, 3.0, 3.0}};
+    change.enter = fadingStep(TransitionKind::Draw, 0.25, 1.0, 500.0);
+
+    // The front crosses the four items over the first half of the run.
+    QCOMPARE(change.frame().count, 2);
+    change.enter->progress = 0.5;
+    QCOMPARE(change.frame().count, 4);
+}
+
+void TestTransitions::draw_exitWithFade_keepsItemsUntilTheirFadeEnds()
+{
+    auto change = Change{{0.0, 0.0, 1.0, 1.0}, {}};
+    change.exit = fadingStep(TransitionKind::Draw, 0.5, 1.0, 500.0, 1000.0, 1.0, 0.0);
+
+    // Both items have started to fade, and none has finished.
+    QCOMPARE(change.frame().count, 2);
+    change.exit->progress = 0.75;
+    QCOMPARE(change.frame().count, 1);
+    change.exit->progress = 1.0;
+    QCOMPARE(change.frame().count, 0);
+}
+
+void TestTransitions::grow_longerOpacity_startsItemsTogether()
+{
+    auto change = Change{{}, {0.0, 10.0, 1.0, 20.0}};
+    change.enter = fadingStep(TransitionKind::Grow, 0.25, 0.5, 1000.0);
+
+    // The fade fills the run, so the items start together and grow over half of it.
+    QCOMPARE(change.frame().values, (std::vector<double>{0.0, 5.0, 1.0, 10.0}));
 }
 
 void TestTransitions::transition_startSetsRunning()
@@ -612,7 +734,7 @@ void TestTransitions::transition_defaults()
     QCOMPARE(QAccelPlot::MorphTransition{}.stagger(), 0.0);
     QCOMPARE(QAccelPlot::GrowTransition{}.stagger(), 0.0);
     QCOMPARE(QAccelPlot::DrawTransition{}.stagger(), 1.0);
-    QVERIFY(!QAccelPlot::DrawTransition{}.fade());
+    QCOMPARE(QAccelPlot::DrawTransition{}.opacityTimeline().empty(), true);
     QVERIFY(std::isnan(QAccelPlot::GrowTransition{}.baseline()));
     QCOMPARE(QAccelPlot::MorphTransition{}.kind(), TransitionKind::Morph);
     QCOMPARE(QAccelPlot::DrawTransition{}.kind(), TransitionKind::Draw);

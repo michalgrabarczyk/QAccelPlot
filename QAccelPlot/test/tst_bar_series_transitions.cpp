@@ -5,6 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
+#include "OpacityAnimations.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/series/BarSeries.hpp"
 #include "QAccelPlot/transitions/DrawTransition.hpp"
@@ -102,6 +103,7 @@ private slots:
     void categoriesSetDuringAnAnimationApply();
     void drawShowsBarsInOrder();
     void fadedEnterStartsTransparent();
+    void fadeAtFullStaggerStartsTransparent();
     void rangedBarsMorphTheirExtent();
     void changedLayoutGrowsTheNewBarsIn();
     void floatDataAnimates();
@@ -429,7 +431,7 @@ void BarSeriesTransitionsTest::fadedEnterStartsTransparent()
     auto draw = DrawTransition{};
     draw.setDuration(kLongDuration);
     draw.setStagger(0.0);
-    draw.setFade(true);
+    Test::addAnimation(draw, R"(NumberAnimation { property: "opacity"; from: 0; duration: 10000 })");
     scene_.bars->setEnterTransition(&draw);
 
     scene_.bars->setData(std::vector<double>{5.0, 8.0}, 1);
@@ -438,6 +440,23 @@ void BarSeriesTransitionsTest::fadedEnterStartsTransparent()
     QTRY_VERIFY(shows({{5.0, 4.0, Qt::black}}));
     draw.setDuration(0);
     QTRY_VERIFY(shows({{5.0, 4.0, Qt::red}}));
+    scene_.bars->setEnterTransition(nullptr);
+}
+
+void BarSeriesTransitionsTest::fadeAtFullStaggerStartsTransparent()
+{
+    // The reveal moves over the first half; the fade of each bar fills the rest.
+    auto draw = DrawTransition{};
+    draw.setDuration(kLongDuration);
+    Test::addAnimation(draw, R"(NumberAnimation { property: "opacity"; from: 0; duration: 5000 })");
+    scene_.bars->setEnterTransition(&draw);
+
+    scene_.bars->setData(std::vector<double>{2.0, 8.0, 7.0, 8.0}, 2);
+
+    // The first bar is revealed at once, but still transparent; the second one waits for the front.
+    QTRY_VERIFY(shows({{2.0, 4.0, Qt::black}, {7.0, 4.0, Qt::black}}));
+    draw.setDuration(0);
+    QTRY_VERIFY(shows({{2.0, 4.0, Qt::red}, {7.0, 4.0, Qt::red}}));
     scene_.bars->setEnterTransition(nullptr);
 }
 

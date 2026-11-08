@@ -10,6 +10,8 @@
 #include <QEasingCurve>
 #include <QList>
 #include <QObject>
+#include <QQmlListProperty>
+#include <QQmlParserStatus>
 #include <QtQml/qqmlregistration.h>
 
 QT_FORWARD_DECLARE_CLASS(QAbstractAnimation)
@@ -23,6 +25,8 @@ enum class TransitionKind {
     Draw,  ///< \brief Reveals items one after another.
     Grow,  ///< \brief Grows item values from a baseline.
 };
+
+class OpacityTimeline;
 } // namespace Internal
 
 /// \brief Abstract base class for animated data transitions on plot series.
@@ -39,10 +43,20 @@ enum class TransitionKind {
 /// One transition can be assigned to several series, and to several slots of one series. Each
 /// assignment keeps its own \c Run, so the animations are independent.
 ///
+/// Qt Quick animations of \c "opacity" declared inside a transition fade each item, see \c animations:
+///
+/// \code{.qml}
+/// enterTransition: QAccelPlot.DrawTransition {
+///     NumberAnimation { property: "opacity"; from: 0; duration: 250 }
+/// }
+/// \endcode
+///
 /// \sa MorphTransition, DrawTransition, GrowTransition, TransitionRunner
-class DataTransition : public QObject {
+class DataTransition : public QObject, public QQmlParserStatus {
     Q_OBJECT
+    Q_INTERFACES(QQmlParserStatus)
     QML_ANONYMOUS
+    Q_CLASSINFO("DefaultProperty", "animations")
 
     /// \brief Duration of the transition in milliseconds. Default: 300.
     ///
@@ -59,6 +73,22 @@ class DataTransition : public QObject {
     /// 0 animates all items together; 1 animates them one after another, each changing at once.
     /// Items start in index order. Values outside [0, 1] are clamped. Default: 0, and 1 for \c DrawTransition.
     Q_PROPERTY(qreal stagger READ stagger WRITE setStagger NOTIFY staggerChanged)
+    /// \brief Qt Quick animations of the opacity of each item, such as \c NumberAnimation { property: "opacity" }.
+    ///
+    /// The default property. The animations run together on the timeline of each item, which starts
+    /// when the item starts to move. They are read, never run, so \c running, \c paused, and their
+    /// signals have no effect.
+    ///
+    /// - Supported: \c NumberAnimation and other numeric \c PropertyAnimation types, \c PropertyAction,
+    ///   \c PauseAnimation, \c SequentialAnimation, and \c ParallelAnimation, with finite \c loops.
+    /// - A missing \c from continues from the opacity reached so far, and a missing \c to is 1.
+    ///   Before its first animation starts, an item shows that animation's start opacity.
+    /// - Other animations, such as \c SpringAnimation or \c ScriptAction, and animations of other
+    ///   properties log a warning and only add their duration.
+    /// - When the animations last longer than an item's share of \c duration, the start times of
+    ///   the items move closer together, so the transition still ends after \c duration.
+    /// - The opacity is clamped to [0, 1], and every item is opaque again when the transition ends.
+    Q_PROPERTY(QQmlListProperty<QObject> animations READ animations)
 
 public:
     /// \brief One animation of a transition on one series.
@@ -115,6 +145,9 @@ public:
     /// \brief Sets the stagger to \a stagger, clamped to [0, 1].
     void setStagger(qreal stagger);
 
+    /// \brief Returns the QML list property of the opacity animations.
+    QQmlListProperty<QObject> animations();
+
     /// \brief Starts \a run, restarting it if it is already active.
     ///
     /// A run active on another transition is ended first.
@@ -129,7 +162,14 @@ public:
     /// \cond INTERNAL
     /// \brief Returns how the transition moves its items.
     virtual Internal::TransitionKind kind() const = 0;
+    /// \brief Returns the opacity of an item over the time since it started, read from \c animations.
+    Internal::OpacityTimeline opacityTimeline() const;
     /// \endcond
+
+    /// \brief Holds back the warnings about ignored animations while the component loads.
+    void classBegin() override;
+    /// \brief Reports ignored animations once the component is complete.
+    void componentComplete() override;
 
 signals:
     /// \brief Emitted when the duration property changes.
@@ -150,8 +190,14 @@ private:
 
     explicit DataTransition(QObject* parent = nullptr);
 
+    static void appendAnimation(QQmlListProperty<QObject>* list, QObject* animation);
+    static qsizetype animationCount(QQmlListProperty<QObject>* list);
+    static QObject* animationAt(QQmlListProperty<QObject>* list, qsizetype index);
+    static void clearAnimations(QQmlListProperty<QObject>* list);
+
     void removeRun(Run* run);
     void setRunning(bool running);
+    void warnAboutIgnored(const QList<QObject*>& animations) const;
 
     int duration_{300};
     QEasingCurve easing_{QEasingCurve(QEasingCurve::Linear)};
@@ -159,6 +205,8 @@ private:
     bool running_{false};
     qreal stagger_{0.0};
     QList<Run*> runs_;
+    QList<QObject*> animations_;
+    bool loading_{false};
     QAbstractAnimation* clock_;
 };
 

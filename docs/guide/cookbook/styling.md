@@ -230,9 +230,9 @@ Items without a transition in their slot change at once.
 
 ```qml
 QAccelPlot.BarSeries {
-    enterTransition: QAccelPlot.GrowTransition { stagger: 0.5; fade: true }
+    enterTransition: QAccelPlot.GrowTransition { stagger: 0.5 }
     updateTransition: QAccelPlot.MorphTransition { duration: 300 }
-    exitTransition: QAccelPlot.GrowTransition { duration: 200; fade: true }
+    exitTransition: QAccelPlot.GrowTransition { duration: 200 }
 }
 ```
 
@@ -243,7 +243,7 @@ QAccelPlot.BarSeries {
   for other series.
 - A `DrawTransition` or `GrowTransition` in `updateTransition` redraws all new
   items as one sequence; the enter and exit transitions are skipped.
-- An exit plays the transition backwards, the last item first.
+- An exit plays the movement backwards, the last item first.
 
 Every transition takes `duration`, `easing`, and `stagger`:
 
@@ -252,8 +252,44 @@ Every transition takes `duration`, `easing`, and `stagger`:
   `DrawTransition` defaults to 1, the others to 0.
 - `easing` applies to the progress of each item. With a `stagger` of 1, it
   shapes how the reveal moves along the items.
-- `fade` on `DrawTransition` and `GrowTransition` fades each item in, or out,
-  over its share of the duration. It needs a `stagger` below 1.
+
+### Fade items
+
+Declare Qt Quick animations of `"opacity"` inside a transition, as in a
+`ListView` transition. Each item plays them from the moment it starts to move:
+
+```qml
+enterTransition: QAccelPlot.DrawTransition {
+    NumberAnimation { property: "opacity"; from: 0; duration: 250 }
+}
+exitTransition: QAccelPlot.GrowTransition {
+    NumberAnimation { property: "opacity"; to: 0; easing.type: Easing.InQuad }
+}
+updateTransition: QAccelPlot.MorphTransition {
+    duration: 600
+    SequentialAnimation {
+        NumberAnimation { property: "opacity"; to: 0.4; duration: 200 }
+        NumberAnimation { property: "opacity"; to: 1; duration: 400 }
+    }
+}
+```
+
+- The transition reads the animations; it never runs them.
+- Supported: `NumberAnimation` and other numeric `PropertyAnimation` types,
+  `PropertyAction`, `PauseAnimation`, `SequentialAnimation`, and
+  `ParallelAnimation`, with finite `loops`. Several animations in a transition
+  play together.
+- A missing `from` continues from the opacity reached so far; a missing `to`
+  is 1. Before its first animation starts, an item shows that animation's
+  start opacity.
+- Exits play opacity animations as written, so a fade out sets `to: 0`.
+- When the animations last longer than an item's own movement, the item start
+  times move closer together, so the transition still ends after `duration`.
+  With a `stagger` of 1, the reveal crosses the items while the last ones fade.
+- Other animations, and animations of other properties, log a warning and only
+  add their duration. `NumberAnimation on opacity` does not load: each item
+  has its own opacity.
+- Every item is opaque again when the transition ends.
 
 Several series can share one transition, and one series can use a transition in
 several slots. While a transition runs, the series' `animating` is `true`.

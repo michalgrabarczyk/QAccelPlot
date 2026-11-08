@@ -199,9 +199,8 @@ std::optional<Internal::TransitionStep> TransitionRunner::step(const Slot slot) 
         return std::nullopt;
     }
     auto result = Internal::TransitionStep{transition->kind(), transition->progress(runs_[index]), transition->stagger(), transition->easing()};
-    if (const auto* enterExit = qobject_cast<const EnterExitTransition*>(transition)) {
-        result.fade = enterExit->fade();
-    }
+    result.opacity = transition->opacityTimeline();
+    result.duration = transition->duration();
     if (const auto* grow = qobject_cast<const GrowTransition*>(transition)) {
         result.baseline = grow->baseline();
     }

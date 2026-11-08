@@ -104,7 +104,7 @@ QAccelPlot/
 │       ├── theme/                — ColorPalette (light/dark palette values), Colors QML singleton
 │       └── transitions/          — DataTransition, EnterExitTransition, DrawTransition, GrowTransition,
 │                                   MorphTransition, TransitionRunner (runs the enter, update, and exit
-│                                   transitions of one item), internal/ (frame engine)
+│                                   transitions of one item), internal/ (frame engine, opacity animations)
 ├── qml/                          — QML helper types (Plot, Legend, Crosshair, InspectionTooltip,
 │                                   InspectionMarkers)
 ├── shaders/                      — GLSL shaders compiled to .qsb

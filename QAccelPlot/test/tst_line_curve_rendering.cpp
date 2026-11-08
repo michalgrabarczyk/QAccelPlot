@@ -5,6 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
+#include "OpacityAnimations.hpp"
 #include "QAccelPlot/effects/Colormap.hpp"
 #include "QAccelPlot/effects/GradientStroke.hpp"
 #include "QAccelPlot/materials/LineMaterial.hpp"
@@ -190,7 +191,7 @@ void LineCurveRenderingTest::fadingTransitionReachesTheMaterials()
     auto draw = QAccelPlot::DrawTransition{};
     draw.setDuration(10'000);
     draw.setStagger(0.5);
-    draw.setFade(true);
+    QAccelPlot::Test::addAnimation(draw, R"(NumberAnimation { property: "opacity"; from: 0; duration: 1000 })");
     curve.setEnterTransition(&draw);
 
     curve.setData(std::vector<double>{0.0, 0.0, 1.0, 1.0, 2.0, 0.0}, 3);
@@ -203,9 +204,13 @@ void LineCurveRenderingTest::fadingTransitionReachesTheMaterials()
     const auto* markers = static_cast<QSGGeometryNode*>(node->lastChild());
     for (const auto* geometryNode : {line, markers}) {
         const auto* material = static_cast<const QAccelPlot::DataTextureMaterial*>(geometryNode->material());
-        QCOMPARE(material->itemFade.first, 0);
-        QCOMPARE(material->itemFade.count, 3);
-        QCOMPARE(material->itemFade.stagger, 0.5f);
+        const auto& entering = material->itemFade.groups[1];
+        QVERIFY(!material->itemFade.groups[0].active());
+        QCOMPARE(entering.first, 0);
+        QCOMPARE(entering.count, 3);
+        QCOMPARE(entering.spread, 0.5f);
+        QCOMPARE(entering.curve.front(), 0.0f);
+        QCOMPARE(entering.curve.back(), 1.0f);
     }
     curve.setEnterTransition(nullptr);
 }

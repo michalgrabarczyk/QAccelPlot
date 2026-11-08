@@ -50,9 +50,8 @@ layout(std140, binding = 0) uniform buf {
     float valueMax;       // 204-207: value at colormap position 1
     float valueOrigin;    // 208-211: added to the data before the log normalization
     float valueLogScale;  // 212-215: 1 to normalize in log10
-    vec4 itemFadeRange;     // item opacity, see item_opacity.glsl
-    vec4 itemFadeParams;
-    vec4 itemFadeEasing[4];
+    vec4 itemFadeGroups[28]; // item opacity, see item_opacity.glsl
+    vec4 itemFadeTrail;
     vec4 glowColor;         // Glow effect, see glow.glsl
     vec4 glowParams;
 } ubuf;
