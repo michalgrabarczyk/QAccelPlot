@@ -186,6 +186,8 @@ protected:
     /// \brief Applies new points without values, animating to them when a transition is enabled.
     void applyDataPoints(DataPointInput&& input) override;
     /// \brief Rebuilds the hover index, because log dimensions map points differently.
+    /// \brief Returns \c true for \c Glow.
+    bool supportsEffect(const SeriesEffect& effect) const override;
     void onAxisScaleChanged() override;
     /// \brief Refreshes the hover index, the value range, and the count after the points changed.
     void onDataPointsChanged(DataChange change, int previousCount) override;

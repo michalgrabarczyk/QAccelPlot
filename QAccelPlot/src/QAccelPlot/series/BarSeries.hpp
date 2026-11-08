@@ -319,6 +319,8 @@ protected:
     void onAxisScaleChanged() override;
     DataRanges computeDataRanges() const override;
     /// \brief Refreshes the vertices, the hover index, the count, and the value range after the bars changed.
+    /// \brief Returns \c true for \c Glow.
+    bool supportsEffect(const SeriesEffect& effect) const override;
     void onDataPointsChanged(DataChange change, int previousCount) override;
     /// \brief Returns the span of the finite \c colorSource values while a colormap is assigned.
     ///

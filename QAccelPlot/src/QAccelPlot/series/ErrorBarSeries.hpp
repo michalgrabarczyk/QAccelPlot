@@ -254,6 +254,8 @@ protected:
     /// \brief Stores \a input, animating it from the drawn error bars while a transition is enabled.
     void applyDataPoints(DataPointInput&& input) override;
     /// \brief Refreshes the hover lookup and repaints after a bound axis changes between linear and log scale.
+    /// \brief Returns \c true for \c Glow.
+    bool supportsEffect(const SeriesEffect& effect) const override;
     void onAxisScaleChanged() override;
     /// \brief Refreshes the hover lookup and the count after the data points changed.
     void onDataPointsChanged(DataChange change, int previousCount) override;

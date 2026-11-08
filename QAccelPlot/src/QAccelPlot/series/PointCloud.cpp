@@ -12,10 +12,12 @@
 #include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/effects/Glow.hpp"
 #include "QAccelPlot/materials/PointCloudMaterial.hpp"
 #include "QAccelPlot/materials/internal/DataTextureLayout.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
 #include "QAccelPlot/series/internal/HoverIndexBudget.hpp"
+#include "QAccelPlot/series/internal/SeriesEffectList.hpp"
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
 #include "QAccelPlot/transitions/TransitionRunner.hpp"
 
@@ -442,6 +444,7 @@ QSGNode* PointCloud::updatePaintNode(QSGNode* oldNode, [[maybe_unused]] UpdatePa
     material->valueMax = static_cast<float>(dataValueMax());
     material->stride = static_cast<float>(stride);
     material->itemFade = transition_->fade();
+    material->glow = effectList().glowStyle(color_);
     material->shapeType = static_cast<int>(marker_->shape()) - 1;
     node->markDirty(QSGNode::DirtyMaterial);
 
@@ -541,6 +544,11 @@ void PointCloud::applyDataPoints(DataPointInput&& input)
     // Reuses the allocation of the stored points.
     dataPoints().assignFloat(input.floatArray, pointCount);
     notifyDataPointsChanged(DataChange::Replaced, previousCount);
+}
+
+bool PointCloud::supportsEffect(const SeriesEffect& effect) const
+{
+    return qobject_cast<const Glow*>(&effect) != nullptr;
 }
 
 void PointCloud::onAxisScaleChanged()

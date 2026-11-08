@@ -8,7 +8,7 @@
 // Shared ribbon geometry for line vertex shaders.
 // Requires: a `ubuf` uniform block with matrix, domainMin, domainMax,
 // viewportSize, lineWidth, logScaleX, logScaleY, pointCount,
-// antialiasingEnabled, antialiasingFeather and stepMode members,
+// antialiasingEnabled, antialiasingFeather, stepMode and glowParams members,
 // followed by includes of data_texture.glsl and math_utils.glsl.
 //
 // Samples are read as LINE_SAMPLE_STRIDE floats each, X first. LINE_Y_BITS(base)
@@ -23,6 +23,7 @@
 #endif
 
 #include "data_mapping.glsl"
+#include "glow.glsl"
 
 struct LineVertexResult {
     vec4 position;     // clip-space position
@@ -37,12 +38,14 @@ bool lineAntialiased() {
 
 // Half-width of the rasterized ribbon in pixels. With antialiasing, the ribbon
 // is at least 1 px wide and grows by half the feather on each side, so the
-// coverage ramp centred on the line edge is never clipped by the geometry.
+// coverage ramp centred on the line edge is never clipped by the geometry. A glow
+// widens it by its radius.
 float lineRibbonHalfExtent() {
+    float glow = glowActive(ubuf.glowParams.xy) ? ubuf.glowParams.x : 0.0;
     if (!lineAntialiased()) {
-        return ubuf.lineWidth * 0.5;
+        return ubuf.lineWidth * 0.5 + glow;
     }
-    return max(ubuf.lineWidth, 1.0) * 0.5 + ubuf.antialiasingFeather * 0.5;
+    return max(ubuf.lineWidth, 1.0) * 0.5 + ubuf.antialiasingFeather * 0.5 + glow;
 }
 
 // Fetches sample `index` (clamped to the data range) and returns whether it is

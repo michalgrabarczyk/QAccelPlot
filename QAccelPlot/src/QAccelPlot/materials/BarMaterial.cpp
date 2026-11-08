@@ -7,6 +7,7 @@
 //
 #include "QAccelPlot/materials/BarMaterial.hpp"
 
+#include "QAccelPlot/materials/internal/GlowUniforms.hpp"
 #include "QAccelPlot/materials/internal/ItemOpacityUniforms.hpp"
 #include "QAccelPlot/materials/internal/RectUniforms.hpp"
 
@@ -35,9 +36,10 @@ struct BarUbo {
     float valueLogScale;                       // 212–215
     float padding[2];                          // 216–223
     Internal::ItemOpacityUniforms itemOpacity; // 224–319
+    Internal::GlowUniforms glow;               // 320–351
 };
 
-static_assert(sizeof(BarUbo) == 320);
+static_assert(sizeof(BarUbo) == 352);
 
 class BarShader : public QSGMaterialShader {
 public:
@@ -68,6 +70,7 @@ public:
         ubo.valueOrigin = mat->valueOrigin;
         ubo.valueLogScale = mat->valueLogScale;
         ubo.itemOpacity = Internal::itemOpacityUniforms(mat->itemFade);
+        ubo.glow = Internal::glowUniforms(mat->glow);
         memcpy(buf->data(), &ubo, sizeof(ubo));
         return true;
     }

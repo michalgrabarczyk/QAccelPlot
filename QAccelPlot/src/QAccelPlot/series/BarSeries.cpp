@@ -10,11 +10,13 @@
 
 #include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/QAccelPlotLogging.hpp"
+#include "QAccelPlot/effects/Glow.hpp"
 #include "QAccelPlot/materials/BarMaterial.hpp"
 #include "QAccelPlot/materials/DataTextureMaterial.hpp"
 #include "QAccelPlot/series/internal/CategoryList.hpp"
 #include "QAccelPlot/series/internal/RectGeometry.hpp"
 #include "QAccelPlot/series/internal/RectVertexCache.hpp"
+#include "QAccelPlot/series/internal/SeriesEffectList.hpp"
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 #include "QAccelPlot/transitions/TransitionRunner.hpp"
@@ -697,6 +699,11 @@ void BarSeries::setDataFFromArray(const float* data, const int barCount)
     notifyDataPointsChanged(DataChange::Replaced, previousCount);
 }
 
+bool BarSeries::supportsEffect(const SeriesEffect& effect) const
+{
+    return qobject_cast<const Glow*>(&effect) != nullptr;
+}
+
 void BarSeries::onDataPointsChanged([[maybe_unused]] const DataChange change, const int previousCount)
 {
     // Vertex colors depend on the categories, but not on the coordinates.
@@ -977,6 +984,7 @@ void BarSeries::updateMaterial(BarMaterial& material, const int renderCount) con
     material.logScaleY = yAxis()->logScale() ? 1.0f : 0.0f;
     material.useVertexColor = drawnCategories().empty() ? 0.0f : 1.0f;
     material.itemFade = transition_->fade();
+    material.glow = effectList().glowStyle(color_);
     material.rectCount = static_cast<float>(renderCount);
     material.minimumSize = horizontal ? QVector2D(0.0f, minimumSize) : QVector2D(minimumSize, 0.0f);
     material.borderWidth = static_cast<float>(border_->width());

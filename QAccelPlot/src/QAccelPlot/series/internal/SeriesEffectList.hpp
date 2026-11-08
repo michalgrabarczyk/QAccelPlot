@@ -8,6 +8,7 @@
 #pragma once
 
 #include "QAccelPlot/effects/SeriesEffect.hpp"
+#include "QAccelPlot/internal/GlowStyle.hpp"
 
 #include <QList>
 #include <QObject>
@@ -51,6 +52,9 @@ public:
         }
         return nullptr;
     }
+
+    /// \brief Returns the halo of the first enabled \c Glow, in \a seriesColor unless it has its own color; none without a \c Glow.
+    GlowStyle glowStyle(const QColor& seriesColor) const;
 
     /// \brief Holds back warnings while the series' component loads.
     void classBegin();

@@ -18,6 +18,9 @@ layout(location = 0) out vec4 v_color;
 // the antialiasing margin outside the part.
 layout(location = 1) out vec4 v_edgeDistance;
 layout(location = 2) flat out float v_antialiasing;
+// Glow halo color and (radius, intensity), see glow.glsl; a zero radius draws none.
+layout(location = 3) flat out vec4 v_glowColor;
+layout(location = 4) flat out vec2 v_glowParams;
 
 // Must match ErrorBarUbo in ErrorBarMaterial.cpp.
 layout(std140, binding = 0) uniform buf {
@@ -41,6 +44,8 @@ layout(std140, binding = 0) uniform buf {
     vec4 itemFadeRange;     // item opacity, see item_opacity.glsl
     vec4 itemFadeParams;
     vec4 itemFadeEasing[4];
+    vec4 glowColor;         // Glow effect, see glow.glsl
+    vec4 glowParams;
 } ubuf;
 
 layout(binding = 1) uniform sampler2D dataSampler;
@@ -49,6 +54,7 @@ layout(binding = 1) uniform sampler2D dataSampler;
 #include "math_utils.glsl"
 #include "viewport_fraction.glsl"
 #include "item_opacity.glsl"
+#include "glow.glsl"
 
 const int kVerticesPerErrorBar = 18;
 const int kValuesPerErrorBar = 4;
@@ -59,6 +65,8 @@ void cull() {
     v_color = vec4(0.0);
     v_edgeDistance = vec4(0.0);
     v_antialiasing = 0.0;
+    v_glowColor = vec4(0.0);
+    v_glowParams = vec2(0.0);
     gl_Position = kCulledClipPosition;
 }
 
@@ -146,14 +154,18 @@ void main() {
     // Corners of two triangles: (0,0), (1,0), (0,1) and (1,0), (1,1), (0,1).
     bool high0 = corner == 1 || corner == 3 || corner == 4;
     bool high1 = corner == 2 || corner == 4 || corner == 5;
-    float margin = ubuf.antialiasing > 0.5 ? kFeather : 0.0;
+    float margin = (ubuf.antialiasing > 0.5 ? kFeather : 0.0) + (glowActive(ubuf.glowParams.xy) ? ubuf.glowParams.x : 0.0);
     float u = high0 ? acrossSpan.y + margin : acrossSpan.x - margin;
     float v = high1 ? alongSpan.y + margin : alongSpan.x - margin;
     v_edgeDistance = vec4(u - acrossSpan.x, acrossSpan.y - u, v - alongSpan.x, alongSpan.y - v);
     v_antialiasing = ubuf.antialiasing;
 
     v_color = index == int(ubuf.hoveredIndex) ? ubuf.hoverColor : ubuf.color;
-    v_color.a *= ubuf.opacity * itemOpacity(float(index));
+    float fade = itemOpacity(float(index));
+    v_color.a *= ubuf.opacity * fade;
+    v_glowColor = ubuf.glowColor;
+    // The halo fades with the error bar.
+    v_glowParams = glowActive(ubuf.glowParams.xy) ? vec2(ubuf.glowParams.x, ubuf.glowParams.y * ubuf.opacity * fade) : vec2(0.0);
     vec2 pixel = horizontal ? vec2(v, u) : vec2(u, v);
     gl_Position = ubuf.matrix * vec4(pixel, 0.0, 1.0);
 }

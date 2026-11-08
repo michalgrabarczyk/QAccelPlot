@@ -36,6 +36,8 @@ layout(std140, binding = 0) uniform buf {
     vec4 itemFadeRange;     // item opacity, see item_opacity.glsl
     vec4 itemFadeParams;
     vec4 itemFadeEasing[4];
+    vec4 glowColor;         // Glow effect, see glow.glsl
+    vec4 glowParams;
 } ubuf;
 
 layout(binding = 1) uniform sampler2D dataSampler;
@@ -43,6 +45,7 @@ layout(binding = 1) uniform sampler2D dataSampler;
 #include "data_texture.glsl"
 #include "math_utils.glsl"
 #include "point_shapes.glsl"
+#include "glow.glsl"
 #include "marker_vertex.glsl"
 #include "item_opacity.glsl"
 

@@ -61,6 +61,7 @@ void updatePointMaterial(PointMaterial& material, const PointCurveRenderParams& 
     material.markerStrokeWidth = static_cast<float>(params.markerStrokeWidth);
     material.markerFilled = params.markerFilled ? 1.0f : 0.0f;
     material.itemFade = params.itemFade;
+    material.glow = params.glow;
 
     const auto& gradient = params.gradientPayload;
     const auto useGradient = gradient.isValid();

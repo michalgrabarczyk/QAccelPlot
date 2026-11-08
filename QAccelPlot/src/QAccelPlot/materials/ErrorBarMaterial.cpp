@@ -7,6 +7,7 @@
 //
 #include "QAccelPlot/materials/ErrorBarMaterial.hpp"
 
+#include "QAccelPlot/materials/internal/GlowUniforms.hpp"
 #include "QAccelPlot/materials/internal/ItemOpacityUniforms.hpp"
 
 #include <QByteArray>
@@ -35,10 +36,11 @@ struct ErrorBarUbo {
     float antialiasing;                        // 160–163
     float padding[3];                          // 164–175
     Internal::ItemOpacityUniforms itemOpacity; // 176–271
+    Internal::GlowUniforms glow;               // 272–303
 };
 
 static_assert(offsetof(ErrorBarUbo, hoverColor) == 128);
-static_assert(sizeof(ErrorBarUbo) == 272);
+static_assert(sizeof(ErrorBarUbo) == 304);
 
 class ErrorBarShader : public QSGMaterialShader {
 public:
@@ -70,6 +72,7 @@ public:
         ubo.errorBarCount = mat->errorBarCount;
         ubo.antialiasing = mat->antialiasing;
         ubo.itemOpacity = Internal::itemOpacityUniforms(mat->itemFade);
+        ubo.glow = Internal::glowUniforms(mat->glow);
         memcpy(buf->data(), &ubo, sizeof(ubo));
         return true;
     }

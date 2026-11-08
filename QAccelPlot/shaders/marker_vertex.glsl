@@ -7,7 +7,7 @@
 //
 // Vertex stage of the marker quads shared by point.vert and point_cloud.vert. Each
 // point is two unindexed triangles that read the point from the data texture.
-// Requires dataSampler, data_texture.glsl, math_utils.glsl, point_shapes.glsl, and a
+// Requires dataSampler, data_texture.glsl, math_utils.glsl, point_shapes.glsl, glow.glsl, and a
 // ubuf with matrix, domainMin, domainMax, viewportSize, logScaleX, logScaleY,
 // markerSize, shapeType, antialiasingEnabled, and antialiasingFeather.
 
@@ -91,6 +91,9 @@ MarkerVertex computeMarkerVertex(int floatsPerPoint) {
         // With antialiasing, the quad grows by half the feather so the coverage ramp
         // centred on the shape edge is not clipped by the geometry.
         halfExtent += ubuf.antialiasingFeather * 0.5;
+    }
+    if (ubuf.shapeType != kPixel && glowActive(ubuf.glowParams.xy)) {
+        halfExtent += ubuf.glowParams.x;
     }
 
     vec2 offset = markerCornerOffset(vertexIndex % 6);

@@ -6,6 +6,7 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #version 440
+#extension GL_GOOGLE_include_directive : require
 
 layout(location = 0) in vec4 v_color;
 layout(location = 1) in float v_edgeDistance; // signed distance from the line centre, in pixels
@@ -40,7 +41,11 @@ layout(std140, binding = 0) uniform buf {
     vec4 itemFadeRange;     // item opacity, see item_opacity.glsl
     vec4 itemFadeParams;
     vec4 itemFadeEasing[4];
+    vec4 glowColor;         // Glow effect, see glow.glsl
+    vec4 glowParams;
 } ubuf;
+
+#include "glow.glsl"
 
 layout(binding = 2) uniform sampler2D gradientSampler;
 
@@ -67,14 +72,20 @@ void main() {
     // line edge. Lines thinner than 1 px are drawn 1 px wide with proportionally
     // reduced alpha, so they stay visible regardless of pixel alignment.
     float alpha = 1.0;
+    // Distance from the line edge, outside the line; the glow halo covers the rest of the ribbon.
+    float outsideDistance = abs(v_edgeDistance) - ubuf.lineWidth * 0.5;
     if (ubuf.antialiasingEnabled > 0.5 && ubuf.antialiasingFeather > 0.0) {
         float coverageWidth = max(ubuf.lineWidth, 1.0);
         float edgeDistance = coverageWidth * 0.5 - abs(v_edgeDistance);
         alpha = clamp(edgeDistance / ubuf.antialiasingFeather + 0.5, 0.0, 1.0);
         alpha *= clamp(ubuf.lineWidth, 0.0, 1.0);
+        outsideDistance = -edgeDistance;
+    } else if (glowActive(ubuf.glowParams.xy)) {
+        alpha = outsideDistance <= 0.0 ? 1.0 : 0.0;
     }
 
     vec4 gradientColor = texture(gradientSampler, vec2(clamp(v_gradientCoordinate, 0.0, 1.0), 0.5));
     float outputAlpha = gradientColor.a * alpha * ubuf.opacity * v_itemOpacity;
-    fragColor = vec4(gradientColor.rgb * outputAlpha, outputAlpha);
+    vec4 stroke = vec4(gradientColor.rgb * outputAlpha, outputAlpha);
+    fragColor = withGlow(stroke, outsideDistance, ubuf.glowColor, ubuf.glowParams.xy, ubuf.opacity * v_itemOpacity);
 }

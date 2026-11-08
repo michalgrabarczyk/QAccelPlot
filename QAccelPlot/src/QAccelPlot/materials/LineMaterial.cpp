@@ -7,6 +7,7 @@
 //
 #include "QAccelPlot/materials/LineMaterial.hpp"
 
+#include "QAccelPlot/materials/internal/GlowUniforms.hpp"
 #include "QAccelPlot/materials/internal/ItemOpacityUniforms.hpp"
 
 #include <QByteArray>
@@ -42,9 +43,10 @@ struct LineUbo {
     float stepMode;                            // 180–183
     float padding[2];                          // 184–191
     Internal::ItemOpacityUniforms itemOpacity; // 192–287
+    Internal::GlowUniforms glow;               // 288–319
 };
 
-static_assert(sizeof(LineUbo) == 288);
+static_assert(sizeof(LineUbo) == 320);
 
 class LineShader : public QSGMaterialShader {
 public:
@@ -90,6 +92,7 @@ public:
         ubo.opacity = state.opacity();
         ubo.stepMode = mat->stepMode;
         ubo.itemOpacity = Internal::itemOpacityUniforms(mat->itemFade);
+        ubo.glow = Internal::glowUniforms(mat->glow);
         memcpy(buf->data(), &ubo, sizeof(ubo));
         return true;
     }

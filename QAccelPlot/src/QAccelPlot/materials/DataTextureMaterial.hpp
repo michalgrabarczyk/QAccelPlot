@@ -7,6 +7,7 @@
 //
 #pragma once
 
+#include "QAccelPlot/internal/GlowStyle.hpp"
 #include "QAccelPlot/internal/ItemFade.hpp"
 #include "QAccelPlot/materials/DataTexture.hpp"
 
@@ -81,6 +82,8 @@ public:
     std::shared_ptr<DataTexture> dataTexture;
     /// \brief Items a running transition fades; inactive by default. Shaders without item opacity ignore it.
     Internal::ItemFade itemFade;
+    /// \brief Halo of a \c Glow effect; none by default. Shaders without a halo ignore it.
+    Internal::GlowStyle glow;
 };
 
 } // namespace QAccelPlot

@@ -7,6 +7,7 @@
 //
 #include "QAccelPlot/materials/PointMaterial.hpp"
 
+#include "QAccelPlot/materials/internal/GlowUniforms.hpp"
 #include "QAccelPlot/materials/internal/ItemOpacityUniforms.hpp"
 
 #include <QByteArray>
@@ -33,12 +34,13 @@ struct PointUboTail {
     float opacity;                             // 152–155
     float padding;                             // 156–159
     Internal::ItemOpacityUniforms itemOpacity; // 160–255
+    Internal::GlowUniforms glow;               // 256–287
 };
 
 constexpr auto kPointUboSize = kCommonUniformSize + static_cast<int>(sizeof(PointUboTail));
 
-static_assert(sizeof(PointUboTail) == 140);
-static_assert(kPointUboSize == 256);
+static_assert(sizeof(PointUboTail) == 172);
+static_assert(kPointUboSize == 288);
 
 int compareValues(const float left, const float right)
 {
@@ -80,6 +82,7 @@ public:
         tail.gradientValueMax = material->gradientValueMax;
         tail.opacity = state.opacity();
         tail.itemOpacity = Internal::itemOpacityUniforms(material->itemFade);
+        tail.glow = Internal::glowUniforms(material->glow);
         std::memcpy(buffer->data() + kCommonUniformSize, &tail, sizeof(tail));
         return true;
     }

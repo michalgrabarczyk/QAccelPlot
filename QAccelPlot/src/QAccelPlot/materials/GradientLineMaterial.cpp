@@ -7,6 +7,7 @@
 //
 #include "QAccelPlot/materials/GradientLineMaterial.hpp"
 
+#include "QAccelPlot/materials/internal/GlowUniforms.hpp"
 #include "QAccelPlot/materials/internal/ItemOpacityUniforms.hpp"
 
 #include <QByteArray>
@@ -38,9 +39,10 @@ struct GradientLineUbo {
     float stepMode;
     float padding[2];
     Internal::ItemOpacityUniforms itemOpacity;
+    Internal::GlowUniforms glow;
 };
 
-static_assert(sizeof(GradientLineUbo) == 304);
+static_assert(sizeof(GradientLineUbo) == 336);
 
 class GradientLineShader : public QSGMaterialShader {
 public:
@@ -87,6 +89,7 @@ public:
         ubo.opacity = state.opacity();
         ubo.stepMode = material->stepMode;
         ubo.itemOpacity = Internal::itemOpacityUniforms(material->itemFade);
+        ubo.glow = Internal::glowUniforms(material->glow);
         std::memcpy(buffer->data(), &ubo, sizeof(ubo));
         return true;
     }

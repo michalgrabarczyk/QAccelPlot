@@ -10,8 +10,10 @@
 #include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/effects/Glow.hpp"
 #include "QAccelPlot/materials/ErrorBarMaterial.hpp"
 #include "QAccelPlot/series/internal/RectGeometry.hpp"
+#include "QAccelPlot/series/internal/SeriesEffectList.hpp"
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 #include "QAccelPlot/transitions/TransitionRunner.hpp"
@@ -501,6 +503,11 @@ void ErrorBarSeries::applyDataPoints(DataPointInput&& input)
     storeDataPoints(std::move(input));
 }
 
+bool ErrorBarSeries::supportsEffect(const SeriesEffect& effect) const
+{
+    return qobject_cast<const Glow*>(&effect) != nullptr;
+}
+
 void ErrorBarSeries::onAxisScaleChanged()
 {
     // Log scale changes which data points are drawn.
@@ -724,6 +731,7 @@ void ErrorBarSeries::updateMaterial(ErrorBarMaterial& material, const int drawnC
     material.horizontal = isHorizontal() ? 1.0f : 0.0f;
     material.errorBarCount = static_cast<float>(drawnCount);
     material.itemFade = transition_->fade();
+    material.glow = effectList().glowStyle(color_);
     material.antialiasing = antialiasing() ? 1.0f : 0.0f;
 }
 

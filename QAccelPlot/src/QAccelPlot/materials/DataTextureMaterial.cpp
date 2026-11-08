@@ -69,6 +69,9 @@ int DataTextureMaterial::compare(const QSGMaterial* other) const
     if (const auto fadeOrder = Internal::compareItemFades(itemFade, m->itemFade); fadeOrder != 0) {
         return fadeOrder;
     }
+    if (const auto glowOrder = Internal::compareGlowStyles(glow, m->glow); glowOrder != 0) {
+        return glowOrder;
+    }
     return compareExtra(other);
 }
 

@@ -9,6 +9,7 @@
 
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/effects/GradientColorTypes.hpp"
+#include "QAccelPlot/internal/GlowStyle.hpp"
 #include "QAccelPlot/internal/ItemFade.hpp"
 #include "QAccelPlot/linestyles/LineStyle.hpp"
 #include "QAccelPlot/renderers/CurveRendererParams.hpp"
@@ -58,6 +59,7 @@ struct LineCurveRenderParams {
     const LineStyle* lineStyle;                     ///< \brief Active line style (dash pattern etc.).
     StepMode stepMode{StepMode::None};              ///< \brief How the line joins consecutive data points.
     Internal::ItemFade itemFade{};                  ///< \brief Points a running transition fades, as indices into \c data.
+    Internal::GlowStyle glow{};                     ///< \brief Halo of a \c Glow effect around the line.
 };
 
 /// \brief Outline of a gradient fill in data space: one group of points per run of valid data points, broken at gaps.

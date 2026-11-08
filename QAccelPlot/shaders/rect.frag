@@ -6,16 +6,22 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #version 440
+#extension GL_GOOGLE_include_directive : require
 
 layout(location = 0) in vec4 v_color;
 layout(location = 1) in vec4 v_edgeDistance;
 layout(location = 2) in vec4 v_borderColor;
 layout(location = 3) in float v_borderWidth;
 layout(location = 4) flat in float v_antialiasing;
+layout(location = 5) flat in vec4 v_glowColor;
+layout(location = 6) flat in vec2 v_glowParams;
 
 layout(location = 0) out vec4 fragColor;
 
-void main() {
+#include "glow.glsl"
+
+// Returns the color of the rectangle itself, premultiplied.
+vec4 rectColor(float outsideDistance) {
     // Opposite edge distances add up to the rectangle's size. The outline shrinks on a narrow
     // axis so at least one pixel of fill stays visible.
     vec2 size = vec2(v_edgeDistance.x + v_edgeDistance.y, v_edgeDistance.z + v_edgeDistance.w);
@@ -26,13 +32,23 @@ void main() {
     vec4 fill = vec4(v_color.rgb * v_color.a, v_color.a);
     vec4 outline = vec4(v_borderColor.rgb * v_borderColor.a, v_borderColor.a);
     if (v_antialiasing < 0.5) {
-        fragColor = any(lessThan(distance, border)) ? outline : fill;
-        return;
+        // Outside the rectangle, the quad only holds a glow halo.
+        if (outsideDistance > 0.0) {
+            return vec4(0.0);
+        }
+        return any(lessThan(distance, border)) ? outline : fill;
     }
 
     // Box-filtered pixel shares: inside the outline band, and inside the rectangle, per axis.
     vec2 band = mix(vec2(0.0), clamp(border - distance + 0.5, 0.0, 1.0), greaterThan(border, vec2(0.0)));
     vec4 edge = clamp(v_edgeDistance + 0.5, 0.0, 1.0);
     vec2 coverage = clamp(edge.xz + edge.yw - 1.0, 0.0, 1.0);
-    fragColor = mix(fill, outline, max(band.x, band.y)) * (coverage.x * coverage.y);
+    return mix(fill, outline, max(band.x, band.y)) * (coverage.x * coverage.y);
+}
+
+void main() {
+    // Distance outside the rectangle, rounded at its corners.
+    vec2 outside = max(-vec2(min(v_edgeDistance.x, v_edgeDistance.y), min(v_edgeDistance.z, v_edgeDistance.w)), 0.0);
+    float outsideDistance = length(outside);
+    fragColor = withGlow(rectColor(outsideDistance), outsideDistance, v_glowColor, v_glowParams, 1.0);
 }

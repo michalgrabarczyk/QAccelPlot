@@ -20,6 +20,9 @@ layout(location = 1) out vec4 v_edgeDistance;
 layout(location = 2) out vec4 v_borderColor;
 layout(location = 3) out float v_borderWidth;
 layout(location = 4) flat out float v_antialiasing;
+// Glow halo color and (radius, intensity), see glow.glsl; a zero radius draws none.
+layout(location = 5) flat out vec4 v_glowColor;
+layout(location = 6) flat out vec2 v_glowParams;
 
 // Must match RectUbo in materials/internal/RectUniforms.hpp.
 layout(std140, binding = 0) uniform buf {
@@ -53,6 +56,8 @@ void main() {
     v_borderColor = vec4(ubuf.borderColor.rgb, ubuf.borderColor.a * ubuf.opacity);
     v_borderWidth = ubuf.borderWidth;
     v_antialiasing = ubuf.antialiasing;
+    v_glowColor = vec4(0.0);
+    v_glowParams = vec2(0.0);
 
     int base = index * 4;
     uint x1Bits = fetchFloatBits(base);
@@ -68,6 +73,6 @@ void main() {
     vec2 xs;
     vec2 ys;
     rectPixelSpans(x1Bits, y1Bits, x2Bits, y2Bits, xs, ys);
-    vec2 p_local = rectVertex(xs, ys, int(corner), v_edgeDistance);
+    vec2 p_local = rectVertex(xs, ys, int(corner), 0.0, v_edgeDistance);
     gl_Position = ubuf.matrix * vec4(p_local, 0.0, 1.0);
 }

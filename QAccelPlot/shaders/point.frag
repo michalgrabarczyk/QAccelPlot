@@ -36,25 +36,31 @@ layout(std140, binding = 0) uniform buf {
     vec4 itemFadeRange;     // item opacity, see item_opacity.glsl
     vec4 itemFadeParams;
     vec4 itemFadeEasing[4];
+    vec4 glowColor;         // Glow effect, see glow.glsl
+    vec4 glowParams;
 } ubuf;
 
 layout(binding = 2) uniform sampler2D gradientSampler;
 
 #include "point_shapes.glsl"
+#include "glow.glsl"
 
 void main() {
     float alpha;
+    // Distance outside the marker shape, where a glow draws its halo.
+    float distancePx = 0.0;
     if (ubuf.shapeType == kPixel) {
         // point.vert sizes the quad to exactly one pixel.
         alpha = 1.0;
     } else {
         bool antialiasing = ubuf.antialiasingEnabled > 0.5 && ubuf.antialiasingFeather > 0.0;
-        float distancePx = shapeSDF(v_uv, ubuf.shapeType, ubuf.markerSize) * ubuf.markerSize;
+        distancePx = shapeSDF(v_uv, ubuf.shapeType, ubuf.markerSize) * ubuf.markerSize;
         alpha = markerAlpha(distancePx, ubuf.shapeType, antialiasing, ubuf.antialiasingFeather,
                             ubuf.markerStrokeWidth, ubuf.markerFilled >= 0.5);
     }
+    bool glow = ubuf.shapeType != kPixel && glowActive(ubuf.glowParams.xy);
 
-    if (alpha <= 0.0) {
+    if (alpha <= 0.0 && !glow) {
         discard;
     }
 
@@ -63,4 +69,7 @@ void main() {
     vec4 c = mix(ubuf.color, gradientColor, step(0.5, ubuf.useVertexColor));
     float a = c.a * alpha * ubuf.opacity * v_itemOpacity;
     fragColor = vec4(c.rgb * a, a);
+    if (glow) {
+        fragColor = withGlow(fragColor, distancePx, ubuf.glowColor, ubuf.glowParams.xy, c.a * ubuf.opacity * v_itemOpacity);
+    }
 }

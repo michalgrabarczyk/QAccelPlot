@@ -174,7 +174,7 @@ protected:
     /// \endcond
     /// \brief Returns \c true if \a point lies within the curve's hit-test region.
     bool contains(const QPointF& point) const override;
-    /// \brief Returns \c true for \c GradientFill and \c GradientStroke.
+    /// \brief Returns \c true for \c GradientFill, \c GradientStroke, and \c Glow.
     bool supportsEffect(const SeriesEffect& effect) const override;
     /// \brief Applies new points, animating to them when a transition is enabled.
     void applyDataPoints(DataPointInput&& input) override;

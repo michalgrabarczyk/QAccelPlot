@@ -21,8 +21,9 @@ namespace QAccelPlot {
 /// | Effect | Series |
 /// |---|---|
 /// | \c GradientFill, \c GradientStroke | \c LineCurve |
+/// | \c Glow | \c LineCurve, \c PointCloud, \c BarSeries, \c ErrorBarSeries |
 ///
-/// \sa GradientFill, GradientStroke, PlotSeries
+/// \sa GradientFill, GradientStroke, Glow, PlotSeries
 class SeriesEffect : public QObject {
     Q_OBJECT
     QML_ANONYMOUS

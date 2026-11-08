@@ -8,6 +8,7 @@
 #include "QAccelPlot/series/internal/SeriesEffectList.hpp"
 
 #include "QAccelPlot/QAccelPlotLogging.hpp"
+#include "QAccelPlot/effects/Glow.hpp"
 
 #include <QQuickItem>
 #include <QQuickWindow>
@@ -48,6 +49,12 @@ QQmlListProperty<SeriesEffect> SeriesEffectList::property()
 const QList<SeriesEffect*>& SeriesEffectList::effects() const
 {
     return effects_;
+}
+
+GlowStyle SeriesEffectList::glowStyle(const QColor& seriesColor) const
+{
+    const auto* glow = first<Glow>();
+    return glow ? glow->style(seriesColor) : GlowStyle{};
 }
 
 void SeriesEffectList::classBegin()
