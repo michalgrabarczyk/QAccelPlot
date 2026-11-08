@@ -65,14 +65,14 @@ QAccelPlot/
 │       ├── MathUtils.hpp         — Math utilities
 │       ├── QAccelPlotLogging.*   — Qt logging category
 │       ├── internal/             — Helpers shared across folders or used by PlotView: pointer tracking,
-│       │                           outlined rectangle item, rectangle zoom overlay
+│       │                           outlined rectangle item, rectangle zoom overlay, item fade and glow styles
 │       ├── annotations/          — DataAnchor (attach QML items to data coords)
 │       ├── axis/                 — Axis, AxisLabel and TextLabel (label grouped properties),
 │       │                           AxisTicker, AxisTickPainter, ColorBar,
 │       │                           internal/ (pan and zoom range math, axis label placement)
 │       ├── data/                 — Histogram (binning samples into BarSeries data),
 │       │                           HistogramFactory (QML Histogram singleton)
-│       ├── effects/              — GradientFill, GradientStroke, LineCurveEffect
+│       ├── effects/              — SeriesEffect (base), GradientFill, GradientStroke, Glow, FadeTrail
 │       │                           internal/ (gradient stop reading, coordinates, and value ranges)
 │       ├── export/               — PlotExporter (raster image export),
 │       │                           internal/ (grab sizing, painted-item texture scaling, image file writing)
@@ -100,10 +100,11 @@ QAccelPlot/
 │       │                           LineCurveGapFilter (invalid-sample contract),
 │       │                           SpatialGrid, PointSpatialIndex (hover hit testing),
 │       │                           internal/ (rectangle vertices and geometry, step paths,
-│       │                           heatmap grids, hover index budget, shared series helpers)
+│       │                           heatmap grids, hover index budget, effects list, shared series helpers)
 │       ├── theme/                — ColorPalette (light/dark palette values), Colors QML singleton
-│       └── transitions/          — DataTransition, DrawTransition, MorphTransition,
-│                                   TransitionRunner (drives a transition for one item)
+│       └── transitions/          — DataTransition, EnterExitTransition, DrawTransition, GrowTransition,
+│                                   MorphTransition, TransitionRunner (runs the enter, update, and exit
+│                                   transitions of one item), internal/ (frame engine)
 ├── qml/                          — QML helper types (Plot, Legend, Crosshair, InspectionTooltip,
 │                                   InspectionMarkers)
 ├── shaders/                      — GLSL shaders compiled to .qsb

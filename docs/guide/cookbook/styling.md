@@ -1,5 +1,5 @@
 ---
-description: "Style QAccelPlot curves with color palettes, dash patterns, point markers, step lines, gradient fills and strokes, and animated data transitions."
+description: "Style QAccelPlot curves with color palettes, dash patterns, point markers, step lines, gradient fills and strokes, glow and fading trails, and animated data transitions."
 ---
 
 <!--
@@ -149,7 +149,7 @@ Hover still detects a `Pixel` marker within 3 px.
 
 ## Gradient stroke and fill
 
-Effects are attached through the curve's [`effects`][effects] property:
+Effects are attached through the series' [`effects`][effects] property:
 
 ```qml
 QAccelPlot.LineCurve {
@@ -188,34 +188,87 @@ QAccelPlot.GradientStroke {
 Fixed gradient bounds keep colors stable while the viewport changes. Axis- or
 data-derived bounds make colors follow the current range.
 
-## Animated data changes
+## Glow and fading trails
 
-Assign a `QAccelPlot.MorphTransition` to [`transition`][transition] to
-interpolate from old to new data points, or a `QAccelPlot.DrawTransition` to reveal
-the new curve:
+`Glow` draws a soft halo around a series, in the same pass and without a blur.
+`FadeTrail` fades the oldest items, by index, like the trace of an
+oscilloscope:
 
 ```qml
-QAccelPlot.MorphTransition {
-    id: morph
-    duration: 500
-    easing.type: Easing.InOutCubic
-}
-
 QAccelPlot.LineCurve {
-    transition: morph
+    effects: [
+        QAccelPlot.Glow { radius: 8; intensity: 0.6 },
+        QAccelPlot.FadeTrail { length: 0.7 }
+    ]
 }
 ```
 
-Several curves can share one transition; each animates to its own data.
-Replacing, clearing, or cancelling `transition`, or calling `appendData()`,
-during an animation shows the new data at once.
+| Effect | Series | Properties |
+|---|---|---|
+| `Glow` | `LineCurve`, `PointCloud`, `BarSeries`, `ErrorBarSeries` | `color` (default: the series color), `radius` in pixels, `intensity` |
+| `FadeTrail` | `LineCurve`, `PointCloud` | `length`: share of the items that fades, from the oldest; `minOpacity` of the oldest |
 
-`BarSeries` and `PointCloud` take the same transitions; see
-[bar charts](bar-charts.md#animate-data-changes) and
-[point clouds](point-clouds.md#animate-data-changes).
+- An effect a series does not support logs a warning and is ignored.
+- Of several effects of one type, the first enabled one applies.
+- Along a line, the halo follows the distance from the line edge, so turns much
+  tighter than `radius` show small seams. Use a smaller radius for jagged lines.
+- Effect properties animate like any QML property, for example with a
+  `Behavior on intensity`.
 
-Transitions add work on every animated frame. Disable them for continuous
-high-rate updates.
+## Animated data changes
+
+A data change matches the old and new items by index, and three transitions
+animate it:
+
+| Property | Animates | Takes |
+|---|---|---|
+| [`enterTransition`][enter-transition] | Added items, and all items of the first data | `DrawTransition`, `GrowTransition` |
+| [`updateTransition`][update-transition] | Kept items | `MorphTransition`, `DrawTransition`, `GrowTransition` |
+| [`exitTransition`][exit-transition] | Removed items, and all items on `clearData()` | `DrawTransition`, `GrowTransition` |
+
+Items without a transition in their slot change at once.
+
+```qml
+QAccelPlot.BarSeries {
+    enterTransition: QAccelPlot.GrowTransition { stagger: 0.5; fade: true }
+    updateTransition: QAccelPlot.MorphTransition { duration: 300 }
+    exitTransition: QAccelPlot.GrowTransition { duration: 200; fade: true }
+}
+```
+
+- `MorphTransition` moves each kept item from its old values to its new ones.
+- `DrawTransition` reveals items one after another. A line draws its last
+  segment partway.
+- `GrowTransition` grows values from `baseline`: the bar baseline for bars, 0
+  for other series.
+- A `DrawTransition` or `GrowTransition` in `updateTransition` redraws all new
+  items as one sequence; the enter and exit transitions are skipped.
+- An exit plays the transition backwards, the last item first.
+
+Every transition takes `duration`, `easing`, and `stagger`:
+
+- `stagger` is the share of `duration` over which the item start times are
+  spread. 0 animates all items together; 1 animates them one after another.
+  `DrawTransition` defaults to 1, the others to 0.
+- `easing` applies to the progress of each item. With a `stagger` of 1, it
+  shapes how the reveal moves along the items.
+- `fade` on `DrawTransition` and `GrowTransition` fades each item in, or out,
+  over its share of the duration. It needs a `stagger` below 1.
+
+Several series can share one transition, and one series can use a transition in
+several slots. While a transition runs, the series' `animating` is `true`.
+Replacing, clearing, or cancelling a transition, or calling `appendData()`,
+shows the new data at once. Data that arrives during an animation continues
+from the items drawn now.
+
+Each animated frame interpolates the data on the CPU: about 4 ms per million
+points, 6 ms with a stagger. Disable transitions for continuous high-rate
+updates.
+
+`BarSeries`, `PointCloud`, and `ErrorBarSeries` take the same transitions; see
+[bar charts](bar-charts.md#animate-data-changes),
+[point clouds](point-clouds.md#animate-data-changes), and
+[error bars](error-bars.md#animate-data-changes).
 
 Complete sources:
 
@@ -223,9 +276,12 @@ Complete sources:
 - [`examples/styling/line_styles`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/line_styles)
 - [`examples/styling/markers`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/markers)
 - [`examples/styling/gradients`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/gradients)
+- [`examples/styling/effects`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/effects)
 - [`examples/styling/transitions`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/transitions)
 - [`examples/plot_types/step_lines`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/step_lines)
 
-[effects]: ../api/classQAccelPlot_1_1LineCurve.md#property-effects-12
+[effects]: ../api/classQAccelPlot_1_1PlotSeries.md#property-effects-12
 [step-mode]: ../api/classQAccelPlot_1_1LineCurve.md#property-stepmode-12
-[transition]: ../api/classQAccelPlot_1_1LineCurve.md#property-transition-12
+[enter-transition]: ../api/classQAccelPlot_1_1LineCurve.md#property-entertransition-12
+[update-transition]: ../api/classQAccelPlot_1_1LineCurve.md#property-updatetransition-12
+[exit-transition]: ../api/classQAccelPlot_1_1LineCurve.md#property-exittransition-12

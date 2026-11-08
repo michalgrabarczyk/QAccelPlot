@@ -27,7 +27,9 @@ frame.
 - **Invalid data points** — `NaN`, `±Inf`, and non-positive log values break or
   connect the curve consistently
 - **Curves** — solid, dashed, and marker-only styles; gradient fills and
-  strokes; morph and draw transitions
+  strokes; glow and fading trails
+- **Transitions** — enter, update, and exit animations that morph, draw, or
+  grow items, with stagger and fade
 - **Point clouds** — `PointCloud` for large scatter data, colored uniformly or
   by value, with a `ColorBar`
 - **Heatmaps** — `HeatmapSeries` for grids of values colored through a
@@ -820,7 +822,7 @@ Each recipe links to a complete runnable example.
 | [Axis formats](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/axis-formats/) | Date/time, categories, logarithmic scales, and custom labels |
 | [Axis labels](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/axis-labels/) | Label alignment, rotation, padding, and custom label items |
 | [Multiple axes](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/multiple-axes/) | Secondary scales and signals with different domains |
-| [Styling and transitions](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/styling/) | Dashes, markers, gradients, fills, and animated updates |
+| [Styling and transitions](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/styling/) | Dashes, markers, gradients, fills, glow, and animated updates |
 | [Annotations and tools](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/annotations/) | Data-attached labels, regions, measurement tools, and mouse handling |
 | [Data inspection](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/data-inspection/) | Crosshair, tooltip, nearest-data-point queries, region statistics, and selection |
 | [Point clouds](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/point-clouds/) | Large unconnected scatter data, coloring points by value, color bars, and hover picking |
@@ -1351,7 +1353,7 @@ Hover still detects a `Pixel` marker within 3 px.
 
 ## Gradient stroke and fill
 
-Effects are attached through the curve's [`effects`][effects] property:
+Effects are attached through the series' [`effects`][effects] property:
 
 ```qml
 QAccelPlot.LineCurve {
@@ -1390,34 +1392,87 @@ QAccelPlot.GradientStroke {
 Fixed gradient bounds keep colors stable while the viewport changes. Axis- or
 data-derived bounds make colors follow the current range.
 
-## Animated data changes
+## Glow and fading trails
 
-Assign a `QAccelPlot.MorphTransition` to [`transition`][transition] to
-interpolate from old to new data points, or a `QAccelPlot.DrawTransition` to reveal
-the new curve:
+`Glow` draws a soft halo around a series, in the same pass and without a blur.
+`FadeTrail` fades the oldest items, by index, like the trace of an
+oscilloscope:
 
 ```qml
-QAccelPlot.MorphTransition {
-    id: morph
-    duration: 500
-    easing.type: Easing.InOutCubic
-}
-
 QAccelPlot.LineCurve {
-    transition: morph
+    effects: [
+        QAccelPlot.Glow { radius: 8; intensity: 0.6 },
+        QAccelPlot.FadeTrail { length: 0.7 }
+    ]
 }
 ```
 
-Several curves can share one transition; each animates to its own data.
-Replacing, clearing, or cancelling `transition`, or calling `appendData()`,
-during an animation shows the new data at once.
+| Effect | Series | Properties |
+|---|---|---|
+| `Glow` | `LineCurve`, `PointCloud`, `BarSeries`, `ErrorBarSeries` | `color` (default: the series color), `radius` in pixels, `intensity` |
+| `FadeTrail` | `LineCurve`, `PointCloud` | `length`: share of the items that fades, from the oldest; `minOpacity` of the oldest |
 
-`BarSeries` and `PointCloud` take the same transitions; see
-[bar charts](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/bar-charts/#animate-data-changes) and
-[point clouds](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/point-clouds/#animate-data-changes).
+- An effect a series does not support logs a warning and is ignored.
+- Of several effects of one type, the first enabled one applies.
+- Along a line, the halo follows the distance from the line edge, so turns much
+  tighter than `radius` show small seams. Use a smaller radius for jagged lines.
+- Effect properties animate like any QML property, for example with a
+  `Behavior on intensity`.
 
-Transitions add work on every animated frame. Disable them for continuous
-high-rate updates.
+## Animated data changes
+
+A data change matches the old and new items by index, and three transitions
+animate it:
+
+| Property | Animates | Takes |
+|---|---|---|
+| [`enterTransition`][enter-transition] | Added items, and all items of the first data | `DrawTransition`, `GrowTransition` |
+| [`updateTransition`][update-transition] | Kept items | `MorphTransition`, `DrawTransition`, `GrowTransition` |
+| [`exitTransition`][exit-transition] | Removed items, and all items on `clearData()` | `DrawTransition`, `GrowTransition` |
+
+Items without a transition in their slot change at once.
+
+```qml
+QAccelPlot.BarSeries {
+    enterTransition: QAccelPlot.GrowTransition { stagger: 0.5; fade: true }
+    updateTransition: QAccelPlot.MorphTransition { duration: 300 }
+    exitTransition: QAccelPlot.GrowTransition { duration: 200; fade: true }
+}
+```
+
+- `MorphTransition` moves each kept item from its old values to its new ones.
+- `DrawTransition` reveals items one after another. A line draws its last
+  segment partway.
+- `GrowTransition` grows values from `baseline`: the bar baseline for bars, 0
+  for other series.
+- A `DrawTransition` or `GrowTransition` in `updateTransition` redraws all new
+  items as one sequence; the enter and exit transitions are skipped.
+- An exit plays the transition backwards, the last item first.
+
+Every transition takes `duration`, `easing`, and `stagger`:
+
+- `stagger` is the share of `duration` over which the item start times are
+  spread. 0 animates all items together; 1 animates them one after another.
+  `DrawTransition` defaults to 1, the others to 0.
+- `easing` applies to the progress of each item. With a `stagger` of 1, it
+  shapes how the reveal moves along the items.
+- `fade` on `DrawTransition` and `GrowTransition` fades each item in, or out,
+  over its share of the duration. It needs a `stagger` below 1.
+
+Several series can share one transition, and one series can use a transition in
+several slots. While a transition runs, the series' `animating` is `true`.
+Replacing, clearing, or cancelling a transition, or calling `appendData()`,
+shows the new data at once. Data that arrives during an animation continues
+from the items drawn now.
+
+Each animated frame interpolates the data on the CPU: about 4 ms per million
+points, 6 ms with a stagger. Disable transitions for continuous high-rate
+updates.
+
+`BarSeries`, `PointCloud`, and `ErrorBarSeries` take the same transitions; see
+[bar charts](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/bar-charts/#animate-data-changes),
+[point clouds](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/point-clouds/#animate-data-changes), and
+[error bars](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/error-bars/#animate-data-changes).
 
 Complete sources:
 
@@ -1425,12 +1480,15 @@ Complete sources:
 - [`examples/styling/line_styles`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/line_styles)
 - [`examples/styling/markers`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/markers)
 - [`examples/styling/gradients`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/gradients)
+- [`examples/styling/effects`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/effects)
 - [`examples/styling/transitions`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/transitions)
 - [`examples/plot_types/step_lines`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/step_lines)
 
-[effects]: ../api/classQAccelPlot_1_1LineCurve.md#property-effects-12
+[effects]: ../api/classQAccelPlot_1_1PlotSeries.md#property-effects-12
 [step-mode]: ../api/classQAccelPlot_1_1LineCurve.md#property-stepmode-12
-[transition]: ../api/classQAccelPlot_1_1LineCurve.md#property-transition-12
+[enter-transition]: ../api/classQAccelPlot_1_1LineCurve.md#property-entertransition-12
+[update-transition]: ../api/classQAccelPlot_1_1LineCurve.md#property-updatetransition-12
+[exit-transition]: ../api/classQAccelPlot_1_1LineCurve.md#property-exittransition-12
 
 
 ---
@@ -1966,20 +2024,22 @@ Post no faster than frames are presented; see
 
 ## Animate data changes
 
-Assign a `MorphTransition` or a `DrawTransition` to `transition`, as for a
+Set `enterTransition`, `updateTransition`, and `exitTransition`, as for a
 [`LineCurve`](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/styling/#animated-data-changes).
 
-- `MorphTransition` moves each point to the new position of the same index.
-  Values change with it when the old and the new points both have them, so
-  the colors blend through the colormap.
-- `DrawTransition` shows the new points one after another.
-- New points appear, and removed points disappear, at once.
+- `MorphTransition` moves each kept point to the new position of the same
+  index. Values change with it when the old and the new points both have them,
+  so the colors blend through the colormap.
+- `GrowTransition` raises points from Y = 0, or from its `baseline`.
+- `DrawTransition` shows the points one after another.
+- A staggered transition follows the point order. Sort the points, for example
+  by X, to sweep across the plot.
 - `count`, `pointAt()`, `valueAt()`, the data and value ranges, and inspection
   use the new data from the start of the animation. Hover picks the points as
   drawn.
 - `setValues()` animates too. Called after `setData()`, it keeps that
   animation, with the points in their new colors.
-- `clearData()` shows the new data at once.
+- `clearData()` runs the exit transition.
 - While a transition is enabled, the float paths store doubles.
 
 ## Invalid points
@@ -2419,15 +2479,17 @@ returns its `position`, `value`, `category`, and `categoryName`; a ranged bar ha
 
 ## Animate data changes
 
-Assign a `MorphTransition` or a `DrawTransition` to `transition`, as for a
+Set `enterTransition`, `updateTransition`, and `exitTransition`, as for a
 [`LineCurve`](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/styling/#animated-data-changes).
 
-- `MorphTransition` moves each bar to its new position and value. New bars
-  grow from `baselineValue`, and removed bars shrink to it.
-- `DrawTransition` shows the new bars one after another.
+- `GrowTransition` grows added bars from `baselineValue`, or from the edge of
+  the value axis when the baseline is infinite, and shrinks removed bars to it.
+- `MorphTransition` moves each kept bar to its new position and value.
+- `DrawTransition` shows the bars one after another.
+- Bars that change between ranged and (position, value) all enter.
 - `count`, `barAt()`, the data ranges, hover, and inspection use the new data
   from the start of the animation.
-- `clearData()` shows the new data at once.
+- `clearData()` runs the exit transition.
 - While a transition is enabled, the float paths store doubles.
 
 ## Feed data from C++

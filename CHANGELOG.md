@@ -11,8 +11,31 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Axis label placement: `label.alignment`, `label.rotation`, and
   `label.offset` move the painted axis title, and `label.delegate` replaces it
   with a custom QML item. Includes an Axis Labels example.
+- Enter, update, and exit transitions: `enterTransition`, `updateTransition`,
+  and `exitTransition` animate the items a data change adds, keeps, and
+  removes, matched by index. `GrowTransition` grows values from a baseline,
+  `stagger` spreads the items' start times, and `fade` fades items in and out.
+  `clearData()` runs the exit transition. `PlotSeries.animating` reports a
+  running transition. The Transitions example shows them on a bar chart.
+- `Glow` and `FadeTrail` effects: a halo around lines, markers, bars, and
+  error bars, and a fade of the oldest items of a line or point cloud.
+  Includes an Effects example.
+- `effects` on every series. An effect a series does not support logs a
+  warning and is ignored.
 
 ### Changed
+
+- `transition` on `LineCurve`, `BarSeries`, `PointCloud`, and
+  `ErrorBarSeries` is replaced by the three slots. Use
+  `updateTransition: morph` for `transition: morph`, and also set
+  `enterTransition` to animate the first data. A `MorphTransition` no longer
+  moves added items from the last old item; bars no longer grow from the
+  baseline without a `GrowTransition` as `enterTransition`.
+- `LineCurveEffect` is renamed `SeriesEffect`.
+- `DataTransition` can no longer be subclassed outside the library, and its
+  `interpolate()`, `Dataset`, and data-holding `Run` API are gone.
+  `TransitionRunner` takes a slot in `transition()` and `setTransition()`, and
+  `start()` takes a `TransitionRunner::Layout`.
 
 - `Axis.label` and `ColorBar.label` are grouped properties. Use `label.text`,
   `label.font`, `label.color`, and `label.padding` instead of `label`,

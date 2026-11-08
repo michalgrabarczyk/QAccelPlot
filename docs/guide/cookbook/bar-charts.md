@@ -162,15 +162,17 @@ returns its `position`, `value`, `category`, and `categoryName`; a ranged bar ha
 
 ## Animate data changes
 
-Assign a `MorphTransition` or a `DrawTransition` to `transition`, as for a
+Set `enterTransition`, `updateTransition`, and `exitTransition`, as for a
 [`LineCurve`](styling.md#animated-data-changes).
 
-- `MorphTransition` moves each bar to its new position and value. New bars
-  grow from `baselineValue`, and removed bars shrink to it.
-- `DrawTransition` shows the new bars one after another.
+- `GrowTransition` grows added bars from `baselineValue`, or from the edge of
+  the value axis when the baseline is infinite, and shrinks removed bars to it.
+- `MorphTransition` moves each kept bar to its new position and value.
+- `DrawTransition` shows the bars one after another.
+- Bars that change between ranged and (position, value) all enter.
 - `count`, `barAt()`, the data ranges, hover, and inspection use the new data
   from the start of the animation.
-- `clearData()` shows the new data at once.
+- `clearData()` runs the exit transition.
 - While a transition is enabled, the float paths store doubles.
 
 ## Feed data from C++

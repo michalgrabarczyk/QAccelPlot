@@ -18,7 +18,7 @@ Each recipe links to a complete runnable example.
 | [Axis formats](axis-formats.md) | Date/time, categories, logarithmic scales, and custom labels |
 | [Axis labels](axis-labels.md) | Label alignment, rotation, padding, and custom label items |
 | [Multiple axes](multiple-axes.md) | Secondary scales and signals with different domains |
-| [Styling and transitions](styling.md) | Dashes, markers, gradients, fills, and animated updates |
+| [Styling and transitions](styling.md) | Dashes, markers, gradients, fills, glow, and animated updates |
 | [Annotations and tools](annotations.md) | Data-attached labels, regions, measurement tools, and mouse handling |
 | [Data inspection](data-inspection.md) | Crosshair, tooltip, nearest-data-point queries, region statistics, and selection |
 | [Point clouds](point-clouds.md) | Large unconnected scatter data, coloring points by value, color bars, and hover picking |
