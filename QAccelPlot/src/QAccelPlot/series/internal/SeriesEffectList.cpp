@@ -8,6 +8,7 @@
 #include "QAccelPlot/series/internal/SeriesEffectList.hpp"
 
 #include "QAccelPlot/QAccelPlotLogging.hpp"
+#include "QAccelPlot/effects/FadeTrail.hpp"
 #include "QAccelPlot/effects/Glow.hpp"
 
 #include <QQuickItem>
@@ -55,6 +56,12 @@ GlowStyle SeriesEffectList::glowStyle(const QColor& seriesColor) const
 {
     const auto* glow = first<Glow>();
     return glow ? glow->style(seriesColor) : GlowStyle{};
+}
+
+ItemTrail SeriesEffectList::itemTrail(const int itemCount) const
+{
+    const auto* trail = first<FadeTrail>();
+    return trail ? trail->trail(itemCount) : ItemTrail{};
 }
 
 void SeriesEffectList::classBegin()

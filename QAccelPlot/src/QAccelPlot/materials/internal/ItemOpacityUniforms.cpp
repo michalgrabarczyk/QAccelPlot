@@ -11,9 +11,14 @@
 
 namespace QAccelPlot::Internal {
 
-ItemOpacityUniforms itemOpacityUniforms(const ItemFade& fade)
+ItemOpacityUniforms itemOpacityUniforms(const ItemFade& fade, const ItemTrail& trail)
 {
     auto uniforms = ItemOpacityUniforms{};
+    if (trail.active()) {
+        uniforms.fadeParams[1] = trail.length;
+        uniforms.fadeParams[2] = trail.minOpacity;
+        uniforms.fadeParams[3] = static_cast<float>(trail.itemCount);
+    }
     if (!fade.active()) {
         return uniforms;
     }

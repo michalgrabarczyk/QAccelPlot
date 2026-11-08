@@ -71,7 +71,7 @@ public:
         ubo.horizontal = mat->horizontal;
         ubo.errorBarCount = mat->errorBarCount;
         ubo.antialiasing = mat->antialiasing;
-        ubo.itemOpacity = Internal::itemOpacityUniforms(mat->itemFade);
+        ubo.itemOpacity = Internal::itemOpacityUniforms(mat->itemFade, mat->itemTrail);
         ubo.glow = Internal::glowUniforms(mat->glow);
         memcpy(buf->data(), &ubo, sizeof(ubo));
         return true;

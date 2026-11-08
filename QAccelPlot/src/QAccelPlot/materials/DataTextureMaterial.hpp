@@ -82,6 +82,8 @@ public:
     std::shared_ptr<DataTexture> dataTexture;
     /// \brief Items a running transition fades; inactive by default. Shaders without item opacity ignore it.
     Internal::ItemFade itemFade;
+    /// \brief Oldest items a \c FadeTrail fades; none by default. Shaders without item opacity ignore it.
+    Internal::ItemTrail itemTrail;
     /// \brief Halo of a \c Glow effect; none by default. Shaders without a halo ignore it.
     Internal::GlowStyle glow;
 };

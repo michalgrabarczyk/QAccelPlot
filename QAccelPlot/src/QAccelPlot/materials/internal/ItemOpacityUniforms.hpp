@@ -14,13 +14,13 @@ namespace QAccelPlot::Internal {
 /// \brief The std140 uniform members that shaders/item_opacity.glsl reads, at a 16-byte aligned offset.
 struct ItemOpacityUniforms {
     float fadeRange[4];                   ///< \brief First item, item count, progress, and stagger of the fading group.
-    float fadeParams[4];                  ///< \brief 1 in the first value when the items exit.
+    float fadeParams[4];                  ///< \brief 1 when the items exit, then the \c FadeTrail length, minimum opacity, and item count.
     float fadeEasing[kFadeEasingSamples]; ///< \brief The easing curve of the fading group.
 };
 
 static_assert(sizeof(ItemOpacityUniforms) == 96);
 
-/// \brief Returns the uniforms that fade the items of \a fade.
-ItemOpacityUniforms itemOpacityUniforms(const ItemFade& fade);
+/// \brief Returns the uniforms that fade the items of \a fade and \a trail.
+ItemOpacityUniforms itemOpacityUniforms(const ItemFade& fade, const ItemTrail& trail);
 
 } // namespace QAccelPlot::Internal

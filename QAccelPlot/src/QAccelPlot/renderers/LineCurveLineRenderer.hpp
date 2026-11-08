@@ -59,6 +59,7 @@ struct LineCurveRenderParams {
     const LineStyle* lineStyle;                     ///< \brief Active line style (dash pattern etc.).
     StepMode stepMode{StepMode::None};              ///< \brief How the line joins consecutive data points.
     Internal::ItemFade itemFade{};                  ///< \brief Points a running transition fades, as indices into \c data.
+    Internal::ItemTrail itemTrail{};                ///< \brief Oldest points a \c FadeTrail fades.
     Internal::GlowStyle glow{};                     ///< \brief Halo of a \c Glow effect around the line.
 };
 

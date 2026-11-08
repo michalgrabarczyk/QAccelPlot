@@ -35,4 +35,20 @@ struct ItemFade {
 /// \brief Orders \a left and \a right for \c QSGMaterial::compare(): negative, 0, or positive.
 [[nodiscard]] int compareItemFades(const ItemFade& left, const ItemFade& right) noexcept;
 
+/// \brief How the shaders fade the oldest items under a \c FadeTrail effect.
+struct ItemTrail {
+    float length{0.0f};     ///< \brief Share of the items that fades, from the first; 0 fades none.
+    float minOpacity{1.0f}; ///< \brief Opacity of the first item.
+    int itemCount{0};       ///< \brief Number of drawn items.
+
+    /// \brief Returns \c true when some item fades.
+    [[nodiscard]] bool active() const noexcept
+    {
+        return length > 0.0f && minOpacity < 1.0f && itemCount > 1;
+    }
+};
+
+/// \brief Orders \a left and \a right for \c QSGMaterial::compare(): negative, 0, or positive.
+[[nodiscard]] int compareItemTrails(const ItemTrail& left, const ItemTrail& right) noexcept;
+
 } // namespace QAccelPlot::Internal

@@ -50,6 +50,7 @@ struct PointCurveRenderParams {
     qreal markerStrokeWidth;                     ///< \brief Outline width in pixels for hollow markers.
     bool markerFilled;                           ///< \brief Whether closed marker shapes are filled rather than outlined.
     Internal::ItemFade itemFade{};               ///< \brief Points a running transition fades, as indices into \c data.
+    Internal::ItemTrail itemTrail{};             ///< \brief Oldest points a \c FadeTrail fades.
     Internal::GlowStyle glow{};                  ///< \brief Halo of a \c Glow effect around the markers.
 };
 

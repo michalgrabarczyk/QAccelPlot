@@ -414,6 +414,7 @@ void LineCurveLineRenderer::updateLineMaterial(LineMaterial* material, const Lin
     material->useVertexColor = useVertexColor ? 1.0f : 0.0f;
     material->stepMode = static_cast<float>(params.stepMode);
     material->itemFade = params.itemFade;
+    material->itemTrail = params.itemTrail;
     material->glow = params.glow;
     if (auto* gradientMaterial = dynamic_cast<GradientLineMaterial*>(material)) {
         gradientMaterial->gradientDirection = params.gradientPayload.direction == Qt::Vertical ? 1.0f : 0.0f;

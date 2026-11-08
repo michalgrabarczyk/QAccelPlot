@@ -9,6 +9,7 @@
 
 #include "QAccelPlot/effects/SeriesEffect.hpp"
 #include "QAccelPlot/internal/GlowStyle.hpp"
+#include "QAccelPlot/internal/ItemFade.hpp"
 
 #include <QList>
 #include <QObject>
@@ -55,6 +56,8 @@ public:
 
     /// \brief Returns the halo of the first enabled \c Glow, in \a seriesColor unless it has its own color; none without a \c Glow.
     GlowStyle glowStyle(const QColor& seriesColor) const;
+    /// \brief Returns how the first enabled \c FadeTrail fades \a itemCount drawn items; none without a \c FadeTrail.
+    ItemTrail itemTrail(int itemCount) const;
 
     /// \brief Holds back warnings while the series' component loads.
     void classBegin();

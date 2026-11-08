@@ -12,6 +12,7 @@
 #include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/effects/FadeTrail.hpp"
 #include "QAccelPlot/effects/Glow.hpp"
 #include "QAccelPlot/materials/PointCloudMaterial.hpp"
 #include "QAccelPlot/materials/internal/DataTextureLayout.hpp"
@@ -445,6 +446,7 @@ QSGNode* PointCloud::updatePaintNode(QSGNode* oldNode, [[maybe_unused]] UpdatePa
     material->stride = static_cast<float>(stride);
     material->itemFade = transition_->fade();
     material->glow = effectList().glowStyle(color_);
+    material->itemTrail = effectList().itemTrail(renderCount);
     material->shapeType = static_cast<int>(marker_->shape()) - 1;
     node->markDirty(QSGNode::DirtyMaterial);
 
@@ -548,7 +550,7 @@ void PointCloud::applyDataPoints(DataPointInput&& input)
 
 bool PointCloud::supportsEffect(const SeriesEffect& effect) const
 {
-    return qobject_cast<const Glow*>(&effect) != nullptr;
+    return qobject_cast<const Glow*>(&effect) || qobject_cast<const FadeTrail*>(&effect);
 }
 
 void PointCloud::onAxisScaleChanged()

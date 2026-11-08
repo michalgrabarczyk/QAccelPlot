@@ -71,6 +71,7 @@ add_qaccelplot_test(tst_point_cloud_data     core tst_point_cloud_data.cpp)
 add_qaccelplot_test(tst_point_cloud_capacity core tst_point_cloud_capacity.cpp)
 add_qaccelplot_test(tst_series_capacity      core tst_series_capacity.cpp)
 add_qaccelplot_test(tst_point_cloud_transitions core tst_point_cloud_transitions.cpp)
+add_qaccelplot_test(tst_fade_trail           core tst_fade_trail.cpp)
 add_qaccelplot_test(tst_glow                 core tst_glow.cpp)
 add_qaccelplot_test(tst_series_effects       core tst_series_effects.cpp)
 # Loads a QML scene, so it needs the QML module plugin.

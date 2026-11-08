@@ -82,7 +82,7 @@ public:
         tail.markerFilled = material->markerFilled;
         tail.valueLogScale = material->valueLogScale;
         tail.opacity = state.opacity();
-        tail.itemOpacity = Internal::itemOpacityUniforms(material->itemFade);
+        tail.itemOpacity = Internal::itemOpacityUniforms(material->itemFade, material->itemTrail);
         tail.glow = Internal::glowUniforms(material->glow);
         std::memcpy(buffer->data() + kCommonUniformSize, &tail, sizeof(tail));
         return true;

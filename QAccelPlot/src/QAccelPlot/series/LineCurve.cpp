@@ -9,6 +9,7 @@
 #include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/effects/FadeTrail.hpp"
 #include "QAccelPlot/effects/Glow.hpp"
 #include "QAccelPlot/effects/GradientFill.hpp"
 #include "QAccelPlot/effects/GradientStroke.hpp"
@@ -503,6 +504,7 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, [[maybe_unused]] UpdatePai
     const auto* cache = vertexCache_.data();
     const auto fade = renderedFade();
     const auto glow = effectList().glowStyle(color_);
+    const auto trail = effectList().itemTrail(drawnPointCount);
 
     // A root container node holds both child nodes when both line and points are active.
     // When only one is active we return it directly (no container overhead).
@@ -531,17 +533,17 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, [[maybe_unused]] UpdatePai
     if (hasLine) {
         const auto lineParams = LineCurveRenderParams{window(), renderData(), sourceDataView(), drawnPointCount, dataChanged, color_, hovered(), lineWidth_,
             domainMin, domainMax, viewportSize, xAxis(), yAxis(), xAxis()->logScale(), yAxis()->logScale(), antialiasing(), antialiasingFeather_,
-            renderGradientPayload, gradientFillPayload, hasPoints ? nullptr : cache, lineStyle_, stepMode_, fade, glow};
+            renderGradientPayload, gradientFillPayload, hasPoints ? nullptr : cache, lineStyle_, stepMode_, fade, trail, glow};
         lineNode = lineRenderer_.paint(lineOldNode, lineParams);
     }
 
     if (hasPoints) {
         const auto shapeType = static_cast<int>(marker_->shape()) - 1;
         // Markers draw the points the line already uploaded.
-        const auto pointParams
-            = PointCurveRenderParams{window(), renderData(), drawnPointCount, dataChanged, hasLine ? LineCurveLineRenderer::dataTexture(lineNode) : nullptr,
-                color_, hovered(), marker_->size(), domainMin, domainMax, viewportSize, xAxis()->logScale(), yAxis()->logScale(), antialiasing(),
-                antialiasingFeather_, renderGradientPayload, hasLine ? nullptr : cache, shapeType, marker_->strokeWidth(), marker_->filled(), fade, glow};
+        const auto pointParams = PointCurveRenderParams{window(), renderData(), drawnPointCount, dataChanged,
+            hasLine ? LineCurveLineRenderer::dataTexture(lineNode) : nullptr, color_, hovered(), marker_->size(), domainMin, domainMax, viewportSize,
+            xAxis()->logScale(), yAxis()->logScale(), antialiasing(), antialiasingFeather_, renderGradientPayload, hasLine ? nullptr : cache, shapeType,
+            marker_->strokeWidth(), marker_->filled(), fade, trail, glow};
         pointNode = pointRenderer_.paint(pointOldNode, pointParams);
     }
 
@@ -631,7 +633,8 @@ bool LineCurve::contains(const QPointF& point) const
 
 bool LineCurve::supportsEffect(const SeriesEffect& effect) const
 {
-    return qobject_cast<const GradientFill*>(&effect) || qobject_cast<const GradientStroke*>(&effect) || qobject_cast<const Glow*>(&effect);
+    return qobject_cast<const GradientFill*>(&effect) || qobject_cast<const GradientStroke*>(&effect) || qobject_cast<const Glow*>(&effect)
+        || qobject_cast<const FadeTrail*>(&effect);
 }
 
 void LineCurve::applyDataPoints(DataPointInput&& input)

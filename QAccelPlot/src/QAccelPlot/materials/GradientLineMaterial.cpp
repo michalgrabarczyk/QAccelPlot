@@ -88,7 +88,7 @@ public:
         ubo.gradientParameters[2] = material->gradientValueMax;
         ubo.opacity = state.opacity();
         ubo.stepMode = material->stepMode;
-        ubo.itemOpacity = Internal::itemOpacityUniforms(material->itemFade);
+        ubo.itemOpacity = Internal::itemOpacityUniforms(material->itemFade, material->itemTrail);
         ubo.glow = Internal::glowUniforms(material->glow);
         std::memcpy(buffer->data(), &ubo, sizeof(ubo));
         return true;

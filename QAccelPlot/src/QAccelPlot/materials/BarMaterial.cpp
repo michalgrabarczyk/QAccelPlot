@@ -69,7 +69,7 @@ public:
         ubo.valueMax = mat->valueMax;
         ubo.valueOrigin = mat->valueOrigin;
         ubo.valueLogScale = mat->valueLogScale;
-        ubo.itemOpacity = Internal::itemOpacityUniforms(mat->itemFade);
+        ubo.itemOpacity = Internal::itemOpacityUniforms(mat->itemFade, mat->itemTrail);
         ubo.glow = Internal::glowUniforms(mat->glow);
         memcpy(buf->data(), &ubo, sizeof(ubo));
         return true;

@@ -21,4 +21,14 @@ int compareItemFades(const ItemFade& left, const ItemFade& right) noexcept
     return leftKey < rightKey ? -1 : 1;
 }
 
+int compareItemTrails(const ItemTrail& left, const ItemTrail& right) noexcept
+{
+    const auto leftKey = std::tie(left.length, left.minOpacity, left.itemCount);
+    const auto rightKey = std::tie(right.length, right.minOpacity, right.itemCount);
+    if (leftKey == rightKey) {
+        return 0;
+    }
+    return leftKey < rightKey ? -1 : 1;
+}
+
 } // namespace QAccelPlot::Internal
