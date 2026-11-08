@@ -507,6 +507,7 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, [[maybe_unused]] UpdatePai
     }
 
     const auto* cache = vertexCache_.data();
+    const auto fade = renderedFade();
 
     // A root container node holds both child nodes when both line and points are active.
     // When only one is active we return it directly (no container overhead).
@@ -535,7 +536,7 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, [[maybe_unused]] UpdatePai
     if (hasLine) {
         const auto lineParams = LineCurveRenderParams{window(), renderData(), sourceDataView(), drawnPointCount, dataChanged, color_, hovered(), lineWidth_,
             domainMin, domainMax, viewportSize, xAxis(), yAxis(), xAxis()->logScale(), yAxis()->logScale(), antialiasing(), antialiasingFeather_,
-            renderGradientPayload, gradientFillPayload, hasPoints ? nullptr : cache, lineStyle_, stepMode_};
+            renderGradientPayload, gradientFillPayload, hasPoints ? nullptr : cache, lineStyle_, stepMode_, fade};
         lineNode = lineRenderer_.paint(lineOldNode, lineParams);
     }
 
@@ -545,7 +546,7 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, [[maybe_unused]] UpdatePai
         const auto pointParams
             = PointCurveRenderParams{window(), renderData(), drawnPointCount, dataChanged, hasLine ? LineCurveLineRenderer::dataTexture(lineNode) : nullptr,
                 color_, hovered(), marker_->size(), domainMin, domainMax, viewportSize, xAxis()->logScale(), yAxis()->logScale(), antialiasing(),
-                antialiasingFeather_, renderGradientPayload, hasLine ? nullptr : cache, shapeType, marker_->strokeWidth(), marker_->filled()};
+                antialiasingFeather_, renderGradientPayload, hasLine ? nullptr : cache, shapeType, marker_->strokeWidth(), marker_->filled(), fade};
         pointNode = pointRenderer_.paint(pointOldNode, pointParams);
     }
 
@@ -802,6 +803,21 @@ std::pair<qreal, qreal> LineCurve::gradientDataRange(const Qt::Orientation direc
     }
     const auto* axis = horizontal ? xAxis() : yAxis();
     return axis ? std::pair{axis->dataMin(), axis->dataMax()} : std::pair{kFallbackDataMin, kFallbackDataMax};
+}
+
+Internal::ItemFade LineCurve::renderedFade() const
+{
+    auto fade = transition_->fade();
+    if (!fade.active() || !dataPoints().skipInvalid()) {
+        return fade;
+    }
+    // Group items the frame does not show yet, or no longer, keep their places in the stagger order.
+    const auto end = fade.first + fade.count;
+    const auto shownEnd = std::min(end, dataPoints().drawnView().count);
+    const auto first = dataPoints().renderedCount(fade.first);
+    fade.count = dataPoints().renderedCount(shownEnd) - first + (end - shownEnd);
+    fade.first = first;
+    return fade;
 }
 
 void LineCurve::applyNewData(std::vector<float>&& newData, const int newPointCount)

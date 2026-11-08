@@ -7,6 +7,8 @@
 //
 #include "QAccelPlot/materials/LineMaterial.hpp"
 
+#include "QAccelPlot/materials/internal/ItemOpacityUniforms.hpp"
+
 #include <QByteArray>
 #include <QMatrix4x4>
 #include <QSGMaterialShader>
@@ -20,27 +22,29 @@ namespace QAccelPlot {
 // offset 104 (before logScaleX), so we define a dedicated struct here instead of
 // reusing DataTextureMaterial::writeCommonUniforms().
 struct LineUbo {
-    float matrix[16];          // 0–63
-    float color[4];            // 64–79
-    float domainMin[2];        // 80–87
-    float domainMax[2];        // 88–95
-    float viewportSize[2];     // 96–103
-    float lineWidth;           // 104–107
-    float logScaleX;           // 108–111
-    float logScaleY;           // 112–115
-    float useVertexColor;      // 116–119
-    float pointCount;          // 120–123
-    float antialiasingEnabled; // 124–127
-    float antialiasingFeather; // 128–131
-    float dashPeriod;          // 132–135
-    float dashOffset;          // 136–139
-    int dashPatternSize;       // 140–143
-    float dashPattern[8];      // 144–175
-    float opacity;             // 176–179
-    float stepMode;            // 180–183
+    float matrix[16];                          // 0–63
+    float color[4];                            // 64–79
+    float domainMin[2];                        // 80–87
+    float domainMax[2];                        // 88–95
+    float viewportSize[2];                     // 96–103
+    float lineWidth;                           // 104–107
+    float logScaleX;                           // 108–111
+    float logScaleY;                           // 112–115
+    float useVertexColor;                      // 116–119
+    float pointCount;                          // 120–123
+    float antialiasingEnabled;                 // 124–127
+    float antialiasingFeather;                 // 128–131
+    float dashPeriod;                          // 132–135
+    float dashOffset;                          // 136–139
+    int dashPatternSize;                       // 140–143
+    float dashPattern[8];                      // 144–175
+    float opacity;                             // 176–179
+    float stepMode;                            // 180–183
+    float padding[2];                          // 184–191
+    Internal::ItemOpacityUniforms itemOpacity; // 192–287
 };
 
-static_assert(sizeof(LineUbo) == 184);
+static_assert(sizeof(LineUbo) == 288);
 
 class LineShader : public QSGMaterialShader {
 public:
@@ -85,6 +89,7 @@ public:
         memcpy(ubo.dashPattern, mat->dashPattern, sizeof(ubo.dashPattern));
         ubo.opacity = state.opacity();
         ubo.stepMode = mat->stepMode;
+        ubo.itemOpacity = Internal::itemOpacityUniforms(mat->itemFade);
         memcpy(buf->data(), &ubo, sizeof(ubo));
         return true;
     }

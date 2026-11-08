@@ -441,6 +441,7 @@ QSGNode* PointCloud::updatePaintNode(QSGNode* oldNode, [[maybe_unused]] UpdatePa
     material->valueMin = static_cast<float>(dataValueMin());
     material->valueMax = static_cast<float>(dataValueMax());
     material->stride = static_cast<float>(stride);
+    material->itemFade = transition_->fade();
     material->shapeType = static_cast<int>(marker_->shape()) - 1;
     node->markDirty(QSGNode::DirtyMaterial);
 

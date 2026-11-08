@@ -224,6 +224,9 @@ private:
     GradientColorPayload resolveGradientColorPayload() const;
     GradientFillPayload resolveGradientFillPayload() const;
     std::pair<qreal, qreal> gradientDataRange(Qt::Orientation direction) const;
+    // The points the running transition fades, as indices into the render data, which leaves out
+    // invalid points in NanGapMode::Connect.
+    Internal::ItemFade renderedFade() const;
 
     void applyNewData(std::vector<float>&& newData, int newPointCount);
     void applyNewData(std::vector<double>&& newData, int newPointCount);

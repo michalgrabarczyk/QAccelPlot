@@ -427,6 +427,21 @@ DataPointStore::View DataPointStore::renderedView() const
     return View{nullptr, compacted_.floats.data(), source.stride, compacted_.count};
 }
 
+int DataPointStore::renderedCount(const int count) const
+{
+    ensureCompacted();
+    const auto source = sourceView();
+    const auto clamped = std::clamp(count, 0, source.count);
+    if (!compacted_.active) {
+        return clamped;
+    }
+    auto rendered = 0;
+    for (auto i = 0; i < clamped; ++i) {
+        rendered += dataPointValid(source, i) ? 1 : 0;
+    }
+    return rendered;
+}
+
 void DataPointStore::setSkipInvalid(const bool skip)
 {
     if (skipInvalid_ == skip) {

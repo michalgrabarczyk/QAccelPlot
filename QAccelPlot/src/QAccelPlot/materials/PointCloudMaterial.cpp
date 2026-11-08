@@ -7,6 +7,8 @@
 //
 #include "QAccelPlot/materials/PointCloudMaterial.hpp"
 
+#include "QAccelPlot/materials/internal/ItemOpacityUniforms.hpp"
+
 #include <QByteArray>
 #include <QSGMaterialShader>
 
@@ -19,23 +21,24 @@ namespace {
 constexpr auto kCommonUniformSize = 116;
 
 struct PointCloudUboTail {
-    float markerSize;          // 116–119
-    float antialiasingEnabled; // 120–123
-    float antialiasingFeather; // 124–127
-    float valueMin;            // 128–131
-    float valueMax;            // 132–135
-    float stride;              // 136–139
-    int shapeType;             // 140–143
-    float markerStrokeWidth;   // 144–147
-    float markerFilled;        // 148–151
-    float valueLogScale;       // 152–155
-    float opacity;             // 156–159
+    float markerSize;                          // 116–119
+    float antialiasingEnabled;                 // 120–123
+    float antialiasingFeather;                 // 124–127
+    float valueMin;                            // 128–131
+    float valueMax;                            // 132–135
+    float stride;                              // 136–139
+    int shapeType;                             // 140–143
+    float markerStrokeWidth;                   // 144–147
+    float markerFilled;                        // 148–151
+    float valueLogScale;                       // 152–155
+    float opacity;                             // 156–159
+    Internal::ItemOpacityUniforms itemOpacity; // 160–255
 };
 
 constexpr auto kPointCloudUboSize = kCommonUniformSize + static_cast<int>(sizeof(PointCloudUboTail));
 
-static_assert(sizeof(PointCloudUboTail) == 44);
-static_assert(kPointCloudUboSize == 160);
+static_assert(sizeof(PointCloudUboTail) == 140);
+static_assert(kPointCloudUboSize == 256);
 
 int compareValues(const float left, const float right)
 {
@@ -77,6 +80,7 @@ public:
         tail.markerFilled = material->markerFilled;
         tail.valueLogScale = material->valueLogScale;
         tail.opacity = state.opacity();
+        tail.itemOpacity = Internal::itemOpacityUniforms(material->itemFade);
         std::memcpy(buffer->data() + kCommonUniformSize, &tail, sizeof(tail));
         return true;
     }

@@ -11,6 +11,7 @@
 layout(location = 0) out vec2 v_uv;        // +-1 is markerSize; the quad extends further with antialiasing
 layout(location = 1) out float v_colorT;   // normalized colormap coordinate
 layout(location = 2) out float v_useValue; // 1.0 when the colormap applies to this point
+layout(location = 3) out float v_itemOpacity;
 
 layout(std140, binding = 0) uniform buf {
     mat4  matrix;              //   0-63
@@ -32,6 +33,9 @@ layout(std140, binding = 0) uniform buf {
     float markerFilled;        // 148-151
     float valueLogScale;       // 152-155
     float opacity;             // 156-159: inherited item opacity
+    vec4 itemFadeRange;     // item opacity, see item_opacity.glsl
+    vec4 itemFadeParams;
+    vec4 itemFadeEasing[4];
 } ubuf;
 
 layout(binding = 1) uniform sampler2D dataSampler;
@@ -40,6 +44,7 @@ layout(binding = 1) uniform sampler2D dataSampler;
 #include "math_utils.glsl"
 #include "point_shapes.glsl"
 #include "marker_vertex.glsl"
+#include "item_opacity.glsl"
 
 // Collapses every vertex of a skipped point onto one position outside clip space,
 // so the billboard has zero area and is clipped away.
@@ -53,6 +58,7 @@ void discardPoint() {
 void main() {
     int strideInt = int(ubuf.stride + 0.5);
     MarkerVertex marker = computeMarkerVertex(strideInt);
+    v_itemOpacity = itemOpacity(marker.index);
     if (!marker.valid) {
         discardPoint();
         return;

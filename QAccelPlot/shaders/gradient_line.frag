@@ -13,6 +13,8 @@ layout(location = 2) in float v_arcLength;
 layout(location = 3) in float v_gradientCoordinate;
 layout(location = 4) in float v_validWeight;
 
+layout(location = 5) in float v_itemOpacity;
+
 layout(location = 0) out vec4 fragColor;
 
 layout(std140, binding = 0) uniform buf {
@@ -35,6 +37,9 @@ layout(std140, binding = 0) uniform buf {
     vec4 gradientParameters;
     float opacity;
     float stepMode;
+    vec4 itemFadeRange;     // item opacity, see item_opacity.glsl
+    vec4 itemFadeParams;
+    vec4 itemFadeEasing[4];
 } ubuf;
 
 layout(binding = 2) uniform sampler2D gradientSampler;
@@ -70,6 +75,6 @@ void main() {
     }
 
     vec4 gradientColor = texture(gradientSampler, vec2(clamp(v_gradientCoordinate, 0.0, 1.0), 0.5));
-    float outputAlpha = gradientColor.a * alpha * ubuf.opacity;
+    float outputAlpha = gradientColor.a * alpha * ubuf.opacity * v_itemOpacity;
     fragColor = vec4(gradientColor.rgb * outputAlpha, outputAlpha);
 }

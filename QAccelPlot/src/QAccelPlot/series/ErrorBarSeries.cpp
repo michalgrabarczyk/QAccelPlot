@@ -723,6 +723,7 @@ void ErrorBarSeries::updateMaterial(ErrorBarMaterial& material, const int drawnC
     material.offset = static_cast<float>(offset_);
     material.horizontal = isHorizontal() ? 1.0f : 0.0f;
     material.errorBarCount = static_cast<float>(drawnCount);
+    material.itemFade = transition_->fade();
     material.antialiasing = antialiasing() ? 1.0f : 0.0f;
 }
 

@@ -101,6 +101,7 @@ private slots:
     void removedBarsKeepTheirCategoryColor();
     void categoriesSetDuringAnAnimationApply();
     void drawShowsBarsInOrder();
+    void fadedEnterStartsTransparent();
     void rangedBarsMorphTheirExtent();
     void changedLayoutGrowsTheNewBarsIn();
     void floatDataAnimates();
@@ -421,6 +422,23 @@ std::unique_ptr<BarSeries> BarSeriesTransitionsTest::addBars(const QColor& color
     bars->setColor(color);
     bars->setBarWidth(1.0);
     return bars;
+}
+
+void BarSeriesTransitionsTest::fadedEnterStartsTransparent()
+{
+    auto draw = DrawTransition{};
+    draw.setDuration(kLongDuration);
+    draw.setStagger(0.0);
+    draw.setFade(true);
+    scene_.bars->setEnterTransition(&draw);
+
+    scene_.bars->setData(std::vector<double>{5.0, 8.0}, 1);
+
+    // Shown from the start, but still transparent.
+    QTRY_VERIFY(shows({{5.0, 4.0, Qt::black}}));
+    draw.setDuration(0);
+    QTRY_VERIFY(shows({{5.0, 4.0, Qt::red}}));
+    scene_.bars->setEnterTransition(nullptr);
 }
 
 bool BarSeriesTransitionsTest::shows(const std::initializer_list<Probe> probes) const

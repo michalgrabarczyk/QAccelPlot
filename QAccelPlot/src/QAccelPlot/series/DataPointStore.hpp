@@ -174,6 +174,8 @@ public:
     /// \brief Returns the data points the render data is built from: \c drawnView(), without the
     /// invalid data points when \c skipInvalid() is set.
     [[nodiscard]] View renderedView() const;
+    /// \brief Returns how many of the first \a count drawn data points \c renderedView() holds.
+    [[nodiscard]] int renderedCount(int count) const;
 
     /// \brief Leaves invalid data points out of the render data and \c renderedView().
     ///

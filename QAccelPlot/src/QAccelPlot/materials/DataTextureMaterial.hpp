@@ -7,6 +7,7 @@
 //
 #pragma once
 
+#include "QAccelPlot/internal/ItemFade.hpp"
 #include "QAccelPlot/materials/DataTexture.hpp"
 
 #include <QColor>
@@ -78,6 +79,8 @@ public:
     float useVertexColor{0.0f};             ///< \brief 1.0 when per-vertex color overrides \c color (float for std140 UBO compatibility).
     /// \brief Data texture sampled by the shader. Materials drawing the same samples may share one.
     std::shared_ptr<DataTexture> dataTexture;
+    /// \brief Items a running transition fades; inactive by default. Shaders without item opacity ignore it.
+    Internal::ItemFade itemFade;
 };
 
 } // namespace QAccelPlot

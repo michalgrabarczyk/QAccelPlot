@@ -10,6 +10,7 @@
 
 layout(location = 0) out vec2 v_uv;                  // +-1 is markerSize; the quad extends further with antialiasing
 layout(location = 1) out float v_gradientCoordinate; // unclamped gradient coordinate of the marker
+layout(location = 2) out float v_itemOpacity;
 
 layout(std140, binding = 0) uniform buf {
     mat4  matrix;              //   0-63
@@ -30,6 +31,9 @@ layout(std140, binding = 0) uniform buf {
     float gradientValueMin;    // 144-147
     float gradientValueMax;    // 148-151
     float opacity;             // 152-155: inherited item opacity
+    vec4 itemFadeRange;     // item opacity, see item_opacity.glsl
+    vec4 itemFadeParams;
+    vec4 itemFadeEasing[4];
 } ubuf;
 
 layout(binding = 1) uniform sampler2D dataSampler;
@@ -38,9 +42,11 @@ layout(binding = 1) uniform sampler2D dataSampler;
 #include "math_utils.glsl"
 #include "point_shapes.glsl"
 #include "marker_vertex.glsl"
+#include "item_opacity.glsl"
 
 void main() {
     MarkerVertex marker = computeMarkerVertex(2);
+    v_itemOpacity = itemOpacity(marker.index);
     v_uv = marker.uv;
     gl_Position = marker.position;
 

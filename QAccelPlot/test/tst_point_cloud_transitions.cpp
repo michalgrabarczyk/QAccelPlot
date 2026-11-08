@@ -105,6 +105,7 @@ private slots:
     void newPointsAppearAtTheirPosition();
     void removedPointsDisappear();
     void drawShowsPointsInOrder();
+    void fadedEnterStartsTransparent();
     void floatDataAnimates();
     void largeCoordinatesAnimate();
     void addedValuesApplyAtOnce();
@@ -523,6 +524,23 @@ std::unique_ptr<PointCloud> PointCloudTransitionsTest::addCloud(const QColor& co
 QPointF PointCloudTransitionsTest::pixelAt(const qreal x, const qreal y) const
 {
     return {(x - scene_.xAxis->viewportMin()) / kDataSpan * kSize, (1.0 - (y - scene_.yAxis->viewportMin()) / kDataSpan) * kSize};
+}
+
+void PointCloudTransitionsTest::fadedEnterStartsTransparent()
+{
+    auto draw = DrawTransition{};
+    draw.setDuration(kLongDuration);
+    draw.setStagger(0.0);
+    draw.setFade(true);
+    scene_.cloud->setEnterTransition(&draw);
+
+    scene_.cloud->setData(std::vector<double>{5.0, 5.0}, 1);
+
+    // Shown from the start, but still transparent.
+    QTRY_VERIFY(shows({{5.0, 5.0, Qt::black}}));
+    draw.setDuration(0);
+    QTRY_VERIFY(shows({{5.0, 5.0, Qt::red}}));
+    scene_.cloud->setEnterTransition(nullptr);
 }
 
 bool PointCloudTransitionsTest::shows(const std::initializer_list<Probe> probes) const

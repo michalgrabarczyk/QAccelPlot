@@ -47,6 +47,9 @@ layout(std140, binding = 0) uniform buf {
     float valueMax;       // 204-207: value at colormap position 1
     float valueOrigin;    // 208-211: added to the data before the log normalization
     float valueLogScale;  // 212-215: 1 to normalize in log10
+    vec4 itemFadeRange;     // item opacity, see item_opacity.glsl
+    vec4 itemFadeParams;
+    vec4 itemFadeEasing[4];
 } ubuf;
 
 layout(binding = 1) uniform sampler2D dataSampler;
@@ -55,6 +58,7 @@ layout(binding = 2) uniform sampler2D colorMapSampler;
 #include "data_texture.glsl"
 #include "math_utils.glsl"
 #include "rect_geometry.glsl"
+#include "item_opacity.glsl"
 
 // Reads the extent of bar `index` along the position axis and its value, as float bit patterns.
 // Returns false when the bar is not drawn.
@@ -154,6 +158,9 @@ void main() {
     int index = int(barId);
     v_color = barFillColor(index);
     v_borderColor = vec4(ubuf.borderColor.rgb, ubuf.borderColor.a * ubuf.opacity);
+    float fade = itemOpacity(barId);
+    v_color.a *= fade;
+    v_borderColor.a *= fade;
     v_borderWidth = ubuf.borderWidth;
     v_antialiasing = ubuf.antialiasing;
 

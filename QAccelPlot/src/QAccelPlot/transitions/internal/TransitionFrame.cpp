@@ -177,12 +177,6 @@ std::array<float, kFadeEasingSamples> easingSamples(const QEasingCurve& easing)
     return samples;
 }
 
-bool ItemFade::operator==(const ItemFade& other) const noexcept
-{
-    return first == other.first && count == other.count && progress == other.progress && stagger == other.stagger && exit == other.exit
-        && easing == other.easing;
-}
-
 TransitionSlots plannedSlots(const int fromCount, const int toCount, const std::optional<TransitionKind> enter, const std::optional<TransitionKind> update,
     const std::optional<TransitionKind> exit)
 {

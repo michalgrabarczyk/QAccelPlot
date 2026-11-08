@@ -10,6 +10,7 @@
 
 layout(location = 0) in vec2 v_uv;     // +-1 is markerSize; the quad extends further with antialiasing
 layout(location = 1) in float v_gradientCoordinate;
+layout(location = 2) in float v_itemOpacity;
 
 layout(location = 0) out vec4 fragColor;
 
@@ -32,6 +33,9 @@ layout(std140, binding = 0) uniform buf {
     float gradientValueMin;
     float gradientValueMax;
     float opacity;
+    vec4 itemFadeRange;     // item opacity, see item_opacity.glsl
+    vec4 itemFadeParams;
+    vec4 itemFadeEasing[4];
 } ubuf;
 
 layout(binding = 2) uniform sampler2D gradientSampler;
@@ -57,6 +61,6 @@ void main() {
     // Sample the gradient unconditionally (keeps the sampler live on every backend).
     vec4 gradientColor = texture(gradientSampler, vec2(clamp(v_gradientCoordinate, 0.0, 1.0), 0.5));
     vec4 c = mix(ubuf.color, gradientColor, step(0.5, ubuf.useVertexColor));
-    float a = c.a * alpha * ubuf.opacity;
+    float a = c.a * alpha * ubuf.opacity * v_itemOpacity;
     fragColor = vec4(c.rgb * a, a);
 }

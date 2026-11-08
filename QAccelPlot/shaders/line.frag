@@ -33,6 +33,9 @@ layout(std140, binding = 0) uniform buf {
     vec4 dashPattern[2];
     float opacity;
     float stepMode;
+    vec4 itemFadeRange;     // item opacity, see item_opacity.glsl
+    vec4 itemFadeParams;
+    vec4 itemFadeEasing[4];
 } ubuf;
 
 void main() {

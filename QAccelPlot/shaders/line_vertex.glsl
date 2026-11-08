@@ -38,6 +38,9 @@ layout(std140, binding = 0) uniform buf {
     vec4 dashPattern[2];
     float opacity;
     float stepMode;
+    vec4 itemFadeRange;     // item opacity, see item_opacity.glsl
+    vec4 itemFadeParams;
+    vec4 itemFadeEasing[4];
 } ubuf;
 
 layout(binding = 1) uniform sampler2D dataSampler;
@@ -45,9 +48,11 @@ layout(binding = 1) uniform sampler2D dataSampler;
 #include "data_texture.glsl"
 #include "math_utils.glsl"
 #include "line_geometry.glsl"
+#include "item_opacity.glsl"
 
 void main() {
     v_color = mix(ubuf.color, vertexColor, ubuf.useVertexColor);
+    v_color.a *= itemOpacity(id);
     float ribbonSide = lineVertexSide(side);
     v_edgeDistance = ribbonSide * lineRibbonHalfExtent();
     v_arcLength = arcLength;

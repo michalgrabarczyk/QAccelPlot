@@ -9,6 +9,7 @@
 
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/effects/GradientColorTypes.hpp"
+#include "QAccelPlot/internal/ItemFade.hpp"
 #include "QAccelPlot/linestyles/LineStyle.hpp"
 #include "QAccelPlot/renderers/CurveRendererParams.hpp"
 #include "QAccelPlot/renderers/LineStroke.hpp"
@@ -56,6 +57,7 @@ struct LineCurveRenderParams {
     const std::vector<char>* vertexCache;           ///< \brief Pre-built vertex buffer, or \c nullptr to build on the render thread.
     const LineStyle* lineStyle;                     ///< \brief Active line style (dash pattern etc.).
     StepMode stepMode{StepMode::None};              ///< \brief How the line joins consecutive data points.
+    Internal::ItemFade itemFade{};                  ///< \brief Points a running transition fades, as indices into \c data.
 };
 
 /// \brief Outline of a gradient fill in data space: one group of points per run of valid data points, broken at gaps.

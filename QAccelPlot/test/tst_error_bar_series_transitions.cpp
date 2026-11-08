@@ -104,6 +104,7 @@ private slots:
     void newErrorBarsAppearAtTheirPlace();
     void removedErrorBarsDisappear();
     void drawShowsErrorBarsInOrder();
+    void fadedEnterStartsTransparent();
     void floatDataAnimates();
     void dataIsTheNewOneFromTheStart();
     void hoverPicksTheDrawnErrorBars();
@@ -389,6 +390,23 @@ void ErrorBarSeriesTransitionsTest::transitionPropertyNotifies()
 QPointF ErrorBarSeriesTransitionsTest::pixelAt(const qreal x, const qreal y) const
 {
     return {(x - xAxis_->viewportMin()) / kDataSpan * kSize, (1.0 - (y - yAxis_->viewportMin()) / kDataSpan) * kSize};
+}
+
+void ErrorBarSeriesTransitionsTest::fadedEnterStartsTransparent()
+{
+    auto draw = DrawTransition{};
+    draw.setDuration(kLongDuration);
+    draw.setStagger(0.0);
+    draw.setFade(true);
+    bars_->setEnterTransition(&draw);
+
+    bars_->setData(errorBarsAt({5.0}), 1);
+
+    // Shown from the start, but still transparent.
+    QTRY_VERIFY(shows({{5.0, 5.0, Qt::black}}));
+    draw.setDuration(0);
+    QTRY_VERIFY(shows({{5.0, 5.0, Qt::red}}));
+    bars_->setEnterTransition(nullptr);
 }
 
 bool ErrorBarSeriesTransitionsTest::shows(const std::initializer_list<Probe> probes) const

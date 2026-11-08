@@ -38,6 +38,9 @@ layout(std140, binding = 0) uniform buf {
     float horizontal;     // 152-155: 1 when the bounds lie on the X axis
     float errorBarCount;  // 156-159
     float antialiasing;   // 160-163: 1 to smooth the edges
+    vec4 itemFadeRange;     // item opacity, see item_opacity.glsl
+    vec4 itemFadeParams;
+    vec4 itemFadeEasing[4];
 } ubuf;
 
 layout(binding = 1) uniform sampler2D dataSampler;
@@ -45,6 +48,7 @@ layout(binding = 1) uniform sampler2D dataSampler;
 #include "data_texture.glsl"
 #include "math_utils.glsl"
 #include "viewport_fraction.glsl"
+#include "item_opacity.glsl"
 
 const int kVerticesPerErrorBar = 18;
 const int kValuesPerErrorBar = 4;
@@ -149,7 +153,7 @@ void main() {
     v_antialiasing = ubuf.antialiasing;
 
     v_color = index == int(ubuf.hoveredIndex) ? ubuf.hoverColor : ubuf.color;
-    v_color.a *= ubuf.opacity;
+    v_color.a *= ubuf.opacity * itemOpacity(float(index));
     vec2 pixel = horizontal ? vec2(v, u) : vec2(u, v);
     gl_Position = ubuf.matrix * vec4(pixel, 0.0, 1.0);
 }

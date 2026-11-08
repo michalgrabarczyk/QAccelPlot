@@ -11,6 +11,7 @@
 layout(location = 0) in vec2 v_uv;     // +-1 is markerSize; the quad extends further with antialiasing
 layout(location = 1) in float v_colorT;
 layout(location = 2) in float v_useValue;
+layout(location = 3) in float v_itemOpacity;
 
 layout(location = 0) out vec4 fragColor;
 
@@ -34,6 +35,9 @@ layout(std140, binding = 0) uniform buf {
     float markerFilled;
     float valueLogScale;
     float opacity;
+    vec4 itemFadeRange;     // item opacity, see item_opacity.glsl
+    vec4 itemFadeParams;
+    vec4 itemFadeEasing[4];
 } ubuf;
 
 layout(binding = 2) uniform sampler2D colorMapSampler;
@@ -60,6 +64,6 @@ void main() {
     // then pick it only for points that carry a finite value.
     vec4 mapped = texture(colorMapSampler, vec2(v_colorT, 0.5));
     vec4 c = mix(ubuf.color, mapped, step(0.5, v_useValue));
-    float a = c.a * alpha * ubuf.opacity;
+    float a = c.a * alpha * ubuf.opacity * v_itemOpacity;
     fragColor = vec4(c.rgb * a, a);
 }

@@ -18,6 +18,7 @@ layout(location = 0) in vec4 vertexPadding;
 
 struct MarkerVertex {
     int base;          // data texture index of the point's X; Y follows it
+    float index;       // index of the point
     bool valid;        // false for invalid samples, which are not drawn
     vec2 dataPosition; // untransformed data-space position of the point
     vec2 uv;           // +-1 is markerSize; the quad extends further with antialiasing
@@ -43,6 +44,7 @@ MarkerVertex computeMarkerVertex(int floatsPerPoint) {
 
     MarkerVertex result;
     result.base = (vertexIndex / 6) * floatsPerPoint;
+    result.index = float(vertexIndex / 6);
     result.valid = false;
     result.dataPosition = vec2(0.0);
     result.uv = vec2(0.0);

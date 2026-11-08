@@ -7,6 +7,7 @@
 //
 #pragma once
 
+#include "QAccelPlot/internal/ItemFade.hpp"
 #include "QAccelPlot/transitions/DataTransition.hpp"
 
 #include <QEasingCurve>
@@ -18,9 +19,6 @@
 
 namespace QAccelPlot::Internal {
 
-/// \brief Number of easing samples the shaders interpolate to fade items.
-inline constexpr int kFadeEasingSamples = 16;
-
 /// \brief Returns the progress of item \a item of \a itemCount at transition progress \a progress, before easing.
 ///
 /// The start times of the items are spread over the share \a stagger of the duration, in item order.
@@ -28,31 +26,6 @@ double itemProgress(double progress, int item, int itemCount, double stagger);
 
 /// \brief Returns \a easing at \c kFadeEasingSamples evenly spaced progress values from 0 to 1.
 std::array<float, kFadeEasingSamples> easingSamples(const QEasingCurve& easing);
-
-/// \brief The items of a frame whose opacity the shaders fade, as one transition group.
-struct ItemFade {
-    int first{0};                                   ///< \brief Frame index of the first item of the group.
-    int count{0};                                   ///< \brief Number of items in the group; 0 when no item fades.
-    float progress{0.0f};                           ///< \brief Progress of the group's transition, before easing.
-    float stagger{0.0f};                            ///< \brief Stagger of the group's transition.
-    bool exit{false};                               ///< \brief \c true when the items fade out, the last one first.
-    std::array<float, kFadeEasingSamples> easing{}; ///< \brief Easing samples, see \c easingSamples().
-
-    /// \brief Returns \c true when some item fades.
-    [[nodiscard]] bool active() const noexcept
-    {
-        return count > 0;
-    }
-
-    /// \brief Returns \c true when \a other fades the same items the same way.
-    [[nodiscard]] bool operator==(const ItemFade& other) const noexcept;
-
-    /// \brief Returns \c true when \a other differs.
-    [[nodiscard]] bool operator!=(const ItemFade& other) const noexcept
-    {
-        return !(*this == other);
-    }
-};
 
 /// \brief How the items of a series animate.
 struct TransitionLayout {

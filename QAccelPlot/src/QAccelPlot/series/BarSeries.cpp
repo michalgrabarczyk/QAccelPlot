@@ -976,6 +976,7 @@ void BarSeries::updateMaterial(BarMaterial& material, const int renderCount) con
     material.logScaleX = xAxis()->logScale() ? 1.0f : 0.0f;
     material.logScaleY = yAxis()->logScale() ? 1.0f : 0.0f;
     material.useVertexColor = drawnCategories().empty() ? 0.0f : 1.0f;
+    material.itemFade = transition_->fade();
     material.rectCount = static_cast<float>(renderCount);
     material.minimumSize = horizontal ? QVector2D(0.0f, minimumSize) : QVector2D(minimumSize, 0.0f);
     material.borderWidth = static_cast<float>(border_->width());
