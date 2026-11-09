@@ -15,6 +15,7 @@
 #include <QThread>
 #include <QtTest/QtTest>
 
+#include <limits>
 #include <memory>
 #include <vector>
 
@@ -49,6 +50,7 @@ private slots:
     void changeWithoutAnimatedItemsDoesNotStart();
     void activeChangedFollowsTheRun();
     void restartDropsItemsStillExiting();
+    void restartEntersItemsNotShownYet();
     void runEndsWhenTheLongestSlotEnds();
 
 private:
@@ -286,6 +288,28 @@ void TransitionRunnerTest::restartDropsItemsStillExiting()
     QCOMPARE(frameCount, 2);
     QCOMPARE(frame[0], 0.0);
     QCOMPARE(frame[1], 1.0);
+}
+
+void TransitionRunnerTest::restartEntersItemsNotShownYet()
+{
+    auto draw = DrawTransition{};
+    draw.setDuration(kLongDuration);
+    auto morph = MorphTransition{};
+    morph.setDuration(kLongDuration);
+    auto runner = TransitionRunner{item_.get()};
+    runner.setTransition(TransitionRunner::Slot::Enter, &draw);
+    runner.setTransition(TransitionRunner::Slot::Update, &morph);
+    auto frame = std::vector<double>{};
+    auto frameCount = 0;
+    runner.start(data_, pointCount_, {0.0, 0.0, 1.0, 1.0, 2.0, 2.0}, 3, TransitionRunner::Layout{});
+    runner.advance(frame, frameCount);
+    QCOMPARE(frameCount, 1);
+
+    // A series that pads the frame to the run's capacity passes the unshown items as invalid.
+    frame.resize(static_cast<std::size_t>(runner.frameCapacity()) * 2, std::numeric_limits<double>::quiet_NaN());
+    QVERIFY(runner.start(frame, runner.frameCapacity(), {0.0, 5.0, 1.0, 1.0, 2.0, 2.0}, 3, TransitionRunner::Layout{}));
+    runner.advance(frame, frameCount);
+    QCOMPARE(frameCount, 1);
 }
 
 void TransitionRunnerTest::runEndsWhenTheLongestSlotEnds()

@@ -121,8 +121,8 @@ bool TransitionRunner::start(
     const std::vector<double>& currentData, const int currentPointCount, std::vector<double>&& newData, const int newPointCount, const Layout& layout)
 {
     Q_ASSERT(layout.stride > 0);
-    // Items still leaving from the previous run follow its target items, and are dropped.
-    const auto fromCount = pending_ ? std::min(currentPointCount, toCount_) : currentPointCount;
+    // Items the previous run has not shown yet, or still shows leaving, are dropped.
+    const auto fromCount = pending_ ? std::min({currentPointCount, shownCount_, toCount_}) : currentPointCount;
     // Ended without interrupting: the new run replaces the old one.
     pending_ = false;
     endRuns();
@@ -140,6 +140,7 @@ bool TransitionRunner::start(
     fromCount_ = fromCount;
     to_ = std::move(newData);
     toCount_ = newPointCount;
+    shownCount_ = fromCount;
     pending_ = true;
     const auto used = std::array{planned.enter, planned.update, planned.exit};
     for (const auto slot : kSlots) {
@@ -166,6 +167,7 @@ bool TransitionRunner::advance(std::vector<double>& outData, int& outPointCount)
     const auto input = Internal::TransitionFrameInput{Internal::TransitionItems{from_.data(), fromCount_}, Internal::TransitionItems{to_.data(), toCount_},
         layout_, step(Slot::Enter), step(Slot::Update), step(Slot::Exit)};
     outPointCount = Internal::writeTransitionFrame(input, outData, fade_);
+    shownCount_ = outPointCount;
     return true;
 }
 
@@ -194,6 +196,7 @@ void TransitionRunner::cancel()
     to_ = std::vector<double>{};
     fromCount_ = 0;
     toCount_ = 0;
+    shownCount_ = 0;
     fade_ = {};
     updateActive();
 }

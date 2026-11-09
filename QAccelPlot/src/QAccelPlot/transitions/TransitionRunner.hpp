@@ -89,8 +89,8 @@ public:
     int frameCapacity() const;
 
     /// \brief Starts a run from \a currentData to \a newData and requests a frame.
-    /// \param currentData Items drawn now, copied as the \e from side. Items still leaving from a
-    ///                    previous run are left out.
+    /// \param currentData Items drawn now, copied as the \e from side. Items of a previous run that
+    ///                    its last frame has not shown yet, or shows leaving, are left out.
     /// \param currentPointCount Number of items in \a currentData.
     /// \param newData Target items, moved as the \e to side.
     /// \param newPointCount Number of items in \a newData.
@@ -148,6 +148,7 @@ private:
     int fromCount_{0};
     std::vector<double> to_;
     int toCount_{0};
+    int shownCount_{0};
     Layout layout_;
     Internal::ItemFade fade_;
     QPointer<QQuickWindow> window_;
