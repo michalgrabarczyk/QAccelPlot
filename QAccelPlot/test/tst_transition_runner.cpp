@@ -48,6 +48,7 @@ private slots:
     void destroyedRunnerEndsItsRun();
     void enterAndExitSlotsTakeEnterExitTransitions();
     void changeWithoutAnimatedItemsDoesNotStart();
+    void animatesFollowsTheSlotsTheChangeUses();
     void activeChangedFollowsTheRun();
     void restartDropsItemsStillExiting();
     void restartEntersItemsNotShownYet();
@@ -251,6 +252,28 @@ void TransitionRunnerTest::changeWithoutAnimatedItemsDoesNotStart()
     QVERIFY(!runner.start(data_, pointCount_, {10.0, 20.0}, 1, TransitionRunner::Layout{}));
     QVERIFY(!runner.pending());
     QVERIFY(!grow.running());
+}
+
+void TransitionRunnerTest::animatesFollowsTheSlotsTheChangeUses()
+{
+    auto draw = DrawTransition{};
+    draw.setDuration(kLongDuration);
+    auto runner = TransitionRunner{item_.get()};
+    runner.setTransition(TransitionRunner::Slot::Enter, &draw);
+
+    QVERIFY(runner.animates(1, 2));
+    QVERIFY(!runner.animates(2, 2));
+    QVERIFY(!runner.animates(2, 1));
+
+    // A pending run may enter items it has not shown yet, whatever the counts.
+    QVERIFY(runner.start(data_, pointCount_, {10.0, 20.0, 30.0, 40.0}, 2, TransitionRunner::Layout{}));
+    QVERIFY(runner.animates(2, 2));
+    runner.cancel();
+
+    auto morph = MorphTransition{};
+    runner.setTransition(TransitionRunner::Slot::Update, &morph);
+    QVERIFY(runner.animates(2, 2));
+    QVERIFY(!runner.animates(0, 0));
 }
 
 void TransitionRunnerTest::activeChangedFollowsTheRun()

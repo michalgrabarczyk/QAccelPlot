@@ -390,7 +390,7 @@ void LineCurve::setData(const std::vector<double>& xs, const std::vector<double>
 
 void LineCurve::clearData()
 {
-    if (transition_->enabled()) {
+    if (transition_->animates(dataPoints().count(), 0)) {
         // Every point is removed, so the exit transition animates them.
         applyNewData(std::vector<double>{}, 0);
         return;
@@ -768,7 +768,7 @@ Internal::ItemFade LineCurve::renderedFade() const
 
 void LineCurve::applyNewData(std::vector<float>&& newData, const int newPointCount)
 {
-    if (transition_->enabled()) {
+    if (transition_->animates(dataPoints().count(), newPointCount)) {
         // Transitions animate doubles.
         applyNewData(std::vector<double>(newData.begin(), newData.end()), newPointCount);
         return;
@@ -782,7 +782,7 @@ void LineCurve::applyNewData(std::vector<float>&& newData, const int newPointCou
 void LineCurve::applyNewData(std::vector<double>&& newData, const int newPointCount)
 {
     const auto previousCount = dataPoints().count();
-    if (!transition_->enabled()) {
+    if (!transition_->animates(dataPoints().count(), newPointCount)) {
         cancelRunningTransition();
         dataPoints().setPrecise(std::move(newData), newPointCount);
         notifyDataPointsChanged(DataChange::Replaced, previousCount);
@@ -802,7 +802,7 @@ void LineCurve::applyNewData(std::vector<double>&& newData, const int newPointCo
 
 void LineCurve::applyFloatArray(const float* xyInterleaved, const int pointCount)
 {
-    if (transition_->enabled()) {
+    if (transition_->animates(dataPoints().count(), pointCount)) {
         // Transitions animate doubles.
         applyNewData(std::vector<double>(xyInterleaved, xyInterleaved + static_cast<std::size_t>(pointCount) * 2), pointCount);
         return;

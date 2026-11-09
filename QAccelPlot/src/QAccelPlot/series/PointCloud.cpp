@@ -230,7 +230,7 @@ void PointCloud::setValues(const QList<qreal>& values)
     }
     auto pointValues = std::vector<float>(static_cast<std::size_t>(values.size()));
     std::transform(values.cbegin(), values.cend(), pointValues.begin(), [](const qreal value) { return static_cast<float>(value); });
-    if (transition_->enabled()) {
+    if (transition_->animates(count(), count())) {
         animateValues(std::move(pointValues));
         return;
     }
@@ -487,7 +487,7 @@ bool PointCloud::validateValues(const std::size_t valueCount, const int pointCou
 
 void PointCloud::applyData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, const int pointCount)
 {
-    if (transition_->enabled()) {
+    if (transition_->animates(count(), pointCount)) {
         // Transitions animate doubles.
         applyDoubleData(std::vector<double>(xyInterleaved.cbegin(), xyInterleaved.cend()), std::move(values), pointCount);
         return;
@@ -506,7 +506,7 @@ void PointCloud::applyFloatData(std::vector<float>&& xyInterleaved, std::vector<
 void PointCloud::applyDoubleData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, const int pointCount)
 {
     const auto previousCount = count();
-    const auto animate = transition_->enabled();
+    const auto animate = transition_->animates(count(), pointCount);
     // Copied before the data changes: a transition starts from the points drawn now.
     auto drawn = animate ? drawnPoints() : Points{};
     dataPoints().setPrecise(std::move(xyInterleaved), pointCount, std::move(values));
@@ -536,7 +536,7 @@ void PointCloud::applyDataPoints(DataPointInput&& input)
         applyData(std::move(input.floats), {}, pointCount);
         return;
     }
-    if (transition_->enabled()) {
+    if (transition_->animates(count(), pointCount)) {
         // Transitions animate doubles.
         applyDoubleData(std::move(input).toDoubles(), {}, pointCount);
         return;

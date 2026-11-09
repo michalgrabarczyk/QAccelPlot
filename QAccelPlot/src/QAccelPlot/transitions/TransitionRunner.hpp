@@ -39,8 +39,8 @@ namespace QAccelPlot {
 ///
 /// \par Usage
 /// - Forward the item's transition properties to the slot getters and setters.
-/// - When data arrives and \c enabled() is \c true, call \c start(). When it returns \c false,
-///   or when \c enabled() is \c false, call \c cancel() and show the data.
+/// - When data arrives and \c animates() is \c true, call \c start(). When it returns \c false,
+///   or when \c animates() is \c false, call \c cancel() and show the data.
 /// - After \c start() and on \c frameDue(), call \c advance() and show the frame.
 /// - On \c interrupted(), call \c finish() and show the target data.
 ///
@@ -74,8 +74,13 @@ public:
     /// The enter and exit slots take only an \c EnterExitTransition.
     /// \return \c false when \a transition is already assigned to \a slot, or does not fit it.
     bool setTransition(Slot slot, DataTransition* transition);
-    /// \brief Returns \c true when some slot has an enabled transition, so new data should start a run.
+    /// \brief Returns \c true when some slot has an enabled transition.
     bool enabled() const;
+    /// \brief Returns \c true when a change from \a currentPointCount drawn items to \a newPointCount items may start a run.
+    ///
+    /// Without a pending run, \c false means that \c start() would return \c false, so the item can
+    /// show the data without copying it for a run.
+    bool animates(int currentPointCount, int newPointCount) const;
 
     /// \brief Returns \c true while a transition advances the run.
     bool active() const;

@@ -342,6 +342,8 @@ private:
     void setRanged(bool ranged);
     void applyData(std::vector<double>&& data, std::vector<int>&& categories, int barCount);
     void applyRangedData(std::vector<double>&& data, std::vector<int>&& categories, int barCount);
+    // True when replacing the bars with barCount bars, ranged or not, may start a transition.
+    bool animatesBars(bool ranged, int barCount) const;
     // Replaces the bars, animating from the drawn ones when \a animate is set.
     void applyBars(std::vector<double>&& data, bool ranged, std::vector<int>&& categories, int barCount, bool animate);
     void applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, int barCount);

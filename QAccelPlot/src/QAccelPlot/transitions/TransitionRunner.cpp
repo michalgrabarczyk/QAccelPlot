@@ -92,6 +92,16 @@ bool TransitionRunner::enabled() const
     return std::any_of(kSlots.cbegin(), kSlots.cend(), [this](const Slot slot) { return enabledKind(slot).has_value(); });
 }
 
+bool TransitionRunner::animates(const int currentPointCount, const int newPointCount) const
+{
+    // A pending run drops the items it has not shown, so any change may still animate.
+    if (pending_) {
+        return enabled();
+    }
+    // Only the data tells whether a kept item changes, so it may.
+    return Internal::plannedSlots(currentPointCount, newPointCount, true, enabledKind(Slot::Enter), enabledKind(Slot::Update), enabledKind(Slot::Exit)).any();
+}
+
 bool TransitionRunner::active() const
 {
     return active_;

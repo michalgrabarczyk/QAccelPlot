@@ -364,7 +364,7 @@ void ErrorBarSeries::setErrorData(
 
 void ErrorBarSeries::clearData()
 {
-    if (transition_->enabled()) {
+    if (transition_->animates(count(), 0)) {
         // Every error bar is removed, so the exit transition animates them.
         applyDoubleData({}, 0);
         return;
@@ -493,7 +493,7 @@ void ErrorBarSeries::hoverLeaveEvent(QHoverEvent* event)
 
 void ErrorBarSeries::applyDataPoints(DataPointInput&& input)
 {
-    if (transition_->enabled()) {
+    if (transition_->animates(count(), input.count)) {
         // Transitions animate doubles.
         const auto dataPointCount = input.count;
         applyDoubleData(std::move(input).toDoubles(), dataPointCount);

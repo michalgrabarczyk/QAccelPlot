@@ -36,7 +36,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `DataTransition` can no longer be subclassed outside the library, and its
   `interpolate()`, `Dataset`, and data-holding `Run` API are gone.
   `TransitionRunner` takes a slot in `transition()` and `setTransition()`, and
-  `start()` takes a `TransitionRunner::Layout`.
+  `start()` takes a `TransitionRunner::Layout`. Check `animates()` instead of
+  `enabled()` before calling `start()`.
 
 - `Axis.label` and `ColorBar.label` are grouped properties. Use `label.text`,
   `label.font`, `label.color`, and `label.padding` instead of `label`,

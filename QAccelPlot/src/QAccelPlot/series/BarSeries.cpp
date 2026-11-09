@@ -399,7 +399,7 @@ void BarSeries::postRangedData(std::vector<double>&& data, const int barCount)
 void BarSeries::clearData()
 {
     // Every bar is removed, so the exit transition animates them.
-    applyBars({}, valuesPerBar() == 3, {}, 0, transition_->enabled());
+    applyBars({}, valuesPerBar() == 3, {}, 0, animatesBars(valuesPerBar() == 3, 0));
 }
 
 std::optional<LegendEntry> BarSeries::legendEntry() const
@@ -631,12 +631,19 @@ bool BarSeries::validateDataArguments(const std::size_t valueCount, const std::s
 
 void BarSeries::applyData(std::vector<double>&& data, std::vector<int>&& categories, const int barCount)
 {
-    applyBars(std::move(data), false, std::move(categories), barCount, transition_->enabled());
+    applyBars(std::move(data), false, std::move(categories), barCount, animatesBars(false, barCount));
 }
 
 void BarSeries::applyRangedData(std::vector<double>&& data, std::vector<int>&& categories, const int barCount)
 {
-    applyBars(std::move(data), true, std::move(categories), barCount, transition_->enabled());
+    applyBars(std::move(data), true, std::move(categories), barCount, animatesBars(true, barCount));
+}
+
+bool BarSeries::animatesBars(const bool ranged, const int barCount) const
+{
+    // Bars of another layout drop the drawn ones, so all the new bars are added.
+    const auto drawnCount = (valuesPerBar() == 3) == ranged ? count() : 0;
+    return transition_->animates(drawnCount, barCount);
 }
 
 void BarSeries::setRanged(const bool ranged)
@@ -666,7 +673,7 @@ void BarSeries::applyBars(std::vector<double>&& data, const bool ranged, std::ve
 
 void BarSeries::applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, const int barCount)
 {
-    if (transition_->enabled()) {
+    if (animatesBars(false, barCount)) {
         // Transitions animate doubles.
         applyBars(std::vector<double>(data.cbegin(), data.cend()), false, std::move(categories), barCount, true);
         return;
@@ -686,7 +693,7 @@ void BarSeries::applyFloatBars(std::vector<float>&& data, std::vector<int>&& cat
 
 void BarSeries::setDataFFromArray(const float* data, const int barCount)
 {
-    if (transition_->enabled()) {
+    if (animatesBars(false, barCount)) {
         // Transitions animate doubles.
         applyBars(std::vector<double>(data, data + static_cast<size_t>(barCount) * 2), false, {}, barCount, true);
         return;
