@@ -54,6 +54,15 @@ private:
     QtMessageHandler previous_;
 };
 
+// Reports how many connections its effectChanged() signal has.
+class ConnectionCountingFill : public GradientFill {
+public:
+    int effectChangedConnections() const
+    {
+        return receivers(SIGNAL(effectChanged()));
+    }
+};
+
 void appendEffect(PlotSeries& series, SeriesEffect* effect)
 {
     auto list = series.effects();
@@ -71,6 +80,7 @@ private slots:
     void repeatedEffectTypeWarns();
     void destroyedEffectLeavesTheList();
     void clearingTheListRemovesEveryEffect();
+    void clearedEffectNoLongerRedrawsTheSeries();
     void seriesFromQmlNamesItselfInTheWarning();
 };
 
@@ -142,6 +152,22 @@ void SeriesEffectsTest::clearingTheListRemovesEveryEffect()
     list.clear(&list);
 
     QCOMPARE(list.count(&list), 0);
+}
+
+void SeriesEffectsTest::clearedEffectNoLongerRedrawsTheSeries()
+{
+    auto curve = LineCurve{};
+    auto fill = ConnectionCountingFill{};
+    const auto connectionsBefore = fill.effectChangedConnections();
+    appendEffect(curve, &fill);
+    QCOMPARE(fill.effectChangedConnections(), connectionsBefore + 1);
+
+    auto list = curve.effects();
+    list.clear(&list);
+    QCOMPARE(fill.effectChangedConnections(), connectionsBefore);
+
+    appendEffect(curve, &fill);
+    QCOMPARE(fill.effectChangedConnections(), connectionsBefore + 1);
 }
 
 void SeriesEffectsTest::seriesFromQmlNamesItselfInTheWarning()

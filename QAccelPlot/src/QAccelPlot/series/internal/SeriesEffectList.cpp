@@ -135,7 +135,8 @@ void SeriesEffectList::add(SeriesEffect* effect)
         effect->setParent(series_);
     }
     effects_.append(effect);
-    connect(effect, &SeriesEffect::effectChanged, series_, &QQuickItem::update);
+    // Connected to the list rather than the series, so clear() disconnects it.
+    connect(effect, &SeriesEffect::effectChanged, this, [this] { series_->update(); });
     connect(effect, &QObject::destroyed, this, [this, effect] {
         effects_.removeAll(effect);
         series_->update();
