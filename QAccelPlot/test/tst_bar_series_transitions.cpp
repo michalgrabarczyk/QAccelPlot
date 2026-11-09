@@ -21,6 +21,7 @@
 #include <algorithm>
 #include <cstdlib>
 #include <initializer_list>
+#include <limits>
 #include <memory>
 #include <vector>
 
@@ -39,6 +40,12 @@ constexpr auto kLongDuration = 10'000;
 qreal halfway(const qreal progress)
 {
     return progress > 0.0 ? 0.5 : 0.0;
+}
+
+// Eases every progress after the start to just past it, so a frame shows items that barely moved.
+qreal barelyStarted(const qreal progress)
+{
+    return progress > 0.0 ? 0.005 : 0.0;
 }
 
 // A transition held halfway, so the tests can check a frame of the animation.
@@ -97,6 +104,8 @@ private slots:
     void cleanup();
     void morphMovesBarsToTheirNewValues();
     void newBarsGrowFromTheBaseline();
+    void barsHangingFromTheTopGrowDownFromIt();
+    void barsOnALogAxisGrowFromItsEdge();
     void newBarsWithoutEnterTransitionAppearAtOnce();
     void removedBarsShrinkToTheBaseline();
     void removedBarsKeepTheirCategoryColor();
@@ -172,6 +181,38 @@ void BarSeriesTransitionsTest::newBarsGrowFromTheBaseline()
 
     QCOMPARE(scene_.bars->count(), 2);
     QTRY_VERIFY(shows({{2.0, 3.5, Qt::red}, {2.0, 4.5, Qt::black}, {7.0, 1.5, Qt::red}, {7.0, 2.5, Qt::black}}));
+    scene_.bars->setEnterTransition(nullptr);
+}
+
+void BarSeriesTransitionsTest::barsHangingFromTheTopGrowDownFromIt()
+{
+    auto grow = HeldHalfway<GrowTransition>{};
+    scene_.bars->setBaselineValue(std::numeric_limits<double>::infinity());
+    scene_.bars->setEnterTransition(&grow);
+
+    scene_.bars->setData(std::vector<double>{2.0, 4.0}, 1);
+
+    // Halfway from the top edge at 10 down to 4.
+    QTRY_VERIFY(shows({{2.0, 7.5, Qt::red}, {2.0, 6.5, Qt::black}}));
+    scene_.bars->setEnterTransition(nullptr);
+}
+
+void BarSeriesTransitionsTest::barsOnALogAxisGrowFromItsEdge()
+{
+    auto grow = HeldHalfway<GrowTransition>{};
+    auto easing = QEasingCurve{};
+    easing.setCustomType(barelyStarted);
+    grow.setEasing(easing);
+    scene_.yAxis->setLogScale(true);
+    scene_.yAxis->setViewportMin(1.0);
+    scene_.yAxis->setViewportMax(100.0);
+    scene_.bars->setEnterTransition(&grow);
+
+    scene_.bars->setData(std::vector<double>{2.0, 100.0}, 1);
+
+    // The baseline 0 lies below the log axis, so the bar grows from its bottom edge at 1 and
+    // shows from the first frames. A probe y of 10 is the top of the plot.
+    QTRY_VERIFY(shows({{2.0, 0.4, Qt::red}, {2.0, 5.0, Qt::black}}));
     scene_.bars->setEnterTransition(nullptr);
 }
 

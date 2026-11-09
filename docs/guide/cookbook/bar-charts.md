@@ -165,8 +165,9 @@ returns its `position`, `value`, `category`, and `categoryName`; a ranged bar ha
 Set `enterTransition`, `updateTransition`, and `exitTransition`, as for a
 [`LineCurve`](styling.md#animated-data-changes).
 
-- `GrowTransition` grows added bars from `baselineValue`, or from the edge of
-  the value axis when the baseline is infinite, and shrinks removed bars to it.
+- `GrowTransition` grows added bars from `baselineValue`, and shrinks removed
+  bars to it. When the value axis cannot place the baseline (infinite, or at or
+  below 0 on a log axis), they grow from the edge the bars are drawn from.
 - `MorphTransition` moves each kept bar to its new position and value.
 - `DrawTransition` shows the bars one after another.
 - Bars that change between ranged and (position, value) all enter.

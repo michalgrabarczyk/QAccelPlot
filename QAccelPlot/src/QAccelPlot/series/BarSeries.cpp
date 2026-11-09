@@ -812,10 +812,8 @@ void BarSeries::startTransition(Bars&& drawn)
     if (drawn.stride != stride) {
         drawn = Bars{};
     }
-    // An infinite baseline draws bars from the edge of the value axis, where they grow from.
-    const auto* valueAxis = isHorizontal() ? xAxis() : yAxis();
-    const auto growBaseline = std::isfinite(baselineValue_) ? baselineValue_ : (valueAxis ? valueAxis->viewportMin() : 0.0);
-    const auto layout = TransitionRunner::Layout{stride, {stride - 1}, growBaseline, false};
+    const auto baseline = Internal::growBaseline(baselineValue_, isHorizontal() ? xAxis() : yAxis());
+    const auto layout = TransitionRunner::Layout{stride, {stride - 1}, baseline, false};
     if (!transition_->start(drawn.values, drawn.count, storedBars(), count(), layout)) {
         endTransition();
         return;

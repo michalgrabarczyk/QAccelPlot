@@ -85,7 +85,8 @@ class BarMaterial;
 /// \par Transitions
 /// \c enterTransition animates added bars, \c updateTransition kept bars, and \c exitTransition
 /// removed bars, matched by index. A \c GrowTransition grows bars from \c baselineValue, or from
-/// the edge of the value axis when the baseline is infinite. Bars that change between ranged and
+/// the viewport edge the bars are drawn from when the value axis cannot place the baseline:
+/// infinite, or at or below 0 on a log axis. Bars that change between ranged and
 /// (position, value) all enter. \c count, \c barAt(), the data ranges, hover, and inspection use
 /// the new data from the start of the animation. While a transition is enabled, the \c setDataF()
 /// overloads store doubles. Replacing, clearing, or cancelling a transition skips to the new data;
