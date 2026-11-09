@@ -33,14 +33,14 @@ struct PointUboTail {
     float gradientValueMax;                    // 148–151
     float opacity;                             // 152–155
     float padding;                             // 156–159
-    Internal::ItemOpacityUniforms itemOpacity; // 160–623
-    Internal::GlowUniforms glow;               // 624–655
+    Internal::ItemOpacityUniforms itemOpacity; // 160–687
+    Internal::GlowUniforms glow;               // 688–719
 };
 
 constexpr auto kPointUboSize = kCommonUniformSize + static_cast<int>(sizeof(PointUboTail));
 
-static_assert(sizeof(PointUboTail) == 540);
-static_assert(kPointUboSize == 656);
+static_assert(sizeof(PointUboTail) == 604);
+static_assert(kPointUboSize == 720);
 
 int compareValues(const float left, const float right)
 {

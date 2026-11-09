@@ -17,6 +17,8 @@ inline constexpr int kFadeCurveSamples = 32;
 inline constexpr int kFadeStartSamples = 16;
 /// \brief Most transition groups that fade at once: the kept items, and the added or removed ones.
 inline constexpr int kFadeGroupCount = 2;
+/// \brief Number of samples of the \c FadeTrail easing curve.
+inline constexpr int kTrailEasingSamples = 16;
 
 /// \brief The items of one transition group whose opacity the shaders animate.
 ///
@@ -61,6 +63,8 @@ struct ItemTrail {
     float length{0.0f};     ///< \brief Share of the items that fades, from the first; 0 fades none.
     float minOpacity{1.0f}; ///< \brief Opacity of the first item.
     int itemCount{0};       ///< \brief Number of drawn items.
+    /// \brief How far the opacity has risen from \c minOpacity to 1 at evenly spaced shares of the fading items.
+    std::array<float, kTrailEasingSamples> easing{};
 
     /// \brief Returns \c true when some item fades.
     [[nodiscard]] bool active() const noexcept

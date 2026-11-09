@@ -18,9 +18,10 @@ layout(location = 0) out vec4 v_color;
 // the antialiasing margin outside the part.
 layout(location = 1) out vec4 v_edgeDistance;
 layout(location = 2) flat out float v_antialiasing;
-// Glow halo color and (radius, intensity), see glow.glsl; a zero radius draws none.
+// Glow halo color and (radius, intensity, opacity), see glow.glsl; a zero radius draws none.
+// The opacity scales the error bar and its halo together.
 layout(location = 3) flat out vec4 v_glowColor;
-layout(location = 4) flat out vec2 v_glowParams;
+layout(location = 4) flat out vec3 v_glowParams;
 
 // Must match ErrorBarUbo in ErrorBarMaterial.cpp.
 layout(std140, binding = 0) uniform buf {
@@ -43,6 +44,7 @@ layout(std140, binding = 0) uniform buf {
     float antialiasing;   // 160-163: 1 to smooth the edges
     vec4 itemFadeGroups[28]; // item opacity, see item_opacity.glsl
     vec4 itemFadeTrail;
+    vec4 itemFadeTrailEasing[4];
     vec4 glowColor;         // Glow effect, see glow.glsl
     vec4 glowParams;
 } ubuf;
@@ -65,7 +67,7 @@ void cull() {
     v_edgeDistance = vec4(0.0);
     v_antialiasing = 0.0;
     v_glowColor = vec4(0.0);
-    v_glowParams = vec2(0.0);
+    v_glowParams = vec3(0.0);
     gl_Position = kCulledClipPosition;
 }
 
@@ -160,11 +162,9 @@ void main() {
     v_antialiasing = ubuf.antialiasing;
 
     v_color = index == int(ubuf.hoveredIndex) ? ubuf.hoverColor : ubuf.color;
-    float fade = itemOpacity(float(index));
-    v_color.a *= ubuf.opacity * fade;
     v_glowColor = ubuf.glowColor;
-    // The halo fades with the error bar.
-    v_glowParams = glowActive(ubuf.glowParams.xy) ? vec2(ubuf.glowParams.x, ubuf.glowParams.y * ubuf.opacity * fade) : vec2(0.0);
+    // The error bar and its halo fade together.
+    v_glowParams = vec3(glowActive(ubuf.glowParams.xy) ? ubuf.glowParams.xy : vec2(0.0), ubuf.opacity * itemOpacity(float(index)));
     vec2 pixel = horizontal ? vec2(v, u) : vec2(u, v);
     gl_Position = ubuf.matrix * vec4(pixel, 0.0, 1.0);
 }

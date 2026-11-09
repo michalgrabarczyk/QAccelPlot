@@ -33,14 +33,14 @@ struct PointCloudUboTail {
     float markerFilled;                        // 148–151
     float valueLogScale;                       // 152–155
     float opacity;                             // 156–159
-    Internal::ItemOpacityUniforms itemOpacity; // 160–623
-    Internal::GlowUniforms glow;               // 624–655
+    Internal::ItemOpacityUniforms itemOpacity; // 160–687
+    Internal::GlowUniforms glow;               // 688–719
 };
 
 constexpr auto kPointCloudUboSize = kCommonUniformSize + static_cast<int>(sizeof(PointCloudUboTail));
 
-static_assert(sizeof(PointCloudUboTail) == 540);
-static_assert(kPointCloudUboSize == 656);
+static_assert(sizeof(PointCloudUboTail) == 604);
+static_assert(kPointCloudUboSize == 720);
 
 int compareValues(const float left, const float right)
 {

@@ -64,7 +64,7 @@ Window {
             subtitle: "Glow and FadeTrail effects on a streaming trace and a point cloud."
             interactions: [
                 "Drag <b>Radius</b> and <b>Intensity</b> to shape the glow",
-                "Drag <b>Trail</b> to set how much of the trace fades",
+                "Drag <b>Trail</b> and choose its curve to set how the trace fades",
                 "Check <b>Glow</b> or <b>Fade trail</b> to turn an effect off"
             ]
         }
@@ -128,6 +128,13 @@ Window {
                 value: 0.7
                 Layout.preferredWidth: 150
             }
+
+            ComboBox {
+                id: trailCurveBox
+                model: ["In quad", "In cubic", "Linear"]
+                Layout.preferredWidth: 120
+                Material.background: colorPalette.plotArea
+            }
         }
 
         RowLayout {
@@ -172,6 +179,7 @@ Window {
                         QAccelPlot.FadeTrail {
                             enabled: trailCheck.checked
                             length: trailSlider.value
+                            easing.type: [Easing.InQuad, Easing.InCubic, Easing.Linear][trailCurveBox.currentIndex]
                         }
                     ]
                 }

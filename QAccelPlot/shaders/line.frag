@@ -36,6 +36,7 @@ layout(std140, binding = 0) uniform buf {
     float stepMode;
     vec4 itemFadeGroups[28]; // item opacity, see item_opacity.glsl
     vec4 itemFadeTrail;
+    vec4 itemFadeTrailEasing[4];
     vec4 glowColor;         // Glow effect, see glow.glsl
     vec4 glowParams;
 } ubuf;
@@ -77,6 +78,6 @@ void main() {
     } else if (glowActive(ubuf.glowParams.xy)) {
         alpha = outsideDistance <= 0.0 ? 1.0 : 0.0;
     }
-    float a = v_color.a * alpha * ubuf.opacity;
-    fragColor = withGlow(vec4(v_color.rgb * a, a), outsideDistance, ubuf.glowColor, ubuf.glowParams.xy, v_color.a * ubuf.opacity);
+    // The color alpha holds the item opacity, so the halo fades with the line.
+    fragColor = withGlow(vec4(v_color.rgb * alpha, alpha), outsideDistance, ubuf.glowColor, ubuf.glowParams.xy, v_color.a * ubuf.opacity);
 }

@@ -20,8 +20,8 @@ struct GlowStyle;
 /// \brief A soft halo around the lines and markers of a series.
 ///
 /// The halo fades out over \c radius pixels outside the drawn shape. It is drawn in the same pass
-/// as the series, with no offscreen blur. Along a line, it follows the distance from the line edge,
-/// so turns much tighter than \c radius show small seams; a smaller radius suits jagged lines.
+/// as the series, with no offscreen blur. A fading item and its halo fade together. Halos of parts
+/// of a line that come close to each other add up, as halos of separate lines do.
 ///
 /// | Series | Glows around |
 /// |---|---|

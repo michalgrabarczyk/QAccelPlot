@@ -44,6 +44,7 @@ ItemOpacityUniforms itemOpacityUniforms(const ItemFade& fade, const ItemTrail& t
         uniforms.trail[0] = trail.length;
         uniforms.trail[1] = trail.minOpacity;
         uniforms.trail[2] = static_cast<float>(trail.itemCount);
+        std::copy(trail.easing.cbegin(), trail.easing.cend(), uniforms.trailEasing);
     }
     return uniforms;
 }

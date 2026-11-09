@@ -47,6 +47,7 @@ private slots:
     void init();
     void cleanup();
     void oldestPointsFade();
+    void defaultEasingKeepsMostOfTheTrailDim();
     void lineFadesTowardItsStart();
     void shortTrailLeavesNewerPoints();
     void propertiesAreClamped();
@@ -90,11 +91,29 @@ void FadeTrailTest::oldestPointsFade()
     QTRY_COMPARE(redAt(1.0, 5.0), 255);
     auto trail = FadeTrail{};
     trail.setLength(1.0);
+    trail.setEasing(QEasingCurve::Linear);
 
     appendEffect(cloud, &trail);
 
     QTRY_COMPARE(redAt(1.0, 5.0), 0);
     QVERIFY(qAbs(redAt(5.0, 5.0) - 128) < 20);
+    QCOMPARE(redAt(9.0, 5.0), 255);
+}
+
+void FadeTrailTest::defaultEasingKeepsMostOfTheTrailDim()
+{
+    auto cloud = PointCloud{};
+    cloud.setColor(Qt::red);
+    cloud.marker()->setSize(5.0);
+    cloud.setData(std::vector<double>{1.0, 5.0, 5.0, 5.0, 9.0, 5.0}, 3);
+    place(cloud);
+    auto trail = FadeTrail{};
+    trail.setLength(1.0);
+
+    appendEffect(cloud, &trail);
+
+    // InQuad: the middle point is a quarter of the way up.
+    QTRY_VERIFY(qAbs(redAt(5.0, 5.0) - 64) < 20);
     QCOMPARE(redAt(9.0, 5.0), 255);
 }
 
@@ -138,6 +157,7 @@ void FadeTrailTest::propertiesAreClamped()
     auto trail = FadeTrail{};
     QCOMPARE(trail.length(), 0.5);
     QCOMPARE(trail.minOpacity(), 0.0);
+    QCOMPARE(trail.easing().type(), QEasingCurve::InQuad);
 
     trail.setLength(2.0);
     trail.setMinOpacity(-1.0);

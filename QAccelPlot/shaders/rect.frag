@@ -14,7 +14,7 @@ layout(location = 2) in vec4 v_borderColor;
 layout(location = 3) in float v_borderWidth;
 layout(location = 4) flat in float v_antialiasing;
 layout(location = 5) flat in vec4 v_glowColor;
-layout(location = 6) flat in vec2 v_glowParams;
+layout(location = 6) flat in vec3 v_glowParams;
 
 layout(location = 0) out vec4 fragColor;
 
@@ -50,5 +50,5 @@ void main() {
     // Distance outside the rectangle, rounded at its corners.
     vec2 outside = max(-vec2(min(v_edgeDistance.x, v_edgeDistance.y), min(v_edgeDistance.z, v_edgeDistance.w)), 0.0);
     float outsideDistance = length(outside);
-    fragColor = withGlow(rectColor(outsideDistance), outsideDistance, v_glowColor, v_glowParams, 1.0);
+    fragColor = withGlow(rectColor(outsideDistance), outsideDistance, v_glowColor, v_glowParams.xy, v_glowParams.z);
 }

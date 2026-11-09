@@ -14,12 +14,13 @@ bool glowActive(vec2 params) {
 }
 
 // Returns `shape`, a premultiplied color, over the halo at `outsideDistance` pixels outside the
-// shape's edge. `opacity` scales the halo with the shape, for example by the item opacity.
+// shape's edge, all scaled by `opacity`. The shape and its halo fade as one, so a translucent
+// shape does not show more of its own halo than an opaque one.
 vec4 withGlow(vec4 shape, float outsideDistance, vec4 color, vec2 params, float opacity) {
     if (!glowActive(params)) {
-        return shape;
+        return shape * opacity;
     }
     float falloff = 1.0 - clamp(max(outsideDistance, 0.0) / params.x, 0.0, 1.0);
-    float alpha = color.a * params.y * falloff * falloff * opacity;
-    return shape + vec4(color.rgb * alpha, alpha) * (1.0 - shape.a);
+    float alpha = color.a * params.y * falloff * falloff;
+    return (shape + vec4(color.rgb * alpha, alpha) * (1.0 - shape.a)) * opacity;
 }

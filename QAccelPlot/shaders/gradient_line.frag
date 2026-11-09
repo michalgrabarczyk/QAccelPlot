@@ -40,6 +40,7 @@ layout(std140, binding = 0) uniform buf {
     float stepMode;
     vec4 itemFadeGroups[28]; // item opacity, see item_opacity.glsl
     vec4 itemFadeTrail;
+    vec4 itemFadeTrailEasing[4];
     vec4 glowColor;         // Glow effect, see glow.glsl
     vec4 glowParams;
 } ubuf;
@@ -84,7 +85,7 @@ void main() {
     }
 
     vec4 gradientColor = texture(gradientSampler, vec2(clamp(v_gradientCoordinate, 0.0, 1.0), 0.5));
-    float outputAlpha = gradientColor.a * alpha * ubuf.opacity * v_itemOpacity;
-    vec4 stroke = vec4(gradientColor.rgb * outputAlpha, outputAlpha);
+    float strokeAlpha = gradientColor.a * alpha;
+    vec4 stroke = vec4(gradientColor.rgb * strokeAlpha, strokeAlpha);
     fragColor = withGlow(stroke, outsideDistance, ubuf.glowColor, ubuf.glowParams.xy, ubuf.opacity * v_itemOpacity);
 }

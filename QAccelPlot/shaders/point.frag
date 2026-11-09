@@ -35,6 +35,7 @@ layout(std140, binding = 0) uniform buf {
     float opacity;
     vec4 itemFadeGroups[28]; // item opacity, see item_opacity.glsl
     vec4 itemFadeTrail;
+    vec4 itemFadeTrailEasing[4];
     vec4 glowColor;         // Glow effect, see glow.glsl
     vec4 glowParams;
 } ubuf;
@@ -66,9 +67,6 @@ void main() {
     // Sample the gradient unconditionally (keeps the sampler live on every backend).
     vec4 gradientColor = texture(gradientSampler, vec2(clamp(v_gradientCoordinate, 0.0, 1.0), 0.5));
     vec4 c = mix(ubuf.color, gradientColor, step(0.5, ubuf.useVertexColor));
-    float a = c.a * alpha * ubuf.opacity * v_itemOpacity;
-    fragColor = vec4(c.rgb * a, a);
-    if (glow) {
-        fragColor = withGlow(fragColor, distancePx, ubuf.glowColor, ubuf.glowParams.xy, c.a * ubuf.opacity * v_itemOpacity);
-    }
+    float opacity = c.a * ubuf.opacity * v_itemOpacity;
+    fragColor = withGlow(vec4(c.rgb * alpha, alpha), distancePx, ubuf.glowColor, glow ? ubuf.glowParams.xy : vec2(0.0), opacity);
 }

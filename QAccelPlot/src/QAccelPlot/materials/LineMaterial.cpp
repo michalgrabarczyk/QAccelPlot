@@ -42,11 +42,11 @@ struct LineUbo {
     float opacity;                             // 176–179
     float stepMode;                            // 180–183
     float padding[2];                          // 184–191
-    Internal::ItemOpacityUniforms itemOpacity; // 192–655
-    Internal::GlowUniforms glow;               // 656–687
+    Internal::ItemOpacityUniforms itemOpacity; // 192–719
+    Internal::GlowUniforms glow;               // 720–751
 };
 
-static_assert(sizeof(LineUbo) == 688);
+static_assert(sizeof(LineUbo) == 752);
 
 class LineShader : public QSGMaterialShader {
 public:

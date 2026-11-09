@@ -29,6 +29,7 @@ struct LineVertexResult {
     vec4 position;     // clip-space position
     vec2 dataPosition; // untransformed data-space position of the sample
     float validWeight; // 1.0 for valid samples, kInvalidVertexWeight otherwise
+    float extentScale; // share of lineRibbonHalfExtent() the vertex reaches; below 1 inside a tight bend
 };
 
 // Returns true when fragment antialiasing applies to the ribbon.
@@ -131,6 +132,7 @@ LineVertexResult invalidLineVertex(vec2 position, bool previousValid, vec2 previ
     LineVertexResult result;
     result.dataPosition = position;
     result.validWeight = kInvalidVertexWeight;
+    result.extentScale = 1.0;
     if (previousValid) {
         result.position = ubuf.matrix * vec4(dataToLocal(previous), 0.0, 1.0);
     } else if (nextValid) {
@@ -152,6 +154,71 @@ int lineVertexCorner(float side) {
     return int(abs(side) + 0.5) - 1;
 }
 
+// Returns the path point before point `corner` of sample `index`, as a sample and a corner.
+void previousPathPoint(int index, int corner, out int previousIndex, out int previousCorner) {
+    previousIndex = corner > 0 ? index : index - 1;
+    previousCorner = corner > 0 ? corner - 1 : lineStepCornerCount() - 1;
+}
+
+// Returns the path point after point `corner` of sample `index`, as a sample and a corner.
+void nextPathPoint(int index, int corner, out int nextIndex, out int nextCorner) {
+    int cornerCount = lineStepCornerCount();
+    nextIndex = corner < cornerCount - 1 ? index : index + 1;
+    nextCorner = corner < cornerCount - 1 ? corner + 1 : 0;
+}
+
+// Fetches path point `corner` of sample `index` in item pixels, or returns `fallback` when it is invalid.
+vec2 fetchLocalPathPoint(int index, int corner, vec2 fallback) {
+    vec2 point;
+    return fetchPathPoint(index, corner, point) ? dataToLocal(point) : fallback;
+}
+
+// Returns the unit direction from `from` to `to`, or zero when they coincide.
+vec2 lineDirection(vec2 from, vec2 to) {
+    vec2 direction = to - from;
+    float len = length(direction);
+    return len > 0.0001 ? direction / len : vec2(0.0);
+}
+
+// Returns the unit miter normal at the join of the segment arriving along `dir1` and the one
+// leaving along `dir2`; a zero direction marks a line end.
+vec2 lineJoinNormal(vec2 dir1, vec2 dir2) {
+    if (dot(dir1, dir1) == 0.0) dir1 = dir2;
+    if (dot(dir2, dir2) == 0.0) dir2 = dir1;
+    vec2 tangent = dir1 + dir2;
+    // Safe fallback to prevent NaN
+    tangent = length(tangent) > 0.0001 ? normalize(tangent) : vec2(1.0, 0.0);
+    return vec2(-tangent.y, tangent.x);
+}
+
+// Returns how far the ribbon can reach from `p` along `direction` before it crosses the miter line
+// of the neighbor join at `q` with normal `qNormal`. Inside a bend, the miter lines of consecutive
+// joins meet near the centre of the bend; ribbon quads that reach past it fold over each other.
+float lineBisectorReach(vec2 p, vec2 direction, vec2 q, vec2 qNormal) {
+    float denominator = direction.x * qNormal.y - direction.y * qNormal.x;
+    if (abs(denominator) < 0.0001) {
+        return 1.0e30;
+    }
+    vec2 toQ = q - p;
+    float reach = (toQ.x * qNormal.y - toQ.y * qNormal.x) / denominator;
+    return reach > 0.0 ? reach : 1.0e30;
+}
+
+// Returns the miter normal of the join at `q`, path point `qCorner` of sample `qIndex`, next to
+// `p`; `pFollows` is true when `p` comes after `q` on the path.
+vec2 neighborJoinNormal(int qIndex, int qCorner, vec2 q, vec2 p, bool pFollows) {
+    int otherIndex;
+    int otherCorner;
+    if (pFollows) {
+        previousPathPoint(qIndex, qCorner, otherIndex, otherCorner);
+    } else {
+        nextPathPoint(qIndex, qCorner, otherIndex, otherCorner);
+    }
+    vec2 other = fetchLocalPathPoint(otherIndex, otherCorner, q);
+    return pFollows ? lineJoinNormal(lineDirection(other, q), lineDirection(q, p))
+                    : lineJoinNormal(lineDirection(p, q), lineDirection(q, other));
+}
+
 // Computes the miter-joined ribbon vertex on `side` (+1 or -1) of path point
 // `corner` of sample `index`. A valid point next to an invalid neighbor is
 // treated as a line endpoint.
@@ -160,11 +227,12 @@ LineVertexResult computeLineVertex(int index, int corner, float side) {
     if (index >= int(ubuf.pointCount) - 1) {
         corner = 0;
     }
-    int cornerCount = lineStepCornerCount();
-    int previousIndex = corner > 0 ? index : index - 1;
-    int previousCorner = corner > 0 ? corner - 1 : cornerCount - 1;
-    int nextIndex = corner < cornerCount - 1 ? index : index + 1;
-    int nextCorner = corner < cornerCount - 1 ? corner + 1 : 0;
+    int previousIndex;
+    int previousCorner;
+    int nextIndex;
+    int nextCorner;
+    previousPathPoint(index, corner, previousIndex, previousCorner);
+    nextPathPoint(index, corner, nextIndex, nextCorner);
 
     vec2 p = vec2(0.0);
     vec2 pr;
@@ -184,30 +252,14 @@ LineVertexResult computeLineVertex(int index, int corner, float side) {
     vec2 prev_local = dataToLocal(pr);
     vec2 next_local = dataToLocal(nx);
 
-    // Direction vectors for the miter join
-    vec2 dir1 = p_local - prev_local;
-    vec2 dir2 = next_local - p_local;
-    float len1 = length(dir1);
-    float len2 = length(dir2);
-    if (len1 > 0.0001) dir1 /= len1; else dir1 = vec2(0.0);
-    if (len2 > 0.0001) dir2 /= len2; else dir2 = vec2(0.0);
-
-    // Handle endpoints where prev==pos or next==pos
-    if (len1 <= 0.0001) dir1 = dir2;
-    if (len2 <= 0.0001) dir2 = dir1;
-
-    // Tangent and miter normal
-    vec2 tangent = dir1 + dir2;
-    if (length(tangent) > 0.0001) {
-        tangent = normalize(tangent);
-    } else {
-        tangent = vec2(1.0, 0.0); // Safe fallback to prevent NaN
-    }
-    vec2 normal = vec2(-tangent.y, tangent.x);
+    // Direction vectors for the miter join; a zero direction marks a line end.
+    vec2 dir1 = lineDirection(prev_local, p_local);
+    vec2 dir2 = lineDirection(p_local, next_local);
+    vec2 normal = lineJoinNormal(dir1, dir2);
 
     // Miter length
-    vec2 n1 = vec2(-dir1.y, dir1.x);
-    float miterDot = dot(normal, n1);
+    vec2 arriving = dot(dir1, dir1) > 0.0 ? dir1 : dir2;
+    float miterDot = dot(normal, vec2(-arriving.y, arriving.x));
     float miterLength = 1.0;
     if (abs(miterDot) > 0.15) {
         miterLength = 1.0 / abs(miterDot);
@@ -215,11 +267,26 @@ LineVertexResult computeLineVertex(int index, int corner, float side) {
     // Offset in item-local pixel space, then use Qt's matrix to project. A glow widens the ribbon by
     // its radius; long miters at sharp turns would stretch that part into spikes, so it is not mitered.
     float glow = glowActive(ubuf.glowParams.xy) ? ubuf.glowParams.x : 0.0;
-    vec2 offset = normal * ((lineRibbonHalfExtent() - glow) * miterLength + glow) * side;
+    float coreReach = (lineRibbonHalfExtent() - glow) * miterLength;
+    float reach = coreReach + glow;
+    vec2 direction = normal * side;
+    if (glow > 0.0) {
+        // Inside a bend tighter than the glow, the halo stops where the neighbor quads begin, so
+        // halos don't stack; the line itself keeps its width.
+        if (prValid) {
+            vec2 previousNormal = neighborJoinNormal(previousIndex, previousCorner, prev_local, p_local, true);
+            reach = min(reach, max(coreReach, lineBisectorReach(p_local, direction, prev_local, previousNormal)));
+        }
+        if (nxValid) {
+            vec2 nextNormal = neighborJoinNormal(nextIndex, nextCorner, next_local, p_local, false);
+            reach = min(reach, max(coreReach, lineBisectorReach(p_local, direction, next_local, nextNormal)));
+        }
+    }
 
     LineVertexResult result;
-    result.position = ubuf.matrix * vec4(p_local + offset, 0.0, 1.0);
+    result.position = ubuf.matrix * vec4(p_local + direction * reach, 0.0, 1.0);
     result.dataPosition = p;
     result.validWeight = 1.0;
+    result.extentScale = reach / (coreReach + glow);
     return result;
 }

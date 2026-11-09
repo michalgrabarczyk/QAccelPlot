@@ -6,6 +6,7 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/effects/FadeTrail.hpp"
 #include "QAccelPlot/effects/Glow.hpp"
 #include "QAccelPlot/series/BarSeries.hpp"
 #include "QAccelPlot/series/ErrorBarSeries.hpp"
@@ -16,6 +17,7 @@
 #include <QQuickWindow>
 #include <QtTest/QtTest>
 
+#include <cmath>
 #include <memory>
 
 namespace QAccelPlot {
@@ -46,6 +48,8 @@ private slots:
     void haloSurroundsTheSeries();
     void haloTakesItsOwnColor();
     void disabledGlowDrawsNoHalo();
+    void fadedLineDoesNotShowItsHalo();
+    void tightBendsDoNotStackHalos();
     void propertiesAreClamped();
 
 private:
@@ -166,6 +170,61 @@ void GlowTest::disabledGlowDrawsNoHalo()
     glow.setEnabled(false);
 
     QTRY_COMPARE(pixelAt(5.0, 5.0, {14, 0}), QColor{Qt::black});
+}
+
+void GlowTest::fadedLineDoesNotShowItsHalo()
+{
+    auto curve = LineCurve{};
+    curve.setColor(Qt::red);
+    curve.setLineWidth(4.0);
+    curve.setData(std::vector<double>{0.0, 5.0, 10.0, 5.0}, 2);
+    place(curve);
+    auto trail = FadeTrail{};
+    trail.setLength(1.0);
+    trail.setEasing(QEasingCurve::Linear);
+    auto glow = Glow{};
+    glow.setIntensity(0.6);
+    auto effects = curve.effects();
+    effects.append(&effects, &trail);
+    effects.append(&effects, &glow);
+
+    // Halfway, the line is half opaque, as without a glow; its halo stays behind it.
+    QTRY_VERIFY(qAbs(pixelAt(5.0, 5.0).red() - 128) < 12);
+}
+
+void GlowTest::tightBendsDoNotStackHalos()
+{
+    // A wave whose peaks bend much tighter than the glow radius. The line is blue and the halo red,
+    // so the red channel shows the halo alone.
+    auto curve = LineCurve{};
+    curve.setColor(Qt::blue);
+    curve.setLineWidth(2.0);
+    constexpr auto kSamples = 200;
+    auto data = std::vector<double>{};
+    for (auto i = 0; i < kSamples; ++i) {
+        const auto x = i * kDataSpan / (kSamples - 1);
+        data.push_back(x);
+        data.push_back(5.0 + 2.5 * std::sin(2.0 * M_PI * 0.3 * x));
+    }
+    curve.setData(std::move(data), kSamples);
+    place(curve);
+    auto glow = Glow{};
+    glow.setColor(Qt::red);
+    glow.setIntensity(0.5);
+    auto effects = curve.effects();
+    effects.append(&effects, &glow);
+    QTRY_VERIFY(pixelAt(5.0, 5.0, {0, 4}).red() > 0 || pixelAt(5.0, 5.0, {0, -4}).red() > 0);
+
+    const auto image = window_->grabWindow();
+    auto brightest = 0;
+    for (auto y = 0; y < image.height(); ++y) {
+        for (auto x = 0; x < image.width(); ++x) {
+            brightest = std::max(brightest, image.pixelColor(x, y).red());
+        }
+    }
+
+    // One halo reaches half intensity; two parts of the wave may overlap inside a peak.
+    QVERIFY2(brightest <= 196, qPrintable(QString::number(brightest)));
 }
 
 void GlowTest::propertiesAreClamped()

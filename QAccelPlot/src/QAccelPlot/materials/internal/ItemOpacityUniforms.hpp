@@ -25,9 +25,10 @@ static_assert(sizeof(ItemFadeGroupUniforms) == 224);
 struct ItemOpacityUniforms {
     ItemFadeGroupUniforms groups[kFadeGroupCount]; ///< \brief The fading groups: kept items, then added or removed ones.
     float trail[4];                                ///< \brief The \c FadeTrail length, minimum opacity, and item count; then padding.
+    float trailEasing[kTrailEasingSamples];        ///< \brief The \c FadeTrail easing curve.
 };
 
-static_assert(sizeof(ItemOpacityUniforms) == 464);
+static_assert(sizeof(ItemOpacityUniforms) == 528);
 
 /// \brief Returns the uniforms that fade the items of \a fade and \a trail.
 ItemOpacityUniforms itemOpacityUniforms(const ItemFade& fade, const ItemTrail& trail);

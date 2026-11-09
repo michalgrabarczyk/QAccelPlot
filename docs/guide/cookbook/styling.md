@@ -206,12 +206,15 @@ QAccelPlot.LineCurve {
 | Effect | Series | Properties |
 |---|---|---|
 | `Glow` | `LineCurve`, `PointCloud`, `BarSeries`, `ErrorBarSeries` | `color` (default: the series color), `radius` in pixels, `intensity` |
-| `FadeTrail` | `LineCurve`, `PointCloud` | `length`: share of the items that fades, from the oldest; `minOpacity` of the oldest |
+| `FadeTrail` | `LineCurve`, `PointCloud` | `length`: share of the items that fades, from the oldest; `minOpacity` of the oldest; `easing`: how the opacity rises, `Easing.InQuad` by default |
 
 - An effect a series does not support logs a warning and is ignored.
 - Of several effects of one type, the first enabled one applies.
-- Along a line, the halo follows the distance from the line edge, so turns much
-  tighter than `radius` show small seams. Use a smaller radius for jagged lines.
+- A fading item and its halo fade together.
+- Halos of parts of a line that come close to each other add up, as halos of
+  separate lines do.
+- `FadeTrail` with `Easing.InQuad` keeps most of the trail dim, like a scope
+  trace; `Easing.Linear` raises the opacity evenly.
 - Effect properties animate like any QML property, for example with a
   `Behavior on intensity`.
 

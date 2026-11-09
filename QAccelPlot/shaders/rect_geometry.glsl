@@ -32,11 +32,9 @@ vec2 widenedSpan(float a, float b, float minSize) {
     return vec2(a - direction * grow, b + direction * grow);
 }
 
-// Returns the fill color of rectangle `index` with the item opacity applied.
+// Returns the fill color of rectangle `index`, without the item opacity.
 vec4 rectFillColor(int index, vec4 vertexColor) {
-    vec4 color = index == int(ubuf.hoveredIndex) ? ubuf.hoverColor : mix(ubuf.color, vertexColor, ubuf.useVertexColor);
-    color.a *= ubuf.opacity;
-    return color;
+    return index == int(ubuf.hoveredIndex) ? ubuf.hoverColor : mix(ubuf.color, vertexColor, ubuf.useVertexColor);
 }
 
 // Maps the edges of a rectangle, given as float bit patterns, to item-local pixel spans with

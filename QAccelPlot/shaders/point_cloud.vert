@@ -35,6 +35,7 @@ layout(std140, binding = 0) uniform buf {
     float opacity;             // 156-159: inherited item opacity
     vec4 itemFadeGroups[28]; // item opacity, see item_opacity.glsl
     vec4 itemFadeTrail;
+    vec4 itemFadeTrailEasing[4];
     vec4 glowColor;         // Glow effect, see glow.glsl
     vec4 glowParams;
 } ubuf;

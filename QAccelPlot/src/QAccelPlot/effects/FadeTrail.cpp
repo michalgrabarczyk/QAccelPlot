@@ -10,6 +10,7 @@
 #include "QAccelPlot/internal/ItemFade.hpp"
 
 #include <algorithm>
+#include <cstddef>
 
 namespace QAccelPlot {
 
@@ -50,9 +51,29 @@ void FadeTrail::setMinOpacity(const qreal opacity)
     emit effectChanged();
 }
 
+QEasingCurve FadeTrail::easing() const
+{
+    return easing_;
+}
+
+void FadeTrail::setEasing(const QEasingCurve& easing)
+{
+    if (easing_ == easing) {
+        return;
+    }
+    easing_ = easing;
+    emit easingChanged();
+    emit effectChanged();
+}
+
 Internal::ItemTrail FadeTrail::trail(const int itemCount) const
 {
-    return Internal::ItemTrail{static_cast<float>(length_), static_cast<float>(minOpacity_), itemCount};
+    auto trail = Internal::ItemTrail{static_cast<float>(length_), static_cast<float>(minOpacity_), itemCount};
+    for (auto index = std::size_t{0}; index < trail.easing.size(); ++index) {
+        const auto progress = static_cast<qreal>(index) / static_cast<qreal>(trail.easing.size() - 1);
+        trail.easing[index] = static_cast<float>(std::clamp(easing_.valueForProgress(progress), 0.0, 1.0));
+    }
+    return trail;
 }
 
 } // namespace QAccelPlot

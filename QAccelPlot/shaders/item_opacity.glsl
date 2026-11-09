@@ -11,10 +11,12 @@
 // QAccelPlot::Internal::ItemOpacityUniforms at a 16-byte aligned offset:
 //     vec4 itemFadeGroups[28]; // two groups of 14: range, timing, 8 of opacity curve, 4 of front starts
 //     vec4 itemFadeTrail;      // FadeTrail length, minimum opacity, and item count
+//     vec4 itemFadeTrailEasing[4]; // the FadeTrail easing curve at 16 evenly spaced shares
 
 const int kItemFadeGroupSize = 14;
 const int kItemFadeCurveSamples = 32;
 const int kItemFadeStartSamples = 16;
+const int kItemFadeTrailSamples = 16;
 
 // Returns `samples` evenly spaced values, stored from vec4 `base` of the group array, interpolated at `position` in [0, 1].
 float itemFadeSample(int base, int samples, float position) {
@@ -64,7 +66,12 @@ float itemTrailOpacity(float index) {
     if (length <= 0.0 || count < 2.0) {
         return 1.0;
     }
-    return mix(ubuf.itemFadeTrail.y, 1.0, clamp(index / (length * (count - 1.0)), 0.0, 1.0));
+    float share = clamp(index / (length * (count - 1.0)), 0.0, 1.0);
+    float scaled = share * float(kItemFadeTrailSamples - 1);
+    int lower = min(int(floor(scaled)), kItemFadeTrailSamples - 2);
+    float a = ubuf.itemFadeTrailEasing[lower / 4][lower % 4];
+    float b = ubuf.itemFadeTrailEasing[(lower + 1) / 4][(lower + 1) % 4];
+    return mix(ubuf.itemFadeTrail.y, 1.0, mix(a, b, scaled - float(lower)));
 }
 
 // Returns the opacity of item `index`.

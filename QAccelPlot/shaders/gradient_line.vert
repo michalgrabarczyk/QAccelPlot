@@ -42,6 +42,7 @@ layout(std140, binding = 0) uniform buf {
     float stepMode;
     vec4 itemFadeGroups[28]; // item opacity, see item_opacity.glsl
     vec4 itemFadeTrail;
+    vec4 itemFadeTrailEasing[4];
     vec4 glowColor;         // Glow effect, see glow.glsl
     vec4 glowParams;
 } ubuf;
@@ -57,10 +58,10 @@ void main() {
     v_color = mix(ubuf.color, vertexColor, ubuf.useVertexColor);
     v_itemOpacity = itemOpacity(id);
     float ribbonSide = lineVertexSide(side);
-    v_edgeDistance = ribbonSide * lineRibbonHalfExtent();
     v_arcLength = arcLength;
 
     LineVertexResult vertex = computeLineVertex(int(id), lineVertexCorner(side), ribbonSide);
+    v_edgeDistance = ribbonSide * lineRibbonHalfExtent() * vertex.extentScale;
     v_validWeight = vertex.validWeight;
     gl_Position = vertex.position;
 

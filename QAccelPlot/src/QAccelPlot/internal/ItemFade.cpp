@@ -41,8 +41,8 @@ int compareItemFades(const ItemFade& left, const ItemFade& right) noexcept
 
 int compareItemTrails(const ItemTrail& left, const ItemTrail& right) noexcept
 {
-    const auto leftKey = std::tie(left.length, left.minOpacity, left.itemCount);
-    const auto rightKey = std::tie(right.length, right.minOpacity, right.itemCount);
+    const auto leftKey = std::tie(left.length, left.minOpacity, left.itemCount, left.easing);
+    const auto rightKey = std::tie(right.length, right.minOpacity, right.itemCount, right.easing);
     if (leftKey == rightKey) {
         return 0;
     }

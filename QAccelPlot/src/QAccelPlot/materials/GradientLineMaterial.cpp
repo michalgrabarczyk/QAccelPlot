@@ -42,7 +42,7 @@ struct GradientLineUbo {
     Internal::GlowUniforms glow;
 };
 
-static_assert(sizeof(GradientLineUbo) == 704);
+static_assert(sizeof(GradientLineUbo) == 768);
 
 class GradientLineShader : public QSGMaterialShader {
 public:

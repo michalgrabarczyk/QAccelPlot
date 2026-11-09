@@ -12,7 +12,7 @@ layout(location = 0) in vec4 v_color;
 layout(location = 1) in vec4 v_edgeDistance;
 layout(location = 2) flat in float v_antialiasing;
 layout(location = 3) flat in vec4 v_glowColor;
-layout(location = 4) flat in vec2 v_glowParams;
+layout(location = 4) flat in vec3 v_glowParams;
 
 layout(location = 0) out vec4 fragColor;
 
@@ -32,5 +32,5 @@ void main() {
         alpha *= across * along;
     }
     // Premultiplied alpha output
-    fragColor = withGlow(vec4(v_color.rgb * alpha, alpha), outsideDistance, v_glowColor, v_glowParams, 1.0);
+    fragColor = withGlow(vec4(v_color.rgb * alpha, alpha), outsideDistance, v_glowColor, v_glowParams.xy, v_glowParams.z);
 }

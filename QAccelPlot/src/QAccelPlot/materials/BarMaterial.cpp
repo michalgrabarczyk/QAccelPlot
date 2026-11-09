@@ -35,11 +35,11 @@ struct BarUbo {
     float valueOrigin;                         // 208–211
     float valueLogScale;                       // 212–215
     float padding[2];                          // 216–223
-    Internal::ItemOpacityUniforms itemOpacity; // 224–687
-    Internal::GlowUniforms glow;               // 688–719
+    Internal::ItemOpacityUniforms itemOpacity; // 224–751
+    Internal::GlowUniforms glow;               // 752–783
 };
 
-static_assert(sizeof(BarUbo) == 720);
+static_assert(sizeof(BarUbo) == 784);
 
 class BarShader : public QSGMaterialShader {
 public:
