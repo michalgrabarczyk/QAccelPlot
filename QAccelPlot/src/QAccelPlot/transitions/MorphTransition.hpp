@@ -28,10 +28,6 @@ public:
 
     /// \brief Returns the value between \a from and \a to at \a easedProgress, honoring the invalid-data-point contract.
     static double interpolateCoordinate(double from, double to, double easedProgress);
-
-    /// \cond INTERNAL
-    Internal::TransitionKind kind() const override;
-    /// \endcond
 };
 
 } // namespace QAccelPlot

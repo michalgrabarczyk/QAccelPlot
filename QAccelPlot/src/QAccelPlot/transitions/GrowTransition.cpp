@@ -37,9 +37,4 @@ void GrowTransition::resetBaseline()
     setBaseline(std::numeric_limits<qreal>::quiet_NaN());
 }
 
-Internal::TransitionKind GrowTransition::kind() const
-{
-    return Internal::TransitionKind::Grow;
-}
-
 } // namespace QAccelPlot

@@ -45,10 +45,6 @@ public:
     /// \brief Applies the series baseline again.
     void resetBaseline();
 
-    /// \cond INTERNAL
-    Internal::TransitionKind kind() const override;
-    /// \endcond
-
 signals:
     /// \brief Emitted when the baseline property changes.
     void baselineChanged();

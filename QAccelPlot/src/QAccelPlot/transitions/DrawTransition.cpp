@@ -15,9 +15,4 @@ DrawTransition::DrawTransition(QObject* parent)
     setStagger(1.0);
 }
 
-Internal::TransitionKind DrawTransition::kind() const
-{
-    return Internal::TransitionKind::Draw;
-}
-
 } // namespace QAccelPlot

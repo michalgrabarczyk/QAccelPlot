@@ -770,9 +770,6 @@ void TestTransitions::transition_defaults()
     QCOMPARE(QAccelPlot::DrawTransition{}.stagger(), 1.0);
     QCOMPARE(QAccelPlot::DrawTransition{}.opacityTimeline().empty(), true);
     QVERIFY(std::isnan(QAccelPlot::GrowTransition{}.baseline()));
-    QCOMPARE(QAccelPlot::MorphTransition{}.kind(), TransitionKind::Morph);
-    QCOMPARE(QAccelPlot::DrawTransition{}.kind(), TransitionKind::Draw);
-    QCOMPARE(QAccelPlot::GrowTransition{}.kind(), TransitionKind::Grow);
 }
 
 void TestTransitions::grow_baselineResets()

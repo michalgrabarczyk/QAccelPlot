@@ -8,7 +8,6 @@
 #pragma once
 
 #include "QAccelPlot/internal/ItemFade.hpp"
-#include "QAccelPlot/transitions/DataTransition.hpp"
 #include "QAccelPlot/transitions/internal/OpacityTimeline.hpp"
 
 #include <QEasingCurve>
@@ -19,6 +18,13 @@
 #include <vector>
 
 namespace QAccelPlot::Internal {
+
+/// \brief How a transition moves its items: one value per transition class.
+enum class TransitionKind {
+    Morph, ///< \brief \c MorphTransition: interpolates each item from its old values to its new ones.
+    Draw,  ///< \brief \c DrawTransition: reveals items one after another.
+    Grow,  ///< \brief \c GrowTransition: grows item values from a baseline.
+};
 
 /// \brief How a series' items animate.
 struct TransitionLayout {

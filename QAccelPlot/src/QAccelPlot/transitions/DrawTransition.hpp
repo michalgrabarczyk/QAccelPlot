@@ -33,10 +33,6 @@ class DrawTransition : public EnterExitTransition {
 public:
     /// \brief Constructs a DrawTransition with the given \a parent.
     explicit DrawTransition(QObject* parent = nullptr);
-
-    /// \cond INTERNAL
-    Internal::TransitionKind kind() const override;
-    /// \endcond
 };
 
 } // namespace QAccelPlot

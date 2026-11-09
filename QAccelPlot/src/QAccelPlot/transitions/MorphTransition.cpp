@@ -26,9 +26,4 @@ double MorphTransition::interpolateCoordinate(const double from, const double to
     return from + easedProgress * (to - from);
 }
 
-Internal::TransitionKind MorphTransition::kind() const
-{
-    return Internal::TransitionKind::Morph;
-}
-
 } // namespace QAccelPlot

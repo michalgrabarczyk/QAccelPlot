@@ -19,13 +19,6 @@ QT_FORWARD_DECLARE_CLASS(QAbstractAnimation)
 namespace QAccelPlot {
 
 namespace Internal {
-/// \brief How a transition moves its items.
-enum class TransitionKind {
-    Morph, ///< \brief Interpolates each item from its old values to its new ones.
-    Draw,  ///< \brief Reveals items one after another.
-    Grow,  ///< \brief Grows item values from a baseline.
-};
-
 class OpacityTimeline;
 } // namespace Internal
 
@@ -160,8 +153,6 @@ public:
     double progress(const Run& run) const;
 
     /// \cond INTERNAL
-    /// \brief Returns how the transition moves its items.
-    virtual Internal::TransitionKind kind() const = 0;
     /// \brief Returns the opacity of an item over the time since it started, read from \c animations.
     Internal::OpacityTimeline opacityTimeline() const;
     /// \endcond

@@ -7,6 +7,7 @@
 //
 #include "QAccelPlot/transitions/TransitionRunner.hpp"
 
+#include "QAccelPlot/transitions/DrawTransition.hpp"
 #include "QAccelPlot/transitions/GrowTransition.hpp"
 
 #include <QQuickItem>
@@ -26,6 +27,18 @@ std::size_t slotIndex(const TransitionRunner::Slot slot)
 }
 
 constexpr auto kSlots = std::array{TransitionRunner::Slot::Enter, TransitionRunner::Slot::Update, TransitionRunner::Slot::Exit};
+
+/// \brief Returns how \a transition moves its items. The library's transitions are the only ones.
+Internal::TransitionKind transitionKind(const DataTransition& transition)
+{
+    if (qobject_cast<const GrowTransition*>(&transition)) {
+        return Internal::TransitionKind::Grow;
+    }
+    if (qobject_cast<const DrawTransition*>(&transition)) {
+        return Internal::TransitionKind::Draw;
+    }
+    return Internal::TransitionKind::Morph;
+}
 
 } // namespace
 
@@ -191,7 +204,7 @@ std::optional<Internal::TransitionKind> TransitionRunner::enabledKind(const Slot
     if (!transition || !transition->enabled()) {
         return std::nullopt;
     }
-    return transition->kind();
+    return transitionKind(*transition);
 }
 
 std::optional<Internal::TransitionStep> TransitionRunner::step(const Slot slot) const
@@ -201,7 +214,7 @@ std::optional<Internal::TransitionStep> TransitionRunner::step(const Slot slot) 
     if (!used_[index] || !transition) {
         return std::nullopt;
     }
-    auto result = Internal::TransitionStep{transition->kind(), transition->progress(runs_[index]), transition->stagger(), transition->easing()};
+    auto result = Internal::TransitionStep{transitionKind(*transition), transition->progress(runs_[index]), transition->stagger(), transition->easing()};
     result.opacity = transition->opacityTimeline();
     result.duration = transition->duration();
     if (const auto* grow = qobject_cast<const GrowTransition*>(transition)) {
