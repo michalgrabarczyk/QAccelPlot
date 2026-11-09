@@ -51,6 +51,7 @@ private slots:
     void activeChangedFollowsTheRun();
     void restartDropsItemsStillExiting();
     void restartEntersItemsNotShownYet();
+    void restartKeepsTheTransitionRunning();
     void runEndsWhenTheLongestSlotEnds();
 
 private:
@@ -310,6 +311,27 @@ void TransitionRunnerTest::restartEntersItemsNotShownYet()
     QVERIFY(runner.start(frame, runner.frameCapacity(), {0.0, 5.0, 1.0, 1.0, 2.0, 2.0}, 3, TransitionRunner::Layout{}));
     runner.advance(frame, frameCount);
     QCOMPARE(frameCount, 1);
+}
+
+void TransitionRunnerTest::restartKeepsTheTransitionRunning()
+{
+    auto morph = MorphTransition{};
+    morph.setDuration(kLongDuration);
+    auto draw = DrawTransition{};
+    draw.setDuration(kLongDuration);
+    auto runner = TransitionRunner{item_.get()};
+    runner.setTransition(TransitionRunner::Slot::Update, &morph);
+    runner.setTransition(TransitionRunner::Slot::Enter, &draw);
+    runner.start(data_, pointCount_, {10.0, 20.0, 30.0, 40.0}, 2, TransitionRunner::Layout{});
+    auto morphChanges = QSignalSpy{&morph, &DataTransition::runningChanged};
+    auto drawChanges = QSignalSpy{&draw, &DataTransition::runningChanged};
+
+    // The kept item changes again and nothing enters: only the draw transition stops.
+    QVERIFY(runner.start(data_, pointCount_, {50.0, 60.0}, 1, TransitionRunner::Layout{}));
+    QVERIFY(morph.running());
+    QCOMPARE(morphChanges.count(), 0);
+    QVERIFY(!draw.running());
+    QCOMPARE(drawChanges.count(), 1);
 }
 
 void TransitionRunnerTest::runEndsWhenTheLongestSlotEnds()

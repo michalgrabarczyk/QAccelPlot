@@ -125,7 +125,7 @@ bool TransitionRunner::start(
     const auto fromCount = pending_ ? std::min({currentPointCount, shownCount_, toCount_}) : currentPointCount;
     // Ended without interrupting: the new run replaces the old one.
     pending_ = false;
-    endRuns();
+    used_ = {};
     fade_ = {};
     const auto keptChanged = Internal::keptItemsChanged(
         Internal::TransitionItems{currentData.data(), fromCount}, Internal::TransitionItems{newData.data(), newPointCount}, layout.stride);
@@ -142,14 +142,7 @@ bool TransitionRunner::start(
     toCount_ = newPointCount;
     shownCount_ = fromCount;
     pending_ = true;
-    const auto used = std::array{planned.enter, planned.update, planned.exit};
-    for (const auto slot : kSlots) {
-        if (used[slotIndex(slot)]) {
-            transitions_[slotIndex(slot)]->start(runs_[slotIndex(slot)]);
-        }
-    }
-    // Set after all runs started, so runningChanged handlers don't see a used slot without its run.
-    used_ = used;
+    restartRuns(std::array{planned.enter, planned.update, planned.exit});
     updateActive();
     requestFrame();
     return true;
@@ -240,6 +233,24 @@ void TransitionRunner::endRuns()
         run.end();
     }
     used_ = {};
+}
+
+void TransitionRunner::restartRuns(const std::array<bool, kSlotCount>& used)
+{
+    // The used runs restart before the others end, so a transition that animates this change
+    // too keeps running instead of stopping and starting again.
+    for (const auto slot : kSlots) {
+        if (used[slotIndex(slot)]) {
+            transitions_[slotIndex(slot)]->start(runs_[slotIndex(slot)]);
+        }
+    }
+    for (const auto slot : kSlots) {
+        if (!used[slotIndex(slot)]) {
+            runs_[slotIndex(slot)].end();
+        }
+    }
+    // Set after the runs changed, so runningChanged handlers don't see a used slot without its run.
+    used_ = used;
 }
 
 void TransitionRunner::interrupt()

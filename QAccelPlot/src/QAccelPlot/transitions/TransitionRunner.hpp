@@ -129,6 +129,7 @@ private:
     std::optional<Internal::TransitionStep> step(Slot slot) const;
     bool finished() const;
     void endRuns();
+    void restartRuns(const std::array<bool, kSlotCount>& used);
     void interrupt();
     void onTransitionDestroyed(Slot slot);
     void onRunningChanged();
