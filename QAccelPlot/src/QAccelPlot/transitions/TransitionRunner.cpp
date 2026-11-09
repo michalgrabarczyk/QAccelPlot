@@ -114,7 +114,10 @@ bool TransitionRunner::start(
     pending_ = false;
     endRuns();
     fade_ = {};
-    const auto planned = Internal::plannedSlots(fromCount, newPointCount, enabledKind(Slot::Enter), enabledKind(Slot::Update), enabledKind(Slot::Exit));
+    const auto keptChanged = Internal::keptItemsChanged(
+        Internal::TransitionItems{currentData.data(), fromCount}, Internal::TransitionItems{newData.data(), newPointCount}, layout.stride);
+    const auto planned
+        = Internal::plannedSlots(fromCount, newPointCount, keptChanged, enabledKind(Slot::Enter), enabledKind(Slot::Update), enabledKind(Slot::Exit));
     if (!planned.any()) {
         cancel();
         return false;

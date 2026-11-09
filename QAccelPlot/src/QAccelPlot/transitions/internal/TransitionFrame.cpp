@@ -325,15 +325,27 @@ const FrontStarts* ItemClock::frontStarts() const noexcept
     return starts_ ? &*starts_ : nullptr;
 }
 
-TransitionSlots plannedSlots(const int fromCount, const int toCount, const std::optional<TransitionKind> enter, const std::optional<TransitionKind> update,
-    const std::optional<TransitionKind> exit)
+bool keptItemsChanged(const TransitionItems& from, const TransitionItems& to, const int stride)
 {
-    const auto redraw = update && *update != TransitionKind::Morph && fromCount > 0 && toCount > 0;
-    if (redraw) {
+    const auto values = static_cast<std::size_t>(std::min(from.count, to.count)) * static_cast<std::size_t>(stride);
+    for (auto index = std::size_t{0}; index < values; ++index) {
+        const auto before = from.values[index];
+        const auto after = to.values[index];
+        if (before != after && !(std::isnan(before) && std::isnan(after))) {
+            return true;
+        }
+    }
+    return false;
+}
+
+TransitionSlots plannedSlots(const int fromCount, const int toCount, const bool keptChanged, const std::optional<TransitionKind> enter,
+    const std::optional<TransitionKind> update, const std::optional<TransitionKind> exit)
+{
+    const auto runsUpdate = update.has_value() && keptChanged && std::min(fromCount, toCount) > 0;
+    if (runsUpdate && *update != TransitionKind::Morph) {
         return TransitionSlots{false, true, false};
     }
-    return TransitionSlots{
-        enter.has_value() && toCount > fromCount, update.has_value() && std::min(fromCount, toCount) > 0, exit.has_value() && fromCount > toCount};
+    return TransitionSlots{enter.has_value() && toCount > fromCount, runsUpdate, exit.has_value() && fromCount > toCount};
 }
 
 int writeTransitionFrame(const TransitionFrameInput& input, std::vector<double>& out, ItemFade& fade)

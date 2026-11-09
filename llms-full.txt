@@ -1430,7 +1430,9 @@ animate it:
 | [`updateTransition`][update-transition] | Kept items | `MorphTransition`, `DrawTransition`, `GrowTransition` |
 | [`exitTransition`][exit-transition] | Removed items, and all items on `clearData()` | `DrawTransition`, `GrowTransition` |
 
-Items without a transition in their slot change at once.
+Items without a transition in their slot change at once. The update transition
+runs only when a kept item changes, so adding or removing items leaves the
+others alone.
 
 ```qml
 QAccelPlot.BarSeries {
@@ -1446,7 +1448,8 @@ QAccelPlot.BarSeries {
 - `GrowTransition` grows values from `baseline`: the bar baseline for bars, 0
   for other series.
 - A `DrawTransition` or `GrowTransition` in `updateTransition` redraws all new
-  items as one sequence; the enter and exit transitions are skipped.
+  items as one sequence when a kept item changes; the enter and exit
+  transitions are skipped.
 - An exit plays the movement backwards, the last item first.
 
 Every transition takes `duration`, `easing`, and `stagger`:

@@ -15,8 +15,8 @@ namespace QAccelPlot {
 ///
 /// Assign one to a series' \c enterTransition to animate added items, or to its \c exitTransition
 /// to animate removed items; an exit plays the movement backwards, while opacity animations play
-/// as written. Assigned to \c updateTransition, it redraws all new items as one sequence, and the
-/// enter and exit transitions are skipped.
+/// as written. Assigned to \c updateTransition, it redraws all new items as one sequence when a
+/// kept item changes, and the enter and exit transitions are skipped.
 ///
 /// \sa DrawTransition, GrowTransition
 class EnterExitTransition : public DataTransition {

@@ -104,6 +104,7 @@ private slots:
     void drawShowsBarsInOrder();
     void fadedEnterStartsTransparent();
     void fadeAtFullStaggerStartsTransparent();
+    void addingBarsLeavesUnchangedBarsAlone();
     void rangedBarsMorphTheirExtent();
     void changedLayoutGrowsTheNewBarsIn();
     void floatDataAnimates();
@@ -440,6 +441,27 @@ void BarSeriesTransitionsTest::fadedEnterStartsTransparent()
     QTRY_VERIFY(shows({{5.0, 4.0, Qt::black}}));
     draw.setDuration(0);
     QTRY_VERIFY(shows({{5.0, 4.0, Qt::red}}));
+    scene_.bars->setEnterTransition(nullptr);
+}
+
+void BarSeriesTransitionsTest::addingBarsLeavesUnchangedBarsAlone()
+{
+    scene_.bars->setData(std::vector<double>{2.0, 8.0}, 1);
+    auto morph = MorphTransition{};
+    morph.setDuration(kLongDuration);
+    Test::addAnimation(morph, R"(NumberAnimation { property: "opacity"; to: 0; duration: 10000 })");
+    auto draw = DrawTransition{};
+    draw.setDuration(kLongDuration);
+    draw.setStagger(0.0);
+    Test::addAnimation(draw, R"(NumberAnimation { property: "opacity"; from: 0; duration: 10000 })");
+    scene_.bars->setUpdateTransition(&morph);
+    scene_.bars->setEnterTransition(&draw);
+
+    scene_.bars->setData(std::vector<double>{2.0, 8.0, 7.0, 8.0}, 2);
+
+    // Only the added bar fades in; the kept one did not change, so its update transition does not run.
+    QTRY_VERIFY(shows({{2.0, 4.0, Qt::red}, {7.0, 4.0, Qt::black}}));
+    scene_.bars->setUpdateTransition(nullptr);
     scene_.bars->setEnterTransition(nullptr);
 }
 

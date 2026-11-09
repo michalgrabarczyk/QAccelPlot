@@ -107,12 +107,19 @@ struct TransitionSlots {
     }
 };
 
+/// \brief Returns \c true when an item below both counts of \a from and \a to, \a stride values each, changes.
+///
+/// Invalid values that stay invalid do not count as a change.
+bool keptItemsChanged(const TransitionItems& from, const TransitionItems& to, int stride);
+
 /// \brief Returns the slots that animate a change from \a fromCount to \a toCount items.
 ///
-/// Each kind is that of the slot's enabled transition, or \c std::nullopt without one. A
-/// \c DrawTransition or \c GrowTransition in the update slot redraws all items, so only the update slot runs.
-TransitionSlots plannedSlots(
-    int fromCount, int toCount, std::optional<TransitionKind> enter, std::optional<TransitionKind> update, std::optional<TransitionKind> exit);
+/// Each kind is that of the slot's enabled transition, or \c std::nullopt without one. The update
+/// slot runs only when \a keptChanged: a change that only adds or removes items leaves the kept ones
+/// alone. A \c DrawTransition or \c GrowTransition in the update slot redraws all items, so only
+/// the update slot runs.
+TransitionSlots plannedSlots(int fromCount, int toCount, bool keptChanged, std::optional<TransitionKind> enter, std::optional<TransitionKind> update,
+    std::optional<TransitionKind> exit);
 
 /// \brief The two sides of a transition and the steps of its slots at one frame.
 struct TransitionFrameInput {

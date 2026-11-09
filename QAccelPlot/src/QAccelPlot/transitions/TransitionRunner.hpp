@@ -28,8 +28,9 @@ namespace QAccelPlot {
 ///
 /// A data change splits the items by index: with \a m items before and \a n after, items below
 /// both counts are kept, items from \a m on are added, and items from \a n on are removed. Each
-/// group runs the transition of its slot; a group without one changes instantly. A
-/// \c DrawTransition or \c GrowTransition in the update slot redraws all new items instead.
+/// group runs the transition of its slot; a group without one changes instantly. Kept items run
+/// the update transition only when one of them changes. A \c DrawTransition or
+/// \c GrowTransition in the update slot then redraws all new items instead.
 ///
 /// The runner asks for a frame once per rendered frame while it is active. The request comes on
 /// the GUI thread from \c QQuickWindow::afterAnimating, before the scene graph syncs, so

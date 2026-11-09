@@ -91,6 +91,8 @@ private slots:
     // Slot planning
     void plannedSlots_data();
     void plannedSlots();
+    void keptItemsChanged_data();
+    void keptItemsChanged();
 
     // Kept items
     void morph_interpolatesKeptItems_data();
@@ -222,6 +224,7 @@ void TestTransitions::plannedSlots_data()
     using Kind = std::optional<TransitionKind>;
     QTest::addColumn<int>("fromCount");
     QTest::addColumn<int>("toCount");
+    QTest::addColumn<bool>("keptChanged");
     QTest::addColumn<Kind>("enter");
     QTest::addColumn<Kind>("update");
     QTest::addColumn<Kind>("exit");
@@ -233,14 +236,18 @@ void TestTransitions::plannedSlots_data()
     const auto morph = Kind{TransitionKind::Morph};
     const auto grow = Kind{TransitionKind::Grow};
     const auto none = Kind{};
-    QTest::newRow("first data enters") << 0 << 4 << draw << morph << grow << true << false << false;
-    QTest::newRow("same count updates") << 4 << 4 << draw << morph << grow << false << true << false;
-    QTest::newRow("more items update and enter") << 2 << 4 << draw << morph << grow << true << true << false;
-    QTest::newRow("fewer items update and exit") << 4 << 2 << draw << morph << grow << false << true << true;
-    QTest::newRow("clearing exits") << 4 << 0 << draw << morph << grow << false << false << true;
-    QTest::newRow("draw update redraws") << 2 << 4 << draw << draw << grow << false << true << false;
-    QTest::newRow("draw update on first data") << 0 << 4 << none << draw << none << false << false << false;
-    QTest::newRow("no transitions") << 2 << 4 << none << none << none << false << false << false;
+    QTest::newRow("first data enters") << 0 << 4 << false << draw << morph << grow << true << false << false;
+    QTest::newRow("same count updates") << 4 << 4 << true << draw << morph << grow << false << true << false;
+    QTest::newRow("unchanged data does not update") << 4 << 4 << false << draw << morph << grow << false << false << false;
+    QTest::newRow("more items update and enter") << 2 << 4 << true << draw << morph << grow << true << true << false;
+    QTest::newRow("added items only enter") << 2 << 4 << false << draw << morph << grow << true << false << false;
+    QTest::newRow("fewer items update and exit") << 4 << 2 << true << draw << morph << grow << false << true << true;
+    QTest::newRow("removed items only exit") << 4 << 2 << false << draw << morph << grow << false << false << true;
+    QTest::newRow("clearing exits") << 4 << 0 << false << draw << morph << grow << false << false << true;
+    QTest::newRow("draw update redraws") << 2 << 4 << true << draw << draw << grow << false << true << false;
+    QTest::newRow("draw update leaves unchanged items") << 2 << 4 << false << draw << draw << grow << true << false << false;
+    QTest::newRow("draw update on first data") << 0 << 4 << false << none << draw << none << false << false << false;
+    QTest::newRow("no transitions") << 2 << 4 << true << none << none << none << false << false << false;
 }
 
 void TestTransitions::plannedSlots()
@@ -248,6 +255,7 @@ void TestTransitions::plannedSlots()
     using Kind = std::optional<TransitionKind>;
     QFETCH(int, fromCount);
     QFETCH(int, toCount);
+    QFETCH(bool, keptChanged);
     QFETCH(Kind, enter);
     QFETCH(Kind, update);
     QFETCH(Kind, exit);
@@ -255,11 +263,37 @@ void TestTransitions::plannedSlots()
     QFETCH(bool, expectUpdate);
     QFETCH(bool, expectExit);
 
-    const auto planned = QAccelPlot::Internal::plannedSlots(fromCount, toCount, enter, update, exit);
+    const auto planned = QAccelPlot::Internal::plannedSlots(fromCount, toCount, keptChanged, enter, update, exit);
 
     QCOMPARE(planned.enter, expectEnter);
     QCOMPARE(planned.update, expectUpdate);
     QCOMPARE(planned.exit, expectExit);
+}
+
+void TestTransitions::keptItemsChanged_data()
+{
+    QTest::addColumn<std::vector<double>>("from");
+    QTest::addColumn<std::vector<double>>("to");
+    QTest::addColumn<bool>("expected");
+
+    QTest::newRow("same values") << std::vector<double>{0.0, 1.0} << std::vector<double>{0.0, 1.0} << false;
+    QTest::newRow("moved item") << std::vector<double>{0.0, 1.0} << std::vector<double>{0.0, 2.0} << true;
+    QTest::newRow("added items only") << std::vector<double>{0.0, 1.0} << std::vector<double>{0.0, 1.0, 1.0, 5.0} << false;
+    QTest::newRow("removed items only") << std::vector<double>{0.0, 1.0, 1.0, 5.0} << std::vector<double>{0.0, 1.0} << false;
+    QTest::newRow("invalid value stays invalid") << std::vector<double>{0.0, kNaN} << std::vector<double>{0.0, kNaN} << false;
+    QTest::newRow("invalid value becomes valid") << std::vector<double>{0.0, kNaN} << std::vector<double>{0.0, 1.0} << true;
+}
+
+void TestTransitions::keptItemsChanged()
+{
+    QFETCH(std::vector<double>, from);
+    QFETCH(std::vector<double>, to);
+    QFETCH(bool, expected);
+
+    const auto changed
+        = QAccelPlot::Internal::keptItemsChanged({from.data(), static_cast<int>(from.size()) / 2}, {to.data(), static_cast<int>(to.size()) / 2}, 2);
+
+    QCOMPARE(changed, expected);
 }
 
 void TestTransitions::morph_interpolatesKeptItems_data()
