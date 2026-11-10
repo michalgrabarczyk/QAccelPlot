@@ -196,6 +196,17 @@ if(QACCELPLOT_INSTALL)
         FILES_MATCHING PATTERN "*.hpp"
         PATTERN "internal" EXCLUDE
     )
+    # Internal headers that the installed headers include.
+    install(FILES
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/internal/GlowStyle.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/internal/ItemFade.hpp"
+        DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/QAccelPlot/internal"
+    )
+    install(FILES
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/transitions/internal/OpacityTimeline.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/transitions/internal/TransitionFrame.hpp"
+        DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/QAccelPlot/transitions/internal"
+    )
 
     # --- QML module directory (qmldir, typeinfo, QML files) ---
     install(
