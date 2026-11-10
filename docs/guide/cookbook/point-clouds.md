@@ -152,7 +152,8 @@ Set `enterTransition`, `updateTransition`, and `exitTransition`, as for a
 - `MorphTransition` moves each kept point to the new position of the same
   index. Values change with it when the old and the new points both have them,
   so the colors blend through the colormap.
-- `GrowTransition` raises points from Y = 0, or from its `baseline`.
+- `GrowTransition` raises points from Y = 0, the low edge of the viewport on a
+  log Y axis, or from its `baseline`.
 - `DrawTransition` shows the points one after another.
 - A staggered transition follows the point order. Sort the points, for example
   by X, to sweep across the plot.

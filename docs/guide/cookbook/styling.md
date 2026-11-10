@@ -245,7 +245,8 @@ QAccelPlot.BarSeries {
 - `DrawTransition` reveals items one after another. A line draws its last
   segment partway.
 - `GrowTransition` grows values from `baseline`: the bar baseline for bars, 0
-  for other series.
+  for other series. When the value axis cannot place that default (infinite,
+  or at or below 0 on a log axis), items grow from the nearest viewport edge.
 - A `DrawTransition` or `GrowTransition` in `updateTransition` redraws all new
   items as one sequence when a kept item changes; the enter and exit
   transitions are skipped.

@@ -945,7 +945,8 @@ void LineCurve::startTransition(std::vector<double>&& from, const int fromCount)
 {
     const auto target = dataPoints().view();
     auto targetPoints = std::vector<double>(target.precise, target.precise + static_cast<std::size_t>(target.count) * 2);
-    if (!transition_->start(from, fromCount, std::move(targetPoints), target.count, TransitionRunner::Layout{2, {1}, 0.0, true})) {
+    if (!transition_->start(
+            from, fromCount, std::move(targetPoints), target.count, TransitionRunner::Layout{2, {1}, Internal::growBaseline(0.0, yAxis()), true})) {
         dataPoints().clearDrawn();
         frameBuffer_ = std::vector<double>{};
         return;

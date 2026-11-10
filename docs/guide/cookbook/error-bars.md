@@ -131,8 +131,9 @@ values the same transitions, so both move together.
 
 - `MorphTransition` moves each kept error bar to the new position, value, and
   bounds of the same index.
-- `GrowTransition` grows the value and both bounds from its baseline; the
-  position stays.
+- `GrowTransition` grows the value and both bounds from its `baseline`, 0 by
+  default, or the low edge of the viewport on a log value axis; the position
+  stays.
 - `DrawTransition` shows the error bars one after another.
 - `count`, `errorBarAt()`, the data ranges, and inspection use the new data
   from the start of the animation. Hover picks the error bars as drawn.

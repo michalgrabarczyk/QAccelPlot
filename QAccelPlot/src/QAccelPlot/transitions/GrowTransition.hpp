@@ -32,8 +32,8 @@ class GrowTransition : public EnterExitTransition {
     /// \brief Value the items grow from, in data units.
     ///
     /// Unset by default, after a reset, or when NaN: \c BarSeries::baselineValue for bars, 0 for other
-    /// series. A bar baseline the value axis cannot place, infinite or at or below 0 on a log axis,
-    /// is replaced by the viewport edge the bars are drawn from.
+    /// series. A default the value axis cannot place, infinite or at or below 0 on a log axis, is
+    /// replaced by the nearest viewport edge.
     Q_PROPERTY(qreal baseline READ baseline WRITE setBaseline RESET resetBaseline NOTIFY baselineChanged)
 
 public:

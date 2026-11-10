@@ -598,8 +598,10 @@ void ErrorBarSeries::applyDoubleData(std::vector<double>&& data, const int dataP
 void ErrorBarSeries::startTransition(const std::vector<double>& drawn, const int drawnCount)
 {
     // The value and both bounds grow; the position stays.
-    const auto valueColumns = orientation_ == Qt::Vertical ? std::vector<int>{1, 2, 3} : std::vector<int>{0, 2, 3};
-    if (!transition_->start(drawn, drawnCount, doubleData(dataPoints().view()), count(), TransitionRunner::Layout{kStride, valueColumns, 0.0, false})) {
+    const auto vertical = orientation_ == Qt::Vertical;
+    const auto valueColumns = vertical ? std::vector<int>{1, 2, 3} : std::vector<int>{0, 2, 3};
+    const auto baseline = Internal::growBaseline(0.0, vertical ? yAxis() : xAxis());
+    if (!transition_->start(drawn, drawnCount, doubleData(dataPoints().view()), count(), TransitionRunner::Layout{kStride, valueColumns, baseline, false})) {
         discardTransition();
         return;
     }

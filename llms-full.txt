@@ -1449,7 +1449,8 @@ QAccelPlot.BarSeries {
 - `DrawTransition` reveals items one after another. A line draws its last
   segment partway.
 - `GrowTransition` grows values from `baseline`: the bar baseline for bars, 0
-  for other series.
+  for other series. When the value axis cannot place that default (infinite,
+  or at or below 0 on a log axis), items grow from the nearest viewport edge.
 - A `DrawTransition` or `GrowTransition` in `updateTransition` redraws all new
   items as one sequence when a kept item changes; the enter and exit
   transitions are skipped.
@@ -2072,7 +2073,8 @@ Set `enterTransition`, `updateTransition`, and `exitTransition`, as for a
 - `MorphTransition` moves each kept point to the new position of the same
   index. Values change with it when the old and the new points both have them,
   so the colors blend through the colormap.
-- `GrowTransition` raises points from Y = 0, or from its `baseline`.
+- `GrowTransition` raises points from Y = 0, the low edge of the viewport on a
+  log Y axis, or from its `baseline`.
 - `DrawTransition` shows the points one after another.
 - A staggered transition follows the point order. Sort the points, for example
   by X, to sweep across the plot.

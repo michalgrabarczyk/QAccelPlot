@@ -11,6 +11,7 @@
 #include "QAccelPlot/inspection/SeriesInspection.hpp"
 #include "QAccelPlot/series/PointCloud.hpp"
 #include "QAccelPlot/transitions/DrawTransition.hpp"
+#include "QAccelPlot/transitions/GrowTransition.hpp"
 #include "QAccelPlot/transitions/MorphTransition.hpp"
 
 #include <QGuiApplication>
@@ -44,6 +45,12 @@ const auto kGray = QColor{128, 128, 128};
 qreal halfway(const qreal progress)
 {
     return progress > 0.0 ? 0.5 : 0.0;
+}
+
+// Eases every progress after the start to just past it.
+qreal barelyStarted(const qreal progress)
+{
+    return progress > 0.0 ? 0.005 : 0.0;
 }
 
 // A transition held halfway, so the tests can check a frame of the animation.
@@ -106,6 +113,7 @@ private slots:
     void newPointsAppearAtTheirPosition();
     void removedPointsDisappear();
     void drawShowsPointsInOrder();
+    void growOnALogAxisStartsFromItsEdge();
     void fadedEnterStartsTransparent();
     void floatDataAnimates();
     void largeCoordinatesAnimate();
@@ -229,6 +237,26 @@ void PointCloudTransitionsTest::drawShowsPointsInOrder()
 
     draw.cancel();
     QTRY_VERIFY(shows({{6.0, 5.0, Qt::red}, {8.0, 5.0, Qt::red}}));
+    scene_.cloud->setEnterTransition(nullptr);
+}
+
+void PointCloudTransitionsTest::growOnALogAxisStartsFromItsEdge()
+{
+    auto grow = HeldHalfway<GrowTransition>{};
+    auto easing = QEasingCurve{};
+    easing.setCustomType(barelyStarted);
+    grow.setEasing(easing);
+    scene_.yAxis->setLogScale(true);
+    scene_.yAxis->setViewportMin(1.0);
+    scene_.yAxis->setViewportMax(100.0);
+    scene_.cloud->setEnterTransition(&grow);
+
+    scene_.cloud->setData(std::vector<double>{5.0, 100.0}, 1);
+
+    // Y = 0 lies below the log axis, so the point rises from its bottom edge at 1 and shows from
+    // the first frames. The probe y places the eased value on the two decades of the plot.
+    const auto probeY = 1.0 + std::log10(1.0 + 0.005 * 99.0) / 2.0 * kDataSpan;
+    QTRY_VERIFY(shows({{5.0, probeY, Qt::red}}));
     scene_.cloud->setEnterTransition(nullptr);
 }
 

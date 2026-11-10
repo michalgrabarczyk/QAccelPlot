@@ -696,7 +696,8 @@ void PointCloud::startTransition(Points&& drawn)
         drawn.values = std::move(start);
         drawn.stride = pointStride;
     }
-    if (!transition_->start(drawn.values, drawn.count, interleavedData(), count(), TransitionRunner::Layout{pointStride, {1}, 0.0, false})) {
+    if (!transition_->start(
+            drawn.values, drawn.count, interleavedData(), count(), TransitionRunner::Layout{pointStride, {1}, Internal::growBaseline(0.0, yAxis()), false})) {
         discardTransition();
         return;
     }
