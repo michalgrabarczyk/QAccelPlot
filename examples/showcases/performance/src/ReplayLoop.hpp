@@ -44,6 +44,12 @@ public:
         return !frames_.empty() && parameters_ == parameters;
     }
 
+    /// \brief Returns the parameters of the last complete build.
+    const Parameters& parameters() const
+    {
+        return parameters_;
+    }
+
     /// \brief Returns the number of frames in the loop.
     int frameCount() const
     {

@@ -20,6 +20,7 @@
 
 #include <atomic>
 #include <memory>
+#include <utility>
 
 using QAccelPlotExample::DataDeliveryMetrics;
 using QAccelPlotExample::steadyNanoseconds;
@@ -63,12 +64,22 @@ void setupPerformanceMetrics(QGuiApplication& app, QQuickWindow* window, QObject
     reportElapsed->start();
     auto* reportTimer = new QTimer(&app);
     reportTimer->setInterval(1000);
-    QObject::connect(reportTimer, &QTimer::timeout, &app, [root, metrics, deliveryMetrics, reportElapsed]() {
+    auto settling = std::make_shared<bool>(false);
+    QObject::connect(reportTimer, &QTimer::timeout, &app, [root, metrics, deliveryMetrics, reportElapsed, settling]() {
         const auto elapsedMilliseconds = reportElapsed->restart();
         const auto presentedFrames = metrics->presentedFrames.exchange(0, std::memory_order_relaxed);
         const auto accumulatedNanoseconds = metrics->accumulatedIntervalNanoseconds.exchange(0, std::memory_order_relaxed);
         const auto intervalSamples = metrics->intervalSamples.exchange(0, std::memory_order_relaxed);
         const auto deliverySnapshot = deliveryMetrics->takeSnapshot();
+        // Keeps the previous values through loading and one interval after it, while the first
+        // frames of the new data still create their GPU buffers.
+        if (deliverySnapshot.loading) {
+            *settling = true;
+            return;
+        }
+        if (std::exchange(*settling, false)) {
+            return;
+        }
 
         const auto elapsedSeconds = elapsedMilliseconds > 0 ? elapsedMilliseconds / 1000.0 : 1.0;
         const auto displayFps = qRound(presentedFrames / elapsedSeconds);

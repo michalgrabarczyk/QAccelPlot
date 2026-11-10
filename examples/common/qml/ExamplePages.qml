@@ -19,6 +19,8 @@ ColumnLayout {
     default property alias pages: stack.data
     // Name of the visible page.
     readonly property string currentName: tabBar.currentIndex >= 0 && tabBar.currentIndex < tabs.length ? tabs[tabBar.currentIndex].name : ""
+    // The area below the tab bar that holds the pages.
+    readonly property Item pageArea: stack
 
     Layout.fillWidth: true
     Layout.fillHeight: true

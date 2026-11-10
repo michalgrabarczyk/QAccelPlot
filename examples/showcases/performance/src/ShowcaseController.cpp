@@ -52,6 +52,8 @@ void ShowcaseController::onFrame()
     if (page != activePage_) {
         activatePage(page, timeSeconds);
     }
+    // Read before the update, so the frame that first draws the new data still counts as loading.
+    setLoading(activePage_ && feeder(*activePage_).isLoading());
     if (activePage_ && feeder(*activePage_).update(timeSeconds)) {
         deliveryMetrics_->dataApplied(steadyNanoseconds());
     }
@@ -88,6 +90,17 @@ void ShowcaseController::activatePage(const std::optional<Page> page, const doub
         feeder(*activePage_).start(timeSeconds);
     }
     deliveryMetrics_->restartGapTracking();
+}
+
+void ShowcaseController::setLoading(const bool loading)
+{
+    if (loading) {
+        deliveryMetrics_->loadingObserved();
+    }
+    if (loading != loading_) {
+        loading_ = loading;
+        root_->setProperty("loading", loading);
+    }
 }
 
 PageFeeder& ShowcaseController::feeder(const Page page)

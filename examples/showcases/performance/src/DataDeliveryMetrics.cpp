@@ -42,6 +42,11 @@ void DataDeliveryMetrics::batchCopied(const std::int64_t nanoseconds) noexcept
     copyNanoseconds_.fetch_add(nanoseconds, std::memory_order_relaxed);
 }
 
+void DataDeliveryMetrics::loadingObserved() noexcept
+{
+    loading_.store(true, std::memory_order_relaxed);
+}
+
 void DataDeliveryMetrics::restartGapTracking() noexcept
 {
     lastAppliedAtNanoseconds_.store(0, std::memory_order_relaxed);
@@ -54,6 +59,7 @@ DataDeliveryMetrics::Snapshot DataDeliveryMetrics::takeSnapshot() noexcept
         longestDataGapNanoseconds_.exchange(0, std::memory_order_relaxed),
         copiedBatches_.exchange(0, std::memory_order_relaxed),
         copyNanoseconds_.exchange(0, std::memory_order_relaxed),
+        loading_.exchange(false, std::memory_order_relaxed),
     };
 }
 

@@ -16,6 +16,7 @@
 #include <chrono>
 #include <cstddef>
 #include <memory>
+#include <optional>
 
 namespace QAccelPlotExample {
 
@@ -32,6 +33,8 @@ public:
     ///
     /// Returns \c true when the page's series received new data.
     virtual bool update(double timeSeconds) = 0;
+    /// \brief Returns \c true until the series hold data generated for the current settings.
+    virtual bool isLoading() const = 0;
 };
 
 /// \brief Feeds the series of one page with batches replayed by a \c GenerationWorker.
@@ -67,6 +70,7 @@ public:
     {
         worker_.requestStop();
         batch_ = Batch{};
+        appliedParameters_.reset();
     }
 
     bool update(const double timeSeconds) override
@@ -74,7 +78,8 @@ public:
         const auto options = scene_.commonOptions();
         configure(options, timeSeconds);
 
-        if (!worker_.tryConsume(batch_)) {
+        auto builtFor = Parameters{};
+        if (!worker_.tryConsume(batch_, builtFor)) {
             return false;
         }
         const auto series = scene_.template series<typename Feed::Series>();
@@ -87,11 +92,18 @@ public:
             }
             Feed::apply(*series[index], batch_.parts[index], options);
         }
+        appliedParameters_ = builtFor;
         return true;
+    }
+
+    bool isLoading() const override
+    {
+        return !appliedParameters_ || !(*appliedParameters_ == requestedParameters_);
     }
 
 private:
     using Batch = typename Feed::Generator::Batch;
+    using Parameters = typename Feed::Generator::Parameters;
 
     static bool hasPrecisionFor(const Batch& batch, const Ingestion ingestion)
     {
@@ -105,13 +117,16 @@ private:
 
     void configure(const CommonOptions& options, const double timeSeconds)
     {
-        worker_.setParameters(Feed::parameters(scene_, options));
+        requestedParameters_ = Feed::parameters(scene_, options);
+        worker_.setParameters(requestedParameters_);
         worker_.setTime(timeSeconds);
     }
 
     PageScene scene_;
     GenerationWorker<typename Feed::Generator> worker_;
     Batch batch_;
+    Parameters requestedParameters_;
+    std::optional<Parameters> appliedParameters_;
 };
 
 } // namespace QAccelPlotExample

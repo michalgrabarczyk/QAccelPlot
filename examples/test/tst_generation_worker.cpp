@@ -32,10 +32,12 @@ struct RecordingGenerator {
         int count{1};
         // Size a batch reports, which sets how many frames a replay loop holds; two by default.
         std::size_t frameBytes{std::size_t{1} << 29};
+        // Time each batch takes to generate.
+        std::chrono::milliseconds delay{0};
 
         friend bool operator==(const Parameters& a, const Parameters& b)
         {
-            return a.count == b.count && a.frameBytes == b.frameBytes;
+            return a.count == b.count && a.frameBytes == b.frameBytes && a.delay == b.delay;
         }
     };
 
@@ -58,6 +60,7 @@ struct RecordingGenerator {
         batch.timeSeconds = timeSeconds;
         batch.frameBytes = parameters.frameBytes;
         batch.samples.assign(static_cast<std::size_t>(parameters.count), parameters.count);
+        std::this_thread::sleep_for(parameters.delay);
         generatedBatches.fetch_add(1, std::memory_order_relaxed);
     }
 };
@@ -98,6 +101,8 @@ private slots:
     void generatesTheLoopOnlyOnce();
     void zeroIntervalReplaysOneStillFrame();
     void newSettingsRebuildTheLoop();
+    void batchesReportTheSettingsTheyWereBuiltFor();
+    void newSettingsAbandonAnUnfinishedLoop();
     void pendingBatchIsNotOverwritten();
     void copiesOneBatchAheadOfThePendingOne();
     void consumingHandsTheBatchStorageBack();
@@ -191,6 +196,45 @@ void GenerationWorkerTest::newSettingsRebuildTheLoop()
     }
     worker.stop();
     QCOMPARE(batch.count, 9);
+}
+
+void GenerationWorkerTest::batchesReportTheSettingsTheyWereBuiltFor()
+{
+    auto worker = Worker{};
+    worker.setParameters({3});
+    worker.start();
+    auto batch = RecordingGenerator::Batch{};
+    auto builtFor = RecordingGenerator::Parameters{};
+    QVERIFY2(worker.waitForData(std::chrono::seconds{5}) && worker.tryConsume(batch, builtFor), "Timed out waiting for a replayed batch");
+    QCOMPARE(builtFor.count, 3);
+
+    worker.setParameters({9});
+    for (auto attempt = 0; attempt < 3 && batch.count != 9; ++attempt) {
+        QVERIFY2(worker.waitForData(std::chrono::seconds{5}) && worker.tryConsume(batch, builtFor), "Timed out waiting for a batch");
+        QCOMPARE(builtFor.count, batch.count);
+    }
+    worker.stop();
+    QCOMPARE(builtFor.count, 9);
+}
+
+void GenerationWorkerTest::newSettingsAbandonAnUnfinishedLoop()
+{
+    auto slow = RecordingGenerator::Parameters{};
+    slow.frameBytes = 1;
+    slow.delay = std::chrono::milliseconds{20};
+    auto worker = Worker{};
+    worker.setParameters(slow);
+    const auto generatedBefore = generatedBatches.load();
+    worker.start();
+    // The loop of slow frames would take more than a second to complete.
+    QTRY_VERIFY(generatedBatches.load() > generatedBefore);
+
+    worker.setParameters({9});
+    auto batch = RecordingGenerator::Batch{};
+    QVERIFY2(waitForBatch(worker, batch), "Timed out waiting for a batch with the new settings");
+    worker.stop();
+    QCOMPARE(batch.count, 9);
+    QVERIFY(generatedBatches.load() - generatedBefore < Loop::kMaximumFrameCount);
 }
 
 void GenerationWorkerTest::pendingBatchIsNotOverwritten()

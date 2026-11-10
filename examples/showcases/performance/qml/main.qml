@@ -25,6 +25,8 @@ Window {
     property int updateRate: 60
     property real longestDataGapMs: 0
     property real dataCopyMs: 0
+    // Set while the visible page waits for data generated for its current settings.
+    property bool loading: true
     readonly property string activePage: pages.currentName
     readonly property QtObject activeSettings: activePage === "pointCloud" ? pointCloudSettings : activePage === "rectangleSeries" ? rectangleSeriesSettings : activePage === "barSeries" ? barSeriesSettings : activePage === "heatmapSeries" ? heatmapSeriesSettings : lineCurveSettings
     readonly property int activeCount: activeSettings.count
@@ -135,6 +137,9 @@ Window {
         targetWindow: window
     }
 
+    // Changing text or pressing a control adds and removes scene graph nodes, and that makes the
+    // window's renderer re-upload every series. The control panel, the header, and the metrics
+    // render in layers, each with a renderer of its own.
     RowLayout {
         anchors.fill: parent
         anchors.margins: 12
@@ -143,6 +148,7 @@ Window {
         ControlPanel {
             Layout.preferredWidth: 300
             Layout.fillHeight: true
+            layer.enabled: true
             window: window
             colorPalette: window.colorPalette
         }
@@ -153,13 +159,11 @@ Window {
             spacing: 10
 
             ExampleHeader {
+                layer.enabled: true
                 title: window.activeCount.toLocaleString(Qt.locale("en_US"), "f", 0) + " live " + window.activeSettings.noun
                 subtitle: "Display FPS counts frames presented to the screen. Data Update Rate shows how many new datasets are applied to the plot each second."
             }
 
-            // Changing text adds and removes scene graph nodes, and that makes the window's renderer
-            // re-upload every series. The layer keeps the per-second metric updates in a renderer
-            // of their own.
             RowLayout {
                 spacing: 8
                 layer.enabled: true
@@ -196,30 +200,76 @@ Window {
                 }
             }
 
-            ExamplePages {
-                id: pages
-                tabs: [
-                    { name: "lineCurve", title: "LineCurve" },
-                    { name: "pointCloud", title: "PointCloud" },
-                    { name: "rectangleSeries", title: "RectangleSeries" },
-                    { name: "barSeries", title: "BarSeries" },
-                    { name: "heatmapSeries", title: "HeatmapSeries" }
-                ]
+            Item {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
 
-                LineCurvePage {
-                    settings: window.lineCurveSettings
+                ExamplePages {
+                    id: pages
+                    anchors.fill: parent
+                    tabs: [
+                        { name: "lineCurve", title: "LineCurve" },
+                        { name: "pointCloud", title: "PointCloud" },
+                        { name: "rectangleSeries", title: "RectangleSeries" },
+                        { name: "barSeries", title: "BarSeries" },
+                        { name: "heatmapSeries", title: "HeatmapSeries" }
+                    ]
+
+                    LineCurvePage {
+                        settings: window.lineCurveSettings
+                    }
+                    PointCloudPage {
+                        settings: window.pointCloudSettings
+                    }
+                    RectangleSeriesPage {
+                        settings: window.rectangleSeriesSettings
+                    }
+                    BarSeriesPage {
+                        settings: window.barSeriesSettings
+                    }
+                    HeatmapSeriesPage {
+                        settings: window.heatmapSeriesSettings
+                    }
                 }
-                PointCloudPage {
-                    settings: window.pointCloudSettings
+
+                // Covers the page while it waits for data generated for its current settings. The
+                // cover is created and destroyed in a layer: hiding or showing an item, even in a
+                // layer, would make the window's renderer re-upload every series.
+                Item {
+                    x: pages.pageArea.x
+                    y: pages.pageArea.y
+                    width: pages.pageArea.width
+                    height: pages.pageArea.height
+                    layer.enabled: true
+
+                    Loader {
+                        anchors.fill: parent
+                        active: window.loading
+                        sourceComponent: loadingCover
+                    }
                 }
-                RectangleSeriesPage {
-                    settings: window.rectangleSeriesSettings
-                }
-                BarSeriesPage {
-                    settings: window.barSeriesSettings
-                }
-                HeatmapSeriesPage {
-                    settings: window.heatmapSeriesSettings
+
+                Component {
+                    id: loadingCover
+
+                    Rectangle {
+                        color: Qt.rgba(window.colorPalette.window.r, window.colorPalette.window.g, window.colorPalette.window.b, 0.75)
+
+                        Column {
+                            anchors.centerIn: parent
+                            spacing: 12
+
+                            BusyIndicator {
+                                anchors.horizontalCenter: parent.horizontalCenter
+                            }
+
+                            Label {
+                                text: "Generating " + window.activeCount.toLocaleString(Qt.locale("en_US"), "f", 0) + " " + window.activeSettings.noun
+                                color: window.colorPalette.textSecondary
+                                anchors.horizontalCenter: parent.horizontalCenter
+                            }
+                        }
+                    }
                 }
             }
         }

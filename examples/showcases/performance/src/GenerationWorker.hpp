@@ -131,12 +131,23 @@ public:
     /// records were copied rather than moved out is not allocated again.
     bool tryConsume(Batch& batch)
     {
+        auto builtFor = Parameters{};
+        return tryConsume(batch, builtFor);
+    }
+
+    /// \brief Like \c tryConsume(Batch&), and also sets \a builtFor to the parameters the batch was generated for.
+    ///
+    /// The batch can stem from earlier parameters than the current ones, because the worker
+    /// copies one batch ahead.
+    bool tryConsume(Batch& batch, Parameters& builtFor)
+    {
         const auto lock = std::lock_guard<std::mutex>{mutex_};
         if (!dataReady_) {
             return false;
         }
 
         std::swap(batch, readyBatch_);
+        builtFor = readyParameters_;
         dataReady_ = false;
         conditionVariable_.notify_one();
         return true;
@@ -148,22 +159,25 @@ private:
         auto workBatch = Batch{};
         auto loop = ReplayLoop<Generator>{};
         while (running_.load(std::memory_order_relaxed)) {
-            if (!prepare(workBatch, loop) || !publish(workBatch)) {
+            if (!prepare(workBatch, loop) || !publish(workBatch, loop.parameters())) {
                 return;
             }
         }
     }
 
     // Copies the next frame of the replay loop into batch, first building the loop for the current
-    // parameters if needed. Returns false when a stop interrupted the build.
+    // parameters if needed. A build is abandoned as soon as the parameters change again. Returns
+    // false when a stop interrupted the build.
     bool prepare(Batch& batch, ReplayLoop<Generator>& loop)
     {
-        const auto parameters = this->parameters();
-        if (!loop.holds(parameters)) {
-            const auto timeSeconds = timeSeconds_.load(std::memory_order_relaxed);
-            if (!loop.build(generator_, parameters, timeSeconds, frameIntervalSeconds_, [this]() { return !isRunning(); })) {
+        auto parameters = this->parameters();
+        while (!loop.holds(parameters)) {
+            const auto superseded = [this, &parameters]() { return !isRunning() || !(this->parameters() == parameters); };
+            loop.build(generator_, parameters, timeSeconds_.load(std::memory_order_relaxed), frameIntervalSeconds_, superseded);
+            if (!isRunning()) {
                 return false;
             }
+            parameters = this->parameters();
         }
 
         const auto start = std::chrono::steady_clock::now();
@@ -174,9 +188,9 @@ private:
         return true;
     }
 
-    // Waits until no batch is pending, then makes batch the pending one and takes back the storage
-    // of the batch consumed last. Returns false when stopped first.
-    bool publish(Batch& batch)
+    // Waits until no batch is pending, then makes batch, generated for parameters, the pending one
+    // and takes back the storage of the batch consumed last. Returns false when stopped first.
+    bool publish(Batch& batch, const Parameters& parameters)
     {
         {
             auto lock = std::unique_lock<std::mutex>{mutex_};
@@ -185,6 +199,7 @@ private:
                 return false;
             }
             std::swap(readyBatch_, batch);
+            readyParameters_ = parameters;
             dataReady_ = true;
         }
         conditionVariable_.notify_all();
@@ -202,6 +217,7 @@ private:
     std::condition_variable conditionVariable_;
     std::thread workerThread_;
     Batch readyBatch_;
+    Parameters readyParameters_;
     bool dataReady_{false};
     std::atomic<bool> running_{false};
     std::atomic<double> timeSeconds_{0.0};

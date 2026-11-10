@@ -24,7 +24,8 @@ namespace QAccelPlotExample {
 /// \brief Feeds the visible showcase page, one batch per frame.
 ///
 /// Reads \c activePage and the per-page settings objects from the QML root. Only the active
-/// page's feeder runs; switching pages stops the previous one.
+/// page's feeder runs; switching pages stops the previous one. Sets the root's \c loading
+/// property while the page waits for data generated for its current settings.
 class ShowcaseController final : public QObject {
 public:
     /// \brief Showcase pages, each fed by its own feeder.
@@ -40,6 +41,7 @@ private:
     void onFrame();
     std::optional<Page> requestedPage() const;
     void activatePage(std::optional<Page> page, double timeSeconds);
+    void setLoading(bool loading);
     PageFeeder& feeder(Page page);
 
     QObject* root_;
@@ -48,6 +50,7 @@ private:
     std::optional<Page> activePage_;
     QElapsedTimer elapsed_;
     bool screenshotMode_;
+    bool loading_{true};
 };
 
 } // namespace QAccelPlotExample
