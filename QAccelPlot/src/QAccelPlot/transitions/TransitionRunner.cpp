@@ -221,7 +221,11 @@ std::optional<Internal::TransitionStep> TransitionRunner::step(const Slot slot) 
     if (!used_[index] || !transition) {
         return std::nullopt;
     }
-    auto result = Internal::TransitionStep{transitionKind(*transition), transition->progress(runs_[index]), transition->stagger(), transition->easing()};
+    auto result = Internal::TransitionStep{};
+    result.kind = transitionKind(*transition);
+    result.progress = transition->progress(runs_[index]);
+    result.stagger = transition->stagger();
+    result.easing = transition->easing();
     result.opacity = transition->opacityTimeline();
     result.duration = transition->duration();
     if (const auto* grow = qobject_cast<const GrowTransition*>(transition)) {

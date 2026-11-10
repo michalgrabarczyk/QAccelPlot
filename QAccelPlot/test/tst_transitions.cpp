@@ -18,6 +18,7 @@
 #include <limits>
 #include <memory>
 #include <optional>
+#include <utility>
 #include <vector>
 
 Q_DECLARE_METATYPE(std::optional<QAccelPlot::Internal::TransitionKind>)
@@ -37,7 +38,12 @@ constexpr auto kNaN = std::numeric_limits<double>::quiet_NaN();
 
 TransitionStep step(const TransitionKind kind, const double progress, const double stagger = 0.0)
 {
-    return TransitionStep{kind, progress, stagger, QEasingCurve{QEasingCurve::Linear}};
+    auto result = TransitionStep{};
+    result.kind = kind;
+    result.progress = progress;
+    result.stagger = stagger;
+    result.easing = QEasingCurve{QEasingCurve::Linear};
+    return result;
 }
 
 // A step whose items fade from `from` to `to` over `fadeMs` of a `durationMs` run.
@@ -58,6 +64,12 @@ struct Frame {
 };
 
 struct Change {
+    Change(std::vector<double> fromItems, std::vector<double> toItems)
+        : from(std::move(fromItems))
+        , to(std::move(toItems))
+    {
+    }
+
     std::vector<double> from;
     std::vector<double> to;
     TransitionLayout layout;
