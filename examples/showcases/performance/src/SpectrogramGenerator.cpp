@@ -6,6 +6,7 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #include "SpectrogramGenerator.hpp"
+#include "ParallelFor.hpp"
 
 #include <algorithm>
 #include <array>
@@ -53,6 +54,16 @@ void addPeak(float* row, const int side, const float center, const float level)
 }
 
 } // namespace
+
+std::size_t SpectrogramBatch::byteSize() const
+{
+    return partsByteSize(parts);
+}
+
+bool operator==(const SpectrogramParameters& a, const SpectrogramParameters& b)
+{
+    return a.dataset == b.dataset;
+}
 
 void SpectrogramGenerator::generate(Batch& batch, const Parameters& parameters, const double timeSeconds)
 {
@@ -102,7 +113,6 @@ void SpectrogramGenerator::writeLine(const std::int64_t line)
 void SpectrogramGenerator::copyRows(Batch& batch, const Parameters& parameters) const
 {
     const auto seriesCount = parameters.dataset.seriesCount;
-    const auto columns = static_cast<std::size_t>(side_);
     // Row 0 is the oldest line, at the bottom of the grid.
     const auto oldestLine = newestLine_ - side_ + 1;
     batch.parts.resize(static_cast<std::size_t>(seriesCount));
@@ -115,10 +125,25 @@ void SpectrogramGenerator::copyRows(Batch& batch, const Parameters& parameters) 
         part.count = part.rows * side_;
         part.floats.resize(static_cast<std::size_t>(part.count));
         part.doubles.clear();
-        for (auto row = 0; row < part.rows; ++row) {
-            std::copy_n(history_.data() + lineOffset(oldestLine + firstRow + row), columns, part.floats.data() + static_cast<std::size_t>(row) * columns);
-        }
         firstRow += part.rows;
+    }
+    parallelFor(side_ * side_, kParallelChunk, [this, &batch, oldestLine](const int begin, const int end) {
+        forEachPartSlice(
+            batch.parts, begin, end, [this, oldestLine](SpectrogramPart& part, const int first, const int last, [[maybe_unused]] const int partBegin) {
+                copyCells(part, first, last, oldestLine);
+            });
+    });
+}
+
+void SpectrogramGenerator::copyCells(SpectrogramPart& part, const int first, const int last, const std::int64_t oldestLine) const
+{
+    auto cell = first;
+    while (cell < last) {
+        const auto column = cell % side_;
+        const auto length = std::min(side_ - column, last - cell);
+        const auto* line = history_.data() + lineOffset(oldestLine + part.firstRow + cell / side_);
+        std::copy_n(line + column, length, part.floats.data() + cell);
+        cell += length;
     }
 }
 

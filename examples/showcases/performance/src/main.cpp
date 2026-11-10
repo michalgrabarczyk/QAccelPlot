@@ -74,10 +74,13 @@ void setupPerformanceMetrics(QGuiApplication& app, QQuickWindow* window, QObject
         const auto displayFps = qRound(presentedFrames / elapsedSeconds);
         const auto dataUpdateRate = qRound(deliverySnapshot.appliedBatches / elapsedSeconds);
         const auto longestDataGapMs = deliverySnapshot.longestDataGapNanoseconds / 1'000'000.0;
+        const auto dataCopyMs
+            = deliverySnapshot.copiedBatches > 0 ? deliverySnapshot.copyNanoseconds / (static_cast<double>(deliverySnapshot.copiedBatches) * 1'000'000.0) : 0.0;
         root->setProperty("fps", displayFps);
         root->setProperty("averageFrameTimeMs", intervalSamples > 0 ? accumulatedNanoseconds / (intervalSamples * 1'000'000.0) : 0.0);
         root->setProperty("updateRate", dataUpdateRate);
         root->setProperty("longestDataGapMs", longestDataGapMs);
+        root->setProperty("dataCopyMs", dataCopyMs);
     });
     reportTimer->start();
 }

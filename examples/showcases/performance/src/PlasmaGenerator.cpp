@@ -6,6 +6,7 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #include "PlasmaGenerator.hpp"
+#include "ParallelFor.hpp"
 
 #include <algorithm>
 #include <cmath>
@@ -43,6 +44,21 @@ float shape(const float waveSum)
 
 } // namespace
 
+std::size_t PlasmaPart::byteSize() const
+{
+    return SeriesPart::byteSize() + categories.size() * sizeof(int);
+}
+
+std::size_t PlasmaBatch::byteSize() const
+{
+    return partsByteSize(parts);
+}
+
+bool operator==(const PlasmaParameters& a, const PlasmaParameters& b)
+{
+    return a.dataset == b.dataset && a.tileScale == b.tileScale && a.categoryCount == b.categoryCount;
+}
+
 void PlasmaGenerator::generate(Batch& batch, const Parameters& parameters, const double timeSeconds)
 {
     const auto rectangleCount = parameters.dataset.count;
@@ -51,14 +67,18 @@ void PlasmaGenerator::generate(Batch& batch, const Parameters& parameters, const
     const auto pitch = std::min(kDomainWidth / static_cast<float>(columns), kDomainHeight / static_cast<float>(rows));
     const auto originX = (kDomainWidth - static_cast<float>(columns) * pitch + pitch) * 0.5f;
     const auto originY = (kDomainHeight - static_cast<float>(rows) * pitch + pitch) * 0.5f;
-    const auto grid = Grid{columns, rows, rectangleCount, pitch, originX, originY};
+    const auto grid = Grid{columns, rows, pitch, originX, originY};
 
     updateWaveTerms(grid, timeSeconds);
     resizeParts(batch.parts, parameters.dataset, 4);
     for (auto& part : batch.parts) {
         part.categories.resize(parameters.categoryCount > 0 ? static_cast<std::size_t>(part.count) : 0);
     }
-    writeTiles(batch, grid, parameters);
+    parallelFor(rectangleCount, kParallelChunk, [this, &batch, &grid, &parameters](const int begin, const int end) {
+        forEachPartSlice(batch.parts, begin, end, [this, &grid, &parameters](PlasmaPart& part, const int first, const int last, const int partBegin) {
+            writeTiles(part, first, last, partBegin, grid, parameters);
+        });
+    });
     applyPrecision(batch.parts, parameters.dataset);
 }
 
@@ -99,42 +119,34 @@ void PlasmaGenerator::updateWaveTerms(const Grid& grid, const double timeSeconds
     }
 }
 
-void PlasmaGenerator::writeTiles(Batch& batch, const Grid& grid, const Parameters& parameters) const
+void PlasmaGenerator::writeTiles(PlasmaPart& part, const int first, const int last, const int partBegin, const Grid& grid, const Parameters& parameters) const
 {
     const auto categoryCount = parameters.categoryCount;
-    auto part = batch.parts.begin();
-    auto* rect = part->floats.data();
-    auto* category = part->categories.data();
-    auto partRemaining = part->count;
-    auto remaining = grid.tileCount;
-    for (auto row = 0; row < grid.rows; ++row) {
+    auto* rect = part.floats.data() + static_cast<std::size_t>(first) * 4;
+    auto* category = categoryCount > 0 ? part.categories.data() + first : nullptr;
+    // Tiles fill the grid row by row.
+    auto row = (partBegin + first) / grid.columns;
+    auto column = (partBegin + first) % grid.columns;
+    for (auto tile = first; tile < last; ++tile) {
+        const auto* xTerms = columnTerms_.data() + static_cast<std::size_t>(column) * kTermsPerLine;
         const auto* yTerms = rowTerms_.data() + static_cast<std::size_t>(row) * kTermsPerLine;
+        const auto waveSum = xTerms[0] + yTerms[0] + (xTerms[1] * yTerms[2] + xTerms[2] * yTerms[1]) + (xTerms[3] * yTerms[4] - xTerms[4] * yTerms[3]);
+        const auto value = shape(waveSum);
+        const auto halfSide = 0.5f * parameters.tileScale * tileSide(value, grid.pitch);
+        const auto x = grid.originX + static_cast<float>(column) * grid.pitch;
         const auto y = grid.originY + static_cast<float>(row) * grid.pitch;
-        const auto rowColumns = std::min(grid.columns, remaining);
-        for (auto column = 0; column < rowColumns; ++column) {
-            // The parts hold tileCount tiles in total, so a next part exists while tiles remain.
-            while (partRemaining == 0) {
-                ++part;
-                rect = part->floats.data();
-                category = part->categories.data();
-                partRemaining = part->count;
-            }
-            const auto* xTerms = columnTerms_.data() + static_cast<std::size_t>(column) * kTermsPerLine;
-            const auto waveSum = xTerms[0] + yTerms[0] + (xTerms[1] * yTerms[2] + xTerms[2] * yTerms[1]) + (xTerms[3] * yTerms[4] - xTerms[4] * yTerms[3]);
-            const auto value = shape(waveSum);
-            const auto halfSide = 0.5f * parameters.tileScale * tileSide(value, grid.pitch);
-            const auto x = grid.originX + static_cast<float>(column) * grid.pitch;
-            rect[0] = x - halfSide;
-            rect[1] = y - halfSide;
-            rect[2] = x + halfSide;
-            rect[3] = y + halfSide;
-            rect += 4;
-            if (categoryCount > 0) {
-                *category++ = std::min(categoryCount - 1, static_cast<int>(value * static_cast<float>(categoryCount)));
-            }
-            --partRemaining;
+        rect[0] = x - halfSide;
+        rect[1] = y - halfSide;
+        rect[2] = x + halfSide;
+        rect[3] = y + halfSide;
+        rect += 4;
+        if (category) {
+            *category++ = std::min(categoryCount - 1, static_cast<int>(value * static_cast<float>(categoryCount)));
         }
-        remaining -= rowColumns;
+        if (++column == grid.columns) {
+            column = 0;
+            ++row;
+        }
     }
 }
 

@@ -24,6 +24,7 @@ Window {
     property real averageFrameTimeMs: 16.7
     property int updateRate: 60
     property real longestDataGapMs: 0
+    property real dataCopyMs: 0
     readonly property string activePage: pages.currentName
     readonly property QtObject activeSettings: activePage === "pointCloud" ? pointCloudSettings : activePage === "rectangleSeries" ? rectangleSeriesSettings : activePage === "barSeries" ? barSeriesSettings : activePage === "heatmapSeries" ? heatmapSeriesSettings : lineCurveSettings
     readonly property int activeCount: activeSettings.count
@@ -54,6 +55,50 @@ Window {
     Material.theme: Material.Dark
     Material.accent: colorPalette.materialAccent
     Material.foreground: colorPalette.text
+
+    component MetricCard: Rectangle {
+        id: card
+
+        required property string label
+        required property string value
+        required property string detail
+
+        // Equal shares of the row, whatever the text widths.
+        Layout.fillWidth: true
+        Layout.preferredWidth: 1
+        Layout.preferredHeight: 70
+        color: QAccelPlot.Colors.dark.control
+        border.color: QAccelPlot.Colors.dark.outline
+        radius: 4
+
+        Column {
+            anchors.centerIn: parent
+            spacing: 2
+
+            Text {
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: card.label
+                color: QAccelPlot.Colors.dark.textSecondary
+                font.bold: true
+                font.pixelSize: 11
+            }
+
+            Text {
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: card.value
+                color: QAccelPlot.Colors.dark.text
+                font.bold: true
+                font.pixelSize: 22
+            }
+
+            Text {
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: card.detail
+                color: QAccelPlot.Colors.dark.textMuted
+                font.pixelSize: 10
+            }
+        }
+    }
 
     Component {
         id: lineCurveDefaults
@@ -112,71 +157,42 @@ Window {
                 subtitle: "Display FPS counts frames presented to the screen. Data Update Rate shows how many new datasets are applied to the plot each second."
             }
 
-            GridLayout {
-                columns: 4
-                columnSpacing: 8
+            // Changing text adds and removes scene graph nodes, and that makes the window's renderer
+            // re-upload every series. The layer keeps the per-second metric updates in a renderer
+            // of their own.
+            RowLayout {
+                spacing: 8
+                layer.enabled: true
                 Layout.fillWidth: true
 
-                Repeater {
-                    model: [
-                        {
-                            label: "DISPLAY FPS",
-                            value: window.fps.toString(),
-                            detail: "frames presented / second"
-                        },
-                        {
-                            label: "DATA UPDATE RATE",
-                            value: window.updateRate.toString() + " Hz",
-                            detail: "peak update gap " + window.longestDataGapMs.toFixed(0) + " ms"
-                        },
-                        {
-                            label: "FRAME TIME",
-                            value: window.averageFrameTimeMs.toFixed(1) + " ms",
-                            detail: "between presents"
-                        },
-                        {
-                            label: "THROUGHPUT",
-                            value: window.throughputMillions.toFixed(1) + " M",
-                            detail: window.activeSettings.noun + " updated / second"
-                        }
-                    ]
+                MetricCard {
+                    label: "DISPLAY FPS"
+                    value: window.fps.toString()
+                    detail: "frames presented / second"
+                }
 
-                    delegate: Rectangle {
-                        required property var modelData
-                        Layout.fillWidth: true
-                        Layout.preferredHeight: 70
-                        color: colorPalette.control
-                        border.color: colorPalette.outline
-                        radius: 4
+                MetricCard {
+                    label: "DATA UPDATE RATE"
+                    value: window.updateRate.toString() + " Hz"
+                    detail: "peak update gap " + window.longestDataGapMs.toFixed(0) + " ms"
+                }
 
-                        Column {
-                            anchors.centerIn: parent
-                            spacing: 2
+                MetricCard {
+                    label: "FRAME TIME"
+                    value: window.averageFrameTimeMs.toFixed(1) + " ms"
+                    detail: "between presents"
+                }
 
-                            Text {
-                                anchors.horizontalCenter: parent.horizontalCenter
-                                text: modelData.label
-                                color: colorPalette.textSecondary
-                                font.bold: true
-                                font.pixelSize: 11
-                            }
+                MetricCard {
+                    label: "THROUGHPUT"
+                    value: window.throughputMillions.toFixed(1) + " M"
+                    detail: window.activeSettings.noun + " updated / second"
+                }
 
-                            Text {
-                                anchors.horizontalCenter: parent.horizontalCenter
-                                text: modelData.value
-                                color: colorPalette.text
-                                font.bold: true
-                                font.pixelSize: 22
-                            }
-
-                            Text {
-                                anchors.horizontalCenter: parent.horizontalCenter
-                                text: modelData.detail
-                                color: colorPalette.textMuted
-                                font.pixelSize: 10
-                            }
-                        }
-                    }
+                MetricCard {
+                    label: "DATA COPY"
+                    value: window.dataCopyMs.toFixed(1) + " ms"
+                    detail: "worker time per dataset"
                 }
             }
 

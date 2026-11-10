@@ -72,7 +72,7 @@ ScrollView {
         }
 
         Label {
-            text: "Up to " + root.countLabel(root.settings.maximumCount) + " " + root.settings.noun + ". Only the visible tab generates data."
+            text: "Up to " + root.countLabel(root.settings.maximumCount) + " " + root.settings.noun + ". When its settings change, the visible tab generates a loop of up to 1 GB of frames, then plays it back and forth, copying one frame per dataset."
             color: root.colorPalette.textMuted
             wrapMode: Text.WordWrap
             Layout.fillWidth: true

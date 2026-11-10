@@ -29,12 +29,18 @@ struct SpectrogramPart : SeriesPart {
 /// \brief One HeatmapSeries dataset, split into consecutive bands of rows.
 struct SpectrogramBatch {
     std::vector<SpectrogramPart> parts;
+
+    /// \brief Returns the bytes held by the batch's cells.
+    std::size_t byteSize() const;
 };
 
 /// \brief Settings of a SpectrogramGenerator batch.
 struct SpectrogramParameters {
     DatasetParameters dataset;
 };
+
+/// \brief Returns \c true when \a a and \a b describe the same batch, apart from its time.
+bool operator==(const SpectrogramParameters& a, const SpectrogramParameters& b);
 
 /// \brief Generates a scrolling spectrogram on a square grid: frequency along x, time along y.
 ///
@@ -43,7 +49,7 @@ struct SpectrogramParameters {
 /// tones drifting in frequency, and a chirp sweeping the band. Values are in [0, 1], shaped like
 /// decibels: a peak falls off as a parabola around its frequency. The generator keeps the spectra
 /// in a ring buffer and synthesizes only the rows that are new since the previous batch, so a
-/// batch mostly costs a copy of the grid.
+/// batch mostly costs a copy of the grid, which several threads share for large grids.
 class SpectrogramGenerator final {
 public:
     using Batch = SpectrogramBatch;
@@ -62,6 +68,8 @@ private:
     void updateHistory(int side, std::int64_t newestLine);
     void writeLine(std::int64_t line);
     void copyRows(Batch& batch, const Parameters& parameters) const;
+    // Copies cells [first, last) of part from the history; oldestLine is the line of grid row 0.
+    void copyCells(SpectrogramPart& part, int first, int last, std::int64_t oldestLine) const;
     std::size_t lineOffset(std::int64_t line) const;
 
     std::vector<float> history_; // ring buffer of side spectra, side values each

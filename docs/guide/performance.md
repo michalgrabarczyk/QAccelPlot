@@ -144,17 +144,24 @@ Compare both modes with your workload, or build the
 
 [`examples/showcases/performance`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/showcases/performance)
 streams a `LineCurve`, a `PointCloud`, a `RectangleSeries`, a `BarSeries`, and
-a `HeatmapSeries`, one per tab, with options for record and series count, ingestion API, hover,
-and rendering. It presents without vsync, so the display's refresh rate does
-not cap display FPS. Change one option at a time. The lab reports:
+a `HeatmapSeries`, one per tab, with options for record and series count,
+ingestion API, hover, and rendering. It presents without vsync, so the
+display's refresh rate does not cap display FPS. Change one option at a time.
+
+When the settings change, a worker thread generates a loop of up to 1 GB of
+frames. It then plays the loop forward and backward, copying one frame into
+each dataset, so the measurements exclude the cost of computing the data. The
+lab reports:
 
 - **Display FPS** — frames presented to the screen.
-- **Data Update Rate** (Hz) — new datasets applied to the plot per second,
-  including worker-side generation.
+- **Data Update Rate** (Hz) — new datasets applied to the plot per second.
 - **Peak update gap** — the longest interval between two dataset applications
   in the last reporting period.
 - **Throughput** — points, rectangles, bars, or heatmap cells updated per
   second.
+- **Data copy** — worker time to copy one frame into a dataset. The worker
+  copies the next dataset while one waits, so this limits the update rate only
+  when it exceeds the frame time.
 
 [set-data-points]: api/classQAccelPlot_1_1LineCurve.md#function-setdata-18
 [set-data-vectors]: api/classQAccelPlot_1_1LineCurve.md#function-setdata-28

@@ -32,7 +32,7 @@ public:
 
     /// \brief Connects to \a window's frames and looks up the pages below \a root.
     ///
-    /// In \a screenshotMode every batch is generated at time zero.
+    /// In \a screenshotMode every page replays one still frame generated at time zero.
     ShowcaseController(QQuickWindow* window, QObject* root, std::shared_ptr<DataDeliveryMetrics> deliveryMetrics, bool screenshotMode);
     ~ShowcaseController() override;
 

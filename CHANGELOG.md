@@ -44,6 +44,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `label.font`, `label.color`, and `label.padding` instead of `label`,
   `labelFont`, `labelColor`, and `labelPadding`. In C++, `label()` returns the
   group, for example `axis->label()->setText()` with `AxisLabel.hpp` included.
+- The `showcases/performance` example replays a loop of frames generated when
+  the settings change, so its measurements exclude data generation, and shows
+  the worker's copy time per dataset. It no longer stalls once a second when
+  its metrics update.
 
 ## [0.5.0] — 2026-11-01
 

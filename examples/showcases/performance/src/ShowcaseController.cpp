@@ -31,9 +31,11 @@ ShowcaseController::ShowcaseController(QQuickWindow* window, QObject* root, std:
     : QObject(window)
     , root_(root)
     , deliveryMetrics_(std::move(deliveryMetrics))
-    , feeders_{std::make_unique<SeriesFeeder<LineCurveFeed>>(root), std::make_unique<SeriesFeeder<PointCloudFeed>>(root),
-          std::make_unique<SeriesFeeder<RectangleSeriesFeed>>(root), std::make_unique<SeriesFeeder<BarSeriesFeed>>(root),
-          std::make_unique<SeriesFeeder<HeatmapSeriesFeed>>(root)}
+    , feeders_{std::make_unique<SeriesFeeder<LineCurveFeed>>(root, deliveryMetrics_, screenshotMode),
+          std::make_unique<SeriesFeeder<PointCloudFeed>>(root, deliveryMetrics_, screenshotMode),
+          std::make_unique<SeriesFeeder<RectangleSeriesFeed>>(root, deliveryMetrics_, screenshotMode),
+          std::make_unique<SeriesFeeder<BarSeriesFeed>>(root, deliveryMetrics_, screenshotMode),
+          std::make_unique<SeriesFeeder<HeatmapSeriesFeed>>(root, deliveryMetrics_, screenshotMode)}
     , screenshotMode_(screenshotMode)
 {
     elapsed_.start();

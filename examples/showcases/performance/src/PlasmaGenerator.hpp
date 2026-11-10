@@ -9,6 +9,7 @@
 
 #include "DatasetParts.hpp"
 
+#include <cstddef>
 #include <vector>
 
 namespace QAccelPlotExample {
@@ -17,11 +18,17 @@ namespace QAccelPlotExample {
 struct PlasmaPart : SeriesPart {
     /// \brief One category per rectangle; empty when categories are off.
     std::vector<int> categories;
+
+    /// \brief Returns the bytes held by the rectangles and categories.
+    std::size_t byteSize() const;
 };
 
 /// \brief One RectangleSeries dataset, split into consecutive runs of grid rows.
 struct PlasmaBatch {
     std::vector<PlasmaPart> parts;
+
+    /// \brief Returns the bytes held by the batch's records.
+    std::size_t byteSize() const;
 };
 
 /// \brief Settings of a PlasmaGenerator batch.
@@ -33,13 +40,16 @@ struct PlasmaParameters {
     int categoryCount{0};
 };
 
+/// \brief Returns \c true when \a a and \a b describe the same batch, apart from its time.
+bool operator==(const PlasmaParameters& a, const PlasmaParameters& b);
+
 /// \brief Generates a grid of square tiles sized by a drifting plasma field.
 ///
 /// The field is a sum of sine waves along x, y, and both diagonals. The waves are evaluated once
 /// per row and per column, and the diagonal ones are combined with angle-sum identities, so a
 /// tile costs a few multiply-adds. Tiles grow beyond their grid cell at the crests, so with a
 /// translucent fill the crests stay brighter than the troughs even when tiles are smaller than
-/// a pixel.
+/// a pixel. Large datasets are written by several threads.
 class PlasmaGenerator final {
 public:
     using Batch = PlasmaBatch;
@@ -62,14 +72,14 @@ private:
     struct Grid {
         int columns;
         int rows;
-        int tileCount;
         float pitch;
         float originX;
         float originY;
     };
 
     void updateWaveTerms(const Grid& grid, double timeSeconds);
-    void writeTiles(Batch& batch, const Grid& grid, const Parameters& parameters) const;
+    // Writes tiles [first, last) of part; partBegin is the grid index of the part's first tile.
+    void writeTiles(PlasmaPart& part, int first, int last, int partBegin, const Grid& grid, const Parameters& parameters) const;
 
     std::vector<float> columnTerms_; // per column: x wave, sin and cos of both diagonal x phases
     std::vector<float> rowTerms_;    // per row: y wave, sin and cos of both diagonal y phases

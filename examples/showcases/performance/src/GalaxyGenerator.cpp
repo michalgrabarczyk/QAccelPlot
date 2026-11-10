@@ -6,6 +6,7 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #include "GalaxyGenerator.hpp"
+#include "ParallelFor.hpp"
 #include "XorShiftRandom.hpp"
 
 #include <algorithm>
@@ -97,6 +98,21 @@ void invalidatePoints(GalaxyPart& part, const int firstPoint, const float invali
 
 } // namespace
 
+std::size_t GalaxyPart::byteSize() const
+{
+    return SeriesPart::byteSize() + values.size() * sizeof(float);
+}
+
+std::size_t GalaxyBatch::byteSize() const
+{
+    return partsByteSize(parts);
+}
+
+bool operator==(const GalaxyParameters& a, const GalaxyParameters& b)
+{
+    return a.dataset == b.dataset && a.values == b.values && a.invalidFraction == b.invalidFraction;
+}
+
 void GalaxyGenerator::generate(Batch& batch, const Parameters& parameters, const double timeSeconds)
 {
     const auto pointCount = parameters.dataset.count;
@@ -105,11 +121,18 @@ void GalaxyGenerator::generate(Batch& batch, const Parameters& parameters, const
     }
 
     resizeParts(batch.parts, parameters.dataset, 2);
+    for (auto& part : batch.parts) {
+        part.values.resize(parameters.values ? static_cast<std::size_t>(part.count) : 0);
+    }
+    const auto rotations = bandRotationsAt(timeSeconds);
+    parallelFor(pointCount, kParallelChunk, [this, &batch, &rotations](const int begin, const int end) {
+        forEachPartSlice(batch.parts, begin, end, [this, &rotations](GalaxyPart& part, const int first, const int last, const int partBegin) {
+            writeSlice(part, first, last, partBegin, rotations);
+        });
+    });
+
     auto firstPoint = 0;
     for (auto& part : batch.parts) {
-        const auto firstValue = baseValues_.begin() + firstPoint;
-        part.values.assign(firstValue, firstValue + (parameters.values ? part.count : 0));
-        rotateInto(part, firstPoint, timeSeconds);
         invalidatePoints(part, firstPoint, parameters.invalidFraction);
         firstPoint += part.count;
     }
@@ -159,18 +182,32 @@ void GalaxyGenerator::rebuildGalaxy(const int pointCount)
     builtPointCount_ = pointCount;
 }
 
-void GalaxyGenerator::rotateInto(GalaxyPart& part, const int firstPoint, const double timeSeconds) const
+GalaxyGenerator::BandRotations GalaxyGenerator::bandRotationsAt(const double timeSeconds)
 {
-    const auto endPoint = firstPoint + part.count;
+    auto rotations = BandRotations{};
     for (auto band = 0; band < kBandCount; ++band) {
-        const auto begin = std::max(firstPoint, bandStarts_[static_cast<std::size_t>(band)]);
+        const auto angle = bandAngleAt(band, timeSeconds);
+        rotations[static_cast<std::size_t>(band)] = {static_cast<float>(std::cos(angle)), static_cast<float>(std::sin(angle))};
+    }
+    return rotations;
+}
+
+void GalaxyGenerator::writeSlice(GalaxyPart& part, const int first, const int last, const int partBegin, const BandRotations& rotations) const
+{
+    const auto beginPoint = partBegin + first;
+    const auto endPoint = partBegin + last;
+    if (!part.values.empty()) {
+        std::copy(baseValues_.begin() + beginPoint, baseValues_.begin() + endPoint, part.values.begin() + first);
+    }
+    for (auto band = 0; band < kBandCount; ++band) {
+        const auto begin = std::max(beginPoint, bandStarts_[static_cast<std::size_t>(band)]);
         const auto end = std::min(endPoint, bandStarts_[static_cast<std::size_t>(band) + 1]);
         if (begin >= end) {
             continue;
         }
-        const auto angle = bandAngleAt(band, timeSeconds);
-        rotatePoints(basePositions_.data() + static_cast<std::size_t>(begin) * 2, part.floats.data() + static_cast<std::size_t>(begin - firstPoint) * 2,
-            end - begin, static_cast<float>(std::cos(angle)), static_cast<float>(std::sin(angle)));
+        const auto& rotation = rotations[static_cast<std::size_t>(band)];
+        rotatePoints(basePositions_.data() + static_cast<std::size_t>(begin) * 2, part.floats.data() + static_cast<std::size_t>(begin - partBegin) * 2,
+            end - begin, rotation.cosine, rotation.sine);
     }
 }
 

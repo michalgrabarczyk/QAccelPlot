@@ -9,6 +9,7 @@
 
 #include "DatasetParts.hpp"
 
+#include <cstddef>
 #include <vector>
 
 namespace QAccelPlotExample {
@@ -17,11 +18,17 @@ namespace QAccelPlotExample {
 struct InterferencePart : SeriesPart {
     /// \brief One category per bar; empty when categories are off.
     std::vector<int> categories;
+
+    /// \brief Returns the bytes held by the bars and categories.
+    std::size_t byteSize() const;
 };
 
 /// \brief One BarSeries dataset, split into consecutive runs of bars.
 struct InterferenceBatch {
     std::vector<InterferencePart> parts;
+
+    /// \brief Returns the bytes held by the batch's records.
+    std::size_t byteSize() const;
 };
 
 /// \brief Settings of an InterferenceGenerator batch.
@@ -31,11 +38,15 @@ struct InterferenceParameters {
     int categoryCount{0};
 };
 
+/// \brief Returns \c true when \a a and \a b describe the same batch, apart from its time.
+bool operator==(const InterferenceParameters& a, const InterferenceParameters& b);
+
 /// \brief Generates bars whose values follow three sine waves drifting at different speeds.
 ///
 /// A bar's position is its index, which a float holds exactly for every bar count the showcase
 /// offers. The waves span the dataset a fixed number of times whatever the bar count, and come
-/// from \c SineLookupCursor, so no trigonometry runs per bar.
+/// from \c SineLookupCursor, so no trigonometry runs per bar. Large datasets are written by
+/// several threads.
 class InterferenceGenerator final {
 public:
     using Batch = InterferenceBatch;

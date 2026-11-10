@@ -7,26 +7,32 @@
 //
 #pragma once
 
+#include "ReplayLoop.hpp"
+
 #include <atomic>
 #include <chrono>
 #include <condition_variable>
+#include <functional>
 #include <mutex>
 #include <thread>
 #include <utility>
 
 namespace QAccelPlotExample {
 
-/// \brief Runs a dataset generator on a background thread, keeping at most one completed batch pending.
+/// \brief Replays generated datasets from a background thread, keeping at most one completed batch pending.
 ///
-/// The worker waits until the pending batch is consumed before generating another, so it never
-/// builds datasets the display cannot show. \a Generator provides default-constructible
-/// \c Batch and \c Parameters types and
-/// <tt>void generate(Batch&, const Parameters&, double timeSeconds)</tt>.
-/// \c start(), \c requestStop(), and \c stop() must be called from one thread.
+/// The worker generates a \c ReplayLoop whenever the parameters change and copies one of its
+/// frames into each batch. While a batch is pending, it copies the next one and then waits until
+/// the pending batch is consumed, so it never prepares more than one dataset ahead of the display.
+/// \a Generator provides default-constructible \c Batch and \c Parameters types,
+/// <tt>void generate(Batch&, const Parameters&, double timeSeconds)</tt>, and what \c ReplayLoop
+/// requires. \c start(), \c requestStop(), and \c stop() must be called from one thread.
 template <typename Generator> class GenerationWorker final {
 public:
     using Batch = typename Generator::Batch;
     using Parameters = typename Generator::Parameters;
+    /// \brief Receives the time the worker spent copying one batch, on the worker thread.
+    using CopyCallback = std::function<void(std::chrono::nanoseconds)>;
 
     /// \brief Constructs a stopped worker with default-constructed parameters.
     GenerationWorker() = default;
@@ -84,7 +90,7 @@ public:
         return running_.load(std::memory_order_acquire);
     }
 
-    /// \brief Sets the animation time, in seconds, used for subsequent batches.
+    /// \brief Sets the animation time, in seconds, at which the next replay loop starts.
     void setTime(const double seconds)
     {
         timeSeconds_.store(seconds, std::memory_order_relaxed);
@@ -97,6 +103,20 @@ public:
         parameters_ = parameters;
     }
 
+    /// \brief Sets the animation time between replayed frames. Call it before \c start().
+    ///
+    /// The default is \c ReplayLoop::kFrameIntervalSeconds; 0 replays one still frame.
+    void setFrameInterval(const double seconds)
+    {
+        frameIntervalSeconds_ = seconds;
+    }
+
+    /// \brief Sets the function told how long each batch took to copy. Call it before \c start().
+    void setCopyCallback(CopyCallback callback)
+    {
+        copyCallback_ = std::move(callback);
+    }
+
     /// \brief Waits until a completed batch is pending or \a timeout elapses.
     bool waitForData(const std::chrono::milliseconds timeout)
     {
@@ -105,7 +125,10 @@ public:
         return dataReady_;
     }
 
-    /// \brief Moves the pending batch into \a batch and lets the worker generate the next one.
+    /// \brief Swaps the pending batch into \a batch and lets the worker publish the next one.
+    ///
+    /// The worker reuses the storage that \a batch held for a later batch, so a batch whose
+    /// records were copied rather than moved out is not allocated again.
     bool tryConsume(Batch& batch)
     {
         const auto lock = std::lock_guard<std::mutex>{mutex_};
@@ -113,8 +136,7 @@ public:
             return false;
         }
 
-        batch = std::move(readyBatch_);
-        readyBatch_ = Batch{};
+        std::swap(batch, readyBatch_);
         dataReady_ = false;
         conditionVariable_.notify_one();
         return true;
@@ -124,19 +146,49 @@ private:
     void run()
     {
         auto workBatch = Batch{};
+        auto loop = ReplayLoop<Generator>{};
         while (running_.load(std::memory_order_relaxed)) {
-            generator_.generate(workBatch, parameters(), timeSeconds_.load(std::memory_order_relaxed));
-
-            {
-                const auto lock = std::lock_guard<std::mutex>{mutex_};
-                std::swap(readyBatch_, workBatch);
-                dataReady_ = true;
+            if (!prepare(workBatch, loop) || !publish(workBatch)) {
+                return;
             }
-            conditionVariable_.notify_all();
+        }
+    }
 
+    // Copies the next frame of the replay loop into batch, first building the loop for the current
+    // parameters if needed. Returns false when a stop interrupted the build.
+    bool prepare(Batch& batch, ReplayLoop<Generator>& loop)
+    {
+        const auto parameters = this->parameters();
+        if (!loop.holds(parameters)) {
+            const auto timeSeconds = timeSeconds_.load(std::memory_order_relaxed);
+            if (!loop.build(generator_, parameters, timeSeconds, frameIntervalSeconds_, [this]() { return !isRunning(); })) {
+                return false;
+            }
+        }
+
+        const auto start = std::chrono::steady_clock::now();
+        loop.next(batch);
+        if (copyCallback_) {
+            copyCallback_(std::chrono::steady_clock::now() - start);
+        }
+        return true;
+    }
+
+    // Waits until no batch is pending, then makes batch the pending one and takes back the storage
+    // of the batch consumed last. Returns false when stopped first.
+    bool publish(Batch& batch)
+    {
+        {
             auto lock = std::unique_lock<std::mutex>{mutex_};
             conditionVariable_.wait(lock, [this]() { return !dataReady_ || !running_.load(std::memory_order_relaxed); });
+            if (!running_.load(std::memory_order_relaxed)) {
+                return false;
+            }
+            std::swap(readyBatch_, batch);
+            dataReady_ = true;
         }
+        conditionVariable_.notify_all();
+        return true;
     }
 
     Parameters parameters()
@@ -154,6 +206,8 @@ private:
     std::atomic<bool> running_{false};
     std::atomic<double> timeSeconds_{0.0};
     Parameters parameters_;
+    double frameIntervalSeconds_{ReplayLoop<Generator>::kFrameIntervalSeconds};
+    CopyCallback copyCallback_;
 };
 
 } // namespace QAccelPlotExample
