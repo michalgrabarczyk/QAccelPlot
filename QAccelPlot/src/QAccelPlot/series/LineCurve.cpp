@@ -660,12 +660,9 @@ void LineCurve::onDataPointsChanged(const DataChange change, [[maybe_unused]] co
     }
     dataChanged_ = true;
     refreshVertexCacheForDataChange();
+    // The first hit test after the change rebuilds the chunk AABBs, so streamed data costs no
+    // scan while the pointer is away from the curve.
     chunksValid_ = false;
-    // A curve that accepts hover pre-builds its chunk AABBs, so that hover hit-tests never block
-    // on a lazy O(N) rebuild during live rendering. Other curves build them on the first hit test.
-    if (acceptHoverEvents()) {
-        rebuildChunks();
-    }
 }
 
 void LineCurve::onLineStyleChanged()

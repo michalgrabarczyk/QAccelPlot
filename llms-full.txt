@@ -581,7 +581,7 @@ Hover cost per mouse move:
 
 | Series | Cost |
 | --- | --- |
-| `LineCurve` | Checks one bounding box per 512 points, then the segments and markers in the matching boxes. `hoverRadius: 0` skips the segments. |
+| `LineCurve` | Builds one bounding box per 512 points on the first move after a data change, then tests the segments and markers in the boxes near the cursor. `hoverRadius: 0` skips the segments. |
 | `PointCloud`, `RectangleSeries` | Tests every record, roughly 1–2 ms per million, until those scans have cost as much as a spatial index. The index is then built, and later moves test only nearby records. Data replaced every frame never builds one. |
 | `BarSeries` | Builds a grid on the first move after a data change, then tests nearby bars. |
 
