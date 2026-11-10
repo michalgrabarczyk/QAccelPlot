@@ -84,6 +84,7 @@ bool TransitionRunner::setTransition(const Slot slot, DataTransition* transition
         destroyedConnections_[index] = connect(transition, &QObject::destroyed, this, [this, slot] { onTransitionDestroyed(slot); });
         runningConnections_[index] = connect(transition, &DataTransition::runningChanged, this, &TransitionRunner::onRunningChanged);
     }
+    emit transitionChanged(slot);
     return true;
 }
 
@@ -277,7 +278,7 @@ void TransitionRunner::onTransitionDestroyed(const Slot slot)
     if (used_[slotIndex(slot)]) {
         interrupt();
     }
-    emit transitionDestroyed(slot);
+    emit transitionChanged(slot);
 }
 
 void TransitionRunner::onRunningChanged()

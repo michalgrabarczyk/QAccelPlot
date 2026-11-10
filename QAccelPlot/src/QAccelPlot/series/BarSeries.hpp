@@ -364,7 +364,6 @@ private:
     std::vector<int> transitionCategories(const std::vector<int>& previous, int transitionBarCount) const;
     // Animates from \a drawn to the data.
     void startTransition(Bars&& drawn);
-    void onTransitionDestroyed(TransitionRunner::Slot slot);
     void advanceTransition();
     // Draws the next frame of the running transition, or the data when it ends.
     void showTransitionFrame();

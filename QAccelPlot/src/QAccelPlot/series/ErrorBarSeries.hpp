@@ -281,7 +281,6 @@ private:
     void applyDoubleData(std::vector<double>&& data, int dataPointCount);
     // Starts animating from the \a drawnCount error bars in \a drawn to the stored ones.
     void startTransition(const std::vector<double>& drawn, int drawnCount);
-    void onTransitionDestroyed(TransitionRunner::Slot slot);
     void advanceTransition();
     // Draws the next frame of the running transition, or the data when it ends.
     void showTransitionFrame();

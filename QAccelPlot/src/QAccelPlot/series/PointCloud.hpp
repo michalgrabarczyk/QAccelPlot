@@ -237,7 +237,6 @@ private:
     Points drawnPoints() const;
     /// \brief Animates from \a drawn to the data.
     void startTransition(Points&& drawn);
-    void onTransitionDestroyed(TransitionRunner::Slot slot);
     void advanceTransition();
     /// \brief Draws the next frame of the running transition, or the data when it ends.
     void showTransitionFrame();

@@ -38,7 +38,8 @@ namespace QAccelPlot {
 /// \c LineCurve, \c BarSeries, \c PointCloud, and \c ErrorBarSeries animate through it.
 ///
 /// \par Usage
-/// - Forward the item's transition properties to the slot getters and setters.
+/// - Forward the item's transition properties to the slot getters and setters, and their change
+///   signals through \c notifyTransitionChanges().
 /// - When data arrives and \c animates() is \c true, call \c start(). When it returns \c false,
 ///   or when \c animates() is \c false, call \c cancel() and show the data.
 /// - After \c start() and on \c frameDue(), call \c advance() and show the frame.
@@ -74,6 +75,26 @@ public:
     /// The enter and exit slots take only an \c EnterExitTransition.
     /// \return \c false when \a transition is already assigned to \a slot, or does not fit it.
     bool setTransition(Slot slot, DataTransition* transition);
+
+    /// \brief Emits \a item's \c enterTransitionChanged(), \c updateTransitionChanged(), or
+    /// \c exitTransitionChanged() signal when the transition of that slot changes.
+    template <typename Item> void notifyTransitionChanges(Item* item)
+    {
+        connect(this, &TransitionRunner::transitionChanged, item, [item](const Slot slot) {
+            switch (slot) {
+            case Slot::Enter:
+                emit item->enterTransitionChanged();
+                break;
+            case Slot::Update:
+                emit item->updateTransitionChanged();
+                break;
+            case Slot::Exit:
+                emit item->exitTransitionChanged();
+                break;
+            }
+        });
+    }
+
     /// \brief Returns \c true when some slot has an enabled transition.
     bool enabled() const;
     /// \brief Returns \c true when a change from \a currentPointCount drawn items to \a newPointCount items may start a run.
@@ -122,8 +143,8 @@ signals:
     ///
     /// The run still holds the target data. A run still pending after the signal is cancelled.
     void interrupted();
-    /// \brief Emitted after the transition of \a slot was destroyed, when \c transition() is already \c nullptr.
-    void transitionDestroyed(TransitionRunner::Slot slot);
+    /// \brief Emitted when the transition of \a slot changes: \c setTransition() assigned another, or it was destroyed.
+    void transitionChanged(TransitionRunner::Slot slot);
     /// \brief Emitted when \c active() changes.
     void activeChanged();
 

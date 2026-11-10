@@ -104,7 +104,7 @@ PointCloud::PointCloud(QQuickItem* parent)
     connect(this, &QQuickItem::antialiasingChanged, this, &PlotSeries::legendEntryChanged);
     connect(transition_.get(), &TransitionRunner::frameDue, this, &PointCloud::advanceTransition);
     connect(transition_.get(), &TransitionRunner::interrupted, this, &PointCloud::endTransition);
-    connect(transition_.get(), &TransitionRunner::transitionDestroyed, this, &PointCloud::onTransitionDestroyed);
+    transition_->notifyTransitionChanges(this);
     connect(transition_.get(), &TransitionRunner::activeChanged, this, [this] { setAnimating(transition_->active()); });
 }
 
@@ -174,9 +174,7 @@ EnterExitTransition* PointCloud::enterTransition() const
 
 void PointCloud::setEnterTransition(EnterExitTransition* transition)
 {
-    if (transition_->setTransition(TransitionRunner::Slot::Enter, transition)) {
-        emit enterTransitionChanged();
-    }
+    transition_->setTransition(TransitionRunner::Slot::Enter, transition);
 }
 
 DataTransition* PointCloud::updateTransition() const
@@ -186,9 +184,7 @@ DataTransition* PointCloud::updateTransition() const
 
 void PointCloud::setUpdateTransition(DataTransition* transition)
 {
-    if (transition_->setTransition(TransitionRunner::Slot::Update, transition)) {
-        emit updateTransitionChanged();
-    }
+    transition_->setTransition(TransitionRunner::Slot::Update, transition);
 }
 
 EnterExitTransition* PointCloud::exitTransition() const
@@ -198,9 +194,7 @@ EnterExitTransition* PointCloud::exitTransition() const
 
 void PointCloud::setExitTransition(EnterExitTransition* transition)
 {
-    if (transition_->setTransition(TransitionRunner::Slot::Exit, transition)) {
-        emit exitTransitionChanged();
-    }
+    transition_->setTransition(TransitionRunner::Slot::Exit, transition);
 }
 
 int PointCloud::hoveredIndex() const
@@ -702,21 +696,6 @@ void PointCloud::startTransition(Points&& drawn)
         return;
     }
     showTransitionFrame();
-}
-
-void PointCloud::onTransitionDestroyed(const TransitionRunner::Slot slot)
-{
-    switch (slot) {
-    case TransitionRunner::Slot::Enter:
-        emit enterTransitionChanged();
-        break;
-    case TransitionRunner::Slot::Update:
-        emit updateTransitionChanged();
-        break;
-    case TransitionRunner::Slot::Exit:
-        emit exitTransitionChanged();
-        break;
-    }
 }
 
 void PointCloud::advanceTransition()

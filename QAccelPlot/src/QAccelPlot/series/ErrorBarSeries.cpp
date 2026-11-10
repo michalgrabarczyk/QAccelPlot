@@ -152,7 +152,7 @@ ErrorBarSeries::ErrorBarSeries(QQuickItem* parent)
     setAcceptedMouseButtons(Qt::NoButton);
     connect(transition_.get(), &TransitionRunner::frameDue, this, &ErrorBarSeries::advanceTransition);
     connect(transition_.get(), &TransitionRunner::interrupted, this, &ErrorBarSeries::endTransition);
-    connect(transition_.get(), &TransitionRunner::transitionDestroyed, this, &ErrorBarSeries::onTransitionDestroyed);
+    transition_->notifyTransitionChanges(this);
     connect(transition_.get(), &TransitionRunner::activeChanged, this, [this] { setAnimating(transition_->active()); });
 }
 
@@ -279,9 +279,7 @@ EnterExitTransition* ErrorBarSeries::enterTransition() const
 
 void ErrorBarSeries::setEnterTransition(EnterExitTransition* transition)
 {
-    if (transition_->setTransition(TransitionRunner::Slot::Enter, transition)) {
-        emit enterTransitionChanged();
-    }
+    transition_->setTransition(TransitionRunner::Slot::Enter, transition);
 }
 
 DataTransition* ErrorBarSeries::updateTransition() const
@@ -291,9 +289,7 @@ DataTransition* ErrorBarSeries::updateTransition() const
 
 void ErrorBarSeries::setUpdateTransition(DataTransition* transition)
 {
-    if (transition_->setTransition(TransitionRunner::Slot::Update, transition)) {
-        emit updateTransitionChanged();
-    }
+    transition_->setTransition(TransitionRunner::Slot::Update, transition);
 }
 
 EnterExitTransition* ErrorBarSeries::exitTransition() const
@@ -303,9 +299,7 @@ EnterExitTransition* ErrorBarSeries::exitTransition() const
 
 void ErrorBarSeries::setExitTransition(EnterExitTransition* transition)
 {
-    if (transition_->setTransition(TransitionRunner::Slot::Exit, transition)) {
-        emit exitTransitionChanged();
-    }
+    transition_->setTransition(TransitionRunner::Slot::Exit, transition);
 }
 
 int ErrorBarSeries::hoveredIndex() const
@@ -606,21 +600,6 @@ void ErrorBarSeries::startTransition(const std::vector<double>& drawn, const int
         return;
     }
     showTransitionFrame();
-}
-
-void ErrorBarSeries::onTransitionDestroyed(const TransitionRunner::Slot slot)
-{
-    switch (slot) {
-    case TransitionRunner::Slot::Enter:
-        emit enterTransitionChanged();
-        break;
-    case TransitionRunner::Slot::Update:
-        emit updateTransitionChanged();
-        break;
-    case TransitionRunner::Slot::Exit:
-        emit exitTransitionChanged();
-        break;
-    }
 }
 
 void ErrorBarSeries::advanceTransition()

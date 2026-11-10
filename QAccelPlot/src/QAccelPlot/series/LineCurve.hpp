@@ -204,7 +204,6 @@ signals:
     void stepModeChanged();
 
 private:
-    void onTransitionDestroyed(TransitionRunner::Slot slot);
     void onLineStyleChanged();
     void onLineStyleDestroyed();
     void onNanGapModeChanged();

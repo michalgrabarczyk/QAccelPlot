@@ -190,7 +190,8 @@ LineCurve::LineCurve(QQuickItem* parent)
     connect(marker_, &SeriesMarker::strokeWidthChanged, this, &QQuickItem::update);
     connect(transition_.get(), &TransitionRunner::frameDue, this, &LineCurve::advanceTransition);
     connect(transition_.get(), &TransitionRunner::interrupted, this, &LineCurve::finishTransition);
-    connect(transition_.get(), &TransitionRunner::transitionDestroyed, this, &LineCurve::onTransitionDestroyed);
+    transition_->notifyTransitionChanges(this);
+    connect(transition_.get(), &TransitionRunner::transitionChanged, this, [this] { update(); });
     connect(transition_.get(), &TransitionRunner::activeChanged, this, [this] { setAnimating(transition_->active()); });
     for (const auto signal : {&LineCurve::colorChanged, &LineCurve::lineWidthChanged, &LineCurve::lineStyleChanged, &LineCurve::antialiasingFeatherChanged}) {
         connect(this, signal, this, &PlotSeries::legendEntryChanged);
@@ -262,9 +263,7 @@ EnterExitTransition* LineCurve::enterTransition() const
 
 void LineCurve::setEnterTransition(EnterExitTransition* transition)
 {
-    if (transition_->setTransition(TransitionRunner::Slot::Enter, transition)) {
-        emit enterTransitionChanged();
-    }
+    transition_->setTransition(TransitionRunner::Slot::Enter, transition);
 }
 
 DataTransition* LineCurve::updateTransition() const
@@ -274,9 +273,7 @@ DataTransition* LineCurve::updateTransition() const
 
 void LineCurve::setUpdateTransition(DataTransition* transition)
 {
-    if (transition_->setTransition(TransitionRunner::Slot::Update, transition)) {
-        emit updateTransitionChanged();
-    }
+    transition_->setTransition(TransitionRunner::Slot::Update, transition);
 }
 
 EnterExitTransition* LineCurve::exitTransition() const
@@ -286,9 +283,7 @@ EnterExitTransition* LineCurve::exitTransition() const
 
 void LineCurve::setExitTransition(EnterExitTransition* transition)
 {
-    if (transition_->setTransition(TransitionRunner::Slot::Exit, transition)) {
-        emit exitTransitionChanged();
-    }
+    transition_->setTransition(TransitionRunner::Slot::Exit, transition);
 }
 
 LineStyle* LineCurve::lineStyle() const
@@ -670,22 +665,6 @@ void LineCurve::onDataPointsChanged(const DataChange change, [[maybe_unused]] co
     if (acceptHoverEvents()) {
         rebuildChunks();
     }
-}
-
-void LineCurve::onTransitionDestroyed(const TransitionRunner::Slot slot)
-{
-    switch (slot) {
-    case TransitionRunner::Slot::Enter:
-        emit enterTransitionChanged();
-        break;
-    case TransitionRunner::Slot::Update:
-        emit updateTransitionChanged();
-        break;
-    case TransitionRunner::Slot::Exit:
-        emit exitTransitionChanged();
-        break;
-    }
-    update();
 }
 
 void LineCurve::onLineStyleChanged()

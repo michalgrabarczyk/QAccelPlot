@@ -111,7 +111,7 @@ BarSeries::BarSeries(QQuickItem* parent)
     connect(border_, &Border::colorChanged, this, &QQuickItem::update);
     connect(transition_.get(), &TransitionRunner::frameDue, this, &BarSeries::advanceTransition);
     connect(transition_.get(), &TransitionRunner::interrupted, this, &BarSeries::endTransition);
-    connect(transition_.get(), &TransitionRunner::transitionDestroyed, this, &BarSeries::onTransitionDestroyed);
+    transition_->notifyTransitionChanges(this);
     connect(transition_.get(), &TransitionRunner::activeChanged, this, [this] { setAnimating(transition_->active()); });
     connect(this, &BarSeries::colorChanged, this, &PlotSeries::legendEntryChanged);
     // A colormap replaces the per-category legend entries.
@@ -274,9 +274,7 @@ EnterExitTransition* BarSeries::enterTransition() const
 
 void BarSeries::setEnterTransition(EnterExitTransition* transition)
 {
-    if (transition_->setTransition(TransitionRunner::Slot::Enter, transition)) {
-        emit enterTransitionChanged();
-    }
+    transition_->setTransition(TransitionRunner::Slot::Enter, transition);
 }
 
 DataTransition* BarSeries::updateTransition() const
@@ -286,9 +284,7 @@ DataTransition* BarSeries::updateTransition() const
 
 void BarSeries::setUpdateTransition(DataTransition* transition)
 {
-    if (transition_->setTransition(TransitionRunner::Slot::Update, transition)) {
-        emit updateTransitionChanged();
-    }
+    transition_->setTransition(TransitionRunner::Slot::Update, transition);
 }
 
 EnterExitTransition* BarSeries::exitTransition() const
@@ -298,9 +294,7 @@ EnterExitTransition* BarSeries::exitTransition() const
 
 void BarSeries::setExitTransition(EnterExitTransition* transition)
 {
-    if (transition_->setTransition(TransitionRunner::Slot::Exit, transition)) {
-        emit exitTransitionChanged();
-    }
+    transition_->setTransition(TransitionRunner::Slot::Exit, transition);
 }
 
 int BarSeries::hoveredIndex() const
@@ -821,21 +815,6 @@ void BarSeries::startTransition(Bars&& drawn)
     transitionCategories_ = transitionCategories(drawn.categories, transition_->frameCapacity());
     vertexCache_->invalidate();
     showTransitionFrame();
-}
-
-void BarSeries::onTransitionDestroyed(const TransitionRunner::Slot slot)
-{
-    switch (slot) {
-    case TransitionRunner::Slot::Enter:
-        emit enterTransitionChanged();
-        break;
-    case TransitionRunner::Slot::Update:
-        emit updateTransitionChanged();
-        break;
-    case TransitionRunner::Slot::Exit:
-        emit exitTransitionChanged();
-        break;
-    }
 }
 
 void BarSeries::advanceTransition()

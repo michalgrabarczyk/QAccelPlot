@@ -91,8 +91,11 @@ void TransitionRunnerTest::enabledFollowsTheTransition()
     auto runner = TransitionRunner{item_.get()};
     QVERIFY(!runner.enabled());
 
+    auto changed = QSignalSpy{&runner, &TransitionRunner::transitionChanged};
     QVERIFY(runner.setTransition(TransitionRunner::Slot::Update, &morph));
     QVERIFY(!runner.setTransition(TransitionRunner::Slot::Update, &morph));
+    QCOMPARE(changed.count(), 1);
+    QCOMPARE(changed.at(0).at(0).value<TransitionRunner::Slot>(), TransitionRunner::Slot::Update);
     QVERIFY(runner.enabled());
 
     morph.setEnabled(false);
@@ -205,11 +208,11 @@ void TransitionRunnerTest::destroyedTransitionIsReported()
     auto morph = std::make_unique<MorphTransition>();
     auto runner = TransitionRunner{item_.get()};
     runner.setTransition(TransitionRunner::Slot::Update, morph.get());
-    auto destroyed = QSignalSpy{&runner, &TransitionRunner::transitionDestroyed};
+    auto changed = QSignalSpy{&runner, &TransitionRunner::transitionChanged};
 
     morph.reset();
 
-    QCOMPARE(destroyed.count(), 1);
+    QCOMPARE(changed.count(), 1);
     QVERIFY(!runner.transition(TransitionRunner::Slot::Update));
     QVERIFY(!runner.enabled());
 }
