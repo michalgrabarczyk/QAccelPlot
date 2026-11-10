@@ -125,18 +125,20 @@ worker-thread handoff, and data bounds, see
 
 ## Animate data changes
 
-Assign a `MorphTransition` or a `DrawTransition` to `transition`, as for a
+Set `enterTransition`, `updateTransition`, and `exitTransition`, as for a
 [`LineCurve`](styling.md#animated-data-changes). Give the series that draws the
-values the same transition, so both move together.
+values the same transitions, so both move together.
 
-- `MorphTransition` moves each error bar to the new position, value, and bounds
-  of the same index.
-- `DrawTransition` shows the new error bars one after another.
-- New error bars appear, and removed ones disappear, at once.
+- `MorphTransition` moves each kept error bar to the new position, value, and
+  bounds of the same index.
+- `GrowTransition` grows the value and both bounds from its `baseline`, 0 by
+  default, or the low edge of the viewport on a log value axis; the position
+  stays.
+- `DrawTransition` shows the error bars one after another.
 - `count`, `errorBarAt()`, the data ranges, and inspection use the new data
   from the start of the animation. Hover picks the error bars as drawn.
-- `appendData()`, `appendErrorData()`, and `clearData()` show the new data at
-  once.
+- `appendData()` and `appendErrorData()` show the new data at once;
+  `clearData()` runs the exit transition.
 - While a transition is enabled, the float paths store doubles.
 
 ## Invalid data points

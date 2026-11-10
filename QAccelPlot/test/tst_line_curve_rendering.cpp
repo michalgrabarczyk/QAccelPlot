@@ -5,12 +5,15 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
+#include "OpacityAnimations.hpp"
 #include "QAccelPlot/effects/Colormap.hpp"
 #include "QAccelPlot/effects/GradientStroke.hpp"
+#include "QAccelPlot/materials/LineMaterial.hpp"
 #include "QAccelPlot/materials/PointMaterial.hpp"
 #include "QAccelPlot/renderers/LineCurveLineRenderer.hpp"
 #include "QAccelPlot/renderers/LineCurvePointRenderer.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
+#include "QAccelPlot/transitions/DrawTransition.hpp"
 
 #include <QQuickWindow>
 #include <QSGGeometryNode>
@@ -36,6 +39,7 @@ private slots:
     void lineVerticesFollowPointCount();
     void gradientDataRangeIsCurveExtent();
     void markerVerticesFollowPointCount();
+    void fadingTransitionReachesTheMaterials();
 };
 
 void LineCurveRenderingTest::markersSurviveSinglePointDatasets()
@@ -168,6 +172,47 @@ void LineCurveRenderingTest::markerVerticesFollowPointCount()
         const auto byteCount = static_cast<std::size_t>(geometry->vertexCount() * geometry->sizeOfVertex());
         QVERIFY(std::all_of(bytes, bytes + byteCount, [](const char byte) { return byte == 0; }));
     }
+}
+
+void LineCurveRenderingTest::fadingTransitionReachesTheMaterials()
+{
+    auto window = QQuickWindow{};
+    if (window.rendererInterface()->graphicsApi() == QSGRendererInterface::Software) {
+        QSKIP("Custom curve materials require a hardware scene graph backend");
+    }
+    auto xAxis = QAccelPlot::Axis{};
+    auto yAxis = QAccelPlot::Axis{};
+    auto curve = RenderableCurve{};
+    curve.setParentItem(window.contentItem());
+    curve.setXAxis(&xAxis);
+    curve.setYAxis(&yAxis);
+    curve.setPlotRect({0, 0, 100, 100});
+    curve.marker()->setShape(QAccelPlot::MarkerShape::Circle);
+    auto draw = QAccelPlot::DrawTransition{};
+    draw.setDuration(10'000);
+    draw.setStagger(0.5);
+    QAccelPlot::Test::addAnimation(draw, R"(NumberAnimation { property: "opacity"; from: 0; duration: 1000 })");
+    curve.setEnterTransition(&draw);
+
+    curve.setData(std::vector<double>{0.0, 0.0, 1.0, 1.0, 2.0, 0.0}, 3);
+    auto node = std::unique_ptr<QSGNode>{curve.updatePaintNode(nullptr, nullptr)};
+
+    QVERIFY(node);
+    QCOMPARE(node->childCount(), 2);
+    // The line node holds the fill, then the stroke.
+    const auto* line = static_cast<QSGGeometryNode*>(node->firstChild()->firstChild()->nextSibling());
+    const auto* markers = static_cast<QSGGeometryNode*>(node->lastChild());
+    for (const auto* geometryNode : {line, markers}) {
+        const auto* material = static_cast<const QAccelPlot::DataTextureMaterial*>(geometryNode->material());
+        const auto& entering = material->itemFade.groups[1];
+        QVERIFY(!material->itemFade.groups[0].active());
+        QCOMPARE(entering.first, 0);
+        QCOMPARE(entering.count, 3);
+        QCOMPARE(entering.spread, 0.5f);
+        QCOMPARE(entering.curve.front(), 0.0f);
+        QCOMPARE(entering.curve.back(), 1.0f);
+    }
+    curve.setEnterTransition(nullptr);
 }
 
 QTEST_MAIN(LineCurveRenderingTest)

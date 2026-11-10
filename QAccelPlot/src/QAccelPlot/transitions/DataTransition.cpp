@@ -7,15 +7,18 @@
 //
 #include "QAccelPlot/transitions/DataTransition.hpp"
 
+#include "QAccelPlot/QAccelPlotLogging.hpp"
+#include "QAccelPlot/transitions/internal/OpacityAnimations.hpp"
+
 #include <QAbstractAnimation>
 
+#include <algorithm>
 #include <utility>
 
 namespace QAccelPlot {
 
 namespace {
 
-/// \brief Endless animation whose current time follows Qt's animation timer and its installed driver.
 class AnimationClock final : public QAbstractAnimation {
 public:
     using QAbstractAnimation::QAbstractAnimation;
@@ -35,7 +38,7 @@ protected:
 
 DataTransition::Run::~Run()
 {
-    detach();
+    end();
 }
 
 bool DataTransition::Run::active() const
@@ -43,54 +46,16 @@ bool DataTransition::Run::active() const
     return transition_ != nullptr;
 }
 
-bool DataTransition::Run::pending() const
+DataTransition* DataTransition::Run::transition() const
 {
-    return pending_;
+    return transition_;
 }
 
-const std::vector<double>& DataTransition::Run::targetData() const
-{
-    return to_.values;
-}
-
-int DataTransition::Run::targetPointCount() const
-{
-    return to_.count;
-}
-
-bool DataTransition::Run::finish(std::vector<double>& outData, int& outPointCount)
-{
-    if (!pending_) {
-        return false;
-    }
-    outData = std::move(to_.values);
-    outPointCount = to_.count;
-    cancel();
-    return true;
-}
-
-void DataTransition::Run::cancel()
-{
-    // Cleared before detaching, so runningChanged handlers see the run as ended.
-    pending_ = false;
-    from_.values.clear();
-    to_.values.clear();
-    from_.count = 0;
-    to_.count = 0;
-    detach();
-}
-
-void DataTransition::Run::detach()
+void DataTransition::Run::end()
 {
     if (auto* transition = std::exchange(transition_, nullptr)) {
         transition->removeRun(this);
     }
-}
-
-DataTransition::DataTransition(QObject* parent)
-    : QObject(parent)
-    , clock_(new AnimationClock(this))
-{
 }
 
 DataTransition::~DataTransition()
@@ -147,22 +112,34 @@ bool DataTransition::running() const
     return running_;
 }
 
-void DataTransition::start(
-    Run& run, const std::vector<double>& currentData, const int currentPointCount, std::vector<double>&& newData, const int newPointCount, const int stride)
+qreal DataTransition::stagger() const
 {
-    Q_ASSERT(stride > 0);
+    return stagger_;
+}
+
+void DataTransition::setStagger(const qreal stagger)
+{
+    const auto clamped = std::clamp(stagger, 0.0, 1.0);
+    if (stagger_ == clamped) {
+        return;
+    }
+    stagger_ = clamped;
+    emit staggerChanged();
+}
+
+QQmlListProperty<QObject> DataTransition::animations()
+{
+    return QQmlListProperty<QObject>(
+        this, nullptr, &DataTransition::appendAnimation, &DataTransition::animationCount, &DataTransition::animationAt, &DataTransition::clearAnimations);
+}
+
+void DataTransition::start(Run& run)
+{
     if (run.transition_ != this) {
-        run.detach();
+        run.end();
         run.transition_ = this;
         runs_.append(&run);
     }
-    run.pending_ = true;
-    run.from_.values = currentData;
-    run.from_.count = currentPointCount;
-    run.from_.stride = stride;
-    run.to_.values = std::move(newData);
-    run.to_.count = newPointCount;
-    run.to_.stride = stride;
     setRunning(true);
     run.startTime_ = clock_->currentTime();
 }
@@ -176,25 +153,71 @@ void DataTransition::cancel()
     setRunning(false);
 }
 
-bool DataTransition::advance(Run& run, std::vector<double>& outData, int& outPointCount)
+double DataTransition::progress(const Run& run) const
 {
-    if (run.transition_ != this) {
-        return false;
+    if (run.transition_ != this || duration_ <= 0) {
+        return 1.0;
     }
-
     const auto elapsed = clock_->currentTime() - run.startTime_;
-    if (elapsed >= duration_) {
-        run.finish(outData, outPointCount);
-        return false;
-    }
-    const auto progress = static_cast<qreal>(elapsed) / duration_;
+    return std::clamp(static_cast<double>(elapsed) / duration_, 0.0, 1.0);
+}
 
-    // The frame borrows the caller's buffer, so its capacity is reused from frame to frame.
-    auto frame = Dataset{std::move(outData), outPointCount, run.to_.stride};
-    interpolate(easing_.valueForProgress(progress), run.from_, run.to_, frame);
-    outData = std::move(frame.values);
-    outPointCount = frame.count;
-    return true;
+Internal::OpacityTimeline DataTransition::opacityTimeline() const
+{
+    return Internal::readOpacityAnimations(animations_);
+}
+
+void DataTransition::classBegin()
+{
+    loading_ = true;
+}
+
+void DataTransition::componentComplete()
+{
+    loading_ = false;
+    warnAboutIgnored(animations_);
+}
+
+DataTransition::DataTransition(QObject* parent)
+    : QObject(parent)
+    , clock_(new AnimationClock(this))
+{
+}
+
+void DataTransition::appendAnimation(QQmlListProperty<QObject>* list, QObject* animation)
+{
+    auto* self = static_cast<DataTransition*>(list->object);
+    if (!animation || self->animations_.contains(animation)) {
+        return;
+    }
+    if (!animation->parent()) {
+        animation->setParent(self);
+    }
+    self->animations_.append(animation);
+    connect(animation, &QObject::destroyed, self, [self, animation] { self->animations_.removeAll(animation); });
+    // A transition loading from QML reports its animations once its component completes.
+    if (!self->loading_) {
+        self->warnAboutIgnored({animation});
+    }
+}
+
+qsizetype DataTransition::animationCount(QQmlListProperty<QObject>* list)
+{
+    return static_cast<DataTransition*>(list->object)->animations_.size();
+}
+
+QObject* DataTransition::animationAt(QQmlListProperty<QObject>* list, const qsizetype index)
+{
+    return static_cast<DataTransition*>(list->object)->animations_.at(index);
+}
+
+void DataTransition::clearAnimations(QQmlListProperty<QObject>* list)
+{
+    auto* self = static_cast<DataTransition*>(list->object);
+    for (const auto* animation : std::as_const(self->animations_)) {
+        disconnect(animation, nullptr, self, nullptr);
+    }
+    self->animations_.clear();
 }
 
 void DataTransition::removeRun(Run* run)
@@ -216,6 +239,16 @@ void DataTransition::setRunning(const bool running)
         clock_->stop();
     }
     emit runningChanged();
+}
+
+void DataTransition::warnAboutIgnored(const QList<QObject*>& animations) const
+{
+    auto problems = QStringList{};
+    Internal::readOpacityAnimations(animations, &problems);
+    const auto name = QString::fromLatin1(metaObject()->className()).section(QLatin1Char(':'), -1);
+    for (const auto& problem : std::as_const(problems)) {
+        qCWarning(lcQAccelPlot).noquote() << QStringLiteral("%1: %2").arg(name, problem);
+    }
 }
 
 } // namespace QAccelPlot

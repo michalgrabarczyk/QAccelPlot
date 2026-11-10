@@ -7,6 +7,8 @@
 //
 #include "QAccelPlot/materials/BarMaterial.hpp"
 
+#include "QAccelPlot/materials/internal/GlowUniforms.hpp"
+#include "QAccelPlot/materials/internal/ItemOpacityUniforms.hpp"
 #include "QAccelPlot/materials/internal/RectUniforms.hpp"
 
 #include <QByteArray>
@@ -21,20 +23,23 @@ namespace {
 
 // Mirrors the std140 block in bar.vert: the rect.vert block followed by the bar geometry and colormap.
 struct BarUbo {
-    Internal::RectUbo rect; // 0–175
-    float barWidth;         // 176–179
-    float barOffset;        // 180–183
-    float baseline;         // 184–187
-    float horizontal;       // 188–191
-    float ranged;           // 192–195
-    float colorSource;      // 196–199
-    float valueMin;         // 200–203
-    float valueMax;         // 204–207
-    float valueOrigin;      // 208–211
-    float valueLogScale;    // 212–215
+    Internal::RectUbo rect;                    // 0–175
+    float barWidth;                            // 176–179
+    float barOffset;                           // 180–183
+    float baseline;                            // 184–187
+    float horizontal;                          // 188–191
+    float ranged;                              // 192–195
+    float colorSource;                         // 196–199
+    float valueMin;                            // 200–203
+    float valueMax;                            // 204–207
+    float valueOrigin;                         // 208–211
+    float valueLogScale;                       // 212–215
+    float padding[2];                          // 216–223
+    Internal::ItemOpacityUniforms itemOpacity; // 224–751
+    Internal::GlowUniforms glow;               // 752–783
 };
 
-static_assert(sizeof(BarUbo) == 216);
+static_assert(sizeof(BarUbo) == 784);
 
 class BarShader : public QSGMaterialShader {
 public:
@@ -64,6 +69,8 @@ public:
         ubo.valueMax = mat->valueMax;
         ubo.valueOrigin = mat->valueOrigin;
         ubo.valueLogScale = mat->valueLogScale;
+        ubo.itemOpacity = Internal::itemOpacityUniforms(mat->itemFade, mat->itemTrail);
+        ubo.glow = Internal::glowUniforms(mat->glow);
         memcpy(buf->data(), &ubo, sizeof(ubo));
         return true;
     }

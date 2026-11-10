@@ -7,6 +7,9 @@
 //
 #include "QAccelPlot/materials/PointMaterial.hpp"
 
+#include "QAccelPlot/materials/internal/GlowUniforms.hpp"
+#include "QAccelPlot/materials/internal/ItemOpacityUniforms.hpp"
+
 #include <QByteArray>
 #include <QSGMaterialShader>
 
@@ -19,22 +22,25 @@ namespace {
 constexpr auto kCommonUniformSize = 116;
 
 struct PointUboTail {
-    float markerSize;          // 116–119
-    float antialiasingEnabled; // 120–123
-    float antialiasingFeather; // 124–127
-    int shapeType;             // 128–131
-    float markerStrokeWidth;   // 132–135
-    float markerFilled;        // 136–139
-    float gradientDirection;   // 140–143
-    float gradientValueMin;    // 144–147
-    float gradientValueMax;    // 148–151
-    float opacity;             // 152–155
+    float markerSize;                          // 116–119
+    float antialiasingEnabled;                 // 120–123
+    float antialiasingFeather;                 // 124–127
+    int shapeType;                             // 128–131
+    float markerStrokeWidth;                   // 132–135
+    float markerFilled;                        // 136–139
+    float gradientDirection;                   // 140–143
+    float gradientValueMin;                    // 144–147
+    float gradientValueMax;                    // 148–151
+    float opacity;                             // 152–155
+    float padding;                             // 156–159
+    Internal::ItemOpacityUniforms itemOpacity; // 160–687
+    Internal::GlowUniforms glow;               // 688–719
 };
 
 constexpr auto kPointUboSize = kCommonUniformSize + static_cast<int>(sizeof(PointUboTail));
 
-static_assert(sizeof(PointUboTail) == 40);
-static_assert(kPointUboSize == 156);
+static_assert(sizeof(PointUboTail) == 604);
+static_assert(kPointUboSize == 720);
 
 int compareValues(const float left, const float right)
 {
@@ -75,6 +81,8 @@ public:
         tail.gradientValueMin = material->gradientValueMin;
         tail.gradientValueMax = material->gradientValueMax;
         tail.opacity = state.opacity();
+        tail.itemOpacity = Internal::itemOpacityUniforms(material->itemFade, material->itemTrail);
+        tail.glow = Internal::glowUniforms(material->glow);
         std::memcpy(buffer->data() + kCommonUniformSize, &tail, sizeof(tail));
         return true;
     }

@@ -9,6 +9,8 @@
 #include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/effects/FadeTrail.hpp"
+#include "QAccelPlot/effects/Glow.hpp"
 #include "QAccelPlot/effects/GradientFill.hpp"
 #include "QAccelPlot/effects/GradientStroke.hpp"
 #include "QAccelPlot/effects/internal/GradientCoordinates.hpp"
@@ -16,6 +18,7 @@
 #include "QAccelPlot/legend/LegendEntry.hpp"
 #include "QAccelPlot/materials/internal/DataTextureLayout.hpp"
 #include "QAccelPlot/series/LineCurveGapFilter.hpp"
+#include "QAccelPlot/series/internal/SeriesEffectList.hpp"
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
 #include "QAccelPlot/series/internal/StepPath.hpp"
 #include "QAccelPlot/transitions/DataTransition.hpp"
@@ -114,7 +117,7 @@ template <typename T> DataExtents computeChunkExtents(const T* data, const int f
 
 // Returns the first enabled Effect with a valid payload. Effects snapshot their payloads on the
 // GUI thread, so this does not touch QML objects and is safe in updatePaintNode().
-template <typename Effect> const Effect* firstActiveGradientEffect(const QList<LineCurveEffect*>& effects)
+template <typename Effect> const Effect* firstActiveGradientEffect(const QList<SeriesEffect*>& effects)
 {
     for (const auto effect : effects) {
         const auto gradientEffect = qobject_cast<const Effect*>(effect);
@@ -128,7 +131,7 @@ template <typename Effect> const Effect* firstActiveGradientEffect(const QList<L
 
 // Returns the payload of the first active Effect with unset value bounds resolved by
 // rangeFn(direction). Using the data range keeps gradient colors invariant to pan/zoom.
-template <typename Effect, typename Payload, typename RangeFn> Payload resolveGradientPayload(const QList<LineCurveEffect*>& effects, const RangeFn& rangeFn)
+template <typename Effect, typename Payload, typename RangeFn> Payload resolveGradientPayload(const QList<SeriesEffect*>& effects, const RangeFn& rangeFn)
 {
     const auto gradientEffect = firstActiveGradientEffect<Effect>(effects);
     if (!gradientEffect) {
@@ -185,12 +188,11 @@ LineCurve::LineCurve(QQuickItem* parent)
     connect(marker_, &SeriesMarker::sizeChanged, this, &QQuickItem::update);
     connect(marker_, &SeriesMarker::filledChanged, this, &QQuickItem::update);
     connect(marker_, &SeriesMarker::strokeWidthChanged, this, &QQuickItem::update);
-    // A parent already in a window adds the curve to it from the QQuickItem constructor, where the
-    // ItemSceneChange does not reach this class's itemChange().
-    connectAnimationTicks(window());
     connect(transition_.get(), &TransitionRunner::frameDue, this, &LineCurve::advanceTransition);
     connect(transition_.get(), &TransitionRunner::interrupted, this, &LineCurve::finishTransition);
-    connect(transition_.get(), &TransitionRunner::transitionDestroyed, this, &LineCurve::onTransitionDestroyed);
+    transition_->notifyTransitionChanges(this);
+    connect(transition_.get(), &TransitionRunner::transitionChanged, this, [this] { update(); });
+    connect(transition_.get(), &TransitionRunner::activeChanged, this, [this] { setAnimating(transition_->active()); });
     for (const auto signal : {&LineCurve::colorChanged, &LineCurve::lineWidthChanged, &LineCurve::lineStyleChanged, &LineCurve::antialiasingFeatherChanged}) {
         connect(this, signal, this, &PlotSeries::legendEntryChanged);
     }
@@ -254,16 +256,34 @@ void LineCurve::setHoverRadius(const qreal radius)
     update();
 }
 
-DataTransition* LineCurve::transition() const
+EnterExitTransition* LineCurve::enterTransition() const
 {
-    return transition_->transition();
+    return qobject_cast<EnterExitTransition*>(transition_->transition(TransitionRunner::Slot::Enter));
 }
 
-void LineCurve::setTransition(DataTransition* transition)
+void LineCurve::setEnterTransition(EnterExitTransition* transition)
 {
-    if (transition_->setTransition(transition)) {
-        emit transitionChanged();
-    }
+    transition_->setTransition(TransitionRunner::Slot::Enter, transition);
+}
+
+DataTransition* LineCurve::updateTransition() const
+{
+    return transition_->transition(TransitionRunner::Slot::Update);
+}
+
+void LineCurve::setUpdateTransition(DataTransition* transition)
+{
+    transition_->setTransition(TransitionRunner::Slot::Update, transition);
+}
+
+EnterExitTransition* LineCurve::exitTransition() const
+{
+    return qobject_cast<EnterExitTransition*>(transition_->transition(TransitionRunner::Slot::Exit));
+}
+
+void LineCurve::setExitTransition(EnterExitTransition* transition)
+{
+    transition_->setTransition(TransitionRunner::Slot::Exit, transition);
 }
 
 LineStyle* LineCurve::lineStyle() const
@@ -305,11 +325,6 @@ void LineCurve::setAntialiasingFeather(const qreal feather)
     antialiasingFeather_ = clamped;
     emit antialiasingFeatherChanged();
     update();
-}
-
-QQmlListProperty<LineCurveEffect> LineCurve::effects()
-{
-    return QQmlListProperty<LineCurveEffect>(this, this, &LineCurve::appendEffect, &LineCurve::effectCount, &LineCurve::effectAt, &LineCurve::clearEffects);
 }
 
 LineCurveGaps* LineCurve::gaps() const
@@ -370,6 +385,11 @@ void LineCurve::setData(const std::vector<double>& xs, const std::vector<double>
 
 void LineCurve::clearData()
 {
+    if (transition_->animates(dataPoints().count(), 0)) {
+        // Every point is removed, so the exit transition animates them.
+        applyNewData(std::vector<double>{}, 0);
+        return;
+    }
     const auto previousCount = dataPoints().count();
     cancelRunningTransition();
     dataPoints().clear();
@@ -477,6 +497,9 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, [[maybe_unused]] UpdatePai
     }
 
     const auto* cache = vertexCache_.data();
+    const auto fade = renderedFade();
+    const auto glow = effectList().glowStyle(color_);
+    const auto trail = effectList().itemTrail(drawnPointCount);
 
     // A root container node holds both child nodes when both line and points are active.
     // When only one is active we return it directly (no container overhead).
@@ -505,17 +528,17 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, [[maybe_unused]] UpdatePai
     if (hasLine) {
         const auto lineParams = LineCurveRenderParams{window(), renderData(), sourceDataView(), drawnPointCount, dataChanged, color_, hovered(), lineWidth_,
             domainMin, domainMax, viewportSize, xAxis(), yAxis(), xAxis()->logScale(), yAxis()->logScale(), antialiasing(), antialiasingFeather_,
-            renderGradientPayload, gradientFillPayload, hasPoints ? nullptr : cache, lineStyle_, stepMode_};
+            renderGradientPayload, gradientFillPayload, hasPoints ? nullptr : cache, lineStyle_, stepMode_, fade, trail, glow};
         lineNode = lineRenderer_.paint(lineOldNode, lineParams);
     }
 
     if (hasPoints) {
         const auto shapeType = static_cast<int>(marker_->shape()) - 1;
         // Markers draw the points the line already uploaded.
-        const auto pointParams
-            = PointCurveRenderParams{window(), renderData(), drawnPointCount, dataChanged, hasLine ? LineCurveLineRenderer::dataTexture(lineNode) : nullptr,
-                color_, hovered(), marker_->size(), domainMin, domainMax, viewportSize, xAxis()->logScale(), yAxis()->logScale(), antialiasing(),
-                antialiasingFeather_, renderGradientPayload, hasLine ? nullptr : cache, shapeType, marker_->strokeWidth(), marker_->filled()};
+        const auto pointParams = PointCurveRenderParams{window(), renderData(), drawnPointCount, dataChanged,
+            hasLine ? LineCurveLineRenderer::dataTexture(lineNode) : nullptr, color_, hovered(), marker_->size(), domainMin, domainMax, viewportSize,
+            xAxis()->logScale(), yAxis()->logScale(), antialiasing(), antialiasingFeather_, renderGradientPayload, hasLine ? nullptr : cache, shapeType,
+            marker_->strokeWidth(), marker_->filled(), fade, trail, glow};
         pointNode = pointRenderer_.paint(pointOldNode, pointParams);
     }
 
@@ -546,14 +569,6 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, [[maybe_unused]] UpdatePai
     dataChanged_ = false;
     uploadedRevision_ = revision;
     return node;
-}
-
-void LineCurve::itemChange(const ItemChange change, const ItemChangeData& value)
-{
-    PlotSeries::itemChange(change, value);
-    if (change == ItemSceneChange) {
-        connectAnimationTicks(value.window);
-    }
 }
 
 void LineCurve::hoverEnterEvent(QHoverEvent* event)
@@ -611,6 +626,12 @@ bool LineCurve::contains(const QPointF& point) const
     return false;
 }
 
+bool LineCurve::supportsEffect(const SeriesEffect& effect) const
+{
+    return qobject_cast<const GradientFill*>(&effect) || qobject_cast<const GradientStroke*>(&effect) || qobject_cast<const Glow*>(&effect)
+        || qobject_cast<const FadeTrail*>(&effect);
+}
+
 void LineCurve::applyDataPoints(DataPointInput&& input)
 {
     if (input.floatArray) {
@@ -646,12 +667,6 @@ void LineCurve::onDataPointsChanged(const DataChange change, [[maybe_unused]] co
     }
 }
 
-void LineCurve::onTransitionDestroyed()
-{
-    emit transitionChanged();
-    update();
-}
-
 void LineCurve::onLineStyleChanged()
 {
     styleChanged_ = true;
@@ -681,77 +696,22 @@ void LineCurve::onMarkerShapeChanged()
     update();
 }
 
-void LineCurve::appendEffect(QQmlListProperty<LineCurveEffect>* list, LineCurveEffect* effect)
-{
-    if (!list || !effect) {
-        return;
-    }
-
-    const auto curve = static_cast<LineCurve*>(list->data);
-    if (!curve || curve->effects_.contains(effect)) {
-        return;
-    }
-
-    if (!effect->parent()) {
-        effect->setParent(curve);
-    }
-    curve->effects_.append(effect);
-
-    QObject::connect(effect, &LineCurveEffect::effectChanged, curve, [curve]() { curve->update(); });
-    QObject::connect(effect, &QObject::destroyed, curve, [curve, effect]() {
-        curve->effects_.removeAll(effect);
-        curve->update();
-    });
-
-    curve->update();
-}
-
-qsizetype LineCurve::effectCount(QQmlListProperty<LineCurveEffect>* list)
-{
-    const auto curve = list ? static_cast<LineCurve*>(list->data) : nullptr;
-    return curve ? curve->effects_.size() : 0;
-}
-
-LineCurveEffect* LineCurve::effectAt(QQmlListProperty<LineCurveEffect>* list, qsizetype index)
-{
-    const auto curve = list ? static_cast<LineCurve*>(list->data) : nullptr;
-    if (!curve || index < 0 || index >= curve->effects_.size()) {
-        qCDebug(lcQAccelPlot) << "invalid list or out-of-bounds index" << index << ", returning nullptr";
-        return nullptr;
-    }
-
-    return curve->effects_.at(index);
-}
-
-void LineCurve::clearEffects(QQmlListProperty<LineCurveEffect>* list)
-{
-    const auto curve = list ? static_cast<LineCurve*>(list->data) : nullptr;
-    if (!curve) {
-        return;
-    }
-
-    for (const auto effect : std::as_const(curve->effects_)) {
-        QObject::disconnect(effect, nullptr, curve, nullptr);
-    }
-    curve->effects_.clear();
-    curve->update();
-}
-
 bool LineCurve::hasGradientEffect() const
 {
-    return firstActiveGradientEffect<GradientStroke>(effects_) || firstActiveGradientEffect<GradientFill>(effects_);
+    const auto& effects = effectList().effects();
+    return firstActiveGradientEffect<GradientStroke>(effects) || firstActiveGradientEffect<GradientFill>(effects);
 }
 
 GradientColorPayload LineCurve::resolveGradientColorPayload() const
 {
     return resolveGradientPayload<GradientStroke, GradientColorPayload>(
-        effects_, [this](const Qt::Orientation direction) { return gradientDataRange(direction); });
+        effectList().effects(), [this](const Qt::Orientation direction) { return gradientDataRange(direction); });
 }
 
 GradientFillPayload LineCurve::resolveGradientFillPayload() const
 {
     return resolveGradientPayload<GradientFill, GradientFillPayload>(
-        effects_, [this](const Qt::Orientation direction) { return gradientDataRange(direction); });
+        effectList().effects(), [this](const Qt::Orientation direction) { return gradientDataRange(direction); });
 }
 
 std::pair<qreal, qreal> LineCurve::gradientDataRange(const Qt::Orientation direction) const
@@ -764,9 +724,37 @@ std::pair<qreal, qreal> LineCurve::gradientDataRange(const Qt::Orientation direc
     return axis ? std::pair{axis->dataMin(), axis->dataMax()} : std::pair{kFallbackDataMin, kFallbackDataMax};
 }
 
+Internal::ItemFade LineCurve::renderedFade() const
+{
+    auto fade = transition_->fade();
+    if (!fade.active() || !dataPoints().skipInvalid()) {
+        return fade;
+    }
+    const auto drawnCount = dataPoints().drawnView().count;
+    if (dataPoints().renderedView().count == drawnCount) {
+        return fade;
+    }
+    auto kept = std::vector<int>{};
+    for (auto& group : fade.groups) {
+        if (!group.active()) {
+            continue;
+        }
+        kept.clear();
+        for (auto item = 0; item < group.count; ++item) {
+            // Group items the frame does not show yet, or no longer, keep their places in the stagger order.
+            const auto index = group.first + item;
+            if (index >= drawnCount || dataPoints().rendered(index)) {
+                kept.push_back(item);
+            }
+        }
+        group = Internal::compactedFadeGroup(group, dataPoints().renderedCount(group.first), kept);
+    }
+    return fade;
+}
+
 void LineCurve::applyNewData(std::vector<float>&& newData, const int newPointCount)
 {
-    if (transition_->enabled()) {
+    if (transition_->animates(dataPoints().count(), newPointCount)) {
         // Transitions animate doubles.
         applyNewData(std::vector<double>(newData.begin(), newData.end()), newPointCount);
         return;
@@ -780,7 +768,7 @@ void LineCurve::applyNewData(std::vector<float>&& newData, const int newPointCou
 void LineCurve::applyNewData(std::vector<double>&& newData, const int newPointCount)
 {
     const auto previousCount = dataPoints().count();
-    if (!transition_->enabled()) {
+    if (!transition_->animates(dataPoints().count(), newPointCount)) {
         cancelRunningTransition();
         dataPoints().setPrecise(std::move(newData), newPointCount);
         notifyDataPointsChanged(DataChange::Replaced, previousCount);
@@ -800,7 +788,7 @@ void LineCurve::applyNewData(std::vector<double>&& newData, const int newPointCo
 
 void LineCurve::applyFloatArray(const float* xyInterleaved, const int pointCount)
 {
-    if (transition_->enabled()) {
+    if (transition_->animates(dataPoints().count(), pointCount)) {
         // Transitions animate doubles.
         applyNewData(std::vector<double>(xyInterleaved, xyInterleaved + static_cast<std::size_t>(pointCount) * 2), pointCount);
         return;
@@ -935,45 +923,33 @@ void LineCurve::finishTransition()
 void LineCurve::startTransition(std::vector<double>&& from, const int fromCount)
 {
     const auto target = dataPoints().view();
-    transition_->start(from, fromCount, std::vector<double>(target.precise, target.precise + static_cast<std::size_t>(target.count) * 2), target.count);
-    frameBuffer_ = dataPoints().setDrawn(std::move(from), fromCount);
-}
-
-void LineCurve::connectAnimationTicks(QQuickWindow* window)
-{
-    if (animationTickWindow_ == window) {
+    auto targetPoints = std::vector<double>(target.precise, target.precise + static_cast<std::size_t>(target.count) * 2);
+    if (!transition_->start(
+            from, fromCount, std::move(targetPoints), target.count, TransitionRunner::Layout{2, {1}, Internal::growBaseline(0.0, yAxis()), true})) {
+        dataPoints().clearDrawn();
+        frameBuffer_ = std::vector<double>{};
         return;
     }
-    if (animationTickWindow_) {
-        disconnect(animationTickWindow_, &QQuickWindow::afterAnimating, this, &LineCurve::refreshEffects);
-    }
-    animationTickWindow_ = window;
-    if (window) {
-        connect(window, &QQuickWindow::afterAnimating, this, &LineCurve::refreshEffects);
-    }
+    showTransitionFrame();
 }
 
-void LineCurve::refreshEffects()
-{
-    // Loop by index rather than range-for: refresh() emits effectChanged(), and a handler that
-    // removes an effect would invalidate the iterators.
-    for (auto i = qsizetype{0}; i < effects_.size(); ++i) {
-        effects_.at(i)->refresh();
-    }
-}
-
-void LineCurve::advanceTransition()
+void LineCurve::showTransitionFrame()
 {
     auto frameCount = 0;
     transition_->advance(frameBuffer_, frameCount);
     if (transition_->pending()) {
         frameBuffer_ = dataPoints().setDrawn(std::move(frameBuffer_), frameCount);
-    } else {
-        // The run ended at its target, which the stored points already are.
-        dataPoints().clearDrawn();
-        frameBuffer_ = std::vector<double>{};
-        invalidateInspection();
+        return;
     }
+    // The run ended at its target, which the stored points already are.
+    dataPoints().clearDrawn();
+    frameBuffer_ = std::vector<double>{};
+    invalidateInspection();
+}
+
+void LineCurve::advanceTransition()
+{
+    showTransitionFrame();
     invalidateData();
     update();
 }

@@ -11,7 +11,7 @@
 #include "QAccelPlot/series/PointSpatialIndex.hpp"
 #include "QAccelPlot/series/SeriesMarker.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
-#include "QAccelPlot/transitions/DataTransition.hpp"
+#include "QAccelPlot/transitions/TransitionRunner.hpp"
 
 #include <QColor>
 #include <QList>
@@ -26,8 +26,6 @@ namespace QAccelPlot {
 namespace Internal {
 class HoverIndexBudget;
 }
-
-class TransitionRunner;
 
 /// \brief A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers.
 ///
@@ -46,14 +44,15 @@ class TransitionRunner;
 /// A point with a non-finite value is drawn with the uniform \c color.
 ///
 /// \par Transitions
-/// Assign a \c MorphTransition or \c DrawTransition to \c transition to animate data updates.
-/// With \c MorphTransition, points move to their new position, and their values, when the old and
-/// the new points both have them, change with them. New points appear, and removed points
-/// disappear, at once. \c count, \c pointAt(), \c valueAt(), the data and value ranges, and
-/// inspection use the new data from the start of the animation, while hover picks the points as
-/// drawn. While a transition is enabled, \c setValues() animates as well and the \c setDataF()
-/// overloads store doubles. \c clearData(), and replacing, clearing, or cancelling \c transition,
-/// skip to the new data.
+/// \c enterTransition animates added points, \c updateTransition kept points, and \c exitTransition
+/// removed points, matched by index; a staggered transition follows the point order, so sort the
+/// points to sweep across the plot. With a \c MorphTransition, kept points move to their new
+/// position, and their values, when the old and the new points both have them, change with them.
+/// \c count, \c pointAt(), \c valueAt(), the data and value ranges, and inspection use the new data
+/// from the start of the animation, while hover picks the points as drawn. While a transition is
+/// enabled, \c setValues() animates as well and the \c setDataF() overloads store doubles.
+/// Replacing, clearing, or cancelling a transition skips to the new data; \c clearData() runs the
+/// exit transition.
 ///
 /// \par Limits
 /// Coordinates are single precision. The number of renderable points is bounded by the GPU's maximum
@@ -76,8 +75,12 @@ class PointCloud : public ColormappedSeries {
     Q_PROPERTY(qreal antialiasingFeather READ antialiasingFeather WRITE setAntialiasingFeather NOTIFY antialiasingFeatherChanged)
     /// \brief Pick distance in pixels from a point's center; 0 disables hover. Default: 6.
     Q_PROPERTY(qreal hoverRadius READ hoverRadius WRITE setHoverRadius NOTIFY hoverRadiusChanged)
-    /// \brief Optional data transition animation applied when new data arrives.
-    Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
+    /// \brief Transition of the points a data change adds, or \c nullptr to show them at once.
+    Q_PROPERTY(EnterExitTransition* enterTransition READ enterTransition WRITE setEnterTransition NOTIFY enterTransitionChanged)
+    /// \brief Transition of the points a data change keeps, or \c nullptr to move them at once.
+    Q_PROPERTY(DataTransition* updateTransition READ updateTransition WRITE setUpdateTransition NOTIFY updateTransitionChanged)
+    /// \brief Transition of the points a data change removes, or \c nullptr to remove them at once.
+    Q_PROPERTY(EnterExitTransition* exitTransition READ exitTransition WRITE setExitTransition NOTIFY exitTransitionChanged)
     /// \brief Read-only: index of the valid point nearest the pointer within \c hoverRadius, or -1 when none.
     Q_PROPERTY(int hoveredIndex READ hoveredIndex NOTIFY hoveredIndexChanged)
 
@@ -105,10 +108,18 @@ public:
     /// \brief Sets the hover pick distance to \a radius pixels. Negative values are clamped to 0.
     void setHoverRadius(qreal radius);
 
-    /// \brief Returns the active data transition, or \c nullptr if none.
-    DataTransition* transition() const;
-    /// \brief Sets the data transition to \a transition.
-    void setTransition(DataTransition* transition);
+    /// \brief Returns the transition of added points, or \c nullptr.
+    EnterExitTransition* enterTransition() const;
+    /// \brief Sets the transition of added points to \a transition.
+    void setEnterTransition(EnterExitTransition* transition);
+    /// \brief Returns the transition of kept points, or \c nullptr.
+    DataTransition* updateTransition() const;
+    /// \brief Sets the transition of kept points to \a transition.
+    void setUpdateTransition(DataTransition* transition);
+    /// \brief Returns the transition of removed points, or \c nullptr.
+    EnterExitTransition* exitTransition() const;
+    /// \brief Sets the transition of removed points to \a transition.
+    void setExitTransition(EnterExitTransition* transition);
 
     /// \brief Returns the index of the hovered point, or -1.
     int hoveredIndex() const;
@@ -153,8 +164,12 @@ signals:
     void antialiasingFeatherChanged();
     /// \brief Emitted when the hoverRadius property changes.
     void hoverRadiusChanged();
-    /// \brief Emitted when the transition property changes.
-    void transitionChanged();
+    /// \brief Emitted when the enterTransition property changes.
+    void enterTransitionChanged();
+    /// \brief Emitted when the updateTransition property changes.
+    void updateTransitionChanged();
+    /// \brief Emitted when the exitTransition property changes.
+    void exitTransitionChanged();
     /// \brief Emitted when the hovered point changes.
     void hoveredIndexChanged();
 
@@ -170,6 +185,8 @@ protected:
 protected:
     /// \brief Applies new points without values, animating to them when a transition is enabled.
     void applyDataPoints(DataPointInput&& input) override;
+    /// \brief Returns \c true for \c Glow and \c FadeTrail.
+    bool supportsEffect(const SeriesEffect& effect) const override;
     /// \brief Rebuilds the hover index, because log dimensions map points differently.
     void onAxisScaleChanged() override;
     /// \brief Refreshes the hover index, the value range, and the count after the points changed.
@@ -218,9 +235,11 @@ private:
     std::vector<double> interleavedData() const;
     /// \brief Returns the points drawn now: the transition points, or the data.
     Points drawnPoints() const;
-    /// \brief Animates from \a drawn to the data. A point without a counterpart starts at its new position.
+    /// \brief Animates from \a drawn to the data.
     void startTransition(Points&& drawn);
     void advanceTransition();
+    /// \brief Draws the next frame of the running transition, or the data when it ends.
+    void showTransitionFrame();
     /// \brief Shows the data instead of the transition points.
     void endTransition();
     /// \brief Ends the run and drops the transition points, without redrawing.

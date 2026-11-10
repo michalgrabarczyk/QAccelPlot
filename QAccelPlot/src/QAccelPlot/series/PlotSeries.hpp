@@ -8,11 +8,13 @@
 #pragma once
 
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/effects/SeriesEffect.hpp"
 #include "QAccelPlot/inspection/SeriesInspection.hpp"
 #include "QAccelPlot/series/DataPointStore.hpp"
 
 #include <QList>
 #include <QPointer>
+#include <QQmlListProperty>
 #include <QQuickItem>
 #include <QRectF>
 #include <QString>
@@ -28,6 +30,10 @@
 #include <vector>
 
 namespace QAccelPlot {
+
+namespace Internal {
+class SeriesEffectList;
+}
 
 struct LegendEntry;
 
@@ -93,6 +99,10 @@ class PlotSeries : public QQuickItem {
     /// Only the topmost series under the cursor is hovered. A series with a \c hoveredIndex is hovered
     /// while that index is not -1. A \c HeatmapSeries is never hovered.
     Q_PROPERTY(bool hovered READ hovered NOTIFY hoveredChanged)
+    /// \brief Read-only: \c true while a transition animates the series' data.
+    ///
+    /// Series without transitions always report \c false.
+    Q_PROPERTY(bool animating READ animating NOTIFY animatingChanged)
 
     /// \brief Revision incremented by every accepted change of the series' records.
     Q_PROPERTY(quint64 dataRevision READ dataRevision NOTIFY dataRevisionChanged)
@@ -104,6 +114,11 @@ class PlotSeries : public QQuickItem {
     /// or \c PointCloud, a rectangle, a bar, a band sample, an error bar, or a heatmap cell. A
     /// \c HeatmapSeries counts \c columns × \c rows cells, without an incomplete last row.
     Q_PROPERTY(int count READ count NOTIFY countChanged)
+    /// \brief Visual effects drawn with the series, such as \c GradientFill or \c Glow.
+    ///
+    /// An effect the series does not support logs a warning and is ignored. Of several effects of
+    /// one type, the first enabled one applies. See \c SeriesEffect for the effects each series supports.
+    Q_PROPERTY(QQmlListProperty<SeriesEffect> effects READ effects)
 
 public:
     /// \brief Supported default legend symbols.
@@ -164,6 +179,8 @@ public:
     void setHoverEnabled(bool enabled);
     /// \brief Returns whether the mouse cursor is over the series.
     bool hovered() const;
+    /// \brief Returns whether a transition animates the series' data.
+    bool animating() const;
 
     /// \brief Returns how a legend draws the series, or \c std::nullopt for no legend entry. Default: no entry.
     ///
@@ -174,6 +191,9 @@ public:
     /// A series colored by category returns one entry per category, labeled by its \c name.
     /// Series that override it emit \c legendEntryChanged() whenever the result changes.
     virtual QList<LegendEntry> legendEntries() const;
+
+    /// \brief Returns the QML list property of the effects.
+    QQmlListProperty<SeriesEffect> effects();
 
     /// \brief Replaces the series data with \a count data points copied from an interleaved double array.
     ///
@@ -221,6 +241,8 @@ signals:
     void hoverEnabledChanged();
     /// \brief Emitted when the hovered property changes.
     void hoveredChanged();
+    /// \brief Emitted when the animating property changes.
+    void animatingChanged();
     /// \brief Emitted when the result of \c legendEntry() or \c legendEntries() changes.
     void legendEntryChanged();
 
@@ -362,12 +384,25 @@ protected:
     void supportHover();
     /// \brief Sets the hovered property to \a hovered. Called by the hover handling of a series.
     void setHovered(bool hovered);
+    /// \brief Sets the animating property to \a animating. Called when the series' \c TransitionRunner becomes active or idle.
+    void setAnimating(bool animating);
     /// \brief Withholds hover events from a series beneath another series under the cursor.
     ///
     /// Series ignore hover events so that the plot receives them too. Qt Quick 6.3 and newer stop
     /// at the topmost hovered item anyway; older versions also deliver the event to the series
     /// beneath, which then see a hover leave instead.
     bool event(QEvent* event) override;
+    /// \brief Holds back the warnings about ignored effects while the component loads.
+    void classBegin() override;
+    /// \brief Reports ignored effects once the component is complete.
+    void componentComplete() override;
+    /// \brief Follows the window, whose frames refresh the effects.
+    void itemChange(ItemChange change, const ItemChangeData& value) override;
+
+    /// \brief Returns whether the series draws \a effect. The default draws none.
+    virtual bool supportsEffect(const SeriesEffect& effect) const;
+    /// \brief Returns the effects of the series.
+    const Internal::SeriesEffectList& effectList() const;
 
     /// \brief Records the GPU buffers hold, as of the last \c updateRenderCapacity(); the largest \c int before the first.
     int renderCapacity_{std::numeric_limits<int>::max()};
@@ -390,9 +425,11 @@ private:
     bool hoverSupported_{false};
     bool hoverEnabled_{true};
     bool hovered_{false};
+    bool animating_{false};
     bool hoverDelivered_{false};
     quint64 dataRevision_{0};
     mutable SeriesInspection* inspection_{nullptr};
+    Internal::SeriesEffectList* effects_;
     QString name_;
     QPointer<Axis> xAxis_;
     QPointer<Axis> yAxis_;

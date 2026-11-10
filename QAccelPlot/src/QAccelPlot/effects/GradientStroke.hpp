@@ -9,7 +9,7 @@
 
 #include "QAccelPlot/effects/Colormap.hpp"
 #include "QAccelPlot/effects/GradientColorTypes.hpp"
-#include "QAccelPlot/effects/LineCurveEffect.hpp"
+#include "QAccelPlot/effects/SeriesEffect.hpp"
 
 #include <QMetaObject>
 #include <QObject>
@@ -24,8 +24,8 @@ namespace QAccelPlot {
 /// \c colormap when set, otherwise from a Qt \c Gradient assigned to \c gradient. The gradient
 /// can run horizontally (along X data values) or vertically (along Y data values).
 ///
-/// \sa GradientFill, Colormap, LineCurveEffect, LineCurve
-class GradientStroke : public LineCurveEffect {
+/// \sa GradientFill, Colormap, SeriesEffect, LineCurve
+class GradientStroke : public SeriesEffect {
     Q_OBJECT
     QML_NAMED_ELEMENT(GradientStroke)
 

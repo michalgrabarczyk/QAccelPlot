@@ -10,7 +10,7 @@
 #include "QAccelPlot/effects/Colormap.hpp"
 #include "QAccelPlot/materials/internal/DataTextureLayout.hpp"
 #include "QAccelPlot/series/PointCloud.hpp"
-#include "QAccelPlot/transitions/MorphTransition.hpp"
+#include "QAccelPlot/transitions/GrowTransition.hpp"
 
 #include <QHoverEvent>
 #include <QtTest/QtTest>
@@ -84,9 +84,9 @@ private slots:
 
 void PointCloudDataTest::destructionKeepsDataAliveDuringRunningChanged()
 {
-    auto transition = MorphTransition{};
+    auto transition = GrowTransition{};
     auto* cloud = new PointCloud;
-    cloud->setTransition(&transition);
+    cloud->setEnterTransition(&transition);
     constexpr auto count = 1'000'000;
     cloud->setData(std::vector<double>(count * 2, 42.0), count);
     QVERIFY(transition.running());

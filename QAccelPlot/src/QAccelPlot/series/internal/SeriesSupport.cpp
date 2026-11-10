@@ -7,6 +7,7 @@
 //
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
 
+#include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/materials/internal/DataTextureLayout.hpp"
 
 #include <QQuickWindow>
@@ -22,6 +23,7 @@
 #endif
 
 #include <algorithm>
+#include <cmath>
 #include <limits>
 
 namespace QAccelPlot::Internal {
@@ -78,6 +80,23 @@ qreal clampAntialiasingFeather(const qreal feather)
     constexpr auto kMinFeather = qreal{0.0};
     constexpr auto kMaxFeather = qreal{10.0};
     return std::clamp(feather, kMinFeather, kMaxFeather);
+}
+
+double growBaseline(const double baseline, const Axis* valueAxis)
+{
+    if (!valueAxis) {
+        return std::isfinite(baseline) ? baseline : 0.0;
+    }
+    const auto low = std::min(valueAxis->viewportMin(), valueAxis->viewportMax());
+    const auto high = std::max(valueAxis->viewportMin(), valueAxis->viewportMax());
+    if (std::isinf(baseline)) {
+        return baseline > 0.0 ? high : low;
+    }
+    // A log axis draws from below its viewport where the baseline is not positive.
+    if (valueAxis->logScale() && baseline <= 0.0) {
+        return low;
+    }
+    return baseline;
 }
 
 } // namespace QAccelPlot::Internal

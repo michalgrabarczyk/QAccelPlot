@@ -7,6 +7,9 @@
 //
 #include "QAccelPlot/materials/ErrorBarMaterial.hpp"
 
+#include "QAccelPlot/materials/internal/GlowUniforms.hpp"
+#include "QAccelPlot/materials/internal/ItemOpacityUniforms.hpp"
+
 #include <QByteArray>
 #include <QSGMaterialShader>
 
@@ -21,20 +24,23 @@ namespace {
 
 // Must match the uniform block in error_bar.vert. The first 116 bytes are the DataTextureMaterial uniforms.
 struct ErrorBarUbo {
-    char common[116];    //   0–115
-    float opacity;       // 116–119
-    float hoveredIndex;  // 120–123
-    float lineWidth;     // 124–127
-    float hoverColor[4]; // 128–143
-    float capLength;     // 144–147
-    float offset;        // 148–151
-    float horizontal;    // 152–155
-    float errorBarCount; // 156–159
-    float antialiasing;  // 160–163
+    char common[116];                          //   0–115
+    float opacity;                             // 116–119
+    float hoveredIndex;                        // 120–123
+    float lineWidth;                           // 124–127
+    float hoverColor[4];                       // 128–143
+    float capLength;                           // 144–147
+    float offset;                              // 148–151
+    float horizontal;                          // 152–155
+    float errorBarCount;                       // 156–159
+    float antialiasing;                        // 160–163
+    float padding[3];                          // 164–175
+    Internal::ItemOpacityUniforms itemOpacity; // 176–703
+    Internal::GlowUniforms glow;               // 704–735
 };
 
 static_assert(offsetof(ErrorBarUbo, hoverColor) == 128);
-static_assert(sizeof(ErrorBarUbo) == 164);
+static_assert(sizeof(ErrorBarUbo) == 736);
 
 class ErrorBarShader : public QSGMaterialShader {
 public:
@@ -65,6 +71,8 @@ public:
         ubo.horizontal = mat->horizontal;
         ubo.errorBarCount = mat->errorBarCount;
         ubo.antialiasing = mat->antialiasing;
+        ubo.itemOpacity = Internal::itemOpacityUniforms(mat->itemFade, mat->itemTrail);
+        ubo.glow = Internal::glowUniforms(mat->glow);
         memcpy(buf->data(), &ubo, sizeof(ubo));
         return true;
     }

@@ -8,7 +8,6 @@
 #pragma once
 
 #include "QAccelPlot/effects/GradientColorTypes.hpp"
-#include "QAccelPlot/effects/LineCurveEffect.hpp"
 #include "QAccelPlot/linestyles/SolidLine.hpp"
 #include "QAccelPlot/renderers/LineCurveLineRenderer.hpp"
 #include "QAccelPlot/renderers/LineCurvePointRenderer.hpp"
@@ -18,7 +17,7 @@
 #include "QAccelPlot/series/SeriesMarker.hpp"
 #include "QAccelPlot/series/StepMode.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
-#include "QAccelPlot/transitions/DataTransition.hpp"
+#include "QAccelPlot/transitions/TransitionRunner.hpp"
 
 #include <QPointF>
 #include <QPointer>
@@ -31,8 +30,6 @@
 #include <vector>
 
 namespace QAccelPlot {
-
-class TransitionRunner;
 
 /// \brief A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects.
 ///
@@ -52,9 +49,9 @@ class TransitionRunner;
 /// Visual effects (gradient stroke, gradient fill) are attached via the \c effects list property.
 ///
 /// \par Transitions
-/// Animated data updates are enabled by assigning a \c DrawTransition or \c MorphTransition to \c transition.
-/// Several curves can share one transition. Replacing or clearing \c transition, cancelling it, or
-/// appending data during an animation skips to the new data.
+/// \c enterTransition animates added points, \c updateTransition kept points, and \c exitTransition removed
+/// points, matched by index. Several curves can share one transition. Replacing or clearing a transition,
+/// cancelling it, or appending data during an animation skips to the new data.
 ///
 /// \par Step lines
 /// \c stepMode draws the line as steps, for example <tt>stepMode: QAccelPlot.StepMode.After</tt>. The gradient fill,
@@ -69,7 +66,7 @@ class TransitionRunner;
 /// leaves a gap, \c Connect joins the neighboring valid data points. Insert \c NaN to mark missing telemetry explicitly.
 /// With a step mode and \c Break, a value holds up to the X of an invalid neighbor when that X is finite.
 ///
-/// \sa Axis, SeriesMarker, GradientFill, GradientStroke, DrawTransition, MorphTransition
+/// \sa Axis, SeriesMarker, GradientFill, GradientStroke, DrawTransition, GrowTransition, MorphTransition
 class LineCurve : public PlotSeries {
     Q_OBJECT
     QML_NAMED_ELEMENT(LineCurve)
@@ -80,14 +77,16 @@ class LineCurve : public PlotSeries {
     Q_PROPERTY(qreal lineWidth READ lineWidth WRITE setLineWidth NOTIFY lineWidthChanged)
     /// \brief Pick distance in pixels from the line; 0 disables line hover. Markers are picked within their size. Default: 10.
     Q_PROPERTY(qreal hoverRadius READ hoverRadius WRITE setHoverRadius NOTIFY hoverRadiusChanged)
-    /// \brief Optional data transition animation applied when new data arrives.
-    Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
+    /// \brief Transition of the points a data change adds, or \c nullptr to show them at once.
+    Q_PROPERTY(EnterExitTransition* enterTransition READ enterTransition WRITE setEnterTransition NOTIFY enterTransitionChanged)
+    /// \brief Transition of the points a data change keeps, or \c nullptr to move them at once.
+    Q_PROPERTY(DataTransition* updateTransition READ updateTransition WRITE setUpdateTransition NOTIFY updateTransitionChanged)
+    /// \brief Transition of the points a data change removes, or \c nullptr to remove them at once.
+    Q_PROPERTY(EnterExitTransition* exitTransition READ exitTransition WRITE setExitTransition NOTIFY exitTransitionChanged)
     /// \brief Line style (SolidLine, DashLine, or NoLine). Default: SolidLine.
     Q_PROPERTY(LineStyle* lineStyle READ lineStyle WRITE setLineStyle NOTIFY lineStyleChanged)
     /// \brief Antialiasing feather width in pixels, clamped to [0, 10]. Has effect only when the inherited \c antialiasing is \c true. Default: 1.
     Q_PROPERTY(qreal antialiasingFeather READ antialiasingFeather WRITE setAntialiasingFeather NOTIFY antialiasingFeatherChanged)
-    /// \brief List of visual effects (e.g. GradientFill, GradientStroke) applied to this curve.
-    Q_PROPERTY(QQmlListProperty<LineCurveEffect> effects READ effects)
     /// \brief Grouped gap-rendering settings, e.g. <tt>gaps.nanMode</tt>.
     Q_PROPERTY(LineCurveGaps* gaps READ gaps CONSTANT)
     /// \brief Grouped marker settings, e.g. <tt>marker.shape</tt> and <tt>marker.size</tt>.
@@ -117,10 +116,18 @@ public:
     /// Marker hit testing is unaffected.
     void setHoverRadius(qreal radius);
 
-    /// \brief Returns the active data transition, or \c nullptr if none.
-    DataTransition* transition() const;
-    /// \brief Sets the data transition to \a transition.
-    void setTransition(DataTransition* transition);
+    /// \brief Returns the transition of added points, or \c nullptr.
+    EnterExitTransition* enterTransition() const;
+    /// \brief Sets the transition of added points to \a transition.
+    void setEnterTransition(EnterExitTransition* transition);
+    /// \brief Returns the transition of kept points, or \c nullptr.
+    DataTransition* updateTransition() const;
+    /// \brief Sets the transition of kept points to \a transition.
+    void setUpdateTransition(DataTransition* transition);
+    /// \brief Returns the transition of removed points, or \c nullptr.
+    EnterExitTransition* exitTransition() const;
+    /// \brief Sets the transition of removed points to \a transition.
+    void setExitTransition(EnterExitTransition* transition);
 
     /// \brief Returns the active line style.
     LineStyle* lineStyle() const;
@@ -131,9 +138,6 @@ public:
     qreal antialiasingFeather() const;
     /// \brief Sets the antialiasing feather width to \a feather pixels, clamped to [0, 10].
     void setAntialiasingFeather(qreal feather);
-
-    /// \brief Returns the QML list property for attached visual effects.
-    QQmlListProperty<LineCurveEffect> effects();
 
     /// \brief Returns the grouped gap-rendering settings. The object is owned by the curve.
     LineCurveGaps* gaps() const;
@@ -165,12 +169,13 @@ protected:
     Internal::InspectionSource inspectionSource() const override;
     bool inspectionAvailable() const override;
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updatePaintNodeData) override;
-    void itemChange(ItemChange change, const ItemChangeData& value) override;
     void hoverEnterEvent(QHoverEvent* event) override;
     void hoverLeaveEvent(QHoverEvent* event) override;
     /// \endcond
     /// \brief Returns \c true if \a point lies within the curve's hit-test region.
     bool contains(const QPointF& point) const override;
+    /// \brief Returns \c true for \c GradientFill, \c GradientStroke, \c Glow, and \c FadeTrail.
+    bool supportsEffect(const SeriesEffect& effect) const override;
     /// \brief Applies new points, animating to them when a transition is enabled.
     void applyDataPoints(DataPointInput&& input) override;
     /// \brief Refreshes cached geometry when a bound axis changes between linear and log scale.
@@ -185,8 +190,12 @@ signals:
     void lineWidthChanged();
     /// \brief Emitted when the hoverRadius property changes.
     void hoverRadiusChanged();
-    /// \brief Emitted when the transition property changes.
-    void transitionChanged();
+    /// \brief Emitted when the enterTransition property changes.
+    void enterTransitionChanged();
+    /// \brief Emitted when the updateTransition property changes.
+    void updateTransitionChanged();
+    /// \brief Emitted when the exitTransition property changes.
+    void exitTransitionChanged();
     /// \brief Emitted when the lineStyle property changes.
     void lineStyleChanged();
     /// \brief Emitted when the antialiasingFeather property changes.
@@ -195,21 +204,18 @@ signals:
     void stepModeChanged();
 
 private:
-    void onTransitionDestroyed();
     void onLineStyleChanged();
     void onLineStyleDestroyed();
     void onNanGapModeChanged();
     void onMarkerShapeChanged();
 
-    static void appendEffect(QQmlListProperty<LineCurveEffect>* list, LineCurveEffect* effect);
-    static qsizetype effectCount(QQmlListProperty<LineCurveEffect>* list);
-    static LineCurveEffect* effectAt(QQmlListProperty<LineCurveEffect>* list, qsizetype index);
-    static void clearEffects(QQmlListProperty<LineCurveEffect>* list);
-
     bool hasGradientEffect() const;
     GradientColorPayload resolveGradientColorPayload() const;
     GradientFillPayload resolveGradientFillPayload() const;
     std::pair<qreal, qreal> gradientDataRange(Qt::Orientation direction) const;
+    // The points the running transition fades, as indices into the render data, which leaves out
+    // invalid points in NanGapMode::Connect.
+    Internal::ItemFade renderedFade() const;
 
     void applyNewData(std::vector<float>&& newData, int newPointCount);
     void applyNewData(std::vector<double>&& newData, int newPointCount);
@@ -231,9 +237,8 @@ private:
     void finishTransition();
     // Starts a transition from the points drawn now to the stored points, the new data.
     void startTransition(std::vector<double>&& from, int fromCount);
-    // Effects refresh on the GUI thread once per frame, from QQuickWindow::afterAnimating.
-    void connectAnimationTicks(QQuickWindow* window);
-    void refreshEffects();
+    // Shows the next frame of the running transition, or the stored points when it ends.
+    void showTransitionFrame();
     void advanceTransition();
 
     QColor color_{ColorPalette::dark().seriesPrimary};
@@ -243,14 +248,12 @@ private:
     std::unique_ptr<TransitionRunner> transition_;
     // The previous transition frame, reused for the next one.
     std::vector<double> frameBuffer_;
-    QPointer<QQuickWindow> animationTickWindow_;
     QPointer<LineStyle> lineStyle_{new SolidLine{this}};
     qreal antialiasingFeather_{1.0};
     bool styleChanged_{false};
     LineCurveGaps* gaps_{new LineCurveGaps{this}};
     SeriesMarker* marker_{new SeriesMarker{MarkerShape::None, 4.0, SeriesMarker::NoneShape::Accepted, this}};
     StepMode stepMode_{StepMode::None};
-    QList<LineCurveEffect*> effects_;
     LineCurveLineRenderer lineRenderer_;
     LineCurvePointRenderer pointRenderer_;
 

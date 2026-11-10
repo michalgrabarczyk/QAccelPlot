@@ -49,7 +49,7 @@ Window {
     signal replayRequested
 
     function drawCurve(curve, points, animated) {
-        curve.transition.enabled = animated;
+        curve.enterTransition.enabled = animated;
         curve.setData(points);
     }
 
@@ -334,7 +334,8 @@ Window {
                             yAxis: spiralPlot.yAxis
                             color: modelData.color
                             lineWidth: hovered ? 4 : 2
-                            transition: QAccelPlot.DrawTransition {
+                            updateTransition: enterTransition
+                            enterTransition: QAccelPlot.DrawTransition {
                                 duration: window.drawDuration
                             }
                             Component.onCompleted: refresh(true)
@@ -419,7 +420,8 @@ Window {
                                 }
                             }
                         ]
-                        transition: QAccelPlot.DrawTransition {
+                        updateTransition: enterTransition
+                        enterTransition: QAccelPlot.DrawTransition {
                             duration: window.drawDuration
                         }
                         Component.onCompleted: refresh(true)
@@ -487,7 +489,8 @@ Window {
                                 }
                             }
                         ]
-                        transition: QAccelPlot.DrawTransition {
+                        updateTransition: enterTransition
+                        enterTransition: QAccelPlot.DrawTransition {
                             duration: window.drawDuration
                         }
                         Component.onCompleted: refresh(true)
@@ -572,7 +575,8 @@ Window {
                             yAxis: vanDerPolPlot.yAxis
                             color: window.trajectoryColors[colorIndex]
                             lineWidth: hovered ? 3.5 : 1.5
-                            transition: QAccelPlot.DrawTransition {
+                            updateTransition: enterTransition
+                            enterTransition: QAccelPlot.DrawTransition {
                                 duration: window.drawDuration
                             }
                             Component.onCompleted: refresh(true)
@@ -603,7 +607,8 @@ Window {
                         lineStyle: QAccelPlot.DashLine {
                             pattern: [8, 5]
                         }
-                        transition: QAccelPlot.DrawTransition {
+                        updateTransition: enterTransition
+                        enterTransition: QAccelPlot.DrawTransition {
                             duration: window.drawDuration
                         }
                         Component.onCompleted: refresh(true)

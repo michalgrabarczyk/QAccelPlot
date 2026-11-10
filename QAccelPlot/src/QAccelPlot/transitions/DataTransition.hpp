@@ -10,61 +10,84 @@
 #include <QEasingCurve>
 #include <QList>
 #include <QObject>
+#include <QQmlListProperty>
+#include <QQmlParserStatus>
 #include <QtQml/qqmlregistration.h>
-
-#include <vector>
 
 QT_FORWARD_DECLARE_CLASS(QAbstractAnimation)
 
 namespace QAccelPlot {
 
-/// \brief Abstract base class for animated data transitions on plot elements.
+namespace Internal {
+class OpacityTimeline;
+} // namespace Internal
+
+/// \brief Abstract base class for animated data transitions on plot series.
 ///
-/// Subclasses implement \c interpolate() to define how the element animates between
-/// an old dataset and a new one. The transition is driven frame-by-frame by \c advance(),
-/// which the host element calls on the GUI thread before each scene graph synchronization,
-/// so \c runningChanged is always emitted on the GUI thread.
+/// A series animates a data change with up to three transitions, matched to its items by index:
+/// \c enterTransition for added items, \c updateTransition for kept items, and \c exitTransition
+/// for removed items. \c MorphTransition, \c DrawTransition, and \c GrowTransition are the
+/// available transitions.
 ///
 /// Time comes from Qt's animation timer on the transition's thread, the clock of QML animations.
 /// An installed \c QAnimationDriver therefore steps transitions too, for example to record
 /// frames offscreen at a fixed time step.
 ///
-/// One transition can be assigned to several elements. Each element keeps its own \c Run with the
-/// data it animates between, so the elements animate independently.
+/// One transition can be assigned to several series, and to several slots of one series. Each
+/// assignment keeps its own \c Run, so the animations are independent.
 ///
-/// \sa DrawTransition, MorphTransition, LineCurve, BarSeries, PointCloud
-class DataTransition : public QObject {
+/// Qt Quick animations of \c "opacity" declared inside a transition fade each item, see \c animations:
+///
+/// \code{.qml}
+/// enterTransition: QAccelPlot.DrawTransition {
+///     NumberAnimation { property: "opacity"; from: 0; duration: 250 }
+/// }
+/// \endcode
+///
+/// \sa MorphTransition, DrawTransition, GrowTransition, TransitionRunner
+class DataTransition : public QObject, public QQmlParserStatus {
     Q_OBJECT
+    Q_INTERFACES(QQmlParserStatus)
     QML_ANONYMOUS
+    Q_CLASSINFO("DefaultProperty", "animations")
 
     /// \brief Duration of the transition in milliseconds. Default: 300.
     ///
     /// With 0 or less, a run shows the target data at its next frame.
     Q_PROPERTY(int duration READ duration WRITE setDuration NOTIFY durationChanged)
-    /// \brief Easing curve applied to the animation progress. Default: \c QEasingCurve::Linear.
+    /// \brief Easing curve applied to the progress of each item. Default: \c QEasingCurve::Linear.
     Q_PROPERTY(QEasingCurve easing READ easing WRITE setEasing NOTIFY easingChanged)
-    /// \brief Whether the transition is active. When \c false, data updates are applied instantly.
+    /// \brief Whether the transition is active. When \c false, the items it animates change instantly.
     Q_PROPERTY(bool enabled READ enabled WRITE setEnabled NOTIFY enabledChanged)
-    /// \brief Read-only: \c true while the transition is playing on at least one element.
+    /// \brief Read-only: \c true while the transition is playing on at least one series.
     Q_PROPERTY(bool running READ running NOTIFY runningChanged)
+    /// \brief Share of \c duration over which the start times of the items are spread, in [0, 1].
+    ///
+    /// 0 animates all items together; 1 animates them one after another, each changing at once.
+    /// Items start in index order. Values outside [0, 1] are clamped. Default: 0, and 1 for \c DrawTransition.
+    Q_PROPERTY(qreal stagger READ stagger WRITE setStagger NOTIFY staggerChanged)
+    /// \brief Qt Quick animations of the opacity of each item, such as \c NumberAnimation { property: "opacity" }.
+    ///
+    /// The default property. The animations run together on the timeline of each item, which starts
+    /// when the item starts to move. They are read, never run, so \c running, \c paused, and their
+    /// signals have no effect.
+    ///
+    /// - Supported: \c NumberAnimation and other numeric \c PropertyAnimation types, \c PropertyAction,
+    ///   \c PauseAnimation, \c SequentialAnimation, and \c ParallelAnimation, with finite \c loops.
+    /// - A missing \c from continues from the opacity reached so far, and a missing \c to is 1.
+    ///   Before its first animation starts, an item shows that animation's start opacity.
+    /// - Other animations, such as \c SpringAnimation or \c ScriptAction, and animations of other
+    ///   properties log a warning and only add their duration.
+    /// - When the animations last longer than an item's share of \c duration, the start times of
+    ///   the items move closer together, so the transition still ends after \c duration.
+    /// - The opacity is clamped to [0, 1], and every item is opaque again when the transition ends.
+    Q_PROPERTY(QQmlListProperty<QObject> animations READ animations)
 
 public:
-    /// \brief Data a transition animates: \c count items of \c stride values each, e.g. XY points with a stride of 2.
-    struct Dataset {
-        /// \brief The values, item after item.
-        std::vector<double> values;
-        /// \brief Number of items in \c values.
-        int count{0};
-        /// \brief Number of values per item.
-        int stride{2};
-    };
-
-    /// \brief One animation of a transition on one host element.
+    /// \brief One animation of a transition on one series.
     ///
-    /// Holds the data the host animates from and to. A run is \e active while the transition
-    /// advances it, and \e pending until the host takes the target data with \c finish(). A run
-    /// ended by \c DataTransition::cancel() or by destroying the transition stays pending, so the
-    /// host can still show the target data. Destroying a run ends it.
+    /// A run is \e active from \c DataTransition::start() until \c end(), \c DataTransition::cancel(),
+    /// or the destruction of the transition. Destroying a run ends it.
     class Run {
     public:
         /// \brief Constructs an idle run.
@@ -75,37 +98,21 @@ public:
         Run(const Run&) = delete;
         Run& operator=(const Run&) = delete;
 
-        /// \brief Returns \c true while the transition advances this run.
+        /// \brief Returns \c true while the run is active.
         bool active() const;
-        /// \brief Returns \c true while the run holds target data that \c finish() has not taken.
-        bool pending() const;
-        /// \brief Returns the target data. Valid while \c pending() is \c true.
-        const std::vector<double>& targetData() const;
-        /// \brief Returns the number of points in \c targetData().
-        int targetPointCount() const;
-
-        /// \brief Ends the run and moves its target data into \a outData and \a outPointCount.
-        ///
-        /// \return \c false, leaving the outputs unchanged, when the run is not pending.
-        bool finish(std::vector<double>& outData, int& outPointCount);
-        /// \brief Ends the run and discards its data.
-        void cancel();
+        /// \brief Returns the transition the run is active on, or \c nullptr.
+        DataTransition* transition() const;
+        /// \brief Ends the run.
+        void end();
 
     private:
         friend class DataTransition;
 
-        void detach();
-
         DataTransition* transition_{nullptr};
-        bool pending_{false};
-        Dataset from_;
-        Dataset to_;
         int startTime_{0};
     };
 
-    /// \brief Constructs an DataTransition with the given \a parent.
-    explicit DataTransition(QObject* parent = nullptr);
-    /// \brief Destroys the transition. Its runs stay pending, so their hosts can still show the target data.
+    /// \brief Destroys the transition, ending its runs.
     ~DataTransition() override;
 
     /// \brief Returns the animation duration in milliseconds.
@@ -126,25 +133,34 @@ public:
     /// \brief Returns \c true while at least one run is active.
     bool running() const;
 
-    /// \brief Starts \a run from \a currentData to \a newData, restarting it if it is already active.
-    /// \param run Run of the host element; ended first if another transition advances it.
-    /// \param currentData Current double buffer (copied as the \e from state).
-    /// \param currentPointCount Number of points in \a currentData.
-    /// \param newData Target double buffer (moved as the \e to state).
-    /// \param newPointCount Number of points in \a newData.
-    /// \param stride Number of values per point in both buffers. Default: 2, XY points.
-    void start(Run& run, const std::vector<double>& currentData, int currentPointCount, std::vector<double>&& newData, int newPointCount, int stride = 2);
+    /// \brief Returns the share of the duration over which item start times are spread.
+    qreal stagger() const;
+    /// \brief Sets the stagger to \a stagger, clamped to [0, 1].
+    void setStagger(qreal stagger);
 
+    /// \brief Returns the QML list property of the opacity animations.
+    QQmlListProperty<QObject> animations();
+
+    /// \brief Starts \a run, restarting it if it is already active.
+    ///
+    /// A run active on another transition is ended first.
+    void start(Run& run);
     /// \brief Ends every active run immediately.
-    ///
-    /// The runs stay pending; hosts show the target data after \c running turns \c false.
     void cancel();
-
-    /// \brief Advances \a run by one frame, writing the interpolated data into \a outData.
+    /// \brief Returns the progress of \a run in [0, 1], before easing.
     ///
-    /// When the duration has elapsed, writes the target data and finishes the run.
-    /// \return \c true if \a run is still active after this call.
-    bool advance(Run& run, std::vector<double>& outData, int& outPointCount);
+    /// It is 1 once the duration has elapsed, and 1 for a run that is not active on this transition.
+    double progress(const Run& run) const;
+
+    /// \cond INTERNAL
+    /// \brief Returns the opacity of an item over the time since it started, read from \c animations.
+    Internal::OpacityTimeline opacityTimeline() const;
+    /// \endcond
+
+    /// \brief Holds back the warnings about ignored animations while the component loads.
+    void classBegin() override;
+    /// \brief Reports ignored animations once the component is complete.
+    void componentComplete() override;
 
 signals:
     /// \brief Emitted when the duration property changes.
@@ -155,23 +171,33 @@ signals:
     void enabledChanged();
     /// \brief Emitted when the running property changes.
     void runningChanged();
-
-protected:
-    /// \brief Subclass entry point — writes the dataset between \a from and \a to at \a easedProgress into \a out.
-    ///
-    /// \a easedProgress runs from 0 to 1 and leaves that range with an overshooting easing curve.
-    /// \a from and \a to share one stride, which \a out already has; set its \c values and \c count.
-    virtual void interpolate(double easedProgress, const Dataset& from, const Dataset& to, Dataset& out) = 0;
+    /// \brief Emitted when the stagger property changes.
+    void staggerChanged();
 
 private:
+    // Only the transitions of the library derive from DataTransition.
+    friend class MorphTransition;
+    friend class EnterExitTransition;
+
+    explicit DataTransition(QObject* parent = nullptr);
+
+    static void appendAnimation(QQmlListProperty<QObject>* list, QObject* animation);
+    static qsizetype animationCount(QQmlListProperty<QObject>* list);
+    static QObject* animationAt(QQmlListProperty<QObject>* list, qsizetype index);
+    static void clearAnimations(QQmlListProperty<QObject>* list);
+
     void removeRun(Run* run);
     void setRunning(bool running);
+    void warnAboutIgnored(const QList<QObject*>& animations) const;
 
     int duration_{300};
     QEasingCurve easing_{QEasingCurve(QEasingCurve::Linear)};
     bool enabled_{true};
     bool running_{false};
+    qreal stagger_{0.0};
     QList<Run*> runs_;
+    QList<QObject*> animations_;
+    bool loading_{false};
     QAbstractAnimation* clock_;
 };
 

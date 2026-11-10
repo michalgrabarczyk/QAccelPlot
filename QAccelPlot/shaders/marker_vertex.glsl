@@ -7,7 +7,7 @@
 //
 // Vertex stage of the marker quads shared by point.vert and point_cloud.vert. Each
 // point is two unindexed triangles that read the point from the data texture.
-// Requires dataSampler, data_texture.glsl, math_utils.glsl, point_shapes.glsl, and a
+// Requires dataSampler, data_texture.glsl, math_utils.glsl, point_shapes.glsl, glow.glsl, and a
 // ubuf with matrix, domainMin, domainMax, viewportSize, logScaleX, logScaleY,
 // markerSize, shapeType, antialiasingEnabled, and antialiasingFeather.
 
@@ -18,6 +18,7 @@ layout(location = 0) in vec4 vertexPadding;
 
 struct MarkerVertex {
     int base;          // data texture index of the point's X; Y follows it
+    float index;       // index of the point
     bool valid;        // false for invalid samples, which are not drawn
     vec2 dataPosition; // untransformed data-space position of the point
     vec2 uv;           // +-1 is markerSize; the quad extends further with antialiasing
@@ -43,6 +44,7 @@ MarkerVertex computeMarkerVertex(int floatsPerPoint) {
 
     MarkerVertex result;
     result.base = (vertexIndex / 6) * floatsPerPoint;
+    result.index = float(vertexIndex / 6);
     result.valid = false;
     result.dataPosition = vec2(0.0);
     result.uv = vec2(0.0);
@@ -89,6 +91,9 @@ MarkerVertex computeMarkerVertex(int floatsPerPoint) {
         // With antialiasing, the quad grows by half the feather so the coverage ramp
         // centred on the shape edge is not clipped by the geometry.
         halfExtent += ubuf.antialiasingFeather * 0.5;
+    }
+    if (ubuf.shapeType != kPixel && glowActive(ubuf.glowParams.xy)) {
+        halfExtent += ubuf.glowParams.x;
     }
 
     vec2 offset = markerCornerOffset(vertexIndex % 6);

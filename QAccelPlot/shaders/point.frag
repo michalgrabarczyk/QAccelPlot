@@ -10,6 +10,7 @@
 
 layout(location = 0) in vec2 v_uv;     // +-1 is markerSize; the quad extends further with antialiasing
 layout(location = 1) in float v_gradientCoordinate;
+layout(location = 2) in float v_itemOpacity;
 
 layout(location = 0) out vec4 fragColor;
 
@@ -32,31 +33,40 @@ layout(std140, binding = 0) uniform buf {
     float gradientValueMin;
     float gradientValueMax;
     float opacity;
+    vec4 itemFadeGroups[28]; // item opacity, see item_opacity.glsl
+    vec4 itemFadeTrail;
+    vec4 itemFadeTrailEasing[4];
+    vec4 glowColor;         // Glow effect, see glow.glsl
+    vec4 glowParams;
 } ubuf;
 
 layout(binding = 2) uniform sampler2D gradientSampler;
 
 #include "point_shapes.glsl"
+#include "glow.glsl"
 
 void main() {
     float alpha;
+    // Distance outside the marker shape, where a glow draws its halo.
+    float distancePx = 0.0;
     if (ubuf.shapeType == kPixel) {
         // point.vert sizes the quad to exactly one pixel.
         alpha = 1.0;
     } else {
         bool antialiasing = ubuf.antialiasingEnabled > 0.5 && ubuf.antialiasingFeather > 0.0;
-        float distancePx = shapeSDF(v_uv, ubuf.shapeType, ubuf.markerSize) * ubuf.markerSize;
+        distancePx = shapeSDF(v_uv, ubuf.shapeType, ubuf.markerSize) * ubuf.markerSize;
         alpha = markerAlpha(distancePx, ubuf.shapeType, antialiasing, ubuf.antialiasingFeather,
                             ubuf.markerStrokeWidth, ubuf.markerFilled >= 0.5);
     }
+    bool glow = ubuf.shapeType != kPixel && glowActive(ubuf.glowParams.xy);
 
-    if (alpha <= 0.0) {
+    if (alpha <= 0.0 && !glow) {
         discard;
     }
 
     // Sample the gradient unconditionally (keeps the sampler live on every backend).
     vec4 gradientColor = texture(gradientSampler, vec2(clamp(v_gradientCoordinate, 0.0, 1.0), 0.5));
     vec4 c = mix(ubuf.color, gradientColor, step(0.5, ubuf.useVertexColor));
-    float a = c.a * alpha * ubuf.opacity;
-    fragColor = vec4(c.rgb * a, a);
+    float opacity = c.a * ubuf.opacity * v_itemOpacity;
+    fragColor = withGlow(vec4(c.rgb * alpha, alpha), distancePx, ubuf.glowColor, glow ? ubuf.glowParams.xy : vec2(0.0), opacity);
 }

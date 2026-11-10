@@ -10,8 +10,10 @@
 #include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/effects/Glow.hpp"
 #include "QAccelPlot/materials/ErrorBarMaterial.hpp"
 #include "QAccelPlot/series/internal/RectGeometry.hpp"
+#include "QAccelPlot/series/internal/SeriesEffectList.hpp"
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 #include "QAccelPlot/transitions/TransitionRunner.hpp"
@@ -150,7 +152,8 @@ ErrorBarSeries::ErrorBarSeries(QQuickItem* parent)
     setAcceptedMouseButtons(Qt::NoButton);
     connect(transition_.get(), &TransitionRunner::frameDue, this, &ErrorBarSeries::advanceTransition);
     connect(transition_.get(), &TransitionRunner::interrupted, this, &ErrorBarSeries::endTransition);
-    connect(transition_.get(), &TransitionRunner::transitionDestroyed, this, &ErrorBarSeries::transitionChanged);
+    transition_->notifyTransitionChanges(this);
+    connect(transition_.get(), &TransitionRunner::activeChanged, this, [this] { setAnimating(transition_->active()); });
 }
 
 ErrorBarSeries::~ErrorBarSeries()
@@ -269,16 +272,34 @@ void ErrorBarSeries::setHoverRadius(const qreal radius)
     update();
 }
 
-DataTransition* ErrorBarSeries::transition() const
+EnterExitTransition* ErrorBarSeries::enterTransition() const
 {
-    return transition_->transition();
+    return qobject_cast<EnterExitTransition*>(transition_->transition(TransitionRunner::Slot::Enter));
 }
 
-void ErrorBarSeries::setTransition(DataTransition* transition)
+void ErrorBarSeries::setEnterTransition(EnterExitTransition* transition)
 {
-    if (transition_->setTransition(transition)) {
-        emit transitionChanged();
-    }
+    transition_->setTransition(TransitionRunner::Slot::Enter, transition);
+}
+
+DataTransition* ErrorBarSeries::updateTransition() const
+{
+    return transition_->transition(TransitionRunner::Slot::Update);
+}
+
+void ErrorBarSeries::setUpdateTransition(DataTransition* transition)
+{
+    transition_->setTransition(TransitionRunner::Slot::Update, transition);
+}
+
+EnterExitTransition* ErrorBarSeries::exitTransition() const
+{
+    return qobject_cast<EnterExitTransition*>(transition_->transition(TransitionRunner::Slot::Exit));
+}
+
+void ErrorBarSeries::setExitTransition(EnterExitTransition* transition)
+{
+    transition_->setTransition(TransitionRunner::Slot::Exit, transition);
 }
 
 int ErrorBarSeries::hoveredIndex() const
@@ -337,6 +358,11 @@ void ErrorBarSeries::setErrorData(
 
 void ErrorBarSeries::clearData()
 {
+    if (transition_->animates(count(), 0)) {
+        // Every error bar is removed, so the exit transition animates them.
+        applyDoubleData({}, 0);
+        return;
+    }
     discardTransition();
     PlotSeries::clearData();
 }
@@ -461,7 +487,7 @@ void ErrorBarSeries::hoverLeaveEvent(QHoverEvent* event)
 
 void ErrorBarSeries::applyDataPoints(DataPointInput&& input)
 {
-    if (transition_->enabled()) {
+    if (transition_->animates(count(), input.count)) {
         // Transitions animate doubles.
         const auto dataPointCount = input.count;
         applyDoubleData(std::move(input).toDoubles(), dataPointCount);
@@ -469,6 +495,11 @@ void ErrorBarSeries::applyDataPoints(DataPointInput&& input)
     }
     discardTransition();
     storeDataPoints(std::move(input));
+}
+
+bool ErrorBarSeries::supportsEffect(const SeriesEffect& effect) const
+{
+    return qobject_cast<const Glow*>(&effect) != nullptr;
 }
 
 void ErrorBarSeries::onAxisScaleChanged()
@@ -560,23 +591,23 @@ void ErrorBarSeries::applyDoubleData(std::vector<double>&& data, const int dataP
 
 void ErrorBarSeries::startTransition(const std::vector<double>& drawn, const int drawnCount)
 {
-    const auto errorBarCount = count();
-    if (errorBarCount == 0) {
+    // The value and both bounds grow; the position stays.
+    const auto vertical = orientation_ == Qt::Vertical;
+    const auto valueColumns = vertical ? std::vector<int>{1, 2, 3} : std::vector<int>{0, 2, 3};
+    const auto baseline = Internal::growBaseline(0.0, vertical ? yAxis() : xAxis());
+    if (!transition_->start(drawn, drawnCount, doubleData(dataPoints().view()), count(), TransitionRunner::Layout{kStride, valueColumns, baseline, false})) {
         discardTransition();
         return;
     }
-    // New error bars appear at once, so only those drawn now start elsewhere.
-    auto target = doubleData(dataPoints().view());
-    auto start = target;
-    const auto sharedCount = static_cast<std::ptrdiff_t>(std::min(drawnCount, errorBarCount)) * kStride;
-    std::copy_n(drawn.cbegin(), sharedCount, start.begin());
-
-    transition_->start(start, errorBarCount, std::move(target), errorBarCount, kStride);
-    frameBuffer_ = dataPoints().setDrawn(std::move(start), errorBarCount);
-    spatialGridValid_ = false;
+    showTransitionFrame();
 }
 
 void ErrorBarSeries::advanceTransition()
+{
+    showTransitionFrame();
+}
+
+void ErrorBarSeries::showTransitionFrame()
 {
     auto shownCount = 0;
     transition_->advance(frameBuffer_, shownCount);
@@ -584,9 +615,10 @@ void ErrorBarSeries::advanceTransition()
         endTransition();
         return;
     }
-    // A transition may show fewer error bars, as DrawTransition does; the others are not drawn.
-    frameBuffer_.resize(static_cast<std::size_t>(count()) * kStride, kNaN);
-    frameBuffer_ = dataPoints().setDrawn(std::move(frameBuffer_), count());
+    // Error bars the frame does not show, before they enter or after they exit, are not drawn.
+    const auto errorBarCount = transition_->frameCapacity();
+    frameBuffer_.resize(static_cast<std::size_t>(errorBarCount) * kStride, kNaN);
+    frameBuffer_ = dataPoints().setDrawn(std::move(frameBuffer_), errorBarCount);
     spatialGridValid_ = false;
     update();
 }
@@ -679,6 +711,8 @@ void ErrorBarSeries::updateMaterial(ErrorBarMaterial& material, const int drawnC
     material.offset = static_cast<float>(offset_);
     material.horizontal = isHorizontal() ? 1.0f : 0.0f;
     material.errorBarCount = static_cast<float>(drawnCount);
+    material.itemFade = transition_->fade();
+    material.glow = effectList().glowStyle(color_);
     material.antialiasing = antialiasing() ? 1.0f : 0.0f;
 }
 

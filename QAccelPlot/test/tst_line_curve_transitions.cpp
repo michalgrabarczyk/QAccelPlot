@@ -122,7 +122,7 @@ void LineCurveTransitionsTest::runningChangedIsEmittedOnGuiThread()
 {
     auto transition = MorphTransition{};
     transition.setDuration(50);
-    scene_.curve->setTransition(&transition);
+    scene_.curve->setUpdateTransition(&transition);
 
     // QML handlers and bindings run directly on the emitting thread, like a direct connection.
     auto emittingThreads = QList<QThread*>{};
@@ -135,14 +135,14 @@ void LineCurveTransitionsTest::runningChangedIsEmittedOnGuiThread()
     for (const auto* thread : std::as_const(emittingThreads)) {
         QCOMPARE(thread, qApp->thread());
     }
-    scene_.curve->setTransition(nullptr);
+    scene_.curve->setUpdateTransition(nullptr);
 }
 
 void LineCurveTransitionsTest::transitionReachesTargetData()
 {
     auto transition = MorphTransition{};
     transition.setDuration(50);
-    scene_.curve->setTransition(&transition);
+    scene_.curve->setUpdateTransition(&transition);
 
     scene_.curve->setData(horizontalLine(0.8));
     QTRY_VERIFY_WITH_TIMEOUT(!transition.running(), 2000);
@@ -151,7 +151,7 @@ void LineCurveTransitionsTest::transitionReachesTargetData()
     const auto* item = static_cast<const QQuickItem*>(scene_.curve.get());
     QVERIFY(item->contains({50, 20}));
     QVERIFY(!item->contains({50, 80}));
-    scene_.curve->setTransition(nullptr);
+    scene_.curve->setUpdateTransition(nullptr);
 }
 
 void LineCurveTransitionsTest::transitionAdvancesWithParentAtConstruction()
@@ -164,13 +164,13 @@ void LineCurveTransitionsTest::transitionAdvancesWithParentAtConstruction()
     curve->setData(horizontalLine(0.2));
     auto transition = MorphTransition{};
     transition.setDuration(50);
-    curve->setTransition(&transition);
+    curve->setUpdateTransition(&transition);
 
     curve->setData(horizontalLine(0.8));
     QTRY_VERIFY_WITH_TIMEOUT(!transition.running(), 2000);
 
     QVERIFY(static_cast<const QQuickItem*>(curve.get())->contains({50, 20}));
-    curve->setTransition(nullptr);
+    curve->setUpdateTransition(nullptr);
 }
 
 void LineCurveTransitionsTest::sharedTransitionAnimatesCurvesIndependently()
@@ -178,8 +178,8 @@ void LineCurveTransitionsTest::sharedTransitionAnimatesCurvesIndependently()
     const auto other = addCurve(0.95);
     auto transition = MorphTransition{};
     transition.setDuration(100);
-    scene_.curve->setTransition(&transition);
-    other->setTransition(&transition);
+    scene_.curve->setUpdateTransition(&transition);
+    other->setUpdateTransition(&transition);
 
     scene_.curve->setData(horizontalLine(0.8));
     other->setData(horizontalLine(0.05));
@@ -189,8 +189,8 @@ void LineCurveTransitionsTest::sharedTransitionAnimatesCurvesIndependently()
     QVERIFY(hits(scene_.curve.get(), {50, 20}));
     QVERIFY(!hits(scene_.curve.get(), {50, 95}));
     QVERIFY(hits(other.get(), {50, 95}));
-    scene_.curve->setTransition(nullptr);
-    other->setTransition(nullptr);
+    scene_.curve->setUpdateTransition(nullptr);
+    other->setUpdateTransition(nullptr);
 }
 
 void LineCurveTransitionsTest::interruptedTransitionShowsTargetData_data()
@@ -208,17 +208,17 @@ void LineCurveTransitionsTest::interruptedTransitionShowsTargetData()
     auto transition = std::make_unique<DrawTransition>();
     transition->setDuration(kLongDuration);
     auto replacement = MorphTransition{};
-    scene_.curve->setTransition(transition.get());
+    scene_.curve->setUpdateTransition(transition.get());
     scene_.curve->setData(denseHorizontalLine(0.8));
     // The first frame draws the start of the target.
     QTRY_VERIFY(hits(scene_.curve.get(), {5, 20}));
 
     switch (interruption) {
     case Interruption::Detach:
-        scene_.curve->setTransition(nullptr);
+        scene_.curve->setUpdateTransition(nullptr);
         break;
     case Interruption::Replace:
-        scene_.curve->setTransition(&replacement);
+        scene_.curve->setUpdateTransition(&replacement);
         break;
     case Interruption::Cancel:
         transition->cancel();
@@ -231,14 +231,14 @@ void LineCurveTransitionsTest::interruptedTransitionShowsTargetData()
 
     QVERIFY(hits(scene_.curve.get(), {95, 20}));
     QVERIFY(!transition || !transition->running());
-    scene_.curve->setTransition(nullptr);
+    scene_.curve->setUpdateTransition(nullptr);
 }
 
 void LineCurveTransitionsTest::appendDataDuringTransitionKeepsTargetData()
 {
     auto transition = DrawTransition{};
     transition.setDuration(kLongDuration);
-    scene_.curve->setTransition(&transition);
+    scene_.curve->setUpdateTransition(&transition);
 
     // A step from y = 0.2 (row 80) on the left half to y = 0.8 (row 20) on the right half.
     auto target = QList<QPointF>{};
@@ -256,20 +256,20 @@ void LineCurveTransitionsTest::appendDataDuringTransitionKeepsTargetData()
     QVERIFY(!transition.running());
     QVERIFY(hits(scene_.curve.get(), {25, 80}));
     QVERIFY(hits(scene_.curve.get(), {75, 20}));
-    scene_.curve->setTransition(nullptr);
+    scene_.curve->setUpdateTransition(nullptr);
 }
 
 void LineCurveTransitionsTest::reassignedTransitionKeepsCurrentData()
 {
     auto transition = MorphTransition{};
     transition.setDuration(kLongDuration);
-    scene_.curve->setTransition(&transition);
+    scene_.curve->setUpdateTransition(&transition);
     scene_.curve->setData(horizontalLine(0.8));
     QTest::qWait(50);
 
-    scene_.curve->setTransition(nullptr);
+    scene_.curve->setUpdateTransition(nullptr);
     scene_.curve->setData(horizontalLine(0.5));
-    scene_.curve->setTransition(&transition);
+    scene_.curve->setUpdateTransition(&transition);
     // Any repaint lets a transition that still runs overwrite the data.
     scene_.curve->setColor(Qt::red);
     QTest::qWait(100);
@@ -277,7 +277,7 @@ void LineCurveTransitionsTest::reassignedTransitionKeepsCurrentData()
     QVERIFY(!transition.running());
     QVERIFY(hits(scene_.curve.get(), {50, 50}));
     QVERIFY(!hits(scene_.curve.get(), {50, 20}));
-    scene_.curve->setTransition(nullptr);
+    scene_.curve->setUpdateTransition(nullptr);
 }
 
 std::unique_ptr<LineCurve> LineCurveTransitionsTest::addCurve(const qreal y) const

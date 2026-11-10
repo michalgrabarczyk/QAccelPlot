@@ -146,20 +146,23 @@ Post no faster than frames are presented; see
 
 ## Animate data changes
 
-Assign a `MorphTransition` or a `DrawTransition` to `transition`, as for a
+Set `enterTransition`, `updateTransition`, and `exitTransition`, as for a
 [`LineCurve`](styling.md#animated-data-changes).
 
-- `MorphTransition` moves each point to the new position of the same index.
-  Values change with it when the old and the new points both have them, so
-  the colors blend through the colormap.
-- `DrawTransition` shows the new points one after another.
-- New points appear, and removed points disappear, at once.
+- `MorphTransition` moves each kept point to the new position of the same
+  index. Values change with it when the old and the new points both have them,
+  so the colors blend through the colormap.
+- `GrowTransition` raises points from Y = 0, the low edge of the viewport on a
+  log Y axis, or from its `baseline`.
+- `DrawTransition` shows the points one after another.
+- A staggered transition follows the point order. Sort the points, for example
+  by X, to sweep across the plot.
 - `count`, `pointAt()`, `valueAt()`, the data and value ranges, and inspection
   use the new data from the start of the animation. Hover picks the points as
   drawn.
 - `setValues()` animates too. Called after `setData()`, it keeps that
   animation, with the points in their new colors.
-- `clearData()` shows the new data at once.
+- `clearData()` runs the exit transition.
 - While a transition is enabled, the float paths store doubles.
 
 ## Invalid points

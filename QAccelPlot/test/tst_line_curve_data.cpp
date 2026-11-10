@@ -10,6 +10,7 @@
 #include "QAccelPlot/linestyles/SolidLine.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
 #include "QAccelPlot/series/LineCurveVertexCache.hpp"
+#include "QAccelPlot/transitions/DrawTransition.hpp"
 #include "QAccelPlot/transitions/MorphTransition.hpp"
 
 #include <QHoverEvent>
@@ -215,7 +216,7 @@ void LineCurveDataTest::rawUpdateHonorsTransition()
     auto curve = LineCurve{};
     auto transition = MorphTransition{&curve};
     transition.setEnabled(false);
-    curve.setTransition(&transition);
+    curve.setUpdateTransition(&transition);
 
     auto first = makeData(2);
     curve.setDataF(first.data(), 2);
@@ -231,12 +232,12 @@ void LineCurveDataTest::destroyedTransitionClearsReference()
 {
     auto curve = LineCurve{};
     auto* transition = new MorphTransition;
-    curve.setTransition(transition);
-    auto changed = QSignalSpy{&curve, &LineCurve::transitionChanged};
+    curve.setUpdateTransition(transition);
+    auto changed = QSignalSpy{&curve, &LineCurve::updateTransitionChanged};
 
     delete transition;
 
-    QCOMPARE(curve.transition(), nullptr);
+    QCOMPARE(curve.updateTransition(), nullptr);
     QCOMPARE(changed.count(), 1);
     curve.setDataF(makeData(2), 2);
     curve.clearData();
@@ -247,13 +248,13 @@ void LineCurveDataTest::replacedTransitionDestructionDoesNotNotify()
     auto curve = LineCurve{};
     auto* first = new MorphTransition;
     auto second = MorphTransition{};
-    curve.setTransition(first);
-    curve.setTransition(&second);
-    auto changed = QSignalSpy{&curve, &LineCurve::transitionChanged};
+    curve.setUpdateTransition(first);
+    curve.setUpdateTransition(&second);
+    auto changed = QSignalSpy{&curve, &LineCurve::updateTransitionChanged};
 
     delete first;
 
-    QCOMPARE(curve.transition(), &second);
+    QCOMPARE(curve.updateTransition(), &second);
     QCOMPARE(changed.count(), 0);
 }
 
@@ -272,12 +273,12 @@ void LineCurveDataTest::stoppedTransitionBeforeFirstFrame()
     curve.setLineStyle(nullptr);
     curve.marker()->setShape(MarkerShape::Circle);
     auto transition = std::make_unique<MorphTransition>();
-    curve.setTransition(transition.get());
+    curve.setUpdateTransition(transition.get());
     curve.setDataF(makeData(2), 2);
 
     switch (stopMode) {
     case TransitionStopMode::Detach:
-        curve.setTransition(nullptr);
+        curve.setUpdateTransition(nullptr);
         break;
     case TransitionStopMode::Cancel:
         transition->cancel();
@@ -296,8 +297,8 @@ void LineCurveDataTest::stoppedTransitionBeforeFirstFrame()
 void LineCurveDataTest::disablingTransitionMidRunCancelsIt()
 {
     auto curve = LineCurve{};
-    auto transition = MorphTransition{&curve};
-    curve.setTransition(&transition);
+    auto transition = DrawTransition{&curve};
+    curve.setEnterTransition(&transition);
 
     auto first = makeData(2);
     curve.setDataF(first.data(), 2);
@@ -313,8 +314,8 @@ void LineCurveDataTest::disablingTransitionMidRunCancelsIt()
 void LineCurveDataTest::appendDataCancelsRunningTransition()
 {
     auto curve = LineCurve{};
-    auto transition = MorphTransition{&curve};
-    curve.setTransition(&transition);
+    auto transition = DrawTransition{&curve};
+    curve.setEnterTransition(&transition);
 
     auto first = makeData(2);
     curve.setDataF(first.data(), 2);
@@ -330,8 +331,8 @@ void LineCurveDataTest::axisScaleChangeDuringTransitionReportsTargetRange()
     auto xAxis = Axis{};
     auto curve = LineCurve{};
     curve.setXAxis(&xAxis);
-    auto transition = MorphTransition{};
-    curve.setTransition(&transition);
+    auto transition = DrawTransition{};
+    curve.setEnterTransition(&transition);
 
     // Without a window no frame advances the transition, so the curve still shows its start data.
     curve.setData(QList<QPointF>{{10.0, 0.0}, {20.0, 1.0}});
@@ -340,7 +341,7 @@ void LineCurveDataTest::axisScaleChangeDuringTransitionReportsTargetRange()
 
     QCOMPARE(xAxis.dataMin(), 10.0);
     QCOMPARE(xAxis.dataMax(), 20.0);
-    curve.setTransition(nullptr);
+    curve.setEnterTransition(nullptr);
 }
 
 void LineCurveDataTest::axisAggregatesCurrentSeriesRanges()

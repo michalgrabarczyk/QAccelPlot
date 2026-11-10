@@ -26,7 +26,9 @@ frame.
 - **Invalid data points** — `NaN`, `±Inf`, and non-positive log values break or
   connect the curve consistently
 - **Curves** — solid, dashed, and marker-only styles; gradient fills and
-  strokes; morph and draw transitions
+  strokes; glow and fading trails
+- **Transitions** — enter, update, and exit animations that morph, draw, or
+  grow items, with stagger and fade
 - **Point clouds** — `PointCloud` for large scatter data, colored uniformly or
   by value, with a `ColorBar`
 - **Heatmaps** — `HeatmapSeries` for grids of values colored through a

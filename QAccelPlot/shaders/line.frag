@@ -6,6 +6,7 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #version 440
+#extension GL_GOOGLE_include_directive : require
 
 layout(location = 0) in vec4 v_color;
 layout(location = 1) in float v_edgeDistance; // signed distance from the line centre, in pixels
@@ -33,7 +34,14 @@ layout(std140, binding = 0) uniform buf {
     vec4 dashPattern[2];
     float opacity;
     float stepMode;
+    vec4 itemFadeGroups[28]; // item opacity, see item_opacity.glsl
+    vec4 itemFadeTrail;
+    vec4 itemFadeTrailEasing[4];
+    vec4 glowColor;         // Glow effect, see glow.glsl
+    vec4 glowParams;
 } ubuf;
+
+#include "glow.glsl"
 
 void main() {
     // Gap discard: the fragment belongs to a triangle bridging an invalid sample.
@@ -59,12 +67,17 @@ void main() {
     // line edge. Lines thinner than 1 px are drawn 1 px wide with proportionally
     // reduced alpha, so they stay visible regardless of pixel alignment.
     float alpha = 1.0;
+    // Distance from the line edge, outside the line; the glow halo covers the rest of the ribbon.
+    float outsideDistance = abs(v_edgeDistance) - ubuf.lineWidth * 0.5;
     if (ubuf.antialiasingEnabled > 0.5 && ubuf.antialiasingFeather > 0.0) {
         float coverageWidth = max(ubuf.lineWidth, 1.0);
         float edgeDistance = coverageWidth * 0.5 - abs(v_edgeDistance);
         alpha = clamp(edgeDistance / ubuf.antialiasingFeather + 0.5, 0.0, 1.0);
         alpha *= clamp(ubuf.lineWidth, 0.0, 1.0);
+        outsideDistance = -edgeDistance;
+    } else if (glowActive(ubuf.glowParams.xy)) {
+        alpha = outsideDistance <= 0.0 ? 1.0 : 0.0;
     }
-    float a = v_color.a * alpha * ubuf.opacity;
-    fragColor = vec4(v_color.rgb * a, a);
+    // The color alpha holds the item opacity, so the halo fades with the line.
+    fragColor = withGlow(vec4(v_color.rgb * alpha, alpha), outsideDistance, ubuf.glowColor, ubuf.glowParams.xy, v_color.a * ubuf.opacity);
 }

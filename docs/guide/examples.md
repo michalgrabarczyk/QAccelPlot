@@ -138,11 +138,17 @@ Each executable is named after its example, for example
 
     Gradient area fills and strokes with presets, direction, and baseline.
 
+-   ![Effects](assets/examples/effects.webp)
+
+    **[Effects](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/effects)**
+
+    Glow and fading trail on a streaming trace and a point cloud. Recipe: [Styling](cookbook/styling.md#glow-and-fading-trails).
+
 -   ![Transitions](assets/examples/transitions.webp)
 
     **[Transitions](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/transitions)**
 
-    Morph and draw animations between datasets.
+    Bars that enter, update, and exit with grow, draw, and morph transitions, staggered and faded.
 
 -   ![Theming](assets/examples/theming.webp)
 

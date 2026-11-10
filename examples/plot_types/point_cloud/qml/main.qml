@@ -19,7 +19,7 @@ Window {
     property QtObject attractors
 
     function animateToNextAttractor(transition) {
-        cloud.transition = transition;
+        cloud.updateTransition = transition;
         attractors.next();
     }
 
@@ -121,7 +121,7 @@ Window {
                 colormap: QAccelPlot.Colormap {
                     preset: QAccelPlot.Colormap.Plasma
                 }
-                transition: morphTransition
+                updateTransition: morphTransition
             }
 
             QAccelPlot.MorphTransition {

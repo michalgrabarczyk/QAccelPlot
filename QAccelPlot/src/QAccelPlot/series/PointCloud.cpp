@@ -12,10 +12,13 @@
 #include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/effects/FadeTrail.hpp"
+#include "QAccelPlot/effects/Glow.hpp"
 #include "QAccelPlot/materials/PointCloudMaterial.hpp"
 #include "QAccelPlot/materials/internal/DataTextureLayout.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
 #include "QAccelPlot/series/internal/HoverIndexBudget.hpp"
+#include "QAccelPlot/series/internal/SeriesEffectList.hpp"
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
 #include "QAccelPlot/transitions/TransitionRunner.hpp"
 
@@ -101,7 +104,8 @@ PointCloud::PointCloud(QQuickItem* parent)
     connect(this, &QQuickItem::antialiasingChanged, this, &PlotSeries::legendEntryChanged);
     connect(transition_.get(), &TransitionRunner::frameDue, this, &PointCloud::advanceTransition);
     connect(transition_.get(), &TransitionRunner::interrupted, this, &PointCloud::endTransition);
-    connect(transition_.get(), &TransitionRunner::transitionDestroyed, this, &PointCloud::transitionChanged);
+    transition_->notifyTransitionChanges(this);
+    connect(transition_.get(), &TransitionRunner::activeChanged, this, [this] { setAnimating(transition_->active()); });
 }
 
 PointCloud::~PointCloud()
@@ -163,16 +167,34 @@ void PointCloud::setHoverRadius(const qreal radius)
     update();
 }
 
-DataTransition* PointCloud::transition() const
+EnterExitTransition* PointCloud::enterTransition() const
 {
-    return transition_->transition();
+    return qobject_cast<EnterExitTransition*>(transition_->transition(TransitionRunner::Slot::Enter));
 }
 
-void PointCloud::setTransition(DataTransition* transition)
+void PointCloud::setEnterTransition(EnterExitTransition* transition)
 {
-    if (transition_->setTransition(transition)) {
-        emit transitionChanged();
-    }
+    transition_->setTransition(TransitionRunner::Slot::Enter, transition);
+}
+
+DataTransition* PointCloud::updateTransition() const
+{
+    return transition_->transition(TransitionRunner::Slot::Update);
+}
+
+void PointCloud::setUpdateTransition(DataTransition* transition)
+{
+    transition_->setTransition(TransitionRunner::Slot::Update, transition);
+}
+
+EnterExitTransition* PointCloud::exitTransition() const
+{
+    return qobject_cast<EnterExitTransition*>(transition_->transition(TransitionRunner::Slot::Exit));
+}
+
+void PointCloud::setExitTransition(EnterExitTransition* transition)
+{
+    transition_->setTransition(TransitionRunner::Slot::Exit, transition);
 }
 
 int PointCloud::hoveredIndex() const
@@ -202,7 +224,7 @@ void PointCloud::setValues(const QList<qreal>& values)
     }
     auto pointValues = std::vector<float>(static_cast<std::size_t>(values.size()));
     std::transform(values.cbegin(), values.cend(), pointValues.begin(), [](const qreal value) { return static_cast<float>(value); });
-    if (transition_->enabled()) {
+    if (transition_->animates(count(), count())) {
         animateValues(std::move(pointValues));
         return;
     }
@@ -266,7 +288,8 @@ void PointCloud::postData(std::vector<float>&& xyInterleaved, std::vector<float>
 
 void PointCloud::clearData()
 {
-    applyFloatData({}, {}, 0);
+    // Every point is removed, so the exit transition animates them.
+    applyData({}, {}, 0);
 }
 
 std::optional<LegendEntry> PointCloud::legendEntry() const
@@ -415,6 +438,9 @@ QSGNode* PointCloud::updatePaintNode(QSGNode* oldNode, [[maybe_unused]] UpdatePa
     material->valueMin = static_cast<float>(dataValueMin());
     material->valueMax = static_cast<float>(dataValueMax());
     material->stride = static_cast<float>(stride);
+    material->itemFade = transition_->fade();
+    material->glow = effectList().glowStyle(color_);
+    material->itemTrail = effectList().itemTrail(renderCount);
     material->shapeType = static_cast<int>(marker_->shape()) - 1;
     node->markDirty(QSGNode::DirtyMaterial);
 
@@ -455,7 +481,7 @@ bool PointCloud::validateValues(const std::size_t valueCount, const int pointCou
 
 void PointCloud::applyData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, const int pointCount)
 {
-    if (transition_->enabled()) {
+    if (transition_->animates(count(), pointCount)) {
         // Transitions animate doubles.
         applyDoubleData(std::vector<double>(xyInterleaved.cbegin(), xyInterleaved.cend()), std::move(values), pointCount);
         return;
@@ -474,7 +500,7 @@ void PointCloud::applyFloatData(std::vector<float>&& xyInterleaved, std::vector<
 void PointCloud::applyDoubleData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, const int pointCount)
 {
     const auto previousCount = count();
-    const auto animate = transition_->enabled();
+    const auto animate = transition_->animates(count(), pointCount);
     // Copied before the data changes: a transition starts from the points drawn now.
     auto drawn = animate ? drawnPoints() : Points{};
     dataPoints().setPrecise(std::move(xyInterleaved), pointCount, std::move(values));
@@ -504,7 +530,7 @@ void PointCloud::applyDataPoints(DataPointInput&& input)
         applyData(std::move(input.floats), {}, pointCount);
         return;
     }
-    if (transition_->enabled()) {
+    if (transition_->animates(count(), pointCount)) {
         // Transitions animate doubles.
         applyDoubleData(std::move(input).toDoubles(), {}, pointCount);
         return;
@@ -514,6 +540,11 @@ void PointCloud::applyDataPoints(DataPointInput&& input)
     // Reuses the allocation of the stored points.
     dataPoints().assignFloat(input.floatArray, pointCount);
     notifyDataPointsChanged(DataChange::Replaced, previousCount);
+}
+
+bool PointCloud::supportsEffect(const SeriesEffect& effect) const
+{
+    return qobject_cast<const Glow*>(&effect) || qobject_cast<const FadeTrail*>(&effect);
 }
 
 void PointCloud::onAxisScaleChanged()
@@ -647,28 +678,32 @@ void PointCloud::animateValues(std::vector<float>&& values)
 
 void PointCloud::startTransition(Points&& drawn)
 {
-    const auto pointCount = count();
-    if (pointCount == 0) {
+    const auto pointStride = dataPoints().renderStride();
+    if (drawn.stride != pointStride) {
+        // A value animates only when the drawn point and the new one both have one; NaN shows the new value at once.
+        const auto sharedValues = static_cast<std::size_t>(std::min(pointStride, drawn.stride));
+        auto start = std::vector<double>(static_cast<std::size_t>(drawn.count) * static_cast<std::size_t>(pointStride), kNaN);
+        for (auto index = std::size_t{0}; index < static_cast<std::size_t>(drawn.count); ++index) {
+            const auto drawnPoint = drawn.values.cbegin() + static_cast<std::ptrdiff_t>(index * static_cast<std::size_t>(drawn.stride));
+            std::copy_n(drawnPoint, sharedValues, start.begin() + static_cast<std::ptrdiff_t>(index * static_cast<std::size_t>(pointStride)));
+        }
+        drawn.values = std::move(start);
+        drawn.stride = pointStride;
+    }
+    if (!transition_->start(
+            drawn.values, drawn.count, interleavedData(), count(), TransitionRunner::Layout{pointStride, {1}, Internal::growBaseline(0.0, yAxis()), false})) {
         discardTransition();
         return;
     }
-    const auto pointStride = static_cast<std::size_t>(dataPoints().renderStride());
-    const auto drawnStride = static_cast<std::size_t>(drawn.stride);
-    // A value animates only when the drawn point and the new one both have one.
-    const auto sharedValues = std::min(pointStride, drawnStride);
-    auto target = interleavedData();
-    auto start = target;
-    for (auto index = std::size_t{0}; index < static_cast<std::size_t>(std::min(drawn.count, pointCount)); ++index) {
-        const auto drawnPoint = drawn.values.cbegin() + static_cast<std::ptrdiff_t>(index * drawnStride);
-        std::copy_n(drawnPoint, sharedValues, start.begin() + static_cast<std::ptrdiff_t>(index * pointStride));
-    }
-
-    transition_->start(start, pointCount, std::move(target), pointCount, static_cast<int>(pointStride));
-    frameBuffer_ = dataPoints().setDrawn(std::move(start), pointCount);
-    invalidateSpatialIndex();
+    showTransitionFrame();
 }
 
 void PointCloud::advanceTransition()
+{
+    showTransitionFrame();
+}
+
+void PointCloud::showTransitionFrame()
 {
     auto shownCount = 0;
     transition_->advance(frameBuffer_, shownCount);
@@ -676,8 +711,8 @@ void PointCloud::advanceTransition()
         endTransition();
         return;
     }
-    // A transition may show fewer points, as DrawTransition does; the others are not drawn.
-    const auto pointCount = count();
+    // Points the frame does not show, before they enter or after they exit, are not drawn.
+    const auto pointCount = transition_->frameCapacity();
     frameBuffer_.resize(static_cast<std::size_t>(pointCount) * static_cast<std::size_t>(dataPoints().renderStride()), kNaN);
     frameBuffer_ = dataPoints().setDrawn(std::move(frameBuffer_), pointCount);
     invalidateSpatialIndex();

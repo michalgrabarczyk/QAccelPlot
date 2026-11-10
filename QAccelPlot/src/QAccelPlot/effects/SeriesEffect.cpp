@@ -5,21 +5,21 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "QAccelPlot/effects/LineCurveEffect.hpp"
+#include "QAccelPlot/effects/SeriesEffect.hpp"
 
 namespace QAccelPlot {
 
-LineCurveEffect::LineCurveEffect(QObject* parent)
+SeriesEffect::SeriesEffect(QObject* parent)
     : QObject(parent)
 {
 }
 
-bool LineCurveEffect::enabled() const
+bool SeriesEffect::enabled() const
 {
     return enabled_;
 }
 
-void LineCurveEffect::setEnabled(const bool enabled)
+void SeriesEffect::setEnabled(const bool enabled)
 {
     if (enabled_ == enabled) {
         return;
@@ -30,7 +30,7 @@ void LineCurveEffect::setEnabled(const bool enabled)
     emit effectChanged();
 }
 
-void LineCurveEffect::refresh()
+void SeriesEffect::refresh()
 {
 }
 

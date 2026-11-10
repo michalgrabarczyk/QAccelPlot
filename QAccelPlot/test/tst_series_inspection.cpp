@@ -10,6 +10,7 @@
 #include <QAccelPlot/series/LineCurve.hpp>
 #include <QAccelPlot/series/PointCloud.hpp>
 #include <QAccelPlot/series/RectangleSeries.hpp>
+#include <QAccelPlot/transitions/DrawTransition.hpp>
 #include <QAccelPlot/transitions/MorphTransition.hpp>
 
 #include <QtTest>
@@ -371,9 +372,9 @@ void TestSeriesInspection::argumentsAndAxisLifetime()
 void TestSeriesInspection::transition()
 {
     auto curve = LineCurve{};
-    auto animation = MorphTransition{};
+    auto animation = DrawTransition{};
     animation.setDuration(10000);
-    curve.setTransition(&animation);
+    curve.setEnterTransition(&animation);
     curve.setData(std::vector<double>{1, 2, 3, 4}, 2);
     auto* inspection = curve.inspection();
     QCOMPARE(inspection->dataPointAt(0).status, InspectionStatus::Unavailable);

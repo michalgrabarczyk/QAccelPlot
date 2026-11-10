@@ -5,9 +5,11 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
+#include "OpacityAnimations.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/series/BarSeries.hpp"
 #include "QAccelPlot/transitions/DrawTransition.hpp"
+#include "QAccelPlot/transitions/GrowTransition.hpp"
 #include "QAccelPlot/transitions/MorphTransition.hpp"
 
 #include <QGuiApplication>
@@ -19,6 +21,7 @@
 #include <algorithm>
 #include <cstdlib>
 #include <initializer_list>
+#include <limits>
 #include <memory>
 #include <vector>
 
@@ -33,24 +36,28 @@ constexpr auto kDataSpan = 10.0;
 // Long enough that the tests always interrupt the animation part way.
 constexpr auto kLongDuration = 10'000;
 
-// A transition held at one progress, so the tests can check a frame of the animation.
-template <typename Transition> class HeldAt : public Transition {
+// Eases every progress after the start to halfway, so a run starts from the data drawn.
+qreal halfway(const qreal progress)
+{
+    return progress > 0.0 ? 0.5 : 0.0;
+}
+
+// Eases every progress after the start to just past it, so a frame shows items that barely moved.
+qreal barelyStarted(const qreal progress)
+{
+    return progress > 0.0 ? 0.005 : 0.0;
+}
+
+// A transition held halfway, so the tests can check a frame of the animation.
+template <typename Transition> class HeldHalfway : public Transition {
 public:
-    explicit HeldAt(const double progress)
-        : progress_(progress)
+    HeldHalfway()
     {
         this->setDuration(kLongDuration);
+        auto easing = QEasingCurve{};
+        easing.setCustomType(halfway);
+        this->setEasing(easing);
     }
-
-protected:
-    void interpolate(
-        [[maybe_unused]] double easedProgress, const DataTransition::Dataset& from, const DataTransition::Dataset& to, DataTransition::Dataset& out) override
-    {
-        Transition::interpolate(progress_, from, to, out);
-    }
-
-private:
-    double progress_;
 };
 
 struct Scene {
@@ -97,10 +104,16 @@ private slots:
     void cleanup();
     void morphMovesBarsToTheirNewValues();
     void newBarsGrowFromTheBaseline();
+    void barsHangingFromTheTopGrowDownFromIt();
+    void barsOnALogAxisGrowFromItsEdge();
+    void newBarsWithoutEnterTransitionAppearAtOnce();
     void removedBarsShrinkToTheBaseline();
     void removedBarsKeepTheirCategoryColor();
     void categoriesSetDuringAnAnimationApply();
     void drawShowsBarsInOrder();
+    void fadedEnterStartsTransparent();
+    void fadeAtFullStaggerStartsTransparent();
+    void addingBarsLeavesUnchangedBarsAlone();
     void rangedBarsMorphTheirExtent();
     void changedLayoutGrowsTheNewBarsIn();
     void floatDataAnimates();
@@ -108,6 +121,7 @@ private slots:
     void transitionReachesTargetData();
     void interruptedTransitionShowsTargetData_data();
     void interruptedTransitionShowsTargetData();
+    void clearDataRunsTheExitTransition();
     void clearDataSkipsTheAnimation();
     void sharedTransitionAnimatesSeriesIndependently();
     void transitionPropertyNotifies();
@@ -145,9 +159,9 @@ void BarSeriesTransitionsTest::cleanup()
 
 void BarSeriesTransitionsTest::morphMovesBarsToTheirNewValues()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto morph = HeldHalfway<MorphTransition>{};
     scene_.bars->setData(std::vector<double>{5.0, 2.0}, 1);
-    scene_.bars->setTransition(&morph);
+    scene_.bars->setUpdateTransition(&morph);
 
     scene_.bars->setData(std::vector<double>{5.0, 8.0}, 1);
 
@@ -155,68 +169,112 @@ void BarSeriesTransitionsTest::morphMovesBarsToTheirNewValues()
     QCOMPARE(scene_.bars->barAt(0).value(QStringLiteral("value")).toDouble(), 8.0);
     QVERIFY(morph.running());
     QTRY_VERIFY(shows({{5.0, 4.5, Qt::red}, {5.0, 5.5, Qt::black}}));
-    scene_.bars->setTransition(nullptr);
+    scene_.bars->setUpdateTransition(nullptr);
 }
 
 void BarSeriesTransitionsTest::newBarsGrowFromTheBaseline()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
-    scene_.bars->setTransition(&morph);
+    auto grow = HeldHalfway<GrowTransition>{};
+    scene_.bars->setEnterTransition(&grow);
 
     scene_.bars->setData(std::vector<double>{2.0, 8.0, 7.0, 4.0}, 2);
 
     QCOMPARE(scene_.bars->count(), 2);
     QTRY_VERIFY(shows({{2.0, 3.5, Qt::red}, {2.0, 4.5, Qt::black}, {7.0, 1.5, Qt::red}, {7.0, 2.5, Qt::black}}));
-    scene_.bars->setTransition(nullptr);
+    scene_.bars->setEnterTransition(nullptr);
+}
+
+void BarSeriesTransitionsTest::barsHangingFromTheTopGrowDownFromIt()
+{
+    auto grow = HeldHalfway<GrowTransition>{};
+    scene_.bars->setBaselineValue(std::numeric_limits<double>::infinity());
+    scene_.bars->setEnterTransition(&grow);
+
+    scene_.bars->setData(std::vector<double>{2.0, 4.0}, 1);
+
+    // Halfway from the top edge at 10 down to 4.
+    QTRY_VERIFY(shows({{2.0, 7.5, Qt::red}, {2.0, 6.5, Qt::black}}));
+    scene_.bars->setEnterTransition(nullptr);
+}
+
+void BarSeriesTransitionsTest::barsOnALogAxisGrowFromItsEdge()
+{
+    auto grow = HeldHalfway<GrowTransition>{};
+    auto easing = QEasingCurve{};
+    easing.setCustomType(barelyStarted);
+    grow.setEasing(easing);
+    scene_.yAxis->setLogScale(true);
+    scene_.yAxis->setViewportMin(1.0);
+    scene_.yAxis->setViewportMax(100.0);
+    scene_.bars->setEnterTransition(&grow);
+
+    scene_.bars->setData(std::vector<double>{2.0, 100.0}, 1);
+
+    // The baseline 0 lies below the log axis, so the bar grows from its bottom edge at 1 and
+    // shows from the first frames. A probe y of 10 is the top of the plot.
+    QTRY_VERIFY(shows({{2.0, 0.4, Qt::red}, {2.0, 5.0, Qt::black}}));
+    scene_.bars->setEnterTransition(nullptr);
+}
+
+void BarSeriesTransitionsTest::newBarsWithoutEnterTransitionAppearAtOnce()
+{
+    auto morph = HeldHalfway<MorphTransition>{};
+    scene_.bars->setData(std::vector<double>{2.0, 4.0}, 1);
+    scene_.bars->setUpdateTransition(&morph);
+
+    scene_.bars->setData(std::vector<double>{2.0, 8.0, 7.0, 4.0}, 2);
+
+    QTRY_VERIFY(shows({{2.0, 5.5, Qt::red}, {2.0, 6.5, Qt::black}, {7.0, 3.5, Qt::red}, {7.0, 4.5, Qt::black}}));
+    scene_.bars->setUpdateTransition(nullptr);
 }
 
 void BarSeriesTransitionsTest::removedBarsShrinkToTheBaseline()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto grow = HeldHalfway<GrowTransition>{};
     scene_.bars->setData(std::vector<double>{2.0, 8.0, 7.0, 4.0}, 2);
-    scene_.bars->setTransition(&morph);
+    scene_.bars->setExitTransition(&grow);
 
     scene_.bars->setData(std::vector<double>{2.0, 8.0}, 1);
 
     QCOMPARE(scene_.bars->count(), 1);
     QTRY_VERIFY(shows({{2.0, 7.5, Qt::red}, {7.0, 1.5, Qt::red}, {7.0, 2.5, Qt::black}}));
 
-    morph.cancel();
+    grow.cancel();
     QTRY_VERIFY(shows({{2.0, 7.5, Qt::red}, {7.0, 1.5, Qt::black}}));
-    scene_.bars->setTransition(nullptr);
+    scene_.bars->setExitTransition(nullptr);
 }
 
 void BarSeriesTransitionsTest::removedBarsKeepTheirCategoryColor()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto grow = HeldHalfway<GrowTransition>{};
     scene_.bars->setCategories({new Category{0, QString{}, Qt::blue, scene_.bars.get()}});
     scene_.bars->setData(std::vector<double>{2.0, 8.0, 7.0, 8.0}, std::vector<int>{-1, 0}, 2);
-    scene_.bars->setTransition(&morph);
+    scene_.bars->setExitTransition(&grow);
 
     scene_.bars->setData(std::vector<double>{2.0, 8.0}, 1);
 
     QTRY_VERIFY(shows({{2.0, 7.5, Qt::red}, {7.0, 3.5, Qt::blue}, {7.0, 4.5, Qt::black}}));
-    scene_.bars->setTransition(nullptr);
+    scene_.bars->setExitTransition(nullptr);
 }
 
 void BarSeriesTransitionsTest::categoriesSetDuringAnAnimationApply()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto grow = HeldHalfway<GrowTransition>{};
     scene_.bars->setCategories({new Category{0, QString{}, Qt::blue, scene_.bars.get()}});
-    scene_.bars->setTransition(&morph);
+    scene_.bars->setEnterTransition(&grow);
     scene_.bars->setData(std::vector<double>{2.0, 8.0, 7.0, 8.0}, 2);
     QTRY_VERIFY(shows({{2.0, 3.5, Qt::red}, {7.0, 3.5, Qt::red}}));
 
     scene_.bars->setDataPointCategories({-1, 0});
 
     QTRY_VERIFY(shows({{2.0, 3.5, Qt::red}, {7.0, 3.5, Qt::blue}, {7.0, 4.5, Qt::black}}));
-    scene_.bars->setTransition(nullptr);
+    scene_.bars->setEnterTransition(nullptr);
 }
 
 void BarSeriesTransitionsTest::drawShowsBarsInOrder()
 {
-    auto draw = HeldAt<DrawTransition>{0.5};
-    scene_.bars->setTransition(&draw);
+    auto draw = HeldHalfway<DrawTransition>{};
+    scene_.bars->setEnterTransition(&draw);
 
     scene_.bars->setData(std::vector<double>{1.0, 8.0, 3.0, 8.0, 5.0, 8.0, 7.0, 8.0}, 4);
 
@@ -224,53 +282,53 @@ void BarSeriesTransitionsTest::drawShowsBarsInOrder()
 
     draw.cancel();
     QTRY_VERIFY(shows({{5.0, 5.0, Qt::red}, {7.0, 5.0, Qt::red}}));
-    scene_.bars->setTransition(nullptr);
+    scene_.bars->setEnterTransition(nullptr);
 }
 
 void BarSeriesTransitionsTest::rangedBarsMorphTheirExtent()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto morph = HeldHalfway<MorphTransition>{};
     scene_.bars->setRangedData(std::vector<double>{1.0, 2.0, 4.0}, 1);
-    scene_.bars->setTransition(&morph);
+    scene_.bars->setUpdateTransition(&morph);
 
     scene_.bars->setRangedData(std::vector<double>{3.0, 5.0, 8.0}, 1);
 
     // Half way, the bar spans 2..3.5 and reaches 6.
     QTRY_VERIFY(shows({{2.75, 5.5, Qt::red}, {2.75, 6.5, Qt::black}, {1.5, 2.0, Qt::black}, {4.25, 2.0, Qt::black}}));
-    scene_.bars->setTransition(nullptr);
+    scene_.bars->setUpdateTransition(nullptr);
 }
 
 void BarSeriesTransitionsTest::changedLayoutGrowsTheNewBarsIn()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto grow = HeldHalfway<GrowTransition>{};
     scene_.bars->setData(std::vector<double>{2.0, 8.0}, 1);
-    scene_.bars->setTransition(&morph);
+    scene_.bars->setEnterTransition(&grow);
 
     scene_.bars->setRangedData(std::vector<double>{6.0, 8.0, 8.0}, 1);
 
     QTRY_VERIFY(shows({{2.0, 2.0, Qt::black}, {7.0, 3.5, Qt::red}, {7.0, 4.5, Qt::black}}));
-    scene_.bars->setTransition(nullptr);
+    scene_.bars->setEnterTransition(nullptr);
 }
 
 void BarSeriesTransitionsTest::floatDataAnimates()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto morph = HeldHalfway<MorphTransition>{};
     scene_.bars->setDataF(std::vector<float>{5.0f, 2.0f}, 1);
-    scene_.bars->setTransition(&morph);
+    scene_.bars->setUpdateTransition(&morph);
 
     const auto next = std::vector<float>{5.0f, 8.0f};
     scene_.bars->setDataF(next.data(), 1);
 
     QCOMPARE(scene_.bars->barAt(0).value(QStringLiteral("value")).toDouble(), 8.0);
     QTRY_VERIFY(shows({{5.0, 4.5, Qt::red}, {5.0, 5.5, Qt::black}}));
-    scene_.bars->setTransition(nullptr);
+    scene_.bars->setUpdateTransition(nullptr);
 }
 
 void BarSeriesTransitionsTest::newDataContinuesFromTheDrawnBars()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto morph = HeldHalfway<MorphTransition>{};
     scene_.bars->setData(std::vector<double>{5.0, 0.0}, 1);
-    scene_.bars->setTransition(&morph);
+    scene_.bars->setUpdateTransition(&morph);
     scene_.bars->setData(std::vector<double>{5.0, 8.0}, 1);
     QTRY_VERIFY(shows({{5.0, 3.5, Qt::red}, {5.0, 4.5, Qt::black}}));
 
@@ -278,7 +336,7 @@ void BarSeriesTransitionsTest::newDataContinuesFromTheDrawnBars()
     scene_.bars->setData(std::vector<double>{5.0, 0.0}, 1);
 
     QTRY_VERIFY(shows({{5.0, 1.5, Qt::red}, {5.0, 2.5, Qt::black}}));
-    scene_.bars->setTransition(nullptr);
+    scene_.bars->setUpdateTransition(nullptr);
 }
 
 void BarSeriesTransitionsTest::transitionReachesTargetData()
@@ -286,13 +344,13 @@ void BarSeriesTransitionsTest::transitionReachesTargetData()
     auto morph = MorphTransition{};
     morph.setDuration(50);
     scene_.bars->setData(std::vector<double>{5.0, 2.0}, 1);
-    scene_.bars->setTransition(&morph);
+    scene_.bars->setUpdateTransition(&morph);
 
     scene_.bars->setData(std::vector<double>{5.0, 8.0}, 1);
     QTRY_VERIFY_WITH_TIMEOUT(!morph.running(), 2000);
 
     QTRY_VERIFY(shows({{5.0, 7.5, Qt::red}, {5.0, 8.5, Qt::black}}));
-    scene_.bars->setTransition(nullptr);
+    scene_.bars->setUpdateTransition(nullptr);
 }
 
 void BarSeriesTransitionsTest::interruptedTransitionShowsTargetData_data()
@@ -307,19 +365,19 @@ void BarSeriesTransitionsTest::interruptedTransitionShowsTargetData_data()
 void BarSeriesTransitionsTest::interruptedTransitionShowsTargetData()
 {
     QFETCH(Interruption, interruption);
-    auto transition = std::make_unique<HeldAt<MorphTransition>>(0.5);
+    auto transition = std::make_unique<HeldHalfway<MorphTransition>>();
     auto replacement = MorphTransition{};
     scene_.bars->setData(std::vector<double>{5.0, 2.0}, 1);
-    scene_.bars->setTransition(transition.get());
+    scene_.bars->setUpdateTransition(transition.get());
     scene_.bars->setData(std::vector<double>{5.0, 8.0}, 1);
     QTRY_VERIFY(shows({{5.0, 4.5, Qt::red}, {5.0, 5.5, Qt::black}}));
 
     switch (interruption) {
     case Interruption::Detach:
-        scene_.bars->setTransition(nullptr);
+        scene_.bars->setUpdateTransition(nullptr);
         break;
     case Interruption::Replace:
-        scene_.bars->setTransition(&replacement);
+        scene_.bars->setUpdateTransition(&replacement);
         break;
     case Interruption::Cancel:
         transition->cancel();
@@ -331,14 +389,30 @@ void BarSeriesTransitionsTest::interruptedTransitionShowsTargetData()
 
     QTRY_VERIFY(shows({{5.0, 7.5, Qt::red}}));
     QVERIFY(!transition || !transition->running());
-    scene_.bars->setTransition(nullptr);
+    scene_.bars->setUpdateTransition(nullptr);
+}
+
+void BarSeriesTransitionsTest::clearDataRunsTheExitTransition()
+{
+    auto grow = HeldHalfway<GrowTransition>{};
+    scene_.bars->setData(std::vector<double>{5.0, 8.0}, 1);
+    scene_.bars->setExitTransition(&grow);
+
+    scene_.bars->clearData();
+
+    QCOMPARE(scene_.bars->count(), 0);
+    QVERIFY(grow.running());
+    QTRY_VERIFY(shows({{5.0, 3.5, Qt::red}, {5.0, 4.5, Qt::black}}));
+    QVERIFY(scene_.bars->animating());
+    scene_.bars->setExitTransition(nullptr);
+    QVERIFY(!scene_.bars->animating());
 }
 
 void BarSeriesTransitionsTest::clearDataSkipsTheAnimation()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto morph = HeldHalfway<MorphTransition>{};
     scene_.bars->setData(std::vector<double>{5.0, 8.0}, 1);
-    scene_.bars->setTransition(&morph);
+    scene_.bars->setUpdateTransition(&morph);
     scene_.bars->setData(std::vector<double>{5.0, 4.0}, 1);
     QVERIFY(morph.running());
 
@@ -347,7 +421,7 @@ void BarSeriesTransitionsTest::clearDataSkipsTheAnimation()
     QCOMPARE(scene_.bars->count(), 0);
     QVERIFY(!morph.running());
     QTRY_VERIFY(shows({{5.0, 1.0, Qt::black}}));
-    scene_.bars->setTransition(nullptr);
+    scene_.bars->setUpdateTransition(nullptr);
 }
 
 void BarSeriesTransitionsTest::sharedTransitionAnimatesSeriesIndependently()
@@ -355,31 +429,31 @@ void BarSeriesTransitionsTest::sharedTransitionAnimatesSeriesIndependently()
     const auto other = addBars(Qt::blue);
     auto morph = MorphTransition{};
     morph.setDuration(100);
-    scene_.bars->setTransition(&morph);
-    other->setTransition(&morph);
+    scene_.bars->setUpdateTransition(&morph);
+    other->setUpdateTransition(&morph);
 
     scene_.bars->setData(std::vector<double>{2.0, 8.0}, 1);
     other->setData(std::vector<double>{7.0, 4.0}, 1);
     QTRY_VERIFY_WITH_TIMEOUT(!morph.running(), 2000);
 
     QTRY_VERIFY(shows({{2.0, 7.5, Qt::red}, {7.0, 3.5, Qt::blue}, {7.0, 4.5, Qt::black}}));
-    scene_.bars->setTransition(nullptr);
-    other->setTransition(nullptr);
+    scene_.bars->setUpdateTransition(nullptr);
+    other->setUpdateTransition(nullptr);
 }
 
 void BarSeriesTransitionsTest::transitionPropertyNotifies()
 {
-    auto changes = QSignalSpy{scene_.bars.get(), &BarSeries::transitionChanged};
+    auto changes = QSignalSpy{scene_.bars.get(), &BarSeries::updateTransitionChanged};
     auto morph = std::make_unique<MorphTransition>();
 
-    scene_.bars->setTransition(morph.get());
-    scene_.bars->setTransition(morph.get());
+    scene_.bars->setUpdateTransition(morph.get());
+    scene_.bars->setUpdateTransition(morph.get());
     QCOMPARE(changes.count(), 1);
-    QCOMPARE(scene_.bars->transition(), static_cast<DataTransition*>(morph.get()));
+    QCOMPARE(scene_.bars->updateTransition(), static_cast<DataTransition*>(morph.get()));
 
     morph.reset();
     QCOMPARE(changes.count(), 2);
-    QVERIFY(!scene_.bars->transition());
+    QVERIFY(!scene_.bars->updateTransition());
 }
 
 std::unique_ptr<BarSeries> BarSeriesTransitionsTest::addBars(const QColor& color) const
@@ -392,6 +466,61 @@ std::unique_ptr<BarSeries> BarSeriesTransitionsTest::addBars(const QColor& color
     bars->setColor(color);
     bars->setBarWidth(1.0);
     return bars;
+}
+
+void BarSeriesTransitionsTest::fadedEnterStartsTransparent()
+{
+    auto draw = DrawTransition{};
+    draw.setDuration(kLongDuration);
+    draw.setStagger(0.0);
+    Test::addAnimation(draw, R"(NumberAnimation { property: "opacity"; from: 0; duration: 10000 })");
+    scene_.bars->setEnterTransition(&draw);
+
+    scene_.bars->setData(std::vector<double>{5.0, 8.0}, 1);
+
+    // Shown from the start, but still transparent.
+    QTRY_VERIFY(shows({{5.0, 4.0, Qt::black}}));
+    draw.setDuration(0);
+    QTRY_VERIFY(shows({{5.0, 4.0, Qt::red}}));
+    scene_.bars->setEnterTransition(nullptr);
+}
+
+void BarSeriesTransitionsTest::addingBarsLeavesUnchangedBarsAlone()
+{
+    scene_.bars->setData(std::vector<double>{2.0, 8.0}, 1);
+    auto morph = MorphTransition{};
+    morph.setDuration(kLongDuration);
+    Test::addAnimation(morph, R"(NumberAnimation { property: "opacity"; to: 0; duration: 10000 })");
+    auto draw = DrawTransition{};
+    draw.setDuration(kLongDuration);
+    draw.setStagger(0.0);
+    Test::addAnimation(draw, R"(NumberAnimation { property: "opacity"; from: 0; duration: 10000 })");
+    scene_.bars->setUpdateTransition(&morph);
+    scene_.bars->setEnterTransition(&draw);
+
+    scene_.bars->setData(std::vector<double>{2.0, 8.0, 7.0, 8.0}, 2);
+
+    // Only the added bar fades in; the kept one did not change, so its update transition does not run.
+    QTRY_VERIFY(shows({{2.0, 4.0, Qt::red}, {7.0, 4.0, Qt::black}}));
+    scene_.bars->setUpdateTransition(nullptr);
+    scene_.bars->setEnterTransition(nullptr);
+}
+
+void BarSeriesTransitionsTest::fadeAtFullStaggerStartsTransparent()
+{
+    // The reveal moves over the first half; the fade of each bar fills the rest.
+    auto draw = DrawTransition{};
+    draw.setDuration(kLongDuration);
+    Test::addAnimation(draw, R"(NumberAnimation { property: "opacity"; from: 0; duration: 5000 })");
+    scene_.bars->setEnterTransition(&draw);
+
+    scene_.bars->setData(std::vector<double>{2.0, 8.0, 7.0, 8.0}, 2);
+
+    // The first bar is revealed at once, but still transparent; the second one waits for the front.
+    QTRY_VERIFY(shows({{2.0, 4.0, Qt::black}, {7.0, 4.0, Qt::black}}));
+    draw.setDuration(0);
+    QTRY_VERIFY(shows({{2.0, 4.0, Qt::red}, {7.0, 4.0, Qt::red}}));
+    scene_.bars->setEnterTransition(nullptr);
 }
 
 bool BarSeriesTransitionsTest::shows(const std::initializer_list<Probe> probes) const

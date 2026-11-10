@@ -8,6 +8,8 @@
 #pragma once
 
 #include "QAccelPlot/effects/GradientColorTypes.hpp"
+#include "QAccelPlot/internal/GlowStyle.hpp"
+#include "QAccelPlot/internal/ItemFade.hpp"
 #include "QAccelPlot/renderers/CurveRendererParams.hpp"
 
 #include <QColor>
@@ -47,6 +49,9 @@ struct PointCurveRenderParams {
     int shapeType;                               ///< \brief Marker shape index (\c MarkerShape value minus one).
     qreal markerStrokeWidth;                     ///< \brief Outline width in pixels for hollow markers.
     bool markerFilled;                           ///< \brief Whether closed marker shapes are filled rather than outlined.
+    Internal::ItemFade itemFade{};               ///< \brief Points a running transition fades, as indices into \c data.
+    Internal::ItemTrail itemTrail{};             ///< \brief Oldest points a \c FadeTrail fades.
+    Internal::GlowStyle glow{};                  ///< \brief Halo of a \c Glow effect around the markers.
 };
 
 /// \brief Placeholder vertex of a marker quad, shared with the main thread for vertex caches.

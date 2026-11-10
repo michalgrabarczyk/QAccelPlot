@@ -6,94 +6,330 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #include "QAccelPlot/transitions/DrawTransition.hpp"
+#include "QAccelPlot/transitions/GrowTransition.hpp"
 #include "QAccelPlot/transitions/MorphTransition.hpp"
+#include "QAccelPlot/transitions/internal/TransitionFrame.hpp"
 
 #include <QAnimationDriver>
 #include <QtTest/QtTest>
 
+#include <algorithm>
 #include <cmath>
 #include <limits>
 #include <memory>
+#include <optional>
+#include <utility>
 #include <vector>
 
-// ---------------------------------------------------------------------------
-// Helper subclasses to expose protected interpolate() for direct testing,
-// avoiding dependence on the animation clock inside advance().
-// ---------------------------------------------------------------------------
+Q_DECLARE_METATYPE(std::optional<QAccelPlot::Internal::TransitionKind>)
 
-template <typename Transition> class Exposed : public Transition {
-public:
-    using Dataset = QAccelPlot::DataTransition::Dataset;
+using QAccelPlot::Internal::ItemClock;
+using QAccelPlot::Internal::ItemFade;
+using QAccelPlot::Internal::ItemFadeGroup;
+using QAccelPlot::Internal::OpacitySegment;
+using QAccelPlot::Internal::OpacityTimeline;
+using QAccelPlot::Internal::TransitionKind;
+using QAccelPlot::Internal::TransitionLayout;
+using QAccelPlot::Internal::TransitionStep;
 
-    void callInterpolate(double progress, const std::vector<double>& from, int fromCount, const std::vector<double>& to, int toCount, std::vector<double>& out,
-        int& outCount, int stride = 2)
+namespace {
+
+constexpr auto kNaN = std::numeric_limits<double>::quiet_NaN();
+
+TransitionStep step(const TransitionKind kind, const double progress, const double stagger = 0.0)
+{
+    auto result = TransitionStep{};
+    result.kind = kind;
+    result.progress = progress;
+    result.stagger = stagger;
+    result.easing = QEasingCurve{QEasingCurve::Linear};
+    return result;
+}
+
+// A step whose items fade from `from` to `to` over `fadeMs` of a `durationMs` run.
+TransitionStep fadingStep(const TransitionKind kind, const double progress, const double stagger, const double fadeMs, const double durationMs = 1000.0,
+    const double from = 0.0, const double to = 1.0)
+{
+    auto result = step(kind, progress, stagger);
+    result.opacity = OpacityTimeline{{OpacitySegment{0.0, fadeMs, from, to, QEasingCurve{}}}, fadeMs};
+    result.duration = durationMs;
+    return result;
+}
+
+// One frame of a change from `from` to `to`, `stride` values per item.
+struct Frame {
+    std::vector<double> values;
+    int count{0};
+    ItemFade fade;
+};
+
+struct Change {
+    Change(std::vector<double> fromItems, std::vector<double> toItems)
+        : from(std::move(fromItems))
+        , to(std::move(toItems))
     {
-        auto frame = Dataset{std::move(out), outCount, stride};
-        this->interpolate(progress, Dataset{from, fromCount, stride}, Dataset{to, toCount, stride}, frame);
-        out = std::move(frame.values);
-        outCount = frame.count;
+    }
+
+    std::vector<double> from;
+    std::vector<double> to;
+    TransitionLayout layout;
+    std::optional<TransitionStep> enter;
+    std::optional<TransitionStep> update;
+    std::optional<TransitionStep> exit;
+
+    Frame frame() const
+    {
+        const auto stride = layout.stride;
+        auto input = QAccelPlot::Internal::TransitionFrameInput{
+            {from.data(), static_cast<int>(from.size()) / stride}, {to.data(), static_cast<int>(to.size()) / stride}, layout, enter, update, exit};
+        auto result = Frame{};
+        result.count = QAccelPlot::Internal::writeTransitionFrame(input, result.values, result.fade);
+        return result;
     }
 };
 
-using TestMorphTransition = Exposed<QAccelPlot::MorphTransition>;
-using TestDrawTransition = Exposed<QAccelPlot::DrawTransition>;
+// The start time the shaders give item `item` of `group`, see shaders/item_opacity.glsl.
+double fadeStart(const ItemFadeGroup& group, const int item)
+{
+    const auto order = static_cast<double>(group.exit ? group.count - 1 - item : item);
+    if (!group.front) {
+        return group.count > 1 ? group.spread * order / (group.count - 1) : 0.0;
+    }
+    const auto share = (order + (group.exit ? 1.0 : 0.0)) / group.count;
+    const auto scaled = std::clamp(share, 0.0, 1.0) * (QAccelPlot::Internal::kFadeStartSamples - 1);
+    const auto lower = std::min(static_cast<int>(std::floor(scaled)), QAccelPlot::Internal::kFadeStartSamples - 2);
+    const auto a = static_cast<double>(group.starts[static_cast<std::size_t>(lower)]);
+    const auto b = static_cast<double>(group.starts[static_cast<std::size_t>(lower) + 1]);
+    return group.spread * (a + (scaled - lower) * (b - a));
+}
 
-// ---------------------------------------------------------------------------
+} // namespace
 
 class TestTransitions : public QObject {
     Q_OBJECT
 
 private slots:
-    // MorphTransition
-    void morph_equalPointCounts_data();
-    void morph_equalPointCounts();
-    void morph_modernEpochData_preservesSubFloatPrecision();
-    void morph_expandingPointCount();
-    void morph_shrinkingPointCount();
-    void morph_emptyFrom_outputEqualsTo();
-    void morph_emptyTo_outputIsEmpty();
-    void morph_threeValuesPerPoint();
+    // Item timing
+    void itemClock_data();
+    void itemClock();
+    void itemTiming_longerOpacity_narrowsTheSpread();
+    void itemTiming_fullStagger_leavesTimeForTheOpacity();
+    void frontStarts_linear_followsTheShare();
+    void frontStarts_easedFront_startsWhenTheFrontArrives();
 
-    // DrawTransition
-    void draw_progress_data();
-    void draw_progress();
-    void draw_emptyTo_outputIsEmpty();
-    void draw_singlePointTo_outputIsSinglePoint();
-    void draw_threeValuesPerPoint();
+    // Slot planning
+    void plannedSlots_data();
+    void plannedSlots();
+    void keptItemsChanged_data();
+    void keptItemsChanged();
+
+    // Kept items
+    void morph_interpolatesKeptItems_data();
+    void morph_interpolatesKeptItems();
+    void morph_modernEpochData_preservesSubFloatPrecision();
+    void morph_staggerMovesTheFirstItemFirst();
+    void morph_staggerFollowsTheEasingOfEachItem();
+    void morph_invalidValues_jumpToTheTarget();
+    void keptItems_withoutUpdate_jumpToTheTarget();
+
+    // Added items
+    void addedItems_withoutEnter_appearAtOnce();
+    void draw_revealsAddedItems_data();
+    void draw_revealsAddedItems();
+    void draw_keepsTheFirstItemOfAWholeSeries();
+    void draw_revealsTheLastSegmentPartway();
+    void draw_staggerBelowOne_revealsByDelay();
+    void grow_raisesAddedItemsFromTheBaseline();
+    void grow_usesItsOwnBaseline();
+    void grow_leavesInvalidValues();
+
+    // Removed items
+    void removedItems_withoutExit_disappear();
+    void draw_exit_hidesTheLastItemFirst();
+    void grow_exit_shrinksToTheBaseline();
+    void grow_exit_staggersFromTheLastItem();
+
+    // Redraw
+    void drawAsUpdate_redrawsEveryItem();
+    void growAsUpdate_growsEveryItem();
+
+    // Fade
+    void fade_withoutAnimations_isOff();
+    void fade_describesTheEnteringGroup();
+    void fade_atFullStagger_followsTheFront();
+    void fade_ofKeptItems_describesTheUpdateGroup();
+    void fade_ofAnExit_playsAsWritten();
+    void draw_fadeAtFullStagger_revealsOverTheSpread();
+    void draw_exitWithFade_keepsItemsUntilTheirFadeEnds();
+    void grow_longerOpacity_startsItemsTogether();
+    void compactedFade_keepsTheStartsOfTheRemainingItems_data();
+    void compactedFade_keepsTheStartsOfTheRemainingItems();
+    void compactedFade_withEveryItem_onlyMoves();
 
     // DataTransition state
     void transition_startSetsRunning();
-    void transition_cancelClearsRunning();
-    void transition_sharedRunsAdvanceIndependently();
-    void transition_cancelLeavesRunsPending();
-    void transition_destructionLeavesRunPending();
+    void transition_cancelEndsEveryRun();
+    void transition_runsEndIndependently();
     void transition_destroyedRunEndsItsAnimation();
     void transition_startingRunOnAnotherTransitionEndsTheFirst();
-
-    // Corner cases
-    void morph_identicalFromAndTo_outputUnchanged();
-    void morph_singlePointBothSides();
-    void draw_keepsAtLeastOnePoint_data();
-    void draw_keepsAtLeastOnePoint();
-    void transition_advance_whenNotRunning_returnsFalse();
-    void transition_advance_interpolatesUntilDurationElapses();
-    void transition_advance_keepsTheStride();
-    void transition_zeroDuration_endsAtNextFrame();
+    void transition_destructionEndsItsRuns();
+    void transition_progressFollowsTheDuration();
+    void transition_zeroDuration_isComplete();
+    void transition_staggerIsClamped();
+    void transition_defaults();
+    void grow_baselineResets();
 
     // Animation clock
-    void transition_advance_followsTheAnimationDriver();
-
-    // Invalid samples
-    void morph_invalidTarget_appearsImmediately();
-    void morph_invalidSource_jumpsToTarget();
-    void draw_preservesInvalidSamples();
+    void transition_progress_followsTheAnimationDriver();
 };
 
-// ---------------------------------------------------------------------------
-// MorphTransition tests
-// ---------------------------------------------------------------------------
+void TestTransitions::itemClock_data()
+{
+    QTest::addColumn<double>("progress");
+    QTest::addColumn<int>("order");
+    QTest::addColumn<int>("itemCount");
+    QTest::addColumn<double>("stagger");
+    QTest::addColumn<double>("expected");
 
-void TestTransitions::morph_equalPointCounts_data()
+    QTest::newRow("no stagger") << 0.25 << 3 << 5 << 0.0 << 0.25;
+    QTest::newRow("single item") << 0.25 << 0 << 1 << 0.5 << 0.25;
+    QTest::newRow("first item starts at once") << 0.25 << 0 << 3 << 0.5 << 0.5;
+    QTest::newRow("middle item waits") << 0.25 << 1 << 3 << 0.5 << 0.0;
+    QTest::newRow("middle item halfway") << 0.5 << 1 << 3 << 0.5 << 0.5;
+    QTest::newRow("last item ends with the run") << 1.0 << 2 << 3 << 0.5 << 1.0;
+    QTest::newRow("full stagger before the front") << 0.3 << 1 << 3 << 1.0 << 0.0;
+    QTest::newRow("full stagger at the front") << 0.34 << 1 << 3 << 1.0 << 1.0;
+    QTest::newRow("progress clamped") << 1.5 << 0 << 3 << 0.0 << 1.0;
+}
+
+void TestTransitions::itemClock()
+{
+    QFETCH(double, progress);
+    QFETCH(int, order);
+    QFETCH(int, itemCount);
+    QFETCH(double, stagger);
+    QFETCH(double, expected);
+
+    const auto clock = ItemClock{step(TransitionKind::Morph, progress, stagger), itemCount, false};
+
+    QCOMPARE(clock.motion(order), expected);
+}
+
+void TestTransitions::itemTiming_longerOpacity_narrowsTheSpread()
+{
+    const auto timing = QAccelPlot::Internal::itemTiming(fadingStep(TransitionKind::Grow, 0.0, 0.5, 600.0), 3);
+
+    QCOMPARE(timing.motion, 0.5);
+    QCOMPARE(timing.length, 0.6);
+    QCOMPARE(timing.spread, 0.4);
+    QVERIFY(!timing.front);
+}
+
+void TestTransitions::itemTiming_fullStagger_leavesTimeForTheOpacity()
+{
+    const auto timing = QAccelPlot::Internal::itemTiming(fadingStep(TransitionKind::Draw, 0.0, 1.0, 250.0), 3);
+
+    QCOMPARE(timing.motion, 0.0);
+    QCOMPARE(timing.length, 0.25);
+    QCOMPARE(timing.spread, 0.75);
+    QVERIFY(timing.front);
+}
+
+void TestTransitions::frontStarts_linear_followsTheShare()
+{
+    const auto starts = QAccelPlot::Internal::FrontStarts{QEasingCurve{QEasingCurve::Linear}};
+
+    QCOMPARE(starts(0.0), 0.0);
+    QCOMPARE(starts(0.25), 0.25);
+    QCOMPARE(starts(1.0), 1.0);
+}
+
+void TestTransitions::frontStarts_easedFront_startsWhenTheFrontArrives()
+{
+    // InQuad reaches a quarter of the items halfway through.
+    QVERIFY(std::abs(QAccelPlot::Internal::FrontStarts{QEasingCurve{QEasingCurve::InQuad}}(0.25) - 0.5) < 1e-3);
+    // OutBack overshoots, so its front reaches the last item before the end.
+    QVERIFY(QAccelPlot::Internal::FrontStarts{QEasingCurve{QEasingCurve::OutBack}}(1.0) < 0.9);
+}
+
+void TestTransitions::plannedSlots_data()
+{
+    using Kind = std::optional<TransitionKind>;
+    QTest::addColumn<int>("fromCount");
+    QTest::addColumn<int>("toCount");
+    QTest::addColumn<bool>("keptChanged");
+    QTest::addColumn<Kind>("enter");
+    QTest::addColumn<Kind>("update");
+    QTest::addColumn<Kind>("exit");
+    QTest::addColumn<bool>("expectEnter");
+    QTest::addColumn<bool>("expectUpdate");
+    QTest::addColumn<bool>("expectExit");
+
+    const auto draw = Kind{TransitionKind::Draw};
+    const auto morph = Kind{TransitionKind::Morph};
+    const auto grow = Kind{TransitionKind::Grow};
+    const auto none = Kind{};
+    QTest::newRow("first data enters") << 0 << 4 << false << draw << morph << grow << true << false << false;
+    QTest::newRow("same count updates") << 4 << 4 << true << draw << morph << grow << false << true << false;
+    QTest::newRow("unchanged data does not update") << 4 << 4 << false << draw << morph << grow << false << false << false;
+    QTest::newRow("more items update and enter") << 2 << 4 << true << draw << morph << grow << true << true << false;
+    QTest::newRow("added items only enter") << 2 << 4 << false << draw << morph << grow << true << false << false;
+    QTest::newRow("fewer items update and exit") << 4 << 2 << true << draw << morph << grow << false << true << true;
+    QTest::newRow("removed items only exit") << 4 << 2 << false << draw << morph << grow << false << false << true;
+    QTest::newRow("clearing exits") << 4 << 0 << false << draw << morph << grow << false << false << true;
+    QTest::newRow("draw update redraws") << 2 << 4 << true << draw << draw << grow << false << true << false;
+    QTest::newRow("draw update leaves unchanged items") << 2 << 4 << false << draw << draw << grow << true << false << false;
+    QTest::newRow("draw update on first data") << 0 << 4 << false << none << draw << none << false << false << false;
+    QTest::newRow("no transitions") << 2 << 4 << true << none << none << none << false << false << false;
+}
+
+void TestTransitions::plannedSlots()
+{
+    using Kind = std::optional<TransitionKind>;
+    QFETCH(int, fromCount);
+    QFETCH(int, toCount);
+    QFETCH(bool, keptChanged);
+    QFETCH(Kind, enter);
+    QFETCH(Kind, update);
+    QFETCH(Kind, exit);
+    QFETCH(bool, expectEnter);
+    QFETCH(bool, expectUpdate);
+    QFETCH(bool, expectExit);
+
+    const auto planned = QAccelPlot::Internal::plannedSlots(fromCount, toCount, keptChanged, enter, update, exit);
+
+    QCOMPARE(planned.enter, expectEnter);
+    QCOMPARE(planned.update, expectUpdate);
+    QCOMPARE(planned.exit, expectExit);
+}
+
+void TestTransitions::keptItemsChanged_data()
+{
+    QTest::addColumn<std::vector<double>>("from");
+    QTest::addColumn<std::vector<double>>("to");
+    QTest::addColumn<bool>("expected");
+
+    QTest::newRow("same values") << std::vector<double>{0.0, 1.0} << std::vector<double>{0.0, 1.0} << false;
+    QTest::newRow("moved item") << std::vector<double>{0.0, 1.0} << std::vector<double>{0.0, 2.0} << true;
+    QTest::newRow("added items only") << std::vector<double>{0.0, 1.0} << std::vector<double>{0.0, 1.0, 1.0, 5.0} << false;
+    QTest::newRow("removed items only") << std::vector<double>{0.0, 1.0, 1.0, 5.0} << std::vector<double>{0.0, 1.0} << false;
+    QTest::newRow("invalid value stays invalid") << std::vector<double>{0.0, kNaN} << std::vector<double>{0.0, kNaN} << false;
+    QTest::newRow("invalid value becomes valid") << std::vector<double>{0.0, kNaN} << std::vector<double>{0.0, 1.0} << true;
+}
+
+void TestTransitions::keptItemsChanged()
+{
+    QFETCH(std::vector<double>, from);
+    QFETCH(std::vector<double>, to);
+    QFETCH(bool, expected);
+
+    const auto changed
+        = QAccelPlot::Internal::keptItemsChanged({from.data(), static_cast<int>(from.size()) / 2}, {to.data(), static_cast<int>(to.size()) / 2}, 2);
+
+    QCOMPARE(changed, expected);
+}
+
+void TestTransitions::morph_interpolatesKeptItems_data()
 {
     QTest::addColumn<double>("progress");
 
@@ -102,301 +338,460 @@ void TestTransitions::morph_equalPointCounts_data()
     QTest::newRow("end") << 1.0;
 }
 
-void TestTransitions::morph_equalPointCounts()
+void TestTransitions::morph_interpolatesKeptItems()
 {
     QFETCH(double, progress);
+    auto change = Change{{1.0, 2.0, 3.0, 4.0}, {9.0, 8.0, 7.0, 6.0}};
+    change.update = step(TransitionKind::Morph, progress);
 
-    auto transition = TestMorphTransition{};
-    const auto from = std::vector<double>{1.0, 2.0, 3.0, 4.0};
-    const auto to = std::vector<double>{9.0, 8.0, 7.0, 6.0};
-    auto out = std::vector<double>{};
-    auto outCount = int{};
+    const auto frame = change.frame();
 
-    transition.callInterpolate(progress, from, 2, to, 2, out, outCount);
-
-    QCOMPARE(outCount, 2);
-    for (auto index = std::size_t{0}; index < out.size(); ++index) {
-        QCOMPARE(out[index], from[index] + progress * (to[index] - from[index]));
+    QCOMPARE(frame.count, 2);
+    for (auto index = std::size_t{0}; index < frame.values.size(); ++index) {
+        QCOMPARE(frame.values[index], change.from[index] + progress * (change.to[index] - change.from[index]));
     }
 }
 
 void TestTransitions::morph_modernEpochData_preservesSubFloatPrecision()
 {
     constexpr auto epochMilliseconds = double{1'789'032'600'000.0};
-    auto transition = TestMorphTransition{};
-    const auto from = std::vector<double>{epochMilliseconds, 0.0};
-    const auto to = std::vector<double>{epochMilliseconds + 1.0, 2.0};
-    auto out = std::vector<double>{};
-    auto outCount = int{};
+    auto change = Change{{epochMilliseconds, 0.0}, {epochMilliseconds + 1.0, 2.0}};
+    change.update = step(TransitionKind::Morph, 0.5);
 
-    transition.callInterpolate(0.5, from, 1, to, 1, out, outCount);
+    const auto frame = change.frame();
 
-    QCOMPARE(outCount, 1);
-    QCOMPARE(out[0], epochMilliseconds + 0.5);
-    QCOMPARE(out[1], 1.0);
+    QCOMPARE(frame.values, (std::vector<double>{epochMilliseconds + 0.5, 1.0}));
 }
 
-void TestTransitions::morph_expandingPointCount()
+void TestTransitions::morph_staggerMovesTheFirstItemFirst()
 {
-    // from has 1 point, to has 3 points → maxCount=3, last from-point clamped
-    auto t = TestMorphTransition{};
-    const auto from = std::vector<double>{0.0f, 0.0f};
-    const auto to = std::vector<double>{10.0f, 10.0f, 20.0f, 20.0f, 30.0f, 30.0f};
-    auto out = std::vector<double>{};
-    auto outCount = int{};
+    auto change = Change{{0.0, 0.0, 1.0, 0.0, 2.0, 0.0}, {0.0, 10.0, 1.0, 10.0, 2.0, 10.0}};
+    change.update = step(TransitionKind::Morph, 0.25, 0.5);
 
-    t.callInterpolate(1.0f, from, 1, to, 3, out, outCount);
+    const auto frame = change.frame();
 
-    QCOMPARE(outCount, 3);
-    QCOMPARE(out[0], to[0]);
-    QCOMPARE(out[2], to[2]);
-    QCOMPARE(out[4], to[4]);
+    QCOMPARE(frame.count, 3);
+    QCOMPARE(frame.values[1], 5.0);
+    QCOMPARE(frame.values[3], 0.0);
+    QCOMPARE(frame.values[5], 0.0);
 }
 
-void TestTransitions::morph_shrinkingPointCount()
+void TestTransitions::morph_staggerFollowsTheEasingOfEachItem()
 {
-    // from has 3 points, to has 1 point → maxCount=3, last to-point clamped
-    auto t = TestMorphTransition{};
-    const auto from = std::vector<double>{0.0f, 0.0f, 5.0f, 5.0f, 10.0f, 10.0f};
-    const auto to = std::vector<double>{20.0f, 20.0f};
-    auto out = std::vector<double>{};
-    auto outCount = int{};
+    auto change = Change{{0.0, 0.0, 1.0, 0.0, 2.0, 0.0}, {0.0, 1.0, 1.0, 1.0, 2.0, 1.0}};
+    auto update = step(TransitionKind::Morph, 0.6, 0.5);
+    update.easing = QEasingCurve{QEasingCurve::OutBack};
+    change.update = update;
 
-    t.callInterpolate(1.0f, from, 3, to, 1, out, outCount);
+    const auto frame = change.frame();
+    const auto clock = ItemClock{update, 3, false};
 
-    // At progress=1, all output points should equal to[clamped_index * 2]
-    QCOMPARE(outCount, 3);
-    // to index clamped to 0 for all three → all equal to[0], to[1]
-    QCOMPARE(out[0], to[0]);
-    QCOMPARE(out[1], to[1]);
-    QCOMPARE(out[2], to[0]);
-    QCOMPARE(out[3], to[1]);
-}
-
-void TestTransitions::morph_emptyFrom_outputEqualsTo()
-{
-    auto t = TestMorphTransition{};
-    const auto from = std::vector<double>{};
-    const auto to = std::vector<double>{1.0f, 2.0f};
-    auto out = std::vector<double>{};
-    auto outCount = int{};
-
-    t.callInterpolate(0.5f, from, 0, to, 1, out, outCount);
-
-    QCOMPARE(outCount, 1);
-    QCOMPARE(out[0], to[0]);
-    QCOMPARE(out[1], to[1]);
-}
-
-void TestTransitions::morph_emptyTo_outputIsEmpty()
-{
-    auto t = TestMorphTransition{};
-    const auto from = std::vector<double>{1.0f, 2.0f, 3.0f, 4.0f};
-    const auto to = std::vector<double>{};
-    auto out = std::vector<double>{};
-    auto outCount = int{};
-
-    t.callInterpolate(0.5f, from, 2, to, 0, out, outCount);
-
-    QCOMPARE(outCount, 0);
-    QVERIFY(out.empty());
-}
-
-void TestTransitions::morph_threeValuesPerPoint()
-{
-    // Two points of three values each morph into three: the extra point starts from the last one.
-    auto t = TestMorphTransition{};
-    const auto from = std::vector<double>{0.0, 1.0, 2.0, 10.0, 11.0, 12.0};
-    const auto to = std::vector<double>{2.0, 3.0, 4.0, 20.0, 21.0, 22.0, 30.0, 31.0, 32.0};
-    auto out = std::vector<double>{};
-    auto outCount = int{};
-
-    t.callInterpolate(0.5, from, 2, to, 3, out, outCount, 3);
-
-    QCOMPARE(outCount, 3);
-    QCOMPARE(out, (std::vector<double>{1.0, 2.0, 3.0, 15.0, 16.0, 17.0, 20.0, 21.0, 22.0}));
-}
-
-// ---------------------------------------------------------------------------
-// DrawTransition tests
-// ---------------------------------------------------------------------------
-
-void TestTransitions::draw_progress_data()
-{
-    QTest::addColumn<double>("progress");
-    QTest::addColumn<int>("expectedPointCount");
-
-    QTest::newRow("start-keeps-one-point") << 0.0 << 1;
-    QTest::newRow("half") << 0.5 << 2;
-    QTest::newRow("three-quarters") << 0.75 << 3;
-    QTest::newRow("end") << 1.0 << 4;
-}
-
-void TestTransitions::draw_progress()
-{
-    QFETCH(double, progress);
-    QFETCH(int, expectedPointCount);
-
-    auto transition = TestDrawTransition{};
-    const auto to = std::vector<double>{1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0};
-    auto out = std::vector<double>{};
-    auto outCount = int{};
-
-    transition.callInterpolate(progress, {}, 0, to, 4, out, outCount);
-
-    QCOMPARE(outCount, expectedPointCount);
-    for (auto index = 0; index < outCount * 2; ++index) {
-        QCOMPARE(out[index], to[index]);
+    QCOMPARE(frame.count, 3);
+    for (auto item = 0; item < 3; ++item) {
+        QCOMPARE(frame.values[static_cast<std::size_t>(item) * 2 + 1], update.easing.valueForProgress(clock.motion(item)));
     }
 }
 
-void TestTransitions::draw_emptyTo_outputIsEmpty()
+void TestTransitions::morph_invalidValues_jumpToTheTarget()
 {
-    auto t = TestDrawTransition{};
-    const auto to = std::vector<double>{};
-    auto out = std::vector<double>{};
-    auto outCount = int{};
+    const auto inf = std::numeric_limits<double>::infinity();
+    auto change = Change{{0.0, 0.0, kNaN, 1.0}, {10.0, kNaN, inf, 11.0}};
+    change.update = step(TransitionKind::Morph, 0.1);
 
-    t.callInterpolate(0.5f, {}, 0, to, 0, out, outCount);
+    const auto frame = change.frame();
 
-    QCOMPARE(outCount, 0);
-    QVERIFY(out.empty());
+    QCOMPARE(frame.values[0], 1.0);
+    QVERIFY(std::isnan(frame.values[1]));
+    QCOMPARE(frame.values[2], inf);
+    QCOMPARE(frame.values[3], 2.0);
 }
 
-void TestTransitions::draw_singlePointTo_outputIsSinglePoint()
+void TestTransitions::keptItems_withoutUpdate_jumpToTheTarget()
 {
-    auto t = TestDrawTransition{};
-    const auto to = std::vector<double>{5.0f, 7.0f};
-    auto out = std::vector<double>{};
-    auto outCount = int{};
+    auto change = Change{{0.0, 0.0, 1.0, 1.0}, {5.0, 5.0, 6.0, 6.0, 7.0, 7.0}};
+    change.enter = step(TransitionKind::Grow, 0.5);
 
-    t.callInterpolate(0.5f, {}, 0, to, 1, out, outCount);
+    const auto frame = change.frame();
 
-    QCOMPARE(outCount, 1);
-    QCOMPARE(out, to);
+    QCOMPARE(frame.count, 3);
+    QCOMPARE(frame.values, (std::vector<double>{5.0, 5.0, 6.0, 6.0, 7.0, 3.5}));
 }
 
-void TestTransitions::draw_threeValuesPerPoint()
+void TestTransitions::addedItems_withoutEnter_appearAtOnce()
 {
-    auto t = TestDrawTransition{};
-    const auto to = std::vector<double>{1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0};
-    auto out = std::vector<double>{};
-    auto outCount = int{};
+    auto change = Change{{0.0, 0.0}, {10.0, 10.0, 20.0, 20.0, 30.0, 30.0}};
+    change.update = step(TransitionKind::Morph, 0.5);
 
-    t.callInterpolate(0.5, {}, 0, to, 4, out, outCount, 3);
+    const auto frame = change.frame();
 
-    QCOMPARE(outCount, 2);
-    QCOMPARE(out, (std::vector<double>{1.0, 2.0, 3.0, 4.0, 5.0, 6.0}));
+    QCOMPARE(frame.count, 3);
+    QCOMPARE(frame.values, (std::vector<double>{5.0, 5.0, 20.0, 20.0, 30.0, 30.0}));
 }
 
-// ---------------------------------------------------------------------------
-// DataTransition state tests
-// ---------------------------------------------------------------------------
+void TestTransitions::draw_revealsAddedItems_data()
+{
+    QTest::addColumn<double>("progress");
+    QTest::addColumn<int>("expectedCount");
+
+    QTest::newRow("start") << 0.0 << 1;
+    QTest::newRow("half") << 0.5 << 3;
+    QTest::newRow("end") << 1.0 << 5;
+}
+
+void TestTransitions::draw_revealsAddedItems()
+{
+    QFETCH(double, progress);
+    QFETCH(int, expectedCount);
+    // One kept item, then four added ones.
+    auto change = Change{{0.0, 0.0}, {0.0, 0.0, 1.0, 1.0, 2.0, 2.0, 3.0, 3.0, 4.0, 4.0}};
+    change.enter = step(TransitionKind::Draw, progress, 1.0);
+
+    const auto frame = change.frame();
+
+    QCOMPARE(frame.count, expectedCount);
+    QCOMPARE(frame.values, std::vector<double>(change.to.begin(), change.to.begin() + expectedCount * 2));
+}
+
+void TestTransitions::draw_keepsTheFirstItemOfAWholeSeries()
+{
+    auto change = Change{{}, {1.0, 2.0, 3.0, 4.0, 5.0, 6.0}};
+    change.enter = step(TransitionKind::Draw, 0.0, 1.0);
+
+    const auto frame = change.frame();
+
+    QCOMPARE(frame.count, 1);
+    QCOMPARE(frame.values, (std::vector<double>{1.0, 2.0}));
+}
+
+void TestTransitions::draw_revealsTheLastSegmentPartway()
+{
+    auto change = Change{{}, {0.0, 0.0, 10.0, 10.0, 20.0, 0.0, 30.0, 10.0}};
+    change.layout.continuous = true;
+    // The reveal front is one and a half items in: the second item sits halfway along its segment.
+    change.enter = step(TransitionKind::Draw, 0.375, 1.0);
+
+    const auto frame = change.frame();
+
+    QCOMPARE(frame.count, 2);
+    QCOMPARE(frame.values, (std::vector<double>{0.0, 0.0, 5.0, 5.0}));
+}
+
+void TestTransitions::draw_staggerBelowOne_revealsByDelay()
+{
+    auto change = Change{{}, {0.0, 0.0, 1.0, 1.0, 2.0, 2.0, 3.0, 3.0, 4.0, 4.0}};
+    // Delays of 0, 0.125, 0.25, 0.375, and 0.5: three items have started at 0.3.
+    change.enter = step(TransitionKind::Draw, 0.3, 0.5);
+
+    const auto frame = change.frame();
+
+    QCOMPARE(frame.count, 3);
+}
+
+void TestTransitions::grow_raisesAddedItemsFromTheBaseline()
+{
+    auto change = Change{{}, {0.0, 10.0, 1.0, 20.0}};
+    change.layout.baseline = 2.0;
+    change.enter = step(TransitionKind::Grow, 0.5);
+
+    const auto frame = change.frame();
+
+    QCOMPARE(frame.count, 2);
+    QCOMPARE(frame.values, (std::vector<double>{0.0, 6.0, 1.0, 11.0}));
+}
+
+void TestTransitions::grow_usesItsOwnBaseline()
+{
+    auto change = Change{{}, {0.0, 10.0}};
+    change.layout.baseline = 2.0;
+    change.enter = step(TransitionKind::Grow, 0.5);
+    change.enter->baseline = -10.0;
+
+    const auto frame = change.frame();
+
+    QCOMPARE(frame.values, (std::vector<double>{0.0, 0.0}));
+}
+
+void TestTransitions::grow_leavesInvalidValues()
+{
+    auto change = Change{{}, {0.0, kNaN}};
+    change.enter = step(TransitionKind::Grow, 0.5);
+
+    const auto frame = change.frame();
+
+    QVERIFY(std::isnan(frame.values[1]));
+}
+
+void TestTransitions::removedItems_withoutExit_disappear()
+{
+    auto change = Change{{0.0, 0.0, 1.0, 1.0, 2.0, 2.0}, {5.0, 5.0}};
+    change.update = step(TransitionKind::Morph, 0.5);
+
+    const auto frame = change.frame();
+
+    QCOMPARE(frame.count, 1);
+    QCOMPARE(frame.values, (std::vector<double>{2.5, 2.5}));
+}
+
+void TestTransitions::draw_exit_hidesTheLastItemFirst()
+{
+    auto change = Change{{0.0, 0.0, 1.0, 1.0, 2.0, 2.0, 3.0, 3.0, 4.0, 4.0}, {0.0, 0.0}};
+    change.exit = step(TransitionKind::Draw, 0.5, 1.0);
+
+    const auto frame = change.frame();
+
+    // Two of the four removed items remain after the kept one.
+    QCOMPARE(frame.count, 3);
+    QCOMPARE(frame.values, (std::vector<double>{0.0, 0.0, 1.0, 1.0, 2.0, 2.0}));
+}
+
+void TestTransitions::grow_exit_shrinksToTheBaseline()
+{
+    auto change = Change{{0.0, 10.0, 1.0, 20.0}, {}};
+    change.exit = step(TransitionKind::Grow, 0.25);
+
+    const auto frame = change.frame();
+
+    QCOMPARE(frame.count, 2);
+    QCOMPARE(frame.values, (std::vector<double>{0.0, 7.5, 1.0, 15.0}));
+}
+
+void TestTransitions::grow_exit_staggersFromTheLastItem()
+{
+    auto change = Change{{0.0, 10.0, 1.0, 10.0, 2.0, 10.0}, {}};
+    change.exit = step(TransitionKind::Grow, 0.25, 0.5);
+
+    const auto frame = change.frame();
+
+    QCOMPARE(frame.values[1], 10.0);
+    QCOMPARE(frame.values[3], 10.0);
+    QCOMPARE(frame.values[5], 5.0);
+}
+
+void TestTransitions::drawAsUpdate_redrawsEveryItem()
+{
+    auto change = Change{{9.0, 9.0, 9.0, 9.0}, {0.0, 0.0, 1.0, 1.0, 2.0, 2.0, 3.0, 3.0}};
+    change.update = step(TransitionKind::Draw, 0.5, 1.0);
+
+    const auto frame = change.frame();
+
+    QCOMPARE(frame.count, 2);
+    QCOMPARE(frame.values, (std::vector<double>{0.0, 0.0, 1.0, 1.0}));
+}
+
+void TestTransitions::growAsUpdate_growsEveryItem()
+{
+    auto change = Change{{9.0, 9.0}, {0.0, 10.0, 1.0, 20.0}};
+    change.update = step(TransitionKind::Grow, 0.5);
+
+    const auto frame = change.frame();
+
+    QCOMPARE(frame.values, (std::vector<double>{0.0, 5.0, 1.0, 10.0}));
+}
+
+void TestTransitions::fade_withoutAnimations_isOff()
+{
+    auto change = Change{{}, {0.0, 0.0, 1.0, 1.0}};
+    change.enter = step(TransitionKind::Draw, 0.25, 0.5);
+
+    QVERIFY(!change.frame().fade.active());
+}
+
+void TestTransitions::fade_describesTheEnteringGroup()
+{
+    auto change = Change{{0.0, 0.0}, {0.0, 0.0, 1.0, 1.0, 2.0, 2.0}};
+    change.enter = fadingStep(TransitionKind::Draw, 0.25, 0.5, 100.0);
+
+    const auto frame = change.frame();
+
+    const auto& group = frame.fade.groups[1];
+    QVERIFY(!frame.fade.groups[0].active());
+    QCOMPARE(group.first, 1);
+    QCOMPARE(group.count, 2);
+    QCOMPARE(group.time, 0.25f);
+    QCOMPARE(group.spread, 0.5f);
+    QCOMPARE(group.length, 0.5f);
+    QVERIFY(!group.exit);
+    QVERIFY(!group.front);
+    // The fade takes the first fifth of the item's half of the duration.
+    QCOMPARE(group.curve.front(), 0.0f);
+    QCOMPARE(group.curve[7], 1.0f);
+    QCOMPARE(group.curve.back(), 1.0f);
+}
+
+void TestTransitions::fade_atFullStagger_followsTheFront()
+{
+    auto change = Change{{}, {0.0, 0.0, 1.0, 1.0}};
+    change.enter = fadingStep(TransitionKind::Draw, 0.25, 1.0, 250.0);
+
+    const auto frame = change.frame();
+    const auto& group = frame.fade.groups[1];
+
+    QVERIFY(group.active());
+    QVERIFY(group.front);
+    QCOMPARE(group.spread, 0.75f);
+    QCOMPARE(group.length, 0.25f);
+    QCOMPARE(group.starts.front(), 0.0f);
+    QCOMPARE(group.starts.back(), 1.0f);
+}
+
+void TestTransitions::fade_ofKeptItems_describesTheUpdateGroup()
+{
+    auto change = Change{{0.0, 0.0, 1.0, 1.0}, {0.0, 1.0, 1.0, 2.0, 2.0, 3.0}};
+    change.update = fadingStep(TransitionKind::Morph, 0.5, 0.0, 500.0, 1000.0, 1.0, 0.4);
+    change.enter = step(TransitionKind::Draw, 0.5);
+
+    const auto frame = change.frame();
+
+    const auto& kept = frame.fade.groups[0];
+    QCOMPARE(kept.first, 0);
+    QCOMPARE(kept.count, 2);
+    QCOMPARE(kept.curve.front(), 1.0f);
+    QCOMPARE(kept.curve.back(), 0.4f);
+    QVERIFY(!frame.fade.groups[1].active());
+}
+
+void TestTransitions::fade_ofAnExit_playsAsWritten()
+{
+    auto change = Change{{0.0, 0.0, 1.0, 1.0}, {}};
+    change.exit = fadingStep(TransitionKind::Grow, 0.25, 0.0, 1000.0, 1000.0, 1.0, 0.0);
+
+    const auto frame = change.frame();
+    const auto& group = frame.fade.groups[1];
+
+    QCOMPARE(group.first, 0);
+    QCOMPARE(group.count, 2);
+    QVERIFY(group.exit);
+    QCOMPARE(group.curve.front(), 1.0f);
+    QCOMPARE(group.curve.back(), 0.0f);
+}
+
+void TestTransitions::draw_fadeAtFullStagger_revealsOverTheSpread()
+{
+    auto change = Change{{}, {0.0, 0.0, 1.0, 1.0, 2.0, 2.0, 3.0, 3.0}};
+    change.enter = fadingStep(TransitionKind::Draw, 0.25, 1.0, 500.0);
+
+    // The front crosses the four items over the first half of the run.
+    QCOMPARE(change.frame().count, 2);
+    change.enter->progress = 0.5;
+    QCOMPARE(change.frame().count, 4);
+}
+
+void TestTransitions::draw_exitWithFade_keepsItemsUntilTheirFadeEnds()
+{
+    auto change = Change{{0.0, 0.0, 1.0, 1.0}, {}};
+    change.exit = fadingStep(TransitionKind::Draw, 0.5, 1.0, 500.0, 1000.0, 1.0, 0.0);
+
+    // Both items have started to fade, and none has finished.
+    QCOMPARE(change.frame().count, 2);
+    change.exit->progress = 0.75;
+    QCOMPARE(change.frame().count, 1);
+    change.exit->progress = 1.0;
+    QCOMPARE(change.frame().count, 0);
+}
+
+void TestTransitions::grow_longerOpacity_startsItemsTogether()
+{
+    auto change = Change{{}, {0.0, 10.0, 1.0, 20.0}};
+    change.enter = fadingStep(TransitionKind::Grow, 0.25, 0.5, 1000.0);
+
+    // The fade fills the run, so the items start together and grow over half of it.
+    QCOMPARE(change.frame().values, (std::vector<double>{0.0, 5.0, 1.0, 10.0}));
+}
+
+void TestTransitions::compactedFade_keepsTheStartsOfTheRemainingItems_data()
+{
+    QTest::addColumn<bool>("exit");
+    QTest::newRow("enter") << false;
+    QTest::newRow("exit") << true;
+}
+
+void TestTransitions::compactedFade_keepsTheStartsOfTheRemainingItems()
+{
+    QFETCH(bool, exit);
+    auto group = ItemFadeGroup{};
+    group.first = 4;
+    group.count = 6;
+    group.exit = exit;
+    group.spread = 0.8f;
+
+    // Item 2 of the group is left out; the others start as before.
+    const auto kept = std::vector<int>{0, 1, 3, 4, 5};
+    const auto compacted = QAccelPlot::Internal::compactedFadeGroup(group, 3, kept);
+    QCOMPARE(compacted.first, 3);
+    QCOMPARE(compacted.count, 5);
+    QVERIFY(compacted.front);
+    for (auto item = 0; item < compacted.count; ++item) {
+        const auto expected = fadeStart(group, kept[static_cast<std::size_t>(item)]);
+        QVERIFY2(std::abs(fadeStart(compacted, item) - expected) < 1e-5, qPrintable(QString::number(item)));
+    }
+}
+
+void TestTransitions::compactedFade_withEveryItem_onlyMoves()
+{
+    auto group = ItemFadeGroup{};
+    group.first = 4;
+    group.count = 3;
+    group.spread = 0.5f;
+
+    const auto compacted = QAccelPlot::Internal::compactedFadeGroup(group, 2, {0, 1, 2});
+    QCOMPARE(compacted.first, 2);
+    QCOMPARE(compacted.count, 3);
+    QVERIFY(!compacted.front);
+}
 
 void TestTransitions::transition_startSetsRunning()
 {
-    auto t = QAccelPlot::MorphTransition{};
+    auto transition = QAccelPlot::MorphTransition{};
     auto run = QAccelPlot::DataTransition::Run{};
-    QCOMPARE(t.running(), false);
+    QVERIFY(!transition.running());
 
-    auto data = std::vector<double>{1.0f, 2.0f};
-    t.start(run, {}, 0, std::move(data), 1);
+    transition.start(run);
 
-    QCOMPARE(t.running(), true);
+    QVERIFY(transition.running());
     QVERIFY(run.active());
-    QVERIFY(run.pending());
+    QCOMPARE(run.transition(), &transition);
 }
 
-void TestTransitions::transition_cancelClearsRunning()
+void TestTransitions::transition_cancelEndsEveryRun()
 {
-    auto t = QAccelPlot::MorphTransition{};
-    auto run = QAccelPlot::DataTransition::Run{};
-    auto data = std::vector<double>{1.0f, 2.0f};
-    t.start(run, {}, 0, std::move(data), 1);
-    QCOMPARE(t.running(), true);
-
-    t.cancel();
-    QCOMPARE(t.running(), false);
-}
-
-void TestTransitions::transition_sharedRunsAdvanceIndependently()
-{
-    auto t = QAccelPlot::MorphTransition{};
-    t.setDuration(10'000);
+    auto transition = QAccelPlot::MorphTransition{};
     auto first = QAccelPlot::DataTransition::Run{};
     auto second = QAccelPlot::DataTransition::Run{};
-    t.start(first, {0.0, 0.0}, 1, {10.0, 10.0}, 1);
-    t.start(second, {100.0, 100.0}, 1, {200.0, 200.0}, 1);
+    transition.start(first);
+    transition.start(second);
 
-    auto firstOut = std::vector<double>{};
-    auto secondOut = std::vector<double>{};
-    auto firstCount = 0;
-    auto secondCount = 0;
-    QVERIFY(t.advance(first, firstOut, firstCount));
-    QVERIFY(t.advance(second, secondOut, secondCount));
-    QVERIFY(firstOut[0] >= 0.0 && firstOut[0] < 10.0);
-    QVERIFY(secondOut[0] >= 100.0 && secondOut[0] < 200.0);
+    transition.cancel();
 
-    t.setDuration(0);
-    QVERIFY(!t.advance(first, firstOut, firstCount));
-    QCOMPARE(firstOut, (std::vector<double>{10.0, 10.0}));
-    QVERIFY(t.running());
-    QVERIFY(!t.advance(second, secondOut, secondCount));
-    QCOMPARE(secondOut, (std::vector<double>{200.0, 200.0}));
-    QVERIFY(!t.running());
+    QVERIFY(!transition.running());
+    QVERIFY(!first.active());
+    QVERIFY(!second.active());
+    QCOMPARE(transition.progress(first), 1.0);
 }
 
-void TestTransitions::transition_cancelLeavesRunsPending()
+void TestTransitions::transition_runsEndIndependently()
 {
-    auto t = QAccelPlot::MorphTransition{};
-    auto run = QAccelPlot::DataTransition::Run{};
-    t.start(run, {0.0, 0.0}, 1, {10.0, 20.0}, 1);
+    auto transition = QAccelPlot::MorphTransition{};
+    auto first = QAccelPlot::DataTransition::Run{};
+    auto second = QAccelPlot::DataTransition::Run{};
+    transition.start(first);
+    transition.start(second);
 
-    t.cancel();
+    first.end();
 
-    QVERIFY(!run.active());
-    QVERIFY(run.pending());
-    auto out = std::vector<double>{};
-    auto outCount = 0;
-    QVERIFY(!t.advance(run, out, outCount));
-    QVERIFY(run.finish(out, outCount));
-    QCOMPARE(out, (std::vector<double>{10.0, 20.0}));
-    QCOMPARE(outCount, 1);
-    QVERIFY(!run.pending());
-    QVERIFY(!run.finish(out, outCount));
-}
-
-void TestTransitions::transition_destructionLeavesRunPending()
-{
-    auto run = QAccelPlot::DataTransition::Run{};
-    auto t = std::make_unique<QAccelPlot::MorphTransition>();
-    t->start(run, {0.0, 0.0}, 1, {10.0, 20.0}, 1);
-
-    t.reset();
-
-    QVERIFY(!run.active());
-    QVERIFY(run.pending());
-    auto out = std::vector<double>{};
-    auto outCount = 0;
-    QVERIFY(run.finish(out, outCount));
-    QCOMPARE(out, (std::vector<double>{10.0, 20.0}));
+    QVERIFY(transition.running());
+    second.end();
+    QVERIFY(!transition.running());
 }
 
 void TestTransitions::transition_destroyedRunEndsItsAnimation()
 {
-    auto t = QAccelPlot::MorphTransition{};
-    auto kept = QAccelPlot::DataTransition::Run{};
-    t.start(kept, {0.0, 0.0}, 1, {10.0, 20.0}, 1);
+    auto transition = QAccelPlot::MorphTransition{};
     {
-        auto destroyed = QAccelPlot::DataTransition::Run{};
-        t.start(destroyed, {0.0, 0.0}, 1, {10.0, 20.0}, 1);
+        auto run = QAccelPlot::DataTransition::Run{};
+        transition.start(run);
+        QVERIFY(transition.running());
     }
-    QVERIFY(t.running());
-
-    kept.cancel();
-
-    QVERIFY(!t.running());
-    QVERIFY(!kept.pending());
+    QVERIFY(!transition.running());
 }
 
 void TestTransitions::transition_startingRunOnAnotherTransitionEndsTheFirst()
@@ -404,144 +799,83 @@ void TestTransitions::transition_startingRunOnAnotherTransitionEndsTheFirst()
     auto first = QAccelPlot::MorphTransition{};
     auto second = QAccelPlot::DrawTransition{};
     auto run = QAccelPlot::DataTransition::Run{};
-    first.start(run, {0.0, 0.0}, 1, {10.0, 20.0}, 1);
+    first.start(run);
 
-    second.start(run, {0.0, 0.0}, 1, {30.0, 40.0}, 1);
+    second.start(run);
 
     QVERIFY(!first.running());
     QVERIFY(second.running());
-    QCOMPARE(run.targetData(), (std::vector<double>{30.0, 40.0}));
+    QCOMPARE(run.transition(), &second);
 }
 
-void TestTransitions::morph_identicalFromAndTo_outputUnchanged()
+void TestTransitions::transition_destructionEndsItsRuns()
 {
-    auto t = TestMorphTransition{};
-    const auto data = std::vector<double>{1.0f, 2.0f, 3.0f, 4.0f};
-    auto out = std::vector<double>{};
-    auto outCount = int{};
-
-    // When from==to every progress value must leave the data unchanged.
-    t.callInterpolate(0.5f, data, 2, data, 2, out, outCount);
-
-    QCOMPARE(outCount, 2);
-    QCOMPARE(out[0], data[0]);
-    QCOMPARE(out[1], data[1]);
-    QCOMPARE(out[2], data[2]);
-    QCOMPARE(out[3], data[3]);
-}
-
-void TestTransitions::morph_singlePointBothSides()
-{
-    auto t = TestMorphTransition{};
-    const auto from = std::vector<double>{0.0f, 0.0f};
-    const auto to = std::vector<double>{10.0f, 20.0f};
-    auto out = std::vector<double>{};
-    auto outCount = int{};
-
-    t.callInterpolate(0.5f, from, 1, to, 1, out, outCount);
-
-    QCOMPARE(outCount, 1);
-    QCOMPARE(out[0], 5.0f);
-    QCOMPARE(out[1], 10.0f);
-}
-
-void TestTransitions::draw_keepsAtLeastOnePoint_data()
-{
-    QTest::addColumn<double>("progress");
-    QTest::addColumn<int>("expectedPointCount");
-
-    QTest::newRow("start") << 0.0 << 1;
-    // Easing curves such as InBack and OutElastic leave the 0-1 range.
-    QTest::newRow("undershoot") << -0.2 << 1;
-    QTest::newRow("overshoot") << 1.3 << 3;
-}
-
-void TestTransitions::draw_keepsAtLeastOnePoint()
-{
-    QFETCH(double, progress);
-    QFETCH(int, expectedPointCount);
-
-    auto t = TestDrawTransition{};
-    const auto to = std::vector<double>{1.0, 2.0, 3.0, 4.0, 5.0, 6.0};
-    auto out = std::vector<double>{};
-    auto outCount = int{};
-
-    t.callInterpolate(progress, {}, 0, to, 3, out, outCount);
-
-    QCOMPARE(outCount, expectedPointCount);
-    QCOMPARE(out, std::vector<double>(to.begin(), to.begin() + expectedPointCount * 2));
-}
-
-void TestTransitions::transition_advance_whenNotRunning_returnsFalse()
-{
-    auto t = QAccelPlot::MorphTransition{};
     auto run = QAccelPlot::DataTransition::Run{};
-    auto out = std::vector<double>{};
-    auto outCount = int{};
+    auto transition = std::make_unique<QAccelPlot::MorphTransition>();
+    transition->start(run);
 
-    // advance() without a prior start() must return false immediately.
-    const auto stillRunning = t.advance(run, out, outCount);
-    QCOMPARE(stillRunning, false);
+    transition.reset();
+
+    QVERIFY(!run.active());
+    QCOMPARE(run.transition(), nullptr);
 }
 
-void TestTransitions::transition_advance_interpolatesUntilDurationElapses()
+void TestTransitions::transition_progressFollowsTheDuration()
 {
-    auto t = QAccelPlot::MorphTransition{};
+    auto transition = QAccelPlot::MorphTransition{};
+    transition.setDuration(10'000);
     auto run = QAccelPlot::DataTransition::Run{};
-    t.setDuration(10'000);
-    t.setEasing(QEasingCurve{QEasingCurve::Linear});
-    t.start(run, {0.0, 0.0}, 1, {10.0, 20.0}, 1);
+    transition.start(run);
 
-    auto out = std::vector<double>{};
-    auto outCount = 0;
-    QVERIFY(t.advance(run, out, outCount));
-    QVERIFY(t.running());
-    QCOMPARE(outCount, 1);
-    QVERIFY(out[0] < 10.0);
-    QVERIFY(out[1] < 20.0);
-
-    auto runningSpy = QSignalSpy{&t, &QAccelPlot::DataTransition::runningChanged};
-    t.setDuration(0);
-    QVERIFY(!t.advance(run, out, outCount));
-    QVERIFY(!t.running());
-    QVERIFY(!run.pending());
-    QCOMPARE(runningSpy.count(), 1);
-    QCOMPARE(outCount, 1);
-    QCOMPARE(out, (std::vector<double>{10.0, 20.0}));
+    QVERIFY(transition.progress(run) < 1.0);
+    transition.setDuration(0);
+    QCOMPARE(transition.progress(run), 1.0);
 }
 
-void TestTransitions::transition_advance_keepsTheStride()
+void TestTransitions::transition_zeroDuration_isComplete()
 {
-    auto t = QAccelPlot::DrawTransition{};
+    auto transition = QAccelPlot::GrowTransition{};
+    transition.setDuration(0);
     auto run = QAccelPlot::DataTransition::Run{};
-    t.setDuration(10'000);
-    t.start(run, {}, 0, {1.0, 2.0, 3.0, 4.0, 5.0, 6.0}, 2, 3);
+    transition.start(run);
 
-    auto out = std::vector<double>{};
-    auto outCount = 0;
-    QVERIFY(t.advance(run, out, outCount));
-
-    QCOMPARE(outCount, 1);
-    QCOMPARE(out, (std::vector<double>{1.0, 2.0, 3.0}));
+    QCOMPARE(transition.progress(run), 1.0);
 }
 
-void TestTransitions::transition_zeroDuration_endsAtNextFrame()
+void TestTransitions::transition_staggerIsClamped()
 {
-    auto t = QAccelPlot::MorphTransition{};
-    auto run = QAccelPlot::DataTransition::Run{};
-    t.setDuration(0);
-    t.start(run, {0.0, 0.0}, 1, {10.0, 20.0}, 1);
+    auto transition = QAccelPlot::MorphTransition{};
+    auto spy = QSignalSpy{&transition, &QAccelPlot::DataTransition::staggerChanged};
 
-    auto out = std::vector<double>{};
-    auto outCount = 0;
-    QVERIFY(!t.advance(run, out, outCount));
-    QVERIFY(!t.running());
-    QCOMPARE(out, (std::vector<double>{10.0, 20.0}));
+    transition.setStagger(2.0);
+    QCOMPARE(transition.stagger(), 1.0);
+    transition.setStagger(-1.0);
+    QCOMPARE(transition.stagger(), 0.0);
+    transition.setStagger(0.0);
+    QCOMPARE(spy.count(), 2);
 }
 
-// ---------------------------------------------------------------------------
-// Animation clock
-// ---------------------------------------------------------------------------
+void TestTransitions::transition_defaults()
+{
+    QCOMPARE(QAccelPlot::MorphTransition{}.stagger(), 0.0);
+    QCOMPARE(QAccelPlot::GrowTransition{}.stagger(), 0.0);
+    QCOMPARE(QAccelPlot::DrawTransition{}.stagger(), 1.0);
+    QCOMPARE(QAccelPlot::DrawTransition{}.opacityTimeline().empty(), true);
+    QVERIFY(std::isnan(QAccelPlot::GrowTransition{}.baseline()));
+}
+
+void TestTransitions::grow_baselineResets()
+{
+    auto transition = QAccelPlot::GrowTransition{};
+    auto spy = QSignalSpy{&transition, &QAccelPlot::GrowTransition::baselineChanged};
+
+    transition.setBaseline(3.0);
+    QCOMPARE(transition.baseline(), 3.0);
+    transition.resetBaseline();
+    QVERIFY(std::isnan(transition.baseline()));
+    transition.setBaseline(kNaN);
+    QCOMPARE(spy.count(), 2);
+}
 
 // Animation time that moves only when stepped, as in a frame recorder.
 class SteppedAnimationDriver : public QAnimationDriver {
@@ -568,96 +902,26 @@ private:
     qint64 elapsed_{0};
 };
 
-void TestTransitions::transition_advance_followsTheAnimationDriver()
+void TestTransitions::transition_progress_followsTheAnimationDriver()
 {
     auto driver = SteppedAnimationDriver{};
     driver.install();
-    auto t = QAccelPlot::MorphTransition{};
+    auto transition = QAccelPlot::MorphTransition{};
     auto run = QAccelPlot::DataTransition::Run{};
-    t.setDuration(300);
-    t.setEasing(QEasingCurve{QEasingCurve::Linear});
-    t.start(run, {0.0, 0.0}, 1, {30.0, 60.0}, 1);
-
+    transition.setDuration(300);
+    transition.start(run);
     // Qt starts its animation timer through queued calls, and the first tick takes in the wall
     // time they took. Restarting the run after that tick leaves the run only the stepped time.
     QTRY_VERIFY(driver.isRunning());
     driver.step(0);
-    t.start(run, {0.0, 0.0}, 1, {30.0, 60.0}, 1);
+    transition.start(run);
 
-    auto out = std::vector<double>{};
-    auto outCount = 0;
-    QTest::qWait(t.duration() + 100);
-    QVERIFY(t.advance(run, out, outCount));
-    QCOMPARE(out[0], 0.0);
-
+    QTest::qWait(transition.duration() + 100);
+    QCOMPARE(transition.progress(run), 0.0);
     driver.step(100);
-    QVERIFY(t.advance(run, out, outCount));
-    QCOMPARE(out[0], 10.0);
-    QCOMPARE(out[1], 20.0);
-
-    driver.step(100);
-    QVERIFY(t.advance(run, out, outCount));
-    QCOMPARE(out[0], 20.0);
-    QCOMPARE(out[1], 40.0);
-
-    driver.step(100);
-    QVERIFY(!t.advance(run, out, outCount));
-    QVERIFY(!t.running());
-    QCOMPARE(out, (std::vector<double>{30.0, 60.0}));
-}
-
-// ---------------------------------------------------------------------------
-// Invalid samples
-// ---------------------------------------------------------------------------
-
-void TestTransitions::morph_invalidTarget_appearsImmediately()
-{
-    const auto nan = std::numeric_limits<double>::quiet_NaN();
-    const auto inf = std::numeric_limits<double>::infinity();
-    auto t = TestMorphTransition{};
-    const auto from = std::vector<double>{0.0, 0.0, 1.0, 1.0};
-    const auto to = std::vector<double>{10.0, nan, inf, 11.0};
-    auto out = std::vector<double>{};
-    auto outCount = int{};
-
-    t.callInterpolate(0.1, from, 2, to, 2, out, outCount);
-
-    QCOMPARE(outCount, 2);
-    QCOMPARE(out[0], 1.0);
-    QVERIFY(std::isnan(out[1]));
-    QVERIFY(std::isinf(out[2]));
-    QCOMPARE(out[3], 2.0);
-}
-
-void TestTransitions::morph_invalidSource_jumpsToTarget()
-{
-    const auto nan = std::numeric_limits<double>::quiet_NaN();
-    auto t = TestMorphTransition{};
-    const auto from = std::vector<double>{nan, 0.0, 1.0, -std::numeric_limits<double>::infinity()};
-    const auto to = std::vector<double>{10.0, 20.0, 30.0, 40.0};
-    auto out = std::vector<double>{};
-    auto outCount = int{};
-
-    t.callInterpolate(0.25, from, 2, to, 2, out, outCount);
-
-    QCOMPARE(out[0], 10.0);
-    QCOMPARE(out[1], 5.0);
-    QCOMPARE(out[2], 8.25);
-    QCOMPARE(out[3], 40.0);
-}
-
-void TestTransitions::draw_preservesInvalidSamples()
-{
-    const auto nan = std::numeric_limits<double>::quiet_NaN();
-    auto t = TestDrawTransition{};
-    const auto to = std::vector<double>{0.0, 1.0, 1.0, nan, 2.0, 3.0};
-    auto out = std::vector<double>{};
-    auto outCount = int{};
-
-    t.callInterpolate(1.0, {}, 0, to, 3, out, outCount);
-
-    QCOMPARE(outCount, 3);
-    QVERIFY(std::isnan(out[3]));
+    QCOMPARE(transition.progress(run), 1.0 / 3.0);
+    driver.step(200);
+    QCOMPARE(transition.progress(run), 1.0);
 }
 
 QTEST_GUILESS_MAIN(TestTransitions)

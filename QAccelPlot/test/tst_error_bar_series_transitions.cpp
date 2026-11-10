@@ -5,6 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
+#include "OpacityAnimations.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/inspection/InspectionResult.hpp"
 #include "QAccelPlot/inspection/SeriesInspection.hpp"
@@ -36,24 +37,22 @@ constexpr auto kDataSpan = 10.0;
 // Long enough that the tests always interrupt the animation part way.
 constexpr auto kLongDuration = 10'000;
 
-// A transition held at one progress, so the tests can check a frame of the animation.
-template <typename Transition> class HeldAt : public Transition {
+// Eases every progress after the start to halfway, so a run starts from the data drawn.
+qreal halfway(const qreal progress)
+{
+    return progress > 0.0 ? 0.5 : 0.0;
+}
+
+// A transition held halfway, so the tests can check a frame of the animation.
+template <typename Transition> class HeldHalfway : public Transition {
 public:
-    explicit HeldAt(const double progress)
-        : progress_(progress)
+    HeldHalfway()
     {
         this->setDuration(kLongDuration);
+        auto easing = QEasingCurve{};
+        easing.setCustomType(halfway);
+        this->setEasing(easing);
     }
-
-protected:
-    void interpolate(
-        [[maybe_unused]] double easedProgress, const DataTransition::Dataset& from, const DataTransition::Dataset& to, DataTransition::Dataset& out) override
-    {
-        Transition::interpolate(progress_, from, to, out);
-    }
-
-private:
-    double progress_;
 };
 
 // A pixel of the plot, given in data coordinates, and the color expected there.
@@ -106,6 +105,7 @@ private slots:
     void newErrorBarsAppearAtTheirPlace();
     void removedErrorBarsDisappear();
     void drawShowsErrorBarsInOrder();
+    void fadedEnterStartsTransparent();
     void floatDataAnimates();
     void dataIsTheNewOneFromTheStart();
     void hoverPicksTheDrawnErrorBars();
@@ -164,9 +164,9 @@ void ErrorBarSeriesTransitionsTest::cleanup()
 
 void ErrorBarSeriesTransitionsTest::morphMovesErrorBarsToTheirNewPlace()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto morph = HeldHalfway<MorphTransition>{};
     bars_->setData(errorBarsAt({2.0}), 1);
-    bars_->setTransition(&morph);
+    bars_->setUpdateTransition(&morph);
 
     bars_->setData(errorBarsAt({8.0}), 1);
 
@@ -174,54 +174,54 @@ void ErrorBarSeriesTransitionsTest::morphMovesErrorBarsToTheirNewPlace()
     QCOMPARE(bars_->errorBarAt(0).value(QStringLiteral("x")).toDouble(), 8.0);
     QVERIFY(morph.running());
     QTRY_VERIFY(shows({{5.0, 5.0, Qt::red}, {2.0, 5.0, Qt::black}, {8.0, 5.0, Qt::black}}));
-    bars_->setTransition(nullptr);
+    bars_->setUpdateTransition(nullptr);
 }
 
 void ErrorBarSeriesTransitionsTest::morphMovesBounds()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto morph = HeldHalfway<MorphTransition>{};
     bars_->setData(std::vector<double>{5.0, 5.0, 4.0, 6.0}, 1);
-    bars_->setTransition(&morph);
+    bars_->setUpdateTransition(&morph);
 
     bars_->setErrorData(std::vector<double>{5.0}, std::vector<double>{5.0}, std::vector<double>{3.0});
 
     // Half way from 4..6 to 2..8 is 3..7.
     QTRY_VERIFY(shows({{5.0, 3.5, Qt::red}, {5.0, 6.5, Qt::red}, {5.0, 2.5, Qt::black}, {5.0, 7.5, Qt::black}}));
-    bars_->setTransition(nullptr);
+    bars_->setUpdateTransition(nullptr);
     QTRY_VERIFY(shows({{5.0, 2.5, Qt::red}, {5.0, 7.5, Qt::red}}));
 }
 
 void ErrorBarSeriesTransitionsTest::newErrorBarsAppearAtTheirPlace()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto morph = HeldHalfway<MorphTransition>{};
     bars_->setData(errorBarsAt({2.0}), 1);
-    bars_->setTransition(&morph);
+    bars_->setUpdateTransition(&morph);
 
     bars_->setData(errorBarsAt({8.0, 3.0}), 2);
 
     QCOMPARE(bars_->count(), 2);
     QTRY_VERIFY(shows({{5.0, 5.0, Qt::red}, {3.0, 5.0, Qt::red}, {8.0, 5.0, Qt::black}}));
-    bars_->setTransition(nullptr);
+    bars_->setUpdateTransition(nullptr);
 }
 
 void ErrorBarSeriesTransitionsTest::removedErrorBarsDisappear()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto morph = HeldHalfway<MorphTransition>{};
     bars_->setData(errorBarsAt({2.0, 7.0}), 2);
     QTRY_VERIFY(shows({{7.0, 5.0, Qt::red}}));
-    bars_->setTransition(&morph);
+    bars_->setUpdateTransition(&morph);
 
     bars_->setData(errorBarsAt({8.0}), 1);
 
     QCOMPARE(bars_->count(), 1);
     QTRY_VERIFY(shows({{5.0, 5.0, Qt::red}, {7.0, 5.0, Qt::black}}));
-    bars_->setTransition(nullptr);
+    bars_->setUpdateTransition(nullptr);
 }
 
 void ErrorBarSeriesTransitionsTest::drawShowsErrorBarsInOrder()
 {
-    auto draw = HeldAt<DrawTransition>{0.5};
-    bars_->setTransition(&draw);
+    auto draw = HeldHalfway<DrawTransition>{};
+    bars_->setEnterTransition(&draw);
 
     bars_->setData(errorBarsAt({2.0, 4.0, 6.0, 8.0}), 4);
 
@@ -230,28 +230,28 @@ void ErrorBarSeriesTransitionsTest::drawShowsErrorBarsInOrder()
 
     draw.cancel();
     QTRY_VERIFY(shows({{6.0, 5.0, Qt::red}, {8.0, 5.0, Qt::red}}));
-    bars_->setTransition(nullptr);
+    bars_->setEnterTransition(nullptr);
 }
 
 void ErrorBarSeriesTransitionsTest::floatDataAnimates()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto morph = HeldHalfway<MorphTransition>{};
     bars_->setDataF(std::vector<float>{2.0f, 5.0f, 4.0f, 6.0f}, 1);
-    bars_->setTransition(&morph);
+    bars_->setUpdateTransition(&morph);
 
     const auto next = std::vector<float>{8.0f, 5.0f, 4.0f, 6.0f};
     bars_->setDataF(next.data(), 1);
 
     QCOMPARE(bars_->errorBarAt(0).value(QStringLiteral("x")).toDouble(), 8.0);
     QTRY_VERIFY(shows({{5.0, 5.0, Qt::red}, {2.0, 5.0, Qt::black}, {8.0, 5.0, Qt::black}}));
-    bars_->setTransition(nullptr);
+    bars_->setUpdateTransition(nullptr);
 }
 
 void ErrorBarSeriesTransitionsTest::dataIsTheNewOneFromTheStart()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto morph = HeldHalfway<MorphTransition>{};
     bars_->setData(errorBarsAt({2.0}), 1);
-    bars_->setTransition(&morph);
+    bars_->setUpdateTransition(&morph);
     auto counts = QSignalSpy{bars_.get(), &ErrorBarSeries::countChanged};
 
     bars_->setData(std::vector<double>{8.0, 5.0, 4.0, 6.0, 3.0, 2.0, 1.0, 3.0}, 2);
@@ -268,22 +268,22 @@ void ErrorBarSeriesTransitionsTest::dataIsTheNewOneFromTheStart()
     const auto record = bars_->inspection()->recordAt(0);
     QCOMPARE(record.status, InspectionStatus::Ready);
     QCOMPARE(record.fields.value(QStringLiteral("x")).toDouble(), 8.0);
-    bars_->setTransition(nullptr);
+    bars_->setUpdateTransition(nullptr);
 }
 
 void ErrorBarSeriesTransitionsTest::hoverPicksTheDrawnErrorBars()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto morph = HeldHalfway<MorphTransition>{};
     bars_->setHoverRadius(0.0);
     bars_->setData(errorBarsAt({2.0}), 1);
-    bars_->setTransition(&morph);
+    bars_->setUpdateTransition(&morph);
     bars_->setData(errorBarsAt({8.0}), 1);
     QTRY_VERIFY(shows({{5.0, 5.0, Qt::red}}));
 
     QCOMPARE(bars_->errorBarIndexAt(pixelAt(5.0, 5.0)), 0);
     QCOMPARE(bars_->errorBarIndexAt(pixelAt(8.0, 5.0)), -1);
 
-    bars_->setTransition(nullptr);
+    bars_->setUpdateTransition(nullptr);
     QCOMPARE(bars_->errorBarIndexAt(pixelAt(5.0, 5.0)), -1);
     QCOMPARE(bars_->errorBarIndexAt(pixelAt(8.0, 5.0)), 0);
 }
@@ -293,13 +293,13 @@ void ErrorBarSeriesTransitionsTest::transitionReachesTargetData()
     auto morph = MorphTransition{};
     morph.setDuration(50);
     bars_->setData(errorBarsAt({2.0}), 1);
-    bars_->setTransition(&morph);
+    bars_->setUpdateTransition(&morph);
 
     bars_->setData(errorBarsAt({8.0}), 1);
     QTRY_VERIFY_WITH_TIMEOUT(!morph.running(), 2000);
 
     QTRY_VERIFY(shows({{8.0, 5.0, Qt::red}, {5.0, 5.0, Qt::black}, {2.0, 5.0, Qt::black}}));
-    bars_->setTransition(nullptr);
+    bars_->setUpdateTransition(nullptr);
 }
 
 void ErrorBarSeriesTransitionsTest::interruptedTransitionShowsTargetData_data()
@@ -314,19 +314,19 @@ void ErrorBarSeriesTransitionsTest::interruptedTransitionShowsTargetData_data()
 void ErrorBarSeriesTransitionsTest::interruptedTransitionShowsTargetData()
 {
     QFETCH(Interruption, interruption);
-    auto transition = std::make_unique<HeldAt<MorphTransition>>(0.5);
+    auto transition = std::make_unique<HeldHalfway<MorphTransition>>();
     auto replacement = MorphTransition{};
     bars_->setData(errorBarsAt({2.0}), 1);
-    bars_->setTransition(transition.get());
+    bars_->setUpdateTransition(transition.get());
     bars_->setData(errorBarsAt({8.0}), 1);
     QTRY_VERIFY(shows({{5.0, 5.0, Qt::red}, {8.0, 5.0, Qt::black}}));
 
     switch (interruption) {
     case Interruption::Detach:
-        bars_->setTransition(nullptr);
+        bars_->setUpdateTransition(nullptr);
         break;
     case Interruption::Replace:
-        bars_->setTransition(&replacement);
+        bars_->setUpdateTransition(&replacement);
         break;
     case Interruption::Cancel:
         transition->cancel();
@@ -338,14 +338,14 @@ void ErrorBarSeriesTransitionsTest::interruptedTransitionShowsTargetData()
 
     QTRY_VERIFY(shows({{8.0, 5.0, Qt::red}, {5.0, 5.0, Qt::black}}));
     QVERIFY(!transition || !transition->running());
-    bars_->setTransition(nullptr);
+    bars_->setUpdateTransition(nullptr);
 }
 
 void ErrorBarSeriesTransitionsTest::appendingSkipsTheAnimation()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto morph = HeldHalfway<MorphTransition>{};
     bars_->setData(errorBarsAt({2.0}), 1);
-    bars_->setTransition(&morph);
+    bars_->setUpdateTransition(&morph);
     bars_->setData(errorBarsAt({8.0}), 1);
     QTRY_VERIFY(shows({{5.0, 5.0, Qt::red}}));
 
@@ -354,14 +354,14 @@ void ErrorBarSeriesTransitionsTest::appendingSkipsTheAnimation()
     QCOMPARE(bars_->count(), 2);
     QVERIFY(!morph.running());
     QTRY_VERIFY(shows({{8.0, 5.0, Qt::red}, {3.0, 5.0, Qt::red}, {5.0, 5.0, Qt::black}}));
-    bars_->setTransition(nullptr);
+    bars_->setUpdateTransition(nullptr);
 }
 
 void ErrorBarSeriesTransitionsTest::clearDataSkipsTheAnimation()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto morph = HeldHalfway<MorphTransition>{};
     bars_->setData(errorBarsAt({2.0}), 1);
-    bars_->setTransition(&morph);
+    bars_->setUpdateTransition(&morph);
     bars_->setData(errorBarsAt({8.0}), 1);
     QTRY_VERIFY(shows({{5.0, 5.0, Qt::red}}));
 
@@ -370,27 +370,44 @@ void ErrorBarSeriesTransitionsTest::clearDataSkipsTheAnimation()
     QCOMPARE(bars_->count(), 0);
     QVERIFY(!morph.running());
     QTRY_VERIFY(shows({{5.0, 5.0, Qt::black}, {8.0, 5.0, Qt::black}}));
-    bars_->setTransition(nullptr);
+    bars_->setUpdateTransition(nullptr);
 }
 
 void ErrorBarSeriesTransitionsTest::transitionPropertyNotifies()
 {
-    auto changes = QSignalSpy{bars_.get(), &ErrorBarSeries::transitionChanged};
+    auto changes = QSignalSpy{bars_.get(), &ErrorBarSeries::updateTransitionChanged};
     auto morph = std::make_unique<MorphTransition>();
 
-    bars_->setTransition(morph.get());
-    bars_->setTransition(morph.get());
+    bars_->setUpdateTransition(morph.get());
+    bars_->setUpdateTransition(morph.get());
     QCOMPARE(changes.count(), 1);
-    QCOMPARE(bars_->transition(), static_cast<DataTransition*>(morph.get()));
+    QCOMPARE(bars_->updateTransition(), static_cast<DataTransition*>(morph.get()));
 
     morph.reset();
     QCOMPARE(changes.count(), 2);
-    QVERIFY(!bars_->transition());
+    QVERIFY(!bars_->updateTransition());
 }
 
 QPointF ErrorBarSeriesTransitionsTest::pixelAt(const qreal x, const qreal y) const
 {
     return {(x - xAxis_->viewportMin()) / kDataSpan * kSize, (1.0 - (y - yAxis_->viewportMin()) / kDataSpan) * kSize};
+}
+
+void ErrorBarSeriesTransitionsTest::fadedEnterStartsTransparent()
+{
+    auto draw = DrawTransition{};
+    draw.setDuration(kLongDuration);
+    draw.setStagger(0.0);
+    Test::addAnimation(draw, R"(NumberAnimation { property: "opacity"; from: 0; duration: 10000 })");
+    bars_->setEnterTransition(&draw);
+
+    bars_->setData(errorBarsAt({5.0}), 1);
+
+    // Shown from the start, but still transparent.
+    QTRY_VERIFY(shows({{5.0, 5.0, Qt::black}}));
+    draw.setDuration(0);
+    QTRY_VERIFY(shows({{5.0, 5.0, Qt::red}}));
+    bars_->setEnterTransition(nullptr);
 }
 
 bool ErrorBarSeriesTransitionsTest::shows(const std::initializer_list<Probe> probes) const

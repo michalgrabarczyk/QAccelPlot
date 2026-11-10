@@ -5,11 +5,13 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
+#include "OpacityAnimations.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/effects/Colormap.hpp"
 #include "QAccelPlot/inspection/SeriesInspection.hpp"
 #include "QAccelPlot/series/PointCloud.hpp"
 #include "QAccelPlot/transitions/DrawTransition.hpp"
+#include "QAccelPlot/transitions/GrowTransition.hpp"
 #include "QAccelPlot/transitions/MorphTransition.hpp"
 
 #include <QGuiApplication>
@@ -39,24 +41,28 @@ constexpr auto kLongDuration = 10'000;
 // The color of a value half way through the grayscale colormap.
 const auto kGray = QColor{128, 128, 128};
 
-// A transition held at one progress, so the tests can check a frame of the animation.
-template <typename Transition> class HeldAt : public Transition {
+// Eases every progress after the start to halfway, so a run starts from the data drawn.
+qreal halfway(const qreal progress)
+{
+    return progress > 0.0 ? 0.5 : 0.0;
+}
+
+// Eases every progress after the start to just past it.
+qreal barelyStarted(const qreal progress)
+{
+    return progress > 0.0 ? 0.005 : 0.0;
+}
+
+// A transition held halfway, so the tests can check a frame of the animation.
+template <typename Transition> class HeldHalfway : public Transition {
 public:
-    explicit HeldAt(const double progress)
-        : progress_(progress)
+    HeldHalfway()
     {
         this->setDuration(kLongDuration);
+        auto easing = QEasingCurve{};
+        easing.setCustomType(halfway);
+        this->setEasing(easing);
     }
-
-protected:
-    void interpolate(
-        [[maybe_unused]] double easedProgress, const DataTransition::Dataset& from, const DataTransition::Dataset& to, DataTransition::Dataset& out) override
-    {
-        Transition::interpolate(progress_, from, to, out);
-    }
-
-private:
-    double progress_;
 };
 
 struct Scene {
@@ -107,6 +113,8 @@ private slots:
     void newPointsAppearAtTheirPosition();
     void removedPointsDisappear();
     void drawShowsPointsInOrder();
+    void growOnALogAxisStartsFromItsEdge();
+    void fadedEnterStartsTransparent();
     void floatDataAnimates();
     void largeCoordinatesAnimate();
     void addedValuesApplyAtOnce();
@@ -163,9 +171,9 @@ void PointCloudTransitionsTest::cleanup()
 
 void PointCloudTransitionsTest::morphMovesPointsToTheirNewPositions()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto morph = HeldHalfway<MorphTransition>{};
     scene_.cloud->setData(std::vector<double>{2.0, 2.0}, 1);
-    scene_.cloud->setTransition(&morph);
+    scene_.cloud->setUpdateTransition(&morph);
 
     scene_.cloud->setData(std::vector<double>{8.0, 8.0}, 1);
 
@@ -173,54 +181,54 @@ void PointCloudTransitionsTest::morphMovesPointsToTheirNewPositions()
     QCOMPARE(scene_.cloud->pointAt(0), QPointF(8.0, 8.0));
     QVERIFY(morph.running());
     QTRY_VERIFY(shows({{5.0, 5.0, Qt::red}, {2.0, 2.0, Qt::black}, {8.0, 8.0, Qt::black}}));
-    scene_.cloud->setTransition(nullptr);
+    scene_.cloud->setUpdateTransition(nullptr);
 }
 
 void PointCloudTransitionsTest::morphBlendsValues()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto morph = HeldHalfway<MorphTransition>{};
     scene_.cloud->setColormap(scene_.grayscale.get());
     scene_.cloud->setData(std::vector<double>{5.0, 5.0}, std::vector<float>{0.0f}, 1);
-    scene_.cloud->setTransition(&morph);
+    scene_.cloud->setUpdateTransition(&morph);
 
     scene_.cloud->setData(std::vector<double>{5.0, 5.0}, std::vector<float>{1.0f}, 1);
 
     QCOMPARE(scene_.cloud->valueAt(0), 1.0);
     QTRY_VERIFY(shows({{5.0, 5.0, kGray}}));
-    scene_.cloud->setTransition(nullptr);
+    scene_.cloud->setUpdateTransition(nullptr);
 }
 
 void PointCloudTransitionsTest::newPointsAppearAtTheirPosition()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto morph = HeldHalfway<MorphTransition>{};
     scene_.cloud->setData(std::vector<double>{2.0, 2.0}, 1);
-    scene_.cloud->setTransition(&morph);
+    scene_.cloud->setUpdateTransition(&morph);
 
     scene_.cloud->setData(std::vector<double>{8.0, 8.0, 5.0, 2.0}, 2);
 
     QCOMPARE(scene_.cloud->count(), 2);
     QTRY_VERIFY(shows({{5.0, 5.0, Qt::red}, {5.0, 2.0, Qt::red}, {8.0, 8.0, Qt::black}}));
-    scene_.cloud->setTransition(nullptr);
+    scene_.cloud->setUpdateTransition(nullptr);
 }
 
 void PointCloudTransitionsTest::removedPointsDisappear()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto morph = HeldHalfway<MorphTransition>{};
     scene_.cloud->setData(std::vector<double>{2.0, 2.0, 5.0, 8.0}, 2);
     QTRY_VERIFY(shows({{5.0, 8.0, Qt::red}}));
-    scene_.cloud->setTransition(&morph);
+    scene_.cloud->setUpdateTransition(&morph);
 
     scene_.cloud->setData(std::vector<double>{8.0, 8.0}, 1);
 
     QCOMPARE(scene_.cloud->count(), 1);
     QTRY_VERIFY(shows({{5.0, 5.0, Qt::red}, {5.0, 8.0, Qt::black}}));
-    scene_.cloud->setTransition(nullptr);
+    scene_.cloud->setUpdateTransition(nullptr);
 }
 
 void PointCloudTransitionsTest::drawShowsPointsInOrder()
 {
-    auto draw = HeldAt<DrawTransition>{0.5};
-    scene_.cloud->setTransition(&draw);
+    auto draw = HeldHalfway<DrawTransition>{};
+    scene_.cloud->setEnterTransition(&draw);
 
     scene_.cloud->setData(std::vector<double>{2.0, 5.0, 4.0, 5.0, 6.0, 5.0, 8.0, 5.0}, 4);
 
@@ -229,21 +237,41 @@ void PointCloudTransitionsTest::drawShowsPointsInOrder()
 
     draw.cancel();
     QTRY_VERIFY(shows({{6.0, 5.0, Qt::red}, {8.0, 5.0, Qt::red}}));
-    scene_.cloud->setTransition(nullptr);
+    scene_.cloud->setEnterTransition(nullptr);
+}
+
+void PointCloudTransitionsTest::growOnALogAxisStartsFromItsEdge()
+{
+    auto grow = HeldHalfway<GrowTransition>{};
+    auto easing = QEasingCurve{};
+    easing.setCustomType(barelyStarted);
+    grow.setEasing(easing);
+    scene_.yAxis->setLogScale(true);
+    scene_.yAxis->setViewportMin(1.0);
+    scene_.yAxis->setViewportMax(100.0);
+    scene_.cloud->setEnterTransition(&grow);
+
+    scene_.cloud->setData(std::vector<double>{5.0, 100.0}, 1);
+
+    // Y = 0 lies below the log axis, so the point rises from its bottom edge at 1 and shows from
+    // the first frames. The probe y places the eased value on the two decades of the plot.
+    const auto probeY = 1.0 + std::log10(1.0 + 0.005 * 99.0) / 2.0 * kDataSpan;
+    QTRY_VERIFY(shows({{5.0, probeY, Qt::red}}));
+    scene_.cloud->setEnterTransition(nullptr);
 }
 
 void PointCloudTransitionsTest::floatDataAnimates()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto morph = HeldHalfway<MorphTransition>{};
     scene_.cloud->setDataF(std::vector<float>{2.0f, 2.0f}, 1);
-    scene_.cloud->setTransition(&morph);
+    scene_.cloud->setUpdateTransition(&morph);
 
     const auto next = std::vector<float>{8.0f, 8.0f};
     scene_.cloud->setDataF(next.data(), 1);
 
     QCOMPARE(scene_.cloud->pointAt(0), QPointF(8.0, 8.0));
     QTRY_VERIFY(shows({{5.0, 5.0, Qt::red}, {2.0, 2.0, Qt::black}, {8.0, 8.0, Qt::black}}));
-    scene_.cloud->setTransition(nullptr);
+    scene_.cloud->setUpdateTransition(nullptr);
 }
 
 void PointCloudTransitionsTest::largeCoordinatesAnimate()
@@ -252,50 +280,50 @@ void PointCloudTransitionsTest::largeCoordinatesAnimate()
     constexpr auto kOffset = 1.0e9;
     scene_.xAxis->setViewportMin(kOffset);
     scene_.xAxis->setViewportMax(kOffset + kDataSpan);
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto morph = HeldHalfway<MorphTransition>{};
     scene_.cloud->setData(std::vector<double>{kOffset + 2.0, 2.0}, 1);
-    scene_.cloud->setTransition(&morph);
+    scene_.cloud->setUpdateTransition(&morph);
 
     scene_.cloud->setData(std::vector<double>{kOffset + 8.0, 8.0}, 1);
 
     QTRY_VERIFY(shows({{kOffset + 5.0, 5.0, Qt::red}, {kOffset + 2.0, 2.0, Qt::black}, {kOffset + 8.0, 8.0, Qt::black}}));
-    scene_.cloud->setTransition(nullptr);
+    scene_.cloud->setUpdateTransition(nullptr);
 }
 
 void PointCloudTransitionsTest::addedValuesApplyAtOnce()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto morph = HeldHalfway<MorphTransition>{};
     scene_.cloud->setColormap(scene_.grayscale.get());
     scene_.cloud->setData(std::vector<double>{2.0, 2.0}, 1);
-    scene_.cloud->setTransition(&morph);
+    scene_.cloud->setUpdateTransition(&morph);
 
     scene_.cloud->setData(std::vector<double>{8.0, 8.0}, std::vector<float>{1.0f}, 1);
 
     // The point still moves, in the color of its new value.
     QTRY_VERIFY(shows({{5.0, 5.0, Qt::white}, {8.0, 8.0, Qt::black}}));
-    scene_.cloud->setTransition(nullptr);
+    scene_.cloud->setUpdateTransition(nullptr);
 }
 
 void PointCloudTransitionsTest::removedValuesApplyAtOnce()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto morph = HeldHalfway<MorphTransition>{};
     scene_.cloud->setColormap(scene_.grayscale.get());
     scene_.cloud->setData(std::vector<double>{2.0, 2.0}, std::vector<float>{1.0f}, 1);
-    scene_.cloud->setTransition(&morph);
+    scene_.cloud->setUpdateTransition(&morph);
 
     scene_.cloud->setData(std::vector<double>{8.0, 8.0}, 1);
 
     QVERIFY(std::isnan(scene_.cloud->valueAt(0)));
     QTRY_VERIFY(shows({{5.0, 5.0, Qt::red}, {8.0, 8.0, Qt::black}}));
-    scene_.cloud->setTransition(nullptr);
+    scene_.cloud->setUpdateTransition(nullptr);
 }
 
 void PointCloudTransitionsTest::setValuesAnimates()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto morph = HeldHalfway<MorphTransition>{};
     scene_.cloud->setColormap(scene_.grayscale.get());
     scene_.cloud->setDataF(std::vector<float>{5.0f, 5.0f}, std::vector<float>{0.0f}, 1);
-    scene_.cloud->setTransition(&morph);
+    scene_.cloud->setUpdateTransition(&morph);
 
     scene_.cloud->setValues({1.0});
 
@@ -307,30 +335,30 @@ void PointCloudTransitionsTest::setValuesAnimates()
     scene_.cloud->setValues({});
     QVERIFY(std::isnan(scene_.cloud->valueAt(0)));
     QTRY_VERIFY(shows({{5.0, 5.0, Qt::red}}));
-    scene_.cloud->setTransition(nullptr);
+    scene_.cloud->setUpdateTransition(nullptr);
 }
 
 void PointCloudTransitionsTest::valuesSetAfterTheDataKeepItsAnimation()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto morph = HeldHalfway<MorphTransition>{};
     scene_.cloud->setColormap(scene_.grayscale.get());
     scene_.cloud->setData(QList<QPointF>{{2.0, 2.0}});
-    scene_.cloud->setTransition(&morph);
+    scene_.cloud->setUpdateTransition(&morph);
 
     // How QML supplies values: after the points.
     scene_.cloud->setData(QList<QPointF>{{8.0, 8.0}});
     scene_.cloud->setValues({1.0});
 
     QTRY_VERIFY(shows({{5.0, 5.0, Qt::white}, {2.0, 2.0, Qt::black}, {8.0, 8.0, Qt::black}}));
-    scene_.cloud->setTransition(nullptr);
+    scene_.cloud->setUpdateTransition(nullptr);
 }
 
 void PointCloudTransitionsTest::valuesSetWithoutATransitionEndTheAnimation()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto morph = HeldHalfway<MorphTransition>{};
     scene_.cloud->setColormap(scene_.grayscale.get());
     scene_.cloud->setData(std::vector<double>{2.0, 2.0}, 1);
-    scene_.cloud->setTransition(&morph);
+    scene_.cloud->setUpdateTransition(&morph);
     scene_.cloud->setData(std::vector<double>{8.0, 8.0}, 1);
     QTRY_VERIFY(shows({{5.0, 5.0, Qt::red}}));
 
@@ -340,14 +368,14 @@ void PointCloudTransitionsTest::valuesSetWithoutATransitionEndTheAnimation()
     QVERIFY(!morph.running());
     QCOMPARE(scene_.cloud->valueAt(0), 1.0);
     QTRY_VERIFY(shows({{8.0, 8.0, Qt::white}, {5.0, 5.0, Qt::black}}));
-    scene_.cloud->setTransition(nullptr);
+    scene_.cloud->setUpdateTransition(nullptr);
 }
 
 void PointCloudTransitionsTest::newDataContinuesFromTheDrawnPoints()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto morph = HeldHalfway<MorphTransition>{};
     scene_.cloud->setData(std::vector<double>{0.0, 5.0}, 1);
-    scene_.cloud->setTransition(&morph);
+    scene_.cloud->setUpdateTransition(&morph);
     scene_.cloud->setData(std::vector<double>{8.0, 5.0}, 1);
     QTRY_VERIFY(shows({{4.0, 5.0, Qt::red}}));
 
@@ -355,14 +383,14 @@ void PointCloudTransitionsTest::newDataContinuesFromTheDrawnPoints()
     scene_.cloud->setData(std::vector<double>{0.0, 5.0}, 1);
 
     QTRY_VERIFY(shows({{2.0, 5.0, Qt::red}, {4.0, 5.0, Qt::black}}));
-    scene_.cloud->setTransition(nullptr);
+    scene_.cloud->setUpdateTransition(nullptr);
 }
 
 void PointCloudTransitionsTest::dataIsTheNewOneFromTheStart()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto morph = HeldHalfway<MorphTransition>{};
     scene_.cloud->setData(std::vector<double>{2.0, 2.0}, std::vector<float>{0.0f}, 1);
-    scene_.cloud->setTransition(&morph);
+    scene_.cloud->setUpdateTransition(&morph);
     auto counts = QSignalSpy{scene_.cloud.get(), &PointCloud::countChanged};
 
     scene_.cloud->setData(std::vector<double>{8.0, 6.0, 4.0, 3.0}, std::vector<float>{5.0f, 7.0f}, 2);
@@ -386,21 +414,21 @@ void PointCloudTransitionsTest::dataIsTheNewOneFromTheStart()
     QCOMPARE(dataPoint.x, 8.0);
     QCOMPARE(dataPoint.y, 6.0);
     QCOMPARE(dataPoint.value, 5.0);
-    scene_.cloud->setTransition(nullptr);
+    scene_.cloud->setUpdateTransition(nullptr);
 }
 
 void PointCloudTransitionsTest::hoverPicksTheDrawnPoints()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto morph = HeldHalfway<MorphTransition>{};
     scene_.cloud->setData(std::vector<double>{2.0, 2.0}, 1);
-    scene_.cloud->setTransition(&morph);
+    scene_.cloud->setUpdateTransition(&morph);
     scene_.cloud->setData(std::vector<double>{8.0, 8.0}, 1);
     QTRY_VERIFY(shows({{5.0, 5.0, Qt::red}}));
 
     QCOMPARE(scene_.cloud->pointIndexAt(pixelAt(5.0, 5.0)), 0);
     QCOMPARE(scene_.cloud->pointIndexAt(pixelAt(8.0, 8.0)), -1);
 
-    scene_.cloud->setTransition(nullptr);
+    scene_.cloud->setUpdateTransition(nullptr);
     QCOMPARE(scene_.cloud->pointIndexAt(pixelAt(5.0, 5.0)), -1);
     QCOMPARE(scene_.cloud->pointIndexAt(pixelAt(8.0, 8.0)), 0);
 }
@@ -410,13 +438,13 @@ void PointCloudTransitionsTest::transitionReachesTargetData()
     auto morph = MorphTransition{};
     morph.setDuration(50);
     scene_.cloud->setData(std::vector<double>{2.0, 2.0}, 1);
-    scene_.cloud->setTransition(&morph);
+    scene_.cloud->setUpdateTransition(&morph);
 
     scene_.cloud->setData(std::vector<double>{8.0, 8.0}, 1);
     QTRY_VERIFY_WITH_TIMEOUT(!morph.running(), 2000);
 
     QTRY_VERIFY(shows({{8.0, 8.0, Qt::red}, {5.0, 5.0, Qt::black}, {2.0, 2.0, Qt::black}}));
-    scene_.cloud->setTransition(nullptr);
+    scene_.cloud->setUpdateTransition(nullptr);
 }
 
 void PointCloudTransitionsTest::interruptedTransitionShowsTargetData_data()
@@ -431,19 +459,19 @@ void PointCloudTransitionsTest::interruptedTransitionShowsTargetData_data()
 void PointCloudTransitionsTest::interruptedTransitionShowsTargetData()
 {
     QFETCH(Interruption, interruption);
-    auto transition = std::make_unique<HeldAt<MorphTransition>>(0.5);
+    auto transition = std::make_unique<HeldHalfway<MorphTransition>>();
     auto replacement = MorphTransition{};
     scene_.cloud->setData(std::vector<double>{2.0, 2.0}, 1);
-    scene_.cloud->setTransition(transition.get());
+    scene_.cloud->setUpdateTransition(transition.get());
     scene_.cloud->setData(std::vector<double>{8.0, 8.0}, 1);
     QTRY_VERIFY(shows({{5.0, 5.0, Qt::red}, {8.0, 8.0, Qt::black}}));
 
     switch (interruption) {
     case Interruption::Detach:
-        scene_.cloud->setTransition(nullptr);
+        scene_.cloud->setUpdateTransition(nullptr);
         break;
     case Interruption::Replace:
-        scene_.cloud->setTransition(&replacement);
+        scene_.cloud->setUpdateTransition(&replacement);
         break;
     case Interruption::Cancel:
         transition->cancel();
@@ -455,14 +483,14 @@ void PointCloudTransitionsTest::interruptedTransitionShowsTargetData()
 
     QTRY_VERIFY(shows({{8.0, 8.0, Qt::red}, {5.0, 5.0, Qt::black}}));
     QVERIFY(!transition || !transition->running());
-    scene_.cloud->setTransition(nullptr);
+    scene_.cloud->setUpdateTransition(nullptr);
 }
 
 void PointCloudTransitionsTest::clearDataSkipsTheAnimation()
 {
-    auto morph = HeldAt<MorphTransition>{0.5};
+    auto morph = HeldHalfway<MorphTransition>{};
     scene_.cloud->setData(std::vector<double>{2.0, 2.0}, 1);
-    scene_.cloud->setTransition(&morph);
+    scene_.cloud->setUpdateTransition(&morph);
     scene_.cloud->setData(std::vector<double>{8.0, 8.0}, 1);
     QTRY_VERIFY(shows({{5.0, 5.0, Qt::red}}));
 
@@ -471,7 +499,7 @@ void PointCloudTransitionsTest::clearDataSkipsTheAnimation()
     QCOMPARE(scene_.cloud->count(), 0);
     QVERIFY(!morph.running());
     QTRY_VERIFY(shows({{5.0, 5.0, Qt::black}, {8.0, 8.0, Qt::black}}));
-    scene_.cloud->setTransition(nullptr);
+    scene_.cloud->setUpdateTransition(nullptr);
 }
 
 void PointCloudTransitionsTest::sharedTransitionAnimatesSeriesIndependently()
@@ -481,31 +509,31 @@ void PointCloudTransitionsTest::sharedTransitionAnimatesSeriesIndependently()
     morph.setDuration(100);
     scene_.cloud->setData(std::vector<double>{2.0, 2.0}, 1);
     other->setData(std::vector<double>{2.0, 8.0}, 1);
-    scene_.cloud->setTransition(&morph);
-    other->setTransition(&morph);
+    scene_.cloud->setUpdateTransition(&morph);
+    other->setUpdateTransition(&morph);
 
     scene_.cloud->setData(std::vector<double>{8.0, 2.0}, 1);
     other->setData(std::vector<double>{8.0, 8.0}, 1);
     QTRY_VERIFY_WITH_TIMEOUT(!morph.running(), 2000);
 
     QTRY_VERIFY(shows({{8.0, 2.0, Qt::red}, {8.0, 8.0, Qt::blue}, {2.0, 2.0, Qt::black}, {2.0, 8.0, Qt::black}}));
-    scene_.cloud->setTransition(nullptr);
-    other->setTransition(nullptr);
+    scene_.cloud->setUpdateTransition(nullptr);
+    other->setUpdateTransition(nullptr);
 }
 
 void PointCloudTransitionsTest::transitionPropertyNotifies()
 {
-    auto changes = QSignalSpy{scene_.cloud.get(), &PointCloud::transitionChanged};
+    auto changes = QSignalSpy{scene_.cloud.get(), &PointCloud::updateTransitionChanged};
     auto morph = std::make_unique<MorphTransition>();
 
-    scene_.cloud->setTransition(morph.get());
-    scene_.cloud->setTransition(morph.get());
+    scene_.cloud->setUpdateTransition(morph.get());
+    scene_.cloud->setUpdateTransition(morph.get());
     QCOMPARE(changes.count(), 1);
-    QCOMPARE(scene_.cloud->transition(), static_cast<DataTransition*>(morph.get()));
+    QCOMPARE(scene_.cloud->updateTransition(), static_cast<DataTransition*>(morph.get()));
 
     morph.reset();
     QCOMPARE(changes.count(), 2);
-    QVERIFY(!scene_.cloud->transition());
+    QVERIFY(!scene_.cloud->updateTransition());
 }
 
 std::unique_ptr<PointCloud> PointCloudTransitionsTest::addCloud(const QColor& color) const
@@ -525,6 +553,23 @@ std::unique_ptr<PointCloud> PointCloudTransitionsTest::addCloud(const QColor& co
 QPointF PointCloudTransitionsTest::pixelAt(const qreal x, const qreal y) const
 {
     return {(x - scene_.xAxis->viewportMin()) / kDataSpan * kSize, (1.0 - (y - scene_.yAxis->viewportMin()) / kDataSpan) * kSize};
+}
+
+void PointCloudTransitionsTest::fadedEnterStartsTransparent()
+{
+    auto draw = DrawTransition{};
+    draw.setDuration(kLongDuration);
+    draw.setStagger(0.0);
+    Test::addAnimation(draw, R"(NumberAnimation { property: "opacity"; from: 0; duration: 10000 })");
+    scene_.cloud->setEnterTransition(&draw);
+
+    scene_.cloud->setData(std::vector<double>{5.0, 5.0}, 1);
+
+    // Shown from the start, but still transparent.
+    QTRY_VERIFY(shows({{5.0, 5.0, Qt::black}}));
+    draw.setDuration(0);
+    QTRY_VERIFY(shows({{5.0, 5.0, Qt::red}}));
+    scene_.cloud->setEnterTransition(nullptr);
 }
 
 bool PointCloudTransitionsTest::shows(const std::initializer_list<Probe> probes) const

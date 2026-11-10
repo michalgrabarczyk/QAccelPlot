@@ -32,11 +32,9 @@ vec2 widenedSpan(float a, float b, float minSize) {
     return vec2(a - direction * grow, b + direction * grow);
 }
 
-// Returns the fill color of rectangle `index` with the item opacity applied.
+// Returns the fill color of rectangle `index`, without the item opacity.
 vec4 rectFillColor(int index, vec4 vertexColor) {
-    vec4 color = index == int(ubuf.hoveredIndex) ? ubuf.hoverColor : mix(ubuf.color, vertexColor, ubuf.useVertexColor);
-    color.a *= ubuf.opacity;
-    return color;
+    return index == int(ubuf.hoveredIndex) ? ubuf.hoverColor : mix(ubuf.color, vertexColor, ubuf.useVertexColor);
 }
 
 // Maps the edges of a rectangle, given as float bit patterns, to item-local pixel spans with
@@ -67,10 +65,11 @@ const float kRectAntialiasingMargin = 0.5;
 
 // Returns the item-local position of quad corner `corner` (0-5) of the rectangle spanning
 // pixel spans xs and ys, and its pixel distances to the left, right, top, and bottom edges.
-// With antialiasing, the quad extends past the rectangle, where the distances are negative.
-vec2 rectVertex(vec2 xs, vec2 ys, int corner, out vec4 edgeDistance) {
+// With antialiasing, the quad extends past the rectangle, where the distances are negative. It
+// extends `glowRadius` pixels further for the halo of a glow.
+vec2 rectVertex(vec2 xs, vec2 ys, int corner, float glowRadius, out vec4 edgeDistance) {
     vec2 uv = cornerUV(corner);
-    float margin = ubuf.antialiasing > 0.5 ? kRectAntialiasingMargin : 0.0;
+    float margin = (ubuf.antialiasing > 0.5 ? kRectAntialiasingMargin : 0.0) + glowRadius;
     vec2 lo = vec2(min(xs.x, xs.y), min(ys.x, ys.y)) - margin;
     vec2 hi = vec2(max(xs.x, xs.y), max(ys.x, ys.y)) + margin;
     vec2 p = vec2(uv.x < 0.5 ? lo.x : hi.x, uv.y < 0.5 ? lo.y : hi.y);

@@ -18,6 +18,10 @@ layout(location = 1) out vec4 v_edgeDistance;
 layout(location = 2) out vec4 v_borderColor;
 layout(location = 3) out float v_borderWidth;
 layout(location = 4) flat out float v_antialiasing;
+// Glow halo color and (radius, intensity, opacity), see glow.glsl; a zero radius draws none.
+// The opacity scales the rectangle and its halo together.
+layout(location = 5) flat out vec4 v_glowColor;
+layout(location = 6) flat out vec3 v_glowParams;
 
 // Must match BarUbo in BarMaterial.cpp: the rect.vert block followed by the bar geometry and colormap.
 layout(std140, binding = 0) uniform buf {
@@ -47,6 +51,11 @@ layout(std140, binding = 0) uniform buf {
     float valueMax;       // 204-207: value at colormap position 1
     float valueOrigin;    // 208-211: added to the data before the log normalization
     float valueLogScale;  // 212-215: 1 to normalize in log10
+    vec4 itemFadeGroups[28]; // item opacity, see item_opacity.glsl
+    vec4 itemFadeTrail;
+    vec4 itemFadeTrailEasing[4];
+    vec4 glowColor;         // Glow effect, see glow.glsl
+    vec4 glowParams;
 } ubuf;
 
 layout(binding = 1) uniform sampler2D dataSampler;
@@ -55,6 +64,8 @@ layout(binding = 2) uniform sampler2D colorMapSampler;
 #include "data_texture.glsl"
 #include "math_utils.glsl"
 #include "rect_geometry.glsl"
+#include "item_opacity.glsl"
+#include "glow.glsl"
 
 // Reads the extent of bar `index` along the position axis and its value, as float bit patterns.
 // Returns false when the bar is not drawn.
@@ -145,15 +156,17 @@ vec4 barFillColor(int index) {
     if (t < 0.0) {
         return rectFillColor(index, vertexColor);
     }
-    vec4 color = textureLod(colorMapSampler, vec2(t, 0.5), 0.0);
-    color.a *= ubuf.opacity;
-    return color;
+    return textureLod(colorMapSampler, vec2(t, 0.5), 0.0);
 }
 
 void main() {
     int index = int(barId);
     v_color = barFillColor(index);
-    v_borderColor = vec4(ubuf.borderColor.rgb, ubuf.borderColor.a * ubuf.opacity);
+    v_borderColor = ubuf.borderColor;
+    bool glow = glowActive(ubuf.glowParams.xy);
+    v_glowColor = ubuf.glowColor;
+    // The bar and its halo fade together.
+    v_glowParams = vec3(glow ? ubuf.glowParams.xy : vec2(0.0), ubuf.opacity * itemOpacity(barId));
     v_borderWidth = ubuf.borderWidth;
     v_antialiasing = ubuf.antialiasing;
 
@@ -174,6 +187,6 @@ void main() {
     } else {
         rectPixelSpans(startBits, baselineBits, endBits, valueBits, xs, ys);
     }
-    vec2 p_local = rectVertex(xs, ys, int(corner), v_edgeDistance);
+    vec2 p_local = rectVertex(xs, ys, int(corner), v_glowParams.x, v_edgeDistance);
     gl_Position = ubuf.matrix * vec4(p_local, 0.0, 1.0);
 }

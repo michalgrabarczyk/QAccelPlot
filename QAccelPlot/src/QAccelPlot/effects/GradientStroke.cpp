@@ -19,10 +19,10 @@
 namespace QAccelPlot {
 
 GradientStroke::GradientStroke(QObject* parent)
-    : LineCurveEffect(parent)
+    : SeriesEffect(parent)
 {
     // Connected first, so curves reacting to effectChanged() see the updated payload.
-    connect(this, &LineCurveEffect::effectChanged, this, &GradientStroke::updatePayload);
+    connect(this, &SeriesEffect::effectChanged, this, &GradientStroke::updatePayload);
     updatePayload();
 }
 
@@ -264,7 +264,7 @@ void GradientStroke::reconnectColormapSignals()
         return;
     }
 
-    colormapConnections_.push_back(connect(colormap_, &Colormap::colormapChanged, this, &LineCurveEffect::effectChanged));
+    colormapConnections_.push_back(connect(colormap_, &Colormap::colormapChanged, this, &SeriesEffect::effectChanged));
     colormapConnections_.push_back(connect(colormap_, &QObject::destroyed, this, [this]() {
         colormap_ = nullptr;
         disconnectColormapSignals();
