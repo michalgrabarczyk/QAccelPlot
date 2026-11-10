@@ -176,6 +176,8 @@ public:
     [[nodiscard]] View renderedView() const;
     /// \brief Returns how many of the first \a count drawn data points \c renderedView() holds.
     [[nodiscard]] int renderedCount(int count) const;
+    /// \brief Returns whether \c renderedView() holds drawn data point \a index.
+    [[nodiscard]] bool rendered(int index) const;
 
     /// \brief Leaves invalid data points out of the render data and \c renderedView().
     ///

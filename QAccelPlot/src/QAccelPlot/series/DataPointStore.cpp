@@ -442,6 +442,16 @@ int DataPointStore::renderedCount(const int count) const
     return rendered;
 }
 
+bool DataPointStore::rendered(const int index) const
+{
+    ensureCompacted();
+    const auto source = sourceView();
+    if (index < 0 || index >= source.count) {
+        return false;
+    }
+    return !compacted_.active || dataPointValid(source, index);
+}
+
 void DataPointStore::setSkipInvalid(const bool skip)
 {
     if (skipInvalid_ == skip) {

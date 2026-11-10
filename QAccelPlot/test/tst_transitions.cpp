@@ -13,6 +13,7 @@
 #include <QAnimationDriver>
 #include <QtTest/QtTest>
 
+#include <algorithm>
 #include <cmath>
 #include <limits>
 #include <memory>
@@ -23,6 +24,7 @@ Q_DECLARE_METATYPE(std::optional<QAccelPlot::Internal::TransitionKind>)
 
 using QAccelPlot::Internal::ItemClock;
 using QAccelPlot::Internal::ItemFade;
+using QAccelPlot::Internal::ItemFadeGroup;
 using QAccelPlot::Internal::OpacitySegment;
 using QAccelPlot::Internal::OpacityTimeline;
 using QAccelPlot::Internal::TransitionKind;
@@ -73,6 +75,21 @@ struct Change {
         return result;
     }
 };
+
+// The start time the shaders give item `item` of `group`, see shaders/item_opacity.glsl.
+double fadeStart(const ItemFadeGroup& group, const int item)
+{
+    const auto order = static_cast<double>(group.exit ? group.count - 1 - item : item);
+    if (!group.front) {
+        return group.count > 1 ? group.spread * order / (group.count - 1) : 0.0;
+    }
+    const auto share = (order + (group.exit ? 1.0 : 0.0)) / group.count;
+    const auto scaled = std::clamp(share, 0.0, 1.0) * (QAccelPlot::Internal::kFadeStartSamples - 1);
+    const auto lower = std::min(static_cast<int>(std::floor(scaled)), QAccelPlot::Internal::kFadeStartSamples - 2);
+    const auto a = static_cast<double>(group.starts[static_cast<std::size_t>(lower)]);
+    const auto b = static_cast<double>(group.starts[static_cast<std::size_t>(lower) + 1]);
+    return group.spread * (a + (scaled - lower) * (b - a));
+}
 
 } // namespace
 
@@ -132,6 +149,9 @@ private slots:
     void draw_fadeAtFullStagger_revealsOverTheSpread();
     void draw_exitWithFade_keepsItemsUntilTheirFadeEnds();
     void grow_longerOpacity_startsItemsTogether();
+    void compactedFade_keepsTheStartsOfTheRemainingItems_data();
+    void compactedFade_keepsTheStartsOfTheRemainingItems();
+    void compactedFade_withEveryItem_onlyMoves();
 
     // DataTransition state
     void transition_startSetsRunning();
@@ -645,6 +665,47 @@ void TestTransitions::grow_longerOpacity_startsItemsTogether()
 
     // The fade fills the run, so the items start together and grow over half of it.
     QCOMPARE(change.frame().values, (std::vector<double>{0.0, 5.0, 1.0, 10.0}));
+}
+
+void TestTransitions::compactedFade_keepsTheStartsOfTheRemainingItems_data()
+{
+    QTest::addColumn<bool>("exit");
+    QTest::newRow("enter") << false;
+    QTest::newRow("exit") << true;
+}
+
+void TestTransitions::compactedFade_keepsTheStartsOfTheRemainingItems()
+{
+    QFETCH(bool, exit);
+    auto group = ItemFadeGroup{};
+    group.first = 4;
+    group.count = 6;
+    group.exit = exit;
+    group.spread = 0.8f;
+
+    // Item 2 of the group is left out; the others start as before.
+    const auto kept = std::vector<int>{0, 1, 3, 4, 5};
+    const auto compacted = QAccelPlot::Internal::compactedFadeGroup(group, 3, kept);
+    QCOMPARE(compacted.first, 3);
+    QCOMPARE(compacted.count, 5);
+    QVERIFY(compacted.front);
+    for (auto item = 0; item < compacted.count; ++item) {
+        const auto expected = fadeStart(group, kept[static_cast<std::size_t>(item)]);
+        QVERIFY2(std::abs(fadeStart(compacted, item) - expected) < 1e-5, qPrintable(QString::number(item)));
+    }
+}
+
+void TestTransitions::compactedFade_withEveryItem_onlyMoves()
+{
+    auto group = ItemFadeGroup{};
+    group.first = 4;
+    group.count = 3;
+    group.spread = 0.5f;
+
+    const auto compacted = QAccelPlot::Internal::compactedFadeGroup(group, 2, {0, 1, 2});
+    QCOMPARE(compacted.first, 2);
+    QCOMPARE(compacted.count, 3);
+    QVERIFY(!compacted.front);
 }
 
 void TestTransitions::transition_startSetsRunning()

@@ -8,6 +8,7 @@
 #pragma once
 
 #include <array>
+#include <vector>
 
 namespace QAccelPlot::Internal {
 
@@ -54,6 +55,13 @@ struct ItemFade {
         return groups[0].active() || groups[1].active();
     }
 };
+
+/// \brief Returns \a group after some of its items are left out of the drawn items; it starts at drawn index \a first.
+///
+/// \a kept lists, in order, the positions in \a group of the remaining items. They keep their
+/// start times through \c starts, which holds them at \c kFadeStartSamples evenly spaced shares
+/// of the remaining items; items between two samples start at an interpolated time.
+[[nodiscard]] ItemFadeGroup compactedFadeGroup(const ItemFadeGroup& group, int first, const std::vector<int>& kept);
 
 /// \brief Orders \a left and \a right for \c QSGMaterial::compare(): negative, 0, or positive.
 [[nodiscard]] int compareItemFades(const ItemFade& left, const ItemFade& right) noexcept;

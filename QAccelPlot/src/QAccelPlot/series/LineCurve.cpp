@@ -752,16 +752,23 @@ Internal::ItemFade LineCurve::renderedFade() const
         return fade;
     }
     const auto drawnCount = dataPoints().drawnView().count;
+    if (dataPoints().renderedView().count == drawnCount) {
+        return fade;
+    }
+    auto kept = std::vector<int>{};
     for (auto& group : fade.groups) {
         if (!group.active()) {
             continue;
         }
-        // Group items the frame does not show yet, or no longer, keep their places in the stagger order.
-        const auto end = group.first + group.count;
-        const auto shownEnd = std::min(end, drawnCount);
-        const auto first = dataPoints().renderedCount(group.first);
-        group.count = dataPoints().renderedCount(shownEnd) - first + (end - shownEnd);
-        group.first = first;
+        kept.clear();
+        for (auto item = 0; item < group.count; ++item) {
+            // Group items the frame does not show yet, or no longer, keep their places in the stagger order.
+            const auto index = group.first + item;
+            if (index >= drawnCount || dataPoints().rendered(index)) {
+                kept.push_back(item);
+            }
+        }
+        group = Internal::compactedFadeGroup(group, dataPoints().renderedCount(group.first), kept);
     }
     return fade;
 }
