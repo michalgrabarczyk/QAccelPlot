@@ -623,7 +623,8 @@ void TestTransitions::fade_atFullStagger_followsTheFront()
     auto change = Change{{}, {0.0, 0.0, 1.0, 1.0}};
     change.enter = fadingStep(TransitionKind::Draw, 0.25, 1.0, 250.0);
 
-    const auto& group = change.frame().fade.groups[1];
+    const auto frame = change.frame();
+    const auto& group = frame.fade.groups[1];
 
     QVERIFY(group.active());
     QVERIFY(group.front);
@@ -654,7 +655,8 @@ void TestTransitions::fade_ofAnExit_playsAsWritten()
     auto change = Change{{0.0, 0.0, 1.0, 1.0}, {}};
     change.exit = fadingStep(TransitionKind::Grow, 0.25, 0.0, 1000.0, 1000.0, 1.0, 0.0);
 
-    const auto& group = change.frame().fade.groups[1];
+    const auto frame = change.frame();
+    const auto& group = frame.fade.groups[1];
 
     QCOMPARE(group.first, 0);
     QCOMPARE(group.count, 2);
