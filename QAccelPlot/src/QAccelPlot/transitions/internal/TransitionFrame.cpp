@@ -55,6 +55,8 @@ template <std::size_t N> double interpolate(const std::array<double, N>& samples
 /// \brief The easing curve of a staggered group, sampled once per frame instead of evaluated once per item.
 class EasingTable {
 public:
+    static constexpr auto kSamples = std::size_t{1025}; ///< \brief Number of samples of the curve.
+
     explicit EasingTable(const QEasingCurve& easing)
     {
         for (auto index = std::size_t{0}; index < kSamples; ++index) {
@@ -69,29 +71,37 @@ public:
     }
 
 private:
-    static constexpr auto kSamples = std::size_t{1025};
     std::array<double, kSamples> samples_{};
 };
 
 /// \brief Returns the eased progress of every item of a group, evaluating the curve once when they all move together.
+///
+/// Groups of more items than an \c EasingTable holds read the curve from one.
 class ItemEasing {
 public:
-    ItemEasing(const TransitionStep& step, const ItemClock& clock)
-        : clock_(clock)
+    ItemEasing(const TransitionStep& step, const ItemClock& clock, const int count)
+        : easing_(step.easing)
+        , clock_(clock)
         , together_(clock.timing().spread <= 0.0 && !clock.timing().front)
         , shared_(step.easing.valueForProgress(clock.motion(0)))
     {
-        if (!together_) {
+        // Sampling the curve costs more than evaluating it once per item of a smaller group.
+        if (!together_ && static_cast<std::size_t>(count) > EasingTable::kSamples) {
             table_.emplace(step.easing);
         }
     }
 
     double operator()(const int order) const
     {
-        return together_ ? shared_ : (*table_)(clock_.motion(order));
+        if (together_) {
+            return shared_;
+        }
+        const auto motion = clock_.motion(order);
+        return table_ ? (*table_)(motion) : easing_.valueForProgress(motion);
     }
 
 private:
+    const QEasingCurve& easing_;
     const ItemClock& clock_;
     bool together_;
     double shared_;
@@ -101,7 +111,7 @@ private:
 void writeMorph(const TransitionStep& step, const double* from, const double* to, const int count, std::vector<double>& out, const int stride)
 {
     const auto clock = ItemClock{step, count, false};
-    const auto easing = ItemEasing{step, clock};
+    const auto easing = ItemEasing{step, clock, count};
     const auto values = static_cast<std::size_t>(stride);
     for (auto item = 0; item < count; ++item) {
         const auto eased = easing(item);
@@ -115,7 +125,7 @@ void writeMorph(const TransitionStep& step, const double* from, const double* to
 void writeGrow(const TransitionStep& step, const ItemClock& clock, const TransitionLayout& layout, const Group& group, std::vector<double>& out)
 {
     const auto baseline = std::isnan(step.baseline) ? layout.baseline : step.baseline;
-    const auto easing = ItemEasing{step, clock};
+    const auto easing = ItemEasing{step, clock, group.count};
     copyItems(group.source, group.count, out, group.first, layout.stride);
     for (auto item = 0; item < group.count; ++item) {
         const auto eased = easing(staggerOrder(group, item));

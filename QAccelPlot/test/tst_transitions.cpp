@@ -116,6 +116,7 @@ private slots:
     void morph_interpolatesKeptItems();
     void morph_modernEpochData_preservesSubFloatPrecision();
     void morph_staggerMovesTheFirstItemFirst();
+    void morph_staggerFollowsTheEasingOfEachItem();
     void morph_invalidValues_jumpToTheTarget();
     void keptItems_withoutUpdate_jumpToTheTarget();
 
@@ -361,6 +362,22 @@ void TestTransitions::morph_staggerMovesTheFirstItemFirst()
     QCOMPARE(frame.values[1], 5.0);
     QCOMPARE(frame.values[3], 0.0);
     QCOMPARE(frame.values[5], 0.0);
+}
+
+void TestTransitions::morph_staggerFollowsTheEasingOfEachItem()
+{
+    auto change = Change{{0.0, 0.0, 1.0, 0.0, 2.0, 0.0}, {0.0, 1.0, 1.0, 1.0, 2.0, 1.0}};
+    auto update = step(TransitionKind::Morph, 0.6, 0.5);
+    update.easing = QEasingCurve{QEasingCurve::OutBack};
+    change.update = update;
+
+    const auto frame = change.frame();
+    const auto clock = ItemClock{update, 3, false};
+
+    QCOMPARE(frame.count, 3);
+    for (auto item = 0; item < 3; ++item) {
+        QCOMPARE(frame.values[static_cast<std::size_t>(item) * 2 + 1], update.easing.valueForProgress(clock.motion(item)));
+    }
 }
 
 void TestTransitions::morph_invalidValues_jumpToTheTarget()
