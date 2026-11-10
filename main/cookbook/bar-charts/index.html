@@ -1827,15 +1827,18 @@ returns its <code>position</code>, <code>value</code>, <code>category</code>, an
 <code>to</code> instead of <code>position</code>. Set <code>hoverColor</code> to highlight it.
 <code>minimumWidth</code> also widens the hover area.</p>
 <h2 id="animate-data-changes">Animate data changes<a class="headerlink" href="#animate-data-changes" title="Permanent link">&para;</a></h2>
-<p>Assign a <code>MorphTransition</code> or a <code>DrawTransition</code> to <code>transition</code>, as for a
+<p>Set <code>enterTransition</code>, <code>updateTransition</code>, and <code>exitTransition</code>, as for a
 <a href="../styling/#animated-data-changes"><code>LineCurve</code></a>.</p>
 <ul>
-<li><code>MorphTransition</code> moves each bar to its new position and value. New bars
-  grow from <code>baselineValue</code>, and removed bars shrink to it.</li>
-<li><code>DrawTransition</code> shows the new bars one after another.</li>
+<li><code>GrowTransition</code> grows added bars from <code>baselineValue</code>, and shrinks removed
+  bars to it. When the value axis cannot place the baseline (infinite, or at or
+  below 0 on a log axis), they grow from the edge the bars are drawn from.</li>
+<li><code>MorphTransition</code> moves each kept bar to its new position and value.</li>
+<li><code>DrawTransition</code> shows the bars one after another.</li>
+<li>Bars that change between ranged and (position, value) all enter.</li>
 <li><code>count</code>, <code>barAt()</code>, the data ranges, hover, and inspection use the new data
   from the start of the animation.</li>
-<li><code>clearData()</code> shows the new data at once.</li>
+<li><code>clearData()</code> runs the exit transition.</li>
 <li>While a transition is enabled, the float paths store doubles.</li>
 </ul>
 <h2 id="feed-data-from-c">Feed data from C++<a class="headerlink" href="#feed-data-from-c" title="Permanent link">&para;</a></h2>

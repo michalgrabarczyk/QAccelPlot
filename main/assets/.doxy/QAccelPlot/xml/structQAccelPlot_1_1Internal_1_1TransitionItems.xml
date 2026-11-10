@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1Internal_1_1TransitionItems" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::TransitionItems</compoundname>
+    <includes local="no">TransitionFrame.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1TransitionItems_1a85a86b47746132de70eb6458235e5727" prot="public" static="no" mutable="no">
+        <type>const double *</type>
+        <definition>const double* QAccelPlot::Internal::TransitionItems::values</definition>
+        <argsstring></argsstring>
+        <name>values</name>
+        <qualifiedname>QAccelPlot::Internal::TransitionItems::values</qualifiedname>
+        <initializer>{nullptr}</initializer>
+        <briefdescription>
+<para>The values, item after item. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="99" column="18" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="99" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1TransitionItems_1ac571b30c524114686c23b0c5c4f387e3" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::TransitionItems::count</definition>
+        <argsstring></argsstring>
+        <name>count</name>
+        <qualifiedname>QAccelPlot::Internal::TransitionItems::count</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+<para>Number of items. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="100" column="9" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="100" bodyend="100"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Items on one side of a transition, <computeroutput><ref refid="structQAccelPlot_1_1Internal_1_1TransitionLayout_1a6f9bdfce632cc95847de18776a9ca871" kindref="member">TransitionLayout::stride</ref></computeroutput> values each. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="98" column="1" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="98" bodyend="101"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1Internal_1_1TransitionItems_1ac571b30c524114686c23b0c5c4f387e3" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::TransitionItems</scope><name>count</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1TransitionItems_1a85a86b47746132de70eb6458235e5727" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::TransitionItems</scope><name>values</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

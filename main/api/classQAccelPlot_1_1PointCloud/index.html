@@ -1607,6 +1607,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#property-entertransition-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property enterTransition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-exittransition-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property exitTransition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#property-hoverradius-12" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1640,10 +1662,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#property-transition-12" class="md-nav__link">
+  <a href="#property-updatetransition-12" class="md-nav__link">
     <span class="md-ellipsis">
       
-        property transition
+        property updateTransition
       
     </span>
   </a>
@@ -1690,6 +1712,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#signal-entertransitionchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal enterTransitionChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-exittransitionchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal exitTransitionChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#signal-hoverradiuschanged" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1712,10 +1756,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#signal-transitionchanged" class="md-nav__link">
+  <a href="#signal-updatetransitionchanged" class="md-nav__link">
     <span class="md-ellipsis">
       
-        signal transitionChanged
+        signal updateTransitionChanged
       
     </span>
   </a>
@@ -1788,6 +1832,28 @@
     <span class="md-ellipsis">
       
         function contains
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-entertransition-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function enterTransition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-exittransition-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function exitTransition
       
     </span>
   </a>
@@ -2048,6 +2114,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#function-setentertransition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setEnterTransition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setexittransition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setExitTransition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-sethoverradius" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2059,10 +2147,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#function-settransition" class="md-nav__link">
+  <a href="#function-setupdatetransition" class="md-nav__link">
     <span class="md-ellipsis">
       
-        function setTransition
+        function setUpdateTransition
       
     </span>
   </a>
@@ -2081,10 +2169,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#function-transition-22" class="md-nav__link">
+  <a href="#function-updatetransition-22" class="md-nav__link">
     <span class="md-ellipsis">
       
-        function transition
+        function updateTransition
       
     </span>
   </a>
@@ -2174,6 +2262,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#function-supportseffect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function supportsEffect
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2252,6 +2351,14 @@
 <td style="text-align: left;"><a href="./#property-color-12"><strong>color</strong></a>  <br><em>Uniform marker color, also used by the legend. Default:</em> <code>Colors.dark.seriesPrimary</code> <em>.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">property <a href="../classQAccelPlot_1_1EnterExitTransition/"><strong>EnterExitTransition</strong></a> *</td>
+<td style="text-align: left;"><a href="./#property-entertransition-12"><strong>enterTransition</strong></a>  <br><em>Transition of the points a data change adds, or</em> <code>nullptr</code> <em>to show them at once.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property <a href="../classQAccelPlot_1_1EnterExitTransition/"><strong>EnterExitTransition</strong></a> *</td>
+<td style="text-align: left;"><a href="./#property-exittransition-12"><strong>exitTransition</strong></a>  <br><em>Transition of the points a data change removes, or</em> <code>nullptr</code> <em>to remove them at once.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">property qreal</td>
 <td style="text-align: left;"><a href="./#property-hoverradius-12"><strong>hoverRadius</strong></a>  <br><em>Pick distance in pixels from a point's center; 0 disables hover. Default: 6.</em></td>
 </tr>
@@ -2265,7 +2372,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">property <a href="../classQAccelPlot_1_1DataTransition/"><strong>DataTransition</strong></a> *</td>
-<td style="text-align: left;"><a href="./#property-transition-12"><strong>transition</strong></a>  <br><em>Optional data transition animation applied when new data arrives.</em></td>
+<td style="text-align: left;"><a href="./#property-updatetransition-12"><strong>updateTransition</strong></a>  <br><em>Transition of the points a data change keeps, or</em> <code>nullptr</code> <em>to move them at once.</em></td>
 </tr>
 </tbody>
 </table>
@@ -2304,12 +2411,20 @@
 </thead>
 <tbody>
 <tr>
+<td style="text-align: right;">property bool</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-animating-12"><strong>animating</strong></a>  <br><em>Read-only:</em> <code>true</code> <em>while a transition animates the series' data.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">property int</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-count-12"><strong>count</strong></a>  <br><em>Read-only: number of records stored, including invalid ones.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property quint64</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-datarevision-12"><strong>dataRevision</strong></a>  <br><em>Revision incremented by every accepted change of the series' records.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property QQmlListProperty&lt; <a href="../classQAccelPlot_1_1SeriesEffect/"><strong>SeriesEffect</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-effects-12"><strong>effects</strong></a>  <br><em>Visual effects drawn with the series, such as</em> <code>GradientFill</code> <em>or</em><code>Glow</code> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property bool</td>
@@ -2364,6 +2479,14 @@
 </tr>
 <tr>
 <td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-entertransitionchanged"><strong>enterTransitionChanged</strong></a>  <br><em>Emitted when the enterTransition property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-exittransitionchanged"><strong>exitTransitionChanged</strong></a>  <br><em>Emitted when the exitTransition property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
 <td style="text-align: left;"><a href="./#signal-hoverradiuschanged"><strong>hoverRadiusChanged</strong></a>  <br><em>Emitted when the hoverRadius property changes.</em></td>
 </tr>
 <tr>
@@ -2372,7 +2495,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">signal void</td>
-<td style="text-align: left;"><a href="./#signal-transitionchanged"><strong>transitionChanged</strong></a>  <br><em>Emitted when the transition property changes.</em></td>
+<td style="text-align: left;"><a href="./#signal-updatetransitionchanged"><strong>updateTransitionChanged</strong></a>  <br><em>Emitted when the updateTransition property changes.</em></td>
 </tr>
 </tbody>
 </table>
@@ -2406,6 +2529,10 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#signal-animatingchanged"><strong>animatingChanged</strong></a>  <br><em>Emitted when the animating property changes.</em></td>
+</tr>
 <tr>
 <td style="text-align: right;">signal void</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#signal-countchanged"><strong>countChanged</strong></a>  <br><em>Emitted when the number of records changes.</em></td>
@@ -2476,6 +2603,14 @@
 <tr>
 <td style="text-align: right;">bool</td>
 <td style="text-align: left;"><a href="#function-contains"><strong>contains</strong></a> (const QPointF &amp; point) override const<br><em>Returns</em> <code>true</code> <em>when a valid point lies within</em><code>hoverRadius</code> <em>of item position__point</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classQAccelPlot_1_1EnterExitTransition/"><strong>EnterExitTransition</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-entertransition-22"><strong>enterTransition</strong></a> () const<br><em>Returns the transition of added points, or</em> <code>nullptr</code> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classQAccelPlot_1_1EnterExitTransition/"><strong>EnterExitTransition</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-exittransition-22"><strong>exitTransition</strong></a> () const<br><em>Returns the transition of removed points, or</em> <code>nullptr</code> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">qreal</td>
@@ -2571,11 +2706,19 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setentertransition"><strong>setEnterTransition</strong></a> (<a href="../classQAccelPlot_1_1EnterExitTransition/"><strong>EnterExitTransition</strong></a> * transition) <br><em>Sets the transition of added points to</em> <em>transition</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setexittransition"><strong>setExitTransition</strong></a> (<a href="../classQAccelPlot_1_1EnterExitTransition/"><strong>EnterExitTransition</strong></a> * transition) <br><em>Sets the transition of removed points to</em> <em>transition</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="#function-sethoverradius"><strong>setHoverRadius</strong></a> (qreal radius) <br><em>Sets the hover pick distance to</em> <em>radius</em> <em>pixels. Negative values are clamped to 0.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-settransition"><strong>setTransition</strong></a> (<a href="../classQAccelPlot_1_1DataTransition/"><strong>DataTransition</strong></a> * transition) <br><em>Sets the data transition to</em> <em>transition</em> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-setupdatetransition"><strong>setUpdateTransition</strong></a> (<a href="../classQAccelPlot_1_1DataTransition/"><strong>DataTransition</strong></a> * transition) <br><em>Sets the transition of kept points to</em> <em>transition</em> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">Q_INVOKABLE void</td>
@@ -2583,7 +2726,7 @@
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classQAccelPlot_1_1DataTransition/"><strong>DataTransition</strong></a> *</td>
-<td style="text-align: left;"><a href="#function-transition-22"><strong>transition</strong></a> () const<br><em>Returns the active data transition, or</em> <code>nullptr</code> <em>if none.</em></td>
+<td style="text-align: left;"><a href="#function-updatetransition-22"><strong>updateTransition</strong></a> () const<br><em>Returns the transition of kept points, or</em> <code>nullptr</code> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">Q_INVOKABLE qreal</td>
@@ -2638,6 +2781,10 @@
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-plotseries-12"><strong>PlotSeries</strong></a> (QQuickItem * parent=nullptr) <br></td>
 </tr>
 <tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-animating-22"><strong>animating</strong></a> () const<br><em>Returns whether a transition animates the series' data.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">virtual void</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-cleardata"><strong>clearData</strong></a> () <br><em>Removes all data points from the series.</em></td>
 </tr>
@@ -2648,6 +2795,10 @@
 <tr>
 <td style="text-align: right;">quint64</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-datarevision-22"><strong>dataRevision</strong></a> () const<br><em>Returns the current data revision.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">QQmlListProperty&lt; <a href="../classQAccelPlot_1_1SeriesEffect/"><strong>SeriesEffect</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-effects-22"><strong>effects</strong></a> () <br><em>Returns the QML list property of the effects.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>
@@ -2832,6 +2983,10 @@
 <td style="text-align: right;">virtual std::optional&lt; <a href="../structQAccelPlot_1_1ColormappedSeries_1_1ValueSpan/"><strong>ValueSpan</strong></a> &gt;</td>
 <td style="text-align: left;"><a href="#function-scanvaluerange"><strong>scanValueRange</strong></a> () override const<br><em>Returns the span of the finite point values.</em></td>
 </tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="#function-supportseffect"><strong>supportsEffect</strong></a> (const <a href="../classQAccelPlot_1_1SeriesEffect/"><strong>SeriesEffect</strong></a> &amp; effect) override const<br><em>Returns</em> <code>true</code> <em>for</em><code>Glow</code> <em>and</em><code>FadeTrail</code> <em>.</em></td>
+</tr>
 </tbody>
 </table>
 <h2 id="protected-functions-inherited-from-qaccelplotcolormappedseries">Protected Functions inherited from QAccelPlot::ColormappedSeries<a class="headerlink" href="#protected-functions-inherited-from-qaccelplotcolormappedseries" title="Permanent link">&para;</a></h2>
@@ -2885,6 +3040,14 @@
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-applydatapoints"><strong>applyDataPoints</strong></a> (<a href="../structQAccelPlot_1_1PlotSeries_1_1DataPointInput/"><strong>DataPointInput</strong></a> &amp;&amp; input) <br><em>Applies data points passed to</em> <code>setData()</code> <em>or</em><code>setDataF()</code> <em>.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-classbegin"><strong>classBegin</strong></a> () override<br><em>Holds back the warnings about ignored effects while the component loads.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-componentcomplete"><strong>componentComplete</strong></a> () override<br><em>Reports ignored effects once the component is complete.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">virtual <a href="../structQAccelPlot_1_1PlotSeries_1_1DataRanges/"><strong>DataRanges</strong></a></td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-computedataranges"><strong>computeDataRanges</strong></a> () const<br><em>Scans the records for their extents. The default implementation scans the data points.</em></td>
 </tr>
@@ -2899,6 +3062,10 @@
 <tr>
 <td style="text-align: right;">const <a href="../classQAccelPlot_1_1DataPointStore/"><strong>DataPointStore</strong></a> &amp;</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-datapoints-22"><strong>dataPoints</strong></a> () const<br><em>Returns the data points of the series.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">const <a href="../classQAccelPlot_1_1Internal_1_1SeriesEffectList/"><strong>Internal::SeriesEffectList</strong></a> &amp;</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-effectlist"><strong>effectList</strong></a> () const<br><em>Returns the effects of the series.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>
@@ -2945,6 +3112,10 @@
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-invalidateinspection"><strong>invalidateInspection</strong></a> () <br><em>Refreshes the data queries after record validity changed without a data change, such as an axis scale switch.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-itemchange"><strong>itemChange</strong></a> (ItemChange change, const ItemChangeData &amp; value) override<br><em>Follows the window, whose frames refresh the effects.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">bool</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-logscalex"><strong>logScaleX</strong></a> () const<br><em>Returns whether the horizontal axis is logarithmic; false without an axis.</em></td>
 </tr>
@@ -2982,6 +3153,10 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setanimating"><strong>setAnimating</strong></a> (bool animating) <br><em>Sets the animating property to</em> <em>animating</em> <em>. Called when the series'</em><code>TransitionRunner</code> <em>becomes active or idle.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-sethovered"><strong>setHovered</strong></a> (bool hovered) <br><em>Sets the hovered property to</em> <em>hovered</em> <em>. Called by the hover handling of a series.</em></td>
 </tr>
 <tr>
@@ -2991,6 +3166,10 @@
 <tr>
 <td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-supporthover"><strong>supportHover</strong></a> () <br><em>Makes the series accept hover events while</em> <code>hoverEnabled</code> <em>is</em><code>true</code> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-supportseffect"><strong>supportsEffect</strong></a> (const <a href="../classQAccelPlot_1_1SeriesEffect/"><strong>SeriesEffect</strong></a> &amp; effect) const<br><em>Returns whether the series draws</em> <em>effect</em> <em>. The default draws none.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -3014,7 +3193,7 @@
 <p>Non-finite coordinates, and non-positive coordinates on a logarithmic axis, are kept in storage so indices stay stable, but they are not drawn, not hit-tested, and do not contribute to data ranges. A point with a non-finite value is drawn with the uniform <code>color</code>.</p>
 <p>**
 **</p>
-<p>Assign a <code>MorphTransition</code> or <code>DrawTransition</code> to <code>transition</code> to animate data updates. With <code>MorphTransition</code>, points move to their new position, and their values, when the old and the new points both have them, change with them. New points appear, and removed points disappear, at once. <code>count</code>, <code>pointAt()</code>, <code>valueAt()</code>, the data and value ranges, and inspection use the new data from the start of the animation, while hover picks the points as drawn. While a transition is enabled, <code>setValues()</code> animates as well and the <code>setDataF()</code> overloads store doubles. <code>clearData()</code>, and replacing, clearing, or cancelling <code>transition</code>, skip to the new data.</p>
+<p><code>enterTransition</code> animates added points, <code>updateTransition</code> kept points, and <code>exitTransition</code> removed points, matched by index; a staggered transition follows the point order, so sort the points to sweep across the plot. With a <code>MorphTransition</code>, kept points move to their new position, and their values, when the old and the new points both have them, change with them. <code>count</code>, <code>pointAt()</code>, <code>valueAt()</code>, the data and value ranges, and inspection use the new data from the start of the animation, while hover picks the points as drawn. While a transition is enabled, <code>setValues()</code> animates as well and the <code>setDataF()</code> overloads store doubles. Replacing, clearing, or cancelling a transition skips to the new data; <code>clearData()</code> runs the exit transition.</p>
 <p>**
 **</p>
 <p>Coordinates are single precision. The number of renderable points is bounded by the GPU's maximum texture size: about 22 million points with values, or 33 million without, for an 8192-pixel limit, and twice that for 16384. Points beyond it are not drawn or hovered, and a warning is logged once.</p>
@@ -3032,371 +3211,432 @@
 </code></pre></div></p>
 <hr>
 
+<h3 id="property-entertransition-12">property enterTransition<a class="headerlink" href="#property-entertransition-12" title="Permanent link">&para;</a></h3>
+<p><em>Transition of the points a data change adds, or</em> <code>nullptr</code> <em>to show them at once.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">EnterExitTransition</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">enterTransition</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-exittransition-12">property exitTransition<a class="headerlink" href="#property-exittransition-12" title="Permanent link">&para;</a></h3>
+<p><em>Transition of the points a data change removes, or</em> <code>nullptr</code> <em>to remove them at once.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">EnterExitTransition</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">exitTransition</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="property-hoverradius-12">property hoverRadius<a class="headerlink" href="#property-hoverradius-12" title="Permanent link">&para;</a></h3>
 <p><em>Pick distance in pixels from a point's center; 0 disables hover. Default: 6.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">hoverRadius</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">hoverRadius</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="property-hoveredindex-12">property hoveredIndex<a class="headerlink" href="#property-hoveredindex-12" title="Permanent link">&para;</a></h3>
 <p><em>Read-only: index of the valid point nearest the pointer within</em> <code>hoverRadius</code> <em>, or -1 when none.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">hoveredIndex</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">hoveredIndex</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="property-marker-12">property marker<a class="headerlink" href="#property-marker-12" title="Permanent link">&para;</a></h3>
 <p><em>Grouped marker settings, e.g.</em> <code>marker.shape</code> <em>and</em><code>marker.size</code> <em>.</em><code>marker.shape</code> <em>defaults to</em><code>Circle</code> <em>and does not accept</em><code>None</code> <em>, because a cloud always draws markers;</em><code>marker.size</code> <em>defaults to 3.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">SeriesMarker</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">marker</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">SeriesMarker</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">marker</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
-<h3 id="property-transition-12">property transition<a class="headerlink" href="#property-transition-12" title="Permanent link">&para;</a></h3>
-<p><em>Optional data transition animation applied when new data arrives.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">DataTransition</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">transition</span><span class="p">;</span>
+<h3 id="property-updatetransition-12">property updateTransition<a class="headerlink" href="#property-updatetransition-12" title="Permanent link">&para;</a></h3>
+<p><em>Transition of the points a data change keeps, or</em> <code>nullptr</code> <em>to move them at once.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">DataTransition</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">updateTransition</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 <h2 id="public-signals-documentation">Public Signals Documentation<a class="headerlink" href="#public-signals-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="signal-antialiasingfeatherchanged">signal antialiasingFeatherChanged<a class="headerlink" href="#signal-antialiasingfeatherchanged" title="Permanent link">&para;</a></h3>
 <p><em>Emitted when the antialiasingFeather property changes.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">antialiasingFeatherChanged</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">antialiasingFeatherChanged</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="signal-colorchanged">signal colorChanged<a class="headerlink" href="#signal-colorchanged" title="Permanent link">&para;</a></h3>
 <p><em>Emitted when the color property changes.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">colorChanged</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">colorChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-entertransitionchanged">signal enterTransitionChanged<a class="headerlink" href="#signal-entertransitionchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the enterTransition property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">enterTransitionChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-exittransitionchanged">signal exitTransitionChanged<a class="headerlink" href="#signal-exittransitionchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the exitTransition property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">exitTransitionChanged</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="signal-hoverradiuschanged">signal hoverRadiusChanged<a class="headerlink" href="#signal-hoverradiuschanged" title="Permanent link">&para;</a></h3>
 <p><em>Emitted when the hoverRadius property changes.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">hoverRadiusChanged</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">hoverRadiusChanged</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="signal-hoveredindexchanged">signal hoveredIndexChanged<a class="headerlink" href="#signal-hoveredindexchanged" title="Permanent link">&para;</a></h3>
 <p><em>Emitted when the hovered point changes.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">hoveredIndexChanged</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">hoveredIndexChanged</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
-<h3 id="signal-transitionchanged">signal transitionChanged<a class="headerlink" href="#signal-transitionchanged" title="Permanent link">&para;</a></h3>
-<p><em>Emitted when the transition property changes.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">transitionChanged</span><span class="p">;</span>
+<h3 id="signal-updatetransitionchanged">signal updateTransitionChanged<a class="headerlink" href="#signal-updatetransitionchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the updateTransition property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">updateTransitionChanged</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-pointcloud">function PointCloud<a class="headerlink" href="#function-pointcloud" title="Permanent link">&para;</a></h3>
 <p><em>Constructs a</em> <a href="./"><em><strong>PointCloud</strong></em></a> <em>with the given__parent</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">explicit</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">PointCloud</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="n">QQuickItem</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">parent</span><span class="o">=</span><span class="nb">nullptr</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">explicit</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">PointCloud</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="n">QQuickItem</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">parent</span><span class="o">=</span><span class="nb">nullptr</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-antialiasingfeather-22">function antialiasingFeather<a class="headerlink" href="#function-antialiasingfeather-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the antialiasing feather width in pixels.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">antialiasingFeather</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">antialiasingFeather</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-cleardata">function clearData<a class="headerlink" href="#function-cleardata" title="Permanent link">&para;</a></h3>
 <p><em>Removes all points and values.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">clearData</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">clearData</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-cleardata"><em>QAccelPlot::PlotSeries::clearData</em></a></p>
 <hr>
 
 <h3 id="function-color-22">function color<a class="headerlink" href="#function-color-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the uniform marker color.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">color</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">color</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-contains">function contains<a class="headerlink" href="#function-contains" title="Permanent link">&para;</a></h3>
 <p><em>Returns</em> <code>true</code> <em>when a valid point lies within</em><code>hoverRadius</code> <em>of item position__point</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">contains</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">point</span>
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">contains</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">point</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <p>Hover delivery uses this test, so stacked series underneath still receive hover events away from this cloud's points. </p>
 <hr>
 
+<h3 id="function-entertransition-22">function enterTransition<a class="headerlink" href="#function-entertransition-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the transition of added points, or</em> <code>nullptr</code> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">EnterExitTransition</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">enterTransition</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-exittransition-22">function exitTransition<a class="headerlink" href="#function-exittransition-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the transition of removed points, or</em> <code>nullptr</code> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">EnterExitTransition</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">exitTransition</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="function-hoverradius-22">function hoverRadius<a class="headerlink" href="#function-hoverradius-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the hover pick distance in pixels.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">hoverRadius</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">hoverRadius</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-hoveredindex-22">function hoveredIndex<a class="headerlink" href="#function-hoveredindex-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the index of the hovered point, or -1.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">hoveredIndex</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">hoveredIndex</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-legendentry">function legendEntry<a class="headerlink" href="#function-legendentry" title="Permanent link">&para;</a></h3>
 <p><em>Returns the legend entry: the symbol, color, and marker of the points.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="w"> </span><span class="n">LegendEntry</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">legendEntry</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="w"> </span><span class="n">LegendEntry</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">legendEntry</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-legendentry"><em>QAccelPlot::PlotSeries::legendEntry</em></a></p>
 <hr>
 
 <h3 id="function-marker-22">function marker<a class="headerlink" href="#function-marker-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the grouped marker settings. The object is owned by the cloud.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">SeriesMarker</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">marker</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="n">SeriesMarker</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">marker</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-pointat">function pointAt<a class="headerlink" href="#function-pointat" title="Permanent link">&para;</a></h3>
 <p><em>Returns point</em> <em>index</em> <em>, or a NaN point when__index</em> <em>is out of range.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">pointAt</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span>
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">pointAt</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-pointindexat">function pointIndexAt<a class="headerlink" href="#function-pointindexat" title="Permanent link">&para;</a></h3>
 <p><em>Returns the index of the valid point within</em> <code>hoverRadius</code> <em>of item position__position</em> <em>, or -1.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">pointIndexAt</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">position</span>
-<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">pointIndexAt</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">position</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-postdata-14">function postData<a class="headerlink" href="#function-postdata-14" title="Permanent link">&para;</a></h3>
 <p><em>Thread-safe: queues</em> <code>setData</code> _(_<em>xyInterleaved</em> _,_<em>values</em> _,_<em>pointCount</em> <em>) to the item's thread.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">postData</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">xyInterleaved</span><span class="p">,</span>
-<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">,</span>
-<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span>
-<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">postData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">xyInterleaved</span><span class="p">,</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">,</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-postdata-24">function postData<a class="headerlink" href="#function-postdata-24" title="Permanent link">&para;</a></h3>
 <p><em>Thread-safe: queues</em> <code>setDataF</code> _(_<em>xyInterleaved</em> _,_<em>values</em> _,_<em>pointCount</em> <em>) to the item's thread.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">postData</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">xyInterleaved</span><span class="p">,</span>
-<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">,</span>
-<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span>
-<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-postdata-34">function postData<a class="headerlink" href="#function-postdata-34" title="Permanent link">&para;</a></h3>
-<p><em>Queues a moved double buffer for assignment on the series' thread.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">postData</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
-<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
-<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-postdata-44">function postData<a class="headerlink" href="#function-postdata-44" title="Permanent link">&para;</a></h3>
-<p><em>Queues a moved float buffer for assignment on the series' thread.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">postData</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
-<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
-<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-setantialiasingfeather">function setAntialiasingFeather<a class="headerlink" href="#function-setantialiasingfeather" title="Permanent link">&para;</a></h3>
-<p><em>Sets the antialiasing feather width to</em> <em>feather</em> <em>pixels, clamped to [0, 10].</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setAntialiasingFeather</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">feather</span>
-<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-setcolor">function setColor<a class="headerlink" href="#function-setcolor" title="Permanent link">&para;</a></h3>
-<p><em>Sets the uniform marker color to</em> <em>color</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setColor</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">color</span>
-<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-setdata-16">function setData<a class="headerlink" href="#function-setdata-16" title="Permanent link">&para;</a></h3>
-<p><em>Replaces all points with</em> <em>points</em> <em>and clears per-point values.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QList</span><span class="o">&lt;</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">points</span>
-<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-setdata-26">function setData<a class="headerlink" href="#function-setdata-26" title="Permanent link">&para;</a></h3>
-<p><em>Sets double-precision positions and per-point</em> <em>values</em> <em>(empty, or exactly__pointCount</em> <em>floats).</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">xyInterleaved</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">postData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">xyInterleaved</span><span class="p">,</span>
 <a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">,</span>
 <a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span>
 <a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
-<h3 id="function-setdata-36">function setData<a class="headerlink" href="#function-setdata-36" title="Permanent link">&para;</a></h3>
-<p><em>Replaces the series data with</em> <em>count</em> <em>data points copied from an interleaved double array.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<h3 id="function-postdata-34">function postData<a class="headerlink" href="#function-postdata-34" title="Permanent link">&para;</a></h3>
+<p><em>Queues a moved double buffer for assignment on the series' thread.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">postData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
 <a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
 <a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-postdata-44">function postData<a class="headerlink" href="#function-postdata-44" title="Permanent link">&para;</a></h3>
+<p><em>Queues a moved float buffer for assignment on the series' thread.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">postData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setantialiasingfeather">function setAntialiasingFeather<a class="headerlink" href="#function-setantialiasingfeather" title="Permanent link">&para;</a></h3>
+<p><em>Sets the antialiasing feather width to</em> <em>feather</em> <em>pixels, clamped to [0, 10].</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setAntialiasingFeather</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">feather</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setcolor">function setColor<a class="headerlink" href="#function-setcolor" title="Permanent link">&para;</a></h3>
+<p><em>Sets the uniform marker color to</em> <em>color</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setColor</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">color</span>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setdata-16">function setData<a class="headerlink" href="#function-setdata-16" title="Permanent link">&para;</a></h3>
+<p><em>Replaces all points with</em> <em>points</em> <em>and clears per-point values.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QList</span><span class="o">&lt;</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">points</span>
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setdata-26">function setData<a class="headerlink" href="#function-setdata-26" title="Permanent link">&para;</a></h3>
+<p><em>Sets double-precision positions and per-point</em> <em>values</em> <em>(empty, or exactly__pointCount</em> <em>floats).</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">xyInterleaved</span><span class="p">,</span>
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">,</span>
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span>
+<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setdata-36">function setData<a class="headerlink" href="#function-setdata-36" title="Permanent link">&para;</a></h3>
+<p><em>Replaces the series data with</em> <em>count</em> <em>data points copied from an interleaved double array.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <p>See the class description for the data point layout of each series. </p>
 <hr>
 
 <h3 id="function-setdata-46">function setData<a class="headerlink" href="#function-setdata-46" title="Permanent link">&para;</a></h3>
 <p><em>Replaces the series data by moving an interleaved double buffer.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
-<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
-<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
+<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setdata-56">function setData<a class="headerlink" href="#function-setdata-56" title="Permanent link">&para;</a></h3>
 <p><em>Like</em> <code>setData</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
-<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="p">,</span>
-<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">DataBounds</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">bounds</span>
-<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-setdata-66">function setData<a class="headerlink" href="#function-setdata-66" title="Permanent link">&para;</a></h3>
-<p><em>Like</em> <code>setData</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
-<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="p">,</span>
-<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">DataBounds</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">bounds</span>
-<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-setdataf-15">function setDataF<a class="headerlink" href="#function-setdataf-15" title="Permanent link">&para;</a></h3>
-<p><em>Sets positions and per-point</em> <em>values</em> <em>(empty, or exactly__pointCount</em> <em>floats).</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">xyInterleaved</span><span class="p">,</span>
-<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">,</span>
-<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span>
-<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-setdataf-25">function setDataF<a class="headerlink" href="#function-setdataf-25" title="Permanent link">&para;</a></h3>
-<p><em>Replaces the series data with</em> <em>count</em> <em>data points copied from an interleaved float array.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
-<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
-<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-setdataf-35">function setDataF<a class="headerlink" href="#function-setdataf-35" title="Permanent link">&para;</a></h3>
-<p><em>Replaces the series data by moving an interleaved float buffer.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
-<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
-<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-setdataf-45">function setDataF<a class="headerlink" href="#function-setdataf-45" title="Permanent link">&para;</a></h3>
-<p><em>Like</em> <code>setDataF</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
-<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="p">,</span>
-<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">DataBounds</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">bounds</span>
-<a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-setdataf-55">function setDataF<a class="headerlink" href="#function-setdataf-55" title="Permanent link">&para;</a></h3>
-<p><em>Like</em> <code>setDataF</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
 <a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="p">,</span>
 <a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">DataBounds</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">bounds</span>
 <a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
-<h3 id="function-sethoverradius">function setHoverRadius<a class="headerlink" href="#function-sethoverradius" title="Permanent link">&para;</a></h3>
-<p><em>Sets the hover pick distance to</em> <em>radius</em> <em>pixels. Negative values are clamped to 0.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setHoverRadius</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">radius</span>
-<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="p">)</span><span class="w"> </span>
+<h3 id="function-setdata-66">function setData<a class="headerlink" href="#function-setdata-66" title="Permanent link">&para;</a></h3>
+<p><em>Like</em> <code>setData</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="p">,</span>
+<a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">DataBounds</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">bounds</span>
+<a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
-<h3 id="function-settransition">function setTransition<a class="headerlink" href="#function-settransition" title="Permanent link">&para;</a></h3>
-<p><em>Sets the data transition to</em> <em>transition</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setTransition</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="w">    </span><span class="n">DataTransition</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">transition</span>
-<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="p">)</span><span class="w"> </span>
+<h3 id="function-setdataf-15">function setDataF<a class="headerlink" href="#function-setdataf-15" title="Permanent link">&para;</a></h3>
+<p><em>Sets positions and per-point</em> <em>values</em> <em>(empty, or exactly__pointCount</em> <em>floats).</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">xyInterleaved</span><span class="p">,</span>
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">,</span>
+<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span>
+<a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setdataf-25">function setDataF<a class="headerlink" href="#function-setdataf-25" title="Permanent link">&para;</a></h3>
+<p><em>Replaces the series data with</em> <em>count</em> <em>data points copied from an interleaved float array.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
+<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setdataf-35">function setDataF<a class="headerlink" href="#function-setdataf-35" title="Permanent link">&para;</a></h3>
+<p><em>Replaces the series data by moving an interleaved float buffer.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
+<a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setdataf-45">function setDataF<a class="headerlink" href="#function-setdataf-45" title="Permanent link">&para;</a></h3>
+<p><em>Like</em> <code>setDataF</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="p">,</span>
+<a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">DataBounds</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">bounds</span>
+<a id="__codelineno-43-5" name="__codelineno-43-5" href="#__codelineno-43-5"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setdataf-55">function setDataF<a class="headerlink" href="#function-setdataf-55" title="Permanent link">&para;</a></h3>
+<p><em>Like</em> <code>setDataF</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="p">,</span>
+<a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">DataBounds</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">bounds</span>
+<a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setentertransition">function setEnterTransition<a class="headerlink" href="#function-setentertransition" title="Permanent link">&para;</a></h3>
+<p><em>Sets the transition of added points to</em> <em>transition</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setEnterTransition</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="w">    </span><span class="n">EnterExitTransition</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">transition</span>
+<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setexittransition">function setExitTransition<a class="headerlink" href="#function-setexittransition" title="Permanent link">&para;</a></h3>
+<p><em>Sets the transition of removed points to</em> <em>transition</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setExitTransition</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a><span class="w">    </span><span class="n">EnterExitTransition</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">transition</span>
+<a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-sethoverradius">function setHoverRadius<a class="headerlink" href="#function-sethoverradius" title="Permanent link">&para;</a></h3>
+<p><em>Sets the hover pick distance to</em> <em>radius</em> <em>pixels. Negative values are clamped to 0.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setHoverRadius</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">radius</span>
+<a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setupdatetransition">function setUpdateTransition<a class="headerlink" href="#function-setupdatetransition" title="Permanent link">&para;</a></h3>
+<p><em>Sets the transition of kept points to</em> <em>transition</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setUpdateTransition</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a><span class="w">    </span><span class="n">DataTransition</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">transition</span>
+<a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setvalues">function setValues<a class="headerlink" href="#function-setvalues" title="Permanent link">&para;</a></h3>
 <p><em>Sets one value per point. An empty list clears values; any other size must equal</em> <code>count</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setValues</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QList</span><span class="o">&lt;</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">values</span>
-<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">setValues</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QList</span><span class="o">&lt;</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">values</span>
+<a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
-<h3 id="function-transition-22">function transition<a class="headerlink" href="#function-transition-22" title="Permanent link">&para;</a></h3>
-<p><em>Returns the active data transition, or</em> <code>nullptr</code> <em>if none.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="n">DataTransition</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">transition</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<h3 id="function-updatetransition-22">function updateTransition<a class="headerlink" href="#function-updatetransition-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the transition of kept points, or</em> <code>nullptr</code> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="n">DataTransition</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">updateTransition</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-valueat">function valueAt<a class="headerlink" href="#function-valueat" title="Permanent link">&para;</a></h3>
 <p><em>Returns the value of point</em> <em>index</em> <em>, or NaN when out of range or no values are stored.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">valueAt</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span>
-<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">valueAt</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span>
+<a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-pointcloud">function ~PointCloud<a class="headerlink" href="#function-pointcloud" title="Permanent link">&para;</a></h3>
 <p><em>Destroys the point cloud, ending its animation on the assigned transition.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::~</span><span class="n">PointCloud</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::~</span><span class="n">PointCloud</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
 <hr>
 <h2 id="protected-functions-documentation">Protected Functions Documentation<a class="headerlink" href="#protected-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-applydatapoints">function applyDataPoints<a class="headerlink" href="#function-applydatapoints" title="Permanent link">&para;</a></h3>
 <p><em>Applies new points without values, animating to them when a transition is enabled.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">applyDataPoints</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="w">    </span><span class="n">DataPointInput</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">input</span>
-<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">applyDataPoints</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a><span class="w">    </span><span class="n">DataPointInput</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">input</span>
+<a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-applydatapoints"><em>QAccelPlot::PlotSeries::applyDataPoints</em></a></p>
 <hr>
 
 <h3 id="function-onaxisscalechanged">function onAxisScaleChanged<a class="headerlink" href="#function-onaxisscalechanged" title="Permanent link">&para;</a></h3>
 <p><em>Rebuilds the hover index, because log dimensions map points differently.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">onAxisScaleChanged</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">onAxisScaleChanged</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-onaxisscalechanged"><em>QAccelPlot::PlotSeries::onAxisScaleChanged</em></a></p>
 <hr>
 
 <h3 id="function-ondatapointschanged">function onDataPointsChanged<a class="headerlink" href="#function-ondatapointschanged" title="Permanent link">&para;</a></h3>
 <p><em>Refreshes the hover index, the value range, and the count after the points changed.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">onDataPointsChanged</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="w">    </span><span class="n">DataChange</span><span class="w"> </span><span class="n">change</span><span class="p">,</span>
-<a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">previousCount</span>
-<a id="__codelineno-47-4" name="__codelineno-47-4" href="#__codelineno-47-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">onDataPointsChanged</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a><span class="w">    </span><span class="n">DataChange</span><span class="w"> </span><span class="n">change</span><span class="p">,</span>
+<a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">previousCount</span>
+<a id="__codelineno-55-4" name="__codelineno-55-4" href="#__codelineno-55-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-ondatapointschanged"><em>QAccelPlot::PlotSeries::onDataPointsChanged</em></a></p>
 <hr>
 
 <h3 id="function-scanvaluerange">function scanValueRange<a class="headerlink" href="#function-scanvaluerange" title="Permanent link">&para;</a></h3>
 <p><em>Returns the span of the finite point values.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="w"> </span><span class="n">ValueSpan</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">scanValueRange</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="w"> </span><span class="n">ValueSpan</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">scanValueRange</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1ColormappedSeries/#function-scanvaluerange"><em>QAccelPlot::ColormappedSeries::scanValueRange</em></a></p>
+<hr>
+
+<h3 id="function-supportseffect">function supportsEffect<a class="headerlink" href="#function-supportseffect" title="Permanent link">&para;</a></h3>
+<p><em>Returns</em> <code>true</code> <em>for</em><code>Glow</code> <em>and</em><code>FadeTrail</code> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">supportsEffect</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">SeriesEffect</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">effect</span>
+<a id="__codelineno-57-3" name="__codelineno-57-3" href="#__codelineno-57-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-supportseffect"><em>QAccelPlot::PlotSeries::supportsEffect</em></a></p>
 <hr>
 
 <hr />

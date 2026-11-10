@@ -1,0 +1,238 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1SeriesEffect" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::SeriesEffect</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
+    <derivedcompoundref refid="classQAccelPlot_1_1FadeTrail" prot="public" virt="non-virtual">QAccelPlot::FadeTrail</derivedcompoundref>
+    <derivedcompoundref refid="classQAccelPlot_1_1Glow" prot="public" virt="non-virtual">QAccelPlot::Glow</derivedcompoundref>
+    <derivedcompoundref refid="classQAccelPlot_1_1GradientFill" prot="public" virt="non-virtual">QAccelPlot::GradientFill</derivedcompoundref>
+    <derivedcompoundref refid="classQAccelPlot_1_1GradientStroke" prot="public" virt="non-virtual">QAccelPlot::GradientStroke</derivedcompoundref>
+    <includes local="no">SeriesEffect.hpp</includes>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1SeriesEffect_1a8bdcac95c85b537ef52bad92c4587743" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QML_ANONYMOUSbool</type>
+        <definition>QML_ANONYMOUSbool QAccelPlot::SeriesEffect::enabled</definition>
+        <argsstring></argsstring>
+        <name>enabled</name>
+        <qualifiedname>QAccelPlot::SeriesEffect::enabled</qualifiedname>
+        <read>enabled</read>
+        <write>setEnabled</write>
+        <briefdescription>
+<para>Whether this effect is active. Disabled effects are ignored during rendering. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/SeriesEffect.hpp" line="33" column="5" bodyfile="QAccelPlot/src/QAccelPlot/effects/SeriesEffect.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1SeriesEffect_1aefef3a9565b8cc412de665d062776131" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::SeriesEffect::enabled_</definition>
+        <argsstring></argsstring>
+        <name>enabled_</name>
+        <qualifiedname>QAccelPlot::SeriesEffect::enabled_</qualifiedname>
+        <initializer>{true}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/SeriesEffect.hpp" line="56" column="10" bodyfile="QAccelPlot/src/QAccelPlot/effects/SeriesEffect.hpp" bodystart="56" bodyend="56"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesEffect_1a2dac68d7ce3c6ed01437125c7a547c11" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::SeriesEffect::SeriesEffect</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>SeriesEffect</name>
+        <qualifiedname>QAccelPlot::SeriesEffect::SeriesEffect</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a <ref refid="classQAccelPlot_1_1SeriesEffect" kindref="compound">SeriesEffect</ref> with the given <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/SeriesEffect.hpp" line="37" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesEffect_1a4608e55ea1dec2ff079e6143c5ea6e0b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::SeriesEffect::enabled</definition>
+        <argsstring>() const</argsstring>
+        <name>enabled</name>
+        <qualifiedname>QAccelPlot::SeriesEffect::enabled</qualifiedname>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> if the effect is active. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/SeriesEffect.hpp" line="40" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesEffect_1aeb23262e92b2c37fda89636a3ffc995b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SeriesEffect::setEnabled</definition>
+        <argsstring>(bool enabled)</argsstring>
+        <name>setEnabled</name>
+        <qualifiedname>QAccelPlot::SeriesEffect::setEnabled</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>enabled</declname>
+        </param>
+        <briefdescription>
+<para>Sets the effect&apos;s enabled state to <emphasis>enabled</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/SeriesEffect.hpp" line="42" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesEffect_1ae078e25386b2b645f2d2e62a3648e2f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>virtual void QAccelPlot::SeriesEffect::refresh</definition>
+        <argsstring>()</argsstring>
+        <name>refresh</name>
+        <qualifiedname>QAccelPlot::SeriesEffect::refresh</qualifiedname>
+        <reimplementedby refid="classQAccelPlot_1_1GradientFill_1a3208cff5859359efa191c6bcc36dba7e">refresh</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1GradientStroke_1acc1824c52ded07b2b684c4d1a1d3983b">refresh</reimplementedby>
+        <briefdescription>
+<para>Re-reads inputs that can change without a notification and emits <computeroutput><ref refid="classQAccelPlot_1_1SeriesEffect_1a9ca3c976da919b97bea1165e9b06b9b0" kindref="member">effectChanged()</ref></computeroutput> if they did. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The series calls this on the GUI thread once per frame. The default implementation does nothing. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/SeriesEffect.hpp" line="47" column="18"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1SeriesEffect_1aa19ca37db0f344742149b3b0a2850e38" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SeriesEffect::enabledChanged</definition>
+        <argsstring>()</argsstring>
+        <name>enabledChanged</name>
+        <qualifiedname>QAccelPlot::SeriesEffect::enabledChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the enabled property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/SeriesEffect.hpp" line="51" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1SeriesEffect_1a9ca3c976da919b97bea1165e9b06b9b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SeriesEffect::effectChanged</definition>
+        <argsstring>()</argsstring>
+        <name>effectChanged</name>
+        <qualifiedname>QAccelPlot::SeriesEffect::effectChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when any effect property changes, requesting a redraw of the series. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/SeriesEffect.hpp" line="53" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Abstract base class for visual effects applied to a series. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Effects are attached through the <computeroutput><ref refid="classQAccelPlot_1_1PlotSeries_1a7c160bd8480b18303e574266397d66d3" kindref="member">PlotSeries::effects</ref></computeroutput> list and evaluated when the series renders. Each series supports some effects; assigning another logs a warning and the effect is ignored. Of several effects of one type, the first enabled one applies.</para>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes"><para>Effect  </para>
+</entry><entry thead="yes"><para>Series  </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1GradientFill" kindref="compound">GradientFill</ref></computeroutput>, <computeroutput><ref refid="classQAccelPlot_1_1GradientStroke" kindref="compound">GradientStroke</ref></computeroutput>  </para>
+</entry><entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref></computeroutput>  </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1Glow" kindref="compound">Glow</ref></computeroutput>  </para>
+</entry><entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref></computeroutput>, <computeroutput><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref></computeroutput>, <computeroutput><ref refid="classQAccelPlot_1_1BarSeries" kindref="compound">BarSeries</ref></computeroutput>, <computeroutput><ref refid="classQAccelPlot_1_1ErrorBarSeries" kindref="compound">ErrorBarSeries</ref></computeroutput>  </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1FadeTrail" kindref="compound">FadeTrail</ref></computeroutput>  </para>
+</entry><entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref></computeroutput>, <computeroutput><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref></computeroutput>  </para>
+</entry></row>
+</table>
+</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1GradientFill" kindref="compound">GradientFill</ref>, <ref refid="classQAccelPlot_1_1GradientStroke" kindref="compound">GradientStroke</ref>, <ref refid="classQAccelPlot_1_1Glow" kindref="compound">Glow</ref>, <ref refid="classQAccelPlot_1_1FadeTrail" kindref="compound">FadeTrail</ref>, <ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>QAccelPlot::FadeTrail</label>
+        <link refid="classQAccelPlot_1_1FadeTrail"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>QAccelPlot::Glow</label>
+        <link refid="classQAccelPlot_1_1Glow"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>QAccelPlot::GradientFill</label>
+        <link refid="classQAccelPlot_1_1GradientFill"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>QAccelPlot::GradientStroke</label>
+        <link refid="classQAccelPlot_1_1GradientStroke"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>QAccelPlot::SeriesEffect</label>
+        <link refid="classQAccelPlot_1_1SeriesEffect"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::SeriesEffect</label>
+        <link refid="classQAccelPlot_1_1SeriesEffect"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/effects/SeriesEffect.hpp" line="28" column="1" bodyfile="QAccelPlot/src/QAccelPlot/effects/SeriesEffect.hpp" bodystart="28" bodyend="57"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1a9ca3c976da919b97bea1165e9b06b9b0" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesEffect</scope><name>effectChanged</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1a8bdcac95c85b537ef52bad92c4587743" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesEffect</scope><name>enabled</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1a4608e55ea1dec2ff079e6143c5ea6e0b" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesEffect</scope><name>enabled</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1aefef3a9565b8cc412de665d062776131" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesEffect</scope><name>enabled_</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1aa19ca37db0f344742149b3b0a2850e38" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesEffect</scope><name>enabledChanged</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1ae078e25386b2b645f2d2e62a3648e2f3" prot="public" virt="virtual"><scope>QAccelPlot::SeriesEffect</scope><name>refresh</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1a2dac68d7ce3c6ed01437125c7a547c11" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesEffect</scope><name>SeriesEffect</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1aeb23262e92b2c37fda89636a3ffc995b" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesEffect</scope><name>setEnabled</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

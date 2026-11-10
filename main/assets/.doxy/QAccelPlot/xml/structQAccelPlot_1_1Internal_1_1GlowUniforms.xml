@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1Internal_1_1GlowUniforms" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::GlowUniforms</compoundname>
+    <includes local="no">GlowUniforms.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1GlowUniforms_1a7cb472e64681c9378807a312b8d5ad2a" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::Internal::GlowUniforms::color[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>color</name>
+        <qualifiedname>QAccelPlot::Internal::GlowUniforms::color</qualifiedname>
+        <briefdescription>
+<para>Halo color, not premultiplied. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/GlowUniforms.hpp" line="16" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/internal/GlowUniforms.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1GlowUniforms_1a181776a2244e733f4f860fe24ec0e166" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::Internal::GlowUniforms::params[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>params</name>
+        <qualifiedname>QAccelPlot::Internal::GlowUniforms::params</qualifiedname>
+        <briefdescription>
+<para>Halo radius in pixels and intensity; a zero radius draws no halo. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/GlowUniforms.hpp" line="17" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/internal/GlowUniforms.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>The std140 uniform members of a <computeroutput><ref refid="classQAccelPlot_1_1Glow" kindref="compound">Glow</ref></computeroutput> halo, <computeroutput>glowColor</computeroutput> and <computeroutput>glowParams</computeroutput>, at a 16-byte aligned offset. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/materials/internal/GlowUniforms.hpp" line="15" column="1" bodyfile="QAccelPlot/src/QAccelPlot/materials/internal/GlowUniforms.hpp" bodystart="15" bodyend="18"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1Internal_1_1GlowUniforms_1a7cb472e64681c9378807a312b8d5ad2a" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::GlowUniforms</scope><name>color</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1GlowUniforms_1a181776a2244e733f4f860fe24ec0e166" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::GlowUniforms</scope><name>params</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

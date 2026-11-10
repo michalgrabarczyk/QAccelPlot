@@ -3,9 +3,18 @@
   <compounddef id="TransitionRunner_8hpp" kind="file" language="C++">
     <compoundname>TransitionRunner.hpp</compoundname>
     <includes refid="DataTransition_8hpp" local="yes">QAccelPlot/transitions/DataTransition.hpp</includes>
+    <includes refid="EnterExitTransition_8hpp" local="yes">QAccelPlot/transitions/EnterExitTransition.hpp</includes>
+    <includes refid="TransitionFrame_8hpp" local="yes">QAccelPlot/transitions/internal/TransitionFrame.hpp</includes>
+    <includes local="no">QMetaObject</includes>
     <includes local="no">QObject</includes>
     <includes local="no">QPointer</includes>
+    <includes local="no">array</includes>
+    <includes local="no">optional</includes>
     <includes local="no">vector</includes>
+    <includedby refid="BarSeries_8hpp" local="yes">QAccelPlot/src/QAccelPlot/series/BarSeries.hpp</includedby>
+    <includedby refid="ErrorBarSeries_8hpp" local="yes">QAccelPlot/src/QAccelPlot/series/ErrorBarSeries.hpp</includedby>
+    <includedby refid="LineCurve_8hpp" local="yes">QAccelPlot/src/QAccelPlot/series/LineCurve.hpp</includedby>
+    <includedby refid="PointCloud_8hpp" local="yes">QAccelPlot/src/QAccelPlot/series/PointCloud.hpp</includedby>
     <incdepgraph>
       <node id="1">
         <label>QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp</label>
@@ -16,14 +25,29 @@
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
       </node>
       <node id="2">
-        <label>QObject</label>
+        <label>QMetaObject</label>
       </node>
       <node id="3">
-        <label>QPointer</label>
+        <label>QObject</label>
       </node>
       <node id="4">
+        <label>QPointer</label>
+      </node>
+      <node id="5">
+        <label>array</label>
+      </node>
+      <node id="6">
+        <label>optional</label>
+      </node>
+      <node id="7">
         <label>vector</label>
       </node>
     </incdepgraph>
@@ -44,57 +68,114 @@
 <codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="9"><highlight class="normal"></highlight></codeline>
 <codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/transitions/DataTransition.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="11"><highlight class="normal"></highlight></codeline>
-<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QObject&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QPointer&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="14"><highlight class="normal"></highlight></codeline>
-<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="16"><highlight class="normal"></highlight></codeline>
-<codeline lineno="17"><highlight class="normal">QT_FORWARD_DECLARE_CLASS(QQuickItem)</highlight></codeline>
-<codeline lineno="18"><highlight class="normal">QT_FORWARD_DECLARE_CLASS(QQuickWindow)</highlight></codeline>
-<codeline lineno="19"><highlight class="normal"></highlight></codeline>
-<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/transitions/EnterExitTransition.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/transitions/internal/TransitionFrame.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QMetaObject&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QObject&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QPointer&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;array&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;optional&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="21"><highlight class="normal"></highlight></codeline>
-<codeline lineno="39" refid="classQAccelPlot_1_1TransitionRunner" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1TransitionRunner_1a5a9be1b1ad6ccc4cd462ffd5c69124ea" kindref="member">TransitionRunner</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QObject<sp/>{</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_OBJECT</highlight></codeline>
-<codeline lineno="41"><highlight class="normal"></highlight></codeline>
-<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1a5a9be1b1ad6ccc4cd462ffd5c69124ea" kindref="member">TransitionRunner</ref>(QQuickItem*<sp/>item);</highlight></codeline>
-<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1af8726e52f532a308b810d0f3430666f0" kindref="member">~TransitionRunner</ref>()<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="47"><highlight class="normal"></highlight></codeline>
-<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1DataTransition" kindref="compound">DataTransition</ref>*<sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1a13791d406f93bafde10df9c0de68e1e5" kindref="member">transition</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1aa1491d8a04186f98e0739e99ce614111" kindref="member">setTransition</ref>(<ref refid="classQAccelPlot_1_1DataTransition" kindref="compound">DataTransition</ref>*<sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1a13791d406f93bafde10df9c0de68e1e5" kindref="member">transition</ref>);</highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1a9aaed370b30a3d8e10727ab06d6e7b68" kindref="member">enabled</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="55"><highlight class="normal"></highlight></codeline>
-<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1a65ec5ae129dc499fb19c0e0145db9451" kindref="member">active</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1aa88f3b8ff1d039d66c41851b43b32e8a" kindref="member">pending</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;&amp;<sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1a279d976d903367239929f6f8f35d9b42" kindref="member">targetData</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1ae2b33044d67d21cdf627d95a6cce3d99" kindref="member">targetPointCount</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="64"><highlight class="normal"></highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1adfa8bd17d947e9fa85ae6fe3a53539c0" kindref="member">start</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;&amp;<sp/>currentData,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>currentPointCount,<sp/>std::vector&lt;double&gt;&amp;&amp;<sp/>newData,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>newPointCount,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>stride<sp/>=<sp/>2);</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1a544c88f5a5f589ae8018c154c0f959e4" kindref="member">advance</ref>(std::vector&lt;double&gt;&amp;<sp/>outData,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&amp;<sp/>outPointCount);</highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1a7c6c4698bff44b232bca83b52fc23df8" kindref="member">finish</ref>(std::vector&lt;double&gt;&amp;<sp/>outData,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&amp;<sp/>outPointCount);</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1a3afc83811ba83d8eea8030da91e57c80" kindref="member">cancel</ref>();</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"></highlight></codeline>
-<codeline lineno="83"><highlight class="normal">signals:</highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1aa50f353aea91c986087a082b30407aed" kindref="member">frameDue</ref>();</highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1a1fd8a62b7f73ffbcb7ace820b3186c94" kindref="member">interrupted</ref>();</highlight></codeline>
-<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1a1fb9e67cf0e5eb1e9e08fda79db4d7fd" kindref="member">transitionDestroyed</ref>();</highlight></codeline>
-<codeline lineno="92"><highlight class="normal"></highlight></codeline>
-<codeline lineno="93"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>interrupt();</highlight></codeline>
-<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>onTransitionDestroyed();</highlight></codeline>
-<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>onRunningChanged();</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>connectWindow(QQuickWindow*<sp/>window);</highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>onAfterAnimating();</highlight></codeline>
-<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>requestFrame();</highlight></codeline>
-<codeline lineno="100"><highlight class="normal"></highlight></codeline>
-<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>QPointer&lt;DataTransition&gt;<sp/>transition_;</highlight></codeline>
-<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1DataTransition_1_1Run" kindref="compound">DataTransition::Run</ref><sp/>run_;</highlight></codeline>
-<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>QPointer&lt;QQuickWindow&gt;<sp/>window_;</highlight></codeline>
-<codeline lineno="104"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="22"><highlight class="normal">QT_FORWARD_DECLARE_CLASS(QQuickItem)</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">QT_FORWARD_DECLARE_CLASS(QQuickWindow)</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="classQAccelPlot_1_1TransitionRunner" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1TransitionRunner_1a5a9be1b1ad6ccc4cd462ffd5c69124ea" kindref="member">TransitionRunner</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QObject<sp/>{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_OBJECT</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1af8f3c914fa81b0b5e06c1b3c440271a7" kindref="member">Slot</ref><sp/>{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1af8f3c914fa81b0b5e06c1b3c440271a7af1851d5600eae616ee802a31ac74701b" kindref="member">Enter</ref>,<sp/><sp/></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1af8f3c914fa81b0b5e06c1b3c440271a7a06933067aafd48425d67bcb01bba5cb6" kindref="member">Update</ref>,<sp/></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1af8f3c914fa81b0b5e06c1b3c440271a7afef46e5063ce3dc78b8ae64fa474241d" kindref="member">Exit</ref>,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_ENUM(<ref refid="classQAccelPlot_1_1TransitionRunner_1af8f3c914fa81b0b5e06c1b3c440271a7" kindref="member">Slot</ref>)</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1TransitionRunner_1a94c528648c0b3cfcd9e3fe3b998822ea" kindref="member">Layout</ref><sp/>=<sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionLayout" kindref="compound">Internal::TransitionLayout</ref>;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1a5a9be1b1ad6ccc4cd462ffd5c69124ea" kindref="member">TransitionRunner</ref>(QQuickItem*<sp/>item);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1af8726e52f532a308b810d0f3430666f0" kindref="member">~TransitionRunner</ref>()<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1DataTransition" kindref="compound">DataTransition</ref>*<sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1aafb5221848eed232866185b309db7120" kindref="member">transition</ref>(<ref refid="classQAccelPlot_1_1TransitionRunner_1af8f3c914fa81b0b5e06c1b3c440271a7" kindref="member">Slot</ref><sp/>slot)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1ab478f5a4d96666e0cc27c2cb89581449" kindref="member">setTransition</ref>(<ref refid="classQAccelPlot_1_1TransitionRunner_1af8f3c914fa81b0b5e06c1b3c440271a7" kindref="member">Slot</ref><sp/>slot,<sp/><ref refid="classQAccelPlot_1_1DataTransition" kindref="compound">DataTransition</ref>*<sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1aafb5221848eed232866185b309db7120" kindref="member">transition</ref>);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Item&gt;<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1acffda20e5ce5da8ff630c779951dfd5d" kindref="member">notifyTransitionChanges</ref>(Item*<sp/>item)</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>connect(</highlight><highlight class="keyword">this</highlight><highlight class="normal">,<sp/>&amp;<ref refid="classQAccelPlot_1_1TransitionRunner_1a14ba271cb5331f57baa4043d1c2938ed" kindref="member">TransitionRunner::transitionChanged</ref>,<sp/>item,<sp/>[item](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1af8f3c914fa81b0b5e06c1b3c440271a7" kindref="member">Slot</ref><sp/>slot)<sp/>{</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(slot)<sp/>{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1af8f3c914fa81b0b5e06c1b3c440271a7af1851d5600eae616ee802a31ac74701b" kindref="member">Slot::Enter</ref>:</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>emit<sp/>item-&gt;enterTransitionChanged();</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1af8f3c914fa81b0b5e06c1b3c440271a7a06933067aafd48425d67bcb01bba5cb6" kindref="member">Slot::Update</ref>:</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>emit<sp/>item-&gt;updateTransitionChanged();</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1af8f3c914fa81b0b5e06c1b3c440271a7afef46e5063ce3dc78b8ae64fa474241d" kindref="member">Slot::Exit</ref>:</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>emit<sp/>item-&gt;exitTransitionChanged();</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1a9aaed370b30a3d8e10727ab06d6e7b68" kindref="member">enabled</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1a17c8002813ca93e47e008a3b73cfbf07" kindref="member">animates</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>currentPointCount,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>newPointCount)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="105"><highlight class="normal"></highlight></codeline>
-<codeline lineno="106"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1a65ec5ae129dc499fb19c0e0145db9451" kindref="member">active</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1aa88f3b8ff1d039d66c41851b43b32e8a" kindref="member">pending</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;&amp;<sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1a279d976d903367239929f6f8f35d9b42" kindref="member">targetData</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1ae2b33044d67d21cdf627d95a6cce3d99" kindref="member">targetPointCount</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1a1503b5c0869e0ef4e19cb38346b10d57" kindref="member">frameCapacity</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1aa0a153f6bb317a5a8454a4ad96f4b102" kindref="member">start</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;&amp;<sp/>currentData,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>currentPointCount,<sp/>std::vector&lt;double&gt;&amp;&amp;<sp/>newData,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>newPointCount,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1a94c528648c0b3cfcd9e3fe3b998822ea" kindref="member">Layout</ref>&amp;<sp/>layout);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1a544c88f5a5f589ae8018c154c0f959e4" kindref="member">advance</ref>(std::vector&lt;double&gt;&amp;<sp/>outData,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&amp;<sp/>outPointCount);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1ItemFade" kindref="compound">Internal::ItemFade</ref>&amp;<sp/>fade()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1a7c6c4698bff44b232bca83b52fc23df8" kindref="member">finish</ref>(std::vector&lt;double&gt;&amp;<sp/>outData,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&amp;<sp/>outPointCount);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1a3afc83811ba83d8eea8030da91e57c80" kindref="member">cancel</ref>();</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal">signals:</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1aa50f353aea91c986087a082b30407aed" kindref="member">frameDue</ref>();</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1a1fd8a62b7f73ffbcb7ace820b3186c94" kindref="member">interrupted</ref>();</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1a14ba271cb5331f57baa4043d1c2938ed" kindref="member">transitionChanged</ref>(<ref refid="classQAccelPlot_1_1TransitionRunner_1af8f3c914fa81b0b5e06c1b3c440271a7" kindref="member">TransitionRunner::Slot</ref><sp/>slot);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1af31472cc3341685a1cc1971ee5d37f9b" kindref="member">activeChanged</ref>();</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>kSlotCount<sp/>=<sp/>std::size_t{3};</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;Internal::TransitionKind&gt;<sp/>enabledKind(<ref refid="classQAccelPlot_1_1TransitionRunner_1af8f3c914fa81b0b5e06c1b3c440271a7" kindref="member">Slot</ref><sp/>slot)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;Internal::TransitionStep&gt;<sp/>step(<ref refid="classQAccelPlot_1_1TransitionRunner_1af8f3c914fa81b0b5e06c1b3c440271a7" kindref="member">Slot</ref><sp/>slot)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>finished()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>endRuns();</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>restartRuns(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;bool,<sp/>kSlotCount&gt;&amp;<sp/>used);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>interrupt();</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>onTransitionDestroyed(<ref refid="classQAccelPlot_1_1TransitionRunner_1af8f3c914fa81b0b5e06c1b3c440271a7" kindref="member">Slot</ref><sp/>slot);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>onRunningChanged();</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>updateActive();</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>connectWindow(QQuickWindow*<sp/>window);</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>onAfterAnimating();</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>requestFrame();</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/>std::array&lt;QPointer&lt;DataTransition&gt;,<sp/>kSlotCount&gt;<sp/>transitions_;</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/>std::array&lt;QMetaObject::Connection,<sp/>kSlotCount&gt;<sp/>destroyedConnections_;</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/>std::array&lt;QMetaObject::Connection,<sp/>kSlotCount&gt;<sp/>runningConnections_;</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/>std::array&lt;DataTransition::Run,<sp/>kSlotCount&gt;<sp/>runs_;</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>std::array&lt;bool,<sp/>kSlotCount&gt;<sp/>used_{};</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>pending_{</highlight><highlight class="keyword">false</highlight><highlight class="normal">};</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>active_{</highlight><highlight class="keyword">false</highlight><highlight class="normal">};</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>from_;</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fromCount_{0};</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>to_;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>toCount_{0};</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>shownCount_{0};</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1TransitionRunner_1a94c528648c0b3cfcd9e3fe3b998822ea" kindref="member">Layout</ref><sp/>layout_;</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structQAccelPlot_1_1Internal_1_1ItemFade" kindref="compound">Internal::ItemFade</ref><sp/>fade_;</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/>QPointer&lt;QQuickWindow&gt;<sp/>window_;</highlight></codeline>
+<codeline lineno="182"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp"/>
   </compounddef>

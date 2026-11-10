@@ -20,30 +20,33 @@
 #include <QEasingCurve>
 #include <QList>
 #include <QObject>
+#include <QQmlListProperty>
+#include <QQmlParserStatus>
 #include <QtQml/qqmlregistration.h>
-
-#include <vector>
 
 QT_FORWARD_DECLARE_CLASS(QAbstractAnimation)
 
 namespace QAccelPlot {
 
-class DataTransition : public QObject {
-    Q_OBJECT
-    QML_ANONYMOUS
+namespace Internal {
+class OpacityTimeline;
+} // namespace Internal
 
+class DataTransition : public QObject, public QQmlParserStatus {
+    Q_OBJECT
+    Q_INTERFACES(QQmlParserStatus)
+    QML_ANONYMOUS
+    Q_CLASSINFO("DefaultProperty", "animations")
+
+    
     Q_PROPERTY(int duration READ duration WRITE setDuration NOTIFY durationChanged)
     Q_PROPERTY(QEasingCurve easing READ easing WRITE setEasing NOTIFY easingChanged)
     Q_PROPERTY(bool enabled READ enabled WRITE setEnabled NOTIFY enabledChanged)
     Q_PROPERTY(bool running READ running NOTIFY runningChanged)
+    Q_PROPERTY(qreal stagger READ stagger WRITE setStagger NOTIFY staggerChanged)
+    Q_PROPERTY(QQmlListProperty<QObject> animations READ animations)
 
 public:
-    struct Dataset {
-        std::vector<double> values;
-        int count{0};
-        int stride{2};
-    };
-
     class Run {
     public:
         Run() = default;
@@ -53,26 +56,16 @@ public:
         Run& operator=(const Run&) = delete;
 
         bool active() const;
-        bool pending() const;
-        const std::vector<double>& targetData() const;
-        int targetPointCount() const;
-
-        bool finish(std::vector<double>& outData, int& outPointCount);
-        void cancel();
+        DataTransition* transition() const;
+        void end();
 
     private:
         friend class DataTransition;
 
-        void detach();
-
         DataTransition* transition_{nullptr};
-        bool pending_{false};
-        Dataset from_;
-        Dataset to_;
         int startTime_{0};
     };
 
-    explicit DataTransition(QObject* parent = nullptr);
     ~DataTransition() override;
 
     int duration() const;
@@ -86,30 +79,51 @@ public:
 
     bool running() const;
 
-    void start(Run& run, const std::vector<double>& currentData, int currentPointCount, std::vector<double>&& newData, int newPointCount, int stride = 2);
+    qreal stagger() const;
+    void setStagger(qreal stagger);
 
+    QQmlListProperty<QObject> animations();
+
+    void start(Run& run);
     void cancel();
+    double progress(const Run& run) const;
 
-    bool advance(Run& run, std::vector<double>& outData, int& outPointCount);
+    Internal::OpacityTimeline opacityTimeline() const;
+
+    void classBegin() override;
+    void componentComplete() override;
 
 signals:
     void durationChanged();
     void easingChanged();
     void enabledChanged();
     void runningChanged();
-
-protected:
-    virtual void interpolate(double easedProgress, const Dataset& from, const Dataset& to, Dataset& out) = 0;
+    void staggerChanged();
 
 private:
+    // Only the transitions of the library derive from DataTransition.
+    friend class MorphTransition;
+    friend class EnterExitTransition;
+
+    explicit DataTransition(QObject* parent = nullptr);
+
+    static void appendAnimation(QQmlListProperty<QObject>* list, QObject* animation);
+    static qsizetype animationCount(QQmlListProperty<QObject>* list);
+    static QObject* animationAt(QQmlListProperty<QObject>* list, qsizetype index);
+    static void clearAnimations(QQmlListProperty<QObject>* list);
+
     void removeRun(Run* run);
     void setRunning(bool running);
+    void warnAboutIgnored(const QList<QObject*>& animations) const;
 
     int duration_{300};
     QEasingCurve easing_{QEasingCurve(QEasingCurve::Linear)};
     bool enabled_{true};
     bool running_{false};
+    qreal stagger_{0.0};
     QList<Run*> runs_;
+    QList<QObject*> animations_;
+    bool loading_{false};
     QAbstractAnimation* clock_;
 };
 

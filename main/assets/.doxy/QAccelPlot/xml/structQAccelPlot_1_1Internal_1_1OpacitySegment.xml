@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1Internal_1_1OpacitySegment" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::OpacitySegment</compoundname>
+    <includes local="no">OpacityTimeline.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1OpacitySegment_1ac15d8a2d621410d38f831dfe026e4675" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::OpacitySegment::start</definition>
+        <argsstring></argsstring>
+        <name>start</name>
+        <qualifiedname>QAccelPlot::Internal::OpacitySegment::start</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+<para>Start time in milliseconds after the item starts. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/OpacityTimeline.hpp" line="19" column="12" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/OpacityTimeline.hpp" bodystart="19" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1OpacitySegment_1ad7a9011d5f6288739e84c8ab00dcd98d" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::OpacitySegment::duration</definition>
+        <argsstring></argsstring>
+        <name>duration</name>
+        <qualifiedname>QAccelPlot::Internal::OpacitySegment::duration</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+<para>Duration in milliseconds; 0 sets <computeroutput>to</computeroutput> at once. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/OpacityTimeline.hpp" line="20" column="12" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/OpacityTimeline.hpp" bodystart="20" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1OpacitySegment_1afdc7e10fa65c7a7b9e2e55906cbaf4f9" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; double &gt;</type>
+        <definition>std::optional&lt;double&gt; QAccelPlot::Internal::OpacitySegment::from</definition>
+        <argsstring></argsstring>
+        <name>from</name>
+        <qualifiedname>QAccelPlot::Internal::OpacitySegment::from</qualifiedname>
+        <briefdescription>
+<para>Opacity at the start; without it, the opacity reached so far. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/OpacityTimeline.hpp" line="21" column="19" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/OpacityTimeline.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1OpacitySegment_1a9a8001d05878374cc786fb9d5309ab54" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::OpacitySegment::to</definition>
+        <argsstring></argsstring>
+        <name>to</name>
+        <qualifiedname>QAccelPlot::Internal::OpacitySegment::to</qualifiedname>
+        <initializer>{1.0}</initializer>
+        <briefdescription>
+<para>Opacity at the end. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/OpacityTimeline.hpp" line="22" column="12" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/OpacityTimeline.hpp" bodystart="22" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1OpacitySegment_1ab1c428fa9e9eb1c233bc81549f6ed5e3" prot="public" static="no" mutable="no">
+        <type>QEasingCurve</type>
+        <definition>QEasingCurve QAccelPlot::Internal::OpacitySegment::easing</definition>
+        <argsstring></argsstring>
+        <name>easing</name>
+        <qualifiedname>QAccelPlot::Internal::OpacitySegment::easing</qualifiedname>
+        <briefdescription>
+<para>Easing from <computeroutput>from</computeroutput> to <computeroutput>to</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/OpacityTimeline.hpp" line="23" column="18" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/OpacityTimeline.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>One animation of item opacity, on the timeline of an item. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/transitions/internal/OpacityTimeline.hpp" line="18" column="1" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/OpacityTimeline.hpp" bodystart="18" bodyend="24"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1Internal_1_1OpacitySegment_1ad7a9011d5f6288739e84c8ab00dcd98d" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::OpacitySegment</scope><name>duration</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1OpacitySegment_1ab1c428fa9e9eb1c233bc81549f6ed5e3" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::OpacitySegment</scope><name>easing</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1OpacitySegment_1afdc7e10fa65c7a7b9e2e55906cbaf4f9" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::OpacitySegment</scope><name>from</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1OpacitySegment_1ac15d8a2d621410d38f831dfe026e4675" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::OpacitySegment</scope><name>start</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1OpacitySegment_1a9a8001d05878374cc786fb9d5309ab54" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::OpacitySegment</scope><name>to</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -159,6 +159,27 @@
         <link refid="classQAccelPlot_1_1DataTextureMaterial"/>
         <childnode refid="4" relation="public-inheritance">
         </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>itemFade</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>itemTrail</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>glow</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>QAccelPlot::Internal::GlowStyle</label>
+        <link refid="structQAccelPlot_1_1Internal_1_1GlowStyle"/>
+      </node>
+      <node id="5">
+        <label>QAccelPlot::Internal::ItemFade</label>
+        <link refid="structQAccelPlot_1_1Internal_1_1ItemFade"/>
+      </node>
+      <node id="6">
+        <label>QAccelPlot::Internal::ItemTrail</label>
+        <link refid="structQAccelPlot_1_1Internal_1_1ItemTrail"/>
       </node>
       <node id="2">
         <label>QAccelPlot::LineMaterial</label>
@@ -193,6 +214,9 @@
       <member refid="classQAccelPlot_1_1BandEdgeMaterial_1a132219890ce800578cec91df33a814f7" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>Edge</name></member>
       <member refid="classQAccelPlot_1_1BandEdgeMaterial_1aeceee2bb3183bdf1bdac6b35728ae1b6" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>edge</name></member>
       <member refid="classQAccelPlot_1_1BandEdgeMaterial_1a52535146d22f4620d729b1bfcc5d7018" prot="private" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>edge_</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a49dda439c65b3f84a6a84f6a287adb7a" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>glow</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1ae7f52c58c22e5333bbd6bd89a8746643" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>itemFade</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1afd456b2ac8b2b51d8667771328bb47fb" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>itemTrail</name></member>
       <member refid="classQAccelPlot_1_1LineMaterial_1a1cf3366d7811fd1d0240850a2cc94385" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>LineMaterial</name></member>
       <member refid="classQAccelPlot_1_1LineMaterial_1a484a369db7158d03cea94e3c98132059" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>lineWidth</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a478f24d8b6cf0cefb720ea5788f72abe" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>logScaleX</name></member>

@@ -270,12 +270,33 @@
         <link refid="classQAccelPlot_1_1DataTextureMaterial"/>
         <childnode refid="3" relation="public-inheritance">
         </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>itemFade</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>itemTrail</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>glow</edgelabel>
+        </childnode>
       </node>
       <node id="1">
         <label>QAccelPlot::ErrorBarMaterial</label>
         <link refid="classQAccelPlot_1_1ErrorBarMaterial"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="6">
+        <label>QAccelPlot::Internal::GlowStyle</label>
+        <link refid="structQAccelPlot_1_1Internal_1_1GlowStyle"/>
+      </node>
+      <node id="4">
+        <label>QAccelPlot::Internal::ItemFade</label>
+        <link refid="structQAccelPlot_1_1Internal_1_1ItemFade"/>
+      </node>
+      <node id="5">
+        <label>QAccelPlot::Internal::ItemTrail</label>
+        <link refid="structQAccelPlot_1_1Internal_1_1ItemTrail"/>
       </node>
       <node id="3">
         <label>QSGMaterial</label>
@@ -297,9 +318,12 @@
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a21b112871373c779d09d5692744b10d9" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarMaterial</scope><name>domainMin</name></member>
       <member refid="classQAccelPlot_1_1ErrorBarMaterial_1a5bc8bece9c808756a5c9600049c25d83" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarMaterial</scope><name>errorBarCount</name></member>
       <member refid="classQAccelPlot_1_1ErrorBarMaterial_1a88c42abd049dfab72061ef8d53f0fed3" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarMaterial</scope><name>ErrorBarMaterial</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a49dda439c65b3f84a6a84f6a287adb7a" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarMaterial</scope><name>glow</name></member>
       <member refid="classQAccelPlot_1_1ErrorBarMaterial_1ad15ed5b061b9db518c4f29025f4aa267" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarMaterial</scope><name>horizontal</name></member>
       <member refid="classQAccelPlot_1_1ErrorBarMaterial_1aa21ac61e9872eb0f6c14b74bec8bed88" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarMaterial</scope><name>hoverColor</name></member>
       <member refid="classQAccelPlot_1_1ErrorBarMaterial_1a069fa16572c93f247a57053a2a94a9ae" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarMaterial</scope><name>hoveredIndex</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1ae7f52c58c22e5333bbd6bd89a8746643" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarMaterial</scope><name>itemFade</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1afd456b2ac8b2b51d8667771328bb47fb" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarMaterial</scope><name>itemTrail</name></member>
       <member refid="classQAccelPlot_1_1ErrorBarMaterial_1a2071780cf36fb120fd0ca15e3e4c13b4" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarMaterial</scope><name>kVerticesPerErrorBar</name></member>
       <member refid="classQAccelPlot_1_1ErrorBarMaterial_1a99bcf0443b17a26606041e73b46b7331" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarMaterial</scope><name>lineWidth</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a478f24d8b6cf0cefb720ea5788f72abe" prot="public" virt="non-virtual"><scope>QAccelPlot::ErrorBarMaterial</scope><name>logScaleX</name></member>

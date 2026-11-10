@@ -1,0 +1,385 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1Glow" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::Glow</compoundname>
+    <basecompoundref refid="classQAccelPlot_1_1SeriesEffect" prot="public" virt="non-virtual">QAccelPlot::SeriesEffect</basecompoundref>
+    <includes local="no">Glow.hpp</includes>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1Glow_1a8be40a0c643bbfd359891280950bc389" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::Glow::color</definition>
+        <argsstring></argsstring>
+        <name>color</name>
+        <qualifiedname>QAccelPlot::Glow::color</qualifiedname>
+        <read>color</read>
+        <write>setColor</write>
+        <briefdescription>
+<para>Color of the halo. Default: an invalid color, which uses the series color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Glow.hpp" line="39" column="5" bodyfile="QAccelPlot/src/QAccelPlot/effects/Glow.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Glow_1a36120fe295c751b1bfc7d4b988aa9155" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Glow::radius</definition>
+        <argsstring></argsstring>
+        <name>radius</name>
+        <qualifiedname>QAccelPlot::Glow::radius</qualifiedname>
+        <read>radius</read>
+        <write>setRadius</write>
+        <briefdescription>
+<para>Width of the halo in pixels, clamped to at least 0. Default: 8. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Glow.hpp" line="41" column="5" bodyfile="QAccelPlot/src/QAccelPlot/effects/Glow.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Glow_1a614836a98dd861dc2c78a3e7a4f6c767" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Glow::intensity</definition>
+        <argsstring></argsstring>
+        <name>intensity</name>
+        <qualifiedname>QAccelPlot::Glow::intensity</qualifiedname>
+        <read>intensity</read>
+        <write>setIntensity</write>
+        <briefdescription>
+<para>Opacity of the halo next to the shape, clamped to [0, 1]. Default: 0.5. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Glow.hpp" line="43" column="5" bodyfile="QAccelPlot/src/QAccelPlot/effects/Glow.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1Glow_1a885810ab1297aef7710444e4d0f14eaa" prot="private" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::Glow::color_</definition>
+        <argsstring></argsstring>
+        <name>color_</name>
+        <qualifiedname>QAccelPlot::Glow::color_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Glow.hpp" line="80" column="12" bodyfile="QAccelPlot/src/QAccelPlot/effects/Glow.hpp" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Glow_1ad2b901d63be2b6cfd170839062ffd251" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Glow::radius_</definition>
+        <argsstring></argsstring>
+        <name>radius_</name>
+        <qualifiedname>QAccelPlot::Glow::radius_</qualifiedname>
+        <initializer>{8.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Glow.hpp" line="81" column="11" bodyfile="QAccelPlot/src/QAccelPlot/effects/Glow.hpp" bodystart="81" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Glow_1a635ee2ff2c6ef5cae86e8e88e23ab76b" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Glow::intensity_</definition>
+        <argsstring></argsstring>
+        <name>intensity_</name>
+        <qualifiedname>QAccelPlot::Glow::intensity_</qualifiedname>
+        <initializer>{0.5}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Glow.hpp" line="82" column="11" bodyfile="QAccelPlot/src/QAccelPlot/effects/Glow.hpp" bodystart="82" bodyend="82"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Glow_1a90619f025499c82be474fbe4533a30d3" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::Glow::Glow</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>Glow</name>
+        <qualifiedname>QAccelPlot::Glow::Glow</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a <ref refid="classQAccelPlot_1_1Glow" kindref="compound">Glow</ref> with the given <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Glow.hpp" line="47" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Glow_1aa1f33e194b39a11081f5afe0c4fb34c2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::Glow::color</definition>
+        <argsstring>() const</argsstring>
+        <name>color</name>
+        <qualifiedname>QAccelPlot::Glow::color</qualifiedname>
+        <briefdescription>
+<para>Returns the halo color, or an invalid color when the series color applies. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Glow.hpp" line="50" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Glow_1a1f4845ca7d5de7b54ae413eb3ea735e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Glow::setColor</definition>
+        <argsstring>(const QColor &amp;color)</argsstring>
+        <name>setColor</name>
+        <qualifiedname>QAccelPlot::Glow::setColor</qualifiedname>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>color</declname>
+        </param>
+        <briefdescription>
+<para>Sets the halo color to <emphasis>color</emphasis>; an invalid color uses the series color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Glow.hpp" line="52" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Glow_1aa8b06d0c95f0575c3444fe0234a9e617" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Glow::resetColor</definition>
+        <argsstring>()</argsstring>
+        <name>resetColor</name>
+        <qualifiedname>QAccelPlot::Glow::resetColor</qualifiedname>
+        <briefdescription>
+<para>Uses the series color for the halo again. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Glow.hpp" line="54" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Glow_1a4fcf1586ee8adef1d016b3ebedd3a8ec" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Glow::radius</definition>
+        <argsstring>() const</argsstring>
+        <name>radius</name>
+        <qualifiedname>QAccelPlot::Glow::radius</qualifiedname>
+        <briefdescription>
+<para>Returns the halo width in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Glow.hpp" line="57" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Glow_1a9eae7035871261ea4486e73d2134125b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Glow::setRadius</definition>
+        <argsstring>(qreal radius)</argsstring>
+        <name>setRadius</name>
+        <qualifiedname>QAccelPlot::Glow::setRadius</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>radius</declname>
+        </param>
+        <briefdescription>
+<para>Sets the halo width to <emphasis>radius</emphasis> pixels, clamped to at least 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Glow.hpp" line="59" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Glow_1aabc27839f6a51130022a276c79559812" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Glow::intensity</definition>
+        <argsstring>() const</argsstring>
+        <name>intensity</name>
+        <qualifiedname>QAccelPlot::Glow::intensity</qualifiedname>
+        <briefdescription>
+<para>Returns the halo opacity next to the shape. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Glow.hpp" line="62" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Glow_1a8bfe69dcfeca574b75fd43e5dcb7bf6d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Glow::setIntensity</definition>
+        <argsstring>(qreal intensity)</argsstring>
+        <name>setIntensity</name>
+        <qualifiedname>QAccelPlot::Glow::setIntensity</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>intensity</declname>
+        </param>
+        <briefdescription>
+<para>Sets the halo opacity next to the shape to <emphasis>intensity</emphasis>, clamped to [0, 1]. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Glow.hpp" line="64" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1Glow_1aaef61a04545864a45a9bfee64044eb8e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Glow::colorChanged</definition>
+        <argsstring>()</argsstring>
+        <name>colorChanged</name>
+        <qualifiedname>QAccelPlot::Glow::colorChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the color property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Glow.hpp" line="73" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Glow_1a2f7eca2d191fa662b2b4466a5e316e64" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Glow::radiusChanged</definition>
+        <argsstring>()</argsstring>
+        <name>radiusChanged</name>
+        <qualifiedname>QAccelPlot::Glow::radiusChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the radius property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Glow.hpp" line="75" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Glow_1acfdca57a2ddbdd16c69a582d6ea23514" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Glow::intensityChanged</definition>
+        <argsstring>()</argsstring>
+        <name>intensityChanged</name>
+        <qualifiedname>QAccelPlot::Glow::intensityChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the intensity property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/Glow.hpp" line="77" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A soft halo around the lines and markers of a series. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The halo fades out over <computeroutput>radius</computeroutput> pixels outside the drawn shape. It is drawn in the same pass as the series, with no offscreen blur. A fading item and its halo fade together. Halos of parts of a line that come close to each other add up, as halos of separate lines do.</para>
+<para><table rows="5" cols="2"><row>
+<entry thead="yes"><para>Series  </para>
+</entry><entry thead="yes"><para>Glows around  </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref></computeroutput>  </para>
+</entry><entry thead="no"><para>The line and its markers  </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref></computeroutput>  </para>
+</entry><entry thead="no"><para>The markers  </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1BarSeries" kindref="compound">BarSeries</ref></computeroutput>  </para>
+</entry><entry thead="no"><para>The bars  </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1ErrorBarSeries" kindref="compound">ErrorBarSeries</ref></computeroutput>  </para>
+</entry><entry thead="no"><para>The error bars  </para>
+</entry></row>
+</table>
+</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1SeriesEffect" kindref="compound">SeriesEffect</ref>, <ref refid="classQAccelPlot_1_1FadeTrail" kindref="compound">FadeTrail</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::Glow</label>
+        <link refid="classQAccelPlot_1_1Glow"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::SeriesEffect</label>
+        <link refid="classQAccelPlot_1_1SeriesEffect"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::Glow</label>
+        <link refid="classQAccelPlot_1_1Glow"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::SeriesEffect</label>
+        <link refid="classQAccelPlot_1_1SeriesEffect"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/effects/Glow.hpp" line="34" column="1" bodyfile="QAccelPlot/src/QAccelPlot/effects/Glow.hpp" bodystart="34" bodyend="83"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1Glow_1a8be40a0c643bbfd359891280950bc389" prot="public" virt="non-virtual"><scope>QAccelPlot::Glow</scope><name>color</name></member>
+      <member refid="classQAccelPlot_1_1Glow_1aa1f33e194b39a11081f5afe0c4fb34c2" prot="public" virt="non-virtual"><scope>QAccelPlot::Glow</scope><name>color</name></member>
+      <member refid="classQAccelPlot_1_1Glow_1a885810ab1297aef7710444e4d0f14eaa" prot="private" virt="non-virtual"><scope>QAccelPlot::Glow</scope><name>color_</name></member>
+      <member refid="classQAccelPlot_1_1Glow_1aaef61a04545864a45a9bfee64044eb8e" prot="public" virt="non-virtual"><scope>QAccelPlot::Glow</scope><name>colorChanged</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1a9ca3c976da919b97bea1165e9b06b9b0" prot="public" virt="non-virtual"><scope>QAccelPlot::Glow</scope><name>effectChanged</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1a8bdcac95c85b537ef52bad92c4587743" prot="public" virt="non-virtual"><scope>QAccelPlot::Glow</scope><name>enabled</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1a4608e55ea1dec2ff079e6143c5ea6e0b" prot="public" virt="non-virtual"><scope>QAccelPlot::Glow</scope><name>enabled</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1aa19ca37db0f344742149b3b0a2850e38" prot="public" virt="non-virtual"><scope>QAccelPlot::Glow</scope><name>enabledChanged</name></member>
+      <member refid="classQAccelPlot_1_1Glow_1a90619f025499c82be474fbe4533a30d3" prot="public" virt="non-virtual"><scope>QAccelPlot::Glow</scope><name>Glow</name></member>
+      <member refid="classQAccelPlot_1_1Glow_1a614836a98dd861dc2c78a3e7a4f6c767" prot="public" virt="non-virtual"><scope>QAccelPlot::Glow</scope><name>intensity</name></member>
+      <member refid="classQAccelPlot_1_1Glow_1aabc27839f6a51130022a276c79559812" prot="public" virt="non-virtual"><scope>QAccelPlot::Glow</scope><name>intensity</name></member>
+      <member refid="classQAccelPlot_1_1Glow_1a635ee2ff2c6ef5cae86e8e88e23ab76b" prot="private" virt="non-virtual"><scope>QAccelPlot::Glow</scope><name>intensity_</name></member>
+      <member refid="classQAccelPlot_1_1Glow_1acfdca57a2ddbdd16c69a582d6ea23514" prot="public" virt="non-virtual"><scope>QAccelPlot::Glow</scope><name>intensityChanged</name></member>
+      <member refid="classQAccelPlot_1_1Glow_1a36120fe295c751b1bfc7d4b988aa9155" prot="public" virt="non-virtual"><scope>QAccelPlot::Glow</scope><name>radius</name></member>
+      <member refid="classQAccelPlot_1_1Glow_1a4fcf1586ee8adef1d016b3ebedd3a8ec" prot="public" virt="non-virtual"><scope>QAccelPlot::Glow</scope><name>radius</name></member>
+      <member refid="classQAccelPlot_1_1Glow_1ad2b901d63be2b6cfd170839062ffd251" prot="private" virt="non-virtual"><scope>QAccelPlot::Glow</scope><name>radius_</name></member>
+      <member refid="classQAccelPlot_1_1Glow_1a2f7eca2d191fa662b2b4466a5e316e64" prot="public" virt="non-virtual"><scope>QAccelPlot::Glow</scope><name>radiusChanged</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1ae078e25386b2b645f2d2e62a3648e2f3" prot="public" virt="virtual"><scope>QAccelPlot::Glow</scope><name>refresh</name></member>
+      <member refid="classQAccelPlot_1_1Glow_1aa8b06d0c95f0575c3444fe0234a9e617" prot="public" virt="non-virtual"><scope>QAccelPlot::Glow</scope><name>resetColor</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1a2dac68d7ce3c6ed01437125c7a547c11" prot="public" virt="non-virtual"><scope>QAccelPlot::Glow</scope><name>SeriesEffect</name></member>
+      <member refid="classQAccelPlot_1_1Glow_1a1f4845ca7d5de7b54ae413eb3ea735e7" prot="public" virt="non-virtual"><scope>QAccelPlot::Glow</scope><name>setColor</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1aeb23262e92b2c37fda89636a3ffc995b" prot="public" virt="non-virtual"><scope>QAccelPlot::Glow</scope><name>setEnabled</name></member>
+      <member refid="classQAccelPlot_1_1Glow_1a8bfe69dcfeca574b75fd43e5dcb7bf6d" prot="public" virt="non-virtual"><scope>QAccelPlot::Glow</scope><name>setIntensity</name></member>
+      <member refid="classQAccelPlot_1_1Glow_1a9eae7035871261ea4486e73d2134125b" prot="public" virt="non-virtual"><scope>QAccelPlot::Glow</scope><name>setRadius</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

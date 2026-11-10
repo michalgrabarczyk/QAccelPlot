@@ -1466,16 +1466,18 @@
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTexture/"><strong>DataTexture</strong></a> <em>Series data uploaded to the GPU as an RGBA8888 texture, one float per texel.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>DataTextureMaterial</strong></a> <em>Base QSGMaterial that samples series data from a</em> <code>DataTexture</code> <em>and exposes shared shader uniforms.</em>    </li>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTransition/"><strong>DataTransition</strong></a> <em>Abstract base class for animated data transitions on plot elements.</em>     <ul>
-<li><strong>struct</strong> <a href="../structQAccelPlot_1_1DataTransition_1_1Dataset/"><strong>Dataset</strong></a> <em>Data a transition animates:</em> <code>count</code> <em>items of</em><code>stride</code> <em>values each, e.g. XY points with a stride of 2.</em>    </li>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTransition_1_1Run/"><strong>Run</strong></a> <em>One animation of a transition on one host element.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTransition/"><strong>DataTransition</strong></a> <em>Abstract base class for animated data transitions on plot series.</em>     <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTransition_1_1Run/"><strong>Run</strong></a> <em>One animation of a transition on one series.</em>     </li>
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1DateTimeTickLabelFormatter/"><strong>DateTimeTickLabelFormatter</strong></a> <em>A tick label formatter that displays tick values as formatted date/time strings.</em>     </li>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1DrawTransition/"><strong>DrawTransition</strong></a> <em>An animation transition that reveals the target data point by point from start to end.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1DrawTransition/"><strong>DrawTransition</strong></a> <em>A transition that reveals items one after another, in index order.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1EnterExitTransition/"><strong>EnterExitTransition</strong></a> <em>Abstract base class for transitions that bring items in or take them out.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1ErrorBarMaterial/"><strong>ErrorBarMaterial</strong></a> <em>Material that draws error bars from (x, y, low, high) data points in a data texture.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1ErrorBarSeries/"><strong>ErrorBarSeries</strong></a> <em>A hardware-accelerated QML item that draws error bars: a line from a low to a high bound at each data point, capped at both ends.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1FadeTrail/"><strong>FadeTrail</strong></a> <em>Fades the oldest items of a series, like the trace of an oscilloscope.</em>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1FillSamples/"><strong>FillSamples</strong></a> <em>Outline of a gradient fill in data space: one group of points per run of valid data points, broken at gaps.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1Glow/"><strong>Glow</strong></a> <em>A soft halo around the lines and markers of a series.</em>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1GradientColorPayload/"><strong>GradientColorPayload</strong></a> <em>Render-thread snapshot of gradient stroke (line-color) parameters.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1GradientFill/"><strong>GradientFill</strong></a> <em>A</em> <a href="../classQAccelPlot_1_1LineCurve/"><em><strong>LineCurve</strong></em></a> <em>effect that fills the area under the curve with a color gradient.</em>    </li>
 <li><strong>namespace</strong> <a href="../namespaceQAccelPlot_1_1GradientFillBaselineNS/"><strong>GradientFillBaselineNS</strong></a> <em>Namespace exposing the</em> <code>GradientFillBaseline</code> <em>enum to QML.</em>    </li>
@@ -1488,6 +1490,7 @@
 <li><strong>namespace</strong> <a href="../namespaceQAccelPlot_1_1GradientValueSourceNS/"><strong>GradientValueSourceNS</strong></a> <em>Namespace exposing the</em> <code>GradientValueSource</code> <em>enum to QML.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Grid/"><strong>Grid</strong></a> <em>Configuration object that controls the appearance of the plot grid.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1GridNode/"><strong>GridNode</strong></a> <em>Internal QSGNode responsible for rendering the plot grid into the scene graph.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1GrowTransition/"><strong>GrowTransition</strong></a> <em>A transition that grows item values from a baseline.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1HeatmapMaterial/"><strong>HeatmapMaterial</strong></a> <em>Material that colors each fragment by the value of the heatmap cell under it.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1HeatmapSeries/"><strong>HeatmapSeries</strong></a> <em>A hardware-accelerated QML item that draws a grid of values as colored cells.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Histogram/"><strong>Histogram</strong></a> <em>Samples counted into bins, convertible to</em> <code>BarSeries</code> <em>data.</em>    </li>
@@ -1508,6 +1511,9 @@
 </ul>
 </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals/"><strong>DataTextureUploadTotals</strong></a> <em>How many data textures were uploaded since the last reset, and how many bytes they held.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1FrontStarts/"><strong>FrontStarts</strong></a> <em>When an eased reveal front reaches each share of the items.</em>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1GlowStyle/"><strong>GlowStyle</strong></a> <em>How the shaders draw a</em> <code>Glow</code> <em>halo; see shaders/glow.glsl.</em>    </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1GlowUniforms/"><strong>GlowUniforms</strong></a> <em>The std140 uniform members of a</em> <code>Glow</code> <em>halo,</em><code>glowColor</code> <em>and</em><code>glowParams</code> <em>, at a 16-byte aligned offset.</em>    </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1GrabSize/"><strong>GrabSize</strong></a> <em>Sizes of one item grab.</em>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1HeatmapGridDimension/"><strong>HeatmapGridDimension</strong></a> <em>One dimension of a heatmap grid:</em> <code>count</code> <em>cells between the edges</em><code>from</code> <em>and</em><code>to</code> <em>.</em>    </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping/"><strong>HeatmapShaderMapping</strong></a> <em>How heatmap.frag maps an item-local pixel position</em> <em>p</em> <em>to a fractional cell coordinate along one dimension.</em>    </li>
@@ -1526,6 +1532,15 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1InspectionNeighbors/"><strong>InspectionNeighbors</strong></a> <em>Source indices of the valid data points on either side of an X value, or -1.</em>     </li>
 <li><strong>namespace</strong> <a href="../namespaceQAccelPlot_1_1Internal_1_1InspectionScan/"><strong>InspectionScan</strong></a> <em>Inspection queries that scan every record; used for small series that are not ordered along the queried axis.</em>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1InspectionSource/"><strong>InspectionSource</strong></a> <em>Read-only view over the XY records a series exposes to inspection queries.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1ItemClock/"><strong>ItemClock</strong></a> <em>The start time and movement of each item of one group at the frame.</em>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1ItemFade/"><strong>ItemFade</strong></a> <em>The transition groups of a frame whose opacity the shaders animate.</em>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1ItemFadeGroup/"><strong>ItemFadeGroup</strong></a> <em>The items of one transition group whose opacity the shaders animate.</em>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1ItemFadeGroupUniforms/"><strong>ItemFadeGroupUniforms</strong></a> <em>The std140 uniform members of one fading transition group, see</em> <code>ItemFadeGroup</code> <em>.</em>    </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1ItemOpacityUniforms/"><strong>ItemOpacityUniforms</strong></a> <em>The std140 uniform members that shaders/item_opacity.glsl reads, at a 16-byte aligned offset.</em>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1ItemTiming/"><strong>ItemTiming</strong></a> <em>The timing of the items of one group, as shares of the transition duration.</em>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1ItemTrail/"><strong>ItemTrail</strong></a> <em>How the shaders fade the oldest items under a</em> <code>FadeTrail</code> <em>effect.</em>    </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1OpacitySegment/"><strong>OpacitySegment</strong></a> <em>One animation of item opacity, on the timeline of an item.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1OpacityTimeline/"><strong>OpacityTimeline</strong></a> <em>The opacity of an item over the time since it started, built from opacity animations.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1OutlinedRectangle/"><strong>OutlinedRectangle</strong></a> <em>Item that fills its bounds and outlines them inside its edges.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1OverlayChildren/"><strong>OverlayChildren</strong></a> <em>Objects declared inside an inspection tool in QML.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1PointerTracker/"><strong>PointerTracker</strong></a> <em>Tracks the pointer over a plot from the plot's mouse and hover events.</em>     </li>
@@ -1534,15 +1549,20 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1RectangleZoomOverlay/"><strong>RectangleZoomOverlay</strong></a>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures/"><strong>ScopedPaintedItemTextures</strong></a> <em>Rasterizes the painted items under a root item at a capture scale until destroyed.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1SelectionRectangle/"><strong>SelectionRectangle</strong></a> <em>Draws the gesture or the selected region of a</em> <a href="../classQAccelPlot_1_1SelectionTool/"><em><strong>SelectionTool</strong></em></a> <em>, clipped to the plot area.</em>    </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1SeriesEffectList/"><strong>SeriesEffectList</strong></a> <em>The</em> <code>effects</code> <em>list of one series.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Internal_1_1SourceInspection/"><strong>SourceInspection</strong></a> <em>Inspection queries that read a series' own buffer whose records are ordered along one axis.</em>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1SummaryAccumulator/"><strong>SummaryAccumulator</strong></a> <em>Running data-point-weighted Y statistics that can be merged across disjoint data point sets.</em>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1TransitionFrameInput/"><strong>TransitionFrameInput</strong></a> <em>The two sides of a transition and the steps of its slots at one frame.</em>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1TransitionItems/"><strong>TransitionItems</strong></a> <em>Items on one side of a transition,</em> <code>TransitionLayout::stride</code> <em>values each.</em>    </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1TransitionLayout/"><strong>TransitionLayout</strong></a> <em>How a series' items animate.</em>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1TransitionSlots/"><strong>TransitionSlots</strong></a> <em>Slots a data change animates.</em>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1TransitionStep/"><strong>TransitionStep</strong></a> <em>The state of one slot's transition at the frame.</em>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1ValueRange/"><strong>ValueRange</strong></a> <em>Bounds of an axis viewport or a colormap value range.</em>     </li>
 </ul>
 </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1LegendEntry/"><strong>LegendEntry</strong></a> <em>How a legend draws one row of a series: its label, symbol, color, line, and marker.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LegendModel/"><strong>LegendModel</strong></a> <em>List model of the legend entries of a list of series.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>LineCurve</strong></a> <em>A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects.</em>     </li>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurveEffect/"><strong>LineCurveEffect</strong></a> <em>Abstract base class for visual effects applied to a</em> <code>LineCurve</code> <em>.</em>    </li>
 <li><strong>namespace</strong> <a href="../namespaceQAccelPlot_1_1LineCurveGapFilter/"><strong>LineCurveGapFilter</strong></a> <em>Stateless helpers implementing the invalid-data-point contract shared by</em> <a href="../classQAccelPlot_1_1LineCurve/"><em><strong>LineCurve</strong></em></a> <em>subsystems.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurveGaps/"><strong>LineCurveGaps</strong></a> <em>Controls how a</em> <code>LineCurve</code> <em>renders gaps in its data.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurveLineRenderer/"><strong>LineCurveLineRenderer</strong></a> <em>Internal renderer responsible for building and updating QSGNode line geometry for a</em> <a href="../classQAccelPlot_1_1LineCurve/"><em><strong>LineCurve</strong></em></a> <em>.</em>    </li>
@@ -1557,7 +1577,7 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineStyle/"><strong>LineStyle</strong></a> <em>Abstract base class for all line styles.</em>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1LineVertex/"><strong>LineVertex</strong></a> <em>Vertex layout for line geometry, shared with the main thread for pre-built vertex caches.</em>     </li>
 <li><strong>namespace</strong> <a href="../namespaceQAccelPlot_1_1MarkerShapeNS/"><strong>MarkerShapeNS</strong></a> <em>Namespace exposing the</em> <code>MarkerShape</code> <em>enum to QML.</em>    </li>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1MorphTransition/"><strong>MorphTransition</strong></a> <em>An animation transition that smoothly interpolates point positions between two datasets.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1MorphTransition/"><strong>MorphTransition</strong></a> <em>An update transition that interpolates each kept item from its old values to its new ones.</em>     </li>
 <li><strong>namespace</strong> <a href="../namespaceQAccelPlot_1_1NanGapModeNS/"><strong>NanGapModeNS</strong></a> <em>Namespace exposing the</em> <code>NanGapMode</code> <em>enum to QML.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1NoLine/"><strong>NoLine</strong></a> <em>A line style that suppresses line rendering entirely, leaving only markers visible.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1NumericTickLabelFormatter/"><strong>NumericTickLabelFormatter</strong></a> <em>The default tick label formatter — produces numeric labels with automatic decimal precision.</em>     </li>
@@ -1587,6 +1607,7 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectMaterial/"><strong>RectMaterial</strong></a> <em>QSGMaterial for rectangle series rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with a rect-count uniform.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectangleSeries/"><strong>RectangleSeries</strong></a> <em>A hardware-accelerated QML item that renders a large list of axis-aligned rectangles.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1SelectionTool/"><strong>SelectionTool</strong></a> <em>Selects a data-space region by dragging, without changing the plot viewport.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1SeriesEffect/"><strong>SeriesEffect</strong></a> <em>Abstract base class for visual effects applied to a series.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1SeriesInspection/"><strong>SeriesInspection</strong></a> <em>Data queries for one series: nearest data points, brackets, region statistics, and index pages.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1SeriesMarker/"><strong>SeriesMarker</strong></a> <em>Controls the markers a series draws at its data points.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1SolidLine/"><strong>SolidLine</strong></a> <em>The default line style — renders a continuous solid line with no gaps.</em>     </li>
@@ -1595,7 +1616,7 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1TextLabel/"><strong>TextLabel</strong></a> <em>Text, font, color, and padding of a title, grouped as the</em> <code>label</code> <em>property of</em><a href="../classQAccelPlot_1_1ColorBar/"><em><strong>ColorBar</strong></em></a> <em>and</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1TextTickLabelFormatter/"><strong>TextTickLabelFormatter</strong></a> <em>A tick label formatter that maps integer tick indices to a user-supplied list of strings.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1TickLabelFormatter/"><strong>TickLabelFormatter</strong></a> <em>Abstract base class for tick label formatters.</em>     </li>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1TransitionRunner/"><strong>TransitionRunner</strong></a> <em>Runs the</em> <code>DataTransition</code> <em>assigned to one item, such as a custom series.</em>    </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1TransitionRunner/"><strong>TransitionRunner</strong></a> <em>Runs the enter, update, and exit transitions of one item, such as a custom series.</em>     </li>
 </ul>
 </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Axis_1_1DataRange/"><strong>DataRange</strong></a>     </li>
@@ -1612,6 +1633,7 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1HeatmapSeries_1_1Extent/"><strong>Extent</strong></a> <a href="../classQAccelPlot_1_1Grid/"><em><strong>Grid</strong></em></a> <em>edges. In</em><code>edges_</code> <em>an unset edge is NaN;</em><code>resolvedExtent()</code> <em>resolves it to index space.</em>    </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1InspectionCache_1_1Job/"><strong>Job</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1InspectionIndex_1_1Node/"><strong>Node</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1OpacityTimeline_1_1Resolved/"><strong>Resolved</strong></a> <em>A segment with its start opacity resolved.</em>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1RectVertexCache_1_1Vertex/"><strong>Vertex</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1_1SavedTexture/"><strong>SavedTexture</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1SourceInspection_1_1Block/"><strong>Block</strong></a>     </li>

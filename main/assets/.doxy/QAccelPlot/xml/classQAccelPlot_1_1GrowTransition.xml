@@ -1,0 +1,253 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1GrowTransition" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::GrowTransition</compoundname>
+    <basecompoundref refid="classQAccelPlot_1_1EnterExitTransition" prot="public" virt="non-virtual">QAccelPlot::EnterExitTransition</basecompoundref>
+    <includes local="no">GrowTransition.hpp</includes>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1GrowTransition_1a9db4e750b66af29f3be918d6b13c3f26" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::GrowTransition::baseline</definition>
+        <argsstring></argsstring>
+        <name>baseline</name>
+        <qualifiedname>QAccelPlot::GrowTransition::baseline</qualifiedname>
+        <read>baseline</read>
+        <write>setBaseline</write>
+        <briefdescription>
+<para>Value the items grow from, in data units. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Unset by default, after a reset, or when NaN: <computeroutput><ref refid="classQAccelPlot_1_1BarSeries_1a5b6b5cb850b2e79d0d223f3483fc0ba7" kindref="member">BarSeries::baselineValue</ref></computeroutput> for bars, 0 for other series. A default the value axis cannot place, infinite or at or below 0 on a log axis, is replaced by the nearest viewport edge. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/GrowTransition.hpp" line="37" column="5" bodyfile="QAccelPlot/src/QAccelPlot/transitions/GrowTransition.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1GrowTransition_1ae2893c4aa15d93bd228cf98cb58a8f87" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::GrowTransition::baseline_</definition>
+        <argsstring></argsstring>
+        <name>baseline_</name>
+        <qualifiedname>QAccelPlot::GrowTransition::baseline_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/GrowTransition.hpp" line="55" column="11" bodyfile="QAccelPlot/src/QAccelPlot/transitions/GrowTransition.hpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1GrowTransition_1aff200d88271cd6f7a71a20bb01a1b019" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::GrowTransition::GrowTransition</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>GrowTransition</name>
+        <qualifiedname>QAccelPlot::GrowTransition::GrowTransition</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a <ref refid="classQAccelPlot_1_1GrowTransition" kindref="compound">GrowTransition</ref> with the given <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/GrowTransition.hpp" line="41" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1GrowTransition_1acca48043cf066a2bccbfc604cbd6a35e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::GrowTransition::baseline</definition>
+        <argsstring>() const</argsstring>
+        <name>baseline</name>
+        <qualifiedname>QAccelPlot::GrowTransition::baseline</qualifiedname>
+        <briefdescription>
+<para>Returns the baseline, or NaN when the series baseline applies. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/GrowTransition.hpp" line="44" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1GrowTransition_1abfa2e4e0cf0723b8c8beea1ca22c9704" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::GrowTransition::setBaseline</definition>
+        <argsstring>(qreal baseline)</argsstring>
+        <name>setBaseline</name>
+        <qualifiedname>QAccelPlot::GrowTransition::setBaseline</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>baseline</declname>
+        </param>
+        <briefdescription>
+<para>Sets the baseline to <emphasis>baseline</emphasis>; NaN applies the series baseline. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/GrowTransition.hpp" line="46" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1GrowTransition_1a0b2ff01d237c2f341b584a6583ff0d54" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::GrowTransition::resetBaseline</definition>
+        <argsstring>()</argsstring>
+        <name>resetBaseline</name>
+        <qualifiedname>QAccelPlot::GrowTransition::resetBaseline</qualifiedname>
+        <briefdescription>
+<para>Applies the series baseline again. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/GrowTransition.hpp" line="48" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1GrowTransition_1afd2b0394f389be6617237e7753347948" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::GrowTransition::baselineChanged</definition>
+        <argsstring>()</argsstring>
+        <name>baselineChanged</name>
+        <qualifiedname>QAccelPlot::GrowTransition::baselineChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the baseline property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/GrowTransition.hpp" line="52" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A transition that grows item values from a baseline. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>As an <computeroutput>enterTransition</computeroutput>, the added items grow from <computeroutput>baseline</computeroutput> to their values; as an <computeroutput>exitTransition</computeroutput>, the removed items shrink back to it. Only values grow; positions stay:</para>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes"><para>Series  </para>
+</entry><entry thead="yes"><para>Grows  </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref></computeroutput>, <computeroutput><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref></computeroutput>  </para>
+</entry><entry thead="no"><para>Y  </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1BarSeries" kindref="compound">BarSeries</ref></computeroutput>  </para>
+</entry><entry thead="no"><para>The bar value  </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput><ref refid="classQAccelPlot_1_1ErrorBarSeries" kindref="compound">ErrorBarSeries</ref></computeroutput>  </para>
+</entry><entry thead="no"><para>The center and both bounds  </para>
+</entry></row>
+</table>
+</para>
+<para>With <computeroutput>stagger</computeroutput>, the items grow one after another in a wave.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1DrawTransition" kindref="compound">DrawTransition</ref>, <ref refid="classQAccelPlot_1_1MorphTransition" kindref="compound">MorphTransition</ref>, <ref refid="classQAccelPlot_1_1EnterExitTransition" kindref="compound">EnterExitTransition</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>QAccelPlot::DataTransition</label>
+        <link refid="classQAccelPlot_1_1DataTransition"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::EnterExitTransition</label>
+        <link refid="classQAccelPlot_1_1EnterExitTransition"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>QAccelPlot::GrowTransition</label>
+        <link refid="classQAccelPlot_1_1GrowTransition"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>QObject</label>
+      </node>
+      <node id="5">
+        <label>QQmlParserStatus</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>QAccelPlot::DataTransition</label>
+        <link refid="classQAccelPlot_1_1DataTransition"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::EnterExitTransition</label>
+        <link refid="classQAccelPlot_1_1EnterExitTransition"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>QAccelPlot::GrowTransition</label>
+        <link refid="classQAccelPlot_1_1GrowTransition"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>QObject</label>
+      </node>
+      <node id="5">
+        <label>QQmlParserStatus</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/transitions/GrowTransition.hpp" line="28" column="1" bodyfile="QAccelPlot/src/QAccelPlot/transitions/GrowTransition.hpp" bodystart="28" bodyend="56"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1DataTransition_1aa55f21ef3518f8452c63ae914806ccac" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>animations</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a2217ad3f591ea9c95b647268f13a44c2" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>animations</name></member>
+      <member refid="classQAccelPlot_1_1GrowTransition_1a9db4e750b66af29f3be918d6b13c3f26" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>baseline</name></member>
+      <member refid="classQAccelPlot_1_1GrowTransition_1acca48043cf066a2bccbfc604cbd6a35e" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>baseline</name></member>
+      <member refid="classQAccelPlot_1_1GrowTransition_1ae2893c4aa15d93bd228cf98cb58a8f87" prot="private" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>baseline_</name></member>
+      <member refid="classQAccelPlot_1_1GrowTransition_1afd2b0394f389be6617237e7753347948" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>baselineChanged</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a4c514985f26ad17a66d219fa7b57f557" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>cancel</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a92b0325ebecef60d5b11c9e6f8afcd8a" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>classBegin</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a0675793914d6e68cecba5bda17d19267" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>componentComplete</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1aaa85f2edef24b72eb568690609ab60fa" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>duration</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a93166a6418361d8e209fcdfa32465e1e" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>duration</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1adb5d9d25b47e39a4fb73fd0a30bc5e75" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>durationChanged</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1aaa1bed54eccf52c687a98295269c3d7c" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>easing</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1abcc106afb46ed281fcc49e2793dd5ff7" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>easing</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1ae40837c466a956e404cb353552c7ae77" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>easingChanged</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a7b3a05823431f464182370e387dc0b41" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>enabled</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1adce79119ca3c12b0d59f69ab369e56e8" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>enabled</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1ae75636538a959ce1a08227aa09d7aed5" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>enabledChanged</name></member>
+      <member refid="classQAccelPlot_1_1GrowTransition_1aff200d88271cd6f7a71a20bb01a1b019" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>GrowTransition</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1af57fd47c65a90cf459015bbfbbb87aea" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>progress</name></member>
+      <member refid="classQAccelPlot_1_1GrowTransition_1a0b2ff01d237c2f341b584a6583ff0d54" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>resetBaseline</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a6299a4b7aedb22a639b1a21e77c8c0c0" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>running</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a96c40d0c05b880893df10a2fdd013ebe" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>running</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a99928e9029236f818855a1f445d7635d" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>runningChanged</name></member>
+      <member refid="classQAccelPlot_1_1GrowTransition_1abfa2e4e0cf0723b8c8beea1ca22c9704" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>setBaseline</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a67e4af4b0d23f49bcdb3e6ddef906c3c" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>setDuration</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a5b87a984d607f1fcfc212b9212b0a36b" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>setEasing</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a4ba895ca83cfa3163d6dbebe782c8e2b" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>setEnabled</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a210acb1c630c2f3b29e54b3a7a525494" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>setStagger</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1aa2f77ede320106c6402c9c0d7294d1e9" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>stagger</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a77a134bd50ffc4b4eaf9ef16bc685b3b" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>stagger</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a2a5e0da87024d82ed44c15b99ea961f2" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>staggerChanged</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a916eab10dd57f06cdca645df10108ef1" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>start</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1add330610df13a318feacdf411be112b4" prot="public" virt="non-virtual"><scope>QAccelPlot::GrowTransition</scope><name>~DataTransition</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

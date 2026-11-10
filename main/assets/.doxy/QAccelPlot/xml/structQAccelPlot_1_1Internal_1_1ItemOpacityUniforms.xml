@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1Internal_1_1ItemOpacityUniforms" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::ItemOpacityUniforms</compoundname>
+    <includes local="no">ItemOpacityUniforms.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1ItemOpacityUniforms_1a47f9db059ae65912145afb8105320f2d" prot="public" static="no" mutable="no">
+        <type><ref refid="structQAccelPlot_1_1Internal_1_1ItemFadeGroupUniforms" kindref="compound">ItemFadeGroupUniforms</ref></type>
+        <definition>ItemFadeGroupUniforms QAccelPlot::Internal::ItemOpacityUniforms::groups[kFadeGroupCount]</definition>
+        <argsstring>[kFadeGroupCount]</argsstring>
+        <name>groups</name>
+        <qualifiedname>QAccelPlot::Internal::ItemOpacityUniforms::groups</qualifiedname>
+        <briefdescription>
+<para>The fading groups: kept items, then added or removed ones. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/ItemOpacityUniforms.hpp" line="26" column="27" bodyfile="QAccelPlot/src/QAccelPlot/materials/internal/ItemOpacityUniforms.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1ItemOpacityUniforms_1a006d9e1c60ccaf18a7c6dc95db5ffdb2" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::Internal::ItemOpacityUniforms::trail[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>trail</name>
+        <qualifiedname>QAccelPlot::Internal::ItemOpacityUniforms::trail</qualifiedname>
+        <briefdescription>
+<para>The <computeroutput><ref refid="classQAccelPlot_1_1FadeTrail" kindref="compound">FadeTrail</ref></computeroutput> length, minimum opacity, and item count; then padding. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/ItemOpacityUniforms.hpp" line="27" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/internal/ItemOpacityUniforms.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1ItemOpacityUniforms_1a74401a3f11c6d3260e60b982024995cc" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::Internal::ItemOpacityUniforms::trailEasing[kTrailEasingSamples]</definition>
+        <argsstring>[kTrailEasingSamples]</argsstring>
+        <name>trailEasing</name>
+        <qualifiedname>QAccelPlot::Internal::ItemOpacityUniforms::trailEasing</qualifiedname>
+        <briefdescription>
+<para>The <computeroutput><ref refid="classQAccelPlot_1_1FadeTrail" kindref="compound">FadeTrail</ref></computeroutput> easing curve. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/ItemOpacityUniforms.hpp" line="28" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/internal/ItemOpacityUniforms.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>The std140 uniform members that shaders/item_opacity.glsl reads, at a 16-byte aligned offset. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>QAccelPlot::Internal::ItemFadeGroupUniforms</label>
+        <link refid="structQAccelPlot_1_1Internal_1_1ItemFadeGroupUniforms"/>
+      </node>
+      <node id="1">
+        <label>QAccelPlot::Internal::ItemOpacityUniforms</label>
+        <link refid="structQAccelPlot_1_1Internal_1_1ItemOpacityUniforms"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>groups</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/materials/internal/ItemOpacityUniforms.hpp" line="25" column="1" bodyfile="QAccelPlot/src/QAccelPlot/materials/internal/ItemOpacityUniforms.hpp" bodystart="25" bodyend="29"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1Internal_1_1ItemOpacityUniforms_1a47f9db059ae65912145afb8105320f2d" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ItemOpacityUniforms</scope><name>groups</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1ItemOpacityUniforms_1a006d9e1c60ccaf18a7c6dc95db5ffdb2" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ItemOpacityUniforms</scope><name>trail</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1ItemOpacityUniforms_1a74401a3f11c6d3260e60b982024995cc" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ItemOpacityUniforms</scope><name>trailEasing</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

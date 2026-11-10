@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1Internal_1_1OpacityTimeline" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::OpacityTimeline</compoundname>
+    <includes local="no">OpacityTimeline.hpp</includes>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1OpacityTimeline_1_1Resolved" prot="private">QAccelPlot::Internal::OpacityTimeline::Resolved</innerclass>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1OpacityTimeline_1af5bb87128e623faa1360a4156e0fae29" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; Resolved &gt;</type>
+        <definition>std::vector&lt;Resolved&gt; QAccelPlot::Internal::OpacityTimeline::segments_</definition>
+        <argsstring></argsstring>
+        <name>segments_</name>
+        <qualifiedname>QAccelPlot::Internal::OpacityTimeline::segments_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/OpacityTimeline.hpp" line="59" column="17" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/OpacityTimeline.hpp" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1OpacityTimeline_1ac97ffb0386ac455bd7b022622ba06628" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::OpacityTimeline::length_</definition>
+        <argsstring></argsstring>
+        <name>length_</name>
+        <qualifiedname>QAccelPlot::Internal::OpacityTimeline::length_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/OpacityTimeline.hpp" line="60" column="12" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/OpacityTimeline.hpp" bodystart="60" bodyend="60"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1OpacityTimeline_1af6cdb22f95e1d3e55a6aff8492f5995d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::Internal::OpacityTimeline::OpacityTimeline</definition>
+        <argsstring>()=default</argsstring>
+        <name>OpacityTimeline</name>
+        <qualifiedname>QAccelPlot::Internal::OpacityTimeline::OpacityTimeline</qualifiedname>
+        <briefdescription>
+<para>Constructs a timeline without segments. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/OpacityTimeline.hpp" line="34" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1OpacityTimeline_1ad26396a4f140c9ade0f680bb7a19b528" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::Internal::OpacityTimeline::OpacityTimeline</definition>
+        <argsstring>(std::vector&lt; OpacitySegment &gt; segments, double length)</argsstring>
+        <name>OpacityTimeline</name>
+        <qualifiedname>QAccelPlot::Internal::OpacityTimeline::OpacityTimeline</qualifiedname>
+        <param>
+          <type>std::vector&lt; <ref refid="structQAccelPlot_1_1Internal_1_1OpacitySegment" kindref="compound">OpacitySegment</ref> &gt;</type>
+          <declname>segments</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>Constructs the timeline of <emphasis>segments</emphasis>, in declaration order, lasting <emphasis>length</emphasis> milliseconds. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><emphasis>length</emphasis> can exceed the end of the last segment, for example after a pause. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/OpacityTimeline.hpp" line="38" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1OpacityTimeline_1ac8aeaafb3ed6287dd6db3b755ea1f8ed" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::OpacityTimeline::empty</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>empty</name>
+        <qualifiedname>QAccelPlot::Internal::OpacityTimeline::empty</qualifiedname>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> when no segment animates opacity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/OpacityTimeline.hpp" line="41" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1OpacityTimeline_1a9053be687fb2b97276a18400d3cb01f5" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::OpacityTimeline::length</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>length</name>
+        <qualifiedname>QAccelPlot::Internal::OpacityTimeline::length</qualifiedname>
+        <briefdescription>
+<para>Returns the duration of the timeline in milliseconds. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/OpacityTimeline.hpp" line="43" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1OpacityTimeline_1ae355a026d163f3ecacd4650aa0c64a93" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::OpacityTimeline::valueAt</definition>
+        <argsstring>(double time) const</argsstring>
+        <name>valueAt</name>
+        <qualifiedname>QAccelPlot::Internal::OpacityTimeline::valueAt</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+<para>Returns the opacity <emphasis>time</emphasis> milliseconds after the item started, not clamped. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/OpacityTimeline.hpp" line="45" column="13"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1OpacityTimeline_1a7e007a1fe4375ff27baa671154a36778" prot="private" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::OpacityTimeline::valueAt</definition>
+        <argsstring>(double time, std::size_t segmentCount) const</argsstring>
+        <name>valueAt</name>
+        <qualifiedname>QAccelPlot::Internal::OpacityTimeline::valueAt</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>time</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>segmentCount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/OpacityTimeline.hpp" line="57" column="13"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>The opacity of an item over the time since it started, built from opacity animations. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>At a given time, the segment that started last applies; segments that start together apply in their order. Before the first segment, the item shows that segment&apos;s start opacity, and an item without segments is opaque. </para>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/transitions/internal/OpacityTimeline.hpp" line="31" column="1" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/OpacityTimeline.hpp" bodystart="31" bodyend="61"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1Internal_1_1OpacityTimeline_1ac8aeaafb3ed6287dd6db3b755ea1f8ed" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::OpacityTimeline</scope><name>empty</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1OpacityTimeline_1a9053be687fb2b97276a18400d3cb01f5" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::OpacityTimeline</scope><name>length</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1OpacityTimeline_1ac97ffb0386ac455bd7b022622ba06628" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::OpacityTimeline</scope><name>length_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1OpacityTimeline_1af6cdb22f95e1d3e55a6aff8492f5995d" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::OpacityTimeline</scope><name>OpacityTimeline</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1OpacityTimeline_1ad26396a4f140c9ade0f680bb7a19b528" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::OpacityTimeline</scope><name>OpacityTimeline</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1OpacityTimeline_1af5bb87128e623faa1360a4156e0fae29" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::OpacityTimeline</scope><name>segments_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1OpacityTimeline_1ae355a026d163f3ecacd4650aa0c64a93" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::OpacityTimeline</scope><name>valueAt</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1OpacityTimeline_1a7e007a1fe4375ff27baa671154a36778" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::OpacityTimeline</scope><name>valueAt</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

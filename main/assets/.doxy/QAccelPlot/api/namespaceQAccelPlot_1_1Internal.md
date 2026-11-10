@@ -47,6 +47,9 @@
 | class | [**CategoryList**](classQAccelPlot_1_1Internal_1_1CategoryList.md) <br>_The_ `categories` _list of a series: the_`Category` _objects and a lookup table that follows their edits._ |
 | class | [**CategoryTable**](classQAccelPlot_1_1Internal_1_1CategoryTable.md) <br>_A snapshot of the categories of a series, looked up by value or name._  |
 | struct | [**DataTextureUploadTotals**](structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals.md) <br>_How many data textures were uploaded since the last reset, and how many bytes they held._  |
+| class | [**FrontStarts**](classQAccelPlot_1_1Internal_1_1FrontStarts.md) <br>_When an eased reveal front reaches each share of the items._  |
+| struct | [**GlowStyle**](structQAccelPlot_1_1Internal_1_1GlowStyle.md) <br>_How the shaders draw a_ `Glow` _halo; see shaders/glow.glsl._ |
+| struct | [**GlowUniforms**](structQAccelPlot_1_1Internal_1_1GlowUniforms.md) <br>_The std140 uniform members of a_ `Glow` _halo,_`glowColor` _and_`glowParams` _, at a 16-byte aligned offset._ |
 | struct | [**GrabSize**](structQAccelPlot_1_1Internal_1_1GrabSize.md) <br>_Sizes of one item grab._  |
 | struct | [**HeatmapGridDimension**](structQAccelPlot_1_1Internal_1_1HeatmapGridDimension.md) <br>_One dimension of a heatmap grid:_ `count` _cells between the edges_`from` _and_`to` _._ |
 | struct | [**HeatmapShaderMapping**](structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping.md) <br>_How heatmap.frag maps an item-local pixel position_ _p_ _to a fractional cell coordinate along one dimension._ |
@@ -58,6 +61,15 @@
 | struct | [**InspectionMetric**](structQAccelPlot_1_1Internal_1_1InspectionMetric.md) <br>_Pixel mapping of a series' plot area, used to measure on-screen distances._  |
 | struct | [**InspectionNeighbors**](structQAccelPlot_1_1Internal_1_1InspectionNeighbors.md) <br>_Source indices of the valid data points on either side of an X value, or -1._  |
 | struct | [**InspectionSource**](structQAccelPlot_1_1Internal_1_1InspectionSource.md) <br>_Read-only view over the XY records a series exposes to inspection queries._  |
+| class | [**ItemClock**](classQAccelPlot_1_1Internal_1_1ItemClock.md) <br>_The start time and movement of each item of one group at the frame._  |
+| struct | [**ItemFade**](structQAccelPlot_1_1Internal_1_1ItemFade.md) <br>_The transition groups of a frame whose opacity the shaders animate._  |
+| struct | [**ItemFadeGroup**](structQAccelPlot_1_1Internal_1_1ItemFadeGroup.md) <br>_The items of one transition group whose opacity the shaders animate._  |
+| struct | [**ItemFadeGroupUniforms**](structQAccelPlot_1_1Internal_1_1ItemFadeGroupUniforms.md) <br>_The std140 uniform members of one fading transition group, see_ `ItemFadeGroup` _._ |
+| struct | [**ItemOpacityUniforms**](structQAccelPlot_1_1Internal_1_1ItemOpacityUniforms.md) <br>_The std140 uniform members that shaders/item\_opacity.glsl reads, at a 16-byte aligned offset._  |
+| struct | [**ItemTiming**](structQAccelPlot_1_1Internal_1_1ItemTiming.md) <br>_The timing of the items of one group, as shares of the transition duration._  |
+| struct | [**ItemTrail**](structQAccelPlot_1_1Internal_1_1ItemTrail.md) <br>_How the shaders fade the oldest items under a_ `FadeTrail` _effect._ |
+| struct | [**OpacitySegment**](structQAccelPlot_1_1Internal_1_1OpacitySegment.md) <br>_One animation of item opacity, on the timeline of an item._  |
+| class | [**OpacityTimeline**](classQAccelPlot_1_1Internal_1_1OpacityTimeline.md) <br>_The opacity of an item over the time since it started, built from opacity animations._  |
 | class | [**OutlinedRectangle**](classQAccelPlot_1_1Internal_1_1OutlinedRectangle.md) <br>_Item that fills its bounds and outlines them inside its edges._  |
 | class | [**OverlayChildren**](classQAccelPlot_1_1Internal_1_1OverlayChildren.md) <br>_Objects declared inside an inspection tool in QML._  |
 | class | [**PointerTracker**](classQAccelPlot_1_1Internal_1_1PointerTracker.md) <br>_Tracks the pointer over a plot from the plot's mouse and hover events._  |
@@ -66,8 +78,14 @@
 | class | [**RectangleZoomOverlay**](classQAccelPlot_1_1Internal_1_1RectangleZoomOverlay.md) <br> |
 | class | [**ScopedPaintedItemTextures**](classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures.md) <br>_Rasterizes the painted items under a root item at a capture scale until destroyed._  |
 | class | [**SelectionRectangle**](classQAccelPlot_1_1Internal_1_1SelectionRectangle.md) <br>_Draws the gesture or the selected region of a_ [_**SelectionTool**_](classQAccelPlot_1_1SelectionTool.md) _, clipped to the plot area._ |
+| class | [**SeriesEffectList**](classQAccelPlot_1_1Internal_1_1SeriesEffectList.md) <br>_The_ `effects` _list of one series._ |
 | class | [**SourceInspection**](classQAccelPlot_1_1Internal_1_1SourceInspection.md) <br>_Inspection queries that read a series' own buffer whose records are ordered along one axis._  |
 | struct | [**SummaryAccumulator**](structQAccelPlot_1_1Internal_1_1SummaryAccumulator.md) <br>_Running data-point-weighted Y statistics that can be merged across disjoint data point sets._  |
+| struct | [**TransitionFrameInput**](structQAccelPlot_1_1Internal_1_1TransitionFrameInput.md) <br>_The two sides of a transition and the steps of its slots at one frame._  |
+| struct | [**TransitionItems**](structQAccelPlot_1_1Internal_1_1TransitionItems.md) <br>_Items on one side of a transition,_ `TransitionLayout::stride` _values each._ |
+| struct | [**TransitionLayout**](structQAccelPlot_1_1Internal_1_1TransitionLayout.md) <br>_How a series' items animate._  |
+| struct | [**TransitionSlots**](structQAccelPlot_1_1Internal_1_1TransitionSlots.md) <br>_Slots a data change animates._  |
+| struct | [**TransitionStep**](structQAccelPlot_1_1Internal_1_1TransitionStep.md) <br>_The state of one slot's transition at the frame._  |
 | struct | [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) <br>_Bounds of an axis viewport or a colormap value range._  |
 
 
@@ -77,6 +95,7 @@
 | ---: | :--- |
 | enum  | [**InspectionAxis**](#enum-inspectionaxis)  <br>_Data dimension a query measures along, or along which a series' records are ordered._  |
 | enum  | [**InspectionMatching**](#enum-inspectionmatching)  <br>_How_ `PlotInspector` _and_`SelectionTool` _match a series' data points to a position._ |
+| enum  | [**TransitionKind**](#enum-transitionkind)  <br>_How a transition moves its items: one value per transition class._  |
 
 
 
@@ -86,6 +105,10 @@
 | Type | Name |
 | ---: | :--- |
 |  int | [**kDataTextureWidth**](#variable-kdatatexturewidth)   = `{8192}`<br>_Number of floats stored per data texture row, one float per RGBA8 texel._  |
+|  int | [**kFadeCurveSamples**](#variable-kfadecurvesamples)   = `32`<br>_Number of opacity samples over the timeline of an item._  |
+|  int | [**kFadeGroupCount**](#variable-kfadegroupcount)   = `2`<br>_Most transition groups that fade at once: the kept items, and the added or removed ones._  |
+|  int | [**kFadeStartSamples**](#variable-kfadestartsamples)   = `16`<br>_Number of samples of the start times of the items along an eased reveal front._  |
+|  int | [**kTrailEasingSamples**](#variable-ktraileasingsamples)   = `16`<br>_Number of samples of the_ `FadeTrail` _easing curve._ |
 
 
 
@@ -108,20 +131,31 @@
 | ---: | :--- |
 |  QPointF | [**axisLabelCenter**](#function-axislabelcenter) (const [**AxisLabelLayoutParams**](structQAccelPlot_1_1Internal_1_1AxisLabelLayoutParams.md) & params) <br>_Returns the center of the axis label described by_ _params_ _, in item coordinates._ |
 |  qreal | [**clampAntialiasingFeather**](#function-clampantialiasingfeather) (qreal feather) <br>_Returns_ _feather_ _clamped to the [0, 10] pixel range of the series'_`antialiasingFeather` _properties._ |
+|  [**ItemFadeGroup**](structQAccelPlot_1_1Internal_1_1ItemFadeGroup.md) | [**compactedFadeGroup**](#function-compactedfadegroup) (const [**ItemFadeGroup**](structQAccelPlot_1_1Internal_1_1ItemFadeGroup.md) & group, int first, const std::vector&lt; int &gt; & kept) <br>_Returns_ _group_ _after some of its items are left out of the drawn items; it starts at drawn index__first_ _._ |
+|  int | [**compareGlowStyles**](#function-compareglowstyles) (const [**GlowStyle**](structQAccelPlot_1_1Internal_1_1GlowStyle.md) & left, const [**GlowStyle**](structQAccelPlot_1_1Internal_1_1GlowStyle.md) & right) noexcept<br>_Orders_ _left_ _and__right_ _for_`QSGMaterial::compare()` _: negative, 0, or positive._ |
+|  int | [**compareItemFades**](#function-compareitemfades) (const [**ItemFade**](structQAccelPlot_1_1Internal_1_1ItemFade.md) & left, const [**ItemFade**](structQAccelPlot_1_1Internal_1_1ItemFade.md) & right) noexcept<br>_Orders_ _left_ _and__right_ _for_`QSGMaterial::compare()` _: negative, 0, or positive._ |
+|  int | [**compareItemTrails**](#function-compareitemtrails) (const [**ItemTrail**](structQAccelPlot_1_1Internal_1_1ItemTrail.md) & left, const [**ItemTrail**](structQAccelPlot_1_1Internal_1_1ItemTrail.md) & right) noexcept<br>_Orders_ _left_ _and__right_ _for_`QSGMaterial::compare()` _: negative, 0, or positive._ |
 |  int | [**dataTextureHeight**](#function-datatextureheight) (const int floatCount) <br>_Returns the number of data texture rows needed to store_ _floatCount_ _floats._ |
 |  qint64 | [**dataTextureItemCapacity**](#function-datatextureitemcapacity) (const int maxHeight, const int floatsPerItem) <br>_Returns how many items of_ _floatsPerItem_ _floats fit in a data texture at most__maxHeight_ _rows tall._ |
 |  [**DataTextureUploadTotals**](structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals.md) | [**dataTextureUploadTotals**](#function-datatextureuploadtotals) () <br>_Returns the totals since the last reset. Thread-safe._  |
 |  double | [**distanceToInterval**](#function-distancetointerval) (double position, double a, double b) noexcept<br>_Returns the signed distance from_ _position_ _to the closed interval between__a_ _and__b_ _._ |
 |  qreal | [**edgePixel**](#function-edgepixel) (double value, const [**Axis**](classQAccelPlot_1_1Axis.md) & axis, qreal length) <br>_Maps rectangle edge_ _value_ _on__axis_ _to item pixels along an item side__length_ _pixels long._ |
+|  [**GlowUniforms**](structQAccelPlot_1_1Internal_1_1GlowUniforms.md) | [**glowUniforms**](#function-glowuniforms) (const [**GlowStyle**](structQAccelPlot_1_1Internal_1_1GlowStyle.md) & style) <br>_Returns the uniforms that draw_ _style_ _._ |
 |  [**GrabSize**](structQAccelPlot_1_1Internal_1_1GrabSize.md) | [**grabSizeFor**](#function-grabsizefor) (const QSize & pixels, qreal devicePixelRatio) <br>_Returns the grab whose image is closest to_ _pixels_ _in a window at__devicePixelRatio_ _._ |
+|  double | [**growBaseline**](#function-growbaseline) (double baseline, const [**Axis**](classQAccelPlot_1_1Axis.md) \* valueAxis) <br>_Returns the value that items drawn from_ _baseline_ _on__valueAxis_ _grow from._ |
 |  bool | [**hoverEnabled**](#function-hoverenabled) () <br>_Returns whether series accept hover events:_ `false` _only when_`QACCELPLOT_HOVER_ENABLED` _is 0._ |
 |  QByteArray | [**imageFormatForPath**](#function-imageformatforpath) (const QString & path) <br>_Returns the lowercase_ `QImageWriter` _format for__path's_ _suffix, or an empty array when none can write it._ |
+|  [**ItemOpacityUniforms**](structQAccelPlot_1_1Internal_1_1ItemOpacityUniforms.md) | [**itemOpacityUniforms**](#function-itemopacityuniforms) (const [**ItemFade**](structQAccelPlot_1_1Internal_1_1ItemFade.md) & fade, const [**ItemTrail**](structQAccelPlot_1_1Internal_1_1ItemTrail.md) & trail) <br>_Returns the uniforms that fade the items of_ _fade_ _and__trail_ _._ |
+|  [**ItemTiming**](structQAccelPlot_1_1Internal_1_1ItemTiming.md) | [**itemTiming**](#function-itemtiming) (const [**TransitionStep**](structQAccelPlot_1_1Internal_1_1TransitionStep.md) & step, int itemCount) <br>_Returns the timing of a group of_ _itemCount_ _items under__step_ _._ |
+|  bool | [**keptItemsChanged**](#function-keptitemschanged) (const [**TransitionItems**](structQAccelPlot_1_1Internal_1_1TransitionItems.md) & from, const [**TransitionItems**](structQAccelPlot_1_1Internal_1_1TransitionItems.md) & to, int stride) <br>_Returns_ `true` _when an item below both counts of__from_ _and__to_ _,__stride_ _values each, changes._ |
 |  std::optional&lt; QPointF &gt; | [**linePathPoint**](#function-linepathpoint) (const [**CurveDataView**](structQAccelPlot_1_1CurveDataView.md) & data, int pointCount, int index, int corner, [**StepMode**](namespaceQAccelPlot_1_1StepModeNS.md#enum-mode) mode, bool logScaleX, bool logScaleY) <br>_Returns path point_ _corner_ _of data point__index_ _on the drawn line of__pointCount_ _data points._ |
 |  QString | [**localFilePath**](#function-localfilepath) (const QString & pathOrUrl) <br>_Returns_ _pathOrUrl_ _as a local file path; a_`file:` _URL, as a QML file dialog returns, is converted._ |
 |  int | [**maxTextureSize**](#function-maxtexturesize) (QQuickWindow \* window) <br>_Returns the largest texture width and height, in pixels, that_ _window's_ _GPU supports._ |
 |  [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) | [**pannedRange**](#function-pannedrange) (const [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) & range, qreal fraction, bool logarithmic) <br>_Returns_ _range_ _shifted by__fraction_ _of its extent; a positive__fraction_ _raises both bounds._ |
+|  [**TransitionSlots**](structQAccelPlot_1_1Internal_1_1TransitionSlots.md) | [**plannedSlots**](#function-plannedslots) (int fromCount, int toCount, bool keptChanged, std::optional&lt; TransitionKind &gt; enter, std::optional&lt; TransitionKind &gt; update, std::optional&lt; TransitionKind &gt; exit) <br>_Returns the slots that animate a change from_ _fromCount_ _to__toCount_ _items._ |
 |  std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; | [**readEffectStops**](#function-readeffectstops) (const [**Colormap**](classQAccelPlot_1_1Colormap.md) \* colormap, QObject \* gradient) <br>_Returns the color stops of a gradient effect: the_ _colormap_ _ramp when set, otherwise the stops of the QML_`Gradient` ___gradient_ _._ |
 |  std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; | [**readGradientStopList**](#function-readgradientstoplist) (const QVariantList & stopObjects) <br>_Reads a list of stop objects, each exposing_ `position` _and_`color` _, into position order._ |
+|  [**OpacityTimeline**](classQAccelPlot_1_1Internal_1_1OpacityTimeline.md) | [**readOpacityAnimations**](#function-readopacityanimations) (const QList&lt; QObject \* &gt; & animations, QStringList \* problems=nullptr) <br>_Reads the Qt Quick animations of_ `"opacity"` _among__animations_ _, which run together, as one timeline._ |
 |  int | [**recordCapacity**](#function-recordcapacity) (QQuickWindow \* window, int floatsPerRecord, int vertexBytesPerRecord) <br>_Returns how many records a series draws that reads them from the data texture by a float vertex id._  |
 |  void | [**recordDataTextureUpload**](#function-recorddatatextureupload) (std::int64\_t bytes) <br>_Adds one upload of_ _bytes_ _to the totals. Thread-safe._ |
 |  void | [**resetDataTextureUploadTotals**](#function-resetdatatextureuploadtotals) () <br>_Sets the totals back to zero. Thread-safe._  |
@@ -137,6 +171,7 @@
 |  std::pair&lt; qreal, qreal &gt; | [**widenedSpan**](#function-widenedspan) (qreal a, qreal b, qreal minimumSize) <br>_Returns the pixel span between edges_ _a_ _and__b_ _, widened around its center to at least__minimumSize_ _._ |
 |  QString | [**writeImageFile**](#function-writeimagefile) (const QImage & image, const QString & path, const QByteArray & format, int quality) <br>_Writes_ _image_ _to__path_ _in__format_ _and returns an error message, or an empty string on success._ |
 |  void | [**writeRectUniforms**](#function-writerectuniforms) ([**RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md) & ubo, const QSGMaterialShader::RenderState & state, const [**RectMaterial**](classQAccelPlot_1_1RectMaterial.md) & material) <br>_Fills_ _ubo_ _from__material_ _and the matrix and opacity of the render__state_ _._ |
+|  int | [**writeTransitionFrame**](#function-writetransitionframe) (const [**TransitionFrameInput**](structQAccelPlot_1_1Internal_1_1TransitionFrameInput.md) & input, std::vector&lt; double &gt; & out, [**ItemFade**](structQAccelPlot_1_1Internal_1_1ItemFade.md) & fade) <br>_Writes the frame of_ _input_ _into__out_ _and the items it fades into__fade_ _._ |
 |  [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) | [**zoomedRange**](#function-zoomedrange) (const [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) & range, qreal factor, qreal anchorRatio, bool logarithmic) <br>_Returns_ _range_ _with its extent multiplied by__factor_ _, keeping the value at__anchorRatio_ _in place._ |
 
 
@@ -205,6 +240,25 @@ enum QAccelPlot::Internal::InspectionMatching {
 
 
 <hr>
+
+
+
+
+### enum TransitionKind {#enum-transitionkind}
+
+_How a transition moves its items: one value per transition class._ 
+```C++
+enum QAccelPlot::Internal::TransitionKind {
+    Morph,
+    Draw,
+    Grow
+};
+```
+
+
+
+
+<hr>
 ## Public Attributes Documentation
 
 
@@ -224,6 +278,66 @@ data\_texture.glsl reads the width from the bound texture, so this is the only d
 
 
         
+
+<hr>
+
+
+
+
+### variable kFadeCurveSamples {#variable-kfadecurvesamples}
+
+_Number of opacity samples over the timeline of an item._ 
+```C++
+int QAccelPlot::Internal::kFadeCurveSamples;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable kFadeGroupCount {#variable-kfadegroupcount}
+
+_Most transition groups that fade at once: the kept items, and the added or removed ones._ 
+```C++
+int QAccelPlot::Internal::kFadeGroupCount;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable kFadeStartSamples {#variable-kfadestartsamples}
+
+_Number of samples of the start times of the items along an eased reveal front._ 
+```C++
+int QAccelPlot::Internal::kFadeStartSamples;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable kTrailEasingSamples {#variable-ktraileasingsamples}
+
+_Number of samples of the_ `FadeTrail` _easing curve._
+```C++
+int QAccelPlot::Internal::kTrailEasingSamples;
+```
+
+
+
 
 <hr>
 ## Public Functions Documentation
@@ -260,6 +374,83 @@ _Returns_ _feather_ _clamped to the [0, 10] pixel range of the series'_`antialia
 qreal QAccelPlot::Internal::clampAntialiasingFeather (
     qreal feather
 ) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function compactedFadeGroup {#function-compactedfadegroup}
+
+_Returns_ _group_ _after some of its items are left out of the drawn items; it starts at drawn index__first_ _._
+```C++
+ItemFadeGroup QAccelPlot::Internal::compactedFadeGroup (
+    const ItemFadeGroup & group,
+    int first,
+    const std::vector< int > & kept
+) 
+```
+
+
+
+_kept_ lists, in order, the positions in _group_ of the remaining items. They keep their start times through `starts`, which holds them at `kFadeStartSamples` evenly spaced shares of the remaining items; items between two samples start at an interpolated time. 
+
+
+        
+
+<hr>
+
+
+
+
+### function compareGlowStyles {#function-compareglowstyles}
+
+_Orders_ _left_ _and__right_ _for_`QSGMaterial::compare()` _: negative, 0, or positive._
+```C++
+int QAccelPlot::Internal::compareGlowStyles (
+    const GlowStyle & left,
+    const GlowStyle & right
+) noexcept
+```
+
+
+
+
+<hr>
+
+
+
+
+### function compareItemFades {#function-compareitemfades}
+
+_Orders_ _left_ _and__right_ _for_`QSGMaterial::compare()` _: negative, 0, or positive._
+```C++
+int QAccelPlot::Internal::compareItemFades (
+    const ItemFade & left,
+    const ItemFade & right
+) noexcept
+```
+
+
+
+
+<hr>
+
+
+
+
+### function compareItemTrails {#function-compareitemtrails}
+
+_Orders_ _left_ _and__right_ _for_`QSGMaterial::compare()` _: negative, 0, or positive._
+```C++
+int QAccelPlot::Internal::compareItemTrails (
+    const ItemTrail & left,
+    const ItemTrail & right
+) noexcept
 ```
 
 
@@ -362,6 +553,23 @@ Infinite edges, and non-positive edges on a log axis, map to infinity on the mat
 
 
 
+### function glowUniforms {#function-glowuniforms}
+
+_Returns the uniforms that draw_ _style_ _._
+```C++
+GlowUniforms QAccelPlot::Internal::glowUniforms (
+    const GlowStyle & style
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function grabSizeFor {#function-grabsizefor}
 
 _Returns the grab whose image is closest to_ _pixels_ _in a window at__devicePixelRatio_ _._
@@ -375,6 +583,28 @@ GrabSize QAccelPlot::Internal::grabSizeFor (
 
 
 Qt 6.2 renders the target size in pixels. Later versions multiply it by the device pixel ratio and round, so some pixel counts cannot be rendered and the image can differ from _pixels_ by a pixel; a tie picks the smaller image. 
+
+
+        
+
+<hr>
+
+
+
+
+### function growBaseline {#function-growbaseline}
+
+_Returns the value that items drawn from_ _baseline_ _on__valueAxis_ _grow from._
+```C++
+double QAccelPlot::Internal::growBaseline (
+    double baseline,
+    const Axis * valueAxis
+) 
+```
+
+
+
+It is _baseline_, or the viewport edge the items are drawn from when _valueAxis_ cannot place it: an infinite baseline, or one at or below 0 on a log axis. Without an axis, an infinite baseline gives 0. 
 
 
         
@@ -410,6 +640,65 @@ QByteArray QAccelPlot::Internal::imageFormatForPath (
 
 
 
+
+<hr>
+
+
+
+
+### function itemOpacityUniforms {#function-itemopacityuniforms}
+
+_Returns the uniforms that fade the items of_ _fade_ _and__trail_ _._
+```C++
+ItemOpacityUniforms QAccelPlot::Internal::itemOpacityUniforms (
+    const ItemFade & fade,
+    const ItemTrail & trail
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function itemTiming {#function-itemtiming}
+
+_Returns the timing of a group of_ _itemCount_ _items under__step_ _._
+```C++
+ItemTiming QAccelPlot::Internal::itemTiming (
+    const TransitionStep & step,
+    int itemCount
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function keptItemsChanged {#function-keptitemschanged}
+
+_Returns_ `true` _when an item below both counts of__from_ _and__to_ _,__stride_ _values each, changes._
+```C++
+bool QAccelPlot::Internal::keptItemsChanged (
+    const TransitionItems & from,
+    const TransitionItems & to,
+    int stride
+) 
+```
+
+
+
+Invalid values that stay invalid do not count as a change. 
+
+
+        
 
 <hr>
 
@@ -504,6 +793,32 @@ With _logarithmic_ set, the shift is applied in `log10` space, so both bounds ar
 
 
 
+### function plannedSlots {#function-plannedslots}
+
+_Returns the slots that animate a change from_ _fromCount_ _to__toCount_ _items._
+```C++
+TransitionSlots QAccelPlot::Internal::plannedSlots (
+    int fromCount,
+    int toCount,
+    bool keptChanged,
+    std::optional< TransitionKind > enter,
+    std::optional< TransitionKind > update,
+    std::optional< TransitionKind > exit
+) 
+```
+
+
+
+Each kind is that of the slot's enabled transition, or `std::nullopt` without one. The update slot runs only when _keptChanged:_ a change that only adds or removes items leaves the kept ones alone. A `DrawTransition` or `GrowTransition` in the update slot redraws all items, so only the update slot runs. 
+
+
+        
+
+<hr>
+
+
+
+
 ### function readEffectStops {#function-readeffectstops}
 
 _Returns the color stops of a gradient effect: the_ _colormap_ _ramp when set, otherwise the stops of the QML_`Gradient` ___gradient_ _._
@@ -549,6 +864,38 @@ A single stop is duplicated, and the first and last colors are extended to posit
 
 
 **See also:** [**Colormap**](classQAccelPlot_1_1Colormap.md) 
+
+
+
+        
+
+<hr>
+
+
+
+
+### function readOpacityAnimations {#function-readopacityanimations}
+
+_Reads the Qt Quick animations of_ `"opacity"` _among__animations_ _, which run together, as one timeline._
+```C++
+OpacityTimeline QAccelPlot::Internal::readOpacityAnimations (
+    const QList< QObject * > & animations,
+    QStringList * problems=nullptr
+) 
+```
+
+
+
+The animations are read, never run. `PropertyAnimation` and its numeric subtypes, `PropertyAction`, `PauseAnimation`, `SequentialAnimation`, and `ParallelAnimation` are supported, with `loops`. A missing `from` continues from the opacity reached so far, and a missing `to` is 1. Other animations, and animations of other properties, add only their duration.
+
+
+
+
+**Parameters:**
+
+
+* `problems` When not null, receives one message for each part of _animations_ that is ignored. 
+
 
 
 
@@ -861,6 +1208,36 @@ void QAccelPlot::Internal::writeRectUniforms (
 
 
 
+
+<hr>
+
+
+
+
+### function writeTransitionFrame {#function-writetransitionframe}
+
+_Writes the frame of_ _input_ _into__out_ _and the items it fades into__fade_ _._
+```C++
+int QAccelPlot::Internal::writeTransitionFrame (
+    const TransitionFrameInput & input,
+    std::vector< double > & out,
+    ItemFade & fade
+) 
+```
+
+
+
+The frame holds the kept items, then the shown added or removed items. The first group of _fade_ describes the update slot, the second the enter or exit slot. 
+
+**Returns:**
+
+The number of items in the frame. 
+
+
+
+
+
+        
 
 <hr>
 

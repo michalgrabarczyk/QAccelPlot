@@ -18,10 +18,12 @@
 
 
 * `#include "QAccelPlot/axis/Axis.hpp"`
+* `#include "QAccelPlot/effects/SeriesEffect.hpp"`
 * `#include "QAccelPlot/inspection/SeriesInspection.hpp"`
 * `#include "QAccelPlot/series/DataPointStore.hpp"`
 * `#include <QList>`
 * `#include <QPointer>`
+* `#include <QQmlListProperty>`
 * `#include <QQuickItem>`
 * `#include <QRectF>`
 * `#include <QString>`
@@ -50,6 +52,7 @@
 | Type | Name |
 | ---: | :--- |
 | namespace | [**QAccelPlot**](namespaceQAccelPlot.md) <br> |
+| namespace | [**Internal**](namespaceQAccelPlot_1_1Internal.md) <br> |
 
 
 ## Classes

@@ -15,7 +15,7 @@
 
 
 
-_One animation of a transition on one host element._ [More...](#detailed-description)
+_One animation of a transition on one series._ [More...](#detailed-description)
 
 * `#include <DataTransition.hpp>`
 
@@ -63,13 +63,10 @@ _One animation of a transition on one host element._ [More...](#detailed-descrip
 | ---: | :--- |
 |   | [**Run**](#function-run-12) () = default<br>_Constructs an idle run._  |
 |   | [**Run**](#function-run-22) (const Run &) = delete<br> |
-|  bool | [**active**](#function-active) () const<br>_Returns_ `true` _while the transition advances this run._ |
-|  void | [**cancel**](#function-cancel) () <br>_Ends the run and discards its data._  |
-|  bool | [**finish**](#function-finish) (std::vector&lt; double &gt; & outData, int & outPointCount) <br>_Ends the run and moves its target data into_ _outData_ _and__outPointCount_ _._ |
+|  bool | [**active**](#function-active) () const<br>_Returns_ `true` _while the run is active._ |
+|  void | [**end**](#function-end) () <br>_Ends the run._  |
 |  [**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md#function-run-12) & | [**operator=**](#function-operator) (const [**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md#function-run-12) &) = delete<br> |
-|  bool | [**pending**](#function-pending) () const<br>_Returns_ `true` _while the run holds target data that_`finish()` _has not taken._ |
-|  const std::vector&lt; double &gt; & | [**targetData**](#function-targetdata) () const<br>_Returns the target data. Valid while_ `pending()` _is_`true` _._ |
-|  int | [**targetPointCount**](#function-targetpointcount) () const<br>_Returns the number of points in_ `targetData()` _._ |
+|  DataTransition \* | [**transition**](#function-transition) () const<br>_Returns the transition the run is active on, or_ `nullptr` _._ |
 |   | [**~Run**](#function-run) () <br>_Destroys the run, ending it on its transition._  |
 
 
@@ -102,7 +99,7 @@ _One animation of a transition on one host element._ [More...](#detailed-descrip
 ## Detailed Description
 
 
-Holds the data the host animates from and to. A run is _active_ while the transition advances it, and _pending_ until the host takes the target data with `finish()`. A run ended by `DataTransition::cancel()` or by destroying the transition stays pending, so the host can still show the target data. Destroying a run ends it. 
+A run is _active_ from `DataTransition::start()` until `end()`, `DataTransition::cancel()`, or the destruction of the transition. Destroying a run ends it. 
 
 
     
@@ -145,7 +142,7 @@ QAccelPlot::DataTransition::Run::Run (
 
 ### function active {#function-active}
 
-_Returns_ `true` _while the transition advances this run._
+_Returns_ `true` _while the run is active._
 ```C++
 bool QAccelPlot::DataTransition::Run::active () const
 ```
@@ -158,44 +155,15 @@ bool QAccelPlot::DataTransition::Run::active () const
 
 
 
-### function cancel {#function-cancel}
+### function end {#function-end}
 
-_Ends the run and discards its data._ 
+_Ends the run._ 
 ```C++
-void QAccelPlot::DataTransition::Run::cancel () 
+void QAccelPlot::DataTransition::Run::end () 
 ```
 
 
 
-
-<hr>
-
-
-
-
-### function finish {#function-finish}
-
-_Ends the run and moves its target data into_ _outData_ _and__outPointCount_ _._
-```C++
-bool QAccelPlot::DataTransition::Run::finish (
-    std::vector< double > & outData,
-    int & outPointCount
-) 
-```
-
-
-
-
-
-**Returns:**
-
-`false`, leaving the outputs unchanged, when the run is not pending. 
-
-
-
-
-
-        
 
 <hr>
 
@@ -218,41 +186,11 @@ Run & QAccelPlot::DataTransition::Run::operator= (
 
 
 
-### function pending {#function-pending}
+### function transition {#function-transition}
 
-_Returns_ `true` _while the run holds target data that_`finish()` _has not taken._
+_Returns the transition the run is active on, or_ `nullptr` _._
 ```C++
-bool QAccelPlot::DataTransition::Run::pending () const
-```
-
-
-
-
-<hr>
-
-
-
-
-### function targetData {#function-targetdata}
-
-_Returns the target data. Valid while_ `pending()` _is_`true` _._
-```C++
-const std::vector< double > & QAccelPlot::DataTransition::Run::targetData () const
-```
-
-
-
-
-<hr>
-
-
-
-
-### function targetPointCount {#function-targetpointcount}
-
-_Returns the number of points in_ `targetData()` _._
-```C++
-int QAccelPlot::DataTransition::Run::targetPointCount () const
+DataTransition * QAccelPlot::DataTransition::Run::transition () const
 ```
 
 

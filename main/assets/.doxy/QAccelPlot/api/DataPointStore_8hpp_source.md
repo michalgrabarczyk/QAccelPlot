@@ -109,6 +109,8 @@ public:
     [[nodiscard]] bool hasDrawn() const noexcept;
     [[nodiscard]] View drawnView() const;
     [[nodiscard]] View renderedView() const;
+    [[nodiscard]] int renderedCount(int count) const;
+    [[nodiscard]] bool rendered(int index) const;
 
     void setSkipInvalid(bool skip);
     [[nodiscard]] bool skipInvalid() const noexcept;

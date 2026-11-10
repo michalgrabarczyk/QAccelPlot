@@ -18,11 +18,13 @@
 #pragma once
 
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/effects/SeriesEffect.hpp"
 #include "QAccelPlot/inspection/SeriesInspection.hpp"
 #include "QAccelPlot/series/DataPointStore.hpp"
 
 #include <QList>
 #include <QPointer>
+#include <QQmlListProperty>
 #include <QQuickItem>
 #include <QRectF>
 #include <QString>
@@ -39,6 +41,10 @@
 
 namespace QAccelPlot {
 
+namespace Internal {
+class SeriesEffectList;
+}
+
 struct LegendEntry;
 
 class PlotSeries : public QQuickItem {
@@ -54,11 +60,13 @@ class PlotSeries : public QQuickItem {
     Q_PROPERTY(LegendSymbol legendSymbol READ legendSymbol WRITE setLegendSymbol NOTIFY legendSymbolChanged)
     Q_PROPERTY(bool hoverEnabled READ hoverEnabled WRITE setHoverEnabled NOTIFY hoverEnabledChanged)
     Q_PROPERTY(bool hovered READ hovered NOTIFY hoveredChanged)
+    Q_PROPERTY(bool animating READ animating NOTIFY animatingChanged)
 
     
     Q_PROPERTY(quint64 dataRevision READ dataRevision NOTIFY dataRevisionChanged)
     Q_PROPERTY(SeriesInspection* inspection READ inspection CONSTANT)
     Q_PROPERTY(int count READ count NOTIFY countChanged)
+    Q_PROPERTY(QQmlListProperty<SeriesEffect> effects READ effects)
 
 public:
     enum class LegendSymbol { Line, Fill, Marker };
@@ -102,9 +110,12 @@ public:
     bool hoverEnabled() const;
     void setHoverEnabled(bool enabled);
     bool hovered() const;
+    bool animating() const;
 
     virtual std::optional<LegendEntry> legendEntry() const;
     virtual QList<LegendEntry> legendEntries() const;
+
+    QQmlListProperty<SeriesEffect> effects();
 
     void setData(const double* data, int count);
     void setData(std::vector<double>&& data, int count);
@@ -131,6 +142,7 @@ signals:
     void legendSymbolChanged();
     void hoverEnabledChanged();
     void hoveredChanged();
+    void animatingChanged();
     void legendEntryChanged();
 
 protected:
@@ -203,7 +215,14 @@ protected:
     void updateRenderCapacity(int capacity, int recordCount, CapacityOverflow overflow = CapacityOverflow::DropsExcess);
     void supportHover();
     void setHovered(bool hovered);
+    void setAnimating(bool animating);
     bool event(QEvent* event) override;
+    void classBegin() override;
+    void componentComplete() override;
+    void itemChange(ItemChange change, const ItemChangeData& value) override;
+
+    virtual bool supportsEffect(const SeriesEffect& effect) const;
+    const Internal::SeriesEffectList& effectList() const;
 
     int renderCapacity_{std::numeric_limits<int>::max()};
     bool overRenderCapacity_{false};
@@ -224,9 +243,11 @@ private:
     bool hoverSupported_{false};
     bool hoverEnabled_{true};
     bool hovered_{false};
+    bool animating_{false};
     bool hoverDelivered_{false};
     quint64 dataRevision_{0};
     mutable SeriesInspection* inspection_{nullptr};
+    Internal::SeriesEffectList* effects_;
     QString name_;
     QPointer<Axis> xAxis_;
     QPointer<Axis> yAxis_;

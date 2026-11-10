@@ -1441,17 +1441,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#protected-functions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Protected Functions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#detailed-description" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1473,6 +1462,17 @@
   
     <nav class="md-nav" aria-label="Public Properties Documentation">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#property-animations-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property animations
+      
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#property-duration-12" class="md-nav__link">
@@ -1512,6 +1512,17 @@
     <span class="md-ellipsis">
       
         property running
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-stagger-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property stagger
       
     </span>
   </a>
@@ -1579,6 +1590,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#signal-staggerchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal staggerChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1597,21 +1619,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#function-datatransition" class="md-nav__link">
+  <a href="#function-animations-22" class="md-nav__link">
     <span class="md-ellipsis">
       
-        function DataTransition
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#function-advance" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        function advance
+        function animations
       
     </span>
   </a>
@@ -1623,6 +1634,28 @@
     <span class="md-ellipsis">
       
         function cancel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-classbegin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function classBegin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-componentcomplete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function componentComplete
       
     </span>
   </a>
@@ -1656,6 +1689,17 @@
     <span class="md-ellipsis">
       
         function enabled
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-progress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function progress
       
     </span>
   </a>
@@ -1707,6 +1751,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#function-setstagger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setStagger
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-stagger-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function stagger
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-start" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1722,34 +1788,6 @@
     <span class="md-ellipsis">
       
         function ~DataTransition
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#protected-functions-documentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Protected Functions Documentation
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Protected Functions Documentation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#function-interpolate" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        function interpolate
       
     </span>
   </a>
@@ -1780,22 +1818,32 @@
 
 <h1 id="class-qaccelplotdatatransition">Class QAccelPlot::DataTransition<a class="headerlink" href="#class-qaccelplotdatatransition" title="Permanent link">&para;</a></h1>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="./"><strong>DataTransition</strong></a></p>
-<p><em>Abstract base class for animated data transitions on plot elements.</em> <a href="#detailed-description">More...</a></p>
+<p><em>Abstract base class for animated data transitions on plot series.</em> <a href="#detailed-description">More...</a></p>
 <ul>
 <li><code>#include &lt;DataTransition.hpp&gt;</code></li>
 </ul>
-<p>Inherits the following classes: QObject</p>
-<p>Inherited by the following classes: <a href="../classQAccelPlot_1_1DrawTransition/">QAccelPlot::DrawTransition</a>,  <a href="../classQAccelPlot_1_1MorphTransition/">QAccelPlot::MorphTransition</a></p>
+<p>Inherits the following classes: QObject,  QQmlParserStatus</p>
+<p>Inherited by the following classes: <a href="../classQAccelPlot_1_1EnterExitTransition/">QAccelPlot::EnterExitTransition</a>,  <a href="../classQAccelPlot_1_1MorphTransition/">QAccelPlot::MorphTransition</a></p>
 <h2 id="inheritance-diagram">Inheritance diagram<a class="headerlink" href="#inheritance-diagram" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart TB
   classQAccelPlot_1_1DataTransition["QAccelPlot::DataTransition"]
 
   external_base_classQAccelPlot_1_1DataTransition_1["QObject"]
   external_base_classQAccelPlot_1_1DataTransition_1 --&gt; classQAccelPlot_1_1DataTransition
+  external_base_classQAccelPlot_1_1DataTransition_2["QQmlParserStatus"]
+  external_base_classQAccelPlot_1_1DataTransition_2 --&gt; classQAccelPlot_1_1DataTransition
+
+  classQAccelPlot_1_1EnterExitTransition["QAccelPlot::EnterExitTransition"]
+  classQAccelPlot_1_1DataTransition --&gt; classQAccelPlot_1_1EnterExitTransition
+  click classQAccelPlot_1_1EnterExitTransition "../classQAccelPlot_1_1EnterExitTransition/" "Open QAccelPlot::EnterExitTransition"
 
   classQAccelPlot_1_1DrawTransition["QAccelPlot::DrawTransition"]
-  classQAccelPlot_1_1DataTransition --&gt; classQAccelPlot_1_1DrawTransition
+  classQAccelPlot_1_1EnterExitTransition --&gt; classQAccelPlot_1_1DrawTransition
   click classQAccelPlot_1_1DrawTransition "../classQAccelPlot_1_1DrawTransition/" "Open QAccelPlot::DrawTransition"
+
+  classQAccelPlot_1_1GrowTransition["QAccelPlot::GrowTransition"]
+  classQAccelPlot_1_1EnterExitTransition --&gt; classQAccelPlot_1_1GrowTransition
+  click classQAccelPlot_1_1GrowTransition "../classQAccelPlot_1_1GrowTransition/" "Open QAccelPlot::GrowTransition"
 
   classQAccelPlot_1_1MorphTransition["QAccelPlot::MorphTransition"]
   classQAccelPlot_1_1DataTransition --&gt; classQAccelPlot_1_1MorphTransition
@@ -1811,12 +1859,8 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;">struct</td>
-<td style="text-align: left;"><a href="../structQAccelPlot_1_1DataTransition_1_1Dataset/"><strong>Dataset</strong></a> <br><em>Data a transition animates:</em> <code>count</code> <em>items of</em><code>stride</code> <em>values each, e.g. XY points with a stride of 2.</em></td>
-</tr>
-<tr>
 <td style="text-align: right;">class</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition_1_1Run/"><strong>Run</strong></a> <br><em>One animation of a transition on one host element.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition_1_1Run/"><strong>Run</strong></a> <br><em>One animation of a transition on one series.</em></td>
 </tr>
 </tbody>
 </table>
@@ -1830,20 +1874,28 @@
 </thead>
 <tbody>
 <tr>
+<td style="text-align: right;">property QQmlListProperty&lt; QObject &gt;</td>
+<td style="text-align: left;"><a href="./#property-animations-12"><strong>animations</strong></a>  <br><em>Qt Quick animations of the opacity of each item, such as</em> <code>NumberAnimation</code> <em>{ property: "opacity" }.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">property QML_ANONYMOUSint</td>
 <td style="text-align: left;"><a href="./#property-duration-12"><strong>duration</strong></a>  <br><em>Duration of the transition in milliseconds. Default: 300.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property QEasingCurve</td>
-<td style="text-align: left;"><a href="./#property-easing-12"><strong>easing</strong></a>  <br><em>Easing curve applied to the animation progress. Default:</em> <code>QEasingCurve::Linear</code> <em>.</em></td>
+<td style="text-align: left;"><a href="./#property-easing-12"><strong>easing</strong></a>  <br><em>Easing curve applied to the progress of each item. Default:</em> <code>QEasingCurve::Linear</code> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property bool</td>
-<td style="text-align: left;"><a href="./#property-enabled-12"><strong>enabled</strong></a>  <br><em>Whether the transition is active. When</em> <code>false</code> <em>, data updates are applied instantly.</em></td>
+<td style="text-align: left;"><a href="./#property-enabled-12"><strong>enabled</strong></a>  <br><em>Whether the transition is active. When</em> <code>false</code> <em>, the items it animates change instantly.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property bool</td>
-<td style="text-align: left;"><a href="./#property-running-12"><strong>running</strong></a>  <br><em>Read-only:</em> <code>true</code> <em>while the transition is playing on at least one element.</em></td>
+<td style="text-align: left;"><a href="./#property-running-12"><strong>running</strong></a>  <br><em>Read-only:</em> <code>true</code> <em>while the transition is playing on at least one series.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property qreal</td>
+<td style="text-align: left;"><a href="./#property-stagger-12"><strong>stagger</strong></a>  <br><em>Share of</em> <code>duration</code> <em>over which the start times of the items are spread, in [0, 1].</em></td>
 </tr>
 </tbody>
 </table>
@@ -1872,6 +1924,10 @@
 <td style="text-align: right;">signal void</td>
 <td style="text-align: left;"><a href="./#signal-runningchanged"><strong>runningChanged</strong></a>  <br><em>Emitted when the running property changes.</em></td>
 </tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-staggerchanged"><strong>staggerChanged</strong></a>  <br><em>Emitted when the stagger property changes.</em></td>
+</tr>
 </tbody>
 </table>
 <h2 id="public-functions">Public Functions<a class="headerlink" href="#public-functions" title="Permanent link">&para;</a></h2>
@@ -1884,16 +1940,20 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-datatransition"><strong>DataTransition</strong></a> (QObject * parent=nullptr) <br><em>Constructs an</em> <a href="./"><em><strong>DataTransition</strong></em></a> <em>with the given__parent</em> <em>.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">bool</td>
-<td style="text-align: left;"><a href="#function-advance"><strong>advance</strong></a> (<a href="../classQAccelPlot_1_1DataTransition_1_1Run/"><strong>Run</strong></a> &amp; run, std::vector&lt; double &gt; &amp; outData, int &amp; outPointCount) <br><em>Advances</em> <em>run</em> <em>by one frame, writing the interpolated data into__outData</em> <em>.</em></td>
+<td style="text-align: right;">QQmlListProperty&lt; QObject &gt;</td>
+<td style="text-align: left;"><a href="#function-animations-22"><strong>animations</strong></a> () <br><em>Returns the QML list property of the opacity animations.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="#function-cancel"><strong>cancel</strong></a> () <br><em>Ends every active run immediately.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-classbegin"><strong>classBegin</strong></a> () override<br><em>Holds back the warnings about ignored animations while the component loads.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-componentcomplete"><strong>componentComplete</strong></a> () override<br><em>Reports ignored animations once the component is complete.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">int</td>
@@ -1906,6 +1966,10 @@
 <tr>
 <td style="text-align: right;">bool</td>
 <td style="text-align: left;"><a href="#function-enabled-22"><strong>enabled</strong></a> () const<br><em>Returns</em> <code>true</code> <em>if the transition is enabled.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#function-progress"><strong>progress</strong></a> (const <a href="../classQAccelPlot_1_1DataTransition_1_1Run/"><strong>Run</strong></a> &amp; run) const<br><em>Returns the progress of</em> <em>run</em> <em>in [0, 1], before easing.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>
@@ -1925,198 +1989,217 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-start"><strong>start</strong></a> (<a href="../classQAccelPlot_1_1DataTransition_1_1Run/"><strong>Run</strong></a> &amp; run, const std::vector&lt; double &gt; &amp; currentData, int currentPointCount, std::vector&lt; double &gt; &amp;&amp; newData, int newPointCount, int stride=2) <br><em>Starts</em> <em>run</em> <em>from__currentData</em> <em>to__newData</em> <em>, restarting it if it is already active.</em></td>
+<td style="text-align: left;"><a href="#function-setstagger"><strong>setStagger</strong></a> (qreal stagger) <br><em>Sets the stagger to</em> <em>stagger</em> <em>, clamped to [0, 1].</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">qreal</td>
+<td style="text-align: left;"><a href="#function-stagger-22"><strong>stagger</strong></a> () const<br><em>Returns the share of the duration over which item start times are spread.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-start"><strong>start</strong></a> (<a href="../classQAccelPlot_1_1DataTransition_1_1Run/"><strong>Run</strong></a> &amp; run) <br><em>Starts</em> <em>run</em> <em>, restarting it if it is already active.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-datatransition"><strong>~DataTransition</strong></a> () override<br><em>Destroys the transition. Its runs stay pending, so their hosts can still show the target data.</em></td>
-</tr>
-</tbody>
-</table>
-<h2 id="protected-functions">Protected Functions<a class="headerlink" href="#protected-functions" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th style="text-align: right;">Type</th>
-<th style="text-align: left;">Name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: right;">virtual void</td>
-<td style="text-align: left;"><a href="#function-interpolate"><strong>interpolate</strong></a> (double easedProgress, const <a href="../structQAccelPlot_1_1DataTransition_1_1Dataset/"><strong>Dataset</strong></a> &amp; from, const <a href="../structQAccelPlot_1_1DataTransition_1_1Dataset/"><strong>Dataset</strong></a> &amp; to, <a href="../structQAccelPlot_1_1DataTransition_1_1Dataset/"><strong>Dataset</strong></a> &amp; out) = 0<br><em>Subclass entry point — writes the dataset between</em> <em>from</em> <em>and__to</em> <em>at__easedProgress</em> <em>into__out</em> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-datatransition"><strong>~DataTransition</strong></a> () override<br><em>Destroys the transition, ending its runs.</em></td>
 </tr>
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
-<p>Subclasses implement <code>interpolate()</code> to define how the element animates between an old dataset and a new one. The transition is driven frame-by-frame by <code>advance()</code>, which the host element calls on the GUI thread before each scene graph synchronization, so <code>runningChanged</code> is always emitted on the GUI thread.</p>
+<p>A series animates a data change with up to three transitions, matched to its items by index: <code>enterTransition</code> for added items, <code>updateTransition</code> for kept items, and <code>exitTransition</code> for removed items. <code>MorphTransition</code>, <code>DrawTransition</code>, and <code>GrowTransition</code> are the available transitions.</p>
 <p>Time comes from Qt's animation timer on the transition's thread, the clock of QML animations. An installed <code>QAnimationDriver</code> therefore steps transitions too, for example to record frames offscreen at a fixed time step.</p>
-<p>One transition can be assigned to several elements. Each element keeps its own <code>Run</code> with the data it animates between, so the elements animate independently.</p>
-<p><strong>See also:</strong> <a href="../classQAccelPlot_1_1DrawTransition/"><strong>DrawTransition</strong></a>, <a href="../classQAccelPlot_1_1MorphTransition/"><strong>MorphTransition</strong></a>, <a href="../classQAccelPlot_1_1LineCurve/"><strong>LineCurve</strong></a>, <a href="../classQAccelPlot_1_1BarSeries/"><strong>BarSeries</strong></a>, <a href="../classQAccelPlot_1_1PointCloud/"><strong>PointCloud</strong></a> </p>
+<p>One transition can be assigned to several series, and to several slots of one series. Each assignment keeps its own <code>Run</code>, so the animations are independent.</p>
+<p>Qt Quick animations of <code>"opacity"</code> declared inside a transition fade each item, see <code>animations:</code> </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nl">enterTransition</span><span class="p">:</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="p">.</span><span class="n">DrawTransition</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="n">NumberAnimation</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">property</span><span class="o">:</span><span class="w"> </span><span class="s">"opacity"</span><span class="p">;</span><span class="w"> </span><span class="n">from</span><span class="o">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">duration</span><span class="o">:</span><span class="w"> </span><span class="mi">250</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>See also:</strong> <a href="../classQAccelPlot_1_1MorphTransition/"><strong>MorphTransition</strong></a>, <a href="../classQAccelPlot_1_1DrawTransition/"><strong>DrawTransition</strong></a>, <a href="../classQAccelPlot_1_1GrowTransition/"><strong>GrowTransition</strong></a>, <a href="../classQAccelPlot_1_1TransitionRunner/"><strong>TransitionRunner</strong></a> </p>
 <h2 id="public-properties-documentation">Public Properties Documentation<a class="headerlink" href="#public-properties-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="property-animations-12">property animations<a class="headerlink" href="#property-animations-12" title="Permanent link">&para;</a></h3>
+<p><em>Qt Quick animations of the opacity of each item, such as</em> <code>NumberAnimation</code> <em>{ property: "opacity" }.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">QQmlListProperty</span><span class="o">&lt;</span><span class="n">QObject</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">animations</span><span class="p">;</span>
+</code></pre></div></p>
+<p>The default property. The animations run together on the timeline of each item, which starts when the item starts to move. They are read, never run, so <code>running</code>, <code>paused</code>, and their signals have no effect.</p>
+<ul>
+<li>Supported: <code>NumberAnimation</code> and other numeric <code>PropertyAnimation</code> types, <code>PropertyAction</code>, <code>PauseAnimation</code>, <code>SequentialAnimation</code>, and <code>ParallelAnimation</code>, with finite <code>loops</code>.</li>
+<li>A missing <code>from</code> continues from the opacity reached so far, and a missing <code>to</code> is 1. Before its first animation starts, an item shows that animation's start opacity.</li>
+<li>Other animations, such as <code>SpringAnimation</code> or <code>ScriptAction</code>, and animations of other properties log a warning and only add their duration.</li>
+<li>When the animations last longer than an item's share of <code>duration</code>, the start times of the items move closer together, so the transition still ends after <code>duration</code>.</li>
+<li>The opacity is clamped to [0, 1], and every item is opaque again when the transition ends. </li>
+</ul>
+<hr>
+
 <h3 id="property-duration-12">property duration<a class="headerlink" href="#property-duration-12" title="Permanent link">&para;</a></h3>
 <p><em>Duration of the transition in milliseconds. Default: 300.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">QML_ANONYMOUSint</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">duration</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">QML_ANONYMOUSint</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">duration</span><span class="p">;</span>
 </code></pre></div></p>
 <p>With 0 or less, a run shows the target data at its next frame. </p>
 <hr>
 
 <h3 id="property-easing-12">property easing<a class="headerlink" href="#property-easing-12" title="Permanent link">&para;</a></h3>
-<p><em>Easing curve applied to the animation progress. Default:</em> <code>QEasingCurve::Linear</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">QEasingCurve</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">easing</span><span class="p">;</span>
+<p><em>Easing curve applied to the progress of each item. Default:</em> <code>QEasingCurve::Linear</code> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">QEasingCurve</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">easing</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="property-enabled-12">property enabled<a class="headerlink" href="#property-enabled-12" title="Permanent link">&para;</a></h3>
-<p><em>Whether the transition is active. When</em> <code>false</code> <em>, data updates are applied instantly.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">enabled</span><span class="p">;</span>
+<p><em>Whether the transition is active. When</em> <code>false</code> <em>, the items it animates change instantly.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">enabled</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="property-running-12">property running<a class="headerlink" href="#property-running-12" title="Permanent link">&para;</a></h3>
-<p><em>Read-only:</em> <code>true</code> <em>while the transition is playing on at least one element.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">running</span><span class="p">;</span>
+<p><em>Read-only:</em> <code>true</code> <em>while the transition is playing on at least one series.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">running</span><span class="p">;</span>
 </code></pre></div></p>
+<hr>
+
+<h3 id="property-stagger-12">property stagger<a class="headerlink" href="#property-stagger-12" title="Permanent link">&para;</a></h3>
+<p><em>Share of</em> <code>duration</code> <em>over which the start times of the items are spread, in [0, 1].</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">stagger</span><span class="p">;</span>
+</code></pre></div></p>
+<p>0 animates all items together; 1 animates them one after another, each changing at once. Items start in index order. Values outside [0, 1] are clamped. Default: 0, and 1 for <code>DrawTransition</code>. </p>
 <hr>
 <h2 id="public-signals-documentation">Public Signals Documentation<a class="headerlink" href="#public-signals-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="signal-durationchanged">signal durationChanged<a class="headerlink" href="#signal-durationchanged" title="Permanent link">&para;</a></h3>
 <p><em>Emitted when the duration property changes.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">durationChanged</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">durationChanged</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="signal-easingchanged">signal easingChanged<a class="headerlink" href="#signal-easingchanged" title="Permanent link">&para;</a></h3>
 <p><em>Emitted when the easing property changes.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">easingChanged</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">easingChanged</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="signal-enabledchanged">signal enabledChanged<a class="headerlink" href="#signal-enabledchanged" title="Permanent link">&para;</a></h3>
 <p><em>Emitted when the enabled property changes.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">enabledChanged</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">enabledChanged</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="signal-runningchanged">signal runningChanged<a class="headerlink" href="#signal-runningchanged" title="Permanent link">&para;</a></h3>
 <p><em>Emitted when the running property changes.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">runningChanged</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-<h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="function-datatransition">function DataTransition<a class="headerlink" href="#function-datatransition" title="Permanent link">&para;</a></h3>
-<p><em>Constructs an</em> <a href="./"><em><strong>DataTransition</strong></em></a> <em>with the given__parent</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">explicit</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">DataTransition</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="n">QObject</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">parent</span><span class="o">=</span><span class="nb">nullptr</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">runningChanged</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
-<h3 id="function-advance">function advance<a class="headerlink" href="#function-advance" title="Permanent link">&para;</a></h3>
-<p><em>Advances</em> <em>run</em> <em>by one frame, writing the interpolated data into__outData</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">advance</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="n">Run</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">run</span><span class="p">,</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">outData</span><span class="p">,</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">outPointCount</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="p">)</span><span class="w"> </span>
+<h3 id="signal-staggerchanged">signal staggerChanged<a class="headerlink" href="#signal-staggerchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the stagger property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">staggerChanged</span><span class="p">;</span>
 </code></pre></div></p>
-<p>When the duration has elapsed, writes the target data and finishes the run. </p>
-<p><strong>Returns:</strong></p>
-<p><code>true</code> if <em>run</em> is still active after this call. </p>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="function-animations-22">function animations<a class="headerlink" href="#function-animations-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the QML list property of the opacity animations.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">QQmlListProperty</span><span class="o">&lt;</span><span class="w"> </span><span class="n">QObject</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">animations</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</code></pre></div></p>
 <hr>
 
 <h3 id="function-cancel">function cancel<a class="headerlink" href="#function-cancel" title="Permanent link">&para;</a></h3>
 <p><em>Ends every active run immediately.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">cancel</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">cancel</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </code></pre></div></p>
-<p>The runs stay pending; hosts show the target data after <code>running</code> turns <code>false</code>. </p>
+<hr>
+
+<h3 id="function-classbegin">function classBegin<a class="headerlink" href="#function-classbegin" title="Permanent link">&para;</a></h3>
+<p><em>Holds back the warnings about ignored animations while the component loads.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">classBegin</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-componentcomplete">function componentComplete<a class="headerlink" href="#function-componentcomplete" title="Permanent link">&para;</a></h3>
+<p><em>Reports ignored animations once the component is complete.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">componentComplete</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div></p>
 <hr>
 
 <h3 id="function-duration-22">function duration<a class="headerlink" href="#function-duration-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the animation duration in milliseconds.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">duration</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">duration</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-easing-22">function easing<a class="headerlink" href="#function-easing-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the easing curve.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">QEasingCurve</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">easing</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">QEasingCurve</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">easing</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-enabled-22">function enabled<a class="headerlink" href="#function-enabled-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns</em> <code>true</code> <em>if the transition is enabled.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">enabled</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">enabled</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
+<hr>
+
+<h3 id="function-progress">function progress<a class="headerlink" href="#function-progress" title="Permanent link">&para;</a></h3>
+<p><em>Returns the progress of</em> <em>run</em> <em>in [0, 1], before easing.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kt">double</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">progress</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Run</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">run</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<p>It is 1 once the duration has elapsed, and 1 for a run that is not active on this transition. </p>
 <hr>
 
 <h3 id="function-running-22">function running<a class="headerlink" href="#function-running-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns</em> <code>true</code> <em>while at least one run is active.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">running</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">running</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setduration">function setDuration<a class="headerlink" href="#function-setduration" title="Permanent link">&para;</a></h3>
 <p><em>Sets the animation duration to</em> <em>duration</em> <em>milliseconds.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">setDuration</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">duration</span>
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">setDuration</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">duration</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-seteasing">function setEasing<a class="headerlink" href="#function-seteasing" title="Permanent link">&para;</a></h3>
 <p><em>Sets the easing curve to</em> <em>easing</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">setEasing</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QEasingCurve</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">easing</span>
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">setEasing</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QEasingCurve</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">easing</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setenabled">function setEnabled<a class="headerlink" href="#function-setenabled" title="Permanent link">&para;</a></h3>
 <p><em>Sets the enabled state to</em> <em>enabled</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">setEnabled</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">enabled</span>
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">setEnabled</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">enabled</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setstagger">function setStagger<a class="headerlink" href="#function-setstagger" title="Permanent link">&para;</a></h3>
+<p><em>Sets the stagger to</em> <em>stagger</em> <em>, clamped to [0, 1].</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">setStagger</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">stagger</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-stagger-22">function stagger<a class="headerlink" href="#function-stagger-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the share of the duration over which item start times are spread.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">stagger</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-start">function start<a class="headerlink" href="#function-start" title="Permanent link">&para;</a></h3>
-<p><em>Starts</em> <em>run</em> <em>from__currentData</em> <em>to__newData</em> <em>, restarting it if it is already active.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">start</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="n">Run</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">run</span><span class="p">,</span>
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">currentData</span><span class="p">,</span>
-<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">currentPointCount</span><span class="p">,</span>
-<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">newData</span><span class="p">,</span>
-<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">newPointCount</span><span class="p">,</span>
-<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">stride</span><span class="o">=</span><span class="mi">2</span>
-<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="p">)</span><span class="w"> </span>
+<p><em>Starts</em> <em>run</em> <em>, restarting it if it is already active.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">start</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">    </span><span class="n">Run</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">run</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>run</code> <a href="../classQAccelPlot_1_1DataTransition_1_1Run/"><strong>Run</strong></a> of the host element; ended first if another transition advances it. </li>
-<li><code>currentData</code> Current double buffer (copied as the <em>from</em> state). </li>
-<li><code>currentPointCount</code> Number of points in <em>currentData</em>. </li>
-<li><code>newData</code> Target double buffer (moved as the <em>to</em> state). </li>
-<li><code>newPointCount</code> Number of points in <em>newData</em>. </li>
-<li><code>stride</code> Number of values per point in both buffers. Default: 2, XY points. </li>
-</ul>
+<p>A run active on another transition is ended first. </p>
 <hr>
 
 <h3 id="function-datatransition">function ~DataTransition<a class="headerlink" href="#function-datatransition" title="Permanent link">&para;</a></h3>
-<p><em>Destroys the transition. Its runs stay pending, so their hosts can still show the target data.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::~</span><span class="n">DataTransition</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+<p><em>Destroys the transition, ending its runs.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::~</span><span class="n">DataTransition</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
-<hr>
-<h2 id="protected-functions-documentation">Protected Functions Documentation<a class="headerlink" href="#protected-functions-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="function-interpolate">function interpolate<a class="headerlink" href="#function-interpolate" title="Permanent link">&para;</a></h3>
-<p><em>Subclass entry point — writes the dataset between</em> <em>from</em> <em>and__to</em> <em>at__easedProgress</em> <em>into__out</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">interpolate</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">easedProgress</span><span class="p">,</span>
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Dataset</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">from</span><span class="p">,</span>
-<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Dataset</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">to</span><span class="p">,</span>
-<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">    </span><span class="n">Dataset</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">out</span>
-<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
-</code></pre></div></p>
-<p><em>easedProgress</em> runs from 0 to 1 and leaves that range with an overshooting easing curve. <em>from</em> and <em>to</em> share one stride, which <em>out</em> already has; set its <code>values</code> and <code>count</code>. </p>
 <hr>
 
 <hr />

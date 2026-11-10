@@ -1,0 +1,349 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1FadeTrail" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::FadeTrail</compoundname>
+    <basecompoundref refid="classQAccelPlot_1_1SeriesEffect" prot="public" virt="non-virtual">QAccelPlot::SeriesEffect</basecompoundref>
+    <includes local="no">FadeTrail.hpp</includes>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1FadeTrail_1a7465cb0b50fb1e1b4b4e8318f627fedb" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::FadeTrail::length</definition>
+        <argsstring></argsstring>
+        <name>length</name>
+        <qualifiedname>QAccelPlot::FadeTrail::length</qualifiedname>
+        <read>length</read>
+        <write>setLength</write>
+        <briefdescription>
+<para>Share of the items that fades, counted from the oldest, clamped to [0, 1]. Default: 0.5. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/FadeTrail.hpp" line="32" column="5" bodyfile="QAccelPlot/src/QAccelPlot/effects/FadeTrail.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1FadeTrail_1acb24941fa3f06868e290b66500ffe98a" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::FadeTrail::minOpacity</definition>
+        <argsstring></argsstring>
+        <name>minOpacity</name>
+        <qualifiedname>QAccelPlot::FadeTrail::minOpacity</qualifiedname>
+        <read>minOpacity</read>
+        <write>setMinOpacity</write>
+        <briefdescription>
+<para>Opacity of the oldest item, clamped to [0, 1]. Default: 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/FadeTrail.hpp" line="34" column="5" bodyfile="QAccelPlot/src/QAccelPlot/effects/FadeTrail.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1FadeTrail_1af41d91685a84384b1c65222fc537100a" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QEasingCurve</type>
+        <definition>QEasingCurve QAccelPlot::FadeTrail::easing</definition>
+        <argsstring></argsstring>
+        <name>easing</name>
+        <qualifiedname>QAccelPlot::FadeTrail::easing</qualifiedname>
+        <read>easing</read>
+        <write>setEasing</write>
+        <briefdescription>
+<para>How the opacity rises along the fading items, from the oldest. Default: <computeroutput>QEasingCurve::InQuad</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><computeroutput>InQuad</computeroutput> keeps most of the trail dim, like the decaying trace of an oscilloscope; <computeroutput>QEasingCurve::Linear</computeroutput> rises evenly. Values outside [0, 1] are clamped. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/FadeTrail.hpp" line="39" column="5" bodyfile="QAccelPlot/src/QAccelPlot/effects/FadeTrail.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1FadeTrail_1a95772fa6bf4cd8382674d21ef22c4c5c" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::FadeTrail::length_</definition>
+        <argsstring></argsstring>
+        <name>length_</name>
+        <qualifiedname>QAccelPlot::FadeTrail::length_</qualifiedname>
+        <initializer>{0.5}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/FadeTrail.hpp" line="74" column="11" bodyfile="QAccelPlot/src/QAccelPlot/effects/FadeTrail.hpp" bodystart="74" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1FadeTrail_1adb3ee2f4e6472805f475121f37e2a678" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::FadeTrail::minOpacity_</definition>
+        <argsstring></argsstring>
+        <name>minOpacity_</name>
+        <qualifiedname>QAccelPlot::FadeTrail::minOpacity_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/FadeTrail.hpp" line="75" column="11" bodyfile="QAccelPlot/src/QAccelPlot/effects/FadeTrail.hpp" bodystart="75" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1FadeTrail_1a22a3d273f6a402ca9d62bf6dcec17ad3" prot="private" static="no" mutable="no">
+        <type>QEasingCurve</type>
+        <definition>QEasingCurve QAccelPlot::FadeTrail::easing_</definition>
+        <argsstring></argsstring>
+        <name>easing_</name>
+        <qualifiedname>QAccelPlot::FadeTrail::easing_</qualifiedname>
+        <initializer>{QEasingCurve::InQuad}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/FadeTrail.hpp" line="76" column="18" bodyfile="QAccelPlot/src/QAccelPlot/effects/FadeTrail.hpp" bodystart="76" bodyend="76"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1FadeTrail_1af940e49802e08509ea9d5a6545d976f8" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::FadeTrail::FadeTrail</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>FadeTrail</name>
+        <qualifiedname>QAccelPlot::FadeTrail::FadeTrail</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a <ref refid="classQAccelPlot_1_1FadeTrail" kindref="compound">FadeTrail</ref> with the given <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/FadeTrail.hpp" line="43" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1FadeTrail_1a7e63f852d447087682939e6da19b2f35" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::FadeTrail::length</definition>
+        <argsstring>() const</argsstring>
+        <name>length</name>
+        <qualifiedname>QAccelPlot::FadeTrail::length</qualifiedname>
+        <briefdescription>
+<para>Returns the share of the items that fades. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/FadeTrail.hpp" line="46" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1FadeTrail_1a8ef3a458185074271437a352b5e473eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::FadeTrail::setLength</definition>
+        <argsstring>(qreal length)</argsstring>
+        <name>setLength</name>
+        <qualifiedname>QAccelPlot::FadeTrail::setLength</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>Sets the share of the items that fades to <emphasis>length</emphasis>, clamped to [0, 1]. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/FadeTrail.hpp" line="48" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1FadeTrail_1a13718a070a7f1ed5f3481cf0fe9f8c2b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::FadeTrail::minOpacity</definition>
+        <argsstring>() const</argsstring>
+        <name>minOpacity</name>
+        <qualifiedname>QAccelPlot::FadeTrail::minOpacity</qualifiedname>
+        <briefdescription>
+<para>Returns the opacity of the oldest item. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/FadeTrail.hpp" line="51" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1FadeTrail_1a56e7543897ec7ac04497b1161aaec0b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::FadeTrail::setMinOpacity</definition>
+        <argsstring>(qreal opacity)</argsstring>
+        <name>setMinOpacity</name>
+        <qualifiedname>QAccelPlot::FadeTrail::setMinOpacity</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>opacity</declname>
+        </param>
+        <briefdescription>
+<para>Sets the opacity of the oldest item to <emphasis>opacity</emphasis>, clamped to [0, 1]. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/FadeTrail.hpp" line="53" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1FadeTrail_1a6651954b6a5387788f3660be53cd84f9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QEasingCurve</type>
+        <definition>QEasingCurve QAccelPlot::FadeTrail::easing</definition>
+        <argsstring>() const</argsstring>
+        <name>easing</name>
+        <qualifiedname>QAccelPlot::FadeTrail::easing</qualifiedname>
+        <briefdescription>
+<para>Returns how the opacity rises along the fading items. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/FadeTrail.hpp" line="56" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1FadeTrail_1af13d4935d795d3b59c98effdb22e0f6f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::FadeTrail::setEasing</definition>
+        <argsstring>(const QEasingCurve &amp;easing)</argsstring>
+        <name>setEasing</name>
+        <qualifiedname>QAccelPlot::FadeTrail::setEasing</qualifiedname>
+        <param>
+          <type>const QEasingCurve &amp;</type>
+          <declname>easing</declname>
+        </param>
+        <briefdescription>
+<para>Sets how the opacity rises along the fading items to <emphasis>easing</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/FadeTrail.hpp" line="58" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1FadeTrail_1a34a9ad75b0542a65db8f24745e81b47f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::FadeTrail::lengthChanged</definition>
+        <argsstring>()</argsstring>
+        <name>lengthChanged</name>
+        <qualifiedname>QAccelPlot::FadeTrail::lengthChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the length property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/FadeTrail.hpp" line="67" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1FadeTrail_1ae4d8f49da0cc01381d938e27d93a1c7f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::FadeTrail::minOpacityChanged</definition>
+        <argsstring>()</argsstring>
+        <name>minOpacityChanged</name>
+        <qualifiedname>QAccelPlot::FadeTrail::minOpacityChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the minOpacity property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/FadeTrail.hpp" line="69" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1FadeTrail_1a415185eec101db91b19aab211316b26d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::FadeTrail::easingChanged</definition>
+        <argsstring>()</argsstring>
+        <name>easingChanged</name>
+        <qualifiedname>QAccelPlot::FadeTrail::easingChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the easing property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/FadeTrail.hpp" line="71" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Fades the oldest items of a series, like the trace of an oscilloscope. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Items are ordered by index: the first item is the oldest. The oldest <computeroutput>length</computeroutput> share of the items fades from <computeroutput>minOpacity</computeroutput> at the first item to full opacity, along <computeroutput>easing</computeroutput>; the newer items are drawn as usual. Supported by <computeroutput><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref></computeroutput>, line and markers, and <computeroutput><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref></computeroutput>.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1SeriesEffect" kindref="compound">SeriesEffect</ref>, <ref refid="classQAccelPlot_1_1Glow" kindref="compound">Glow</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::FadeTrail</label>
+        <link refid="classQAccelPlot_1_1FadeTrail"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::SeriesEffect</label>
+        <link refid="classQAccelPlot_1_1SeriesEffect"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::FadeTrail</label>
+        <link refid="classQAccelPlot_1_1FadeTrail"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::SeriesEffect</label>
+        <link refid="classQAccelPlot_1_1SeriesEffect"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/effects/FadeTrail.hpp" line="27" column="1" bodyfile="QAccelPlot/src/QAccelPlot/effects/FadeTrail.hpp" bodystart="27" bodyend="77"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1FadeTrail_1af41d91685a84384b1c65222fc537100a" prot="public" virt="non-virtual"><scope>QAccelPlot::FadeTrail</scope><name>easing</name></member>
+      <member refid="classQAccelPlot_1_1FadeTrail_1a6651954b6a5387788f3660be53cd84f9" prot="public" virt="non-virtual"><scope>QAccelPlot::FadeTrail</scope><name>easing</name></member>
+      <member refid="classQAccelPlot_1_1FadeTrail_1a22a3d273f6a402ca9d62bf6dcec17ad3" prot="private" virt="non-virtual"><scope>QAccelPlot::FadeTrail</scope><name>easing_</name></member>
+      <member refid="classQAccelPlot_1_1FadeTrail_1a415185eec101db91b19aab211316b26d" prot="public" virt="non-virtual"><scope>QAccelPlot::FadeTrail</scope><name>easingChanged</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1a9ca3c976da919b97bea1165e9b06b9b0" prot="public" virt="non-virtual"><scope>QAccelPlot::FadeTrail</scope><name>effectChanged</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1a8bdcac95c85b537ef52bad92c4587743" prot="public" virt="non-virtual"><scope>QAccelPlot::FadeTrail</scope><name>enabled</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1a4608e55ea1dec2ff079e6143c5ea6e0b" prot="public" virt="non-virtual"><scope>QAccelPlot::FadeTrail</scope><name>enabled</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1aa19ca37db0f344742149b3b0a2850e38" prot="public" virt="non-virtual"><scope>QAccelPlot::FadeTrail</scope><name>enabledChanged</name></member>
+      <member refid="classQAccelPlot_1_1FadeTrail_1af940e49802e08509ea9d5a6545d976f8" prot="public" virt="non-virtual"><scope>QAccelPlot::FadeTrail</scope><name>FadeTrail</name></member>
+      <member refid="classQAccelPlot_1_1FadeTrail_1a7465cb0b50fb1e1b4b4e8318f627fedb" prot="public" virt="non-virtual"><scope>QAccelPlot::FadeTrail</scope><name>length</name></member>
+      <member refid="classQAccelPlot_1_1FadeTrail_1a7e63f852d447087682939e6da19b2f35" prot="public" virt="non-virtual"><scope>QAccelPlot::FadeTrail</scope><name>length</name></member>
+      <member refid="classQAccelPlot_1_1FadeTrail_1a95772fa6bf4cd8382674d21ef22c4c5c" prot="private" virt="non-virtual"><scope>QAccelPlot::FadeTrail</scope><name>length_</name></member>
+      <member refid="classQAccelPlot_1_1FadeTrail_1a34a9ad75b0542a65db8f24745e81b47f" prot="public" virt="non-virtual"><scope>QAccelPlot::FadeTrail</scope><name>lengthChanged</name></member>
+      <member refid="classQAccelPlot_1_1FadeTrail_1acb24941fa3f06868e290b66500ffe98a" prot="public" virt="non-virtual"><scope>QAccelPlot::FadeTrail</scope><name>minOpacity</name></member>
+      <member refid="classQAccelPlot_1_1FadeTrail_1a13718a070a7f1ed5f3481cf0fe9f8c2b" prot="public" virt="non-virtual"><scope>QAccelPlot::FadeTrail</scope><name>minOpacity</name></member>
+      <member refid="classQAccelPlot_1_1FadeTrail_1adb3ee2f4e6472805f475121f37e2a678" prot="private" virt="non-virtual"><scope>QAccelPlot::FadeTrail</scope><name>minOpacity_</name></member>
+      <member refid="classQAccelPlot_1_1FadeTrail_1ae4d8f49da0cc01381d938e27d93a1c7f" prot="public" virt="non-virtual"><scope>QAccelPlot::FadeTrail</scope><name>minOpacityChanged</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1ae078e25386b2b645f2d2e62a3648e2f3" prot="public" virt="virtual"><scope>QAccelPlot::FadeTrail</scope><name>refresh</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1a2dac68d7ce3c6ed01437125c7a547c11" prot="public" virt="non-virtual"><scope>QAccelPlot::FadeTrail</scope><name>SeriesEffect</name></member>
+      <member refid="classQAccelPlot_1_1FadeTrail_1af13d4935d795d3b59c98effdb22e0f6f" prot="public" virt="non-virtual"><scope>QAccelPlot::FadeTrail</scope><name>setEasing</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1aeb23262e92b2c37fda89636a3ffc995b" prot="public" virt="non-virtual"><scope>QAccelPlot::FadeTrail</scope><name>setEnabled</name></member>
+      <member refid="classQAccelPlot_1_1FadeTrail_1a8ef3a458185074271437a352b5e473eb" prot="public" virt="non-virtual"><scope>QAccelPlot::FadeTrail</scope><name>setLength</name></member>
+      <member refid="classQAccelPlot_1_1FadeTrail_1a56e7543897ec7ac04497b1161aaec0b1" prot="public" virt="non-virtual"><scope>QAccelPlot::FadeTrail</scope><name>setMinOpacity</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

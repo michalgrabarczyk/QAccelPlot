@@ -44,7 +44,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| class | [**MorphTransition**](classQAccelPlot_1_1MorphTransition.md) <br>_An animation transition that smoothly interpolates point positions between two datasets._  |
+| class | [**MorphTransition**](classQAccelPlot_1_1MorphTransition.md) <br>_An update transition that interpolates each kept item from its old values to its new ones._  |
 
 
 

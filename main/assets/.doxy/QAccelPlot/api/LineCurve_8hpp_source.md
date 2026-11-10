@@ -18,7 +18,6 @@
 #pragma once
 
 #include "QAccelPlot/effects/GradientColorTypes.hpp"
-#include "QAccelPlot/effects/LineCurveEffect.hpp"
 #include "QAccelPlot/linestyles/SolidLine.hpp"
 #include "QAccelPlot/renderers/LineCurveLineRenderer.hpp"
 #include "QAccelPlot/renderers/LineCurvePointRenderer.hpp"
@@ -28,7 +27,7 @@
 #include "QAccelPlot/series/SeriesMarker.hpp"
 #include "QAccelPlot/series/StepMode.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
-#include "QAccelPlot/transitions/DataTransition.hpp"
+#include "QAccelPlot/transitions/TransitionRunner.hpp"
 
 #include <QPointF>
 #include <QPointer>
@@ -42,8 +41,6 @@
 
 namespace QAccelPlot {
 
-class TransitionRunner;
-
 class LineCurve : public PlotSeries {
     Q_OBJECT
     QML_NAMED_ELEMENT(LineCurve)
@@ -52,10 +49,11 @@ class LineCurve : public PlotSeries {
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
     Q_PROPERTY(qreal lineWidth READ lineWidth WRITE setLineWidth NOTIFY lineWidthChanged)
     Q_PROPERTY(qreal hoverRadius READ hoverRadius WRITE setHoverRadius NOTIFY hoverRadiusChanged)
-    Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
+    Q_PROPERTY(EnterExitTransition* enterTransition READ enterTransition WRITE setEnterTransition NOTIFY enterTransitionChanged)
+    Q_PROPERTY(DataTransition* updateTransition READ updateTransition WRITE setUpdateTransition NOTIFY updateTransitionChanged)
+    Q_PROPERTY(EnterExitTransition* exitTransition READ exitTransition WRITE setExitTransition NOTIFY exitTransitionChanged)
     Q_PROPERTY(LineStyle* lineStyle READ lineStyle WRITE setLineStyle NOTIFY lineStyleChanged)
     Q_PROPERTY(qreal antialiasingFeather READ antialiasingFeather WRITE setAntialiasingFeather NOTIFY antialiasingFeatherChanged)
-    Q_PROPERTY(QQmlListProperty<LineCurveEffect> effects READ effects)
     Q_PROPERTY(LineCurveGaps* gaps READ gaps CONSTANT)
     Q_PROPERTY(SeriesMarker* marker READ marker CONSTANT)
     Q_PROPERTY(StepMode stepMode READ stepMode WRITE setStepMode NOTIFY stepModeChanged)
@@ -73,16 +71,18 @@ public:
     qreal hoverRadius() const;
     void setHoverRadius(qreal radius);
 
-    DataTransition* transition() const;
-    void setTransition(DataTransition* transition);
+    EnterExitTransition* enterTransition() const;
+    void setEnterTransition(EnterExitTransition* transition);
+    DataTransition* updateTransition() const;
+    void setUpdateTransition(DataTransition* transition);
+    EnterExitTransition* exitTransition() const;
+    void setExitTransition(EnterExitTransition* transition);
 
     LineStyle* lineStyle() const;
     void setLineStyle(LineStyle* style);
 
     qreal antialiasingFeather() const;
     void setAntialiasingFeather(qreal feather);
-
-    QQmlListProperty<LineCurveEffect> effects();
 
     LineCurveGaps* gaps() const;
 
@@ -104,10 +104,10 @@ protected:
     Internal::InspectionSource inspectionSource() const override;
     bool inspectionAvailable() const override;
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updatePaintNodeData) override;
-    void itemChange(ItemChange change, const ItemChangeData& value) override;
     void hoverEnterEvent(QHoverEvent* event) override;
     void hoverLeaveEvent(QHoverEvent* event) override;
     bool contains(const QPointF& point) const override;
+    bool supportsEffect(const SeriesEffect& effect) const override;
     void applyDataPoints(DataPointInput&& input) override;
     void onAxisScaleChanged() override;
     void onDataPointsChanged(DataChange change, int previousCount) override;
@@ -116,27 +116,26 @@ signals:
     void colorChanged();
     void lineWidthChanged();
     void hoverRadiusChanged();
-    void transitionChanged();
+    void enterTransitionChanged();
+    void updateTransitionChanged();
+    void exitTransitionChanged();
     void lineStyleChanged();
     void antialiasingFeatherChanged();
     void stepModeChanged();
 
 private:
-    void onTransitionDestroyed();
     void onLineStyleChanged();
     void onLineStyleDestroyed();
     void onNanGapModeChanged();
     void onMarkerShapeChanged();
 
-    static void appendEffect(QQmlListProperty<LineCurveEffect>* list, LineCurveEffect* effect);
-    static qsizetype effectCount(QQmlListProperty<LineCurveEffect>* list);
-    static LineCurveEffect* effectAt(QQmlListProperty<LineCurveEffect>* list, qsizetype index);
-    static void clearEffects(QQmlListProperty<LineCurveEffect>* list);
-
     bool hasGradientEffect() const;
     GradientColorPayload resolveGradientColorPayload() const;
     GradientFillPayload resolveGradientFillPayload() const;
     std::pair<qreal, qreal> gradientDataRange(Qt::Orientation direction) const;
+    // The points the running transition fades, as indices into the render data, which leaves out
+    // invalid points in NanGapMode::Connect.
+    Internal::ItemFade renderedFade() const;
 
     void applyNewData(std::vector<float>&& newData, int newPointCount);
     void applyNewData(std::vector<double>&& newData, int newPointCount);
@@ -158,9 +157,8 @@ private:
     void finishTransition();
     // Starts a transition from the points drawn now to the stored points, the new data.
     void startTransition(std::vector<double>&& from, int fromCount);
-    // Effects refresh on the GUI thread once per frame, from QQuickWindow::afterAnimating.
-    void connectAnimationTicks(QQuickWindow* window);
-    void refreshEffects();
+    // Shows the next frame of the running transition, or the stored points when it ends.
+    void showTransitionFrame();
     void advanceTransition();
 
     QColor color_{ColorPalette::dark().seriesPrimary};
@@ -170,14 +168,12 @@ private:
     std::unique_ptr<TransitionRunner> transition_;
     // The previous transition frame, reused for the next one.
     std::vector<double> frameBuffer_;
-    QPointer<QQuickWindow> animationTickWindow_;
     QPointer<LineStyle> lineStyle_{new SolidLine{this}};
     qreal antialiasingFeather_{1.0};
     bool styleChanged_{false};
     LineCurveGaps* gaps_{new LineCurveGaps{this}};
     SeriesMarker* marker_{new SeriesMarker{MarkerShape::None, 4.0, SeriesMarker::NoneShape::Accepted, this}};
     StepMode stepMode_{StepMode::None};
-    QList<LineCurveEffect*> effects_;
     LineCurveLineRenderer lineRenderer_;
     LineCurvePointRenderer pointRenderer_;
 

@@ -1452,28 +1452,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#protected-functions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Protected Functions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#protected-functions-inherited-from-qaccelplotdatatransition" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Protected Functions inherited from QAccelPlot::DataTransition
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#detailed-description" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1540,34 +1518,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#protected-functions-documentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Protected Functions Documentation
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Protected Functions Documentation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#function-interpolate" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        function interpolate
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1587,7 +1537,7 @@
 
 <h1 id="class-qaccelplotmorphtransition">Class QAccelPlot::MorphTransition<a class="headerlink" href="#class-qaccelplotmorphtransition" title="Permanent link">&para;</a></h1>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="./"><strong>MorphTransition</strong></a></p>
-<p><em>An animation transition that smoothly interpolates point positions between two datasets.</em> <a href="#detailed-description">More...</a></p>
+<p><em>An update transition that interpolates each kept item from its old values to its new ones.</em> <a href="#detailed-description">More...</a></p>
 <ul>
 <li><code>#include &lt;MorphTransition.hpp&gt;</code></li>
 </ul>
@@ -1602,6 +1552,8 @@
 
   external_base_classQAccelPlot_1_1DataTransition_1["QObject"]
   external_base_classQAccelPlot_1_1DataTransition_1 --&gt; classQAccelPlot_1_1DataTransition
+  external_base_classQAccelPlot_1_1DataTransition_2["QQmlParserStatus"]
+  external_base_classQAccelPlot_1_1DataTransition_2 --&gt; classQAccelPlot_1_1DataTransition
 </code></pre>
 <h2 id="public-properties-inherited-from-qaccelplotdatatransition">Public Properties inherited from QAccelPlot::DataTransition<a class="headerlink" href="#public-properties-inherited-from-qaccelplotdatatransition" title="Permanent link">&para;</a></h2>
 <p>See <a href="../classQAccelPlot_1_1DataTransition/">QAccelPlot::DataTransition</a></p>
@@ -1614,20 +1566,28 @@
 </thead>
 <tbody>
 <tr>
+<td style="text-align: right;">property QQmlListProperty&lt; QObject &gt;</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition/#property-animations-12"><strong>animations</strong></a>  <br><em>Qt Quick animations of the opacity of each item, such as</em> <code>NumberAnimation</code> <em>{ property: "opacity" }.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">property QML_ANONYMOUSint</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition/#property-duration-12"><strong>duration</strong></a>  <br><em>Duration of the transition in milliseconds. Default: 300.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property QEasingCurve</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition/#property-easing-12"><strong>easing</strong></a>  <br><em>Easing curve applied to the animation progress. Default:</em> <code>QEasingCurve::Linear</code> <em>.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition/#property-easing-12"><strong>easing</strong></a>  <br><em>Easing curve applied to the progress of each item. Default:</em> <code>QEasingCurve::Linear</code> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property bool</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition/#property-enabled-12"><strong>enabled</strong></a>  <br><em>Whether the transition is active. When</em> <code>false</code> <em>, data updates are applied instantly.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition/#property-enabled-12"><strong>enabled</strong></a>  <br><em>Whether the transition is active. When</em> <code>false</code> <em>, the items it animates change instantly.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property bool</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition/#property-running-12"><strong>running</strong></a>  <br><em>Read-only:</em> <code>true</code> <em>while the transition is playing on at least one element.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition/#property-running-12"><strong>running</strong></a>  <br><em>Read-only:</em> <code>true</code> <em>while the transition is playing on at least one series.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property qreal</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition/#property-stagger-12"><strong>stagger</strong></a>  <br><em>Share of</em> <code>duration</code> <em>over which the start times of the items are spread, in [0, 1].</em></td>
 </tr>
 </tbody>
 </table>
@@ -1657,6 +1617,10 @@
 <td style="text-align: right;">signal void</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition/#signal-runningchanged"><strong>runningChanged</strong></a>  <br><em>Emitted when the running property changes.</em></td>
 </tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition/#signal-staggerchanged"><strong>staggerChanged</strong></a>  <br><em>Emitted when the stagger property changes.</em></td>
+</tr>
 </tbody>
 </table>
 <h2 id="public-functions">Public Functions<a class="headerlink" href="#public-functions" title="Permanent link">&para;</a></h2>
@@ -1685,16 +1649,20 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition/#function-datatransition"><strong>DataTransition</strong></a> (QObject * parent=nullptr) <br><em>Constructs an</em> <a href="../classQAccelPlot_1_1DataTransition/"><em><strong>DataTransition</strong></em></a> <em>with the given__parent</em> <em>.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">bool</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition/#function-advance"><strong>advance</strong></a> (<a href="../classQAccelPlot_1_1DataTransition_1_1Run/"><strong>Run</strong></a> &amp; run, std::vector&lt; double &gt; &amp; outData, int &amp; outPointCount) <br><em>Advances</em> <em>run</em> <em>by one frame, writing the interpolated data into__outData</em> <em>.</em></td>
+<td style="text-align: right;">QQmlListProperty&lt; QObject &gt;</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition/#function-animations-22"><strong>animations</strong></a> () <br><em>Returns the QML list property of the opacity animations.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition/#function-cancel"><strong>cancel</strong></a> () <br><em>Ends every active run immediately.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition/#function-classbegin"><strong>classBegin</strong></a> () override<br><em>Holds back the warnings about ignored animations while the component loads.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition/#function-componentcomplete"><strong>componentComplete</strong></a> () override<br><em>Reports ignored animations once the component is complete.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">int</td>
@@ -1707,6 +1675,10 @@
 <tr>
 <td style="text-align: right;">bool</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition/#function-enabled-22"><strong>enabled</strong></a> () const<br><em>Returns</em> <code>true</code> <em>if the transition is enabled.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition/#function-progress"><strong>progress</strong></a> (const <a href="../classQAccelPlot_1_1DataTransition_1_1Run/"><strong>Run</strong></a> &amp; run) const<br><em>Returns the progress of</em> <em>run</em> <em>in [0, 1], before easing.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>
@@ -1726,11 +1698,19 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition/#function-start"><strong>start</strong></a> (<a href="../classQAccelPlot_1_1DataTransition_1_1Run/"><strong>Run</strong></a> &amp; run, const std::vector&lt; double &gt; &amp; currentData, int currentPointCount, std::vector&lt; double &gt; &amp;&amp; newData, int newPointCount, int stride=2) <br><em>Starts</em> <em>run</em> <em>from__currentData</em> <em>to__newData</em> <em>, restarting it if it is already active.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition/#function-setstagger"><strong>setStagger</strong></a> (qreal stagger) <br><em>Sets the stagger to</em> <em>stagger</em> <em>, clamped to [0, 1].</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">qreal</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition/#function-stagger-22"><strong>stagger</strong></a> () const<br><em>Returns the share of the duration over which item start times are spread.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition/#function-start"><strong>start</strong></a> (<a href="../classQAccelPlot_1_1DataTransition_1_1Run/"><strong>Run</strong></a> &amp; run) <br><em>Starts</em> <em>run</em> <em>, restarting it if it is already active.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition/#function-datatransition"><strong>~DataTransition</strong></a> () override<br><em>Destroys the transition. Its runs stay pending, so their hosts can still show the target data.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition/#function-datatransition"><strong>~DataTransition</strong></a> () override<br><em>Destroys the transition, ending its runs.</em></td>
 </tr>
 </tbody>
 </table>
@@ -1745,44 +1725,13 @@
 <tbody>
 <tr>
 <td style="text-align: right;">double</td>
-<td style="text-align: left;"><a href="#function-interpolatecoordinate"><strong>interpolateCoordinate</strong></a> (double from, double to, double easedProgress) <br><em>Returns the coordinate between</em> <em>from</em> <em>and__to</em> <em>at__easedProgress</em> <em>, honoring the invalid-data-point contract.</em></td>
-</tr>
-</tbody>
-</table>
-<h2 id="protected-functions">Protected Functions<a class="headerlink" href="#protected-functions" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th style="text-align: right;">Type</th>
-<th style="text-align: left;">Name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: right;">virtual void</td>
-<td style="text-align: left;"><a href="#function-interpolate"><strong>interpolate</strong></a> (double easedProgress, const <a href="../structQAccelPlot_1_1DataTransition_1_1Dataset/"><strong>Dataset</strong></a> &amp; from, const <a href="../structQAccelPlot_1_1DataTransition_1_1Dataset/"><strong>Dataset</strong></a> &amp; to, <a href="../structQAccelPlot_1_1DataTransition_1_1Dataset/"><strong>Dataset</strong></a> &amp; out) override<br><em>Interpolates every value of every point between</em> <em>from</em> <em>and__to</em> <em>at__easedProgress</em> <em>.</em></td>
-</tr>
-</tbody>
-</table>
-<h2 id="protected-functions-inherited-from-qaccelplotdatatransition">Protected Functions inherited from QAccelPlot::DataTransition<a class="headerlink" href="#protected-functions-inherited-from-qaccelplotdatatransition" title="Permanent link">&para;</a></h2>
-<p>See <a href="../classQAccelPlot_1_1DataTransition/">QAccelPlot::DataTransition</a></p>
-<table>
-<thead>
-<tr>
-<th style="text-align: right;">Type</th>
-<th style="text-align: left;">Name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: right;">virtual void</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition/#function-interpolate"><strong>interpolate</strong></a> (double easedProgress, const <a href="../structQAccelPlot_1_1DataTransition_1_1Dataset/"><strong>Dataset</strong></a> &amp; from, const <a href="../structQAccelPlot_1_1DataTransition_1_1Dataset/"><strong>Dataset</strong></a> &amp; to, <a href="../structQAccelPlot_1_1DataTransition_1_1Dataset/"><strong>Dataset</strong></a> &amp; out) = 0<br><em>Subclass entry point — writes the dataset between</em> <em>from</em> <em>and__to</em> <em>at__easedProgress</em> <em>into__out</em> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-interpolatecoordinate"><strong>interpolateCoordinate</strong></a> (double from, double to, double easedProgress) <br><em>Returns the value between</em> <em>from</em> <em>and__to</em> <em>at__easedProgress</em> <em>, honoring the invalid-data-point contract.</em></td>
 </tr>
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
-<p>Each point is linearly blended from its old position to its new position. When the point counts differ, the extra points start from, or end on, the last point of the shorter dataset. <code>BarSeries</code> grows and shrinks such bars at its baseline instead, and <code>PointCloud</code> shows or removes such points at once. Non-finite coordinates are never interpolated: an invalid target coordinate is applied immediately, and a valid target coordinate replaces an invalid source coordinate without animation.</p>
-<p><strong>See also:</strong> <a href="../classQAccelPlot_1_1DrawTransition/"><strong>DrawTransition</strong></a>, <a href="../classQAccelPlot_1_1DataTransition/"><strong>DataTransition</strong></a> </p>
+<p>Assign it to a series' <code>updateTransition</code>. Items are matched by index. Non-finite values are never interpolated: an invalid target value is applied immediately, and a valid target value replaces an invalid source value without animation.</p>
+<p><strong>See also:</strong> <a href="../classQAccelPlot_1_1DrawTransition/"><strong>DrawTransition</strong></a>, <a href="../classQAccelPlot_1_1GrowTransition/"><strong>GrowTransition</strong></a>, <a href="../classQAccelPlot_1_1DataTransition/"><strong>DataTransition</strong></a> </p>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-morphtransition">function MorphTransition<a class="headerlink" href="#function-morphtransition" title="Permanent link">&para;</a></h3>
 <p><em>Constructs a</em> <a href="./"><em><strong>MorphTransition</strong></em></a> <em>with the given__parent</em> <em>.</em>
@@ -1793,25 +1742,13 @@
 <hr>
 <h2 id="public-static-functions-documentation">Public Static Functions Documentation<a class="headerlink" href="#public-static-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-interpolatecoordinate">function interpolateCoordinate<a class="headerlink" href="#function-interpolatecoordinate" title="Permanent link">&para;</a></h3>
-<p><em>Returns the coordinate between</em> <em>from</em> <em>and__to</em> <em>at__easedProgress</em> <em>, honoring the invalid-data-point contract.</em>
+<p><em>Returns the value between</em> <em>from</em> <em>and__to</em> <em>at__easedProgress</em> <em>, honoring the invalid-data-point contract.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">static</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">MorphTransition</span><span class="o">::</span><span class="n">interpolateCoordinate</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">from</span><span class="p">,</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">to</span><span class="p">,</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">easedProgress</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
-<hr>
-<h2 id="protected-functions-documentation">Protected Functions Documentation<a class="headerlink" href="#protected-functions-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="function-interpolate">function interpolate<a class="headerlink" href="#function-interpolate" title="Permanent link">&para;</a></h3>
-<p><em>Interpolates every value of every point between</em> <em>from</em> <em>and__to</em> <em>at__easedProgress</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">MorphTransition</span><span class="o">::</span><span class="n">interpolate</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">easedProgress</span><span class="p">,</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Dataset</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">from</span><span class="p">,</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Dataset</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">to</span><span class="p">,</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="n">Dataset</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">out</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
-</code></pre></div></p>
-<p>Implements <a href="../classQAccelPlot_1_1DataTransition/#function-interpolate"><em>QAccelPlot::DataTransition::interpolate</em></a></p>
 <hr>
 
 <hr />

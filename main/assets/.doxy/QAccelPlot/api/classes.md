@@ -103,8 +103,6 @@
 * [**DataRanges**](structQAccelPlot_1_1PlotSeries_1_1DataRanges.md)
 ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
 * [**DataRangeSource**](structQAccelPlot_1_1Axis_1_1DataRangeSource.md)
-* [**Dataset**](structQAccelPlot_1_1DataTransition_1_1Dataset.md)
-([**QAccelPlot::DataTransition**](classQAccelPlot_1_1DataTransition.md))
 * [**DataTexture**](classQAccelPlot_1_1DataTexture.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md)
@@ -123,6 +121,8 @@
 
 ## e
 
+* [**EnterExitTransition**](classQAccelPlot_1_1EnterExitTransition.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**Entry**](structQAccelPlot_1_1Internal_1_1CategoryTable_1_1Entry.md)
 ([**QAccelPlot::Internal::CategoryTable**](classQAccelPlot_1_1Internal_1_1CategoryTable.md))
 * [**ErrorBarMaterial**](classQAccelPlot_1_1ErrorBarMaterial.md)
@@ -138,13 +138,23 @@
 
 ## f
 
+* [**FadeTrail**](classQAccelPlot_1_1FadeTrail.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**FillSampleCache**](structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache.md)
 * [**FillSamples**](structQAccelPlot_1_1FillSamples.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**FrontStarts**](classQAccelPlot_1_1Internal_1_1FrontStarts.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
 
 ## g
 
+* [**Glow**](classQAccelPlot_1_1Glow.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**GlowStyle**](structQAccelPlot_1_1Internal_1_1GlowStyle.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* [**GlowUniforms**](structQAccelPlot_1_1Internal_1_1GlowUniforms.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * [**GrabSize**](structQAccelPlot_1_1Internal_1_1GrabSize.md)
 ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * [**GradientColorPayload**](structQAccelPlot_1_1GradientColorPayload.md)
@@ -167,6 +177,8 @@
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**GridLineCollectionParams**](structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams.md)
 * [**GridNode**](classQAccelPlot_1_1GridNode.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**GrowTransition**](classQAccelPlot_1_1GrowTransition.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
@@ -224,6 +236,20 @@
 * [**InspectionSummary**](structQAccelPlot_1_1InspectionSummary.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**ItemBounds**](structQAccelPlot_1_1SpatialGrid_1_1ItemBounds.md)
+* [**ItemClock**](classQAccelPlot_1_1Internal_1_1ItemClock.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* [**ItemFade**](structQAccelPlot_1_1Internal_1_1ItemFade.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* [**ItemFadeGroup**](structQAccelPlot_1_1Internal_1_1ItemFadeGroup.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* [**ItemFadeGroupUniforms**](structQAccelPlot_1_1Internal_1_1ItemFadeGroupUniforms.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* [**ItemOpacityUniforms**](structQAccelPlot_1_1Internal_1_1ItemOpacityUniforms.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* [**ItemTiming**](structQAccelPlot_1_1Internal_1_1ItemTiming.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* [**ItemTrail**](structQAccelPlot_1_1Internal_1_1ItemTrail.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
 
 ## j
@@ -241,8 +267,6 @@
 * [**LegendModel**](classQAccelPlot_1_1LegendModel.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**LineCurve**](classQAccelPlot_1_1LineCurve.md)
-([**QAccelPlot**](namespaceQAccelPlot.md))
-* [**LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**LineCurveGaps**](classQAccelPlot_1_1LineCurveGaps.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
@@ -281,6 +305,10 @@
 
 ## o
 
+* [**OpacitySegment**](structQAccelPlot_1_1Internal_1_1OpacitySegment.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* [**OpacityTimeline**](classQAccelPlot_1_1Internal_1_1OpacityTimeline.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * [**Origin**](structQAccelPlot_1_1DataPointStore_1_1Origin.md)
 * [**OutlinedRectangle**](classQAccelPlot_1_1Internal_1_1OutlinedRectangle.md)
 ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
@@ -341,6 +369,7 @@
 ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * [**Region**](structQAccelPlot_1_1SelectionTool_1_1Region.md)
 * [**RenderView**](structQAccelPlot_1_1BandSeries_1_1RenderView.md)
+* [**Resolved**](structQAccelPlot_1_1Internal_1_1OpacityTimeline_1_1Resolved.md)
 * [**Row**](structQAccelPlot_1_1LegendModel_1_1Row.md)
 * [**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md)
 ([**QAccelPlot::DataTransition**](classQAccelPlot_1_1DataTransition.md))
@@ -355,6 +384,10 @@
 ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * [**SelectionTool**](classQAccelPlot_1_1SelectionTool.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**SeriesEffect**](classQAccelPlot_1_1SeriesEffect.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**SeriesEffectList**](classQAccelPlot_1_1Internal_1_1SeriesEffectList.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * [**SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**SeriesMarker**](classQAccelPlot_1_1SeriesMarker.md)
@@ -378,8 +411,18 @@
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**TransitionFrameInput**](structQAccelPlot_1_1Internal_1_1TransitionFrameInput.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* [**TransitionItems**](structQAccelPlot_1_1Internal_1_1TransitionItems.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* [**TransitionLayout**](structQAccelPlot_1_1Internal_1_1TransitionLayout.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * [**TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**TransitionSlots**](structQAccelPlot_1_1Internal_1_1TransitionSlots.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* [**TransitionStep**](structQAccelPlot_1_1Internal_1_1TransitionStep.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
 
 ## u

@@ -19,7 +19,7 @@
 
 * `#include "QAccelPlot/series/PlotSeries.hpp"`
 * `#include "QAccelPlot/series/SpatialGrid.hpp"`
-* `#include "QAccelPlot/transitions/DataTransition.hpp"`
+* `#include "QAccelPlot/transitions/TransitionRunner.hpp"`
 * `#include <QColor>`
 * `#include <QList>`
 * `#include <QVariantMap>`

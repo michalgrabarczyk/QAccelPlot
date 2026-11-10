@@ -154,19 +154,40 @@
         <link refid="classQAccelPlot_1_1DataTextureMaterial"/>
         <childnode refid="4" relation="public-inheritance">
         </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>itemFade</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>itemTrail</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>glow</edgelabel>
+        </childnode>
       </node>
       <node id="1">
         <label>QAccelPlot::GradientLineMaterial</label>
         <link refid="classQAccelPlot_1_1GradientLineMaterial"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
-        <childnode refid="5" relation="usage">
+        <childnode refid="8" relation="usage">
           <edgelabel>gradientTexture</edgelabel>
         </childnode>
       </node>
-      <node id="5">
+      <node id="8">
         <label>QAccelPlot::GradientTexture</label>
         <link refid="classQAccelPlot_1_1GradientTexture"/>
+      </node>
+      <node id="7">
+        <label>QAccelPlot::Internal::GlowStyle</label>
+        <link refid="structQAccelPlot_1_1Internal_1_1GlowStyle"/>
+      </node>
+      <node id="5">
+        <label>QAccelPlot::Internal::ItemFade</label>
+        <link refid="structQAccelPlot_1_1Internal_1_1ItemFade"/>
+      </node>
+      <node id="6">
+        <label>QAccelPlot::Internal::ItemTrail</label>
+        <link refid="structQAccelPlot_1_1Internal_1_1ItemTrail"/>
       </node>
       <node id="2">
         <label>QAccelPlot::LineMaterial</label>
@@ -197,10 +218,13 @@
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a74a19db442fff0944f5a6ac191afc859" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientLineMaterial</scope><name>DataTextureMaterial</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1ae34fecdef9a4b3c338dcf272d81f1eb1" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientLineMaterial</scope><name>domainMax</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a21b112871373c779d09d5692744b10d9" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientLineMaterial</scope><name>domainMin</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a49dda439c65b3f84a6a84f6a287adb7a" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientLineMaterial</scope><name>glow</name></member>
       <member refid="classQAccelPlot_1_1GradientLineMaterial_1a2a731af14102f2cd15a2ffb2b812fdf4" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientLineMaterial</scope><name>gradientDirection</name></member>
       <member refid="classQAccelPlot_1_1GradientLineMaterial_1a6d5f143720ef36abdd86aa4d4cf17c1c" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientLineMaterial</scope><name>gradientTexture</name></member>
       <member refid="classQAccelPlot_1_1GradientLineMaterial_1a5ce0289e5ac5d2ede4ce91f979c5d080" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientLineMaterial</scope><name>gradientValueMax</name></member>
       <member refid="classQAccelPlot_1_1GradientLineMaterial_1a9d4490655cb965db61ba20e458c3fe6b" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientLineMaterial</scope><name>gradientValueMin</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1ae7f52c58c22e5333bbd6bd89a8746643" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientLineMaterial</scope><name>itemFade</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1afd456b2ac8b2b51d8667771328bb47fb" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientLineMaterial</scope><name>itemTrail</name></member>
       <member refid="classQAccelPlot_1_1LineMaterial_1a1cf3366d7811fd1d0240850a2cc94385" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientLineMaterial</scope><name>LineMaterial</name></member>
       <member refid="classQAccelPlot_1_1LineMaterial_1a484a369db7158d03cea94e3c98132059" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientLineMaterial</scope><name>lineWidth</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a478f24d8b6cf0cefb720ea5788f72abe" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientLineMaterial</scope><name>logScaleX</name></member>

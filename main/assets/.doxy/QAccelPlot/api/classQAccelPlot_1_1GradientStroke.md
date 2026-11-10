@@ -21,7 +21,7 @@ _A_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _effect that replaces the
 
 
 
-Inherits the following classes: [QAccelPlot::LineCurveEffect](classQAccelPlot_1_1LineCurveEffect.md)
+Inherits the following classes: [QAccelPlot::SeriesEffect](classQAccelPlot_1_1SeriesEffect.md)
 
 
 
@@ -32,12 +32,12 @@ Inherits the following classes: [QAccelPlot::LineCurveEffect](classQAccelPlot_1_
 flowchart TB
   classQAccelPlot_1_1GradientStroke["QAccelPlot::GradientStroke"]
 
-  classQAccelPlot_1_1LineCurveEffect["QAccelPlot::LineCurveEffect"]
-  classQAccelPlot_1_1LineCurveEffect --> classQAccelPlot_1_1GradientStroke
-  click classQAccelPlot_1_1LineCurveEffect "../classQAccelPlot_1_1LineCurveEffect/" "Open QAccelPlot::LineCurveEffect"
+  classQAccelPlot_1_1SeriesEffect["QAccelPlot::SeriesEffect"]
+  classQAccelPlot_1_1SeriesEffect --> classQAccelPlot_1_1GradientStroke
+  click classQAccelPlot_1_1SeriesEffect "../classQAccelPlot_1_1SeriesEffect/" "Open QAccelPlot::SeriesEffect"
 
-  external_base_classQAccelPlot_1_1LineCurveEffect_1["QObject"]
-  external_base_classQAccelPlot_1_1LineCurveEffect_1 --> classQAccelPlot_1_1LineCurveEffect
+  external_base_classQAccelPlot_1_1SeriesEffect_1["QObject"]
+  external_base_classQAccelPlot_1_1SeriesEffect_1 --> classQAccelPlot_1_1SeriesEffect
 
 ```
 
@@ -89,13 +89,13 @@ flowchart TB
 | property [**GradientValueSource**](namespaceQAccelPlot_1_1GradientValueSourceNS.md#enum-source) | [**valueMinSource**](classQAccelPlot_1_1GradientStroke.md#property-valueminsource-12)  <br>_How the gradient normalization minimum is determined; see_ `GradientValueSource` _._ |
 
 
-## Public Properties inherited from QAccelPlot::LineCurveEffect
+## Public Properties inherited from QAccelPlot::SeriesEffect
 
-See [QAccelPlot::LineCurveEffect](classQAccelPlot_1_1LineCurveEffect.md)
+See [QAccelPlot::SeriesEffect](classQAccelPlot_1_1SeriesEffect.md)
 
 | Type | Name |
 | ---: | :--- |
-| property QML\_ANONYMOUSbool | [**enabled**](classQAccelPlot_1_1LineCurveEffect.md#property-enabled-12)  <br>_Whether this effect is active. Disabled effects are ignored during rendering._  |
+| property QML\_ANONYMOUSbool | [**enabled**](classQAccelPlot_1_1SeriesEffect.md#property-enabled-12)  <br>_Whether this effect is active. Disabled effects are ignored during rendering._  |
 
 
 
@@ -115,14 +115,14 @@ See [QAccelPlot::LineCurveEffect](classQAccelPlot_1_1LineCurveEffect.md)
 | signal void | [**valueMinSourceChanged**](classQAccelPlot_1_1GradientStroke.md#signal-valueminsourcechanged)  <br>_Emitted when the valueMinSource property changes._  |
 
 
-## Public Signals inherited from QAccelPlot::LineCurveEffect
+## Public Signals inherited from QAccelPlot::SeriesEffect
 
-See [QAccelPlot::LineCurveEffect](classQAccelPlot_1_1LineCurveEffect.md)
+See [QAccelPlot::SeriesEffect](classQAccelPlot_1_1SeriesEffect.md)
 
 | Type | Name |
 | ---: | :--- |
-| signal void | [**effectChanged**](classQAccelPlot_1_1LineCurveEffect.md#signal-effectchanged)  <br>_Emitted when any effect property changes, requesting a curve redraw._  |
-| signal void | [**enabledChanged**](classQAccelPlot_1_1LineCurveEffect.md#signal-enabledchanged)  <br>_Emitted when the enabled property changes._  |
+| signal void | [**effectChanged**](classQAccelPlot_1_1SeriesEffect.md#signal-effectchanged)  <br>_Emitted when any effect property changes, requesting a redraw of the series._  |
+| signal void | [**enabledChanged**](classQAccelPlot_1_1SeriesEffect.md#signal-enabledchanged)  <br>_Emitted when the enabled property changes._  |
 
 
 
@@ -152,16 +152,16 @@ See [QAccelPlot::LineCurveEffect](classQAccelPlot_1_1LineCurveEffect.md)
 |  [**GradientValueSource**](namespaceQAccelPlot_1_1GradientValueSourceNS.md#enum-source) | [**valueMinSource**](#function-valueminsource-22) () const<br>_Returns how the gradient normalization minimum is determined._  |
 
 
-## Public Functions inherited from QAccelPlot::LineCurveEffect
+## Public Functions inherited from QAccelPlot::SeriesEffect
 
-See [QAccelPlot::LineCurveEffect](classQAccelPlot_1_1LineCurveEffect.md)
+See [QAccelPlot::SeriesEffect](classQAccelPlot_1_1SeriesEffect.md)
 
 | Type | Name |
 | ---: | :--- |
-|   | [**LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md#function-linecurveeffect) (QObject \* parent=nullptr) <br>_Constructs an_ [_**LineCurveEffect**_](classQAccelPlot_1_1LineCurveEffect.md) _with the given__parent_ _._ |
-|  bool | [**enabled**](classQAccelPlot_1_1LineCurveEffect.md#function-enabled-22) () const<br>_Returns_ `true` _if the effect is active._ |
-| virtual void | [**refresh**](classQAccelPlot_1_1LineCurveEffect.md#function-refresh) () <br>_Re-reads inputs that can change without a notification and emits_ `effectChanged()` _if they did._ |
-|  void | [**setEnabled**](classQAccelPlot_1_1LineCurveEffect.md#function-setenabled) (bool enabled) <br>_Sets the effect's enabled state to_ _enabled_ _._ |
+|   | [**SeriesEffect**](classQAccelPlot_1_1SeriesEffect.md#function-serieseffect) (QObject \* parent=nullptr) <br>_Constructs a_ [_**SeriesEffect**_](classQAccelPlot_1_1SeriesEffect.md) _with the given__parent_ _._ |
+|  bool | [**enabled**](classQAccelPlot_1_1SeriesEffect.md#function-enabled-22) () const<br>_Returns_ `true` _if the effect is active._ |
+| virtual void | [**refresh**](classQAccelPlot_1_1SeriesEffect.md#function-refresh) () <br>_Re-reads inputs that can change without a notification and emits_ `effectChanged()` _if they did._ |
+|  void | [**setEnabled**](classQAccelPlot_1_1SeriesEffect.md#function-setenabled) (bool enabled) <br>_Sets the effect's enabled state to_ _enabled_ _._ |
 
 
 
@@ -224,7 +224,7 @@ Attach to `LineCurve::effects` to color the line with a gradient. The color stop
 
 
 
-**See also:** [**GradientFill**](classQAccelPlot_1_1GradientFill.md), [**Colormap**](classQAccelPlot_1_1Colormap.md), [**LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md), [**LineCurve**](classQAccelPlot_1_1LineCurve.md) 
+**See also:** [**GradientFill**](classQAccelPlot_1_1GradientFill.md), [**Colormap**](classQAccelPlot_1_1Colormap.md), [**SeriesEffect**](classQAccelPlot_1_1SeriesEffect.md), [**LineCurve**](classQAccelPlot_1_1LineCurve.md) 
 
 
 
@@ -543,7 +543,7 @@ virtual void QAccelPlot::GradientStroke::refresh () override
 
 
 
-Implements [*QAccelPlot::LineCurveEffect::refresh*](classQAccelPlot_1_1LineCurveEffect.md#function-refresh)
+Implements [*QAccelPlot::SeriesEffect::refresh*](classQAccelPlot_1_1SeriesEffect.md#function-refresh)
 
 
 <hr>

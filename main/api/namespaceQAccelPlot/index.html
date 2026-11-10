@@ -1843,7 +1843,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition/"><strong>DataTransition</strong></a> <br><em>Abstract base class for animated data transitions on plot elements.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition/"><strong>DataTransition</strong></a> <br><em>Abstract base class for animated data transitions on plot series.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
@@ -1851,7 +1851,11 @@
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1DrawTransition/"><strong>DrawTransition</strong></a> <br><em>An animation transition that reveals the target data point by point from start to end.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DrawTransition/"><strong>DrawTransition</strong></a> <br><em>A transition that reveals items one after another, in index order.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">class</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1EnterExitTransition/"><strong>EnterExitTransition</strong></a> <br><em>Abstract base class for transitions that bring items in or take them out.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
@@ -1862,8 +1866,16 @@
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1ErrorBarSeries/"><strong>ErrorBarSeries</strong></a> <br><em>A hardware-accelerated QML item that draws error bars: a line from a low to a high bound at each data point, capped at both ends.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">class</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1FadeTrail/"><strong>FadeTrail</strong></a> <br><em>Fades the oldest items of a series, like the trace of an oscilloscope.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">struct</td>
 <td style="text-align: left;"><a href="../structQAccelPlot_1_1FillSamples/"><strong>FillSamples</strong></a> <br><em>Outline of a gradient fill in data space: one group of points per run of valid data points, broken at gaps.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">class</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1Glow/"><strong>Glow</strong></a> <br><em>A soft halo around the lines and markers of a series.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">struct</td>
@@ -1904,6 +1916,10 @@
 <tr>
 <td style="text-align: right;">class</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1GridNode/"><strong>GridNode</strong></a> <br><em>Internal QSGNode responsible for rendering the plot grid into the scene graph.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">class</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1GrowTransition/"><strong>GrowTransition</strong></a> <br><em>A transition that grows item values from a baseline.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
@@ -1963,10 +1979,6 @@
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1LineCurveEffect/"><strong>LineCurveEffect</strong></a> <br><em>Abstract base class for visual effects applied to a</em> <code>LineCurve</code> <em>.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">class</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1LineCurveGaps/"><strong>LineCurveGaps</strong></a> <br><em>Controls how a</em> <code>LineCurve</code> <em>renders gaps in its data.</em></td>
 </tr>
 <tr>
@@ -1999,7 +2011,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1MorphTransition/"><strong>MorphTransition</strong></a> <br><em>An animation transition that smoothly interpolates point positions between two datasets.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1MorphTransition/"><strong>MorphTransition</strong></a> <br><em>An update transition that interpolates each kept item from its old values to its new ones.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
@@ -2075,6 +2087,10 @@
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1SeriesEffect/"><strong>SeriesEffect</strong></a> <br><em>Abstract base class for visual effects applied to a series.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">class</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1SeriesInspection/"><strong>SeriesInspection</strong></a> <br><em>Data queries for one series: nearest data points, brackets, region statistics, and index pages.</em></td>
 </tr>
 <tr>
@@ -2103,7 +2119,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1TransitionRunner/"><strong>TransitionRunner</strong></a> <br><em>Runs the</em> <code>DataTransition</code> <em>assigned to one item, such as a custom series.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TransitionRunner/"><strong>TransitionRunner</strong></a> <br><em>Runs the enter, update, and exit transitions of one item, such as a custom series.</em></td>
 </tr>
 </tbody>
 </table>

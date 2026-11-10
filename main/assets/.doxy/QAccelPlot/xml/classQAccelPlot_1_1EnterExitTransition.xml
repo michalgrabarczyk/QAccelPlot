@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1EnterExitTransition" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::EnterExitTransition</compoundname>
+    <basecompoundref refid="classQAccelPlot_1_1DataTransition" prot="public" virt="non-virtual">QAccelPlot::DataTransition</basecompoundref>
+    <derivedcompoundref refid="classQAccelPlot_1_1DrawTransition" prot="public" virt="non-virtual">QAccelPlot::DrawTransition</derivedcompoundref>
+    <derivedcompoundref refid="classQAccelPlot_1_1GrowTransition" prot="public" virt="non-virtual">QAccelPlot::GrowTransition</derivedcompoundref>
+    <includes local="no">EnterExitTransition.hpp</includes>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classQAccelPlot_1_1EnterExitTransition_1a5b3ce488e4da9788e531925013c1f93f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class DrawTransition</definition>
+        <argsstring></argsstring>
+        <name>DrawTransition</name>
+        <qualifiedname>QAccelPlot::EnterExitTransition::DrawTransition</qualifiedname>
+        <param>
+          <type>DrawTransition</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/EnterExitTransition.hpp" line="28" column="18" bodyfile="QAccelPlot/src/QAccelPlot/transitions/EnterExitTransition.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classQAccelPlot_1_1EnterExitTransition_1a79143af34b8fae700c2f6971c0533267" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class GrowTransition</definition>
+        <argsstring></argsstring>
+        <name>GrowTransition</name>
+        <qualifiedname>QAccelPlot::EnterExitTransition::GrowTransition</qualifiedname>
+        <param>
+          <type>GrowTransition</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/EnterExitTransition.hpp" line="29" column="18" bodyfile="QAccelPlot/src/QAccelPlot/transitions/EnterExitTransition.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1EnterExitTransition_1a7ec6ae789431764936ae5cfed7f30c2d" prot="private" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::EnterExitTransition::EnterExitTransition</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>EnterExitTransition</name>
+        <qualifiedname>QAccelPlot::EnterExitTransition::EnterExitTransition</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/EnterExitTransition.hpp" line="31" column="14"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Abstract base class for transitions that bring items in or take them out. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Assign one to a series&apos; <computeroutput>enterTransition</computeroutput> to animate added items, or to its <computeroutput>exitTransition</computeroutput> to animate removed items; an exit plays the movement backwards, while opacity animations play as written. Assigned to <computeroutput>updateTransition</computeroutput>, it redraws all new items as one sequence when a kept item changes, and the enter and exit transitions are skipped.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1DrawTransition" kindref="compound">DrawTransition</ref>, <ref refid="classQAccelPlot_1_1GrowTransition" kindref="compound">GrowTransition</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>QAccelPlot::DataTransition</label>
+        <link refid="classQAccelPlot_1_1DataTransition"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>QAccelPlot::DrawTransition</label>
+        <link refid="classQAccelPlot_1_1DrawTransition"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>QAccelPlot::EnterExitTransition</label>
+        <link refid="classQAccelPlot_1_1EnterExitTransition"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>QAccelPlot::GrowTransition</label>
+        <link refid="classQAccelPlot_1_1GrowTransition"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QObject</label>
+      </node>
+      <node id="4">
+        <label>QQmlParserStatus</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>QAccelPlot::DataTransition</label>
+        <link refid="classQAccelPlot_1_1DataTransition"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>QAccelPlot::EnterExitTransition</label>
+        <link refid="classQAccelPlot_1_1EnterExitTransition"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QObject</label>
+      </node>
+      <node id="4">
+        <label>QQmlParserStatus</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/transitions/EnterExitTransition.hpp" line="22" column="1" bodyfile="QAccelPlot/src/QAccelPlot/transitions/EnterExitTransition.hpp" bodystart="22" bodyend="32"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1DataTransition_1aa55f21ef3518f8452c63ae914806ccac" prot="public" virt="non-virtual"><scope>QAccelPlot::EnterExitTransition</scope><name>animations</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a2217ad3f591ea9c95b647268f13a44c2" prot="public" virt="non-virtual"><scope>QAccelPlot::EnterExitTransition</scope><name>animations</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a4c514985f26ad17a66d219fa7b57f557" prot="public" virt="non-virtual"><scope>QAccelPlot::EnterExitTransition</scope><name>cancel</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a92b0325ebecef60d5b11c9e6f8afcd8a" prot="public" virt="non-virtual"><scope>QAccelPlot::EnterExitTransition</scope><name>classBegin</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a0675793914d6e68cecba5bda17d19267" prot="public" virt="non-virtual"><scope>QAccelPlot::EnterExitTransition</scope><name>componentComplete</name></member>
+      <member refid="classQAccelPlot_1_1EnterExitTransition_1a5b3ce488e4da9788e531925013c1f93f" prot="private" virt="non-virtual"><scope>QAccelPlot::EnterExitTransition</scope><name>DrawTransition</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1aaa85f2edef24b72eb568690609ab60fa" prot="public" virt="non-virtual"><scope>QAccelPlot::EnterExitTransition</scope><name>duration</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a93166a6418361d8e209fcdfa32465e1e" prot="public" virt="non-virtual"><scope>QAccelPlot::EnterExitTransition</scope><name>duration</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1adb5d9d25b47e39a4fb73fd0a30bc5e75" prot="public" virt="non-virtual"><scope>QAccelPlot::EnterExitTransition</scope><name>durationChanged</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1aaa1bed54eccf52c687a98295269c3d7c" prot="public" virt="non-virtual"><scope>QAccelPlot::EnterExitTransition</scope><name>easing</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1abcc106afb46ed281fcc49e2793dd5ff7" prot="public" virt="non-virtual"><scope>QAccelPlot::EnterExitTransition</scope><name>easing</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1ae40837c466a956e404cb353552c7ae77" prot="public" virt="non-virtual"><scope>QAccelPlot::EnterExitTransition</scope><name>easingChanged</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a7b3a05823431f464182370e387dc0b41" prot="public" virt="non-virtual"><scope>QAccelPlot::EnterExitTransition</scope><name>enabled</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1adce79119ca3c12b0d59f69ab369e56e8" prot="public" virt="non-virtual"><scope>QAccelPlot::EnterExitTransition</scope><name>enabled</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1ae75636538a959ce1a08227aa09d7aed5" prot="public" virt="non-virtual"><scope>QAccelPlot::EnterExitTransition</scope><name>enabledChanged</name></member>
+      <member refid="classQAccelPlot_1_1EnterExitTransition_1a7ec6ae789431764936ae5cfed7f30c2d" prot="private" virt="non-virtual"><scope>QAccelPlot::EnterExitTransition</scope><name>EnterExitTransition</name></member>
+      <member refid="classQAccelPlot_1_1EnterExitTransition_1a79143af34b8fae700c2f6971c0533267" prot="private" virt="non-virtual"><scope>QAccelPlot::EnterExitTransition</scope><name>GrowTransition</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1af57fd47c65a90cf459015bbfbbb87aea" prot="public" virt="non-virtual"><scope>QAccelPlot::EnterExitTransition</scope><name>progress</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a6299a4b7aedb22a639b1a21e77c8c0c0" prot="public" virt="non-virtual"><scope>QAccelPlot::EnterExitTransition</scope><name>running</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a96c40d0c05b880893df10a2fdd013ebe" prot="public" virt="non-virtual"><scope>QAccelPlot::EnterExitTransition</scope><name>running</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a99928e9029236f818855a1f445d7635d" prot="public" virt="non-virtual"><scope>QAccelPlot::EnterExitTransition</scope><name>runningChanged</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a67e4af4b0d23f49bcdb3e6ddef906c3c" prot="public" virt="non-virtual"><scope>QAccelPlot::EnterExitTransition</scope><name>setDuration</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a5b87a984d607f1fcfc212b9212b0a36b" prot="public" virt="non-virtual"><scope>QAccelPlot::EnterExitTransition</scope><name>setEasing</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a4ba895ca83cfa3163d6dbebe782c8e2b" prot="public" virt="non-virtual"><scope>QAccelPlot::EnterExitTransition</scope><name>setEnabled</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a210acb1c630c2f3b29e54b3a7a525494" prot="public" virt="non-virtual"><scope>QAccelPlot::EnterExitTransition</scope><name>setStagger</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1aa2f77ede320106c6402c9c0d7294d1e9" prot="public" virt="non-virtual"><scope>QAccelPlot::EnterExitTransition</scope><name>stagger</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a77a134bd50ffc4b4eaf9ef16bc685b3b" prot="public" virt="non-virtual"><scope>QAccelPlot::EnterExitTransition</scope><name>stagger</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a2a5e0da87024d82ed44c15b99ea961f2" prot="public" virt="non-virtual"><scope>QAccelPlot::EnterExitTransition</scope><name>staggerChanged</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a916eab10dd57f06cdca645df10108ef1" prot="public" virt="non-virtual"><scope>QAccelPlot::EnterExitTransition</scope><name>start</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1add330610df13a318feacdf411be112b4" prot="public" virt="non-virtual"><scope>QAccelPlot::EnterExitTransition</scope><name>~DataTransition</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

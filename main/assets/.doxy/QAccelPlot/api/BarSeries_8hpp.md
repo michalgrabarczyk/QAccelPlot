@@ -21,7 +21,7 @@
 * `#include "QAccelPlot/series/Category.hpp"`
 * `#include "QAccelPlot/series/ColormappedSeries.hpp"`
 * `#include "QAccelPlot/series/SpatialGrid.hpp"`
-* `#include "QAccelPlot/transitions/DataTransition.hpp"`
+* `#include "QAccelPlot/transitions/TransitionRunner.hpp"`
 * `#include <QtQml/qqmlregistration.h>`
 * `#include <QList>`
 * `#include <QQmlListProperty>`

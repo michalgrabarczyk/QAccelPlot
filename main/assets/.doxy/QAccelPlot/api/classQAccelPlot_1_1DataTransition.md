@@ -15,16 +15,16 @@
 
 
 
-_Abstract base class for animated data transitions on plot elements._ [More...](#detailed-description)
+_Abstract base class for animated data transitions on plot series._ [More...](#detailed-description)
 
 * `#include <DataTransition.hpp>`
 
 
 
-Inherits the following classes: QObject
+Inherits the following classes: QObject,  QQmlParserStatus
 
 
-Inherited by the following classes: [QAccelPlot::DrawTransition](classQAccelPlot_1_1DrawTransition.md),  [QAccelPlot::MorphTransition](classQAccelPlot_1_1MorphTransition.md)
+Inherited by the following classes: [QAccelPlot::EnterExitTransition](classQAccelPlot_1_1EnterExitTransition.md),  [QAccelPlot::MorphTransition](classQAccelPlot_1_1MorphTransition.md)
 
 
 ## Inheritance diagram
@@ -35,10 +35,20 @@ flowchart TB
 
   external_base_classQAccelPlot_1_1DataTransition_1["QObject"]
   external_base_classQAccelPlot_1_1DataTransition_1 --> classQAccelPlot_1_1DataTransition
+  external_base_classQAccelPlot_1_1DataTransition_2["QQmlParserStatus"]
+  external_base_classQAccelPlot_1_1DataTransition_2 --> classQAccelPlot_1_1DataTransition
+
+  classQAccelPlot_1_1EnterExitTransition["QAccelPlot::EnterExitTransition"]
+  classQAccelPlot_1_1DataTransition --> classQAccelPlot_1_1EnterExitTransition
+  click classQAccelPlot_1_1EnterExitTransition "../classQAccelPlot_1_1EnterExitTransition/" "Open QAccelPlot::EnterExitTransition"
 
   classQAccelPlot_1_1DrawTransition["QAccelPlot::DrawTransition"]
-  classQAccelPlot_1_1DataTransition --> classQAccelPlot_1_1DrawTransition
+  classQAccelPlot_1_1EnterExitTransition --> classQAccelPlot_1_1DrawTransition
   click classQAccelPlot_1_1DrawTransition "../classQAccelPlot_1_1DrawTransition/" "Open QAccelPlot::DrawTransition"
+
+  classQAccelPlot_1_1GrowTransition["QAccelPlot::GrowTransition"]
+  classQAccelPlot_1_1EnterExitTransition --> classQAccelPlot_1_1GrowTransition
+  click classQAccelPlot_1_1GrowTransition "../classQAccelPlot_1_1GrowTransition/" "Open QAccelPlot::GrowTransition"
 
   classQAccelPlot_1_1MorphTransition["QAccelPlot::MorphTransition"]
   classQAccelPlot_1_1DataTransition --> classQAccelPlot_1_1MorphTransition
@@ -59,8 +69,7 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-| struct | [**Dataset**](structQAccelPlot_1_1DataTransition_1_1Dataset.md) <br>_Data a transition animates:_ `count` _items of_`stride` _values each, e.g. XY points with a stride of 2._ |
-| class | [**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md) <br>_One animation of a transition on one host element._  |
+| class | [**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md) <br>_One animation of a transition on one series._  |
 
 
 
@@ -79,10 +88,12 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
+| property QQmlListProperty&lt; QObject &gt; | [**animations**](classQAccelPlot_1_1DataTransition.md#property-animations-12)  <br>_Qt Quick animations of the opacity of each item, such as_ `NumberAnimation` _{ property: "opacity" }._ |
 | property QML\_ANONYMOUSint | [**duration**](classQAccelPlot_1_1DataTransition.md#property-duration-12)  <br>_Duration of the transition in milliseconds. Default: 300._  |
-| property QEasingCurve | [**easing**](classQAccelPlot_1_1DataTransition.md#property-easing-12)  <br>_Easing curve applied to the animation progress. Default:_ `QEasingCurve::Linear` _._ |
-| property bool | [**enabled**](classQAccelPlot_1_1DataTransition.md#property-enabled-12)  <br>_Whether the transition is active. When_ `false` _, data updates are applied instantly._ |
-| property bool | [**running**](classQAccelPlot_1_1DataTransition.md#property-running-12)  <br>_Read-only:_ `true` _while the transition is playing on at least one element._ |
+| property QEasingCurve | [**easing**](classQAccelPlot_1_1DataTransition.md#property-easing-12)  <br>_Easing curve applied to the progress of each item. Default:_ `QEasingCurve::Linear` _._ |
+| property bool | [**enabled**](classQAccelPlot_1_1DataTransition.md#property-enabled-12)  <br>_Whether the transition is active. When_ `false` _, the items it animates change instantly._ |
+| property bool | [**running**](classQAccelPlot_1_1DataTransition.md#property-running-12)  <br>_Read-only:_ `true` _while the transition is playing on at least one series._ |
+| property qreal | [**stagger**](classQAccelPlot_1_1DataTransition.md#property-stagger-12)  <br>_Share of_ `duration` _over which the start times of the items are spread, in [0, 1]._ |
 
 
 
@@ -95,6 +106,7 @@ flowchart TB
 | signal void | [**easingChanged**](classQAccelPlot_1_1DataTransition.md#signal-easingchanged)  <br>_Emitted when the easing property changes._  |
 | signal void | [**enabledChanged**](classQAccelPlot_1_1DataTransition.md#signal-enabledchanged)  <br>_Emitted when the enabled property changes._  |
 | signal void | [**runningChanged**](classQAccelPlot_1_1DataTransition.md#signal-runningchanged)  <br>_Emitted when the running property changes._  |
+| signal void | [**staggerChanged**](classQAccelPlot_1_1DataTransition.md#signal-staggerchanged)  <br>_Emitted when the stagger property changes._  |
 
 
 
@@ -103,18 +115,22 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-|   | [**DataTransition**](#function-datatransition) (QObject \* parent=nullptr) <br>_Constructs an_ [_**DataTransition**_](classQAccelPlot_1_1DataTransition.md) _with the given__parent_ _._ |
-|  bool | [**advance**](#function-advance) ([**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md) & run, std::vector&lt; double &gt; & outData, int & outPointCount) <br>_Advances_ _run_ _by one frame, writing the interpolated data into__outData_ _._ |
+|  QQmlListProperty&lt; QObject &gt; | [**animations**](#function-animations-22) () <br>_Returns the QML list property of the opacity animations._  |
 |  void | [**cancel**](#function-cancel) () <br>_Ends every active run immediately._  |
+|  void | [**classBegin**](#function-classbegin) () override<br>_Holds back the warnings about ignored animations while the component loads._  |
+|  void | [**componentComplete**](#function-componentcomplete) () override<br>_Reports ignored animations once the component is complete._  |
 |  int | [**duration**](#function-duration-22) () const<br>_Returns the animation duration in milliseconds._  |
 |  QEasingCurve | [**easing**](#function-easing-22) () const<br>_Returns the easing curve._  |
 |  bool | [**enabled**](#function-enabled-22) () const<br>_Returns_ `true` _if the transition is enabled._ |
+|  double | [**progress**](#function-progress) (const [**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md) & run) const<br>_Returns the progress of_ _run_ _in [0, 1], before easing._ |
 |  bool | [**running**](#function-running-22) () const<br>_Returns_ `true` _while at least one run is active._ |
 |  void | [**setDuration**](#function-setduration) (int duration) <br>_Sets the animation duration to_ _duration_ _milliseconds._ |
 |  void | [**setEasing**](#function-seteasing) (const QEasingCurve & easing) <br>_Sets the easing curve to_ _easing_ _._ |
 |  void | [**setEnabled**](#function-setenabled) (bool enabled) <br>_Sets the enabled state to_ _enabled_ _._ |
-|  void | [**start**](#function-start) ([**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md) & run, const std::vector&lt; double &gt; & currentData, int currentPointCount, std::vector&lt; double &gt; && newData, int newPointCount, int stride=2) <br>_Starts_ _run_ _from__currentData_ _to__newData_ _, restarting it if it is already active._ |
-|   | [**~DataTransition**](#function-datatransition) () override<br>_Destroys the transition. Its runs stay pending, so their hosts can still show the target data._  |
+|  void | [**setStagger**](#function-setstagger) (qreal stagger) <br>_Sets the stagger to_ _stagger_ _, clamped to [0, 1]._ |
+|  qreal | [**stagger**](#function-stagger-22) () const<br>_Returns the share of the duration over which item start times are spread._  |
+|  void | [**start**](#function-start) ([**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md) & run) <br>_Starts_ _run_ _, restarting it if it is already active._ |
+|   | [**~DataTransition**](#function-datatransition) () override<br>_Destroys the transition, ending its runs._  |
 
 
 
@@ -139,11 +155,6 @@ flowchart TB
 
 
 
-## Protected Functions
-
-| Type | Name |
-| ---: | :--- |
-| virtual void | [**interpolate**](#function-interpolate) (double easedProgress, const [**Dataset**](structQAccelPlot_1_1DataTransition_1_1Dataset.md) & from, const [**Dataset**](structQAccelPlot_1_1DataTransition_1_1Dataset.md) & to, [**Dataset**](structQAccelPlot_1_1DataTransition_1_1Dataset.md) & out) = 0<br>_Subclass entry point — writes the dataset between_ _from_ _and__to_ _at__easedProgress_ _into__out_ _._ |
 
 
 
@@ -151,24 +162,65 @@ flowchart TB
 ## Detailed Description
 
 
-Subclasses implement `interpolate()` to define how the element animates between an old dataset and a new one. The transition is driven frame-by-frame by `advance()`, which the host element calls on the GUI thread before each scene graph synchronization, so `runningChanged` is always emitted on the GUI thread.
+A series animates a data change with up to three transitions, matched to its items by index: `enterTransition` for added items, `updateTransition` for kept items, and `exitTransition` for removed items. `MorphTransition`, `DrawTransition`, and `GrowTransition` are the available transitions.
 
 
 Time comes from Qt's animation timer on the transition's thread, the clock of QML animations. An installed `QAnimationDriver` therefore steps transitions too, for example to record frames offscreen at a fixed time step.
 
 
-One transition can be assigned to several elements. Each element keeps its own `Run` with the data it animates between, so the elements animate independently.
+One transition can be assigned to several series, and to several slots of one series. Each assignment keeps its own `Run`, so the animations are independent.
+
+
+Qt Quick animations of `"opacity"` declared inside a transition fade each item, see `animations:` 
+
+
+
+```C++
+enterTransition: QAccelPlot.DrawTransition {
+    NumberAnimation { property: "opacity"; from: 0; duration: 250 }
+}
+```
 
 
 
 
-**See also:** [**DrawTransition**](classQAccelPlot_1_1DrawTransition.md), [**MorphTransition**](classQAccelPlot_1_1MorphTransition.md), [**LineCurve**](classQAccelPlot_1_1LineCurve.md), [**BarSeries**](classQAccelPlot_1_1BarSeries.md), [**PointCloud**](classQAccelPlot_1_1PointCloud.md) 
+
+**See also:** [**MorphTransition**](classQAccelPlot_1_1MorphTransition.md), [**DrawTransition**](classQAccelPlot_1_1DrawTransition.md), [**GrowTransition**](classQAccelPlot_1_1GrowTransition.md), [**TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md) 
 
 
 
     
 ## Public Properties Documentation
 
+
+
+
+
+### property animations {#property-animations-12}
+
+_Qt Quick animations of the opacity of each item, such as_ `NumberAnimation` _{ property: "opacity" }._
+```C++
+QQmlListProperty<QObject> QAccelPlot::DataTransition::animations;
+```
+
+
+
+The default property. The animations run together on the timeline of each item, which starts when the item starts to move. They are read, never run, so `running`, `paused`, and their signals have no effect.
+
+
+
+* Supported: `NumberAnimation` and other numeric `PropertyAnimation` types, `PropertyAction`, `PauseAnimation`, `SequentialAnimation`, and `ParallelAnimation`, with finite `loops`.
+* A missing `from` continues from the opacity reached so far, and a missing `to` is 1. Before its first animation starts, an item shows that animation's start opacity.
+* Other animations, such as `SpringAnimation` or `ScriptAction`, and animations of other properties log a warning and only add their duration.
+* When the animations last longer than an item's share of `duration`, the start times of the items move closer together, so the transition still ends after `duration`.
+* The opacity is clamped to [0, 1], and every item is opaque again when the transition ends. 
+
+
+
+
+        
+
+<hr>
 
 
 
@@ -194,7 +246,7 @@ With 0 or less, a run shows the target data at its next frame.
 
 ### property easing {#property-easing-12}
 
-_Easing curve applied to the animation progress. Default:_ `QEasingCurve::Linear` _._
+_Easing curve applied to the progress of each item. Default:_ `QEasingCurve::Linear` _._
 ```C++
 QEasingCurve QAccelPlot::DataTransition::easing;
 ```
@@ -209,7 +261,7 @@ QEasingCurve QAccelPlot::DataTransition::easing;
 
 ### property enabled {#property-enabled-12}
 
-_Whether the transition is active. When_ `false` _, data updates are applied instantly._
+_Whether the transition is active. When_ `false` _, the items it animates change instantly._
 ```C++
 bool QAccelPlot::DataTransition::enabled;
 ```
@@ -224,13 +276,32 @@ bool QAccelPlot::DataTransition::enabled;
 
 ### property running {#property-running-12}
 
-_Read-only:_ `true` _while the transition is playing on at least one element._
+_Read-only:_ `true` _while the transition is playing on at least one series._
 ```C++
 bool QAccelPlot::DataTransition::running;
 ```
 
 
 
+
+<hr>
+
+
+
+
+### property stagger {#property-stagger-12}
+
+_Share of_ `duration` _over which the start times of the items are spread, in [0, 1]._
+```C++
+qreal QAccelPlot::DataTransition::stagger;
+```
+
+
+
+0 animates all items together; 1 animates them one after another, each changing at once. Items start in index order. Values outside [0, 1] are clamped. Default: 0, and 1 for `DrawTransition`. 
+
+
+        
 
 <hr>
 ## Public Signals Documentation
@@ -295,53 +366,36 @@ void QAccelPlot::DataTransition::runningChanged;
 
 
 <hr>
-## Public Functions Documentation
 
 
 
 
+### signal staggerChanged {#signal-staggerchanged}
 
-### function DataTransition {#function-datatransition}
-
-_Constructs an_ [_**DataTransition**_](classQAccelPlot_1_1DataTransition.md) _with the given__parent_ _._
+_Emitted when the stagger property changes._ 
 ```C++
-explicit QAccelPlot::DataTransition::DataTransition (
-    QObject * parent=nullptr
-) 
+void QAccelPlot::DataTransition::staggerChanged;
 ```
 
 
 
 
 <hr>
+## Public Functions Documentation
 
 
 
 
-### function advance {#function-advance}
 
-_Advances_ _run_ _by one frame, writing the interpolated data into__outData_ _._
+### function animations {#function-animations-22}
+
+_Returns the QML list property of the opacity animations._ 
 ```C++
-bool QAccelPlot::DataTransition::advance (
-    Run & run,
-    std::vector< double > & outData,
-    int & outPointCount
-) 
+QQmlListProperty< QObject > QAccelPlot::DataTransition::animations () 
 ```
 
 
 
-When the duration has elapsed, writes the target data and finishes the run. 
-
-**Returns:**
-
-`true` if _run_ is still active after this call. 
-
-
-
-
-
-        
 
 <hr>
 
@@ -357,10 +411,36 @@ void QAccelPlot::DataTransition::cancel ()
 
 
 
-The runs stay pending; hosts show the target data after `running` turns `false`. 
+
+<hr>
 
 
-        
+
+
+### function classBegin {#function-classbegin}
+
+_Holds back the warnings about ignored animations while the component loads._ 
+```C++
+void QAccelPlot::DataTransition::classBegin () override
+```
+
+
+
+
+<hr>
+
+
+
+
+### function componentComplete {#function-componentcomplete}
+
+_Reports ignored animations once the component is complete._ 
+```C++
+void QAccelPlot::DataTransition::componentComplete () override
+```
+
+
+
 
 <hr>
 
@@ -406,6 +486,27 @@ bool QAccelPlot::DataTransition::enabled () const
 
 
 
+
+<hr>
+
+
+
+
+### function progress {#function-progress}
+
+_Returns the progress of_ _run_ _in [0, 1], before easing._
+```C++
+double QAccelPlot::DataTransition::progress (
+    const Run & run
+) const
+```
+
+
+
+It is 1 once the duration has elapsed, and 1 for a run that is not active on this transition. 
+
+
+        
 
 <hr>
 
@@ -478,35 +579,50 @@ void QAccelPlot::DataTransition::setEnabled (
 
 
 
-### function start {#function-start}
+### function setStagger {#function-setstagger}
 
-_Starts_ _run_ _from__currentData_ _to__newData_ _, restarting it if it is already active._
+_Sets the stagger to_ _stagger_ _, clamped to [0, 1]._
 ```C++
-void QAccelPlot::DataTransition::start (
-    Run & run,
-    const std::vector< double > & currentData,
-    int currentPointCount,
-    std::vector< double > && newData,
-    int newPointCount,
-    int stride=2
+void QAccelPlot::DataTransition::setStagger (
+    qreal stagger
 ) 
 ```
 
 
 
 
-
-**Parameters:**
-
-
-* `run` [**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md) of the host element; ended first if another transition advances it. 
-* `currentData` Current double buffer (copied as the _from_ state). 
-* `currentPointCount` Number of points in _currentData_. 
-* `newData` Target double buffer (moved as the _to_ state). 
-* `newPointCount` Number of points in _newData_. 
-* `stride` Number of values per point in both buffers. Default: 2, XY points. 
+<hr>
 
 
+
+
+### function stagger {#function-stagger-22}
+
+_Returns the share of the duration over which item start times are spread._ 
+```C++
+qreal QAccelPlot::DataTransition::stagger () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function start {#function-start}
+
+_Starts_ _run_ _, restarting it if it is already active._
+```C++
+void QAccelPlot::DataTransition::start (
+    Run & run
+) 
+```
+
+
+
+A run active on another transition is ended first. 
 
 
         
@@ -518,39 +634,13 @@ void QAccelPlot::DataTransition::start (
 
 ### function ~DataTransition {#function-datatransition}
 
-_Destroys the transition. Its runs stay pending, so their hosts can still show the target data._ 
+_Destroys the transition, ending its runs._ 
 ```C++
 QAccelPlot::DataTransition::~DataTransition () override
 ```
 
 
 
-
-<hr>
-## Protected Functions Documentation
-
-
-
-
-
-### function interpolate {#function-interpolate}
-
-_Subclass entry point — writes the dataset between_ _from_ _and__to_ _at__easedProgress_ _into__out_ _._
-```C++
-virtual void QAccelPlot::DataTransition::interpolate (
-    double easedProgress,
-    const Dataset & from,
-    const Dataset & to,
-    Dataset & out
-) = 0
-```
-
-
-
-_easedProgress_ runs from 0 to 1 and leaves that range with an overshooting easing curve. _from_ and _to_ share one stride, which _out_ already has; set its `values` and `count`. 
-
-
-        
 
 <hr>
 

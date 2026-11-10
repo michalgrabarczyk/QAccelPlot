@@ -19,6 +19,8 @@
 
 * `#include "QAccelPlot/axis/Axis.hpp"`
 * `#include "QAccelPlot/effects/GradientColorTypes.hpp"`
+* `#include "QAccelPlot/internal/GlowStyle.hpp"`
+* `#include "QAccelPlot/internal/ItemFade.hpp"`
 * `#include "QAccelPlot/linestyles/LineStyle.hpp"`
 * `#include "QAccelPlot/renderers/CurveRendererParams.hpp"`
 * `#include "QAccelPlot/renderers/LineStroke.hpp"`

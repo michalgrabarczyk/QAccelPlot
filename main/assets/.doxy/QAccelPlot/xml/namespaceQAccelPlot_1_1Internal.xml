@@ -17,10 +17,17 @@
     <innerclass refid="classQAccelPlot_1_1Internal_1_1OverlayChildren" prot="public">QAccelPlot::Internal::OverlayChildren</innerclass>
     <innerclass refid="classQAccelPlot_1_1Internal_1_1SelectionRectangle" prot="public">QAccelPlot::Internal::SelectionRectangle</innerclass>
     <innerclass refid="classQAccelPlot_1_1Internal_1_1SourceInspection" prot="public">QAccelPlot::Internal::SourceInspection</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1GlowStyle" prot="public">QAccelPlot::Internal::GlowStyle</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1ItemFadeGroup" prot="public">QAccelPlot::Internal::ItemFadeGroup</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1ItemFade" prot="public">QAccelPlot::Internal::ItemFade</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1ItemTrail" prot="public">QAccelPlot::Internal::ItemTrail</innerclass>
     <innerclass refid="classQAccelPlot_1_1Internal_1_1OutlinedRectangle" prot="public">QAccelPlot::Internal::OutlinedRectangle</innerclass>
     <innerclass refid="classQAccelPlot_1_1Internal_1_1PointerTracker" prot="public">QAccelPlot::Internal::PointerTracker</innerclass>
     <innerclass refid="classQAccelPlot_1_1Internal_1_1RectangleZoomOverlay" prot="public">QAccelPlot::Internal::RectangleZoomOverlay</innerclass>
     <innerclass refid="structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals" prot="public">QAccelPlot::Internal::DataTextureUploadTotals</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1GlowUniforms" prot="public">QAccelPlot::Internal::GlowUniforms</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1ItemFadeGroupUniforms" prot="public">QAccelPlot::Internal::ItemFadeGroupUniforms</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1ItemOpacityUniforms" prot="public">QAccelPlot::Internal::ItemOpacityUniforms</innerclass>
     <innerclass refid="structQAccelPlot_1_1Internal_1_1RectUbo" prot="public">QAccelPlot::Internal::RectUbo</innerclass>
     <innerclass refid="classQAccelPlot_1_1Internal_1_1CategoryList" prot="public">QAccelPlot::Internal::CategoryList</innerclass>
     <innerclass refid="classQAccelPlot_1_1Internal_1_1CategoryTable" prot="public">QAccelPlot::Internal::CategoryTable</innerclass>
@@ -28,6 +35,17 @@
     <innerclass refid="structQAccelPlot_1_1Internal_1_1HeatmapGridDimension" prot="public">QAccelPlot::Internal::HeatmapGridDimension</innerclass>
     <innerclass refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget" prot="public">QAccelPlot::Internal::HoverIndexBudget</innerclass>
     <innerclass refid="classQAccelPlot_1_1Internal_1_1RectVertexCache" prot="public">QAccelPlot::Internal::RectVertexCache</innerclass>
+    <innerclass refid="classQAccelPlot_1_1Internal_1_1SeriesEffectList" prot="public">QAccelPlot::Internal::SeriesEffectList</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1OpacitySegment" prot="public">QAccelPlot::Internal::OpacitySegment</innerclass>
+    <innerclass refid="classQAccelPlot_1_1Internal_1_1OpacityTimeline" prot="public">QAccelPlot::Internal::OpacityTimeline</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1TransitionLayout" prot="public">QAccelPlot::Internal::TransitionLayout</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1TransitionStep" prot="public">QAccelPlot::Internal::TransitionStep</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1ItemTiming" prot="public">QAccelPlot::Internal::ItemTiming</innerclass>
+    <innerclass refid="classQAccelPlot_1_1Internal_1_1FrontStarts" prot="public">QAccelPlot::Internal::FrontStarts</innerclass>
+    <innerclass refid="classQAccelPlot_1_1Internal_1_1ItemClock" prot="public">QAccelPlot::Internal::ItemClock</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1TransitionItems" prot="public">QAccelPlot::Internal::TransitionItems</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1TransitionSlots" prot="public">QAccelPlot::Internal::TransitionSlots</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1TransitionFrameInput" prot="public">QAccelPlot::Internal::TransitionFrameInput</innerclass>
     <innernamespace refid="namespaceQAccelPlot_1_1Internal_1_1InspectionScan">QAccelPlot::Internal::InspectionScan</innernamespace>
     <sectiondef kind="enum">
       <memberdef kind="enum" id="InspectionTypes_8hpp_1a9e0bfdf82df212dedd061515ed20ad71" prot="public" static="no" strong="yes">
@@ -94,8 +112,109 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="23" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="23" bodyend="27"/>
       </memberdef>
+      <memberdef kind="enum" id="TransitionFrame_8hpp_1a29d17c52eba629733430a9095c1e75dc" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>TransitionKind</name>
+        <qualifiedname>QAccelPlot::Internal::TransitionKind</qualifiedname>
+        <enumvalue id="TransitionFrame_8hpp_1a29d17c52eba629733430a9095c1e75dcaab58c3d23f25832de807772cb54f5627" prot="public">
+          <name>Morph</name>
+          <briefdescription>
+<para><computeroutput><ref refid="classQAccelPlot_1_1MorphTransition" kindref="compound">MorphTransition</ref>:</computeroutput> interpolates each item from its old values to its new ones. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="TransitionFrame_8hpp_1a29d17c52eba629733430a9095c1e75dca2d03c2d5a7ec65ef4619e0582c272ec2" prot="public">
+          <name>Draw</name>
+          <briefdescription>
+<para><computeroutput><ref refid="classQAccelPlot_1_1DrawTransition" kindref="compound">DrawTransition</ref>:</computeroutput> reveals items one after another. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="TransitionFrame_8hpp_1a29d17c52eba629733430a9095c1e75dca8c9660e13feab2278a3b528bb4dd8f24" prot="public">
+          <name>Grow</name>
+          <briefdescription>
+<para><computeroutput><ref refid="classQAccelPlot_1_1GrowTransition" kindref="compound">GrowTransition</ref>:</computeroutput> grows item values from a baseline. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>How a transition moves its items: one value per transition class. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="23" column="1" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="23" bodyend="27"/>
+      </memberdef>
     </sectiondef>
     <sectiondef kind="var">
+      <memberdef kind="variable" id="ItemFade_8hpp_1aabf08b838b544720ff7abd3a355330ea" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::kFadeCurveSamples</definition>
+        <argsstring></argsstring>
+        <name>kFadeCurveSamples</name>
+        <qualifiedname>QAccelPlot::Internal::kFadeCurveSamples</qualifiedname>
+        <initializer>= 32</initializer>
+        <briefdescription>
+<para>Number of opacity samples over the timeline of an item. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" line="16" column="22" bodyfile="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="ItemFade_8hpp_1a0d48c4d14a27d6b91b52cedbe80138a9" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::kFadeStartSamples</definition>
+        <argsstring></argsstring>
+        <name>kFadeStartSamples</name>
+        <qualifiedname>QAccelPlot::Internal::kFadeStartSamples</qualifiedname>
+        <initializer>= 16</initializer>
+        <briefdescription>
+<para>Number of samples of the start times of the items along an eased reveal front. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" line="18" column="22" bodyfile="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="ItemFade_8hpp_1a5d2c6f82dbffb8c91cb4806f245db07b" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::kFadeGroupCount</definition>
+        <argsstring></argsstring>
+        <name>kFadeGroupCount</name>
+        <qualifiedname>QAccelPlot::Internal::kFadeGroupCount</qualifiedname>
+        <initializer>= 2</initializer>
+        <briefdescription>
+<para>Most transition groups that fade at once: the kept items, and the added or removed ones. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" line="20" column="22" bodyfile="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="ItemFade_8hpp_1a29dc58b6e55e6d74e7cf6773b0197359" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::kTrailEasingSamples</definition>
+        <argsstring></argsstring>
+        <name>kTrailEasingSamples</name>
+        <qualifiedname>QAccelPlot::Internal::kTrailEasingSamples</qualifiedname>
+        <initializer>= 16</initializer>
+        <briefdescription>
+<para>Number of samples of the <computeroutput><ref refid="classQAccelPlot_1_1FadeTrail" kindref="compound">FadeTrail</ref></computeroutput> easing curve. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" line="22" column="22" bodyfile="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
       <memberdef kind="variable" id="DataTextureLayout_8hpp_1a6b4094e09b5bc41bc01b37bb87b2e9bd" prot="public" static="no" constexpr="yes" mutable="no">
         <type>int</type>
         <definition>int QAccelPlot::Internal::kDataTextureWidth</definition>
@@ -506,6 +625,103 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="109" column="9" declfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" declline="109" declcolumn="9"/>
       </memberdef>
+      <memberdef kind="function" id="GlowStyle_8hpp_1a1e767da3cf8613f45a437be4aeb2e078" prot="public" static="no" nodiscard="yes" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::compareGlowStyles</definition>
+        <argsstring>(const GlowStyle &amp;left, const GlowStyle &amp;right) noexcept</argsstring>
+        <name>compareGlowStyles</name>
+        <qualifiedname>QAccelPlot::Internal::compareGlowStyles</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1GlowStyle" kindref="compound">GlowStyle</ref> &amp;</type>
+          <declname>left</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1GlowStyle" kindref="compound">GlowStyle</ref> &amp;</type>
+          <declname>right</declname>
+        </param>
+        <briefdescription>
+<para>Orders <emphasis>left</emphasis> and <emphasis>right</emphasis> for <computeroutput>QSGMaterial::compare()</computeroutput>: negative, 0, or positive. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/GlowStyle.hpp" line="28" column="6" declfile="QAccelPlot/src/QAccelPlot/internal/GlowStyle.hpp" declline="28" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ItemFade_8hpp_1a82f8e67f1c7ec939587d6109a23029ee" prot="public" static="no" nodiscard="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1Internal_1_1ItemFadeGroup" kindref="compound">ItemFadeGroup</ref></type>
+        <definition>ItemFadeGroup QAccelPlot::Internal::compactedFadeGroup</definition>
+        <argsstring>(const ItemFadeGroup &amp;group, int first, const std::vector&lt; int &gt; &amp;kept)</argsstring>
+        <name>compactedFadeGroup</name>
+        <qualifiedname>QAccelPlot::Internal::compactedFadeGroup</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1ItemFadeGroup" kindref="compound">ItemFadeGroup</ref> &amp;</type>
+          <declname>group</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; int &gt; &amp;</type>
+          <declname>kept</declname>
+        </param>
+        <briefdescription>
+<para>Returns <emphasis>group</emphasis> after some of its items are left out of the drawn items; it starts at drawn index <emphasis>first</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><emphasis>kept</emphasis> lists, in order, the positions in <emphasis>group</emphasis> of the remaining items. They keep their start times through <computeroutput>starts</computeroutput>, which holds them at <computeroutput>kFadeStartSamples</computeroutput> evenly spaced shares of the remaining items; items between two samples start at an interpolated time. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" line="64" column="16" declfile="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" declline="64" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="ItemFade_8hpp_1a6b4ef62618706e8707f5f152a0c43131" prot="public" static="no" nodiscard="yes" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::compareItemFades</definition>
+        <argsstring>(const ItemFade &amp;left, const ItemFade &amp;right) noexcept</argsstring>
+        <name>compareItemFades</name>
+        <qualifiedname>QAccelPlot::Internal::compareItemFades</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1ItemFade" kindref="compound">ItemFade</ref> &amp;</type>
+          <declname>left</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1ItemFade" kindref="compound">ItemFade</ref> &amp;</type>
+          <declname>right</declname>
+        </param>
+        <briefdescription>
+<para>Orders <emphasis>left</emphasis> and <emphasis>right</emphasis> for <computeroutput>QSGMaterial::compare()</computeroutput>: negative, 0, or positive. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" line="67" column="6" declfile="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" declline="67" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ItemFade_8hpp_1a41951954e524ec178fa5f630b85f904f" prot="public" static="no" nodiscard="yes" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::compareItemTrails</definition>
+        <argsstring>(const ItemTrail &amp;left, const ItemTrail &amp;right) noexcept</argsstring>
+        <name>compareItemTrails</name>
+        <qualifiedname>QAccelPlot::Internal::compareItemTrails</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1ItemTrail" kindref="compound">ItemTrail</ref> &amp;</type>
+          <declname>left</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1ItemTrail" kindref="compound">ItemTrail</ref> &amp;</type>
+          <declname>right</declname>
+        </param>
+        <briefdescription>
+<para>Orders <emphasis>left</emphasis> and <emphasis>right</emphasis> for <computeroutput>QSGMaterial::compare()</computeroutput>: negative, 0, or positive. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" line="85" column="6" declfile="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" declline="85" declcolumn="6"/>
+      </memberdef>
       <memberdef kind="function" id="DataTextureLayout_8hpp_1a5c264763c864fb6d047f69120859f093" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
         <definition>int QAccelPlot::Internal::dataTextureHeight</definition>
@@ -624,6 +840,48 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureUploadTotals.hpp" line="29" column="6" declfile="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureUploadTotals.hpp" declline="29" declcolumn="6"/>
       </memberdef>
+      <memberdef kind="function" id="GlowUniforms_8hpp_1a7f99f436015b83951ead134f67431f10" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1Internal_1_1GlowUniforms" kindref="compound">GlowUniforms</ref></type>
+        <definition>GlowUniforms QAccelPlot::Internal::glowUniforms</definition>
+        <argsstring>(const GlowStyle &amp;style)</argsstring>
+        <name>glowUniforms</name>
+        <qualifiedname>QAccelPlot::Internal::glowUniforms</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1GlowStyle" kindref="compound">GlowStyle</ref> &amp;</type>
+          <declname>style</declname>
+        </param>
+        <briefdescription>
+<para>Returns the uniforms that draw <emphasis>style</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/GlowUniforms.hpp" line="23" column="14" declfile="QAccelPlot/src/QAccelPlot/materials/internal/GlowUniforms.hpp" declline="23" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="ItemOpacityUniforms_8hpp_1a1252412b424c7d939ff78fb90ddfa76d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1Internal_1_1ItemOpacityUniforms" kindref="compound">ItemOpacityUniforms</ref></type>
+        <definition>ItemOpacityUniforms QAccelPlot::Internal::itemOpacityUniforms</definition>
+        <argsstring>(const ItemFade &amp;fade, const ItemTrail &amp;trail)</argsstring>
+        <name>itemOpacityUniforms</name>
+        <qualifiedname>QAccelPlot::Internal::itemOpacityUniforms</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1ItemFade" kindref="compound">ItemFade</ref> &amp;</type>
+          <declname>fade</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1ItemTrail" kindref="compound">ItemTrail</ref> &amp;</type>
+          <declname>trail</declname>
+        </param>
+        <briefdescription>
+<para>Returns the uniforms that fade the items of <emphasis>fade</emphasis> and <emphasis>trail</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/ItemOpacityUniforms.hpp" line="34" column="21" declfile="QAccelPlot/src/QAccelPlot/materials/internal/ItemOpacityUniforms.hpp" declline="34" declcolumn="21"/>
+      </memberdef>
       <memberdef kind="function" id="RectUniforms_8hpp_1a6a5cabe3df31d51d17aa599d49ccfbcc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void QAccelPlot::Internal::writeRectUniforms</definition>
@@ -720,7 +978,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="17" column="6" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="17" declcolumn="6"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="21" column="6" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="21" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="SeriesSupport_8hpp_1ac34e08413bb3b53ff8e1154bf2c494dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -739,7 +997,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="20" column="6" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="20" declcolumn="6"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="24" column="6" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="24" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="SeriesSupport_8hpp_1aa6ae5dce39f0d0f413c54cf6cf325998" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -759,7 +1017,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="27" column="5" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="27" declcolumn="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="31" column="5" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="31" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="SeriesSupport_8hpp_1a1115a2b55eeca9e9b1f936432726572f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -787,7 +1045,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="34" column="5" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="34" declcolumn="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="38" column="5" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="38" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="SeriesSupport_8hpp_1a4d22277096776b7ab88ec04d5a44ae88" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -806,7 +1064,31 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="37" column="7" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="37" declcolumn="7"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="41" column="7" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="41" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="SeriesSupport_8hpp_1a4415b1f9588a64676a5ce8c4726806d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::growBaseline</definition>
+        <argsstring>(double baseline, const Axis *valueAxis)</argsstring>
+        <name>growBaseline</name>
+        <qualifiedname>QAccelPlot::Internal::growBaseline</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>baseline</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
+          <declname>valueAxis</declname>
+        </param>
+        <briefdescription>
+<para>Returns the value that items drawn from <emphasis>baseline</emphasis> on <emphasis>valueAxis</emphasis> grow from. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>It is <emphasis>baseline</emphasis>, or the viewport edge the items are drawn from when <emphasis>valueAxis</emphasis> cannot place it: an infinite baseline, or one at or below 0 on a log axis. Without an axis, an infinite baseline gives 0. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="48" column="8" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="48" declcolumn="8"/>
       </memberdef>
       <memberdef kind="function" id="StepPath_8hpp_1a6f2f7ff4a80785b5d31e9313e7434119" prot="public" static="no" nodiscard="yes" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>int</type>
@@ -914,6 +1196,162 @@
         <inbodydescription>
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/internal/StepPath.hpp" line="32" column="16" declfile="QAccelPlot/src/QAccelPlot/series/internal/StepPath.hpp" declline="32" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="OpacityAnimations_8hpp_1a91fc4d9b57aa4c9fae0387f9e6a9efc3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1Internal_1_1OpacityTimeline" kindref="compound">OpacityTimeline</ref></type>
+        <definition>OpacityTimeline QAccelPlot::Internal::readOpacityAnimations</definition>
+        <argsstring>(const QList&lt; QObject * &gt; &amp;animations, QStringList *problems=nullptr)</argsstring>
+        <name>readOpacityAnimations</name>
+        <qualifiedname>QAccelPlot::Internal::readOpacityAnimations</qualifiedname>
+        <param>
+          <type>const QList&lt; QObject * &gt; &amp;</type>
+          <declname>animations</declname>
+        </param>
+        <param>
+          <type>QStringList *</type>
+          <declname>problems</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Reads the Qt Quick animations of <computeroutput>&quot;opacity&quot;</computeroutput> among <emphasis>animations</emphasis>, which run together, as one timeline. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The animations are read, never run. <computeroutput>PropertyAnimation</computeroutput> and its numeric subtypes, <computeroutput>PropertyAction</computeroutput>, <computeroutput>PauseAnimation</computeroutput>, <computeroutput>SequentialAnimation</computeroutput>, and <computeroutput>ParallelAnimation</computeroutput> are supported, with <computeroutput>loops</computeroutput>. A missing <computeroutput>from</computeroutput> continues from the opacity reached so far, and a missing <computeroutput>to</computeroutput> is 1. Other animations, and animations of other properties, add only their duration.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>problems</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>When not null, receives one message for each part of <emphasis>animations</emphasis> that is ignored. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/OpacityAnimations.hpp" line="27" column="17" declfile="QAccelPlot/src/QAccelPlot/transitions/internal/OpacityAnimations.hpp" declline="27" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="TransitionFrame_8hpp_1a0474e802d0ab252f6561de68613182a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1Internal_1_1ItemTiming" kindref="compound">ItemTiming</ref></type>
+        <definition>ItemTiming QAccelPlot::Internal::itemTiming</definition>
+        <argsstring>(const TransitionStep &amp;step, int itemCount)</argsstring>
+        <name>itemTiming</name>
+        <qualifiedname>QAccelPlot::Internal::itemTiming</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1TransitionStep" kindref="compound">TransitionStep</ref> &amp;</type>
+          <declname>step</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>itemCount</declname>
+        </param>
+        <briefdescription>
+<para>Returns the timing of a group of <emphasis>itemCount</emphasis> items under <emphasis>step</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="57" column="12" declfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" declline="57" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="TransitionFrame_8hpp_1aa5c8dd3b8a966dda22ff7b08268aba1d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::keptItemsChanged</definition>
+        <argsstring>(const TransitionItems &amp;from, const TransitionItems &amp;to, int stride)</argsstring>
+        <name>keptItemsChanged</name>
+        <qualifiedname>QAccelPlot::Internal::keptItemsChanged</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1TransitionItems" kindref="compound">TransitionItems</ref> &amp;</type>
+          <declname>from</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1TransitionItems" kindref="compound">TransitionItems</ref> &amp;</type>
+          <declname>to</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>stride</declname>
+        </param>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> when an item below both counts of <emphasis>from</emphasis> and <emphasis>to</emphasis>, <emphasis>stride</emphasis> values each, changes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Invalid values that stay invalid do not count as a change. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="119" column="6" declfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" declline="119" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="TransitionFrame_8hpp_1a2dab1e95ec43120c0cba614675d9b155" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1Internal_1_1TransitionSlots" kindref="compound">TransitionSlots</ref></type>
+        <definition>TransitionSlots QAccelPlot::Internal::plannedSlots</definition>
+        <argsstring>(int fromCount, int toCount, bool keptChanged, std::optional&lt; TransitionKind &gt; enter, std::optional&lt; TransitionKind &gt; update, std::optional&lt; TransitionKind &gt; exit)</argsstring>
+        <name>plannedSlots</name>
+        <qualifiedname>QAccelPlot::Internal::plannedSlots</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>fromCount</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>toCount</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>keptChanged</declname>
+        </param>
+        <param>
+          <type>std::optional&lt; TransitionKind &gt;</type>
+          <declname>enter</declname>
+        </param>
+        <param>
+          <type>std::optional&lt; TransitionKind &gt;</type>
+          <declname>update</declname>
+        </param>
+        <param>
+          <type>std::optional&lt; TransitionKind &gt;</type>
+          <declname>exit</declname>
+        </param>
+        <briefdescription>
+<para>Returns the slots that animate a change from <emphasis>fromCount</emphasis> to <emphasis>toCount</emphasis> items. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Each kind is that of the slot&apos;s enabled transition, or <computeroutput>std::nullopt</computeroutput> without one. The update slot runs only when <emphasis>keptChanged:</emphasis> a change that only adds or removes items leaves the kept ones alone. A <computeroutput><ref refid="classQAccelPlot_1_1DrawTransition" kindref="compound">DrawTransition</ref></computeroutput> or <computeroutput><ref refid="classQAccelPlot_1_1GrowTransition" kindref="compound">GrowTransition</ref></computeroutput> in the update slot redraws all items, so only the update slot runs. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="127" column="17" declfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" declline="127" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="TransitionFrame_8hpp_1a79a1f08e5675847699c9a6f8760afba7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::writeTransitionFrame</definition>
+        <argsstring>(const TransitionFrameInput &amp;input, std::vector&lt; double &gt; &amp;out, ItemFade &amp;fade)</argsstring>
+        <name>writeTransitionFrame</name>
+        <qualifiedname>QAccelPlot::Internal::writeTransitionFrame</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1TransitionFrameInput" kindref="compound">TransitionFrameInput</ref> &amp;</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type><ref refid="structQAccelPlot_1_1Internal_1_1ItemFade" kindref="compound">ItemFade</ref> &amp;</type>
+          <declname>fade</declname>
+        </param>
+        <briefdescription>
+<para>Writes the frame of <emphasis>input</emphasis> into <emphasis>out</emphasis> and the items it fades into <emphasis>fade</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The frame holds the kept items, then the shown added or removed items. The first group of <emphasis>fade</emphasis> describes the update slot, the second the enter or exit slot. <simplesect kind="return"><para>The number of items in the frame. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="145" column="5" declfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" declline="145" declcolumn="5"/>
       </memberdef>
     </sectiondef>
     <briefdescription>

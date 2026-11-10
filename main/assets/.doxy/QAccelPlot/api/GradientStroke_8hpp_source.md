@@ -19,7 +19,7 @@
 
 #include "QAccelPlot/effects/Colormap.hpp"
 #include "QAccelPlot/effects/GradientColorTypes.hpp"
-#include "QAccelPlot/effects/LineCurveEffect.hpp"
+#include "QAccelPlot/effects/SeriesEffect.hpp"
 
 #include <QMetaObject>
 #include <QObject>
@@ -28,7 +28,7 @@
 
 namespace QAccelPlot {
 
-class GradientStroke : public LineCurveEffect {
+class GradientStroke : public SeriesEffect {
     Q_OBJECT
     QML_NAMED_ELEMENT(GradientStroke)
 

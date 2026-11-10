@@ -1746,20 +1746,23 @@ moves the buffers:</p>
 <p>Post no faster than frames are presented; see
 <a href="../background-data/">Background data production</a>.</p>
 <h2 id="animate-data-changes">Animate data changes<a class="headerlink" href="#animate-data-changes" title="Permanent link">&para;</a></h2>
-<p>Assign a <code>MorphTransition</code> or a <code>DrawTransition</code> to <code>transition</code>, as for a
+<p>Set <code>enterTransition</code>, <code>updateTransition</code>, and <code>exitTransition</code>, as for a
 <a href="../styling/#animated-data-changes"><code>LineCurve</code></a>.</p>
 <ul>
-<li><code>MorphTransition</code> moves each point to the new position of the same index.
-  Values change with it when the old and the new points both have them, so
-  the colors blend through the colormap.</li>
-<li><code>DrawTransition</code> shows the new points one after another.</li>
-<li>New points appear, and removed points disappear, at once.</li>
+<li><code>MorphTransition</code> moves each kept point to the new position of the same
+  index. Values change with it when the old and the new points both have them,
+  so the colors blend through the colormap.</li>
+<li><code>GrowTransition</code> raises points from Y = 0, the low edge of the viewport on a
+  log Y axis, or from its <code>baseline</code>.</li>
+<li><code>DrawTransition</code> shows the points one after another.</li>
+<li>A staggered transition follows the point order. Sort the points, for example
+  by X, to sweep across the plot.</li>
 <li><code>count</code>, <code>pointAt()</code>, <code>valueAt()</code>, the data and value ranges, and inspection
   use the new data from the start of the animation. Hover picks the points as
   drawn.</li>
 <li><code>setValues()</code> animates too. Called after <code>setData()</code>, it keeps that
   animation, with the points in their new colors.</li>
-<li><code>clearData()</code> shows the new data at once.</li>
+<li><code>clearData()</code> runs the exit transition.</li>
 <li>While a transition is enabled, the float paths store doubles.</li>
 </ul>
 <h2 id="invalid-points">Invalid points<a class="headerlink" href="#invalid-points" title="Permanent link">&para;</a></h2>

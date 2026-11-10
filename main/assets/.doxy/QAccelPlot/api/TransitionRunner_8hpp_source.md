@@ -18,10 +18,15 @@
 #pragma once
 
 #include "QAccelPlot/transitions/DataTransition.hpp"
+#include "QAccelPlot/transitions/EnterExitTransition.hpp"
+#include "QAccelPlot/transitions/internal/TransitionFrame.hpp"
 
+#include <QMetaObject>
 #include <QObject>
 #include <QPointer>
 
+#include <array>
+#include <optional>
 #include <vector>
 
 QT_FORWARD_DECLARE_CLASS(QQuickItem)
@@ -33,38 +38,90 @@ class TransitionRunner : public QObject {
     Q_OBJECT
 
 public:
+    enum class Slot {
+        Enter,  
+        Update, 
+        Exit,   
+    };
+    Q_ENUM(Slot)
+
+    
+    using Layout = Internal::TransitionLayout;
+
     explicit TransitionRunner(QQuickItem* item);
     ~TransitionRunner() override;
 
-    DataTransition* transition() const;
-    bool setTransition(DataTransition* transition);
+    DataTransition* transition(Slot slot) const;
+    bool setTransition(Slot slot, DataTransition* transition);
+
+    template <typename Item> void notifyTransitionChanges(Item* item)
+    {
+        connect(this, &TransitionRunner::transitionChanged, item, [item](const Slot slot) {
+            switch (slot) {
+            case Slot::Enter:
+                emit item->enterTransitionChanged();
+                break;
+            case Slot::Update:
+                emit item->updateTransitionChanged();
+                break;
+            case Slot::Exit:
+                emit item->exitTransitionChanged();
+                break;
+            }
+        });
+    }
+
     bool enabled() const;
+    bool animates(int currentPointCount, int newPointCount) const;
 
     bool active() const;
     bool pending() const;
     const std::vector<double>& targetData() const;
     int targetPointCount() const;
+    int frameCapacity() const;
 
-    void start(const std::vector<double>& currentData, int currentPointCount, std::vector<double>&& newData, int newPointCount, int stride = 2);
+    bool start(const std::vector<double>& currentData, int currentPointCount, std::vector<double>&& newData, int newPointCount, const Layout& layout);
     bool advance(std::vector<double>& outData, int& outPointCount);
+    const Internal::ItemFade& fade() const;
     bool finish(std::vector<double>& outData, int& outPointCount);
     void cancel();
 
 signals:
     void frameDue();
     void interrupted();
-    void transitionDestroyed();
+    void transitionChanged(TransitionRunner::Slot slot);
+    void activeChanged();
 
 private:
+    static constexpr auto kSlotCount = std::size_t{3};
+
+    std::optional<Internal::TransitionKind> enabledKind(Slot slot) const;
+    std::optional<Internal::TransitionStep> step(Slot slot) const;
+    bool finished() const;
+    void endRuns();
+    void restartRuns(const std::array<bool, kSlotCount>& used);
     void interrupt();
-    void onTransitionDestroyed();
+    void onTransitionDestroyed(Slot slot);
     void onRunningChanged();
+    void updateActive();
     void connectWindow(QQuickWindow* window);
     void onAfterAnimating();
     void requestFrame();
 
-    QPointer<DataTransition> transition_;
-    DataTransition::Run run_;
+    std::array<QPointer<DataTransition>, kSlotCount> transitions_;
+    std::array<QMetaObject::Connection, kSlotCount> destroyedConnections_;
+    std::array<QMetaObject::Connection, kSlotCount> runningConnections_;
+    std::array<DataTransition::Run, kSlotCount> runs_;
+    std::array<bool, kSlotCount> used_{};
+    bool pending_{false};
+    bool active_{false};
+    std::vector<double> from_;
+    int fromCount_{0};
+    std::vector<double> to_;
+    int toCount_{0};
+    int shownCount_{0};
+    Layout layout_;
+    Internal::ItemFade fade_;
     QPointer<QQuickWindow> window_;
 };
 

@@ -17,19 +17,16 @@
 //
 #pragma once
 
-#include "QAccelPlot/transitions/DataTransition.hpp"
+#include "QAccelPlot/transitions/EnterExitTransition.hpp"
 
 namespace QAccelPlot {
 
-class DrawTransition : public DataTransition {
+class DrawTransition : public EnterExitTransition {
     Q_OBJECT
     QML_NAMED_ELEMENT(DrawTransition)
 
 public:
     explicit DrawTransition(QObject* parent = nullptr);
-
-protected:
-    void interpolate(double easedProgress, const Dataset& from, const Dataset& to, Dataset& out) override;
 };
 
 } // namespace QAccelPlot

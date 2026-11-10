@@ -17,6 +17,8 @@
 //
 #pragma once
 
+#include "QAccelPlot/internal/GlowStyle.hpp"
+#include "QAccelPlot/internal/ItemFade.hpp"
 #include "QAccelPlot/materials/DataTexture.hpp"
 
 #include <QColor>
@@ -61,6 +63,9 @@ public:
     float logScaleY{0.0f};                  
     float useVertexColor{0.0f};             
     std::shared_ptr<DataTexture> dataTexture;
+    Internal::ItemFade itemFade;
+    Internal::ItemTrail itemTrail;
+    Internal::GlowStyle glow;
 };
 
 } // namespace QAccelPlot

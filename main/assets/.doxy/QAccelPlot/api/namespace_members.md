@@ -15,6 +15,10 @@
 
 * **collect** ([**QAccelPlot::Internal::InspectionScan**](namespaceQAccelPlot_1_1Internal_1_1InspectionScan.md))
 * **clampAntialiasingFeather** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **compactedFadeGroup** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **compareGlowStyles** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **compareItemFades** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **compareItemTrails** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **createNode** ([**QAccelPlot::LineStroke**](namespaceQAccelPlot_1_1LineStroke.md))
 
 
@@ -40,7 +44,9 @@
 
 * **GradientFillBaseline** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **GradientValueSource** ([**QAccelPlot**](namespaceQAccelPlot.md))
+* **glowUniforms** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **grabSizeFor** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **growBaseline** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
 
 ## h
@@ -54,6 +60,8 @@
 * **InspectionAxis** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **InspectionMatching** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **imageFormatForPath** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **itemOpacityUniforms** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **itemTiming** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **isValidPoint** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
 * **isEmptyChunk** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **isValidCoordinate** ([**QAccelPlot**](namespaceQAccelPlot.md))
@@ -62,6 +70,11 @@
 ## k
 
 * **kDataTextureWidth** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **kFadeCurveSamples** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **kFadeGroupCount** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **kFadeStartSamples** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **kTrailEasingSamples** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **keptItemsChanged** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **kMaxDashPatternSize** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **kNearlyEqualEpsilon** ([**QAccelPlot**](namespaceQAccelPlot.md))
 
@@ -91,6 +104,7 @@
 ## p
 
 * **pannedRange** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **plannedSlots** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **planRunSampling** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
 
 
@@ -98,6 +112,7 @@
 
 * **readEffectStops** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **readGradientStopList** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **readOpacityAnimations** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **recordCapacity** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **recordDataTextureUpload** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **resetDataTextureUploadTotals** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
@@ -120,6 +135,11 @@
 * **StepMode** ([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
+## t
+
+* **TransitionKind** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+
+
 ## u
 
 * **unboundedGradientCoordinate** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
@@ -137,6 +157,7 @@
 * **widenedSpan** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **writeImageFile** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **writeRectUniforms** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **writeTransitionFrame** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **writeVertices** ([**QAccelPlot::LineStroke**](namespaceQAccelPlot_1_1LineStroke.md))
 
 

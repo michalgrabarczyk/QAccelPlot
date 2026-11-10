@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1Internal_1_1ItemTrail" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::ItemTrail</compoundname>
+    <includes local="no">ItemFade.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1ItemTrail_1a4f5f5dc27c52f289356bfddd101c2605" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::Internal::ItemTrail::length</definition>
+        <argsstring></argsstring>
+        <name>length</name>
+        <qualifiedname>QAccelPlot::Internal::ItemTrail::length</qualifiedname>
+        <initializer>{0.0f}</initializer>
+        <briefdescription>
+<para>Share of the items that fades, from the first; 0 fades none. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" line="71" column="11" bodyfile="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" bodystart="71" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1ItemTrail_1aa644cfb68e27e096ff3c25ff23c180fd" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::Internal::ItemTrail::minOpacity</definition>
+        <argsstring></argsstring>
+        <name>minOpacity</name>
+        <qualifiedname>QAccelPlot::Internal::ItemTrail::minOpacity</qualifiedname>
+        <initializer>{1.0f}</initializer>
+        <briefdescription>
+<para>Opacity of the first item. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" line="72" column="11" bodyfile="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" bodystart="72" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1ItemTrail_1a710dd49fe819f6868ed3e7a08cc03561" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::ItemTrail::itemCount</definition>
+        <argsstring></argsstring>
+        <name>itemCount</name>
+        <qualifiedname>QAccelPlot::Internal::ItemTrail::itemCount</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+<para>Number of drawn items. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" line="73" column="9" bodyfile="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" bodystart="73" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1ItemTrail_1aed46b5ba99cfe9c2ba6febe96578ac3b" prot="public" static="no" mutable="no">
+        <type>std::array&lt; float, kTrailEasingSamples &gt;</type>
+        <definition>std::array&lt;float, kTrailEasingSamples&gt; QAccelPlot::Internal::ItemTrail::easing</definition>
+        <argsstring></argsstring>
+        <name>easing</name>
+        <qualifiedname>QAccelPlot::Internal::ItemTrail::easing</qualifiedname>
+        <initializer>{}</initializer>
+        <briefdescription>
+<para>How far the opacity has risen from <computeroutput>minOpacity</computeroutput> to 1 at evenly spaced shares of the fading items. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" line="75" column="16" bodyfile="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" bodystart="75" bodyend="75"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structQAccelPlot_1_1Internal_1_1ItemTrail_1a1ba984a6b498dffee40da99d50d9af16" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::ItemTrail::active</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>active</name>
+        <qualifiedname>QAccelPlot::Internal::ItemTrail::active</qualifiedname>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> when some item fades. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" line="78" column="11" bodyfile="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" bodystart="78" bodyend="81"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>How the shaders fade the oldest items under a <computeroutput><ref refid="classQAccelPlot_1_1FadeTrail" kindref="compound">FadeTrail</ref></computeroutput> effect. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" line="70" column="1" bodyfile="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" bodystart="70" bodyend="82"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1Internal_1_1ItemTrail_1a1ba984a6b498dffee40da99d50d9af16" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ItemTrail</scope><name>active</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1ItemTrail_1aed46b5ba99cfe9c2ba6febe96578ac3b" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ItemTrail</scope><name>easing</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1ItemTrail_1a710dd49fe819f6868ed3e7a08cc03561" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ItemTrail</scope><name>itemCount</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1ItemTrail_1a4f5f5dc27c52f289356bfddd101c2605" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ItemTrail</scope><name>length</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1ItemTrail_1aa644cfb68e27e096ff3c25ff23c180fd" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ItemTrail</scope><name>minOpacity</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

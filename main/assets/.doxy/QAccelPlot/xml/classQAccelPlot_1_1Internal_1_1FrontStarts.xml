@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1Internal_1_1FrontStarts" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::FrontStarts</compoundname>
+    <includes local="no">TransitionFrame.hpp</includes>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1FrontStarts_1a2fa3e5d26f6fd96fa7a9d476db747f14" prot="private" static="yes" constexpr="yes" mutable="no">
+        <type>auto</type>
+        <definition>auto QAccelPlot::Internal::FrontStarts::kSamples</definition>
+        <argsstring></argsstring>
+        <name>kSamples</name>
+        <qualifiedname>QAccelPlot::Internal::FrontStarts::kSamples</qualifiedname>
+        <initializer>= 1025</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="69" column="27" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1FrontStarts_1a8d51cdc804e94612e6c249fae003e42f" prot="private" static="no" mutable="no">
+        <type>std::array&lt; double, kSamples &gt;</type>
+        <definition>std::array&lt;double, kSamples&gt; QAccelPlot::Internal::FrontStarts::starts_</definition>
+        <argsstring></argsstring>
+        <name>starts_</name>
+        <qualifiedname>QAccelPlot::Internal::FrontStarts::starts_</qualifiedname>
+        <initializer>{}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="70" column="16" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="70" bodyend="70"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1FrontStarts_1a42a46a79df4aa2d48d26cdc9eeb36e6f" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::Internal::FrontStarts::FrontStarts</definition>
+        <argsstring>(const QEasingCurve &amp;easing)</argsstring>
+        <name>FrontStarts</name>
+        <qualifiedname>QAccelPlot::Internal::FrontStarts::FrontStarts</qualifiedname>
+        <param>
+          <type>const QEasingCurve &amp;</type>
+          <declname>easing</declname>
+        </param>
+        <briefdescription>
+<para>Samples the front that <emphasis>easing</emphasis> moves. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="63" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1FrontStarts_1a00346486040994370ca5b6db3e62fc09" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::FrontStarts::operator()</definition>
+        <argsstring>(double share) const</argsstring>
+        <name>operator()</name>
+        <qualifiedname>QAccelPlot::Internal::FrontStarts::operator()</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>share</declname>
+        </param>
+        <briefdescription>
+<para>Returns the progress in [0, 1] at which the eased progress first reaches <emphasis>share</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="66" column="13"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>When an eased reveal front reaches each share of the items. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="60" column="1" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="60" bodyend="71"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1Internal_1_1FrontStarts_1a42a46a79df4aa2d48d26cdc9eeb36e6f" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::FrontStarts</scope><name>FrontStarts</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1FrontStarts_1a2fa3e5d26f6fd96fa7a9d476db747f14" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::FrontStarts</scope><name>kSamples</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1FrontStarts_1a00346486040994370ca5b6db3e62fc09" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::FrontStarts</scope><name>operator()</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1FrontStarts_1a8d51cdc804e94612e6c249fae003e42f" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::FrontStarts</scope><name>starts_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

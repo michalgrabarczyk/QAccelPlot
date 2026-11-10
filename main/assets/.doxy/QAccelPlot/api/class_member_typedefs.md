@@ -9,9 +9,19 @@
 * **ColorFunction** ([**QAccelPlot::Internal::RectVertexCache**](classQAccelPlot_1_1Internal_1_1RectVertexCache.md))
 
 
+## l
+
+* **Layout** ([**QAccelPlot::TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md))
+
+
 ## m
 
 * **MapToPosition** ([**QAccelPlot::AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md))
+
+
+## s
+
+* **Supports** ([**QAccelPlot::Internal::SeriesEffectList**](classQAccelPlot_1_1Internal_1_1SeriesEffectList.md))
 
 
 ## w

@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="GlowStyle_8hpp" kind="file" language="C++">
+    <compoundname>GlowStyle.hpp</compoundname>
+    <includes local="no">QColor</includes>
+    <includedby refid="DataTextureMaterial_8hpp" local="yes">QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp</includedby>
+    <includedby refid="GlowUniforms_8hpp" local="yes">QAccelPlot/src/QAccelPlot/materials/internal/GlowUniforms.hpp</includedby>
+    <includedby refid="LineCurveLineRenderer_8hpp" local="yes">QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp</includedby>
+    <includedby refid="LineCurvePointRenderer_8hpp" local="yes">QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp</includedby>
+    <includedby refid="SeriesEffectList_8hpp" local="yes">QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>QAccelPlot/src/QAccelPlot/internal/GlowStyle.hpp</label>
+        <link refid="GlowStyle_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QColor</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1GlowStyle" prot="public">QAccelPlot::Internal::GlowStyle</innerclass>
+    <innernamespace refid="namespaceQAccelPlot">QAccelPlot</innernamespace>
+    <innernamespace refid="namespaceQAccelPlot_1_1Internal">QAccelPlot::Internal</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-FileCopyrightText:<sp/>2026<sp/>Michal<sp/>Grabarczyk</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>GPL-3.0-only<sp/>WITH<sp/>Universal-FOSS-exception-1.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>file<sp/>is<sp/>also<sp/>available<sp/>under<sp/>a<sp/>separate<sp/>commercial<sp/>license.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>See<sp/>COMMERCIAL-LICENSING.md<sp/>for<sp/>contact<sp/>information.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QColor&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot::Internal<sp/>{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="structQAccelPlot_1_1Internal_1_1GlowStyle" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structQAccelPlot_1_1Internal_1_1GlowStyle" kindref="compound">GlowStyle</ref><sp/>{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/><ref refid="structQAccelPlot_1_1Internal_1_1GlowStyle_1a79b205751fc88f06e7db9cc175efca2e" kindref="member">color</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1GlowStyle_1a48bcedb3ab5d49fd07816e2f75684d02" kindref="member">radius</ref>{0.0f};<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1GlowStyle_1a8d2e56a91591692b2dbc197d680e703a" kindref="member">intensity</ref>{0.0f};<sp/></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1GlowStyle_1a9abede07f0df33c60173b6961051aa93" kindref="member">active</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1GlowStyle_1a48bcedb3ab5d49fd07816e2f75684d02" kindref="member">radius</ref><sp/>&gt;<sp/>0.0f<sp/>&amp;&amp;<sp/><ref refid="structQAccelPlot_1_1Internal_1_1GlowStyle_1a8d2e56a91591692b2dbc197d680e703a" kindref="member">intensity</ref><sp/>&gt;<sp/>0.0f;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="25"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal">[[nodiscard]]<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>compareGlowStyles(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1GlowStyle" kindref="compound">GlowStyle</ref>&amp;<sp/>left,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1GlowStyle" kindref="compound">GlowStyle</ref>&amp;<sp/>right)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot::Internal</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="QAccelPlot/src/QAccelPlot/internal/GlowStyle.hpp"/>
+  </compounddef>
+</doxygen>

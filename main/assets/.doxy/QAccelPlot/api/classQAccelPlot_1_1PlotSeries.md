@@ -108,8 +108,10 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
+| property bool | [**animating**](classQAccelPlot_1_1PlotSeries.md#property-animating-12)  <br>_Read-only:_ `true` _while a transition animates the series' data._ |
 | property int | [**count**](classQAccelPlot_1_1PlotSeries.md#property-count-12)  <br>_Read-only: number of records stored, including invalid ones._  |
 | property quint64 | [**dataRevision**](classQAccelPlot_1_1PlotSeries.md#property-datarevision-12)  <br>_Revision incremented by every accepted change of the series' records._  |
+| property QQmlListProperty&lt; [**SeriesEffect**](classQAccelPlot_1_1SeriesEffect.md) &gt; | [**effects**](classQAccelPlot_1_1PlotSeries.md#property-effects-12)  <br>_Visual effects drawn with the series, such as_ `GradientFill` _or_`Glow` _._ |
 | property bool | [**hoverEnabled**](classQAccelPlot_1_1PlotSeries.md#property-hoverenabled-12)  <br>_Whether the series reacts to the mouse cursor. Default:_ `true` _._ |
 | property bool | [**hovered**](classQAccelPlot_1_1PlotSeries.md#property-hovered-12)  <br>_Read-only:_ `true` _while the mouse cursor is over the series._ |
 | property SeriesInspection \* | [**inspection**](classQAccelPlot_1_1PlotSeries.md#property-inspection-12)  <br>_Read-only constant: data queries for this series._  |
@@ -126,6 +128,7 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
+| signal void | [**animatingChanged**](classQAccelPlot_1_1PlotSeries.md#signal-animatingchanged)  <br>_Emitted when the animating property changes._  |
 | signal void | [**countChanged**](classQAccelPlot_1_1PlotSeries.md#signal-countchanged)  <br>_Emitted when the number of records changes._  |
 | signal void | [**dataRevisionChanged**](classQAccelPlot_1_1PlotSeries.md#signal-datarevisionchanged)  <br>_Emitted when the dataRevision property changes._  |
 | signal void | [**hoverEnabledChanged**](classQAccelPlot_1_1PlotSeries.md#signal-hoverenabledchanged)  <br>_Emitted when the hoverEnabled property changes._  |
@@ -145,9 +148,11 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 |   | [**PlotSeries**](#function-plotseries-12) (QQuickItem \* parent=nullptr) <br> |
+|  bool | [**animating**](#function-animating-22) () const<br>_Returns whether a transition animates the series' data._  |
 | virtual void | [**clearData**](#function-cleardata) () <br>_Removes all data points from the series._  |
 | virtual int | [**count**](#function-count-22) () const<br>_Returns the number of records stored. The default is the number of stored data points._  |
 |  quint64 | [**dataRevision**](#function-datarevision-22) () const<br>_Returns the current data revision._  |
+|  QQmlListProperty&lt; [**SeriesEffect**](classQAccelPlot_1_1SeriesEffect.md) &gt; | [**effects**](#function-effects-22) () <br>_Returns the QML list property of the effects._  |
 |  bool | [**hoverEnabled**](#function-hoverenabled-22) () const<br>_Returns whether the series reacts to the mouse cursor._  |
 |  bool | [**hovered**](#function-hovered-22) () const<br>_Returns whether the mouse cursor is over the series._  |
 |  SeriesInspection \* | [**inspection**](#function-inspection-22) () const<br>_Returns the data queries for this series; created on first use and owned by the series._  |
@@ -220,10 +225,13 @@ flowchart TB
 |   | [**PlotSeries**](#function-plotseries-22) ([**DataPointStore::Layout**](structQAccelPlot_1_1DataPointStore_1_1Layout.md) layout, [**DataPointWording**](structQAccelPlot_1_1PlotSeries_1_1DataPointWording.md) wording, QQuickItem \* parent) <br>_Creates a series whose data points have_ _layout_ _;__wording_ _names them in warnings._ |
 |  void | [**appendDataPoint**](#function-appenddatapoint) (const double \* coordinates) <br>_Appends one double data point and widens the data ranges by its valid coordinates._  |
 | virtual void | [**applyDataPoints**](#function-applydatapoints) ([**DataPointInput**](structQAccelPlot_1_1PlotSeries_1_1DataPointInput.md) && input) <br>_Applies data points passed to_ `setData()` _or_`setDataF()` _._ |
+|  void | [**classBegin**](#function-classbegin) () override<br>_Holds back the warnings about ignored effects while the component loads._  |
+|  void | [**componentComplete**](#function-componentcomplete) () override<br>_Reports ignored effects once the component is complete._  |
 | virtual [**DataRanges**](structQAccelPlot_1_1PlotSeries_1_1DataRanges.md) | [**computeDataRanges**](#function-computedataranges) () const<br>_Scans the records for their extents. The default implementation scans the data points._  |
 | virtual int | [**dataPointValueCount**](#function-datapointvaluecount) () const<br>_Returns the number of values per data point that_ `setData()` _and_`setDataF()` _take._ |
 |  [**DataPointStore**](classQAccelPlot_1_1DataPointStore.md) & | [**dataPoints**](#function-datapoints-12) () <br>_Returns the data points of the series._  |
 |  const [**DataPointStore**](classQAccelPlot_1_1DataPointStore.md) & | [**dataPoints**](#function-datapoints-22) () const<br>_Returns the data points of the series._  |
+|  const [**Internal::SeriesEffectList**](classQAccelPlot_1_1Internal_1_1SeriesEffectList.md) & | [**effectList**](#function-effectlist) () const<br>_Returns the effects of the series._  |
 |  bool | [**event**](#function-event) (QEvent \* event) override<br>_Withholds hover events from a series beneath another series under the cursor._  |
 |  void | [**extendXDataRange**](#function-extendxdatarange) (qreal x) <br>_Widens the X extent to include_ _x_ _and notifies the bound axes._ |
 |  void | [**extendYDataRange**](#function-extendydatarange) (qreal y) <br>_Widens the Y extent to include_ _y_ _. A non-finite__y_ _leaves the extent unchanged._ |
@@ -235,6 +243,7 @@ flowchart TB
 | virtual [**Internal::InspectionSource**](structQAccelPlot_1_1Internal_1_1InspectionSource.md) | [**inspectionSource**](#function-inspectionsource) () const<br>_Returns a view of the XY records that data point queries search. The default has none._  |
 |  void | [**invalidateDataRanges**](#function-invalidatedataranges) () <br>_Discards the cached extents and notifies the bound axes._  |
 |  void | [**invalidateInspection**](#function-invalidateinspection) () <br>_Refreshes the data queries after record validity changed without a data change, such as an axis scale switch._  |
+|  void | [**itemChange**](#function-itemchange) (ItemChange change, const ItemChangeData & value) override<br>_Follows the window, whose frames refresh the effects._  |
 |  bool | [**logScaleX**](#function-logscalex) () const<br>_Returns whether the horizontal axis is logarithmic; false without an axis._  |
 |  bool | [**logScaleY**](#function-logscaley) () const<br>_Returns whether the vertical axis is logarithmic; false without an axis._  |
 |  void | [**notifyDataPointsChanged**](#function-notifydatapointschanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change, int previousCount) <br>_Finishes a change of the data points: data ranges,_ `onDataPointsChanged()` _,_`countChanged()` _, data queries, and a repaint._ |
@@ -244,9 +253,11 @@ flowchart TB
 | virtual bool | [**positionInspectionSupported**](#function-positioninspectionsupported) () const<br>_Returns whether_ `inspectionDataPointAt()` _matches records drawn as areas, such as heatmap cells. Default: false._ |
 | virtual bool | [**recordInspectionSupported**](#function-recordinspectionsupported) () const<br>_Returns whether_ `inspectionRecord()` _and_`inspectionRecordAt()` _answer for this series. Default: false._ |
 |  QRectF | [**resolvePlotRect**](#function-resolveplotrect) () const<br>_Returns the plot area to render into:_ `plotRect` _when set, otherwise the item's current size._ |
+|  void | [**setAnimating**](#function-setanimating) (bool animating) <br>_Sets the animating property to_ _animating_ _. Called when the series'_`TransitionRunner` _becomes active or idle._ |
 |  void | [**setHovered**](#function-sethovered) (bool hovered) <br>_Sets the hovered property to_ _hovered_ _. Called by the hover handling of a series._ |
 |  void | [**storeDataPoints**](#function-storedatapoints) ([**DataPointInput**](structQAccelPlot_1_1PlotSeries_1_1DataPointInput.md) && input) <br>_Stores_ _input_ _as the data points and finishes the change._ |
 |  void | [**supportHover**](#function-supporthover) () <br>_Makes the series accept hover events while_ `hoverEnabled` _is_`true` _._ |
+| virtual bool | [**supportsEffect**](#function-supportseffect) (const [**SeriesEffect**](classQAccelPlot_1_1SeriesEffect.md) & effect) const<br>_Returns whether the series draws_ _effect_ _. The default draws none._ |
 |  void | [**updateRenderCapacity**](#function-updaterendercapacity) (int capacity, int recordCount, [**CapacityOverflow**](classQAccelPlot_1_1PlotSeries.md#enum-capacityoverflow) overflow=CapacityOverflow::DropsExcess) <br>_Stores_ _capacity_ _, the number of records the GPU buffers hold, and warns when__recordCount_ _newly exceeds it._ |
 |  bool | [**validateDataSize**](#function-validatedatasize) (std::size\_t valueCount, int count, bool floatData, int valuesPerDataPoint=0) const<br>_Returns whether_ _valueCount_ _values hold__count_ _data points; warns otherwise._ |
 |  bool | [**validateRawDataArguments**](#function-validaterawdataarguments) (const void \* data, int count) const<br>_Returns whether_ _data_ _and__count_ _are valid arguments for copying data points; warns otherwise._ |
@@ -338,6 +349,25 @@ enum QAccelPlot::PlotSeries::LegendSymbol {
 
 
 
+### property animating {#property-animating-12}
+
+_Read-only:_ `true` _while a transition animates the series' data._
+```C++
+bool QAccelPlot::PlotSeries::animating;
+```
+
+
+
+Series without transitions always report `false`. 
+
+
+        
+
+<hr>
+
+
+
+
 ### property count {#property-count-12}
 
 _Read-only: number of records stored, including invalid ones._ 
@@ -366,6 +396,25 @@ quint64 QAccelPlot::PlotSeries::dataRevision;
 
 
 
+
+<hr>
+
+
+
+
+### property effects {#property-effects-12}
+
+_Visual effects drawn with the series, such as_ `GradientFill` _or_`Glow` _._
+```C++
+QQmlListProperty<SeriesEffect> QAccelPlot::PlotSeries::effects;
+```
+
+
+
+An effect the series does not support logs a warning and is ignored. Of several effects of one type, the first enabled one applies. See `SeriesEffect` for the effects each series supports. 
+
+
+        
 
 <hr>
 
@@ -498,6 +547,21 @@ Axis* QAccelPlot::PlotSeries::yAxis;
 <hr>
 ## Public Signals Documentation
 
+
+
+
+
+### signal animatingChanged {#signal-animatingchanged}
+
+_Emitted when the animating property changes._ 
+```C++
+void QAccelPlot::PlotSeries::animatingChanged;
+```
+
+
+
+
+<hr>
 
 
 
@@ -665,6 +729,21 @@ explicit QAccelPlot::PlotSeries::PlotSeries (
 
 
 
+### function animating {#function-animating-22}
+
+_Returns whether a transition animates the series' data._ 
+```C++
+bool QAccelPlot::PlotSeries::animating () const
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function clearData {#function-cleardata}
 
 _Removes all data points from the series._ 
@@ -700,6 +779,21 @@ virtual int QAccelPlot::PlotSeries::count () const
 _Returns the current data revision._ 
 ```C++
 quint64 QAccelPlot::PlotSeries::dataRevision () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function effects {#function-effects-22}
+
+_Returns the QML list property of the effects._ 
+```C++
+QQmlListProperty< SeriesEffect > QAccelPlot::PlotSeries::effects () 
 ```
 
 
@@ -1330,6 +1424,36 @@ The default stores them; series that animate data changes override it.
 
 
 
+### function classBegin {#function-classbegin}
+
+_Holds back the warnings about ignored effects while the component loads._ 
+```C++
+void QAccelPlot::PlotSeries::classBegin () override
+```
+
+
+
+
+<hr>
+
+
+
+
+### function componentComplete {#function-componentcomplete}
+
+_Reports ignored effects once the component is complete._ 
+```C++
+void QAccelPlot::PlotSeries::componentComplete () override
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function computeDataRanges {#function-computedataranges}
 
 _Scans the records for their extents. The default implementation scans the data points._ 
@@ -1388,6 +1512,21 @@ DataPointStore & QAccelPlot::PlotSeries::dataPoints ()
 _Returns the data points of the series._ 
 ```C++
 const DataPointStore & QAccelPlot::PlotSeries::dataPoints () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function effectList {#function-effectlist}
+
+_Returns the effects of the series._ 
+```C++
+const Internal::SeriesEffectList & QAccelPlot::PlotSeries::effectList () const
 ```
 
 
@@ -1589,6 +1728,24 @@ void QAccelPlot::PlotSeries::invalidateInspection ()
 
 
 
+### function itemChange {#function-itemchange}
+
+_Follows the window, whose frames refresh the effects._ 
+```C++
+void QAccelPlot::PlotSeries::itemChange (
+    ItemChange change,
+    const ItemChangeData & value
+) override
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function logScaleX {#function-logscalex}
 
 _Returns whether the horizontal axis is logarithmic; false without an axis._ 
@@ -1738,6 +1895,23 @@ Safe to call from `updatePaintNode()`; it never modifies the item.
 
 
 
+### function setAnimating {#function-setanimating}
+
+_Sets the animating property to_ _animating_ _. Called when the series'_`TransitionRunner` _becomes active or idle._
+```C++
+void QAccelPlot::PlotSeries::setAnimating (
+    bool animating
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function setHovered {#function-sethovered}
 
 _Sets the hovered property to_ _hovered_ _. Called by the hover handling of a series._
@@ -1785,6 +1959,23 @@ Call from the constructor of a series that reacts to the cursor. Its `hoverLeave
 
 
         
+
+<hr>
+
+
+
+
+### function supportsEffect {#function-supportseffect}
+
+_Returns whether the series draws_ _effect_ _. The default draws none._
+```C++
+virtual bool QAccelPlot::PlotSeries::supportsEffect (
+    const SeriesEffect & effect
+) const
+```
+
+
+
 
 <hr>
 

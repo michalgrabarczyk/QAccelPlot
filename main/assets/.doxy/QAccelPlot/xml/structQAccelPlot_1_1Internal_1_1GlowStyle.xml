@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1Internal_1_1GlowStyle" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::GlowStyle</compoundname>
+    <includes local="no">GlowStyle.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1GlowStyle_1a79b205751fc88f06e7db9cc175efca2e" prot="public" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::Internal::GlowStyle::color</definition>
+        <argsstring></argsstring>
+        <name>color</name>
+        <qualifiedname>QAccelPlot::Internal::GlowStyle::color</qualifiedname>
+        <briefdescription>
+<para>Halo color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/GlowStyle.hpp" line="16" column="12" bodyfile="QAccelPlot/src/QAccelPlot/internal/GlowStyle.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1GlowStyle_1a48bcedb3ab5d49fd07816e2f75684d02" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::Internal::GlowStyle::radius</definition>
+        <argsstring></argsstring>
+        <name>radius</name>
+        <qualifiedname>QAccelPlot::Internal::GlowStyle::radius</qualifiedname>
+        <initializer>{0.0f}</initializer>
+        <briefdescription>
+<para>Halo width in pixels; 0 draws no halo. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/GlowStyle.hpp" line="17" column="11" bodyfile="QAccelPlot/src/QAccelPlot/internal/GlowStyle.hpp" bodystart="17" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1GlowStyle_1a8d2e56a91591692b2dbc197d680e703a" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::Internal::GlowStyle::intensity</definition>
+        <argsstring></argsstring>
+        <name>intensity</name>
+        <qualifiedname>QAccelPlot::Internal::GlowStyle::intensity</qualifiedname>
+        <initializer>{0.0f}</initializer>
+        <briefdescription>
+<para>Halo opacity next to the shape. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/GlowStyle.hpp" line="18" column="11" bodyfile="QAccelPlot/src/QAccelPlot/internal/GlowStyle.hpp" bodystart="18" bodyend="18"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structQAccelPlot_1_1Internal_1_1GlowStyle_1a9abede07f0df33c60173b6961051aa93" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::GlowStyle::active</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>active</name>
+        <qualifiedname>QAccelPlot::Internal::GlowStyle::active</qualifiedname>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> when the style draws a halo. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/GlowStyle.hpp" line="21" column="11" bodyfile="QAccelPlot/src/QAccelPlot/internal/GlowStyle.hpp" bodystart="21" bodyend="24"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>How the shaders draw a <computeroutput><ref refid="classQAccelPlot_1_1Glow" kindref="compound">Glow</ref></computeroutput> halo; see shaders/glow.glsl. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/internal/GlowStyle.hpp" line="15" column="1" bodyfile="QAccelPlot/src/QAccelPlot/internal/GlowStyle.hpp" bodystart="15" bodyend="25"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1Internal_1_1GlowStyle_1a9abede07f0df33c60173b6961051aa93" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::GlowStyle</scope><name>active</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1GlowStyle_1a79b205751fc88f06e7db9cc175efca2e" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::GlowStyle</scope><name>color</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1GlowStyle_1a8d2e56a91591692b2dbc197d680e703a" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::GlowStyle</scope><name>intensity</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1GlowStyle_1a48bcedb3ab5d49fd07816e2f75684d02" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::GlowStyle</scope><name>radius</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

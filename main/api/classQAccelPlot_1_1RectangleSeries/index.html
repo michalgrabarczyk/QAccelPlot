@@ -2335,12 +2335,20 @@
 </thead>
 <tbody>
 <tr>
+<td style="text-align: right;">property bool</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-animating-12"><strong>animating</strong></a>  <br><em>Read-only:</em> <code>true</code> <em>while a transition animates the series' data.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">property int</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-count-12"><strong>count</strong></a>  <br><em>Read-only: number of records stored, including invalid ones.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property quint64</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-datarevision-12"><strong>dataRevision</strong></a>  <br><em>Revision incremented by every accepted change of the series' records.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property QQmlListProperty&lt; <a href="../classQAccelPlot_1_1SeriesEffect/"><strong>SeriesEffect</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-effects-12"><strong>effects</strong></a>  <br><em>Visual effects drawn with the series, such as</em> <code>GradientFill</code> <em>or</em><code>Glow</code> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property bool</td>
@@ -2421,6 +2429,10 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#signal-animatingchanged"><strong>animatingChanged</strong></a>  <br><em>Emitted when the animating property changes.</em></td>
+</tr>
 <tr>
 <td style="text-align: right;">signal void</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#signal-countchanged"><strong>countChanged</strong></a>  <br><em>Emitted when the number of records changes.</em></td>
@@ -2633,6 +2645,10 @@
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-plotseries-12"><strong>PlotSeries</strong></a> (QQuickItem * parent=nullptr) <br></td>
 </tr>
 <tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-animating-22"><strong>animating</strong></a> () const<br><em>Returns whether a transition animates the series' data.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">virtual void</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-cleardata"><strong>clearData</strong></a> () <br><em>Removes all data points from the series.</em></td>
 </tr>
@@ -2643,6 +2659,10 @@
 <tr>
 <td style="text-align: right;">quint64</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-datarevision-22"><strong>dataRevision</strong></a> () const<br><em>Returns the current data revision.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">QQmlListProperty&lt; <a href="../classQAccelPlot_1_1SeriesEffect/"><strong>SeriesEffect</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-effects-22"><strong>effects</strong></a> () <br><em>Returns the QML list property of the effects.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>
@@ -2872,6 +2892,14 @@
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-applydatapoints"><strong>applyDataPoints</strong></a> (<a href="../structQAccelPlot_1_1PlotSeries_1_1DataPointInput/"><strong>DataPointInput</strong></a> &amp;&amp; input) <br><em>Applies data points passed to</em> <code>setData()</code> <em>or</em><code>setDataF()</code> <em>.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-classbegin"><strong>classBegin</strong></a> () override<br><em>Holds back the warnings about ignored effects while the component loads.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-componentcomplete"><strong>componentComplete</strong></a> () override<br><em>Reports ignored effects once the component is complete.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">virtual <a href="../structQAccelPlot_1_1PlotSeries_1_1DataRanges/"><strong>DataRanges</strong></a></td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-computedataranges"><strong>computeDataRanges</strong></a> () const<br><em>Scans the records for their extents. The default implementation scans the data points.</em></td>
 </tr>
@@ -2886,6 +2914,10 @@
 <tr>
 <td style="text-align: right;">const <a href="../classQAccelPlot_1_1DataPointStore/"><strong>DataPointStore</strong></a> &amp;</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-datapoints-22"><strong>dataPoints</strong></a> () const<br><em>Returns the data points of the series.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">const <a href="../classQAccelPlot_1_1Internal_1_1SeriesEffectList/"><strong>Internal::SeriesEffectList</strong></a> &amp;</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-effectlist"><strong>effectList</strong></a> () const<br><em>Returns the effects of the series.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>
@@ -2932,6 +2964,10 @@
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-invalidateinspection"><strong>invalidateInspection</strong></a> () <br><em>Refreshes the data queries after record validity changed without a data change, such as an axis scale switch.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-itemchange"><strong>itemChange</strong></a> (ItemChange change, const ItemChangeData &amp; value) override<br><em>Follows the window, whose frames refresh the effects.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">bool</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-logscalex"><strong>logScaleX</strong></a> () const<br><em>Returns whether the horizontal axis is logarithmic; false without an axis.</em></td>
 </tr>
@@ -2969,6 +3005,10 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setanimating"><strong>setAnimating</strong></a> (bool animating) <br><em>Sets the animating property to</em> <em>animating</em> <em>. Called when the series'</em><code>TransitionRunner</code> <em>becomes active or idle.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-sethovered"><strong>setHovered</strong></a> (bool hovered) <br><em>Sets the hovered property to</em> <em>hovered</em> <em>. Called by the hover handling of a series.</em></td>
 </tr>
 <tr>
@@ -2978,6 +3018,10 @@
 <tr>
 <td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-supporthover"><strong>supportHover</strong></a> () <br><em>Makes the series accept hover events while</em> <code>hoverEnabled</code> <em>is</em><code>true</code> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-supportseffect"><strong>supportsEffect</strong></a> (const <a href="../classQAccelPlot_1_1SeriesEffect/"><strong>SeriesEffect</strong></a> &amp; effect) const<br><em>Returns whether the series draws</em> <em>effect</em> <em>. The default draws none.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>

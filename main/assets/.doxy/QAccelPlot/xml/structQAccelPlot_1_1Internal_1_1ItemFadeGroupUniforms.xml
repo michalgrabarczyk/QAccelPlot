@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1Internal_1_1ItemFadeGroupUniforms" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::ItemFadeGroupUniforms</compoundname>
+    <includes local="no">ItemOpacityUniforms.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1ItemFadeGroupUniforms_1a69c98c1986ad5a32b8e686cffe322537" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::Internal::ItemFadeGroupUniforms::range[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>range</name>
+        <qualifiedname>QAccelPlot::Internal::ItemFadeGroupUniforms::range</qualifiedname>
+        <briefdescription>
+<para>First item, item count (0: no fade), 1 when the starts follow a front, 1 when the items exit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/ItemOpacityUniforms.hpp" line="16" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/internal/ItemOpacityUniforms.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1ItemFadeGroupUniforms_1ab39c8c8db8dbb0d81cae2f2ad2a1325b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::Internal::ItemFadeGroupUniforms::timing[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>timing</name>
+        <qualifiedname>QAccelPlot::Internal::ItemFadeGroupUniforms::timing</qualifiedname>
+        <briefdescription>
+<para>Progress, spread, and timeline length of each item; then padding. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/ItemOpacityUniforms.hpp" line="17" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/internal/ItemOpacityUniforms.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1ItemFadeGroupUniforms_1a19f44ca80714907fc6142181ea8eed87" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::Internal::ItemFadeGroupUniforms::curve[kFadeCurveSamples]</definition>
+        <argsstring>[kFadeCurveSamples]</argsstring>
+        <name>curve</name>
+        <qualifiedname>QAccelPlot::Internal::ItemFadeGroupUniforms::curve</qualifiedname>
+        <briefdescription>
+<para>Opacity over the timeline of an item. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/ItemOpacityUniforms.hpp" line="18" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/internal/ItemOpacityUniforms.hpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1ItemFadeGroupUniforms_1a0612a403b7ebf85a182f5484488b4797" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::Internal::ItemFadeGroupUniforms::starts[kFadeStartSamples]</definition>
+        <argsstring>[kFadeStartSamples]</argsstring>
+        <name>starts</name>
+        <qualifiedname>QAccelPlot::Internal::ItemFadeGroupUniforms::starts</qualifiedname>
+        <briefdescription>
+<para>Start times along the front. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/ItemOpacityUniforms.hpp" line="19" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/internal/ItemOpacityUniforms.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>The std140 uniform members of one fading transition group, see <computeroutput><ref refid="structQAccelPlot_1_1Internal_1_1ItemFadeGroup" kindref="compound">ItemFadeGroup</ref></computeroutput>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/materials/internal/ItemOpacityUniforms.hpp" line="15" column="1" bodyfile="QAccelPlot/src/QAccelPlot/materials/internal/ItemOpacityUniforms.hpp" bodystart="15" bodyend="20"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1Internal_1_1ItemFadeGroupUniforms_1a19f44ca80714907fc6142181ea8eed87" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ItemFadeGroupUniforms</scope><name>curve</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1ItemFadeGroupUniforms_1a69c98c1986ad5a32b8e686cffe322537" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ItemFadeGroupUniforms</scope><name>range</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1ItemFadeGroupUniforms_1a0612a403b7ebf85a182f5484488b4797" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ItemFadeGroupUniforms</scope><name>starts</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1ItemFadeGroupUniforms_1ab39c8c8db8dbb0d81cae2f2ad2a1325b" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ItemFadeGroupUniforms</scope><name>timing</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

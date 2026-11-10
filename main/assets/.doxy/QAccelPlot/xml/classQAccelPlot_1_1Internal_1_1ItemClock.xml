@@ -1,0 +1,209 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1Internal_1_1ItemClock" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::ItemClock</compoundname>
+    <includes local="no">TransitionFrame.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1ItemClock_1aad40ba276c129ad9627169aa1bcc9efe" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::ItemClock::time_</definition>
+        <argsstring></argsstring>
+        <name>time_</name>
+        <qualifiedname>QAccelPlot::Internal::ItemClock::time_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="89" column="12" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1ItemClock_1aac8130fea0a00e447c8270f3670a9ddd" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::ItemClock::count_</definition>
+        <argsstring></argsstring>
+        <name>count_</name>
+        <qualifiedname>QAccelPlot::Internal::ItemClock::count_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="90" column="9" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1ItemClock_1a5eca85ee818116673c9abb7e20e849e5" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::ItemClock::exit_</definition>
+        <argsstring></argsstring>
+        <name>exit_</name>
+        <qualifiedname>QAccelPlot::Internal::ItemClock::exit_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="91" column="10" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1ItemClock_1a27b9e177015e578357f2e0c7f42e76d6" prot="private" static="no" mutable="no">
+        <type><ref refid="structQAccelPlot_1_1Internal_1_1ItemTiming" kindref="compound">ItemTiming</ref></type>
+        <definition>ItemTiming QAccelPlot::Internal::ItemClock::timing_</definition>
+        <argsstring></argsstring>
+        <name>timing_</name>
+        <qualifiedname>QAccelPlot::Internal::ItemClock::timing_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="92" column="16" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1ItemClock_1a32247eefc192146f5001d30a095dddff" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::ItemClock::startStep_</definition>
+        <argsstring></argsstring>
+        <name>startStep_</name>
+        <qualifiedname>QAccelPlot::Internal::ItemClock::startStep_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="93" column="12" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1ItemClock_1a04c841134a083519a08158253c05b8ae" prot="private" static="no" mutable="no">
+        <type>std::optional&lt; <ref refid="classQAccelPlot_1_1Internal_1_1FrontStarts" kindref="compound">FrontStarts</ref> &gt;</type>
+        <definition>std::optional&lt;FrontStarts&gt; QAccelPlot::Internal::ItemClock::starts_</definition>
+        <argsstring></argsstring>
+        <name>starts_</name>
+        <qualifiedname>QAccelPlot::Internal::ItemClock::starts_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="94" column="19" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="94" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1ItemClock_1a7a9ac05e34c7a886cae9bab37a78c0a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::Internal::ItemClock::ItemClock</definition>
+        <argsstring>(const TransitionStep &amp;step, int itemCount, bool exit)</argsstring>
+        <name>ItemClock</name>
+        <qualifiedname>QAccelPlot::Internal::ItemClock::ItemClock</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1TransitionStep" kindref="compound">TransitionStep</ref> &amp;</type>
+          <declname>step</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>itemCount</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>exit</declname>
+        </param>
+        <briefdescription>
+<para>Times a group of <emphasis>itemCount</emphasis> items under <emphasis>step</emphasis>; removed items when <emphasis>exit</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="77" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1ItemClock_1a31ac998df313cf755a1373bb24e3b616" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>const <ref refid="structQAccelPlot_1_1Internal_1_1ItemTiming" kindref="compound">ItemTiming</ref> &amp;</type>
+        <definition>const ItemTiming &amp; QAccelPlot::Internal::ItemClock::timing</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>timing</name>
+        <qualifiedname>QAccelPlot::Internal::ItemClock::timing</qualifiedname>
+        <briefdescription>
+<para>Returns the timing of the group. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="80" column="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1ItemClock_1a0a666f4488956ac96f190e951278a464" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::ItemClock::start</definition>
+        <argsstring>(int order) const</argsstring>
+        <name>start</name>
+        <qualifiedname>QAccelPlot::Internal::ItemClock::start</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>order</declname>
+        </param>
+        <briefdescription>
+<para>Returns the start time of the item at position <emphasis>order</emphasis> of the stagger order. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="82" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1ItemClock_1a35345fce7df031e51b3c8b8afaa37f7d" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::ItemClock::motion</definition>
+        <argsstring>(int order) const</argsstring>
+        <name>motion</name>
+        <qualifiedname>QAccelPlot::Internal::ItemClock::motion</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>order</declname>
+        </param>
+        <briefdescription>
+<para>Returns the progress of the movement of the item at position <emphasis>order</emphasis>, before easing. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="84" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1ItemClock_1ad162f66cc39b6f56a1ad60b87cd4fa46" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>const <ref refid="classQAccelPlot_1_1Internal_1_1FrontStarts" kindref="compound">FrontStarts</ref> *</type>
+        <definition>const FrontStarts * QAccelPlot::Internal::ItemClock::frontStarts</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>frontStarts</name>
+        <qualifiedname>QAccelPlot::Internal::ItemClock::frontStarts</qualifiedname>
+        <briefdescription>
+<para>Returns where the front starts the items, or <computeroutput>nullptr</computeroutput> without a front. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="86" column="24"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>The start time and movement of each item of one group at the frame. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="74" column="1" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="74" bodyend="95"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1Internal_1_1ItemClock_1aac8130fea0a00e447c8270f3670a9ddd" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::ItemClock</scope><name>count_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1ItemClock_1a5eca85ee818116673c9abb7e20e849e5" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::ItemClock</scope><name>exit_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1ItemClock_1ad162f66cc39b6f56a1ad60b87cd4fa46" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ItemClock</scope><name>frontStarts</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1ItemClock_1a7a9ac05e34c7a886cae9bab37a78c0a1" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ItemClock</scope><name>ItemClock</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1ItemClock_1a35345fce7df031e51b3c8b8afaa37f7d" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ItemClock</scope><name>motion</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1ItemClock_1a0a666f4488956ac96f190e951278a464" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ItemClock</scope><name>start</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1ItemClock_1a04c841134a083519a08158253c05b8ae" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::ItemClock</scope><name>starts_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1ItemClock_1a32247eefc192146f5001d30a095dddff" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::ItemClock</scope><name>startStep_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1ItemClock_1aad40ba276c129ad9627169aa1bcc9efe" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::ItemClock</scope><name>time_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1ItemClock_1a31ac998df313cf755a1373bb24e3b616" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ItemClock</scope><name>timing</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1ItemClock_1a27b9e177015e578357f2e0c7f42e76d6" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::ItemClock</scope><name>timing_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

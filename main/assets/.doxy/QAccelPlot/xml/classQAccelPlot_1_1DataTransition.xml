@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
-  <compounddef id="classQAccelPlot_1_1DataTransition" kind="class" language="C++" prot="public" abstract="yes">
+  <compounddef id="classQAccelPlot_1_1DataTransition" kind="class" language="C++" prot="public">
     <compoundname>QAccelPlot::DataTransition</compoundname>
     <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
-    <derivedcompoundref refid="classQAccelPlot_1_1DrawTransition" prot="public" virt="non-virtual">QAccelPlot::DrawTransition</derivedcompoundref>
+    <basecompoundref prot="public" virt="non-virtual">QQmlParserStatus</basecompoundref>
+    <derivedcompoundref refid="classQAccelPlot_1_1EnterExitTransition" prot="public" virt="non-virtual">QAccelPlot::EnterExitTransition</derivedcompoundref>
     <derivedcompoundref refid="classQAccelPlot_1_1MorphTransition" prot="public" virt="non-virtual">QAccelPlot::MorphTransition</derivedcompoundref>
     <includes local="no">DataTransition.hpp</includes>
-    <innerclass refid="structQAccelPlot_1_1DataTransition_1_1Dataset" prot="public">QAccelPlot::DataTransition::Dataset</innerclass>
     <innerclass refid="classQAccelPlot_1_1DataTransition_1_1Run" prot="public">QAccelPlot::DataTransition::Run</innerclass>
     <sectiondef kind="property">
       <memberdef kind="property" id="classQAccelPlot_1_1DataTransition_1aaa85f2edef24b72eb568690609ab60fa" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
@@ -25,7 +25,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="43" column="5" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="43" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="57" column="5" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="57" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1DataTransition_1aaa1bed54eccf52c687a98295269c3d7c" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>QEasingCurve</type>
@@ -36,13 +36,13 @@
         <read>easing</read>
         <write>setEasing</write>
         <briefdescription>
-<para>Easing curve applied to the animation progress. Default: <computeroutput>QEasingCurve::Linear</computeroutput>. </para>
+<para>Easing curve applied to the progress of each item. Default: <computeroutput>QEasingCurve::Linear</computeroutput>. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="45" column="5" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="45" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="59" column="5" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="59" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1DataTransition_1a7b3a05823431f464182370e387dc0b41" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>bool</type>
@@ -53,13 +53,13 @@
         <read>enabled</read>
         <write>setEnabled</write>
         <briefdescription>
-<para>Whether the transition is active. When <computeroutput>false</computeroutput>, data updates are applied instantly. </para>
+<para>Whether the transition is active. When <computeroutput>false</computeroutput>, the items it animates change instantly. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="47" column="5" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="47" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="61" column="5" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="61" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1DataTransition_1a6299a4b7aedb22a639b1a21e77c8c0c0" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>bool</type>
@@ -69,13 +69,92 @@
         <qualifiedname>QAccelPlot::DataTransition::running</qualifiedname>
         <read>running</read>
         <briefdescription>
-<para>Read-only: <computeroutput>true</computeroutput> while the transition is playing on at least one element. </para>
+<para>Read-only: <computeroutput>true</computeroutput> while the transition is playing on at least one series. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="49" column="5" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="49" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="63" column="5" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1DataTransition_1aa2f77ede320106c6402c9c0d7294d1e9" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::DataTransition::stagger</definition>
+        <argsstring></argsstring>
+        <name>stagger</name>
+        <qualifiedname>QAccelPlot::DataTransition::stagger</qualifiedname>
+        <read>stagger</read>
+        <write>setStagger</write>
+        <briefdescription>
+<para>Share of <computeroutput>duration</computeroutput> over which the start times of the items are spread, in [0, 1]. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>0 animates all items together; 1 animates them one after another, each changing at once. Items start in index order. Values outside [0, 1] are clamped. Default: 0, and 1 for <computeroutput><ref refid="classQAccelPlot_1_1DrawTransition" kindref="compound">DrawTransition</ref></computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="68" column="5" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1DataTransition_1aa55f21ef3518f8452c63ae914806ccac" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QQmlListProperty&lt; QObject &gt;</type>
+        <definition>QQmlListProperty&lt;QObject&gt; QAccelPlot::DataTransition::animations</definition>
+        <argsstring></argsstring>
+        <name>animations</name>
+        <qualifiedname>QAccelPlot::DataTransition::animations</qualifiedname>
+        <read>animations</read>
+        <briefdescription>
+<para>Qt Quick animations of the opacity of each item, such as <computeroutput>NumberAnimation</computeroutput> { property: &quot;opacity&quot; }. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The default property. The animations run together on the timeline of each item, which starts when the item starts to move. They are read, never run, so <computeroutput>running</computeroutput>, <computeroutput>paused</computeroutput>, and their signals have no effect.</para>
+<para><itemizedlist>
+<listitem><para>Supported: <computeroutput>NumberAnimation</computeroutput> and other numeric <computeroutput>PropertyAnimation</computeroutput> types, <computeroutput>PropertyAction</computeroutput>, <computeroutput>PauseAnimation</computeroutput>, <computeroutput>SequentialAnimation</computeroutput>, and <computeroutput>ParallelAnimation</computeroutput>, with finite <computeroutput>loops</computeroutput>.</para>
+</listitem><listitem><para>A missing <computeroutput>from</computeroutput> continues from the opacity reached so far, and a missing <computeroutput>to</computeroutput> is 1. Before its first animation starts, an item shows that animation&apos;s start opacity.</para>
+</listitem><listitem><para>Other animations, such as <computeroutput>SpringAnimation</computeroutput> or <computeroutput>ScriptAction</computeroutput>, and animations of other properties log a warning and only add their duration.</para>
+</listitem><listitem><para>When the animations last longer than an item&apos;s share of <computeroutput>duration</computeroutput>, the start times of the items move closer together, so the transition still ends after <computeroutput>duration</computeroutput>.</para>
+</listitem><listitem><para>The opacity is clamped to [0, 1], and every item is opaque again when the transition ends. </para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="84" column="5" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="84" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classQAccelPlot_1_1DataTransition_1a534a28ef9818df3c21ecdd37ea5dca97" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class MorphTransition</definition>
+        <argsstring></argsstring>
+        <name>MorphTransition</name>
+        <qualifiedname>QAccelPlot::DataTransition::MorphTransition</qualifiedname>
+        <param>
+          <type>MorphTransition</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="179" column="18" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="179" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classQAccelPlot_1_1DataTransition_1aae2b2aecd797c84319c6718af7186828" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class EnterExitTransition</definition>
+        <argsstring></argsstring>
+        <name>EnterExitTransition</name>
+        <qualifiedname>QAccelPlot::DataTransition::EnterExitTransition</qualifiedname>
+        <param>
+          <type>EnterExitTransition</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="180" column="18" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="180" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-attrib">
@@ -92,7 +171,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="170" column="9" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="170" bodyend="170"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="193" column="9" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="193" bodyend="193"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1DataTransition_1a2c42460c1f3a7376f5f105db39ff508d" prot="private" static="no" mutable="no">
         <type>QEasingCurve</type>
@@ -107,7 +186,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="171" column="18" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="171" bodyend="171"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="194" column="18" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="194" bodyend="194"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1DataTransition_1a58d2ee8d8403665f4efd1f85ffb4d4bd" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -122,7 +201,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="172" column="10" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="172" bodyend="172"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="195" column="10" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="195" bodyend="195"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1DataTransition_1a13cb90cef73c65a2822547aca7fed6ee" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -137,7 +216,22 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="173" column="10" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="173" bodyend="173"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="196" column="10" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="196" bodyend="196"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataTransition_1a302c821d607fe23b49e466d184faafc8" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::DataTransition::stagger_</definition>
+        <argsstring></argsstring>
+        <name>stagger_</name>
+        <qualifiedname>QAccelPlot::DataTransition::stagger_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="197" column="11" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="197" bodyend="197"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1DataTransition_1a8b3db77a643f39554bf846c3f66e8031" prot="private" static="no" mutable="no">
         <type>QList&lt; <ref refid="classQAccelPlot_1_1DataTransition_1_1Run" kindref="compound">Run</ref> * &gt;</type>
@@ -151,7 +245,36 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="174" column="11" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="174" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="198" column="11" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="198" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataTransition_1af92c948b369a98e08785741ee3c6deff" prot="private" static="no" mutable="no">
+        <type>QList&lt; QObject * &gt;</type>
+        <definition>QList&lt;QObject*&gt; QAccelPlot::DataTransition::animations_</definition>
+        <argsstring></argsstring>
+        <name>animations_</name>
+        <qualifiedname>QAccelPlot::DataTransition::animations_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="199" column="11" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="199" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataTransition_1a18c226606bd9ac37e66011abe8c1a6fa" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::DataTransition::loading_</definition>
+        <argsstring></argsstring>
+        <name>loading_</name>
+        <qualifiedname>QAccelPlot::DataTransition::loading_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="200" column="10" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="200" bodyend="200"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1DataTransition_1a51fe95c5313bee470a7839d35321b493" prot="private" static="no" mutable="no">
         <type>QAbstractAnimation *</type>
@@ -165,30 +288,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="175" column="24" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="175" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="201" column="24" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="201" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
-      <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1a87c1716f9cb4ddb72592903f3fd33915" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
-        <type></type>
-        <definition>QAccelPlot::DataTransition::DataTransition</definition>
-        <argsstring>(QObject *parent=nullptr)</argsstring>
-        <name>DataTransition</name>
-        <qualifiedname>QAccelPlot::DataTransition::DataTransition</qualifiedname>
-        <param>
-          <type>QObject *</type>
-          <declname>parent</declname>
-          <defval>nullptr</defval>
-        </param>
-        <briefdescription>
-<para>Constructs an <ref refid="classQAccelPlot_1_1DataTransition" kindref="compound">DataTransition</ref> with the given <emphasis>parent</emphasis>. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="107" column="14"/>
-      </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1add330610df13a318feacdf411be112b4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>QAccelPlot::DataTransition::~DataTransition</definition>
@@ -196,13 +299,13 @@
         <name>~DataTransition</name>
         <qualifiedname>QAccelPlot::DataTransition::~DataTransition</qualifiedname>
         <briefdescription>
-<para>Destroys the transition. Its runs stay pending, so their hosts can still show the target data. </para>
+<para>Destroys the transition, ending its runs. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="109" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="116" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1a93166a6418361d8e209fcdfa32465e1e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -217,7 +320,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="112" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="119" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1a67e4af4b0d23f49bcdb3e6ddef906c3c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -236,7 +339,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="114" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="121" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1abcc106afb46ed281fcc49e2793dd5ff7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QEasingCurve</type>
@@ -251,7 +354,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="117" column="18"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="124" column="18"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1a5b87a984d607f1fcfc212b9212b0a36b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -270,7 +373,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="119" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="126" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1adce79119ca3c12b0d59f69ab369e56e8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -285,7 +388,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="122" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="129" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1a4ba895ca83cfa3163d6dbebe782c8e2b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -304,7 +407,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="124" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="131" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1a96c40d0c05b880893df10a2fdd013ebe" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -319,97 +422,76 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="127" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="134" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1a0c443df1b899df5283e1216f412db5ef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1a77a134bd50ffc4b4eaf9ef16bc685b3b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::DataTransition::stagger</definition>
+        <argsstring>() const</argsstring>
+        <name>stagger</name>
+        <qualifiedname>QAccelPlot::DataTransition::stagger</qualifiedname>
+        <briefdescription>
+<para>Returns the share of the duration over which item start times are spread. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="137" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1a210acb1c630c2f3b29e54b3a7a525494" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataTransition::setStagger</definition>
+        <argsstring>(qreal stagger)</argsstring>
+        <name>setStagger</name>
+        <qualifiedname>QAccelPlot::DataTransition::setStagger</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>stagger</declname>
+        </param>
+        <briefdescription>
+<para>Sets the stagger to <emphasis>stagger</emphasis>, clamped to [0, 1]. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="139" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1a2217ad3f591ea9c95b647268f13a44c2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QQmlListProperty&lt; QObject &gt;</type>
+        <definition>QQmlListProperty&lt; QObject &gt; QAccelPlot::DataTransition::animations</definition>
+        <argsstring>()</argsstring>
+        <name>animations</name>
+        <qualifiedname>QAccelPlot::DataTransition::animations</qualifiedname>
+        <briefdescription>
+<para>Returns the QML list property of the opacity animations. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="142" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1a916eab10dd57f06cdca645df10108ef1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void QAccelPlot::DataTransition::start</definition>
-        <argsstring>(Run &amp;run, const std::vector&lt; double &gt; &amp;currentData, int currentPointCount, std::vector&lt; double &gt; &amp;&amp;newData, int newPointCount, int stride=2)</argsstring>
+        <argsstring>(Run &amp;run)</argsstring>
         <name>start</name>
         <qualifiedname>QAccelPlot::DataTransition::start</qualifiedname>
         <param>
           <type><ref refid="classQAccelPlot_1_1DataTransition_1_1Run" kindref="compound">Run</ref> &amp;</type>
           <declname>run</declname>
         </param>
-        <param>
-          <type>const std::vector&lt; double &gt; &amp;</type>
-          <declname>currentData</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>currentPointCount</declname>
-        </param>
-        <param>
-          <type>std::vector&lt; double &gt; &amp;&amp;</type>
-          <declname>newData</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>newPointCount</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>stride</declname>
-          <defval>2</defval>
-        </param>
         <briefdescription>
-<para>Starts <emphasis>run</emphasis> from <emphasis>currentData</emphasis> to <emphasis>newData</emphasis>, restarting it if it is already active. </para>
+<para>Starts <emphasis>run</emphasis>, restarting it if it is already active. </para>
         </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>run</parametername>
-</parameternamelist>
-<parameterdescription>
-<para><ref refid="classQAccelPlot_1_1DataTransition_1_1Run" kindref="compound">Run</ref> of the host element; ended first if another transition advances it. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>currentData</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Current double buffer (copied as the <emphasis>from</emphasis> state). </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>currentPointCount</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Number of points in <emphasis>currentData</emphasis>. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>newData</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Target double buffer (moved as the <emphasis>to</emphasis> state). </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>newPointCount</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Number of points in <emphasis>newData</emphasis>. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>stride</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Number of values per point in both buffers. Default: 2, XY points. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>
+<para>A run active on another transition is ended first. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="136" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="147" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1a4c514985f26ad17a66d219fa7b57f557" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -421,41 +503,60 @@
 <para>Ends every active run immediately. </para>
         </briefdescription>
         <detaileddescription>
-<para>The runs stay pending; hosts show the target data after <computeroutput>running</computeroutput> turns <computeroutput>false</computeroutput>. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="141" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="149" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1a7ebc5e33c7d4e524e50eccd2457fb8d7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>bool</type>
-        <definition>bool QAccelPlot::DataTransition::advance</definition>
-        <argsstring>(Run &amp;run, std::vector&lt; double &gt; &amp;outData, int &amp;outPointCount)</argsstring>
-        <name>advance</name>
-        <qualifiedname>QAccelPlot::DataTransition::advance</qualifiedname>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1af57fd47c65a90cf459015bbfbbb87aea" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::DataTransition::progress</definition>
+        <argsstring>(const Run &amp;run) const</argsstring>
+        <name>progress</name>
+        <qualifiedname>QAccelPlot::DataTransition::progress</qualifiedname>
         <param>
-          <type><ref refid="classQAccelPlot_1_1DataTransition_1_1Run" kindref="compound">Run</ref> &amp;</type>
+          <type>const <ref refid="classQAccelPlot_1_1DataTransition_1_1Run" kindref="compound">Run</ref> &amp;</type>
           <declname>run</declname>
         </param>
-        <param>
-          <type>std::vector&lt; double &gt; &amp;</type>
-          <declname>outData</declname>
-        </param>
-        <param>
-          <type>int &amp;</type>
-          <declname>outPointCount</declname>
-        </param>
         <briefdescription>
-<para>Advances <emphasis>run</emphasis> by one frame, writing the interpolated data into <emphasis>outData</emphasis>. </para>
+<para>Returns the progress of <emphasis>run</emphasis> in [0, 1], before easing. </para>
         </briefdescription>
         <detaileddescription>
-<para>When the duration has elapsed, writes the target data and finishes the run. <simplesect kind="return"><para><computeroutput>true</computeroutput> if <emphasis>run</emphasis> is still active after this call. </para>
-</simplesect>
-</para>
+<para>It is 1 once the duration has elapsed, and 1 for a run that is not active on this transition. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="147" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="153" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1a92b0325ebecef60d5b11c9e6f8afcd8a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataTransition::classBegin</definition>
+        <argsstring>() override</argsstring>
+        <name>classBegin</name>
+        <qualifiedname>QAccelPlot::DataTransition::classBegin</qualifiedname>
+        <briefdescription>
+<para>Holds back the warnings about ignored animations while the component loads. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="161" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1a0675793914d6e68cecba5bda17d19267" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataTransition::componentComplete</definition>
+        <argsstring>() override</argsstring>
+        <name>componentComplete</name>
+        <qualifiedname>QAccelPlot::DataTransition::componentComplete</qualifiedname>
+        <briefdescription>
+<para>Reports ignored animations once the component is complete. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="163" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="signal">
@@ -472,7 +573,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="151" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="167" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1DataTransition_1ae40837c466a956e404cb353552c7ae77" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -487,7 +588,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="153" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="169" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1DataTransition_1ae75636538a959ce1a08227aa09d7aed5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -502,7 +603,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="155" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="171" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1DataTransition_1a99928e9029236f818855a1f445d7635d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -517,46 +618,44 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="157" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="173" column="10"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="protected-func">
-      <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1aa5ecf339751251a5ab1a71ec96121c91" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+      <memberdef kind="signal" id="classQAccelPlot_1_1DataTransition_1a2a5e0da87024d82ed44c15b99ea961f2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
-        <definition>virtual void QAccelPlot::DataTransition::interpolate</definition>
-        <argsstring>(double easedProgress, const Dataset &amp;from, const Dataset &amp;to, Dataset &amp;out)=0</argsstring>
-        <name>interpolate</name>
-        <qualifiedname>QAccelPlot::DataTransition::interpolate</qualifiedname>
-        <reimplementedby refid="classQAccelPlot_1_1DrawTransition_1a904da570c469cfd92bd7b54fcd4241fc">interpolate</reimplementedby>
-        <reimplementedby refid="classQAccelPlot_1_1MorphTransition_1a198c612061a228fce28695b7e497bbe5">interpolate</reimplementedby>
-        <param>
-          <type>double</type>
-          <declname>easedProgress</declname>
-        </param>
-        <param>
-          <type>const <ref refid="structQAccelPlot_1_1DataTransition_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
-          <declname>from</declname>
-        </param>
-        <param>
-          <type>const <ref refid="structQAccelPlot_1_1DataTransition_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
-          <declname>to</declname>
-        </param>
-        <param>
-          <type><ref refid="structQAccelPlot_1_1DataTransition_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
-          <declname>out</declname>
-        </param>
+        <definition>void QAccelPlot::DataTransition::staggerChanged</definition>
+        <argsstring>()</argsstring>
+        <name>staggerChanged</name>
+        <qualifiedname>QAccelPlot::DataTransition::staggerChanged</qualifiedname>
         <briefdescription>
-<para>Subclass entry point — writes the dataset between <emphasis>from</emphasis> and <emphasis>to</emphasis> at <emphasis>easedProgress</emphasis> into <emphasis>out</emphasis>. </para>
+<para>Emitted when the stagger property changes. </para>
         </briefdescription>
         <detaileddescription>
-<para><emphasis>easedProgress</emphasis> runs from 0 to 1 and leaves that range with an overshooting easing curve. <emphasis>from</emphasis> and <emphasis>to</emphasis> share one stride, which <emphasis>out</emphasis> already has; set its <computeroutput>values</computeroutput> and <computeroutput>count</computeroutput>. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="164" column="18"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="175" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1a87c1716f9cb4ddb72592903f3fd33915" prot="private" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::DataTransition::DataTransition</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>DataTransition</name>
+        <qualifiedname>QAccelPlot::DataTransition::DataTransition</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="182" column="14"/>
+      </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1a1adc6249c09b25b5bf9c8fd2f709862c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void QAccelPlot::DataTransition::removeRun</definition>
@@ -573,7 +672,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="167" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="189" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1afb7e074e6e4c1e1538209a6eb14d2945" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -591,17 +690,122 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="168" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="190" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1a888e97e1fca19a718e6b66cc7d4a7c9a" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataTransition::warnAboutIgnored</definition>
+        <argsstring>(const QList&lt; QObject * &gt; &amp;animations) const</argsstring>
+        <name>warnAboutIgnored</name>
+        <qualifiedname>QAccelPlot::DataTransition::warnAboutIgnored</qualifiedname>
+        <param>
+          <type>const QList&lt; QObject * &gt; &amp;</type>
+          <declname>animations</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="191" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1a85cf72982024dfe22fd5999f30107b93" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void QAccelPlot::DataTransition::appendAnimation</definition>
+        <argsstring>(QQmlListProperty&lt; QObject &gt; *list, QObject *animation)</argsstring>
+        <name>appendAnimation</name>
+        <qualifiedname>QAccelPlot::DataTransition::appendAnimation</qualifiedname>
+        <param>
+          <type>QQmlListProperty&lt; QObject &gt; *</type>
+          <declname>list</declname>
+        </param>
+        <param>
+          <type>QObject *</type>
+          <declname>animation</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="184" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1a8674bbc21b41a6ec18d03726d2d6c182" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>qsizetype</type>
+        <definition>static qsizetype QAccelPlot::DataTransition::animationCount</definition>
+        <argsstring>(QQmlListProperty&lt; QObject &gt; *list)</argsstring>
+        <name>animationCount</name>
+        <qualifiedname>QAccelPlot::DataTransition::animationCount</qualifiedname>
+        <param>
+          <type>QQmlListProperty&lt; QObject &gt; *</type>
+          <declname>list</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="185" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1a2af13fed31f757df6c07a911a57423dd" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QObject *</type>
+        <definition>static QObject * QAccelPlot::DataTransition::animationAt</definition>
+        <argsstring>(QQmlListProperty&lt; QObject &gt; *list, qsizetype index)</argsstring>
+        <name>animationAt</name>
+        <qualifiedname>QAccelPlot::DataTransition::animationAt</qualifiedname>
+        <param>
+          <type>QQmlListProperty&lt; QObject &gt; *</type>
+          <declname>list</declname>
+        </param>
+        <param>
+          <type>qsizetype</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="186" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataTransition_1ac19537e0965a71092ad94d5cb80d8d21" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void QAccelPlot::DataTransition::clearAnimations</definition>
+        <argsstring>(QQmlListProperty&lt; QObject &gt; *list)</argsstring>
+        <name>clearAnimations</name>
+        <qualifiedname>QAccelPlot::DataTransition::clearAnimations</qualifiedname>
+        <param>
+          <type>QQmlListProperty&lt; QObject &gt; *</type>
+          <declname>list</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="187" column="17"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
-<para>Abstract base class for animated data transitions on plot elements. </para>
+<para>Abstract base class for animated data transitions on plot series. </para>
     </briefdescription>
     <detaileddescription>
-<para>Subclasses implement <computeroutput><ref refid="classQAccelPlot_1_1DataTransition_1aa5ecf339751251a5ab1a71ec96121c91" kindref="member">interpolate()</ref></computeroutput> to define how the element animates between an old dataset and a new one. The transition is driven frame-by-frame by <computeroutput><ref refid="classQAccelPlot_1_1DataTransition_1a7ebc5e33c7d4e524e50eccd2457fb8d7" kindref="member">advance()</ref></computeroutput>, which the host element calls on the GUI thread before each scene graph synchronization, so <computeroutput>runningChanged</computeroutput> is always emitted on the GUI thread.</para>
+<para>A series animates a data change with up to three transitions, matched to its items by index: <computeroutput>enterTransition</computeroutput> for added items, <computeroutput>updateTransition</computeroutput> for kept items, and <computeroutput>exitTransition</computeroutput> for removed items. <computeroutput><ref refid="classQAccelPlot_1_1MorphTransition" kindref="compound">MorphTransition</ref></computeroutput>, <computeroutput><ref refid="classQAccelPlot_1_1DrawTransition" kindref="compound">DrawTransition</ref></computeroutput>, and <computeroutput><ref refid="classQAccelPlot_1_1GrowTransition" kindref="compound">GrowTransition</ref></computeroutput> are the available transitions.</para>
 <para>Time comes from Qt&apos;s animation timer on the transition&apos;s thread, the clock of QML animations. An installed <computeroutput>QAnimationDriver</computeroutput> therefore steps transitions too, for example to record frames offscreen at a fixed time step.</para>
-<para>One transition can be assigned to several elements. Each element keeps its own <computeroutput><ref refid="classQAccelPlot_1_1DataTransition_1_1Run" kindref="compound">Run</ref></computeroutput> with the data it animates between, so the elements animate independently.</para>
-<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1DrawTransition" kindref="compound">DrawTransition</ref>, <ref refid="classQAccelPlot_1_1MorphTransition" kindref="compound">MorphTransition</ref>, <ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref>, <ref refid="classQAccelPlot_1_1BarSeries" kindref="compound">BarSeries</ref>, <ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref> </para>
+<para>One transition can be assigned to several series, and to several slots of one series. Each assignment keeps its own <computeroutput><ref refid="classQAccelPlot_1_1DataTransition_1_1Run" kindref="compound">Run</ref></computeroutput>, so the animations are independent.</para>
+<para>Qt Quick animations of <computeroutput>&quot;opacity&quot;</computeroutput> declared inside a transition fade each item, see <computeroutput>animations:</computeroutput> </para>
+<para><programlisting filename=".qml"><codeline><highlight class="normal">enterTransition:<sp/>QAccelPlot.DrawTransition<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>NumberAnimation<sp/>{<sp/>property:<sp/>&quot;opacity&quot;;<sp/>from:<sp/>0;<sp/>duration:<sp/>250<sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1MorphTransition" kindref="compound">MorphTransition</ref>, <ref refid="classQAccelPlot_1_1DrawTransition" kindref="compound">DrawTransition</ref>, <ref refid="classQAccelPlot_1_1GrowTransition" kindref="compound">GrowTransition</ref>, <ref refid="classQAccelPlot_1_1TransitionRunner" kindref="compound">TransitionRunner</ref> </para>
 </simplesect>
 </para>
     </detaileddescription>
@@ -611,14 +815,28 @@
         <link refid="classQAccelPlot_1_1DataTransition"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
       </node>
-      <node id="3">
+      <node id="5">
         <label>QAccelPlot::DrawTransition</label>
         <link refid="classQAccelPlot_1_1DrawTransition"/>
-        <childnode refid="1" relation="public-inheritance">
+        <childnode refid="4" relation="public-inheritance">
         </childnode>
       </node>
       <node id="4">
+        <label>QAccelPlot::EnterExitTransition</label>
+        <link refid="classQAccelPlot_1_1EnterExitTransition"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>QAccelPlot::GrowTransition</label>
+        <link refid="classQAccelPlot_1_1GrowTransition"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
         <label>QAccelPlot::MorphTransition</label>
         <link refid="classQAccelPlot_1_1MorphTransition"/>
         <childnode refid="1" relation="public-inheritance">
@@ -627,6 +845,9 @@
       <node id="2">
         <label>QObject</label>
       </node>
+      <node id="3">
+        <label>QQmlParserStatus</label>
+      </node>
     </inheritancegraph>
     <collaborationgraph>
       <node id="1">
@@ -634,17 +855,30 @@
         <link refid="classQAccelPlot_1_1DataTransition"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
       </node>
       <node id="2">
         <label>QObject</label>
       </node>
+      <node id="3">
+        <label>QQmlParserStatus</label>
+      </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="36" column="1" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="36" bodyend="176"/>
+    <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" line="48" column="1" bodyfile="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp" bodystart="48" bodyend="202"/>
     <listofallmembers>
-      <member refid="classQAccelPlot_1_1DataTransition_1a7ebc5e33c7d4e524e50eccd2457fb8d7" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>advance</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a2af13fed31f757df6c07a911a57423dd" prot="private" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>animationAt</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a8674bbc21b41a6ec18d03726d2d6c182" prot="private" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>animationCount</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1aa55f21ef3518f8452c63ae914806ccac" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>animations</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a2217ad3f591ea9c95b647268f13a44c2" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>animations</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1af92c948b369a98e08785741ee3c6deff" prot="private" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>animations_</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a85cf72982024dfe22fd5999f30107b93" prot="private" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>appendAnimation</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1a4c514985f26ad17a66d219fa7b57f557" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>cancel</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a92b0325ebecef60d5b11c9e6f8afcd8a" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>classBegin</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1ac19537e0965a71092ad94d5cb80d8d21" prot="private" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>clearAnimations</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1a51fe95c5313bee470a7839d35321b493" prot="private" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>clock_</name></member>
-      <member refid="classQAccelPlot_1_1DataTransition_1a87c1716f9cb4ddb72592903f3fd33915" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>DataTransition</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a0675793914d6e68cecba5bda17d19267" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>componentComplete</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a87c1716f9cb4ddb72592903f3fd33915" prot="private" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>DataTransition</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1aaa85f2edef24b72eb568690609ab60fa" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>duration</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1a93166a6418361d8e209fcdfa32465e1e" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>duration</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1abbbb726932b0fbd2bab38fb5746aaab1" prot="private" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>duration_</name></member>
@@ -657,7 +891,10 @@
       <member refid="classQAccelPlot_1_1DataTransition_1adce79119ca3c12b0d59f69ab369e56e8" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>enabled</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1a58d2ee8d8403665f4efd1f85ffb4d4bd" prot="private" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>enabled_</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1ae75636538a959ce1a08227aa09d7aed5" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>enabledChanged</name></member>
-      <member refid="classQAccelPlot_1_1DataTransition_1aa5ecf339751251a5ab1a71ec96121c91" prot="protected" virt="pure-virtual"><scope>QAccelPlot::DataTransition</scope><name>interpolate</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1aae2b2aecd797c84319c6718af7186828" prot="private" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>EnterExitTransition</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a18c226606bd9ac37e66011abe8c1a6fa" prot="private" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>loading_</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a534a28ef9818df3c21ecdd37ea5dca97" prot="private" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>MorphTransition</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1af57fd47c65a90cf459015bbfbbb87aea" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>progress</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1a1adc6249c09b25b5bf9c8fd2f709862c" prot="private" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>removeRun</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1a6299a4b7aedb22a639b1a21e77c8c0c0" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>running</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1a96c40d0c05b880893df10a2fdd013ebe" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>running</name></member>
@@ -668,7 +905,13 @@
       <member refid="classQAccelPlot_1_1DataTransition_1a5b87a984d607f1fcfc212b9212b0a36b" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>setEasing</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1a4ba895ca83cfa3163d6dbebe782c8e2b" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>setEnabled</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1afb7e074e6e4c1e1538209a6eb14d2945" prot="private" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>setRunning</name></member>
-      <member refid="classQAccelPlot_1_1DataTransition_1a0c443df1b899df5283e1216f412db5ef" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>start</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a210acb1c630c2f3b29e54b3a7a525494" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>setStagger</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1aa2f77ede320106c6402c9c0d7294d1e9" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>stagger</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a77a134bd50ffc4b4eaf9ef16bc685b3b" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>stagger</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a302c821d607fe23b49e466d184faafc8" prot="private" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>stagger_</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a2a5e0da87024d82ed44c15b99ea961f2" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>staggerChanged</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a916eab10dd57f06cdca645df10108ef1" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>start</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a888e97e1fca19a718e6b66cc7d4a7c9a" prot="private" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>warnAboutIgnored</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1add330610df13a318feacdf411be112b4" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTransition</scope><name>~DataTransition</name></member>
     </listofallmembers>
   </compounddef>

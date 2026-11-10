@@ -1453,21 +1453,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#function-cancel" class="md-nav__link">
+  <a href="#function-end" class="md-nav__link">
     <span class="md-ellipsis">
       
-        function cancel
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#function-finish" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        function finish
+        function end
       
     </span>
   </a>
@@ -1486,32 +1475,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#function-pending" class="md-nav__link">
+  <a href="#function-transition" class="md-nav__link">
     <span class="md-ellipsis">
       
-        function pending
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#function-targetdata" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        function targetData
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#function-targetpointcount" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        function targetPointCount
+        function transition
       
     </span>
   </a>
@@ -1553,7 +1520,7 @@
 
 <h1 id="class-qaccelplotdatatransitionrun">Class QAccelPlot::DataTransition::Run<a class="headerlink" href="#class-qaccelplotdatatransitionrun" title="Permanent link">&para;</a></h1>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="../classQAccelPlot_1_1DataTransition/"><strong>DataTransition</strong></a> <strong>&gt;</strong> <a href="./"><strong>Run</strong></a></p>
-<p><em>One animation of a transition on one host element.</em> <a href="#detailed-description">More...</a></p>
+<p><em>One animation of a transition on one series.</em> <a href="#detailed-description">More...</a></p>
 <ul>
 <li><code>#include &lt;DataTransition.hpp&gt;</code></li>
 </ul>
@@ -1576,31 +1543,19 @@
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>
-<td style="text-align: left;"><a href="#function-active"><strong>active</strong></a> () const<br><em>Returns</em> <code>true</code> <em>while the transition advances this run.</em></td>
+<td style="text-align: left;"><a href="#function-active"><strong>active</strong></a> () const<br><em>Returns</em> <code>true</code> <em>while the run is active.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-cancel"><strong>cancel</strong></a> () <br><em>Ends the run and discards its data.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">bool</td>
-<td style="text-align: left;"><a href="#function-finish"><strong>finish</strong></a> (std::vector&lt; double &gt; &amp; outData, int &amp; outPointCount) <br><em>Ends the run and moves its target data into</em> <em>outData</em> <em>and__outPointCount</em> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-end"><strong>end</strong></a> () <br><em>Ends the run.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./#function-run-12"><strong>Run</strong></a> &amp;</td>
 <td style="text-align: left;"><a href="#function-operator"><strong>operator=</strong></a> (const <a href="./#function-run-12"><strong>Run</strong></a> &amp;) = delete<br></td>
 </tr>
 <tr>
-<td style="text-align: right;">bool</td>
-<td style="text-align: left;"><a href="#function-pending"><strong>pending</strong></a> () const<br><em>Returns</em> <code>true</code> <em>while the run holds target data that</em><code>finish()</code> <em>has not taken.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">const std::vector&lt; double &gt; &amp;</td>
-<td style="text-align: left;"><a href="#function-targetdata"><strong>targetData</strong></a> () const<br><em>Returns the target data. Valid while</em> <code>pending()</code> <em>is</em><code>true</code> <em>.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">int</td>
-<td style="text-align: left;"><a href="#function-targetpointcount"><strong>targetPointCount</strong></a> () const<br><em>Returns the number of points in</em> <code>targetData()</code> <em>.</em></td>
+<td style="text-align: right;">DataTransition *</td>
+<td style="text-align: left;"><a href="#function-transition"><strong>transition</strong></a> () const<br><em>Returns the transition the run is active on, or</em> <code>nullptr</code> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
@@ -1609,7 +1564,7 @@
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
-<p>Holds the data the host animates from and to. A run is <em>active</em> while the transition advances it, and <em>pending</em> until the host takes the target data with <code>finish()</code>. A run ended by <code>DataTransition::cancel()</code> or by destroying the transition stays pending, so the host can still show the target data. Destroying a run ends it. </p>
+<p>A run is <em>active</em> from <code>DataTransition::start()</code> until <code>end()</code>, <code>DataTransition::cancel()</code>, or the destruction of the transition. Destroying a run ends it. </p>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-run-12">function Run<a class="headerlink" href="#function-run-12" title="Permanent link">&para;</a></h3>
 <p><em>Constructs an idle run.</em> 
@@ -1625,56 +1580,33 @@
 <hr>
 
 <h3 id="function-active">function active<a class="headerlink" href="#function-active" title="Permanent link">&para;</a></h3>
-<p><em>Returns</em> <code>true</code> <em>while the transition advances this run.</em>
+<p><em>Returns</em> <code>true</code> <em>while the run is active.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">Run</span><span class="o">::</span><span class="n">active</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
-<h3 id="function-cancel">function cancel<a class="headerlink" href="#function-cancel" title="Permanent link">&para;</a></h3>
-<p><em>Ends the run and discards its data.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">Run</span><span class="o">::</span><span class="n">cancel</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<h3 id="function-end">function end<a class="headerlink" href="#function-end" title="Permanent link">&para;</a></h3>
+<p><em>Ends the run.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">Run</span><span class="o">::</span><span class="n">end</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </code></pre></div></p>
-<hr>
-
-<h3 id="function-finish">function finish<a class="headerlink" href="#function-finish" title="Permanent link">&para;</a></h3>
-<p><em>Ends the run and moves its target data into</em> <em>outData</em> <em>and__outPointCount</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">Run</span><span class="o">::</span><span class="n">finish</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">outData</span><span class="p">,</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">outPointCount</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<p><strong>Returns:</strong></p>
-<p><code>false</code>, leaving the outputs unchanged, when the run is not pending. </p>
 <hr>
 
 <h3 id="function-operator">function operator=<a class="headerlink" href="#function-operator" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">Run</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">Run</span><span class="o">::</span><span class="k">operator</span><span class="o">=</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Run</span><span class="w"> </span><span class="o">&amp;</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">delete</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">Run</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">Run</span><span class="o">::</span><span class="k">operator</span><span class="o">=</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Run</span><span class="w"> </span><span class="o">&amp;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">delete</span>
 </code></pre></div>
 <hr>
 
-<h3 id="function-pending">function pending<a class="headerlink" href="#function-pending" title="Permanent link">&para;</a></h3>
-<p><em>Returns</em> <code>true</code> <em>while the run holds target data that</em><code>finish()</code> <em>has not taken.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">Run</span><span class="o">::</span><span class="n">pending</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-targetdata">function targetData<a class="headerlink" href="#function-targetdata" title="Permanent link">&para;</a></h3>
-<p><em>Returns the target data. Valid while</em> <code>pending()</code> <em>is</em><code>true</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">Run</span><span class="o">::</span><span class="n">targetData</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-targetpointcount">function targetPointCount<a class="headerlink" href="#function-targetpointcount" title="Permanent link">&para;</a></h3>
-<p><em>Returns the number of points in</em> <code>targetData()</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">Run</span><span class="o">::</span><span class="n">targetPointCount</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<h3 id="function-transition">function transition<a class="headerlink" href="#function-transition" title="Permanent link">&para;</a></h3>
+<p><em>Returns the transition the run is active on, or</em> <code>nullptr</code> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">DataTransition</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">Run</span><span class="o">::</span><span class="n">transition</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-run">function ~Run<a class="headerlink" href="#function-run" title="Permanent link">&para;</a></h3>
 <p><em>Destroys the run, ending it on its transition.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">Run</span><span class="o">::~</span><span class="n">Run</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">Run</span><span class="o">::~</span><span class="n">Run</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 

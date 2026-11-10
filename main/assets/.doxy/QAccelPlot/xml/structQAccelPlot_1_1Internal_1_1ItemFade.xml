@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1Internal_1_1ItemFade" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::ItemFade</compoundname>
+    <includes local="no">ItemFade.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1ItemFade_1a9767ce9fa26e4ee403d2539db661f091" prot="public" static="no" mutable="no">
+        <type>std::array&lt; <ref refid="structQAccelPlot_1_1Internal_1_1ItemFadeGroup" kindref="compound">ItemFadeGroup</ref>, kFadeGroupCount &gt;</type>
+        <definition>std::array&lt;ItemFadeGroup, kFadeGroupCount&gt; QAccelPlot::Internal::ItemFade::groups</definition>
+        <argsstring></argsstring>
+        <name>groups</name>
+        <qualifiedname>QAccelPlot::Internal::ItemFade::groups</qualifiedname>
+        <initializer>{}</initializer>
+        <briefdescription>
+<para>The groups; inactive ones have no items. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" line="50" column="16" bodyfile="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" bodystart="50" bodyend="50"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structQAccelPlot_1_1Internal_1_1ItemFade_1a60aa0c670faeee52022f415c8792cc89" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::ItemFade::active</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>active</name>
+        <qualifiedname>QAccelPlot::Internal::ItemFade::active</qualifiedname>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> when some group fades. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" line="53" column="11" bodyfile="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" bodystart="53" bodyend="56"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>The transition groups of a frame whose opacity the shaders animate. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" line="49" column="1" bodyfile="QAccelPlot/src/QAccelPlot/internal/ItemFade.hpp" bodystart="49" bodyend="57"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1Internal_1_1ItemFade_1a60aa0c670faeee52022f415c8792cc89" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ItemFade</scope><name>active</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1ItemFade_1a9767ce9fa26e4ee403d2539db661f091" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ItemFade</scope><name>groups</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

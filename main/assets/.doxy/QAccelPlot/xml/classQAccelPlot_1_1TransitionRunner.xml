@@ -4,34 +4,279 @@
     <compoundname>QAccelPlot::TransitionRunner</compoundname>
     <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
     <includes local="no">TransitionRunner.hpp</includes>
-    <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="classQAccelPlot_1_1TransitionRunner_1a3b41cb94c61356633a2285069e7e8ab4" prot="private" static="no" mutable="no">
-        <type>QPointer&lt; <ref refid="classQAccelPlot_1_1DataTransition" kindref="compound">DataTransition</ref> &gt;</type>
-        <definition>QPointer&lt;DataTransition&gt; QAccelPlot::TransitionRunner::transition_</definition>
-        <argsstring></argsstring>
-        <name>transition_</name>
-        <qualifiedname>QAccelPlot::TransitionRunner::transition_</qualifiedname>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classQAccelPlot_1_1TransitionRunner_1af8f3c914fa81b0b5e06c1b3c440271a7" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>Slot</name>
+        <qualifiedname>QAccelPlot::TransitionRunner::Slot</qualifiedname>
+        <enumvalue id="classQAccelPlot_1_1TransitionRunner_1af8f3c914fa81b0b5e06c1b3c440271a7af1851d5600eae616ee802a31ac74701b" prot="public">
+          <name>Enter</name>
+          <briefdescription>
+<para>Animates added items. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1TransitionRunner_1af8f3c914fa81b0b5e06c1b3c440271a7a06933067aafd48425d67bcb01bba5cb6" prot="public">
+          <name>Update</name>
+          <briefdescription>
+<para>Animates kept items. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1TransitionRunner_1af8f3c914fa81b0b5e06c1b3c440271a7afef46e5063ce3dc78b8ae64fa474241d" prot="public">
+          <name>Exit</name>
+          <briefdescription>
+<para>Animates removed items. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
         <briefdescription>
+<para>A transition slot of the item. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="101" column="14" bodyfile="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" bodystart="101" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="56" column="5" bodyfile="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" bodystart="56" bodyend="60"/>
       </memberdef>
-      <memberdef kind="variable" id="classQAccelPlot_1_1TransitionRunner_1af8c0205850555179e8efa9f6ad1747de" prot="private" static="no" mutable="no">
-        <type><ref refid="classQAccelPlot_1_1DataTransition_1_1Run" kindref="compound">DataTransition::Run</ref></type>
-        <definition>DataTransition::Run QAccelPlot::TransitionRunner::run_</definition>
+      <memberdef kind="typedef" id="classQAccelPlot_1_1TransitionRunner_1a94c528648c0b3cfcd9e3fe3b998822ea" prot="public" static="no">
+        <type><ref refid="structQAccelPlot_1_1Internal_1_1TransitionLayout" kindref="compound">Internal::TransitionLayout</ref></type>
+        <definition>using QAccelPlot::TransitionRunner::Layout =  Internal::TransitionLayout</definition>
         <argsstring></argsstring>
-        <name>run_</name>
-        <qualifiedname>QAccelPlot::TransitionRunner::run_</qualifiedname>
+        <name>Layout</name>
+        <qualifiedname>QAccelPlot::TransitionRunner::Layout</qualifiedname>
+        <briefdescription>
+<para>How the items of the item animate. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="64" column="5" bodyfile="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" bodystart="64" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1TransitionRunner_1adc401c75f46203cc3954dbf93fa462ea" prot="private" static="yes" constexpr="yes" mutable="no">
+        <type>auto</type>
+        <definition>auto QAccelPlot::TransitionRunner::kSlotCount</definition>
+        <argsstring></argsstring>
+        <name>kSlotCount</name>
+        <qualifiedname>QAccelPlot::TransitionRunner::kSlotCount</qualifiedname>
+        <initializer>= std::size_t{3}</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="102" column="25" bodyfile="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" bodystart="102" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="152" column="27" bodyfile="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" bodystart="152" bodyend="152"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1TransitionRunner_1a01477d5c6e9c264a858d347dfb291ff1" prot="private" static="no" mutable="no">
+        <type>std::array&lt; QPointer&lt; <ref refid="classQAccelPlot_1_1DataTransition" kindref="compound">DataTransition</ref> &gt;, kSlotCount &gt;</type>
+        <definition>std::array&lt;QPointer&lt;DataTransition&gt;, kSlotCount&gt; QAccelPlot::TransitionRunner::transitions_</definition>
+        <argsstring></argsstring>
+        <name>transitions_</name>
+        <qualifiedname>QAccelPlot::TransitionRunner::transitions_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="167" column="16" bodyfile="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" bodystart="167" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1TransitionRunner_1a1cd245601bb6b625d1ffdf01c65110c8" prot="private" static="no" mutable="no">
+        <type>std::array&lt; QMetaObject::Connection, kSlotCount &gt;</type>
+        <definition>std::array&lt;QMetaObject::Connection, kSlotCount&gt; QAccelPlot::TransitionRunner::destroyedConnections_</definition>
+        <argsstring></argsstring>
+        <name>destroyedConnections_</name>
+        <qualifiedname>QAccelPlot::TransitionRunner::destroyedConnections_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="168" column="16" bodyfile="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" bodystart="168" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1TransitionRunner_1a711dd9f858fa40d951ec878e98dc9054" prot="private" static="no" mutable="no">
+        <type>std::array&lt; QMetaObject::Connection, kSlotCount &gt;</type>
+        <definition>std::array&lt;QMetaObject::Connection, kSlotCount&gt; QAccelPlot::TransitionRunner::runningConnections_</definition>
+        <argsstring></argsstring>
+        <name>runningConnections_</name>
+        <qualifiedname>QAccelPlot::TransitionRunner::runningConnections_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="169" column="16" bodyfile="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" bodystart="169" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1TransitionRunner_1ad4e08aa0b2acf47fc8a51744dc840617" prot="private" static="no" mutable="no">
+        <type>std::array&lt; <ref refid="classQAccelPlot_1_1DataTransition_1_1Run" kindref="compound">DataTransition::Run</ref>, kSlotCount &gt;</type>
+        <definition>std::array&lt;DataTransition::Run, kSlotCount&gt; QAccelPlot::TransitionRunner::runs_</definition>
+        <argsstring></argsstring>
+        <name>runs_</name>
+        <qualifiedname>QAccelPlot::TransitionRunner::runs_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="170" column="16" bodyfile="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" bodystart="170" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1TransitionRunner_1a9f0820e6d5bf83bc4fc57d22f54a4772" prot="private" static="no" mutable="no">
+        <type>std::array&lt; bool, kSlotCount &gt;</type>
+        <definition>std::array&lt;bool, kSlotCount&gt; QAccelPlot::TransitionRunner::used_</definition>
+        <argsstring></argsstring>
+        <name>used_</name>
+        <qualifiedname>QAccelPlot::TransitionRunner::used_</qualifiedname>
+        <initializer>{}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="171" column="16" bodyfile="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" bodystart="171" bodyend="171"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1TransitionRunner_1aafc6b82624654695519289f58bdd82b5" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::TransitionRunner::pending_</definition>
+        <argsstring></argsstring>
+        <name>pending_</name>
+        <qualifiedname>QAccelPlot::TransitionRunner::pending_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="172" column="10" bodyfile="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" bodystart="172" bodyend="172"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1TransitionRunner_1a55101705d673867a1920738c546a2184" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::TransitionRunner::active_</definition>
+        <argsstring></argsstring>
+        <name>active_</name>
+        <qualifiedname>QAccelPlot::TransitionRunner::active_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="173" column="10" bodyfile="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" bodystart="173" bodyend="173"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1TransitionRunner_1a19c6fe1633d89836a4ae6bfbcc59cede" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; QAccelPlot::TransitionRunner::from_</definition>
+        <argsstring></argsstring>
+        <name>from_</name>
+        <qualifiedname>QAccelPlot::TransitionRunner::from_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="174" column="17" bodyfile="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" bodystart="174" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1TransitionRunner_1ab983f50a0112aabdfd110eb68b55c6cf" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::TransitionRunner::fromCount_</definition>
+        <argsstring></argsstring>
+        <name>fromCount_</name>
+        <qualifiedname>QAccelPlot::TransitionRunner::fromCount_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="175" column="9" bodyfile="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" bodystart="175" bodyend="175"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1TransitionRunner_1ada8e54fb0c37f048ccfe84a2960f2fd1" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; QAccelPlot::TransitionRunner::to_</definition>
+        <argsstring></argsstring>
+        <name>to_</name>
+        <qualifiedname>QAccelPlot::TransitionRunner::to_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="176" column="17" bodyfile="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" bodystart="176" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1TransitionRunner_1a98b472d91891ec4f8e733c4cafd42efa" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::TransitionRunner::toCount_</definition>
+        <argsstring></argsstring>
+        <name>toCount_</name>
+        <qualifiedname>QAccelPlot::TransitionRunner::toCount_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="177" column="9" bodyfile="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" bodystart="177" bodyend="177"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1TransitionRunner_1a6b9296a7c3780613bbef937231267bfe" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::TransitionRunner::shownCount_</definition>
+        <argsstring></argsstring>
+        <name>shownCount_</name>
+        <qualifiedname>QAccelPlot::TransitionRunner::shownCount_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="178" column="9" bodyfile="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" bodystart="178" bodyend="178"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1TransitionRunner_1a57ca68894feb63d68184d6efaaf00da6" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1TransitionRunner_1a94c528648c0b3cfcd9e3fe3b998822ea" kindref="member">Layout</ref></type>
+        <definition>Layout QAccelPlot::TransitionRunner::layout_</definition>
+        <argsstring></argsstring>
+        <name>layout_</name>
+        <qualifiedname>QAccelPlot::TransitionRunner::layout_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="179" column="12" bodyfile="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" bodystart="179" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1TransitionRunner_1afb9cf4161f8b75b3ceab593e06e895e5" prot="private" static="no" mutable="no">
+        <type><ref refid="structQAccelPlot_1_1Internal_1_1ItemFade" kindref="compound">Internal::ItemFade</ref></type>
+        <definition>Internal::ItemFade QAccelPlot::TransitionRunner::fade_</definition>
+        <argsstring></argsstring>
+        <name>fade_</name>
+        <qualifiedname>QAccelPlot::TransitionRunner::fade_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="180" column="24" bodyfile="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" bodystart="180" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1TransitionRunner_1aadbcbe384ac626dbfa6700bffa2ce071" prot="private" static="no" mutable="no">
         <type>QPointer&lt; QQuickWindow &gt;</type>
@@ -45,7 +290,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="103" column="14" bodyfile="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" bodystart="103" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="181" column="14" bodyfile="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" bodystart="181" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -66,7 +311,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="44" column="14"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="67" column="14"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TransitionRunner_1af8726e52f532a308b810d0f3430666f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -81,44 +326,76 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="46" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="69" column="5"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1TransitionRunner_1a13791d406f93bafde10df9c0de68e1e5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1TransitionRunner_1aafb5221848eed232866185b309db7120" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classQAccelPlot_1_1DataTransition" kindref="compound">DataTransition</ref> *</type>
         <definition>DataTransition * QAccelPlot::TransitionRunner::transition</definition>
-        <argsstring>() const</argsstring>
+        <argsstring>(Slot slot) const</argsstring>
         <name>transition</name>
         <qualifiedname>QAccelPlot::TransitionRunner::transition</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1TransitionRunner_1af8f3c914fa81b0b5e06c1b3c440271a7" kindref="member">Slot</ref></type>
+          <declname>slot</declname>
+        </param>
         <briefdescription>
-<para>Returns the assigned transition, or <computeroutput>nullptr</computeroutput>. </para>
+<para>Returns the transition of <emphasis>slot</emphasis>, or <computeroutput>nullptr</computeroutput>. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="49" column="20"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="72" column="20"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1TransitionRunner_1aa1491d8a04186f98e0739e99ce614111" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1TransitionRunner_1ab478f5a4d96666e0cc27c2cb89581449" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
         <definition>bool QAccelPlot::TransitionRunner::setTransition</definition>
-        <argsstring>(DataTransition *transition)</argsstring>
+        <argsstring>(Slot slot, DataTransition *transition)</argsstring>
         <name>setTransition</name>
         <qualifiedname>QAccelPlot::TransitionRunner::setTransition</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1TransitionRunner_1af8f3c914fa81b0b5e06c1b3c440271a7" kindref="member">Slot</ref></type>
+          <declname>slot</declname>
+        </param>
         <param>
           <type><ref refid="classQAccelPlot_1_1DataTransition" kindref="compound">DataTransition</ref> *</type>
           <declname>transition</declname>
         </param>
         <briefdescription>
-<para>Assigns <emphasis>transition</emphasis>, interrupting a pending run first. The runner does not own it. </para>
+<para>Assigns <emphasis>transition</emphasis> to <emphasis>slot</emphasis>, interrupting a pending run first. The runner does not own it. </para>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para><computeroutput>false</computeroutput> when <emphasis>transition</emphasis> is already assigned. </para>
+<para>The enter and exit slots take only an <computeroutput><ref refid="classQAccelPlot_1_1EnterExitTransition" kindref="compound">EnterExitTransition</ref></computeroutput>. <simplesect kind="return"><para><computeroutput>false</computeroutput> when <emphasis>transition</emphasis> is already assigned to <emphasis>slot</emphasis>, or does not fit it. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="52" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="77" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1TransitionRunner_1acffda20e5ce5da8ff630c779951dfd5d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Item</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void QAccelPlot::TransitionRunner::notifyTransitionChanges</definition>
+        <argsstring>(Item *item)</argsstring>
+        <name>notifyTransitionChanges</name>
+        <qualifiedname>QAccelPlot::TransitionRunner::notifyTransitionChanges</qualifiedname>
+        <param>
+          <type>Item *</type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+<para>Emits <emphasis>item&apos;s</emphasis> <computeroutput>enterTransitionChanged()</computeroutput>, <computeroutput>updateTransitionChanged()</computeroutput>, or <computeroutput>exitTransitionChanged()</computeroutput> signal when the transition of that slot changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="81" column="22" bodyfile="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" bodystart="81" bodyend="96"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TransitionRunner_1a9aaed370b30a3d8e10727ab06d6e7b68" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -127,13 +404,37 @@
         <name>enabled</name>
         <qualifiedname>QAccelPlot::TransitionRunner::enabled</qualifiedname>
         <briefdescription>
-<para>Returns <computeroutput>true</computeroutput> when a transition is assigned and enabled, so new data should start a run. </para>
+<para>Returns <computeroutput>true</computeroutput> when some slot has an enabled transition. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="54" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="99" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1TransitionRunner_1a17c8002813ca93e47e008a3b73cfbf07" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::TransitionRunner::animates</definition>
+        <argsstring>(int currentPointCount, int newPointCount) const</argsstring>
+        <name>animates</name>
+        <qualifiedname>QAccelPlot::TransitionRunner::animates</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>currentPointCount</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>newPointCount</declname>
+        </param>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> when a change from <emphasis>currentPointCount</emphasis> drawn items to <emphasis>newPointCount</emphasis> items may start a run. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Without a pending run, <computeroutput>false</computeroutput> means that <computeroutput><ref refid="classQAccelPlot_1_1TransitionRunner_1aa0a153f6bb317a5a8454a4ad96f4b102" kindref="member">start()</ref></computeroutput> would return <computeroutput>false</computeroutput>, so the item can show the data without copying it for a run. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="104" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TransitionRunner_1a65ec5ae129dc499fb19c0e0145db9451" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -142,13 +443,13 @@
         <name>active</name>
         <qualifiedname>QAccelPlot::TransitionRunner::active</qualifiedname>
         <briefdescription>
-<para>Returns <computeroutput>true</computeroutput> while the transition advances the run. </para>
+<para>Returns <computeroutput>true</computeroutput> while a transition advances the run. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="57" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="107" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TransitionRunner_1aa88f3b8ff1d039d66c41851b43b32e8a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -163,7 +464,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="59" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="109" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TransitionRunner_1a279d976d903367239929f6f8f35d9b42" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>const std::vector&lt; double &gt; &amp;</type>
@@ -178,7 +479,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="61" column="23"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="111" column="23"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TransitionRunner_1ae2b33044d67d21cdf627d95a6cce3d99" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -187,18 +488,33 @@
         <name>targetPointCount</name>
         <qualifiedname>QAccelPlot::TransitionRunner::targetPointCount</qualifiedname>
         <briefdescription>
-<para>Returns the number of points in <computeroutput><ref refid="classQAccelPlot_1_1TransitionRunner_1a279d976d903367239929f6f8f35d9b42" kindref="member">targetData()</ref></computeroutput>. </para>
+<para>Returns the number of items in <computeroutput><ref refid="classQAccelPlot_1_1TransitionRunner_1a279d976d903367239929f6f8f35d9b42" kindref="member">targetData()</ref></computeroutput>. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="63" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="113" column="9"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1TransitionRunner_1adfa8bd17d947e9fa85ae6fe3a53539c0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void QAccelPlot::TransitionRunner::start</definition>
-        <argsstring>(const std::vector&lt; double &gt; &amp;currentData, int currentPointCount, std::vector&lt; double &gt; &amp;&amp;newData, int newPointCount, int stride=2)</argsstring>
+      <memberdef kind="function" id="classQAccelPlot_1_1TransitionRunner_1a1503b5c0869e0ef4e19cb38346b10d57" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::TransitionRunner::frameCapacity</definition>
+        <argsstring>() const</argsstring>
+        <name>frameCapacity</name>
+        <qualifiedname>QAccelPlot::TransitionRunner::frameCapacity</qualifiedname>
+        <briefdescription>
+<para>Returns the most items a frame of the run holds: the larger of the start and target counts. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="115" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1TransitionRunner_1aa0a153f6bb317a5a8454a4ad96f4b102" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::TransitionRunner::start</definition>
+        <argsstring>(const std::vector&lt; double &gt; &amp;currentData, int currentPointCount, std::vector&lt; double &gt; &amp;&amp;newData, int newPointCount, const Layout &amp;layout)</argsstring>
         <name>start</name>
         <qualifiedname>QAccelPlot::TransitionRunner::start</qualifiedname>
         <param>
@@ -218,12 +534,11 @@
           <declname>newPointCount</declname>
         </param>
         <param>
-          <type>int</type>
-          <declname>stride</declname>
-          <defval>2</defval>
+          <type>const <ref refid="classQAccelPlot_1_1TransitionRunner_1a94c528648c0b3cfcd9e3fe3b998822ea" kindref="member">Layout</ref> &amp;</type>
+          <declname>layout</declname>
         </param>
         <briefdescription>
-<para>Starts the run on the assigned transition and requests a frame. Requires an assigned transition. </para>
+<para>Starts a run from <emphasis>currentData</emphasis> to <emphasis>newData</emphasis> and requests a frame. </para>
         </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
@@ -231,7 +546,7 @@
 <parametername>currentData</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>Current double buffer (copied as the <emphasis>from</emphasis> state). </para>
+<para>Items drawn now, copied as the <emphasis>from</emphasis> side. Items of a previous run that its last frame has not shown yet, or shows leaving, are left out. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -239,7 +554,7 @@
 <parametername>currentPointCount</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>Number of points in <emphasis>currentData</emphasis>. </para>
+<para>Number of items in <emphasis>currentData</emphasis>. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -247,7 +562,7 @@
 <parametername>newData</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>Target double buffer (moved as the <emphasis>to</emphasis> state). </para>
+<para>Target items, moved as the <emphasis>to</emphasis> side. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -255,23 +570,25 @@
 <parametername>newPointCount</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>Number of points in <emphasis>newData</emphasis>. </para>
+<para>Number of items in <emphasis>newData</emphasis>. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername>stride</parametername>
+<parametername>layout</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>Number of values per point in both buffers. Default: 2, XY points. </para>
+<para>How the items animate; its stride applies to both buffers. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
+<simplesect kind="return"><para><computeroutput>false</computeroutput>, ending any run, when no slot animates this change. </para>
+</simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="71" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="125" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TransitionRunner_1a544c88f5a5f589ae8018c154c0f959e4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -291,13 +608,13 @@
 <para>Writes the frame of the run into <emphasis>outData</emphasis> and <emphasis>outPointCount</emphasis>, or the target data when the run ends. </para>
         </briefdescription>
         <detaileddescription>
-<para>Call it from a <computeroutput><ref refid="classQAccelPlot_1_1TransitionRunner_1aa50f353aea91c986087a082b30407aed" kindref="member">frameDue()</ref></computeroutput> handler. <simplesect kind="return"><para><computeroutput>true</computeroutput> if the run is still active after this call. </para>
+<para><simplesect kind="return"><para><computeroutput>true</computeroutput> if the run is still active after this call. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="76" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="128" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TransitionRunner_1a7c6c4698bff44b232bca83b52fc23df8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -323,7 +640,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="79" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="135" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TransitionRunner_1a3afc83811ba83d8eea8030da91e57c80" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -338,7 +655,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="81" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="137" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="signal">
@@ -355,7 +672,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="85" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="141" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1TransitionRunner_1a1fd8a62b7f73ffbcb7ace820b3186c94" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -364,32 +681,133 @@
         <name>interrupted</name>
         <qualifiedname>QAccelPlot::TransitionRunner::interrupted</qualifiedname>
         <briefdescription>
-<para>Emitted when the run stopped before its end: the transition was replaced, cancelled, or destroyed. </para>
+<para>Emitted when the run stopped before its end: a transition was replaced, cancelled, or destroyed. </para>
         </briefdescription>
         <detaileddescription>
 <para>The run still holds the target data. A run still pending after the signal is cancelled. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="89" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="145" column="10"/>
       </memberdef>
-      <memberdef kind="signal" id="classQAccelPlot_1_1TransitionRunner_1a1fb9e67cf0e5eb1e9e08fda79db4d7fd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="signal" id="classQAccelPlot_1_1TransitionRunner_1a14ba271cb5331f57baa4043d1c2938ed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
-        <definition>void QAccelPlot::TransitionRunner::transitionDestroyed</definition>
-        <argsstring>()</argsstring>
-        <name>transitionDestroyed</name>
-        <qualifiedname>QAccelPlot::TransitionRunner::transitionDestroyed</qualifiedname>
+        <definition>void QAccelPlot::TransitionRunner::transitionChanged</definition>
+        <argsstring>(TransitionRunner::Slot slot)</argsstring>
+        <name>transitionChanged</name>
+        <qualifiedname>QAccelPlot::TransitionRunner::transitionChanged</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1TransitionRunner_1af8f3c914fa81b0b5e06c1b3c440271a7" kindref="member">TransitionRunner::Slot</ref></type>
+          <declname>slot</declname>
+        </param>
         <briefdescription>
-<para>Emitted after the assigned transition was destroyed, when <computeroutput><ref refid="classQAccelPlot_1_1TransitionRunner_1a13791d406f93bafde10df9c0de68e1e5" kindref="member">transition()</ref></computeroutput> is already <computeroutput>nullptr</computeroutput>. </para>
+<para>Emitted when the transition of <emphasis>slot</emphasis> changes: <computeroutput><ref refid="classQAccelPlot_1_1TransitionRunner_1ab478f5a4d96666e0cc27c2cb89581449" kindref="member">setTransition()</ref></computeroutput> assigned another, or it was destroyed. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="91" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="147" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1TransitionRunner_1af31472cc3341685a1cc1971ee5d37f9b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::TransitionRunner::activeChanged</definition>
+        <argsstring>()</argsstring>
+        <name>activeChanged</name>
+        <qualifiedname>QAccelPlot::TransitionRunner::activeChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when <computeroutput><ref refid="classQAccelPlot_1_1TransitionRunner_1a65ec5ae129dc499fb19c0e0145db9451" kindref="member">active()</ref></computeroutput> changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="149" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1TransitionRunner_1a600a4c97ff3e246631f49d5c7d0a37e9" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::optional&lt; Internal::TransitionKind &gt;</type>
+        <definition>std::optional&lt; Internal::TransitionKind &gt; QAccelPlot::TransitionRunner::enabledKind</definition>
+        <argsstring>(Slot slot) const</argsstring>
+        <name>enabledKind</name>
+        <qualifiedname>QAccelPlot::TransitionRunner::enabledKind</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1TransitionRunner_1af8f3c914fa81b0b5e06c1b3c440271a7" kindref="member">Slot</ref></type>
+          <declname>slot</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="154" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1TransitionRunner_1afd586f07046bddf738ab4d283d76d036" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::optional&lt; <ref refid="structQAccelPlot_1_1Internal_1_1TransitionStep" kindref="compound">Internal::TransitionStep</ref> &gt;</type>
+        <definition>std::optional&lt; Internal::TransitionStep &gt; QAccelPlot::TransitionRunner::step</definition>
+        <argsstring>(Slot slot) const</argsstring>
+        <name>step</name>
+        <qualifiedname>QAccelPlot::TransitionRunner::step</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1TransitionRunner_1af8f3c914fa81b0b5e06c1b3c440271a7" kindref="member">Slot</ref></type>
+          <declname>slot</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="155" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1TransitionRunner_1a342eda25e1eff6866eff3a4e7200f305" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::TransitionRunner::finished</definition>
+        <argsstring>() const</argsstring>
+        <name>finished</name>
+        <qualifiedname>QAccelPlot::TransitionRunner::finished</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="156" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1TransitionRunner_1a862b9bdb53ea2d29e3983547a6092e90" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::TransitionRunner::endRuns</definition>
+        <argsstring>()</argsstring>
+        <name>endRuns</name>
+        <qualifiedname>QAccelPlot::TransitionRunner::endRuns</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="157" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1TransitionRunner_1a119278259d46a54c91d4a82612e9c95b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::TransitionRunner::restartRuns</definition>
+        <argsstring>(const std::array&lt; bool, kSlotCount &gt; &amp;used)</argsstring>
+        <name>restartRuns</name>
+        <qualifiedname>QAccelPlot::TransitionRunner::restartRuns</qualifiedname>
+        <param>
+          <type>const std::array&lt; bool, kSlotCount &gt; &amp;</type>
+          <declname>used</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="158" column="10"/>
+      </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TransitionRunner_1abeb0254b1eb3b22643283809447f217e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void QAccelPlot::TransitionRunner::interrupt</definition>
@@ -402,21 +820,25 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="94" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="159" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1TransitionRunner_1abbe7fe6e0b0f7aa293ac2a2fd9f06a72" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1TransitionRunner_1a1529cf4114dc37384ef5981be87f58b7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void QAccelPlot::TransitionRunner::onTransitionDestroyed</definition>
-        <argsstring>()</argsstring>
+        <argsstring>(Slot slot)</argsstring>
         <name>onTransitionDestroyed</name>
         <qualifiedname>QAccelPlot::TransitionRunner::onTransitionDestroyed</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1TransitionRunner_1af8f3c914fa81b0b5e06c1b3c440271a7" kindref="member">Slot</ref></type>
+          <declname>slot</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="95" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="160" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TransitionRunner_1a3810d19d35af8c1ca2f1eb24aacd25cb" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -430,7 +852,21 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="96" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="161" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1TransitionRunner_1abbe0b685be0fe16a74d75cd6df21844a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::TransitionRunner::updateActive</definition>
+        <argsstring>()</argsstring>
+        <name>updateActive</name>
+        <qualifiedname>QAccelPlot::TransitionRunner::updateActive</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="162" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TransitionRunner_1abfebce3d96b11c7d37a87f3574fc8e06" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -448,7 +884,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="97" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="163" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TransitionRunner_1abcb3a3d10dd05227c7869d59d7c92ffd" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -462,7 +898,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="98" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="164" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TransitionRunner_1afc846580888c1f065decb2b9d1f3c20c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -476,18 +912,19 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="99" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="165" column="10"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
-<para>Runs the <computeroutput><ref refid="classQAccelPlot_1_1DataTransition" kindref="compound">DataTransition</ref></computeroutput> assigned to one item, such as a custom series. </para>
+<para>Runs the enter, update, and exit transitions of one item, such as a custom series. </para>
     </briefdescription>
     <detaileddescription>
-<para>Holds the item&apos;s <computeroutput><ref refid="classQAccelPlot_1_1DataTransition_1_1Run" kindref="compound">DataTransition::Run</ref></computeroutput> and asks for a frame once per rendered frame while it is active. The request comes on the GUI thread from <computeroutput>QQuickWindow::afterAnimating</computeroutput>, before the scene graph syncs, so <computeroutput><ref refid="classQAccelPlot_1_1DataTransition_1a99928e9029236f818855a1f445d7635d" kindref="member">DataTransition::runningChanged</ref></computeroutput> reaches QML there and the frame renders the new step. <computeroutput><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref></computeroutput>, <computeroutput><ref refid="classQAccelPlot_1_1BarSeries" kindref="compound">BarSeries</ref></computeroutput>, and <computeroutput><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref></computeroutput> animate through it.</para>
+<para>A data change splits the items by index: with <emphasis>m</emphasis> items before and <emphasis>n</emphasis> after, items below both counts are kept, items from <emphasis>m</emphasis> on are added, and items from <emphasis>n</emphasis> on are removed. Each group runs the transition of its slot; a group without one changes instantly. Kept items run the update transition only when one of them changes. A <computeroutput><ref refid="classQAccelPlot_1_1DrawTransition" kindref="compound">DrawTransition</ref></computeroutput> or <computeroutput><ref refid="classQAccelPlot_1_1GrowTransition" kindref="compound">GrowTransition</ref></computeroutput> in the update slot then redraws all new items instead.</para>
+<para>The runner asks for a frame once per rendered frame while it is active. The request comes on the GUI thread from <computeroutput>QQuickWindow::afterAnimating</computeroutput>, before the scene graph syncs, so <computeroutput><ref refid="classQAccelPlot_1_1DataTransition_1a99928e9029236f818855a1f445d7635d" kindref="member">DataTransition::runningChanged</ref></computeroutput> reaches QML there and the frame renders the new step. <computeroutput><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref></computeroutput>, <computeroutput><ref refid="classQAccelPlot_1_1BarSeries" kindref="compound">BarSeries</ref></computeroutput>, <computeroutput><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref></computeroutput>, and <computeroutput><ref refid="classQAccelPlot_1_1ErrorBarSeries" kindref="compound">ErrorBarSeries</ref></computeroutput> animate through it.</para>
 <para><simplesect kind="par"><title>Usage</title><para><itemizedlist>
-<listitem><para>Forward the item&apos;s <computeroutput>transition</computeroutput> property to <computeroutput><ref refid="classQAccelPlot_1_1TransitionRunner_1a13791d406f93bafde10df9c0de68e1e5" kindref="member">transition()</ref></computeroutput> and <computeroutput><ref refid="classQAccelPlot_1_1TransitionRunner_1aa1491d8a04186f98e0739e99ce614111" kindref="member">setTransition()</ref></computeroutput>.</para>
-</listitem><listitem><para>When data arrives and <computeroutput><ref refid="classQAccelPlot_1_1TransitionRunner_1a9aaed370b30a3d8e10727ab06d6e7b68" kindref="member">enabled()</ref></computeroutput> is <computeroutput>true</computeroutput>, call <computeroutput><ref refid="classQAccelPlot_1_1TransitionRunner_1adfa8bd17d947e9fa85ae6fe3a53539c0" kindref="member">start()</ref></computeroutput>; otherwise call <computeroutput><ref refid="classQAccelPlot_1_1TransitionRunner_1a3afc83811ba83d8eea8030da91e57c80" kindref="member">cancel()</ref></computeroutput> and show the data.</para>
-</listitem><listitem><para>On <computeroutput><ref refid="classQAccelPlot_1_1TransitionRunner_1aa50f353aea91c986087a082b30407aed" kindref="member">frameDue()</ref></computeroutput>, call <computeroutput><ref refid="classQAccelPlot_1_1TransitionRunner_1a544c88f5a5f589ae8018c154c0f959e4" kindref="member">advance()</ref></computeroutput> and show the frame.</para>
+<listitem><para>Forward the item&apos;s transition properties to the slot getters and setters, and their change signals through <computeroutput><ref refid="classQAccelPlot_1_1TransitionRunner_1acffda20e5ce5da8ff630c779951dfd5d" kindref="member">notifyTransitionChanges()</ref></computeroutput>.</para>
+</listitem><listitem><para>When data arrives and <computeroutput><ref refid="classQAccelPlot_1_1TransitionRunner_1a17c8002813ca93e47e008a3b73cfbf07" kindref="member">animates()</ref></computeroutput> is <computeroutput>true</computeroutput>, call <computeroutput><ref refid="classQAccelPlot_1_1TransitionRunner_1aa0a153f6bb317a5a8454a4ad96f4b102" kindref="member">start()</ref></computeroutput>. When it returns <computeroutput>false</computeroutput>, or when <computeroutput><ref refid="classQAccelPlot_1_1TransitionRunner_1a17c8002813ca93e47e008a3b73cfbf07" kindref="member">animates()</ref></computeroutput> is <computeroutput>false</computeroutput>, call <computeroutput><ref refid="classQAccelPlot_1_1TransitionRunner_1a3afc83811ba83d8eea8030da91e57c80" kindref="member">cancel()</ref></computeroutput> and show the data.</para>
+</listitem><listitem><para>After <computeroutput><ref refid="classQAccelPlot_1_1TransitionRunner_1aa0a153f6bb317a5a8454a4ad96f4b102" kindref="member">start()</ref></computeroutput> and on <computeroutput><ref refid="classQAccelPlot_1_1TransitionRunner_1aa50f353aea91c986087a082b30407aed" kindref="member">frameDue()</ref></computeroutput>, call <computeroutput><ref refid="classQAccelPlot_1_1TransitionRunner_1a544c88f5a5f589ae8018c154c0f959e4" kindref="member">advance()</ref></computeroutput> and show the frame.</para>
 </listitem><listitem><para>On <computeroutput><ref refid="classQAccelPlot_1_1TransitionRunner_1a1fd8a62b7f73ffbcb7ace820b3186c94" kindref="member">interrupted()</ref></computeroutput>, call <computeroutput><ref refid="classQAccelPlot_1_1TransitionRunner_1a7c6c4698bff44b232bca83b52fc23df8" kindref="member">finish()</ref></computeroutput> and show the target data.</para>
 </listitem></itemizedlist>
 </para>
@@ -519,31 +956,56 @@ Use it on the item&apos;s thread only.</para>
         <label>QObject</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="39" column="1" bodyfile="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" bodystart="39" bodyend="104"/>
+    <location file="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" line="51" column="1" bodyfile="QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp" bodystart="51" bodyend="182"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1TransitionRunner_1a65ec5ae129dc499fb19c0e0145db9451" prot="public" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>active</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1a55101705d673867a1920738c546a2184" prot="private" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>active_</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1af31472cc3341685a1cc1971ee5d37f9b" prot="public" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>activeChanged</name></member>
       <member refid="classQAccelPlot_1_1TransitionRunner_1a544c88f5a5f589ae8018c154c0f959e4" prot="public" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>advance</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1a17c8002813ca93e47e008a3b73cfbf07" prot="public" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>animates</name></member>
       <member refid="classQAccelPlot_1_1TransitionRunner_1a3afc83811ba83d8eea8030da91e57c80" prot="public" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>cancel</name></member>
       <member refid="classQAccelPlot_1_1TransitionRunner_1abfebce3d96b11c7d37a87f3574fc8e06" prot="private" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>connectWindow</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1a1cd245601bb6b625d1ffdf01c65110c8" prot="private" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>destroyedConnections_</name></member>
       <member refid="classQAccelPlot_1_1TransitionRunner_1a9aaed370b30a3d8e10727ab06d6e7b68" prot="public" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>enabled</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1a600a4c97ff3e246631f49d5c7d0a37e9" prot="private" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>enabledKind</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1a862b9bdb53ea2d29e3983547a6092e90" prot="private" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>endRuns</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1afb9cf4161f8b75b3ceab593e06e895e5" prot="private" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>fade_</name></member>
       <member refid="classQAccelPlot_1_1TransitionRunner_1a7c6c4698bff44b232bca83b52fc23df8" prot="public" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>finish</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1a342eda25e1eff6866eff3a4e7200f305" prot="private" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>finished</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1a1503b5c0869e0ef4e19cb38346b10d57" prot="public" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>frameCapacity</name></member>
       <member refid="classQAccelPlot_1_1TransitionRunner_1aa50f353aea91c986087a082b30407aed" prot="public" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>frameDue</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1a19c6fe1633d89836a4ae6bfbcc59cede" prot="private" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>from_</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1ab983f50a0112aabdfd110eb68b55c6cf" prot="private" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>fromCount_</name></member>
       <member refid="classQAccelPlot_1_1TransitionRunner_1abeb0254b1eb3b22643283809447f217e" prot="private" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>interrupt</name></member>
       <member refid="classQAccelPlot_1_1TransitionRunner_1a1fd8a62b7f73ffbcb7ace820b3186c94" prot="public" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>interrupted</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1adc401c75f46203cc3954dbf93fa462ea" prot="private" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>kSlotCount</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1a94c528648c0b3cfcd9e3fe3b998822ea" prot="public" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>Layout</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1a57ca68894feb63d68184d6efaaf00da6" prot="private" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>layout_</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1acffda20e5ce5da8ff630c779951dfd5d" prot="public" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>notifyTransitionChanges</name></member>
       <member refid="classQAccelPlot_1_1TransitionRunner_1abcb3a3d10dd05227c7869d59d7c92ffd" prot="private" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>onAfterAnimating</name></member>
       <member refid="classQAccelPlot_1_1TransitionRunner_1a3810d19d35af8c1ca2f1eb24aacd25cb" prot="private" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>onRunningChanged</name></member>
-      <member refid="classQAccelPlot_1_1TransitionRunner_1abbe7fe6e0b0f7aa293ac2a2fd9f06a72" prot="private" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>onTransitionDestroyed</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1a1529cf4114dc37384ef5981be87f58b7" prot="private" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>onTransitionDestroyed</name></member>
       <member refid="classQAccelPlot_1_1TransitionRunner_1aa88f3b8ff1d039d66c41851b43b32e8a" prot="public" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>pending</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1aafc6b82624654695519289f58bdd82b5" prot="private" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>pending_</name></member>
       <member refid="classQAccelPlot_1_1TransitionRunner_1afc846580888c1f065decb2b9d1f3c20c" prot="private" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>requestFrame</name></member>
-      <member refid="classQAccelPlot_1_1TransitionRunner_1af8c0205850555179e8efa9f6ad1747de" prot="private" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>run_</name></member>
-      <member refid="classQAccelPlot_1_1TransitionRunner_1aa1491d8a04186f98e0739e99ce614111" prot="public" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>setTransition</name></member>
-      <member refid="classQAccelPlot_1_1TransitionRunner_1adfa8bd17d947e9fa85ae6fe3a53539c0" prot="public" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>start</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1a119278259d46a54c91d4a82612e9c95b" prot="private" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>restartRuns</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1a711dd9f858fa40d951ec878e98dc9054" prot="private" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>runningConnections_</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1ad4e08aa0b2acf47fc8a51744dc840617" prot="private" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>runs_</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1ab478f5a4d96666e0cc27c2cb89581449" prot="public" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>setTransition</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1a6b9296a7c3780613bbef937231267bfe" prot="private" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>shownCount_</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1af8f3c914fa81b0b5e06c1b3c440271a7" prot="public" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>Slot</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1aa0a153f6bb317a5a8454a4ad96f4b102" prot="public" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>start</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1afd586f07046bddf738ab4d283d76d036" prot="private" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>step</name></member>
       <member refid="classQAccelPlot_1_1TransitionRunner_1a279d976d903367239929f6f8f35d9b42" prot="public" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>targetData</name></member>
       <member refid="classQAccelPlot_1_1TransitionRunner_1ae2b33044d67d21cdf627d95a6cce3d99" prot="public" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>targetPointCount</name></member>
-      <member refid="classQAccelPlot_1_1TransitionRunner_1a13791d406f93bafde10df9c0de68e1e5" prot="public" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>transition</name></member>
-      <member refid="classQAccelPlot_1_1TransitionRunner_1a3b41cb94c61356633a2285069e7e8ab4" prot="private" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>transition_</name></member>
-      <member refid="classQAccelPlot_1_1TransitionRunner_1a1fb9e67cf0e5eb1e9e08fda79db4d7fd" prot="public" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>transitionDestroyed</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1ada8e54fb0c37f048ccfe84a2960f2fd1" prot="private" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>to_</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1a98b472d91891ec4f8e733c4cafd42efa" prot="private" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>toCount_</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1aafb5221848eed232866185b309db7120" prot="public" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>transition</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1a14ba271cb5331f57baa4043d1c2938ed" prot="public" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>transitionChanged</name></member>
       <member refid="classQAccelPlot_1_1TransitionRunner_1a5a9be1b1ad6ccc4cd462ffd5c69124ea" prot="public" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>TransitionRunner</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1a01477d5c6e9c264a858d347dfb291ff1" prot="private" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>transitions_</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1abbe0b685be0fe16a74d75cd6df21844a" prot="private" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>updateActive</name></member>
+      <member refid="classQAccelPlot_1_1TransitionRunner_1a9f0820e6d5bf83bc4fc57d22f54a4772" prot="private" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>used_</name></member>
       <member refid="classQAccelPlot_1_1TransitionRunner_1aadbcbe384ac626dbfa6700bffa2ce071" prot="private" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>window_</name></member>
       <member refid="classQAccelPlot_1_1TransitionRunner_1af8726e52f532a308b810d0f3430666f0" prot="public" virt="non-virtual"><scope>QAccelPlot::TransitionRunner</scope><name>~TransitionRunner</name></member>
     </listofallmembers>

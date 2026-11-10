@@ -2062,13 +2062,42 @@
 <li>Axis label placement: <code>label.alignment</code>, <code>label.rotation</code>, and
   <code>label.offset</code> move the painted axis title, and <code>label.delegate</code> replaces it
   with a custom QML item. Includes an Axis Labels example.</li>
+<li>Enter, update, and exit transitions: <code>enterTransition</code>, <code>updateTransition</code>,
+  and <code>exitTransition</code> animate the items a data change adds, keeps, and
+  removes, matched by index. <code>GrowTransition</code> grows values from a baseline,
+  <code>stagger</code> spreads the items' start times, and Qt Quick animations of
+  <code>"opacity"</code> declared inside a transition fade each item.
+  <code>clearData()</code> runs the exit transition. <code>PlotSeries.animating</code> reports a
+  running transition. The Transitions example shows them on a bar chart.</li>
+<li><code>Glow</code> and <code>FadeTrail</code> effects: a halo around lines, markers, bars, and
+  error bars, and a fade of the oldest items of a line or point cloud.
+  Includes an Effects example.</li>
+<li><code>effects</code> on every series. An effect a series does not support logs a
+  warning and is ignored.</li>
 </ul>
 <h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
 <ul>
-<li><code>Axis.label</code> and <code>ColorBar.label</code> are grouped properties. Use <code>label.text</code>,
+<li><code>transition</code> on <code>LineCurve</code>, <code>BarSeries</code>, <code>PointCloud</code>, and
+  <code>ErrorBarSeries</code> is replaced by the three slots. Use
+  <code>updateTransition: morph</code> for <code>transition: morph</code>, and also set
+  <code>enterTransition</code> to animate the first data. A <code>MorphTransition</code> no longer
+  moves added items from the last old item; bars no longer grow from the
+  baseline without a <code>GrowTransition</code> as <code>enterTransition</code>.</li>
+<li><code>LineCurveEffect</code> is renamed <code>SeriesEffect</code>.</li>
+<li>
+<p><code>DataTransition</code> can no longer be subclassed outside the library, and its
+  <code>interpolate()</code>, <code>Dataset</code>, and data-holding <code>Run</code> API are gone.
+  <code>TransitionRunner</code> takes a slot in <code>transition()</code> and <code>setTransition()</code>, and
+  <code>start()</code> takes a <code>TransitionRunner::Layout</code>. Check <code>animates()</code> instead of
+  <code>enabled()</code> before calling <code>start()</code>. <code>transitionDestroyed()</code> is replaced by
+  <code>transitionChanged(slot)</code>, which <code>setTransition()</code> also emits.</p>
+</li>
+<li>
+<p><code>Axis.label</code> and <code>ColorBar.label</code> are grouped properties. Use <code>label.text</code>,
   <code>label.font</code>, <code>label.color</code>, and <code>label.padding</code> instead of <code>label</code>,
   <code>labelFont</code>, <code>labelColor</code>, and <code>labelPadding</code>. In C++, <code>label()</code> returns the
-  group, for example <code>axis-&gt;label()-&gt;setText()</code> with <code>AxisLabel.hpp</code> included.</li>
+  group, for example <code>axis-&gt;label()-&gt;setText()</code> with <code>AxisLabel.hpp</code> included.</p>
+</li>
 </ul>
 <h2 id="050-2026-11-01">[0.5.0] — 2026-11-01<a class="headerlink" href="#050-2026-11-01" title="Permanent link">&para;</a></h2>
 <h3 id="added_1">Added<a class="headerlink" href="#added_1" title="Permanent link">&para;</a></h3>

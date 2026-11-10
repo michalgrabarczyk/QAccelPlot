@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1Internal_1_1ItemTiming" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::ItemTiming</compoundname>
+    <includes local="no">TransitionFrame.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1ItemTiming_1a98c19b19e03e922a4c7345c816fa6e9e" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::ItemTiming::motion</definition>
+        <argsstring></argsstring>
+        <name>motion</name>
+        <qualifiedname>QAccelPlot::Internal::ItemTiming::motion</qualifiedname>
+        <initializer>{1.0}</initializer>
+        <briefdescription>
+<para>Time each item takes to move. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="50" column="12" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="50" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1ItemTiming_1ad94817125912de36606b139431844be5" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::ItemTiming::length</definition>
+        <argsstring></argsstring>
+        <name>length</name>
+        <qualifiedname>QAccelPlot::Internal::ItemTiming::length</qualifiedname>
+        <initializer>{1.0}</initializer>
+        <briefdescription>
+<para>Time each item animates: its movement or its opacity animations, whichever is longer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="51" column="12" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="51" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1ItemTiming_1a977a4fa9069c5dd9bf845a4e70b53cf2" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::ItemTiming::spread</definition>
+        <argsstring></argsstring>
+        <name>spread</name>
+        <qualifiedname>QAccelPlot::Internal::ItemTiming::spread</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+<para>Time over which the start times of the items spread. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="52" column="12" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="52" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1ItemTiming_1aeed76750a3d29e0f30229608390e82a0" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::ItemTiming::front</definition>
+        <argsstring></argsstring>
+        <name>front</name>
+        <qualifiedname>QAccelPlot::Internal::ItemTiming::front</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+<para>Items start as an eased reveal front reaches them, at a stagger of 1. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="53" column="10" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="53" bodyend="53"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>The timing of the items of one group, as shares of the transition duration. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="49" column="1" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="49" bodyend="54"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1Internal_1_1ItemTiming_1aeed76750a3d29e0f30229608390e82a0" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ItemTiming</scope><name>front</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1ItemTiming_1ad94817125912de36606b139431844be5" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ItemTiming</scope><name>length</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1ItemTiming_1a98c19b19e03e922a4c7345c816fa6e9e" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ItemTiming</scope><name>motion</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1ItemTiming_1a977a4fa9069c5dd9bf845a4e70b53cf2" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ItemTiming</scope><name>spread</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

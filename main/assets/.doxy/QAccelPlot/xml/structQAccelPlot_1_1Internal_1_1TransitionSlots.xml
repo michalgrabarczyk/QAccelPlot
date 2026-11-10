@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1Internal_1_1TransitionSlots" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::TransitionSlots</compoundname>
+    <includes local="no">TransitionFrame.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1TransitionSlots_1a0e5b7c14b96f9b97ceaad93fcdf0c48d" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::TransitionSlots::enter</definition>
+        <argsstring></argsstring>
+        <name>enter</name>
+        <qualifiedname>QAccelPlot::Internal::TransitionSlots::enter</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+<para>Added items run the enter transition. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="105" column="10" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="105" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1TransitionSlots_1a4d795a825cda01cd8da8213e4979736a" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::TransitionSlots::update</definition>
+        <argsstring></argsstring>
+        <name>update</name>
+        <qualifiedname>QAccelPlot::Internal::TransitionSlots::update</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+<para>Kept items, or all items when <computeroutput>redraw</computeroutput>, run the update transition. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="106" column="10" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="106" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1TransitionSlots_1abcabd0d43fd6114662bf159ecafb5116" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::TransitionSlots::exit</definition>
+        <argsstring></argsstring>
+        <name>exit</name>
+        <qualifiedname>QAccelPlot::Internal::TransitionSlots::exit</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+<para>Removed items run the exit transition. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="107" column="10" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="107" bodyend="107"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structQAccelPlot_1_1Internal_1_1TransitionSlots_1a034c3b62c0960121037f709f5cc982fa" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::TransitionSlots::any</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>any</name>
+        <qualifiedname>QAccelPlot::Internal::TransitionSlots::any</qualifiedname>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> when some slot runs. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="110" column="11" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="110" bodyend="113"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Slots a data change animates. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="104" column="1" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="104" bodyend="114"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1Internal_1_1TransitionSlots_1a034c3b62c0960121037f709f5cc982fa" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::TransitionSlots</scope><name>any</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1TransitionSlots_1a0e5b7c14b96f9b97ceaad93fcdf0c48d" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::TransitionSlots</scope><name>enter</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1TransitionSlots_1abcabd0d43fd6114662bf159ecafb5116" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::TransitionSlots</scope><name>exit</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1TransitionSlots_1a4d795a825cda01cd8da8213e4979736a" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::TransitionSlots</scope><name>update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

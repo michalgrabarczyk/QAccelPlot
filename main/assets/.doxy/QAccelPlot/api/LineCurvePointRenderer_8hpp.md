@@ -18,6 +18,8 @@
 
 
 * `#include "QAccelPlot/effects/GradientColorTypes.hpp"`
+* `#include "QAccelPlot/internal/GlowStyle.hpp"`
+* `#include "QAccelPlot/internal/ItemFade.hpp"`
 * `#include "QAccelPlot/renderers/CurveRendererParams.hpp"`
 * `#include <QColor>`
 * `#include <QPointF>`

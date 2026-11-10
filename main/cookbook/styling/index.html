@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Style QAccelPlot curves with color palettes, dash patterns, point markers, step lines, gradient fills and strokes, and animated data transitions.">
+        <meta name="description" content="Style QAccelPlot curves with color palettes, dash patterns, point markers, step lines, gradient fills and strokes, glow and fading trails, and animated data transitions.">
       
       
       
@@ -64,7 +64,7 @@
     
     
 
-<meta property="og:description" content="Style QAccelPlot curves with color palettes, dash patterns, point markers, step lines, gradient fills and strokes, and animated data transitions.">
+<meta property="og:description" content="Style QAccelPlot curves with color palettes, dash patterns, point markers, step lines, gradient fills and strokes, glow and fading trails, and animated data transitions.">
 
 <script type="application/ld+json">
 {
@@ -781,6 +781,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#glow-and-fading-trails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Glow and fading trails
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#animated-data-changes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -788,6 +799,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Animated data changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fade-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fade items
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1584,6 +1612,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#glow-and-fading-trails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Glow and fading trails
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#animated-data-changes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1591,6 +1630,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Animated data changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fade-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fade items
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1793,7 +1849,7 @@ antialiasing. Use it with a semi-transparent color for scatter plots with
 hundreds of thousands of points, where overlapping points build up density.
 Hover still detects a <code>Pixel</code> marker within 3 px.</p>
 <h2 id="gradient-stroke-and-fill">Gradient stroke and fill<a class="headerlink" href="#gradient-stroke-and-fill" title="Permanent link">&para;</a></h2>
-<p>Effects are attached through the curve's <a href="../../api/classQAccelPlot_1_1LineCurve/#property-effects-12"><code>effects</code></a> property:</p>
+<p>Effects are attached through the series' <a href="../../api/classQAccelPlot_1_1PlotSeries/#property-effects-12"><code>effects</code></a> property:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">LineCurve</span> <span class="p">{</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="k">effects:</span> <span class="p">[</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>        <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">GradientFill</span> <span class="p">{</span>
@@ -1826,34 +1882,161 @@ Hover still detects a <code>Pixel</code> marker within 3 px.</p>
 </code></pre></div>
 <p>Fixed gradient bounds keep colors stable while the viewport changes. Axis- or
 data-derived bounds make colors follow the current range.</p>
-<h2 id="animated-data-changes">Animated data changes<a class="headerlink" href="#animated-data-changes" title="Permanent link">&para;</a></h2>
-<p>Assign a <code>QAccelPlot.MorphTransition</code> to <a href="../../api/classQAccelPlot_1_1LineCurve/#property-transition-12"><code>transition</code></a> to
-interpolate from old to new data points, or a <code>QAccelPlot.DrawTransition</code> to reveal
-the new curve:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">MorphTransition</span> <span class="p">{</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="kd">id: morph</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="k">duration:</span> <span class="mi">500</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="k">easing.type:</span> <span class="nx">Easing</span><span class="p">.</span><span class="nx">InOutCubic</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="p">}</span>
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
-<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">LineCurve</span> <span class="p">{</span>
-<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    <span class="k">transition:</span> <span class="nx">morph</span>
-<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="p">}</span>
+<h2 id="glow-and-fading-trails">Glow and fading trails<a class="headerlink" href="#glow-and-fading-trails" title="Permanent link">&para;</a></h2>
+<p><code>Glow</code> draws a soft halo around a series, in the same pass and without a blur.
+<code>FadeTrail</code> fades the oldest items, by index, like the trace of an
+oscilloscope:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">LineCurve</span> <span class="p">{</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="k">effects:</span> <span class="p">[</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>        <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Glow</span> <span class="p">{</span> <span class="k">radius:</span> <span class="mi">8</span><span class="p">;</span> <span class="k">intensity:</span> <span class="mf">0.6</span> <span class="p">},</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>        <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">FadeTrail</span> <span class="p">{</span> <span class="k">length:</span> <span class="mf">0.7</span> <span class="p">}</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="p">]</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="p">}</span>
 </code></pre></div>
-<p>Several curves can share one transition; each animates to its own data.
-Replacing, clearing, or cancelling <code>transition</code>, or calling <code>appendData()</code>,
-during an animation shows the new data at once.</p>
-<p><code>BarSeries</code> and <code>PointCloud</code> take the same transitions; see
-<a href="../bar-charts/#animate-data-changes">bar charts</a> and
-<a href="../point-clouds/#animate-data-changes">point clouds</a>.</p>
-<p>Transitions add work on every animated frame. Disable them for continuous
-high-rate updates.</p>
+<table>
+<thead>
+<tr>
+<th>Effect</th>
+<th>Series</th>
+<th>Properties</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Glow</code></td>
+<td><code>LineCurve</code>, <code>PointCloud</code>, <code>BarSeries</code>, <code>ErrorBarSeries</code></td>
+<td><code>color</code> (default: the series color), <code>radius</code> in pixels, <code>intensity</code></td>
+</tr>
+<tr>
+<td><code>FadeTrail</code></td>
+<td><code>LineCurve</code>, <code>PointCloud</code></td>
+<td><code>length</code>: share of the items that fades, from the oldest; <code>minOpacity</code> of the oldest; <code>easing</code>: how the opacity rises, <code>Easing.InQuad</code> by default</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>An effect a series does not support logs a warning and is ignored.</li>
+<li>Of several effects of one type, the first enabled one applies.</li>
+<li>A fading item and its halo fade together.</li>
+<li>Halos of parts of a line that come close to each other add up, as halos of
+  separate lines do.</li>
+<li><code>FadeTrail</code> with <code>Easing.InQuad</code> keeps most of the trail dim, like a scope
+  trace; <code>Easing.Linear</code> raises the opacity evenly.</li>
+<li>Effect properties animate like any QML property, for example with a
+  <code>Behavior on intensity</code>.</li>
+</ul>
+<h2 id="animated-data-changes">Animated data changes<a class="headerlink" href="#animated-data-changes" title="Permanent link">&para;</a></h2>
+<p>A data change matches the old and new items by index, and three transitions
+animate it:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Animates</th>
+<th>Takes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../../api/classQAccelPlot_1_1LineCurve/#property-entertransition-12"><code>enterTransition</code></a></td>
+<td>Added items, and all items of the first data</td>
+<td><code>DrawTransition</code>, <code>GrowTransition</code></td>
+</tr>
+<tr>
+<td><a href="../../api/classQAccelPlot_1_1LineCurve/#property-updatetransition-12"><code>updateTransition</code></a></td>
+<td>Kept items</td>
+<td><code>MorphTransition</code>, <code>DrawTransition</code>, <code>GrowTransition</code></td>
+</tr>
+<tr>
+<td><a href="../../api/classQAccelPlot_1_1LineCurve/#property-exittransition-12"><code>exitTransition</code></a></td>
+<td>Removed items, and all items on <code>clearData()</code></td>
+<td><code>DrawTransition</code>, <code>GrowTransition</code></td>
+</tr>
+</tbody>
+</table>
+<p>Items without a transition in their slot change at once. The update transition
+runs only when a kept item changes, so adding or removing items leaves the
+others alone.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">BarSeries</span> <span class="p">{</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    <span class="k">enterTransition:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">GrowTransition</span> <span class="p">{</span> <span class="k">stagger:</span> <span class="mf">0.5</span> <span class="p">}</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    <span class="k">updateTransition:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">MorphTransition</span> <span class="p">{</span> <span class="k">duration:</span> <span class="mi">300</span> <span class="p">}</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    <span class="k">exitTransition:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">GrowTransition</span> <span class="p">{</span> <span class="k">duration:</span> <span class="mi">200</span> <span class="p">}</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><code>MorphTransition</code> moves each kept item from its old values to its new ones.</li>
+<li><code>DrawTransition</code> reveals items one after another. A line draws its last
+  segment partway.</li>
+<li><code>GrowTransition</code> grows values from <code>baseline</code>: the bar baseline for bars, 0
+  for other series. When the value axis cannot place that default (infinite,
+  or at or below 0 on a log axis), items grow from the nearest viewport edge.</li>
+<li>A <code>DrawTransition</code> or <code>GrowTransition</code> in <code>updateTransition</code> redraws all new
+  items as one sequence when a kept item changes; the enter and exit
+  transitions are skipped.</li>
+<li>An exit plays the movement backwards, the last item first.</li>
+</ul>
+<p>Every transition takes <code>duration</code>, <code>easing</code>, and <code>stagger</code>:</p>
+<ul>
+<li><code>stagger</code> is the share of <code>duration</code> over which the item start times are
+  spread. 0 animates all items together; 1 animates them one after another.
+  <code>DrawTransition</code> defaults to 1, the others to 0.</li>
+<li><code>easing</code> applies to the progress of each item. With a <code>stagger</code> of 1, it
+  shapes how the reveal moves along the items.</li>
+</ul>
+<h3 id="fade-items">Fade items<a class="headerlink" href="#fade-items" title="Permanent link">&para;</a></h3>
+<p>Declare Qt Quick animations of <code>"opacity"</code> inside a transition, as in a
+<code>ListView</code> transition. Each item plays them from the moment it starts to move:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">enterTransition:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">DrawTransition</span> <span class="p">{</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>    <span class="nx">NumberAnimation</span> <span class="p">{</span> <span class="k">property:</span> <span class="s2">"opacity"</span><span class="p">;</span> <span class="k">from:</span> <span class="mi">0</span><span class="p">;</span> <span class="k">duration:</span> <span class="mi">250</span> <span class="p">}</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="p">}</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="k">exitTransition:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">GrowTransition</span> <span class="p">{</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>    <span class="nx">NumberAnimation</span> <span class="p">{</span> <span class="k">property:</span> <span class="s2">"opacity"</span><span class="p">;</span> <span class="k">to:</span> <span class="mi">0</span><span class="p">;</span> <span class="k">easing.type:</span> <span class="nx">Easing</span><span class="p">.</span><span class="nx">InQuad</span> <span class="p">}</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="p">}</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="k">updateTransition:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">MorphTransition</span> <span class="p">{</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>    <span class="k">duration:</span> <span class="mi">600</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>    <span class="nx">SequentialAnimation</span> <span class="p">{</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>        <span class="nx">NumberAnimation</span> <span class="p">{</span> <span class="k">property:</span> <span class="s2">"opacity"</span><span class="p">;</span> <span class="k">to:</span> <span class="mf">0.4</span><span class="p">;</span> <span class="k">duration:</span> <span class="mi">200</span> <span class="p">}</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>        <span class="nx">NumberAnimation</span> <span class="p">{</span> <span class="k">property:</span> <span class="s2">"opacity"</span><span class="p">;</span> <span class="k">to:</span> <span class="mi">1</span><span class="p">;</span> <span class="k">duration:</span> <span class="mi">400</span> <span class="p">}</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>    <span class="p">}</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>The transition reads the animations; it never runs them.</li>
+<li>Supported: <code>NumberAnimation</code> and other numeric <code>PropertyAnimation</code> types,
+  <code>PropertyAction</code>, <code>PauseAnimation</code>, <code>SequentialAnimation</code>, and
+  <code>ParallelAnimation</code>, with finite <code>loops</code>. Several animations in a transition
+  play together.</li>
+<li>A missing <code>from</code> continues from the opacity reached so far; a missing <code>to</code>
+  is 1. Before its first animation starts, an item shows that animation's
+  start opacity.</li>
+<li>Exits play opacity animations as written, so a fade out sets <code>to: 0</code>.</li>
+<li>When the animations last longer than an item's own movement, the item start
+  times move closer together, so the transition still ends after <code>duration</code>.
+  With a <code>stagger</code> of 1, the reveal crosses the items while the last ones fade.</li>
+<li>Other animations, and animations of other properties, log a warning and only
+  add their duration. <code>NumberAnimation on opacity</code> does not load: each item
+  has its own opacity.</li>
+<li>Every item is opaque again when the transition ends.</li>
+</ul>
+<p>Several series can share one transition, and one series can use a transition in
+several slots. While a transition runs, the series' <code>animating</code> is <code>true</code>.
+Replacing, clearing, or cancelling a transition, or calling <code>appendData()</code>,
+shows the new data at once. Data that arrives during an animation continues
+from the items drawn now.</p>
+<p>Each animated frame interpolates the data on the CPU: about 4 ms per million
+points, 6 ms with a stagger. Disable transitions for continuous high-rate
+updates.</p>
+<p><code>BarSeries</code>, <code>PointCloud</code>, and <code>ErrorBarSeries</code> take the same transitions; see
+<a href="../bar-charts/#animate-data-changes">bar charts</a>,
+<a href="../point-clouds/#animate-data-changes">point clouds</a>, and
+<a href="../error-bars/#animate-data-changes">error bars</a>.</p>
 <p>Complete sources:</p>
 <ul>
 <li><a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/theming"><code>examples/styling/theming</code></a></li>
 <li><a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/line_styles"><code>examples/styling/line_styles</code></a></li>
 <li><a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/markers"><code>examples/styling/markers</code></a></li>
 <li><a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/gradients"><code>examples/styling/gradients</code></a></li>
+<li><a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/effects"><code>examples/styling/effects</code></a></li>
 <li><a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/transitions"><code>examples/styling/transitions</code></a></li>
 <li><a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/step_lines"><code>examples/plot_types/step_lines</code></a></li>
 </ul>

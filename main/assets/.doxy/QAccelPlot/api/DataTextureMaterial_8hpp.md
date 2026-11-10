@@ -17,6 +17,8 @@
 
 
 
+* `#include "QAccelPlot/internal/GlowStyle.hpp"`
+* `#include "QAccelPlot/internal/ItemFade.hpp"`
 * `#include "QAccelPlot/materials/DataTexture.hpp"`
 * `#include <QColor>`
 * `#include <QMatrix4x4>`

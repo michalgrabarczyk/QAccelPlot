@@ -1,0 +1,177 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="TransitionFrame_8hpp" kind="file" language="C++">
+    <compoundname>TransitionFrame.hpp</compoundname>
+    <includes refid="ItemFade_8hpp" local="yes">QAccelPlot/internal/ItemFade.hpp</includes>
+    <includes refid="OpacityTimeline_8hpp" local="yes">QAccelPlot/transitions/internal/OpacityTimeline.hpp</includes>
+    <includes local="no">QEasingCurve</includes>
+    <includes local="no">array</includes>
+    <includes local="no">limits</includes>
+    <includes local="no">optional</includes>
+    <includes local="no">vector</includes>
+    <includedby refid="TransitionRunner_8hpp" local="yes">QAccelPlot/src/QAccelPlot/transitions/TransitionRunner.hpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp</label>
+        <link refid="TransitionFrame_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QEasingCurve</label>
+      </node>
+      <node id="3">
+        <label>array</label>
+      </node>
+      <node id="4">
+        <label>limits</label>
+      </node>
+      <node id="5">
+        <label>optional</label>
+      </node>
+      <node id="6">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1TransitionLayout" prot="public">QAccelPlot::Internal::TransitionLayout</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1TransitionStep" prot="public">QAccelPlot::Internal::TransitionStep</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1ItemTiming" prot="public">QAccelPlot::Internal::ItemTiming</innerclass>
+    <innerclass refid="classQAccelPlot_1_1Internal_1_1FrontStarts" prot="public">QAccelPlot::Internal::FrontStarts</innerclass>
+    <innerclass refid="classQAccelPlot_1_1Internal_1_1ItemClock" prot="public">QAccelPlot::Internal::ItemClock</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1TransitionItems" prot="public">QAccelPlot::Internal::TransitionItems</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1TransitionSlots" prot="public">QAccelPlot::Internal::TransitionSlots</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1TransitionFrameInput" prot="public">QAccelPlot::Internal::TransitionFrameInput</innerclass>
+    <innernamespace refid="namespaceQAccelPlot">QAccelPlot</innernamespace>
+    <innernamespace refid="namespaceQAccelPlot_1_1Internal">QAccelPlot::Internal</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-FileCopyrightText:<sp/>2026<sp/>Michal<sp/>Grabarczyk</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>GPL-3.0-only<sp/>WITH<sp/>Universal-FOSS-exception-1.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>file<sp/>is<sp/>also<sp/>available<sp/>under<sp/>a<sp/>separate<sp/>commercial<sp/>license.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>See<sp/>COMMERCIAL-LICENSING.md<sp/>for<sp/>contact<sp/>information.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/internal/ItemFade.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/transitions/internal/OpacityTimeline.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QEasingCurve&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;array&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;limits&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;optional&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot::Internal<sp/>{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/>TransitionKind<sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>Morph,<sp/></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>Draw,<sp/><sp/></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>Grow,<sp/><sp/></highlight></codeline>
+<codeline lineno="27"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="structQAccelPlot_1_1Internal_1_1TransitionLayout" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structQAccelPlot_1_1Internal_1_1TransitionLayout" kindref="compound">TransitionLayout</ref><sp/>{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionLayout_1a6f9bdfce632cc95847de18776a9ca871" kindref="member">stride</ref>{2};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;int&gt;<sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionLayout_1a0363b79c19820d45de184befb10da7be" kindref="member">valueColumns</ref>{1};<sp/></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionLayout_1a5608f2542bdeda83fe364f71589d612b" kindref="member">baseline</ref>{0.0};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionLayout_1a7859cf474f624540369a0bec59d05c1e" kindref="member">continuous</ref>{</highlight><highlight class="keyword">false</highlight><highlight class="normal">};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="35"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="structQAccelPlot_1_1Internal_1_1TransitionStep" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structQAccelPlot_1_1Internal_1_1TransitionStep" kindref="compound">TransitionStep</ref><sp/>{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>TransitionKind<sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionStep_1a30ebd9fa8cb3418179784aa51caa7945" kindref="member">kind</ref>{TransitionKind::Morph};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionStep_1aa0dc3ab8593af89f89f6e6b8322e7abc" kindref="member">progress</ref>{1.0};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionStep_1a8714c9e4c912ef032f5bcaed04c48f2d" kindref="member">stagger</ref>{0.0};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>QEasingCurve<sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionStep_1af72b77df479ad8eca3030bb7c020f449" kindref="member">easing</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionStep_1a5f42b4a49eb3c83666d6b6b78b2588ab" kindref="member">baseline</ref>{std::numeric_limits&lt;double&gt;::quiet_NaN()};<sp/></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Internal_1_1OpacityTimeline" kindref="compound">OpacityTimeline</ref><sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionStep_1a7058171bee4f8499579f8eb4d213ccfb" kindref="member">opacity</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionStep_1a7d2b4a2fa03d2a5bf35e45b6657193d0" kindref="member">duration</ref>{0.0};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="46"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="structQAccelPlot_1_1Internal_1_1ItemTiming" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structQAccelPlot_1_1Internal_1_1ItemTiming" kindref="compound">ItemTiming</ref><sp/>{</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1ItemTiming_1a98c19b19e03e922a4c7345c816fa6e9e" kindref="member">motion</ref>{1.0};<sp/></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1ItemTiming_1ad94817125912de36606b139431844be5" kindref="member">length</ref>{1.0};<sp/></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1ItemTiming_1a977a4fa9069c5dd9bf845a4e70b53cf2" kindref="member">spread</ref>{0.0};<sp/></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1ItemTiming_1aeed76750a3d29e0f30229608390e82a0" kindref="member">front</ref>{</highlight><highlight class="keyword">false</highlight><highlight class="normal">};<sp/><sp/></highlight></codeline>
+<codeline lineno="54"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><ref refid="structQAccelPlot_1_1Internal_1_1ItemTiming" kindref="compound">ItemTiming</ref><sp/>itemTiming(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionStep" kindref="compound">TransitionStep</ref>&amp;<sp/>step,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>itemCount);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="classQAccelPlot_1_1Internal_1_1FrontStarts" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1Internal_1_1FrontStarts_1a42a46a79df4aa2d48d26cdc9eeb36e6f" kindref="member">FrontStarts</ref><sp/>{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Internal_1_1FrontStarts_1a42a46a79df4aa2d48d26cdc9eeb36e6f" kindref="member">FrontStarts</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QEasingCurve&amp;<sp/>easing);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Internal_1_1FrontStarts_1a00346486040994370ca5b6db3e62fc09" kindref="member">operator()</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>share)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>kSamples<sp/>=<sp/>1025;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>std::array&lt;double,<sp/>kSamples&gt;<sp/>starts_{};</highlight></codeline>
+<codeline lineno="71"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="classQAccelPlot_1_1Internal_1_1ItemClock" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1Internal_1_1ItemClock_1a7a9ac05e34c7a886cae9bab37a78c0a1" kindref="member">ItemClock</ref><sp/>{</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Internal_1_1ItemClock_1a7a9ac05e34c7a886cae9bab37a78c0a1" kindref="member">ItemClock</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionStep" kindref="compound">TransitionStep</ref>&amp;<sp/>step,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>itemCount,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>exit);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1ItemTiming" kindref="compound">ItemTiming</ref>&amp;<sp/><ref refid="classQAccelPlot_1_1Internal_1_1ItemClock_1a31ac998df313cf755a1373bb24e3b616" kindref="member">timing</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Internal_1_1ItemClock_1a0a666f4488956ac96f190e951278a464" kindref="member">start</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>order)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Internal_1_1ItemClock_1a35345fce7df031e51b3c8b8afaa37f7d" kindref="member">motion</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>order)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Internal_1_1FrontStarts" kindref="compound">FrontStarts</ref>*<sp/><ref refid="classQAccelPlot_1_1Internal_1_1ItemClock_1ad162f66cc39b6f56a1ad60b87cd4fa46" kindref="member">frontStarts</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>time_;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>count_;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>exit_;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structQAccelPlot_1_1Internal_1_1ItemTiming" kindref="compound">ItemTiming</ref><sp/>timing_;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>startStep_;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;FrontStarts&gt;<sp/>starts_;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98" refid="structQAccelPlot_1_1Internal_1_1TransitionItems" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structQAccelPlot_1_1Internal_1_1TransitionItems" kindref="compound">TransitionItems</ref><sp/>{</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionItems_1a85a86b47746132de70eb6458235e5727" kindref="member">values</ref>{</highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">};<sp/></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionItems_1ac571b30c524114686c23b0c5c4f387e3" kindref="member">count</ref>{0};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="101"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104" refid="structQAccelPlot_1_1Internal_1_1TransitionSlots" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structQAccelPlot_1_1Internal_1_1TransitionSlots" kindref="compound">TransitionSlots</ref><sp/>{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionSlots_1a0e5b7c14b96f9b97ceaad93fcdf0c48d" kindref="member">enter</ref>{</highlight><highlight class="keyword">false</highlight><highlight class="normal">};<sp/><sp/></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionSlots_1a4d795a825cda01cd8da8213e4979736a" kindref="member">update</ref>{</highlight><highlight class="keyword">false</highlight><highlight class="normal">};<sp/></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionSlots_1abcabd0d43fd6114662bf159ecafb5116" kindref="member">exit</ref>{</highlight><highlight class="keyword">false</highlight><highlight class="normal">};<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionSlots_1a034c3b62c0960121037f709f5cc982fa" kindref="member">any</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionSlots_1a0e5b7c14b96f9b97ceaad93fcdf0c48d" kindref="member">enter</ref><sp/>||<sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionSlots_1a4d795a825cda01cd8da8213e4979736a" kindref="member">update</ref><sp/>||<sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionSlots_1abcabd0d43fd6114662bf159ecafb5116" kindref="member">exit</ref>;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="114"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>keptItemsChanged(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionItems" kindref="compound">TransitionItems</ref>&amp;<sp/>from,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionItems" kindref="compound">TransitionItems</ref>&amp;<sp/>to,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>stride);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><ref refid="structQAccelPlot_1_1Internal_1_1TransitionSlots" kindref="compound">TransitionSlots</ref><sp/>plannedSlots(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fromCount,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>toCount,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>keptChanged,<sp/>std::optional&lt;TransitionKind&gt;<sp/>enter,<sp/>std::optional&lt;TransitionKind&gt;<sp/>update,</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;TransitionKind&gt;<sp/>exit);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131" refid="structQAccelPlot_1_1Internal_1_1TransitionFrameInput" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structQAccelPlot_1_1Internal_1_1TransitionFrameInput" kindref="compound">TransitionFrameInput</ref><sp/>{</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionItems" kindref="compound">TransitionItems</ref><sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionFrameInput_1acd6da682d05abb2b480f9993723eab3f" kindref="member">from</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionItems" kindref="compound">TransitionItems</ref><sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionFrameInput_1a4a3d8639c3d7335dd321d93e1b47a826" kindref="member">to</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionLayout" kindref="compound">TransitionLayout</ref><sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionFrameInput_1a3a0866ec9c9963e8deacb493752e7af4" kindref="member">layout</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;TransitionStep&gt;<sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionFrameInput_1a0aedf78040ae920dcc07c8e70b0e1b0b" kindref="member">enter</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;TransitionStep&gt;<sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionFrameInput_1aff8f399751098b8e3c2e70360b2ab2ad" kindref="member">update</ref>;<sp/></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;TransitionStep&gt;<sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionFrameInput_1a24ca5ec8afdc4e26ba980bf84124fc39" kindref="member">exit</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="138"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>writeTransitionFrame(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1Internal_1_1TransitionFrameInput" kindref="compound">TransitionFrameInput</ref>&amp;<sp/>input,<sp/>std::vector&lt;double&gt;&amp;<sp/>out,<sp/><ref refid="structQAccelPlot_1_1Internal_1_1ItemFade" kindref="compound">ItemFade</ref>&amp;<sp/>fade);</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot::Internal</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp"/>
+  </compounddef>
+</doxygen>

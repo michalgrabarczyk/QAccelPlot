@@ -21,6 +21,10 @@
 
 QT_FORWARD_DECLARE_CLASS(QQuickWindow)
 
+namespace QAccelPlot {
+class Axis;
+}
+
 namespace QAccelPlot::Internal {
 
 bool hoverEnabled();
@@ -32,6 +36,8 @@ int maxTextureSize(QQuickWindow* window);
 int recordCapacity(QQuickWindow* window, int floatsPerRecord, int vertexBytesPerRecord);
 
 qreal clampAntialiasingFeather(qreal feather);
+
+double growBaseline(double baseline, const Axis* valueAxis);
 
 } // namespace QAccelPlot::Internal
 ```

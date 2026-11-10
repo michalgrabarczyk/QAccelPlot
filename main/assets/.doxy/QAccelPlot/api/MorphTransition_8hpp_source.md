@@ -29,9 +29,6 @@ public:
     explicit MorphTransition(QObject* parent = nullptr);
 
     static double interpolateCoordinate(double from, double to, double easedProgress);
-
-protected:
-    void interpolate(double easedProgress, const Dataset& from, const Dataset& to, Dataset& out) override;
 };
 
 } // namespace QAccelPlot

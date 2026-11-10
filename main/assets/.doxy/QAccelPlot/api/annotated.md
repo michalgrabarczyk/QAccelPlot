@@ -49,14 +49,16 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
         * **struct** [**Viewport**](structQAccelPlot_1_1DataPointStore_1_1Viewport.md) _Visible range of one dimension._     
     * **class** [**DataTexture**](classQAccelPlot_1_1DataTexture.md) _Series data uploaded to the GPU as an RGBA8888 texture, one float per texel._     
     * **class** [**DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) _Base QSGMaterial that samples series data from a_ `DataTexture` _and exposes shared shader uniforms._    
-    * **class** [**DataTransition**](classQAccelPlot_1_1DataTransition.md) _Abstract base class for animated data transitions on plot elements._     
-        * **struct** [**Dataset**](structQAccelPlot_1_1DataTransition_1_1Dataset.md) _Data a transition animates:_ `count` _items of_`stride` _values each, e.g. XY points with a stride of 2._    
-        * **class** [**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md) _One animation of a transition on one host element._     
+    * **class** [**DataTransition**](classQAccelPlot_1_1DataTransition.md) _Abstract base class for animated data transitions on plot series._     
+        * **class** [**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md) _One animation of a transition on one series._     
     * **class** [**DateTimeTickLabelFormatter**](classQAccelPlot_1_1DateTimeTickLabelFormatter.md) _A tick label formatter that displays tick values as formatted date/time strings._     
-    * **class** [**DrawTransition**](classQAccelPlot_1_1DrawTransition.md) _An animation transition that reveals the target data point by point from start to end._     
+    * **class** [**DrawTransition**](classQAccelPlot_1_1DrawTransition.md) _A transition that reveals items one after another, in index order._     
+    * **class** [**EnterExitTransition**](classQAccelPlot_1_1EnterExitTransition.md) _Abstract base class for transitions that bring items in or take them out._     
     * **class** [**ErrorBarMaterial**](classQAccelPlot_1_1ErrorBarMaterial.md) _Material that draws error bars from (x, y, low, high) data points in a data texture._     
     * **class** [**ErrorBarSeries**](classQAccelPlot_1_1ErrorBarSeries.md) _A hardware-accelerated QML item that draws error bars: a line from a low to a high bound at each data point, capped at both ends._     
+    * **class** [**FadeTrail**](classQAccelPlot_1_1FadeTrail.md) _Fades the oldest items of a series, like the trace of an oscilloscope._     
     * **struct** [**FillSamples**](structQAccelPlot_1_1FillSamples.md) _Outline of a gradient fill in data space: one group of points per run of valid data points, broken at gaps._     
+    * **class** [**Glow**](classQAccelPlot_1_1Glow.md) _A soft halo around the lines and markers of a series._     
     * **struct** [**GradientColorPayload**](structQAccelPlot_1_1GradientColorPayload.md) _Render-thread snapshot of gradient stroke (line-color) parameters._     
     * **class** [**GradientFill**](classQAccelPlot_1_1GradientFill.md) _A_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _effect that fills the area under the curve with a color gradient._    
     * **namespace** [**GradientFillBaselineNS**](namespaceQAccelPlot_1_1GradientFillBaselineNS.md) _Namespace exposing the_ `GradientFillBaseline` _enum to QML._    
@@ -69,6 +71,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **namespace** [**GradientValueSourceNS**](namespaceQAccelPlot_1_1GradientValueSourceNS.md) _Namespace exposing the_ `GradientValueSource` _enum to QML._    
     * **class** [**Grid**](classQAccelPlot_1_1Grid.md) _Configuration object that controls the appearance of the plot grid._     
     * **class** [**GridNode**](classQAccelPlot_1_1GridNode.md) _Internal QSGNode responsible for rendering the plot grid into the scene graph._     
+    * **class** [**GrowTransition**](classQAccelPlot_1_1GrowTransition.md) _A transition that grows item values from a baseline._     
     * **class** [**HeatmapMaterial**](classQAccelPlot_1_1HeatmapMaterial.md) _Material that colors each fragment by the value of the heatmap cell under it._     
     * **class** [**HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md) _A hardware-accelerated QML item that draws a grid of values as colored cells._     
     * **class** [**Histogram**](classQAccelPlot_1_1Histogram.md) _Samples counted into bins, convertible to_ `BarSeries` _data._    
@@ -87,6 +90,9 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
         * **class** [**CategoryTable**](classQAccelPlot_1_1Internal_1_1CategoryTable.md) _A snapshot of the categories of a series, looked up by value or name._     
             * **struct** [**Entry**](structQAccelPlot_1_1Internal_1_1CategoryTable_1_1Entry.md) _One category: the value data points carry, an optional name, and an optional color._     
         * **struct** [**DataTextureUploadTotals**](structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals.md) _How many data textures were uploaded since the last reset, and how many bytes they held._     
+        * **class** [**FrontStarts**](classQAccelPlot_1_1Internal_1_1FrontStarts.md) _When an eased reveal front reaches each share of the items._     
+        * **struct** [**GlowStyle**](structQAccelPlot_1_1Internal_1_1GlowStyle.md) _How the shaders draw a_ `Glow` _halo; see shaders/glow.glsl._    
+        * **struct** [**GlowUniforms**](structQAccelPlot_1_1Internal_1_1GlowUniforms.md) _The std140 uniform members of a_ `Glow` _halo,_`glowColor` _and_`glowParams` _, at a 16-byte aligned offset._    
         * **struct** [**GrabSize**](structQAccelPlot_1_1Internal_1_1GrabSize.md) _Sizes of one item grab._     
         * **struct** [**HeatmapGridDimension**](structQAccelPlot_1_1Internal_1_1HeatmapGridDimension.md) _One dimension of a heatmap grid:_ `count` _cells between the edges_`from` _and_`to` _._    
         * **struct** [**HeatmapShaderMapping**](structQAccelPlot_1_1Internal_1_1HeatmapShaderMapping.md) _How heatmap.frag maps an item-local pixel position_ _p_ _to a fractional cell coordinate along one dimension._    
@@ -101,6 +107,15 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
         * **struct** [**InspectionNeighbors**](structQAccelPlot_1_1Internal_1_1InspectionNeighbors.md) _Source indices of the valid data points on either side of an X value, or -1._     
         * **namespace** [**InspectionScan**](namespaceQAccelPlot_1_1Internal_1_1InspectionScan.md) _Inspection queries that scan every record; used for small series that are not ordered along the queried axis._     
         * **struct** [**InspectionSource**](structQAccelPlot_1_1Internal_1_1InspectionSource.md) _Read-only view over the XY records a series exposes to inspection queries._     
+        * **class** [**ItemClock**](classQAccelPlot_1_1Internal_1_1ItemClock.md) _The start time and movement of each item of one group at the frame._     
+        * **struct** [**ItemFade**](structQAccelPlot_1_1Internal_1_1ItemFade.md) _The transition groups of a frame whose opacity the shaders animate._     
+        * **struct** [**ItemFadeGroup**](structQAccelPlot_1_1Internal_1_1ItemFadeGroup.md) _The items of one transition group whose opacity the shaders animate._     
+        * **struct** [**ItemFadeGroupUniforms**](structQAccelPlot_1_1Internal_1_1ItemFadeGroupUniforms.md) _The std140 uniform members of one fading transition group, see_ `ItemFadeGroup` _._    
+        * **struct** [**ItemOpacityUniforms**](structQAccelPlot_1_1Internal_1_1ItemOpacityUniforms.md) _The std140 uniform members that shaders/item\_opacity.glsl reads, at a 16-byte aligned offset._     
+        * **struct** [**ItemTiming**](structQAccelPlot_1_1Internal_1_1ItemTiming.md) _The timing of the items of one group, as shares of the transition duration._     
+        * **struct** [**ItemTrail**](structQAccelPlot_1_1Internal_1_1ItemTrail.md) _How the shaders fade the oldest items under a_ `FadeTrail` _effect._    
+        * **struct** [**OpacitySegment**](structQAccelPlot_1_1Internal_1_1OpacitySegment.md) _One animation of item opacity, on the timeline of an item._     
+        * **class** [**OpacityTimeline**](classQAccelPlot_1_1Internal_1_1OpacityTimeline.md) _The opacity of an item over the time since it started, built from opacity animations._     
         * **class** [**OutlinedRectangle**](classQAccelPlot_1_1Internal_1_1OutlinedRectangle.md) _Item that fills its bounds and outlines them inside its edges._     
         * **class** [**OverlayChildren**](classQAccelPlot_1_1Internal_1_1OverlayChildren.md) _Objects declared inside an inspection tool in QML._     
         * **class** [**PointerTracker**](classQAccelPlot_1_1Internal_1_1PointerTracker.md) _Tracks the pointer over a plot from the plot's mouse and hover events._     
@@ -109,13 +124,18 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
         * **class** [**RectangleZoomOverlay**](classQAccelPlot_1_1Internal_1_1RectangleZoomOverlay.md)     
         * **class** [**ScopedPaintedItemTextures**](classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures.md) _Rasterizes the painted items under a root item at a capture scale until destroyed._     
         * **class** [**SelectionRectangle**](classQAccelPlot_1_1Internal_1_1SelectionRectangle.md) _Draws the gesture or the selected region of a_ [_**SelectionTool**_](classQAccelPlot_1_1SelectionTool.md) _, clipped to the plot area._    
+        * **class** [**SeriesEffectList**](classQAccelPlot_1_1Internal_1_1SeriesEffectList.md) _The_ `effects` _list of one series._    
         * **class** [**SourceInspection**](classQAccelPlot_1_1Internal_1_1SourceInspection.md) _Inspection queries that read a series' own buffer whose records are ordered along one axis._     
         * **struct** [**SummaryAccumulator**](structQAccelPlot_1_1Internal_1_1SummaryAccumulator.md) _Running data-point-weighted Y statistics that can be merged across disjoint data point sets._     
+        * **struct** [**TransitionFrameInput**](structQAccelPlot_1_1Internal_1_1TransitionFrameInput.md) _The two sides of a transition and the steps of its slots at one frame._     
+        * **struct** [**TransitionItems**](structQAccelPlot_1_1Internal_1_1TransitionItems.md) _Items on one side of a transition,_ `TransitionLayout::stride` _values each._    
+        * **struct** [**TransitionLayout**](structQAccelPlot_1_1Internal_1_1TransitionLayout.md) _How a series' items animate._     
+        * **struct** [**TransitionSlots**](structQAccelPlot_1_1Internal_1_1TransitionSlots.md) _Slots a data change animates._     
+        * **struct** [**TransitionStep**](structQAccelPlot_1_1Internal_1_1TransitionStep.md) _The state of one slot's transition at the frame._     
         * **struct** [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) _Bounds of an axis viewport or a colormap value range._     
     * **struct** [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md) _How a legend draws one row of a series: its label, symbol, color, line, and marker._     
     * **class** [**LegendModel**](classQAccelPlot_1_1LegendModel.md) _List model of the legend entries of a list of series._     
     * **class** [**LineCurve**](classQAccelPlot_1_1LineCurve.md) _A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects._     
-    * **class** [**LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md) _Abstract base class for visual effects applied to a_ `LineCurve` _._    
     * **namespace** [**LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md) _Stateless helpers implementing the invalid-data-point contract shared by_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _subsystems._    
     * **class** [**LineCurveGaps**](classQAccelPlot_1_1LineCurveGaps.md) _Controls how a_ `LineCurve` _renders gaps in its data._    
     * **class** [**LineCurveLineRenderer**](classQAccelPlot_1_1LineCurveLineRenderer.md) _Internal renderer responsible for building and updating QSGNode line geometry for a_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _._    
@@ -128,7 +148,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **class** [**LineStyle**](classQAccelPlot_1_1LineStyle.md) _Abstract base class for all line styles._     
     * **struct** [**LineVertex**](structQAccelPlot_1_1LineVertex.md) _Vertex layout for line geometry, shared with the main thread for pre-built vertex caches._     
     * **namespace** [**MarkerShapeNS**](namespaceQAccelPlot_1_1MarkerShapeNS.md) _Namespace exposing the_ `MarkerShape` _enum to QML._    
-    * **class** [**MorphTransition**](classQAccelPlot_1_1MorphTransition.md) _An animation transition that smoothly interpolates point positions between two datasets._     
+    * **class** [**MorphTransition**](classQAccelPlot_1_1MorphTransition.md) _An update transition that interpolates each kept item from its old values to its new ones._     
     * **namespace** [**NanGapModeNS**](namespaceQAccelPlot_1_1NanGapModeNS.md) _Namespace exposing the_ `NanGapMode` _enum to QML._    
     * **class** [**NoLine**](classQAccelPlot_1_1NoLine.md) _A line style that suppresses line rendering entirely, leaving only markers visible._     
     * **class** [**NumericTickLabelFormatter**](classQAccelPlot_1_1NumericTickLabelFormatter.md) _The default tick label formatter — produces numeric labels with automatic decimal precision._     
@@ -154,6 +174,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **class** [**RectMaterial**](classQAccelPlot_1_1RectMaterial.md) _QSGMaterial for rectangle series rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with a rect-count uniform._    
     * **class** [**RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md) _A hardware-accelerated QML item that renders a large list of axis-aligned rectangles._     
     * **class** [**SelectionTool**](classQAccelPlot_1_1SelectionTool.md) _Selects a data-space region by dragging, without changing the plot viewport._     
+    * **class** [**SeriesEffect**](classQAccelPlot_1_1SeriesEffect.md) _Abstract base class for visual effects applied to a series._     
     * **class** [**SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) _Data queries for one series: nearest data points, brackets, region statistics, and index pages._     
     * **class** [**SeriesMarker**](classQAccelPlot_1_1SeriesMarker.md) _Controls the markers a series draws at its data points._     
     * **class** [**SolidLine**](classQAccelPlot_1_1SolidLine.md) _The default line style — renders a continuous solid line with no gaps._     
@@ -162,7 +183,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **class** [**TextLabel**](classQAccelPlot_1_1TextLabel.md) _Text, font, color, and padding of a title, grouped as the_ `label` _property of_[_**ColorBar**_](classQAccelPlot_1_1ColorBar.md) _and_[_**Axis**_](classQAccelPlot_1_1Axis.md) _._    
     * **class** [**TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md) _A tick label formatter that maps integer tick indices to a user-supplied list of strings._     
     * **class** [**TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md) _Abstract base class for tick label formatters._     
-    * **class** [**TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md) _Runs the_ `DataTransition` _assigned to one item, such as a custom series._    
+    * **class** [**TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md) _Runs the enter, update, and exit transitions of one item, such as a custom series._     
 * **struct** [**DataRange**](structQAccelPlot_1_1Axis_1_1DataRange.md)     
 * **struct** [**DataRangeSource**](structQAccelPlot_1_1Axis_1_1DataRangeSource.md)     
 * **struct** [**ArcLengthScale**](structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale.md)     
@@ -177,6 +198,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
 * **struct** [**Extent**](structQAccelPlot_1_1HeatmapSeries_1_1Extent.md) [_**Grid**_](classQAccelPlot_1_1Grid.md) _edges. In_`edges_` _an unset edge is NaN;_`resolvedExtent()` _resolves it to index space._    
 * **struct** [**Job**](structQAccelPlot_1_1Internal_1_1InspectionCache_1_1Job.md)     
 * **struct** [**Node**](structQAccelPlot_1_1Internal_1_1InspectionIndex_1_1Node.md)     
+* **struct** [**Resolved**](structQAccelPlot_1_1Internal_1_1OpacityTimeline_1_1Resolved.md) _A segment with its start opacity resolved._     
 * **struct** [**Vertex**](structQAccelPlot_1_1Internal_1_1RectVertexCache_1_1Vertex.md)     
 * **struct** [**SavedTexture**](structQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures_1_1SavedTexture.md)     
 * **struct** [**Block**](structQAccelPlot_1_1Internal_1_1SourceInspection_1_1Block.md)     

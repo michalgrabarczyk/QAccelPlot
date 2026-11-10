@@ -1397,6 +1397,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#public-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#public-signals" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1430,6 +1441,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#public-types-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Types Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Types Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#typedef-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        typedef Layout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enum-slot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        enum Slot
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#public-signals-documentation" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1440,6 +1490,17 @@
   
     <nav class="md-nav" aria-label="Public Signals Documentation">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal-activechanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal activeChanged
+      
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#signal-framedue" class="md-nav__link">
@@ -1464,10 +1525,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#signal-transitiondestroyed" class="md-nav__link">
+  <a href="#signal-transitionchanged" class="md-nav__link">
     <span class="md-ellipsis">
       
-        signal transitionDestroyed
+        signal transitionChanged
       
     </span>
   </a>
@@ -1525,6 +1586,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#function-animates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function animates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-cancel" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1551,6 +1623,28 @@
     <span class="md-ellipsis">
       
         function finish
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-framecapacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function frameCapacity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-notifytransitionchanges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function notifyTransitionChanges
       
     </span>
   </a>
@@ -1658,7 +1752,7 @@
 
 <h1 id="class-qaccelplottransitionrunner">Class QAccelPlot::TransitionRunner<a class="headerlink" href="#class-qaccelplottransitionrunner" title="Permanent link">&para;</a></h1>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="./"><strong>TransitionRunner</strong></a></p>
-<p><em>Runs the</em> <code>DataTransition</code> <em>assigned to one item, such as a custom series.</em><a href="#detailed-description">More...</a></p>
+<p><em>Runs the enter, update, and exit transitions of one item, such as a custom series.</em> <a href="#detailed-description">More...</a></p>
 <ul>
 <li><code>#include &lt;TransitionRunner.hpp&gt;</code></li>
 </ul>
@@ -1670,6 +1764,25 @@
   external_base_classQAccelPlot_1_1TransitionRunner_1["QObject"]
   external_base_classQAccelPlot_1_1TransitionRunner_1 --&gt; classQAccelPlot_1_1TransitionRunner
 </code></pre>
+<h2 id="public-types">Public Types<a class="headerlink" href="#public-types" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">typedef <a href="../structQAccelPlot_1_1Internal_1_1TransitionLayout/"><strong>Internal::TransitionLayout</strong></a></td>
+<td style="text-align: left;"><a href="#typedef-layout"><strong>Layout</strong></a>  <br><em>How the items of the item animate.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-slot"><strong>Slot</strong></a>  <br><em>A transition slot of the item.</em></td>
+</tr>
+</tbody>
+</table>
 <h2 id="public-signals">Public Signals<a class="headerlink" href="#public-signals" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1681,15 +1794,19 @@
 <tbody>
 <tr>
 <td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-activechanged"><strong>activeChanged</strong></a>  <br><em>Emitted when</em> <code>active()</code> <em>changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
 <td style="text-align: left;"><a href="./#signal-framedue"><strong>frameDue</strong></a>  <br><em>Emitted once per rendered frame while the run is active.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">signal void</td>
-<td style="text-align: left;"><a href="./#signal-interrupted"><strong>interrupted</strong></a>  <br><em>Emitted when the run stopped before its end: the transition was replaced, cancelled, or destroyed.</em></td>
+<td style="text-align: left;"><a href="./#signal-interrupted"><strong>interrupted</strong></a>  <br><em>Emitted when the run stopped before its end: a transition was replaced, cancelled, or destroyed.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">signal void</td>
-<td style="text-align: left;"><a href="./#signal-transitiondestroyed"><strong>transitionDestroyed</strong></a>  <br><em>Emitted after the assigned transition was destroyed, when</em> <code>transition()</code> <em>is already</em><code>nullptr</code> <em>.</em></td>
+<td style="text-align: left;"><a href="./#signal-transitionchanged"><strong>transitionChanged</strong></a> (<a href="./#enum-slot"><strong>TransitionRunner::Slot</strong></a> slot) <br><em>Emitted when the transition of</em> <em>slot</em> <em>changes:</em><code>setTransition()</code> <em>assigned another, or it was destroyed.</em></td>
 </tr>
 </tbody>
 </table>
@@ -1708,11 +1825,15 @@
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>
-<td style="text-align: left;"><a href="#function-active"><strong>active</strong></a> () const<br><em>Returns</em> <code>true</code> <em>while the transition advances the run.</em></td>
+<td style="text-align: left;"><a href="#function-active"><strong>active</strong></a> () const<br><em>Returns</em> <code>true</code> <em>while a transition advances the run.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>
 <td style="text-align: left;"><a href="#function-advance"><strong>advance</strong></a> (std::vector&lt; double &gt; &amp; outData, int &amp; outPointCount) <br><em>Writes the frame of the run into</em> <em>outData</em> <em>and__outPointCount</em> <em>, or the target data when the run ends.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-animates"><strong>animates</strong></a> (int currentPointCount, int newPointCount) const<br><em>Returns</em> <code>true</code> <em>when a change from__currentPointCount</em> <em>drawn items to__newPointCount</em> <em>items may start a run.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -1720,11 +1841,19 @@
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>
-<td style="text-align: left;"><a href="#function-enabled"><strong>enabled</strong></a> () const<br><em>Returns</em> <code>true</code> <em>when a transition is assigned and enabled, so new data should start a run.</em></td>
+<td style="text-align: left;"><a href="#function-enabled"><strong>enabled</strong></a> () const<br><em>Returns</em> <code>true</code> <em>when some slot has an enabled transition.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>
 <td style="text-align: left;"><a href="#function-finish"><strong>finish</strong></a> (std::vector&lt; double &gt; &amp; outData, int &amp; outPointCount) <br><em>Ends the run and moves its target data into</em> <em>outData</em> <em>and__outPointCount</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-framecapacity"><strong>frameCapacity</strong></a> () const<br><em>Returns the most items a frame of the run holds: the larger of the start and target counts.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-notifytransitionchanges"><strong>notifyTransitionChanges</strong></a> (Item * item) <br><em>Emits</em> <em>item's</em> __<code>enterTransitionChanged()</code> <em>,</em><code>updateTransitionChanged()</code> <em>, or</em><code>exitTransitionChanged()</code> <em>signal when the transition of that slot changes.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>
@@ -1732,11 +1861,11 @@
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>
-<td style="text-align: left;"><a href="#function-settransition"><strong>setTransition</strong></a> (<a href="../classQAccelPlot_1_1DataTransition/"><strong>DataTransition</strong></a> * transition) <br><em>Assigns</em> <em>transition</em> <em>, interrupting a pending run first. The runner does not own it.</em></td>
+<td style="text-align: left;"><a href="#function-settransition"><strong>setTransition</strong></a> (<a href="./#enum-slot"><strong>Slot</strong></a> slot, <a href="../classQAccelPlot_1_1DataTransition/"><strong>DataTransition</strong></a> * transition) <br><em>Assigns</em> <em>transition</em> <em>to__slot</em> <em>, interrupting a pending run first. The runner does not own it.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-start"><strong>start</strong></a> (const std::vector&lt; double &gt; &amp; currentData, int currentPointCount, std::vector&lt; double &gt; &amp;&amp; newData, int newPointCount, int stride=2) <br><em>Starts the run on the assigned transition and requests a frame. Requires an assigned transition.</em></td>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-start"><strong>start</strong></a> (const std::vector&lt; double &gt; &amp; currentData, int currentPointCount, std::vector&lt; double &gt; &amp;&amp; newData, int newPointCount, const <a href="./#typedef-layout"><strong>Layout</strong></a> &amp; layout) <br><em>Starts a run from</em> <em>currentData</em> <em>to__newData</em> <em>and requests a frame.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">const std::vector&lt; double &gt; &amp;</td>
@@ -1744,11 +1873,11 @@
 </tr>
 <tr>
 <td style="text-align: right;">int</td>
-<td style="text-align: left;"><a href="#function-targetpointcount"><strong>targetPointCount</strong></a> () const<br><em>Returns the number of points in</em> <code>targetData()</code> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-targetpointcount"><strong>targetPointCount</strong></a> () const<br><em>Returns the number of items in</em> <code>targetData()</code> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classQAccelPlot_1_1DataTransition/"><strong>DataTransition</strong></a> *</td>
-<td style="text-align: left;"><a href="#function-transition"><strong>transition</strong></a> () const<br><em>Returns the assigned transition, or</em> <code>nullptr</code> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-transition"><strong>transition</strong></a> (<a href="./#enum-slot"><strong>Slot</strong></a> slot) const<br><em>Returns the transition of</em> <em>slot</em> <em>, or</em><code>nullptr</code> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
@@ -1757,143 +1886,196 @@
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
-<p>Holds the item's <code>DataTransition::Run</code> and asks for a frame once per rendered frame while it is active. The request comes on the GUI thread from <code>QQuickWindow::afterAnimating</code>, before the scene graph syncs, so <code>DataTransition::runningChanged</code> reaches QML there and the frame renders the new step. <code>LineCurve</code>, <code>BarSeries</code>, and <code>PointCloud</code> animate through it.</p>
+<p>A data change splits the items by index: with <em>m</em> items before and <em>n</em> after, items below both counts are kept, items from <em>m</em> on are added, and items from <em>n</em> on are removed. Each group runs the transition of its slot; a group without one changes instantly. Kept items run the update transition only when one of them changes. A <code>DrawTransition</code> or <code>GrowTransition</code> in the update slot then redraws all new items instead.</p>
+<p>The runner asks for a frame once per rendered frame while it is active. The request comes on the GUI thread from <code>QQuickWindow::afterAnimating</code>, before the scene graph syncs, so <code>DataTransition::runningChanged</code> reaches QML there and the frame renders the new step. <code>LineCurve</code>, <code>BarSeries</code>, <code>PointCloud</code>, and <code>ErrorBarSeries</code> animate through it.</p>
 <p>**
 **</p>
 <ul>
-<li>Forward the item's <code>transition</code> property to <code>transition()</code> and <code>setTransition()</code>.</li>
-<li>When data arrives and <code>enabled()</code> is <code>true</code>, call <code>start()</code>; otherwise call <code>cancel()</code> and show the data.</li>
-<li>On <code>frameDue()</code>, call <code>advance()</code> and show the frame.</li>
+<li>Forward the item's transition properties to the slot getters and setters, and their change signals through <code>notifyTransitionChanges()</code>.</li>
+<li>When data arrives and <code>animates()</code> is <code>true</code>, call <code>start()</code>. When it returns <code>false</code>, or when <code>animates()</code> is <code>false</code>, call <code>cancel()</code> and show the data.</li>
+<li>After <code>start()</code> and on <code>frameDue()</code>, call <code>advance()</code> and show the frame.</li>
 <li>On <code>interrupted()</code>, call <code>finish()</code> and show the target data.</li>
 </ul>
 <p>Use it on the item's thread only.</p>
 <p><strong>See also:</strong> <a href="../classQAccelPlot_1_1DataTransition/"><strong>DataTransition</strong></a> </p>
+<h2 id="public-types-documentation">Public Types Documentation<a class="headerlink" href="#public-types-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="typedef-layout">typedef Layout<a class="headerlink" href="#typedef-layout" title="Permanent link">&para;</a></h3>
+<p><em>How the items of the item animate.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">using</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">Layout</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">Internal</span><span class="o">::</span><span class="n">TransitionLayout</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="enum-slot">enum Slot<a class="headerlink" href="#enum-slot" title="Permanent link">&para;</a></h3>
+<p><em>A transition slot of the item.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">enum</span><span class="w"> </span><span class="nc">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">Slot</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="n">Enter</span><span class="p">,</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="n">Update</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="n">Exit</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">};</span>
+</code></pre></div></p>
+<hr>
 <h2 id="public-signals-documentation">Public Signals Documentation<a class="headerlink" href="#public-signals-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="signal-activechanged">signal activeChanged<a class="headerlink" href="#signal-activechanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when</em> <code>active()</code> <em>changes.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">activeChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="signal-framedue">signal frameDue<a class="headerlink" href="#signal-framedue" title="Permanent link">&para;</a></h3>
 <p><em>Emitted once per rendered frame while the run is active.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">frameDue</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">frameDue</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="signal-interrupted">signal interrupted<a class="headerlink" href="#signal-interrupted" title="Permanent link">&para;</a></h3>
-<p><em>Emitted when the run stopped before its end: the transition was replaced, cancelled, or destroyed.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">interrupted</span><span class="p">;</span>
+<p><em>Emitted when the run stopped before its end: a transition was replaced, cancelled, or destroyed.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">interrupted</span><span class="p">;</span>
 </code></pre></div></p>
 <p>The run still holds the target data. A run still pending after the signal is cancelled. </p>
 <hr>
 
-<h3 id="signal-transitiondestroyed">signal transitionDestroyed<a class="headerlink" href="#signal-transitiondestroyed" title="Permanent link">&para;</a></h3>
-<p><em>Emitted after the assigned transition was destroyed, when</em> <code>transition()</code> <em>is already</em><code>nullptr</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">transitionDestroyed</span><span class="p">;</span>
+<h3 id="signal-transitionchanged">signal transitionChanged<a class="headerlink" href="#signal-transitionchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the transition of</em> <em>slot</em> <em>changes:</em><code>setTransition()</code> <em>assigned another, or it was destroyed.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">transitionChanged</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-transitionrunner">function TransitionRunner<a class="headerlink" href="#function-transitionrunner" title="Permanent link">&para;</a></h3>
 <p><em>Constructs the runner for</em> <em>item</em> <em>, which must outlive it.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">explicit</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="n">QQuickItem</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">item</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">explicit</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="n">QQuickItem</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">item</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-active">function active<a class="headerlink" href="#function-active" title="Permanent link">&para;</a></h3>
-<p><em>Returns</em> <code>true</code> <em>while the transition advances the run.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">active</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<p><em>Returns</em> <code>true</code> <em>while a transition advances the run.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">active</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-advance">function advance<a class="headerlink" href="#function-advance" title="Permanent link">&para;</a></h3>
 <p><em>Writes the frame of the run into</em> <em>outData</em> <em>and__outPointCount</em> <em>, or the target data when the run ends.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">advance</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">outData</span><span class="p">,</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">outPointCount</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<p>Call it from a <code>frameDue()</code> handler. </p>
-<p><strong>Returns:</strong></p>
-<p><code>true</code> if the run is still active after this call. </p>
-<hr>
-
-<h3 id="function-cancel">function cancel<a class="headerlink" href="#function-cancel" title="Permanent link">&para;</a></h3>
-<p><em>Ends the run and discards its data.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">cancel</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-enabled">function enabled<a class="headerlink" href="#function-enabled" title="Permanent link">&para;</a></h3>
-<p><em>Returns</em> <code>true</code> <em>when a transition is assigned and enabled, so new data should start a run.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">enabled</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-finish">function finish<a class="headerlink" href="#function-finish" title="Permanent link">&para;</a></h3>
-<p><em>Ends the run and moves its target data into</em> <em>outData</em> <em>and__outPointCount</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">finish</span><span class="w"> </span><span class="p">(</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">advance</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">outData</span><span class="p">,</span>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">outPointCount</span>
 <a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <p><strong>Returns:</strong></p>
+<p><code>true</code> if the run is still active after this call. </p>
+<hr>
+
+<h3 id="function-animates">function animates<a class="headerlink" href="#function-animates" title="Permanent link">&para;</a></h3>
+<p><em>Returns</em> <code>true</code> <em>when a change from__currentPointCount</em> <em>drawn items to__newPointCount</em> <em>items may start a run.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">animates</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">currentPointCount</span><span class="p">,</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">newPointCount</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<p>Without a pending run, <code>false</code> means that <code>start()</code> would return <code>false</code>, so the item can show the data without copying it for a run. </p>
+<hr>
+
+<h3 id="function-cancel">function cancel<a class="headerlink" href="#function-cancel" title="Permanent link">&para;</a></h3>
+<p><em>Ends the run and discards its data.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">cancel</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-enabled">function enabled<a class="headerlink" href="#function-enabled" title="Permanent link">&para;</a></h3>
+<p><em>Returns</em> <code>true</code> <em>when some slot has an enabled transition.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">enabled</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-finish">function finish<a class="headerlink" href="#function-finish" title="Permanent link">&para;</a></h3>
+<p><em>Ends the run and moves its target data into</em> <em>outData</em> <em>and__outPointCount</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">finish</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">outData</span><span class="p">,</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">outPointCount</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<p><strong>Returns:</strong></p>
 <p><code>false</code>, leaving the outputs unchanged, when the run is not pending. </p>
+<hr>
+
+<h3 id="function-framecapacity">function frameCapacity<a class="headerlink" href="#function-framecapacity" title="Permanent link">&para;</a></h3>
+<p><em>Returns the most items a frame of the run holds: the larger of the start and target counts.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">frameCapacity</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-notifytransitionchanges">function notifyTransitionChanges<a class="headerlink" href="#function-notifytransitionchanges" title="Permanent link">&para;</a></h3>
+<p><em>Emits</em> <em>item's</em> __<code>enterTransitionChanged()</code> <em>,</em><code>updateTransitionChanged()</code> <em>, or</em><code>exitTransitionChanged()</code> <em>signal when the transition of that slot changes.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Item</span><span class="o">&gt;</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">notifyTransitionChanges</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="n">Item</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">item</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
 <hr>
 
 <h3 id="function-pending">function pending<a class="headerlink" href="#function-pending" title="Permanent link">&para;</a></h3>
 <p><em>Returns</em> <code>true</code> <em>while the run holds target data that</em><code>finish()</code> <em>has not taken.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">pending</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">pending</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-settransition">function setTransition<a class="headerlink" href="#function-settransition" title="Permanent link">&para;</a></h3>
-<p><em>Assigns</em> <em>transition</em> <em>, interrupting a pending run first. The runner does not own it.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">setTransition</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="n">DataTransition</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">transition</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="p">)</span><span class="w"> </span>
+<p><em>Assigns</em> <em>transition</em> <em>to__slot</em> <em>, interrupting a pending run first. The runner does not own it.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">setTransition</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="n">Slot</span><span class="w"> </span><span class="n">slot</span><span class="p">,</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">    </span><span class="n">DataTransition</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">transition</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
+<p>The enter and exit slots take only an <code>EnterExitTransition</code>. </p>
 <p><strong>Returns:</strong></p>
-<p><code>false</code> when <em>transition</em> is already assigned. </p>
+<p><code>false</code> when <em>transition</em> is already assigned to <em>slot</em>, or does not fit it. </p>
 <hr>
 
 <h3 id="function-start">function start<a class="headerlink" href="#function-start" title="Permanent link">&para;</a></h3>
-<p><em>Starts the run on the assigned transition and requests a frame. Requires an assigned transition.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">start</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">currentData</span><span class="p">,</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">currentPointCount</span><span class="p">,</span>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">newData</span><span class="p">,</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">newPointCount</span><span class="p">,</span>
-<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">stride</span><span class="o">=</span><span class="mi">2</span>
-<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="p">)</span><span class="w"> </span>
+<p><em>Starts a run from</em> <em>currentData</em> <em>to__newData</em> <em>and requests a frame.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">start</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">currentData</span><span class="p">,</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">currentPointCount</span><span class="p">,</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">newData</span><span class="p">,</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">newPointCount</span><span class="p">,</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Layout</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">layout</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
-<li><code>currentData</code> Current double buffer (copied as the <em>from</em> state). </li>
-<li><code>currentPointCount</code> Number of points in <em>currentData</em>. </li>
-<li><code>newData</code> Target double buffer (moved as the <em>to</em> state). </li>
-<li><code>newPointCount</code> Number of points in <em>newData</em>. </li>
-<li><code>stride</code> Number of values per point in both buffers. Default: 2, XY points. </li>
+<li><code>currentData</code> Items drawn now, copied as the <em>from</em> side. Items of a previous run that its last frame has not shown yet, or shows leaving, are left out. </li>
+<li><code>currentPointCount</code> Number of items in <em>currentData</em>. </li>
+<li><code>newData</code> Target items, moved as the <em>to</em> side. </li>
+<li><code>newPointCount</code> Number of items in <em>newData</em>. </li>
+<li><code>layout</code> How the items animate; its stride applies to both buffers. </li>
 </ul>
+<p><strong>Returns:</strong></p>
+<p><code>false</code>, ending any run, when no slot animates this change. </p>
 <hr>
 
 <h3 id="function-targetdata">function targetData<a class="headerlink" href="#function-targetdata" title="Permanent link">&para;</a></h3>
 <p><em>Returns the target data. Valid while</em> <code>pending()</code> <em>is</em><code>true</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">targetData</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">targetData</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-targetpointcount">function targetPointCount<a class="headerlink" href="#function-targetpointcount" title="Permanent link">&para;</a></h3>
-<p><em>Returns the number of points in</em> <code>targetData()</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">targetPointCount</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<p><em>Returns the number of items in</em> <code>targetData()</code> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">targetPointCount</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-transition">function transition<a class="headerlink" href="#function-transition" title="Permanent link">&para;</a></h3>
-<p><em>Returns the assigned transition, or</em> <code>nullptr</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">DataTransition</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">transition</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<p><em>Returns the transition of</em> <em>slot</em> <em>, or</em><code>nullptr</code> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">DataTransition</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::</span><span class="n">transition</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span><span class="n">Slot</span><span class="w"> </span><span class="n">slot</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-transitionrunner">function ~TransitionRunner<a class="headerlink" href="#function-transitionrunner" title="Permanent link">&para;</a></h3>
 <p><em>Ends the run without emitting</em> <code>interrupted()</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::~</span><span class="n">TransitionRunner</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TransitionRunner</span><span class="o">::~</span><span class="n">TransitionRunner</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
 <hr>
 

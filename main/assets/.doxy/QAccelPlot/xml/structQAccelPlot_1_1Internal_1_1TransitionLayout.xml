@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1Internal_1_1TransitionLayout" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::TransitionLayout</compoundname>
+    <includes local="no">TransitionFrame.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1TransitionLayout_1a6f9bdfce632cc95847de18776a9ca871" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::TransitionLayout::stride</definition>
+        <argsstring></argsstring>
+        <name>stride</name>
+        <qualifiedname>QAccelPlot::Internal::TransitionLayout::stride</qualifiedname>
+        <initializer>{2}</initializer>
+        <briefdescription>
+<para>Values per item. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="31" column="9" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="31" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1TransitionLayout_1a0363b79c19820d45de184befb10da7be" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; int &gt;</type>
+        <definition>std::vector&lt;int&gt; QAccelPlot::Internal::TransitionLayout::valueColumns</definition>
+        <argsstring></argsstring>
+        <name>valueColumns</name>
+        <qualifiedname>QAccelPlot::Internal::TransitionLayout::valueColumns</qualifiedname>
+        <initializer>{1}</initializer>
+        <briefdescription>
+<para>Columns a <computeroutput><ref refid="classQAccelPlot_1_1GrowTransition" kindref="compound">GrowTransition</ref></computeroutput> grows. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="32" column="17" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="32" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1TransitionLayout_1a5608f2542bdeda83fe364f71589d612b" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::TransitionLayout::baseline</definition>
+        <argsstring></argsstring>
+        <name>baseline</name>
+        <qualifiedname>QAccelPlot::Internal::TransitionLayout::baseline</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+<para>Value items grow from when the <computeroutput><ref refid="classQAccelPlot_1_1GrowTransition" kindref="compound">GrowTransition</ref></computeroutput> has no baseline. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="33" column="12" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="33" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1TransitionLayout_1a7859cf474f624540369a0bec59d05c1e" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::TransitionLayout::continuous</definition>
+        <argsstring></argsstring>
+        <name>continuous</name>
+        <qualifiedname>QAccelPlot::Internal::TransitionLayout::continuous</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+<para>A <computeroutput><ref refid="classQAccelPlot_1_1DrawTransition" kindref="compound">DrawTransition</ref></computeroutput> reveals the last item partway, as a line segment. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="34" column="10" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="34" bodyend="34"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>How a series&apos; items animate. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="30" column="1" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="30" bodyend="35"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1Internal_1_1TransitionLayout_1a5608f2542bdeda83fe364f71589d612b" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::TransitionLayout</scope><name>baseline</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1TransitionLayout_1a7859cf474f624540369a0bec59d05c1e" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::TransitionLayout</scope><name>continuous</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1TransitionLayout_1a6f9bdfce632cc95847de18776a9ca871" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::TransitionLayout</scope><name>stride</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1TransitionLayout_1a0363b79c19820d45de184befb10da7be" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::TransitionLayout</scope><name>valueColumns</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

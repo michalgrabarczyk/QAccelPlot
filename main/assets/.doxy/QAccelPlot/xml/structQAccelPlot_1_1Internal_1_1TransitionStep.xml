@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1Internal_1_1TransitionStep" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::TransitionStep</compoundname>
+    <includes local="no">TransitionFrame.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1TransitionStep_1a30ebd9fa8cb3418179784aa51caa7945" prot="public" static="no" mutable="no">
+        <type>TransitionKind</type>
+        <definition>TransitionKind QAccelPlot::Internal::TransitionStep::kind</definition>
+        <argsstring></argsstring>
+        <name>kind</name>
+        <qualifiedname>QAccelPlot::Internal::TransitionStep::kind</qualifiedname>
+        <initializer>{TransitionKind::Morph}</initializer>
+        <briefdescription>
+<para>How the transition moves items. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="39" column="20" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="39" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1TransitionStep_1aa0dc3ab8593af89f89f6e6b8322e7abc" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::TransitionStep::progress</definition>
+        <argsstring></argsstring>
+        <name>progress</name>
+        <qualifiedname>QAccelPlot::Internal::TransitionStep::progress</qualifiedname>
+        <initializer>{1.0}</initializer>
+        <briefdescription>
+<para>Progress of the run, before easing. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="40" column="12" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1TransitionStep_1a8714c9e4c912ef032f5bcaed04c48f2d" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::TransitionStep::stagger</definition>
+        <argsstring></argsstring>
+        <name>stagger</name>
+        <qualifiedname>QAccelPlot::Internal::TransitionStep::stagger</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+<para>Stagger of the transition. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="41" column="12" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="41" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1TransitionStep_1af72b77df479ad8eca3030bb7c020f449" prot="public" static="no" mutable="no">
+        <type>QEasingCurve</type>
+        <definition>QEasingCurve QAccelPlot::Internal::TransitionStep::easing</definition>
+        <argsstring></argsstring>
+        <name>easing</name>
+        <qualifiedname>QAccelPlot::Internal::TransitionStep::easing</qualifiedname>
+        <briefdescription>
+<para>Easing of each item&apos;s progress. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="42" column="18" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1TransitionStep_1a5f42b4a49eb3c83666d6b6b78b2588ab" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::TransitionStep::baseline</definition>
+        <argsstring></argsstring>
+        <name>baseline</name>
+        <qualifiedname>QAccelPlot::Internal::TransitionStep::baseline</qualifiedname>
+        <initializer>{std::numeric_limits&lt;double&gt;::quiet_NaN()}</initializer>
+        <briefdescription>
+<para><computeroutput><ref refid="classQAccelPlot_1_1GrowTransition" kindref="compound">GrowTransition</ref></computeroutput> baseline; NaN for the layout&apos;s. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="43" column="12" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="43" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1TransitionStep_1a7058171bee4f8499579f8eb4d213ccfb" prot="public" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1Internal_1_1OpacityTimeline" kindref="compound">OpacityTimeline</ref></type>
+        <definition>OpacityTimeline QAccelPlot::Internal::TransitionStep::opacity</definition>
+        <argsstring></argsstring>
+        <name>opacity</name>
+        <qualifiedname>QAccelPlot::Internal::TransitionStep::opacity</qualifiedname>
+        <briefdescription>
+<para>Opacity of each item over its own time; empty for none. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="44" column="21" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1TransitionStep_1a7d2b4a2fa03d2a5bf35e45b6657193d0" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::Internal::TransitionStep::duration</definition>
+        <argsstring></argsstring>
+        <name>duration</name>
+        <qualifiedname>QAccelPlot::Internal::TransitionStep::duration</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+<para>Duration of the run in milliseconds, which times <computeroutput>opacity</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="45" column="12" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="45" bodyend="45"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>The state of one slot&apos;s transition at the frame. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>QAccelPlot::Internal::OpacityTimeline</label>
+        <link refid="classQAccelPlot_1_1Internal_1_1OpacityTimeline"/>
+      </node>
+      <node id="1">
+        <label>QAccelPlot::Internal::TransitionStep</label>
+        <link refid="structQAccelPlot_1_1Internal_1_1TransitionStep"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>opacity</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" line="38" column="1" bodyfile="QAccelPlot/src/QAccelPlot/transitions/internal/TransitionFrame.hpp" bodystart="38" bodyend="46"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1Internal_1_1TransitionStep_1a5f42b4a49eb3c83666d6b6b78b2588ab" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::TransitionStep</scope><name>baseline</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1TransitionStep_1a7d2b4a2fa03d2a5bf35e45b6657193d0" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::TransitionStep</scope><name>duration</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1TransitionStep_1af72b77df479ad8eca3030bb7c020f449" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::TransitionStep</scope><name>easing</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1TransitionStep_1a30ebd9fa8cb3418179784aa51caa7945" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::TransitionStep</scope><name>kind</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1TransitionStep_1a7058171bee4f8499579f8eb4d213ccfb" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::TransitionStep</scope><name>opacity</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1TransitionStep_1aa0dc3ab8593af89f89f6e6b8322e7abc" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::TransitionStep</scope><name>progress</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1TransitionStep_1a8714c9e4c912ef032f5bcaed04c48f2d" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::TransitionStep</scope><name>stagger</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

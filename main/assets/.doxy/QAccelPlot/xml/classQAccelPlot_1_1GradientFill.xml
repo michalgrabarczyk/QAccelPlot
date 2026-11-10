@@ -2,7 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="classQAccelPlot_1_1GradientFill" kind="class" language="C++" prot="public">
     <compoundname>QAccelPlot::GradientFill</compoundname>
-    <basecompoundref refid="classQAccelPlot_1_1LineCurveEffect" prot="public" virt="non-virtual">QAccelPlot::LineCurveEffect</basecompoundref>
+    <basecompoundref refid="classQAccelPlot_1_1SeriesEffect" prot="public" virt="non-virtual">QAccelPlot::SeriesEffect</basecompoundref>
     <includes local="no">GradientFill.hpp</includes>
     <sectiondef kind="property">
       <memberdef kind="property" id="classQAccelPlot_1_1GradientFill_1a60475906fec29c9373783e5f29791ced" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
@@ -755,9 +755,9 @@
         <argsstring>() override</argsstring>
         <name>refresh</name>
         <qualifiedname>QAccelPlot::GradientFill::refresh</qualifiedname>
-        <reimplements refid="classQAccelPlot_1_1LineCurveEffect_1ab3467a9512c14f99b7a3ce373123fc62">refresh</reimplements>
+        <reimplements refid="classQAccelPlot_1_1SeriesEffect_1ae078e25386b2b645f2d2e62a3648e2f3">refresh</reimplements>
         <briefdescription>
-<para>Re-reads the <computeroutput>gradient</computeroutput> stops, which can change without a notification, and emits <computeroutput><ref refid="classQAccelPlot_1_1LineCurveEffect_1a75de56e1980ec445ce581f1f31b95e3b" kindref="member">effectChanged()</ref></computeroutput> if they differ from the snapshot. </para>
+<para>Re-reads the <computeroutput>gradient</computeroutput> stops, which can change without a notification, and emits <computeroutput><ref refid="classQAccelPlot_1_1SeriesEffect_1a9ca3c976da919b97bea1165e9b06b9b0" kindref="member">effectChanged()</ref></computeroutput> if they differ from the snapshot. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -1022,8 +1022,8 @@
 <para>A <ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref> effect that fills the area under the curve with a color gradient. </para>
     </briefdescription>
     <detaileddescription>
-<para>Attach to <computeroutput><ref refid="classQAccelPlot_1_1LineCurve_1afd2dc2f55a0ebc51ce212ea522342c0e" kindref="member">LineCurve::effects</ref></computeroutput> to render a shaded fill between the curve and a configurable baseline. The color stops come from <computeroutput>colormap</computeroutput> when set, otherwise from a Qt <computeroutput>Gradient</computeroutput> assigned to <computeroutput>gradient</computeroutput>. <computeroutput>direction</computeroutput> sets the axis the colors vary along.</para>
-<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1GradientStroke" kindref="compound">GradientStroke</ref>, <ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref>, <ref refid="classQAccelPlot_1_1LineCurveEffect" kindref="compound">LineCurveEffect</ref>, <ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref> </para>
+<para>Attach to <computeroutput><ref refid="classQAccelPlot_1_1PlotSeries_1a7c160bd8480b18303e574266397d66d3" kindref="member">LineCurve::effects</ref></computeroutput> to render a shaded fill between the curve and a configurable baseline. The color stops come from <computeroutput>colormap</computeroutput> when set, otherwise from a Qt <computeroutput>Gradient</computeroutput> assigned to <computeroutput>gradient</computeroutput>. <computeroutput>direction</computeroutput> sets the axis the colors vary along.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1GradientStroke" kindref="compound">GradientStroke</ref>, <ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref>, <ref refid="classQAccelPlot_1_1SeriesEffect" kindref="compound">SeriesEffect</ref>, <ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref> </para>
 </simplesect>
 </para>
     </detaileddescription>
@@ -1035,8 +1035,8 @@
         </childnode>
       </node>
       <node id="2">
-        <label>QAccelPlot::LineCurveEffect</label>
-        <link refid="classQAccelPlot_1_1LineCurveEffect"/>
+        <label>QAccelPlot::SeriesEffect</label>
+        <link refid="classQAccelPlot_1_1SeriesEffect"/>
         <childnode refid="3" relation="public-inheritance">
         </childnode>
       </node>
@@ -1052,8 +1052,8 @@
         </childnode>
       </node>
       <node id="2">
-        <label>QAccelPlot::LineCurveEffect</label>
-        <link refid="classQAccelPlot_1_1LineCurveEffect"/>
+        <label>QAccelPlot::SeriesEffect</label>
+        <link refid="classQAccelPlot_1_1SeriesEffect"/>
         <childnode refid="3" relation="public-inheritance">
         </childnode>
       </node>
@@ -1082,17 +1082,16 @@
       <member refid="classQAccelPlot_1_1GradientFill_1af82b411512117911e2219826767e1148" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>directionChanged</name></member>
       <member refid="classQAccelPlot_1_1GradientFill_1ac314cade25fa375c82e0828ff0e9ed86" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>disconnectColormapSignals</name></member>
       <member refid="classQAccelPlot_1_1GradientFill_1a223ddf738bdd286e9fc254da55092f5f" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>disconnectGradientSignals</name></member>
-      <member refid="classQAccelPlot_1_1LineCurveEffect_1a75de56e1980ec445ce581f1f31b95e3b" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>effectChanged</name></member>
-      <member refid="classQAccelPlot_1_1LineCurveEffect_1affda62643e26d7fbf7ea48d1338af1bd" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>enabled</name></member>
-      <member refid="classQAccelPlot_1_1LineCurveEffect_1a50ccdb596e68bbe5d0ef32e6ac7bdf0f" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>enabled</name></member>
-      <member refid="classQAccelPlot_1_1LineCurveEffect_1a7f30e2acc9d45a6d6b4fb788c660b224" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>enabledChanged</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1a9ca3c976da919b97bea1165e9b06b9b0" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>effectChanged</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1a8bdcac95c85b537ef52bad92c4587743" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>enabled</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1a4608e55ea1dec2ff079e6143c5ea6e0b" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>enabled</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1aa19ca37db0f344742149b3b0a2850e38" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>enabledChanged</name></member>
       <member refid="classQAccelPlot_1_1GradientFill_1aaace799b23f8de73c8954faa612a8d40" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>gradient</name></member>
       <member refid="classQAccelPlot_1_1GradientFill_1a1673b39f57534d35374d5a4c78ce6eb8" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>gradient</name></member>
       <member refid="classQAccelPlot_1_1GradientFill_1a465ab07c520442f99aea3c86bd2f4161" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>gradient_</name></member>
       <member refid="classQAccelPlot_1_1GradientFill_1a36c54758981c2a3f263ef48aba58a078" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>gradientChanged</name></member>
       <member refid="classQAccelPlot_1_1GradientFill_1a1c5e371839b72c7963a5a48bbac72835" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>gradientConnections_</name></member>
       <member refid="classQAccelPlot_1_1GradientFill_1a0d065a5049043b6fcba28bfccc01b422" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>GradientFill</name></member>
-      <member refid="classQAccelPlot_1_1LineCurveEffect_1a57df52d947c5450b4143c95e290c6b42" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>LineCurveEffect</name></member>
       <member refid="classQAccelPlot_1_1GradientFill_1a3a277b02edc0adc9b21deb844d2d8b4b" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>onGradientObjectChanged</name></member>
       <member refid="classQAccelPlot_1_1GradientFill_1a70dfbc7fb3e0278fa1ef799ceb5092f4" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>opacity</name></member>
       <member refid="classQAccelPlot_1_1GradientFill_1a26b7b164edc77f3ebc5a18097e64afd3" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>opacity</name></member>
@@ -1104,11 +1103,12 @@
       <member refid="classQAccelPlot_1_1GradientFill_1a4ba5c6406d772ee6c85e6131f7509c69" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>reconnectColormapSignals</name></member>
       <member refid="classQAccelPlot_1_1GradientFill_1a49056e9df002a618ffe66d01f00ff2ad" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>reconnectGradientSignals</name></member>
       <member refid="classQAccelPlot_1_1GradientFill_1a3208cff5859359efa191c6bcc36dba7e" prot="public" virt="virtual"><scope>QAccelPlot::GradientFill</scope><name>refresh</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1a2dac68d7ce3c6ed01437125c7a547c11" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>SeriesEffect</name></member>
       <member refid="classQAccelPlot_1_1GradientFill_1a6eadaf6f66e8e977eb56c177cb8b449e" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>setBaseline</name></member>
       <member refid="classQAccelPlot_1_1GradientFill_1a04cb4035c703fb23b544609ce5a1d9b0" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>setBaselineValue</name></member>
       <member refid="classQAccelPlot_1_1GradientFill_1a80861b51ead8134f57b0466904010f24" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>setColormap</name></member>
       <member refid="classQAccelPlot_1_1GradientFill_1ae66b7895499167c7564dee63489aa30d" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>setDirection</name></member>
-      <member refid="classQAccelPlot_1_1LineCurveEffect_1afe12b20cd1e7c02b31d4f857be450d86" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>setEnabled</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1aeb23262e92b2c37fda89636a3ffc995b" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>setEnabled</name></member>
       <member refid="classQAccelPlot_1_1GradientFill_1a8be30081de750e3dbff081a924162f20" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>setGradient</name></member>
       <member refid="classQAccelPlot_1_1GradientFill_1ae5d5f4caaff9ec7751523ab83e6cc5bb" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>setOpacity</name></member>
       <member refid="classQAccelPlot_1_1GradientFill_1a4b3f1c66b06afd942025e3c406253bb6" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>setValueMax</name></member>

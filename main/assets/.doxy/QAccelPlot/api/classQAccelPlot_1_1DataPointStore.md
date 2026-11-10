@@ -104,6 +104,8 @@ _Holds the data points of one series and derives everything that depends only on
 |  double | [**renderOrigin**](#function-renderorigin) ([**Dimension**](classQAccelPlot_1_1DataPointStore.md#enum-dimension) dimension) const<br>_Returns the render origin of_ _dimension_ _, rebuilding the render data first when stale._ |
 |  std::uint64\_t | [**renderRevision**](#function-renderrevision) () noexcept const<br>_Returns a number that changes whenever the render data changes._  |
 |  int | [**renderStride**](#function-renderstride) () noexcept const<br>_Returns the floats per data point in the render data._  |
+|  bool | [**rendered**](#function-rendered) (int index) const<br>_Returns whether_ `renderedView()` _holds drawn data point__index_ _._ |
+|  int | [**renderedCount**](#function-renderedcount) (int count) const<br>_Returns how many of the first_ _count_ _drawn data points_`renderedView()` _holds._ |
 |  [**View**](structQAccelPlot_1_1DataPointStore_1_1View.md) | [**renderedView**](#function-renderedview) () const<br>_Returns the data points the render data is built from:_ `drawnView()` _, without the invalid data points when_`skipInvalid()` _is set._ |
 |  void | [**setAttributes**](#function-setattributes) (std::vector&lt; float &gt; && attributes) <br>_Replaces the float attributes: empty, or_ `attributeCount` _floats per data point._ |
 |  void | [**setCategories**](#function-setcategories) (std::vector&lt; int &gt; && categories) <br>_Replaces the categories: empty, or one per data point._  |
@@ -630,6 +632,40 @@ std::uint64_t QAccelPlot::DataPointStore::renderRevision () noexcept const
 _Returns the floats per data point in the render data._ 
 ```C++
 int QAccelPlot::DataPointStore::renderStride () noexcept const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function rendered {#function-rendered}
+
+_Returns whether_ `renderedView()` _holds drawn data point__index_ _._
+```C++
+bool QAccelPlot::DataPointStore::rendered (
+    int index
+) const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function renderedCount {#function-renderedcount}
+
+_Returns how many of the first_ _count_ _drawn data points_`renderedView()` _holds._
+```C++
+int QAccelPlot::DataPointStore::renderedCount (
+    int count
+) const
 ```
 
 

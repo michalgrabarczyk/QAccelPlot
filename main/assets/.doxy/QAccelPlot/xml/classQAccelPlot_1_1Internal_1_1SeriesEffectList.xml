@@ -1,0 +1,447 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1Internal_1_1SeriesEffectList" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::SeriesEffectList</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
+    <includes local="no">SeriesEffectList.hpp</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a7e44131c0b7ed124ed5962118b91fca3" prot="public" static="no">
+        <type>std::function&lt; bool(const <ref refid="classQAccelPlot_1_1SeriesEffect" kindref="compound">SeriesEffect</ref> &amp;effect)&gt;</type>
+        <definition>using QAccelPlot::Internal::SeriesEffectList::Supports =  std::function&lt;bool(const SeriesEffect&amp; effect)&gt;</definition>
+        <argsstring></argsstring>
+        <name>Supports</name>
+        <qualifiedname>QAccelPlot::Internal::SeriesEffectList::Supports</qualifiedname>
+        <briefdescription>
+<para>Returns whether the series draws <emphasis>effect</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp" line="36" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a2fb02b00988dc2d49e8810ca89759fca" prot="private" static="no" mutable="no">
+        <type>QQuickItem *</type>
+        <definition>QQuickItem* QAccelPlot::Internal::SeriesEffectList::series_</definition>
+        <argsstring></argsstring>
+        <name>series_</name>
+        <qualifiedname>QAccelPlot::Internal::SeriesEffectList::series_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp" line="79" column="16" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a877aded5457c97d27ce2c28ab21ad50f" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a7e44131c0b7ed124ed5962118b91fca3" kindref="member">Supports</ref></type>
+        <definition>Supports QAccelPlot::Internal::SeriesEffectList::supports_</definition>
+        <argsstring></argsstring>
+        <name>supports_</name>
+        <qualifiedname>QAccelPlot::Internal::SeriesEffectList::supports_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp" line="80" column="14" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a1520beb43bc78bec78ff243993611800" prot="private" static="no" mutable="no">
+        <type>QList&lt; <ref refid="classQAccelPlot_1_1SeriesEffect" kindref="compound">SeriesEffect</ref> * &gt;</type>
+        <definition>QList&lt;SeriesEffect*&gt; QAccelPlot::Internal::SeriesEffectList::effects_</definition>
+        <argsstring></argsstring>
+        <name>effects_</name>
+        <qualifiedname>QAccelPlot::Internal::SeriesEffectList::effects_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp" line="81" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1aaf01ca5d40433001dc92492f35550e28" prot="private" static="no" mutable="no">
+        <type>QPointer&lt; QQuickWindow &gt;</type>
+        <definition>QPointer&lt;QQuickWindow&gt; QAccelPlot::Internal::SeriesEffectList::window_</definition>
+        <argsstring></argsstring>
+        <name>window_</name>
+        <qualifiedname>QAccelPlot::Internal::SeriesEffectList::window_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp" line="82" column="14" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a84c116632dca4e99290b141924925726" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::SeriesEffectList::loading_</definition>
+        <argsstring></argsstring>
+        <name>loading_</name>
+        <qualifiedname>QAccelPlot::Internal::SeriesEffectList::loading_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp" line="83" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp" bodystart="83" bodyend="83"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a93df41d5753f74a5f219d0edccc8b032" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::Internal::SeriesEffectList::SeriesEffectList</definition>
+        <argsstring>(QQuickItem *series, Supports supports)</argsstring>
+        <name>SeriesEffectList</name>
+        <qualifiedname>QAccelPlot::Internal::SeriesEffectList::SeriesEffectList</qualifiedname>
+        <param>
+          <type>QQuickItem *</type>
+          <declname>series</declname>
+        </param>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a7e44131c0b7ed124ed5962118b91fca3" kindref="member">Supports</ref></type>
+          <declname>supports</declname>
+        </param>
+        <briefdescription>
+<para>Constructs the list of <emphasis>series</emphasis>, which must outlive it; <emphasis>supports</emphasis> tells which effects it draws. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp" line="39" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1ae73acf50579ed6c7c567bcf2c14be676" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QQmlListProperty&lt; <ref refid="classQAccelPlot_1_1SeriesEffect" kindref="compound">SeriesEffect</ref> &gt;</type>
+        <definition>QQmlListProperty&lt; SeriesEffect &gt; QAccelPlot::Internal::SeriesEffectList::property</definition>
+        <argsstring>()</argsstring>
+        <name>property</name>
+        <qualifiedname>QAccelPlot::Internal::SeriesEffectList::property</qualifiedname>
+        <briefdescription>
+<para>Returns the QML list property over the effects. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp" line="42" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1ae0f182f6f6c19748aec1ddfb673ccf01" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const QList&lt; <ref refid="classQAccelPlot_1_1SeriesEffect" kindref="compound">SeriesEffect</ref> * &gt; &amp;</type>
+        <definition>const QList&lt; SeriesEffect * &gt; &amp; QAccelPlot::Internal::SeriesEffectList::effects</definition>
+        <argsstring>() const</argsstring>
+        <name>effects</name>
+        <qualifiedname>QAccelPlot::Internal::SeriesEffectList::effects</qualifiedname>
+        <briefdescription>
+<para>Returns the effects in list order, including ignored ones. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp" line="44" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a0ddc755c72cf5a38bfa8e634c950f1ca" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Effect</type>
+          </param>
+        </templateparamlist>
+        <type>const Effect *</type>
+        <definition>const Effect * QAccelPlot::Internal::SeriesEffectList::first</definition>
+        <argsstring>() const</argsstring>
+        <name>first</name>
+        <qualifiedname>QAccelPlot::Internal::SeriesEffectList::first</qualifiedname>
+        <briefdescription>
+<para>Returns the first enabled effect of type <emphasis>Effect</emphasis>, or <computeroutput>nullptr</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp" line="47" column="30" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp" bodystart="47" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a3c8ca06f7a5b6df1f41d524859b4a53b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1Internal_1_1GlowStyle" kindref="compound">GlowStyle</ref></type>
+        <definition>GlowStyle QAccelPlot::Internal::SeriesEffectList::glowStyle</definition>
+        <argsstring>(const QColor &amp;seriesColor) const</argsstring>
+        <name>glowStyle</name>
+        <qualifiedname>QAccelPlot::Internal::SeriesEffectList::glowStyle</qualifiedname>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>seriesColor</declname>
+        </param>
+        <briefdescription>
+<para>Returns the halo of the first enabled <computeroutput><ref refid="classQAccelPlot_1_1Glow" kindref="compound">Glow</ref></computeroutput>, in <emphasis>seriesColor</emphasis> unless it has its own color; none without a <computeroutput><ref refid="classQAccelPlot_1_1Glow" kindref="compound">Glow</ref></computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp" line="58" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a5da52b31b16a2702de9ef46bb1a4f89c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1Internal_1_1ItemTrail" kindref="compound">ItemTrail</ref></type>
+        <definition>ItemTrail QAccelPlot::Internal::SeriesEffectList::itemTrail</definition>
+        <argsstring>(int itemCount) const</argsstring>
+        <name>itemTrail</name>
+        <qualifiedname>QAccelPlot::Internal::SeriesEffectList::itemTrail</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>itemCount</declname>
+        </param>
+        <briefdescription>
+<para>Returns how the first enabled <computeroutput><ref refid="classQAccelPlot_1_1FadeTrail" kindref="compound">FadeTrail</ref></computeroutput> fades <emphasis>itemCount</emphasis> drawn items; none without a <computeroutput><ref refid="classQAccelPlot_1_1FadeTrail" kindref="compound">FadeTrail</ref></computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp" line="60" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1ab796ea2f3eb8ece0ad7b66109cb3c938" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::SeriesEffectList::classBegin</definition>
+        <argsstring>()</argsstring>
+        <name>classBegin</name>
+        <qualifiedname>QAccelPlot::Internal::SeriesEffectList::classBegin</qualifiedname>
+        <briefdescription>
+<para>Holds back warnings while the series&apos; component loads. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp" line="63" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a29a19ca6839c40dfc644950168c7a6f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::SeriesEffectList::componentComplete</definition>
+        <argsstring>()</argsstring>
+        <name>componentComplete</name>
+        <qualifiedname>QAccelPlot::Internal::SeriesEffectList::componentComplete</qualifiedname>
+        <briefdescription>
+<para>Reports the effects added while the series&apos; component loaded. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp" line="65" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1adae8ca8988300d5c4ae3975bf6891ec4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::SeriesEffectList::connectWindow</definition>
+        <argsstring>(QQuickWindow *window)</argsstring>
+        <name>connectWindow</name>
+        <qualifiedname>QAccelPlot::Internal::SeriesEffectList::connectWindow</qualifiedname>
+        <param>
+          <type>QQuickWindow *</type>
+          <declname>window</declname>
+        </param>
+        <briefdescription>
+<para>Refreshes the effects once per frame of <emphasis>window</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp" line="67" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a754723305240960912d7b08cb5aa8c2b" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void QAccelPlot::Internal::SeriesEffectList::append</definition>
+        <argsstring>(QQmlListProperty&lt; SeriesEffect &gt; *list, SeriesEffect *effect)</argsstring>
+        <name>append</name>
+        <qualifiedname>QAccelPlot::Internal::SeriesEffectList::append</qualifiedname>
+        <param>
+          <type>QQmlListProperty&lt; <ref refid="classQAccelPlot_1_1SeriesEffect" kindref="compound">SeriesEffect</ref> &gt; *</type>
+          <declname>list</declname>
+        </param>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1SeriesEffect" kindref="compound">SeriesEffect</ref> *</type>
+          <declname>effect</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp" line="70" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a6c16be5285fa2335a7996c061402602b" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>qsizetype</type>
+        <definition>static qsizetype QAccelPlot::Internal::SeriesEffectList::count</definition>
+        <argsstring>(QQmlListProperty&lt; SeriesEffect &gt; *list)</argsstring>
+        <name>count</name>
+        <qualifiedname>QAccelPlot::Internal::SeriesEffectList::count</qualifiedname>
+        <param>
+          <type>QQmlListProperty&lt; <ref refid="classQAccelPlot_1_1SeriesEffect" kindref="compound">SeriesEffect</ref> &gt; *</type>
+          <declname>list</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp" line="71" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a07748cfd50869c90c72f688c201a88cd" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1SeriesEffect" kindref="compound">SeriesEffect</ref> *</type>
+        <definition>static SeriesEffect * QAccelPlot::Internal::SeriesEffectList::at</definition>
+        <argsstring>(QQmlListProperty&lt; SeriesEffect &gt; *list, qsizetype index)</argsstring>
+        <name>at</name>
+        <qualifiedname>QAccelPlot::Internal::SeriesEffectList::at</qualifiedname>
+        <param>
+          <type>QQmlListProperty&lt; <ref refid="classQAccelPlot_1_1SeriesEffect" kindref="compound">SeriesEffect</ref> &gt; *</type>
+          <declname>list</declname>
+        </param>
+        <param>
+          <type>qsizetype</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp" line="72" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a5a832ef219f340228405f07b44fbf60a" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void QAccelPlot::Internal::SeriesEffectList::clear</definition>
+        <argsstring>(QQmlListProperty&lt; SeriesEffect &gt; *list)</argsstring>
+        <name>clear</name>
+        <qualifiedname>QAccelPlot::Internal::SeriesEffectList::clear</qualifiedname>
+        <param>
+          <type>QQmlListProperty&lt; <ref refid="classQAccelPlot_1_1SeriesEffect" kindref="compound">SeriesEffect</ref> &gt; *</type>
+          <declname>list</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp" line="73" column="17"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a222a70e4e3c6b5ccf575c28007688e58" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::SeriesEffectList::add</definition>
+        <argsstring>(SeriesEffect *effect)</argsstring>
+        <name>add</name>
+        <qualifiedname>QAccelPlot::Internal::SeriesEffectList::add</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1SeriesEffect" kindref="compound">SeriesEffect</ref> *</type>
+          <declname>effect</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp" line="75" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1accdcfa07d3b216290f63885e097c64d0" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::SeriesEffectList::warnIfIgnored</definition>
+        <argsstring>(const SeriesEffect *effect) const</argsstring>
+        <name>warnIfIgnored</name>
+        <qualifiedname>QAccelPlot::Internal::SeriesEffectList::warnIfIgnored</qualifiedname>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1SeriesEffect" kindref="compound">SeriesEffect</ref> *</type>
+          <declname>effect</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp" line="76" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a0f7525113052e53aaaf67e151cc8e194" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::SeriesEffectList::refresh</definition>
+        <argsstring>()</argsstring>
+        <name>refresh</name>
+        <qualifiedname>QAccelPlot::Internal::SeriesEffectList::refresh</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp" line="77" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>The <computeroutput>effects</computeroutput> list of one series. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Redraws the series when an effect changes, refreshes the effects once per frame, and warns about effects the series ignores: unsupported ones and repeated types. Warnings wait for the series&apos; component to complete, so they can name it by its <computeroutput>objectName</computeroutput>. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::Internal::SeriesEffectList</label>
+        <link refid="classQAccelPlot_1_1Internal_1_1SeriesEffectList"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::Internal::SeriesEffectList</label>
+        <link refid="classQAccelPlot_1_1Internal_1_1SeriesEffectList"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp" line="31" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesEffectList.hpp" bodystart="31" bodyend="84"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a222a70e4e3c6b5ccf575c28007688e58" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::SeriesEffectList</scope><name>add</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a754723305240960912d7b08cb5aa8c2b" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::SeriesEffectList</scope><name>append</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a07748cfd50869c90c72f688c201a88cd" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::SeriesEffectList</scope><name>at</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1ab796ea2f3eb8ece0ad7b66109cb3c938" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::SeriesEffectList</scope><name>classBegin</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a5a832ef219f340228405f07b44fbf60a" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::SeriesEffectList</scope><name>clear</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a29a19ca6839c40dfc644950168c7a6f0" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::SeriesEffectList</scope><name>componentComplete</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1adae8ca8988300d5c4ae3975bf6891ec4" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::SeriesEffectList</scope><name>connectWindow</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a6c16be5285fa2335a7996c061402602b" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::SeriesEffectList</scope><name>count</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1ae0f182f6f6c19748aec1ddfb673ccf01" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::SeriesEffectList</scope><name>effects</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a1520beb43bc78bec78ff243993611800" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::SeriesEffectList</scope><name>effects_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a0ddc755c72cf5a38bfa8e634c950f1ca" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::SeriesEffectList</scope><name>first</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a3c8ca06f7a5b6df1f41d524859b4a53b" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::SeriesEffectList</scope><name>glowStyle</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a5da52b31b16a2702de9ef46bb1a4f89c" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::SeriesEffectList</scope><name>itemTrail</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a84c116632dca4e99290b141924925726" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::SeriesEffectList</scope><name>loading_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1ae73acf50579ed6c7c567bcf2c14be676" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::SeriesEffectList</scope><name>property</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a0f7525113052e53aaaf67e151cc8e194" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::SeriesEffectList</scope><name>refresh</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a2fb02b00988dc2d49e8810ca89759fca" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::SeriesEffectList</scope><name>series_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a93df41d5753f74a5f219d0edccc8b032" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::SeriesEffectList</scope><name>SeriesEffectList</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a7e44131c0b7ed124ed5962118b91fca3" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::SeriesEffectList</scope><name>Supports</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1a877aded5457c97d27ce2c28ab21ad50f" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::SeriesEffectList</scope><name>supports_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1accdcfa07d3b216290f63885e097c64d0" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::SeriesEffectList</scope><name>warnIfIgnored</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1SeriesEffectList_1aaf01ca5d40433001dc92492f35550e28" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::SeriesEffectList</scope><name>window_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
