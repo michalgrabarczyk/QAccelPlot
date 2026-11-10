@@ -15,6 +15,9 @@ namespace QAccelPlot {
 /// \brief Line material variant that samples a one-dimensional gradient texture.
 class GradientLineMaterial : public LineMaterial {
 public:
+    /// \brief Constructs a gradient line material, for dashed vertices when \a dashed.
+    explicit GradientLineMaterial(bool dashed = false);
+
     QSGMaterialType* type() const override;
     QSGMaterialShader* createShader(QSGRendererInterface::RenderMode) const override;
 

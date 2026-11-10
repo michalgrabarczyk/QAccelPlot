@@ -5,14 +5,11 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-// Vertex stage of the line ribbon shared by line.vert and the band edge shaders.
-// Define LINE_SAMPLE_STRIDE and LINE_Y_BITS before including it to read other
-// sample layouts; see line_geometry.glsl.
+// Vertex stage of the line ribbon shared by line.vert, line_dashed.vert, and the band edge
+// shaders. Define LINE_SAMPLE_STRIDE and LINE_Y_BITS before including it to read other
+// sample layouts, see line_geometry.glsl, and LINE_DASHED, see line_vertex_input.glsl.
 
-layout(location = 0) in float id;
-layout(location = 1) in float side; // +-(1 + path corner); the sign is the ribbon side
-layout(location = 2) in vec4 vertexColor;
-layout(location = 3) in float arcLength;
+#include "line_vertex_input.glsl"
 
 layout(location = 0) out vec4 v_color;
 layout(location = 1) out float v_edgeDistance; // signed distance from the line centre, in pixels
@@ -53,13 +50,13 @@ layout(binding = 1) uniform sampler2D dataSampler;
 #include "item_opacity.glsl"
 
 void main() {
-    v_color = mix(ubuf.color, vertexColor, ubuf.useVertexColor);
-    v_color.a *= itemOpacity(id);
-    float ribbonSide = lineVertexSide(side);
-    v_arcLength = arcLength;
+    LineVertexInput vertexInput = lineVertexInput();
+    v_color = ubuf.color;
+    v_color.a *= itemOpacity(float(vertexInput.index));
+    v_arcLength = vertexInput.arcLength;
 
-    LineVertexResult vertex = computeLineVertex(int(id), lineVertexCorner(side), ribbonSide);
-    v_edgeDistance = ribbonSide * lineRibbonHalfExtent() * vertex.extentScale;
+    LineVertexResult vertex = computeLineVertex(vertexInput.index, vertexInput.corner, vertexInput.side);
+    v_edgeDistance = vertexInput.side * lineRibbonHalfExtent() * vertex.extentScale;
     v_validWeight = vertex.validWeight;
     gl_Position = vertex.position;
 }

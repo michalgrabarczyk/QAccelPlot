@@ -315,8 +315,9 @@ void LineCurveStepsTest::verticesEncodeCorners()
     const auto* vertices = reinterpret_cast<const LineVertex*>(cache.data());
     for (auto vertex = 0; vertex < 18; ++vertex) {
         const auto path = vertex / 2;
-        QCOMPARE(vertices[vertex].id, static_cast<float>(path / 3));
-        QCOMPARE(vertices[vertex].side, static_cast<float>((1 + path % 3) * (vertex % 2 == 0 ? 1 : -1)));
+        QCOMPARE(vertices[vertex].index(), path / 3);
+        QCOMPARE(vertices[vertex].corner(), path % 3);
+        QCOMPARE(vertices[vertex].negativeSide(), vertex % 2 == 1);
     }
 }
 
@@ -334,11 +335,15 @@ void LineCurveStepsTest::dashLengthsFollowSteps()
     QCOMPARE(geometry->vertexCount(), 12);
 
     // Pixel path: (100, 80) → (500, 80) → (500, 20) → (900, 20) → (900, 60), and the last point repeated.
-    const auto* vertices = static_cast<const LineVertex*>(geometry->vertexData());
+    QCOMPARE(geometry->sizeOfVertex(), static_cast<int>(sizeof(DashedLineVertex)));
+    const auto* vertices = static_cast<const DashedLineVertex*>(geometry->vertexData());
     const auto expected = std::vector<float>{0, 400, 460, 860, 900, 900};
     for (auto path = 0; path < 6; ++path) {
         QCOMPARE(vertices[path * 2].arcLength, expected[static_cast<std::size_t>(path)]);
         QCOMPARE(vertices[path * 2 + 1].arcLength, expected[static_cast<std::size_t>(path)]);
+        QCOMPARE(vertices[path * 2 + 1].vertex.index(), path / 2);
+        QCOMPARE(vertices[path * 2 + 1].vertex.corner(), path % 2);
+        QVERIFY(vertices[path * 2 + 1].vertex.negativeSide());
     }
 }
 
@@ -426,7 +431,6 @@ void LineCurveStepsTest::vertexCacheMatchesCornerCount()
         LineCurveLineRenderer::writeVertexCache(cache, 0, pointCount, mode);
         return cache;
     };
-    // Vertices written on the render thread carry the line color, which the solid line shader ignores.
     const auto lineVerticesMatch = [](const QSGNode* root, const std::vector<char>& cache) {
         const auto* geometry = static_cast<const QSGGeometryNode*>(root->lastChild())->geometry();
         if (static_cast<std::size_t>(geometry->vertexCount()) * sizeof(LineVertex) != cache.size()) {
@@ -434,8 +438,7 @@ void LineCurveStepsTest::vertexCacheMatchesCornerCount()
         }
         const auto* actual = static_cast<const LineVertex*>(geometry->vertexData());
         const auto* expected = reinterpret_cast<const LineVertex*>(cache.data());
-        return std::equal(
-            actual, actual + geometry->vertexCount(), expected, [](const LineVertex& a, const LineVertex& b) { return a.id == b.id && a.side == b.side; });
+        return std::equal(actual, actual + geometry->vertexCount(), expected, [](const LineVertex& a, const LineVertex& b) { return a.packed == b.packed; });
     };
     const auto points = [](const int count) {
         auto data = std::vector<float>(static_cast<std::size_t>(count) * 2);

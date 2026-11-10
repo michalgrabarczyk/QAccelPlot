@@ -48,9 +48,9 @@ float normalizedGradientFillValue(const GradientFillPayload& gradientPayload, co
     return Internal::unboundedGradientCoordinate(gradientPayload.direction, value, valueMin, valueMax);
 }
 
-QSGGeometryNode* createLineNode(const int vertexCount, const bool gradientStroke)
+LineMaterial* createLineMaterial(const bool gradientStroke, const bool dashed)
 {
-    return LineStroke::createNode(vertexCount, gradientStroke ? static_cast<QSGMaterial*>(new GradientLineMaterial) : new LineMaterial);
+    return gradientStroke ? new GradientLineMaterial(dashed) : new LineMaterial(dashed);
 }
 
 QSGGeometryNode* createFillNode(const int vertexCount)
@@ -184,15 +184,15 @@ bool segmentsFromPointHit(const QPointF& point, const CurveHitTestParams& params
     return false;
 }
 
-QSGNode* createLineRootNode(const int strokeVertexCount, const bool gradientStroke)
+QSGNode* createLineRootNode(const int strokeVertexCount, const bool gradientStroke, const bool dashed)
 {
     auto* rootNode = new QSGNode;
     rootNode->appendChildNode(createFillNode(0));
-    rootNode->appendChildNode(createLineNode(strokeVertexCount, gradientStroke));
+    rootNode->appendChildNode(LineStroke::createNode(strokeVertexCount, createLineMaterial(gradientStroke, dashed)));
     return rootNode;
 }
 
-QSGNode* ensureLineRootNode(QSGNode* oldNode, const int strokeVertexCount, const bool gradientStroke, bool& recreated)
+QSGNode* ensureLineRootNode(QSGNode* oldNode, const int strokeVertexCount, const bool gradientStroke, const bool dashed, bool& recreated)
 {
     const auto isExpectedRoot = [&]() {
         if (!oldNode || oldNode->type() != QSGNode::BasicNodeType || oldNode->childCount() != 2) {
@@ -218,17 +218,18 @@ QSGNode* ensureLineRootNode(QSGNode* oldNode, const int strokeVertexCount, const
 
     if (isExpectedRoot) {
         auto* lineNode = static_cast<QSGGeometryNode*>(oldNode->lastChild());
-        const auto hasGradient = dynamic_cast<const GradientLineMaterial*>(lineNode->material()) != nullptr;
-        recreated = hasGradient != gradientStroke;
+        const auto* material = static_cast<const LineMaterial*>(lineNode->material());
+        const auto hasGradient = dynamic_cast<const GradientLineMaterial*>(material) != nullptr;
+        recreated = hasGradient != gradientStroke || material->dashed() != dashed;
         if (recreated) {
-            lineNode->setMaterial(gradientStroke ? static_cast<QSGMaterial*>(new GradientLineMaterial) : static_cast<QSGMaterial*>(new LineMaterial));
+            LineStroke::setMaterial(lineNode, createLineMaterial(gradientStroke, dashed));
         }
         return oldNode;
     }
 
     delete oldNode;
     recreated = true;
-    return createLineRootNode(strokeVertexCount, gradientStroke);
+    return createLineRootNode(strokeVertexCount, gradientStroke, dashed);
 }
 
 } // namespace
@@ -240,9 +241,7 @@ std::size_t LineCurveLineRenderer::vertexCacheBytesPerPoint(const StepMode stepM
 
 void LineCurveLineRenderer::writeVertexCache(std::vector<char>& cache, const int firstPoint, const int pointCount, const StepMode stepMode)
 {
-    // Neutral RGBA: the shader uses the material color uniform (useVertexColor == 0) for
-    // non-gradient rendering, so per-vertex color is irrelevant in that path.
-    LineStroke::writeVertices(reinterpret_cast<LineVertex*>(cache.data()), pointCount, Internal::stepCornerCount(stepMode), Qt::white, {}, firstPoint);
+    LineStroke::writeVertices(reinterpret_cast<LineVertex*>(cache.data()), pointCount, Internal::stepCornerCount(stepMode), firstPoint);
 }
 
 bool LineCurveLineRenderer::contains(const QPointF& point, const CurveHitTestParams& params) const
@@ -289,8 +288,9 @@ QSGNode* LineCurveLineRenderer::paint(QSGNode* oldNode, const LineCurveRenderPar
 {
     const auto vertexCount = params.pointCount * 2 * Internal::stepCornerCount(params.stepMode);
     const auto gradientStroke = params.gradientPayload.isValid();
+    const auto dashParams = params.lineStyle ? params.lineStyle->dashParameters() : DashParameters{};
     auto rootRecreated = false;
-    auto* rootNode = ensureLineRootNode(oldNode, vertexCount, gradientStroke, rootRecreated);
+    auto* rootNode = ensureLineRootNode(oldNode, vertexCount, gradientStroke, dashParams.enabled, rootRecreated);
     auto* fillNode = static_cast<QSGGeometryNode*>(rootNode->firstChild());
     auto* node = static_cast<QSGGeometryNode*>(fillNode->nextSibling());
 
@@ -308,23 +308,19 @@ QSGNode* LineCurveLineRenderer::paint(QSGNode* oldNode, const LineCurveRenderPar
     }
 
     const auto effectiveColor = params.hovered ? params.color.lighter(150) : params.color;
-    const auto useVertexColor = false;
-    const auto dashParams = params.lineStyle ? params.lineStyle->dashParameters() : DashParameters{};
 
     auto* material = static_cast<LineMaterial*>(node->material());
-    updateLineMaterial(material, params, effectiveColor, useVertexColor, dashParams);
+    updateLineMaterial(material, params, effectiveColor, dashParams);
 
     if (params.dataChanged || rootRecreated) {
         material->uploadTexture(params.window, params.data.data(), params.pointCount * 2);
     }
 
-    // The vertex buffer stores {id, side, rgba, arcLength}. For solid lines the
-    // data is deterministic from pointCount alone. For dash lines the arcLengths
-    // are screen-space and must be recomputed whenever axis range or viewport changes.
-    const auto arcLengths = computeArcLengths(params, dashParams);
-    const auto needVertexUpload = geometryCountChanged || rootRecreated || useVertexColor || dashParams.enabled;
+    // Solid line vertices depend on the point count alone. Dashed ones also hold screen-space
+    // arc lengths, which change with the data, the axis ranges, and the viewport.
+    const auto needVertexUpload = geometryCountChanged || rootRecreated || dashParams.enabled;
     if (needVertexUpload) {
-        updateLineVertices(node->geometry(), params, useVertexColor, effectiveColor, arcLengths);
+        updateLineVertices(node->geometry(), params, computeArcLengths(params, dashParams));
         node->markDirty(QSGNode::DirtyGeometry);
     }
 
@@ -405,13 +401,12 @@ void LineCurveLineRenderer::rebuildFillSamples(const LineCurveRenderParams& para
     }
 }
 
-void LineCurveLineRenderer::updateLineMaterial(LineMaterial* material, const LineCurveRenderParams& params, const QColor& effectiveColor,
-    const bool useVertexColor, const DashParameters& dashParams) const
+void LineCurveLineRenderer::updateLineMaterial(
+    LineMaterial* material, const LineCurveRenderParams& params, const QColor& effectiveColor, const DashParameters& dashParams) const
 {
     LineStroke::applyUniforms(*material,
         LineStroke::Uniforms{effectiveColor, params.lineWidth, params.domainMin, params.domainMax, params.viewportSize, params.logScaleX, params.logScaleY,
             params.pointCount, params.antialiasingEnabled, params.antialiasingFeather, dashParams});
-    material->useVertexColor = useVertexColor ? 1.0f : 0.0f;
     material->stepMode = static_cast<float>(params.stepMode);
     material->itemFade = params.itemFade;
     material->itemTrail = params.itemTrail;
@@ -440,19 +435,21 @@ std::vector<float> LineCurveLineRenderer::computeArcLengths(const LineCurveRende
     });
 }
 
-void LineCurveLineRenderer::updateLineVertices(QSGGeometry* geometry, const LineCurveRenderParams& params, const bool useVertexColor,
-    const QColor& effectiveColor, const std::vector<float>& arcLengths) const
+void LineCurveLineRenderer::updateLineVertices(QSGGeometry* geometry, const LineCurveRenderParams& params, const std::vector<float>& arcLengths) const
 {
+    const auto cornerCount = Internal::stepCornerCount(params.stepMode);
+    if (geometry->sizeOfVertex() == static_cast<int>(sizeof(DashedLineVertex))) {
+        LineStroke::writeDashedVertices(static_cast<DashedLineVertex*>(geometry->vertexData()), params.pointCount, cornerCount, arcLengths);
+        return;
+    }
     const auto expectedCacheBytes = static_cast<std::size_t>(geometry->vertexCount()) * sizeof(LineVertex);
-    if (params.vertexCache && params.vertexCache->size() == expectedCacheBytes && !useVertexColor) {
+    if (params.vertexCache && params.vertexCache->size() == expectedCacheBytes) {
         // Fast path: memcpy the pre-built cache (main-thread work) to the GPU buffer.
         // A single large memcpy is significantly more efficient than the equivalent
         // per-struct loop when writing to GPU-mapped (write-combining) memory.
         std::memcpy(geometry->vertexData(), params.vertexCache->data(), expectedCacheBytes);
     } else {
-        // Fallback: assemble on the render thread (dash lines or no cache).
-        LineStroke::writeVertices(
-            static_cast<LineVertex*>(geometry->vertexData()), params.pointCount, Internal::stepCornerCount(params.stepMode), effectiveColor, arcLengths);
+        LineStroke::writeVertices(static_cast<LineVertex*>(geometry->vertexData()), params.pointCount, cornerCount);
     }
 }
 

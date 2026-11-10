@@ -16,62 +16,80 @@ namespace QAccelPlot::LineStroke {
 
 namespace {
 
-// Ribbon side values: each data point generates two vertices extruded to opposite sides of the line.
-constexpr auto kSidePositive = float{1.0f};
-constexpr auto kSideNegative = float{-1.0f};
+QSGGeometry* createGeometry(const int vertexCount, const bool dashed)
+{
+    auto* geometry = new QSGGeometry(vertexAttributes(dashed), vertexCount);
+    geometry->setDrawingMode(QSGGeometry::DrawTriangleStrip);
+    return geometry;
+}
 
 } // namespace
 
-const QSGGeometry::AttributeSet& vertexAttributes()
+const QSGGeometry::AttributeSet& vertexAttributes(const bool dashed)
 {
-    static constexpr int kAttrLocationId{0};        // layout(location = 0): point index
-    static constexpr int kAttrLocationSide{1};      // layout(location = 1): ribbon side (+1 / -1)
-    static constexpr int kAttrLocationColor{2};     // layout(location = 2): per-vertex RGBA color
-    static constexpr int kAttrLocationArcLength{3}; // layout(location = 3): cumulative arc length
-    static constexpr int kComponentsScalar{1};      // 1 float
-    static constexpr int kComponentsColor{4};       // 4 bytes: RGBA
-
-    // {float id, float side, uchar4 rgba, float arcLength} = 16 bytes.
+    // layout(location = 0): the four bytes of a LineVertex, read as normalized bytes.
+    // layout(location = 1): the arc length of a DashedLineVertex.
     static const QSGGeometry::Attribute attributes[] = {
-        QSGGeometry::Attribute::create(kAttrLocationId, kComponentsScalar, QSGGeometry::FloatType),
-        QSGGeometry::Attribute::create(kAttrLocationSide, kComponentsScalar, QSGGeometry::FloatType),
-        QSGGeometry::Attribute::createWithAttributeType(kAttrLocationColor, kComponentsColor, QSGGeometry::UnsignedByteType, QSGGeometry::ColorAttribute),
-        QSGGeometry::Attribute::create(kAttrLocationArcLength, kComponentsScalar, QSGGeometry::FloatType),
+        QSGGeometry::Attribute::create(0, 4, QSGGeometry::UnsignedByteType),
+        QSGGeometry::Attribute::create(1, 1, QSGGeometry::FloatType),
     };
-    static const QSGGeometry::AttributeSet attributeSet = {static_cast<int>(std::size(attributes)), static_cast<int>(sizeof(LineVertex)), attributes};
-    return attributeSet;
+    static const QSGGeometry::AttributeSet solid = {1, static_cast<int>(sizeof(LineVertex)), attributes};
+    static const QSGGeometry::AttributeSet dashedSet = {2, static_cast<int>(sizeof(DashedLineVertex)), attributes};
+    return dashed ? dashedSet : solid;
 }
 
-QSGGeometryNode* createNode(const int vertexCount, QSGMaterial* material)
+QSGGeometryNode* createNode(const int vertexCount, LineMaterial* material)
 {
-    auto* geometry = new QSGGeometry(vertexAttributes(), vertexCount);
-    geometry->setDrawingMode(QSGGeometry::DrawTriangleStrip);
     auto* node = new QSGGeometryNode;
-    node->setGeometry(geometry);
+    node->setGeometry(createGeometry(vertexCount, material->dashed()));
     node->setFlag(QSGNode::OwnsGeometry);
     node->setMaterial(material);
     node->setFlag(QSGNode::OwnsMaterial);
     return node;
 }
 
-void writeVertices(
-    LineVertex* vertices, const int pointCount, const int cornerCount, const QColor& color, const std::vector<float>& arcLengths, const int firstPoint)
+bool setMaterial(QSGGeometryNode* node, LineMaterial* material)
 {
-    // Hoist the color conversion out of the per-vertex loop.
-    const auto r = static_cast<unsigned char>(color.red());
-    const auto g = static_cast<unsigned char>(color.green());
-    const auto b = static_cast<unsigned char>(color.blue());
-    const auto a = static_cast<unsigned char>(color.alpha());
+    const auto layoutChanged = node->geometry()->sizeOfVertex() != vertexAttributes(material->dashed()).stride;
+    if (layoutChanged) {
+        node->setGeometry(createGeometry(node->geometry()->vertexCount(), material->dashed()));
+    }
+    node->setMaterial(material);
+    return layoutChanged;
+}
+
+void writeVertices(LineVertex* vertices, const int pointCount, const int cornerCount, const int firstPoint)
+{
     const auto start = std::max(firstPoint, 0);
-    auto pathIndex = static_cast<std::size_t>(start) * static_cast<std::size_t>(cornerCount);
+    constexpr auto kNegativeSide = LineVertex::make(0, 0, true).packed;
+    auto* vertex = vertices + static_cast<std::size_t>(start) * static_cast<std::size_t>(cornerCount) * 2;
     for (auto index = start; index < pointCount; ++index) {
-        const auto id = static_cast<float>(index);
+        for (auto corner = 0; corner < cornerCount; ++corner) {
+            const auto packed = LineVertex::make(index, corner, false).packed;
+            vertex[0].packed = packed;
+            vertex[1].packed = packed | kNegativeSide;
+            vertex += 2;
+        }
+    }
+}
+
+void writeDashedVertices(DashedLineVertex* vertices, const int pointCount, const int cornerCount, const std::vector<float>& arcLengths)
+{
+    // Field by field: MSVC assembles a whole vertex in memory and copies it, which stalls on every vertex.
+    const auto* lengths = arcLengths.data();
+    const auto lengthCount = arcLengths.size();
+    constexpr auto kNegativeSide = LineVertex::make(0, 0, true).packed;
+    auto* vertex = vertices;
+    auto pathIndex = std::size_t{0};
+    for (auto index = 0; index < pointCount; ++index) {
         for (auto corner = 0; corner < cornerCount; ++corner, ++pathIndex) {
-            const auto lengthIndex = std::min(pathIndex, arcLengths.size() - 1);
-            const auto arcLength = arcLengths.empty() ? 0.0f : arcLengths[lengthIndex];
-            const auto side = static_cast<float>(1 + corner);
-            vertices[pathIndex * 2] = {id, kSidePositive * side, r, g, b, a, arcLength};
-            vertices[pathIndex * 2 + 1] = {id, kSideNegative * side, r, g, b, a, arcLength};
+            const auto arcLength = lengthCount == 0 ? 0.0f : lengths[std::min(pathIndex, lengthCount - 1)];
+            const auto packed = LineVertex::make(index, corner, false).packed;
+            vertex[0].vertex.packed = packed;
+            vertex[0].arcLength = arcLength;
+            vertex[1].vertex.packed = packed | kNegativeSide;
+            vertex[1].arcLength = arcLength;
+            vertex += 2;
         }
     }
 }

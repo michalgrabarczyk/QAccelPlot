@@ -19,8 +19,8 @@ public:
     /// \brief Which value of each data point the edge line draws.
     enum class Edge { Lower, Upper };
 
-    /// \brief Constructs a material for the \a edge line.
-    explicit BandEdgeMaterial(Edge edge);
+    /// \brief Constructs a material for the \a edge line, for dashed vertices when \a dashed.
+    explicit BandEdgeMaterial(Edge edge, bool dashed = false);
 
     /// \brief Returns the edge line this material draws.
     Edge edge() const;

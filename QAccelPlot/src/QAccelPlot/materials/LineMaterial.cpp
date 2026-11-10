@@ -106,17 +106,26 @@ public:
     }
 };
 
-LineMaterial::LineMaterial() = default;
+LineMaterial::LineMaterial(const bool dashed)
+    : dashed_(dashed)
+{
+}
+
+bool LineMaterial::dashed() const
+{
+    return dashed_;
+}
 
 QSGMaterialType* LineMaterial::type() const
 {
-    static QSGMaterialType type;
-    return &type;
+    static QSGMaterialType solidType;
+    static QSGMaterialType dashedType;
+    return dashed_ ? &dashedType : &solidType;
 }
 
 QSGMaterialShader* LineMaterial::createShader(QSGRendererInterface::RenderMode) const
 {
-    return createLineShader(QString::fromLatin1(":/qaccelplot/shaders/line.vert.qsb"));
+    return createLineShader(QString::fromLatin1(dashed_ ? ":/qaccelplot/shaders/line_dashed.vert.qsb" : ":/qaccelplot/shaders/line.vert.qsb"));
 }
 
 QSGMaterialShader* LineMaterial::createLineShader(const QString& vertexShaderFileName)

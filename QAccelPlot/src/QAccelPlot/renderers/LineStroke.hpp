@@ -17,6 +17,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <cstdint>
 #include <optional>
 #include <vector>
 
@@ -24,16 +25,53 @@ namespace QAccelPlot {
 
 class LineMaterial;
 
-/// \brief Vertex layout for line geometry, shared with the main thread for pre-built vertex caches.
+/// \brief Vertex of a solid line ribbon, shared with the main thread for pre-built vertex caches.
+///
+/// Packs a data point index, a path corner, and a ribbon side into four bytes, which the shaders
+/// read as normalized bytes (see line_vertex_input.glsl).
 struct LineVertex {
-    float id;        ///< \brief Point index in the data buffer.
-    float side;      ///< \brief <tt>±(1 + corner)</tt>: the sign is the ribbon side, \c corner the step corner after the point (0 for the point itself).
-    unsigned char r; ///< \brief Red channel (used when \c useVertexColor is true).
-    unsigned char g; ///< \brief Green channel (used when \c useVertexColor is true).
-    unsigned char b; ///< \brief Blue channel (used when \c useVertexColor is true).
-    unsigned char a; ///< \brief Alpha channel (used when \c useVertexColor is true).
-    float arcLength; ///< \brief Cumulative screen-space arc length in pixels; 0 for solid lines.
+    /// \brief Largest data point index a vertex holds.
+    static constexpr int kMaximumIndex = (1 << 28) - 1;
+    /// \brief Largest path corner a vertex holds.
+    static constexpr int kMaximumCorner = 7;
+
+    /// \brief Bits 0–27 hold the data point index, bits 28–30 the path corner, and bit 31 marks the negative ribbon side.
+    std::uint32_t packed;
+
+    /// \brief Returns the vertex of data point \a index at step corner \a corner (0 for the point itself) on the negative ribbon side when \a negativeSide.
+    static constexpr LineVertex make(const int index, const int corner, const bool negativeSide) noexcept
+    {
+        return {static_cast<std::uint32_t>(index) | (static_cast<std::uint32_t>(corner) << 28U) | (negativeSide ? 1U << 31U : 0U)};
+    }
+
+    /// \brief Returns the data point index.
+    constexpr int index() const noexcept
+    {
+        return static_cast<int>(packed & 0x0FFFFFFFU);
+    }
+
+    /// \brief Returns the step corner after the data point; 0 for the point itself.
+    constexpr int corner() const noexcept
+    {
+        return static_cast<int>((packed >> 28U) & 7U);
+    }
+
+    /// \brief Returns whether the vertex lies on the negative ribbon side.
+    constexpr bool negativeSide() const noexcept
+    {
+        return (packed >> 31U) != 0U;
+    }
 };
+
+static_assert(sizeof(LineVertex) == 4);
+
+/// \brief Vertex of a dashed line ribbon: a \c LineVertex and the screen-space arc length the dash pattern follows.
+struct DashedLineVertex {
+    LineVertex vertex; ///< \brief Data point index, path corner, and ribbon side.
+    float arcLength;   ///< \brief Cumulative screen-space arc length in pixels.
+};
+
+static_assert(sizeof(DashedLineVertex) == 8);
 
 /// \brief Building blocks for the line ribbon drawn by the line shaders, shared by the line renderers.
 namespace LineStroke {
@@ -53,18 +91,30 @@ struct Uniforms {
     DashParameters dash;       ///< \brief Dash pattern; disabled for solid lines.
 };
 
-/// \brief Returns the vertex attribute set matching \c LineVertex.
-const QSGGeometry::AttributeSet& vertexAttributes();
+/// \brief Returns the vertex attribute set matching \c DashedLineVertex when \a dashed, or \c LineVertex otherwise.
+const QSGGeometry::AttributeSet& vertexAttributes(bool dashed);
 
 /// \brief Returns a triangle-strip node with \a vertexCount line vertices that owns \a material.
-QSGGeometryNode* createNode(int vertexCount, QSGMaterial* material);
+///
+/// The vertices have the dashed layout when \a material is dashed.
+QSGGeometryNode* createNode(int vertexCount, LineMaterial* material);
+
+/// \brief Gives \a node, a node from createNode(), the vertex layout of \a material, which it takes ownership of.
+///
+/// Replaces the geometry of \a node with one of the same vertex count, whose vertices are undefined,
+/// when the layout differs from the current one, and returns \c true then.
+bool setMaterial(QSGGeometryNode* node, LineMaterial* material);
 
 /// \brief Writes two ribbon vertices per path point for data points [\a firstPoint, \a pointCount) of \a cornerCount path points each into \a vertices.
 ///
 /// \a vertices holds the vertices of all \a pointCount data points; those before \a firstPoint are left unchanged.
-/// \a arcLengths holds cumulative lengths of the leading path points, or is empty for solid lines. Path points
-/// past its end, such as vertices reserved for appended data, repeat its last length.
-void writeVertices(LineVertex* vertices, int pointCount, int cornerCount, const QColor& color, const std::vector<float>& arcLengths, int firstPoint = 0);
+void writeVertices(LineVertex* vertices, int pointCount, int cornerCount, int firstPoint = 0);
+
+/// \brief Writes two ribbon vertices per path point for \a pointCount data points of \a cornerCount path points each into \a vertices.
+///
+/// \a arcLengths holds cumulative lengths of the leading path points. Path points past its end, such as
+/// vertices reserved for appended data, repeat its last length, or 0 when it is empty.
+void writeDashedVertices(DashedLineVertex* vertices, int pointCount, int cornerCount, const std::vector<float>& arcLengths);
 
 /// \brief Copies \a uniforms into \a material.
 void applyUniforms(LineMaterial& material, const Uniforms& uniforms);
