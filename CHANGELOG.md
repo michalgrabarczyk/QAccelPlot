@@ -44,6 +44,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `label.font`, `label.color`, and `label.padding` instead of `label`,
   `labelFont`, `labelColor`, and `labelPadding`. In C++, `label()` returns the
   group, for example `axis->label()->setText()` with `AxisLabel.hpp` included.
+- Line vertices take 4 bytes instead of 16, or 8 with a dash pattern, so a
+  `LineCurve` or `BandSeries` edge whose point count changes uploads a quarter
+  of the data.
+- A hoverable `LineCurve` builds its hover bounding boxes on the first pointer
+  move after a data change instead of on every change, so streamed data costs
+  no scan while the pointer is elsewhere.
+- The `showcases/performance` example replays a loop of frames generated when
+  the settings change, so its measurements exclude data generation, and shows
+  the worker's copy time per dataset. It no longer stalls once a second when
+  its metrics update.
 
 ## [0.5.0] — 2026-11-01
 

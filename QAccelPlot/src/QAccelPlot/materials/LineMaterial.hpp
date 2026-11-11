@@ -17,10 +17,13 @@ namespace QAccelPlot {
 /// to the line shaders (std140 offsets 104–183 in the UBO; 176–179 holds the inherited item opacity).
 class LineMaterial : public DataTextureMaterial {
 public:
-    /// \brief Constructs a LineMaterial with default uniform values.
-    LineMaterial();
+    /// \brief Constructs a LineMaterial with default uniform values, for dashed vertices (\c DashedLineVertex) when \a dashed.
+    explicit LineMaterial(bool dashed = false);
 
-    /// \brief Returns the unique material type identifier for this subclass.
+    /// \brief Returns whether the material draws dashed vertices, which carry arc lengths.
+    bool dashed() const;
+
+    /// \brief Returns the unique material type identifier for this subclass and vertex layout.
     QSGMaterialType* type() const override;
     /// \brief Creates and returns the line shader program.
     QSGMaterialShader* createShader(QSGRendererInterface::RenderMode) const override;
@@ -45,6 +48,9 @@ protected:
     static QSGMaterialShader* createLineShader(const QString& vertexShaderFileName);
     /// \brief Compares line-specific uniform fields after the base-class comparison succeeds.
     int compareExtra(const QSGMaterial* other) const override;
+
+private:
+    bool dashed_;
 };
 
 } // namespace QAccelPlot

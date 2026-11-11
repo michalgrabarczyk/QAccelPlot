@@ -84,7 +84,7 @@ public:
     ///
     /// \a cache holds vertexCacheBytesPerPoint() bytes for each of \a pointCount data points. A vertex depends only on its
     /// data point index and step corner, never on data values, so the vertices before \a firstPoint stay valid.
-    /// Writes neutral RGBA (1,1,1,1); solid and gradient shaders obtain their colors from their materials.
+    /// The cache holds solid line vertices; dashed lines write theirs on the render thread.
     static void writeVertexCache(std::vector<char>& cache, int firstPoint, int pointCount, StepMode stepMode);
 
     /// \brief Returns \c true if \a point lies within \a params.hitThreshold pixels of the curve.
@@ -114,11 +114,10 @@ private:
     const FillSamples& fillSamples(const LineCurveRenderParams& params) const;
     /// \brief Rebuilds \a samples: the fill outline of every run of valid data points, decimated to the fill vertex budget.
     static void rebuildFillSamples(const LineCurveRenderParams& params, FillSamples& samples);
-    void updateLineMaterial(
-        LineMaterial* material, const LineCurveRenderParams& params, const QColor& effectiveColor, bool useVertexColor, const DashParameters& dashParams) const;
+    void updateLineMaterial(LineMaterial* material, const LineCurveRenderParams& params, const QColor& effectiveColor, const DashParameters& dashParams) const;
     std::vector<float> computeArcLengths(const LineCurveRenderParams& params, const DashParameters& dashParams) const;
-    void updateLineVertices(QSGGeometry* geometry, const LineCurveRenderParams& params, bool useVertexColor, const QColor& effectiveColor,
-        const std::vector<float>& arcLengths) const;
+    // Writes the vertices of geometry, in its solid or dashed layout; arcLengths are those of a dashed line.
+    void updateLineVertices(QSGGeometry* geometry, const LineCurveRenderParams& params, const std::vector<float>& arcLengths) const;
 
     // Render-thread state touched only by paint(); workers that call buildVertexCache() never read it.
     mutable FillSampleCache fillSampleCache_;

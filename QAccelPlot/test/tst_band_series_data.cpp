@@ -458,7 +458,7 @@ void BandSeriesDataTest::dashLengthsFollowZoomButNotPan()
 
     // The upper edge is a horizontal line across the 100 px wide item.
     const auto upperEdgeVertices
-        = [&fixture]() { return static_cast<LineVertex*>(static_cast<QSGGeometryNode*>(fixture.node->childAtIndex(2))->geometry()->vertexData()); };
+        = [&fixture]() { return static_cast<DashedLineVertex*>(static_cast<QSGGeometryNode*>(fixture.node->childAtIndex(2))->geometry()->vertexData()); };
     fixture.paint();
     QCOMPARE(upperEdgeVertices()[5].arcLength, 100.0f);
 
@@ -486,14 +486,14 @@ void BandSeriesDataTest::appendingKeepsTheVertexBuffers()
 
     // Markers in the fill and edge vertices survive appends within the reserved room.
     static_cast<BandMaterial::Vertex*>(vertexData(0))[0].edge = -1.0f;
-    static_cast<LineVertex*>(vertexData(1))[0].side = -2.0f;
+    static_cast<LineVertex*>(vertexData(1))[0] = LineVertex::make(9, 0, false);
     for (auto x = 2; x < 256; ++x) {
         fixture.band.appendData(x, 1.0, 2.0);
         fixture.paint();
     }
     QCOMPARE(fixture.fillMaterial()->dataPointCount, 256.0f);
     QCOMPARE(static_cast<BandMaterial::Vertex*>(vertexData(0))[0].edge, -1.0f);
-    QCOMPARE(static_cast<LineVertex*>(vertexData(1))[0].side, -2.0f);
+    QCOMPARE(static_cast<LineVertex*>(vertexData(1))[0].index(), 9);
 
     // Crossing the reserved room doubles it and rebuilds the vertices.
     fixture.band.appendData(256.0, 1.0, 2.0);

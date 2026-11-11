@@ -16,6 +16,7 @@ qaccelplot_add_example(Performance
         src/InterferenceGenerator.cpp
         src/LineCurveFeed.cpp
         src/PageScene.cpp
+        src/ParallelFor.cpp
         src/PlasmaGenerator.cpp
         src/PointCloudFeed.cpp
         src/RectangleSeriesFeed.cpp

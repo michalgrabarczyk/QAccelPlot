@@ -16,6 +16,8 @@ private slots:
     void countsAppliedBatches();
     void recordsLongestApplicationGap();
     void restartedGapTrackingSkipsTheNextGap();
+    void sumsCopyTimes();
+    void marksIntervalsWithLoading();
     void snapshotsResetIntervalCounters();
 };
 
@@ -53,15 +55,41 @@ void DataDeliveryMetricsTest::restartedGapTrackingSkipsTheNextGap()
     QCOMPARE(snapshot.longestDataGapNanoseconds, std::int64_t{20});
 }
 
+void DataDeliveryMetricsTest::sumsCopyTimes()
+{
+    auto metrics = QAccelPlotExample::DataDeliveryMetrics{};
+    metrics.batchCopied(30);
+    metrics.batchCopied(50);
+
+    const auto snapshot = metrics.takeSnapshot();
+    QCOMPARE(snapshot.copiedBatches, std::uint64_t{2});
+    QCOMPARE(snapshot.copyNanoseconds, std::int64_t{80});
+    QCOMPARE(snapshot.appliedBatches, std::uint64_t{0});
+}
+
+void DataDeliveryMetricsTest::marksIntervalsWithLoading()
+{
+    auto metrics = QAccelPlotExample::DataDeliveryMetrics{};
+    QVERIFY(!metrics.takeSnapshot().loading);
+
+    metrics.loadingObserved();
+    QVERIFY(metrics.takeSnapshot().loading);
+}
+
 void DataDeliveryMetricsTest::snapshotsResetIntervalCounters()
 {
     auto metrics = QAccelPlotExample::DataDeliveryMetrics{};
     metrics.dataApplied(100);
+    metrics.batchCopied(10);
+    metrics.loadingObserved();
     (void)metrics.takeSnapshot();
 
     const auto snapshot = metrics.takeSnapshot();
     QCOMPARE(snapshot.appliedBatches, std::uint64_t{0});
     QCOMPARE(snapshot.longestDataGapNanoseconds, std::int64_t{0});
+    QCOMPARE(snapshot.copiedBatches, std::uint64_t{0});
+    QCOMPARE(snapshot.copyNanoseconds, std::int64_t{0});
+    QVERIFY(!snapshot.loading);
 }
 
 QTEST_GUILESS_MAIN(DataDeliveryMetricsTest)

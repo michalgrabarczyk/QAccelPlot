@@ -15,17 +15,27 @@ namespace QAccelPlotExample {
 /// \brief Returns the current steady-clock time in nanoseconds.
 std::int64_t steadyNanoseconds() noexcept;
 
-/// \brief Tracks application rate and timing for generated datasets.
+/// \brief Tracks application rate and timing, and worker copy time, for replayed datasets.
 class DataDeliveryMetrics final {
 public:
     /// \brief Metrics accumulated since the preceding snapshot.
     struct Snapshot {
         std::uint64_t appliedBatches{0};
         std::int64_t longestDataGapNanoseconds{0};
+        std::uint64_t copiedBatches{0};
+        std::int64_t copyNanoseconds{0};
+        /// \brief Whether a page was loading data for new settings during the interval.
+        bool loading{false};
     };
 
     /// \brief Records a dataset application at the supplied steady-clock timestamp.
     void dataApplied(std::int64_t appliedAtNanoseconds) noexcept;
+
+    /// \brief Records that the worker spent \a nanoseconds copying one dataset. Thread-safe.
+    void batchCopied(std::int64_t nanoseconds) noexcept;
+
+    /// \brief Records that the page is loading data for new settings, so the interval does not represent them.
+    void loadingObserved() noexcept;
 
     /// \brief Forgets the last application time, so the next dataset does not record a gap.
     void restartGapTracking() noexcept;
@@ -37,6 +47,9 @@ private:
     std::atomic<std::int64_t> lastAppliedAtNanoseconds_{0};
     std::atomic<std::uint64_t> appliedBatches_{0};
     std::atomic<std::int64_t> longestDataGapNanoseconds_{0};
+    std::atomic<std::uint64_t> copiedBatches_{0};
+    std::atomic<std::int64_t> copyNanoseconds_{0};
+    std::atomic<bool> loading_{false};
 };
 
 } // namespace QAccelPlotExample

@@ -9,6 +9,7 @@
 
 #include "DatasetParts.hpp"
 
+#include <cstddef>
 #include <vector>
 
 namespace QAccelPlotExample {
@@ -19,6 +20,9 @@ using SineWavePart = SeriesPart;
 /// \brief One LineCurve dataset, split into consecutive stretches of the wave.
 struct SineWaveBatch {
     std::vector<SineWavePart> parts;
+
+    /// \brief Returns the bytes held by the batch's records.
+    std::size_t byteSize() const;
 };
 
 /// \brief Settings of a SineWaveGenerator batch.
@@ -28,10 +32,14 @@ struct SineWaveParameters {
     float gapFraction{0.0f};
 };
 
+/// \brief Returns \c true when \a a and \a b describe the same batch, apart from its time.
+bool operator==(const SineWaveParameters& a, const SineWaveParameters& b);
+
 /// \brief Generates a scrolling sine wave for one or more LineCurves.
 ///
 /// Samples come from a small sine table stepped by a fixed-point phase accumulator, so the
-/// table stays in cache and no trigonometry runs per point.
+/// table stays in cache and no trigonometry runs per point. Large datasets are written by
+/// several threads.
 class SineWaveGenerator final {
 public:
     using Batch = SineWaveBatch;

@@ -6,12 +6,14 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #include "InterferenceGenerator.hpp"
+#include "ParallelFor.hpp"
 #include "SineLookup.hpp"
 
 #include <algorithm>
 #include <array>
 #include <cmath>
 #include <cstddef>
+#include <cstdint>
 
 namespace QAccelPlotExample {
 namespace {
@@ -33,32 +35,59 @@ SineLookupCursor cursorFor(const Wave& wave, const int barCount, const double ti
     return SineLookupCursor{wave.speed * timeSeconds, kTwoPi * wave.cycles / static_cast<double>(barCount)};
 }
 
+// Writes bars [first, last) of part; partBegin is the index of the part's first bar, and the
+// cursors start at bar 0.
+void writeBars(InterferencePart& part, const int first, const int last, const int partBegin, const int categoryCount, std::array<SineLookupCursor, 3> waves)
+{
+    for (auto& wave : waves) {
+        wave.skip(static_cast<std::uint64_t>(partBegin + first));
+    }
+    auto* bar = part.floats.data() + static_cast<std::size_t>(first) * 2;
+    auto* category = categoryCount > 0 ? part.categories.data() + first : nullptr;
+    for (auto i = first; i < last; ++i) {
+        const auto value = kMidValue + kWaves[0].amplitude * waves[0].next() + kWaves[1].amplitude * waves[1].next() + kWaves[2].amplitude * waves[2].next();
+        bar[0] = static_cast<float>(partBegin + i);
+        bar[1] = value;
+        bar += 2;
+        if (category) {
+            *category++ = std::min(categoryCount - 1, static_cast<int>(value * static_cast<float>(categoryCount)));
+        }
+    }
+}
+
 } // namespace
+
+std::size_t InterferencePart::byteSize() const
+{
+    return SeriesPart::byteSize() + categories.size() * sizeof(int);
+}
+
+std::size_t InterferenceBatch::byteSize() const
+{
+    return partsByteSize(parts);
+}
+
+bool operator==(const InterferenceParameters& a, const InterferenceParameters& b)
+{
+    return a.dataset == b.dataset && a.categoryCount == b.categoryCount;
+}
 
 void InterferenceGenerator::generate(Batch& batch, const Parameters& parameters, const double timeSeconds)
 {
     const auto barCount = parameters.dataset.count;
     const auto categoryCount = parameters.categoryCount;
     resizeParts(batch.parts, parameters.dataset, 2);
-
-    auto slow = cursorFor(kWaves[0], barCount, timeSeconds);
-    auto medium = cursorFor(kWaves[1], barCount, timeSeconds);
-    auto fast = cursorFor(kWaves[2], barCount, timeSeconds);
-    auto index = 0;
     for (auto& part : batch.parts) {
         part.categories.resize(categoryCount > 0 ? static_cast<std::size_t>(part.count) : 0);
-        auto* bar = part.floats.data();
-        auto* category = part.categories.data();
-        for (auto i = 0; i < part.count; ++i, ++index) {
-            const auto value = kMidValue + kWaves[0].amplitude * slow.next() + kWaves[1].amplitude * medium.next() + kWaves[2].amplitude * fast.next();
-            bar[0] = static_cast<float>(index);
-            bar[1] = value;
-            bar += 2;
-            if (categoryCount > 0) {
-                *category++ = std::min(categoryCount - 1, static_cast<int>(value * static_cast<float>(categoryCount)));
-            }
-        }
     }
+
+    const auto waves = std::array<SineLookupCursor, 3>{
+        cursorFor(kWaves[0], barCount, timeSeconds), cursorFor(kWaves[1], barCount, timeSeconds), cursorFor(kWaves[2], barCount, timeSeconds)};
+    parallelFor(barCount, kParallelChunk, [&batch, categoryCount, &waves](const int begin, const int end) {
+        forEachPartSlice(batch.parts, begin, end, [categoryCount, &waves](InterferencePart& part, const int first, const int last, const int partBegin) {
+            writeBars(part, first, last, partBegin, categoryCount, waves);
+        });
+    });
     applyPrecision(batch.parts, parameters.dataset);
 }
 

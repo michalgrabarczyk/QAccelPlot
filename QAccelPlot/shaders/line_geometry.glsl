@@ -143,17 +143,6 @@ LineVertexResult invalidLineVertex(vec2 position, bool previousValid, vec2 previ
     return result;
 }
 
-// Returns the ribbon side, +1 or -1, of a vertex whose `side` attribute is
-// +-(1 + corner).
-float lineVertexSide(float side) {
-    return side < 0.0 ? -1.0 : 1.0;
-}
-
-// Returns the path corner of a vertex whose `side` attribute is +-(1 + corner).
-int lineVertexCorner(float side) {
-    return int(abs(side) + 0.5) - 1;
-}
-
 // Returns the path point before point `corner` of sample `index`, as a sample and a corner.
 void previousPathPoint(int index, int corner, out int previousIndex, out int previousCorner) {
     previousIndex = corner > 0 ? index : index - 1;

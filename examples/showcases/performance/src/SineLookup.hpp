@@ -29,6 +29,12 @@ public:
         return table_[index];
     }
 
+    /// \brief Advances by \a steps values, landing exactly where as many \c next() calls would.
+    void skip(const std::uint64_t steps) noexcept
+    {
+        accumulator_ += step_ * steps;
+    }
+
 private:
     static constexpr auto kTableBits = 14;
     static constexpr auto kIndexShift = 64 - kTableBits;

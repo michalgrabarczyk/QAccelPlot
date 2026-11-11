@@ -24,6 +24,9 @@ Window {
     property real averageFrameTimeMs: 16.7
     property int updateRate: 60
     property real longestDataGapMs: 0
+    property real dataCopyMs: 0
+    // Set while the visible page waits for data generated for its current settings.
+    property bool loading: true
     readonly property string activePage: pages.currentName
     readonly property QtObject activeSettings: activePage === "pointCloud" ? pointCloudSettings : activePage === "rectangleSeries" ? rectangleSeriesSettings : activePage === "barSeries" ? barSeriesSettings : activePage === "heatmapSeries" ? heatmapSeriesSettings : lineCurveSettings
     readonly property int activeCount: activeSettings.count
@@ -54,6 +57,50 @@ Window {
     Material.theme: Material.Dark
     Material.accent: colorPalette.materialAccent
     Material.foreground: colorPalette.text
+
+    component MetricCard: Rectangle {
+        id: card
+
+        required property string label
+        required property string value
+        required property string detail
+
+        // Equal shares of the row, whatever the text widths.
+        Layout.fillWidth: true
+        Layout.preferredWidth: 1
+        Layout.preferredHeight: 70
+        color: QAccelPlot.Colors.dark.control
+        border.color: QAccelPlot.Colors.dark.outline
+        radius: 4
+
+        Column {
+            anchors.centerIn: parent
+            spacing: 2
+
+            Text {
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: card.label
+                color: QAccelPlot.Colors.dark.textSecondary
+                font.bold: true
+                font.pixelSize: 11
+            }
+
+            Text {
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: card.value
+                color: QAccelPlot.Colors.dark.text
+                font.bold: true
+                font.pixelSize: 22
+            }
+
+            Text {
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: card.detail
+                color: QAccelPlot.Colors.dark.textMuted
+                font.pixelSize: 10
+            }
+        }
+    }
 
     Component {
         id: lineCurveDefaults
@@ -90,6 +137,9 @@ Window {
         targetWindow: window
     }
 
+    // Changing text or pressing a control adds and removes scene graph nodes, and that makes the
+    // window's renderer re-upload every series. The control panel, the header, and the metrics
+    // render in layers, each with a renderer of its own.
     RowLayout {
         anchors.fill: parent
         anchors.margins: 12
@@ -98,6 +148,7 @@ Window {
         ControlPanel {
             Layout.preferredWidth: 300
             Layout.fillHeight: true
+            layer.enabled: true
             window: window
             colorPalette: window.colorPalette
         }
@@ -108,102 +159,133 @@ Window {
             spacing: 10
 
             ExampleHeader {
+                layer.enabled: true
                 title: window.activeCount.toLocaleString(Qt.locale("en_US"), "f", 0) + " live " + window.activeSettings.noun
                 subtitle: "Display FPS counts frames presented to the screen. Data Update Rate shows how many new datasets are applied to the plot each second."
             }
 
-            GridLayout {
-                columns: 4
-                columnSpacing: 8
+            RowLayout {
+                spacing: 8
+                layer.enabled: true
                 Layout.fillWidth: true
 
-                Repeater {
-                    model: [
-                        {
-                            label: "DISPLAY FPS",
-                            value: window.fps.toString(),
-                            detail: "frames presented / second"
-                        },
-                        {
-                            label: "DATA UPDATE RATE",
-                            value: window.updateRate.toString() + " Hz",
-                            detail: "peak update gap " + window.longestDataGapMs.toFixed(0) + " ms"
-                        },
-                        {
-                            label: "FRAME TIME",
-                            value: window.averageFrameTimeMs.toFixed(1) + " ms",
-                            detail: "between presents"
-                        },
-                        {
-                            label: "THROUGHPUT",
-                            value: window.throughputMillions.toFixed(1) + " M",
-                            detail: window.activeSettings.noun + " updated / second"
-                        }
-                    ]
+                MetricCard {
+                    label: "DISPLAY FPS"
+                    value: window.fps.toString()
+                    detail: "frames presented / second"
+                }
 
-                    delegate: Rectangle {
-                        required property var modelData
-                        Layout.fillWidth: true
-                        Layout.preferredHeight: 70
-                        color: colorPalette.control
-                        border.color: colorPalette.outline
-                        radius: 4
+                MetricCard {
+                    label: "DATA UPDATE RATE"
+                    value: window.updateRate.toString() + " Hz"
+                    detail: "peak update gap " + window.longestDataGapMs.toFixed(0) + " ms"
+                }
 
-                        Column {
-                            anchors.centerIn: parent
-                            spacing: 2
+                MetricCard {
+                    label: "FRAME TIME"
+                    value: window.averageFrameTimeMs.toFixed(1) + " ms"
+                    detail: "between presents"
+                }
 
-                            Text {
-                                anchors.horizontalCenter: parent.horizontalCenter
-                                text: modelData.label
-                                color: colorPalette.textSecondary
-                                font.bold: true
-                                font.pixelSize: 11
-                            }
+                MetricCard {
+                    label: "THROUGHPUT"
+                    value: window.throughputMillions.toFixed(1) + " M"
+                    detail: window.activeSettings.noun + " updated / second"
+                }
 
-                            Text {
-                                anchors.horizontalCenter: parent.horizontalCenter
-                                text: modelData.value
-                                color: colorPalette.text
-                                font.bold: true
-                                font.pixelSize: 22
-                            }
-
-                            Text {
-                                anchors.horizontalCenter: parent.horizontalCenter
-                                text: modelData.detail
-                                color: colorPalette.textMuted
-                                font.pixelSize: 10
-                            }
-                        }
-                    }
+                MetricCard {
+                    label: "DATA COPY"
+                    value: window.dataCopyMs.toFixed(1) + " ms"
+                    detail: "worker time per dataset"
                 }
             }
 
-            ExamplePages {
-                id: pages
-                tabs: [
-                    { name: "lineCurve", title: "LineCurve" },
-                    { name: "pointCloud", title: "PointCloud" },
-                    { name: "rectangleSeries", title: "RectangleSeries" },
-                    { name: "barSeries", title: "BarSeries" },
-                    { name: "heatmapSeries", title: "HeatmapSeries" }
-                ]
+            Item {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
 
-                LineCurvePage {
-                    settings: window.lineCurveSettings
+                ExamplePages {
+                    id: pages
+                    anchors.fill: parent
+                    tabBackground: plainTabBackground
+                    tabs: [
+                        { name: "lineCurve", title: "LineCurve" },
+                        { name: "pointCloud", title: "PointCloud" },
+                        { name: "rectangleSeries", title: "RectangleSeries" },
+                        { name: "barSeries", title: "BarSeries" },
+                        { name: "heatmapSeries", title: "HeatmapSeries" }
+                    ]
+
+                    LineCurvePage {
+                        settings: window.lineCurveSettings
+                    }
+                    PointCloudPage {
+                        settings: window.pointCloudSettings
+                    }
+                    RectangleSeriesPage {
+                        settings: window.rectangleSeriesSettings
+                    }
+                    BarSeriesPage {
+                        settings: window.barSeriesSettings
+                    }
+                    HeatmapSeriesPage {
+                        settings: window.heatmapSeriesSettings
+                    }
                 }
-                PointCloudPage {
-                    settings: window.pointCloudSettings
+
+                // Covers the page while it waits for data generated for its current settings. The
+                // cover is created and destroyed in a layer: hiding or showing an item, even in a
+                // layer, would make the window's renderer re-upload every series.
+                Item {
+                    x: pages.pageArea.x
+                    y: pages.pageArea.y
+                    width: pages.pageArea.width
+                    height: pages.pageArea.height
+                    layer.enabled: true
+
+                    Loader {
+                        anchors.fill: parent
+                        active: window.loading
+                        sourceComponent: loadingCover
+                    }
                 }
-                RectangleSeriesPage {
-                    settings: window.rectangleSeriesSettings
+
+                // Replaces the Material ripple, whose hover adds scene nodes, which re-uploads every
+                // series, and animates them on the render thread, which without vsync draws
+                // thousands of frames per second. Both colors are opaque: a transparent Rectangle
+                // removes its node.
+                Component {
+                    id: plainTabBackground
+
+                    Rectangle {
+                        readonly property Item button: parent
+
+                        implicitHeight: button.Material.touchTarget
+                        color: button.hovered || button.down ? Qt.tint(button.Material.backgroundColor, button.Material.rippleColor) : button.Material.backgroundColor
+                    }
                 }
-                BarSeriesPage {
-                    settings: window.barSeriesSettings
-                }
-                HeatmapSeriesPage {
-                    settings: window.heatmapSeriesSettings
+
+                Component {
+                    id: loadingCover
+
+                    Rectangle {
+                        color: Qt.rgba(window.colorPalette.window.r, window.colorPalette.window.g, window.colorPalette.window.b, 0.75)
+
+                        Column {
+                            anchors.centerIn: parent
+                            spacing: 12
+
+                            BusyIndicator {
+                                anchors.horizontalCenter: parent.horizontalCenter
+                            }
+
+                            Label {
+                                text: "Generating " + window.activeCount.toLocaleString(Qt.locale("en_US"), "f", 0) + " " + window.activeSettings.noun
+                                color: window.colorPalette.textSecondary
+                                anchors.horizontalCenter: parent.horizontalCenter
+                            }
+                        }
+                    }
                 }
             }
         }

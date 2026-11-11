@@ -22,7 +22,12 @@ BandEdgeRenderer::BandEdgeRenderer(const BandEdgeMaterial::Edge edge)
 
 QSGGeometryNode* BandEdgeRenderer::paint(QSGGeometryNode* oldNode, const BandEdgeRenderParams& params) const
 {
-    auto* node = oldNode ? oldNode : LineStroke::createNode(0, new BandEdgeMaterial(edge_));
+    const auto dashed = params.uniforms.dash.enabled;
+    auto* node = oldNode ? oldNode : LineStroke::createNode(0, new BandEdgeMaterial(edge_, dashed));
+    auto layoutChanged = false;
+    if (static_cast<const LineMaterial*>(node->material())->dashed() != dashed) {
+        layoutChanged = LineStroke::setMaterial(node, new BandEdgeMaterial(edge_, dashed));
+    }
     auto* geometry = node->geometry();
     const auto vertexCount = params.reservedCount * 2;
     const auto countChanged = geometry->vertexCount() != vertexCount;
@@ -32,12 +37,10 @@ QSGGeometryNode* BandEdgeRenderer::paint(QSGGeometryNode* oldNode, const BandEdg
 
     auto* material = static_cast<BandEdgeMaterial*>(node->material());
     LineStroke::applyUniforms(*material, params.uniforms);
-    material->useVertexColor = 0.0f;
     material->dataTexture = params.dataTexture;
 
     // Vertices hold only data point indices unless a dash pattern needs screen-space arc lengths.
     // Those change with the data and the zoom, but not while panning.
-    const auto dashed = params.uniforms.dash.enabled;
     auto lengthsStale = false;
     if (dashed) {
         const auto scale = arcLengthScale(params);
@@ -46,9 +49,12 @@ QSGGeometryNode* BandEdgeRenderer::paint(QSGGeometryNode* oldNode, const BandEdg
     } else {
         arcLengthScale_.reset();
     }
-    if (countChanged || lengthsStale) {
-        LineStroke::writeVertices(static_cast<LineVertex*>(geometry->vertexData()), params.reservedCount, 1, params.uniforms.color,
-            dashed ? arcLengths(params) : std::vector<float>{});
+    if (countChanged || lengthsStale || layoutChanged) {
+        if (dashed) {
+            LineStroke::writeDashedVertices(static_cast<DashedLineVertex*>(geometry->vertexData()), params.reservedCount, 1, arcLengths(params));
+        } else {
+            LineStroke::writeVertices(static_cast<LineVertex*>(geometry->vertexData()), params.reservedCount, 1);
+        }
         node->markDirty(QSGNode::DirtyGeometry);
     }
     node->markDirty(QSGNode::DirtyMaterial);

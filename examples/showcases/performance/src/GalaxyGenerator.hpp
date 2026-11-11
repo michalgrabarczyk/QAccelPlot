@@ -10,6 +10,7 @@
 #include "DatasetParts.hpp"
 
 #include <array>
+#include <cstddef>
 #include <vector>
 
 namespace QAccelPlotExample {
@@ -18,11 +19,17 @@ namespace QAccelPlotExample {
 struct GalaxyPart : SeriesPart {
     /// \brief One colormap value per point; empty when values are off.
     std::vector<float> values;
+
+    /// \brief Returns the bytes held by the points and values.
+    std::size_t byteSize() const;
 };
 
 /// \brief One PointCloud dataset, split into consecutive rings of the galaxy.
 struct GalaxyBatch {
     std::vector<GalaxyPart> parts;
+
+    /// \brief Returns the bytes held by the batch's records.
+    std::size_t byteSize() const;
 };
 
 /// \brief Settings of a GalaxyGenerator batch.
@@ -34,12 +41,16 @@ struct GalaxyParameters {
     float invalidFraction{0.0f};
 };
 
+/// \brief Returns \c true when \a a and \a b describe the same batch, apart from its time.
+bool operator==(const GalaxyParameters& a, const GalaxyParameters& b);
+
 /// \brief Generates a rotating spiral galaxy for one or more PointClouds.
 ///
 /// Points are placed once per point count and grouped into radial bands. Each batch rotates every
 /// band by its own angle, so a point costs one 2×2 matrix multiply and the arms ripple without
 /// winding up over time. Values in [0, 1] grow from the core to the rim; a few arm points get a
-/// fixed mid value to stand out as star-forming regions.
+/// fixed mid value to stand out as star-forming regions. Large datasets are written by several
+/// threads.
 class GalaxyGenerator final {
 public:
     using Batch = GalaxyBatch;
@@ -62,8 +73,18 @@ public:
     const std::array<int, kBandCount + 1>& bandStarts() const;
 
 private:
+    struct Rotation {
+        float cosine;
+        float sine;
+    };
+
+    using BandRotations = std::array<Rotation, kBandCount>;
+
     void rebuildGalaxy(int pointCount);
-    void rotateInto(GalaxyPart& part, int firstPoint, double timeSeconds) const;
+    static BandRotations bandRotationsAt(double timeSeconds);
+    // Writes points [first, last) of part, and their values when the part has values; partBegin
+    // is the galaxy index of the part's first point.
+    void writeSlice(GalaxyPart& part, int first, int last, int partBegin, const BandRotations& rotations) const;
 
     std::vector<float> basePositions_;
     std::vector<float> baseValues_;

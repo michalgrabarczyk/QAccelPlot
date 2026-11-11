@@ -35,6 +35,7 @@ add_qaccelplot_test(tst_performance_generators
     "${CMAKE_SOURCE_DIR}/examples/showcases/performance/src/GalaxyGenerator.cpp"
     "${CMAKE_SOURCE_DIR}/examples/showcases/performance/src/Ingestion.cpp"
     "${CMAKE_SOURCE_DIR}/examples/showcases/performance/src/InterferenceGenerator.cpp"
+    "${CMAKE_SOURCE_DIR}/examples/showcases/performance/src/ParallelFor.cpp"
     "${CMAKE_SOURCE_DIR}/examples/showcases/performance/src/PlasmaGenerator.cpp"
     "${CMAKE_SOURCE_DIR}/examples/showcases/performance/src/SineLookup.cpp"
     "${CMAKE_SOURCE_DIR}/examples/showcases/performance/src/SineWaveGenerator.cpp"

@@ -148,11 +148,12 @@ template <typename Effect, typename Payload, typename RangeFn> Payload resolveGr
 }
 
 constexpr auto kLineVerticesPerPoint = 2;
-constexpr auto kLineVertexBytesPerPoint = kLineVerticesPerPoint * static_cast<int>(sizeof(LineVertex));
+// Dashed lines have the larger vertices.
+constexpr auto kLineVertexBytesPerPoint = kLineVerticesPerPoint * static_cast<int>(sizeof(DashedLineVertex));
 constexpr auto kMarkerVertexBytesPerPoint = LineCurvePointRenderer::kVerticesPerPoint * static_cast<int>(sizeof(PointVertex));
 // QSGGeometry sizes the marker vertex buffer in int bytes.
 constexpr auto kMaxMarkerPoints = std::numeric_limits<int>::max() / kMarkerVertexBytesPerPoint;
-// Float vertex ids, which the line shader reads its data points by, are exact up to 2^24.
+// The line shaders find the item opacity of a data point by its index as a float, exact up to 2^24.
 constexpr auto kMaxLinePoints = 1 << 24;
 
 // Number of markers drawn in \a window. Markers read their points by integer vertex index, so the
@@ -659,12 +660,9 @@ void LineCurve::onDataPointsChanged(const DataChange change, [[maybe_unused]] co
     }
     dataChanged_ = true;
     refreshVertexCacheForDataChange();
+    // The first hit test after the change rebuilds the chunk AABBs, so streamed data costs no
+    // scan while the pointer is away from the curve.
     chunksValid_ = false;
-    // A curve that accepts hover pre-builds its chunk AABBs, so that hover hit-tests never block
-    // on a lazy O(N) rebuild during live rendering. Other curves build them on the first hit test.
-    if (acceptHoverEvents()) {
-        rebuildChunks();
-    }
 }
 
 void LineCurve::onLineStyleChanged()

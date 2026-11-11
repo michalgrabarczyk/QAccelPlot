@@ -9,6 +9,7 @@
 #include "GalaxyGenerator.hpp"
 #include "Ingestion.hpp"
 #include "InterferenceGenerator.hpp"
+#include "ParallelFor.hpp"
 #include "PlasmaGenerator.hpp"
 #include "SineWaveGenerator.hpp"
 #include "SpectrogramGenerator.hpp"
@@ -16,6 +17,7 @@
 #include <QtTest/QtTest>
 
 #include <algorithm>
+#include <atomic>
 #include <cmath>
 #include <cstddef>
 #include <initializer_list>
@@ -45,6 +47,16 @@ template <typename Parameters> Parameters parametersFor(const int count, const i
     return parameters;
 }
 
+// Returns the float records of all parts of batch, in order.
+template <typename Batch> std::vector<float> floatsOf(const Batch& batch)
+{
+    auto floats = std::vector<float>{};
+    for (const auto& part : batch.parts) {
+        floats.insert(floats.end(), part.floats.begin(), part.floats.end());
+    }
+    return floats;
+}
+
 // Returns the float records of all parts of a batch generated at timeSeconds, in order.
 template <typename Generator> std::vector<float> generatedFloats(const int count, const int seriesCount, const double timeSeconds)
 {
@@ -52,11 +64,23 @@ template <typename Generator> std::vector<float> generatedFloats(const int count
     auto batch = typename Generator::Batch{};
     generator.generate(batch, parametersFor<typename Generator::Parameters>(count, seriesCount), timeSeconds);
 
-    auto floats = std::vector<float>{};
-    for (const auto& part : batch.parts) {
-        floats.insert(floats.end(), part.floats.begin(), part.floats.end());
-    }
-    return floats;
+    return floatsOf(batch);
+}
+
+template <typename Generator> typename Generator::Batch freshBatch(const typename Generator::Parameters& parameters, const double timeSeconds)
+{
+    auto batch = typename Generator::Batch{};
+    Generator{}.generate(batch, parameters, timeSeconds);
+    return batch;
+}
+
+// Generates a batch for later into storage that first held a batch generated for earlier.
+template <typename Generator>
+typename Generator::Batch reusedBatch(const typename Generator::Parameters& earlier, const typename Generator::Parameters& later, const double timeSeconds)
+{
+    auto batch = freshBatch<Generator>(earlier, timeSeconds);
+    Generator{}.generate(batch, later, timeSeconds);
+    return batch;
 }
 
 } // namespace
@@ -66,7 +90,10 @@ class PerformanceGeneratorsTest : public QObject {
 
 private slots:
     void recordsAreSplitEvenly();
+    void parallelForCoversEveryIndexOnce();
     void splitDatasetsMatchTheUnsplitOnes();
+    void reusedBatchesMatchFreshOnes();
+    void batchesReportTheirSize();
     void doublePrecisionMovesRecordsToDoubles();
     void ingestionNamesSelectThePrecision();
     void sineLookupTracksSine();
@@ -78,6 +105,7 @@ private slots:
     void plasmaTilesAreSquaresOnTheGrid_data();
     void plasmaTilesAreSquaresOnTheGrid();
     void plasmaTileSizeFollowsTheField();
+    void plasmaTilesFillTheGridRowByRow();
     void plasmaMovesOverTime();
     void plasmaTileScaleScalesEveryTile();
     void plasmaCategoriesFollowTheField();
@@ -103,17 +131,43 @@ void PerformanceGeneratorsTest::recordsAreSplitEvenly()
     QCOMPARE(partCount(2, 3, 2), 0);
 }
 
+void PerformanceGeneratorsTest::parallelForCoversEveryIndexOnce()
+{
+    constexpr auto chunk = 1'000;
+    for (const auto count : {0, 1, chunk - 1, 5 * chunk + 3, 40 * chunk}) {
+        auto visits = std::vector<std::atomic<int>>(static_cast<std::size_t>(count));
+        auto calls = std::atomic<int>{0};
+        parallelFor(count, chunk, [&visits, &calls](const int begin, const int end) {
+            calls.fetch_add(1);
+            for (auto index = begin; index < end; ++index) {
+                visits[static_cast<std::size_t>(index)].fetch_add(1);
+            }
+        });
+        QVERIFY(std::all_of(visits.begin(), visits.end(), [](const std::atomic<int>& visit) { return visit.load() == 1; }));
+        // No chunk is smaller than asked for, and no thread runs for an empty range.
+        QVERIFY(calls.load() <= std::max(1, count / chunk));
+        QCOMPARE(calls.load() == 0, count == 0);
+    }
+}
+
 void PerformanceGeneratorsTest::splitDatasetsMatchTheUnsplitOnes()
 {
     constexpr auto count = 1'003;
     constexpr auto timeSeconds = 2.5;
-    for (const auto seriesCount : {2, 7, 100}) {
-        QVERIFY(nearlyEqual(generatedFloats<SineWaveGenerator>(count, seriesCount, timeSeconds), generatedFloats<SineWaveGenerator>(count, 1, timeSeconds)));
-        QVERIFY(nearlyEqual(generatedFloats<GalaxyGenerator>(count, seriesCount, timeSeconds), generatedFloats<GalaxyGenerator>(count, 1, timeSeconds)));
-        QVERIFY(nearlyEqual(generatedFloats<PlasmaGenerator>(count, seriesCount, timeSeconds), generatedFloats<PlasmaGenerator>(count, 1, timeSeconds)));
-        QVERIFY(nearlyEqual(
-            generatedFloats<InterferenceGenerator>(count, seriesCount, timeSeconds), generatedFloats<InterferenceGenerator>(count, 1, timeSeconds)));
-        QVERIFY(generatedFloats<SpectrogramGenerator>(count, seriesCount, timeSeconds) == generatedFloats<SpectrogramGenerator>(count, 1, timeSeconds));
+    // The large count also splits each dataset into parallel chunks that cross part boundaries.
+    for (const auto datasetCount : {count, 3 * kParallelChunk + 7}) {
+        for (const auto seriesCount : {2, 7, 100}) {
+            QVERIFY(nearlyEqual(
+                generatedFloats<SineWaveGenerator>(datasetCount, seriesCount, timeSeconds), generatedFloats<SineWaveGenerator>(datasetCount, 1, timeSeconds)));
+            QVERIFY(nearlyEqual(
+                generatedFloats<GalaxyGenerator>(datasetCount, seriesCount, timeSeconds), generatedFloats<GalaxyGenerator>(datasetCount, 1, timeSeconds)));
+            QVERIFY(nearlyEqual(
+                generatedFloats<PlasmaGenerator>(datasetCount, seriesCount, timeSeconds), generatedFloats<PlasmaGenerator>(datasetCount, 1, timeSeconds)));
+            QVERIFY(nearlyEqual(generatedFloats<InterferenceGenerator>(datasetCount, seriesCount, timeSeconds),
+                generatedFloats<InterferenceGenerator>(datasetCount, 1, timeSeconds)));
+            QVERIFY(generatedFloats<SpectrogramGenerator>(datasetCount, seriesCount, timeSeconds)
+                == generatedFloats<SpectrogramGenerator>(datasetCount, 1, timeSeconds));
+        }
     }
 
     auto generator = GalaxyGenerator{};
@@ -125,6 +179,61 @@ void PerformanceGeneratorsTest::splitDatasetsMatchTheUnsplitOnes()
         QCOMPARE(part.count, partCount(count, 7, index));
         QCOMPARE(part.values.size(), static_cast<std::size_t>(part.count));
     }
+}
+
+void PerformanceGeneratorsTest::reusedBatchesMatchFreshOnes()
+{
+    // A batch whose storage held an earlier, differently shaped dataset ends up like a new one.
+    constexpr auto timeSeconds = 1.5;
+    auto earlier = DatasetParameters{5'000, 3, true};
+    auto later = DatasetParameters{1'003, 2, false};
+
+    auto earlierSine = SineWaveParameters{earlier, 0.2f};
+    auto laterSine = SineWaveParameters{later, 0.0f};
+    QCOMPARE(floatsOf(reusedBatch<SineWaveGenerator>(earlierSine, laterSine, timeSeconds)), floatsOf(freshBatch<SineWaveGenerator>(laterSine, timeSeconds)));
+
+    auto earlierGalaxy = GalaxyParameters{earlier, true, 0.1f};
+    auto laterGalaxy = GalaxyParameters{later, false, 0.0f};
+    const auto galaxy = reusedBatch<GalaxyGenerator>(earlierGalaxy, laterGalaxy, timeSeconds);
+    QCOMPARE(floatsOf(galaxy), floatsOf(freshBatch<GalaxyGenerator>(laterGalaxy, timeSeconds)));
+    QVERIFY(std::all_of(galaxy.parts.begin(), galaxy.parts.end(), [](const GalaxyPart& part) { return part.values.empty(); }));
+
+    auto earlierPlasma = PlasmaParameters{earlier, 2.0f, 4};
+    auto laterPlasma = PlasmaParameters{later, 1.0f, 0};
+    const auto plasma = reusedBatch<PlasmaGenerator>(earlierPlasma, laterPlasma, timeSeconds);
+    QCOMPARE(floatsOf(plasma), floatsOf(freshBatch<PlasmaGenerator>(laterPlasma, timeSeconds)));
+    QVERIFY(std::all_of(plasma.parts.begin(), plasma.parts.end(), [](const PlasmaPart& part) { return part.categories.empty(); }));
+
+    auto earlierBars = InterferenceParameters{earlier, 4};
+    auto laterBars = InterferenceParameters{later, 3};
+    const auto bars = reusedBatch<InterferenceGenerator>(earlierBars, laterBars, timeSeconds);
+    const auto freshBars = freshBatch<InterferenceGenerator>(laterBars, timeSeconds);
+    QCOMPARE(floatsOf(bars), floatsOf(freshBars));
+    for (auto index = std::size_t{0}; index < bars.parts.size(); ++index) {
+        QCOMPARE(bars.parts[index].categories, freshBars.parts[index].categories);
+    }
+
+    auto earlierSpectrogram = SpectrogramParameters{earlier};
+    auto laterSpectrogram = SpectrogramParameters{later};
+    QCOMPARE(floatsOf(reusedBatch<SpectrogramGenerator>(earlierSpectrogram, laterSpectrogram, timeSeconds)),
+        floatsOf(freshBatch<SpectrogramGenerator>(laterSpectrogram, timeSeconds)));
+}
+
+void PerformanceGeneratorsTest::batchesReportTheirSize()
+{
+    constexpr auto count = 1'000;
+    QCOMPARE(freshBatch<SineWaveGenerator>(parametersFor<SineWaveParameters>(count), 0.0).byteSize(), std::size_t{count} * 2 * sizeof(float));
+    auto doubles = parametersFor<SineWaveParameters>(count);
+    doubles.dataset.doublePrecision = true;
+    QCOMPARE(freshBatch<SineWaveGenerator>(doubles, 0.0).byteSize(), std::size_t{count} * 2 * sizeof(double));
+    QCOMPARE(freshBatch<GalaxyGenerator>(parametersFor<GalaxyParameters>(count, 3), 0.0).byteSize(), std::size_t{count} * 3 * sizeof(float));
+    auto plasma = parametersFor<PlasmaParameters>(count);
+    plasma.categoryCount = 4;
+    QCOMPARE(freshBatch<PlasmaGenerator>(plasma, 0.0).byteSize(), std::size_t{count} * (4 * sizeof(float) + sizeof(int)));
+    auto bars = parametersFor<InterferenceParameters>(count);
+    bars.categoryCount = 4;
+    QCOMPARE(freshBatch<InterferenceGenerator>(bars, 0.0).byteSize(), std::size_t{count} * (2 * sizeof(float) + sizeof(int)));
+    QCOMPARE(freshBatch<SpectrogramGenerator>(parametersFor<SpectrogramParameters>(1'024), 0.0).byteSize(), std::size_t{1'024} * sizeof(float));
 }
 
 void PerformanceGeneratorsTest::doublePrecisionMovesRecordsToDoubles()
@@ -169,7 +278,8 @@ void PerformanceGeneratorsTest::ingestionNamesSelectThePrecision()
 
 void PerformanceGeneratorsTest::sineLookupTracksSine()
 {
-    constexpr auto pointCount = 10'001;
+    // Spans several parallel chunks.
+    constexpr auto pointCount = 3 * kParallelChunk + 1;
     constexpr auto timeSeconds = 1.234;
     auto generator = SineWaveGenerator{};
     auto batch = SineWaveBatch{};
@@ -219,7 +329,7 @@ void PerformanceGeneratorsTest::sineGapsReplaceTheRequestedShare()
 
 void PerformanceGeneratorsTest::galaxyRotatesEachBand()
 {
-    constexpr auto pointCount = 5000;
+    constexpr auto pointCount = 3 * kParallelChunk + 5;
     constexpr auto timeSeconds = 7.25;
     auto generator = GalaxyGenerator{};
     auto batch = GalaxyBatch{};
@@ -241,8 +351,11 @@ void PerformanceGeneratorsTest::galaxyRotatesEachBand()
             const auto index = static_cast<std::size_t>(i) * 2;
             const auto x = base[index];
             const auto y = base[index + 1];
-            QCOMPARE(part.floats[index], cosine * x - sine * y);
-            QCOMPARE(part.floats[index + 1], sine * x + cosine * y);
+            // Scaled to the terms, not the result: where they nearly cancel, a fused multiply-add
+            // changes the result by more than its own relative tolerance.
+            const auto tolerance = kSplitTolerance * std::max(1.0f, std::abs(x) + std::abs(y));
+            QVERIFY(std::abs(part.floats[index] - (cosine * x - sine * y)) <= tolerance);
+            QVERIFY(std::abs(part.floats[index + 1] - (sine * x + cosine * y)) <= tolerance);
         }
     }
 }
@@ -356,6 +469,29 @@ void PerformanceGeneratorsTest::plasmaTileSizeFollowsTheField()
     QVERIFY(PlasmaGenerator::tileSide(1.0f, 1.0f) > 1.0f);
 }
 
+void PerformanceGeneratorsTest::plasmaTilesFillTheGridRowByRow()
+{
+    // Spans several parallel chunks and series, whose boundaries fall inside grid rows.
+    constexpr auto rectangleCount = 3 * kParallelChunk + 7;
+    const auto rects = generatedFloats<PlasmaGenerator>(rectangleCount, 3, 0.75);
+    QCOMPARE(rects.size(), static_cast<std::size_t>(rectangleCount) * 4);
+
+    const auto centerX = [&rects](const std::size_t tile) { return (rects[tile * 4] + rects[tile * 4 + 2]) * 0.5f; };
+    const auto centerY = [&rects](const std::size_t tile) { return (rects[tile * 4 + 1] + rects[tile * 4 + 3]) * 0.5f; };
+    const auto pitch = centerX(1) - centerX(0);
+    const auto tolerance = pitch * 0.01f;
+    QVERIFY(pitch > 0.0f);
+    for (auto tile = std::size_t{1}; tile < static_cast<std::size_t>(rectangleCount); ++tile) {
+        if (std::abs(centerY(tile) - centerY(tile - 1)) <= tolerance) {
+            QVERIFY(std::abs(centerX(tile) - centerX(tile - 1) - pitch) <= tolerance);
+        } else {
+            // A new row starts at the first column, one pitch up.
+            QVERIFY(std::abs(centerY(tile) - centerY(tile - 1) - pitch) <= tolerance);
+            QVERIFY(std::abs(centerX(tile) - centerX(0)) <= tolerance);
+        }
+    }
+}
+
 void PerformanceGeneratorsTest::plasmaMovesOverTime()
 {
     constexpr auto rectangleCount = 1000;
@@ -429,7 +565,7 @@ void PerformanceGeneratorsTest::interferenceBarsSitAtTheirIndices()
 
 void PerformanceGeneratorsTest::interferenceValuesFollowTheWaves()
 {
-    constexpr auto barCount = 10'001;
+    constexpr auto barCount = 3 * kParallelChunk + 1;
     constexpr auto timeSeconds = 1.234;
     // Three sine lookups, each within 0.0002 of the sine before its amplitude scales it down.
     constexpr auto tolerance = 0.0005f;
@@ -548,8 +684,8 @@ void PerformanceGeneratorsTest::spectrogramFillsTheHistoryAtOnce()
     generator.generate(batch, parametersFor<SpectrogramParameters>(10'000), 0.0);
     QVERIFY(isFilled(batch.parts.front().floats));
 
-    generator.generate(batch, parametersFor<SpectrogramParameters>(40'000), 0.0);
-    QCOMPARE(batch.parts.front().count, 40'000);
+    generator.generate(batch, parametersFor<SpectrogramParameters>(4 * kParallelChunk), 0.0);
+    QCOMPARE(batch.parts.front().count, 4 * kParallelChunk);
     QVERIFY(isFilled(batch.parts.front().floats));
 }
 

@@ -46,9 +46,10 @@ static_assert(sizeof(GradientLineUbo) == 768);
 
 class GradientLineShader : public QSGMaterialShader {
 public:
-    GradientLineShader()
+    explicit GradientLineShader(const bool dashed)
     {
-        setShaderFileName(VertexStage, QString::fromLatin1(":/qaccelplot/shaders/gradient_line.vert.qsb"));
+        setShaderFileName(
+            VertexStage, QString::fromLatin1(dashed ? ":/qaccelplot/shaders/gradient_line_dashed.vert.qsb" : ":/qaccelplot/shaders/gradient_line.vert.qsb"));
         setShaderFileName(FragmentStage, QString::fromLatin1(":/qaccelplot/shaders/gradient_line.frag.qsb"));
     }
 
@@ -105,15 +106,21 @@ public:
     }
 };
 
+GradientLineMaterial::GradientLineMaterial(const bool dashed)
+    : LineMaterial(dashed)
+{
+}
+
 QSGMaterialType* GradientLineMaterial::type() const
 {
-    static QSGMaterialType type;
-    return &type;
+    static QSGMaterialType solidType;
+    static QSGMaterialType dashedType;
+    return dashed() ? &dashedType : &solidType;
 }
 
 QSGMaterialShader* GradientLineMaterial::createShader(QSGRendererInterface::RenderMode) const
 {
-    return new GradientLineShader;
+    return new GradientLineShader(dashed());
 }
 
 int GradientLineMaterial::compareExtra(const QSGMaterial* other) const

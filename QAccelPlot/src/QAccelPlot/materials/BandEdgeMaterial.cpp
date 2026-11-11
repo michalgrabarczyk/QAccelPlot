@@ -9,8 +9,9 @@
 
 namespace QAccelPlot {
 
-BandEdgeMaterial::BandEdgeMaterial(const Edge edge)
-    : edge_(edge)
+BandEdgeMaterial::BandEdgeMaterial(const Edge edge, const bool dashed)
+    : LineMaterial(dashed)
+    , edge_(edge)
 {
 }
 
@@ -21,15 +22,16 @@ BandEdgeMaterial::Edge BandEdgeMaterial::edge() const
 
 QSGMaterialType* BandEdgeMaterial::type() const
 {
-    static QSGMaterialType lowerType;
-    static QSGMaterialType upperType;
-    return edge_ == Edge::Lower ? &lowerType : &upperType;
+    // Indexed by edge, then by whether the vertices are dashed.
+    static QSGMaterialType types[2][2];
+    return &types[edge_ == Edge::Lower ? 0 : 1][dashed() ? 1 : 0];
 }
 
 QSGMaterialShader* BandEdgeMaterial::createShader(QSGRendererInterface::RenderMode) const
 {
+    const auto* edgeName = edge_ == Edge::Lower ? "lower" : "upper";
     return createLineShader(
-        QString::fromLatin1(edge_ == Edge::Lower ? ":/qaccelplot/shaders/band_edge_lower.vert.qsb" : ":/qaccelplot/shaders/band_edge_upper.vert.qsb"));
+        QStringLiteral(":/qaccelplot/shaders/band_edge_%1%2.vert.qsb").arg(QLatin1String(edgeName), dashed() ? QStringLiteral("_dashed") : QString{}));
 }
 
 } // namespace QAccelPlot

@@ -6,10 +6,12 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #include "SineWaveGenerator.hpp"
+#include "ParallelFor.hpp"
 #include "SineLookup.hpp"
 
 #include <algorithm>
 #include <cstddef>
+#include <cstdint>
 #include <limits>
 
 namespace QAccelPlotExample {
@@ -37,7 +39,30 @@ void insertGaps(std::vector<SineWavePart>& parts, const int pointCount, const fl
     }
 }
 
+// Writes samples [first, last) of part; partBegin is the wave index of the part's first sample,
+// and sine starts at wave index 0.
+void writeWave(SineWavePart& part, const int first, const int last, const int partBegin, const float xStep, SineLookupCursor sine)
+{
+    sine.skip(static_cast<std::uint64_t>(partBegin + first));
+    auto* xy = part.floats.data();
+    for (auto i = first; i < last; ++i) {
+        const auto offset = static_cast<std::size_t>(i) * 2;
+        xy[offset] = static_cast<float>(partBegin + i) * xStep;
+        xy[offset + 1] = SineWaveGenerator::kAmplitude * sine.next();
+    }
+}
+
 } // namespace
+
+std::size_t SineWaveBatch::byteSize() const
+{
+    return partsByteSize(parts);
+}
+
+bool operator==(const SineWaveParameters& a, const SineWaveParameters& b)
+{
+    return a.dataset == b.dataset && a.gapFraction == b.gapFraction;
+}
 
 void SineWaveGenerator::generate(Batch& batch, const Parameters& parameters, const double timeSeconds)
 {
@@ -45,16 +70,11 @@ void SineWaveGenerator::generate(Batch& batch, const Parameters& parameters, con
     resizeParts(batch.parts, parameters.dataset, 2);
 
     const auto xStep = kDomainWidth / static_cast<float>(std::max(1, pointCount - 1));
-    auto sine = SineLookupCursor{kPhaseVelocity * timeSeconds, static_cast<double>(kAngularFrequency * xStep)};
-    auto index = 0;
-    for (auto& part : batch.parts) {
-        auto* xy = part.floats.data();
-        for (auto i = 0; i < part.count; ++i, ++index) {
-            const auto offset = static_cast<std::size_t>(i) * 2;
-            xy[offset] = static_cast<float>(index) * xStep;
-            xy[offset + 1] = kAmplitude * sine.next();
-        }
-    }
+    const auto sine = SineLookupCursor{kPhaseVelocity * timeSeconds, static_cast<double>(kAngularFrequency * xStep)};
+    parallelFor(pointCount, kParallelChunk, [&batch, xStep, &sine](const int begin, const int end) {
+        forEachPartSlice(batch.parts, begin, end,
+            [xStep, &sine](SineWavePart& part, const int first, const int last, const int partBegin) { writeWave(part, first, last, partBegin, xStep, sine); });
+    });
 
     insertGaps(batch.parts, pointCount, parameters.gapFraction);
     applyPrecision(batch.parts, parameters.dataset);
