@@ -71,6 +71,7 @@ private slots:
     void setRangeNotifiesOnce();
     void qmlStopsOverridePreset();
     void qmlNullStopsAreIgnored();
+    void qmlNanStopsAreIgnored();
     void qmlGradientIsAccepted();
     void gradientFillFollowsColormap();
     void gradientStrokeFollowsColormap();
@@ -286,6 +287,32 @@ void ColormapTest::qmlNullStopsAreIgnored()
     QCOMPARE(stops.front().color, QColor{"#ff0000"});
     QCOMPARE(stops.back().color, QColor{"#0000ff"});
     QCOMPARE(QQmlListReference(colormap, "stops").count(), 2);
+    delete root;
+}
+
+void ColormapTest::qmlNanStopsAreIgnored()
+{
+    auto engine = QQmlEngine{};
+    auto component = QQmlComponent{&engine};
+    auto* root = build(engine, component,
+        "import QtQuick\n"
+        "import QAccelPlot\n"
+        "Colormap {\n"
+        "    stops: [ GradientStop { position: 0.5; color: \"#00ff00\" },\n"
+        "             GradientStop { position: NaN; color: \"#000000\" } ]\n"
+        "}\n");
+    QVERIFY(root);
+
+    const auto* colormap = qobject_cast<Colormap*>(root);
+    QVERIFY(colormap);
+    const auto& stops = colormap->resolvedStops();
+    QCOMPARE(stops.size(), std::size_t{3});
+    QCOMPARE(stops[0].position, 0.0f);
+    QCOMPARE(stops[1].position, 0.5f);
+    QCOMPARE(stops[2].position, 1.0f);
+    for (const auto& stop : stops) {
+        QCOMPARE(stop.color, QColor{"#00ff00"});
+    }
     delete root;
 }
 
