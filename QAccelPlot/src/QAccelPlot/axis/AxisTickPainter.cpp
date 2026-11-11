@@ -185,7 +185,8 @@ AxisTickValues AxisTickPainter::computeLogScaleTickValues(const qreal viewportLo
 AxisTickValues AxisTickPainter::computeLinearTickValues(const qreal viewportLow, const qreal viewportHigh, const AxisTicker& ticker)
 {
     // Compute a "nice" world-aligned tick step from the requested tick count, no finer than the formatter allows.
-    const auto step = std::max(computeNiceStep(viewportLow, viewportHigh, ticker.tickCount()), ticker.tickLabelFormatter()->minimumTickStep());
+    const auto tickCount = std::min(ticker.tickCount(), kMaximumTickCount);
+    const auto step = std::max(computeNiceStep(viewportLow, viewportHigh, tickCount), ticker.tickLabelFormatter()->minimumTickStep());
     if (!std::isfinite(step) || step <= 0.0) {
         return {};
     }
@@ -202,7 +203,7 @@ AxisTickValues AxisTickPainter::computeLinearTickValues(const qreal viewportLow,
     // from excluding ticks that lie exactly on a viewport edge.
     constexpr static auto kRelativeTolerance = 1e-9;
 
-    const auto subtickCount = std::max(ticker.subtickCount(), 0);
+    const auto subtickCount = std::clamp(ticker.subtickCount(), 0, kMaximumSubtickCount);
     const auto subStep = step / (subtickCount + 1);
 
     auto values = AxisTickValues{};

@@ -31,9 +31,9 @@ class AxisTicker : public QObject {
     Q_PROPERTY(QColor tickColor READ tickColor WRITE setTickColor NOTIFY tickColorChanged)
     /// \brief Optional color of tick labels. When invalid, the tickColor is used.
     Q_PROPERTY(QColor tickLabelColor READ tickLabelColor WRITE setTickLabelColor NOTIFY tickLabelColorChanged)
-    /// \brief Target number of major tick marks. Actual count is adjusted for "nice" values. Default: 5.
+    /// \brief Target number of major tick marks, capped at 500. Actual count is adjusted for "nice" values. Default: 5.
     Q_PROPERTY(int tickCount READ tickCount WRITE setTickCount NOTIFY tickCountChanged)
-    /// \brief Number of sub-tick intervals between adjacent major ticks. Default: 10.
+    /// \brief Number of sub-tick intervals between adjacent major ticks, capped at 100. Default: 10.
     Q_PROPERTY(int subtickCount READ subtickCount WRITE setSubtickCount NOTIFY subtickCountChanged)
     /// \brief Convenience setter for both \c tickLengthIn and \c tickLengthOut simultaneously.
     Q_PROPERTY(qreal tickLength READ tickLength WRITE setTickLength NOTIFY tickLengthChanged)

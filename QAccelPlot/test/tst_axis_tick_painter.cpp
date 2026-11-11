@@ -224,6 +224,8 @@ private slots:
     void computeTicks_zoomedCategoryAxisKeepsWholeSteps();
     void computeTickValues_formatterMinimumStepRaisesStep();
     void computeTickValues_logScaleIgnoresMinimumStep();
+    void computeTickValues_hugeCountsStayBounded_data();
+    void computeTickValues_hugeCountsStayBounded();
     void computeTicks_logScaleTicksAndSubticks();
     void computeTicks_logScaleMajorTicksReceiveNonZeroStep();
     void computeTicks_logScaleLabelsUsePowersOfTen();
@@ -609,6 +611,41 @@ void TestAxisTickPainter::computeTickValues_logScaleIgnoresMinimumStep()
     const auto values = QAccelPlot::AxisTickPainter::computeTickValues(1.0, 100.0, true, &ticker);
 
     QCOMPARE(values.majorValues, (QList<qreal>{1.0, 10.0, 100.0}));
+}
+
+void TestAxisTickPainter::computeTickValues_hugeCountsStayBounded_data()
+{
+    QTest::addColumn<qreal>("viewportMin");
+    QTest::addColumn<qreal>("viewportMax");
+    QTest::addColumn<bool>("logScale");
+    QTest::addColumn<int>("tickCount");
+    QTest::addColumn<int>("subtickCount");
+
+    constexpr auto maxInt = std::numeric_limits<int>::max();
+    QTest::newRow("huge-tick-count") << 0.0 << 1.0 << false << 1000000 << 0;
+    QTest::newRow("huge-subtick-count") << 0.0 << 1.0 << false << 5 << 1000000;
+    QTest::newRow("max-int-counts") << 0.0 << 1.0 << false << maxInt << maxInt;
+    QTest::newRow("log-wide-range") << 1e-300 << 1e300 << true << maxInt << maxInt;
+}
+
+void TestAxisTickPainter::computeTickValues_hugeCountsStayBounded()
+{
+    QFETCH(qreal, viewportMin);
+    QFETCH(qreal, viewportMax);
+    QFETCH(bool, logScale);
+    QFETCH(int, tickCount);
+    QFETCH(int, subtickCount);
+    auto ticker = QAccelPlot::AxisTicker{};
+    ticker.setTickCount(tickCount);
+    ticker.setSubtickCount(subtickCount);
+
+    const auto values = QAccelPlot::AxisTickPainter::computeTickValues(viewportMin, viewportMax, logScale, &ticker);
+
+    // A log axis has one major tick per decade, about 600 across this range, and eight subticks per decade.
+    constexpr auto maxMajorCount = 1000;
+    constexpr auto maxSubtickCount = (QAccelPlot::AxisTickPainter::kMaximumTickCount + 1) * QAccelPlot::AxisTickPainter::kMaximumSubtickCount;
+    QVERIFY2(values.majorValues.size() <= maxMajorCount, qPrintable(QString::number(values.majorValues.size())));
+    QVERIFY2(values.subtickValues.size() <= maxSubtickCount, qPrintable(QString::number(values.subtickValues.size())));
 }
 
 void TestAxisTickPainter::computeTicks_logScaleLabelsUsePowersOfTen()

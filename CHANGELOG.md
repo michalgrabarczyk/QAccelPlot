@@ -66,6 +66,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   single value, which blanked the plot and kept zoom-out and pan from
   recovering it.
 
+### Fixed
+
+- A very large `ticker.tickCount` or `ticker.subtickCount` no longer freezes
+  the UI. They are capped at 500 and 100.
+
 ## [0.5.0] — 2026-11-01
 
 ### Added
