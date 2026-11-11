@@ -26,6 +26,10 @@
 #include <cstdlib>
 #include <memory>
 
+#ifdef QACCELPLOT_TEST_GUI_PRIVATE
+#include <private/qwindow_p.h>
+#endif
+
 namespace QAccelPlot {
 
 namespace {
@@ -58,6 +62,16 @@ PlotView {
 }
 )";
 
+#ifdef QACCELPLOT_TEST_GUI_PRIVATE
+// Makes QWindow::isExposed() false and notifies the window, as the platform does while the window stays shown.
+void unexpose(QWindow& window)
+{
+    QWindowPrivate::get(&window)->exposed = false;
+    auto event = QExposeEvent{QRegion{}};
+    QCoreApplication::sendEvent(&window, &event);
+}
+#endif
+
 bool isColor(const QColor& actual, const QColor& expected, const int tolerance = 8)
 {
     return std::abs(actual.red() - expected.red()) <= tolerance && std::abs(actual.green() - expected.green()) <= tolerance
@@ -81,6 +95,7 @@ private slots:
     void failsForHiddenPlot();
     void failsWhenWindowHidesBeforeCapture();
     void failsWhenWindowIsDestroyedBeforeCapture();
+    void failsWhenWindowIsUnexposedBeforeCapture();
     void failsForImageBeyondTextureLimit();
     void grabSizeIsTheClosestReachable_data();
     void grabSizeIsTheClosestReachable();
@@ -287,6 +302,28 @@ void PlotExporterTest::failsWhenWindowIsDestroyedBeforeCapture()
     QCOMPARE(finished.count(), 1);
     QCOMPARE(finished.constFirst().at(0).toBool(), false);
     QVERIFY(!exporter.busy());
+}
+
+void PlotExporterTest::failsWhenWindowIsUnexposedBeforeCapture()
+{
+#ifndef QACCELPLOT_TEST_GUI_PRIVATE
+    QSKIP("Marking a window unexposed requires the Qt GUI private API");
+#else
+    auto exporter = PlotExporter{};
+    exporter.setPlot(plot_);
+    exporter.setTransparentBackground(true);
+    auto finished = QSignalSpy{&exporter, &PlotExporter::finished};
+    QVERIFY(exporter.grabImage());
+    QTest::ignoreMessage(QtWarningMsg, "PlotExporter: The plot's window was hidden before the capture.");
+    unexpose(*window_);
+    QCOMPARE(finished.count(), 1);
+    QCOMPARE(finished.constFirst().at(0).toBool(), false);
+    QVERIFY(!exporter.busy());
+    // A new request gets past the busy and plot export checks, and fails only because the window is unexposed.
+    QTest::ignoreMessage(QtWarningMsg, "PlotExporter: The plot is not visible.");
+    QVERIFY(!exporter.grabImage());
+    QCOMPARE(finished.count(), 2);
+#endif
 }
 
 void PlotExporterTest::failsForImageBeyondTextureLimit()

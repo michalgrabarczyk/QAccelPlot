@@ -93,6 +93,11 @@ void releaseGrab(const QSharedPointer<QQuickItemGrabResult>& grab, const QObject
     QObject::connect(window, &QObject::destroyed, owner, &QObject::deleteLater);
 }
 
+QString windowHiddenError()
+{
+    return QStringLiteral("The plot's window was hidden before the capture.");
+}
+
 } // namespace
 
 // Options are copied when the request starts, so property changes do not affect it.
@@ -105,6 +110,7 @@ struct PlotExporter::Capture {
         , dpi(dpi)
         , plot(plot)
         , window(plot->window())
+        , shown(shownWindow(plot->window()))
         , textures(plot, scale, plot->window()->effectiveDevicePixelRatio())
     {
     }
@@ -117,6 +123,8 @@ struct PlotExporter::Capture {
     QPointer<PlotView> plot;
     // A QWindow: hiding it from ~QWindow can end the capture after the QQuickWindow part is gone.
     QPointer<QWindow> window;
+    // The window on screen: the render window of a QQuickRenderControl, otherwise \c window.
+    QPointer<QWindow> shown;
     Internal::ScopedPaintedItemTextures textures;
     QSharedPointer<QQuickItemGrabResult> grab;
     bool grabFinished{false};
@@ -291,12 +299,21 @@ void PlotExporter::watchCapture()
         capture_->grabFinished = true;
         captured(capture_->grab->image());
     });
-    connect(shownWindow(plot_->window()), &QWindow::visibilityChanged, context, [this](const QWindow::Visibility visibility) {
+    connect(capture_->shown, &QWindow::visibilityChanged, context, [this](const QWindow::Visibility visibility) {
         if (isHidden(visibility)) {
-            abortCapture(QStringLiteral("The plot's window was hidden before the capture."));
+            abortCapture(windowHiddenError());
         }
     });
     connect(capture_->window, &QObject::destroyed, context, [this]() { abortCapture(QStringLiteral("The plot's window was destroyed before the capture.")); });
+    capture_->shown->installEventFilter(this);
+}
+
+bool PlotExporter::eventFilter(QObject* watched, QEvent* event)
+{
+    if (event->type() == QEvent::Expose && capture_ && watched == capture_->shown && !capture_->shown->isExposed()) {
+        abortCapture(windowHiddenError());
+    }
+    return QObject::eventFilter(watched, event);
 }
 
 QString PlotExporter::captureError(const qreal scale) const
@@ -386,6 +403,9 @@ void PlotExporter::endCapture()
     }
     if (capture_->plot) {
         capture_->plot->endExport();
+    }
+    if (capture_->shown) {
+        capture_->shown->removeEventFilter(this);
     }
     releaseGrab(capture_->grab, capture_->window, capture_->grabFinished);
     capture_.reset();

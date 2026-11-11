@@ -30,8 +30,8 @@ namespace QAccelPlot {
 /// Every request is asynchronous and ends with exactly one \c finished() signal, except one made
 /// while \c busy: it returns false with a warning and leaves \c finished() to the request in
 /// progress. A request for a plot another exporter is capturing fails. The capture is taken on the
-/// next frame, and fails when the window is hidden, minimized, or destroyed first; encoding and
-/// writing a file run on a worker thread.
+/// next frame, and fails when the window is hidden, minimized, no longer exposed (as on another
+/// virtual desktop), or destroyed first; encoding and writing a file run on a worker thread.
 ///
 /// \par Usage
 /// \code
@@ -146,6 +146,8 @@ private:
 
     bool startCapture(Operation operation, const QString& path, const QByteArray& format);
     void watchCapture();
+    // Ends the capture when the window stops being exposed, which stops its frames without hiding it.
+    bool eventFilter(QObject* watched, QEvent* event) override;
     QString captureError(qreal scale) const;
     qreal effectiveScale() const;
     void captured(QImage image);
