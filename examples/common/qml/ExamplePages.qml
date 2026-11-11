@@ -21,6 +21,8 @@ ColumnLayout {
     readonly property string currentName: tabBar.currentIndex >= 0 && tabBar.currentIndex < tabs.length ? tabs[tabBar.currentIndex].name : ""
     // The area below the tab bar that holds the pages.
     readonly property Item pageArea: stack
+    // Replaces the style's tab button background when set; created with the button as its parent.
+    property Component tabBackground: null
 
     Layout.fillWidth: true
     Layout.fillHeight: true
@@ -38,6 +40,12 @@ ColumnLayout {
                 required property var modelData
                 objectName: modelData.name
                 text: modelData.title
+
+                Component.onCompleted: {
+                    if (root.tabBackground) {
+                        background = root.tabBackground.createObject(this);
+                    }
+                }
             }
         }
     }

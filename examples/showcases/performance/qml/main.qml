@@ -207,6 +207,7 @@ Window {
                 ExamplePages {
                     id: pages
                     anchors.fill: parent
+                    tabBackground: plainTabBackground
                     tabs: [
                         { name: "lineCurve", title: "LineCurve" },
                         { name: "pointCloud", title: "PointCloud" },
@@ -246,6 +247,21 @@ Window {
                         anchors.fill: parent
                         active: window.loading
                         sourceComponent: loadingCover
+                    }
+                }
+
+                // Replaces the Material ripple, whose hover adds scene nodes, which re-uploads every
+                // series, and animates them on the render thread, which without vsync draws
+                // thousands of frames per second. Both colors are opaque: a transparent Rectangle
+                // removes its node.
+                Component {
+                    id: plainTabBackground
+
+                    Rectangle {
+                        readonly property Item button: parent
+
+                        implicitHeight: button.Material.touchTarget
+                        color: button.hovered || button.down ? Qt.tint(button.Material.backgroundColor, button.Material.rippleColor) : button.Material.backgroundColor
                     }
                 }
 
