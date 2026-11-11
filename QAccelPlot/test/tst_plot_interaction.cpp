@@ -98,6 +98,31 @@ QPointF cursorPixel(const QAccelPlot::PlotInspector& inspector)
     return {inspector.cursorPixelX(), inspector.cursorPixelY()};
 }
 
+// Records the viewport (min, max) that each rangeChanged() emission exposes.
+class RangeRecorder {
+public:
+    explicit RangeRecorder(QAccelPlot::Axis* axis)
+        : axis_{axis}
+    {
+        QObject::connect(axis, &QAccelPlot::Axis::rangeChanged, &context_, [this] { ranges_.append({axis_->viewportMin(), axis_->viewportMax()}); });
+    }
+
+    QList<QPointF> ranges() const
+    {
+        return ranges_;
+    }
+
+    QList<QPointF> finalRangeOnly() const
+    {
+        return {{axis_->viewportMin(), axis_->viewportMax()}};
+    }
+
+private:
+    QAccelPlot::Axis* axis_;
+    QObject context_;
+    QList<QPointF> ranges_;
+};
+
 } // namespace
 
 #define QCOMPARE_NEAR(actual, expected)                                                                                                                        \
@@ -119,6 +144,10 @@ private slots:
     void zoomScaleFactor_extremesStillZoom();
     void dragInPlotArea_pansAllAxes();
     void dragOnLogAxis_pansInLogSpace();
+    void wheel_updatesEachViewportOnce();
+    void dragPastSpan_updatesEachViewportOnce();
+    void axisDragPastSpan_updatesViewportOnce();
+    void zoomToRect_updatesEachViewportOnce();
     void acceptedPressDoesNotStartDrag();
     void doubleClick_rescalesAxesToData();
     void acceptedDoubleClickDoesNotRescale();
@@ -362,6 +391,86 @@ void TestPlotInteraction::dragOnLogAxis_pansInLogSpace()
 
     QCOMPARE_NEAR(xAxis->viewportMin(), 10.0);
     QCOMPARE_NEAR(xAxis->viewportMax(), 1e5);
+}
+
+void TestPlotInteraction::wheel_updatesEachViewportOnce()
+{
+    auto plot = TestablePlot{};
+    plot.setSize({300.0, 200.0});
+    auto* xAxis = new QAccelPlot::Axis{&plot};
+    auto* yAxis = new QAccelPlot::Axis{&plot};
+    plot.setXAxis(xAxis);
+    plot.setYAxis(yAxis);
+    setViewport(xAxis, 0.0, 100.0);
+    setViewport(yAxis, 0.0, 10.0);
+    const auto xRanges = RangeRecorder{xAxis};
+    const auto yRanges = RangeRecorder{yAxis};
+
+    wheel(plot, plot.plotRect().center(), kWheelStep);
+
+    QCOMPARE(xRanges.ranges(), xRanges.finalRangeOnly());
+    QCOMPARE(yRanges.ranges(), yRanges.finalRangeOnly());
+}
+
+void TestPlotInteraction::dragPastSpan_updatesEachViewportOnce()
+{
+    auto plot = TestablePlot{};
+    plot.setSize({300.0, 200.0});
+    auto* xAxis = new QAccelPlot::Axis{&plot};
+    auto* yAxis = new QAccelPlot::Axis{&plot};
+    plot.setXAxis(xAxis);
+    plot.setYAxis(yAxis);
+    setViewport(xAxis, 0.0, 10.0);
+    setViewport(yAxis, 0.0, 10.0);
+    const auto xRanges = RangeRecorder{xAxis};
+    const auto yRanges = RangeRecorder{yAxis};
+
+    // Panning by more than the span would expose an inverted range between two separate bound updates.
+    const auto rect = plot.plotRect();
+    drag(plot, rect.center(), rect.center() + QPointF{-2.0 * rect.width(), 2.0 * rect.height()});
+
+    QCOMPARE_NEAR(xAxis->viewportMin(), 20.0);
+    QCOMPARE_NEAR(yAxis->viewportMin(), 20.0);
+    QCOMPARE(xRanges.ranges(), xRanges.finalRangeOnly());
+    QCOMPARE(yRanges.ranges(), yRanges.finalRangeOnly());
+}
+
+void TestPlotInteraction::axisDragPastSpan_updatesViewportOnce()
+{
+    auto axis = TestableAxis{};
+    axis.setSize({250.0, 50.0});
+    setViewport(&axis, 0.0, 10.0);
+    const auto ranges = RangeRecorder{&axis};
+
+    const auto dataLength = axis.width() - 2.0 * axis.labelOverflow();
+    drag(axis, {200.0, 10.0}, {200.0 - 2.0 * dataLength, 10.0});
+
+    QCOMPARE_NEAR(axis.viewportMin(), 20.0);
+    QCOMPARE(ranges.ranges(), ranges.finalRangeOnly());
+}
+
+void TestPlotInteraction::zoomToRect_updatesEachViewportOnce()
+{
+    auto plot = TestablePlot{};
+    plot.setSize({300.0, 200.0});
+    auto* xAxis = new QAccelPlot::Axis{&plot};
+    auto* yAxis = new QAccelPlot::Axis{&plot};
+    plot.setXAxis(xAxis);
+    plot.setYAxis(yAxis);
+    setViewport(xAxis, 0.0, 100.0);
+    setViewport(yAxis, 0.0, 10.0);
+    const auto xRanges = RangeRecorder{xAxis};
+    const auto yRanges = RangeRecorder{yAxis};
+
+    const auto rect = plot.plotRect();
+    const auto quarter = QPointF{rect.width() / 4.0, rect.height() / 4.0};
+    QVERIFY(plot.zoomToRect(QRectF{rect.topLeft() + quarter, rect.bottomRight() - quarter}));
+
+    QCOMPARE_NEAR(xAxis->viewportMin(), 25.0);
+    QCOMPARE_NEAR(xAxis->viewportMax(), 75.0);
+
+    QCOMPARE(xRanges.ranges(), xRanges.finalRangeOnly());
+    QCOMPARE(yRanges.ranges(), yRanges.finalRangeOnly());
 }
 
 void TestPlotInteraction::acceptedPressDoesNotStartDrag()

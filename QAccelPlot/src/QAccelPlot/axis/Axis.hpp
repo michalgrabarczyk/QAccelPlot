@@ -112,6 +112,11 @@ public:
     /// \brief Sets the upper bound of the visible range to \a m.
     void setViewportMax(qreal m);
 
+    /// \brief Sets the visible range to [\a min, \a max] and emits \c rangeChanged() once.
+    ///
+    /// Unlike \c setViewportMin() followed by \c setViewportMax(), handlers never see one bound updated without the other.
+    Q_INVOKABLE void setViewportRange(qreal min, qreal max);
+
     /// \brief Returns the minimum data value of the bound series, computing it if their data changed.
     qreal dataMin() const;
     /// \brief Sets the data minimum to \a m until a bound series with data changes its records.
@@ -287,7 +292,6 @@ private:
     void ensureDataRange() const;
     void setDataRangeValues(qreal min, qreal max);
     DataRange dataFitRange() const;
-    void setViewportRange(qreal min, qreal max);
     void autoRescaleToData();
     qreal valueResolution(qreal value, qreal length) const;
     qreal defaultLabelRotation() const;

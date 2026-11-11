@@ -131,6 +131,25 @@ void Axis::setViewportMax(const qreal m)
     invalidateTicks();
 }
 
+void Axis::setViewportRange(const qreal min, const qreal max)
+{
+    const auto minChanged = !nearlyEqual(viewportMin_, min);
+    const auto maxChanged = !nearlyEqual(viewportMax_, max);
+    if (!minChanged && !maxChanged) {
+        return;
+    }
+    viewportMin_ = min;
+    viewportMax_ = max;
+    if (minChanged) {
+        emit viewportMinChanged();
+    }
+    if (maxChanged) {
+        emit viewportMaxChanged();
+    }
+    emit rangeChanged();
+    invalidateTicks();
+}
+
 qreal Axis::dataMin() const
 {
     ensureDataRange();
@@ -316,8 +335,7 @@ void Axis::setLogScale(const bool on)
         // for every value in that case, collapsing every curve to a single point.
         const auto newMin = viewportMin_ > 0.0 ? viewportMin_ : kLogScaleMinPositiveValue;
         const auto newMax = viewportMax_ > newMin ? viewportMax_ : newMin * kLogScaleRangeFactor;
-        setViewportMin(newMin);
-        setViewportMax(newMax);
+        setViewportRange(newMin, newMax);
     }
     emit logScaleChanged();
     emit rangeChanged(); // force curves to rebuild
@@ -613,25 +631,6 @@ Axis::DataRange Axis::dataFitRange() const
     return {std::max(std::numeric_limits<qreal>::lowest(), dataMin_ - half), std::min(std::numeric_limits<qreal>::max(), dataMin_ + half)};
 }
 
-void Axis::setViewportRange(const qreal min, const qreal max)
-{
-    const auto minChanged = !nearlyEqual(viewportMin_, min);
-    const auto maxChanged = !nearlyEqual(viewportMax_, max);
-    if (!minChanged && !maxChanged) {
-        return;
-    }
-    viewportMin_ = min;
-    viewportMax_ = max;
-    if (minChanged) {
-        emit viewportMinChanged();
-    }
-    if (maxChanged) {
-        emit viewportMaxChanged();
-    }
-    emit rangeChanged();
-    invalidateTicks();
-}
-
 void Axis::autoRescaleToData()
 {
     if (autoRescale_) {
@@ -682,8 +681,7 @@ void Axis::mouseMoveEvent(QMouseEvent* event)
         // brings higher ones, because values grow upward while pixel y grows downward.
         const auto fraction = (orientation_ == Qt::Horizontal) ? -delta.x() / dataLength : delta.y() / dataLength;
         const auto range = Internal::pannedRange({viewportMin_, viewportMax_}, fraction, logScale_);
-        setViewportMin(range.min);
-        setViewportMax(range.max);
+        setViewportRange(range.min, range.max);
         event->accept();
     } else {
         QQuickPaintedItem::mouseMoveEvent(event);

@@ -184,10 +184,7 @@ bool PlotView::zoomToRect(const QRectF& rect)
     cancelRectangleSelection();
     for (const auto& range : ranges) {
         if (range.axis) {
-            range.axis->setViewportMin(range.min);
-            if (range.axis) {
-                range.axis->setViewportMax(range.max);
-            }
+            range.axis->setViewportRange(range.min, range.max);
         }
     }
     return true;
@@ -889,8 +886,7 @@ void PlotView::zoomAxis(Axis* axis, const qreal factor, const qreal centerRatio)
         return;
     }
     const auto range = Internal::zoomedRange({axis->viewportMin(), axis->viewportMax()}, factor, centerRatio, axis->logScale());
-    axis->setViewportMin(range.min);
-    axis->setViewportMax(range.max);
+    axis->setViewportRange(range.min, range.max);
 }
 
 void PlotView::panAxis(Axis* axis, const qreal delta, const qreal length)
@@ -899,8 +895,7 @@ void PlotView::panAxis(Axis* axis, const qreal delta, const qreal length)
         return;
     }
     const auto range = Internal::pannedRange({axis->viewportMin(), axis->viewportMax()}, delta / length, axis->logScale());
-    axis->setViewportMin(range.min);
-    axis->setViewportMax(range.max);
+    axis->setViewportRange(range.min, range.max);
 }
 
 QList<Axis*> PlotView::attachedAxes() const
