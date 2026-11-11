@@ -351,8 +351,11 @@ void PerformanceGeneratorsTest::galaxyRotatesEachBand()
             const auto index = static_cast<std::size_t>(i) * 2;
             const auto x = base[index];
             const auto y = base[index + 1];
-            QCOMPARE(part.floats[index], cosine * x - sine * y);
-            QCOMPARE(part.floats[index + 1], sine * x + cosine * y);
+            // Scaled to the terms, not the result: where they nearly cancel, a fused multiply-add
+            // changes the result by more than its own relative tolerance.
+            const auto tolerance = kSplitTolerance * std::max(1.0f, std::abs(x) + std::abs(y));
+            QVERIFY(std::abs(part.floats[index] - (cosine * x - sine * y)) <= tolerance);
+            QVERIFY(std::abs(part.floats[index + 1] - (sine * x + cosine * y)) <= tolerance);
         }
     }
 }
