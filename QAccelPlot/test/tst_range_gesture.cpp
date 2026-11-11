@@ -49,6 +49,9 @@ private slots:
     void panPastTheRangeOfADoubleReturnsRangeUnchanged_data();
     void panPastTheRangeOfADoubleReturnsRangeUnchanged();
     void repeatedLogZoomOutStaysUsable();
+    void deepZoomInStaysZoomable_data();
+    void deepZoomInStaysZoomable();
+    void panThatRoundsBoundsTogetherReturnsRangeUnchanged();
     void wheelZoomFactorIsReciprocalWhenZoomingOut();
     void wheelZoomFactorAlwaysZooms();
 };
@@ -173,6 +176,47 @@ void RangeGestureTest::repeatedLogZoomOutStaysUsable()
     const auto narrowed = zoomedRange(range, wheelZoomFactor(0.9, true), 0.5, true);
     QVERIFY(narrowed.min > range.min);
     QVERIFY(narrowed.max < range.max);
+}
+
+void RangeGestureTest::deepZoomInStaysZoomable_data()
+{
+    QTest::addColumn<qreal>("min");
+    QTest::addColumn<qreal>("max");
+    QTest::addColumn<qreal>("anchorRatio");
+    QTest::addColumn<bool>("logarithmic");
+
+    QTest::newRow("linear far from zero") << 1e6 << 1e6 + 1.0 << 0.5 << false;
+    QTest::newRow("linear off center") << -3.0 << 7.0 << 0.3 << false;
+    QTest::newRow("linear toward zero") << 0.0 << 1.0 << 0.0 << false;
+    QTest::newRow("log far from one") << 1e6 << 1e8 << 0.5 << true;
+    QTest::newRow("log around one") << 0.5 << 2.0 << 0.5 << true;
+    QTest::newRow("log toward large values") << 1e299 << 1e300 << 1.0 << true;
+}
+
+void RangeGestureTest::deepZoomInStaysZoomable()
+{
+    QFETCH(qreal, min);
+    QFETCH(qreal, max);
+    QFETCH(qreal, anchorRatio);
+    QFETCH(bool, logarithmic);
+
+    auto range = ValueRange{min, max};
+    for (auto step = 0; step < 3000; ++step) {
+        range = zoomedRange(range, wheelZoomFactor(0.5, true), anchorRatio, logarithmic);
+        QVERIFY2(range.min < range.max, qPrintable(QStringLiteral("step %1: [%2, %3]").arg(step).arg(range.min, 0, 'g', 17).arg(range.max, 0, 'g', 17)));
+    }
+
+    const auto widened = zoomedRange(range, wheelZoomFactor(0.99, false), anchorRatio, logarithmic);
+    QVERIFY(widened.max - widened.min > range.max - range.min);
+}
+
+void RangeGestureTest::panThatRoundsBoundsTogetherReturnsRangeUnchanged()
+{
+    // A one-ulp range at 1 shifted to 3, where both bounds round to the same double.
+    const auto max = std::nextafter(1.0, 2.0);
+    const auto range = pannedRange({1.0, max}, 2.0 / (max - 1.0), false);
+    QVERIFY(range.min == 1.0);
+    QVERIFY(range.max == max);
 }
 
 void RangeGestureTest::wheelZoomFactorIsReciprocalWhenZoomingOut()

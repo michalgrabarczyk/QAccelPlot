@@ -21,7 +21,8 @@ struct ValueRange {
 ///
 /// With \a logarithmic set, the shift is applied in \c log10 space, so both bounds are scaled by
 /// the same ratio. A range that is not positive is shifted linearly instead. Returns \a range
-/// unchanged when a bound would leave the range of a double.
+/// unchanged when a bound would leave the range of a double or both bounds would round to the same
+/// value.
 [[nodiscard]] ValueRange pannedRange(const ValueRange& range, qreal fraction, bool logarithmic);
 
 /// \brief Returns \a range with its extent multiplied by \a factor, keeping the value at \a anchorRatio in place.
@@ -29,7 +30,9 @@ struct ValueRange {
 /// \a anchorRatio is a position inside the range: 0 at \c min and 1 at \c max. With \a logarithmic
 /// set, the extent is measured in \c log10 space. A range that is not positive is zoomed linearly
 /// instead. Returns \a range unchanged when a bound would leave the range of a double: it would not
-/// be finite, or in \c log10 space it would reach zero.
+/// be finite, or in \c log10 space it would reach zero. Also returns \a range unchanged when a
+/// zoom-in would shrink the extent below 1e-12 of the larger bound, where double precision would
+/// soon collapse the bounds and keep a zoom-out from moving them.
 [[nodiscard]] ValueRange zoomedRange(const ValueRange& range, qreal factor, qreal anchorRatio, bool logarithmic);
 
 /// \brief Returns the extent multiplier for mouse-wheel zoom with a \a zoomScaleFactor in (0, 1).

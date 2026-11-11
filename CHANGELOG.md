@@ -60,6 +60,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - A `GradientStop` whose `position` is NaN is ignored instead of corrupting
   the stop order of `GradientFill`, `GradientStroke`, and `Colormap`.
 
+### Fixed
+
+- Zooming in with the mouse wheel far enough no longer collapses an axis to a
+  single value, which blanked the plot and kept zoom-out and pan from
+  recovering it.
+
 ## [0.5.0] — 2026-11-01
 
 ### Added
