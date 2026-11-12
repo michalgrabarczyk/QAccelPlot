@@ -459,8 +459,10 @@ void BandSeriesDataTest::dashLengthsFollowZoomButNotPan()
     // The upper edge is a horizontal line across the 100 px wide item.
     const auto upperEdgeVertices
         = [&fixture]() { return static_cast<DashedLineVertex*>(static_cast<QSGGeometryNode*>(fixture.node->childAtIndex(2))->geometry()->vertexData()); };
+    // The last vertex of the third data point.
+    const auto lastVertex = 3 * LineStroke::verticesPerPathPoint(true) - 1;
     fixture.paint();
-    QCOMPARE(upperEdgeVertices()[5].arcLength, 100.0f);
+    QCOMPARE(upperEdgeVertices()[lastVertex].arcLength, 100.0f);
 
     // Panning keeps the lengths, so the vertex buffer is not rewritten: the marker survives.
     upperEdgeVertices()[0].arcLength = -1.0f;
@@ -473,7 +475,7 @@ void BandSeriesDataTest::dashLengthsFollowZoomButNotPan()
     fixture.xAxis.setViewportMax(21.0);
     fixture.paint();
     QCOMPARE(upperEdgeVertices()[0].arcLength, 0.0f);
-    QCOMPARE(upperEdgeVertices()[5].arcLength, 50.0f);
+    QCOMPARE(upperEdgeVertices()[lastVertex].arcLength, 50.0f);
 }
 
 void BandSeriesDataTest::appendingKeepsTheVertexBuffers()

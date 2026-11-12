@@ -15,9 +15,8 @@
 #include <QSGGeometryNode>
 #include <QVector2D>
 
-#include <algorithm>
-#include <cmath>
 #include <cstdint>
+#include <functional>
 #include <optional>
 #include <vector>
 
@@ -27,47 +26,40 @@ class LineMaterial;
 
 /// \brief Vertex of a solid line ribbon, shared with the main thread for pre-built vertex caches.
 ///
-/// Packs a data point index, a path corner, and a ribbon side into four bytes, which the shaders
-/// read as normalized bytes (see line_vertex_input.glsl).
+/// Packs a data point index, a path corner, a join half, and a ribbon side into four bytes, which the
+/// shaders read as normalized bytes (see line_vertex_input.glsl).
 struct LineVertex {
     /// \brief Largest data point index a vertex holds.
     static constexpr int kMaximumIndex = (1 << 28) - 1;
     /// \brief Largest path corner a vertex holds.
-    static constexpr int kMaximumCorner = 7;
+    static constexpr int kMaximumCorner = 3;
 
-    /// \brief Bits 0–27 hold the data point index, bits 28–30 the path corner, and bit 31 marks the negative ribbon side.
+    /// \brief Bits 0–27 hold the data point index, bits 28–29 the path corner, bit 30 marks the outgoing join half, and bit 31 the negative ribbon side.
     std::uint32_t packed;
 
     /// \brief Returns the vertex of data point \a index at step corner \a corner (0 for the point itself) on the negative ribbon side when \a negativeSide.
-    static constexpr LineVertex make(const int index, const int corner, const bool negativeSide) noexcept
-    {
-        return {static_cast<std::uint32_t>(index) | (static_cast<std::uint32_t>(corner) << 28U) | (negativeSide ? 1U << 31U : 0U)};
-    }
+    ///
+    /// \a outgoing marks a vertex that starts the segment after a split join; see verticesPerPathPoint().
+    static LineVertex make(int index, int corner, bool negativeSide, bool outgoing = false) noexcept;
 
     /// \brief Returns the data point index.
-    constexpr int index() const noexcept
-    {
-        return static_cast<int>(packed & 0x0FFFFFFFU);
-    }
+    int index() const noexcept;
 
     /// \brief Returns the step corner after the data point; 0 for the point itself.
-    constexpr int corner() const noexcept
-    {
-        return static_cast<int>((packed >> 28U) & 7U);
-    }
+    int corner() const noexcept;
+
+    /// \brief Returns whether the vertex starts the segment after a split join.
+    bool outgoing() const noexcept;
 
     /// \brief Returns whether the vertex lies on the negative ribbon side.
-    constexpr bool negativeSide() const noexcept
-    {
-        return (packed >> 31U) != 0U;
-    }
+    bool negativeSide() const noexcept;
 };
 
 static_assert(sizeof(LineVertex) == 4);
 
 /// \brief Vertex of a dashed line ribbon: a \c LineVertex and the screen-space arc length the dash pattern follows.
 struct DashedLineVertex {
-    LineVertex vertex; ///< \brief Data point index, path corner, and ribbon side.
+    LineVertex vertex; ///< \brief Data point index, path corner, join half, and ribbon side.
     float arcLength;   ///< \brief Cumulative screen-space arc length in pixels.
 };
 
@@ -105,16 +97,25 @@ QSGGeometryNode* createNode(int vertexCount, LineMaterial* material);
 /// when the layout differs from the current one, and returns \c true then.
 bool setMaterial(QSGGeometryNode* node, LineMaterial* material);
 
-/// \brief Writes two ribbon vertices per path point for data points [\a firstPoint, \a pointCount) of \a cornerCount path points each into \a vertices.
+/// \brief Returns the ribbon vertices of a path point: four with \a splitJoins, or two otherwise.
 ///
-/// \a vertices holds the vertices of all \a pointCount data points; those before \a firstPoint are left unchanged.
-void writeVertices(LineVertex* vertices, int pointCount, int cornerCount, int firstPoint = 0);
+/// Split joins give a path point one vertex pair that ends the segment before it and one that starts the
+/// segment after it, so a join too sharp for a miter draws as a bevel. Without them, both segments share a
+/// mitered pair, which suits paths that only turn by right angles.
+int verticesPerPathPoint(bool splitJoins) noexcept;
 
-/// \brief Writes two ribbon vertices per path point for \a pointCount data points of \a cornerCount path points each into \a vertices.
+/// \brief Writes the ribbon vertices of data points [\a firstPoint, \a pointCount) of \a cornerCount path points each into \a vertices.
 ///
-/// \a arcLengths holds cumulative lengths of the leading path points. Path points past its end, such as
-/// vertices reserved for appended data, repeat its last length, or 0 when it is empty.
-void writeDashedVertices(DashedLineVertex* vertices, int pointCount, int cornerCount, const std::vector<float>& arcLengths);
+/// Each path point gets verticesPerPathPoint(\a splitJoins) vertices. \a vertices holds the vertices of all
+/// \a pointCount data points; those before \a firstPoint are left unchanged.
+void writeVertices(LineVertex* vertices, int pointCount, int cornerCount, bool splitJoins, int firstPoint = 0);
+
+/// \brief Writes the ribbon vertices of \a pointCount data points of \a cornerCount path points each into \a vertices.
+///
+/// Each path point gets verticesPerPathPoint(\a splitJoins) vertices. \a arcLengths holds cumulative lengths of
+/// the leading path points. Path points past its end, such as vertices reserved for appended data, repeat its
+/// last length, or 0 when it is empty.
+void writeDashedVertices(DashedLineVertex* vertices, int pointCount, int cornerCount, bool splitJoins, const std::vector<float>& arcLengths);
 
 /// \brief Copies \a uniforms into \a material.
 void applyUniforms(LineMaterial& material, const Uniforms& uniforms);
@@ -123,31 +124,7 @@ void applyUniforms(LineMaterial& material, const Uniforms& uniforms);
 ///
 /// \a pixelAt returns the pixel position of a data point, or \c std::nullopt for an invalid data point.
 /// Segments touching an invalid data point add no length, so the dash phase continues across a gap.
-template <typename PixelAt> std::vector<float> arcLengths(const int pointCount, const PixelAt& pixelAt)
-{
-    auto lengths = std::vector<float>(static_cast<std::size_t>(std::max(pointCount, 0)));
-    auto length = 0.0f;
-    auto previousX = 0.0f;
-    auto previousY = 0.0f;
-    auto previousValid = false;
-    for (auto i = 0; i < pointCount; ++i) {
-        const auto current = std::optional<QPointF>{pixelAt(i)};
-        if (current) {
-            const auto x = static_cast<float>(current->x());
-            const auto y = static_cast<float>(current->y());
-            if (previousValid) {
-                const auto dx = x - previousX;
-                const auto dy = y - previousY;
-                length += std::sqrt(dx * dx + dy * dy);
-            }
-            previousX = x;
-            previousY = y;
-        }
-        previousValid = current.has_value();
-        lengths[static_cast<std::size_t>(i)] = length;
-    }
-    return lengths;
-}
+std::vector<float> arcLengths(int pointCount, const std::function<std::optional<QPointF>(int)>& pixelAt);
 
 } // namespace LineStroke
 

@@ -77,6 +77,9 @@ struct FillSamples {
 /// vertex caches assembled on the main thread for reduced render-thread stalls.
 class LineCurveLineRenderer {
 public:
+    /// \brief Returns the ribbon vertices per data point of a line drawn with \a stepMode.
+    static int verticesPerPoint(StepMode stepMode);
+
     /// \brief Returns the vertex cache bytes per data point of a line drawn with \a stepMode.
     static std::size_t vertexCacheBytesPerPoint(StepMode stepMode);
 

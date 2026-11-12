@@ -45,8 +45,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `labelFont`, `labelColor`, and `labelPadding`. In C++, `label()` returns the
   group, for example `axis->label()->setText()` with `AxisLabel.hpp` included.
 - Line vertices take 4 bytes instead of 16, or 8 with a dash pattern, so a
-  `LineCurve` or `BandSeries` edge whose point count changes uploads a quarter
-  of the data.
+  `LineCurve` or `BandSeries` edge whose point count changes uploads less
+  data.
 - A hoverable `LineCurve` builds its hover bounding boxes on the first pointer
   move after a data change instead of on every change, so streamed data costs
   no scan while the pointer is elsewhere.
@@ -73,6 +73,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Rotated tick labels (`ticker.tickLabelRotation`) are no longer clipped on
   vertical axes or drawn over the ticks. Each is centered on its tick and
   placed by its rotated bounding box.
+- Steep segments between sharp turns of a `LineCurve` or `BandSeries` edge,
+  as in noisy data, keep their width instead of breaking into dots. Joins too
+  sharp for a miter draw as bevels.
 
 ## [0.5.0] — 2026-11-01
 

@@ -147,9 +147,6 @@ template <typename Effect, typename Payload, typename RangeFn> Payload resolveGr
     return payload;
 }
 
-constexpr auto kLineVerticesPerPoint = 2;
-// Dashed lines have the larger vertices.
-constexpr auto kLineVertexBytesPerPoint = kLineVerticesPerPoint * static_cast<int>(sizeof(DashedLineVertex));
 constexpr auto kMarkerVertexBytesPerPoint = LineCurvePointRenderer::kVerticesPerPoint * static_cast<int>(sizeof(PointVertex));
 // QSGGeometry sizes the marker vertex buffer in int bytes.
 constexpr auto kMaxMarkerPoints = std::numeric_limits<int>::max() / kMarkerVertexBytesPerPoint;
@@ -168,7 +165,9 @@ int pointCapacity(QQuickWindow* window, const bool hasLine, const bool hasPoints
 {
     auto capacity = hasPoints ? markerCapacity(window) : std::numeric_limits<int>::max();
     if (hasLine) {
-        capacity = std::min(capacity, Internal::recordCapacity(window, 2, kLineVertexBytesPerPoint * Internal::stepCornerCount(stepMode)));
+        // Dashed lines have the larger vertices.
+        const auto lineVertexBytes = LineCurveLineRenderer::verticesPerPoint(stepMode) * static_cast<int>(sizeof(DashedLineVertex));
+        capacity = std::min(capacity, Internal::recordCapacity(window, 2, lineVertexBytes));
     }
     return capacity;
 }
