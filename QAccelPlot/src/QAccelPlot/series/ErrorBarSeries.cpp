@@ -437,7 +437,8 @@ QSGNode* ErrorBarSeries::updatePaintNode(QSGNode* oldNode, [[maybe_unused]] Upda
 {
     auto* window = this->window();
     updateRenderCapacity(Internal::recordCapacity(window, kStride, kVertexBytesPerErrorBar), count());
-    if (count() <= 0 || !xAxis() || !yAxis() || resolvePlotRect().isEmpty() || !window) {
+    const auto drawnCount = std::min(dataPoints().renderCount(), renderCapacity_);
+    if (drawnCount <= 0 || !xAxis() || !yAxis() || resolvePlotRect().isEmpty() || !window) {
         delete oldNode;
         return nullptr;
     }
@@ -453,7 +454,6 @@ QSGNode* ErrorBarSeries::updatePaintNode(QSGNode* oldNode, [[maybe_unused]] Upda
     }
 
     auto* node = oldNode ? static_cast<QSGGeometryNode*>(oldNode) : createErrorBarNode();
-    const auto drawnCount = std::min(dataPoints().renderCount(), renderCapacity_);
     updateVertices(*node, drawnCount);
 
     auto* material = static_cast<ErrorBarMaterial*>(node->material());

@@ -128,6 +128,7 @@ private slots:
     void transitionReachesTargetData();
     void interruptedTransitionShowsTargetData_data();
     void interruptedTransitionShowsTargetData();
+    void clearDataRunsTheExitTransition();
     void clearDataSkipsTheAnimation();
     void sharedTransitionAnimatesSeriesIndependently();
     void transitionPropertyNotifies();
@@ -484,6 +485,22 @@ void PointCloudTransitionsTest::interruptedTransitionShowsTargetData()
     QTRY_VERIFY(shows({{8.0, 8.0, Qt::red}, {5.0, 5.0, Qt::black}}));
     QVERIFY(!transition || !transition->running());
     scene_.cloud->setUpdateTransition(nullptr);
+}
+
+void PointCloudTransitionsTest::clearDataRunsTheExitTransition()
+{
+    auto grow = HeldHalfway<GrowTransition>{};
+    scene_.cloud->setData(std::vector<double>{5.0, 8.0}, 1);
+    scene_.cloud->setExitTransition(&grow);
+
+    scene_.cloud->clearData();
+
+    QCOMPARE(scene_.cloud->count(), 0);
+    QVERIFY(grow.running());
+    QTRY_VERIFY(shows({{5.0, 4.0, Qt::red}, {5.0, 8.0, Qt::black}}));
+    QVERIFY(scene_.cloud->animating());
+    scene_.cloud->setExitTransition(nullptr);
+    QVERIFY(!scene_.cloud->animating());
 }
 
 void PointCloudTransitionsTest::clearDataSkipsTheAnimation()

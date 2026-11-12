@@ -11,6 +11,7 @@
 #include "QAccelPlot/inspection/SeriesInspection.hpp"
 #include "QAccelPlot/series/ErrorBarSeries.hpp"
 #include "QAccelPlot/transitions/DrawTransition.hpp"
+#include "QAccelPlot/transitions/GrowTransition.hpp"
 #include "QAccelPlot/transitions/MorphTransition.hpp"
 #include "WindowPlacement.hpp"
 
@@ -113,6 +114,7 @@ private slots:
     void interruptedTransitionShowsTargetData_data();
     void interruptedTransitionShowsTargetData();
     void appendingSkipsTheAnimation();
+    void clearDataRunsTheExitTransition();
     void clearDataSkipsTheAnimation();
     void transitionPropertyNotifies();
 
@@ -355,6 +357,23 @@ void ErrorBarSeriesTransitionsTest::appendingSkipsTheAnimation()
     QVERIFY(!morph.running());
     QTRY_VERIFY(shows({{8.0, 5.0, Qt::red}, {3.0, 5.0, Qt::red}, {5.0, 5.0, Qt::black}}));
     bars_->setUpdateTransition(nullptr);
+}
+
+void ErrorBarSeriesTransitionsTest::clearDataRunsTheExitTransition()
+{
+    auto grow = HeldHalfway<GrowTransition>{};
+    bars_->setData(errorBarsAt({5.0}), 1);
+    bars_->setExitTransition(&grow);
+
+    bars_->clearData();
+
+    // Half way from 4 to 6 down to 0: drawn from 2 to 3.
+    QCOMPARE(bars_->count(), 0);
+    QVERIFY(grow.running());
+    QTRY_VERIFY(shows({{5.0, 2.5, Qt::red}, {5.0, 5.0, Qt::black}}));
+    QVERIFY(bars_->animating());
+    bars_->setExitTransition(nullptr);
+    QVERIFY(!bars_->animating());
 }
 
 void ErrorBarSeriesTransitionsTest::clearDataSkipsTheAnimation()

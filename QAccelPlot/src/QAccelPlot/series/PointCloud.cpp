@@ -392,12 +392,12 @@ QSGNode* PointCloud::updatePaintNode(QSGNode* oldNode, [[maybe_unused]] UpdatePa
     }
     updateRenderCapacity(capacity, count());
     const auto plotArea = resolvePlotRect();
-    if (count() <= 0 || !xAxis() || !yAxis() || plotArea.width() <= 0.0 || plotArea.height() <= 0.0) {
+    const auto renderCount = std::min(points.renderCount(), renderCapacity_);
+    if (renderCount <= 0 || !xAxis() || !yAxis() || plotArea.width() <= 0.0 || plotArea.height() <= 0.0) {
         delete oldNode;
         return nullptr;
     }
 
-    const auto renderCount = std::min(points.renderCount(), renderCapacity_);
     auto* node = oldNode ? static_cast<QSGGeometryNode*>(oldNode) : createPointCloudNode();
     auto* material = static_cast<PointCloudMaterial*>(node->material());
 
