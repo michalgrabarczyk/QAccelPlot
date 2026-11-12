@@ -82,12 +82,19 @@ public:
     /// \brief Returns the size of the rectangle \c paintTicks() lays out for \a label, measured with \a metrics.
     static QSizeF tickLabelSize(const QFontMetricsF& metrics, const QString& label);
 
+    /// \brief Returns the size of the box \c paintTicks() lays out for \a label rotated by \a rotation degrees.
+    ///
+    /// Measured with \a metrics. Equals \c tickLabelSize() when \a rotation is zero. Rotated labels skip the
+    /// minimum label height that keeps unrotated labels on a common baseline.
+    static QSizeF rotatedTickLabelSize(const QFontMetricsF& metrics, const QString& label, qreal rotation);
+
 private:
     static AxisTickValues computeLogScaleTickValues(qreal viewportLow, qreal viewportHigh, const AxisTicker& ticker);
     static AxisTickValues computeLinearTickValues(qreal viewportLow, qreal viewportHigh, const AxisTicker& ticker);
     static void paintTick(const PaintContext& ctx, const AxisTick& tick, const Params& params, const MapToPosition& mapToPosition);
     static void paintSubtick(const PaintContext& ctx, qreal value, const Params& params, const MapToPosition& mapToPosition);
-    static void drawTickLabel(QPainter* painter, const QRectF& labelRect, int alignment, const QString& label, qreal rotation);
+    static void drawTickLabel(QPainter* painter, const QRectF& labelRect, int alignment, const QString& label);
+    static void drawRotatedTickLabel(QPainter* painter, const QRectF& bounds, const QSizeF& textSize, const QString& label, qreal rotation);
 };
 
 } // namespace QAccelPlot

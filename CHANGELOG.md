@@ -59,29 +59,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - A `GradientStop` whose `position` is NaN is ignored instead of corrupting
   the stop order of `GradientFill`, `GradientStroke`, and `Colormap`.
-
-### Fixed
-
 - Zooming in with the mouse wheel far enough no longer collapses an axis to a
   single value, which blanked the plot and kept zoom-out and pan from
   recovering it.
-
-### Fixed
-
 - A very large `ticker.tickCount` or `ticker.subtickCount` no longer freezes
   the UI. They are capped at 500 and 100.
-
-### Fixed
-
 - Panning and zooming update each axis viewport in one step: `rangeChanged`
   fires once, and handlers no longer see the new minimum with the old maximum.
   `Axis.setViewportRange(min, max)` does the same from QML and C++.
-
-### Fixed
-
 - A `PlotExporter` request fails when the plot's window stops being exposed
   before the capture, as on another virtual desktop. It stayed `busy` until the
   window was exposed again, refusing every other export.
+- Rotated tick labels (`ticker.tickLabelRotation`) are no longer clipped on
+  vertical axes or drawn over the ticks. Each is centered on its tick and
+  placed by its rotated bounding box.
 
 ## [0.5.0] — 2026-11-01
 

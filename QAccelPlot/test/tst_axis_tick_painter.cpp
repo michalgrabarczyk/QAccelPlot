@@ -192,6 +192,69 @@ int countPaintedPixels(QAccelPlot::Axis& axis, const QColor& color)
     return count;
 }
 
+class PolishableAxis final : public QAccelPlot::Axis {
+public:
+    using QAccelPlot::Axis::Axis;
+    using QAccelPlot::Axis::updatePolish;
+};
+
+QRect inkBounds(const QImage& image)
+{
+    auto bounds = QRect{};
+    for (auto y = 0; y < image.height(); ++y) {
+        for (auto x = 0; x < image.width(); ++x) {
+            if (qAlpha(image.pixel(x, y)) > 0) {
+                bounds |= QRect{x, y, 1, 1};
+            }
+        }
+    }
+    return bounds;
+}
+
+// Hides everything but the tick labels of \a axis, drawn in \a font and rotated by \a rotation degrees.
+void showOnlyTickLabels(QAccelPlot::Axis& axis, const QFont& font, const qreal rotation)
+{
+    auto* ticker = axis.ticker();
+    ticker->setSubtickCount(0);
+    ticker->setTickColor(Qt::transparent);
+    ticker->setTickLabelColor(Qt::white);
+    ticker->setTickLabelFont(font);
+    ticker->setTickLabelRotation(rotation);
+    axis.setBaselineColor(Qt::transparent);
+}
+
+QImage paintAxis(QAccelPlot::Axis& axis)
+{
+    auto image = QImage{axis.size().toSize(), QImage::Format_ARGB32_Premultiplied};
+    image.fill(Qt::transparent);
+    auto painter = QPainter{&image};
+    axis.paint(&painter);
+    return image;
+}
+
+// Returns the ink bounds of \a label drawn unclipped, rotated by \a rotation degrees around \a center.
+QRect referenceLabelInk(const QSize& size, const QFont& font, const QString& label, const qreal rotation, const QPointF& center)
+{
+    auto image = QImage{size, QImage::Format_ARGB32_Premultiplied};
+    image.fill(Qt::transparent);
+    auto painter = QPainter{&image};
+    painter.setFont(font);
+    painter.setPen(Qt::white);
+    painter.translate(center);
+    painter.rotate(rotation);
+    painter.drawText(QRectF{-100.0, -50.0, 200.0, 100.0}, Qt::AlignCenter, label);
+    painter.end();
+    return inkBounds(image);
+}
+
+// Antialiasing at subpixel offsets can spread ink by one pixel.
+bool inkMatches(const QRect& actual, const QRect& expected)
+{
+    constexpr auto kTolerance = 1;
+    return std::abs(actual.left() - expected.left()) <= kTolerance && std::abs(actual.right() - expected.right()) <= kTolerance
+        && std::abs(actual.top() - expected.top()) <= kTolerance && std::abs(actual.bottom() - expected.bottom()) <= kTolerance;
+}
+
 class TestAxisTickPainter : public QObject {
     Q_OBJECT
 
@@ -215,6 +278,9 @@ private slots:
     void computeNiceStep_residualAtTwoBoundary();
     void paintTicks_timeLabelsMatchUnclippedReference();
     void paintTicks_verticalLabelsUseAvailableWidth();
+    void axis_rotatedTickLabelsSitBesideTheirTick_data();
+    void axis_rotatedTickLabelsSitBesideTheirTick();
+    void axis_rotatedEdgeTickLabelsStayInsideAxis();
 
     void computeTicks_linearTicksAndLabels();
     void computeTicks_passesTickStepToFormatter();
@@ -398,7 +464,10 @@ void TestAxisTickPainter::paintTicks_timeLabelsMatchUnclippedReference()
                 auto painter = QPainter{&expected};
                 painter.setFont(font);
                 painter.setPen(Qt::white);
-                const auto drawReferenceLabel = [&painter, &label, rotation](const qreal centerX) {
+                // A rotated label's bounding box starts below the axis, so its center depends on the label size.
+                const auto rotatedCenterY
+                    = kAxisY + QAccelPlot::AxisTickPainter::rotatedTickLabelSize(QFontMetricsF{font, &expected}, label, rotation).height() / 2.0;
+                const auto drawReferenceLabel = [&painter, &label, rotation, rotatedCenterY](const qreal centerX) {
                     const auto rect = QRectF{-kReferenceLabelWidth / 2.0, -kReferenceLabelHeight / 2.0, kReferenceLabelWidth, kReferenceLabelHeight};
                     if (rotation == 0.0) {
                         // Like the painter, draw unrotated labels without a transform. A translated reference starts
@@ -408,7 +477,7 @@ void TestAxisTickPainter::paintTicks_timeLabelsMatchUnclippedReference()
                         return;
                     }
                     painter.save();
-                    painter.translate(centerX, kLabelCenterY);
+                    painter.translate(centerX, rotatedCenterY);
                     painter.rotate(rotation);
                     painter.drawText(rect, Qt::AlignCenter, label);
                     painter.restore();
@@ -470,6 +539,102 @@ void TestAxisTickPainter::paintTicks_verticalLabelsUseAvailableWidth()
     }
 
     QVERIFY2(foundPixelOutsideOldLabelRect, "Vertical tick label did not use the available axis width");
+}
+
+void TestAxisTickPainter::axis_rotatedTickLabelsSitBesideTheirTick_data()
+{
+    QTest::addColumn<QAccelPlot::Axis::Side>("side");
+    QTest::addColumn<qreal>("rotation");
+    QTest::addColumn<QSize>("size");
+    const auto narrow = QSize{40, 200};
+    const auto wide = QSize{80, 200};
+    const auto horizontal = QSize{200, 80};
+    QTest::newRow("left -90") << QAccelPlot::Axis::Left << -90.0 << narrow;
+    QTest::newRow("left 90") << QAccelPlot::Axis::Left << 90.0 << narrow;
+    QTest::newRow("left -45") << QAccelPlot::Axis::Left << -45.0 << wide;
+    QTest::newRow("right -90") << QAccelPlot::Axis::Right << -90.0 << narrow;
+    QTest::newRow("right 90") << QAccelPlot::Axis::Right << 90.0 << narrow;
+    QTest::newRow("right 45") << QAccelPlot::Axis::Right << 45.0 << wide;
+    QTest::newRow("bottom 90") << QAccelPlot::Axis::Bottom << 90.0 << horizontal;
+    QTest::newRow("bottom 45") << QAccelPlot::Axis::Bottom << 45.0 << horizontal;
+    QTest::newRow("top -90") << QAccelPlot::Axis::Top << -90.0 << horizontal;
+    QTest::newRow("top -45") << QAccelPlot::Axis::Top << -45.0 << horizontal;
+}
+
+void TestAxisTickPainter::axis_rotatedTickLabelsSitBesideTheirTick()
+{
+    QFETCH(QAccelPlot::Axis::Side, side);
+    QFETCH(qreal, rotation);
+    QFETCH(QSize, size);
+    // The axis line sits one inward tick length from the inner edge; the label starts past the outward tick and padding.
+    constexpr auto kLabelInset = 2.0 * 8.0 + 5.0;
+
+    auto font = QFont{};
+    font.setPixelSize(11);
+    auto axis = PolishableAxis{nullptr, side};
+    axis.setSize(size);
+    showOnlyTickLabels(axis, font, rotation);
+    // A single major tick, 1.195, at the middle of the axis.
+    axis.ticker()->setTickCount(2);
+    axis.setViewportMax(1.199);
+    axis.setViewportMin(1.191);
+    axis.updatePolish();
+
+    const auto image = paintAxis(axis);
+    const auto label = QStringLiteral("1.195");
+    const auto box = QAccelPlot::AxisTickPainter::rotatedTickLabelSize(QFontMetricsF{font, &image}, label, rotation);
+    auto center = QPointF{size.width() / 2.0, size.height() / 2.0};
+    switch (side) {
+    case QAccelPlot::Axis::Left:
+        center.setX(size.width() - kLabelInset - box.width() / 2.0);
+        break;
+    case QAccelPlot::Axis::Right:
+        center.setX(kLabelInset + box.width() / 2.0);
+        break;
+    case QAccelPlot::Axis::Bottom:
+        center.setY(kLabelInset + box.height() / 2.0);
+        break;
+    case QAccelPlot::Axis::Top:
+        center.setY(size.height() - kLabelInset - box.height() / 2.0);
+        break;
+    }
+    const auto expected = referenceLabelInk(size, font, label, rotation, {center});
+    const auto innerArea = QRect{QPoint{}, size}.adjusted(1, 1, -1, -1);
+    QVERIFY2(innerArea.contains(expected), qPrintable(QStringLiteral("Reference label %1 touches the axis edge").arg(describe(expected))));
+
+    const auto actual = inkBounds(image);
+    QVERIFY2(inkMatches(actual, expected), qPrintable(QStringLiteral("Tick label ink %1, expected %2").arg(describe(actual), describe(expected))));
+}
+
+void TestAxisTickPainter::axis_rotatedEdgeTickLabelsStayInsideAxis()
+{
+    constexpr auto kRotation = qreal{-90.0};
+    const auto size = QSize{40, 200};
+    const auto label = QStringLiteral("1.195");
+    auto font = QFont{};
+    font.setPixelSize(11);
+    auto formatter = FixedTickLabelFormatter{label};
+    auto axis = PolishableAxis{nullptr, QAccelPlot::Axis::Left};
+    axis.setSize(size);
+    showOnlyTickLabels(axis, font, kRotation);
+    // Major ticks at both ends of the default 0 to 1 viewport, whose labels overhang the axis ends unless clamped.
+    axis.ticker()->setTickCount(1);
+    axis.ticker()->setTickLabelFormatter(&formatter);
+    axis.updatePolish();
+
+    const auto image = paintAxis(axis);
+    const auto box = QAccelPlot::AxisTickPainter::rotatedTickLabelSize(QFontMetricsF{font, &image}, label, kRotation);
+    constexpr auto kLabelInset = 2.0 * 8.0 + 5.0;
+    const auto centerX = size.width() - kLabelInset - box.width() / 2.0;
+    const auto half = QSize{size.width(), size.height() / 2};
+    const auto topExpected = referenceLabelInk(half, font, label, kRotation, {centerX, box.height() / 2.0});
+    const auto bottomExpected = referenceLabelInk(half, font, label, kRotation, {centerX, half.height() - box.height() / 2.0});
+
+    const auto topActual = inkBounds(image.copy(QRect{QPoint{0, 0}, half}));
+    const auto bottomActual = inkBounds(image.copy(QRect{QPoint{0, half.height()}, half}));
+    QVERIFY2(inkMatches(topActual, topExpected), qPrintable(QStringLiteral("Top label ink %1, expected %2").arg(describe(topActual), describe(topExpected))));
+    QVERIFY2(inkMatches(bottomActual, bottomExpected),
+        qPrintable(QStringLiteral("Bottom label ink %1, expected %2").arg(describe(bottomActual), describe(bottomExpected))));
 }
 
 void TestAxisTickPainter::computeTicks_linearTicksAndLabels()

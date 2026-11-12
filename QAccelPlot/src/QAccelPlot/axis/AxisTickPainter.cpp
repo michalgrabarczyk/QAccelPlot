@@ -9,12 +9,12 @@
 
 #include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/axis/internal/AxisLabelLayout.hpp"
 #include "QAccelPlot/formatters/TickLabelFormatter.hpp"
 
 #include <QFontMetricsF>
 #include <QPainter>
 #include <QPen>
-#include <QTransform>
 
 #include <algorithm>
 #include <cmath>
@@ -26,27 +26,104 @@ namespace {
 constexpr auto kTickLabelMargin = qreal{1.0};
 constexpr auto kMinimumTickLabelHeight = qreal{20.0};
 
-QRectF rotatedTickLabelBounds(const QRectF& rect, const qreal rotation)
+/// \brief Returns the size of \a label's text with margins, measured with \a metrics.
+QSizeF measuredTickLabelSize(const QFontMetricsF& metrics, const QString& label)
 {
-    auto transform = QTransform{};
-    transform.translate(rect.center().x(), rect.center().y());
-    transform.rotate(rotation);
-    transform.translate(-rect.center().x(), -rect.center().y());
-    return transform.mapRect(rect);
+    const auto bounds = metrics.boundingRect(label);
+    const auto advance = metrics.horizontalAdvance(label);
+    const auto leftOverhang = std::max(qreal{0.0}, -bounds.left());
+    const auto rightOverhang = std::max(qreal{0.0}, bounds.right() - advance);
+    const auto overhang = std::max(leftOverhang, rightOverhang);
+    const auto width = std::ceil(advance + 2.0 * overhang + 2.0 * kTickLabelMargin);
+    const auto height = std::ceil(std::max(metrics.height(), bounds.height()) + 2.0 * kTickLabelMargin);
+    return {width, height};
 }
 
-QRectF clampTickLabelRect(const QRectF& rect, const qreal rotation, const Qt::Orientation orientation, const qreal minimum, const qreal maximum)
+/// \brief Returns the unit vector pointing from the axis line toward the tick labels on \a side.
+QPointF outwardDirection(const Axis::Side side)
 {
-    auto clampedRect = rect;
-    auto bounds = rotatedTickLabelBounds(clampedRect, rotation);
+    switch (side) {
+    case Axis::Bottom:
+        return {0.0, 1.0};
+    case Axis::Top:
+        return {0.0, -1.0};
+    case Axis::Left:
+        return {-1.0, 0.0};
+    case Axis::Right:
+        return {1.0, 0.0};
+    }
+    return {};
+}
 
-    const auto lowerBound = [&bounds, orientation]() { return orientation == Qt::Horizontal ? bounds.left() : bounds.top(); };
-    const auto upperBound = [&bounds, orientation]() { return orientation == Qt::Horizontal ? bounds.right() : bounds.bottom(); };
-    const auto translate = [&clampedRect, &bounds, orientation](const qreal offset) {
-        const auto delta = orientation == Qt::Horizontal ? QPointF{offset, 0.0} : QPointF{0.0, offset};
-        clampedRect.translate(delta);
-        bounds.translate(delta);
-    };
+/// \brief Returns the text rectangle of an unrotated label of \a labelSize for the tick at \a center.
+QRectF unrotatedTickLabelRect(const QRectF& axisRect, const QPointF& center, const AxisTickPainter::Params& params, const QSizeF& labelSize)
+{
+    const auto& ticker = *params.ticker;
+    switch (params.side) {
+    case Axis::Bottom:
+        return {center.x() - labelSize.width() / 2.0, center.y() + ticker.tickLengthOut() + ticker.tickLabelPadding(), labelSize.width(), labelSize.height()};
+    case Axis::Top:
+        return {center.x() - labelSize.width() / 2.0, center.y() - ticker.tickLengthOut() - ticker.tickLabelPadding() - labelSize.height(), labelSize.width(),
+            labelSize.height()};
+    case Axis::Left: {
+        const auto labelRight = center.x() - ticker.tickLengthOut() - ticker.tickLabelPadding();
+        return {axisRect.left(), center.y() - labelSize.height() / 2.0, std::max(qreal{0.0}, labelRight - axisRect.left()), labelSize.height()};
+    }
+    case Axis::Right: {
+        const auto labelLeft = center.x() + ticker.tickLengthOut() + ticker.tickLabelPadding();
+        return {labelLeft, center.y() - labelSize.height() / 2.0, std::max(qreal{0.0}, axisRect.right() - labelLeft), labelSize.height()};
+    }
+    }
+    return {};
+}
+
+/// \brief Returns the text alignment of an unrotated label inside the rectangle from \c unrotatedTickLabelRect().
+int unrotatedTickLabelAlignment(const Axis::Side side)
+{
+    switch (side) {
+    case Axis::Left:
+        return Qt::AlignRight | Qt::AlignVCenter;
+    case Axis::Right:
+        return Qt::AlignLeft | Qt::AlignVCenter;
+    case Axis::Bottom:
+    case Axis::Top:
+        break;
+    }
+    return Qt::AlignCenter;
+}
+
+/// \brief Returns the bounds of a rotated label of \a boundsSize: outside \a anchor on \a side, centered on the tick.
+QRectF rotatedTickLabelBounds(const QPointF& anchor, const Axis::Side side, const QSizeF& boundsSize)
+{
+    const auto width = boundsSize.width();
+    const auto height = boundsSize.height();
+    switch (side) {
+    case Axis::Bottom:
+        return {anchor.x() - width / 2.0, anchor.y(), width, height};
+    case Axis::Top:
+        return {anchor.x() - width / 2.0, anchor.y() - height, width, height};
+    case Axis::Left:
+        return {anchor.x() - width, anchor.y() - height / 2.0, width, height};
+    case Axis::Right:
+        return {anchor.x(), anchor.y() - height / 2.0, width, height};
+    }
+    return {};
+}
+
+/// \brief Moves label \a bounds along the axis so they stay within \a axisRect extended by the label overflow.
+QRectF clampTickLabelRect(const QRectF& bounds, const QRectF& axisRect, const AxisTickPainter::Params& params)
+{
+    if (!params.clampEdgeLabels) {
+        return bounds;
+    }
+    const auto horizontal = params.orientation == Qt::Horizontal;
+    const auto minimum = horizontal ? axisRect.x() - params.labelOverflow : axisRect.y() - params.labelOverflow;
+    const auto maximum = horizontal ? axisRect.x() + axisRect.width() + params.labelOverflow : axisRect.y() + axisRect.height() + params.labelOverflow;
+
+    auto clamped = bounds;
+    const auto lowerBound = [&clamped, horizontal]() { return horizontal ? clamped.left() : clamped.top(); };
+    const auto upperBound = [&clamped, horizontal]() { return horizontal ? clamped.right() : clamped.bottom(); };
+    const auto translate = [&clamped, horizontal](const qreal offset) { clamped.translate(horizontal ? QPointF{offset, 0.0} : QPointF{0.0, offset}); };
 
     if (lowerBound() < minimum) {
         translate(minimum - lowerBound());
@@ -54,7 +131,7 @@ QRectF clampTickLabelRect(const QRectF& rect, const qreal rotation, const Qt::Or
     if (upperBound() > maximum) {
         translate(maximum - upperBound());
     }
-    return clampedRect;
+    return clamped;
 }
 
 }
@@ -147,14 +224,16 @@ qreal AxisTickPainter::computeNiceStep(const qreal viewportMin, const qreal view
 
 QSizeF AxisTickPainter::tickLabelSize(const QFontMetricsF& metrics, const QString& label)
 {
-    const auto bounds = metrics.boundingRect(label);
-    const auto advance = metrics.horizontalAdvance(label);
-    const auto leftOverhang = std::max(qreal{0.0}, -bounds.left());
-    const auto rightOverhang = std::max(qreal{0.0}, bounds.right() - advance);
-    const auto overhang = std::max(leftOverhang, rightOverhang);
-    const auto width = std::ceil(advance + 2.0 * overhang + 2.0 * kTickLabelMargin);
-    const auto measuredHeight = std::ceil(std::max(metrics.height(), bounds.height()) + 2.0 * kTickLabelMargin);
-    return {width, std::max(kMinimumTickLabelHeight, measuredHeight)};
+    const auto size = measuredTickLabelSize(metrics, label);
+    return {size.width(), std::max(kMinimumTickLabelHeight, size.height())};
+}
+
+QSizeF AxisTickPainter::rotatedTickLabelSize(const QFontMetricsF& metrics, const QString& label, const qreal rotation)
+{
+    if (nearlyEqual(rotation, 0.0)) {
+        return tickLabelSize(metrics, label);
+    }
+    return Internal::rotatedBoundingSize(measuredTickLabelSize(metrics, label), rotation);
 }
 
 AxisTickValues AxisTickPainter::computeLogScaleTickValues(const qreal viewportLow, const qreal viewportHigh, const AxisTicker& ticker)
@@ -229,62 +308,31 @@ AxisTickValues AxisTickPainter::computeLinearTickValues(const qreal viewportLow,
 
 void AxisTickPainter::paintTick(const PaintContext& ctx, const AxisTick& tick, const Params& params, const MapToPosition& mapToPosition)
 {
-    const auto labelSize = tickLabelSize(QFontMetricsF{ctx.painter->font(), ctx.painter->device()}, tick.label);
+    const auto& ticker = *params.ticker;
+    const auto horizontal = params.orientation == Qt::Horizontal;
+    const auto position = horizontal ? ctx.rect.x() + mapToPosition(tick.value, ctx.rect.width()) : ctx.rect.y() + mapToPosition(tick.value, ctx.rect.height());
+    const auto center = horizontal ? QPointF{position, ctx.axisY} : QPointF{ctx.axisX, position};
+    const auto outward = outwardDirection(params.side);
+    ctx.painter->drawLine(center + outward * ticker.tickLengthOut(), center - outward * ticker.tickLengthIn());
 
-    if (params.orientation == Qt::Horizontal) {
-        const auto x = ctx.rect.x() + mapToPosition(tick.value, ctx.rect.width());
-        const auto center = QPointF{x, ctx.axisY};
-        auto labelRect = QRectF{};
-        if (params.side == Axis::Bottom) {
-            ctx.painter->drawLine(center + QPointF(0, params.ticker->tickLengthOut()), center + QPointF(0, -params.ticker->tickLengthIn()));
-            labelRect = QRectF(x - labelSize.width() / 2.0, center.y() + params.ticker->tickLengthOut() + params.ticker->tickLabelPadding(), labelSize.width(),
-                labelSize.height());
-        } else {
-            ctx.painter->drawLine(center + QPointF(0, -params.ticker->tickLengthOut()), center + QPointF(0, params.ticker->tickLengthIn()));
-            labelRect = QRectF(x - labelSize.width() / 2.0,
-                center.y() - params.ticker->tickLengthOut() - params.ticker->tickLabelPadding() - labelSize.height(), labelSize.width(), labelSize.height());
-        }
-        if (params.clampEdgeLabels) {
-            const auto minX = ctx.rect.x() - params.labelOverflow;
-            const auto maxX = ctx.rect.x() + ctx.rect.width() + params.labelOverflow;
-            labelRect = clampTickLabelRect(labelRect, params.ticker->tickLabelRotation(), Qt::Horizontal, minX, maxX);
-        }
-        const auto linePen = ctx.painter->pen();
-        auto labelPen = linePen;
-        labelPen.setColor(
-            params.hovered ? params.hoverColor : (params.ticker->tickLabelColor().isValid() ? params.ticker->tickLabelColor() : params.ticker->tickColor()));
-        ctx.painter->setPen(labelPen);
-        drawTickLabel(ctx.painter, labelRect, Qt::AlignCenter, tick.label, params.ticker->tickLabelRotation());
-        ctx.painter->setPen(linePen);
+    const auto linePen = ctx.painter->pen();
+    auto labelPen = linePen;
+    labelPen.setColor(params.hovered ? params.hoverColor : (ticker.tickLabelColor().isValid() ? ticker.tickLabelColor() : ticker.tickColor()));
+    ctx.painter->setPen(labelPen);
+
+    const auto metrics = QFontMetricsF{ctx.painter->font(), ctx.painter->device()};
+    const auto rotation = ticker.tickLabelRotation();
+    if (nearlyEqual(rotation, 0.0)) {
+        const auto labelRect = unrotatedTickLabelRect(ctx.rect, center, params, tickLabelSize(metrics, tick.label));
+        drawTickLabel(ctx.painter, clampTickLabelRect(labelRect, ctx.rect, params), unrotatedTickLabelAlignment(params.side), tick.label);
     } else {
-        const auto y = ctx.rect.y() + mapToPosition(tick.value, ctx.rect.height());
-        const auto center = QPointF{ctx.axisX, y};
-        auto labelRect = QRectF{};
-        auto alignment = int{};
-        if (params.side == Axis::Left) {
-            ctx.painter->drawLine(center + QPointF(-params.ticker->tickLengthOut(), 0), center + QPointF(params.ticker->tickLengthIn(), 0));
-            const auto labelRight = center.x() - params.ticker->tickLengthOut() - params.ticker->tickLabelPadding();
-            labelRect = QRectF(ctx.rect.left(), y - labelSize.height() / 2.0, std::max(qreal{0.0}, labelRight - ctx.rect.left()), labelSize.height());
-            alignment = Qt::AlignRight | Qt::AlignVCenter;
-        } else {
-            ctx.painter->drawLine(center + QPointF(params.ticker->tickLengthOut(), 0), center + QPointF(-params.ticker->tickLengthIn(), 0));
-            const auto labelLeft = center.x() + params.ticker->tickLengthOut() + params.ticker->tickLabelPadding();
-            labelRect = QRectF(labelLeft, y - labelSize.height() / 2.0, std::max(qreal{0.0}, ctx.rect.right() - labelLeft), labelSize.height());
-            alignment = Qt::AlignLeft | Qt::AlignVCenter;
-        }
-        if (params.clampEdgeLabels) {
-            const auto minY = ctx.rect.y() - params.labelOverflow;
-            const auto maxY = ctx.rect.y() + ctx.rect.height() + params.labelOverflow;
-            labelRect = clampTickLabelRect(labelRect, params.ticker->tickLabelRotation(), Qt::Vertical, minY, maxY);
-        }
-        const auto linePen = ctx.painter->pen();
-        auto labelPen = linePen;
-        labelPen.setColor(
-            params.hovered ? params.hoverColor : (params.ticker->tickLabelColor().isValid() ? params.ticker->tickLabelColor() : params.ticker->tickColor()));
-        ctx.painter->setPen(labelPen);
-        drawTickLabel(ctx.painter, labelRect, alignment, tick.label, params.ticker->tickLabelRotation());
-        ctx.painter->setPen(linePen);
+        // Placed by the rotated bounding box: the unrotated space beside the tick would clip a vertical axis label.
+        const auto textSize = measuredTickLabelSize(metrics, tick.label);
+        const auto anchor = center + outward * (ticker.tickLengthOut() + ticker.tickLabelPadding());
+        const auto bounds = rotatedTickLabelBounds(anchor, params.side, Internal::rotatedBoundingSize(textSize, rotation));
+        drawRotatedTickLabel(ctx.painter, clampTickLabelRect(bounds, ctx.rect, params), textSize, tick.label, rotation);
     }
+    ctx.painter->setPen(linePen);
 }
 
 void AxisTickPainter::paintSubtick(const PaintContext& ctx, const qreal value, const Params& params, const MapToPosition& mapToPosition)
@@ -308,19 +356,17 @@ void AxisTickPainter::paintSubtick(const PaintContext& ctx, const qreal value, c
     }
 }
 
-void AxisTickPainter::drawTickLabel(QPainter* painter, const QRectF& labelRect, const int alignment, const QString& label, const qreal rotation)
+void AxisTickPainter::drawTickLabel(QPainter* painter, const QRectF& labelRect, const int alignment, const QString& label)
 {
-    if (nearlyEqual(rotation, 0.0)) {
-        painter->drawText(labelRect, alignment, label);
-        return;
-    }
+    painter->drawText(labelRect, alignment, label);
+}
 
+void AxisTickPainter::drawRotatedTickLabel(QPainter* painter, const QRectF& bounds, const QSizeF& textSize, const QString& label, const qreal rotation)
+{
     painter->save();
-    painter->translate(labelRect.center());
+    painter->translate(bounds.center());
     painter->rotate(rotation);
-
-    const auto localRect = QRectF(-labelRect.width() / 2.0, -labelRect.height() / 2.0, labelRect.width(), labelRect.height());
-    painter->drawText(localRect, alignment, label);
+    painter->drawText(QRectF{QPointF{-textSize.width() / 2.0, -textSize.height() / 2.0}, textSize}, Qt::AlignCenter, label);
     painter->restore();
 }
 
