@@ -445,7 +445,7 @@
 <para>Reads a list of stop objects, each exposing <computeroutput>position</computeroutput> and <computeroutput>color</computeroutput>, into position order. </para>
         </briefdescription>
         <detaileddescription>
-<para>A single stop is duplicated, and the first and last colors are extended to positions 0 and 1. Entries that are not stop-like are skipped.</para>
+<para>A single stop is duplicated, and the first and last colors are extended to positions 0 and 1. Entries that are not stop-like or have a NaN position are skipped.</para>
 <para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref> </para>
 </simplesect>
 </para>

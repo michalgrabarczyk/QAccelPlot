@@ -858,7 +858,7 @@ std::vector< GradientStopData > QAccelPlot::Internal::readGradientStopList (
 
 
 
-A single stop is duplicated, and the first and last colors are extended to positions 0 and 1. Entries that are not stop-like are skipped.
+A single stop is duplicated, and the first and last colors are extended to positions 0 and 1. Entries that are not stop-like or have a NaN position are skipped.
 
 
 
