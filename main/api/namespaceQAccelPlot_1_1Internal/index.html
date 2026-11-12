@@ -2796,7 +2796,7 @@
 <a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">logarithmic</span>
 <a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
-<p>With <em>logarithmic</em> set, the shift is applied in <code>log10</code> space, so both bounds are scaled by the same ratio. A range that is not positive is shifted linearly instead. Returns <em>range</em> unchanged when a bound would leave the range of a double. </p>
+<p>With <em>logarithmic</em> set, the shift is applied in <code>log10</code> space, so both bounds are scaled by the same ratio. A range that is not positive is shifted linearly instead. Returns <em>range</em> unchanged when a bound would leave the range of a double or both bounds would round to the same value. </p>
 <hr>
 
 <h3 id="function-plannedslots">function plannedSlots<a class="headerlink" href="#function-plannedslots" title="Permanent link">&para;</a></h3>
@@ -3022,7 +3022,7 @@
 <a id="__codelineno-51-5" name="__codelineno-51-5" href="#__codelineno-51-5"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">logarithmic</span>
 <a id="__codelineno-51-6" name="__codelineno-51-6" href="#__codelineno-51-6"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
-<p><em>anchorRatio</em> is a position inside the range: 0 at <code>min</code> and 1 at <code>max</code>. With <em>logarithmic</em> set, the extent is measured in <code>log10</code> space. A range that is not positive is zoomed linearly instead. Returns <em>range</em> unchanged when a bound would leave the range of a double: it would not be finite, or in <code>log10</code> space it would reach zero. </p>
+<p><em>anchorRatio</em> is a position inside the range: 0 at <code>min</code> and 1 at <code>max</code>. With <em>logarithmic</em> set, the extent is measured in <code>log10</code> space. A range that is not positive is zoomed linearly instead. Returns <em>range</em> unchanged when a bound would leave the range of a double: it would not be finite, or in <code>log10</code> space it would reach zero. Also returns <em>range</em> unchanged when a zoom-in would shrink the extent below 1e-12 of the larger bound, where double precision would soon collapse the bounds and keep a zoom-out from moving them. </p>
 <hr>
 
 <hr />
