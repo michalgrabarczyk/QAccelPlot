@@ -24,7 +24,7 @@ namespace QAccelPlot::Internal {
 /// \brief Reads a list of stop objects, each exposing \c position and \c color, into position order.
 ///
 /// A single stop is duplicated, and the first and last colors are extended to positions 0 and 1.
-/// Entries that are not stop-like are skipped.
+/// Entries that are not stop-like or have a NaN position are skipped.
 ///
 /// \sa Colormap
 std::vector<GradientStopData> readGradientStopList(const QVariantList& stopObjects);

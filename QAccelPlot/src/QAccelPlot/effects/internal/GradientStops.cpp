@@ -15,6 +15,7 @@
 #include <QString>
 
 #include <algorithm>
+#include <cmath>
 
 namespace QAccelPlot::Internal {
 
@@ -43,6 +44,10 @@ void appendStopFromObject(std::vector<GradientStopData>& outStops, QObject* stop
     }
 
     const auto unclampedPosition = static_cast<float>(positionVariant.toReal());
+    // std::clamp keeps NaN, which would break the sort in normalizeStops().
+    if (std::isnan(unclampedPosition)) {
+        return;
+    }
     auto stopData = GradientStopData{};
     stopData.position = std::clamp(unclampedPosition, 0.0f, 1.0f);
     stopData.color = color;
