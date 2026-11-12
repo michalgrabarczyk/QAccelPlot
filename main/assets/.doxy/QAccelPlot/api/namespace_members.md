@@ -131,6 +131,7 @@
 * **stepCorner** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **stepCornerCount** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **supportsCustomShaderRendering** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **setMaterial** ([**QAccelPlot::LineStroke**](namespaceQAccelPlot_1_1LineStroke.md))
 * **Shape** ([**QAccelPlot::MarkerShapeNS**](namespaceQAccelPlot_1_1MarkerShapeNS.md))
 * **StepMode** ([**QAccelPlot**](namespaceQAccelPlot.md))
 
@@ -158,6 +159,7 @@
 * **writeImageFile** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **writeRectUniforms** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **writeTransitionFrame** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **writeDashedVertices** ([**QAccelPlot::LineStroke**](namespaceQAccelPlot_1_1LineStroke.md))
 * **writeVertices** ([**QAccelPlot::LineStroke**](namespaceQAccelPlot_1_1LineStroke.md))
 
 

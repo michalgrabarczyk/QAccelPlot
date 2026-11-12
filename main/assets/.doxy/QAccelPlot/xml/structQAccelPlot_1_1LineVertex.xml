@@ -3,127 +3,148 @@
   <compounddef id="structQAccelPlot_1_1LineVertex" kind="struct" language="C++" prot="public">
     <compoundname>QAccelPlot::LineVertex</compoundname>
     <includes local="no">LineStroke.hpp</includes>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineVertex_1a93b7471b50ff2435a84c06c9bfd70e17" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::LineVertex::kMaximumIndex</definition>
+        <argsstring></argsstring>
+        <name>kMaximumIndex</name>
+        <qualifiedname>QAccelPlot::LineVertex::kMaximumIndex</qualifiedname>
+        <initializer>= (1 &lt;&lt; 28) - 1</initializer>
+        <briefdescription>
+<para>Largest data point index a vertex holds. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="34" column="26" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineVertex_1aa214868c16b58f6e5f0f50a1d88b36ba" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::LineVertex::kMaximumCorner</definition>
+        <argsstring></argsstring>
+        <name>kMaximumCorner</name>
+        <qualifiedname>QAccelPlot::LineVertex::kMaximumCorner</qualifiedname>
+        <initializer>= 7</initializer>
+        <briefdescription>
+<para>Largest path corner a vertex holds. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="36" column="26" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
     <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="structQAccelPlot_1_1LineVertex_1a33dd6d19b6f619daf25b47228ed25174" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float QAccelPlot::LineVertex::id</definition>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineVertex_1a845a1a40e6f39e8c0d99b90959049710" prot="public" static="no" mutable="no">
+        <type>std::uint32_t</type>
+        <definition>std::uint32_t QAccelPlot::LineVertex::packed</definition>
         <argsstring></argsstring>
-        <name>id</name>
-        <qualifiedname>QAccelPlot::LineVertex::id</qualifiedname>
+        <name>packed</name>
+        <qualifiedname>QAccelPlot::LineVertex::packed</qualifiedname>
         <briefdescription>
-<para>Point index in the data buffer. </para>
+<para>Bits 0–27 hold the data point index, bits 28–30 the path corner, and bit 31 marks the negative ribbon side. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="29" column="11" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="29" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="39" column="19" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="39" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="structQAccelPlot_1_1LineVertex_1abb4967b13a53b4d927a64de3a2387122" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float QAccelPlot::LineVertex::side</definition>
-        <argsstring></argsstring>
-        <name>side</name>
-        <qualifiedname>QAccelPlot::LineVertex::side</qualifiedname>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="structQAccelPlot_1_1LineVertex_1a69bcd0f263cea756073c1600c07e6a72" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1LineVertex" kindref="compound">LineVertex</ref></type>
+        <definition>static constexpr LineVertex QAccelPlot::LineVertex::make</definition>
+        <argsstring>(const int index, const int corner, const bool negativeSide) noexcept</argsstring>
+        <name>make</name>
+        <qualifiedname>QAccelPlot::LineVertex::make</qualifiedname>
+        <param>
+          <type>const int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>corner</declname>
+        </param>
+        <param>
+          <type>const bool</type>
+          <declname>negativeSide</declname>
+        </param>
         <briefdescription>
-<para><computeroutput>±(1 + corner)</computeroutput>: the sign is the ribbon side, <computeroutput>corner</computeroutput> the step corner after the point (0 for the point itself). </para>
+<para>Returns the vertex of data point <emphasis>index</emphasis> at step corner <emphasis>corner</emphasis> (0 for the point itself) on the negative ribbon side when <emphasis>negativeSide</emphasis>. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="30" column="11" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="30" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="42" column="33" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="42" bodyend="45"/>
       </memberdef>
-      <memberdef kind="variable" id="structQAccelPlot_1_1LineVertex_1aaf45bcb9964af2a7d06f4e652b63ab0e" prot="public" static="no" mutable="no">
-        <type>unsigned char</type>
-        <definition>unsigned char QAccelPlot::LineVertex::r</definition>
-        <argsstring></argsstring>
-        <name>r</name>
-        <qualifiedname>QAccelPlot::LineVertex::r</qualifiedname>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structQAccelPlot_1_1LineVertex_1ab5702d681b4d8c748dd7f74a055685de" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::LineVertex::index</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>index</name>
+        <qualifiedname>QAccelPlot::LineVertex::index</qualifiedname>
         <briefdescription>
-<para>Red channel (used when <computeroutput>useVertexColor</computeroutput> is true). </para>
+<para>Returns the data point index. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="31" column="19" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="31" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="48" column="19" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="48" bodyend="51"/>
       </memberdef>
-      <memberdef kind="variable" id="structQAccelPlot_1_1LineVertex_1a46318ac9e093d08ec825821bac280f71" prot="public" static="no" mutable="no">
-        <type>unsigned char</type>
-        <definition>unsigned char QAccelPlot::LineVertex::g</definition>
-        <argsstring></argsstring>
-        <name>g</name>
-        <qualifiedname>QAccelPlot::LineVertex::g</qualifiedname>
+      <memberdef kind="function" id="structQAccelPlot_1_1LineVertex_1a86aecbcffbb5f52c47a978664ee0555f" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::LineVertex::corner</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>corner</name>
+        <qualifiedname>QAccelPlot::LineVertex::corner</qualifiedname>
         <briefdescription>
-<para>Green channel (used when <computeroutput>useVertexColor</computeroutput> is true). </para>
+<para>Returns the step corner after the data point; 0 for the point itself. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="32" column="19" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="32" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="54" column="19" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="54" bodyend="57"/>
       </memberdef>
-      <memberdef kind="variable" id="structQAccelPlot_1_1LineVertex_1ac9926ead2026e56c691438da45670b88" prot="public" static="no" mutable="no">
-        <type>unsigned char</type>
-        <definition>unsigned char QAccelPlot::LineVertex::b</definition>
-        <argsstring></argsstring>
-        <name>b</name>
-        <qualifiedname>QAccelPlot::LineVertex::b</qualifiedname>
+      <memberdef kind="function" id="structQAccelPlot_1_1LineVertex_1ac5b70708c6f19bf1635fbd3a7738433e" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::LineVertex::negativeSide</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>negativeSide</name>
+        <qualifiedname>QAccelPlot::LineVertex::negativeSide</qualifiedname>
         <briefdescription>
-<para>Blue channel (used when <computeroutput>useVertexColor</computeroutput> is true). </para>
+<para>Returns whether the vertex lies on the negative ribbon side. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="33" column="19" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="33" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="structQAccelPlot_1_1LineVertex_1a1f49eae0fcbdb15688abae266bcb2468" prot="public" static="no" mutable="no">
-        <type>unsigned char</type>
-        <definition>unsigned char QAccelPlot::LineVertex::a</definition>
-        <argsstring></argsstring>
-        <name>a</name>
-        <qualifiedname>QAccelPlot::LineVertex::a</qualifiedname>
-        <briefdescription>
-<para>Alpha channel (used when <computeroutput>useVertexColor</computeroutput> is true). </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="34" column="19" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="34" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="structQAccelPlot_1_1LineVertex_1a4739bf28534bcb6366e14aec5d64d42d" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float QAccelPlot::LineVertex::arcLength</definition>
-        <argsstring></argsstring>
-        <name>arcLength</name>
-        <qualifiedname>QAccelPlot::LineVertex::arcLength</qualifiedname>
-        <briefdescription>
-<para>Cumulative screen-space arc length in pixels; 0 for solid lines. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="35" column="11" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="35" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="60" column="20" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="60" bodyend="63"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
-<para>Vertex layout for line geometry, shared with the main thread for pre-built vertex caches. </para>
+<para>Vertex of a solid line ribbon, shared with the main thread for pre-built vertex caches. </para>
     </briefdescription>
     <detaileddescription>
+<para>Packs a data point index, a path corner, and a ribbon side into four bytes, which the shaders read as normalized bytes (see line_vertex_input.glsl). </para>
     </detaileddescription>
-    <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="28" column="1" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="28" bodyend="36"/>
+    <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="32" column="1" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="32" bodyend="64"/>
     <listofallmembers>
-      <member refid="structQAccelPlot_1_1LineVertex_1a1f49eae0fcbdb15688abae266bcb2468" prot="public" virt="non-virtual"><scope>QAccelPlot::LineVertex</scope><name>a</name></member>
-      <member refid="structQAccelPlot_1_1LineVertex_1a4739bf28534bcb6366e14aec5d64d42d" prot="public" virt="non-virtual"><scope>QAccelPlot::LineVertex</scope><name>arcLength</name></member>
-      <member refid="structQAccelPlot_1_1LineVertex_1ac9926ead2026e56c691438da45670b88" prot="public" virt="non-virtual"><scope>QAccelPlot::LineVertex</scope><name>b</name></member>
-      <member refid="structQAccelPlot_1_1LineVertex_1a46318ac9e093d08ec825821bac280f71" prot="public" virt="non-virtual"><scope>QAccelPlot::LineVertex</scope><name>g</name></member>
-      <member refid="structQAccelPlot_1_1LineVertex_1a33dd6d19b6f619daf25b47228ed25174" prot="public" virt="non-virtual"><scope>QAccelPlot::LineVertex</scope><name>id</name></member>
-      <member refid="structQAccelPlot_1_1LineVertex_1aaf45bcb9964af2a7d06f4e652b63ab0e" prot="public" virt="non-virtual"><scope>QAccelPlot::LineVertex</scope><name>r</name></member>
-      <member refid="structQAccelPlot_1_1LineVertex_1abb4967b13a53b4d927a64de3a2387122" prot="public" virt="non-virtual"><scope>QAccelPlot::LineVertex</scope><name>side</name></member>
+      <member refid="structQAccelPlot_1_1LineVertex_1a86aecbcffbb5f52c47a978664ee0555f" prot="public" virt="non-virtual"><scope>QAccelPlot::LineVertex</scope><name>corner</name></member>
+      <member refid="structQAccelPlot_1_1LineVertex_1ab5702d681b4d8c748dd7f74a055685de" prot="public" virt="non-virtual"><scope>QAccelPlot::LineVertex</scope><name>index</name></member>
+      <member refid="structQAccelPlot_1_1LineVertex_1aa214868c16b58f6e5f0f50a1d88b36ba" prot="public" virt="non-virtual"><scope>QAccelPlot::LineVertex</scope><name>kMaximumCorner</name></member>
+      <member refid="structQAccelPlot_1_1LineVertex_1a93b7471b50ff2435a84c06c9bfd70e17" prot="public" virt="non-virtual"><scope>QAccelPlot::LineVertex</scope><name>kMaximumIndex</name></member>
+      <member refid="structQAccelPlot_1_1LineVertex_1a69bcd0f263cea756073c1600c07e6a72" prot="public" virt="non-virtual"><scope>QAccelPlot::LineVertex</scope><name>make</name></member>
+      <member refid="structQAccelPlot_1_1LineVertex_1ac5b70708c6f19bf1635fbd3a7738433e" prot="public" virt="non-virtual"><scope>QAccelPlot::LineVertex</scope><name>negativeSide</name></member>
+      <member refid="structQAccelPlot_1_1LineVertex_1a845a1a40e6f39e8c0d99b90959049710" prot="public" virt="non-virtual"><scope>QAccelPlot::LineVertex</scope><name>packed</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

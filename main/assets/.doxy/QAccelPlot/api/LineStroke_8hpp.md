@@ -25,6 +25,7 @@
 * `#include <QVector2D>`
 * `#include <algorithm>`
 * `#include <cmath>`
+* `#include <cstdint>`
 * `#include <optional>`
 * `#include <vector>`
 
@@ -54,8 +55,9 @@
 
 | Type | Name |
 | ---: | :--- |
+| struct | [**DashedLineVertex**](structQAccelPlot_1_1DashedLineVertex.md) <br>_Vertex of a dashed line ribbon: a_ `LineVertex` _and the screen-space arc length the dash pattern follows._ |
 | struct | [**Uniforms**](structQAccelPlot_1_1LineStroke_1_1Uniforms.md) <br>[_**Uniforms**_](structQAccelPlot_1_1LineStroke_1_1Uniforms.md) _of a line material that do not depend on its shader variant._ |
-| struct | [**LineVertex**](structQAccelPlot_1_1LineVertex.md) <br>_Vertex layout for line geometry, shared with the main thread for pre-built vertex caches._  |
+| struct | [**LineVertex**](structQAccelPlot_1_1LineVertex.md) <br>_Vertex of a solid line ribbon, shared with the main thread for pre-built vertex caches._  |
 
 
 

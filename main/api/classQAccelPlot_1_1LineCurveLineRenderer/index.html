@@ -1619,7 +1619,7 @@
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="n">StepMode</span><span class="w"> </span><span class="n">stepMode</span>
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
-<p><em>cache</em> holds <a href="./#function-vertexcachebytesperpoint"><strong>vertexCacheBytesPerPoint()</strong></a> bytes for each of <em>pointCount</em> data points. A vertex depends only on its data point index and step corner, never on data values, so the vertices before <em>firstPoint</em> stay valid. Writes neutral RGBA (1,1,1,1); solid and gradient shaders obtain their colors from their materials. </p>
+<p><em>cache</em> holds <a href="./#function-vertexcachebytesperpoint"><strong>vertexCacheBytesPerPoint()</strong></a> bytes for each of <em>pointCount</em> data points. A vertex depends only on its data point index and step corner, never on data values, so the vertices before <em>firstPoint</em> stay valid. The cache holds solid line vertices; dashed lines write theirs on the render thread. </p>
 <hr>
 
 <hr />

@@ -1775,7 +1775,7 @@
 <tbody>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-bandedgematerial"><strong>BandEdgeMaterial</strong></a> (<a href="./#enum-edge"><strong>Edge</strong></a> edge) <br><em>Constructs a material for the</em> <em>edge</em> <em>line.</em></td>
+<td style="text-align: left;"><a href="#function-bandedgematerial"><strong>BandEdgeMaterial</strong></a> (<a href="./#enum-edge"><strong>Edge</strong></a> edge, bool dashed=false) <br><em>Constructs a material for the</em> <em>edge</em> <em>line, for dashed vertices when__dashed</em> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">QSGMaterialShader *</td>
@@ -1803,15 +1803,19 @@
 <tbody>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1LineMaterial/#function-linematerial"><strong>LineMaterial</strong></a> () <br><em>Constructs a</em> <a href="../classQAccelPlot_1_1LineMaterial/"><em><strong>LineMaterial</strong></em></a> <em>with default uniform values.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1LineMaterial/#function-linematerial"><strong>LineMaterial</strong></a> (bool dashed=false) <br><em>Constructs a</em> <a href="../classQAccelPlot_1_1LineMaterial/"><em><strong>LineMaterial</strong></em></a> <em>with default uniform values, for dashed vertices (</em><code>DashedLineVertex</code> <em>) when__dashed</em> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">QSGMaterialShader *</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1LineMaterial/#function-createshader"><strong>createShader</strong></a> (QSGRendererInterface::RenderMode) override const<br><em>Creates and returns the line shader program.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1LineMaterial/#function-dashed"><strong>dashed</strong></a> () const<br><em>Returns whether the material draws dashed vertices, which carry arc lengths.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">QSGMaterialType *</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1LineMaterial/#function-type"><strong>type</strong></a> () override const<br><em>Returns the unique material type identifier for this subclass.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1LineMaterial/#function-type"><strong>type</strong></a> () override const<br><em>Returns the unique material type identifier for this subclass and vertex layout.</em></td>
 </tr>
 </tbody>
 </table>
@@ -1936,10 +1940,11 @@
 <hr>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-bandedgematerial">function BandEdgeMaterial<a class="headerlink" href="#function-bandedgematerial" title="Permanent link">&para;</a></h3>
-<p><em>Constructs a material for the</em> <em>edge</em> <em>line.</em>
+<p><em>Constructs a material for the</em> <em>edge</em> <em>line, for dashed vertices when__dashed</em> <em>.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">explicit</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandEdgeMaterial</span><span class="o">::</span><span class="n">BandEdgeMaterial</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="n">Edge</span><span class="w"> </span><span class="n">edge</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="p">)</span><span class="w"> </span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="n">Edge</span><span class="w"> </span><span class="n">edge</span><span class="p">,</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">dashed</span><span class="o">=</span><span class="nb">false</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 

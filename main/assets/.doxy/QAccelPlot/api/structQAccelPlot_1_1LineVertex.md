@@ -15,7 +15,7 @@
 
 
 
-_Vertex layout for line geometry, shared with the main thread for pre-built vertex caches._ 
+_Vertex of a solid line ribbon, shared with the main thread for pre-built vertex caches._ [More...](#detailed-description)
 
 * `#include <LineStroke.hpp>`
 
@@ -45,13 +45,43 @@ _Vertex layout for line geometry, shared with the main thread for pre-built vert
 
 | Type | Name |
 | ---: | :--- |
-|  unsigned char | [**a**](#variable-a)  <br>_Alpha channel (used when_ `useVertexColor` _is true)._ |
-|  float | [**arcLength**](#variable-arclength)  <br>_Cumulative screen-space arc length in pixels; 0 for solid lines._  |
-|  unsigned char | [**b**](#variable-b)  <br>_Blue channel (used when_ `useVertexColor` _is true)._ |
-|  unsigned char | [**g**](#variable-g)  <br>_Green channel (used when_ `useVertexColor` _is true)._ |
-|  float | [**id**](#variable-id)  <br>_Point index in the data buffer._  |
-|  unsigned char | [**r**](#variable-r)  <br>_Red channel (used when_ `useVertexColor` _is true)._ |
-|  float | [**side**](#variable-side)  <br>`±(1 + corner)` _: the sign is the ribbon side,_`corner` _the step corner after the point (0 for the point itself)._ |
+|  std::uint32\_t | [**packed**](#variable-packed)  <br>_Bits 0–27 hold the data point index, bits 28–30 the path corner, and bit 31 marks the negative ribbon side._  |
+
+
+## Public Static Attributes
+
+| Type | Name |
+| ---: | :--- |
+|  int | [**kMaximumCorner**](#variable-kmaximumcorner)   = `7`<br>_Largest path corner a vertex holds._  |
+|  int | [**kMaximumIndex**](#variable-kmaximumindex)   = `(1 &lt;&lt; 28) - 1`<br>_Largest data point index a vertex holds._  |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Public Functions
+
+| Type | Name |
+| ---: | :--- |
+|  int | [**corner**](#function-corner) () noexcept const<br>_Returns the step corner after the data point; 0 for the point itself._  |
+|  int | [**index**](#function-index) () noexcept const<br>_Returns the data point index._  |
+|  bool | [**negativeSide**](#function-negativeside) () noexcept const<br>_Returns whether the vertex lies on the negative ribbon side._  |
+
+
+## Public Static Functions
+
+| Type | Name |
+| ---: | :--- |
+|  [**LineVertex**](structQAccelPlot_1_1LineVertex.md) | [**make**](#function-make) (const int index, const int corner, const bool negativeSide) noexcept<br>_Returns the vertex of data point_ _index_ _at step corner__corner_ _(0 for the point itself) on the negative ribbon side when__negativeSide_ _._ |
 
 
 
@@ -78,35 +108,41 @@ _Vertex layout for line geometry, shared with the main thread for pre-built vert
 
 
 
+## Detailed Description
 
 
+Packs a data point index, a path corner, and a ribbon side into four bytes, which the shaders read as normalized bytes (see line\_vertex\_input.glsl). 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 ## Public Attributes Documentation
 
 
 
 
 
-### variable a {#variable-a}
+### variable packed {#variable-packed}
 
-_Alpha channel (used when_ `useVertexColor` _is true)._
+_Bits 0–27 hold the data point index, bits 28–30 the path corner, and bit 31 marks the negative ribbon side._ 
 ```C++
-unsigned char QAccelPlot::LineVertex::a;
+std::uint32_t QAccelPlot::LineVertex::packed;
+```
+
+
+
+
+<hr>
+## Public Static Attributes Documentation
+
+
+
+
+
+### variable kMaximumCorner {#variable-kmaximumcorner}
+
+_Largest path corner a vertex holds._ 
+```C++
+int QAccelPlot::LineVertex::kMaximumCorner;
 ```
 
 
@@ -117,11 +153,28 @@ unsigned char QAccelPlot::LineVertex::a;
 
 
 
-### variable arcLength {#variable-arclength}
+### variable kMaximumIndex {#variable-kmaximumindex}
 
-_Cumulative screen-space arc length in pixels; 0 for solid lines._ 
+_Largest data point index a vertex holds._ 
 ```C++
-float QAccelPlot::LineVertex::arcLength;
+int QAccelPlot::LineVertex::kMaximumIndex;
+```
+
+
+
+
+<hr>
+## Public Functions Documentation
+
+
+
+
+
+### function corner {#function-corner}
+
+_Returns the step corner after the data point; 0 for the point itself._ 
+```C++
+inline int QAccelPlot::LineVertex::corner () noexcept const
 ```
 
 
@@ -132,11 +185,11 @@ float QAccelPlot::LineVertex::arcLength;
 
 
 
-### variable b {#variable-b}
+### function index {#function-index}
 
-_Blue channel (used when_ `useVertexColor` _is true)._
+_Returns the data point index._ 
 ```C++
-unsigned char QAccelPlot::LineVertex::b;
+inline int QAccelPlot::LineVertex::index () noexcept const
 ```
 
 
@@ -147,56 +200,32 @@ unsigned char QAccelPlot::LineVertex::b;
 
 
 
-### variable g {#variable-g}
+### function negativeSide {#function-negativeside}
 
-_Green channel (used when_ `useVertexColor` _is true)._
+_Returns whether the vertex lies on the negative ribbon side._ 
 ```C++
-unsigned char QAccelPlot::LineVertex::g;
+inline bool QAccelPlot::LineVertex::negativeSide () noexcept const
 ```
 
 
 
 
 <hr>
+## Public Static Functions Documentation
 
 
 
 
-### variable id {#variable-id}
 
-_Point index in the data buffer._ 
+### function make {#function-make}
+
+_Returns the vertex of data point_ _index_ _at step corner__corner_ _(0 for the point itself) on the negative ribbon side when__negativeSide_ _._
 ```C++
-float QAccelPlot::LineVertex::id;
-```
-
-
-
-
-<hr>
-
-
-
-
-### variable r {#variable-r}
-
-_Red channel (used when_ `useVertexColor` _is true)._
-```C++
-unsigned char QAccelPlot::LineVertex::r;
-```
-
-
-
-
-<hr>
-
-
-
-
-### variable side {#variable-side}
-
-`±(1 + corner)` _: the sign is the ribbon side,_`corner` _the step corner after the point (0 for the point itself)._
-```C++
-float QAccelPlot::LineVertex::side;
+static inline LineVertex QAccelPlot::LineVertex::make (
+    const int index,
+    const int corner,
+    const bool negativeSide
+) noexcept
 ```
 
 

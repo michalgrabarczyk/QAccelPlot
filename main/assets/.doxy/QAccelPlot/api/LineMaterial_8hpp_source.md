@@ -23,7 +23,9 @@ namespace QAccelPlot {
 
 class LineMaterial : public DataTextureMaterial {
 public:
-    LineMaterial();
+    explicit LineMaterial(bool dashed = false);
+
+    bool dashed() const;
 
     QSGMaterialType* type() const override;
     QSGMaterialShader* createShader(QSGRendererInterface::RenderMode) const override;
@@ -44,6 +46,9 @@ public:
 protected:
     static QSGMaterialShader* createLineShader(const QString& vertexShaderFileName);
     int compareExtra(const QSGMaterial* other) const override;
+
+private:
+    bool dashed_;
 };
 
 } // namespace QAccelPlot

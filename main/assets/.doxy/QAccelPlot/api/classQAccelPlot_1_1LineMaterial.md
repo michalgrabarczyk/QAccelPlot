@@ -135,9 +135,10 @@ See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 
 | Type | Name |
 | ---: | :--- |
-|   | [**LineMaterial**](#function-linematerial) () <br>_Constructs a_ [_**LineMaterial**_](classQAccelPlot_1_1LineMaterial.md) _with default uniform values._ |
+|   | [**LineMaterial**](#function-linematerial) (bool dashed=false) <br>_Constructs a_ [_**LineMaterial**_](classQAccelPlot_1_1LineMaterial.md) _with default uniform values, for dashed vertices (_`DashedLineVertex` _) when__dashed_ _._ |
 |  QSGMaterialShader \* | [**createShader**](#function-createshader) (QSGRendererInterface::RenderMode) override const<br>_Creates and returns the line shader program._  |
-|  QSGMaterialType \* | [**type**](#function-type) () override const<br>_Returns the unique material type identifier for this subclass._  |
+|  bool | [**dashed**](#function-dashed) () const<br>_Returns whether the material draws dashed vertices, which carry arc lengths._  |
+|  QSGMaterialType \* | [**type**](#function-type) () override const<br>_Returns the unique material type identifier for this subclass and vertex layout._  |
 
 
 ## Public Functions inherited from QAccelPlot::DataTextureMaterial
@@ -384,9 +385,11 @@ float QAccelPlot::LineMaterial::stepMode;
 
 ### function LineMaterial {#function-linematerial}
 
-_Constructs a_ [_**LineMaterial**_](classQAccelPlot_1_1LineMaterial.md) _with default uniform values._
+_Constructs a_ [_**LineMaterial**_](classQAccelPlot_1_1LineMaterial.md) _with default uniform values, for dashed vertices (_`DashedLineVertex` _) when__dashed_ _._
 ```C++
-QAccelPlot::LineMaterial::LineMaterial () 
+explicit QAccelPlot::LineMaterial::LineMaterial (
+    bool dashed=false
+) 
 ```
 
 
@@ -414,9 +417,24 @@ QSGMaterialShader * QAccelPlot::LineMaterial::createShader (
 
 
 
+### function dashed {#function-dashed}
+
+_Returns whether the material draws dashed vertices, which carry arc lengths._ 
+```C++
+bool QAccelPlot::LineMaterial::dashed () const
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function type {#function-type}
 
-_Returns the unique material type identifier for this subclass._ 
+_Returns the unique material type identifier for this subclass and vertex layout._ 
 ```C++
 QSGMaterialType * QAccelPlot::LineMaterial::type () override const
 ```

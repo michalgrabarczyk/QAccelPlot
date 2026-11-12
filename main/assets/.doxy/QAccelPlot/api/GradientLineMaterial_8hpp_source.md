@@ -24,6 +24,8 @@ namespace QAccelPlot {
 
 class GradientLineMaterial : public LineMaterial {
 public:
+    explicit GradientLineMaterial(bool dashed = false);
+
     QSGMaterialType* type() const override;
     QSGMaterialShader* createShader(QSGRendererInterface::RenderMode) const override;
 

@@ -67,9 +67,11 @@ _Building blocks for the line ribbon drawn by the line shaders, shared by the li
 | ---: | :--- |
 |  void | [**applyUniforms**](#function-applyuniforms) ([**LineMaterial**](classQAccelPlot_1_1LineMaterial.md) & material, const [**Uniforms**](structQAccelPlot_1_1LineStroke_1_1Uniforms.md) & uniforms) <br>_Copies_ _uniforms_ _into__material_ _._ |
 |  std::vector&lt; float &gt; | [**arcLengths**](#function-arclengths) (const int pointCount, const PixelAt & pixelAt) <br>_Returns the cumulative pixel length at each of_ _pointCount_ _data points, for dash patterns._ |
-|  QSGGeometryNode \* | [**createNode**](#function-createnode) (int vertexCount, QSGMaterial \* material) <br>_Returns a triangle-strip node with_ _vertexCount_ _line vertices that owns__material_ _._ |
-|  const QSGGeometry::AttributeSet & | [**vertexAttributes**](#function-vertexattributes) () <br>_Returns the vertex attribute set matching_ `LineVertex` _._ |
-|  void | [**writeVertices**](#function-writevertices) ([**LineVertex**](structQAccelPlot_1_1LineVertex.md) \* vertices, int pointCount, int cornerCount, const QColor & color, const std::vector&lt; float &gt; & arcLengths, int firstPoint=0) <br>_Writes two ribbon vertices per path point for data points [_ _firstPoint_ _,__pointCount_ _) of__cornerCount_ _path points each into__vertices_ _._ |
+|  QSGGeometryNode \* | [**createNode**](#function-createnode) (int vertexCount, [**LineMaterial**](classQAccelPlot_1_1LineMaterial.md) \* material) <br>_Returns a triangle-strip node with_ _vertexCount_ _line vertices that owns__material_ _._ |
+|  bool | [**setMaterial**](#function-setmaterial) (QSGGeometryNode \* node, [**LineMaterial**](classQAccelPlot_1_1LineMaterial.md) \* material) <br>_Gives_ _node_ _, a node from_[_**createNode()**_](namespaceQAccelPlot_1_1LineStroke.md#function-createnode) _, the vertex layout of__material_ _, which it takes ownership of._ |
+|  const QSGGeometry::AttributeSet & | [**vertexAttributes**](#function-vertexattributes) (bool dashed) <br>_Returns the vertex attribute set matching_ `DashedLineVertex` _when__dashed_ _, or_`LineVertex` _otherwise._ |
+|  void | [**writeDashedVertices**](#function-writedashedvertices) ([**DashedLineVertex**](structQAccelPlot_1_1DashedLineVertex.md) \* vertices, int pointCount, int cornerCount, const std::vector&lt; float &gt; & arcLengths) <br>_Writes two ribbon vertices per path point for_ _pointCount_ _data points of__cornerCount_ _path points each into__vertices_ _._ |
+|  void | [**writeVertices**](#function-writevertices) ([**LineVertex**](structQAccelPlot_1_1LineVertex.md) \* vertices, int pointCount, int cornerCount, int firstPoint=0) <br>_Writes two ribbon vertices per path point for data points [_ _firstPoint_ _,__pointCount_ _) of__cornerCount_ _path points each into__vertices_ _._ |
 
 
 
@@ -151,7 +153,50 @@ _Returns a triangle-strip node with_ _vertexCount_ _line vertices that owns__mat
 ```C++
 QSGGeometryNode * QAccelPlot::LineStroke::createNode (
     int vertexCount,
-    QSGMaterial * material
+    LineMaterial * material
+) 
+```
+
+
+
+The vertices have the dashed layout when _material_ is dashed. 
+
+
+        
+
+<hr>
+
+
+
+
+### function setMaterial {#function-setmaterial}
+
+_Gives_ _node_ _, a node from_[_**createNode()**_](namespaceQAccelPlot_1_1LineStroke.md#function-createnode) _, the vertex layout of__material_ _, which it takes ownership of._
+```C++
+bool QAccelPlot::LineStroke::setMaterial (
+    QSGGeometryNode * node,
+    LineMaterial * material
+) 
+```
+
+
+
+Replaces the geometry of _node_ with one of the same vertex count, whose vertices are undefined, when the layout differs from the current one, and returns `true` then. 
+
+
+        
+
+<hr>
+
+
+
+
+### function vertexAttributes {#function-vertexattributes}
+
+_Returns the vertex attribute set matching_ `DashedLineVertex` _when__dashed_ _, or_`LineVertex` _otherwise._
+```C++
+const QSGGeometry::AttributeSet & QAccelPlot::LineStroke::vertexAttributes (
+    bool dashed
 ) 
 ```
 
@@ -163,15 +208,24 @@ QSGGeometryNode * QAccelPlot::LineStroke::createNode (
 
 
 
-### function vertexAttributes {#function-vertexattributes}
+### function writeDashedVertices {#function-writedashedvertices}
 
-_Returns the vertex attribute set matching_ `LineVertex` _._
+_Writes two ribbon vertices per path point for_ _pointCount_ _data points of__cornerCount_ _path points each into__vertices_ _._
 ```C++
-const QSGGeometry::AttributeSet & QAccelPlot::LineStroke::vertexAttributes () 
+void QAccelPlot::LineStroke::writeDashedVertices (
+    DashedLineVertex * vertices,
+    int pointCount,
+    int cornerCount,
+    const std::vector< float > & arcLengths
+) 
 ```
 
 
 
+_arcLengths_ holds cumulative lengths of the leading path points. Path points past its end, such as vertices reserved for appended data, repeat its last length, or 0 when it is empty. 
+
+
+        
 
 <hr>
 
@@ -186,15 +240,13 @@ void QAccelPlot::LineStroke::writeVertices (
     LineVertex * vertices,
     int pointCount,
     int cornerCount,
-    const QColor & color,
-    const std::vector< float > & arcLengths,
     int firstPoint=0
 ) 
 ```
 
 
 
-_vertices_ holds the vertices of all _pointCount_ data points; those before _firstPoint_ are left unchanged. _arcLengths_ holds cumulative lengths of the leading path points, or is empty for solid lines. Path points past its end, such as vertices reserved for appended data, repeat its last length. 
+_vertices_ holds the vertices of all _pointCount_ data points; those before _firstPoint_ are left unchanged. 
 
 
         

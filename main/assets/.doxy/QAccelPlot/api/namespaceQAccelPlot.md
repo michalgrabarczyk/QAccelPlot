@@ -79,6 +79,7 @@
 | struct | [**CurveHitTestParams**](structQAccelPlot_1_1CurveHitTestParams.md) <br>_All inputs required for a_ `contains()` _hit-test, bundled to reduce parameter count._ |
 | class | [**DashLine**](classQAccelPlot_1_1DashLine.md) <br>_A line style that renders the curve as a customisable dashed line._  |
 | struct | [**DashParameters**](structQAccelPlot_1_1DashParameters.md) <br>_Plain-data snapshot of dash rendering parameters._  |
+| struct | [**DashedLineVertex**](structQAccelPlot_1_1DashedLineVertex.md) <br>_Vertex of a dashed line ribbon: a_ `LineVertex` _and the screen-space arc length the dash pattern follows._ |
 | class | [**DataAnchor**](classQAccelPlot_1_1DataAnchor.md) <br>_A QQuickItem that tracks a data-coordinate rectangle in pixel space._  |
 | struct | [**DataPointRun**](structQAccelPlot_1_1DataPointRun.md) <br>_Contiguous range of valid curve data points, used to break fills and hit tests at gaps._  |
 | class | [**DataPointStore**](classQAccelPlot_1_1DataPointStore.md) <br>_Holds the data points of one series and derives everything that depends only on them._  |
@@ -125,7 +126,7 @@
 | class | [**LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md) <br>_Owns a_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _'s pre-built vertex bytes and the metadata required to use them safely._ |
 | class | [**LineMaterial**](classQAccelPlot_1_1LineMaterial.md) <br>_QSGMaterial for line rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with line-specific uniforms._ |
 | class | [**LineStyle**](classQAccelPlot_1_1LineStyle.md) <br>_Abstract base class for all line styles._  |
-| struct | [**LineVertex**](structQAccelPlot_1_1LineVertex.md) <br>_Vertex layout for line geometry, shared with the main thread for pre-built vertex caches._  |
+| struct | [**LineVertex**](structQAccelPlot_1_1LineVertex.md) <br>_Vertex of a solid line ribbon, shared with the main thread for pre-built vertex caches._  |
 | class | [**MorphTransition**](classQAccelPlot_1_1MorphTransition.md) <br>_An update transition that interpolates each kept item from its old values to its new ones._  |
 | class | [**NoLine**](classQAccelPlot_1_1NoLine.md) <br>_A line style that suppresses line rendering entirely, leaving only markers visible._  |
 | class | [**NumericTickLabelFormatter**](classQAccelPlot_1_1NumericTickLabelFormatter.md) <br>_The default tick label formatter — produces numeric labels with automatic decimal precision._  |

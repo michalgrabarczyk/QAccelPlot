@@ -157,7 +157,7 @@ See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 
 | Type | Name |
 | ---: | :--- |
-|   | [**BandEdgeMaterial**](#function-bandedgematerial) ([**Edge**](classQAccelPlot_1_1BandEdgeMaterial.md#enum-edge) edge) <br>_Constructs a material for the_ _edge_ _line._ |
+|   | [**BandEdgeMaterial**](#function-bandedgematerial) ([**Edge**](classQAccelPlot_1_1BandEdgeMaterial.md#enum-edge) edge, bool dashed=false) <br>_Constructs a material for the_ _edge_ _line, for dashed vertices when__dashed_ _._ |
 |  QSGMaterialShader \* | [**createShader**](#function-createshader) (QSGRendererInterface::RenderMode) override const<br>_Creates and returns the edge line shader program._  |
 |  [**Edge**](classQAccelPlot_1_1BandEdgeMaterial.md#enum-edge) | [**edge**](#function-edge) () const<br>_Returns the edge line this material draws._  |
 |  QSGMaterialType \* | [**type**](#function-type) () override const<br>_Returns the material type of this edge; the two edges use different shaders._  |
@@ -169,9 +169,10 @@ See [QAccelPlot::LineMaterial](classQAccelPlot_1_1LineMaterial.md)
 
 | Type | Name |
 | ---: | :--- |
-|   | [**LineMaterial**](classQAccelPlot_1_1LineMaterial.md#function-linematerial) () <br>_Constructs a_ [_**LineMaterial**_](classQAccelPlot_1_1LineMaterial.md) _with default uniform values._ |
+|   | [**LineMaterial**](classQAccelPlot_1_1LineMaterial.md#function-linematerial) (bool dashed=false) <br>_Constructs a_ [_**LineMaterial**_](classQAccelPlot_1_1LineMaterial.md) _with default uniform values, for dashed vertices (_`DashedLineVertex` _) when__dashed_ _._ |
 |  QSGMaterialShader \* | [**createShader**](classQAccelPlot_1_1LineMaterial.md#function-createshader) (QSGRendererInterface::RenderMode) override const<br>_Creates and returns the line shader program._  |
-|  QSGMaterialType \* | [**type**](classQAccelPlot_1_1LineMaterial.md#function-type) () override const<br>_Returns the unique material type identifier for this subclass._  |
+|  bool | [**dashed**](classQAccelPlot_1_1LineMaterial.md#function-dashed) () const<br>_Returns whether the material draws dashed vertices, which carry arc lengths._  |
+|  QSGMaterialType \* | [**type**](classQAccelPlot_1_1LineMaterial.md#function-type) () override const<br>_Returns the unique material type identifier for this subclass and vertex layout._  |
 
 
 ## Public Functions inherited from QAccelPlot::DataTextureMaterial
@@ -331,10 +332,11 @@ enum QAccelPlot::BandEdgeMaterial::Edge {
 
 ### function BandEdgeMaterial {#function-bandedgematerial}
 
-_Constructs a material for the_ _edge_ _line._
+_Constructs a material for the_ _edge_ _line, for dashed vertices when__dashed_ _._
 ```C++
 explicit QAccelPlot::BandEdgeMaterial::BandEdgeMaterial (
-    Edge edge
+    Edge edge,
+    bool dashed=false
 ) 
 ```
 

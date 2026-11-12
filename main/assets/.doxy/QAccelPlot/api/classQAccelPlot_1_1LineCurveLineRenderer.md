@@ -201,7 +201,7 @@ static void QAccelPlot::LineCurveLineRenderer::writeVertexCache (
 
 
 
-_cache_ holds [**vertexCacheBytesPerPoint()**](classQAccelPlot_1_1LineCurveLineRenderer.md#function-vertexcachebytesperpoint) bytes for each of _pointCount_ data points. A vertex depends only on its data point index and step corner, never on data values, so the vertices before _firstPoint_ stay valid. Writes neutral RGBA (1,1,1,1); solid and gradient shaders obtain their colors from their materials. 
+_cache_ holds [**vertexCacheBytesPerPoint()**](classQAccelPlot_1_1LineCurveLineRenderer.md#function-vertexcachebytesperpoint) bytes for each of _pointCount_ data points. A vertex depends only on its data point index and step corner, never on data values, so the vertices before _firstPoint_ stay valid. The cache holds solid line vertices; dashed lines write theirs on the render thread. 
 
 
         

@@ -103,11 +103,10 @@ private:
     void updateFillGeometry(QSGGeometryNode* fillNode, const LineCurveRenderParams& params) const;
     const FillSamples& fillSamples(const LineCurveRenderParams& params) const;
     static void rebuildFillSamples(const LineCurveRenderParams& params, FillSamples& samples);
-    void updateLineMaterial(
-        LineMaterial* material, const LineCurveRenderParams& params, const QColor& effectiveColor, bool useVertexColor, const DashParameters& dashParams) const;
+    void updateLineMaterial(LineMaterial* material, const LineCurveRenderParams& params, const QColor& effectiveColor, const DashParameters& dashParams) const;
     std::vector<float> computeArcLengths(const LineCurveRenderParams& params, const DashParameters& dashParams) const;
-    void updateLineVertices(QSGGeometry* geometry, const LineCurveRenderParams& params, bool useVertexColor, const QColor& effectiveColor,
-        const std::vector<float>& arcLengths) const;
+    // Writes the vertices of geometry, in its solid or dashed layout; arcLengths are those of a dashed line.
+    void updateLineVertices(QSGGeometry* geometry, const LineCurveRenderParams& params, const std::vector<float>& arcLengths) const;
 
     // Render-thread state touched only by paint(); workers that call buildVertexCache() never read it.
     mutable FillSampleCache fillSampleCache_;

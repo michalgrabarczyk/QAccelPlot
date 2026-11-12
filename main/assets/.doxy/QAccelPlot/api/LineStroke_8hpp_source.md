@@ -27,6 +27,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <cstdint>
 #include <optional>
 #include <vector>
 
@@ -35,14 +36,40 @@ namespace QAccelPlot {
 class LineMaterial;
 
 struct LineVertex {
-    float id;        
-    float side;      
-    unsigned char r; 
-    unsigned char g; 
-    unsigned char b; 
-    unsigned char a; 
-    float arcLength; 
+    static constexpr int kMaximumIndex = (1 << 28) - 1;
+    static constexpr int kMaximumCorner = 7;
+
+    std::uint32_t packed;
+
+    static constexpr LineVertex make(const int index, const int corner, const bool negativeSide) noexcept
+    {
+        return {static_cast<std::uint32_t>(index) | (static_cast<std::uint32_t>(corner) << 28U) | (negativeSide ? 1U << 31U : 0U)};
+    }
+
+    constexpr int index() const noexcept
+    {
+        return static_cast<int>(packed & 0x0FFFFFFFU);
+    }
+
+    constexpr int corner() const noexcept
+    {
+        return static_cast<int>((packed >> 28U) & 7U);
+    }
+
+    constexpr bool negativeSide() const noexcept
+    {
+        return (packed >> 31U) != 0U;
+    }
 };
+
+static_assert(sizeof(LineVertex) == 4);
+
+struct DashedLineVertex {
+    LineVertex vertex; 
+    float arcLength;   
+};
+
+static_assert(sizeof(DashedLineVertex) == 8);
 
 namespace LineStroke {
 
@@ -60,11 +87,15 @@ struct Uniforms {
     DashParameters dash;       
 };
 
-const QSGGeometry::AttributeSet& vertexAttributes();
+const QSGGeometry::AttributeSet& vertexAttributes(bool dashed);
 
-QSGGeometryNode* createNode(int vertexCount, QSGMaterial* material);
+QSGGeometryNode* createNode(int vertexCount, LineMaterial* material);
 
-void writeVertices(LineVertex* vertices, int pointCount, int cornerCount, const QColor& color, const std::vector<float>& arcLengths, int firstPoint = 0);
+bool setMaterial(QSGGeometryNode* node, LineMaterial* material);
+
+void writeVertices(LineVertex* vertices, int pointCount, int cornerCount, int firstPoint = 0);
+
+void writeDashedVertices(DashedLineVertex* vertices, int pointCount, int cornerCount, const std::vector<float>& arcLengths);
 
 void applyUniforms(LineMaterial& material, const Uniforms& uniforms);
 

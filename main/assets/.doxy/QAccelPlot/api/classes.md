@@ -80,6 +80,8 @@
 
 ## d
 
+* [**DashedLineVertex**](structQAccelPlot_1_1DashedLineVertex.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**DashLine**](classQAccelPlot_1_1DashLine.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**DashParameters**](structQAccelPlot_1_1DashParameters.md)

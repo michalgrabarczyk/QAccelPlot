@@ -41,6 +41,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **struct** [**QAccelPlot::CurveDataView**](structQAccelPlot_1_1CurveDataView.md) _Read-only view over either interleaved float or double curve coordinates._ 
 * **struct** [**QAccelPlot::CurveHitTestParams**](structQAccelPlot_1_1CurveHitTestParams.md) _All inputs required for a_ `contains()` _hit-test, bundled to reduce parameter count._
 * **struct** [**QAccelPlot::DashParameters**](structQAccelPlot_1_1DashParameters.md) _Plain-data snapshot of dash rendering parameters._ 
+* **struct** [**QAccelPlot::DashedLineVertex**](structQAccelPlot_1_1DashedLineVertex.md) _Vertex of a dashed line ribbon: a_ `LineVertex` _and the screen-space arc length the dash pattern follows._
 * **struct** [**QAccelPlot::DataPointRun**](structQAccelPlot_1_1DataPointRun.md) _Contiguous range of valid curve data points, used to break fills and hit tests at gaps._ 
 * **struct** [**QAccelPlot::DataPointStore::AttributeView**](structQAccelPlot_1_1DataPointStore_1_1AttributeView.md) _Read-only view over the float attributes of the stored data points._ 
 * **struct** [**QAccelPlot::DataPointStore::DimensionState**](structQAccelPlot_1_1DataPointStore_1_1DimensionState.md) _Scale and viewport of one dimension, as its axis currently shows it._ 
@@ -91,7 +92,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **struct** [**QAccelPlot::LegendEntry**](structQAccelPlot_1_1LegendEntry.md) _How a legend draws one row of a series: its label, symbol, color, line, and marker._ 
 * **struct** [**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md) _Input parameters for_ [_**LineCurveLineRenderer::paint()**_](classQAccelPlot_1_1LineCurveLineRenderer.md#function-paint) _, assembled on the main thread._
 * **struct** [**QAccelPlot::LineStroke::Uniforms**](structQAccelPlot_1_1LineStroke_1_1Uniforms.md) [_**Uniforms**_](structQAccelPlot_1_1LineStroke_1_1Uniforms.md) _of a line material that do not depend on its shader variant._
-* **struct** [**QAccelPlot::LineVertex**](structQAccelPlot_1_1LineVertex.md) _Vertex layout for line geometry, shared with the main thread for pre-built vertex caches._ 
+* **struct** [**QAccelPlot::LineVertex**](structQAccelPlot_1_1LineVertex.md) _Vertex of a solid line ribbon, shared with the main thread for pre-built vertex caches._ 
 * **struct** [**QAccelPlot::PlotSeries::DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) _Extents of a data update that the caller already knows._ 
 * **struct** [**QAccelPlot::PlotSeries::DataExtent**](structQAccelPlot_1_1PlotSeries_1_1DataExtent.md) _Extent of the valid coordinates in one dimension._ 
 * **struct** [**QAccelPlot::PlotSeries::DataPointInput**](structQAccelPlot_1_1PlotSeries_1_1DataPointInput.md) _Data points passed to_ `setData()` _or_`setDataF()` _, already checked._

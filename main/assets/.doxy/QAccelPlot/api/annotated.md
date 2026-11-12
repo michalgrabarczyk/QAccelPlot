@@ -37,6 +37,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **struct** [**CurveHitTestParams**](structQAccelPlot_1_1CurveHitTestParams.md) _All inputs required for a_ `contains()` _hit-test, bundled to reduce parameter count._    
     * **class** [**DashLine**](classQAccelPlot_1_1DashLine.md) _A line style that renders the curve as a customisable dashed line._     
     * **struct** [**DashParameters**](structQAccelPlot_1_1DashParameters.md) _Plain-data snapshot of dash rendering parameters._     
+    * **struct** [**DashedLineVertex**](structQAccelPlot_1_1DashedLineVertex.md) _Vertex of a dashed line ribbon: a_ `LineVertex` _and the screen-space arc length the dash pattern follows._    
     * **class** [**DataAnchor**](classQAccelPlot_1_1DataAnchor.md) _A QQuickItem that tracks a data-coordinate rectangle in pixel space._     
     * **struct** [**DataPointRun**](structQAccelPlot_1_1DataPointRun.md) _Contiguous range of valid curve data points, used to break fills and hit tests at gaps._     
     * **class** [**DataPointStore**](classQAccelPlot_1_1DataPointStore.md) _Holds the data points of one series and derives everything that depends only on them._     
@@ -146,7 +147,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **namespace** [**LineStroke**](namespaceQAccelPlot_1_1LineStroke.md) _Building blocks for the line ribbon drawn by the line shaders, shared by the line renderers._     
         * **struct** [**Uniforms**](structQAccelPlot_1_1LineStroke_1_1Uniforms.md) [_**Uniforms**_](structQAccelPlot_1_1LineStroke_1_1Uniforms.md) _of a line material that do not depend on its shader variant._    
     * **class** [**LineStyle**](classQAccelPlot_1_1LineStyle.md) _Abstract base class for all line styles._     
-    * **struct** [**LineVertex**](structQAccelPlot_1_1LineVertex.md) _Vertex layout for line geometry, shared with the main thread for pre-built vertex caches._     
+    * **struct** [**LineVertex**](structQAccelPlot_1_1LineVertex.md) _Vertex of a solid line ribbon, shared with the main thread for pre-built vertex caches._     
     * **namespace** [**MarkerShapeNS**](namespaceQAccelPlot_1_1MarkerShapeNS.md) _Namespace exposing the_ `MarkerShape` _enum to QML._    
     * **class** [**MorphTransition**](classQAccelPlot_1_1MorphTransition.md) _An update transition that interpolates each kept item from its old values to its new ones._     
     * **namespace** [**NanGapModeNS**](namespaceQAccelPlot_1_1NanGapModeNS.md) _Namespace exposing the_ `NanGapMode` _enum to QML._    

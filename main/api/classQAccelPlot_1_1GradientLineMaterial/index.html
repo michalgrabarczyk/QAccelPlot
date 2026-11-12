@@ -1591,6 +1591,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#function-gradientlinematerial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function GradientLineMaterial
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-createshader" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1825,6 +1836,10 @@
 </thead>
 <tbody>
 <tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-gradientlinematerial"><strong>GradientLineMaterial</strong></a> (bool dashed=false) <br><em>Constructs a gradient line material, for dashed vertices when</em> <em>dashed</em> <em>.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">QSGMaterialShader *</td>
 <td style="text-align: left;"><a href="#function-createshader"><strong>createShader</strong></a> (QSGRendererInterface::RenderMode) override const<br></td>
 </tr>
@@ -1846,15 +1861,19 @@
 <tbody>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1LineMaterial/#function-linematerial"><strong>LineMaterial</strong></a> () <br><em>Constructs a</em> <a href="../classQAccelPlot_1_1LineMaterial/"><em><strong>LineMaterial</strong></em></a> <em>with default uniform values.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1LineMaterial/#function-linematerial"><strong>LineMaterial</strong></a> (bool dashed=false) <br><em>Constructs a</em> <a href="../classQAccelPlot_1_1LineMaterial/"><em><strong>LineMaterial</strong></em></a> <em>with default uniform values, for dashed vertices (</em><code>DashedLineVertex</code> <em>) when__dashed</em> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">QSGMaterialShader *</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1LineMaterial/#function-createshader"><strong>createShader</strong></a> (QSGRendererInterface::RenderMode) override const<br><em>Creates and returns the line shader program.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1LineMaterial/#function-dashed"><strong>dashed</strong></a> () const<br><em>Returns whether the material draws dashed vertices, which carry arc lengths.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">QSGMaterialType *</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1LineMaterial/#function-type"><strong>type</strong></a> () override const<br><em>Returns the unique material type identifier for this subclass.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1LineMaterial/#function-type"><strong>type</strong></a> () override const<br><em>Returns the unique material type identifier for this subclass and vertex layout.</em></td>
 </tr>
 </tbody>
 </table>
@@ -2002,23 +2021,31 @@
 </code></pre></div>
 <hr>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="function-gradientlinematerial">function GradientLineMaterial<a class="headerlink" href="#function-gradientlinematerial" title="Permanent link">&para;</a></h3>
+<p><em>Constructs a gradient line material, for dashed vertices when</em> <em>dashed</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">explicit</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientLineMaterial</span><span class="o">::</span><span class="n">GradientLineMaterial</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">dashed</span><span class="o">=</span><span class="nb">false</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="function-createshader">function createShader<a class="headerlink" href="#function-createshader" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">QSGMaterialShader</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientLineMaterial</span><span class="o">::</span><span class="n">createShader</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="n">QSGRendererInterface</span><span class="o">::</span><span class="n">RenderMode</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">QSGMaterialShader</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientLineMaterial</span><span class="o">::</span><span class="n">createShader</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="n">QSGRendererInterface</span><span class="o">::</span><span class="n">RenderMode</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div>
 <hr>
 
 <h3 id="function-type">function type<a class="headerlink" href="#function-type" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">QSGMaterialType</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientLineMaterial</span><span class="o">::</span><span class="n">type</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">QSGMaterialType</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientLineMaterial</span><span class="o">::</span><span class="n">type</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div>
 <hr>
 <h2 id="protected-functions-documentation">Protected Functions Documentation<a class="headerlink" href="#protected-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-compareextra">function compareExtra<a class="headerlink" href="#function-compareextra" title="Permanent link">&para;</a></h3>
 <p><em>Subclass hook for</em> <code>compare()</code> <em>— called after the shared fields compare equal.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientLineMaterial</span><span class="o">::</span><span class="n">compareExtra</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QSGMaterial</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">other</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientLineMaterial</span><span class="o">::</span><span class="n">compareExtra</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QSGMaterial</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">other</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1DataTextureMaterial/#function-compareextra"><em>QAccelPlot::DataTextureMaterial::compareExtra</em></a></p>
 <hr>

@@ -1814,7 +1814,7 @@ batch; see <a href="../cookbook/background-data/">Background data production</a>
 <tbody>
 <tr>
 <td><code>LineCurve</code></td>
-<td>Checks one bounding box per 512 points, then the segments and markers in the matching boxes. <code>hoverRadius: 0</code> skips the segments.</td>
+<td>Builds one bounding box per 512 points on the first move after a data change, then tests the segments and markers in the boxes near the cursor. <code>hoverRadius: 0</code> skips the segments.</td>
 </tr>
 <tr>
 <td><code>PointCloud</code>, <code>RectangleSeries</code></td>
@@ -1883,17 +1883,23 @@ use the public path.</p>
 <h2 id="performance-lab">Performance Lab<a class="headerlink" href="#performance-lab" title="Permanent link">&para;</a></h2>
 <p><a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/showcases/performance"><code>examples/showcases/performance</code></a>
 streams a <code>LineCurve</code>, a <code>PointCloud</code>, a <code>RectangleSeries</code>, a <code>BarSeries</code>, and
-a <code>HeatmapSeries</code>, one per tab, with options for record and series count, ingestion API, hover,
-and rendering. It presents without vsync, so the display's refresh rate does
-not cap display FPS. Change one option at a time. The lab reports:</p>
+a <code>HeatmapSeries</code>, one per tab, with options for record and series count,
+ingestion API, hover, and rendering. It presents without vsync, so the
+display's refresh rate does not cap display FPS. Change one option at a time.</p>
+<p>When the settings change, a worker thread generates a loop of up to 1 GB of
+frames. It then plays the loop forward and backward, copying one frame into
+each dataset, so the measurements exclude the cost of computing the data. The
+lab reports:</p>
 <ul>
 <li><strong>Display FPS</strong> — frames presented to the screen.</li>
-<li><strong>Data Update Rate</strong> (Hz) — new datasets applied to the plot per second,
-  including worker-side generation.</li>
+<li><strong>Data Update Rate</strong> (Hz) — new datasets applied to the plot per second.</li>
 <li><strong>Peak update gap</strong> — the longest interval between two dataset applications
   in the last reporting period.</li>
 <li><strong>Throughput</strong> — points, rectangles, bars, or heatmap cells updated per
   second.</li>
+<li><strong>Data copy</strong> — worker time to copy one frame into a dataset. The worker
+  copies the next dataset while one waits, so this limits the update rate only
+  when it exceeds the frame time.</li>
 </ul>
 
 

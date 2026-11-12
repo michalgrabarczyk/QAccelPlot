@@ -160,6 +160,7 @@ See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 
 | Type | Name |
 | ---: | :--- |
+|   | [**GradientLineMaterial**](#function-gradientlinematerial) (bool dashed=false) <br>_Constructs a gradient line material, for dashed vertices when_ _dashed_ _._ |
 |  QSGMaterialShader \* | [**createShader**](#function-createshader) (QSGRendererInterface::RenderMode) override const<br> |
 |  QSGMaterialType \* | [**type**](#function-type) () override const<br> |
 
@@ -170,9 +171,10 @@ See [QAccelPlot::LineMaterial](classQAccelPlot_1_1LineMaterial.md)
 
 | Type | Name |
 | ---: | :--- |
-|   | [**LineMaterial**](classQAccelPlot_1_1LineMaterial.md#function-linematerial) () <br>_Constructs a_ [_**LineMaterial**_](classQAccelPlot_1_1LineMaterial.md) _with default uniform values._ |
+|   | [**LineMaterial**](classQAccelPlot_1_1LineMaterial.md#function-linematerial) (bool dashed=false) <br>_Constructs a_ [_**LineMaterial**_](classQAccelPlot_1_1LineMaterial.md) _with default uniform values, for dashed vertices (_`DashedLineVertex` _) when__dashed_ _._ |
 |  QSGMaterialShader \* | [**createShader**](classQAccelPlot_1_1LineMaterial.md#function-createshader) (QSGRendererInterface::RenderMode) override const<br>_Creates and returns the line shader program._  |
-|  QSGMaterialType \* | [**type**](classQAccelPlot_1_1LineMaterial.md#function-type) () override const<br>_Returns the unique material type identifier for this subclass._  |
+|  bool | [**dashed**](classQAccelPlot_1_1LineMaterial.md#function-dashed) () const<br>_Returns whether the material draws dashed vertices, which carry arc lengths._  |
+|  QSGMaterialType \* | [**type**](classQAccelPlot_1_1LineMaterial.md#function-type) () override const<br>_Returns the unique material type identifier for this subclass and vertex layout._  |
 
 
 ## Public Functions inherited from QAccelPlot::DataTextureMaterial
@@ -362,6 +364,23 @@ float QAccelPlot::GradientLineMaterial::gradientValueMin;
 <hr>
 ## Public Functions Documentation
 
+
+
+
+
+### function GradientLineMaterial {#function-gradientlinematerial}
+
+_Constructs a gradient line material, for dashed vertices when_ _dashed_ _._
+```C++
+explicit QAccelPlot::GradientLineMaterial::GradientLineMaterial (
+    bool dashed=false
+) 
+```
+
+
+
+
+<hr>
 
 
 

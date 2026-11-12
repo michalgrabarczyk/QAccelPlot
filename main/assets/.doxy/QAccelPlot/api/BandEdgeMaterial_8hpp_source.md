@@ -25,7 +25,7 @@ class BandEdgeMaterial : public LineMaterial {
 public:
     enum class Edge { Lower, Upper };
 
-    explicit BandEdgeMaterial(Edge edge);
+    explicit BandEdgeMaterial(Edge edge, bool dashed = false);
 
     Edge edge() const;
 

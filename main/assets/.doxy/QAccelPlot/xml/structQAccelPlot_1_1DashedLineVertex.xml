@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1DashedLineVertex" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::DashedLineVertex</compoundname>
+    <includes local="no">LineStroke.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1DashedLineVertex_1a6554b336f3ede2afca2510df6d9646d3" prot="public" static="no" mutable="no">
+        <type><ref refid="structQAccelPlot_1_1LineVertex" kindref="compound">LineVertex</ref></type>
+        <definition>LineVertex QAccelPlot::DashedLineVertex::vertex</definition>
+        <argsstring></argsstring>
+        <name>vertex</name>
+        <qualifiedname>QAccelPlot::DashedLineVertex::vertex</qualifiedname>
+        <briefdescription>
+<para>Data point index, path corner, and ribbon side. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="70" column="16" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1DashedLineVertex_1a7aaece594246f936be1dbe715dc7a821" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::DashedLineVertex::arcLength</definition>
+        <argsstring></argsstring>
+        <name>arcLength</name>
+        <qualifiedname>QAccelPlot::DashedLineVertex::arcLength</qualifiedname>
+        <briefdescription>
+<para>Cumulative screen-space arc length in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="71" column="11" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="71" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Vertex of a dashed line ribbon: a <computeroutput><ref refid="structQAccelPlot_1_1LineVertex" kindref="compound">LineVertex</ref></computeroutput> and the screen-space arc length the dash pattern follows. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::DashedLineVertex</label>
+        <link refid="structQAccelPlot_1_1DashedLineVertex"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>vertex</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::LineVertex</label>
+        <link refid="structQAccelPlot_1_1LineVertex"/>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="69" column="1" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="69" bodyend="72"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1DashedLineVertex_1a7aaece594246f936be1dbe715dc7a821" prot="public" virt="non-virtual"><scope>QAccelPlot::DashedLineVertex</scope><name>arcLength</name></member>
+      <member refid="structQAccelPlot_1_1DashedLineVertex_1a6554b336f3ede2afca2510df6d9646d3" prot="public" virt="non-virtual"><scope>QAccelPlot::DashedLineVertex</scope><name>vertex</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

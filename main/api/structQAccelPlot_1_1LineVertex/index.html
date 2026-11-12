@@ -1397,6 +1397,50 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#public-static-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Static Attributes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-static-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Static Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#public-attributes-documentation" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1409,10 +1453,38 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#variable-a" class="md-nav__link">
+  <a href="#variable-packed" class="md-nav__link">
     <span class="md-ellipsis">
       
-        variable a
+        variable packed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-static-attributes-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Static Attributes Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Static Attributes Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#variable-kmaximumcorner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable kMaximumCorner
       
     </span>
   </a>
@@ -1420,10 +1492,38 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#variable-arclength" class="md-nav__link">
+  <a href="#variable-kmaximumindex" class="md-nav__link">
     <span class="md-ellipsis">
       
-        variable arcLength
+        variable kMaximumIndex
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-functions-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Functions Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Functions Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#function-corner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function corner
       
     </span>
   </a>
@@ -1431,10 +1531,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#variable-b" class="md-nav__link">
+  <a href="#function-index" class="md-nav__link">
     <span class="md-ellipsis">
       
-        variable b
+        function index
       
     </span>
   </a>
@@ -1442,43 +1542,38 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#variable-g" class="md-nav__link">
+  <a href="#function-negativeside" class="md-nav__link">
     <span class="md-ellipsis">
       
-        variable g
+        function negativeSide
       
     </span>
   </a>
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#variable-id" class="md-nav__link">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-static-functions-documentation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        variable id
+        Public Static Functions Documentation
       
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Public Static Functions Documentation">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#variable-r" class="md-nav__link">
+  <a href="#function-make" class="md-nav__link">
     <span class="md-ellipsis">
       
-        variable r
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#variable-side" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        variable side
+        function make
       
     </span>
   </a>
@@ -1509,7 +1604,7 @@
 
 <h1 id="struct-qaccelplotlinevertex">Struct QAccelPlot::LineVertex<a class="headerlink" href="#struct-qaccelplotlinevertex" title="Permanent link">&para;</a></h1>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="./"><strong>LineVertex</strong></a></p>
-<p><em>Vertex layout for line geometry, shared with the main thread for pre-built vertex caches.</em> </p>
+<p><em>Vertex of a solid line ribbon, shared with the main thread for pre-built vertex caches.</em> <a href="#detailed-description">More...</a></p>
 <ul>
 <li><code>#include &lt;LineStroke.hpp&gt;</code></li>
 </ul>
@@ -1523,75 +1618,114 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;">unsigned char</td>
-<td style="text-align: left;"><a href="#variable-a"><strong>a</strong></a>  <br><em>Alpha channel (used when</em> <code>useVertexColor</code> <em>is true).</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">float</td>
-<td style="text-align: left;"><a href="#variable-arclength"><strong>arcLength</strong></a>  <br><em>Cumulative screen-space arc length in pixels; 0 for solid lines.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">unsigned char</td>
-<td style="text-align: left;"><a href="#variable-b"><strong>b</strong></a>  <br><em>Blue channel (used when</em> <code>useVertexColor</code> <em>is true).</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">unsigned char</td>
-<td style="text-align: left;"><a href="#variable-g"><strong>g</strong></a>  <br><em>Green channel (used when</em> <code>useVertexColor</code> <em>is true).</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">float</td>
-<td style="text-align: left;"><a href="#variable-id"><strong>id</strong></a>  <br><em>Point index in the data buffer.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">unsigned char</td>
-<td style="text-align: left;"><a href="#variable-r"><strong>r</strong></a>  <br><em>Red channel (used when</em> <code>useVertexColor</code> <em>is true).</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">float</td>
-<td style="text-align: left;"><a href="#variable-side"><strong>side</strong></a>  <br><code>±(1 + corner)</code> <em>: the sign is the ribbon side,</em><code>corner</code> <em>the step corner after the point (0 for the point itself).</em></td>
+<td style="text-align: right;">std::uint32_t</td>
+<td style="text-align: left;"><a href="#variable-packed"><strong>packed</strong></a>  <br><em>Bits 0–27 hold the data point index, bits 28–30 the path corner, and bit 31 marks the negative ribbon side.</em></td>
 </tr>
 </tbody>
 </table>
+<h2 id="public-static-attributes">Public Static Attributes<a class="headerlink" href="#public-static-attributes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#variable-kmaximumcorner"><strong>kMaximumCorner</strong></a>   = <code>7</code><br><em>Largest path corner a vertex holds.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#variable-kmaximumindex"><strong>kMaximumIndex</strong></a>   = <code>(1 &amp;lt;&amp;lt; 28) - 1</code><br><em>Largest data point index a vertex holds.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions<a class="headerlink" href="#public-functions" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-corner"><strong>corner</strong></a> () noexcept const<br><em>Returns the step corner after the data point; 0 for the point itself.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-index"><strong>index</strong></a> () noexcept const<br><em>Returns the data point index.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-negativeside"><strong>negativeSide</strong></a> () noexcept const<br><em>Returns whether the vertex lies on the negative ribbon side.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-functions">Public Static Functions<a class="headerlink" href="#public-static-functions" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>LineVertex</strong></a></td>
+<td style="text-align: left;"><a href="#function-make"><strong>make</strong></a> (const int index, const int corner, const bool negativeSide) noexcept<br><em>Returns the vertex of data point</em> <em>index</em> <em>at step corner__corner</em> <em>(0 for the point itself) on the negative ribbon side when__negativeSide</em> <em>.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
+<p>Packs a data point index, a path corner, and a ribbon side into four bytes, which the shaders read as normalized bytes (see line_vertex_input.glsl). </p>
 <h2 id="public-attributes-documentation">Public Attributes Documentation<a class="headerlink" href="#public-attributes-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="variable-a">variable a<a class="headerlink" href="#variable-a" title="Permanent link">&para;</a></h3>
-<p><em>Alpha channel (used when</em> <code>useVertexColor</code> <em>is true).</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineVertex</span><span class="o">::</span><span class="n">a</span><span class="p">;</span>
+<h3 id="variable-packed">variable packed<a class="headerlink" href="#variable-packed" title="Permanent link">&para;</a></h3>
+<p><em>Bits 0–27 hold the data point index, bits 28–30 the path corner, and bit 31 marks the negative ribbon side.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">std</span><span class="o">::</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineVertex</span><span class="o">::</span><span class="n">packed</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+<h2 id="public-static-attributes-documentation">Public Static Attributes Documentation<a class="headerlink" href="#public-static-attributes-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="variable-kmaximumcorner">variable kMaximumCorner<a class="headerlink" href="#variable-kmaximumcorner" title="Permanent link">&para;</a></h3>
+<p><em>Largest path corner a vertex holds.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineVertex</span><span class="o">::</span><span class="n">kMaximumCorner</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
-<h3 id="variable-arclength">variable arcLength<a class="headerlink" href="#variable-arclength" title="Permanent link">&para;</a></h3>
-<p><em>Cumulative screen-space arc length in pixels; 0 for solid lines.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineVertex</span><span class="o">::</span><span class="n">arcLength</span><span class="p">;</span>
+<h3 id="variable-kmaximumindex">variable kMaximumIndex<a class="headerlink" href="#variable-kmaximumindex" title="Permanent link">&para;</a></h3>
+<p><em>Largest data point index a vertex holds.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineVertex</span><span class="o">::</span><span class="n">kMaximumIndex</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="function-corner">function corner<a class="headerlink" href="#function-corner" title="Permanent link">&para;</a></h3>
+<p><em>Returns the step corner after the data point; 0 for the point itself.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineVertex</span><span class="o">::</span><span class="n">corner</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">noexcept</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
-<h3 id="variable-b">variable b<a class="headerlink" href="#variable-b" title="Permanent link">&para;</a></h3>
-<p><em>Blue channel (used when</em> <code>useVertexColor</code> <em>is true).</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineVertex</span><span class="o">::</span><span class="n">b</span><span class="p">;</span>
+<h3 id="function-index">function index<a class="headerlink" href="#function-index" title="Permanent link">&para;</a></h3>
+<p><em>Returns the data point index.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineVertex</span><span class="o">::</span><span class="n">index</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">noexcept</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
-<h3 id="variable-g">variable g<a class="headerlink" href="#variable-g" title="Permanent link">&para;</a></h3>
-<p><em>Green channel (used when</em> <code>useVertexColor</code> <em>is true).</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineVertex</span><span class="o">::</span><span class="n">g</span><span class="p">;</span>
+<h3 id="function-negativeside">function negativeSide<a class="headerlink" href="#function-negativeside" title="Permanent link">&para;</a></h3>
+<p><em>Returns whether the vertex lies on the negative ribbon side.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineVertex</span><span class="o">::</span><span class="n">negativeSide</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">noexcept</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
-
-<h3 id="variable-id">variable id<a class="headerlink" href="#variable-id" title="Permanent link">&para;</a></h3>
-<p><em>Point index in the data buffer.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineVertex</span><span class="o">::</span><span class="n">id</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="variable-r">variable r<a class="headerlink" href="#variable-r" title="Permanent link">&para;</a></h3>
-<p><em>Red channel (used when</em> <code>useVertexColor</code> <em>is true).</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineVertex</span><span class="o">::</span><span class="n">r</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="variable-side">variable side<a class="headerlink" href="#variable-side" title="Permanent link">&para;</a></h3>
-<p><code>±(1 + corner)</code> <em>: the sign is the ribbon side,</em><code>corner</code> <em>the step corner after the point (0 for the point itself).</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineVertex</span><span class="o">::</span><span class="n">side</span><span class="p">;</span>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation<a class="headerlink" href="#public-static-functions-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="function-make">function make<a class="headerlink" href="#function-make" title="Permanent link">&para;</a></h3>
+<p><em>Returns the vertex of data point</em> <em>index</em> <em>at step corner__corner</em> <em>(0 for the point itself) on the negative ribbon side when__negativeSide</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">LineVertex</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineVertex</span><span class="o">::</span><span class="n">make</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="p">,</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">corner</span><span class="p">,</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">negativeSide</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
 </code></pre></div></p>
 <hr>
 
