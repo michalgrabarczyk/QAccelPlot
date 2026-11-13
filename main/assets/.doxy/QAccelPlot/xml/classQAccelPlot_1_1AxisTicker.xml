@@ -48,7 +48,7 @@
         <read>tickCount</read>
         <write>setTickCount</write>
         <briefdescription>
-<para>Target number of major tick marks. Actual count is adjusted for &quot;nice&quot; values. Default: 5. </para>
+<para>Target number of major tick marks, capped at 500. Actual count is adjusted for &quot;nice&quot; values. Default: 5. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -65,7 +65,7 @@
         <read>subtickCount</read>
         <write>setSubtickCount</write>
         <briefdescription>
-<para>Number of sub-tick intervals between adjacent major ticks. Default: 10. </para>
+<para>Number of sub-tick intervals between adjacent major ticks, capped at 100. Default: 10. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>

@@ -1408,6 +1408,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#public-static-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Static Attributes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#public-static-functions" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1446,6 +1457,45 @@
     <span class="md-ellipsis">
       
         typedef MapToPosition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-static-attributes-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Static Attributes Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Static Attributes Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#variable-kmaximumsubtickcount" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable kMaximumSubtickCount
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variable-kmaximumtickcount" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable kMaximumTickCount
       
     </span>
   </a>
@@ -1586,6 +1636,25 @@
 </tr>
 </tbody>
 </table>
+<h2 id="public-static-attributes">Public Static Attributes<a class="headerlink" href="#public-static-attributes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#variable-kmaximumsubtickcount"><strong>kMaximumSubtickCount</strong></a>   = <code>{100}</code><br><em>Largest</em> <code>AxisTicker::subtickCount</code> <em>used for linear ticks; larger values are capped.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#variable-kmaximumtickcount"><strong>kMaximumTickCount</strong></a>   = <code>{500}</code><br><em>Largest</em> <code>AxisTicker::tickCount</code> <em>used for linear ticks; larger values are capped.</em></td>
+</tr>
+</tbody>
+</table>
 <h2 id="public-static-functions">Public Static Functions<a class="headerlink" href="#public-static-functions" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1625,61 +1694,73 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">using</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTickPainter</span><span class="o">::</span><span class="n">MapToPosition</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="n">qreal</span><span class="p">(</span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">length</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
+<h2 id="public-static-attributes-documentation">Public Static Attributes Documentation<a class="headerlink" href="#public-static-attributes-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="variable-kmaximumsubtickcount">variable kMaximumSubtickCount<a class="headerlink" href="#variable-kmaximumsubtickcount" title="Permanent link">&para;</a></h3>
+<p><em>Largest</em> <code>AxisTicker::subtickCount</code> <em>used for linear ticks; larger values are capped.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTickPainter</span><span class="o">::</span><span class="n">kMaximumSubtickCount</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="variable-kmaximumtickcount">variable kMaximumTickCount<a class="headerlink" href="#variable-kmaximumtickcount" title="Permanent link">&para;</a></h3>
+<p><em>Largest</em> <code>AxisTicker::tickCount</code> <em>used for linear ticks; larger values are capped.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTickPainter</span><span class="o">::</span><span class="n">kMaximumTickCount</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
 <h2 id="public-static-functions-documentation">Public Static Functions Documentation<a class="headerlink" href="#public-static-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-computenicestep">function computeNiceStep<a class="headerlink" href="#function-computenicestep" title="Permanent link">&para;</a></h3>
 <p><em>Returns a "nice" major tick step for the given</em> <em>viewportMin</em> _,_<em>viewportMax</em> <em>range and target__tickCount</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">static</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTickPainter</span><span class="o">::</span><span class="n">computeNiceStep</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">viewportMin</span><span class="p">,</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">viewportMax</span><span class="p">,</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">tickCount</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">static</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTickPainter</span><span class="o">::</span><span class="n">computeNiceStep</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">viewportMin</span><span class="p">,</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">viewportMax</span><span class="p">,</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">tickCount</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-computetickvalues">function computeTickValues<a class="headerlink" href="#function-computetickvalues" title="Permanent link">&para;</a></h3>
 <p><em>Returns the visible tick and subtick values for the</em> <em>viewportMin</em> <em>to__viewportMax</em> <em>range, without labels.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">static</span><span class="w"> </span><span class="n">AxisTickValues</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTickPainter</span><span class="o">::</span><span class="n">computeTickValues</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">viewportMin</span><span class="p">,</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">viewportMax</span><span class="p">,</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">logScale</span><span class="p">,</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">AxisTicker</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ticker</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">static</span><span class="w"> </span><span class="n">AxisTickValues</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTickPainter</span><span class="o">::</span><span class="n">computeTickValues</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">viewportMin</span><span class="p">,</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">viewportMax</span><span class="p">,</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">logScale</span><span class="p">,</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">AxisTicker</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ticker</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
-<p>Does not format labels, so it is safe on the render thread. A linear step never goes below the formatter's <code>TickLabelFormatter::minimumTickStep()</code>. Empty when <em>ticker</em> is null or has no major ticks, and for a collapsed or nonfinite viewport. </p>
+<p>Does not format labels, so it is safe on the render thread. A linear step never goes below the formatter's <code>TickLabelFormatter::minimumTickStep()</code>, and the tick and subtick counts are capped at <code>kMaximumTickCount</code> and <code>kMaximumSubtickCount</code>. Empty when <em>ticker</em> is null or has no major ticks, and for a collapsed or nonfinite viewport. </p>
 <hr>
 
 <h3 id="function-computeticks">function computeTicks<a class="headerlink" href="#function-computeticks" title="Permanent link">&para;</a></h3>
 <p><em>Returns the visible ticks, subticks and formatted labels for the</em> <em>viewportMin</em> <em>to__viewportMax</em> <em>range.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">static</span><span class="w"> </span><span class="n">AxisTicks</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTickPainter</span><span class="o">::</span><span class="n">computeTicks</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">viewportMin</span><span class="p">,</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">viewportMax</span><span class="p">,</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">logScale</span><span class="p">,</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">AxisTicker</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ticker</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">static</span><span class="w"> </span><span class="n">AxisTicks</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTickPainter</span><span class="o">::</span><span class="n">computeTicks</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">viewportMin</span><span class="p">,</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">viewportMax</span><span class="p">,</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">logScale</span><span class="p">,</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">AxisTicker</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ticker</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <p>Uses log-scale placement when <em>logScale</em> is set and both bounds are positive. Labels are produced by <em>ticker's</em> formatter, which may invoke a QML/JS callback, so this must be called on the formatter's thread. </p>
 <hr>
 
 <h3 id="function-paintticks">function paintTicks<a class="headerlink" href="#function-paintticks" title="Permanent link">&para;</a></h3>
 <p><em>Paints</em> <em>ticks</em> <em>and their labels onto__painter</em> <em>, placing them according to__params</em> <em>and__mapToPosition</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTickPainter</span><span class="o">::</span><span class="n">paintTicks</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="n">QPainter</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">painter</span><span class="p">,</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QRectF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">rect</span><span class="p">,</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">axisX</span><span class="p">,</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">axisY</span><span class="p">,</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Params</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">params</span><span class="p">,</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">AxisTicks</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">ticks</span><span class="p">,</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">MapToPosition</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mapToPosition</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTickPainter</span><span class="o">::</span><span class="n">paintTicks</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="n">QPainter</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">painter</span><span class="p">,</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QRectF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">rect</span><span class="p">,</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">axisX</span><span class="p">,</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">axisY</span><span class="p">,</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Params</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">params</span><span class="p">,</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">AxisTicks</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">ticks</span><span class="p">,</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">MapToPosition</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mapToPosition</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-ticklabelsize">function tickLabelSize<a class="headerlink" href="#function-ticklabelsize" title="Permanent link">&para;</a></h3>
 <p><em>Returns the size of the rectangle</em> <code>paintTicks()</code> <em>lays out for__label</em> <em>, measured with__metrics</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">static</span><span class="w"> </span><span class="n">QSizeF</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTickPainter</span><span class="o">::</span><span class="n">tickLabelSize</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QFontMetricsF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">metrics</span><span class="p">,</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">label</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">static</span><span class="w"> </span><span class="n">QSizeF</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTickPainter</span><span class="o">::</span><span class="n">tickLabelSize</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QFontMetricsF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">metrics</span><span class="p">,</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">label</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 

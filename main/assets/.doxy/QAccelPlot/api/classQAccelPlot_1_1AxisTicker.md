@@ -65,13 +65,13 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 | property QColor | [**subtickColor**](classQAccelPlot_1_1AxisTicker.md#property-subtickcolor-12)  <br>_Color of sub-tick marks. Default:_ `Colors.dark.subtick` _._ |
-| property int | [**subtickCount**](classQAccelPlot_1_1AxisTicker.md#property-subtickcount-12)  <br>_Number of sub-tick intervals between adjacent major ticks. Default: 10._  |
+| property int | [**subtickCount**](classQAccelPlot_1_1AxisTicker.md#property-subtickcount-12)  <br>_Number of sub-tick intervals between adjacent major ticks, capped at 100. Default: 10._  |
 | property qreal | [**subtickLength**](classQAccelPlot_1_1AxisTicker.md#property-subticklength-12)  <br>_Convenience setter for both_ `subtickLengthIn` _and_`subtickLengthOut` _simultaneously._ |
 | property qreal | [**subtickLengthIn**](classQAccelPlot_1_1AxisTicker.md#property-subticklengthin-12)  <br>_Inward length in pixels of sub-tick marks. Default: 4._  |
 | property qreal | [**subtickLengthOut**](classQAccelPlot_1_1AxisTicker.md#property-subticklengthout-12)  <br>_Outward length in pixels of sub-tick marks. Default: 4._  |
 | property qreal | [**subtickWidth**](classQAccelPlot_1_1AxisTicker.md#property-subtickwidth-12)  <br>_Width in pixels of sub-tick mark lines. Default: 1._  |
 | property QML\_ANONYMOUSQColor | [**tickColor**](classQAccelPlot_1_1AxisTicker.md#property-tickcolor-12)  <br>_Color of major tick marks. Default:_ `Colors.dark.tick` _._ |
-| property int | [**tickCount**](classQAccelPlot_1_1AxisTicker.md#property-tickcount-12)  <br>_Target number of major tick marks. Actual count is adjusted for "nice" values. Default: 5._  |
+| property int | [**tickCount**](classQAccelPlot_1_1AxisTicker.md#property-tickcount-12)  <br>_Target number of major tick marks, capped at 500. Actual count is adjusted for "nice" values. Default: 5._  |
 | property QColor | [**tickLabelColor**](classQAccelPlot_1_1AxisTicker.md#property-ticklabelcolor-12)  <br>_Optional color of tick labels. When invalid, the tickColor is used._  |
 | property QFont | [**tickLabelFont**](classQAccelPlot_1_1AxisTicker.md#property-ticklabelfont-12)  <br>_Font used to render tick labels. Default: application default font._  |
 | property [**TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md) \* | [**tickLabelFormatter**](classQAccelPlot_1_1AxisTicker.md#property-ticklabelformatter-12)  <br>_Optional custom formatter for tick labels. When_ `nullptr` _the default_[_**NumericTickLabelFormatter**_](classQAccelPlot_1_1NumericTickLabelFormatter.md) _is used._ |
@@ -214,7 +214,7 @@ QColor QAccelPlot::AxisTicker::subtickColor;
 
 ### property subtickCount {#property-subtickcount-12}
 
-_Number of sub-tick intervals between adjacent major ticks. Default: 10._ 
+_Number of sub-tick intervals between adjacent major ticks, capped at 100. Default: 10._ 
 ```C++
 int QAccelPlot::AxisTicker::subtickCount;
 ```
@@ -304,7 +304,7 @@ QML_ANONYMOUSQColor QAccelPlot::AxisTicker::tickColor;
 
 ### property tickCount {#property-tickcount-12}
 
-_Target number of major tick marks. Actual count is adjusted for "nice" values. Default: 5._ 
+_Target number of major tick marks, capped at 500. Actual count is adjusted for "nice" values. Default: 5._ 
 ```C++
 int QAccelPlot::AxisTicker::tickCount;
 ```

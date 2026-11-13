@@ -318,6 +318,8 @@
 
 ## k
 
+* **kMaximumSubtickCount** ([**QAccelPlot::AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md))
+* **kMaximumTickCount** ([**QAccelPlot::AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md))
 * **kVerticesPerErrorBar** ([**QAccelPlot::ErrorBarMaterial**](classQAccelPlot_1_1ErrorBarMaterial.md))
 * **kSamples** ([**QAccelPlot::Internal::FrontStarts**](classQAccelPlot_1_1Internal_1_1FrontStarts.md))
 * **kBytesPerRect** ([**QAccelPlot::Internal::RectVertexCache**](classQAccelPlot_1_1Internal_1_1RectVertexCache.md))

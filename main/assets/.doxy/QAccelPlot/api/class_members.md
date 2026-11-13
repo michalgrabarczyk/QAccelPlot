@@ -721,6 +721,8 @@
 ## k
 
 * **keyPressEvent** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
+* **kMaximumSubtickCount** ([**QAccelPlot::AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md))
+* **kMaximumTickCount** ([**QAccelPlot::AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md))
 * **kVerticesPerErrorBar** ([**QAccelPlot::ErrorBarMaterial**](classQAccelPlot_1_1ErrorBarMaterial.md))
 * **kSamples** ([**QAccelPlot::Internal::FrontStarts**](classQAccelPlot_1_1Internal_1_1FrontStarts.md))
 * **key** ([**QAccelPlot::Internal::InspectionIndex**](classQAccelPlot_1_1Internal_1_1InspectionIndex.md))

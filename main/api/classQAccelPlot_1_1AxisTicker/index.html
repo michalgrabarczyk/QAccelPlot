@@ -2307,7 +2307,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">property int</td>
-<td style="text-align: left;"><a href="./#property-subtickcount-12"><strong>subtickCount</strong></a>  <br><em>Number of sub-tick intervals between adjacent major ticks. Default: 10.</em></td>
+<td style="text-align: left;"><a href="./#property-subtickcount-12"><strong>subtickCount</strong></a>  <br><em>Number of sub-tick intervals between adjacent major ticks, capped at 100. Default: 10.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property qreal</td>
@@ -2331,7 +2331,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">property int</td>
-<td style="text-align: left;"><a href="./#property-tickcount-12"><strong>tickCount</strong></a>  <br><em>Target number of major tick marks. Actual count is adjusted for "nice" values. Default: 5.</em></td>
+<td style="text-align: left;"><a href="./#property-tickcount-12"><strong>tickCount</strong></a>  <br><em>Target number of major tick marks, capped at 500. Actual count is adjusted for "nice" values. Default: 5.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property QColor</td>
@@ -2616,7 +2616,7 @@
 <hr>
 
 <h3 id="property-subtickcount-12">property subtickCount<a class="headerlink" href="#property-subtickcount-12" title="Permanent link">&para;</a></h3>
-<p><em>Number of sub-tick intervals between adjacent major ticks. Default: 10.</em> 
+<p><em>Number of sub-tick intervals between adjacent major ticks, capped at 100. Default: 10.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">subtickCount</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
@@ -2652,7 +2652,7 @@
 <hr>
 
 <h3 id="property-tickcount-12">property tickCount<a class="headerlink" href="#property-tickcount-12" title="Permanent link">&para;</a></h3>
-<p><em>Target number of major tick marks. Actual count is adjusted for "nice" values. Default: 5.</em> 
+<p><em>Target number of major tick marks, capped at 500. Actual count is adjusted for "nice" values. Default: 5.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">tickCount</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>

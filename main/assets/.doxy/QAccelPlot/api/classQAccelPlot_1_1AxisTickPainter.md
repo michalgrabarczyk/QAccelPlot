@@ -54,6 +54,12 @@ _Internal helper that computes and paints tick marks and labels for a single_ [_
 
 
 
+## Public Static Attributes
+
+| Type | Name |
+| ---: | :--- |
+|  int | [**kMaximumSubtickCount**](#variable-kmaximumsubtickcount)   = `{100}`<br>_Largest_ `AxisTicker::subtickCount` _used for linear ticks; larger values are capped._ |
+|  int | [**kMaximumTickCount**](#variable-kmaximumtickcount)   = `{500}`<br>_Largest_ `AxisTicker::tickCount` _used for linear ticks; larger values are capped._ |
 
 
 
@@ -129,6 +135,38 @@ using QAccelPlot::AxisTickPainter::MapToPosition =  std::function<qreal(qreal va
 
 
 <hr>
+## Public Static Attributes Documentation
+
+
+
+
+
+### variable kMaximumSubtickCount {#variable-kmaximumsubtickcount}
+
+_Largest_ `AxisTicker::subtickCount` _used for linear ticks; larger values are capped._
+```C++
+int QAccelPlot::AxisTickPainter::kMaximumSubtickCount;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable kMaximumTickCount {#variable-kmaximumtickcount}
+
+_Largest_ `AxisTicker::tickCount` _used for linear ticks; larger values are capped._
+```C++
+int QAccelPlot::AxisTickPainter::kMaximumTickCount;
+```
+
+
+
+
+<hr>
 ## Public Static Functions Documentation
 
 
@@ -168,7 +206,7 @@ static AxisTickValues QAccelPlot::AxisTickPainter::computeTickValues (
 
 
 
-Does not format labels, so it is safe on the render thread. A linear step never goes below the formatter's `TickLabelFormatter::minimumTickStep()`. Empty when _ticker_ is null or has no major ticks, and for a collapsed or nonfinite viewport. 
+Does not format labels, so it is safe on the render thread. A linear step never goes below the formatter's `TickLabelFormatter::minimumTickStep()`, and the tick and subtick counts are capped at `kMaximumTickCount` and `kMaximumSubtickCount`. Empty when _ticker_ is null or has no major ticks, and for a collapsed or nonfinite viewport. 
 
 
         

@@ -45,6 +45,9 @@ public:
         qreal labelOverflow{0.0};                    
     };
 
+    static constexpr int kMaximumTickCount{500};
+    static constexpr int kMaximumSubtickCount{100};
+
     using MapToPosition = std::function<qreal(qreal value, qreal length)>;
 
     struct PaintContext {
