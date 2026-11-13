@@ -2121,7 +2121,7 @@
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
 <p>The capture contains the plot item and everything drawn inside its bounds, as on screen: series, axes, legend, overlays, and any child items. Children outside the bounds are clipped. The plot must be visible in a window that is shown, not minimized, and renders through a hardware scene graph backend.</p>
-<p>Every request is asynchronous and ends with exactly one <code>finished()</code> signal, except one made while <code>busy:</code> it returns false with a warning and leaves <code>finished()</code> to the request in progress. A request for a plot another exporter is capturing fails. The capture is taken on the next frame, and fails when the window is hidden, minimized, or destroyed first; encoding and writing a file run on a worker thread.</p>
+<p>Every request is asynchronous and ends with exactly one <code>finished()</code> signal, except one made while <code>busy:</code> it returns false with a warning and leaves <code>finished()</code> to the request in progress. A request for a plot another exporter is capturing fails. The capture is taken on the next frame, and fails when the window is hidden, minimized, no longer exposed (as on another virtual desktop), or destroyed first; encoding and writing a file run on a worker thread.</p>
 <p>**
 **</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">PlotExporter</span><span class="w"> </span><span class="p">{</span>

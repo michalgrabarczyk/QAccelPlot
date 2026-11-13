@@ -153,7 +153,7 @@ flowchart TB
 The capture contains the plot item and everything drawn inside its bounds, as on screen: series, axes, legend, overlays, and any child items. Children outside the bounds are clipped. The plot must be visible in a window that is shown, not minimized, and renders through a hardware scene graph backend.
 
 
-Every request is asynchronous and ends with exactly one `finished()` signal, except one made while `busy:` it returns false with a warning and leaves `finished()` to the request in progress. A request for a plot another exporter is capturing fails. The capture is taken on the next frame, and fails when the window is hidden, minimized, or destroyed first; encoding and writing a file run on a worker thread.
+Every request is asynchronous and ends with exactly one `finished()` signal, except one made while `busy:` it returns false with a warning and leaves `finished()` to the request in progress. A request for a plot another exporter is capturing fails. The capture is taken on the next frame, and fails when the window is hidden, minimized, no longer exposed (as on another virtual desktop), or destroyed first; encoding and writing a file run on a worker thread.
 
 
 

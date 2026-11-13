@@ -82,6 +82,8 @@ private:
 
     bool startCapture(Operation operation, const QString& path, const QByteArray& format);
     void watchCapture();
+    // Ends the capture when the window stops being exposed, which stops its frames without hiding it.
+    bool eventFilter(QObject* watched, QEvent* event) override;
     QString captureError(qreal scale) const;
     qreal effectiveScale() const;
     void captured(QImage image);

@@ -471,6 +471,7 @@
 * **end\_** ([**QAccelPlot::PlotDragRect**](classQAccelPlot_1_1PlotDragRect.md))
 * **effectiveScale** ([**QAccelPlot::PlotExporter**](classQAccelPlot_1_1PlotExporter.md))
 * **endCapture** ([**QAccelPlot::PlotExporter**](classQAccelPlot_1_1PlotExporter.md))
+* **eventFilter** ([**QAccelPlot::PlotExporter**](classQAccelPlot_1_1PlotExporter.md))
 * **effectiveMode** ([**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md))
 * **excludedSeries** ([**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md))
 * **excluded\_** ([**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md))
