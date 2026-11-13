@@ -1125,50 +1125,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#fixed_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Fixed
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#fixed_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Fixed
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#fixed_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Fixed
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#fixed_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Fixed
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1220,7 +1176,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fixed_5" class="md-nav__link">
+  <a href="#fixed_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Fixed
@@ -1281,7 +1237,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fixed_6" class="md-nav__link">
+  <a href="#fixed_2" class="md-nav__link">
     <span class="md-ellipsis">
       
         Fixed
@@ -1342,7 +1298,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fixed_7" class="md-nav__link">
+  <a href="#fixed_3" class="md-nav__link">
     <span class="md-ellipsis">
       
         Fixed
@@ -1392,7 +1348,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fixed_8" class="md-nav__link">
+  <a href="#fixed_4" class="md-nav__link">
     <span class="md-ellipsis">
       
         Fixed
@@ -1836,50 +1792,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#fixed_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Fixed
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#fixed_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Fixed
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#fixed_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Fixed
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#fixed_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Fixed
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1931,7 +1843,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fixed_5" class="md-nav__link">
+  <a href="#fixed_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Fixed
@@ -1992,7 +1904,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fixed_6" class="md-nav__link">
+  <a href="#fixed_2" class="md-nav__link">
     <span class="md-ellipsis">
       
         Fixed
@@ -2053,7 +1965,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fixed_7" class="md-nav__link">
+  <a href="#fixed_3" class="md-nav__link">
     <span class="md-ellipsis">
       
         Fixed
@@ -2103,7 +2015,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fixed_8" class="md-nav__link">
+  <a href="#fixed_4" class="md-nav__link">
     <span class="md-ellipsis">
       
         Fixed
@@ -2223,29 +2135,20 @@
 <ul>
 <li>A <code>GradientStop</code> whose <code>position</code> is NaN is ignored instead of corrupting
   the stop order of <code>GradientFill</code>, <code>GradientStroke</code>, and <code>Colormap</code>.</li>
-</ul>
-<h3 id="fixed_1">Fixed<a class="headerlink" href="#fixed_1" title="Permanent link">&para;</a></h3>
-<ul>
 <li>Zooming in with the mouse wheel far enough no longer collapses an axis to a
   single value, which blanked the plot and kept zoom-out and pan from
   recovering it.</li>
-</ul>
-<h3 id="fixed_2">Fixed<a class="headerlink" href="#fixed_2" title="Permanent link">&para;</a></h3>
-<ul>
 <li>A very large <code>ticker.tickCount</code> or <code>ticker.subtickCount</code> no longer freezes
   the UI. They are capped at 500 and 100.</li>
-</ul>
-<h3 id="fixed_3">Fixed<a class="headerlink" href="#fixed_3" title="Permanent link">&para;</a></h3>
-<ul>
 <li>Panning and zooming update each axis viewport in one step: <code>rangeChanged</code>
   fires once, and handlers no longer see the new minimum with the old maximum.
   <code>Axis.setViewportRange(min, max)</code> does the same from QML and C++.</li>
-</ul>
-<h3 id="fixed_4">Fixed<a class="headerlink" href="#fixed_4" title="Permanent link">&para;</a></h3>
-<ul>
 <li>A <code>PlotExporter</code> request fails when the plot's window stops being exposed
   before the capture, as on another virtual desktop. It stayed <code>busy</code> until the
   window was exposed again, refusing every other export.</li>
+<li>Rotated tick labels (<code>ticker.tickLabelRotation</code>) are no longer clipped on
+  vertical axes or drawn over the ticks. Each is centered on its tick and
+  placed by its rotated bounding box.</li>
 </ul>
 <h2 id="050-2026-11-01">[0.5.0] — 2026-11-01<a class="headerlink" href="#050-2026-11-01" title="Permanent link">&para;</a></h2>
 <h3 id="added_1">Added<a class="headerlink" href="#added_1" title="Permanent link">&para;</a></h3>
@@ -2387,7 +2290,7 @@
   the public headers. Their helpers were internal to the gradient effects,
   <code>Colormap</code>, and <code>LineCurve</code>.</li>
 </ul>
-<h3 id="fixed_5">Fixed<a class="headerlink" href="#fixed_5" title="Permanent link">&para;</a></h3>
+<h3 id="fixed_1">Fixed<a class="headerlink" href="#fixed_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>LineCurve</code>, <code>BarSeries</code>, <code>RectangleSeries</code>, and <code>BandSeries</code> no longer hover
   records beyond their GPU capacity, which are not drawn.</li>
@@ -2498,7 +2401,7 @@
 <li><code>PlotSeries::xDataRangeChanged()</code> and <code>yDataRangeChanged()</code>. Read <code>xDataRange()</code>
   and <code>yDataRange()</code>, or connect to <code>Axis.dataMinChanged()</code> / <code>dataMaxChanged()</code>.</li>
 </ul>
-<h3 id="fixed_6">Fixed<a class="headerlink" href="#fixed_6" title="Permanent link">&para;</a></h3>
+<h3 id="fixed_2">Fixed<a class="headerlink" href="#fixed_2" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>TextTickLabelFormatter</code> returns an empty label for non-finite or out-of-range
   tick values without an integer conversion failure.</li>
@@ -2622,7 +2525,7 @@
 <li><code>LogTickLabelFormatter</code>. The default <code>NumericTickLabelFormatter</code> now labels
   logarithmic axes with the same superscript powers of ten.</li>
 </ul>
-<h3 id="fixed_7">Fixed<a class="headerlink" href="#fixed_7" title="Permanent link">&para;</a></h3>
+<h3 id="fixed_3">Fixed<a class="headerlink" href="#fixed_3" title="Permanent link">&para;</a></h3>
 <ul>
 <li>The Qt Quick <code>opacity</code> property, set on a series or inherited from a parent
   item, now applies to <code>LineCurve</code> lines, markers, <code>GradientStroke</code>, and
@@ -2704,7 +2607,7 @@
   built-in dark palette instead of generic Qt colors. The <code>Colors</code> palette is
   defined once in C++ and shared with QML, where its usage is unchanged.</li>
 </ul>
-<h3 id="fixed_8">Fixed<a class="headerlink" href="#fixed_8" title="Permanent link">&para;</a></h3>
+<h3 id="fixed_4">Fixed<a class="headerlink" href="#fixed_4" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Legend line and marker samples now use the curve renderers, keeping marker
   shapes and dash patterns consistent across graphics backends and display scales.</li>

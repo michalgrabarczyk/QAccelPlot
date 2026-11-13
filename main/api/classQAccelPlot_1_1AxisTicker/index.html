@@ -2351,7 +2351,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">property qreal</td>
-<td style="text-align: left;"><a href="./#property-ticklabelrotation-12"><strong>tickLabelRotation</strong></a>  <br><em>Rotation angle in degrees applied to each tick label. Default: 0.</em></td>
+<td style="text-align: left;"><a href="./#property-ticklabelrotation-12"><strong>tickLabelRotation</strong></a>  <br><em>Clockwise rotation in degrees of each tick label. Default: 0.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property qreal</td>
@@ -2682,9 +2682,10 @@
 <hr>
 
 <h3 id="property-ticklabelrotation-12">property tickLabelRotation<a class="headerlink" href="#property-ticklabelrotation-12" title="Permanent link">&para;</a></h3>
-<p><em>Rotation angle in degrees applied to each tick label. Default: 0.</em> 
+<p><em>Clockwise rotation in degrees of each tick label. Default: 0.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">tickLabelRotation</span><span class="p">;</span>
 </code></pre></div></p>
+<p>A rotated label is centered on its tick, and its rotated bounding box starts <code>tickLabelPadding</code> past the outward tick. Use -90 or 90 on a vertical axis for labels that run along the axis. </p>
 <hr>
 
 <h3 id="property-ticklength-12">property tickLength<a class="headerlink" href="#property-ticklength-12" title="Permanent link">&para;</a></h3>

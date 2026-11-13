@@ -1564,6 +1564,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#function-rotatedticklabelsize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function rotatedTickLabelSize
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-ticklabelsize" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1682,6 +1693,10 @@
 </tr>
 <tr>
 <td style="text-align: right;">QSizeF</td>
+<td style="text-align: left;"><a href="#function-rotatedticklabelsize"><strong>rotatedTickLabelSize</strong></a> (const QFontMetricsF &amp; metrics, const QString &amp; label, qreal rotation) <br><em>Returns the size of the box</em> <code>paintTicks()</code> <em>lays out for__label</em> <em>rotated by__rotation</em> <em>degrees.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">QSizeF</td>
 <td style="text-align: left;"><a href="#function-ticklabelsize"><strong>tickLabelSize</strong></a> (const QFontMetricsF &amp; metrics, const QString &amp; label) <br><em>Returns the size of the rectangle</em> <code>paintTicks()</code> <em>lays out for__label</em> <em>, measured with__metrics</em> <em>.</em></td>
 </tr>
 </tbody>
@@ -1755,12 +1770,23 @@
 </code></pre></div></p>
 <hr>
 
+<h3 id="function-rotatedticklabelsize">function rotatedTickLabelSize<a class="headerlink" href="#function-rotatedticklabelsize" title="Permanent link">&para;</a></h3>
+<p><em>Returns the size of the box</em> <code>paintTicks()</code> <em>lays out for__label</em> <em>rotated by__rotation</em> <em>degrees.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">static</span><span class="w"> </span><span class="n">QSizeF</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTickPainter</span><span class="o">::</span><span class="n">rotatedTickLabelSize</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QFontMetricsF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">metrics</span><span class="p">,</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">label</span><span class="p">,</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">rotation</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<p>Measured with <em>metrics</em>. Equals <code>tickLabelSize()</code> when <em>rotation</em> is zero. Rotated labels skip the minimum label height that keeps unrotated labels on a common baseline. </p>
+<hr>
+
 <h3 id="function-ticklabelsize">function tickLabelSize<a class="headerlink" href="#function-ticklabelsize" title="Permanent link">&para;</a></h3>
 <p><em>Returns the size of the rectangle</em> <code>paintTicks()</code> <em>lays out for__label</em> <em>, measured with__metrics</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">static</span><span class="w"> </span><span class="n">QSizeF</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTickPainter</span><span class="o">::</span><span class="n">tickLabelSize</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QFontMetricsF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">metrics</span><span class="p">,</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">label</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">static</span><span class="w"> </span><span class="n">QSizeF</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTickPainter</span><span class="o">::</span><span class="n">tickLabelSize</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QFontMetricsF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">metrics</span><span class="p">,</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">label</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 

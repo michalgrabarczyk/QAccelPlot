@@ -68,12 +68,15 @@ public:
 
     static QSizeF tickLabelSize(const QFontMetricsF& metrics, const QString& label);
 
+    static QSizeF rotatedTickLabelSize(const QFontMetricsF& metrics, const QString& label, qreal rotation);
+
 private:
     static AxisTickValues computeLogScaleTickValues(qreal viewportLow, qreal viewportHigh, const AxisTicker& ticker);
     static AxisTickValues computeLinearTickValues(qreal viewportLow, qreal viewportHigh, const AxisTicker& ticker);
     static void paintTick(const PaintContext& ctx, const AxisTick& tick, const Params& params, const MapToPosition& mapToPosition);
     static void paintSubtick(const PaintContext& ctx, qreal value, const Params& params, const MapToPosition& mapToPosition);
-    static void drawTickLabel(QPainter* painter, const QRectF& labelRect, int alignment, const QString& label, qreal rotation);
+    static void drawTickLabel(QPainter* painter, const QRectF& labelRect, int alignment, const QString& label);
+    static void drawRotatedTickLabel(QPainter* painter, const QRectF& bounds, const QSizeF& textSize, const QString& label, qreal rotation);
 };
 
 } // namespace QAccelPlot

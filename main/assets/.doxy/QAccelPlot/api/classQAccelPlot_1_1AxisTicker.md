@@ -76,7 +76,7 @@ flowchart TB
 | property QFont | [**tickLabelFont**](classQAccelPlot_1_1AxisTicker.md#property-ticklabelfont-12)  <br>_Font used to render tick labels. Default: application default font._  |
 | property [**TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md) \* | [**tickLabelFormatter**](classQAccelPlot_1_1AxisTicker.md#property-ticklabelformatter-12)  <br>_Optional custom formatter for tick labels. When_ `nullptr` _the default_[_**NumericTickLabelFormatter**_](classQAccelPlot_1_1NumericTickLabelFormatter.md) _is used._ |
 | property qreal | [**tickLabelPadding**](classQAccelPlot_1_1AxisTicker.md#property-ticklabelpadding-12)  <br>_Spacing in pixels between a tick mark and its label. Default: 5._  |
-| property qreal | [**tickLabelRotation**](classQAccelPlot_1_1AxisTicker.md#property-ticklabelrotation-12)  <br>_Rotation angle in degrees applied to each tick label. Default: 0._  |
+| property qreal | [**tickLabelRotation**](classQAccelPlot_1_1AxisTicker.md#property-ticklabelrotation-12)  <br>_Clockwise rotation in degrees of each tick label. Default: 0._  |
 | property qreal | [**tickLength**](classQAccelPlot_1_1AxisTicker.md#property-ticklength-12)  <br>_Convenience setter for both_ `tickLengthIn` _and_`tickLengthOut` _simultaneously._ |
 | property qreal | [**tickLengthIn**](classQAccelPlot_1_1AxisTicker.md#property-ticklengthin-12)  <br>_Length in pixels of the portion of a major tick that extends into the plot area. Default: 8._  |
 | property qreal | [**tickLengthOut**](classQAccelPlot_1_1AxisTicker.md#property-ticklengthout-12)  <br>_Length in pixels of the portion of a major tick that extends outside the plot area. Default: 8._  |
@@ -379,13 +379,17 @@ qreal QAccelPlot::AxisTicker::tickLabelPadding;
 
 ### property tickLabelRotation {#property-ticklabelrotation-12}
 
-_Rotation angle in degrees applied to each tick label. Default: 0._ 
+_Clockwise rotation in degrees of each tick label. Default: 0._ 
 ```C++
 qreal QAccelPlot::AxisTicker::tickLabelRotation;
 ```
 
 
 
+A rotated label is centered on its tick, and its rotated bounding box starts `tickLabelPadding` past the outward tick. Use -90 or 90 on a vertical axis for labels that run along the axis. 
+
+
+        
 
 <hr>
 
