@@ -42,6 +42,11 @@ public:
         qreal labelOverflow{0.0};                    ///< \brief Extra space reserved for edge label overflow.
     };
 
+    /// \brief Largest \c AxisTicker::tickCount used for linear ticks; larger values are capped.
+    static constexpr int kMaximumTickCount{500};
+    /// \brief Largest \c AxisTicker::subtickCount used for linear ticks; larger values are capped.
+    static constexpr int kMaximumSubtickCount{100};
+
     /// \brief Function type that maps a data value to a pixel position along the axis.
     using MapToPosition = std::function<qreal(qreal value, qreal length)>;
 
@@ -62,8 +67,9 @@ public:
     /// \brief Returns the visible tick and subtick values for the \a viewportMin to \a viewportMax range, without labels.
     ///
     /// Does not format labels, so it is safe on the render thread. A linear step never goes below the formatter's
-    /// \c TickLabelFormatter::minimumTickStep(). Empty when \a ticker is null or has no
-    /// major ticks, and for a collapsed or nonfinite viewport.
+    /// \c TickLabelFormatter::minimumTickStep(), and the tick and subtick counts are capped at \c kMaximumTickCount and
+    /// \c kMaximumSubtickCount. Empty when \a ticker is null or has no major ticks, and for a collapsed or nonfinite
+    /// viewport.
     static AxisTickValues computeTickValues(qreal viewportMin, qreal viewportMax, bool logScale, const AxisTicker* ticker);
 
     /// \brief Paints \a ticks and their labels onto \a painter, placing them according to \a params and \a mapToPosition.
