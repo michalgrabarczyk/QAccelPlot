@@ -71,6 +71,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - A very large `ticker.tickCount` or `ticker.subtickCount` no longer freezes
   the UI. They are capped at 500 and 100.
 
+### Fixed
+
+- Panning and zooming update each axis viewport in one step: `rangeChanged`
+  fires once, and handlers no longer see the new minimum with the old maximum.
+  `Axis.setViewportRange(min, max)` does the same from QML and C++.
+
 ## [0.5.0] — 2026-11-01
 
 ### Added
