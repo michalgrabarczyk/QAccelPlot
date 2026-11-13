@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2026-11-13 08:04:08</td>
+      <td>2026-11-13 15:56:05</td>
     </tr>
   </table>
 </div>
@@ -95,7 +95,7 @@
     <tr><td><a href="#l309">QAccelPlot::Internal::ItemClock::timing() const (line 309)</a></td><td>called 1045 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l249">QAccelPlot::Internal::itemTiming(QAccelPlot::Internal::TransitionStep const&amp;, int) (line 249)</a></td><td>called 877 times</td><td>91.0%</td></tr>
     <tr><td><a href="#l338">QAccelPlot::Internal::keptItemsChanged(QAccelPlot::Internal::TransitionItems const&amp;, QAccelPlot::Internal::TransitionItems const&amp;, int) (line 338)</a></td><td>called 116 times</td><td>100.0%</td></tr>
-    <tr><td><a href="#l351">QAccelPlot::Internal::plannedSlots(int, int, bool, std::optional&lt;QAccelPlot::Internal::TransitionKind&gt;, std::optional&lt;QAccelPlot::Internal::TransitionKind&gt;, std::optional&lt;QAccelPlot::Internal::TransitionKind&gt;) (line 351)</a></td><td>called 1023 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l351">QAccelPlot::Internal::plannedSlots(int, int, bool, std::optional&lt;QAccelPlot::Internal::TransitionKind&gt;, std::optional&lt;QAccelPlot::Internal::TransitionKind&gt;, std::optional&lt;QAccelPlot::Internal::TransitionKind&gt;) (line 351)</a></td><td>called 1028 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l361">QAccelPlot::Internal::writeTransitionFrame(QAccelPlot::Internal::TransitionFrameInput const&amp;, std::vector&lt;double, std::allocator&lt;double&gt; &gt;&amp;, QAccelPlot::Internal::ItemFade&amp;) (line 361)</a></td><td>called 513 times</td><td>92.0%</td></tr>
     <tr><td><a href="#l46">double QAccelPlot::Internal::(anonymous namespace)::interpolate&lt;1025ul&gt;(std::array&lt;double, 1025ul&gt; const&amp;, double) (line 46)</a></td><td>called 119 times</td><td>88.0%</td></tr>
   </table>
@@ -3144,7 +3144,7 @@
       <td class="lineno"><a id="l351" href="#l351">351</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1023</td>
+      <td class="linecount coveredLine">1028</td>
       <td class="src coveredLine"><span class="n">TransitionSlots</span><span class="w"> </span><span class="n">plannedSlots</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">fromCount</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">toCount</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">keptChanged</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">TransitionKind</span><span class="o">&gt;</span><span class="w"> </span><span class="n">enter</span><span class="p">,</span></td>
     </tr>
     <tr class="source-line">
@@ -3168,7 +3168,7 @@
           <summary class="linebranchSummary">6/6</summary>
           <div class="linebranchContents">
             <div class="takenBranch">&check; Branch 1 taken 164 times.</div>
-            <div class="takenBranch">&check; Branch 2 taken 859 times.</div>
+            <div class="takenBranch">&check; Branch 2 taken 864 times.</div>
             <div class="takenBranch">&check; Branch 3 taken 151 times.</div>
             <div class="takenBranch">&check; Branch 4 taken 13 times.</div>
             <div class="takenBranch">&check; Branch 6 taken 144 times.</div>
@@ -3176,7 +3176,7 @@
           </div>
         </details>
       </td>
-      <td class="linecount coveredLine">1023</td>
+      <td class="linecount coveredLine">1028</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">runsUpdate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">update</span><span class="p">.</span><span class="n">has_value</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">keptChanged</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">fromCount</span><span class="p">,</span><span class="w"> </span><span class="n">toCount</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
@@ -3186,15 +3186,15 @@
           <summary class="linebranchSummary">6/6</summary>
           <div class="linebranchContents">
             <div class="takenBranch">&check; Branch 0 taken 144 times.</div>
-            <div class="takenBranch">&check; Branch 1 taken 879 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 884 times.</div>
             <div class="takenBranch">&check; Branch 3 taken 11 times.</div>
             <div class="takenBranch">&check; Branch 4 taken 133 times.</div>
             <div class="takenBranch">&check; Branch 5 taken 11 times.</div>
-            <div class="takenBranch">&check; Branch 6 taken 1012 times.</div>
+            <div class="takenBranch">&check; Branch 6 taken 1017 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount coveredLine">1023</td>
+      <td class="linecount coveredLine">1028</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">runsUpdate</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">*</span><span class="n">update</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">TransitionKind</span><span class="o">::</span><span class="n">Morph</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
@@ -3218,17 +3218,17 @@
           <summary class="linebranchSummary">8/8</summary>
           <div class="linebranchContents">
             <div class="takenBranch">&check; Branch 1 taken 65 times.</div>
-            <div class="takenBranch">&check; Branch 2 taken 947 times.</div>
+            <div class="takenBranch">&check; Branch 2 taken 952 times.</div>
             <div class="takenBranch">&check; Branch 3 taken 53 times.</div>
             <div class="takenBranch">&check; Branch 4 taken 12 times.</div>
             <div class="takenBranch">&check; Branch 6 taken 22 times.</div>
-            <div class="takenBranch">&check; Branch 7 taken 990 times.</div>
+            <div class="takenBranch">&check; Branch 7 taken 995 times.</div>
             <div class="takenBranch">&check; Branch 8 taken 15 times.</div>
             <div class="takenBranch">&check; Branch 9 taken 7 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount coveredLine">1012</td>
+      <td class="linecount coveredLine">1017</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">TransitionSlots</span><span class="p">{</span><span class="n">enter</span><span class="p">.</span><span class="n">has_value</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">toCount</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">fromCount</span><span class="p">,</span><span class="w"> </span><span class="n">runsUpdate</span><span class="p">,</span><span class="w"> </span><span class="n">exit</span><span class="p">.</span><span class="n">has_value</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">fromCount</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">toCount</span><span class="p">};</span></td>
     </tr>
     <tr class="source-line">
