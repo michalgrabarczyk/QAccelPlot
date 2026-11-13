@@ -155,6 +155,7 @@ flowchart TB
 |  void | [**setSide**](#function-setside) ([**Side**](classQAccelPlot_1_1Axis.md#enum-side) s) <br>_Sets the axis side to_ _s_ _._ |
 |  void | [**setViewportMax**](#function-setviewportmax) (qreal m) <br>_Sets the upper bound of the visible range to_ _m_ _._ |
 |  void | [**setViewportMin**](#function-setviewportmin) (qreal m) <br>_Sets the lower bound of the visible range to_ _m_ _._ |
+|  Q\_INVOKABLE void | [**setViewportRange**](#function-setviewportrange) (qreal min, qreal max) <br>_Sets the visible range to [_ _min_ _,__max_ _] and emits_`rangeChanged()` _once._ |
 |  void | [**setZoomScaleFactor**](#function-setzoomscalefactor) (qreal factor) <br>_Sets the zoom scale factor to_ _factor_ _(clamped to the range (0, 1))._ |
 |  [**Side**](classQAccelPlot_1_1Axis.md#enum-side) | [**side**](#function-side-22) () const<br>_Returns the axis side._  |
 |  [**AxisTicker**](classQAccelPlot_1_1AxisTicker.md) \* | [**ticker**](#function-ticker-22) () const<br>_Returns the tick configuration object._  |
@@ -1367,6 +1368,28 @@ void QAccelPlot::Axis::setViewportMin (
 
 
 
+
+<hr>
+
+
+
+
+### function setViewportRange {#function-setviewportrange}
+
+_Sets the visible range to [_ _min_ _,__max_ _] and emits_`rangeChanged()` _once._
+```C++
+Q_INVOKABLE void QAccelPlot::Axis::setViewportRange (
+    qreal min,
+    qreal max
+) 
+```
+
+
+
+Unlike `setViewportMin()` followed by `setViewportMax()`, handlers never see one bound updated without the other. 
+
+
+        
 
 <hr>
 

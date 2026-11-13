@@ -78,6 +78,8 @@ public:
     qreal viewportMax() const;
     void setViewportMax(qreal m);
 
+    Q_INVOKABLE void setViewportRange(qreal min, qreal max);
+
     qreal dataMin() const;
     void setDataMin(qreal m);
 
@@ -186,7 +188,6 @@ private:
     void ensureDataRange() const;
     void setDataRangeValues(qreal min, qreal max);
     DataRange dataFitRange() const;
-    void setViewportRange(qreal min, qreal max);
     void autoRescaleToData();
     qreal valueResolution(qreal value, qreal length) const;
     qreal defaultLabelRotation() const;
