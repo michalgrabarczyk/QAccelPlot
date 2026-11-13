@@ -164,6 +164,11 @@ add_qaccelplot_test(tst_plot_exporter      core tst_plot_exporter.cpp)
 # Renders a QML scene, so it needs the QML module plugin.
 target_link_libraries(tst_plot_exporter PRIVATE QAccelPlot::QAccelPlot)
 qt_import_qml_plugins(tst_plot_exporter)
+# Marks a window unexposed while it stays shown, as a platform does for a window on another desktop.
+if(QACCELPLOT_USE_QT_PRIVATE_API)
+    target_link_libraries(tst_plot_exporter PRIVATE Qt6::GuiPrivate)
+    target_compile_definitions(tst_plot_exporter PRIVATE QACCELPLOT_TEST_GUI_PRIVATE=1)
+endif()
 # Runs again at a device pixel ratio of 2, where Qt 6.2 and later versions size item grabs differently.
 add_test(NAME tst_plot_exporter_hidpi COMMAND tst_plot_exporter)
 set(_hidpi_environment "QT_FORCE_STDERR_LOGGING=1" "QT_SCALE_FACTOR=2")

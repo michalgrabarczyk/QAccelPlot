@@ -77,6 +77,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   fires once, and handlers no longer see the new minimum with the old maximum.
   `Axis.setViewportRange(min, max)` does the same from QML and C++.
 
+### Fixed
+
+- A `PlotExporter` request fails when the plot's window stops being exposed
+  before the capture, as on another virtual desktop. It stayed `busy` until the
+  window was exposed again, refusing every other export.
+
 ## [0.5.0] — 2026-11-01
 
 ### Added
