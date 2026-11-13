@@ -45,14 +45,14 @@ _Vertex of a solid line ribbon, shared with the main thread for pre-built vertex
 
 | Type | Name |
 | ---: | :--- |
-|  std::uint32\_t | [**packed**](#variable-packed)  <br>_Bits 0–27 hold the data point index, bits 28–30 the path corner, and bit 31 marks the negative ribbon side._  |
+|  std::uint32\_t | [**packed**](#variable-packed)  <br>_Bits 0–27 hold the data point index, bits 28–29 the path corner, bit 30 marks the outgoing join half, and bit 31 the negative ribbon side._  |
 
 
 ## Public Static Attributes
 
 | Type | Name |
 | ---: | :--- |
-|  int | [**kMaximumCorner**](#variable-kmaximumcorner)   = `7`<br>_Largest path corner a vertex holds._  |
+|  int | [**kMaximumCorner**](#variable-kmaximumcorner)   = `3`<br>_Largest path corner a vertex holds._  |
 |  int | [**kMaximumIndex**](#variable-kmaximumindex)   = `(1 &lt;&lt; 28) - 1`<br>_Largest data point index a vertex holds._  |
 
 
@@ -75,13 +75,14 @@ _Vertex of a solid line ribbon, shared with the main thread for pre-built vertex
 |  int | [**corner**](#function-corner) () noexcept const<br>_Returns the step corner after the data point; 0 for the point itself._  |
 |  int | [**index**](#function-index) () noexcept const<br>_Returns the data point index._  |
 |  bool | [**negativeSide**](#function-negativeside) () noexcept const<br>_Returns whether the vertex lies on the negative ribbon side._  |
+|  bool | [**outgoing**](#function-outgoing) () noexcept const<br>_Returns whether the vertex starts the segment after a split join._  |
 
 
 ## Public Static Functions
 
 | Type | Name |
 | ---: | :--- |
-|  [**LineVertex**](structQAccelPlot_1_1LineVertex.md) | [**make**](#function-make) (const int index, const int corner, const bool negativeSide) noexcept<br>_Returns the vertex of data point_ _index_ _at step corner__corner_ _(0 for the point itself) on the negative ribbon side when__negativeSide_ _._ |
+|  [**LineVertex**](structQAccelPlot_1_1LineVertex.md) | [**make**](#function-make) (int index, int corner, bool negativeSide, bool outgoing=false) noexcept<br>_Returns the vertex of data point_ _index_ _at step corner__corner_ _(0 for the point itself) on the negative ribbon side when__negativeSide_ _._ |
 
 
 
@@ -111,7 +112,7 @@ _Vertex of a solid line ribbon, shared with the main thread for pre-built vertex
 ## Detailed Description
 
 
-Packs a data point index, a path corner, and a ribbon side into four bytes, which the shaders read as normalized bytes (see line\_vertex\_input.glsl). 
+Packs a data point index, a path corner, a join half, and a ribbon side into four bytes, which the shaders read as normalized bytes (see line\_vertex\_input.glsl). 
 
 
     
@@ -123,7 +124,7 @@ Packs a data point index, a path corner, and a ribbon side into four bytes, whic
 
 ### variable packed {#variable-packed}
 
-_Bits 0–27 hold the data point index, bits 28–30 the path corner, and bit 31 marks the negative ribbon side._ 
+_Bits 0–27 hold the data point index, bits 28–29 the path corner, bit 30 marks the outgoing join half, and bit 31 the negative ribbon side._ 
 ```C++
 std::uint32_t QAccelPlot::LineVertex::packed;
 ```
@@ -174,7 +175,7 @@ int QAccelPlot::LineVertex::kMaximumIndex;
 
 _Returns the step corner after the data point; 0 for the point itself._ 
 ```C++
-inline int QAccelPlot::LineVertex::corner () noexcept const
+int QAccelPlot::LineVertex::corner () noexcept const
 ```
 
 
@@ -189,7 +190,7 @@ inline int QAccelPlot::LineVertex::corner () noexcept const
 
 _Returns the data point index._ 
 ```C++
-inline int QAccelPlot::LineVertex::index () noexcept const
+int QAccelPlot::LineVertex::index () noexcept const
 ```
 
 
@@ -204,7 +205,22 @@ inline int QAccelPlot::LineVertex::index () noexcept const
 
 _Returns whether the vertex lies on the negative ribbon side._ 
 ```C++
-inline bool QAccelPlot::LineVertex::negativeSide () noexcept const
+bool QAccelPlot::LineVertex::negativeSide () noexcept const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function outgoing {#function-outgoing}
+
+_Returns whether the vertex starts the segment after a split join._ 
+```C++
+bool QAccelPlot::LineVertex::outgoing () noexcept const
 ```
 
 
@@ -221,15 +237,20 @@ inline bool QAccelPlot::LineVertex::negativeSide () noexcept const
 
 _Returns the vertex of data point_ _index_ _at step corner__corner_ _(0 for the point itself) on the negative ribbon side when__negativeSide_ _._
 ```C++
-static inline LineVertex QAccelPlot::LineVertex::make (
-    const int index,
-    const int corner,
-    const bool negativeSide
+static LineVertex QAccelPlot::LineVertex::make (
+    int index,
+    int corner,
+    bool negativeSide,
+    bool outgoing=false
 ) noexcept
 ```
 
 
 
+_outgoing_ marks a vertex that starts the segment after a split join; see verticesPerPathPoint(). 
+
+
+        
 
 <hr>
 

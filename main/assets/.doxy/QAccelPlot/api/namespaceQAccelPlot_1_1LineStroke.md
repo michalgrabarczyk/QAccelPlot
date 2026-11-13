@@ -66,12 +66,13 @@ _Building blocks for the line ribbon drawn by the line shaders, shared by the li
 | Type | Name |
 | ---: | :--- |
 |  void | [**applyUniforms**](#function-applyuniforms) ([**LineMaterial**](classQAccelPlot_1_1LineMaterial.md) & material, const [**Uniforms**](structQAccelPlot_1_1LineStroke_1_1Uniforms.md) & uniforms) <br>_Copies_ _uniforms_ _into__material_ _._ |
-|  std::vector&lt; float &gt; | [**arcLengths**](#function-arclengths) (const int pointCount, const PixelAt & pixelAt) <br>_Returns the cumulative pixel length at each of_ _pointCount_ _data points, for dash patterns._ |
+|  std::vector&lt; float &gt; | [**arcLengths**](#function-arclengths) (int pointCount, const std::function&lt; std::optional&lt; QPointF &gt;(int)&gt; & pixelAt) <br>_Returns the cumulative pixel length at each of_ _pointCount_ _data points, for dash patterns._ |
 |  QSGGeometryNode \* | [**createNode**](#function-createnode) (int vertexCount, [**LineMaterial**](classQAccelPlot_1_1LineMaterial.md) \* material) <br>_Returns a triangle-strip node with_ _vertexCount_ _line vertices that owns__material_ _._ |
 |  bool | [**setMaterial**](#function-setmaterial) (QSGGeometryNode \* node, [**LineMaterial**](classQAccelPlot_1_1LineMaterial.md) \* material) <br>_Gives_ _node_ _, a node from_[_**createNode()**_](namespaceQAccelPlot_1_1LineStroke.md#function-createnode) _, the vertex layout of__material_ _, which it takes ownership of._ |
 |  const QSGGeometry::AttributeSet & | [**vertexAttributes**](#function-vertexattributes) (bool dashed) <br>_Returns the vertex attribute set matching_ `DashedLineVertex` _when__dashed_ _, or_`LineVertex` _otherwise._ |
-|  void | [**writeDashedVertices**](#function-writedashedvertices) ([**DashedLineVertex**](structQAccelPlot_1_1DashedLineVertex.md) \* vertices, int pointCount, int cornerCount, const std::vector&lt; float &gt; & arcLengths) <br>_Writes two ribbon vertices per path point for_ _pointCount_ _data points of__cornerCount_ _path points each into__vertices_ _._ |
-|  void | [**writeVertices**](#function-writevertices) ([**LineVertex**](structQAccelPlot_1_1LineVertex.md) \* vertices, int pointCount, int cornerCount, int firstPoint=0) <br>_Writes two ribbon vertices per path point for data points [_ _firstPoint_ _,__pointCount_ _) of__cornerCount_ _path points each into__vertices_ _._ |
+|  int | [**verticesPerPathPoint**](#function-verticesperpathpoint) (bool splitJoins) noexcept<br>_Returns the ribbon vertices of a path point: four with_ _splitJoins_ _, or two otherwise._ |
+|  void | [**writeDashedVertices**](#function-writedashedvertices) ([**DashedLineVertex**](structQAccelPlot_1_1DashedLineVertex.md) \* vertices, int pointCount, int cornerCount, bool splitJoins, const std::vector&lt; float &gt; & arcLengths) <br>_Writes the ribbon vertices of_ _pointCount_ _data points of__cornerCount_ _path points each into__vertices_ _._ |
+|  void | [**writeVertices**](#function-writevertices) ([**LineVertex**](structQAccelPlot_1_1LineVertex.md) \* vertices, int pointCount, int cornerCount, bool splitJoins, int firstPoint=0) <br>_Writes the ribbon vertices of data points [_ _firstPoint_ _,__pointCount_ _) of__cornerCount_ _path points each into__vertices_ _._ |
 
 
 
@@ -128,10 +129,9 @@ void QAccelPlot::LineStroke::applyUniforms (
 
 _Returns the cumulative pixel length at each of_ _pointCount_ _data points, for dash patterns._
 ```C++
-template<typename PixelAt>
 std::vector< float > QAccelPlot::LineStroke::arcLengths (
-    const int pointCount,
-    const PixelAt & pixelAt
+    int pointCount,
+    const std::function< std::optional< QPointF >(int)> & pixelAt
 ) 
 ```
 
@@ -208,21 +208,43 @@ const QSGGeometry::AttributeSet & QAccelPlot::LineStroke::vertexAttributes (
 
 
 
+### function verticesPerPathPoint {#function-verticesperpathpoint}
+
+_Returns the ribbon vertices of a path point: four with_ _splitJoins_ _, or two otherwise._
+```C++
+int QAccelPlot::LineStroke::verticesPerPathPoint (
+    bool splitJoins
+) noexcept
+```
+
+
+
+Split joins give a path point one vertex pair that ends the segment before it and one that starts the segment after it, so a join too sharp for a miter draws as a bevel. Without them, both segments share a mitered pair, which suits paths that only turn by right angles. 
+
+
+        
+
+<hr>
+
+
+
+
 ### function writeDashedVertices {#function-writedashedvertices}
 
-_Writes two ribbon vertices per path point for_ _pointCount_ _data points of__cornerCount_ _path points each into__vertices_ _._
+_Writes the ribbon vertices of_ _pointCount_ _data points of__cornerCount_ _path points each into__vertices_ _._
 ```C++
 void QAccelPlot::LineStroke::writeDashedVertices (
     DashedLineVertex * vertices,
     int pointCount,
     int cornerCount,
+    bool splitJoins,
     const std::vector< float > & arcLengths
 ) 
 ```
 
 
 
-_arcLengths_ holds cumulative lengths of the leading path points. Path points past its end, such as vertices reserved for appended data, repeat its last length, or 0 when it is empty. 
+Each path point gets verticesPerPathPoint(_splitJoins_) vertices. _arcLengths_ holds cumulative lengths of the leading path points. Path points past its end, such as vertices reserved for appended data, repeat its last length, or 0 when it is empty. 
 
 
         
@@ -234,19 +256,20 @@ _arcLengths_ holds cumulative lengths of the leading path points. Path points pa
 
 ### function writeVertices {#function-writevertices}
 
-_Writes two ribbon vertices per path point for data points [_ _firstPoint_ _,__pointCount_ _) of__cornerCount_ _path points each into__vertices_ _._
+_Writes the ribbon vertices of data points [_ _firstPoint_ _,__pointCount_ _) of__cornerCount_ _path points each into__vertices_ _._
 ```C++
 void QAccelPlot::LineStroke::writeVertices (
     LineVertex * vertices,
     int pointCount,
     int cornerCount,
+    bool splitJoins,
     int firstPoint=0
 ) 
 ```
 
 
 
-_vertices_ holds the vertices of all _pointCount_ data points; those before _firstPoint_ are left unchanged. 
+Each path point gets verticesPerPathPoint(_splitJoins_) vertices. _vertices_ holds the vertices of all _pointCount_ data points; those before _firstPoint_ are left unchanged. 
 
 
         

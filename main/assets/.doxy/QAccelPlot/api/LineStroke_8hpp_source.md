@@ -25,9 +25,8 @@
 #include <QSGGeometryNode>
 #include <QVector2D>
 
-#include <algorithm>
-#include <cmath>
 #include <cstdint>
+#include <functional>
 #include <optional>
 #include <vector>
 
@@ -37,29 +36,19 @@ class LineMaterial;
 
 struct LineVertex {
     static constexpr int kMaximumIndex = (1 << 28) - 1;
-    static constexpr int kMaximumCorner = 7;
+    static constexpr int kMaximumCorner = 3;
 
     std::uint32_t packed;
 
-    static constexpr LineVertex make(const int index, const int corner, const bool negativeSide) noexcept
-    {
-        return {static_cast<std::uint32_t>(index) | (static_cast<std::uint32_t>(corner) << 28U) | (negativeSide ? 1U << 31U : 0U)};
-    }
+    static LineVertex make(int index, int corner, bool negativeSide, bool outgoing = false) noexcept;
 
-    constexpr int index() const noexcept
-    {
-        return static_cast<int>(packed & 0x0FFFFFFFU);
-    }
+    int index() const noexcept;
 
-    constexpr int corner() const noexcept
-    {
-        return static_cast<int>((packed >> 28U) & 7U);
-    }
+    int corner() const noexcept;
 
-    constexpr bool negativeSide() const noexcept
-    {
-        return (packed >> 31U) != 0U;
-    }
+    bool outgoing() const noexcept;
+
+    bool negativeSide() const noexcept;
 };
 
 static_assert(sizeof(LineVertex) == 4);
@@ -93,37 +82,15 @@ QSGGeometryNode* createNode(int vertexCount, LineMaterial* material);
 
 bool setMaterial(QSGGeometryNode* node, LineMaterial* material);
 
-void writeVertices(LineVertex* vertices, int pointCount, int cornerCount, int firstPoint = 0);
+int verticesPerPathPoint(bool splitJoins) noexcept;
 
-void writeDashedVertices(DashedLineVertex* vertices, int pointCount, int cornerCount, const std::vector<float>& arcLengths);
+void writeVertices(LineVertex* vertices, int pointCount, int cornerCount, bool splitJoins, int firstPoint = 0);
+
+void writeDashedVertices(DashedLineVertex* vertices, int pointCount, int cornerCount, bool splitJoins, const std::vector<float>& arcLengths);
 
 void applyUniforms(LineMaterial& material, const Uniforms& uniforms);
 
-template <typename PixelAt> std::vector<float> arcLengths(const int pointCount, const PixelAt& pixelAt)
-{
-    auto lengths = std::vector<float>(static_cast<std::size_t>(std::max(pointCount, 0)));
-    auto length = 0.0f;
-    auto previousX = 0.0f;
-    auto previousY = 0.0f;
-    auto previousValid = false;
-    for (auto i = 0; i < pointCount; ++i) {
-        const auto current = std::optional<QPointF>{pixelAt(i)};
-        if (current) {
-            const auto x = static_cast<float>(current->x());
-            const auto y = static_cast<float>(current->y());
-            if (previousValid) {
-                const auto dx = x - previousX;
-                const auto dy = y - previousY;
-                length += std::sqrt(dx * dx + dy * dy);
-            }
-            previousX = x;
-            previousY = y;
-        }
-        previousValid = current.has_value();
-        lengths[static_cast<std::size_t>(i)] = length;
-    }
-    return lengths;
-}
+std::vector<float> arcLengths(int pointCount, const std::function<std::optional<QPointF>(int)>& pixelAt);
 
 } // namespace LineStroke
 

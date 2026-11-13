@@ -2338,6 +2338,7 @@
   </compound>
   <compound refid="classQAccelPlot_1_1LineCurveLineRenderer" kind="class"><name>QAccelPlot::LineCurveLineRenderer</name>
     <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1aa99d416e318386cbd8e05b097059a2f5" kind="variable"><name>fillSampleCache_</name></member>
+    <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1a3c514b6bc1169ad89f26767edd32de68" kind="function"><name>verticesPerPoint</name></member>
     <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1ab51aecd357af75811fa6cbb8b7386384" kind="function"><name>vertexCacheBytesPerPoint</name></member>
     <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1af7de8cf2c144f7a2b5589b97f6ed1af5" kind="function"><name>writeVertexCache</name></member>
     <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1ab63d17c7f37f32b08df0d4eeb1a3184a" kind="function"><name>dataTexture</name></member>
@@ -2434,10 +2435,11 @@
     <member refid="structQAccelPlot_1_1LineVertex_1a93b7471b50ff2435a84c06c9bfd70e17" kind="variable"><name>kMaximumIndex</name></member>
     <member refid="structQAccelPlot_1_1LineVertex_1aa214868c16b58f6e5f0f50a1d88b36ba" kind="variable"><name>kMaximumCorner</name></member>
     <member refid="structQAccelPlot_1_1LineVertex_1a845a1a40e6f39e8c0d99b90959049710" kind="variable"><name>packed</name></member>
-    <member refid="structQAccelPlot_1_1LineVertex_1a69bcd0f263cea756073c1600c07e6a72" kind="function"><name>make</name></member>
-    <member refid="structQAccelPlot_1_1LineVertex_1ab5702d681b4d8c748dd7f74a055685de" kind="function"><name>index</name></member>
-    <member refid="structQAccelPlot_1_1LineVertex_1a86aecbcffbb5f52c47a978664ee0555f" kind="function"><name>corner</name></member>
-    <member refid="structQAccelPlot_1_1LineVertex_1ac5b70708c6f19bf1635fbd3a7738433e" kind="function"><name>negativeSide</name></member>
+    <member refid="structQAccelPlot_1_1LineVertex_1a8434a3fe03cdaa4baa68fa4d23457aa5" kind="function"><name>make</name></member>
+    <member refid="structQAccelPlot_1_1LineVertex_1a704907a4fe01b4eb0ab8b4ea0271cc1d" kind="function"><name>index</name></member>
+    <member refid="structQAccelPlot_1_1LineVertex_1a424b6f415542a41999438193bda621b3" kind="function"><name>corner</name></member>
+    <member refid="structQAccelPlot_1_1LineVertex_1a5762c14e528d2e6de620d9d1967f1437" kind="function"><name>outgoing</name></member>
+    <member refid="structQAccelPlot_1_1LineVertex_1a3f0940462d4a1beb65a26815775beb2e" kind="function"><name>negativeSide</name></member>
   </compound>
   <compound refid="structQAccelPlot_1_1PointSpatialIndex_1_1Mapping" kind="struct"><name>QAccelPlot::PointSpatialIndex::Mapping</name>
     <member refid="structQAccelPlot_1_1PointSpatialIndex_1_1Mapping_1af4204dc8252100d7de1d95c001c88b7b" kind="variable"><name>logX</name></member>
@@ -4019,10 +4021,11 @@
     <member refid="namespaceQAccelPlot_1_1LineStroke_1a34ad2392091bcc782aa97f6df6a7edb5" kind="function"><name>vertexAttributes</name></member>
     <member refid="namespaceQAccelPlot_1_1LineStroke_1a247536016f11d54a535b8ece5ea48d17" kind="function"><name>createNode</name></member>
     <member refid="namespaceQAccelPlot_1_1LineStroke_1a0aa5e8df2fb7f5eedc65c5491fa933e8" kind="function"><name>setMaterial</name></member>
-    <member refid="namespaceQAccelPlot_1_1LineStroke_1a9cfbe33be7864bc6bac4381245cca08e" kind="function"><name>writeVertices</name></member>
-    <member refid="namespaceQAccelPlot_1_1LineStroke_1a845f03c4ef93fb14a798b7264eebeb43" kind="function"><name>writeDashedVertices</name></member>
+    <member refid="namespaceQAccelPlot_1_1LineStroke_1aa987e0e8006b25e7c62ef4842dcf2b11" kind="function"><name>verticesPerPathPoint</name></member>
+    <member refid="namespaceQAccelPlot_1_1LineStroke_1a7a31b6b15c2fa6b2f65a0931b6efa8ee" kind="function"><name>writeVertices</name></member>
+    <member refid="namespaceQAccelPlot_1_1LineStroke_1aee4049b771278f304cabfb714fce5705" kind="function"><name>writeDashedVertices</name></member>
     <member refid="namespaceQAccelPlot_1_1LineStroke_1a7af6559bbaacc22fb8a3919a13bed452" kind="function"><name>applyUniforms</name></member>
-    <member refid="namespaceQAccelPlot_1_1LineStroke_1af2fc7665b16774aa448d7292f7fcc541" kind="function"><name>arcLengths</name></member>
+    <member refid="namespaceQAccelPlot_1_1LineStroke_1af128a9be53287ddabd63ee0510bcd901" kind="function"><name>arcLengths</name></member>
   </compound>
   <compound refid="namespaceQAccelPlot_1_1MarkerShapeNS" kind="namespace"><name>QAccelPlot::MarkerShapeNS</name>
     <member refid="namespaceQAccelPlot_1_1MarkerShapeNS_1a55dac9f7d8eefc9961efce5cf986d8fd" kind="enum"><name>Shape</name></member>

@@ -23,9 +23,8 @@
 * `#include <QSGGeometry>`
 * `#include <QSGGeometryNode>`
 * `#include <QVector2D>`
-* `#include <algorithm>`
-* `#include <cmath>`
 * `#include <cstdint>`
+* `#include <functional>`
 * `#include <optional>`
 * `#include <vector>`
 

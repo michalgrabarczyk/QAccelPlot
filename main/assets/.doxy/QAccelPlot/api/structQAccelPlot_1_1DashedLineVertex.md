@@ -46,7 +46,7 @@ _Vertex of a dashed line ribbon: a_ `LineVertex` _and the screen-space arc lengt
 | Type | Name |
 | ---: | :--- |
 |  float | [**arcLength**](#variable-arclength)  <br>_Cumulative screen-space arc length in pixels._  |
-|  [**LineVertex**](structQAccelPlot_1_1LineVertex.md) | [**vertex**](#variable-vertex)  <br>_Data point index, path corner, and ribbon side._  |
+|  [**LineVertex**](structQAccelPlot_1_1LineVertex.md) | [**vertex**](#variable-vertex)  <br>_Data point index, path corner, join half, and ribbon side._  |
 
 
 
@@ -114,7 +114,7 @@ float QAccelPlot::DashedLineVertex::arcLength;
 
 ### variable vertex {#variable-vertex}
 
-_Data point index, path corner, and ribbon side._ 
+_Data point index, path corner, join half, and ribbon side._ 
 ```C++
 LineVertex QAccelPlot::DashedLineVertex::vertex;
 ```

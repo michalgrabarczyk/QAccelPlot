@@ -1552,6 +1552,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#function-outgoing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function outgoing
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1619,7 +1630,7 @@
 <tbody>
 <tr>
 <td style="text-align: right;">std::uint32_t</td>
-<td style="text-align: left;"><a href="#variable-packed"><strong>packed</strong></a>  <br><em>Bits 0–27 hold the data point index, bits 28–30 the path corner, and bit 31 marks the negative ribbon side.</em></td>
+<td style="text-align: left;"><a href="#variable-packed"><strong>packed</strong></a>  <br><em>Bits 0–27 hold the data point index, bits 28–29 the path corner, bit 30 marks the outgoing join half, and bit 31 the negative ribbon side.</em></td>
 </tr>
 </tbody>
 </table>
@@ -1634,7 +1645,7 @@
 <tbody>
 <tr>
 <td style="text-align: right;">int</td>
-<td style="text-align: left;"><a href="#variable-kmaximumcorner"><strong>kMaximumCorner</strong></a>   = <code>7</code><br><em>Largest path corner a vertex holds.</em></td>
+<td style="text-align: left;"><a href="#variable-kmaximumcorner"><strong>kMaximumCorner</strong></a>   = <code>3</code><br><em>Largest path corner a vertex holds.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">int</td>
@@ -1663,6 +1674,10 @@
 <td style="text-align: right;">bool</td>
 <td style="text-align: left;"><a href="#function-negativeside"><strong>negativeSide</strong></a> () noexcept const<br><em>Returns whether the vertex lies on the negative ribbon side.</em></td>
 </tr>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-outgoing"><strong>outgoing</strong></a> () noexcept const<br><em>Returns whether the vertex starts the segment after a split join.</em></td>
+</tr>
 </tbody>
 </table>
 <h2 id="public-static-functions">Public Static Functions<a class="headerlink" href="#public-static-functions" title="Permanent link">&para;</a></h2>
@@ -1676,15 +1691,15 @@
 <tbody>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>LineVertex</strong></a></td>
-<td style="text-align: left;"><a href="#function-make"><strong>make</strong></a> (const int index, const int corner, const bool negativeSide) noexcept<br><em>Returns the vertex of data point</em> <em>index</em> <em>at step corner__corner</em> <em>(0 for the point itself) on the negative ribbon side when__negativeSide</em> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-make"><strong>make</strong></a> (int index, int corner, bool negativeSide, bool outgoing=false) noexcept<br><em>Returns the vertex of data point</em> <em>index</em> <em>at step corner__corner</em> <em>(0 for the point itself) on the negative ribbon side when__negativeSide</em> <em>.</em></td>
 </tr>
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
-<p>Packs a data point index, a path corner, and a ribbon side into four bytes, which the shaders read as normalized bytes (see line_vertex_input.glsl). </p>
+<p>Packs a data point index, a path corner, a join half, and a ribbon side into four bytes, which the shaders read as normalized bytes (see line_vertex_input.glsl). </p>
 <h2 id="public-attributes-documentation">Public Attributes Documentation<a class="headerlink" href="#public-attributes-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="variable-packed">variable packed<a class="headerlink" href="#variable-packed" title="Permanent link">&para;</a></h3>
-<p><em>Bits 0–27 hold the data point index, bits 28–30 the path corner, and bit 31 marks the negative ribbon side.</em> 
+<p><em>Bits 0–27 hold the data point index, bits 28–29 the path corner, bit 30 marks the outgoing join half, and bit 31 the negative ribbon side.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">std</span><span class="o">::</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineVertex</span><span class="o">::</span><span class="n">packed</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
@@ -1703,30 +1718,38 @@
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-corner">function corner<a class="headerlink" href="#function-corner" title="Permanent link">&para;</a></h3>
 <p><em>Returns the step corner after the data point; 0 for the point itself.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineVertex</span><span class="o">::</span><span class="n">corner</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">noexcept</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineVertex</span><span class="o">::</span><span class="n">corner</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">noexcept</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-index">function index<a class="headerlink" href="#function-index" title="Permanent link">&para;</a></h3>
 <p><em>Returns the data point index.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineVertex</span><span class="o">::</span><span class="n">index</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">noexcept</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineVertex</span><span class="o">::</span><span class="n">index</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">noexcept</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-negativeside">function negativeSide<a class="headerlink" href="#function-negativeside" title="Permanent link">&para;</a></h3>
 <p><em>Returns whether the vertex lies on the negative ribbon side.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineVertex</span><span class="o">::</span><span class="n">negativeSide</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">noexcept</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineVertex</span><span class="o">::</span><span class="n">negativeSide</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">noexcept</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-outgoing">function outgoing<a class="headerlink" href="#function-outgoing" title="Permanent link">&para;</a></h3>
+<p><em>Returns whether the vertex starts the segment after a split join.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineVertex</span><span class="o">::</span><span class="n">outgoing</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">noexcept</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 <h2 id="public-static-functions-documentation">Public Static Functions Documentation<a class="headerlink" href="#public-static-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-make">function make<a class="headerlink" href="#function-make" title="Permanent link">&para;</a></h3>
 <p><em>Returns the vertex of data point</em> <em>index</em> <em>at step corner__corner</em> <em>(0 for the point itself) on the negative ribbon side when__negativeSide</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">LineVertex</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineVertex</span><span class="o">::</span><span class="n">make</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="p">,</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">corner</span><span class="p">,</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">negativeSide</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">static</span><span class="w"> </span><span class="n">LineVertex</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineVertex</span><span class="o">::</span><span class="n">make</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="p">,</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">corner</span><span class="p">,</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">negativeSide</span><span class="p">,</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">outgoing</span><span class="o">=</span><span class="nb">false</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
 </code></pre></div></p>
+<p><em>outgoing</em> marks a vertex that starts the segment after a split join; see verticesPerPathPoint(). </p>
 <hr>
 
 <hr />

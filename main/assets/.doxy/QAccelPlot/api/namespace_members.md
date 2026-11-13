@@ -150,6 +150,7 @@
 ## v
 
 * **vertexAttributes** ([**QAccelPlot::LineStroke**](namespaceQAccelPlot_1_1LineStroke.md))
+* **verticesPerPathPoint** ([**QAccelPlot::LineStroke**](namespaceQAccelPlot_1_1LineStroke.md))
 
 
 ## w

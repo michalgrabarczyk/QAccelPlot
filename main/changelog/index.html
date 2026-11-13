@@ -2121,8 +2121,8 @@
   group, for example <code>axis-&gt;label()-&gt;setText()</code> with <code>AxisLabel.hpp</code> included.</p>
 </li>
 <li>Line vertices take 4 bytes instead of 16, or 8 with a dash pattern, so a
-  <code>LineCurve</code> or <code>BandSeries</code> edge whose point count changes uploads a quarter
-  of the data.</li>
+  <code>LineCurve</code> or <code>BandSeries</code> edge whose point count changes uploads less
+  data.</li>
 <li>A hoverable <code>LineCurve</code> builds its hover bounding boxes on the first pointer
   move after a data change instead of on every change, so streamed data costs
   no scan while the pointer is elsewhere.</li>
@@ -2149,6 +2149,9 @@
 <li>Rotated tick labels (<code>ticker.tickLabelRotation</code>) are no longer clipped on
   vertical axes or drawn over the ticks. Each is centered on its tick and
   placed by its rotated bounding box.</li>
+<li>Steep segments between sharp turns of a <code>LineCurve</code> or <code>BandSeries</code> edge,
+  as in noisy data, keep their width instead of breaking into dots. Joins too
+  sharp for a miter draw as bevels.</li>
 </ul>
 <h2 id="050-2026-11-01">[0.5.0] — 2026-11-01<a class="headerlink" href="#050-2026-11-01" title="Permanent link">&para;</a></h2>
 <h3 id="added_1">Added<a class="headerlink" href="#added_1" title="Permanent link">&para;</a></h3>

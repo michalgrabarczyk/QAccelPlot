@@ -17,10 +17,29 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="123" column="29" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" bodystart="123" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="126" column="29" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" bodystart="126" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1LineCurveLineRenderer_1a3c514b6bc1169ad89f26767edd32de68" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>static int QAccelPlot::LineCurveLineRenderer::verticesPerPoint</definition>
+        <argsstring>(StepMode stepMode)</argsstring>
+        <name>verticesPerPoint</name>
+        <qualifiedname>QAccelPlot::LineCurveLineRenderer::verticesPerPoint</qualifiedname>
+        <param>
+          <type><ref refid="namespaceQAccelPlot_1_1StepModeNS_1af348af83845fdf1f08b475737f62a7cd" kindref="member">StepMode</ref></type>
+          <declname>stepMode</declname>
+        </param>
+        <briefdescription>
+<para>Returns the ribbon vertices per data point of a line drawn with <emphasis>stepMode</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="81" column="16"/>
+      </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurveLineRenderer_1ab51aecd357af75811fa6cbb8b7386384" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::size_t</type>
         <definition>static std::size_t QAccelPlot::LineCurveLineRenderer::vertexCacheBytesPerPoint</definition>
@@ -38,7 +57,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="81" column="24"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="84" column="24"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurveLineRenderer_1af7de8cf2c144f7a2b5589b97f6ed1af5" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -70,7 +89,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="88" column="17"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="91" column="17"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurveLineRenderer_1ab63d17c7f37f32b08df0d4eeb1a3184a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::shared_ptr&lt; <ref refid="classQAccelPlot_1_1DataTexture" kindref="compound">DataTexture</ref> &gt;</type>
@@ -89,7 +108,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="100" column="28"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="103" column="28"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -114,7 +133,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="91" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="94" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurveLineRenderer_1af7080fe3330b521649272adbb02774d2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QSGNode *</type>
@@ -138,7 +157,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="97" column="13"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="100" column="13"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
@@ -162,7 +181,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="113" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="116" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurveLineRenderer_1a1b52a3889372e19d879605bba2fc3cc9" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>const <ref refid="structQAccelPlot_1_1FillSamples" kindref="compound">FillSamples</ref> &amp;</type>
@@ -180,7 +199,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="114" column="23"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="117" column="23"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurveLineRenderer_1a85c5c10c641060961c2d83f155d1f3a3" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -210,7 +229,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="117" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="120" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurveLineRenderer_1acd5483c4b2fa460e54d9ed26707b3664" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; float &gt;</type>
@@ -232,7 +251,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="118" column="17"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="121" column="17"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurveLineRenderer_1acad7664b2f83f53946d81fc0f76e1a91" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -258,7 +277,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="120" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="123" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-static-func">
@@ -283,7 +302,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="116" column="17"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="119" column="17"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -292,7 +311,7 @@
     <detaileddescription>
 <para>Supports solid and dashed lines, gradient stroke, gradient fill, and optional pre-built vertex caches assembled on the main thread for reduced render-thread stalls. </para>
     </detaileddescription>
-    <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="78" column="1" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" bodystart="78" bodyend="124"/>
+    <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="78" column="1" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" bodystart="78" bodyend="127"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1acd5483c4b2fa460e54d9ed26707b3664" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurveLineRenderer</scope><name>computeArcLengths</name></member>
       <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1a17184b26756ffd86f96dcdf75bb64261" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveLineRenderer</scope><name>contains</name></member>
@@ -305,6 +324,7 @@
       <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1a85c5c10c641060961c2d83f155d1f3a3" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurveLineRenderer</scope><name>updateLineMaterial</name></member>
       <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1acad7664b2f83f53946d81fc0f76e1a91" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurveLineRenderer</scope><name>updateLineVertices</name></member>
       <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1ab51aecd357af75811fa6cbb8b7386384" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveLineRenderer</scope><name>vertexCacheBytesPerPoint</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1a3c514b6bc1169ad89f26767edd32de68" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveLineRenderer</scope><name>verticesPerPoint</name></member>
       <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1af7de8cf2c144f7a2b5589b97f6ed1af5" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveLineRenderer</scope><name>writeVertexCache</name></member>
     </listofallmembers>
   </compounddef>

@@ -79,6 +79,8 @@ struct FillSamples {
 
 class LineCurveLineRenderer {
 public:
+    static int verticesPerPoint(StepMode stepMode);
+
     static std::size_t vertexCacheBytesPerPoint(StepMode stepMode);
 
     static void writeVertexCache(std::vector<char>& cache, int firstPoint, int pointCount, StepMode stepMode);
