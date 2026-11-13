@@ -55,7 +55,7 @@ void main() {
     v_color.a *= itemOpacity(float(vertexInput.index));
     v_arcLength = vertexInput.arcLength;
 
-    LineVertexResult vertex = computeLineVertex(vertexInput.index, vertexInput.corner, vertexInput.side);
+    LineVertexResult vertex = computeLineVertex(vertexInput.index, vertexInput.corner, vertexInput.outgoing, vertexInput.side);
     v_edgeDistance = vertexInput.side * lineRibbonHalfExtent() * vertex.extentScale;
     v_validWeight = vertex.validWeight;
     gl_Position = vertex.position;

@@ -208,10 +208,42 @@ vec2 neighborJoinNormal(int qIndex, int qCorner, vec2 q, vec2 p, bool pFollows) 
                     : lineJoinNormal(lineDirection(p, q), lineDirection(q, other));
 }
 
-// Computes the miter-joined ribbon vertex on `side` (+1 or -1) of path point
-// `corner` of sample `index`. A valid point next to an invalid neighbor is
-// treated as a line endpoint.
-LineVertexResult computeLineVertex(int index, int corner, float side) {
+// Smallest cosine of half the turn at a mitered join, which limits the miter length to its inverse.
+const float kMiterLimitCos = 0.15;
+
+// Returns whether each path point has a vertex pair that ends the segment before it and another that
+// starts the segment after it (see LineStroke::verticesPerPathPoint()). Step paths only turn by right
+// angles, so their segments share one mitered pair.
+bool lineSplitsJoins() {
+    return lineStepMode() == kStepNone;
+}
+
+// Returns the unit offset of the positive-side ribbon vertex at the join of the segment arriving along
+// `dir1` and the one leaving along `dir2`, and its miter length. A join sharper than the miter limit can
+// collapse a mitered ribbon, so with split joins it ends the arriving segment and starts the leaving one
+// square, `outgoing` selecting which, and the join triangles between them fill a bevel.
+vec2 lineJoinOffset(vec2 dir1, vec2 dir2, bool outgoing, out float miterLength) {
+    // A zero direction marks a line end.
+    if (dot(dir1, dir1) == 0.0) dir1 = dir2;
+    if (dot(dir2, dir2) == 0.0) dir2 = dir1;
+    // Cosine of half the turn: 1 on a straight line or at a line end, 0 where the line reverses.
+    float miterCos = 0.5 * length(dir1 + dir2);
+    if (miterCos > kMiterLimitCos) {
+        miterLength = 1.0 / miterCos;
+        return lineJoinNormal(dir1, dir2);
+    }
+    miterLength = 1.0;
+    if (!lineSplitsJoins() || dot(dir1, dir1) == 0.0) {
+        return lineJoinNormal(dir1, dir2);
+    }
+    vec2 segment = outgoing ? dir2 : dir1;
+    return vec2(-segment.y, segment.x);
+}
+
+// Computes the ribbon vertex on `side` (+1 or -1) of path point `corner` of sample `index`; `outgoing`
+// selects the vertex pair that starts the segment after the point, see lineJoinOffset(). A valid point
+// next to an invalid neighbor is treated as a line endpoint.
+LineVertexResult computeLineVertex(int index, int corner, bool outgoing, float side) {
     // The corners of the last sample collapse onto it, so they add no triangles.
     if (index >= int(ubuf.pointCount) - 1) {
         corner = 0;
@@ -241,24 +273,14 @@ LineVertexResult computeLineVertex(int index, int corner, float side) {
     vec2 prev_local = dataToLocal(pr);
     vec2 next_local = dataToLocal(nx);
 
-    // Direction vectors for the miter join; a zero direction marks a line end.
-    vec2 dir1 = lineDirection(prev_local, p_local);
-    vec2 dir2 = lineDirection(p_local, next_local);
-    vec2 normal = lineJoinNormal(dir1, dir2);
-
-    // Miter length
-    vec2 arriving = dot(dir1, dir1) > 0.0 ? dir1 : dir2;
-    float miterDot = dot(normal, vec2(-arriving.y, arriving.x));
-    float miterLength = 1.0;
-    if (abs(miterDot) > 0.15) {
-        miterLength = 1.0 / abs(miterDot);
-    }
+    float miterLength;
+    vec2 offset = lineJoinOffset(lineDirection(prev_local, p_local), lineDirection(p_local, next_local), outgoing, miterLength);
     // Offset in item-local pixel space, then use Qt's matrix to project. A glow widens the ribbon by
     // its radius; long miters at sharp turns would stretch that part into spikes, so it is not mitered.
     float glow = glowActive(ubuf.glowParams.xy) ? ubuf.glowParams.x : 0.0;
     float coreReach = (lineRibbonHalfExtent() - glow) * miterLength;
     float reach = coreReach + glow;
-    vec2 direction = normal * side;
+    vec2 direction = offset * side;
     if (glow > 0.0) {
         // Inside a bend tighter than the glow, the halo stops where the neighbor quads begin, so
         // halos don't stack; the line itself keeps its width.

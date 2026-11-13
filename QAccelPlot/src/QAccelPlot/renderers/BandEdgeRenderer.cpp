@@ -15,6 +15,11 @@
 
 namespace QAccelPlot {
 
+namespace {
+// An edge follows the data without steps, so it can turn sharply.
+constexpr auto kSplitJoins = true;
+} // namespace
+
 BandEdgeRenderer::BandEdgeRenderer(const BandEdgeMaterial::Edge edge)
     : edge_(edge)
 {
@@ -29,7 +34,7 @@ QSGGeometryNode* BandEdgeRenderer::paint(QSGGeometryNode* oldNode, const BandEdg
         layoutChanged = LineStroke::setMaterial(node, new BandEdgeMaterial(edge_, dashed));
     }
     auto* geometry = node->geometry();
-    const auto vertexCount = params.reservedCount * 2;
+    const auto vertexCount = params.reservedCount * LineStroke::verticesPerPathPoint(kSplitJoins);
     const auto countChanged = geometry->vertexCount() != vertexCount;
     if (countChanged) {
         geometry->allocate(vertexCount);
@@ -51,9 +56,9 @@ QSGGeometryNode* BandEdgeRenderer::paint(QSGGeometryNode* oldNode, const BandEdg
     }
     if (countChanged || lengthsStale || layoutChanged) {
         if (dashed) {
-            LineStroke::writeDashedVertices(static_cast<DashedLineVertex*>(geometry->vertexData()), params.reservedCount, 1, arcLengths(params));
+            LineStroke::writeDashedVertices(static_cast<DashedLineVertex*>(geometry->vertexData()), params.reservedCount, 1, kSplitJoins, arcLengths(params));
         } else {
-            LineStroke::writeVertices(static_cast<LineVertex*>(geometry->vertexData()), params.reservedCount, 1);
+            LineStroke::writeVertices(static_cast<LineVertex*>(geometry->vertexData()), params.reservedCount, 1, kSplitJoins);
         }
         node->markDirty(QSGNode::DirtyGeometry);
     }

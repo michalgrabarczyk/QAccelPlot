@@ -184,6 +184,12 @@ bool segmentsFromPointHit(const QPointF& point, const CurveHitTestParams& params
     return false;
 }
 
+// Steps only turn by right angles, which a miter always joins; a line without them can turn sharply.
+bool splitsJoins(const StepMode stepMode)
+{
+    return stepMode == StepMode::None;
+}
+
 QSGNode* createLineRootNode(const int strokeVertexCount, const bool gradientStroke, const bool dashed)
 {
     auto* rootNode = new QSGNode;
@@ -234,14 +240,19 @@ QSGNode* ensureLineRootNode(QSGNode* oldNode, const int strokeVertexCount, const
 
 } // namespace
 
+int LineCurveLineRenderer::verticesPerPoint(const StepMode stepMode)
+{
+    return Internal::stepCornerCount(stepMode) * LineStroke::verticesPerPathPoint(splitsJoins(stepMode));
+}
+
 std::size_t LineCurveLineRenderer::vertexCacheBytesPerPoint(const StepMode stepMode)
 {
-    return static_cast<std::size_t>(Internal::stepCornerCount(stepMode)) * 2 * sizeof(LineVertex);
+    return static_cast<std::size_t>(verticesPerPoint(stepMode)) * sizeof(LineVertex);
 }
 
 void LineCurveLineRenderer::writeVertexCache(std::vector<char>& cache, const int firstPoint, const int pointCount, const StepMode stepMode)
 {
-    LineStroke::writeVertices(reinterpret_cast<LineVertex*>(cache.data()), pointCount, Internal::stepCornerCount(stepMode), firstPoint);
+    LineStroke::writeVertices(reinterpret_cast<LineVertex*>(cache.data()), pointCount, Internal::stepCornerCount(stepMode), splitsJoins(stepMode), firstPoint);
 }
 
 bool LineCurveLineRenderer::contains(const QPointF& point, const CurveHitTestParams& params) const
@@ -286,7 +297,7 @@ bool LineCurveLineRenderer::contains(const QPointF& point, const CurveHitTestPar
 
 QSGNode* LineCurveLineRenderer::paint(QSGNode* oldNode, const LineCurveRenderParams& params) const
 {
-    const auto vertexCount = params.pointCount * 2 * Internal::stepCornerCount(params.stepMode);
+    const auto vertexCount = params.pointCount * verticesPerPoint(params.stepMode);
     const auto gradientStroke = params.gradientPayload.isValid();
     const auto dashParams = params.lineStyle ? params.lineStyle->dashParameters() : DashParameters{};
     auto rootRecreated = false;
@@ -298,7 +309,7 @@ QSGNode* LineCurveLineRenderer::paint(QSGNode* oldNode, const LineCurveRenderPar
 
     // Detect whether the vertex count changed BEFORE reallocating, so we know
     // whether the vertex buffer content (sequential indices + ±1 sides) needs
-    // to be re-uploaded. The vertex data is deterministic from pointCount alone.
+    // to be re-uploaded. The vertex data is deterministic from pointCount and the step mode.
     const auto geometryCountChanged = node->geometry()->vertexCount() != vertexCount;
 
     // Only reallocate when the vertex count actually changes — avoids GPU buffer
@@ -310,15 +321,17 @@ QSGNode* LineCurveLineRenderer::paint(QSGNode* oldNode, const LineCurveRenderPar
     const auto effectiveColor = params.hovered ? params.color.lighter(150) : params.color;
 
     auto* material = static_cast<LineMaterial*>(node->material());
+    // Step modes can lay out the same vertex count differently.
+    const auto stepModeChanged = material->stepMode != static_cast<float>(params.stepMode);
     updateLineMaterial(material, params, effectiveColor, dashParams);
 
     if (params.dataChanged || rootRecreated) {
         material->uploadTexture(params.window, params.data.data(), params.pointCount * 2);
     }
 
-    // Solid line vertices depend on the point count alone. Dashed ones also hold screen-space
+    // Solid line vertices depend on the point count and the step mode. Dashed ones also hold screen-space
     // arc lengths, which change with the data, the axis ranges, and the viewport.
-    const auto needVertexUpload = geometryCountChanged || rootRecreated || dashParams.enabled;
+    const auto needVertexUpload = geometryCountChanged || rootRecreated || stepModeChanged || dashParams.enabled;
     if (needVertexUpload) {
         updateLineVertices(node->geometry(), params, computeArcLengths(params, dashParams));
         node->markDirty(QSGNode::DirtyGeometry);
@@ -438,8 +451,9 @@ std::vector<float> LineCurveLineRenderer::computeArcLengths(const LineCurveRende
 void LineCurveLineRenderer::updateLineVertices(QSGGeometry* geometry, const LineCurveRenderParams& params, const std::vector<float>& arcLengths) const
 {
     const auto cornerCount = Internal::stepCornerCount(params.stepMode);
+    const auto splitJoins = splitsJoins(params.stepMode);
     if (geometry->sizeOfVertex() == static_cast<int>(sizeof(DashedLineVertex))) {
-        LineStroke::writeDashedVertices(static_cast<DashedLineVertex*>(geometry->vertexData()), params.pointCount, cornerCount, arcLengths);
+        LineStroke::writeDashedVertices(static_cast<DashedLineVertex*>(geometry->vertexData()), params.pointCount, cornerCount, splitJoins, arcLengths);
         return;
     }
     const auto expectedCacheBytes = static_cast<std::size_t>(geometry->vertexCount()) * sizeof(LineVertex);
@@ -449,7 +463,7 @@ void LineCurveLineRenderer::updateLineVertices(QSGGeometry* geometry, const Line
         // per-struct loop when writing to GPU-mapped (write-combining) memory.
         std::memcpy(geometry->vertexData(), params.vertexCache->data(), expectedCacheBytes);
     } else {
-        LineStroke::writeVertices(static_cast<LineVertex*>(geometry->vertexData()), params.pointCount, cornerCount);
+        LineStroke::writeVertices(static_cast<LineVertex*>(geometry->vertexData()), params.pointCount, cornerCount, splitJoins);
     }
 }
 

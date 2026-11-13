@@ -13,8 +13,8 @@
 #define LINE_DASHED 0
 #endif
 
-// The four bytes of a packed vertex: bits 0-27 hold the data point index, bits 28-30
-// the path corner, and bit 31 marks the negative ribbon side.
+// The four bytes of a packed vertex: bits 0-27 hold the data point index, bits 28-29
+// the path corner, bit 30 marks the outgoing join half, and bit 31 the negative ribbon side.
 layout(location = 0) in vec4 packedVertex;
 #if LINE_DASHED
 layout(location = 1) in float arcLength;
@@ -23,7 +23,8 @@ layout(location = 1) in float arcLength;
 struct LineVertexInput {
     int index;
     int corner;
-    float side; // +1 or -1
+    bool outgoing; // starts the segment after a split join, see computeLineVertex()
+    float side;    // +1 or -1
     float arcLength;
 };
 
@@ -31,7 +32,8 @@ LineVertexInput lineVertexInput() {
     uvec4 bytes = uvec4(packedVertex * 255.0 + 0.5);
     LineVertexInput vertexInput;
     vertexInput.index = int(bytes.x | (bytes.y << 8u) | (bytes.z << 16u) | ((bytes.w & 15u) << 24u));
-    vertexInput.corner = int((bytes.w >> 4u) & 7u);
+    vertexInput.corner = int((bytes.w >> 4u) & 3u);
+    vertexInput.outgoing = (bytes.w & 64u) != 0u;
     vertexInput.side = (bytes.w & 128u) != 0u ? -1.0 : 1.0;
 #if LINE_DASHED
     vertexInput.arcLength = arcLength;
