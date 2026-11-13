@@ -55,7 +55,10 @@ class AxisTicker : public QObject {
     Q_PROPERTY(qreal subtickWidth READ subtickWidth WRITE setSubtickWidth NOTIFY subtickWidthChanged)
     /// \brief Spacing in pixels between a tick mark and its label. Default: 5.
     Q_PROPERTY(qreal tickLabelPadding READ tickLabelPadding WRITE setTickLabelPadding NOTIFY tickLabelPaddingChanged)
-    /// \brief Rotation angle in degrees applied to each tick label. Default: 0.
+    /// \brief Clockwise rotation in degrees of each tick label. Default: 0.
+    ///
+    /// A rotated label is centered on its tick, and its rotated bounding box starts \c tickLabelPadding past the
+    /// outward tick. Use -90 or 90 on a vertical axis for labels that run along the axis.
     Q_PROPERTY(qreal tickLabelRotation READ tickLabelRotation WRITE setTickLabelRotation NOTIFY tickLabelRotationChanged)
     /// \brief Font used to render tick labels. Default: application default font.
     Q_PROPERTY(QFont tickLabelFont READ tickLabelFont WRITE setTickLabelFont NOTIFY tickLabelFontChanged)
