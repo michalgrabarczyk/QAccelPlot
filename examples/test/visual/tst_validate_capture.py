@@ -121,7 +121,7 @@ class CaptureValidationTests(unittest.TestCase):
         self.assertIsNotNone(version_axis)
         self.assertEqual(
             re.findall(r"'([^']+)'", version_axis.group("values")),
-            ["6.2.4", "6.8.3", "6.11.2"],
+            ["6.2.4", "6.8.3", "6.12.0"],
         )
         self.assertRegex(
             workflow,
@@ -139,8 +139,8 @@ class CaptureValidationTests(unittest.TestCase):
         self.assertEqual(workflow.count("-DQACCELPLOT_BUILD_VISUAL_TESTS=ON"), 3)
         self.assertIn("libvulkan1 libvulkan-dev mesa-vulkan-drivers vulkan-tools", workflow)
         self.assertIn("QT_SCALE_FACTOR: ${{ startsWith(matrix.platform.os, 'ubuntu-') && '1' || '0.5' }}", workflow)
-        self.assertIn("'.github/scripts/aqt_windows_qt611.py',", workflow)
-        self.assertIn("'install-qt', 'windows', 'desktop', '6.11.2'", workflow)
+        self.assertIn("'.github/scripts/aqt_windows_arch_repository.py',", workflow)
+        self.assertIn("'install-qt', 'windows', 'desktop', '6.12.0'", workflow)
         self.assertIn("uses: actions/cache@v5", workflow)
         self.assertIn("if-no-files-found: error", workflow)
         self.assertIn("overwrite: true", workflow)
@@ -219,13 +219,13 @@ class CaptureValidationTests(unittest.TestCase):
         self.assertIn("find \"$artifact_dir\" -type f -path '*/screenshots/*'", bundle_job)
         self.assertIn("steps.upload-combined-screenshots.outputs.artifact-url", bundle_job)
 
-    def test_qt_611_windows_repository_workaround_uses_arch_specific_path(self):
-        script = PROJECT_ROOT / ".github" / "scripts" / "aqt_windows_qt611.py"
+    def test_qt_windows_repository_workaround_uses_arch_specific_path(self):
+        script = PROJECT_ROOT / ".github" / "scripts" / "aqt_windows_arch_repository.py"
         namespace = runpy.run_path(str(script))
         repository_path = namespace["windows_qt_repository_path"](
-            "6.11.2", "win64_msvc2022_64"
+            "6.12.0", "win64_msvc2022_64"
         )
-        self.assertEqual(repository_path, "qt6_6112/qt6_6112_msvc2022_64")
+        self.assertEqual(repository_path, "qt6_6120/qt6_6120_msvc2022_64")
 
     def test_render_metadata_requires_the_requested_backend(self):
         with tempfile.TemporaryDirectory() as directory:

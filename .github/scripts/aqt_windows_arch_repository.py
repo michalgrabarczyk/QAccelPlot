@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Michal Grabarczyk
 # SPDX-License-Identifier: MIT
 #
-"""Install Windows Qt 6.11 despite aqtinstall 3.3's repository-path bug."""
+"""Install Windows Qt 6.11 and newer despite aqtinstall 3.3's repository-path bug."""
 
 from __future__ import annotations
 
@@ -30,18 +30,18 @@ def main() -> int:
 
     original_get_archives = QtArchives._get_archives
 
-    def get_archives_from_qt611_windows_layout(self: QtArchives) -> None:
+    def get_archives_from_arch_repository(self: QtArchives) -> None:
         if (
             self.os_name == "windows"
             and self.target == "desktop"
-            and Version("6.11.0") <= self.version < Version("6.12.0")
+            and self.version >= Version("6.11.0")
         ):
             repository = windows_qt_repository_path(str(self.version), self.arch)
             self._get_archives_base(repository, self._target_packages())
             return
         original_get_archives(self)
 
-    QtArchives._get_archives = get_archives_from_qt611_windows_layout
+    QtArchives._get_archives = get_archives_from_arch_repository
     return aqt_main()
 
 
