@@ -40,7 +40,7 @@ namespace QAccelPlot {
 /// \code
 /// QAccelPlot.ColorBar {
 ///     series: cloud
-///     label: "Intensity"
+///     label.text: "Intensity"
 ///     x: plot.plotRect.right - width - 8
 ///     y: plot.plotRect.y + 8
 /// }
