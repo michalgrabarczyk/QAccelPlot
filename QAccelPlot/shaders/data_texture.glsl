@@ -1,9 +1,6 @@
 //
 // SPDX-FileCopyrightText: 2026 Michal Grabarczyk
-// SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
-//
-// This file is also available under a separate commercial license.
-// See COMMERCIAL-LICENSING.md for contact information.
+// SPDX-License-Identifier: MIT
 //
 // Decode one IEEE 754 float from an RGBA8888 texel.
 // QImage::Format_RGBA8888 stores [R=b0, G=b1, B=b2, A=b3] in memory.

@@ -4,7 +4,7 @@ description: "Zoom into a rectangular plot region with a mouse gesture or a cust
 
 <!--
 SPDX-FileCopyrightText: 2026 Michal Grabarczyk
-SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
+SPDX-License-Identifier: MIT
 -->
 
 # Rectangle zoom

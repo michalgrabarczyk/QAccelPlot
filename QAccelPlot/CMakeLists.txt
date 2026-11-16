@@ -1,9 +1,6 @@
 #
 # SPDX-FileCopyrightText: 2026 Michal Grabarczyk
-# SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
-#
-# This file is also available under a separate commercial license.
-# See COMMERCIAL-LICENSING.md for contact information.
+# SPDX-License-Identifier: MIT
 #
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
@@ -244,13 +241,9 @@ if(QACCELPLOT_INSTALL)
         DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/QAccelPlot"
     )
 
-    # --- License and licensing information ---
+    # --- License ---
     install(FILES
         "${PROJECT_SOURCE_DIR}/LICENSE"
-        "${PROJECT_SOURCE_DIR}/LICENSING.md"
-        "${PROJECT_SOURCE_DIR}/COMMERCIAL-LICENSING.md"
-        "${PROJECT_SOURCE_DIR}/LICENSES/GPL-3.0-only.txt"
-        "${PROJECT_SOURCE_DIR}/LICENSES/Universal-FOSS-exception-1.0.txt"
         DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/licenses/QAccelPlot"
     )
 endif()

@@ -1,9 +1,6 @@
 //
 // SPDX-FileCopyrightText: 2026 Michal Grabarczyk
-// SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
-//
-// This file is also available under a separate commercial license.
-// See COMMERCIAL-LICENSING.md for contact information.
+// SPDX-License-Identifier: MIT
 //
 // The halo of a Glow effect, drawn in the same pass as the shape it surrounds.
 // `color` is the halo color, `params` holds its radius in pixels and its intensity,

@@ -6,7 +6,7 @@
   <a href="https://michalgrabarczyk.github.io/QAccelPlot/"><img src="https://github.com/michalgrabarczyk/QAccelPlot/actions/workflows/docs.yml/badge.svg" alt="Documentation" /></a>
   <img src="https://img.shields.io/badge/Qt-6.2%2B-41CD52?logo=qt&logoColor=white" alt="Qt 6.2+" />
   <img src="https://img.shields.io/badge/C%2B%2B-17-00599C?logo=c%2B%2B&logoColor=white" alt="C++17" />
-  <a href="#licensing"><img src="https://img.shields.io/badge/License-GPLv3%20%2F%20Commercial-blue.svg" alt="GPLv3 / Commercial License" /></a>
+  <a href="#licensing"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="MIT License" /></a>
 </p>
 
 **QAccelPlot** is a GPU-accelerated, interactive 2D plotting library for
@@ -194,18 +194,12 @@ Planned before 1.0:
 
 Report bugs, feature requests, and compatibility notes through
 [GitHub Issues](https://github.com/michalgrabarczyk/QAccelPlot/issues). Pull
-requests are not accepted; see [CONTRIBUTING.md](CONTRIBUTING.md).
+requests are welcome; see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ---
 
 ## 📄 Licensing
 
-QAccelPlot is available under a **dual-licensing model**:
+QAccelPlot is licensed under the [MIT License](LICENSE).
 
-1. **Open-Source License:** GNU General Public License v3.0 only with the **Universal FOSS Exception**. Qualifying applications distributed under an OSI-approved or FSF-free software license (e.g. MIT, BSD, Apache 2.0, LGPL) may link with QAccelPlot while retaining their own open-source license.
-2. **Commercial License:** Separate commercial terms for embedding QAccelPlot in proprietary or closed-source commercial applications without GPL requirements.
-
-📧 For commercial licensing inquiries, contact: **[qaccelplot@gmail.com](mailto:qaccelplot@gmail.com)**
-
-For common situations and links to the full license texts, see
-[LICENSING.md](LICENSING.md).
+Qt is licensed separately; QAccelPlot's license grants no rights to Qt.

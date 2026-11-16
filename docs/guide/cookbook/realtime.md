@@ -4,7 +4,7 @@ description: "Build a real-time scrolling QAccelPlot chart with stable axis rang
 
 <!--
 SPDX-FileCopyrightText: 2026 Michal Grabarczyk
-SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
+SPDX-License-Identifier: MIT
 -->
 
 # Real-time scrolling data
