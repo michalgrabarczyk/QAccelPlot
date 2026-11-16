@@ -31,52 +31,49 @@
     <programlisting>
 <codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-FileCopyrightText:<sp/>2026<sp/>Michal<sp/>Grabarczyk</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>GPL-3.0-only<sp/>WITH<sp/>Universal-FOSS-exception-1.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>MIT</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>file<sp/>is<sp/>also<sp/>available<sp/>under<sp/>a<sp/>separate<sp/>commercial<sp/>license.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>See<sp/>COMMERCIAL-LICENSING.md<sp/>for<sp/>contact<sp/>information.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QObject&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QtQml/qqmlregistration.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="9"><highlight class="normal"></highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QObject&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QtQml/qqmlregistration.h&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="12"><highlight class="normal"></highlight></codeline>
-<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"></highlight></codeline>
-<codeline lineno="16" refid="namespaceQAccelPlot_1_1NanGapModeNS" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceQAccelPlot_1_1NanGapModeNS" kindref="compound">NanGapModeNS</ref><sp/>{</highlight></codeline>
-<codeline lineno="17"><highlight class="normal">Q_NAMESPACE</highlight></codeline>
-<codeline lineno="18"><highlight class="normal">QML_NAMED_ELEMENT(NanGapMode)</highlight></codeline>
-<codeline lineno="19"><highlight class="normal"></highlight></codeline>
-<codeline lineno="20"><highlight class="normal"></highlight></codeline>
-<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="namespaceQAccelPlot_1_1NanGapModeNS_1a7bc1561c858ec08f1c94fbc418062732" kindref="member">Mode</ref><sp/>{</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceQAccelPlot_1_1NanGapModeNS_1a7bc1561c858ec08f1c94fbc418062732ae4c38d6d45baf080943d323dd51a2ce8" kindref="member">Break</ref>,<sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceQAccelPlot_1_1NanGapModeNS_1a7bc1561c858ec08f1c94fbc418062732a49ab28040dfa07f53544970c6d147e1e" kindref="member">Connect</ref>,<sp/></highlight></codeline>
-<codeline lineno="24"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="25"><highlight class="normal">Q_ENUM_NS(<ref refid="namespaceQAccelPlot_1_1NanGapModeNS_1a7bc1561c858ec08f1c94fbc418062732" kindref="member">Mode</ref>)</highlight></codeline>
-<codeline lineno="26"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>NanGapModeNS</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">NanGapMode<sp/>=<sp/><ref refid="namespaceQAccelPlot_1_1NanGapModeNS_1a7bc1561c858ec08f1c94fbc418062732" kindref="member">NanGapModeNS::Mode</ref>;</highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight></codeline>
-<codeline lineno="40" refid="classQAccelPlot_1_1LineCurveGaps" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1LineCurveGaps_1a999e08ba3f8f6ab18e9658961cf1dc14" kindref="member">LineCurveGaps</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QObject<sp/>{</highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_OBJECT</highlight></codeline>
-<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_ANONYMOUS</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="namespaceQAccelPlot_1_1NanGapModeNS" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceQAccelPlot_1_1NanGapModeNS" kindref="compound">NanGapModeNS</ref><sp/>{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal">Q_NAMESPACE</highlight></codeline>
+<codeline lineno="15"><highlight class="normal">QML_NAMED_ELEMENT(NanGapMode)</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="namespaceQAccelPlot_1_1NanGapModeNS_1a7bc1561c858ec08f1c94fbc418062732" kindref="member">Mode</ref><sp/>{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceQAccelPlot_1_1NanGapModeNS_1a7bc1561c858ec08f1c94fbc418062732ae4c38d6d45baf080943d323dd51a2ce8" kindref="member">Break</ref>,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceQAccelPlot_1_1NanGapModeNS_1a7bc1561c858ec08f1c94fbc418062732a49ab28040dfa07f53544970c6d147e1e" kindref="member">Connect</ref>,<sp/></highlight></codeline>
+<codeline lineno="21"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="22"><highlight class="normal">Q_ENUM_NS(<ref refid="namespaceQAccelPlot_1_1NanGapModeNS_1a7bc1561c858ec08f1c94fbc418062732" kindref="member">Mode</ref>)</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>NanGapModeNS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">NanGapMode<sp/>=<sp/><ref refid="namespaceQAccelPlot_1_1NanGapModeNS_1a7bc1561c858ec08f1c94fbc418062732" kindref="member">NanGapModeNS::Mode</ref>;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="classQAccelPlot_1_1LineCurveGaps" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1LineCurveGaps_1a999e08ba3f8f6ab18e9658961cf1dc14" kindref="member">LineCurveGaps</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QObject<sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_OBJECT</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_ANONYMOUS</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(NanGapMode<sp/><ref refid="classQAccelPlot_1_1LineCurveGaps_1a9bb1bbe17c37163817cbe2c9a6bd4005" kindref="member">nanMode</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1LineCurveGaps_1a9bb1bbe17c37163817cbe2c9a6bd4005" kindref="member">nanMode</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1LineCurveGaps_1a9f1feb766cd693a6618ef0c2812cd416" kindref="member">setNanMode</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1LineCurveGaps_1afbb22844937c1627bbd39d0be3f5ff92" kindref="member">nanModeChanged</ref>)</highlight></codeline>
 <codeline lineno="43"><highlight class="normal"></highlight></codeline>
-<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(NanGapMode<sp/><ref refid="classQAccelPlot_1_1LineCurveGaps_1a9bb1bbe17c37163817cbe2c9a6bd4005" kindref="member">nanMode</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1LineCurveGaps_1a9bb1bbe17c37163817cbe2c9a6bd4005" kindref="member">nanMode</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1LineCurveGaps_1a9f1feb766cd693a6618ef0c2812cd416" kindref="member">setNanMode</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1LineCurveGaps_1afbb22844937c1627bbd39d0be3f5ff92" kindref="member">nanModeChanged</ref>)</highlight></codeline>
-<codeline lineno="46"><highlight class="normal"></highlight></codeline>
-<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1LineCurveGaps_1a999e08ba3f8f6ab18e9658961cf1dc14" kindref="member">LineCurveGaps</ref>(QObject*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="50"><highlight class="normal"></highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>NanGapMode<sp/><ref refid="classQAccelPlot_1_1LineCurveGaps_1a9bb1bbe17c37163817cbe2c9a6bd4005" kindref="member">nanMode</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1LineCurveGaps_1a9f1feb766cd693a6618ef0c2812cd416" kindref="member">setNanMode</ref>(NanGapMode<sp/>mode);</highlight></codeline>
-<codeline lineno="55"><highlight class="normal"></highlight></codeline>
-<codeline lineno="56"><highlight class="normal">signals:</highlight></codeline>
-<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1LineCurveGaps_1afbb22844937c1627bbd39d0be3f5ff92" kindref="member">nanModeChanged</ref>();</highlight></codeline>
-<codeline lineno="59"><highlight class="normal"></highlight></codeline>
-<codeline lineno="60"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>NanGapMode<sp/>nanMode_{NanGapMode::Break};</highlight></codeline>
-<codeline lineno="62"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="63"><highlight class="normal"></highlight></codeline>
-<codeline lineno="64"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1LineCurveGaps_1a999e08ba3f8f6ab18e9658961cf1dc14" kindref="member">LineCurveGaps</ref>(QObject*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>NanGapMode<sp/><ref refid="classQAccelPlot_1_1LineCurveGaps_1a9bb1bbe17c37163817cbe2c9a6bd4005" kindref="member">nanMode</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1LineCurveGaps_1a9f1feb766cd693a6618ef0c2812cd416" kindref="member">setNanMode</ref>(NanGapMode<sp/>mode);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal">signals:</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1LineCurveGaps_1afbb22844937c1627bbd39d0be3f5ff92" kindref="member">nanModeChanged</ref>();</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>NanGapMode<sp/>nanMode_{NanGapMode::Break};</highlight></codeline>
+<codeline lineno="59"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="QAccelPlot/src/QAccelPlot/series/LineCurveGaps.hpp"/>
   </compounddef>
