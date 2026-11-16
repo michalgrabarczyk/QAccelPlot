@@ -12,21 +12,9 @@ SPDX-License-Identifier: MIT
 QAccelPlot uses release numbers in the form `MAJOR.MINOR.PATCH` and publishes
 releases under matching Git tags such as `v0.1.0`.
 
-## Before 1.0
+## Compatibility
 
-Before version 1.0, every regular release increments the minor version:
-
-```text
-0.1.0 → 0.2.0 → 0.3.0 → 0.4.0 → 0.5.0
-```
-
-A pre-1.0 release may contain breaking changes. The patch component stays zero,
-and older pre-1.0 releases are not maintained. Check the changelog for breaking
-changes and migration notes when upgrading.
-
-## Starting with 1.0
-
-Starting with version 1.0, QAccelPlot follows Semantic Versioning:
+QAccelPlot follows [Semantic Versioning](https://semver.org/):
 
 - A patch release contains backward-compatible fixes.
 - A minor release adds backward-compatible functionality.

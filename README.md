@@ -125,9 +125,6 @@ curve->setData(times, amplitudes);
 For CMake integration, see
 [Getting Started](https://michalgrabarczyk.github.io/QAccelPlot/getting-started/).
 
-> [!NOTE]
-> **Pre-1.0 (v0.5):** The API may change between minor releases until 1.0.
-
 ---
 
 ## 🧪 Testing
@@ -171,22 +168,6 @@ ctest --test-dir build --output-on-failure
 | `QACCELPLOT_BUILD_VISUAL_TESTS` | `OFF` | Screenshot and visual validation tests. Requires examples and tests. |
 | `QACCELPLOT_FORCE_ASSERTS` | `OFF` | Keeps `Q_ASSERT` active in Release builds. CI turns it on. |
 | `QACCELPLOT_WARNINGS_AS_ERRORS` | `OFF` | Builds with `-Wall -Wextra -Werror`, or `/W4 /WX` on MSVC. CI turns it on for one job per compiler. |
-
----
-
-## 🗺️ Road to 1.0
-
-Planned before 1.0:
-
-- [x] Gaps for invalid data (`NaN`, `±Inf`, non-positive log values).
-- [x] Point clouds with colormaps and color bars.
-- [x] Bar charts and histograms.
-- [x] Bands, error bars, and step lines.
-- [x] Data inspection: crosshair, tooltips, and selection.
-- [x] Heatmaps.
-- [x] Image export.
-- [ ] SVG export.
-- [ ] Touch panning and pinch zoom.
 
 ---
 
