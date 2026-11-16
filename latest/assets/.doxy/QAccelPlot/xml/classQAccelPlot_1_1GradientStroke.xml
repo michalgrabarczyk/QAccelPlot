@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="classQAccelPlot_1_1GradientStroke" kind="class" language="C++" prot="public">
     <compoundname>QAccelPlot::GradientStroke</compoundname>
-    <basecompoundref refid="classQAccelPlot_1_1LineCurveEffect" prot="public" virt="non-virtual">QAccelPlot::LineCurveEffect</basecompoundref>
+    <basecompoundref refid="classQAccelPlot_1_1SeriesEffect" prot="public" virt="non-virtual">QAccelPlot::SeriesEffect</basecompoundref>
     <includes local="no">GradientStroke.hpp</includes>
     <sectiondef kind="property">
       <memberdef kind="property" id="classQAccelPlot_1_1GradientStroke_1a34c09e23d4102066f5ee1dfec2f7cd47" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
@@ -20,7 +20,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="33" column="5" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="33" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="30" column="5" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="30" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1GradientStroke_1ad31ffbe5cec85650d57c924606350ab0" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>QObject *</type>
@@ -37,7 +37,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="35" column="5" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="35" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="32" column="5" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="32" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1GradientStroke_1afe46fa17036d57f37790859aabfb8759" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type><ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref> *</type>
@@ -55,7 +55,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="40" column="5" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="40" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="37" column="5" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="37" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1GradientStroke_1a0f8d64c6989edab2bf576650c30e5199" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type><ref refid="namespaceQAccelPlot_1_1GradientValueSourceNS_1a4f4cae6c359f1f803450a1140a54b721" kindref="member">GradientValueSource</ref></type>
@@ -72,7 +72,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="42" column="5" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="42" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="39" column="5" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="39" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1GradientStroke_1a32bc819a62e575bcbcd52971d1c6943b" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>qreal</type>
@@ -89,7 +89,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="44" column="5" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="44" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="41" column="5" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="41" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1GradientStroke_1a46684e5d0439b0213f6e068e46a41933" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type><ref refid="namespaceQAccelPlot_1_1GradientValueSourceNS_1a4f4cae6c359f1f803450a1140a54b721" kindref="member">GradientValueSource</ref></type>
@@ -106,7 +106,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="46" column="5" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="46" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="43" column="5" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="43" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1GradientStroke_1a69aeb2317e753351355187d31a7cbc42" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>qreal</type>
@@ -123,7 +123,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="48" column="5" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="48" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="45" column="5" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="45" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-attrib">
@@ -140,7 +140,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="123" column="21" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="123" bodyend="123"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="120" column="21" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="120" bodyend="120"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1GradientStroke_1a1c51db53bb5db2df3eac2e03dd2b7ef3" prot="private" static="no" mutable="no">
         <type>QObject *</type>
@@ -155,7 +155,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="124" column="13" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="124" bodyend="124"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="121" column="13" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="121" bodyend="121"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1GradientStroke_1ad59c1b2e9e5d97079eef65e5e2cf24f2" prot="private" static="no" mutable="no">
         <type>QVector&lt; QMetaObject::Connection &gt;</type>
@@ -169,7 +169,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="125" column="13" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="125" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="122" column="13" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="122" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1GradientStroke_1acdde0f82f5d8857be8bd1eef87a0fddb" prot="private" static="no" mutable="no">
         <type><ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref> *</type>
@@ -184,7 +184,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="126" column="14" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="126" bodyend="126"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="123" column="14" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="123" bodyend="123"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1GradientStroke_1a3832e49c2c0ae16816a84499f1a3b0b0" prot="private" static="no" mutable="no">
         <type>QVector&lt; QMetaObject::Connection &gt;</type>
@@ -198,7 +198,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="127" column="13" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="127" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="124" column="13" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="124" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1GradientStroke_1ac109c1e91b54d73fb8b239c31bf93896" prot="private" static="no" mutable="no">
         <type><ref refid="namespaceQAccelPlot_1_1GradientValueSourceNS_1a4f4cae6c359f1f803450a1140a54b721" kindref="member">GradientValueSource</ref></type>
@@ -213,7 +213,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="128" column="25" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="128" bodyend="128"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="125" column="25" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="125" bodyend="125"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1GradientStroke_1a8ac78956cb3730a5e4aa04ecf482e207" prot="private" static="no" mutable="no">
         <type>qreal</type>
@@ -228,7 +228,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="129" column="11" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="129" bodyend="129"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="126" column="11" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="126" bodyend="126"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1GradientStroke_1ab8b215eea3d4e7cbec0e3b69885ce36a" prot="private" static="no" mutable="no">
         <type><ref refid="namespaceQAccelPlot_1_1GradientValueSourceNS_1a4f4cae6c359f1f803450a1140a54b721" kindref="member">GradientValueSource</ref></type>
@@ -243,7 +243,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="130" column="25" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="130" bodyend="130"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="127" column="25" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="127" bodyend="127"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1GradientStroke_1a1783b2776c48fb4fae19213420e50f48" prot="private" static="no" mutable="no">
         <type>qreal</type>
@@ -258,7 +258,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="131" column="11" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="131" bodyend="131"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="128" column="11" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="128" bodyend="128"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1GradientStroke_1abc8b3933b6481d0ddc56eb4358283438" prot="private" static="no" mutable="no">
         <type><ref refid="structQAccelPlot_1_1GradientColorPayload" kindref="compound">GradientColorPayload</ref></type>
@@ -272,7 +272,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="132" column="26" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="132" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="129" column="26" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="129" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -294,7 +294,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="52" column="14"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="49" column="14"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1ace226e0d2d84248e09bc756cc8800761" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Qt::Orientation</type>
@@ -309,7 +309,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="55" column="21"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="52" column="21"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1a4a720b432112117709c9a23bdc1777a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -328,7 +328,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="57" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="54" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1a280a7223d642d5982c0edee19b19891f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QObject *</type>
@@ -343,7 +343,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="60" column="13"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="57" column="13"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1a9bc5a7aa3ed32b2f0a52e20b7ca5c5ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -362,7 +362,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="62" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="59" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1abf9e51c6cf62a3bd220ced6ddb36ad5d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref> *</type>
@@ -377,7 +377,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="65" column="14"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="62" column="14"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1ac6220b6307ef2b62b1068db933f1017f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -396,7 +396,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="67" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="64" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1a4e1ae0124567f610e9f2f378e821b39c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="namespaceQAccelPlot_1_1GradientValueSourceNS_1a4f4cae6c359f1f803450a1140a54b721" kindref="member">GradientValueSource</ref></type>
@@ -411,7 +411,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="70" column="25"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="67" column="25"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1a3e2ba1f989786376165ba6a16be86330" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -430,7 +430,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="72" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="69" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1a5b55efdce8eaf83214f78b62911af1f7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -445,7 +445,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="75" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="72" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1af04c9fd5b71b1a7110e1cbd4d0286028" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -464,7 +464,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="77" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="74" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1afa45fc7082b07a51d10c0839608e1235" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="namespaceQAccelPlot_1_1GradientValueSourceNS_1a4f4cae6c359f1f803450a1140a54b721" kindref="member">GradientValueSource</ref></type>
@@ -479,7 +479,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="80" column="25"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="77" column="25"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1a40d3e8aa8be581aa75cbc3a50b7db6f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -498,7 +498,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="82" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="79" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1aa707f95dcf878a3068b58cbeec71f108" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -513,7 +513,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="85" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="82" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1acb9e96e9bbc0bb9b96d6ff9375b14d5e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -532,7 +532,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="87" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="84" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1a1de4a851580f5218cee501fb4270807c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>const <ref refid="structQAccelPlot_1_1GradientColorPayload" kindref="compound">GradientColorPayload</ref> &amp;</type>
@@ -548,7 +548,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="92" column="32"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="89" column="32"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1acc1824c52ded07b2b684c4d1a1d3983b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -556,15 +556,15 @@
         <argsstring>() override</argsstring>
         <name>refresh</name>
         <qualifiedname>QAccelPlot::GradientStroke::refresh</qualifiedname>
-        <reimplements refid="classQAccelPlot_1_1LineCurveEffect_1ab3467a9512c14f99b7a3ce373123fc62">refresh</reimplements>
+        <reimplements refid="classQAccelPlot_1_1SeriesEffect_1ae078e25386b2b645f2d2e62a3648e2f3">refresh</reimplements>
         <briefdescription>
-<para>Re-reads the <computeroutput>gradient</computeroutput> stops, which can change without a notification, and emits <computeroutput><ref refid="classQAccelPlot_1_1LineCurveEffect_1a75de56e1980ec445ce581f1f31b95e3b" kindref="member">effectChanged()</ref></computeroutput> if they differ from the snapshot. </para>
+<para>Re-reads the <computeroutput>gradient</computeroutput> stops, which can change without a notification, and emits <computeroutput><ref refid="classQAccelPlot_1_1SeriesEffect_1a9ca3c976da919b97bea1165e9b06b9b0" kindref="member">effectChanged()</ref></computeroutput> if they differ from the snapshot. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="96" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="93" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="signal">
@@ -581,7 +581,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="100" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="97" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1GradientStroke_1a110402e070406c086458e465af320bbe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -596,7 +596,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="102" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="99" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1GradientStroke_1ace60f0af12eafeccd93f82120b79539a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -611,7 +611,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="104" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="101" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1GradientStroke_1aaee14ba3213d8af96115b28461b19ebf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -626,7 +626,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="106" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="103" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1GradientStroke_1a343e095bdd935f186fa70e7c65354f45" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -641,7 +641,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="108" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="105" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1GradientStroke_1aa202aa0dc2d71c02b92094e7423450c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -656,7 +656,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="110" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="107" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1GradientStroke_1af3d2aa6c23eb55e03dbc6fba56bb2b63" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -671,7 +671,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="112" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="109" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
@@ -687,7 +687,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="115" column="26"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="112" column="26"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1a604959d56ba28b6eb11a9d85c1d4d1b5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -701,7 +701,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="116" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="113" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1a1ee508aba76e894ed11922895c40ed6d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -715,7 +715,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="117" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="114" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1ad001a3c737b7d7d43c11eb8d1452729b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -729,7 +729,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="118" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="115" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1aa7b872da4f16b4fd140f733539e71bad" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Q_SLOT void</type>
@@ -743,7 +743,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="119" column="17"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="116" column="17"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1aed867d442ccd363f2ca7eb5a9ab1213f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -757,7 +757,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="120" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="117" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1aec770fd53c27b52b3a6f38b12166a4d7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -771,15 +771,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="121" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="118" column="10"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
 <para>A <ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref> effect that replaces the solid line color with a color gradient. </para>
     </briefdescription>
     <detaileddescription>
-<para>Attach to <computeroutput><ref refid="classQAccelPlot_1_1LineCurve_1afd2dc2f55a0ebc51ce212ea522342c0e" kindref="member">LineCurve::effects</ref></computeroutput> to color the line with a gradient. The color stops come from <computeroutput>colormap</computeroutput> when set, otherwise from a Qt <computeroutput>Gradient</computeroutput> assigned to <computeroutput>gradient</computeroutput>. The gradient can run horizontally (along X data values) or vertically (along Y data values).</para>
-<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1GradientFill" kindref="compound">GradientFill</ref>, <ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref>, <ref refid="classQAccelPlot_1_1LineCurveEffect" kindref="compound">LineCurveEffect</ref>, <ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref> </para>
+<para>Attach to <computeroutput><ref refid="classQAccelPlot_1_1PlotSeries_1a7c160bd8480b18303e574266397d66d3" kindref="member">LineCurve::effects</ref></computeroutput> to color the line with a gradient. The color stops come from <computeroutput>colormap</computeroutput> when set, otherwise from a Qt <computeroutput>Gradient</computeroutput> assigned to <computeroutput>gradient</computeroutput>. The gradient can run horizontally (along X data values) or vertically (along Y data values).</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1GradientFill" kindref="compound">GradientFill</ref>, <ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref>, <ref refid="classQAccelPlot_1_1SeriesEffect" kindref="compound">SeriesEffect</ref>, <ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref> </para>
 </simplesect>
 </para>
     </detaileddescription>
@@ -791,8 +791,8 @@
         </childnode>
       </node>
       <node id="2">
-        <label>QAccelPlot::LineCurveEffect</label>
-        <link refid="classQAccelPlot_1_1LineCurveEffect"/>
+        <label>QAccelPlot::SeriesEffect</label>
+        <link refid="classQAccelPlot_1_1SeriesEffect"/>
         <childnode refid="3" relation="public-inheritance">
         </childnode>
       </node>
@@ -808,8 +808,8 @@
         </childnode>
       </node>
       <node id="2">
-        <label>QAccelPlot::LineCurveEffect</label>
-        <link refid="classQAccelPlot_1_1LineCurveEffect"/>
+        <label>QAccelPlot::SeriesEffect</label>
+        <link refid="classQAccelPlot_1_1SeriesEffect"/>
         <childnode refid="3" relation="public-inheritance">
         </childnode>
       </node>
@@ -817,7 +817,7 @@
         <label>QObject</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="28" column="1" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="28" bodyend="133"/>
+    <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="25" column="1" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" bodystart="25" bodyend="130"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1GradientStroke_1afe46fa17036d57f37790859aabfb8759" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>colormap</name></member>
       <member refid="classQAccelPlot_1_1GradientStroke_1abf9e51c6cf62a3bd220ced6ddb36ad5d" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>colormap</name></member>
@@ -830,17 +830,16 @@
       <member refid="classQAccelPlot_1_1GradientStroke_1a1ad6ee3ef33d81185aeed6a1c1a425fe" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>directionChanged</name></member>
       <member refid="classQAccelPlot_1_1GradientStroke_1aec770fd53c27b52b3a6f38b12166a4d7" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>disconnectColormapSignals</name></member>
       <member refid="classQAccelPlot_1_1GradientStroke_1ad001a3c737b7d7d43c11eb8d1452729b" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>disconnectGradientSignals</name></member>
-      <member refid="classQAccelPlot_1_1LineCurveEffect_1a75de56e1980ec445ce581f1f31b95e3b" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>effectChanged</name></member>
-      <member refid="classQAccelPlot_1_1LineCurveEffect_1affda62643e26d7fbf7ea48d1338af1bd" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>enabled</name></member>
-      <member refid="classQAccelPlot_1_1LineCurveEffect_1a50ccdb596e68bbe5d0ef32e6ac7bdf0f" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>enabled</name></member>
-      <member refid="classQAccelPlot_1_1LineCurveEffect_1a7f30e2acc9d45a6d6b4fb788c660b224" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>enabledChanged</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1a9ca3c976da919b97bea1165e9b06b9b0" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>effectChanged</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1a8bdcac95c85b537ef52bad92c4587743" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>enabled</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1a4608e55ea1dec2ff079e6143c5ea6e0b" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>enabled</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1aa19ca37db0f344742149b3b0a2850e38" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>enabledChanged</name></member>
       <member refid="classQAccelPlot_1_1GradientStroke_1ad31ffbe5cec85650d57c924606350ab0" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>gradient</name></member>
       <member refid="classQAccelPlot_1_1GradientStroke_1a280a7223d642d5982c0edee19b19891f" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>gradient</name></member>
       <member refid="classQAccelPlot_1_1GradientStroke_1a1c51db53bb5db2df3eac2e03dd2b7ef3" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>gradient_</name></member>
       <member refid="classQAccelPlot_1_1GradientStroke_1a110402e070406c086458e465af320bbe" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>gradientChanged</name></member>
       <member refid="classQAccelPlot_1_1GradientStroke_1ad59c1b2e9e5d97079eef65e5e2cf24f2" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>gradientConnections_</name></member>
       <member refid="classQAccelPlot_1_1GradientStroke_1aa29355fe8b5b136c5db2d0fc744c710f" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>GradientStroke</name></member>
-      <member refid="classQAccelPlot_1_1LineCurveEffect_1a57df52d947c5450b4143c95e290c6b42" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>LineCurveEffect</name></member>
       <member refid="classQAccelPlot_1_1GradientStroke_1aa7b872da4f16b4fd140f733539e71bad" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>onGradientObjectChanged</name></member>
       <member refid="classQAccelPlot_1_1GradientStroke_1a1de4a851580f5218cee501fb4270807c" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>payload</name></member>
       <member refid="classQAccelPlot_1_1GradientStroke_1abc8b3933b6481d0ddc56eb4358283438" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>payload_</name></member>
@@ -848,9 +847,10 @@
       <member refid="classQAccelPlot_1_1GradientStroke_1aed867d442ccd363f2ca7eb5a9ab1213f" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>reconnectColormapSignals</name></member>
       <member refid="classQAccelPlot_1_1GradientStroke_1a1ee508aba76e894ed11922895c40ed6d" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>reconnectGradientSignals</name></member>
       <member refid="classQAccelPlot_1_1GradientStroke_1acc1824c52ded07b2b684c4d1a1d3983b" prot="public" virt="virtual"><scope>QAccelPlot::GradientStroke</scope><name>refresh</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1a2dac68d7ce3c6ed01437125c7a547c11" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>SeriesEffect</name></member>
       <member refid="classQAccelPlot_1_1GradientStroke_1ac6220b6307ef2b62b1068db933f1017f" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>setColormap</name></member>
       <member refid="classQAccelPlot_1_1GradientStroke_1a4a720b432112117709c9a23bdc1777a0" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>setDirection</name></member>
-      <member refid="classQAccelPlot_1_1LineCurveEffect_1afe12b20cd1e7c02b31d4f857be450d86" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>setEnabled</name></member>
+      <member refid="classQAccelPlot_1_1SeriesEffect_1aeb23262e92b2c37fda89636a3ffc995b" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>setEnabled</name></member>
       <member refid="classQAccelPlot_1_1GradientStroke_1a9bc5a7aa3ed32b2f0a52e20b7ca5c5ae" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>setGradient</name></member>
       <member refid="classQAccelPlot_1_1GradientStroke_1acb9e96e9bbc0bb9b96d6ff9375b14d5e" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>setValueMax</name></member>
       <member refid="classQAccelPlot_1_1GradientStroke_1a40d3e8aa8be581aa75cbc3a50b7db6f3" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>setValueMaxSource</name></member>

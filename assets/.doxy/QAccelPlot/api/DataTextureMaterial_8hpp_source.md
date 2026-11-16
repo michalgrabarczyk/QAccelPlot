@@ -10,13 +10,12 @@
 ```C++
 //
 // SPDX-FileCopyrightText: 2026 Michal Grabarczyk
-// SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
-//
-// This file is also available under a separate commercial license.
-// See COMMERCIAL-LICENSING.md for contact information.
+// SPDX-License-Identifier: MIT
 //
 #pragma once
 
+#include "QAccelPlot/internal/GlowStyle.hpp"
+#include "QAccelPlot/internal/ItemFade.hpp"
 #include "QAccelPlot/materials/DataTexture.hpp"
 
 #include <QColor>
@@ -61,6 +60,9 @@ public:
     float logScaleY{0.0f};                  
     float useVertexColor{0.0f};             
     std::shared_ptr<DataTexture> dataTexture;
+    Internal::ItemFade itemFade;
+    Internal::ItemTrail itemTrail;
+    Internal::GlowStyle glow;
 };
 
 } // namespace QAccelPlot

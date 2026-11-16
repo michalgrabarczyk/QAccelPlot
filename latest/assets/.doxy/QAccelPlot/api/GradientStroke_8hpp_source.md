@@ -10,16 +10,13 @@
 ```C++
 //
 // SPDX-FileCopyrightText: 2026 Michal Grabarczyk
-// SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
-//
-// This file is also available under a separate commercial license.
-// See COMMERCIAL-LICENSING.md for contact information.
+// SPDX-License-Identifier: MIT
 //
 #pragma once
 
 #include "QAccelPlot/effects/Colormap.hpp"
 #include "QAccelPlot/effects/GradientColorTypes.hpp"
-#include "QAccelPlot/effects/LineCurveEffect.hpp"
+#include "QAccelPlot/effects/SeriesEffect.hpp"
 
 #include <QMetaObject>
 #include <QObject>
@@ -28,7 +25,7 @@
 
 namespace QAccelPlot {
 
-class GradientStroke : public LineCurveEffect {
+class GradientStroke : public SeriesEffect {
     Q_OBJECT
     QML_NAMED_ELEMENT(GradientStroke)
 

@@ -10,16 +10,17 @@
 ```C++
 //
 // SPDX-FileCopyrightText: 2026 Michal Grabarczyk
-// SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
-//
-// This file is also available under a separate commercial license.
-// See COMMERCIAL-LICENSING.md for contact information.
+// SPDX-License-Identifier: MIT
 //
 #pragma once
 
 #include <QtGlobal>
 
 QT_FORWARD_DECLARE_CLASS(QQuickWindow)
+
+namespace QAccelPlot {
+class Axis;
+}
 
 namespace QAccelPlot::Internal {
 
@@ -32,6 +33,8 @@ int maxTextureSize(QQuickWindow* window);
 int recordCapacity(QQuickWindow* window, int floatsPerRecord, int vertexBytesPerRecord);
 
 qreal clampAntialiasingFeather(qreal feather);
+
+double growBaseline(double baseline, const Axis* valueAxis);
 
 } // namespace QAccelPlot::Internal
 ```

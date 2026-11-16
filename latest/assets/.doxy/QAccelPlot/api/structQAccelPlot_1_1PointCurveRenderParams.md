@@ -53,8 +53,11 @@ _Input parameters for_ [_**LineCurvePointRenderer::paint()**_](classQAccelPlot_1
 |  std::shared\_ptr&lt; [**DataTexture**](classQAccelPlot_1_1DataTexture.md) &gt; | [**dataTexture**](#variable-datatexture)  <br>_Texture that already holds_ `data` _, or_`nullptr` _to upload_`data` _._ |
 |  QVector2D | [**domainMax**](#variable-domainmax)  <br>_Maximum data-space coordinate._  |
 |  QVector2D | [**domainMin**](#variable-domainmin)  <br>_Minimum data-space coordinate._  |
+|  [**Internal::GlowStyle**](structQAccelPlot_1_1Internal_1_1GlowStyle.md) | [**glow**](#variable-glow)   = `{}`<br>_Halo of a_ `Glow` _effect around the markers._ |
 |  const [**GradientColorPayload**](structQAccelPlot_1_1GradientColorPayload.md) & | [**gradientPayload**](#variable-gradientpayload)  <br>_Gradient color parameters, with value bounds in the coordinates of_ `data` _._ |
 |  bool | [**hovered**](#variable-hovered)  <br>_Whether the curve is currently hovered._  |
+|  [**Internal::ItemFade**](structQAccelPlot_1_1Internal_1_1ItemFade.md) | [**itemFade**](#variable-itemfade)   = `{}`<br>_Points a running transition fades, as indices into_ `data` _._ |
+|  [**Internal::ItemTrail**](structQAccelPlot_1_1Internal_1_1ItemTrail.md) | [**itemTrail**](#variable-itemtrail)   = `{}`<br>_Oldest points a_ `FadeTrail` _fades._ |
 |  bool | [**logScaleX**](#variable-logscalex)  <br>_Whether the X axis uses log scale._  |
 |  bool | [**logScaleY**](#variable-logscaley)  <br>_Whether the Y axis uses log scale._  |
 |  bool | [**markerFilled**](#variable-markerfilled)  <br>_Whether closed marker shapes are filled rather than outlined._  |
@@ -235,6 +238,21 @@ QVector2D QAccelPlot::PointCurveRenderParams::domainMin;
 
 
 
+### variable glow {#variable-glow}
+
+_Halo of a_ `Glow` _effect around the markers._
+```C++
+Internal::GlowStyle QAccelPlot::PointCurveRenderParams::glow;
+```
+
+
+
+
+<hr>
+
+
+
+
 ### variable gradientPayload {#variable-gradientpayload}
 
 _Gradient color parameters, with value bounds in the coordinates of_ `data` _._
@@ -255,6 +273,36 @@ const GradientColorPayload& QAccelPlot::PointCurveRenderParams::gradientPayload;
 _Whether the curve is currently hovered._ 
 ```C++
 bool QAccelPlot::PointCurveRenderParams::hovered;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable itemFade {#variable-itemfade}
+
+_Points a running transition fades, as indices into_ `data` _._
+```C++
+Internal::ItemFade QAccelPlot::PointCurveRenderParams::itemFade;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable itemTrail {#variable-itemtrail}
+
+_Oldest points a_ `FadeTrail` _fades._
+```C++
+Internal::ItemTrail QAccelPlot::PointCurveRenderParams::itemTrail;
 ```
 
 

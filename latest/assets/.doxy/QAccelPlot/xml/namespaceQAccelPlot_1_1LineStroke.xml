@@ -1,28 +1,32 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="namespaceQAccelPlot_1_1LineStroke" kind="namespace" language="C++">
     <compoundname>QAccelPlot::LineStroke</compoundname>
     <innerclass refid="structQAccelPlot_1_1LineStroke_1_1Uniforms" prot="public">QAccelPlot::LineStroke::Uniforms</innerclass>
     <sectiondef kind="func">
-      <memberdef kind="function" id="namespaceQAccelPlot_1_1LineStroke_1a355af60129939c4834fa6809a060e42e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespaceQAccelPlot_1_1LineStroke_1a34ad2392091bcc782aa97f6df6a7edb5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>const QSGGeometry::AttributeSet &amp;</type>
         <definition>const QSGGeometry::AttributeSet &amp; QAccelPlot::LineStroke::vertexAttributes</definition>
-        <argsstring>()</argsstring>
+        <argsstring>(bool dashed)</argsstring>
         <name>vertexAttributes</name>
         <qualifiedname>QAccelPlot::LineStroke::vertexAttributes</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>dashed</declname>
+        </param>
         <briefdescription>
-<para>Returns the vertex attribute set matching <computeroutput><ref refid="structQAccelPlot_1_1LineVertex" kindref="compound">LineVertex</ref></computeroutput>. </para>
+<para>Returns the vertex attribute set matching <computeroutput><ref refid="structQAccelPlot_1_1DashedLineVertex" kindref="compound">DashedLineVertex</ref></computeroutput> when <emphasis>dashed</emphasis>, or <computeroutput><ref refid="structQAccelPlot_1_1LineVertex" kindref="compound">LineVertex</ref></computeroutput> otherwise. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="57" column="33" declfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" declline="57" declcolumn="33"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="84" column="33" declfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" declline="84" declcolumn="33"/>
       </memberdef>
-      <memberdef kind="function" id="namespaceQAccelPlot_1_1LineStroke_1ad34be219c368025674bc07494320b820" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespaceQAccelPlot_1_1LineStroke_1a247536016f11d54a535b8ece5ea48d17" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>QSGGeometryNode *</type>
         <definition>QSGGeometryNode * QAccelPlot::LineStroke::createNode</definition>
-        <argsstring>(int vertexCount, QSGMaterial *material)</argsstring>
+        <argsstring>(int vertexCount, LineMaterial *material)</argsstring>
         <name>createNode</name>
         <qualifiedname>QAccelPlot::LineStroke::createNode</qualifiedname>
         <param>
@@ -30,22 +34,67 @@
           <declname>vertexCount</declname>
         </param>
         <param>
-          <type>QSGMaterial *</type>
+          <type><ref refid="classQAccelPlot_1_1LineMaterial" kindref="compound">LineMaterial</ref> *</type>
           <declname>material</declname>
         </param>
         <briefdescription>
 <para>Returns a triangle-strip node with <emphasis>vertexCount</emphasis> line vertices that owns <emphasis>material</emphasis>. </para>
         </briefdescription>
         <detaileddescription>
+<para>The vertices have the dashed layout when <emphasis>material</emphasis> is dashed. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="60" column="17" declfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" declline="60" declcolumn="17"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="89" column="17" declfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" declline="89" declcolumn="17"/>
       </memberdef>
-      <memberdef kind="function" id="namespaceQAccelPlot_1_1LineStroke_1a9ccb145bf6ec5bc56fa8308e1ff15c15" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespaceQAccelPlot_1_1LineStroke_1a0aa5e8df2fb7f5eedc65c5491fa933e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::LineStroke::setMaterial</definition>
+        <argsstring>(QSGGeometryNode *node, LineMaterial *material)</argsstring>
+        <name>setMaterial</name>
+        <qualifiedname>QAccelPlot::LineStroke::setMaterial</qualifiedname>
+        <param>
+          <type>QSGGeometryNode *</type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1LineMaterial" kindref="compound">LineMaterial</ref> *</type>
+          <declname>material</declname>
+        </param>
+        <briefdescription>
+<para>Gives <emphasis>node</emphasis>, a node from <ref refid="namespaceQAccelPlot_1_1LineStroke_1a247536016f11d54a535b8ece5ea48d17" kindref="member">createNode()</ref>, the vertex layout of <emphasis>material</emphasis>, which it takes ownership of. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Replaces the geometry of <emphasis>node</emphasis> with one of the same vertex count, whose vertices are undefined, when the layout differs from the current one, and returns <computeroutput>true</computeroutput> then. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="95" column="6" declfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" declline="95" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceQAccelPlot_1_1LineStroke_1aa987e0e8006b25e7c62ef4842dcf2b11" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::LineStroke::verticesPerPathPoint</definition>
+        <argsstring>(bool splitJoins) noexcept</argsstring>
+        <name>verticesPerPathPoint</name>
+        <qualifiedname>QAccelPlot::LineStroke::verticesPerPathPoint</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>splitJoins</declname>
+        </param>
+        <briefdescription>
+<para>Returns the ribbon vertices of a path point: four with <emphasis>splitJoins</emphasis>, or two otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Split joins give a path point one vertex pair that ends the segment before it and one that starts the segment after it, so a join too sharp for a miter draws as a bevel. Without them, both segments share a mitered pair, which suits paths that only turn by right angles. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="102" column="5" declfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" declline="102" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceQAccelPlot_1_1LineStroke_1a7a31b6b15c2fa6b2f65a0931b6efa8ee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void QAccelPlot::LineStroke::writeVertices</definition>
-        <argsstring>(LineVertex *vertices, int pointCount, int cornerCount, const QColor &amp;color, const std::vector&lt; float &gt; &amp;arcLengths, int firstPoint=0)</argsstring>
+        <argsstring>(LineVertex *vertices, int pointCount, int cornerCount, bool splitJoins, int firstPoint=0)</argsstring>
         <name>writeVertices</name>
         <qualifiedname>QAccelPlot::LineStroke::writeVertices</qualifiedname>
         <param>
@@ -61,12 +110,8 @@
           <declname>cornerCount</declname>
         </param>
         <param>
-          <type>const QColor &amp;</type>
-          <declname>color</declname>
-        </param>
-        <param>
-          <type>const std::vector&lt; float &gt; &amp;</type>
-          <declname>arcLengths</declname>
+          <type>bool</type>
+          <declname>splitJoins</declname>
         </param>
         <param>
           <type>int</type>
@@ -74,14 +119,50 @@
           <defval>0</defval>
         </param>
         <briefdescription>
-<para>Writes two ribbon vertices per path point for data points [<emphasis>firstPoint</emphasis>, <emphasis>pointCount</emphasis>) of <emphasis>cornerCount</emphasis> path points each into <emphasis>vertices</emphasis>. </para>
+<para>Writes the ribbon vertices of data points [<emphasis>firstPoint</emphasis>, <emphasis>pointCount</emphasis>) of <emphasis>cornerCount</emphasis> path points each into <emphasis>vertices</emphasis>. </para>
         </briefdescription>
         <detaileddescription>
-<para><emphasis>vertices</emphasis> holds the vertices of all <emphasis>pointCount</emphasis> data points; those before <emphasis>firstPoint</emphasis> are left unchanged. <emphasis>arcLengths</emphasis> holds cumulative lengths of the leading path points, or is empty for solid lines. Path points past its end, such as vertices reserved for appended data, repeat its last length. </para>
+<para>Each path point gets verticesPerPathPoint(<emphasis>splitJoins</emphasis>) vertices. <emphasis>vertices</emphasis> holds the vertices of all <emphasis>pointCount</emphasis> data points; those before <emphasis>firstPoint</emphasis> are left unchanged. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="67" column="6" declfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" declline="67" declcolumn="6"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="108" column="6" declfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" declline="108" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceQAccelPlot_1_1LineStroke_1aee4049b771278f304cabfb714fce5705" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::LineStroke::writeDashedVertices</definition>
+        <argsstring>(DashedLineVertex *vertices, int pointCount, int cornerCount, bool splitJoins, const std::vector&lt; float &gt; &amp;arcLengths)</argsstring>
+        <name>writeDashedVertices</name>
+        <qualifiedname>QAccelPlot::LineStroke::writeDashedVertices</qualifiedname>
+        <param>
+          <type><ref refid="structQAccelPlot_1_1DashedLineVertex" kindref="compound">DashedLineVertex</ref> *</type>
+          <declname>vertices</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>pointCount</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>cornerCount</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>splitJoins</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; float &gt; &amp;</type>
+          <declname>arcLengths</declname>
+        </param>
+        <briefdescription>
+<para>Writes the ribbon vertices of <emphasis>pointCount</emphasis> data points of <emphasis>cornerCount</emphasis> path points each into <emphasis>vertices</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Each path point gets verticesPerPathPoint(<emphasis>splitJoins</emphasis>) vertices. <emphasis>arcLengths</emphasis> holds cumulative lengths of the leading path points. Path points past its end, such as vertices reserved for appended data, repeat its last length, or 0 when it is empty. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="115" column="6" declfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" declline="115" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespaceQAccelPlot_1_1LineStroke_1a7af6559bbaacc22fb8a3919a13bed452" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -104,25 +185,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="70" column="6" declfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" declline="70" declcolumn="6"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="118" column="6" declfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" declline="118" declcolumn="6"/>
       </memberdef>
-      <memberdef kind="function" id="namespaceQAccelPlot_1_1LineStroke_1af2fc7665b16774aa448d7292f7fcc541" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <templateparamlist>
-          <param>
-            <type>typename PixelAt</type>
-          </param>
-        </templateparamlist>
+      <memberdef kind="function" id="namespaceQAccelPlot_1_1LineStroke_1af128a9be53287ddabd63ee0510bcd901" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; float &gt;</type>
         <definition>std::vector&lt; float &gt; QAccelPlot::LineStroke::arcLengths</definition>
-        <argsstring>(const int pointCount, const PixelAt &amp;pixelAt)</argsstring>
+        <argsstring>(int pointCount, const std::function&lt; std::optional&lt; QPointF &gt;(int)&gt; &amp;pixelAt)</argsstring>
         <name>arcLengths</name>
         <qualifiedname>QAccelPlot::LineStroke::arcLengths</qualifiedname>
         <param>
-          <type>const int</type>
+          <type>int</type>
           <declname>pointCount</declname>
         </param>
         <param>
-          <type>const PixelAt &amp;</type>
+          <type>const std::function&lt; std::optional&lt; QPointF &gt;(int)&gt; &amp;</type>
           <declname>pixelAt</declname>
         </param>
         <briefdescription>
@@ -133,7 +209,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="76" column="25" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="76" bodyend="100"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="124" column="13" declfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" declline="124" declcolumn="13"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -141,6 +217,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="39" column="1"/>
+    <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="66" column="1"/>
   </compounddef>
 </doxygen>

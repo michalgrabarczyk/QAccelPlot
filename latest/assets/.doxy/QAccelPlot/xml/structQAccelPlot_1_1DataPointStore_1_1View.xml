@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="structQAccelPlot_1_1DataPointStore_1_1View" kind="struct" language="C++" prot="public">
     <compoundname>QAccelPlot::DataPointStore::View</compoundname>
     <includes local="no">DataPointStore.hpp</includes>
@@ -18,7 +18,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="81" column="22" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="81" bodyend="81"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="78" column="22" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="78" bodyend="78"/>
       </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1DataPointStore_1_1View_1aa7d47d0ee631603689bf7ca6a760246f" prot="public" static="no" mutable="no">
         <type>const float *</type>
@@ -34,7 +34,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="82" column="21" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="82" bodyend="82"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="79" column="21" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="79" bodyend="79"/>
       </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1DataPointStore_1_1View_1aef59dc2815524656e67e57f886d4a1aa" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -50,7 +50,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="83" column="13" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="83" bodyend="83"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="80" column="13" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="80" bodyend="80"/>
       </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1DataPointStore_1_1View_1a878fcb15de52406766344008341f6143" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -66,11 +66,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="84" column="13" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="84" bodyend="84"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="81" column="13" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="81" bodyend="81"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
-      <memberdef kind="function" id="structQAccelPlot_1_1DataPointStore_1_1View_1afb9f0f1ff361d65e1ad61f15b80fc1b8" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="structQAccelPlot_1_1DataPointStore_1_1View_1afb9f0f1ff361d65e1ad61f15b80fc1b8" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>double</type>
         <definition>double QAccelPlot::DataPointStore::View::value</definition>
         <argsstring>(int index, int column) const noexcept</argsstring>
@@ -91,7 +91,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="87" column="17"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="84" column="17"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -100,7 +100,7 @@
     <detaileddescription>
 <para>Only valid until the next change of the store. </para>
     </detaileddescription>
-    <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="80" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="80" bodyend="88"/>
+    <location file="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" line="77" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/DataPointStore.hpp" bodystart="77" bodyend="85"/>
     <listofallmembers>
       <member refid="structQAccelPlot_1_1DataPointStore_1_1View_1a878fcb15de52406766344008341f6143" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore::View</scope><name>count</name></member>
       <member refid="structQAccelPlot_1_1DataPointStore_1_1View_1aa7d47d0ee631603689bf7ca6a760246f" prot="public" virt="non-virtual"><scope>QAccelPlot::DataPointStore::View</scope><name>floats</name></member>

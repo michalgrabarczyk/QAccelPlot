@@ -27,7 +27,7 @@
     
     
       
-        <title>Error bars - QAccelPlot v0.5.0 Documentation</title>
+        <title>Error bars - QAccelPlot v0.6.0 Documentation</title>
       
     
     
@@ -74,14 +74,14 @@
   "description": "High-performance hardware-accelerated plotting library for Qt Quick using the Qt Scene Graph",
   "programmingLanguage": ["C++", "QML"],
   "runtimePlatform": "Qt 6",
-  "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+  "license": "https://opensource.org/license/mit",
   "codeRepository": "https://github.com/michalgrabarczyk/QAccelPlot",
   "url": "https://michalgrabarczyk.github.io/QAccelPlot/",
   "author": {
     "@type": "Person",
     "name": "Michal Grabarczyk"
   },
-  "softwareVersion": "0.5.0",
+  "softwareVersion": "0.6.0",
   "operatingSystem": "Cross-platform (Windows, Linux, macOS)",
   "applicationCategory": "DeveloperApplication",
   "keywords": ["plotting", "Qt Quick", "QML", "Scene Graph", "GPU", "real-time", "data visualization", "C++"]
@@ -133,7 +133,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="QAccelPlot v0.5.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.5.0 Documentation" data-md-component="logo">
+    <a href="../.." title="QAccelPlot v0.6.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.6.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -147,7 +147,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            QAccelPlot v0.5.0 Documentation
+            QAccelPlot v0.6.0 Documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -271,13 +271,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="QAccelPlot v0.5.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.5.0 Documentation" data-md-component="logo">
+    <a href="../.." title="QAccelPlot v0.6.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.6.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    QAccelPlot v0.5.0 Documentation
+    QAccelPlot v0.6.0 Documentation
   </label>
   
     <div class="md-nav__source">
@@ -449,6 +449,8 @@
       
         
       
+        
+      
     
     
     
@@ -574,6 +576,34 @@
     
   
     Axis formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../axis-labels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Axis labels
   
 
     
@@ -1646,7 +1676,7 @@
 
 <!--
 SPDX-FileCopyrightText: 2026 Michal Grabarczyk
-SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
+SPDX-License-Identifier: MIT
 -->
 
 <h1 id="error-bars">Error bars<a class="headerlink" href="#error-bars" title="Permanent link">&para;</a></h1>
@@ -1785,18 +1815,20 @@ bounds belong to the other axis.</p>
 worker-thread handoff, and data bounds, see
 <a href="../../performance/#select-the-data-path">Select the data path</a>.</p>
 <h2 id="animate-data-changes">Animate data changes<a class="headerlink" href="#animate-data-changes" title="Permanent link">&para;</a></h2>
-<p>Assign a <code>MorphTransition</code> or a <code>DrawTransition</code> to <code>transition</code>, as for a
+<p>Set <code>enterTransition</code>, <code>updateTransition</code>, and <code>exitTransition</code>, as for a
 <a href="../styling/#animated-data-changes"><code>LineCurve</code></a>. Give the series that draws the
-values the same transition, so both move together.</p>
+values the same transitions, so both move together.</p>
 <ul>
-<li><code>MorphTransition</code> moves each error bar to the new position, value, and bounds
-  of the same index.</li>
-<li><code>DrawTransition</code> shows the new error bars one after another.</li>
-<li>New error bars appear, and removed ones disappear, at once.</li>
+<li><code>MorphTransition</code> moves each kept error bar to the new position, value, and
+  bounds of the same index.</li>
+<li><code>GrowTransition</code> grows the value and both bounds from its <code>baseline</code>, 0 by
+  default, or the low edge of the viewport on a log value axis; the position
+  stays.</li>
+<li><code>DrawTransition</code> shows the error bars one after another.</li>
 <li><code>count</code>, <code>errorBarAt()</code>, the data ranges, and inspection use the new data
   from the start of the animation. Hover picks the error bars as drawn.</li>
-<li><code>appendData()</code>, <code>appendErrorData()</code>, and <code>clearData()</code> show the new data at
-  once.</li>
+<li><code>appendData()</code> and <code>appendErrorData()</code> show the new data at once;
+  <code>clearData()</code> runs the exit transition.</li>
 <li>While a transition is enabled, the float paths store doubles.</li>
 </ul>
 <h2 id="invalid-data-points">Invalid data points<a class="headerlink" href="#invalid-data-points" title="Permanent link">&para;</a></h2>

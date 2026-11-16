@@ -10,10 +10,7 @@
 ```C++
 //
 // SPDX-FileCopyrightText: 2026 Michal Grabarczyk
-// SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
-//
-// This file is also available under a separate commercial license.
-// See COMMERCIAL-LICENSING.md for contact information.
+// SPDX-License-Identifier: MIT
 //
 #pragma once
 
@@ -45,6 +42,9 @@ public:
         qreal labelOverflow{0.0};                    
     };
 
+    static constexpr int kMaximumTickCount{500};
+    static constexpr int kMaximumSubtickCount{100};
+
     using MapToPosition = std::function<qreal(qreal value, qreal length)>;
 
     struct PaintContext {
@@ -65,12 +65,15 @@ public:
 
     static QSizeF tickLabelSize(const QFontMetricsF& metrics, const QString& label);
 
+    static QSizeF rotatedTickLabelSize(const QFontMetricsF& metrics, const QString& label, qreal rotation);
+
 private:
     static AxisTickValues computeLogScaleTickValues(qreal viewportLow, qreal viewportHigh, const AxisTicker& ticker);
     static AxisTickValues computeLinearTickValues(qreal viewportLow, qreal viewportHigh, const AxisTicker& ticker);
     static void paintTick(const PaintContext& ctx, const AxisTick& tick, const Params& params, const MapToPosition& mapToPosition);
     static void paintSubtick(const PaintContext& ctx, qreal value, const Params& params, const MapToPosition& mapToPosition);
-    static void drawTickLabel(QPainter* painter, const QRectF& labelRect, int alignment, const QString& label, qreal rotation);
+    static void drawTickLabel(QPainter* painter, const QRectF& labelRect, int alignment, const QString& label);
+    static void drawRotatedTickLabel(QPainter* painter, const QRectF& bounds, const QSizeF& textSize, const QString& label, qreal rotation);
 };
 
 } // namespace QAccelPlot

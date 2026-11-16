@@ -1,0 +1,34 @@
+
+
+# File MorphTransition.hpp
+
+[**File List**](files.md) **>** [**QAccelPlot**](dir_84505bf06e96cd50072ae15b96eb466a.md) **>** [**src**](dir_3588d0448386bbe164b4703bb7530415.md) **>** [**QAccelPlot**](dir_0cbea278626d30118177d562182e643b.md) **>** [**transitions**](dir_33e4f9f956353311d613e58793c6ec62.md) **>** [**MorphTransition.hpp**](MorphTransition_8hpp.md)
+
+[Go to the documentation of this file](MorphTransition_8hpp.md)
+
+
+```C++
+//
+// SPDX-FileCopyrightText: 2026 Michal Grabarczyk
+// SPDX-License-Identifier: MIT
+//
+#pragma once
+
+#include "QAccelPlot/transitions/DataTransition.hpp"
+
+namespace QAccelPlot {
+
+class MorphTransition : public DataTransition {
+    Q_OBJECT
+    QML_NAMED_ELEMENT(MorphTransition)
+
+public:
+    explicit MorphTransition(QObject* parent = nullptr);
+
+    static double interpolateCoordinate(double from, double to, double easedProgress);
+};
+
+} // namespace QAccelPlot
+```
+
+

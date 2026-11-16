@@ -1,0 +1,54 @@
+
+
+# File LineMaterial.hpp
+
+[**File List**](files.md) **>** [**materials**](dir_c94e933d4aa9b037e187c1fb93a79d8a.md) **>** [**LineMaterial.hpp**](LineMaterial_8hpp.md)
+
+[Go to the documentation of this file](LineMaterial_8hpp.md)
+
+
+```C++
+//
+// SPDX-FileCopyrightText: 2026 Michal Grabarczyk
+// SPDX-License-Identifier: MIT
+//
+#pragma once
+
+#include "QAccelPlot/materials/DataTextureMaterial.hpp"
+
+namespace QAccelPlot {
+
+class LineMaterial : public DataTextureMaterial {
+public:
+    explicit LineMaterial(bool dashed = false);
+
+    bool dashed() const;
+
+    QSGMaterialType* type() const override;
+    QSGMaterialShader* createShader(QSGRendererInterface::RenderMode) const override;
+
+    float lineWidth{1.0f};           
+    float pointCount{0.0f};          
+    float antialiasingEnabled{1.0f}; 
+    float antialiasingFeather{1.0f}; 
+
+    // Dash line uniforms (std140 offsets 132–175 in the UBO).
+    float dashPeriod{0.0f}; 
+    float dashOffset{0.0f}; 
+    int dashPatternSize{0}; 
+    float dashPattern[8]{}; 
+
+    float stepMode{0.0f};   
+
+protected:
+    static QSGMaterialShader* createLineShader(const QString& vertexShaderFileName);
+    int compareExtra(const QSGMaterial* other) const override;
+
+private:
+    bool dashed_;
+};
+
+} // namespace QAccelPlot
+```
+
+

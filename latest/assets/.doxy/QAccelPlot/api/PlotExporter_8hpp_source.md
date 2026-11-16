@@ -10,10 +10,7 @@
 ```C++
 //
 // SPDX-FileCopyrightText: 2026 Michal Grabarczyk
-// SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
-//
-// This file is also available under a separate commercial license.
-// See COMMERCIAL-LICENSING.md for contact information.
+// SPDX-License-Identifier: MIT
 //
 #pragma once
 
@@ -82,6 +79,8 @@ private:
 
     bool startCapture(Operation operation, const QString& path, const QByteArray& format);
     void watchCapture();
+    // Ends the capture when the window stops being exposed, which stops its frames without hiding it.
+    bool eventFilter(QObject* watched, QEvent* event) override;
     QString captureError(qreal scale) const;
     qreal effectiveScale() const;
     void captured(QImage image);

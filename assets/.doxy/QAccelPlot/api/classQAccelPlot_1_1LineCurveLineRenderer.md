@@ -71,6 +71,7 @@ _Internal renderer responsible for building and updating QSGNode line geometry f
 | ---: | :--- |
 |  std::shared\_ptr&lt; [**DataTexture**](classQAccelPlot_1_1DataTexture.md) &gt; | [**dataTexture**](#function-datatexture) (QSGNode \* node) <br>_Returns the data texture of the line in_ _node_ _, a tree returned by_[_**paint()**_](classQAccelPlot_1_1LineCurveLineRenderer.md#function-paint) _, or_`nullptr` _before an upload._ |
 |  std::size\_t | [**vertexCacheBytesPerPoint**](#function-vertexcachebytesperpoint) ([**StepMode**](namespaceQAccelPlot_1_1StepModeNS.md#enum-mode) stepMode) <br>_Returns the vertex cache bytes per data point of a line drawn with_ _stepMode_ _._ |
+|  int | [**verticesPerPoint**](#function-verticesperpoint) ([**StepMode**](namespaceQAccelPlot_1_1StepModeNS.md#enum-mode) stepMode) <br>_Returns the ribbon vertices per data point of a line drawn with_ _stepMode_ _._ |
 |  void | [**writeVertexCache**](#function-writevertexcache) (std::vector&lt; char &gt; & cache, int firstPoint, int pointCount, [**StepMode**](namespaceQAccelPlot_1_1StepModeNS.md#enum-mode) stepMode) <br>_Writes the vertices of data points [_ _firstPoint_ _,__pointCount_ _) of a line drawn with__stepMode_ _into__cache_ _._ |
 
 
@@ -187,6 +188,23 @@ static std::size_t QAccelPlot::LineCurveLineRenderer::vertexCacheBytesPerPoint (
 
 
 
+### function verticesPerPoint {#function-verticesperpoint}
+
+_Returns the ribbon vertices per data point of a line drawn with_ _stepMode_ _._
+```C++
+static int QAccelPlot::LineCurveLineRenderer::verticesPerPoint (
+    StepMode stepMode
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function writeVertexCache {#function-writevertexcache}
 
 _Writes the vertices of data points [_ _firstPoint_ _,__pointCount_ _) of a line drawn with__stepMode_ _into__cache_ _._
@@ -201,7 +219,7 @@ static void QAccelPlot::LineCurveLineRenderer::writeVertexCache (
 
 
 
-_cache_ holds [**vertexCacheBytesPerPoint()**](classQAccelPlot_1_1LineCurveLineRenderer.md#function-vertexcachebytesperpoint) bytes for each of _pointCount_ data points. A vertex depends only on its data point index and step corner, never on data values, so the vertices before _firstPoint_ stay valid. Writes neutral RGBA (1,1,1,1); solid and gradient shaders obtain their colors from their materials. 
+_cache_ holds [**vertexCacheBytesPerPoint()**](classQAccelPlot_1_1LineCurveLineRenderer.md#function-vertexcachebytesperpoint) bytes for each of _pointCount_ data points. A vertex depends only on its data point index and step corner, never on data values, so the vertices before _firstPoint_ stay valid. The cache holds solid line vertices; dashed lines write theirs on the render thread. 
 
 
         

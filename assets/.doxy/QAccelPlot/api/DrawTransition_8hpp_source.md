@@ -10,26 +10,20 @@
 ```C++
 //
 // SPDX-FileCopyrightText: 2026 Michal Grabarczyk
-// SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
-//
-// This file is also available under a separate commercial license.
-// See COMMERCIAL-LICENSING.md for contact information.
+// SPDX-License-Identifier: MIT
 //
 #pragma once
 
-#include "QAccelPlot/transitions/DataTransition.hpp"
+#include "QAccelPlot/transitions/EnterExitTransition.hpp"
 
 namespace QAccelPlot {
 
-class DrawTransition : public DataTransition {
+class DrawTransition : public EnterExitTransition {
     Q_OBJECT
     QML_NAMED_ELEMENT(DrawTransition)
 
 public:
     explicit DrawTransition(QObject* parent = nullptr);
-
-protected:
-    void interpolate(double easedProgress, const Dataset& from, const Dataset& to, Dataset& out) override;
 };
 
 } // namespace QAccelPlot

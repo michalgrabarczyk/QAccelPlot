@@ -10,15 +10,14 @@
 ```C++
 //
 // SPDX-FileCopyrightText: 2026 Michal Grabarczyk
-// SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
-//
-// This file is also available under a separate commercial license.
-// See COMMERCIAL-LICENSING.md for contact information.
+// SPDX-License-Identifier: MIT
 //
 #pragma once
 
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/effects/GradientColorTypes.hpp"
+#include "QAccelPlot/internal/GlowStyle.hpp"
+#include "QAccelPlot/internal/ItemFade.hpp"
 #include "QAccelPlot/linestyles/LineStyle.hpp"
 #include "QAccelPlot/renderers/CurveRendererParams.hpp"
 #include "QAccelPlot/renderers/LineStroke.hpp"
@@ -65,6 +64,9 @@ struct LineCurveRenderParams {
     const std::vector<char>* vertexCache;           
     const LineStyle* lineStyle;                     
     StepMode stepMode{StepMode::None};              
+    Internal::ItemFade itemFade{};                  
+    Internal::ItemTrail itemTrail{};                
+    Internal::GlowStyle glow{};                     
 };
 
 struct FillSamples {
@@ -74,6 +76,8 @@ struct FillSamples {
 
 class LineCurveLineRenderer {
 public:
+    static int verticesPerPoint(StepMode stepMode);
+
     static std::size_t vertexCacheBytesPerPoint(StepMode stepMode);
 
     static void writeVertexCache(std::vector<char>& cache, int firstPoint, int pointCount, StepMode stepMode);
@@ -98,11 +102,10 @@ private:
     void updateFillGeometry(QSGGeometryNode* fillNode, const LineCurveRenderParams& params) const;
     const FillSamples& fillSamples(const LineCurveRenderParams& params) const;
     static void rebuildFillSamples(const LineCurveRenderParams& params, FillSamples& samples);
-    void updateLineMaterial(
-        LineMaterial* material, const LineCurveRenderParams& params, const QColor& effectiveColor, bool useVertexColor, const DashParameters& dashParams) const;
+    void updateLineMaterial(LineMaterial* material, const LineCurveRenderParams& params, const QColor& effectiveColor, const DashParameters& dashParams) const;
     std::vector<float> computeArcLengths(const LineCurveRenderParams& params, const DashParameters& dashParams) const;
-    void updateLineVertices(QSGGeometry* geometry, const LineCurveRenderParams& params, bool useVertexColor, const QColor& effectiveColor,
-        const std::vector<float>& arcLengths) const;
+    // Writes the vertices of geometry, in its solid or dashed layout; arcLengths are those of a dashed line.
+    void updateLineVertices(QSGGeometry* geometry, const LineCurveRenderParams& params, const std::vector<float>& arcLengths) const;
 
     // Render-thread state touched only by paint(); workers that call buildVertexCache() never read it.
     mutable FillSampleCache fillSampleCache_;

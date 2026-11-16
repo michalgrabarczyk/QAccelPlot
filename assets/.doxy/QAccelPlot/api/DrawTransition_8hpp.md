@@ -17,7 +17,7 @@
 
 
 
-* `#include "QAccelPlot/transitions/DataTransition.hpp"`
+* `#include "QAccelPlot/transitions/EnterExitTransition.hpp"`
 
 
 
@@ -44,7 +44,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| class | [**DrawTransition**](classQAccelPlot_1_1DrawTransition.md) <br>_An animation transition that reveals the target data point by point from start to end._  |
+| class | [**DrawTransition**](classQAccelPlot_1_1DrawTransition.md) <br>_A transition that reveals items one after another, in index order._  |
 
 
 

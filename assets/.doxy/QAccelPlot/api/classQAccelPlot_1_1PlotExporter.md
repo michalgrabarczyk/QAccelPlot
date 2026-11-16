@@ -95,14 +95,14 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 |   | [**PlotExporter**](#function-plotexporter-13) (QObject \* parent=nullptr) <br>_Constructs an exporter without a plot._  |
-|   | [**PlotExporter**](#function-plotexporter-23) (const [**PlotExporter**](classQAccelPlot_1_1PlotExporter.md) &) = delete<br> |
-|   | [**PlotExporter**](#function-plotexporter-33) ([**PlotExporter**](classQAccelPlot_1_1PlotExporter.md) &&) = delete<br> |
+|   | [**PlotExporter**](#function-plotexporter-23) (const PlotExporter &) = delete<br> |
+|   | [**PlotExporter**](#function-plotexporter-33) (PlotExporter &&) = delete<br> |
 |  bool | [**busy**](#function-busy-22) () const<br>_Returns true while a request is in progress._  |
 |  Q\_INVOKABLE bool | [**copyToClipboard**](#function-copytoclipboard) () <br>_Copies the plot image to the clipboard; returns false when the request fails immediately._  |
 |  qreal | [**dpi**](#function-dpi-22) () const<br>_Returns the resolution stored in saved files; 0 means 96 times the effective scale._  |
 |  Q\_INVOKABLE bool | [**grabImage**](#function-grabimage) () <br>_Captures the plot and emits_ `imageReady()` _; returns false when the request fails immediately._ |
-|  [**PlotExporter**](classQAccelPlot_1_1PlotExporter.md) & | [**operator=**](#function-operator) (const [**PlotExporter**](classQAccelPlot_1_1PlotExporter.md) &) = delete<br> |
-|  [**PlotExporter**](classQAccelPlot_1_1PlotExporter.md) & | [**operator=**](#function-operator_1) ([**PlotExporter**](classQAccelPlot_1_1PlotExporter.md) &&) = delete<br> |
+|  [**PlotExporter**](classQAccelPlot_1_1PlotExporter.md#function-plotexporter-13) & | [**operator=**](#function-operator) (const [**PlotExporter**](classQAccelPlot_1_1PlotExporter.md#function-plotexporter-13) &) = delete<br> |
+|  [**PlotExporter**](classQAccelPlot_1_1PlotExporter.md#function-plotexporter-13) & | [**operator=**](#function-operator_1) ([**PlotExporter**](classQAccelPlot_1_1PlotExporter.md#function-plotexporter-13) &&) = delete<br> |
 |  [**PlotView**](classQAccelPlot_1_1PlotView.md) \* | [**plot**](#function-plot-22) () const<br>_Returns the plot to export._  |
 |  int | [**quality**](#function-quality-22) () const<br>_Returns the encoder quality._  |
 |  Q\_INVOKABLE bool | [**save**](#function-save) (const QString & path) <br>_Saves the plot to_ _path_ _in the format its suffix names._ |
@@ -153,7 +153,7 @@ flowchart TB
 The capture contains the plot item and everything drawn inside its bounds, as on screen: series, axes, legend, overlays, and any child items. Children outside the bounds are clipped. The plot must be visible in a window that is shown, not minimized, and renders through a hardware scene graph backend.
 
 
-Every request is asynchronous and ends with exactly one `finished()` signal, except one made while `busy:` it returns false with a warning and leaves `finished()` to the request in progress. A request for a plot another exporter is capturing fails. The capture is taken on the next frame, and fails when the window is hidden, minimized, or destroyed first; encoding and writing a file run on a worker thread.
+Every request is asynchronous and ends with exactly one `finished()` signal, except one made while `busy:` it returns false with a warning and leaves `finished()` to the request in progress. A request for a plot another exporter is capturing fails. The capture is taken on the next frame, and fails when the window is hidden, minimized, no longer exposed (as on another virtual desktop), or destroyed first; encoding and writing a file run on a worker thread.
 
 
 

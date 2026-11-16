@@ -102,6 +102,9 @@ See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 |  std::shared\_ptr&lt; [**DataTexture**](classQAccelPlot_1_1DataTexture.md) &gt; | [**dataTexture**](classQAccelPlot_1_1DataTextureMaterial.md#variable-datatexture)  <br>_Data texture sampled by the shader. Materials drawing the same samples may share one._  |
 |  QVector2D | [**domainMax**](classQAccelPlot_1_1DataTextureMaterial.md#variable-domainmax)   = `{1.0f, 1.0f}`<br>_Maximum data-space coordinate._  |
 |  QVector2D | [**domainMin**](classQAccelPlot_1_1DataTextureMaterial.md#variable-domainmin)   = `{0.0f, 0.0f}`<br>_Minimum data-space coordinate._  |
+|  [**Internal::GlowStyle**](structQAccelPlot_1_1Internal_1_1GlowStyle.md) | [**glow**](classQAccelPlot_1_1DataTextureMaterial.md#variable-glow)  <br>_Halo of a_ `Glow` _effect; none by default. Shaders without a halo ignore it._ |
+|  [**Internal::ItemFade**](structQAccelPlot_1_1Internal_1_1ItemFade.md) | [**itemFade**](classQAccelPlot_1_1DataTextureMaterial.md#variable-itemfade)  <br>_Items a running transition fades; inactive by default. Shaders without item opacity ignore it._  |
+|  [**Internal::ItemTrail**](structQAccelPlot_1_1Internal_1_1ItemTrail.md) | [**itemTrail**](classQAccelPlot_1_1DataTextureMaterial.md#variable-itemtrail)  <br>_Oldest items a_ `FadeTrail` _fades; none by default. Shaders without item opacity ignore it._ |
 |  float | [**logScaleX**](classQAccelPlot_1_1DataTextureMaterial.md#variable-logscalex)   = `{0.0f}`<br>_1.0 when the X axis uses log scale (float for std140 UBO compatibility)._  |
 |  float | [**logScaleY**](classQAccelPlot_1_1DataTextureMaterial.md#variable-logscaley)   = `{0.0f}`<br>_1.0 when the Y axis uses log scale (float for std140 UBO compatibility)._  |
 |  float | [**useVertexColor**](classQAccelPlot_1_1DataTextureMaterial.md#variable-usevertexcolor)   = `{0.0f}`<br>_1.0 when per-vertex color overrides_ `color` _(float for std140 UBO compatibility)._ |
@@ -154,7 +157,7 @@ See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 
 | Type | Name |
 | ---: | :--- |
-|   | [**BandEdgeMaterial**](#function-bandedgematerial) ([**Edge**](classQAccelPlot_1_1BandEdgeMaterial.md#enum-edge) edge) <br>_Constructs a material for the_ _edge_ _line._ |
+|   | [**BandEdgeMaterial**](#function-bandedgematerial) ([**Edge**](classQAccelPlot_1_1BandEdgeMaterial.md#enum-edge) edge, bool dashed=false) <br>_Constructs a material for the_ _edge_ _line, for dashed vertices when__dashed_ _._ |
 |  QSGMaterialShader \* | [**createShader**](#function-createshader) (QSGRendererInterface::RenderMode) override const<br>_Creates and returns the edge line shader program._  |
 |  [**Edge**](classQAccelPlot_1_1BandEdgeMaterial.md#enum-edge) | [**edge**](#function-edge) () const<br>_Returns the edge line this material draws._  |
 |  QSGMaterialType \* | [**type**](#function-type) () override const<br>_Returns the material type of this edge; the two edges use different shaders._  |
@@ -166,9 +169,10 @@ See [QAccelPlot::LineMaterial](classQAccelPlot_1_1LineMaterial.md)
 
 | Type | Name |
 | ---: | :--- |
-|   | [**LineMaterial**](classQAccelPlot_1_1LineMaterial.md#function-linematerial) () <br>_Constructs a_ [_**LineMaterial**_](classQAccelPlot_1_1LineMaterial.md) _with default uniform values._ |
+|   | [**LineMaterial**](classQAccelPlot_1_1LineMaterial.md#function-linematerial) (bool dashed=false) <br>_Constructs a_ [_**LineMaterial**_](classQAccelPlot_1_1LineMaterial.md) _with default uniform values, for dashed vertices (_`DashedLineVertex` _) when__dashed_ _._ |
 |  QSGMaterialShader \* | [**createShader**](classQAccelPlot_1_1LineMaterial.md#function-createshader) (QSGRendererInterface::RenderMode) override const<br>_Creates and returns the line shader program._  |
-|  QSGMaterialType \* | [**type**](classQAccelPlot_1_1LineMaterial.md#function-type) () override const<br>_Returns the unique material type identifier for this subclass._  |
+|  bool | [**dashed**](classQAccelPlot_1_1LineMaterial.md#function-dashed) () const<br>_Returns whether the material draws dashed vertices, which carry arc lengths._  |
+|  QSGMaterialType \* | [**type**](classQAccelPlot_1_1LineMaterial.md#function-type) () override const<br>_Returns the unique material type identifier for this subclass and vertex layout._  |
 
 
 ## Public Functions inherited from QAccelPlot::DataTextureMaterial
@@ -197,7 +201,7 @@ See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 |  const QSGGeometry::AttributeSet & | [**attributeSet**](classQAccelPlot_1_1DataTextureMaterial.md#function-attributeset) () <br>_Returns the shared vertex attribute set:_ `{float` _id, float param, uchar4 color} (12 bytes)._ |
 |  void | [**commitTexture**](classQAccelPlot_1_1DataTextureMaterial.md#function-committexture) (QSGMaterialShader::RenderState & state, int binding, QSGTexture \*\* texture, const [**DataTexture**](classQAccelPlot_1_1DataTexture.md) \* data) <br>_Commits the texture of_ _data_ _to sampler__binding_ _(call from_`updateSampledImage` _). Does nothing before an upload._ |
 |  const QSGGeometry::AttributeSet & | [**vertexIndexAttributeSet**](classQAccelPlot_1_1DataTextureMaterial.md#function-vertexindexattributeset) () <br>_Returns the attribute set of marker quads: one ignored_ `uchar4` _placeholder (4 bytes)._ |
-|  bool | [**writeCommonUniforms**](classQAccelPlot_1_1DataTextureMaterial.md#function-writecommonuniforms) (char \* buf, int bufSize, const QMatrix4x4 & matrix, const [**DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) \* mat) <br>_Writes the shared UBO prefix (transform + color + domain + flags) into_ _buf_ _._ |
+|  bool | [**writeCommonUniforms**](classQAccelPlot_1_1DataTextureMaterial.md#function-writecommonuniforms) (char \* buf, int bufSize, const QMatrix4x4 & matrix, const [**DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md#function-datatexturematerial) \* mat) <br>_Writes the shared UBO prefix (transform + color + domain + flags) into_ _buf_ _._ |
 
 
 
@@ -328,10 +332,11 @@ enum QAccelPlot::BandEdgeMaterial::Edge {
 
 ### function BandEdgeMaterial {#function-bandedgematerial}
 
-_Constructs a material for the_ _edge_ _line._
+_Constructs a material for the_ _edge_ _line, for dashed vertices when__dashed_ _._
 ```C++
 explicit QAccelPlot::BandEdgeMaterial::BandEdgeMaterial (
-    Edge edge
+    Edge edge,
+    bool dashed=false
 ) 
 ```
 

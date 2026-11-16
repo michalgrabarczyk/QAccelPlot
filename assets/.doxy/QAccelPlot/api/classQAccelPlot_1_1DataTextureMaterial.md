@@ -97,6 +97,9 @@ flowchart TB
 |  std::shared\_ptr&lt; [**DataTexture**](classQAccelPlot_1_1DataTexture.md) &gt; | [**dataTexture**](#variable-datatexture)  <br>_Data texture sampled by the shader. Materials drawing the same samples may share one._  |
 |  QVector2D | [**domainMax**](#variable-domainmax)   = `{1.0f, 1.0f}`<br>_Maximum data-space coordinate._  |
 |  QVector2D | [**domainMin**](#variable-domainmin)   = `{0.0f, 0.0f}`<br>_Minimum data-space coordinate._  |
+|  [**Internal::GlowStyle**](structQAccelPlot_1_1Internal_1_1GlowStyle.md) | [**glow**](#variable-glow)  <br>_Halo of a_ `Glow` _effect; none by default. Shaders without a halo ignore it._ |
+|  [**Internal::ItemFade**](structQAccelPlot_1_1Internal_1_1ItemFade.md) | [**itemFade**](#variable-itemfade)  <br>_Items a running transition fades; inactive by default. Shaders without item opacity ignore it._  |
+|  [**Internal::ItemTrail**](structQAccelPlot_1_1Internal_1_1ItemTrail.md) | [**itemTrail**](#variable-itemtrail)  <br>_Oldest items a_ `FadeTrail` _fades; none by default. Shaders without item opacity ignore it._ |
 |  float | [**logScaleX**](#variable-logscalex)   = `{0.0f}`<br>_1.0 when the X axis uses log scale (float for std140 UBO compatibility)._  |
 |  float | [**logScaleY**](#variable-logscaley)   = `{0.0f}`<br>_1.0 when the Y axis uses log scale (float for std140 UBO compatibility)._  |
 |  float | [**useVertexColor**](#variable-usevertexcolor)   = `{0.0f}`<br>_1.0 when per-vertex color overrides_ `color` _(float for std140 UBO compatibility)._ |
@@ -135,7 +138,7 @@ flowchart TB
 |  const QSGGeometry::AttributeSet & | [**attributeSet**](#function-attributeset) () <br>_Returns the shared vertex attribute set:_ `{float` _id, float param, uchar4 color} (12 bytes)._ |
 |  void | [**commitTexture**](#function-committexture) (QSGMaterialShader::RenderState & state, int binding, QSGTexture \*\* texture, const [**DataTexture**](classQAccelPlot_1_1DataTexture.md) \* data) <br>_Commits the texture of_ _data_ _to sampler__binding_ _(call from_`updateSampledImage` _). Does nothing before an upload._ |
 |  const QSGGeometry::AttributeSet & | [**vertexIndexAttributeSet**](#function-vertexindexattributeset) () <br>_Returns the attribute set of marker quads: one ignored_ `uchar4` _placeholder (4 bytes)._ |
-|  bool | [**writeCommonUniforms**](#function-writecommonuniforms) (char \* buf, int bufSize, const QMatrix4x4 & matrix, const [**DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) \* mat) <br>_Writes the shared UBO prefix (transform + color + domain + flags) into_ _buf_ _._ |
+|  bool | [**writeCommonUniforms**](#function-writecommonuniforms) (char \* buf, int bufSize, const QMatrix4x4 & matrix, const [**DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md#function-datatexturematerial) \* mat) <br>_Writes the shared UBO prefix (transform + color + domain + flags) into_ _buf_ _._ |
 
 
 
@@ -248,6 +251,51 @@ QVector2D QAccelPlot::DataTextureMaterial::domainMax;
 _Minimum data-space coordinate._ 
 ```C++
 QVector2D QAccelPlot::DataTextureMaterial::domainMin;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable glow {#variable-glow}
+
+_Halo of a_ `Glow` _effect; none by default. Shaders without a halo ignore it._
+```C++
+Internal::GlowStyle QAccelPlot::DataTextureMaterial::glow;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable itemFade {#variable-itemfade}
+
+_Items a running transition fades; inactive by default. Shaders without item opacity ignore it._ 
+```C++
+Internal::ItemFade QAccelPlot::DataTextureMaterial::itemFade;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable itemTrail {#variable-itemtrail}
+
+_Oldest items a_ `FadeTrail` _fades; none by default. Shaders without item opacity ignore it._
+```C++
+Internal::ItemTrail QAccelPlot::DataTextureMaterial::itemTrail;
 ```
 
 

@@ -52,6 +52,7 @@
 | Type | Name |
 | ---: | :--- |
 | class | [**Axis**](classQAccelPlot_1_1Axis.md) <br>_A visual axis item that maps a data-space range to pixel coordinates and renders tick marks and labels._  |
+| class | [**AxisLabel**](classQAccelPlot_1_1AxisLabel.md) <br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _title and its placement, grouped as the_[_**Axis**_](classQAccelPlot_1_1Axis.md) __`label` _property, e.g._`label.text: "Time (s)"` _._ |
 | struct | [**AxisMapping**](structQAccelPlot_1_1AxisMapping.md) <br>_Snapshot of an axis viewport that maps between data values and pixel positions._  |
 | struct | [**AxisTick**](structQAccelPlot_1_1AxisTick.md) <br>_A single major tick: its data-space value and its formatted label._  |
 | class | [**AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md) <br>_Internal helper that computes and paints tick marks and labels for a single_ [_**Axis**_](classQAccelPlot_1_1Axis.md) _._ |
@@ -78,17 +79,21 @@
 | struct | [**CurveHitTestParams**](structQAccelPlot_1_1CurveHitTestParams.md) <br>_All inputs required for a_ `contains()` _hit-test, bundled to reduce parameter count._ |
 | class | [**DashLine**](classQAccelPlot_1_1DashLine.md) <br>_A line style that renders the curve as a customisable dashed line._  |
 | struct | [**DashParameters**](structQAccelPlot_1_1DashParameters.md) <br>_Plain-data snapshot of dash rendering parameters._  |
+| struct | [**DashedLineVertex**](structQAccelPlot_1_1DashedLineVertex.md) <br>_Vertex of a dashed line ribbon: a_ `LineVertex` _and the screen-space arc length the dash pattern follows._ |
 | class | [**DataAnchor**](classQAccelPlot_1_1DataAnchor.md) <br>_A QQuickItem that tracks a data-coordinate rectangle in pixel space._  |
 | struct | [**DataPointRun**](structQAccelPlot_1_1DataPointRun.md) <br>_Contiguous range of valid curve data points, used to break fills and hit tests at gaps._  |
 | class | [**DataPointStore**](classQAccelPlot_1_1DataPointStore.md) <br>_Holds the data points of one series and derives everything that depends only on them._  |
 | class | [**DataTexture**](classQAccelPlot_1_1DataTexture.md) <br>_Series data uploaded to the GPU as an RGBA8888 texture, one float per texel._  |
 | class | [**DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) <br>_Base QSGMaterial that samples series data from a_ `DataTexture` _and exposes shared shader uniforms._ |
-| class | [**DataTransition**](classQAccelPlot_1_1DataTransition.md) <br>_Abstract base class for animated data transitions on plot elements._  |
+| class | [**DataTransition**](classQAccelPlot_1_1DataTransition.md) <br>_Abstract base class for animated data transitions on plot series._  |
 | class | [**DateTimeTickLabelFormatter**](classQAccelPlot_1_1DateTimeTickLabelFormatter.md) <br>_A tick label formatter that displays tick values as formatted date/time strings._  |
-| class | [**DrawTransition**](classQAccelPlot_1_1DrawTransition.md) <br>_An animation transition that reveals the target data point by point from start to end._  |
+| class | [**DrawTransition**](classQAccelPlot_1_1DrawTransition.md) <br>_A transition that reveals items one after another, in index order._  |
+| class | [**EnterExitTransition**](classQAccelPlot_1_1EnterExitTransition.md) <br>_Abstract base class for transitions that bring items in or take them out._  |
 | class | [**ErrorBarMaterial**](classQAccelPlot_1_1ErrorBarMaterial.md) <br>_Material that draws error bars from (x, y, low, high) data points in a data texture._  |
 | class | [**ErrorBarSeries**](classQAccelPlot_1_1ErrorBarSeries.md) <br>_A hardware-accelerated QML item that draws error bars: a line from a low to a high bound at each data point, capped at both ends._  |
+| class | [**FadeTrail**](classQAccelPlot_1_1FadeTrail.md) <br>_Fades the oldest items of a series, like the trace of an oscilloscope._  |
 | struct | [**FillSamples**](structQAccelPlot_1_1FillSamples.md) <br>_Outline of a gradient fill in data space: one group of points per run of valid data points, broken at gaps._  |
+| class | [**Glow**](classQAccelPlot_1_1Glow.md) <br>_A soft halo around the lines and markers of a series._  |
 | struct | [**GradientColorPayload**](structQAccelPlot_1_1GradientColorPayload.md) <br>_Render-thread snapshot of gradient stroke (line-color) parameters._  |
 | class | [**GradientFill**](classQAccelPlot_1_1GradientFill.md) <br>_A_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _effect that fills the area under the curve with a color gradient._ |
 | class | [**GradientFillMaterial**](classQAccelPlot_1_1GradientFillMaterial.md) <br>_Scene-graph material that evaluates fill gradients per fragment._  |
@@ -99,6 +104,7 @@
 | class | [**GradientTexture**](classQAccelPlot_1_1GradientTexture.md) <br>_Cached one-dimensional texture used by gradient materials._  |
 | class | [**Grid**](classQAccelPlot_1_1Grid.md) <br>_Configuration object that controls the appearance of the plot grid._  |
 | class | [**GridNode**](classQAccelPlot_1_1GridNode.md) <br>_Internal QSGNode responsible for rendering the plot grid into the scene graph._  |
+| class | [**GrowTransition**](classQAccelPlot_1_1GrowTransition.md) <br>_A transition that grows item values from a baseline._  |
 | class | [**HeatmapMaterial**](classQAccelPlot_1_1HeatmapMaterial.md) <br>_Material that colors each fragment by the value of the heatmap cell under it._  |
 | class | [**HeatmapSeries**](classQAccelPlot_1_1HeatmapSeries.md) <br>_A hardware-accelerated QML item that draws a grid of values as colored cells._  |
 | class | [**Histogram**](classQAccelPlot_1_1Histogram.md) <br>_Samples counted into bins, convertible to_ `BarSeries` _data._ |
@@ -113,7 +119,6 @@
 | struct | [**LegendEntry**](structQAccelPlot_1_1LegendEntry.md) <br>_How a legend draws one row of a series: its label, symbol, color, line, and marker._  |
 | class | [**LegendModel**](classQAccelPlot_1_1LegendModel.md) <br>_List model of the legend entries of a list of series._  |
 | class | [**LineCurve**](classQAccelPlot_1_1LineCurve.md) <br>_A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects._  |
-| class | [**LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md) <br>_Abstract base class for visual effects applied to a_ `LineCurve` _._ |
 | class | [**LineCurveGaps**](classQAccelPlot_1_1LineCurveGaps.md) <br>_Controls how a_ `LineCurve` _renders gaps in its data._ |
 | class | [**LineCurveLineRenderer**](classQAccelPlot_1_1LineCurveLineRenderer.md) <br>_Internal renderer responsible for building and updating QSGNode line geometry for a_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _._ |
 | class | [**LineCurvePointRenderer**](classQAccelPlot_1_1LineCurvePointRenderer.md) <br>_Internal renderer responsible for building and updating QSGNode marker geometry for a_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _._ |
@@ -121,8 +126,8 @@
 | class | [**LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md) <br>_Owns a_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _'s pre-built vertex bytes and the metadata required to use them safely._ |
 | class | [**LineMaterial**](classQAccelPlot_1_1LineMaterial.md) <br>_QSGMaterial for line rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with line-specific uniforms._ |
 | class | [**LineStyle**](classQAccelPlot_1_1LineStyle.md) <br>_Abstract base class for all line styles._  |
-| struct | [**LineVertex**](structQAccelPlot_1_1LineVertex.md) <br>_Vertex layout for line geometry, shared with the main thread for pre-built vertex caches._  |
-| class | [**MorphTransition**](classQAccelPlot_1_1MorphTransition.md) <br>_An animation transition that smoothly interpolates point positions between two datasets._  |
+| struct | [**LineVertex**](structQAccelPlot_1_1LineVertex.md) <br>_Vertex of a solid line ribbon, shared with the main thread for pre-built vertex caches._  |
+| class | [**MorphTransition**](classQAccelPlot_1_1MorphTransition.md) <br>_An update transition that interpolates each kept item from its old values to its new ones._  |
 | class | [**NoLine**](classQAccelPlot_1_1NoLine.md) <br>_A line style that suppresses line rendering entirely, leaving only markers visible._  |
 | class | [**NumericTickLabelFormatter**](classQAccelPlot_1_1NumericTickLabelFormatter.md) <br>_The default tick label formatter — produces numeric labels with automatic decimal precision._  |
 | class | [**PlotDragRect**](classQAccelPlot_1_1PlotDragRect.md) <br>_Rectangle dragged out inside the plot area, shared by rectangle zoom and data selection._  |
@@ -141,13 +146,15 @@
 | class | [**RectMaterial**](classQAccelPlot_1_1RectMaterial.md) <br>_QSGMaterial for rectangle series rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with a rect-count uniform._ |
 | class | [**RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md) <br>_A hardware-accelerated QML item that renders a large list of axis-aligned rectangles._  |
 | class | [**SelectionTool**](classQAccelPlot_1_1SelectionTool.md) <br>_Selects a data-space region by dragging, without changing the plot viewport._  |
+| class | [**SeriesEffect**](classQAccelPlot_1_1SeriesEffect.md) <br>_Abstract base class for visual effects applied to a series._  |
 | class | [**SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) <br>_Data queries for one series: nearest data points, brackets, region statistics, and index pages._  |
 | class | [**SeriesMarker**](classQAccelPlot_1_1SeriesMarker.md) <br>_Controls the markers a series draws at its data points._  |
 | class | [**SolidLine**](classQAccelPlot_1_1SolidLine.md) <br>_The default line style — renders a continuous solid line with no gaps._  |
 | class | [**SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md) <br>_Uniform-grid spatial index with bounded per-rectangle storage._  |
+| class | [**TextLabel**](classQAccelPlot_1_1TextLabel.md) <br>_Text, font, color, and padding of a title, grouped as the_ `label` _property of_[_**ColorBar**_](classQAccelPlot_1_1ColorBar.md) _and_[_**Axis**_](classQAccelPlot_1_1Axis.md) _._ |
 | class | [**TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md) <br>_A tick label formatter that maps integer tick indices to a user-supplied list of strings._  |
 | class | [**TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md) <br>_Abstract base class for tick label formatters._  |
-| class | [**TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md) <br>_Runs the_ `DataTransition` _assigned to one item, such as a custom series._ |
+| class | [**TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md) <br>_Runs the enter, update, and exit transitions of one item, such as a custom series._  |
 
 
 ## Public Types
@@ -168,8 +175,8 @@
 
 | Type | Name |
 | ---: | :--- |
-|  constexpr int | [**kMaxDashPatternSize**](#variable-kmaxdashpatternsize)   = `8`<br>_Largest dash pattern the renderer can carry to the shader._  |
-|  constexpr double | [**kNearlyEqualEpsilon**](#variable-knearlyequalepsilon)   = `2.0 \* std::numeric\_limits&lt;double&gt;::epsilon()`<br> |
+|  int | [**kMaxDashPatternSize**](#variable-kmaxdashpatternsize)   = `8`<br>_Largest dash pattern the renderer can carry to the shader._  |
+|  double | [**kNearlyEqualEpsilon**](#variable-knearlyequalepsilon)   = `2.0 \* std::numeric\_limits&lt;double&gt;::epsilon()`<br> |
 
 
 
@@ -232,7 +239,7 @@
 ### typedef GradientFillBaseline {#typedef-gradientfillbaseline}
 
 ```C++
-using QAccelPlot::GradientFillBaseline = typedef GradientFillBaselineNS::Mode;
+using QAccelPlot::GradientFillBaseline =  GradientFillBaselineNS::Mode;
 ```
 
 
@@ -246,7 +253,7 @@ using QAccelPlot::GradientFillBaseline = typedef GradientFillBaselineNS::Mode;
 ### typedef GradientValueSource {#typedef-gradientvaluesource}
 
 ```C++
-using QAccelPlot::GradientValueSource = typedef GradientValueSourceNS::Source;
+using QAccelPlot::GradientValueSource =  GradientValueSourceNS::Source;
 ```
 
 
@@ -260,7 +267,7 @@ using QAccelPlot::GradientValueSource = typedef GradientValueSourceNS::Source;
 ### typedef InspectionStatus {#typedef-inspectionstatus}
 
 ```C++
-using QAccelPlot::InspectionStatus = typedef InspectionNS::Status;
+using QAccelPlot::InspectionStatus =  InspectionNS::Status;
 ```
 
 
@@ -274,7 +281,7 @@ using QAccelPlot::InspectionStatus = typedef InspectionNS::Status;
 ### typedef MarkerShape {#typedef-markershape}
 
 ```C++
-using QAccelPlot::MarkerShape = typedef MarkerShapeNS::Shape;
+using QAccelPlot::MarkerShape =  MarkerShapeNS::Shape;
 ```
 
 
@@ -288,7 +295,7 @@ using QAccelPlot::MarkerShape = typedef MarkerShapeNS::Shape;
 ### typedef NanGapMode {#typedef-nangapmode}
 
 ```C++
-using QAccelPlot::NanGapMode = typedef NanGapModeNS::Mode;
+using QAccelPlot::NanGapMode =  NanGapModeNS::Mode;
 ```
 
 
@@ -302,7 +309,7 @@ using QAccelPlot::NanGapMode = typedef NanGapModeNS::Mode;
 ### typedef StepMode {#typedef-stepmode}
 
 ```C++
-using QAccelPlot::StepMode = typedef StepModeNS::Mode;
+using QAccelPlot::StepMode =  StepModeNS::Mode;
 ```
 
 
@@ -319,7 +326,7 @@ using QAccelPlot::StepMode = typedef StepModeNS::Mode;
 
 _Largest dash pattern the renderer can carry to the shader._ 
 ```C++
-constexpr int QAccelPlot::kMaxDashPatternSize;
+int QAccelPlot::kMaxDashPatternSize;
 ```
 
 
@@ -333,7 +340,7 @@ constexpr int QAccelPlot::kMaxDashPatternSize;
 ### variable kNearlyEqualEpsilon {#variable-knearlyequalepsilon}
 
 ```C++
-constexpr double QAccelPlot::kNearlyEqualEpsilon;
+double QAccelPlot::kNearlyEqualEpsilon;
 ```
 
 

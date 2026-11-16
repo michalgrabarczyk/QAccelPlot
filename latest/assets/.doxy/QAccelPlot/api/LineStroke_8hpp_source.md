@@ -10,10 +10,7 @@
 ```C++
 //
 // SPDX-FileCopyrightText: 2026 Michal Grabarczyk
-// SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
-//
-// This file is also available under a separate commercial license.
-// See COMMERCIAL-LICENSING.md for contact information.
+// SPDX-License-Identifier: MIT
 //
 #pragma once
 
@@ -25,8 +22,8 @@
 #include <QSGGeometryNode>
 #include <QVector2D>
 
-#include <algorithm>
-#include <cmath>
+#include <cstdint>
+#include <functional>
 #include <optional>
 #include <vector>
 
@@ -35,14 +32,30 @@ namespace QAccelPlot {
 class LineMaterial;
 
 struct LineVertex {
-    float id;        
-    float side;      
-    unsigned char r; 
-    unsigned char g; 
-    unsigned char b; 
-    unsigned char a; 
-    float arcLength; 
+    static constexpr int kMaximumIndex = (1 << 28) - 1;
+    static constexpr int kMaximumCorner = 3;
+
+    std::uint32_t packed;
+
+    static LineVertex make(int index, int corner, bool negativeSide, bool outgoing = false) noexcept;
+
+    int index() const noexcept;
+
+    int corner() const noexcept;
+
+    bool outgoing() const noexcept;
+
+    bool negativeSide() const noexcept;
 };
+
+static_assert(sizeof(LineVertex) == 4);
+
+struct DashedLineVertex {
+    LineVertex vertex; 
+    float arcLength;   
+};
+
+static_assert(sizeof(DashedLineVertex) == 8);
 
 namespace LineStroke {
 
@@ -60,39 +73,21 @@ struct Uniforms {
     DashParameters dash;       
 };
 
-const QSGGeometry::AttributeSet& vertexAttributes();
+const QSGGeometry::AttributeSet& vertexAttributes(bool dashed);
 
-QSGGeometryNode* createNode(int vertexCount, QSGMaterial* material);
+QSGGeometryNode* createNode(int vertexCount, LineMaterial* material);
 
-void writeVertices(LineVertex* vertices, int pointCount, int cornerCount, const QColor& color, const std::vector<float>& arcLengths, int firstPoint = 0);
+bool setMaterial(QSGGeometryNode* node, LineMaterial* material);
+
+int verticesPerPathPoint(bool splitJoins) noexcept;
+
+void writeVertices(LineVertex* vertices, int pointCount, int cornerCount, bool splitJoins, int firstPoint = 0);
+
+void writeDashedVertices(DashedLineVertex* vertices, int pointCount, int cornerCount, bool splitJoins, const std::vector<float>& arcLengths);
 
 void applyUniforms(LineMaterial& material, const Uniforms& uniforms);
 
-template <typename PixelAt> std::vector<float> arcLengths(const int pointCount, const PixelAt& pixelAt)
-{
-    auto lengths = std::vector<float>(static_cast<std::size_t>(std::max(pointCount, 0)));
-    auto length = 0.0f;
-    auto previousX = 0.0f;
-    auto previousY = 0.0f;
-    auto previousValid = false;
-    for (auto i = 0; i < pointCount; ++i) {
-        const auto current = std::optional<QPointF>{pixelAt(i)};
-        if (current) {
-            const auto x = static_cast<float>(current->x());
-            const auto y = static_cast<float>(current->y());
-            if (previousValid) {
-                const auto dx = x - previousX;
-                const auto dy = y - previousY;
-                length += std::sqrt(dx * dx + dy * dy);
-            }
-            previousX = x;
-            previousY = y;
-        }
-        previousValid = current.has_value();
-        lengths[static_cast<std::size_t>(i)] = length;
-    }
-    return lengths;
-}
+std::vector<float> arcLengths(int pointCount, const std::function<std::optional<QPointF>(int)>& pixelAt);
 
 } // namespace LineStroke
 

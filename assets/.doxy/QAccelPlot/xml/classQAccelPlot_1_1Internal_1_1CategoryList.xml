@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="classQAccelPlot_1_1Internal_1_1CategoryList" kind="class" language="C++" prot="public">
     <compoundname>QAccelPlot::Internal::CategoryList</compoundname>
     <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
@@ -17,7 +17,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="61" column="16" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" bodystart="61" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="58" column="16" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" bodystart="58" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1CategoryList_1a7a20294842a10a6dc65fe8299adc87a3" prot="private" static="no" mutable="no">
         <type>QList&lt; QPointer&lt; <ref refid="classQAccelPlot_1_1Category" kindref="compound">Category</ref> &gt; &gt;</type>
@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="62" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" bodystart="62" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="59" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" bodystart="59" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1CategoryList_1a550e073efdef7831d8b9746aa7f623cd" prot="private" static="no" mutable="no">
         <type><ref refid="classQAccelPlot_1_1Internal_1_1CategoryTable" kindref="compound">CategoryTable</ref></type>
@@ -45,7 +45,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="63" column="19" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" bodystart="63" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="60" column="19" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" bodystart="60" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1CategoryList_1ae098c8c90088f321ac5dd51f4d387ab4" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -60,7 +60,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="64" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" bodystart="64" bodyend="64"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="61" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" bodystart="61" bodyend="61"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -86,7 +86,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="29" column="14"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="26" column="14"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1CategoryList_1aabb6a18bb191f770345c3a8c9667fd35" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>QQmlListProperty&lt; <ref refid="classQAccelPlot_1_1Category" kindref="compound">Category</ref> &gt;</type>
@@ -105,7 +105,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="32" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="29" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1CategoryList_1ab506e9b57a469d52131d6e449e9a2516" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -124,7 +124,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="34" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="31" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1CategoryList_1ae2ab217cbd70ec4e114417b4bb448c18" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>const <ref refid="classQAccelPlot_1_1Internal_1_1CategoryTable" kindref="compound">CategoryTable</ref> &amp;</type>
@@ -139,7 +139,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="37" column="25"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="34" column="25"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="signal">
@@ -156,7 +156,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="41" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="38" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
@@ -176,7 +176,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="44" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="41" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1CategoryList_1a8ea2c0ea2310cb7a26801014fe1dc71b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -190,7 +190,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="45" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="42" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1CategoryList_1a201fd460195d165d36dcf9f59db964ed" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -208,7 +208,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="47" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="44" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1CategoryList_1a980dfc9b365e9f2e6aa198a9f6cb7e82" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -222,7 +222,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="49" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="46" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1CategoryList_1a0cd9cf651198ff00adcc9f1a935f7e2b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -236,7 +236,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="51" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="48" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1CategoryList_1aaaaa02ded67437a66055ed50d4a18746" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -250,7 +250,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="52" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="49" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1CategoryList_1a12333b84c55d188dd6c22ce0775865b7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -264,7 +264,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="54" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="51" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-static-func">
@@ -288,7 +288,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="56" column="17"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="53" column="17"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1CategoryList_1a787bcb0c83fda966d1f3639f0e2ada0a" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>qsizetype</type>
@@ -306,7 +306,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="57" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="54" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1CategoryList_1a550b338a5282d6e4abc3ff041e192c52" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classQAccelPlot_1_1Category" kindref="compound">Category</ref> *</type>
@@ -328,7 +328,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="58" column="21"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="55" column="21"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1CategoryList_1af8cce5d0a617504d8260ed64223a2c69" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -346,7 +346,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="59" column="17"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="56" column="17"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -377,7 +377,7 @@
         <label>QObject</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="24" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" bodystart="24" bodyend="65"/>
+    <location file="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" line="21" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/CategoryList.hpp" bodystart="21" bodyend="62"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1a8a0d9745d754a85ab1563cd859bc6064" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::CategoryList</scope><name>append</name></member>
       <member refid="classQAccelPlot_1_1Internal_1_1CategoryList_1af2a31e0b41b603e9ec654fec5e37a925" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::CategoryList</scope><name>appendCategory</name></member>

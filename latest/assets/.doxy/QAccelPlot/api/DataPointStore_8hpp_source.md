@@ -10,10 +10,7 @@
 ```C++
 //
 // SPDX-FileCopyrightText: 2026 Michal Grabarczyk
-// SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
-//
-// This file is also available under a separate commercial license.
-// See COMMERCIAL-LICENSING.md for contact information.
+// SPDX-License-Identifier: MIT
 //
 #pragma once
 
@@ -109,6 +106,8 @@ public:
     [[nodiscard]] bool hasDrawn() const noexcept;
     [[nodiscard]] View drawnView() const;
     [[nodiscard]] View renderedView() const;
+    [[nodiscard]] int renderedCount(int count) const;
+    [[nodiscard]] bool rendered(int index) const;
 
     void setSkipInvalid(bool skip);
     [[nodiscard]] bool skipInvalid() const noexcept;

@@ -10,10 +10,7 @@
 ```C++
 //
 // SPDX-FileCopyrightText: 2026 Michal Grabarczyk
-// SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
-//
-// This file is also available under a separate commercial license.
-// See COMMERCIAL-LICENSING.md for contact information.
+// SPDX-License-Identifier: MIT
 //
 #pragma once
 
@@ -29,9 +26,6 @@ public:
     explicit MorphTransition(QObject* parent = nullptr);
 
     static double interpolateCoordinate(double from, double to, double easedProgress);
-
-protected:
-    void interpolate(double easedProgress, const Dataset& from, const Dataset& to, Dataset& out) override;
 };
 
 } // namespace QAccelPlot

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="classQAccelPlot_1_1AxisTicker" kind="class" language="C++" prot="public">
     <compoundname>QAccelPlot::AxisTicker</compoundname>
     <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
@@ -20,7 +20,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" line="31" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" bodystart="31" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" line="28" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" bodystart="28" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1AxisTicker_1a956edfb1e700ab75991efb417723ad53" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>QColor</type>
@@ -37,7 +37,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" line="33" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" bodystart="33" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" line="30" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" bodystart="30" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1AxisTicker_1a3d260ba48c6dc2df77270138e74129eb" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>int</type>
@@ -48,13 +48,13 @@
         <read>tickCount</read>
         <write>setTickCount</write>
         <briefdescription>
-<para>Target number of major tick marks. Actual count is adjusted for &quot;nice&quot; values. Default: 5. </para>
+<para>Target number of major tick marks, capped at 500. Actual count is adjusted for &quot;nice&quot; values. Default: 5. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" line="35" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" bodystart="35" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" line="32" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" bodystart="32" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1AxisTicker_1aa2d156b6495282908aacd12f65ae1b01" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>int</type>
@@ -65,13 +65,13 @@
         <read>subtickCount</read>
         <write>setSubtickCount</write>
         <briefdescription>
-<para>Number of sub-tick intervals between adjacent major ticks. Default: 10. </para>
+<para>Number of sub-tick intervals between adjacent major ticks, capped at 100. Default: 10. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" line="37" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" bodystart="37" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" line="34" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" bodystart="34" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1AxisTicker_1af3e75927f1a912cfdcd634ba932e7869" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>qreal</type>
@@ -88,7 +88,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" line="39" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" bodystart="39" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" line="36" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" bodystart="36" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1AxisTicker_1a94b0747bfdf0f525fd460f6c575dfeb5" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>qreal</type>
@@ -105,7 +105,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" line="41" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" bodystart="41" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" line="38" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" bodystart="38" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1AxisTicker_1abba681a93a9ec75529f2c41408e54bbc" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>qreal</type>
@@ -122,7 +122,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" line="43" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" bodystart="43" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" line="40" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" bodystart="40" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1AxisTicker_1ae7641c008837a855c96552b8596267b4" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>qreal</type>
@@ -139,7 +139,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" line="45" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" bodystart="45" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" line="42" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" bodystart="42" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1AxisTicker_1ab38d9e5675669858acbadfd3d3caa837" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>qreal</type>
@@ -156,7 +156,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" line="47" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" bodystart="47" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" line="44" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" bodystart="44" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1AxisTicker_1ac8c8df365aca9b2e8836f020c89fdc2f" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>qreal</type>
@@ -173,7 +173,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" line="49" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" bodystart="49" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" line="46" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" bodystart="46" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1AxisTicker_1af336cfbd076b6b30238d923e8e1b5b1d" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>QColor</type>
@@ -190,7 +190,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" line="51" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" bodystart="51" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" line="48" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" bodystart="48" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1AxisTicker_1ac1d90c377c10805ba99ea3a78a91aefa" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>qreal</type>
@@ -207,7 +207,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" line="53" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" bodystart="53" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" line="50" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" bodystart="50" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1AxisTicker_1a76fda4d3989f3a183d98e55c18792b85" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>qreal</type>
@@ -224,7 +224,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" line="55" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" bodystart="55" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" line="52" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" bodystart="52" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1AxisTicker_1ade42a60cedac3e1d67af6635846dbc4c" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>qreal</type>
@@ -241,7 +241,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" line="57" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" bodystart="57" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" line="54" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" bodystart="54" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1AxisTicker_1a7bc6d4cb5cd023576723394227dc3fc4" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>qreal</type>
@@ -252,9 +252,10 @@
         <read>tickLabelRotation</read>
         <write>setTickLabelRotation</write>
         <briefdescription>
-<para>Rotation angle in degrees applied to each tick label. Default: 0. </para>
+<para>Clockwise rotation in degrees of each tick label. Default: 0. </para>
         </briefdescription>
         <detaileddescription>
+<para>A rotated label is centered on its tick, and its rotated bounding box starts <computeroutput>tickLabelPadding</computeroutput> past the outward tick. Use -90 or 90 on a vertical axis for labels that run along the axis. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
@@ -1451,7 +1452,7 @@
         <label>QObject</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" line="27" column="1" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" bodystart="27" bodyend="210"/>
+    <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" line="24" column="1" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp" bodystart="24" bodyend="210"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1AxisTicker_1ac443b8813dba0bac046aa5b2b6267310" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>AxisTicker</name></member>
       <member refid="classQAccelPlot_1_1AxisTicker_1a2c1ca4af2e0590ecd1d735f69befd2c9" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>customFormatterDestroyedConnection_</name></member>

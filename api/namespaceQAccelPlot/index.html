@@ -23,7 +23,7 @@
     
     
       
-        <title>Namespace QAccelPlot - QAccelPlot v0.5.0 Documentation</title>
+        <title>Namespace QAccelPlot - QAccelPlot v0.6.0 Documentation</title>
       
     
     
@@ -68,14 +68,14 @@
   "description": "High-performance hardware-accelerated plotting library for Qt Quick using the Qt Scene Graph",
   "programmingLanguage": ["C++", "QML"],
   "runtimePlatform": "Qt 6",
-  "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+  "license": "https://opensource.org/license/mit",
   "codeRepository": "https://github.com/michalgrabarczyk/QAccelPlot",
   "url": "https://michalgrabarczyk.github.io/QAccelPlot/",
   "author": {
     "@type": "Person",
     "name": "Michal Grabarczyk"
   },
-  "softwareVersion": "0.5.0",
+  "softwareVersion": "0.6.0",
   "operatingSystem": "Cross-platform (Windows, Linux, macOS)",
   "applicationCategory": "DeveloperApplication",
   "keywords": ["plotting", "Qt Quick", "QML", "Scene Graph", "GPU", "real-time", "data visualization", "C++"]
@@ -127,7 +127,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="QAccelPlot v0.5.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.5.0 Documentation" data-md-component="logo">
+    <a href="../.." title="QAccelPlot v0.6.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.6.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -141,7 +141,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            QAccelPlot v0.5.0 Documentation
+            QAccelPlot v0.6.0 Documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -265,13 +265,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="QAccelPlot v0.5.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.5.0 Documentation" data-md-component="logo">
+    <a href="../.." title="QAccelPlot v0.6.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.6.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    QAccelPlot v0.5.0 Documentation
+    QAccelPlot v0.6.0 Documentation
   </label>
   
     <div class="md-nav__source">
@@ -441,6 +441,8 @@
       
         
       
+        
+      
     
     
     
@@ -566,6 +568,34 @@
     
   
     Axis formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/axis-labels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Axis labels
   
 
     
@@ -1681,6 +1711,10 @@
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> <br><em>A visual axis item that maps a data-space range to pixel coordinates and renders tick marks and labels.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">class</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1AxisLabel/"><strong>AxisLabel</strong></a> <br><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>title and its placement, grouped as the</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> __<code>label</code> <em>property, e.g.</em><code>label.text: "Time (s)"</code> <em>.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">struct</td>
 <td style="text-align: left;"><a href="../structQAccelPlot_1_1AxisMapping/"><strong>AxisMapping</strong></a> <br><em>Snapshot of an axis viewport that maps between data values and pixel positions.</em></td>
 </tr>
@@ -1785,6 +1819,10 @@
 <td style="text-align: left;"><a href="../structQAccelPlot_1_1DashParameters/"><strong>DashParameters</strong></a> <br><em>Plain-data snapshot of dash rendering parameters.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../structQAccelPlot_1_1DashedLineVertex/"><strong>DashedLineVertex</strong></a> <br><em>Vertex of a dashed line ribbon: a</em> <code>LineVertex</code> <em>and the screen-space arc length the dash pattern follows.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">class</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1DataAnchor/"><strong>DataAnchor</strong></a> <br><em>A QQuickItem that tracks a data-coordinate rectangle in pixel space.</em></td>
 </tr>
@@ -1806,7 +1844,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition/"><strong>DataTransition</strong></a> <br><em>Abstract base class for animated data transitions on plot elements.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition/"><strong>DataTransition</strong></a> <br><em>Abstract base class for animated data transitions on plot series.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
@@ -1814,7 +1852,11 @@
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1DrawTransition/"><strong>DrawTransition</strong></a> <br><em>An animation transition that reveals the target data point by point from start to end.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DrawTransition/"><strong>DrawTransition</strong></a> <br><em>A transition that reveals items one after another, in index order.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">class</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1EnterExitTransition/"><strong>EnterExitTransition</strong></a> <br><em>Abstract base class for transitions that bring items in or take them out.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
@@ -1825,8 +1867,16 @@
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1ErrorBarSeries/"><strong>ErrorBarSeries</strong></a> <br><em>A hardware-accelerated QML item that draws error bars: a line from a low to a high bound at each data point, capped at both ends.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">class</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1FadeTrail/"><strong>FadeTrail</strong></a> <br><em>Fades the oldest items of a series, like the trace of an oscilloscope.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">struct</td>
 <td style="text-align: left;"><a href="../structQAccelPlot_1_1FillSamples/"><strong>FillSamples</strong></a> <br><em>Outline of a gradient fill in data space: one group of points per run of valid data points, broken at gaps.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">class</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1Glow/"><strong>Glow</strong></a> <br><em>A soft halo around the lines and markers of a series.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">struct</td>
@@ -1867,6 +1917,10 @@
 <tr>
 <td style="text-align: right;">class</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1GridNode/"><strong>GridNode</strong></a> <br><em>Internal QSGNode responsible for rendering the plot grid into the scene graph.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">class</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1GrowTransition/"><strong>GrowTransition</strong></a> <br><em>A transition that grows item values from a baseline.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
@@ -1926,10 +1980,6 @@
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1LineCurveEffect/"><strong>LineCurveEffect</strong></a> <br><em>Abstract base class for visual effects applied to a</em> <code>LineCurve</code> <em>.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">class</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1LineCurveGaps/"><strong>LineCurveGaps</strong></a> <br><em>Controls how a</em> <code>LineCurve</code> <em>renders gaps in its data.</em></td>
 </tr>
 <tr>
@@ -1958,11 +2008,11 @@
 </tr>
 <tr>
 <td style="text-align: right;">struct</td>
-<td style="text-align: left;"><a href="../structQAccelPlot_1_1LineVertex/"><strong>LineVertex</strong></a> <br><em>Vertex layout for line geometry, shared with the main thread for pre-built vertex caches.</em></td>
+<td style="text-align: left;"><a href="../structQAccelPlot_1_1LineVertex/"><strong>LineVertex</strong></a> <br><em>Vertex of a solid line ribbon, shared with the main thread for pre-built vertex caches.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1MorphTransition/"><strong>MorphTransition</strong></a> <br><em>An animation transition that smoothly interpolates point positions between two datasets.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1MorphTransition/"><strong>MorphTransition</strong></a> <br><em>An update transition that interpolates each kept item from its old values to its new ones.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
@@ -2038,6 +2088,10 @@
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1SeriesEffect/"><strong>SeriesEffect</strong></a> <br><em>Abstract base class for visual effects applied to a series.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">class</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1SeriesInspection/"><strong>SeriesInspection</strong></a> <br><em>Data queries for one series: nearest data points, brackets, region statistics, and index pages.</em></td>
 </tr>
 <tr>
@@ -2054,6 +2108,10 @@
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/"><strong>TextLabel</strong></a> <br><em>Text, font, color, and padding of a title, grouped as the</em> <code>label</code> <em>property of</em><a href="../classQAccelPlot_1_1ColorBar/"><em><strong>ColorBar</strong></em></a> <em>and</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">class</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1TextTickLabelFormatter/"><strong>TextTickLabelFormatter</strong></a> <br><em>A tick label formatter that maps integer tick indices to a user-supplied list of strings.</em></td>
 </tr>
 <tr>
@@ -2062,7 +2120,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1TransitionRunner/"><strong>TransitionRunner</strong></a> <br><em>Runs the</em> <code>DataTransition</code> <em>assigned to one item, such as a custom series.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TransitionRunner/"><strong>TransitionRunner</strong></a> <br><em>Runs the enter, update, and exit transitions of one item, such as a custom series.</em></td>
 </tr>
 </tbody>
 </table>
@@ -2111,11 +2169,11 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;">constexpr int</td>
+<td style="text-align: right;">int</td>
 <td style="text-align: left;"><a href="#variable-kmaxdashpatternsize"><strong>kMaxDashPatternSize</strong></a>   = <code>8</code><br><em>Largest dash pattern the renderer can carry to the shader.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">constexpr double</td>
+<td style="text-align: right;">double</td>
 <td style="text-align: left;"><a href="#variable-knearlyequalepsilon"><strong>kNearlyEqualEpsilon</strong></a>   = <code>2.0 \* std::numeric\_limits&amp;lt;double&amp;gt;::epsilon()</code><br></td>
 </tr>
 </tbody>
@@ -2153,43 +2211,43 @@
 </table>
 <h2 id="public-types-documentation">Public Types Documentation<a class="headerlink" href="#public-types-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="typedef-gradientfillbaseline">typedef GradientFillBaseline<a class="headerlink" href="#typedef-gradientfillbaseline" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">using</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFillBaseline</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">GradientFillBaselineNS</span><span class="o">::</span><span class="n">Mode</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">using</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFillBaseline</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">GradientFillBaselineNS</span><span class="o">::</span><span class="n">Mode</span><span class="p">;</span>
 </code></pre></div>
 <hr>
 
 <h3 id="typedef-gradientvaluesource">typedef GradientValueSource<a class="headerlink" href="#typedef-gradientvaluesource" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">using</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientValueSource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">GradientValueSourceNS</span><span class="o">::</span><span class="n">Source</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">using</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientValueSource</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">GradientValueSourceNS</span><span class="o">::</span><span class="n">Source</span><span class="p">;</span>
 </code></pre></div>
 <hr>
 
 <h3 id="typedef-inspectionstatus">typedef InspectionStatus<a class="headerlink" href="#typedef-inspectionstatus" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">using</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionStatus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">InspectionNS</span><span class="o">::</span><span class="n">Status</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">using</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionStatus</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">InspectionNS</span><span class="o">::</span><span class="n">Status</span><span class="p">;</span>
 </code></pre></div>
 <hr>
 
 <h3 id="typedef-markershape">typedef MarkerShape<a class="headerlink" href="#typedef-markershape" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">using</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">MarkerShape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">MarkerShapeNS</span><span class="o">::</span><span class="n">Shape</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">using</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">MarkerShape</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">MarkerShapeNS</span><span class="o">::</span><span class="n">Shape</span><span class="p">;</span>
 </code></pre></div>
 <hr>
 
 <h3 id="typedef-nangapmode">typedef NanGapMode<a class="headerlink" href="#typedef-nangapmode" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">using</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">NanGapMode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">NanGapModeNS</span><span class="o">::</span><span class="n">Mode</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">using</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">NanGapMode</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">NanGapModeNS</span><span class="o">::</span><span class="n">Mode</span><span class="p">;</span>
 </code></pre></div>
 <hr>
 
 <h3 id="typedef-stepmode">typedef StepMode<a class="headerlink" href="#typedef-stepmode" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">using</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">StepMode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">typedef</span><span class="w"> </span><span class="n">StepModeNS</span><span class="o">::</span><span class="n">Mode</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">using</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">StepMode</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">StepModeNS</span><span class="o">::</span><span class="n">Mode</span><span class="p">;</span>
 </code></pre></div>
 <hr>
 <h2 id="public-attributes-documentation">Public Attributes Documentation<a class="headerlink" href="#public-attributes-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="variable-kmaxdashpatternsize">variable kMaxDashPatternSize<a class="headerlink" href="#variable-kmaxdashpatternsize" title="Permanent link">&para;</a></h3>
 <p><em>Largest dash pattern the renderer can carry to the shader.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">kMaxDashPatternSize</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">kMaxDashPatternSize</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-knearlyequalepsilon">variable kNearlyEqualEpsilon<a class="headerlink" href="#variable-knearlyequalepsilon" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">kNearlyEqualEpsilon</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">double</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">kNearlyEqualEpsilon</span><span class="p">;</span>
 </code></pre></div>
 <hr>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>

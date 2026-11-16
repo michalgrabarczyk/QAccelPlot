@@ -18,8 +18,13 @@
 
 
 * `#include "QAccelPlot/transitions/DataTransition.hpp"`
+* `#include "QAccelPlot/transitions/EnterExitTransition.hpp"`
+* `#include "QAccelPlot/transitions/internal/TransitionFrame.hpp"`
+* `#include <QMetaObject>`
 * `#include <QObject>`
 * `#include <QPointer>`
+* `#include <array>`
+* `#include <optional>`
 * `#include <vector>`
 
 
@@ -47,7 +52,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| class | [**TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md) <br>_Runs the_ `DataTransition` _assigned to one item, such as a custom series._ |
+| class | [**TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md) <br>_Runs the enter, update, and exit transitions of one item, such as a custom series._  |
 
 
 

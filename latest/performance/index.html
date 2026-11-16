@@ -27,7 +27,7 @@
     
     
       
-        <title>Performance - QAccelPlot v0.5.0 Documentation</title>
+        <title>Performance - QAccelPlot v0.6.0 Documentation</title>
       
     
     
@@ -74,14 +74,14 @@
   "description": "High-performance hardware-accelerated plotting library for Qt Quick using the Qt Scene Graph",
   "programmingLanguage": ["C++", "QML"],
   "runtimePlatform": "Qt 6",
-  "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+  "license": "https://opensource.org/license/mit",
   "codeRepository": "https://github.com/michalgrabarczyk/QAccelPlot",
   "url": "https://michalgrabarczyk.github.io/QAccelPlot/",
   "author": {
     "@type": "Person",
     "name": "Michal Grabarczyk"
   },
-  "softwareVersion": "0.5.0",
+  "softwareVersion": "0.6.0",
   "operatingSystem": "Cross-platform (Windows, Linux, macOS)",
   "applicationCategory": "DeveloperApplication",
   "keywords": ["plotting", "Qt Quick", "QML", "Scene Graph", "GPU", "real-time", "data visualization", "C++"]
@@ -133,7 +133,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="QAccelPlot v0.5.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.5.0 Documentation" data-md-component="logo">
+    <a href=".." title="QAccelPlot v0.6.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.6.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -147,7 +147,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            QAccelPlot v0.5.0 Documentation
+            QAccelPlot v0.6.0 Documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -271,13 +271,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="QAccelPlot v0.5.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.5.0 Documentation" data-md-component="logo">
+    <a href=".." title="QAccelPlot v0.6.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.6.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    QAccelPlot v0.5.0 Documentation
+    QAccelPlot v0.6.0 Documentation
   </label>
   
     <div class="md-nav__source">
@@ -610,6 +610,8 @@
       
         
       
+        
+      
     
     
     
@@ -735,6 +737,34 @@
     
   
     Axis formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/axis-labels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Axis labels
   
 
     
@@ -1656,7 +1686,7 @@
 
 <!--
 SPDX-FileCopyrightText: 2026 Michal Grabarczyk
-SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
+SPDX-License-Identifier: MIT
 -->
 
 <h1 id="performance">Performance<a class="headerlink" href="#performance" title="Permanent link">&para;</a></h1>
@@ -1781,7 +1811,7 @@ batch; see <a href="../cookbook/background-data/">Background data production</a>
 <tbody>
 <tr>
 <td><code>LineCurve</code></td>
-<td>Checks one bounding box per 512 points, then the segments and markers in the matching boxes. <code>hoverRadius: 0</code> skips the segments.</td>
+<td>Builds one bounding box per 512 points on the first move after a data change, then tests the segments and markers in the boxes near the cursor. <code>hoverRadius: 0</code> skips the segments.</td>
 </tr>
 <tr>
 <td><code>PointCloud</code>, <code>RectangleSeries</code></td>
@@ -1850,17 +1880,23 @@ use the public path.</p>
 <h2 id="performance-lab">Performance Lab<a class="headerlink" href="#performance-lab" title="Permanent link">&para;</a></h2>
 <p><a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/showcases/performance"><code>examples/showcases/performance</code></a>
 streams a <code>LineCurve</code>, a <code>PointCloud</code>, a <code>RectangleSeries</code>, a <code>BarSeries</code>, and
-a <code>HeatmapSeries</code>, one per tab, with options for record and series count, ingestion API, hover,
-and rendering. It presents without vsync, so the display's refresh rate does
-not cap display FPS. Change one option at a time. The lab reports:</p>
+a <code>HeatmapSeries</code>, one per tab, with options for record and series count,
+ingestion API, hover, and rendering. It presents without vsync, so the
+display's refresh rate does not cap display FPS. Change one option at a time.</p>
+<p>When the settings change, a worker thread generates a loop of up to 1 GB of
+frames. It then plays the loop forward and backward, copying one frame into
+each dataset, so the measurements exclude the cost of computing the data. The
+lab reports:</p>
 <ul>
 <li><strong>Display FPS</strong> — frames presented to the screen.</li>
-<li><strong>Data Update Rate</strong> (Hz) — new datasets applied to the plot per second,
-  including worker-side generation.</li>
+<li><strong>Data Update Rate</strong> (Hz) — new datasets applied to the plot per second.</li>
 <li><strong>Peak update gap</strong> — the longest interval between two dataset applications
   in the last reporting period.</li>
 <li><strong>Throughput</strong> — points, rectangles, bars, or heatmap cells updated per
   second.</li>
+<li><strong>Data copy</strong> — worker time to copy one frame into a dataset. The worker
+  copies the next dataset while one waits, so this limits the update rate only
+  when it exceeds the frame time.</li>
 </ul>
 
 

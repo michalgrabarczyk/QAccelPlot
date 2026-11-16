@@ -10,10 +10,7 @@
 ```C++
 //
 // SPDX-FileCopyrightText: 2026 Michal Grabarczyk
-// SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
-//
-// This file is also available under a separate commercial license.
-// See COMMERCIAL-LICENSING.md for contact information.
+// SPDX-License-Identifier: MIT
 //
 #pragma once
 
@@ -21,7 +18,7 @@
 #include "QAccelPlot/series/PointSpatialIndex.hpp"
 #include "QAccelPlot/series/SeriesMarker.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
-#include "QAccelPlot/transitions/DataTransition.hpp"
+#include "QAccelPlot/transitions/TransitionRunner.hpp"
 
 #include <QColor>
 #include <QList>
@@ -37,8 +34,6 @@ namespace Internal {
 class HoverIndexBudget;
 }
 
-class TransitionRunner;
-
 class PointCloud : public ColormappedSeries {
     Q_OBJECT
     QML_NAMED_ELEMENT(PointCloud)
@@ -48,7 +43,9 @@ class PointCloud : public ColormappedSeries {
     Q_PROPERTY(SeriesMarker* marker READ marker CONSTANT)
     Q_PROPERTY(qreal antialiasingFeather READ antialiasingFeather WRITE setAntialiasingFeather NOTIFY antialiasingFeatherChanged)
     Q_PROPERTY(qreal hoverRadius READ hoverRadius WRITE setHoverRadius NOTIFY hoverRadiusChanged)
-    Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
+    Q_PROPERTY(EnterExitTransition* enterTransition READ enterTransition WRITE setEnterTransition NOTIFY enterTransitionChanged)
+    Q_PROPERTY(DataTransition* updateTransition READ updateTransition WRITE setUpdateTransition NOTIFY updateTransitionChanged)
+    Q_PROPERTY(EnterExitTransition* exitTransition READ exitTransition WRITE setExitTransition NOTIFY exitTransitionChanged)
     Q_PROPERTY(int hoveredIndex READ hoveredIndex NOTIFY hoveredIndexChanged)
 
 public:
@@ -66,8 +63,12 @@ public:
     qreal hoverRadius() const;
     void setHoverRadius(qreal radius);
 
-    DataTransition* transition() const;
-    void setTransition(DataTransition* transition);
+    EnterExitTransition* enterTransition() const;
+    void setEnterTransition(EnterExitTransition* transition);
+    DataTransition* updateTransition() const;
+    void setUpdateTransition(DataTransition* transition);
+    EnterExitTransition* exitTransition() const;
+    void setExitTransition(EnterExitTransition* transition);
 
     int hoveredIndex() const;
 
@@ -93,7 +94,9 @@ signals:
     void colorChanged();
     void antialiasingFeatherChanged();
     void hoverRadiusChanged();
-    void transitionChanged();
+    void enterTransitionChanged();
+    void updateTransitionChanged();
+    void exitTransitionChanged();
     void hoveredIndexChanged();
 
 protected:
@@ -105,6 +108,7 @@ protected:
 
 protected:
     void applyDataPoints(DataPointInput&& input) override;
+    bool supportsEffect(const SeriesEffect& effect) const override;
     void onAxisScaleChanged() override;
     void onDataPointsChanged(DataChange change, int previousCount) override;
     std::optional<ValueSpan> scanValueRange() const override;
@@ -143,6 +147,7 @@ private:
     Points drawnPoints() const;
     void startTransition(Points&& drawn);
     void advanceTransition();
+    void showTransitionFrame();
     void endTransition();
     void discardTransition();
 

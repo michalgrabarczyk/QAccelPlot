@@ -18,7 +18,6 @@
 
 
 * `#include "QAccelPlot/effects/GradientColorTypes.hpp"`
-* `#include "QAccelPlot/effects/LineCurveEffect.hpp"`
 * `#include "QAccelPlot/linestyles/SolidLine.hpp"`
 * `#include "QAccelPlot/renderers/LineCurveLineRenderer.hpp"`
 * `#include "QAccelPlot/renderers/LineCurvePointRenderer.hpp"`
@@ -28,7 +27,7 @@
 * `#include "QAccelPlot/series/SeriesMarker.hpp"`
 * `#include "QAccelPlot/series/StepMode.hpp"`
 * `#include "QAccelPlot/theme/ColorPalette.hpp"`
-* `#include "QAccelPlot/transitions/DataTransition.hpp"`
+* `#include "QAccelPlot/transitions/TransitionRunner.hpp"`
 * `#include <QPointF>`
 * `#include <QPointer>`
 * `#include <QQmlListProperty>`

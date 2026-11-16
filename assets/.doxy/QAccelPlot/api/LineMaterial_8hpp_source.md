@@ -10,10 +10,7 @@
 ```C++
 //
 // SPDX-FileCopyrightText: 2026 Michal Grabarczyk
-// SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
-//
-// This file is also available under a separate commercial license.
-// See COMMERCIAL-LICENSING.md for contact information.
+// SPDX-License-Identifier: MIT
 //
 #pragma once
 
@@ -23,7 +20,9 @@ namespace QAccelPlot {
 
 class LineMaterial : public DataTextureMaterial {
 public:
-    LineMaterial();
+    explicit LineMaterial(bool dashed = false);
+
+    bool dashed() const;
 
     QSGMaterialType* type() const override;
     QSGMaterialShader* createShader(QSGRendererInterface::RenderMode) const override;
@@ -44,6 +43,9 @@ public:
 protected:
     static QSGMaterialShader* createLineShader(const QString& vertexShaderFileName);
     int compareExtra(const QSGMaterial* other) const override;
+
+private:
+    bool dashed_;
 };
 
 } // namespace QAccelPlot

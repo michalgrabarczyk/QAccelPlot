@@ -21,5 +21,10 @@
 * **Shape** ([**QAccelPlot::MarkerShapeNS**](namespaceQAccelPlot_1_1MarkerShapeNS.md))
 
 
+## t
+
+* **TransitionKind** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+
+
 
 

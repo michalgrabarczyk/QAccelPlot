@@ -54,6 +54,12 @@ _Internal helper that computes and paints tick marks and labels for a single_ [_
 
 
 
+## Public Static Attributes
+
+| Type | Name |
+| ---: | :--- |
+|  int | [**kMaximumSubtickCount**](#variable-kmaximumsubtickcount)   = `{100}`<br>_Largest_ `AxisTicker::subtickCount` _used for linear ticks; larger values are capped._ |
+|  int | [**kMaximumTickCount**](#variable-kmaximumtickcount)   = `{500}`<br>_Largest_ `AxisTicker::tickCount` _used for linear ticks; larger values are capped._ |
 
 
 
@@ -78,6 +84,7 @@ _Internal helper that computes and paints tick marks and labels for a single_ [_
 |  [**AxisTickValues**](structQAccelPlot_1_1AxisTickValues.md) | [**computeTickValues**](#function-computetickvalues) (qreal viewportMin, qreal viewportMax, bool logScale, const [**AxisTicker**](classQAccelPlot_1_1AxisTicker.md) \* ticker) <br>_Returns the visible tick and subtick values for the_ _viewportMin_ _to__viewportMax_ _range, without labels._ |
 |  [**AxisTicks**](structQAccelPlot_1_1AxisTicks.md) | [**computeTicks**](#function-computeticks) (qreal viewportMin, qreal viewportMax, bool logScale, const [**AxisTicker**](classQAccelPlot_1_1AxisTicker.md) \* ticker) <br>_Returns the visible ticks, subticks and formatted labels for the_ _viewportMin_ _to__viewportMax_ _range._ |
 |  void | [**paintTicks**](#function-paintticks) (QPainter \* painter, const QRectF & rect, qreal axisX, qreal axisY, const [**Params**](structQAccelPlot_1_1AxisTickPainter_1_1Params.md) & params, const [**AxisTicks**](structQAccelPlot_1_1AxisTicks.md) & ticks, const [**MapToPosition**](classQAccelPlot_1_1AxisTickPainter.md#typedef-maptoposition) & mapToPosition) <br>_Paints_ _ticks_ _and their labels onto__painter_ _, placing them according to__params_ _and__mapToPosition_ _._ |
+|  QSizeF | [**rotatedTickLabelSize**](#function-rotatedticklabelsize) (const QFontMetricsF & metrics, const QString & label, qreal rotation) <br>_Returns the size of the box_ `paintTicks()` _lays out for__label_ _rotated by__rotation_ _degrees._ |
 |  QSizeF | [**tickLabelSize**](#function-ticklabelsize) (const QFontMetricsF & metrics, const QString & label) <br>_Returns the size of the rectangle_ `paintTicks()` _lays out for__label_ _, measured with__metrics_ _._ |
 
 
@@ -129,6 +136,38 @@ using QAccelPlot::AxisTickPainter::MapToPosition =  std::function<qreal(qreal va
 
 
 <hr>
+## Public Static Attributes Documentation
+
+
+
+
+
+### variable kMaximumSubtickCount {#variable-kmaximumsubtickcount}
+
+_Largest_ `AxisTicker::subtickCount` _used for linear ticks; larger values are capped._
+```C++
+int QAccelPlot::AxisTickPainter::kMaximumSubtickCount;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable kMaximumTickCount {#variable-kmaximumtickcount}
+
+_Largest_ `AxisTicker::tickCount` _used for linear ticks; larger values are capped._
+```C++
+int QAccelPlot::AxisTickPainter::kMaximumTickCount;
+```
+
+
+
+
+<hr>
 ## Public Static Functions Documentation
 
 
@@ -168,7 +207,7 @@ static AxisTickValues QAccelPlot::AxisTickPainter::computeTickValues (
 
 
 
-Does not format labels, so it is safe on the render thread. A linear step never goes below the formatter's `TickLabelFormatter::minimumTickStep()`. Empty when _ticker_ is null or has no major ticks, and for a collapsed or nonfinite viewport. 
+Does not format labels, so it is safe on the render thread. A linear step never goes below the formatter's `TickLabelFormatter::minimumTickStep()`, and the tick and subtick counts are capped at `kMaximumTickCount` and `kMaximumSubtickCount`. Empty when _ticker_ is null or has no major ticks, and for a collapsed or nonfinite viewport. 
 
 
         
@@ -219,6 +258,29 @@ static void QAccelPlot::AxisTickPainter::paintTicks (
 
 
 
+
+<hr>
+
+
+
+
+### function rotatedTickLabelSize {#function-rotatedticklabelsize}
+
+_Returns the size of the box_ `paintTicks()` _lays out for__label_ _rotated by__rotation_ _degrees._
+```C++
+static QSizeF QAccelPlot::AxisTickPainter::rotatedTickLabelSize (
+    const QFontMetricsF & metrics,
+    const QString & label,
+    qreal rotation
+) 
+```
+
+
+
+Measured with _metrics_. Equals `tickLabelSize()` when _rotation_ is zero. Rotated labels skip the minimum label height that keeps unrotated labels on a common baseline. 
+
+
+        
 
 <hr>
 

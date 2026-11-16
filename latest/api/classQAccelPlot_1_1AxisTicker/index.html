@@ -23,7 +23,7 @@
     
     
       
-        <title>Class QAccelPlot::AxisTicker - QAccelPlot v0.5.0 Documentation</title>
+        <title>Class QAccelPlot::AxisTicker - QAccelPlot v0.6.0 Documentation</title>
       
     
     
@@ -68,14 +68,14 @@
   "description": "High-performance hardware-accelerated plotting library for Qt Quick using the Qt Scene Graph",
   "programmingLanguage": ["C++", "QML"],
   "runtimePlatform": "Qt 6",
-  "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+  "license": "https://opensource.org/license/mit",
   "codeRepository": "https://github.com/michalgrabarczyk/QAccelPlot",
   "url": "https://michalgrabarczyk.github.io/QAccelPlot/",
   "author": {
     "@type": "Person",
     "name": "Michal Grabarczyk"
   },
-  "softwareVersion": "0.5.0",
+  "softwareVersion": "0.6.0",
   "operatingSystem": "Cross-platform (Windows, Linux, macOS)",
   "applicationCategory": "DeveloperApplication",
   "keywords": ["plotting", "Qt Quick", "QML", "Scene Graph", "GPU", "real-time", "data visualization", "C++"]
@@ -127,7 +127,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="QAccelPlot v0.5.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.5.0 Documentation" data-md-component="logo">
+    <a href="../.." title="QAccelPlot v0.6.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.6.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -141,7 +141,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            QAccelPlot v0.5.0 Documentation
+            QAccelPlot v0.6.0 Documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -265,13 +265,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="QAccelPlot v0.5.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.5.0 Documentation" data-md-component="logo">
+    <a href="../.." title="QAccelPlot v0.6.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.6.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    QAccelPlot v0.5.0 Documentation
+    QAccelPlot v0.6.0 Documentation
   </label>
   
     <div class="md-nav__source">
@@ -441,6 +441,8 @@
       
         
       
+        
+      
     
     
     
@@ -566,6 +568,34 @@
     
   
     Axis formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/axis-labels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Axis labels
   
 
     
@@ -2274,7 +2304,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">property int</td>
-<td style="text-align: left;"><a href="./#property-subtickcount-12"><strong>subtickCount</strong></a>  <br><em>Number of sub-tick intervals between adjacent major ticks. Default: 10.</em></td>
+<td style="text-align: left;"><a href="./#property-subtickcount-12"><strong>subtickCount</strong></a>  <br><em>Number of sub-tick intervals between adjacent major ticks, capped at 100. Default: 10.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property qreal</td>
@@ -2298,7 +2328,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">property int</td>
-<td style="text-align: left;"><a href="./#property-tickcount-12"><strong>tickCount</strong></a>  <br><em>Target number of major tick marks. Actual count is adjusted for "nice" values. Default: 5.</em></td>
+<td style="text-align: left;"><a href="./#property-tickcount-12"><strong>tickCount</strong></a>  <br><em>Target number of major tick marks, capped at 500. Actual count is adjusted for "nice" values. Default: 5.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property QColor</td>
@@ -2318,7 +2348,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">property qreal</td>
-<td style="text-align: left;"><a href="./#property-ticklabelrotation-12"><strong>tickLabelRotation</strong></a>  <br><em>Rotation angle in degrees applied to each tick label. Default: 0.</em></td>
+<td style="text-align: left;"><a href="./#property-ticklabelrotation-12"><strong>tickLabelRotation</strong></a>  <br><em>Clockwise rotation in degrees of each tick label. Default: 0.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property qreal</td>
@@ -2583,7 +2613,7 @@
 <hr>
 
 <h3 id="property-subtickcount-12">property subtickCount<a class="headerlink" href="#property-subtickcount-12" title="Permanent link">&para;</a></h3>
-<p><em>Number of sub-tick intervals between adjacent major ticks. Default: 10.</em> 
+<p><em>Number of sub-tick intervals between adjacent major ticks, capped at 100. Default: 10.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">subtickCount</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
@@ -2619,7 +2649,7 @@
 <hr>
 
 <h3 id="property-tickcount-12">property tickCount<a class="headerlink" href="#property-tickcount-12" title="Permanent link">&para;</a></h3>
-<p><em>Target number of major tick marks. Actual count is adjusted for "nice" values. Default: 5.</em> 
+<p><em>Target number of major tick marks, capped at 500. Actual count is adjusted for "nice" values. Default: 5.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">tickCount</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
@@ -2649,9 +2679,10 @@
 <hr>
 
 <h3 id="property-ticklabelrotation-12">property tickLabelRotation<a class="headerlink" href="#property-ticklabelrotation-12" title="Permanent link">&para;</a></h3>
-<p><em>Rotation angle in degrees applied to each tick label. Default: 0.</em> 
+<p><em>Clockwise rotation in degrees of each tick label. Default: 0.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">tickLabelRotation</span><span class="p">;</span>
 </code></pre></div></p>
+<p>A rotated label is centered on its tick, and its rotated bounding box starts <code>tickLabelPadding</code> past the outward tick. Use -90 or 90 on a vertical axis for labels that run along the axis. </p>
 <hr>
 
 <h3 id="property-ticklength-12">property tickLength<a class="headerlink" href="#property-ticklength-12" title="Permanent link">&para;</a></h3>

@@ -10,16 +10,13 @@
 ```C++
 //
 // SPDX-FileCopyrightText: 2026 Michal Grabarczyk
-// SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
-//
-// This file is also available under a separate commercial license.
-// See COMMERCIAL-LICENSING.md for contact information.
+// SPDX-License-Identifier: MIT
 //
 #pragma once
 
 #include "QAccelPlot/series/PlotSeries.hpp"
 #include "QAccelPlot/series/SpatialGrid.hpp"
-#include "QAccelPlot/transitions/DataTransition.hpp"
+#include "QAccelPlot/transitions/TransitionRunner.hpp"
 
 #include <QColor>
 #include <QList>
@@ -41,7 +38,6 @@ class QSGGeometryNode;
 namespace QAccelPlot {
 
 class ErrorBarMaterial;
-class TransitionRunner;
 
 class ErrorBarSeries : public PlotSeries {
     Q_OBJECT
@@ -55,7 +51,9 @@ class ErrorBarSeries : public PlotSeries {
     Q_PROPERTY(qreal offset READ offset WRITE setOffset NOTIFY offsetChanged)
     Q_PROPERTY(QColor hoverColor READ hoverColor WRITE setHoverColor NOTIFY hoverColorChanged)
     Q_PROPERTY(qreal hoverRadius READ hoverRadius WRITE setHoverRadius NOTIFY hoverRadiusChanged)
-    Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
+    Q_PROPERTY(EnterExitTransition* enterTransition READ enterTransition WRITE setEnterTransition NOTIFY enterTransitionChanged)
+    Q_PROPERTY(DataTransition* updateTransition READ updateTransition WRITE setUpdateTransition NOTIFY updateTransitionChanged)
+    Q_PROPERTY(EnterExitTransition* exitTransition READ exitTransition WRITE setExitTransition NOTIFY exitTransitionChanged)
     Q_PROPERTY(int hoveredIndex READ hoveredIndex NOTIFY hoveredIndexChanged)
 
 public:
@@ -83,8 +81,12 @@ public:
     qreal hoverRadius() const;
     void setHoverRadius(qreal radius);
 
-    DataTransition* transition() const;
-    void setTransition(DataTransition* transition);
+    EnterExitTransition* enterTransition() const;
+    void setEnterTransition(EnterExitTransition* transition);
+    DataTransition* updateTransition() const;
+    void setUpdateTransition(DataTransition* transition);
+    EnterExitTransition* exitTransition() const;
+    void setExitTransition(EnterExitTransition* transition);
 
     int hoveredIndex() const;
 
@@ -116,7 +118,9 @@ signals:
     void offsetChanged();
     void hoverColorChanged();
     void hoverRadiusChanged();
-    void transitionChanged();
+    void enterTransitionChanged();
+    void updateTransitionChanged();
+    void exitTransitionChanged();
     void hoveredIndexChanged();
 
 protected:
@@ -128,6 +132,7 @@ protected:
     void hoverMoveEvent(QHoverEvent* event) override;
     void hoverLeaveEvent(QHoverEvent* event) override;
     void applyDataPoints(DataPointInput&& input) override;
+    bool supportsEffect(const SeriesEffect& effect) const override;
     void onAxisScaleChanged() override;
     void onDataPointsChanged(DataChange change, int previousCount) override;
 
@@ -153,6 +158,8 @@ private:
     // Starts animating from the \a drawnCount error bars in \a drawn to the stored ones.
     void startTransition(const std::vector<double>& drawn, int drawnCount);
     void advanceTransition();
+    // Draws the next frame of the running transition, or the data when it ends.
+    void showTransitionFrame();
     // Shows the stored data points at once, when a transition was drawing others.
     void endTransition();
     void discardTransition();
