@@ -1089,7 +1089,18 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="[Unreleased]">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#060-2026-11-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [0.6.0] — 2026-11-16
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[0.6.0] — 2026-11-16">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1756,7 +1767,18 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="[Unreleased]">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#060-2026-11-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [0.6.0] — 2026-11-16
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[0.6.0] — 2026-11-16">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2079,6 +2101,7 @@
 <p>All notable changes to QAccelPlot are documented in this file.</p>
 <p>The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.</p>
 <h2 id="unreleased">[Unreleased]<a class="headerlink" href="#unreleased" title="Permanent link">&para;</a></h2>
+<h2 id="060-2026-11-16">[0.6.0] — 2026-11-16<a class="headerlink" href="#060-2026-11-16" title="Permanent link">&para;</a></h2>
 <h3 id="added">Added<a class="headerlink" href="#added" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Axis label placement: <code>label.alignment</code>, <code>label.rotation</code>, and
@@ -2107,20 +2130,16 @@
   moves added items from the last old item; bars no longer grow from the
   baseline without a <code>GrowTransition</code> as <code>enterTransition</code>.</li>
 <li><code>LineCurveEffect</code> is renamed <code>SeriesEffect</code>.</li>
-<li>
-<p><code>DataTransition</code> can no longer be subclassed outside the library, and its
+<li><code>DataTransition</code> can no longer be subclassed outside the library, and its
   <code>interpolate()</code>, <code>Dataset</code>, and data-holding <code>Run</code> API are gone.
   <code>TransitionRunner</code> takes a slot in <code>transition()</code> and <code>setTransition()</code>, and
   <code>start()</code> takes a <code>TransitionRunner::Layout</code>. Check <code>animates()</code> instead of
   <code>enabled()</code> before calling <code>start()</code>. <code>transitionDestroyed()</code> is replaced by
-  <code>transitionChanged(slot)</code>, which <code>setTransition()</code> also emits.</p>
-</li>
-<li>
-<p><code>Axis.label</code> and <code>ColorBar.label</code> are grouped properties. Use <code>label.text</code>,
+  <code>transitionChanged(slot)</code>, which <code>setTransition()</code> also emits.</li>
+<li><code>Axis.label</code> and <code>ColorBar.label</code> are grouped properties. Use <code>label.text</code>,
   <code>label.font</code>, <code>label.color</code>, and <code>label.padding</code> instead of <code>label</code>,
   <code>labelFont</code>, <code>labelColor</code>, and <code>labelPadding</code>. In C++, <code>label()</code> returns the
-  group, for example <code>axis-&gt;label()-&gt;setText()</code> with <code>AxisLabel.hpp</code> included.</p>
-</li>
+  group, for example <code>axis-&gt;label()-&gt;setText()</code> with <code>AxisLabel.hpp</code> included.</li>
 <li>Line vertices take 4 bytes instead of 16, or 8 with a dash pattern, so a
   <code>LineCurve</code> or <code>BandSeries</code> edge whose point count changes uploads less
   data.</li>

@@ -173,7 +173,7 @@ A vertical bar has its minimum at the bottom, with ticks on the right and `label
 ```C++
 QAccelPlot.ColorBar {
     series: cloud
-    label: "Intensity"
+    label.text: "Intensity"
     x: plot.plotRect.right - width - 8
     y: plot.plotRect.y + 8
 }

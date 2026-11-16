@@ -1452,7 +1452,7 @@
 <para>A vertical bar has its minimum at the bottom, with ticks on the right and <computeroutput>label</computeroutput> beside them, reading top to bottom. A horizontal bar has its minimum on the left, with ticks and <computeroutput>label</computeroutput> below. Position the bar like any item, for example inside the plot area:</para>
 <para><programlisting><codeline><highlight class="normal">QAccelPlot.ColorBar<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1ColorBar_1abeecf557895378319ac465dabd4a5776" kindref="member">series</ref>:<sp/>cloud</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1ColorBar_1a3a3c3e6bdbcd0032736861d1179fcab6" kindref="member">label</ref>:<sp/></highlight><highlight class="stringliteral">&quot;Intensity&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1ColorBar_1a3a3c3e6bdbcd0032736861d1179fcab6" kindref="member">label</ref>.text:<sp/></highlight><highlight class="stringliteral">&quot;Intensity&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>x:<sp/>plot.plotRect.right<sp/>-<sp/>width<sp/>-<sp/>8</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>y:<sp/>plot.plotRect.y<sp/>+<sp/>8</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
