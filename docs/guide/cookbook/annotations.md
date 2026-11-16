@@ -4,7 +4,7 @@ description: "Add data-attached annotations, event regions, state timelines, mea
 
 <!--
 SPDX-FileCopyrightText: 2026 Michal Grabarczyk
-SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
+SPDX-License-Identifier: MIT
 -->
 
 # Annotations and tools

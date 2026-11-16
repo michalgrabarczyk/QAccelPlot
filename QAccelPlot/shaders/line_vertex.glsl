@@ -1,9 +1,6 @@
 //
 // SPDX-FileCopyrightText: 2026 Michal Grabarczyk
-// SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
-//
-// This file is also available under a separate commercial license.
-// See COMMERCIAL-LICENSING.md for contact information.
+// SPDX-License-Identifier: MIT
 //
 // Vertex stage of the line ribbon shared by line.vert, line_dashed.vert, and the band edge
 // shaders. Define LINE_SAMPLE_STRIDE and LINE_Y_BITS before including it to read other

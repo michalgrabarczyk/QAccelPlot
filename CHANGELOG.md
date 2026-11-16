@@ -26,6 +26,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- QAccelPlot is now licensed under MIT. Pull requests are welcome.
 - `transition` on `LineCurve`, `BarSeries`, `PointCloud`, and
   `ErrorBarSeries` is replaced by the three slots. Use
   `updateTransition: morph` for `transition: morph`, and also set

@@ -3,7 +3,7 @@
 Thank you for your interest in QAccelPlot. Feedback from real-world use helps
 shape the library, particularly while the 0.x releases are still evolving.
 
-## Feedback is welcome
+## Issues
 
 Please use [GitHub Issues](https://github.com/michalgrabarczyk/QAccelPlot/issues)
 to report bugs, request features, describe compatibility problems, or discuss
@@ -11,18 +11,26 @@ possible improvements. Helpful reports can include:
 
 - a clear description of the problem or proposed improvement;
 - steps to reproduce the problem;
-- relevant platform, compiler, Qt, and graphics-backend information;
-- logs, screenshots, or minimal test data; and
-- a proposed behavior or high-level solution that does not include copied
-  third-party code.
+- relevant platform, compiler, Qt, and graphics-backend information; and
+- logs, screenshots, or minimal test data.
 
 ## Pull requests
 
-QAccelPlot does not accept pull requests or external source-code contributions.
-The project is available under both open-source and commercial licensing
-options, so keeping the code under a single copyright holder ensures that both
-options can continue to be offered consistently.
+Pull requests are welcome. For larger changes or new API, open an issue first
+so the design can be agreed before you write the code.
 
-This policy does not diminish the value of community input. Detailed issue
-reports, testing results, API feedback, performance measurements, and use-case
-descriptions are all appreciated.
+Before opening a pull request:
+
+- follow the conventions in [`AGENTS.md`](AGENTS.md);
+- format changed `.cpp` and `.hpp` files with clang-format 19;
+- build with `-DQACCELPLOT_BUILD_TESTS=ON` and run
+  `ctest --test-dir build --output-on-failure`;
+- add tests for fixed bugs and new behavior; and
+- add a `CHANGELOG.md` entry under `[Unreleased]` for user-visible changes.
+
+New source files start with the same SPDX header as existing files.
+
+## License
+
+QAccelPlot is licensed under the [MIT License](LICENSE). By submitting a
+contribution, you agree that it is licensed under the same terms.

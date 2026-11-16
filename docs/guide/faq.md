@@ -4,7 +4,7 @@ description: "Frequently asked questions about QAccelPlot licensing, performance
 
 <!--
 SPDX-FileCopyrightText: 2026 Michal Grabarczyk
-SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
+SPDX-License-Identifier: MIT
 -->
 
 # FAQ
@@ -47,11 +47,8 @@ cannot run the curve shaders; see
 
 Only through `QQuickWidget`. There is no `QWidget`-based API.
 
-## What licenses are available?
+## What license does QAccelPlot use?
 
-- **GPLv3 with the Universal FOSS Exception** — free for applications
-  distributed under an OSI-approved or FSF-free license.
-- **Commercial** — for proprietary or closed-source distribution. Contact
-  [qaccelplot@gmail.com](mailto:qaccelplot@gmail.com).
-
-See [LICENSING.md](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/LICENSING.md).
+The [MIT License](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/LICENSE),
+including for proprietary and closed-source applications. Qt is licensed
+separately.

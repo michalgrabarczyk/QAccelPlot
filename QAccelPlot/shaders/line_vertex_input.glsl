@@ -1,9 +1,6 @@
 //
 // SPDX-FileCopyrightText: 2026 Michal Grabarczyk
-// SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
-//
-// This file is also available under a separate commercial license.
-// See COMMERCIAL-LICENSING.md for contact information.
+// SPDX-License-Identifier: MIT
 //
 // Vertex inputs of the line ribbon (LineVertex and DashedLineVertex in LineStroke.hpp).
 // Define LINE_DASHED as 1 before including it for dashed lines, whose vertices also

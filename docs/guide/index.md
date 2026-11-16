@@ -4,7 +4,7 @@ description: "QAccelPlot documentation — GPU-rendered 2D plotting for Qt Quick
 
 <!--
 SPDX-FileCopyrightText: 2026 Michal Grabarczyk
-SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
+SPDX-License-Identifier: MIT
 -->
 
 # QAccelPlot
@@ -87,6 +87,5 @@ optional; see
 
 ## Licensing
 
-GPLv3 with the Universal FOSS Exception, or a commercial license. See
-[`LICENSING.md`](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/LICENSING.md).
+[MIT](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/LICENSE).
 Qt is licensed separately.

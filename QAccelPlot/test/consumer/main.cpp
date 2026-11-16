@@ -1,9 +1,6 @@
 //
 // SPDX-FileCopyrightText: 2026 Michal Grabarczyk
-// SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
-//
-// This file is also available under a separate commercial license.
-// See COMMERCIAL-LICENSING.md for contact information.
+// SPDX-License-Identifier: MIT
 //
 // Renders one plot and checks that the curve reached the image, which needs the
 // public headers, the library, the QML module, and the embedded shaders.

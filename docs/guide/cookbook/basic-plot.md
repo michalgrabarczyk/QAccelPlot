@@ -4,7 +4,7 @@ description: "Create a basic static QAccelPlot chart with axes, multiple line cu
 
 <!--
 SPDX-FileCopyrightText: 2026 Michal Grabarczyk
-SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
+SPDX-License-Identifier: MIT
 -->
 
 # Basic static plot

@@ -4,8 +4,8 @@
 
 QAccelPlot is a high-performance Qt Quick plotting library. It uses the Qt
 Scene Graph (QSG) for hardware-accelerated rendering, exposing QML-friendly
-components backed by C++ `QQuickItem` subclasses. The library is dual-licensed
-under GPLv3 with the Universal FOSS Exception, or a separate commercial license.
+components backed by C++ `QQuickItem` subclasses. The library is licensed under
+MIT.
 
 ## Build & Toolchain
 

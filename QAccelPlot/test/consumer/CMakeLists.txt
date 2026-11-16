@@ -1,9 +1,6 @@
 #
 # SPDX-FileCopyrightText: 2026 Michal Grabarczyk
-# SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
-#
-# This file is also available under a separate commercial license.
-# See COMMERCIAL-LICENSING.md for contact information.
+# SPDX-License-Identifier: MIT
 #
 # A standalone application that consumes QAccelPlot the way a user project does.
 # It is not part of the QAccelPlot build: configure it on its own, either against

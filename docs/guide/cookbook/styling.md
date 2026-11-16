@@ -4,7 +4,7 @@ description: "Style QAccelPlot curves with color palettes, dash patterns, point 
 
 <!--
 SPDX-FileCopyrightText: 2026 Michal Grabarczyk
-SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
+SPDX-License-Identifier: MIT
 -->
 
 # Styling and transitions
