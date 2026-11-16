@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [0.6.0] — 2026-11-16
+
 ### Added
 
 - Axis label placement: `label.alignment`, `label.rotation`, and
@@ -40,7 +42,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `start()` takes a `TransitionRunner::Layout`. Check `animates()` instead of
   `enabled()` before calling `start()`. `transitionDestroyed()` is replaced by
   `transitionChanged(slot)`, which `setTransition()` also emits.
-
 - `Axis.label` and `ColorBar.label` are grouped properties. Use `label.text`,
   `label.font`, `label.color`, and `label.padding` instead of `label`,
   `labelFont`, `labelColor`, and `labelPadding`. In C++, `label()` returns the
