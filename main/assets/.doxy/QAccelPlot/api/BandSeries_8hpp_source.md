@@ -51,6 +51,7 @@ public:
     BandEdges* edges() const;
 
     Q_INVOKABLE void appendData(qreal x, qreal low, qreal high);
+    Q_INVOKABLE void replaceData(int index, qreal x, qreal low, qreal high);
     Q_INVOKABLE void setData(const QList<qreal>& xs, const QList<qreal>& lows, const QList<qreal>& highs);
     void setData(const std::vector<double>& xs, const std::vector<double>& lows, const std::vector<double>& highs);
     // The PlotSeries overloads take interleaved (x, low, high) triples, as doubles or floats.

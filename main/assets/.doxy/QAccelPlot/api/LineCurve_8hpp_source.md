@@ -89,6 +89,7 @@ public:
     void setStepMode(StepMode mode);
 
     Q_INVOKABLE void appendData(qreal x, qreal y);
+    Q_INVOKABLE void replaceData(int index, qreal x, qreal y);
     Q_INVOKABLE void setData(const QList<QPointF>& data);
     void setData(const std::vector<double>& xs, const std::vector<double>& ys);
     using PlotSeries::postData;

@@ -86,6 +86,7 @@ public:
     void setAttributes(std::vector<float>&& attributes);
     void setCategories(std::vector<int>&& categories);
     void append(const double* coordinates);
+    void replace(int index, const double* coordinates);
     void promoteToPrecise();
     void clear();
 
@@ -142,6 +143,9 @@ private:
     [[nodiscard]] bool dataPointValid(const View& view, int index) const noexcept;
     [[nodiscard]] Origin& origin(Dimension dimension) const noexcept;
     [[nodiscard]] double originValue(Dimension dimension) const noexcept;
+    // Whether the render data holds every stored data point unchanged, so coordinates can be written into it directly.
+    [[nodiscard]] bool renderDataWritableInPlace() const noexcept;
+    [[nodiscard]] float renderCoordinate(int column, double value) const noexcept;
     void storeFloatCoordinates(std::vector<float>&& coordinates, std::vector<float>&& attributes);
     void dataPointsChanged();
     void invalidateRender();

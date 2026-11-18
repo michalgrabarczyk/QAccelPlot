@@ -3148,6 +3148,10 @@
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-recordinspectionsupported"><strong>recordInspectionSupported</strong></a> () const<br><em>Returns whether</em> <code>inspectionRecord()</code> <em>and</em><code>inspectionRecordAt()</code> <em>answer for this series. Default: false.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-replacedatapoint"><strong>replaceDataPoint</strong></a> (int index, const double * coordinates) <br><em>Replaces stored data point</em> <em>index</em> <em>with the double__coordinates</em> <em>.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">QRectF</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-resolveplotrect"><strong>resolvePlotRect</strong></a> () const<br><em>Returns the plot area to render into:</em> <code>plotRect</code> <em>when set, otherwise the item's current size.</em></td>
 </tr>
@@ -3174,6 +3178,10 @@
 <tr>
 <td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-updaterendercapacity"><strong>updateRenderCapacity</strong></a> (int capacity, int recordCount, <a href="../classQAccelPlot_1_1PlotSeries/#enum-capacityoverflow"><strong>CapacityOverflow</strong></a> overflow=CapacityOverflow::DropsExcess) <br><em>Stores</em> <em>capacity</em> <em>, the number of records the GPU buffers hold, and warns when__recordCount</em> <em>newly exceeds it.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-validatedatapointindex"><strong>validateDataPointIndex</strong></a> (int index) const<br><em>Returns whether</em> <em>index</em> <em>is the index of a stored data point; warns otherwise.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>

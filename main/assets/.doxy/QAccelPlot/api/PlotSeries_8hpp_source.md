@@ -171,6 +171,7 @@ protected:
     enum class DataChange {
         Replaced, 
         Appended, 
+        Modified, 
     };
 
     DataPointStore& dataPoints();
@@ -180,6 +181,8 @@ protected:
     bool validateRawDataArguments(const void* data, int count) const;
     bool validateDataSize(std::size_t valueCount, int count, bool floatData, int valuesPerDataPoint = 0) const;
     void appendDataPoint(const double* coordinates);
+    bool validateDataPointIndex(int index) const;
+    void replaceDataPoint(int index, const double* coordinates);
     void notifyDataPointsChanged(DataChange change, int previousCount);
     virtual void onDataPointsChanged(DataChange change, int previousCount);
 
@@ -232,6 +235,8 @@ private:
     // Returns whether the scale of a dimension changed.
     bool syncDataPointDimensions();
     void ensureDataRanges() const;
+    // Returns whether replacing a data point of extents \a previous with one of extents \a replaced could shrink the data ranges.
+    bool replacementMayShrinkDataRanges(const DataPointStore::Extents& previous, const DataPointStore::Extents& replaced) const;
     void reportDataRangesChanged() const;
     void deliverTopmostHover(QHoverEvent* event);
     bool coveredBySeriesAbove(const QPointF& position) const;

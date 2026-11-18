@@ -2020,9 +2020,9 @@ others alone.</p>
 </ul>
 <p>Several series can share one transition, and one series can use a transition in
 several slots. While a transition runs, the series' <code>animating</code> is <code>true</code>.
-Replacing, clearing, or cancelling a transition, or calling <code>appendData()</code>,
-shows the new data at once. Data that arrives during an animation continues
-from the items drawn now.</p>
+Replacing, clearing, or cancelling a transition, or calling <code>appendData()</code> or
+<code>replaceData()</code>, shows the new data at once. Data that arrives during an
+animation continues from the items drawn now.</p>
 <p>Each animated frame interpolates the data on the CPU: about 4 ms per million
 points, 6 ms with a stagger. Disable transitions for continuous high-rate
 updates.</p>

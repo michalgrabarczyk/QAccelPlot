@@ -385,6 +385,7 @@
     <member refid="classQAccelPlot_1_1BandSeries_1a54137fab272e9f0d0496be1621e765af" kind="function"><name>setColor</name></member>
     <member refid="classQAccelPlot_1_1BandSeries_1ae0e528fee6e8dabd6ba59caed143a035" kind="function"><name>edges</name></member>
     <member refid="classQAccelPlot_1_1BandSeries_1ab84e2a7342e0897019acd04feec3ee07" kind="function"><name>appendData</name></member>
+    <member refid="classQAccelPlot_1_1BandSeries_1a9b46829cf8f68171977f67de48d09336" kind="function"><name>replaceData</name></member>
     <member refid="classQAccelPlot_1_1BandSeries_1a6e0c16437a366d139d0710e64a1c24f6" kind="function"><name>setData</name></member>
     <member refid="classQAccelPlot_1_1BandSeries_1a31a4e8edb95db554a1a4b3d4701d3f81" kind="function"><name>setData</name></member>
     <member refid="classQAccelPlot_1_1BandSeries_1a8eeea05a3a47c2baef2e99d2fa7355a3" kind="function"><name>clearData</name></member>
@@ -1072,6 +1073,7 @@
     <member refid="classQAccelPlot_1_1DataPointStore_1a6593300fcb61261ea68ea9777d9a71e7" kind="function"><name>setAttributes</name></member>
     <member refid="classQAccelPlot_1_1DataPointStore_1a2c6a888f16061bb6d2a57746d231b417" kind="function"><name>setCategories</name></member>
     <member refid="classQAccelPlot_1_1DataPointStore_1ae6b1d8bcacc4c331b943c90d9cec5d77" kind="function"><name>append</name></member>
+    <member refid="classQAccelPlot_1_1DataPointStore_1a5f5680b06eff6dc073e6415df17fff36" kind="function"><name>replace</name></member>
     <member refid="classQAccelPlot_1_1DataPointStore_1aa4f3fe28dcc9874605ba25b70e7c86b6" kind="function"><name>promoteToPrecise</name></member>
     <member refid="classQAccelPlot_1_1DataPointStore_1a73611a3409783b2b7f5c169fc0128097" kind="function"><name>clear</name></member>
     <member refid="classQAccelPlot_1_1DataPointStore_1a0d8fa0b92f01aed9c5d59d71a2a92ec3" kind="function"><name>count</name></member>
@@ -1105,6 +1107,8 @@
     <member refid="classQAccelPlot_1_1DataPointStore_1abc6b204552bf324b74ed6a915203378e" kind="function"><name>dataPointValid</name></member>
     <member refid="classQAccelPlot_1_1DataPointStore_1a3713d7296a6f5c0b95cd242464eb1ab2" kind="function"><name>origin</name></member>
     <member refid="classQAccelPlot_1_1DataPointStore_1aa9679a5975dee45391249163d9002433" kind="function"><name>originValue</name></member>
+    <member refid="classQAccelPlot_1_1DataPointStore_1a6c5d1ed0fb3b858b28f930edbc2d3926" kind="function"><name>renderDataWritableInPlace</name></member>
+    <member refid="classQAccelPlot_1_1DataPointStore_1a81246765b227f301927934772484d807" kind="function"><name>renderCoordinate</name></member>
     <member refid="classQAccelPlot_1_1DataPointStore_1a152a81dd4a47464b4d3e53eb9ad9e7e6" kind="function"><name>storeFloatCoordinates</name></member>
     <member refid="classQAccelPlot_1_1DataPointStore_1ab9efa6b910ae5fce82a52a3fcd2d68b7" kind="function"><name>dataPointsChanged</name></member>
     <member refid="classQAccelPlot_1_1DataPointStore_1afb408045c664c4863aa5c4be9bc75640" kind="function"><name>invalidateRender</name></member>
@@ -1307,6 +1311,7 @@
     <member refid="classQAccelPlot_1_1ErrorBarSeries_1a7adec119de1522701e3498d0280d7ae1" kind="function"><name>setExitTransition</name></member>
     <member refid="classQAccelPlot_1_1ErrorBarSeries_1af3d1338b15d55ec86694a2af4999f419" kind="function"><name>hoveredIndex</name></member>
     <member refid="classQAccelPlot_1_1ErrorBarSeries_1a7cf77f3a63249dc87bbc2560f6cc055e" kind="function"><name>appendData</name></member>
+    <member refid="classQAccelPlot_1_1ErrorBarSeries_1a355674cdb3981c281efe39869319bd15" kind="function"><name>replaceData</name></member>
     <member refid="classQAccelPlot_1_1ErrorBarSeries_1a27e58b345547c3ea5b0ebae4f86513a9" kind="function"><name>setData</name></member>
     <member refid="classQAccelPlot_1_1ErrorBarSeries_1a5bbb2aa64b4725de03af39ceba68812f" kind="function"><name>setData</name></member>
     <member refid="classQAccelPlot_1_1ErrorBarSeries_1ac0023d9bcc86727593111f585a0a00d0" kind="function"><name>appendErrorData</name></member>
@@ -2274,6 +2279,7 @@
     <member refid="classQAccelPlot_1_1LineCurve_1ad990a3be3d76e09fd2677fc8fa2ae223" kind="function"><name>stepMode</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a7531888983f6389c1fe31ae5464787c7" kind="function"><name>setStepMode</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1acc4aaa04bfb63170079842c8b9b10f62" kind="function"><name>appendData</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a0943ee37a81a39502cebfd79dbee86a3" kind="function"><name>replaceData</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1acf9463cc9f4c0e0eb7cc9d053b7e7114" kind="function"><name>setData</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1aad067a9b84289a5c73637905cbc61a69" kind="function"><name>setData</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1ad6683a1132bd0eaae9a4c7cb7b07ae37" kind="function"><name>clearData</name></member>
@@ -2809,6 +2815,7 @@
     <member refid="classQAccelPlot_1_1PlotSeries_1a7f2b4290f315a7c3d22b7982763b8bc8" kind="enum"><name>DataChange</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a7f2b4290f315a7c3d22b7982763b8bc8ab3f23170be598de0771ac94684114f94" kind="enumvalue"><name>Replaced</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a7f2b4290f315a7c3d22b7982763b8bc8a3da4dcc41ce276abc52ef0713c8aacb7" kind="enumvalue"><name>Appended</name></member>
+    <member refid="classQAccelPlot_1_1PlotSeries_1a7f2b4290f315a7c3d22b7982763b8bc8a35e0c8c0b180c95d4e122e55ed62cc64" kind="enumvalue"><name>Modified</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a8e2bc0b299f2d8b1d1c489cd532c10c7" kind="enum"><name>CapacityOverflow</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a8e2bc0b299f2d8b1d1c489cd532c10c7af3210b74d7c4f04d054b5015adead669" kind="enumvalue"><name>DropsExcess</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a8e2bc0b299f2d8b1d1c489cd532c10c7afd85ec5548f6083f9c497b2b4b2a1ab4" kind="enumvalue"><name>DropsAll</name></member>
@@ -2905,6 +2912,8 @@
     <member refid="classQAccelPlot_1_1PlotSeries_1ac9c532c2c9fec18c4aa53252cda99b9c" kind="function"><name>validateRawDataArguments</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a6c7c2ca488f737cd30ee447439441682" kind="function"><name>validateDataSize</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1afb31a972c88456df230348f4e3794ab5" kind="function"><name>appendDataPoint</name></member>
+    <member refid="classQAccelPlot_1_1PlotSeries_1a83e7d995bb6776086e24a8c40dbafa8d" kind="function"><name>validateDataPointIndex</name></member>
+    <member refid="classQAccelPlot_1_1PlotSeries_1a364c6bf8763a43b516412235e6f45b9c" kind="function"><name>replaceDataPoint</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a76f0a354a43064f857553ffb2997b6da" kind="function"><name>notifyDataPointsChanged</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a6aa2a1a96940b34ac259143005b0aa47" kind="function"><name>onDataPointsChanged</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a10efc3369e62d44c163ca7bdcd39fb26" kind="function"><name>inspectionDataChanged</name></member>
@@ -2937,6 +2946,7 @@
     <member refid="classQAccelPlot_1_1PlotSeries_1ac5ef1ea39e8141b53e7efb58d45d20f6" kind="function"><name>handleAxisRangeChanged</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a708c62866d53b38feb66156df860436c" kind="function"><name>syncDataPointDimensions</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a98b33eb8d81c81a7625675e16ed3b3a0" kind="function"><name>ensureDataRanges</name></member>
+    <member refid="classQAccelPlot_1_1PlotSeries_1a3e7211a352b63ffd3b91d8c5cacb69e9" kind="function"><name>replacementMayShrinkDataRanges</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1ae57bb388d3cc698a18e47bb963681309" kind="function"><name>reportDataRangesChanged</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a9a82e9b26322b8f6044ef0985d90e95f" kind="function"><name>deliverTopmostHover</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a3a89bb1a3d1238fa8c5214bda8ba4392" kind="function"><name>coveredBySeriesAbove</name></member>

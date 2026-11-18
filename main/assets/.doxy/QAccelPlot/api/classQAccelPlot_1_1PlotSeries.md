@@ -252,6 +252,7 @@ flowchart TB
 | virtual void | [**onDataPointsChanged**](#function-ondatapointschanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change, int previousCount) <br>_Called after the data points changed, before the data queries are refreshed. The default does nothing._  |
 | virtual bool | [**positionInspectionSupported**](#function-positioninspectionsupported) () const<br>_Returns whether_ `inspectionDataPointAt()` _matches records drawn as areas, such as heatmap cells. Default: false._ |
 | virtual bool | [**recordInspectionSupported**](#function-recordinspectionsupported) () const<br>_Returns whether_ `inspectionRecord()` _and_`inspectionRecordAt()` _answer for this series. Default: false._ |
+|  void | [**replaceDataPoint**](#function-replacedatapoint) (int index, const double \* coordinates) <br>_Replaces stored data point_ _index_ _with the double__coordinates_ _._ |
 |  QRectF | [**resolvePlotRect**](#function-resolveplotrect) () const<br>_Returns the plot area to render into:_ `plotRect` _when set, otherwise the item's current size._ |
 |  void | [**setAnimating**](#function-setanimating) (bool animating) <br>_Sets the animating property to_ _animating_ _. Called when the series'_`TransitionRunner` _becomes active or idle._ |
 |  void | [**setHovered**](#function-sethovered) (bool hovered) <br>_Sets the hovered property to_ _hovered_ _. Called by the hover handling of a series._ |
@@ -259,6 +260,7 @@ flowchart TB
 |  void | [**supportHover**](#function-supporthover) () <br>_Makes the series accept hover events while_ `hoverEnabled` _is_`true` _._ |
 | virtual bool | [**supportsEffect**](#function-supportseffect) (const [**SeriesEffect**](classQAccelPlot_1_1SeriesEffect.md) & effect) const<br>_Returns whether the series draws_ _effect_ _. The default draws none._ |
 |  void | [**updateRenderCapacity**](#function-updaterendercapacity) (int capacity, int recordCount, [**CapacityOverflow**](classQAccelPlot_1_1PlotSeries.md#enum-capacityoverflow) overflow=CapacityOverflow::DropsExcess) <br>_Stores_ _capacity_ _, the number of records the GPU buffers hold, and warns when__recordCount_ _newly exceeds it._ |
+|  bool | [**validateDataPointIndex**](#function-validatedatapointindex) (int index) const<br>_Returns whether_ _index_ _is the index of a stored data point; warns otherwise._ |
 |  bool | [**validateDataSize**](#function-validatedatasize) (std::size\_t valueCount, int count, bool floatData, int valuesPerDataPoint=0) const<br>_Returns whether_ _valueCount_ _values hold__count_ _data points; warns otherwise._ |
 |  bool | [**validateRawDataArguments**](#function-validaterawdataarguments) (const void \* data, int count) const<br>_Returns whether_ _data_ _and__count_ _are valid arguments for copying data points; warns otherwise._ |
 
@@ -1321,7 +1323,8 @@ _How the records changed in a data update._
 ```C++
 enum QAccelPlot::PlotSeries::DataChange {
     Replaced,
-    Appended
+    Appended,
+    Modified
 };
 ```
 
@@ -1876,6 +1879,28 @@ virtual bool QAccelPlot::PlotSeries::recordInspectionSupported () const
 
 
 
+### function replaceDataPoint {#function-replacedatapoint}
+
+_Replaces stored data point_ _index_ _with the double__coordinates_ _._
+```C++
+void QAccelPlot::PlotSeries::replaceDataPoint (
+    int index,
+    const double * coordinates
+) 
+```
+
+
+
+The data ranges widen in O(1). They are marked for a rescan only when the replaced data point reached an edge of them that the new one no longer reaches. 
+
+
+        
+
+<hr>
+
+
+
+
 ### function resolvePlotRect {#function-resolveplotrect}
 
 _Returns the plot area to render into:_ `plotRect` _when set, otherwise the item's current size._
@@ -1999,6 +2024,23 @@ Call from `updatePaintNode()` on every frame. A series that stays over capacity,
 
 
         
+
+<hr>
+
+
+
+
+### function validateDataPointIndex {#function-validatedatapointindex}
+
+_Returns whether_ _index_ _is the index of a stored data point; warns otherwise._
+```C++
+bool QAccelPlot::PlotSeries::validateDataPointIndex (
+    int index
+) const
+```
+
+
+
 
 <hr>
 

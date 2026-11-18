@@ -1780,7 +1780,9 @@ records the first time something reads the range:</p>
 </tr>
 </tbody>
 </table>
-<p><a href="../api/classQAccelPlot_1_1LineCurve/#function-appenddata"><code>appendData()</code></a> widens a computed range without a rescan.</p>
+<p><a href="../api/classQAccelPlot_1_1LineCurve/#function-appenddata"><code>appendData()</code></a> widens a computed range without a rescan.
+<code>replaceData()</code> does too, unless the replaced data point moves away from an edge
+of the range.</p>
 <p>To skip the scan when the extents are already known, pass them with the data:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">bounds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">DataBounds</span><span class="p">{</span><span class="n">xMin</span><span class="p">,</span><span class="w"> </span><span class="n">xMax</span><span class="p">,</span><span class="w"> </span><span class="n">yMin</span><span class="p">,</span><span class="w"> </span><span class="n">yMax</span><span class="p">};</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">curve</span><span class="o">-&gt;</span><span class="n">setDataF</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">points</span><span class="p">),</span><span class="w"> </span><span class="n">pointCount</span><span class="p">,</span><span class="w"> </span><span class="n">bounds</span><span class="p">);</span>

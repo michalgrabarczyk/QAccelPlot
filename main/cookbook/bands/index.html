@@ -1681,7 +1681,8 @@ are separate bands, widest first.</p>
   viewport, so epoch timestamps stay precise. <code>setDataF()</code> stores floats.</li>
 <li><code>postData()</code> hands a buffer over from any thread without copying it.</li>
 <li><code>setData(xs, lows, highs)</code> takes three separate arrays, from QML or C++.</li>
-<li><code>appendData(x, low, high)</code> adds one data point.</li>
+<li><code>appendData(x, low, high)</code> adds one data point, and
+  <code>replaceData(index, x, low, high)</code> replaces one.</li>
 </ul>
 <h2 id="invalid-data-points">Invalid data points<a class="headerlink" href="#invalid-data-points" title="Permanent link">&para;</a></h2>
 <p>A data point is invalid when <code>x</code>, <code>low</code>, or <code>high</code> is <code>NaN</code> or <code>±Inf</code>, or is not

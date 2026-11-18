@@ -91,6 +91,7 @@ public:
     int hoveredIndex() const;
 
     Q_INVOKABLE void appendData(qreal x, qreal y, qreal low, qreal high);
+    Q_INVOKABLE void replaceData(int index, qreal x, qreal y, qreal low, qreal high);
     Q_INVOKABLE void setData(const QList<qreal>& xs, const QList<qreal>& ys, const QList<qreal>& lows, const QList<qreal>& highs);
     void setData(const std::vector<double>& xs, const std::vector<double>& ys, const std::vector<double>& lows, const std::vector<double>& highs);
     // The PlotSeries overloads take interleaved (x, y, low, high) quadruples, as doubles or floats.

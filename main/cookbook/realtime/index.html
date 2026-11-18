@@ -1605,7 +1605,11 @@ including each <a href="../../api/classQAccelPlot_1_1LineCurve/#function-appendd
   <code>autoRescale</code> to <code>false</code> while the user navigates.</li>
 <li>Appending only extends the data range. Replace the buffer with
   <a href="../../api/classQAccelPlot_1_1LineCurve/#function-setdataf-26"><code>setDataF()</code></a> to let the range shrink.</li>
-<li>Each update scans the data for its range, unless it appends or passes
+<li><code>replaceData(index, …)</code> changes one data point, such as a live sample that
+  is still being updated. The range can shrink only when that data point
+  moves away from its edge.</li>
+<li>Each update scans the data for its range, unless it appends, replaces a
+  data point without moving it away from the edge of the range, or passes
   bounds.</li>
 <li>When the last series on the axis is cleared, the viewport is kept.</li>
 </ul>

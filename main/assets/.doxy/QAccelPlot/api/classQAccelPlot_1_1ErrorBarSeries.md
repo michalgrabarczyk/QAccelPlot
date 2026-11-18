@@ -186,6 +186,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  qreal | [**lineWidth**](#function-linewidth-22) () const<br>_Returns the line width in pixels._  |
 |  qreal | [**offset**](#function-offset-22) () const<br>_Returns the shift of every error bar across its bounds, in data units._  |
 |  Qt::Orientation | [**orientation**](#function-orientation-22) () const<br>_Returns the axis the bounds lie on._  |
+|  Q\_INVOKABLE void | [**replaceData**](#function-replacedata) (int index, qreal x, qreal y, qreal low, qreal high) <br>_Replaces data point_ _index_ _with (__x_ _,__y_ _,__low_ _,__high_ _). Triggers a redraw._ |
 |  void | [**setCapLength**](#function-setcaplength) (qreal length) <br>_Sets the cap length to_ _length_ _pixels. Negative values are clamped to 0._ |
 |  void | [**setColor**](#function-setcolor) (const QColor & color) <br>_Sets the line color to_ _color_ _._ |
 |  Q\_INVOKABLE void | [**setData**](#function-setdata-16) (const QList&lt; qreal &gt; & xs, const QList&lt; qreal &gt; & ys, const QList&lt; qreal &gt; & lows, const QList&lt; qreal &gt; & highs) <br>_Replaces the data points with_ _xs_ _,__ys_ _,__lows_ _, and__highs_ _. If the sizes differ, the shortest length is used._ |
@@ -363,6 +364,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | virtual void | [**onDataPointsChanged**](classQAccelPlot_1_1PlotSeries.md#function-ondatapointschanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change, int previousCount) <br>_Called after the data points changed, before the data queries are refreshed. The default does nothing._  |
 | virtual bool | [**positionInspectionSupported**](classQAccelPlot_1_1PlotSeries.md#function-positioninspectionsupported) () const<br>_Returns whether_ `inspectionDataPointAt()` _matches records drawn as areas, such as heatmap cells. Default: false._ |
 | virtual bool | [**recordInspectionSupported**](classQAccelPlot_1_1PlotSeries.md#function-recordinspectionsupported) () const<br>_Returns whether_ `inspectionRecord()` _and_`inspectionRecordAt()` _answer for this series. Default: false._ |
+|  void | [**replaceDataPoint**](classQAccelPlot_1_1PlotSeries.md#function-replacedatapoint) (int index, const double \* coordinates) <br>_Replaces stored data point_ _index_ _with the double__coordinates_ _._ |
 |  QRectF | [**resolvePlotRect**](classQAccelPlot_1_1PlotSeries.md#function-resolveplotrect) () const<br>_Returns the plot area to render into:_ `plotRect` _when set, otherwise the item's current size._ |
 |  void | [**setAnimating**](classQAccelPlot_1_1PlotSeries.md#function-setanimating) (bool animating) <br>_Sets the animating property to_ _animating_ _. Called when the series'_`TransitionRunner` _becomes active or idle._ |
 |  void | [**setHovered**](classQAccelPlot_1_1PlotSeries.md#function-sethovered) (bool hovered) <br>_Sets the hovered property to_ _hovered_ _. Called by the hover handling of a series._ |
@@ -370,6 +372,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  void | [**supportHover**](classQAccelPlot_1_1PlotSeries.md#function-supporthover) () <br>_Makes the series accept hover events while_ `hoverEnabled` _is_`true` _._ |
 | virtual bool | [**supportsEffect**](classQAccelPlot_1_1PlotSeries.md#function-supportseffect) (const [**SeriesEffect**](classQAccelPlot_1_1SeriesEffect.md) & effect) const<br>_Returns whether the series draws_ _effect_ _. The default draws none._ |
 |  void | [**updateRenderCapacity**](classQAccelPlot_1_1PlotSeries.md#function-updaterendercapacity) (int capacity, int recordCount, [**CapacityOverflow**](classQAccelPlot_1_1PlotSeries.md#enum-capacityoverflow) overflow=CapacityOverflow::DropsExcess) <br>_Stores_ _capacity_ _, the number of records the GPU buffers hold, and warns when__recordCount_ _newly exceeds it._ |
+|  bool | [**validateDataPointIndex**](classQAccelPlot_1_1PlotSeries.md#function-validatedatapointindex) (int index) const<br>_Returns whether_ _index_ _is the index of a stored data point; warns otherwise._ |
 |  bool | [**validateDataSize**](classQAccelPlot_1_1PlotSeries.md#function-validatedatasize) (std::size\_t valueCount, int count, bool floatData, int valuesPerDataPoint=0) const<br>_Returns whether_ _valueCount_ _values hold__count_ _data points; warns otherwise._ |
 |  bool | [**validateRawDataArguments**](classQAccelPlot_1_1PlotSeries.md#function-validaterawdataarguments) (const void \* data, int count) const<br>_Returns whether_ _data_ _and__count_ _are valid arguments for copying data points; warns otherwise._ |
 
@@ -422,7 +425,7 @@ A data point is not drawn or hovered when its position (`x` for vertical, `y` fo
 **
 **
 
-`enterTransition` animates added error bars, `updateTransition` kept ones, and `exitTransition` removed ones, matched by index. With a `MorphTransition`, kept error bars move to their new position, value, and bounds; a `GrowTransition` grows the value and both bounds from its baseline. `count`, `errorBarAt()`, the data ranges, and inspection use the new data from the start of the animation, while hover picks the error bars as drawn. While a transition is enabled, the `setDataF()` overloads store doubles. `appendData()`, `appendErrorData()`, and replacing, clearing, or cancelling a transition skip to the new data; `clearData()` runs the exit transition.
+`enterTransition` animates added error bars, `updateTransition` kept ones, and `exitTransition` removed ones, matched by index. With a `MorphTransition`, kept error bars move to their new position, value, and bounds; a `GrowTransition` grows the value and both bounds from its baseline. `count`, `errorBarAt()`, the data ranges, and inspection use the new data from the start of the animation, while hover picks the error bars as drawn. While a transition is enabled, the `setDataF()` overloads store doubles. `appendData()`, `appendErrorData()`, `replaceData()`, and replacing, clearing, or cancelling a transition skip to the new data; `clearData()` runs the exit transition.
 
 
 
@@ -1087,6 +1090,31 @@ Qt::Orientation QAccelPlot::ErrorBarSeries::orientation () const
 
 
 
+
+<hr>
+
+
+
+
+### function replaceData {#function-replacedata}
+
+_Replaces data point_ _index_ _with (__x_ _,__y_ _,__low_ _,__high_ _). Triggers a redraw._
+```C++
+Q_INVOKABLE void QAccelPlot::ErrorBarSeries::replaceData (
+    int index,
+    qreal x,
+    qreal y,
+    qreal low,
+    qreal high
+) 
+```
+
+
+
+An _index_ out of range logs a warning and changes nothing. 
+
+
+        
 
 <hr>
 

@@ -1735,6 +1735,10 @@ on top. Error bars have no legend entry; name the series that draws the values.<
 <td><code>appendErrorData(x, y, error)</code>, <code>appendErrorData(x, y, minus, plus)</code>, <code>appendData(x, y, low, high)</code></td>
 <td>One data point</td>
 </tr>
+<tr>
+<td><code>replaceData(index, x, y, low, high)</code></td>
+<td>One data point, replacing data point <code>index</code></td>
+</tr>
 </tbody>
 </table>
 <ul>
@@ -1830,8 +1834,8 @@ values the same transitions, so both move together.</p>
 <li><code>DrawTransition</code> shows the error bars one after another.</li>
 <li><code>count</code>, <code>errorBarAt()</code>, the data ranges, and inspection use the new data
   from the start of the animation. Hover picks the error bars as drawn.</li>
-<li><code>appendData()</code> and <code>appendErrorData()</code> show the new data at once;
-  <code>clearData()</code> runs the exit transition.</li>
+<li><code>appendData()</code>, <code>appendErrorData()</code>, and <code>replaceData()</code> show the new data
+  at once; <code>clearData()</code> runs the exit transition.</li>
 <li>While a transition is enabled, the float paths store doubles.</li>
 </ul>
 <h2 id="invalid-data-points">Invalid data points<a class="headerlink" href="#invalid-data-points" title="Permanent link">&para;</a></h2>

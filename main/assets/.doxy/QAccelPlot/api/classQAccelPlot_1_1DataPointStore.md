@@ -107,6 +107,7 @@ _Holds the data points of one series and derives everything that depends only on
 |  bool | [**rendered**](#function-rendered) (int index) const<br>_Returns whether_ `renderedView()` _holds drawn data point__index_ _._ |
 |  int | [**renderedCount**](#function-renderedcount) (int count) const<br>_Returns how many of the first_ _count_ _drawn data points_`renderedView()` _holds._ |
 |  [**View**](structQAccelPlot_1_1DataPointStore_1_1View.md) | [**renderedView**](#function-renderedview) () const<br>_Returns the data points the render data is built from:_ `drawnView()` _, without the invalid data points when_`skipInvalid()` _is set._ |
+|  void | [**replace**](#function-replace) (int index, const double \* coordinates) <br>_Replaces the coordinates of data point_ _index_ _with_`columnCount()` _doubles; promotes float data first._ |
 |  void | [**setAttributes**](#function-setattributes) (std::vector&lt; float &gt; && attributes) <br>_Replaces the float attributes: empty, or_ `attributeCount` _floats per data point._ |
 |  void | [**setCategories**](#function-setcategories) (std::vector&lt; int &gt; && categories) <br>_Replaces the categories: empty, or one per data point._  |
 |  void | [**setDimensionState**](#function-setdimensionstate) ([**Dimension**](classQAccelPlot_1_1DataPointStore.md#enum-dimension) dimension, const [**DimensionState**](structQAccelPlot_1_1DataPointStore_1_1DimensionState.md) & state) <br>_Updates the scale and viewport of_ _dimension_ _._ |
@@ -685,6 +686,28 @@ View QAccelPlot::DataPointStore::renderedView () const
 
 
 
+
+<hr>
+
+
+
+
+### function replace {#function-replace}
+
+_Replaces the coordinates of data point_ _index_ _with_`columnCount()` _doubles; promotes float data first._
+```C++
+void QAccelPlot::DataPointStore::replace (
+    int index,
+    const double * coordinates
+) 
+```
+
+
+
+Attributes and categories are kept. The render data is updated in place when nothing else it depends on has changed. 
+
+
+        
 
 <hr>
 
