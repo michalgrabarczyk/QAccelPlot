@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added
+
+- `replaceData()` on `LineCurve`, `BandSeries`, and `ErrorBarSeries` replaces
+  one data point in place, for example to update the latest sample of a live
+  feed.
+
 ## [0.6.0] — 2026-11-16
 
 ### Added

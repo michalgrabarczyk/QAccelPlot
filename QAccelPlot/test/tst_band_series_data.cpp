@@ -91,6 +91,7 @@ private slots:
     void rawDoubleDataPreservesModernEpochPrecision();
     void appendDataExtendsSamplesAndRanges();
     void appendToFloatDataKeepsSamples();
+    void replaceDataChangesOneSample();
     void clearDataRemovesSamples();
     void valueAtInterpolatesBetweenSamples();
     void valueAtInterpolatesOnLogScales();
@@ -242,6 +243,28 @@ void BandSeriesDataTest::appendDataExtendsSamplesAndRanges()
     QCOMPARE(yAxis.dataMin(), -1.0);
     QCOMPARE(yAxis.dataMax(), 9.0);
     QVERIFY(hasSpan(band.valueAt(0.5), 0.0, 2.5));
+}
+
+void BandSeriesDataTest::replaceDataChangesOneSample()
+{
+    auto xAxis = Axis{};
+    auto yAxis = Axis{};
+    auto band = BandSeries{};
+    band.setXAxis(&xAxis);
+    band.setYAxis(&yAxis);
+    band.setData(QList<qreal>{0.0, 1.0, 2.0}, QList<qreal>{0.0, 0.0, 0.0}, QList<qreal>{1.0, 1.0, 1.0});
+
+    band.replaceData(2, 2.0, -3.0, 5.0);
+    QCOMPARE(band.count(), 3);
+    QCOMPARE(yAxis.dataMin(), -3.0);
+    QCOMPARE(yAxis.dataMax(), 5.0);
+    QVERIFY(hasSpan(band.valueAt(2.0), -3.0, 5.0));
+
+    // Samples out of X order are not interpolated, and back in order they are again.
+    band.replaceData(1, 3.0, 0.0, 1.0);
+    QVERIFY(band.valueAt(0.5).isEmpty());
+    band.replaceData(1, 1.0, 0.0, 1.0);
+    QVERIFY(hasSpan(band.valueAt(0.5), 0.0, 1.0));
 }
 
 void BandSeriesDataTest::appendToFloatDataKeepsSamples()

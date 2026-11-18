@@ -97,6 +97,7 @@ private slots:
     void setDataStoresQuadruplesUpToTheShortestList();
     void errorDataGivesBoundsAroundTheValue();
     void appendingAddsOneDataPoint();
+    void replacingChangesOneDataPoint();
     void dataRangesCoverValuesAndBounds();
     void hitTestFindsLinesAndCaps();
     void nearestErrorBarWinsAndTiesGoToHigherIndex();
@@ -160,6 +161,25 @@ void ErrorBarSeriesDataTest::appendingAddsOneDataPoint()
     QVERIFY(hasErrorBar(bars.errorBarAt(0), 1, 2, 1.5, 3));
     QVERIFY(hasErrorBar(bars.errorBarAt(1), 2, 4, 3, 5));
     QVERIFY(hasErrorBar(bars.errorBarAt(2), 3, 6, 5, 8));
+}
+
+void ErrorBarSeriesDataTest::replacingChangesOneDataPoint()
+{
+    auto fixture = ErrorBarFixture{};
+    auto& bars = fixture.bars;
+    bars.setData(QList<qreal>{1, 2}, QList<qreal>{5, 6}, QList<qreal>{4, 5}, QList<qreal>{6, 7});
+    auto countSpy = QSignalSpy{&bars, &ErrorBarSeries::countChanged};
+    auto revisionSpy = QSignalSpy{&bars, &ErrorBarSeries::dataRevisionChanged};
+
+    bars.replaceData(1, 2, 3, 1, 9);
+
+    QCOMPARE(countSpy.count(), 0);
+    QCOMPARE(revisionSpy.count(), 1);
+    QVERIFY(hasErrorBar(bars.errorBarAt(0), 1, 5, 4, 6));
+    QVERIFY(hasErrorBar(bars.errorBarAt(1), 2, 3, 1, 9));
+    QCOMPARE(bars.yDataRange()->min, 1.0);
+    QCOMPARE(bars.yDataRange()->max, 9.0);
+    QCOMPARE(bars.errorBarIndexAt(fixture.pixel(2, 8.5)), 1);
 }
 
 void ErrorBarSeriesDataTest::dataRangesCoverValuesAndBounds()

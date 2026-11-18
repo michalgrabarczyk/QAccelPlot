@@ -76,7 +76,7 @@ class ErrorBarMaterial;
 /// position, value, and bounds; a \c GrowTransition grows the value and both bounds from its baseline.
 /// \c count, \c errorBarAt(), the data ranges, and inspection use the new data from the start of the
 /// animation, while hover picks the error bars as drawn. While a transition is enabled, the
-/// \c setDataF() overloads store doubles. \c appendData(), \c appendErrorData(), and replacing,
+/// \c setDataF() overloads store doubles. \c appendData(), \c appendErrorData(), \c replaceData(), and replacing,
 /// clearing, or cancelling a transition skip to the new data; \c clearData() runs the exit transition.
 ///
 /// \par Limits
@@ -172,6 +172,10 @@ public:
 
     /// \brief Appends the data point (\a x, \a y, \a low, \a high). Triggers a redraw.
     Q_INVOKABLE void appendData(qreal x, qreal y, qreal low, qreal high);
+    /// \brief Replaces data point \a index with (\a x, \a y, \a low, \a high). Triggers a redraw.
+    ///
+    /// An \a index out of range logs a warning and changes nothing.
+    Q_INVOKABLE void replaceData(int index, qreal x, qreal y, qreal low, qreal high);
     /// \brief Replaces the data points with \a xs, \a ys, \a lows, and \a highs. If the sizes differ, the shortest length is used.
     Q_INVOKABLE void setData(const QList<qreal>& xs, const QList<qreal>& ys, const QList<qreal>& lows, const QList<qreal>& highs);
     /// \brief Replaces the data points with \a xs, \a ys, \a lows, and \a highs. If the sizes differ, the shortest length is used.

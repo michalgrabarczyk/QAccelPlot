@@ -155,6 +155,15 @@ void BandSeries::appendData(const qreal x, const qreal low, const qreal high)
     appendDataPoint(dataPoint.data());
 }
 
+void BandSeries::replaceData(const int index, const qreal x, const qreal low, const qreal high)
+{
+    if (!validateDataPointIndex(index)) {
+        return;
+    }
+    const auto dataPoint = std::array<double, kStride>{x, low, high};
+    replaceDataPoint(index, dataPoint.data());
+}
+
 void BandSeries::setData(const QList<qreal>& xs, const QList<qreal>& lows, const QList<qreal>& highs)
 {
     applyInterleavedData(interleave(xs, lows, highs));
@@ -322,7 +331,7 @@ void BandSeries::onAxisRangeChanged()
 
 void BandSeries::onDataPointsChanged(const DataChange change, [[maybe_unused]] const int previousCount)
 {
-    if (change == DataChange::Replaced) {
+    if (change != DataChange::Appended) {
         updateXAscending();
     }
     refreshHovered();

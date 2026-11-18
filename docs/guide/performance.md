@@ -54,6 +54,8 @@ records the first time something reads the range:
 | A `LineCurve` gradient with a `DataRange` bound | On every data update of that curve |
 
 [`appendData()`][append-data] widens a computed range without a rescan.
+`replaceData()` does too, unless the replaced data point lay on the edge of the
+range.
 
 To skip the scan when the extents are already known, pass them with the data:
 

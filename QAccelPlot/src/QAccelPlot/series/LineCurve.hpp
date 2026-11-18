@@ -149,6 +149,10 @@ public:
 
     /// \brief Appends a single data point (\a x, \a y) to the curve. Triggers a redraw.
     Q_INVOKABLE void appendData(qreal x, qreal y);
+    /// \brief Replaces data point \a index with (\a x, \a y). Triggers a redraw.
+    ///
+    /// An \a index out of range logs a warning and changes nothing.
+    Q_INVOKABLE void replaceData(int index, qreal x, qreal y);
     /// \brief Replaces the curve data with \a data (a list of QPointF values).
     Q_INVOKABLE void setData(const QList<QPointF>& data);
     /// \brief Sets data from separate X and Y vectors. If sizes don't match, the shorter length is used.

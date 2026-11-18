@@ -199,9 +199,7 @@ void DataPointStore::append(const double* coordinates)
 {
     promoteToPrecise();
     const auto columns = columnCount();
-    const auto extendInPlace = renderValid_ && !hasDrawn_ && !skipInvalid_ && !hasAttributes_ && originX_.settled && originY_.settled
-        && renderLogScaleX_ == x_.logScale && renderLogScaleY_ == y_.logScale
-        && renderData_.size() == static_cast<std::size_t>(count_) * static_cast<std::size_t>(columns);
+    const auto extendInPlace = renderDataWritableInPlace();
 
     precise_.insert(precise_.end(), coordinates, coordinates + columns);
     if (hasAttributes_) {
@@ -218,8 +216,26 @@ void DataPointStore::append(const double* coordinates)
         return;
     }
     for (auto column = 0; column < columns; ++column) {
-        const auto dimension = layout_.columns[static_cast<std::size_t>(column)];
-        renderData_.push_back(static_cast<float>(coordinates[column] - originValue(dimension)));
+        renderData_.push_back(renderCoordinate(column, coordinates[column]));
+    }
+    ++renderRevision_;
+}
+
+void DataPointStore::replace(const int index, const double* coordinates)
+{
+    Q_ASSERT(index >= 0 && index < count_);
+    promoteToPrecise();
+    const auto columns = static_cast<std::size_t>(columnCount());
+    const auto first = static_cast<std::size_t>(index) * columns;
+    std::copy_n(coordinates, columns, precise_.begin() + static_cast<std::ptrdiff_t>(first));
+    compacted_.valid = false;
+
+    if (!renderDataWritableInPlace()) {
+        invalidateRender();
+        return;
+    }
+    for (auto column = std::size_t{0}; column < columns; ++column) {
+        renderData_[first + column] = renderCoordinate(static_cast<int>(column), coordinates[column]);
     }
     ++renderRevision_;
 }
@@ -556,6 +572,17 @@ DataPointStore::Origin& DataPointStore::origin(const Dimension dimension) const 
 double DataPointStore::originValue(const Dimension dimension) const noexcept
 {
     return dimension == Dimension::X ? originX_.value : originY_.value;
+}
+
+bool DataPointStore::renderDataWritableInPlace() const noexcept
+{
+    return renderValid_ && !hasDrawn_ && !skipInvalid_ && !hasAttributes_ && originX_.settled && originY_.settled && renderLogScaleX_ == x_.logScale
+        && renderLogScaleY_ == y_.logScale && renderData_.size() == static_cast<std::size_t>(count_) * static_cast<std::size_t>(columnCount());
+}
+
+float DataPointStore::renderCoordinate(const int column, const double value) const noexcept
+{
+    return static_cast<float>(value - originValue(layout_.columns[static_cast<std::size_t>(column)]));
 }
 
 void DataPointStore::storeFloatCoordinates(std::vector<float>&& coordinates, std::vector<float>&& attributes)

@@ -501,6 +501,39 @@ void PlotSeries::appendDataPoint(const double* coordinates)
     notifyDataPointsChanged(DataChange::Appended, previousCount);
 }
 
+bool PlotSeries::validateDataPointIndex(const int index) const
+{
+    const auto count = dataPoints_.count();
+    if (index < 0 || index >= count) {
+        qCWarning(lcQAccelPlot).nospace() << seriesName(*this) << " " << wording_.countName.c_str() << " index " << index << " is out of range for " << count
+                                          << " " << wording_.plural.c_str();
+        return false;
+    }
+    return true;
+}
+
+void PlotSeries::replaceDataPoint(const int index, const double* coordinates)
+{
+    Q_ASSERT(index >= 0 && index < dataPoints_.count());
+    const auto replaced = dataPoints_.extents(logScaleX(), logScaleY(), index, index + 1);
+    const auto rescan = reachesDataRangeEdge(replaced);
+    dataPoints_.replace(index, coordinates);
+    if (rescan) {
+        invalidateDataRanges();
+    } else {
+        const auto extents = dataPoints_.extents(logScaleX(), logScaleY(), index, index + 1);
+        if (extents.x) {
+            extendXDataRange(extents.x->min);
+            extendXDataRange(extents.x->max);
+        }
+        if (extents.y) {
+            extendYDataRange(extents.y->min);
+            extendYDataRange(extents.y->max);
+        }
+    }
+    notifyDataPointsChanged(DataChange::Modified, dataPoints_.count());
+}
+
 void PlotSeries::notifyDataPointsChanged(const DataChange change, const int previousCount)
 {
     if (change == DataChange::Replaced) {
@@ -774,6 +807,17 @@ void PlotSeries::ensureDataRanges() const
     const auto extents = computeDataRanges();
     xDataExtent_ = validExtent(extents.x);
     yDataExtent_ = validExtent(extents.y);
+}
+
+bool PlotSeries::reachesDataRangeEdge(const DataPointStore::Extents& extents) const
+{
+    if (dataRangesStale_) {
+        return false;
+    }
+    const auto reachesEdge = [](const std::optional<DataPointStore::Extent>& extent, const std::optional<DataExtent>& range) {
+        return extent && range && (extent->min <= range->min || extent->max >= range->max);
+    };
+    return reachesEdge(extents.x, xDataExtent_) || reachesEdge(extents.y, yDataExtent_);
 }
 
 void PlotSeries::reportDataRangesChanged() const

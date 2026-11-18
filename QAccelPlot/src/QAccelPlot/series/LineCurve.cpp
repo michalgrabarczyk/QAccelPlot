@@ -358,6 +358,16 @@ void LineCurve::appendData(const qreal x, const qreal y)
     appendDataPoint(point.data());
 }
 
+void LineCurve::replaceData(const int index, const qreal x, const qreal y)
+{
+    if (!validateDataPointIndex(index)) {
+        return;
+    }
+    finishTransition();
+    const auto point = std::array<double, 2>{x, y};
+    replaceDataPoint(index, point.data());
+}
+
 void LineCurve::setData(const QList<QPointF>& data)
 {
     auto newCount = static_cast<int>(data.size());

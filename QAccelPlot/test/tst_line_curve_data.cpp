@@ -41,6 +41,7 @@ private slots:
     void stoppedTransitionBeforeFirstFrame();
     void disablingTransitionMidRunCancelsIt();
     void appendDataCancelsRunningTransition();
+    void replaceDataCancelsRunningTransition();
     void axisScaleChangeDuringTransitionReportsTargetRange();
     void axisAggregatesCurrentSeriesRanges();
     void pointListDataPreservesModernEpochPrecision();
@@ -321,6 +322,23 @@ void LineCurveDataTest::appendDataCancelsRunningTransition()
     curve.appendData(5.0, 6.0);
 
     QVERIFY(!transition.running());
+}
+
+void LineCurveDataTest::replaceDataCancelsRunningTransition()
+{
+    auto curve = LineCurve{};
+    auto transition = DrawTransition{&curve};
+    curve.setEnterTransition(&transition);
+
+    auto first = makeData(2);
+    curve.setDataF(first.data(), 2);
+    QVERIFY(transition.running());
+
+    curve.replaceData(1, 5.0, 6.0);
+
+    QVERIFY(!transition.running());
+    QCOMPARE(curve.count(), 2);
+    QCOMPARE(curve.xDataRange()->max, 5.0);
 }
 
 void LineCurveDataTest::axisScaleChangeDuringTransitionReportsTargetRange()

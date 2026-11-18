@@ -51,6 +51,7 @@ Each data point is `(x, y, low, high)`. `low` and `high` are absolute bounds.
 | `setErrorData(xs, ys, minuses, pluses)` | An error below and one above each value |
 | `setData(xs, ys, lows, highs)` | The bounds |
 | `appendErrorData(x, y, error)`, `appendErrorData(x, y, minus, plus)`, `appendData(x, y, low, high)` | One data point |
+| `replaceData(index, x, y, low, high)` | The bounds of data point `index`, replacing it |
 
 - The value is `y` for vertical and `x` for horizontal error bars.
 - The signs of the errors are ignored.
@@ -137,7 +138,8 @@ values the same transitions, so both move together.
 - `DrawTransition` shows the error bars one after another.
 - `count`, `errorBarAt()`, the data ranges, and inspection use the new data
   from the start of the animation. Hover picks the error bars as drawn.
-- `appendData()` and `appendErrorData()` show the new data at once;
+- `appendData()`, `appendErrorData()`, and `replaceData()` show the new data
+  at once;
   `clearData()` runs the exit transition.
 - While a transition is enabled, the float paths store doubles.
 

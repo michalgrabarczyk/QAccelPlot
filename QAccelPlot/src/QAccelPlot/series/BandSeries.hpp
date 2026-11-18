@@ -73,6 +73,10 @@ public:
 
     /// \brief Appends the data point (\a x, \a low, \a high). Triggers a redraw.
     Q_INVOKABLE void appendData(qreal x, qreal low, qreal high);
+    /// \brief Replaces data point \a index with (\a x, \a low, \a high). Triggers a redraw.
+    ///
+    /// An \a index out of range logs a warning and changes nothing.
+    Q_INVOKABLE void replaceData(int index, qreal x, qreal low, qreal high);
     /// \brief Replaces the data points with \a xs, \a lows, and \a highs. If the sizes differ, the shortest length is used.
     Q_INVOKABLE void setData(const QList<qreal>& xs, const QList<qreal>& lows, const QList<qreal>& highs);
     /// \brief Replaces the data points with \a xs, \a lows, and \a highs. If the sizes differ, the shortest length is used.

@@ -62,6 +62,9 @@ private slots:
     void appendPromotesFloatData();
     void appendExtendsTheRenderDataInPlace();
     void appendRebuildsWhenTheOriginIsUnsettled();
+    void replaceUpdatesTheRenderDataInPlace();
+    void replacePromotesFloatData();
+    void replaceKeepsAttributesAndCategories();
     void floatAttributesAreInterleaved();
     void attributesCanBeReplacedOnFloatData();
     void doubleAttributesFollowTheCoordinatesInRenderData();
@@ -294,6 +297,51 @@ void DataPointStoreTest::appendRebuildsWhenTheOriginIsUnsettled()
     const auto render = renderValues(store);
     QCOMPARE(store.renderOrigin(Dimension::X), kEpochMs);
     QCOMPARE(render[2], 0.0F);
+}
+
+void DataPointStoreTest::replaceUpdatesTheRenderDataInPlace()
+{
+    auto store = xyStore();
+    store.setDimensionState(Dimension::X, linear(kEpochMs, kEpochMs + 10.0));
+    store.setPrecise({kEpochMs, 1.0, kEpochMs + 1.0, 2.0}, 2);
+    const auto* renderBuffer = store.renderData().data();
+    const auto revision = store.renderRevision();
+
+    const auto point = std::array<double, 2>{kEpochMs + 3.0, 5.0};
+    store.replace(1, point.data());
+
+    QVERIFY(store.renderRevision() != revision);
+    QCOMPARE(store.count(), 2);
+    QCOMPARE(store.value(1, 0), kEpochMs + 3.0);
+    QCOMPARE(store.renderData().data(), renderBuffer);
+    QCOMPARE(renderValues(store), (std::vector<float>{0.0F, 0.0F, 3.0F, 4.0F}));
+}
+
+void DataPointStoreTest::replacePromotesFloatData()
+{
+    auto store = xyStore();
+    store.setFloat({1.0F, 2.0F, 3.0F, 4.0F}, 2);
+    const auto point = std::array<double, 2>{kEpochMs, 6.0};
+
+    store.replace(0, point.data());
+
+    QVERIFY(store.isPrecise());
+    QCOMPARE(store.value(0, 0), kEpochMs);
+    QCOMPARE(store.value(1, 1), 4.0);
+}
+
+void DataPointStoreTest::replaceKeepsAttributesAndCategories()
+{
+    auto store = DataPointStore{DataPointStore::Layout{{Dimension::X, Dimension::Y}, RangeRule::WholeDataPoint, 1}};
+    store.setPrecise({1.0, 2.0, 3.0, 4.0}, 2, {10.0F, 20.0F});
+    store.setCategories({0, 1});
+    std::ignore = store.renderData();
+
+    const auto point = std::array<double, 2>{5.0, 6.0};
+    store.replace(1, point.data());
+
+    QCOMPARE(store.categories(), (std::vector<int>{0, 1}));
+    QCOMPARE(renderValues(store), (std::vector<float>{0.0F, 0.0F, 10.0F, 4.0F, 4.0F, 20.0F}));
 }
 
 void DataPointStoreTest::floatAttributesAreInterleaved()

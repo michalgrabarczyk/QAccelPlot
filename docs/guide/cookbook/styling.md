@@ -300,8 +300,8 @@ updateTransition: QAccelPlot.MorphTransition {
 
 Several series can share one transition, and one series can use a transition in
 several slots. While a transition runs, the series' `animating` is `true`.
-Replacing, clearing, or cancelling a transition, or calling `appendData()`,
-shows the new data at once. Data that arrives during an animation continues
+Replacing, clearing, or cancelling a transition, or calling `appendData()` or
+`replaceData()`, shows the new data at once. Data that arrives during an animation continues
 from the items drawn now.
 
 Each animated frame interpolates the data on the CPU: about 4 ms per million

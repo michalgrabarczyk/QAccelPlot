@@ -125,6 +125,11 @@ public:
     ///
     /// The render data grows in place when nothing else it depends on has changed.
     void append(const double* coordinates);
+    /// \brief Replaces the coordinates of data point \a index with \c columnCount() doubles; promotes float data first.
+    ///
+    /// Attributes and categories are kept. The render data is updated in place when nothing else it
+    /// depends on has changed.
+    void replace(int index, const double* coordinates);
     /// \brief Converts float data points to double, so later updates keep their precision. Does nothing for double data.
     void promoteToPrecise();
     /// \brief Removes all data points, attributes, and categories.
@@ -227,6 +232,9 @@ private:
     [[nodiscard]] bool dataPointValid(const View& view, int index) const noexcept;
     [[nodiscard]] Origin& origin(Dimension dimension) const noexcept;
     [[nodiscard]] double originValue(Dimension dimension) const noexcept;
+    // Whether the render data holds every stored data point unchanged, so coordinates can be written into it directly.
+    [[nodiscard]] bool renderDataWritableInPlace() const noexcept;
+    [[nodiscard]] float renderCoordinate(int column, double value) const noexcept;
     void storeFloatCoordinates(std::vector<float>&& coordinates, std::vector<float>&& attributes);
     void dataPointsChanged();
     void invalidateRender();

@@ -100,6 +100,8 @@ private slots:
     void clearingReportedRangeUpdatesAxis();
     void autoRescaleFollowsEachAppendedPoint();
     void autoRescaleFollowsReplacedData();
+    void replacedPointWidensAndShrinksTheRanges();
+    void replacedPointOnTheRangeEdgeRescans();
     void autoRescaleKeepsViewportWhenLastSeriesClears();
     void autoRescaleFitsRemainingSeriesWhenOneClears();
 };
@@ -443,6 +445,47 @@ void PlotSeriesDataRangesTest::autoRescaleFollowsReplacedData()
     QCOMPARE(yAxis.viewportMax(), 4.0);
     QCOMPARE(xAxis.viewportMin(), 0.0);
     QCOMPARE(xAxis.viewportMax(), 1.0);
+}
+
+void PlotSeriesDataRangesTest::replacedPointWidensAndShrinksTheRanges()
+{
+    auto xAxis = Axis{};
+    auto yAxis = Axis{};
+    yAxis.setAutoRescale(true);
+    auto curve = LineCurve{};
+    curve.setXAxis(&xAxis);
+    curve.setYAxis(&yAxis);
+    curve.setData(std::vector<double>{0.0, 1.0, 2.0}, std::vector<double>{-8.0, 0.0, 8.0});
+    QCOMPARE(yAxis.viewportMax(), 8.0);
+
+    curve.replaceData(1, 1.0, 12.0);
+    QCOMPARE(yAxis.viewportMin(), -8.0);
+    QCOMPARE(yAxis.viewportMax(), 12.0);
+
+    curve.replaceData(1, 1.0, 0.0);
+    QCOMPARE(yAxis.viewportMax(), 8.0);
+}
+
+void PlotSeriesDataRangesTest::replacedPointOnTheRangeEdgeRescans()
+{
+    auto xAxis = Axis{};
+    auto yAxis = Axis{};
+    xAxis.setAutoRescale(true);
+    yAxis.setAutoRescale(true);
+    auto curve = LineCurve{};
+    curve.setXAxis(&xAxis);
+    curve.setYAxis(&yAxis);
+    curve.setData(std::vector<double>{0.0, 1.0, 2.0}, std::vector<double>{-8.0, 0.0, 8.0});
+
+    curve.replaceData(2, 1.5, 3.0);
+    QCOMPARE(xAxis.viewportMax(), 1.5);
+    QCOMPARE(yAxis.viewportMin(), -8.0);
+    QCOMPARE(yAxis.viewportMax(), 3.0);
+
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("LineCurve .* index 3 is out of range for 3 .*"));
+    curve.replaceData(3, 5.0, 5.0);
+    QCOMPARE(curve.count(), 3);
+    QCOMPARE(xAxis.viewportMax(), 1.5);
 }
 
 void PlotSeriesDataRangesTest::autoRescaleKeepsViewportWhenLastSeriesClears()
