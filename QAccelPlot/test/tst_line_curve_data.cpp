@@ -51,6 +51,7 @@ private slots:
     void hoverEnterAndLeaveToggleHovered();
     void lineAndMarkerCurveContainsLineAndMarkers();
     void hoverRadiusLimitsLineHitTest();
+    void replacedDataPointMovesTheHitTest();
     void hitTestFollowsDataUpdates_data();
     void hitTestFollowsDataUpdates();
     void reassignedEffectsSurviveListClear();
@@ -526,6 +527,26 @@ void LineCurveDataTest::hoverRadiusLimitsLineHitTest()
 
     curve.marker()->setShape(MarkerShape::Circle);
     QVERIFY(item.contains({10, 50}));
+    QVERIFY(!item.contains({50, 50}));
+}
+
+void LineCurveDataTest::replacedDataPointMovesTheHitTest()
+{
+    auto xAxis = Axis{};
+    xAxis.setOrientation(Qt::Horizontal);
+    auto yAxis = Axis{};
+    yAxis.setOrientation(Qt::Vertical);
+    auto curve = LineCurve{};
+    curve.setXAxis(&xAxis);
+    curve.setYAxis(&yAxis);
+    curve.setPlotRect({0, 0, 100, 100});
+    curve.setData(QList<QPointF>{{0.1, 0.5}, {0.9, 0.5}});
+    const auto& item = static_cast<const QQuickItem&>(curve);
+    QVERIFY(item.contains({50, 50}));
+
+    curve.replaceData(1, 0.9, 0.1);
+
+    QVERIFY(item.contains({50, 70}));
     QVERIFY(!item.contains({50, 50}));
 }
 

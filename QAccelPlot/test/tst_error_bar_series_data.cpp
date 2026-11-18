@@ -171,15 +171,19 @@ void ErrorBarSeriesDataTest::replacingChangesOneDataPoint()
     auto countSpy = QSignalSpy{&bars, &ErrorBarSeries::countChanged};
     auto revisionSpy = QSignalSpy{&bars, &ErrorBarSeries::dataRevisionChanged};
 
-    bars.replaceData(1, 2, 3, 1, 9);
+    QCOMPARE(bars.errorBarIndexAt(fixture.pixel(2, 6.5)), 1);
+
+    bars.replaceData(1, 4, 3, 1, 9);
 
     QCOMPARE(countSpy.count(), 0);
     QCOMPARE(revisionSpy.count(), 1);
     QVERIFY(hasErrorBar(bars.errorBarAt(0), 1, 5, 4, 6));
-    QVERIFY(hasErrorBar(bars.errorBarAt(1), 2, 3, 1, 9));
+    QVERIFY(hasErrorBar(bars.errorBarAt(1), 4, 3, 1, 9));
+    QCOMPARE(bars.xDataRange()->max, 4.0);
     QCOMPARE(bars.yDataRange()->min, 1.0);
     QCOMPARE(bars.yDataRange()->max, 9.0);
-    QCOMPARE(bars.errorBarIndexAt(fixture.pixel(2, 8.5)), 1);
+    QCOMPARE(bars.errorBarIndexAt(fixture.pixel(4, 8.5)), 1);
+    QCOMPARE(bars.errorBarIndexAt(fixture.pixel(2, 6.5)), -1);
 }
 
 void ErrorBarSeriesDataTest::dataRangesCoverValuesAndBounds()
