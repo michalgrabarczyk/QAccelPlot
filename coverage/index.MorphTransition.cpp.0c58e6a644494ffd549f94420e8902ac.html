@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2026-11-16 14:40:01</td>
+      <td>2026-11-18 14:11:08</td>
     </tr>
   </table>
 </div>
@@ -70,8 +70,8 @@
       <th>Call count</th>
       <th>Block coverage</th>
     </tr>
-    <tr><td><a href="#l11">QAccelPlot::MorphTransition::MorphTransition(QObject*) (line 11)</a></td><td>called 113 times</td><td>100.0%</td></tr>
-    <tr><td><a href="#l16">QAccelPlot::MorphTransition::interpolateCoordinate(double, double, double) (line 16)</a></td><td>called 1000 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l11">QAccelPlot::MorphTransition::MorphTransition(QObject*) (line 11)</a></td><td>called 114 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l16">QAccelPlot::MorphTransition::interpolateCoordinate(double, double, double) (line 16)</a></td><td>called 1024 times</td><td>100.0%</td></tr>
   </table>
 </details>
 
@@ -159,14 +159,14 @@
       <td class="lineno"><a id="l11" href="#l11">11</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">113</td>
+      <td class="linecount coveredLine">114</td>
       <td class="src coveredLine"><span class="n">MorphTransition</span><span class="o">::</span><span class="n">MorphTransition</span><span class="p">(</span><span class="n">QObject</span><span class="o">*</span><span class="w"> </span><span class="n">parent</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l12" href="#l12">12</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">113</td>
+      <td class="linecount coveredLine">114</td>
       <td class="src coveredLine"><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">DataTransition</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
@@ -180,7 +180,7 @@
       <td class="lineno"><a id="l14" href="#l14">14</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">113</td>
+      <td class="linecount coveredLine">114</td>
       <td class="src coveredLine"><span class="p">}</span></td>
     </tr>
     <tr class="source-line">
@@ -194,7 +194,7 @@
       <td class="lineno"><a id="l16" href="#l16">16</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1000</td>
+      <td class="linecount coveredLine">1024</td>
       <td class="src coveredLine"><span class="kt">double</span><span class="w"> </span><span class="nf">MorphTransition::interpolateCoordinate</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">from</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">to</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">easedProgress</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
@@ -224,16 +224,16 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">6/6</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 1 taken 997 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 1021 times.</div>
             <div class="takenBranch">&check; Branch 2 taken 3 times.</div>
             <div class="takenBranch">&check; Branch 4 taken 12 times.</div>
-            <div class="takenBranch">&check; Branch 5 taken 985 times.</div>
+            <div class="takenBranch">&check; Branch 5 taken 1009 times.</div>
             <div class="takenBranch">&check; Branch 6 taken 15 times.</div>
-            <div class="takenBranch">&check; Branch 7 taken 985 times.</div>
+            <div class="takenBranch">&check; Branch 7 taken 1009 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount coveredLine">1000</td>
+      <td class="linecount coveredLine">1024</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">std</span><span class="o">::</span><span class="n">isfinite</span><span class="p">(</span><span class="n">to</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="n">std</span><span class="o">::</span><span class="n">isfinite</span><span class="p">(</span><span class="n">from</span><span class="p">))</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
@@ -254,7 +254,7 @@
       <td class="lineno"><a id="l23" href="#l23">23</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">985</td>
+      <td class="linecount coveredLine">1009</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">easedProgress</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">to</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">from</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
