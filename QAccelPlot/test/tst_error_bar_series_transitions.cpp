@@ -111,6 +111,7 @@ private slots:
     void interruptedTransitionShowsTargetData_data();
     void interruptedTransitionShowsTargetData();
     void appendingSkipsTheAnimation();
+    void replacingSkipsTheAnimation();
     void clearDataRunsTheExitTransition();
     void clearDataSkipsTheAnimation();
     void transitionPropertyNotifies();
@@ -353,6 +354,22 @@ void ErrorBarSeriesTransitionsTest::appendingSkipsTheAnimation()
     QCOMPARE(bars_->count(), 2);
     QVERIFY(!morph.running());
     QTRY_VERIFY(shows({{8.0, 5.0, Qt::red}, {3.0, 5.0, Qt::red}, {5.0, 5.0, Qt::black}}));
+    bars_->setUpdateTransition(nullptr);
+}
+
+void ErrorBarSeriesTransitionsTest::replacingSkipsTheAnimation()
+{
+    auto morph = HeldHalfway<MorphTransition>{};
+    bars_->setData(errorBarsAt({2.0}), 1);
+    bars_->setUpdateTransition(&morph);
+    bars_->setData(errorBarsAt({8.0}), 1);
+    QTRY_VERIFY(shows({{5.0, 5.0, Qt::red}}));
+
+    bars_->replaceData(0, 3.0, 5.0, 4.0, 6.0);
+
+    QCOMPARE(bars_->count(), 1);
+    QVERIFY(!morph.running());
+    QTRY_VERIFY(shows({{3.0, 5.0, Qt::red}, {5.0, 5.0, Qt::black}, {8.0, 5.0, Qt::black}}));
     bars_->setUpdateTransition(nullptr);
 }
 

@@ -91,7 +91,8 @@ For float buffers, worker-thread handoff, and data bounds, see
   viewport, so epoch timestamps stay precise. `setDataF()` stores floats.
 - `postData()` hands a buffer over from any thread without copying it.
 - `setData(xs, lows, highs)` takes three separate arrays, from QML or C++.
-- `appendData(x, low, high)` adds one data point.
+- `appendData(x, low, high)` adds one data point, and
+  `replaceData(index, x, low, high)` replaces one.
 
 ## Invalid data points
 

@@ -501,6 +501,38 @@ void PlotSeries::appendDataPoint(const double* coordinates)
     notifyDataPointsChanged(DataChange::Appended, previousCount);
 }
 
+bool PlotSeries::validateDataPointIndex(const int index) const
+{
+    const auto count = dataPoints_.count();
+    if (index < 0 || index >= count) {
+        qCWarning(lcQAccelPlot).nospace() << seriesName(*this) << " " << wording_.countName.c_str() << " index " << index << " is out of range for " << count
+                                          << " " << wording_.plural.c_str();
+        return false;
+    }
+    return true;
+}
+
+void PlotSeries::replaceDataPoint(const int index, const double* coordinates)
+{
+    Q_ASSERT(index >= 0 && index < dataPoints_.count());
+    const auto previous = dataPoints_.extents(logScaleX(), logScaleY(), index, index + 1);
+    dataPoints_.replace(index, coordinates);
+    const auto replaced = dataPoints_.extents(logScaleX(), logScaleY(), index, index + 1);
+    if (replacementMayShrinkDataRanges(previous, replaced)) {
+        invalidateDataRanges();
+    } else {
+        if (replaced.x) {
+            extendXDataRange(replaced.x->min);
+            extendXDataRange(replaced.x->max);
+        }
+        if (replaced.y) {
+            extendYDataRange(replaced.y->min);
+            extendYDataRange(replaced.y->max);
+        }
+    }
+    notifyDataPointsChanged(DataChange::Modified, dataPoints_.count());
+}
+
 void PlotSeries::notifyDataPointsChanged(const DataChange change, const int previousCount)
 {
     if (change == DataChange::Replaced) {
@@ -774,6 +806,24 @@ void PlotSeries::ensureDataRanges() const
     const auto extents = computeDataRanges();
     xDataExtent_ = validExtent(extents.x);
     yDataExtent_ = validExtent(extents.y);
+}
+
+bool PlotSeries::replacementMayShrinkDataRanges(const DataPointStore::Extents& previous, const DataPointStore::Extents& replaced) const
+{
+    if (dataRangesStale_) {
+        return false;
+    }
+    // An edge the previous data point reached can only move inward when the replacement no longer reaches it.
+    const auto leavesEdge
+        = [](const std::optional<DataPointStore::Extent>& before, const std::optional<DataPointStore::Extent>& after, const std::optional<DataExtent>& range) {
+              if (!before || !range) {
+                  return false;
+              }
+              const auto leavesMin = before->min <= range->min && (!after || after->min > range->min);
+              const auto leavesMax = before->max >= range->max && (!after || after->max < range->max);
+              return leavesMin || leavesMax;
+          };
+    return leavesEdge(previous.x, replaced.x, xDataExtent_) || leavesEdge(previous.y, replaced.y, yDataExtent_);
 }
 
 void PlotSeries::reportDataRangesChanged() const

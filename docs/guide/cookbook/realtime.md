@@ -78,7 +78,11 @@ yAxis: QAccelPlot.Axis {
   `autoRescale` to `false` while the user navigates.
 - Appending only extends the data range. Replace the buffer with
   [`setDataF()`][set-data-f] to let the range shrink.
-- Each update scans the data for its range, unless it appends or passes
+- `replaceData(index, …)` changes one data point, such as a live sample that
+  is still being updated. The range can shrink only when that data point
+  moves away from its edge.
+- Each update scans the data for its range, unless it appends, replaces a
+  data point without moving it away from the edge of the range, or passes
   bounds.
 - When the last series on the axis is cleared, the viewport is kept.
 

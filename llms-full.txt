@@ -545,6 +545,8 @@ records the first time something reads the range:
 | A `LineCurve` gradient with a `DataRange` bound | On every data update of that curve |
 
 [`appendData()`][append-data] widens a computed range without a rescan.
+`replaceData()` does too, unless the replaced data point moves away from an edge
+of the range.
 
 To skip the scan when the extents are already known, pass them with the data:
 
@@ -989,7 +991,11 @@ yAxis: QAccelPlot.Axis {
   `autoRescale` to `false` while the user navigates.
 - Appending only extends the data range. Replace the buffer with
   [`setDataF()`][set-data-f] to let the range shrink.
-- Each update scans the data for its range, unless it appends or passes
+- `replaceData(index, …)` changes one data point, such as a live sample that
+  is still being updated. The range can shrink only when that data point
+  moves away from its edge.
+- Each update scans the data for its range, unless it appends, replaces a
+  data point without moving it away from the edge of the range, or passes
   bounds.
 - When the last series on the axis is cleared, the viewport is kept.
 
@@ -1507,9 +1513,9 @@ updateTransition: QAccelPlot.MorphTransition {
 
 Several series can share one transition, and one series can use a transition in
 several slots. While a transition runs, the series' `animating` is `true`.
-Replacing, clearing, or cancelling a transition, or calling `appendData()`,
-shows the new data at once. Data that arrives during an animation continues
-from the items drawn now.
+Replacing, clearing, or cancelling a transition, or calling `appendData()` or
+`replaceData()`, shows the new data at once. Data that arrives during an
+animation continues from the items drawn now.
 
 Each animated frame interpolates the data on the CPU: about 4 ms per million
 points, 6 ms with a stagger. Disable transitions for continuous high-rate
@@ -2798,7 +2804,8 @@ For float buffers, worker-thread handoff, and data bounds, see
   viewport, so epoch timestamps stay precise. `setDataF()` stores floats.
 - `postData()` hands a buffer over from any thread without copying it.
 - `setData(xs, lows, highs)` takes three separate arrays, from QML or C++.
-- `appendData(x, low, high)` adds one data point.
+- `appendData(x, low, high)` adds one data point, and
+  `replaceData(index, x, low, high)` replaces one.
 
 ## Invalid data points
 

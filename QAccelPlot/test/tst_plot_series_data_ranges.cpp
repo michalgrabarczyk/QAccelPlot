@@ -54,6 +54,19 @@ protected:
     }
 };
 
+// A line curve that counts the scans of its data points.
+class ScanCountingCurve final : public LineCurve {
+public:
+    mutable int scanCount{0};
+
+protected:
+    DataRanges computeDataRanges() const override
+    {
+        ++scanCount;
+        return LineCurve::computeDataRanges();
+    }
+};
+
 struct AppRangeAxes {
     Axis x;
     Axis y;
@@ -100,6 +113,11 @@ private slots:
     void clearingReportedRangeUpdatesAxis();
     void autoRescaleFollowsEachAppendedPoint();
     void autoRescaleFollowsReplacedData();
+    void replacedPointWidensAndShrinksTheRanges();
+    void replacedPointOnTheRangeEdgeRescans();
+    void replacedPointThatKeepsTheEdgeSkipsTheRescan();
+    void replacedPointWithInvalidCoordinates();
+    void replacingBeforeTheRangesAreReadScansOnce();
     void autoRescaleKeepsViewportWhenLastSeriesClears();
     void autoRescaleFitsRemainingSeriesWhenOneClears();
 };
@@ -443,6 +461,117 @@ void PlotSeriesDataRangesTest::autoRescaleFollowsReplacedData()
     QCOMPARE(yAxis.viewportMax(), 4.0);
     QCOMPARE(xAxis.viewportMin(), 0.0);
     QCOMPARE(xAxis.viewportMax(), 1.0);
+}
+
+void PlotSeriesDataRangesTest::replacedPointWidensAndShrinksTheRanges()
+{
+    auto xAxis = Axis{};
+    auto yAxis = Axis{};
+    yAxis.setAutoRescale(true);
+    auto curve = LineCurve{};
+    curve.setXAxis(&xAxis);
+    curve.setYAxis(&yAxis);
+    curve.setData(std::vector<double>{0.0, 1.0, 2.0}, std::vector<double>{-8.0, 0.0, 8.0});
+    QCOMPARE(yAxis.viewportMax(), 8.0);
+
+    curve.replaceData(1, 1.0, 12.0);
+    QCOMPARE(yAxis.viewportMin(), -8.0);
+    QCOMPARE(yAxis.viewportMax(), 12.0);
+
+    curve.replaceData(1, 1.0, 0.0);
+    QCOMPARE(yAxis.viewportMax(), 8.0);
+}
+
+void PlotSeriesDataRangesTest::replacedPointOnTheRangeEdgeRescans()
+{
+    auto xAxis = Axis{};
+    auto yAxis = Axis{};
+    xAxis.setAutoRescale(true);
+    yAxis.setAutoRescale(true);
+    auto curve = LineCurve{};
+    curve.setXAxis(&xAxis);
+    curve.setYAxis(&yAxis);
+    curve.setData(std::vector<double>{0.0, 1.0, 2.0}, std::vector<double>{-8.0, 0.0, 8.0});
+
+    curve.replaceData(2, 1.5, 3.0);
+    QCOMPARE(xAxis.viewportMax(), 1.5);
+    QCOMPARE(yAxis.viewportMin(), -8.0);
+    QCOMPARE(yAxis.viewportMax(), 3.0);
+
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("LineCurve .* index 3 is out of range for 3 .*"));
+    curve.replaceData(3, 5.0, 5.0);
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("LineCurve .* index -1 is out of range for 3 .*"));
+    curve.replaceData(-1, 5.0, 5.0);
+    QCOMPARE(curve.count(), 3);
+    QCOMPARE(xAxis.viewportMax(), 1.5);
+}
+
+void PlotSeriesDataRangesTest::replacedPointThatKeepsTheEdgeSkipsTheRescan()
+{
+    auto xAxis = Axis{};
+    auto yAxis = Axis{};
+    auto curve = ScanCountingCurve{};
+    curve.setXAxis(&xAxis);
+    curve.setYAxis(&yAxis);
+    curve.setData(std::vector<double>{0.0, 1.0, 2.0}, std::vector<double>{-8.0, 0.0, 8.0});
+    QVERIFY(curve.xDataRange());
+    const auto scans = curve.scanCount;
+
+    // The latest sample keeps the X edge and moves past the Y edge.
+    curve.replaceData(2, 2.0, 10.0);
+    curve.replaceData(0, 0.0, -9.0);
+    QCOMPARE(curve.xDataRange()->max, 2.0);
+    QCOMPARE(curve.yDataRange()->min, -9.0);
+    QCOMPARE(curve.yDataRange()->max, 10.0);
+    QCOMPARE(curve.scanCount, scans);
+
+    curve.replaceData(2, 2.0, 9.0);
+    QCOMPARE(curve.yDataRange()->max, 9.0);
+    QCOMPARE(curve.scanCount, scans + 1);
+}
+
+void PlotSeriesDataRangesTest::replacedPointWithInvalidCoordinates()
+{
+    auto xAxis = Axis{};
+    auto yAxis = Axis{};
+    auto curve = ScanCountingCurve{};
+    curve.setXAxis(&xAxis);
+    curve.setYAxis(&yAxis);
+    curve.setData(std::vector<double>{0.0, 1.0, 2.0}, std::vector<double>{-8.0, 0.0, 8.0});
+    QVERIFY(curve.xDataRange());
+    auto scans = curve.scanCount;
+
+    // A NaN coordinate leaves the Y edge; the X edge is kept.
+    curve.replaceData(2, 2.0, std::numeric_limits<double>::quiet_NaN());
+    QCOMPARE(curve.xDataRange()->max, 2.0);
+    QCOMPARE(curve.yDataRange()->max, 0.0);
+    QCOMPARE(curve.scanCount, scans + 1);
+
+    // A coordinate invalid on a log scale reaches no edge.
+    yAxis.setLogScale(true);
+    curve.setData(std::vector<double>{0.0, 1.0, 2.0}, std::vector<double>{-1.0, 10.0, 100.0});
+    QCOMPARE(curve.yDataRange()->min, 10.0);
+    scans = curve.scanCount;
+    curve.replaceData(0, 0.0, 50.0);
+    QCOMPARE(curve.yDataRange()->min, 10.0);
+    QCOMPARE(curve.scanCount, scans);
+}
+
+void PlotSeriesDataRangesTest::replacingBeforeTheRangesAreReadScansOnce()
+{
+    auto xAxis = Axis{};
+    auto yAxis = Axis{};
+    auto curve = ScanCountingCurve{};
+    curve.setXAxis(&xAxis);
+    curve.setYAxis(&yAxis);
+    curve.setData(std::vector<double>{0.0, 1.0, 2.0}, std::vector<double>{-8.0, 0.0, 8.0});
+    const auto scans = curve.scanCount;
+
+    curve.replaceData(2, 1.5, 3.0);
+
+    QCOMPARE(curve.xDataRange()->max, 1.5);
+    QCOMPARE(curve.yDataRange()->max, 3.0);
+    QCOMPARE(curve.scanCount, scans + 1);
 }
 
 void PlotSeriesDataRangesTest::autoRescaleKeepsViewportWhenLastSeriesClears()

@@ -286,6 +286,7 @@ protected:
     enum class DataChange {
         Replaced, ///< \brief Any record may have changed.
         Appended, ///< \brief One record was added at the end; all others are unchanged.
+        Modified, ///< \brief One record changed in place; the count and all other records are unchanged.
     };
 
     /// \brief Returns the data points of the series.
@@ -304,6 +305,13 @@ protected:
     bool validateDataSize(std::size_t valueCount, int count, bool floatData, int valuesPerDataPoint = 0) const;
     /// \brief Appends one double data point and widens the data ranges by its valid coordinates.
     void appendDataPoint(const double* coordinates);
+    /// \brief Returns whether \a index is the index of a stored data point; warns otherwise.
+    bool validateDataPointIndex(int index) const;
+    /// \brief Replaces stored data point \a index with the double \a coordinates.
+    ///
+    /// The data ranges widen in O(1). They are marked for a rescan only when the replaced data point
+    /// reached an edge of them that the new one no longer reaches.
+    void replaceDataPoint(int index, const double* coordinates);
     /// \brief Finishes a change of the data points: data ranges, \c onDataPointsChanged(), \c countChanged(), data queries, and a repaint.
     void notifyDataPointsChanged(DataChange change, int previousCount);
     /// \brief Called after the data points changed, before the data queries are refreshed. The default does nothing.
@@ -414,6 +422,8 @@ private:
     // Returns whether the scale of a dimension changed.
     bool syncDataPointDimensions();
     void ensureDataRanges() const;
+    // Returns whether replacing a data point of extents \a previous with one of extents \a replaced could shrink the data ranges.
+    bool replacementMayShrinkDataRanges(const DataPointStore::Extents& previous, const DataPointStore::Extents& replaced) const;
     void reportDataRangesChanged() const;
     void deliverTopmostHover(QHoverEvent* event);
     bool coveredBySeriesAbove(const QPointF& position) const;

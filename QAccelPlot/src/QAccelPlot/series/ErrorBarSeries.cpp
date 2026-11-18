@@ -311,6 +311,16 @@ void ErrorBarSeries::appendData(const qreal x, const qreal y, const qreal low, c
     appendDataPoint(dataPoint.data());
 }
 
+void ErrorBarSeries::replaceData(const int index, const qreal x, const qreal y, const qreal low, const qreal high)
+{
+    if (!validateDataPointIndex(index)) {
+        return;
+    }
+    endTransition();
+    const auto dataPoint = std::array<double, kStride>{x, y, low, high};
+    replaceDataPoint(index, dataPoint.data());
+}
+
 void ErrorBarSeries::setData(const QList<qreal>& xs, const QList<qreal>& ys, const QList<qreal>& lows, const QList<qreal>& highs)
 {
     applyInterleavedData(interleave(xs, ys, lows, highs));

@@ -114,6 +114,7 @@ private slots:
     void coincidentPoints();
     void zeroRadiusMapping();
     void appendedRecords();
+    void replacedRecords();
     void orderedAlongY();
     void queriesAcrossTheOrder();
     void nativeRecords();
@@ -507,6 +508,27 @@ void TestSeriesInspection::appendedRecords()
     QCOMPARE(inspection->summarizeRange(0, 1).status, InspectionStatus::Preparing);
     QTRY_COMPARE(inspection->status(), InspectionStatus::Ready);
     QCOMPARE(inspection->summarizeRange(0, 1).count, 3);
+}
+
+void TestSeriesInspection::replacedRecords()
+{
+    auto curve = LineCurve{};
+    auto x = Axis{};
+    auto y = Axis{};
+    bind(curve, x, y, {QPointF{0, -10}, QPointF{10, 10}}, {1000, 200});
+    curve.setData(std::vector<double>{1, 0, 2, 0, 3, 0, 4, 0}, 4);
+    auto* inspection = curve.inspection();
+    const auto pixelX = [&](const double value) { return x.coordToPixel(value, 1000); };
+
+    curve.replaceData(1, 2.5, 1);
+    QCOMPARE(inspection->status(), InspectionStatus::Ready);
+    QCOMPARE(inspection->nearestByX(pixelX(2.4)).index, 1);
+
+    // A replacement that breaks the X order is not searched in place anymore.
+    curve.replaceData(2, 8, 5);
+    QCOMPARE(inspection->nearestByX(pixelX(3.9)).index, 3);
+    QCOMPARE(inspection->nearestByX(pixelX(7.9)).index, 2);
+    QCOMPARE(inspection->summarizeRange(-kInfinity, kInfinity).maximum, 5.0);
 }
 
 void TestSeriesInspection::orderedAlongY()
