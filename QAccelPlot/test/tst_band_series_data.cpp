@@ -245,6 +245,24 @@ void BandSeriesDataTest::appendDataExtendsSamplesAndRanges()
     QVERIFY(hasSpan(band.valueAt(0.5), 0.0, 2.5));
 }
 
+void BandSeriesDataTest::appendToFloatDataKeepsSamples()
+{
+    auto band = BandSeries{};
+    band.setDataF(std::vector<float>{0.0f, 1.0f, 2.0f}, 1);
+    band.appendData(2.0, 3.0, 4.0);
+
+    QCOMPARE(band.count(), 2);
+    QVERIFY(hasSpan(band.valueAt(1.0), 2.0, 3.0));
+
+    // After clearing float data, appending starts from the new sample only.
+    band.setDataF(std::vector<float>{5.0f, 6.0f, 7.0f}, 1);
+    band.clearData();
+    band.appendData(10.0, 0.0, 1.0);
+    QCOMPARE(band.count(), 1);
+    QVERIFY(hasSpan(band.valueAt(10.0), 0.0, 1.0));
+    QVERIFY(band.valueAt(5.0).isEmpty());
+}
+
 void BandSeriesDataTest::replaceDataChangesOneSample()
 {
     auto xAxis = Axis{};
@@ -265,24 +283,6 @@ void BandSeriesDataTest::replaceDataChangesOneSample()
     QVERIFY(band.valueAt(0.5).isEmpty());
     band.replaceData(1, 1.0, 0.0, 1.0);
     QVERIFY(hasSpan(band.valueAt(0.5), 0.0, 1.0));
-}
-
-void BandSeriesDataTest::appendToFloatDataKeepsSamples()
-{
-    auto band = BandSeries{};
-    band.setDataF(std::vector<float>{0.0f, 1.0f, 2.0f}, 1);
-    band.appendData(2.0, 3.0, 4.0);
-
-    QCOMPARE(band.count(), 2);
-    QVERIFY(hasSpan(band.valueAt(1.0), 2.0, 3.0));
-
-    // After clearing float data, appending starts from the new sample only.
-    band.setDataF(std::vector<float>{5.0f, 6.0f, 7.0f}, 1);
-    band.clearData();
-    band.appendData(10.0, 0.0, 1.0);
-    QCOMPARE(band.count(), 1);
-    QVERIFY(hasSpan(band.valueAt(10.0), 0.0, 1.0));
-    QVERIFY(band.valueAt(5.0).isEmpty());
 }
 
 void BandSeriesDataTest::clearDataRemovesSamples()
