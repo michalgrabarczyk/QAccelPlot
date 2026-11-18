@@ -515,20 +515,19 @@ bool PlotSeries::validateDataPointIndex(const int index) const
 void PlotSeries::replaceDataPoint(const int index, const double* coordinates)
 {
     Q_ASSERT(index >= 0 && index < dataPoints_.count());
-    const auto replaced = dataPoints_.extents(logScaleX(), logScaleY(), index, index + 1);
-    const auto rescan = reachesDataRangeEdge(replaced);
+    const auto previous = dataPoints_.extents(logScaleX(), logScaleY(), index, index + 1);
     dataPoints_.replace(index, coordinates);
-    if (rescan) {
+    const auto replaced = dataPoints_.extents(logScaleX(), logScaleY(), index, index + 1);
+    if (replacementMayShrinkDataRanges(previous, replaced)) {
         invalidateDataRanges();
     } else {
-        const auto extents = dataPoints_.extents(logScaleX(), logScaleY(), index, index + 1);
-        if (extents.x) {
-            extendXDataRange(extents.x->min);
-            extendXDataRange(extents.x->max);
+        if (replaced.x) {
+            extendXDataRange(replaced.x->min);
+            extendXDataRange(replaced.x->max);
         }
-        if (extents.y) {
-            extendYDataRange(extents.y->min);
-            extendYDataRange(extents.y->max);
+        if (replaced.y) {
+            extendYDataRange(replaced.y->min);
+            extendYDataRange(replaced.y->max);
         }
     }
     notifyDataPointsChanged(DataChange::Modified, dataPoints_.count());
@@ -809,15 +808,22 @@ void PlotSeries::ensureDataRanges() const
     yDataExtent_ = validExtent(extents.y);
 }
 
-bool PlotSeries::reachesDataRangeEdge(const DataPointStore::Extents& extents) const
+bool PlotSeries::replacementMayShrinkDataRanges(const DataPointStore::Extents& previous, const DataPointStore::Extents& replaced) const
 {
     if (dataRangesStale_) {
         return false;
     }
-    const auto reachesEdge = [](const std::optional<DataPointStore::Extent>& extent, const std::optional<DataExtent>& range) {
-        return extent && range && (extent->min <= range->min || extent->max >= range->max);
-    };
-    return reachesEdge(extents.x, xDataExtent_) || reachesEdge(extents.y, yDataExtent_);
+    // An edge the previous data point reached can only move inward when the replacement no longer reaches it.
+    const auto leavesEdge
+        = [](const std::optional<DataPointStore::Extent>& before, const std::optional<DataPointStore::Extent>& after, const std::optional<DataExtent>& range) {
+              if (!before || !range) {
+                  return false;
+              }
+              const auto leavesMin = before->min <= range->min && (!after || after->min > range->min);
+              const auto leavesMax = before->max >= range->max && (!after || after->max < range->max);
+              return leavesMin || leavesMax;
+          };
+    return leavesEdge(previous.x, replaced.x, xDataExtent_) || leavesEdge(previous.y, replaced.y, yDataExtent_);
 }
 
 void PlotSeries::reportDataRangesChanged() const

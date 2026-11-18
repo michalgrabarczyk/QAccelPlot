@@ -54,6 +54,19 @@ protected:
     }
 };
 
+// A line curve that counts the scans of its data points.
+class ScanCountingCurve final : public LineCurve {
+public:
+    mutable int scanCount{0};
+
+protected:
+    DataRanges computeDataRanges() const override
+    {
+        ++scanCount;
+        return LineCurve::computeDataRanges();
+    }
+};
+
 struct AppRangeAxes {
     Axis x;
     Axis y;
@@ -102,6 +115,7 @@ private slots:
     void autoRescaleFollowsReplacedData();
     void replacedPointWidensAndShrinksTheRanges();
     void replacedPointOnTheRangeEdgeRescans();
+    void replacedPointThatKeepsTheEdgeSkipsTheRescan();
     void autoRescaleKeepsViewportWhenLastSeriesClears();
     void autoRescaleFitsRemainingSeriesWhenOneClears();
 };
@@ -486,6 +500,30 @@ void PlotSeriesDataRangesTest::replacedPointOnTheRangeEdgeRescans()
     curve.replaceData(3, 5.0, 5.0);
     QCOMPARE(curve.count(), 3);
     QCOMPARE(xAxis.viewportMax(), 1.5);
+}
+
+void PlotSeriesDataRangesTest::replacedPointThatKeepsTheEdgeSkipsTheRescan()
+{
+    auto xAxis = Axis{};
+    auto yAxis = Axis{};
+    auto curve = ScanCountingCurve{};
+    curve.setXAxis(&xAxis);
+    curve.setYAxis(&yAxis);
+    curve.setData(std::vector<double>{0.0, 1.0, 2.0}, std::vector<double>{-8.0, 0.0, 8.0});
+    QVERIFY(curve.xDataRange());
+    const auto scans = curve.scanCount;
+
+    // The latest sample keeps the X edge and moves past the Y edge.
+    curve.replaceData(2, 2.0, 10.0);
+    curve.replaceData(0, 0.0, -9.0);
+    QCOMPARE(curve.xDataRange()->max, 2.0);
+    QCOMPARE(curve.yDataRange()->min, -9.0);
+    QCOMPARE(curve.yDataRange()->max, 10.0);
+    QCOMPARE(curve.scanCount, scans);
+
+    curve.replaceData(2, 2.0, 9.0);
+    QCOMPARE(curve.yDataRange()->max, 9.0);
+    QCOMPARE(curve.scanCount, scans + 1);
 }
 
 void PlotSeriesDataRangesTest::autoRescaleKeepsViewportWhenLastSeriesClears()

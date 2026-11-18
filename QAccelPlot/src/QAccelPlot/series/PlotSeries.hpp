@@ -309,7 +309,8 @@ protected:
     bool validateDataPointIndex(int index) const;
     /// \brief Replaces stored data point \a index with the double \a coordinates.
     ///
-    /// The data ranges widen in O(1) unless the replaced data point lay on their edge, which marks them for a rescan.
+    /// The data ranges widen in O(1). They are marked for a rescan only when the replaced data point
+    /// reached an edge of them that the new one no longer reaches.
     void replaceDataPoint(int index, const double* coordinates);
     /// \brief Finishes a change of the data points: data ranges, \c onDataPointsChanged(), \c countChanged(), data queries, and a repaint.
     void notifyDataPointsChanged(DataChange change, int previousCount);
@@ -421,8 +422,8 @@ private:
     // Returns whether the scale of a dimension changed.
     bool syncDataPointDimensions();
     void ensureDataRanges() const;
-    // Returns whether \a extents reach the edge of current data ranges, so removing them could shrink the ranges.
-    bool reachesDataRangeEdge(const DataPointStore::Extents& extents) const;
+    // Returns whether replacing a data point of extents \a previous with one of extents \a replaced could shrink the data ranges.
+    bool replacementMayShrinkDataRanges(const DataPointStore::Extents& previous, const DataPointStore::Extents& replaced) const;
     void reportDataRangesChanged() const;
     void deliverTopmostHover(QHoverEvent* event);
     bool coveredBySeriesAbove(const QPointF& position) const;
