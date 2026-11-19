@@ -25,12 +25,14 @@
 #include <QPointer>
 #include <QQuickPaintedItem>
 
-// AxisLabel uses Axis::LabelAlignment, so this header only declares it.
+// Declared only: AxisLabel uses Axis::LabelAlignment, and PlotMouseEvent only appears in a signal.
 Q_MOC_INCLUDE("QAccelPlot/axis/AxisLabel.hpp")
+Q_MOC_INCLUDE("QAccelPlot/PlotMouseEvent.hpp")
 
 namespace QAccelPlot {
 
 class AxisLabel;
+class PlotMouseEvent;
 class PlotSeries;
 
 class Axis : public QQuickPaintedItem {
@@ -153,7 +155,7 @@ signals:
     void logScaleChanged();
     void zoomScaleFactorChanged();
     void autoRescaleChanged();
-    void doubleClicked();
+    void doubleClicked(PlotMouseEvent* event);
 
 protected:
     void hoverEnterEvent(QHoverEvent* event) override;

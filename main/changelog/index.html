@@ -1103,6 +1103,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1132,7 +1143,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#changed" class="md-nav__link">
+  <a href="#changed_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Changed
@@ -1182,7 +1193,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#changed_1" class="md-nav__link">
+  <a href="#changed_2" class="md-nav__link">
     <span class="md-ellipsis">
       
         Changed
@@ -1243,7 +1254,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#changed_2" class="md-nav__link">
+  <a href="#changed_3" class="md-nav__link">
     <span class="md-ellipsis">
       
         Changed
@@ -1304,7 +1315,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#changed_3" class="md-nav__link">
+  <a href="#changed_4" class="md-nav__link">
     <span class="md-ellipsis">
       
         Changed
@@ -1365,7 +1376,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#changed_4" class="md-nav__link">
+  <a href="#changed_5" class="md-nav__link">
     <span class="md-ellipsis">
       
         Changed
@@ -1798,6 +1809,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1827,7 +1849,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#changed" class="md-nav__link">
+  <a href="#changed_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Changed
@@ -1877,7 +1899,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#changed_1" class="md-nav__link">
+  <a href="#changed_2" class="md-nav__link">
     <span class="md-ellipsis">
       
         Changed
@@ -1938,7 +1960,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#changed_2" class="md-nav__link">
+  <a href="#changed_3" class="md-nav__link">
     <span class="md-ellipsis">
       
         Changed
@@ -1999,7 +2021,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#changed_3" class="md-nav__link">
+  <a href="#changed_4" class="md-nav__link">
     <span class="md-ellipsis">
       
         Changed
@@ -2060,7 +2082,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#changed_4" class="md-nav__link">
+  <a href="#changed_5" class="md-nav__link">
     <span class="md-ellipsis">
       
         Changed
@@ -2140,6 +2162,13 @@
 <li><code>replaceData()</code> on <code>LineCurve</code>, <code>BandSeries</code>, and <code>ErrorBarSeries</code> replaces
   one data point in place, for example to update the latest sample of a live
   feed.</li>
+<li>Accepting the event passed to <code>Axis.doubleClicked</code> skips the axis rescale,
+  as <code>PlotView.mouseDoubleClicked</code> does for the plot.</li>
+</ul>
+<h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>Axis::doubleClicked</code> takes a <code>PlotMouseEvent*</code>. String-based
+  <code>SIGNAL(doubleClicked())</code> connections must be updated.</li>
 </ul>
 <h2 id="060-2026-11-16">[0.6.0] — 2026-11-16<a class="headerlink" href="#060-2026-11-16" title="Permanent link">&para;</a></h2>
 <h3 id="added_1">Added<a class="headerlink" href="#added_1" title="Permanent link">&para;</a></h3>
@@ -2160,7 +2189,7 @@
 <li><code>effects</code> on every series. An effect a series does not support logs a
   warning and is ignored.</li>
 </ul>
-<h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
+<h3 id="changed_1">Changed<a class="headerlink" href="#changed_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li>QAccelPlot is now licensed under MIT. Pull requests are welcome.</li>
 <li><code>transition</code> on <code>LineCurve</code>, <code>BarSeries</code>, <code>PointCloud</code>, and
@@ -2261,7 +2290,7 @@
   Examples can record deterministic frames with <code>--record</code>, and
   <code>scripts/frames-to-gif.py</code> turns them into a GIF.</li>
 </ul>
-<h3 id="changed_1">Changed<a class="headerlink" href="#changed_1" title="Permanent link">&para;</a></h3>
+<h3 id="changed_2">Changed<a class="headerlink" href="#changed_2" title="Permanent link">&para;</a></h3>
 <ul>
 <li>The C++ plot item class <code>QAccelPlot::QAccelPlot</code> is now
   <code>QAccelPlot::PlotView</code>, its QML name, in <code>&lt;QAccelPlot/PlotView.hpp&gt;</code>. QML is
@@ -2410,7 +2439,7 @@
   and a double-click or <code>rescaleToData()</code> resolves it from the data again.
   <code>hovered</code> reports the cursor over it.</li>
 </ul>
-<h3 id="changed_2">Changed<a class="headerlink" href="#changed_2" title="Permanent link">&para;</a></h3>
+<h3 id="changed_3">Changed<a class="headerlink" href="#changed_3" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>PlotSeries::setData()</code>, <code>setDataF()</code>, and <code>postData()</code> are no longer virtual:
   C++ subclasses pass their data point layout to the <code>PlotSeries</code> constructor.</li>
@@ -2563,7 +2592,7 @@
   normalization, and redraws when the colormap or range changes. Vertical and
   horizontal orientations; ticks are configured through <code>ticker</code>, as on <code>Axis</code>.</li>
 </ul>
-<h3 id="changed_3">Changed<a class="headerlink" href="#changed_3" title="Permanent link">&para;</a></h3>
+<h3 id="changed_4">Changed<a class="headerlink" href="#changed_4" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Public headers are now included with a <code>QAccelPlot/</code> prefix, for example
   <code>#include &lt;QAccelPlot/series/LineCurve.hpp&gt;</code>, both when QAccelPlot is
@@ -2658,7 +2687,7 @@
   samples on either side of a gap.</li>
 <li>A "Gaps" page in the styling and transitions example.</li>
 </ul>
-<h3 id="changed_4">Changed<a class="headerlink" href="#changed_4" title="Permanent link">&para;</a></h3>
+<h3 id="changed_5">Changed<a class="headerlink" href="#changed_5" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Values at or below zero on a logarithmic axis now render as gaps instead of
   being clamped to a steep drop toward the bottom of the plot.</li>

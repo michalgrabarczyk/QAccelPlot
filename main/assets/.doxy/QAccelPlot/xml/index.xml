@@ -125,7 +125,7 @@
     <member refid="classQAccelPlot_1_1Axis_1a8067516775c316543db13099af942265" kind="signal"><name>logScaleChanged</name></member>
     <member refid="classQAccelPlot_1_1Axis_1a490f2dbfdea8b031eab016501e9ca4b2" kind="signal"><name>zoomScaleFactorChanged</name></member>
     <member refid="classQAccelPlot_1_1Axis_1a029dbdda23dd9ef85b476e67aaf99743" kind="signal"><name>autoRescaleChanged</name></member>
-    <member refid="classQAccelPlot_1_1Axis_1a269d9633b8dfcdb7a2041d7d990bfa3f" kind="signal"><name>doubleClicked</name></member>
+    <member refid="classQAccelPlot_1_1Axis_1a39353e80103ab068dc96b6ae293dd759" kind="signal"><name>doubleClicked</name></member>
     <member refid="classQAccelPlot_1_1Axis_1afe106425e7942d7794e5506e7955e80e" kind="function"><name>hoverEnterEvent</name></member>
     <member refid="classQAccelPlot_1_1Axis_1ab5c3aacde298f6a0772378d354914fcc" kind="function"><name>hoverLeaveEvent</name></member>
     <member refid="classQAccelPlot_1_1Axis_1ab0059b73141e10799436102f3ba75848" kind="function"><name>mousePressEvent</name></member>
@@ -2747,6 +2747,7 @@
     <member refid="classQAccelPlot_1_1PlotMouseEvent_1a2967bb8752b1493f4075001c9fb961ee" kind="property"><name>y</name></member>
     <member refid="classQAccelPlot_1_1PlotMouseEvent_1a237e7026f1e62daa5aad2b1004616302" kind="property"><name>modifiers</name></member>
     <member refid="classQAccelPlot_1_1PlotMouseEvent_1a1849087a8c631aa466077ec6a4d87145" kind="property"><name>accepted</name></member>
+    <member refid="classQAccelPlot_1_1PlotMouseEvent_1a9c05b17b809103942e6d7089d28f6db9" kind="friend"><name>Axis</name></member>
     <member refid="classQAccelPlot_1_1PlotMouseEvent_1a8431a636b65eadbbf187e83f8ac2b58c" kind="friend"><name>PlotView</name></member>
     <member refid="classQAccelPlot_1_1PlotMouseEvent_1a078137da8bdcc47e971e0c99b8aa0742" kind="variable"><name>button_</name></member>
     <member refid="classQAccelPlot_1_1PlotMouseEvent_1aafc7d29f4896c8948f576cbac5299ae8" kind="variable"><name>buttons_</name></member>
@@ -2764,7 +2765,7 @@
     <member refid="classQAccelPlot_1_1PlotMouseEvent_1a7944913d23a28ca9e24c274b505af679" kind="function"><name>accept</name></member>
     <member refid="classQAccelPlot_1_1PlotMouseEvent_1a26f62899620ac0faf719481900a81500" kind="function"><name>ignore</name></member>
     <member refid="classQAccelPlot_1_1PlotMouseEvent_1ab18c886fe3f574609d59f4d92ff113ee" kind="function"><name>setAccepted</name></member>
-    <member refid="classQAccelPlot_1_1PlotMouseEvent_1a27189dea1d9ee973b86d5e68d7021e43" kind="function"><name>reset</name></member>
+    <member refid="classQAccelPlot_1_1PlotMouseEvent_1abf4ce3d5a370ede8b6db55d29e00da6a" kind="function"><name>PlotMouseEvent</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1PlotRectangleZoom" kind="class"><name>QAccelPlot::PlotRectangleZoom</name>
     <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a30c70cd5504387139ce37cf5dd1003cb" kind="property"><name>enabled</name></member>
@@ -2982,10 +2983,6 @@
     <member refid="classQAccelPlot_1_1PlotView_1a7a26fe20728caa26e34707a5a0f1b258" kind="variable"><name>zoomDrag_</name></member>
     <member refid="classQAccelPlot_1_1PlotView_1a3540576cf65855987e7898cb3610f475" kind="variable"><name>lastMousePos_</name></member>
     <member refid="classQAccelPlot_1_1PlotView_1aea5b319b5dd5e2fa5cf3fc9b9a1893c6" kind="variable"><name>pointer_</name></member>
-    <member refid="classQAccelPlot_1_1PlotView_1a7e9be881af8e840c94305d3da7c343c5" kind="variable"><name>mousePressEvent_</name></member>
-    <member refid="classQAccelPlot_1_1PlotView_1a91857b4c4ee77011754ebf530f5d6b1c" kind="variable"><name>mouseReleaseEvent_</name></member>
-    <member refid="classQAccelPlot_1_1PlotView_1a0cf253a20cb64c1460dbd74c95c7014b" kind="variable"><name>mouseDoubleClickEvent_</name></member>
-    <member refid="classQAccelPlot_1_1PlotView_1afdeaaa9f60defa318c7a85743815a8ae" kind="variable"><name>mouseMoveEvent_</name></member>
     <member refid="classQAccelPlot_1_1PlotView_1abc46f8a81553983a97caed6ee71156e2" kind="variable"><name>padding_</name></member>
     <member refid="classQAccelPlot_1_1PlotView_1ad401f129946290eb82b4fa1faedb5e6d" kind="variable"><name>plotRect_</name></member>
     <member refid="classQAccelPlot_1_1PlotView_1acc7f6c101f4741490084e1233fca7759" kind="variable"><name>plotAreaColor_</name></member>

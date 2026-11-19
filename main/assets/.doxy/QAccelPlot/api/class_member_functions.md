@@ -711,7 +711,7 @@
 * **roleNames** ([**QAccelPlot::InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md), [**QAccelPlot::LegendModel**](classQAccelPlot_1_1LegendModel.md))
 * **rowCount** ([**QAccelPlot::InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md), [**QAccelPlot::LegendModel**](classQAccelPlot_1_1LegendModel.md), [**QAccelPlot::PointSpatialIndex**](classQAccelPlot_1_1PointSpatialIndex.md))
 * **reportProblems** ([**QAccelPlot::Internal::CategoryList**](classQAccelPlot_1_1Internal_1_1CategoryList.md))
-* **reset** ([**QAccelPlot::Internal::HoverIndexBudget**](classQAccelPlot_1_1Internal_1_1HoverIndexBudget.md), [**QAccelPlot::Internal::SourceInspection**](classQAccelPlot_1_1Internal_1_1SourceInspection.md), [**QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md))
+* **reset** ([**QAccelPlot::Internal::HoverIndexBudget**](classQAccelPlot_1_1Internal_1_1HoverIndexBudget.md), [**QAccelPlot::Internal::SourceInspection**](classQAccelPlot_1_1Internal_1_1SourceInspection.md))
 * **request** ([**QAccelPlot::Internal::InspectionCache**](classQAccelPlot_1_1Internal_1_1InspectionCache.md))
 * **requested** ([**QAccelPlot::Internal::InspectionCache**](classQAccelPlot_1_1Internal_1_1InspectionCache.md))
 * **restack** ([**QAccelPlot::Internal::OverlayChildren**](classQAccelPlot_1_1Internal_1_1OverlayChildren.md))
