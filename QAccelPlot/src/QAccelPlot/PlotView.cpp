@@ -16,6 +16,7 @@
 #include <QCoreApplication>
 #include <QHoverEvent>
 #include <QKeyEvent>
+#include <QMetaMethod>
 #include <QMouseEvent>
 #include <QPointer>
 #include <QQuickWindow>
@@ -41,6 +42,12 @@ qreal horizontalRatio(const QPointF& pos, const QRectF& rect)
 qreal verticalRatio(const QPointF& pos, const QRectF& rect)
 {
     return qBound(0.0, 1.0 - (pos.y() - rect.y()) / rect.height(), 1.0);
+}
+
+const QMetaMethod& mouseMovedSignal()
+{
+    static const auto signal = QMetaMethod::fromSignal(&PlotView::mouseMoved);
+    return signal;
 }
 
 bool isFiniteRect(const QRectF& rect)
@@ -435,9 +442,9 @@ void PlotView::wheelEvent(QWheelEvent* event)
 void PlotView::mousePressEvent(QMouseEvent* event)
 {
     pointer_->press(*event);
-    auto plotEvent = PlotMouseEvent{*event};
-    emit mousePressed(&plotEvent);
-    if (plotEvent.isAccepted()) {
+    mousePressEvent_.reset(*event);
+    emit mousePressed(&mousePressEvent_);
+    if (mousePressEvent_.isAccepted()) {
         return;
     }
     if (event->button() == Qt::LeftButton) {
@@ -474,9 +481,7 @@ void PlotView::hoverMoveEvent(QHoverEvent* event)
         return;
     }
 
-    auto plotEvent = PlotMouseEvent{*event};
-    emit mouseMoved(&plotEvent);
-    if (plotEvent.isAccepted()) {
+    if (emitMouseMoved(*event)) {
         event->accept();
         return;
     }
@@ -493,9 +498,7 @@ void PlotView::hoverLeaveEvent(QHoverEvent* event)
 void PlotView::mouseMoveEvent(QMouseEvent* event)
 {
     pointer_->mouseMove(*event);
-    auto plotEvent = PlotMouseEvent{*event};
-    emit mouseMoved(&plotEvent);
-    if (plotEvent.isAccepted()) {
+    if (emitMouseMoved(*event)) {
         return;
     }
     if (dragMode_ == DragMode::RectangleZoom) {
@@ -531,11 +534,11 @@ void PlotView::mouseReleaseEvent(QMouseEvent* event)
 {
     pointer_->release();
     const auto endedDrag = event->button() == Qt::LeftButton && dragMode_ != DragMode::Idle;
-    auto plotEvent = PlotMouseEvent{*event};
-    emit mouseReleased(&plotEvent);
+    mouseReleaseEvent_.reset(*event);
+    emit mouseReleased(&mouseReleaseEvent_);
     if (event->button() == Qt::LeftButton) {
         auto selection = QRectF{};
-        if (!plotEvent.isAccepted() && dragMode_ == DragMode::RectangleZoom) {
+        if (!mouseReleaseEvent_.isAccepted() && dragMode_ == DragMode::RectangleZoom) {
             updateRectangleSelection(event->position());
             selection = rectangleZoom_->selectionRect();
         }
@@ -545,7 +548,7 @@ void PlotView::mouseReleaseEvent(QMouseEvent* event)
             zoomToRect(selection);
         }
     }
-    if (plotEvent.isAccepted()) {
+    if (mouseReleaseEvent_.isAccepted()) {
         return;
     }
     if (endedDrag) {
@@ -573,9 +576,9 @@ void PlotView::focusOutEvent(QFocusEvent* event)
 void PlotView::mouseDoubleClickEvent(QMouseEvent* event)
 {
     cancelRectangleSelection();
-    auto plotEvent = PlotMouseEvent{*event};
-    emit mouseDoubleClicked(&plotEvent);
-    if (plotEvent.isAccepted()) {
+    mouseDoubleClickEvent_.reset(*event);
+    emit mouseDoubleClicked(&mouseDoubleClickEvent_);
+    if (mouseDoubleClickEvent_.isAccepted()) {
         return;
     }
     if (event->button() == Qt::LeftButton) {
@@ -750,6 +753,16 @@ void PlotView::clearExtraAxes(QQmlListProperty<Axis>* list)
     }
     plot->extraAxes_.clear();
     plot->layoutAxes();
+}
+
+bool PlotView::emitMouseMoved(const QSinglePointEvent& event)
+{
+    if (!isSignalConnected(mouseMovedSignal())) {
+        return false;
+    }
+    mouseMoveEvent_.reset(event);
+    emit mouseMoved(&mouseMoveEvent_);
+    return mouseMoveEvent_.isAccepted();
 }
 
 bool PlotView::tryForwardKeyEventToAxis(Axis* axis, const QPointF& mousePos, QKeyEvent* event)
