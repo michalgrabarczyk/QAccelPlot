@@ -96,10 +96,10 @@ public:
 
 int compareColors(const QColor& left, const QColor& right)
 {
-    if (left == right) {
+    if (left.rgba() == right.rgba()) {
         return 0;
     }
-    return left.rgba64() < right.rgba64() ? -1 : 1;
+    return left.rgba() < right.rgba() ? -1 : 1;
 }
 
 } // namespace

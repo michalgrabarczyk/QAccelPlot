@@ -176,11 +176,9 @@ qreal CandlestickSeries::candleWidth() const
 
 void CandlestickSeries::setCandleWidth(const qreal width)
 {
-    const auto clamped = std::max(width, qreal{0.0});
-    if (!std::isfinite(clamped) || nearlyEqual(candleWidth_, clamped)) {
+    if (!Internal::assignNonNegative(candleWidth_, width)) {
         return;
     }
-    candleWidth_ = clamped;
     onGeometryChanged();
     emit candleWidthChanged();
 }
@@ -225,11 +223,9 @@ qreal CandlestickSeries::lineWidth() const
 
 void CandlestickSeries::setLineWidth(const qreal width)
 {
-    const auto clamped = std::max(width, qreal{0.0});
-    if (!std::isfinite(clamped) || nearlyEqual(lineWidth_, clamped)) {
+    if (!Internal::assignNonNegative(lineWidth_, width)) {
         return;
     }
-    lineWidth_ = clamped;
     emit lineWidthChanged();
     update();
 }
@@ -241,11 +237,9 @@ qreal CandlestickSeries::minimumWidth() const
 
 void CandlestickSeries::setMinimumWidth(const qreal width)
 {
-    const auto clamped = std::max(width, qreal{0.0});
-    if (!std::isfinite(clamped) || nearlyEqual(minimumWidth_, clamped)) {
+    if (!Internal::assignNonNegative(minimumWidth_, width)) {
         return;
     }
-    minimumWidth_ = clamped;
     emit minimumWidthChanged();
     update();
 }
@@ -272,11 +266,9 @@ qreal CandlestickSeries::hoverRadius() const
 
 void CandlestickSeries::setHoverRadius(const qreal radius)
 {
-    const auto clamped = std::max(radius, qreal{0.0});
-    if (nearlyEqual(hoverRadius_, clamped)) {
+    if (!Internal::assignNonNegative(hoverRadius_, radius)) {
         return;
     }
-    hoverRadius_ = clamped;
     emit hoverRadiusChanged();
     // Marks the item dirty so the window re-delivers hover at the cursor and updates hoveredIndex.
     update();

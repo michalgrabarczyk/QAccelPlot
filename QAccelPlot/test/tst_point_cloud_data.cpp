@@ -581,6 +581,11 @@ void PointCloudDataTest::propertySettersClampAndNotify()
 
     cloud.setHoverRadius(-1.0);
     QCOMPARE(cloud.hoverRadius(), 0.0);
+    cloud.setHoverRadius(5.0);
+    for (const auto radius : {kNaN, kInf}) {
+        cloud.setHoverRadius(radius);
+        QCOMPARE(cloud.hoverRadius(), 5.0);
+    }
 
     auto filledSpy = QSignalSpy{marker, &SeriesMarker::filledChanged};
     marker->setFilled(false);

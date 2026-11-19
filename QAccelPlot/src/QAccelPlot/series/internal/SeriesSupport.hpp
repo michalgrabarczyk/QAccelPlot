@@ -39,6 +39,11 @@ int recordCapacity(QQuickWindow* window, int floatsPerRecord, int vertexBytesPer
 /// \brief Returns \a feather clamped to the [0, 10] pixel range of the series' \c antialiasingFeather properties.
 qreal clampAntialiasingFeather(qreal feather);
 
+/// \brief Stores \a requested, clamped to 0 or more, in \a member and returns \c true when that changes it.
+///
+/// A non-finite \a requested, or one nearly equal to \a member, leaves \a member unchanged.
+bool assignNonNegative(qreal& member, qreal requested);
+
 /// \brief Returns the viewport of \a valueAxis that places grow baselines; without an axis, both edges are 0.
 GrowViewport growViewport(const Axis* valueAxis);
 

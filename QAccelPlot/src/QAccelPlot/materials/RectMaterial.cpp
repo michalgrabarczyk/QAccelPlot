@@ -70,10 +70,10 @@ int RectMaterial::compareExtra(const QSGMaterial* other) const
     if (borderWidth != m->borderWidth) {
         return borderWidth < m->borderWidth ? -1 : 1;
     }
-    if (borderColor != m->borderColor) {
+    if (borderColor.rgba() != m->borderColor.rgba()) {
         return borderColor.rgba() < m->borderColor.rgba() ? -1 : 1;
     }
-    if (hoverColor != m->hoverColor) {
+    if (hoverColor.rgba() != m->hoverColor.rgba()) {
         return hoverColor.rgba() < m->hoverColor.rgba() ? -1 : 1;
     }
     if (hoveredIndex != m->hoveredIndex) {

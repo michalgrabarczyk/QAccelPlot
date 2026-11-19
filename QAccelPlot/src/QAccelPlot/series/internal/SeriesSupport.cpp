@@ -4,6 +4,7 @@
 //
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
 
+#include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/materials/internal/DataTextureLayout.hpp"
 
@@ -77,6 +78,16 @@ qreal clampAntialiasingFeather(const qreal feather)
     constexpr auto kMinFeather = qreal{0.0};
     constexpr auto kMaxFeather = qreal{10.0};
     return std::clamp(feather, kMinFeather, kMaxFeather);
+}
+
+bool assignNonNegative(qreal& member, const qreal requested)
+{
+    const auto clamped = std::max(requested, qreal{0.0});
+    if (!std::isfinite(clamped) || nearlyEqual(member, clamped)) {
+        return false;
+    }
+    member = clamped;
+    return true;
 }
 
 GrowViewport growViewport(const Axis* valueAxis)

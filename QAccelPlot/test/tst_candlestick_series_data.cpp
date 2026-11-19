@@ -427,6 +427,10 @@ void CandlestickSeriesDataTest::hitTestFindsBodyAndWick()
     QVERIFY(!candles.contains(fixture.pixel(7, 5)));
 
     candles.setHoverRadius(4);
+    for (const auto radius : {kNaN, kInf}) {
+        candles.setHoverRadius(radius);
+        QCOMPARE(candles.hoverRadius(), 4.0);
+    }
     QCOMPARE(candles.candleIndexAt(fixture.pixel(5.8, 5) + QPointF{3.5, 0}), 0);
     QCOMPARE(candles.candleIndexAt(fixture.pixel(5.8, 5) + QPointF{4.5, 0}), -1);
 

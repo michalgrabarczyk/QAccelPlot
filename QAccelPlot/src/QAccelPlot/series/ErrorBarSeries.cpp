@@ -194,11 +194,9 @@ qreal ErrorBarSeries::hoverRadius() const
 
 void ErrorBarSeries::setHoverRadius(const qreal radius)
 {
-    const auto clamped = std::max(radius, qreal{0.0});
-    if (nearlyEqual(hoverRadius_, clamped)) {
+    if (!Internal::assignNonNegative(hoverRadius_, radius)) {
         return;
     }
-    hoverRadius_ = clamped;
     emit hoverRadiusChanged();
     // Marks the item dirty so the window re-delivers hover at the cursor and updates hoveredIndex.
     update();
