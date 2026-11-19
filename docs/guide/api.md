@@ -36,6 +36,8 @@ SPDX-License-Identifier: MIT
   low and a high value at each X, with optional edge lines.
 - [`ErrorBarSeries`](api/classQAccelPlot_1_1ErrorBarSeries.md) — capped lines
   from a low to a high bound at each data point, vertical or horizontal.
+- [`CandlestickSeries`](api/classQAccelPlot_1_1CandlestickSeries.md) — the open,
+  high, low, and close of each data point as a candlestick or an OHLC bar.
 - [`RectangleSeries`](api/classQAccelPlot_1_1RectangleSeries.md) — many data-space
   rectangles in one item: spans and state timelines.
 - [`BarSeries`](api/classQAccelPlot_1_1BarSeries.md) — vertical, horizontal, and

@@ -121,13 +121,15 @@ void writeMorph(const TransitionStep& step, const double* from, const double* to
 
 void writeGrow(const TransitionStep& step, const ItemClock& clock, const TransitionLayout& layout, const Group& group, std::vector<double>& out)
 {
-    const auto baseline = std::isnan(step.baseline) ? layout.baseline : step.baseline;
+    const auto ownBaseline = std::isnan(step.baseline) && layout.baselineColumn >= 0;
+    const auto sharedBaseline = std::isnan(step.baseline) ? layout.baseline : step.baseline;
     const auto easing = ItemEasing{step, clock, group.count};
     copyItems(group.source, group.count, out, group.first, layout.stride);
     for (auto item = 0; item < group.count; ++item) {
         const auto eased = easing(staggerOrder(group, item));
         const auto scale = group.exit ? 1.0 - eased : eased;
         auto* values = frameItem(out, group.first + item, layout.stride);
+        const auto baseline = ownBaseline ? placeGrowBaseline(values[layout.baselineColumn], layout.viewport) : sharedBaseline;
         for (const auto column : layout.valueColumns) {
             const auto value = values[column];
             if (std::isfinite(value) && std::isfinite(baseline)) {
@@ -242,6 +244,18 @@ const double* sourceItem(const TransitionItems& items, const int index, const in
 }
 
 } // namespace
+
+double placeGrowBaseline(const double baseline, const GrowViewport& viewport)
+{
+    if (std::isinf(baseline)) {
+        return baseline > 0.0 ? viewport.high : viewport.low;
+    }
+    // A log axis draws from below its viewport where the baseline is not positive.
+    if (viewport.logScale && baseline <= 0.0) {
+        return viewport.low;
+    }
+    return baseline;
+}
 
 ItemTiming itemTiming(const TransitionStep& step, const int itemCount)
 {

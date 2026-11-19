@@ -12,6 +12,7 @@
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
 
 #include <QHoverEvent>
+#include <QVarLengthArray>
 
 #include <algorithm>
 #include <cmath>
@@ -488,8 +489,9 @@ void PlotSeries::appendDataPoint(const double* coordinates)
 {
     const auto previousCount = dataPoints_.count();
     dataPoints_.append(coordinates);
+    onDataPointsStored({DataChange::Appended, previousCount, previousCount});
     // The new data point widens the current extents in O(1) instead of a rescan.
-    const auto extents = dataPoints_.extents(logScaleX(), logScaleY(), previousCount);
+    const auto extents = dataPointExtents(previousCount);
     if (extents.x) {
         extendXDataRange(extents.x->min);
         extendXDataRange(extents.x->max);
@@ -515,9 +517,14 @@ bool PlotSeries::validateDataPointIndex(const int index) const
 void PlotSeries::replaceDataPoint(const int index, const double* coordinates)
 {
     Q_ASSERT(index >= 0 && index < dataPoints_.count());
-    const auto previous = dataPoints_.extents(logScaleX(), logScaleY(), index, index + 1);
+    const auto previous = dataPointExtents(index);
+    auto previousCoordinates = QVarLengthArray<double, 8>(dataPoints_.columnCount());
+    for (auto column = 0; column < previousCoordinates.size(); ++column) {
+        previousCoordinates[column] = dataPoints_.value(index, column);
+    }
     dataPoints_.replace(index, coordinates);
-    const auto replaced = dataPoints_.extents(logScaleX(), logScaleY(), index, index + 1);
+    onDataPointsStored({DataChange::Modified, dataPoints_.count(), index, previousCoordinates.constData()});
+    const auto replaced = dataPointExtents(index);
     if (replacementMayShrinkDataRanges(previous, replaced)) {
         invalidateDataRanges();
     } else {
@@ -533,9 +540,15 @@ void PlotSeries::replaceDataPoint(const int index, const double* coordinates)
     notifyDataPointsChanged(DataChange::Modified, dataPoints_.count());
 }
 
+DataPointStore::Extents PlotSeries::dataPointExtents(const int index) const
+{
+    return dataPoints_.extents(logScaleX(), logScaleY(), index, index + 1);
+}
+
 void PlotSeries::notifyDataPointsChanged(const DataChange change, const int previousCount)
 {
     if (change == DataChange::Replaced) {
+        onDataPointsStored({change, previousCount});
         invalidateDataRanges();
     }
     onDataPointsChanged(change, previousCount);
@@ -544,6 +557,10 @@ void PlotSeries::notifyDataPointsChanged(const DataChange change, const int prev
     }
     inspectionDataChanged(change);
     update();
+}
+
+void PlotSeries::onDataPointsStored([[maybe_unused]] const DataUpdate& update)
+{
 }
 
 void PlotSeries::onDataPointsChanged([[maybe_unused]] const DataChange change, [[maybe_unused]] const int previousCount)

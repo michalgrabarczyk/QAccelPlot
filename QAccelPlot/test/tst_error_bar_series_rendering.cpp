@@ -70,6 +70,25 @@ constexpr auto kErrorBarScene = R"(
 }
 )";
 
+// A red error bar at x 5 on a log y axis from 0.1 to 1000, with a non-positive low bound and a high
+// bound at 100.
+constexpr auto kLogScene = R"(
+    ErrorBarSeries {
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        color: "red"
+        lineWidth: 3
+        capLength: 20
+        Component.onCompleted: {
+            plot.yAxis.viewportMin = 0.1;
+            plot.yAxis.viewportMax = 1000;
+            plot.yAxis.logScale = true;
+            setData([5], [10], [-1], [100]);
+        }
+    }
+}
+)";
+
 // A red error bar under a blue point at its value.
 constexpr auto kHoverScene = R"(
     ErrorBarSeries {
@@ -173,6 +192,7 @@ class ErrorBarSeriesRenderingTest : public QObject {
 
 private slots:
     void errorBarsDrawLinesAndCaps();
+    void logAxisExtendsNonPositiveBoundsToThePlotEdge();
     void hoverReachesErrorBarsBeneathMarkers();
     void antialiasingCoversFractionalEdgePixels();
 };
@@ -207,6 +227,24 @@ void ErrorBarSeriesRenderingTest::errorBarsDrawLinesAndCaps()
     // The infinite bound reaches the plot edge.
     QVERIFY(isColor(at(1, 9.9), Qt::green));
     QVERIFY(isColor(at(1, 2.5), Qt::black));
+}
+
+void ErrorBarSeriesRenderingTest::logAxisExtendsNonPositiveBoundsToThePlotEdge()
+{
+    auto scene = SceneWindow{kLogScene};
+    if (scene.isSoftware()) {
+        QSKIP("Custom materials require a hardware scene graph backend");
+    }
+    QVERIFY2(scene.plot(), qPrintable(scene.error()));
+    QVERIFY(QTest::qWaitForWindowExposed(&scene.window()));
+
+    const auto image = scene.grab();
+    const auto at = [&](const qreal x, const qreal y, const QPoint& shift = {}) { return image.pixelColor(scene.pixel(x, y) + shift); };
+    QVERIFY(isColor(at(5, 0.12), Qt::red));
+    QVERIFY(isColor(at(5, 50), Qt::red));
+    QVERIFY(isColor(at(5, 100, {8, 0}), Qt::red));
+    QVERIFY(isColor(at(5, 50, {8, 0}), Qt::black));
+    QVERIFY(isColor(at(5, 200), Qt::black));
 }
 
 void ErrorBarSeriesRenderingTest::hoverReachesErrorBarsBeneathMarkers()

@@ -4,6 +4,8 @@
 //
 #pragma once
 
+#include "QAccelPlot/transitions/internal/TransitionFrame.hpp"
+
 #include <QtGlobal>
 
 QT_FORWARD_DECLARE_CLASS(QQuickWindow)
@@ -36,6 +38,9 @@ int recordCapacity(QQuickWindow* window, int floatsPerRecord, int vertexBytesPer
 
 /// \brief Returns \a feather clamped to the [0, 10] pixel range of the series' \c antialiasingFeather properties.
 qreal clampAntialiasingFeather(qreal feather);
+
+/// \brief Returns the viewport of \a valueAxis that places grow baselines; without an axis, both edges are 0.
+GrowViewport growViewport(const Axis* valueAxis);
 
 /// \brief Returns the value that items drawn from \a baseline on \a valueAxis grow from.
 ///

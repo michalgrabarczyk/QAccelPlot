@@ -4,6 +4,7 @@
 //
 #include "QAccelPlot/materials/BandEdgeMaterial.hpp"
 #include "QAccelPlot/materials/BarMaterial.hpp"
+#include "QAccelPlot/materials/CandlestickMaterial.hpp"
 #include "QAccelPlot/materials/DataTextureMaterial.hpp"
 #include "QAccelPlot/materials/ErrorBarMaterial.hpp"
 #include "QAccelPlot/materials/LineMaterial.hpp"
@@ -75,6 +76,7 @@ private slots:
     void pointCloudMaterialsCompareDataTextureIdentity();
     void barMaterialsCompareRectangleAndBarUniforms();
     void errorBarMaterialsCompareAntialiasing();
+    void candlestickMaterialsCompareStyleAndColors();
 };
 
 void MaterialComparisonTest::identicalLineMaterialsCompareEqual()
@@ -285,6 +287,26 @@ void MaterialComparisonTest::errorBarMaterialsCompareAntialiasing()
     aliased.antialiasing = 0.0f;
     QVERIFY(left.compare(&aliased) != 0);
     QVERIFY(aliased.compare(&left) == -left.compare(&aliased));
+}
+
+void MaterialComparisonTest::candlestickMaterialsCompareStyleAndColors()
+{
+    const auto left = CandlestickMaterial{};
+    QCOMPARE(left.compare(&left), 0);
+
+    auto ohlc = CandlestickMaterial{};
+    ohlc.ohlc = 1.0f;
+    QVERIFY(left.compare(&ohlc) != 0);
+    QVERIFY(ohlc.compare(&left) == -left.compare(&ohlc));
+
+    auto down = CandlestickMaterial{};
+    down.downColor = Qt::blue;
+    QVERIFY(left.compare(&down) != 0);
+    QVERIFY(down.compare(&left) == -left.compare(&down));
+
+    auto glowDown = CandlestickMaterial{};
+    glowDown.glowDownColor = Qt::blue;
+    QVERIFY(left.compare(&glowDown) != 0);
 }
 
 } // namespace QAccelPlot

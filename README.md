@@ -28,7 +28,7 @@ level-of-detail (LOD) reduction.
 ## ⚡ Highlights
 
 - **GPU rendering**: Hardware accelerated using OpenGL, OpenGL ES, Direct3D 11/12, Vulkan, or Metal.
-- **Series types**: Line curves, point clouds, heatmaps, bars, histograms, bands, error bars, and rectangle spans.
+- **Series types**: Line curves, point clouds, heatmaps, bars, histograms, bands, error bars, candlesticks, and rectangle spans.
 - **Interactive**: Pan, zoom, hover, and data inspection.
 - **Fast data paths**: Move semantics for data buffers.
 - **QML-native**: Works with Qt Quick layouts and bindings.

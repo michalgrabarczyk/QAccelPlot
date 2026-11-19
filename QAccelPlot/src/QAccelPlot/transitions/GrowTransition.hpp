@@ -18,6 +18,7 @@ namespace QAccelPlot {
 /// | \c LineCurve, \c PointCloud | Y |
 /// | \c BarSeries | The bar value |
 /// | \c ErrorBarSeries | The center and both bounds |
+/// | \c CandlestickSeries | The open, high, low, and close |
 ///
 /// With \c stagger, the items grow one after another in a wave.
 ///
@@ -27,7 +28,7 @@ class GrowTransition : public EnterExitTransition {
     QML_NAMED_ELEMENT(GrowTransition)
 
     /// \brief Value the items grow from, in data units. Unset by default: \c BarSeries::baselineValue
-    /// for bars, 0 for other series.
+    /// for bars, each candle's open for candles, 0 for other series.
     ///
     /// Reads NaN while unset; assign \c undefined to unset it. A default the value axis cannot
     /// place, infinite or at or below 0 on a log axis, is replaced by the nearest viewport edge.

@@ -79,21 +79,19 @@ qreal clampAntialiasingFeather(const qreal feather)
     return std::clamp(feather, kMinFeather, kMaxFeather);
 }
 
-double growBaseline(const double baseline, const Axis* valueAxis)
+GrowViewport growViewport(const Axis* valueAxis)
 {
     if (!valueAxis) {
-        return std::isfinite(baseline) ? baseline : 0.0;
+        return {};
     }
     const auto low = std::min(valueAxis->viewportMin(), valueAxis->viewportMax());
     const auto high = std::max(valueAxis->viewportMin(), valueAxis->viewportMax());
-    if (std::isinf(baseline)) {
-        return baseline > 0.0 ? high : low;
-    }
-    // A log axis draws from below its viewport where the baseline is not positive.
-    if (valueAxis->logScale() && baseline <= 0.0) {
-        return low;
-    }
-    return baseline;
+    return {low, high, valueAxis->logScale()};
+}
+
+double growBaseline(const double baseline, const Axis* valueAxis)
+{
+    return placeGrowBaseline(baseline, growViewport(valueAxis));
 }
 
 } // namespace QAccelPlot::Internal

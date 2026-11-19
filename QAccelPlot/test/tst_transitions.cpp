@@ -139,6 +139,8 @@ private slots:
     void grow_raisesAddedItemsFromTheBaseline();
     void grow_usesItsOwnBaseline();
     void grow_leavesInvalidValues();
+    void grow_itemBaselineOutsideTheAxis_growsFromTheViewportEdge_data();
+    void grow_itemBaselineOutsideTheAxis_growsFromTheViewportEdge();
 
     // Removed items
     void removedItems_withoutExit_disappear();
@@ -516,6 +518,38 @@ void TestTransitions::grow_leavesInvalidValues()
     const auto frame = change.frame();
 
     QVERIFY(std::isnan(frame.values[1]));
+}
+
+void TestTransitions::grow_itemBaselineOutsideTheAxis_growsFromTheViewportEdge_data()
+{
+    QTest::addColumn<double>("open");
+    QTest::addColumn<bool>("logScale");
+    QTest::addColumn<double>("grownOpen");
+    QTest::addColumn<double>("grownClose");
+
+    constexpr auto kInfinity = std::numeric_limits<double>::infinity();
+    QTest::newRow("above") << kInfinity << false << kInfinity << 9.0;
+    QTest::newRow("below") << -kInfinity << false << -kInfinity << 4.5;
+    QTest::newRow("not positive on a log axis") << -1.0 << true << 0.0 << 4.5;
+}
+
+void TestTransitions::grow_itemBaselineOutsideTheAxis_growsFromTheViewportEdge()
+{
+    QFETCH(double, open);
+    QFETCH(bool, logScale);
+    QFETCH(double, grownOpen);
+    QFETCH(double, grownClose);
+    // Items of x, open, close growing from their open in a viewport from 1 to 10.
+    auto change = Change{{}, {0.0, open, 8.0}};
+    change.layout.stride = 3;
+    change.layout.valueColumns = {1, 2};
+    change.layout.baselineColumn = 1;
+    change.layout.viewport = {1.0, 10.0, logScale};
+    change.enter = step(TransitionKind::Grow, 0.5);
+
+    const auto frame = change.frame();
+
+    QCOMPARE(frame.values, (std::vector<double>{0.0, grownOpen, grownClose}));
 }
 
 void TestTransitions::removedItems_withoutExit_disappear()

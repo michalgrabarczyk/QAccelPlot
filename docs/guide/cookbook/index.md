@@ -28,6 +28,7 @@ Each recipe links to a complete runnable example.
 | [Histograms](histograms.md) | Equal and uneven bins, counts or density, from QML or C++ |
 | [Bands](bands.md) | Confidence intervals and envelopes between a low and a high value, with edge lines |
 | [Error bars](error-bars.md) | Symmetric and asymmetric errors, vertical and horizontal, on points and grouped bars |
+| [Candlesticks](candlesticks.md) | Candlestick and OHLC charts, trading-time axes, volume bars, and live candles |
 | [Background data production](background-data.md) | Safe high-throughput worker-to-UI handoff |
 | [Exporting images](export.md) | PNG, JPEG, and other raster files, the clipboard, and `QImage` capture |
 

@@ -77,6 +77,11 @@ can draw lines along both edges.
 point, along the Y axis or, with `orientation: Qt.Horizontal`, the X axis. It
 stores `(x, y, low, high)` quadruples and does not draw the values.
 
+`CandlestickSeries` draws the open, high, low, and close of each data point as
+a candle: a body over a wick, or an OHLC bar. It stores
+`(x, open, high, low, close)` quintuples; a candle's width is a fraction of the
+spacing between candles.
+
 `RectangleSeries` renders many data-space rectangles in one item, such as event
 spans and state timelines. Infinite edges reach the plot edge, and a
 per-rectangle category selects the fill color.
@@ -97,6 +102,7 @@ series beneath. The other hover properties depend on what the series draws:
 | `LineCurve` | The line within `hoverRadius`, a marker within its size | — | 10 | — (drawn lighter) |
 | `PointCloud` | The nearest point within `hoverRadius` of its center | Yes | 6 | — |
 | `ErrorBarSeries` | The nearest error bar within `hoverRadius` | Yes | 6 | `Colors.dark.hover` |
+| `CandlestickSeries` | The nearest candle within `hoverRadius` | Yes | 4 | No highlight |
 | `BarSeries`, `RectangleSeries` | A bar or rectangle | Yes | — | No highlight |
 | `BandSeries` | The band or an edge line | — | — | — |
 
@@ -109,6 +115,7 @@ on a line drawn over another series leaves hover to the series beneath.
 dash patterns, transitions, auto-ranging, and hover hit testing. For the other
 series, see [bands](cookbook/bands.md#invalid-data-points),
 [error bars](cookbook/error-bars.md#invalid-data-points),
+[candlesticks](cookbook/candlesticks.md#invalid-data-points),
 [point clouds](cookbook/point-clouds.md#invalid-points), and
 [bars](cookbook/bar-charts.md#invalid-bars).
 

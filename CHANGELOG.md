@@ -15,6 +15,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   as `PlotView.mouseDoubleClicked` does for the plot.
 - Assigning `undefined` to a property with a computed or automatic default,
   such as `Colormap.min` or `ticker.tickLabelColor`, restores that default.
+- Candlestick and OHLC charts via `CandlestickSeries`: candles from
+  `(x, open, high, low, close)` data, in `upColor` and `downColor`, as wide as
+  `candleWidth` times `spacing`. Includes a Candlestick example.
 
 ### Changed
 

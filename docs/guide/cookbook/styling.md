@@ -62,6 +62,7 @@ Series smooth their edges with the `antialiasing` property every `Item` has.
 | `PointCloud` | `true` | markers |
 | `BandSeries` | `true` | edge lines |
 | `ErrorBarSeries` | `true` | lines and caps |
+| `CandlestickSeries` | `true` | bodies, wicks, and OHLC lines |
 | `RectangleSeries`, `BarSeries` | `false` | rectangles and their border |
 
 Rectangles and bars that touch, such as histogram bins, show faint seams with
@@ -204,7 +205,7 @@ QAccelPlot.LineCurve {
 
 | Effect | Series | Properties |
 |---|---|---|
-| `Glow` | `LineCurve`, `PointCloud`, `BarSeries`, `ErrorBarSeries` | `color` (default: the series color), `radius` in pixels, `intensity` |
+| `Glow` | `LineCurve`, `PointCloud`, `BarSeries`, `ErrorBarSeries`, `CandlestickSeries` | `color` (default: the series color; each candle's own color), `radius` in pixels, `intensity` |
 | `FadeTrail` | `LineCurve`, `PointCloud` | `length`: share of the items that fades, from the oldest; `minOpacity` of the oldest; `easing`: how the opacity rises, `Easing.InQuad` by default |
 
 - An effect a series does not support logs a warning and is ignored.
@@ -307,10 +308,11 @@ Each animated frame interpolates the data on the CPU: about 4 ms per million
 points, 6 ms with a stagger. Disable transitions for continuous high-rate
 updates.
 
-`BarSeries`, `PointCloud`, and `ErrorBarSeries` take the same transitions; see
-[bar charts](bar-charts.md#animate-data-changes),
-[point clouds](point-clouds.md#animate-data-changes), and
-[error bars](error-bars.md#animate-data-changes).
+`BarSeries`, `PointCloud`, `ErrorBarSeries`, and `CandlestickSeries` take the
+same transitions; see [bar charts](bar-charts.md#animate-data-changes),
+[point clouds](point-clouds.md#animate-data-changes),
+[error bars](error-bars.md#animate-data-changes), and
+[candlesticks](candlesticks.md#animate-data-changes).
 
 Complete sources:
 

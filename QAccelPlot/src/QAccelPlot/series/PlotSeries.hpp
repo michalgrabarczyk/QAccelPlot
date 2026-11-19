@@ -44,15 +44,16 @@ struct LegendEntry;
 /// \c setData(), \c setDataF(), and \c postData() take interleaved values, one data point after
 /// another, in the layout of the series:
 ///
-/// | Series             | Data point        | Values |
-/// | ------------------ | ----------------- | ------ |
-/// | \c LineCurve       | (x, y)            | 2      |
-/// | \c PointCloud      | (x, y)            | 2      |
-/// | \c RectangleSeries | (x1, y1, x2, y2)  | 4      |
-/// | \c BarSeries       | (position, value) | 2      |
-/// | \c BandSeries      | (x, low, high)    | 3      |
-/// | \c ErrorBarSeries  | (x, y, low, high) | 4      |
-/// | \c HeatmapSeries   | cell value        | 1      |
+/// | Series               | Data point                    | Values |
+/// | -------------------- | ----------------------------- | ------ |
+/// | \c LineCurve         | (x, y)                        | 2      |
+/// | \c PointCloud        | (x, y)                        | 2      |
+/// | \c RectangleSeries   | (x1, y1, x2, y2)              | 4      |
+/// | \c BarSeries         | (position, value)             | 2      |
+/// | \c BandSeries        | (x, low, high)                | 3      |
+/// | \c ErrorBarSeries    | (x, y, low, high)             | 4      |
+/// | \c CandlestickSeries | (x, open, high, low, close)   | 5      |
+/// | \c HeatmapSeries     | cell value                    | 1      |
 ///
 /// The buffer holds \a count times that many values. A \c HeatmapSeries takes its cells row by row,
 /// \c columns per row. Series-specific setters take other layouts, such as point values,
@@ -60,16 +61,17 @@ struct LegendEntry;
 ///
 /// Series smooth their edges with the inherited \c antialiasing property. \c HeatmapSeries ignores it.
 ///
-/// | Series             | Default \c antialiasing | Smoothed edges              |
-/// | ------------------ | ----------------------- | --------------------------- |
-/// | \c LineCurve       | \c true                 | lines and markers           |
-/// | \c PointCloud      | \c true                 | markers                     |
-/// | \c BandSeries      | \c true                 | edge lines                  |
-/// | \c ErrorBarSeries  | \c true                 | lines and caps              |
-/// | \c RectangleSeries | \c false                | rectangles and their border |
-/// | \c BarSeries       | \c false                | bars and their border       |
+/// | Series               | Default \c antialiasing | Smoothed edges                |
+/// | -------------------- | ----------------------- | ----------------------------- |
+/// | \c LineCurve         | \c true                 | lines and markers             |
+/// | \c PointCloud        | \c true                 | markers                       |
+/// | \c BandSeries        | \c true                 | edge lines                    |
+/// | \c ErrorBarSeries    | \c true                 | lines and caps                |
+/// | \c CandlestickSeries | \c true                 | bodies, wicks, and OHLC lines |
+/// | \c RectangleSeries   | \c false                | rectangles and their border   |
+/// | \c BarSeries         | \c false                | bars and their border         |
 ///
-/// \sa LineCurve, PointCloud, RectangleSeries, BarSeries, BandSeries, ErrorBarSeries, HeatmapSeries, QAccelPlot
+/// \sa LineCurve, PointCloud, RectangleSeries, BarSeries, BandSeries, ErrorBarSeries, CandlestickSeries, HeatmapSeries, QAccelPlot
 class PlotSeries : public QQuickItem {
     Q_OBJECT
     QML_NAMED_ELEMENT(PlotSeries)
@@ -120,9 +122,10 @@ class PlotSeries : public QQuickItem {
 public:
     /// \brief Supported default legend symbols.
     ///
-    /// \c Line draws the series line style and marker, \c Fill a filled swatch, and \c Marker only
-    /// the series marker shape (used by unconnected series such as \c PointCloud).
-    enum class LegendSymbol { Line, Fill, Marker };
+    /// \c Line draws the series line style and marker, \c Fill a filled swatch, \c Marker only
+    /// the series marker shape (used by unconnected series such as \c PointCloud), and \c Candle an
+    /// up candle next to a down candle (used by \c CandlestickSeries).
+    enum class LegendSymbol { Line, Fill, Marker, Candle };
     Q_ENUM(LegendSymbol)
 
     /// \brief Extent of the valid coordinates in one dimension.
@@ -289,6 +292,17 @@ protected:
         Modified, ///< \brief One record changed in place; the count and all other records are unchanged.
     };
 
+    /// \brief A change of the data points, as passed to \c onDataPointsStored().
+    struct DataUpdate {
+        DataChange change{DataChange::Replaced}; ///< \brief How the data points changed.
+        int previousCount{0};                    ///< \brief The data point count before the change.
+        int index{-1};                           ///< \brief The appended or modified data point; -1 for \c DataChange::Replaced.
+        /// \brief The \c columnCount() coordinates the modified data point had; \c nullptr unless \c DataChange::Modified.
+        ///
+        /// Only valid during the call.
+        const double* previousCoordinates{nullptr};
+    };
+
     /// \brief Returns the data points of the series.
     DataPointStore& dataPoints();
     /// \brief Returns the data points of the series.
@@ -303,17 +317,35 @@ protected:
     ///
     /// A data point has \a valuesPerDataPoint values, or one per coordinate column when it is 0.
     bool validateDataSize(std::size_t valueCount, int count, bool floatData, int valuesPerDataPoint = 0) const;
-    /// \brief Appends one double data point and widens the data ranges by its valid coordinates.
+    /// \brief Appends one double data point and widens the data ranges by its \c dataPointExtents().
+    ///
+    /// Assumes the data ranges are the union of \c dataPointExtents() over every data point. A series
+    /// whose ranges also change in other ways, such as with the data point count, invalidates them itself.
     void appendDataPoint(const double* coordinates);
     /// \brief Returns whether \a index is the index of a stored data point; warns otherwise.
     bool validateDataPointIndex(int index) const;
     /// \brief Replaces stored data point \a index with the double \a coordinates.
     ///
-    /// The data ranges widen in O(1). They are marked for a rescan only when the replaced data point
-    /// reached an edge of them that the new one no longer reaches.
+    /// The data ranges widen in O(1) by the new data point's \c dataPointExtents(). They are marked
+    /// for a rescan only when the replaced data point reached an edge of them that the new one no
+    /// longer reaches. Assumes the data ranges are the union of \c dataPointExtents() over every data
+    /// point, as \c appendDataPoint() does.
     void replaceDataPoint(int index, const double* coordinates);
+    /// \brief Returns the extents stored data point \a index adds to the data ranges.
+    ///
+    /// The default is its valid coordinates under the layout's range rule. A series that overrides
+    /// \c computeDataRanges() and appends or replaces single data points overrides it to match.
+    virtual DataPointStore::Extents dataPointExtents(int index) const;
     /// \brief Finishes a change of the data points: data ranges, \c onDataPointsChanged(), \c countChanged(), data queries, and a repaint.
+    ///
+    /// A \c DataChange::Replaced change first calls \c onDataPointsStored() and invalidates the data ranges.
     void notifyDataPointsChanged(DataChange change, int previousCount);
+    /// \brief Called after the data points changed, before the data ranges are invalidated or widened. The default does nothing.
+    ///
+    /// Override to update caches that \c computeDataRanges() or \c dataPointExtents() read: a bound
+    /// axis with \c autoRescale reads the data ranges before \c onDataPointsChanged() runs. An override
+    /// that changes the extents of other data points calls \c invalidateDataRanges().
+    virtual void onDataPointsStored(const DataUpdate& update);
     /// \brief Called after the data points changed, before the data queries are refreshed. The default does nothing.
     virtual void onDataPointsChanged(DataChange change, int previousCount);
 

@@ -17,6 +17,7 @@
 #include "QAccelPlot/grid/Grid.hpp"
 #include "QAccelPlot/series/BandSeries.hpp"
 #include "QAccelPlot/series/BarSeries.hpp"
+#include "QAccelPlot/series/CandlestickSeries.hpp"
 #include "QAccelPlot/series/ErrorBarSeries.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
 #include "QAccelPlot/series/RectangleSeries.hpp"
@@ -54,6 +55,7 @@ const std::map<QString, Factory>& factories()
         {QStringLiteral("AxisTicker"), make<AxisTicker>()},
         {QStringLiteral("ColorBar"), make<ColorBar>()},
         {QStringLiteral("BarSeries"), make<BarSeries>()},
+        {QStringLiteral("CandlestickSeries"), make<CandlestickSeries>()},
         {QStringLiteral("Colormap"), make<Colormap>()},
         {QStringLiteral("DataAnchor"), make<DataAnchor>()},
         {QStringLiteral("DateTimeTickLabelFormatter"), make<DateTimeTickLabelFormatter>()},
@@ -180,6 +182,16 @@ void PropertyNotificationsTest::writeNotifiesOnceAndRoundTrips_data()
     row("BarSeries", "minimumWidth", 3.0);
     row("BarSeries", "color", palette.seriesSecondary);
     row("BarSeries", "hoverColor", palette.seriesYellow);
+
+    row("CandlestickSeries", "style", QVariant::fromValue(CandlestickSeries::Style::Ohlc));
+    row("CandlestickSeries", "upColor", palette.seriesSecondary);
+    row("CandlestickSeries", "downColor", palette.seriesSecondary);
+    row("CandlestickSeries", "candleWidth", 0.5);
+    row("CandlestickSeries", "spacing", 2.0);
+    row("CandlestickSeries", "lineWidth", 3.0);
+    row("CandlestickSeries", "minimumWidth", 3.0);
+    row("CandlestickSeries", "hoverColor", palette.seriesYellow);
+    row("CandlestickSeries", "hoverRadius", 2.0);
 
     row("ErrorBarSeries", "orientation", QVariant::fromValue(Qt::Horizontal));
     row("ErrorBarSeries", "color", palette.seriesSecondary);
