@@ -209,6 +209,8 @@ installed; see
   See [Rectangle zoom](cookbook/rectangle-zoom.md).
 - Double-click the plot to rescale all axes to their data ranges.
 - Double-click an axis to rescale that axis only.
+- Accept the event in `PlotView.mouseDoubleClicked` or `Axis.doubleClicked` to
+  skip the rescale.
 
 See [Troubleshooting](troubleshooting.md) for common setup issues.
 

@@ -58,14 +58,13 @@ void PlotMouseEvent::setAccepted(bool accepted)
     accepted_ = accepted;
 }
 
-void PlotMouseEvent::reset(const QSinglePointEvent& event)
+PlotMouseEvent::PlotMouseEvent(const QSinglePointEvent& event)
+    : button_{event.button()}
+    , buttons_{event.buttons()}
+    , x_{event.position().x()}
+    , y_{event.position().y()}
+    , modifiers_{event.modifiers()}
 {
-    button_ = event.button();
-    buttons_ = event.buttons();
-    x_ = event.position().x();
-    y_ = event.position().y();
-    modifiers_ = event.modifiers();
-    accepted_ = false;
 }
 
 } // namespace QAccelPlot

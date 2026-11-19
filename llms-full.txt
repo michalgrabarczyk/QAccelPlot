@@ -298,6 +298,8 @@ installed; see
   See [Rectangle zoom](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/rectangle-zoom/).
 - Double-click the plot to rescale all axes to their data ranges.
 - Double-click an axis to rescale that axis only.
+- Accept the event in `PlotView.mouseDoubleClicked` or `Axis.doubleClicked` to
+  skip the rescale.
 
 See [Troubleshooting](https://michalgrabarczyk.github.io/QAccelPlot/troubleshooting/) for common setup issues.
 

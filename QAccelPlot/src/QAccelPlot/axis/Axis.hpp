@@ -15,12 +15,14 @@
 #include <QPointer>
 #include <QQuickPaintedItem>
 
-// AxisLabel uses Axis::LabelAlignment, so this header only declares it.
+// Declared only: AxisLabel uses Axis::LabelAlignment, and PlotMouseEvent only appears in a signal.
 Q_MOC_INCLUDE("QAccelPlot/axis/AxisLabel.hpp")
+Q_MOC_INCLUDE("QAccelPlot/PlotMouseEvent.hpp")
 
 namespace QAccelPlot {
 
 class AxisLabel;
+class PlotMouseEvent;
 class PlotSeries;
 
 /// \brief A visual axis item that maps a data-space range to pixel coordinates and renders tick marks and labels.
@@ -255,8 +257,9 @@ signals:
     void zoomScaleFactorChanged();
     /// \brief Emitted when the autoRescale property changes.
     void autoRescaleChanged();
-    /// \brief Emitted when the user double-clicks the axis widget.
-    void doubleClicked();
+    /// \brief Emitted when the axis is double-clicked with the left button.
+    /// Call \c event->accept() to suppress built-in handling (rescale this axis to its data).
+    void doubleClicked(PlotMouseEvent* event);
 
 protected:
     void hoverEnterEvent(QHoverEvent* event) override;

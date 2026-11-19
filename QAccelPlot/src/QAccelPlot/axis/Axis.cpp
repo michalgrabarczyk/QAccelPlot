@@ -4,6 +4,7 @@
 //
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/MathUtils.hpp"
+#include "QAccelPlot/PlotMouseEvent.hpp"
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/axis/AxisLabel.hpp"
 #include "QAccelPlot/axis/AxisTickPainter.hpp"
@@ -697,12 +698,17 @@ void Axis::mouseReleaseEvent(QMouseEvent* event)
 
 void Axis::mouseDoubleClickEvent(QMouseEvent* event)
 {
-    if (event->button() == Qt::LeftButton) {
-        emit doubleClicked();
-        event->accept();
-    } else {
+    if (event->button() != Qt::LeftButton) {
         QQuickPaintedItem::mouseDoubleClickEvent(event);
+        return;
     }
+    auto plotEvent = PlotMouseEvent{*event};
+    emit doubleClicked(&plotEvent);
+    if (!plotEvent.isAccepted()) {
+        rescaleToData();
+    }
+    // Consumed even when a handler accepted it, so the plot does not rescale all axes.
+    event->accept();
 }
 
 void Axis::keyPressEvent(QKeyEvent* event)

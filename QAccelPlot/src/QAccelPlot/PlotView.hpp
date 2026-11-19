@@ -262,10 +262,6 @@ private:
     QPointF lastMousePos_;
     // Key events go to the axis under the pointer.
     Internal::PointerTracker* pointer_{nullptr};
-    PlotMouseEvent mousePressEvent_{this};
-    PlotMouseEvent mouseReleaseEvent_{this};
-    PlotMouseEvent mouseDoubleClickEvent_{this};
-    PlotMouseEvent mouseMoveEvent_{this};
     qreal padding_{24.0};
     QRectF plotRect_;
     QColor plotAreaColor_{ColorPalette::dark().plotArea};
