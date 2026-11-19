@@ -11,6 +11,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `replaceData()` on `LineCurve`, `BandSeries`, and `ErrorBarSeries` replaces
   one data point in place, for example to update the latest sample of a live
   feed.
+- Accepting the event passed to `Axis.doubleClicked` skips the axis rescale,
+  as `PlotView.mouseDoubleClicked` does for the plot.
+
+### Changed
+
+- `Axis::doubleClicked` takes a `PlotMouseEvent*`. String-based
+  `SIGNAL(doubleClicked())` connections must be updated.
 
 ## [0.6.0] — 2026-11-16
 

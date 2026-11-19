@@ -11,20 +11,21 @@ class QSinglePointEvent;
 
 namespace QAccelPlot {
 
+class Axis;
 class PlotView;
 
 /// \brief Carries mouse event data for the mouse signals.
 ///
-/// An instance of this class is passed to each mouse signal. Mirrors the Qt \c QEvent
-/// API: call \c accept() in a handler to consume the event and suppress the plot's
+/// An instance of this class is passed to each \c PlotView mouse signal and to \c Axis::doubleClicked().
+/// Mirrors the Qt \c QEvent API: call \c accept() in a handler to consume the event and suppress the
 /// built-in handling (dragging, double-click rescaling, etc.).
 ///
-/// \note The object is owned by \c QAccelPlot and is reused across events — do not
+/// \note The object is owned by \c QAccelPlot and is destroyed after the signal — do not
 /// store a reference to it beyond the signal handler.
 class PlotMouseEvent : public QObject {
     Q_OBJECT
     QML_NAMED_ELEMENT(PlotMouseEvent)
-    QML_UNCREATABLE("PlotMouseEvent can only be created by PlotView.")
+    QML_UNCREATABLE("PlotMouseEvent can only be created by PlotView or Axis.")
 
     /// \brief The mouse button that caused the event; \c Qt.NoButton for a move.
     Q_PROPERTY(Qt::MouseButton button READ button CONSTANT)
@@ -64,10 +65,11 @@ public:
     void setAccepted(bool accepted);
 
 private:
+    friend class Axis;
     friend class PlotView;
 
-    /// \brief Copies \p event and clears the acceptance before the plot emits a mouse signal.
-    void reset(const QSinglePointEvent& event);
+    /// \brief Constructs an unaccepted event that copies \p event, for a mouse signal about to be emitted.
+    explicit PlotMouseEvent(const QSinglePointEvent& event);
 
     Qt::MouseButton button_{Qt::NoButton};
     Qt::MouseButtons buttons_{Qt::NoButton};
