@@ -537,7 +537,7 @@ void PlotSeries::replaceDataPoint(const int index, const double* coordinates)
             extendYDataRange(replaced.y->max);
         }
     }
-    notifyDataPointsChanged(DataChange::Modified, dataPoints_.count());
+    notifyDataPointsChanged(DataChange::Modified, dataPoints_.count(), index);
 }
 
 DataPointStore::Extents PlotSeries::dataPointExtents(const int index) const
@@ -545,7 +545,7 @@ DataPointStore::Extents PlotSeries::dataPointExtents(const int index) const
     return dataPoints_.extents(logScaleX(), logScaleY(), index, index + 1);
 }
 
-void PlotSeries::notifyDataPointsChanged(const DataChange change, const int previousCount)
+void PlotSeries::notifyDataPointsChanged(const DataChange change, const int previousCount, const int index)
 {
     if (change == DataChange::Replaced) {
         onDataPointsStored({change, previousCount});
@@ -555,7 +555,7 @@ void PlotSeries::notifyDataPointsChanged(const DataChange change, const int prev
     if (dataPoints_.count() != previousCount) {
         emit countChanged();
     }
-    inspectionDataChanged(change);
+    inspectionDataChanged(change, index);
     update();
 }
 
@@ -567,10 +567,12 @@ void PlotSeries::onDataPointsChanged([[maybe_unused]] const DataChange change, [
 {
 }
 
-void PlotSeries::inspectionDataChanged(const DataChange change)
+void PlotSeries::inspectionDataChanged(const DataChange change, const int index)
 {
     ++dataRevision_;
-    if (inspection_) {
+    if (inspection_ && change == DataChange::Modified) {
+        inspection_->sourceModified(index);
+    } else if (inspection_) {
         inspection_->sourceChanged(change == DataChange::Appended);
     }
     emit dataRevisionChanged();

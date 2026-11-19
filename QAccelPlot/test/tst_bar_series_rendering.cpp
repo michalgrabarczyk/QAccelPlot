@@ -269,6 +269,7 @@ private slots:
     void logValueAxisStartsBarsAtThePlotEdge();
     void horizontalBarsGrowAlongX();
     void narrowBarsKeepMinimumWidthAndCategoriesSelectColors();
+    void replacedBarsTakeTheirNewCategoryColor();
     void borderAndHoverColorApplyToBars();
     void rangedBarsSpanTheirOwnExtent();
     void colormapColorsBarsByValue();
@@ -396,6 +397,40 @@ void BarSeriesRenderingTest::narrowBarsKeepMinimumWidthAndCategoriesSelectColors
         redPixels += isColor(image.pixelColor(narrow.x() + offset, narrow.y()), Qt::red) ? 1 : 0;
     }
     QVERIFY(redPixels <= 1);
+}
+
+void BarSeriesRenderingTest::replacedBarsTakeTheirNewCategoryColor()
+{
+    auto scene = SceneWindow{kNarrowAndCategoryScene};
+    if (scene.isSoftware()) {
+        QSKIP("Custom materials require a hardware scene graph backend");
+    }
+    auto* plot = scene.plot();
+    QVERIFY2(plot, qPrintable(scene.error()));
+    QVERIFY(QTest::qWaitForWindowExposed(&scene.window()));
+    auto* categorized = static_cast<BarSeries*>(nullptr);
+    for (auto* series : plot->findChildren<BarSeries*>()) {
+        if (series->objectName().isEmpty()) {
+            categorized = series;
+        }
+    }
+    QVERIFY(categorized);
+    QVERIFY(isColor(scene.grab().pixelColor(scene.pixel(2.0, 2.0)), Qt::blue));
+
+    categorized->replaceData(0, 2.0, 4.0, 0);
+    auto image = scene.grab();
+    QVERIFY(isColor(image.pixelColor(scene.pixel(2.0, 2.0)), Qt::green));
+    QVERIFY(isColor(image.pixelColor(scene.pixel(8.0, 2.0)), Qt::green));
+
+    // Keeping the category moves the bar without changing its color.
+    categorized->replaceData(1, 8.0, 6.0);
+    image = scene.grab();
+    QVERIFY(isColor(image.pixelColor(scene.pixel(8.0, 5.0)), Qt::green));
+
+    categorized->replaceData(1, 8.0, 6.0, QVariant{});
+    image = scene.grab();
+    QVERIFY(isColor(image.pixelColor(scene.pixel(8.0, 5.0)), Qt::blue));
+    QVERIFY(isColor(image.pixelColor(scene.pixel(2.0, 2.0)), Qt::green));
 }
 
 void BarSeriesRenderingTest::borderAndHoverColorApplyToBars()

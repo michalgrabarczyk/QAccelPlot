@@ -339,7 +339,8 @@ protected:
     /// \brief Finishes a change of the data points: data ranges, \c onDataPointsChanged(), \c countChanged(), data queries, and a repaint.
     ///
     /// A \c DataChange::Replaced change first calls \c onDataPointsStored() and invalidates the data ranges.
-    void notifyDataPointsChanged(DataChange change, int previousCount);
+    /// \a index is the modified data point of a \c DataChange::Modified change.
+    void notifyDataPointsChanged(DataChange change, int previousCount, int index = -1);
     /// \brief Called after the data points changed, before the data ranges are invalidated or widened. The default does nothing.
     ///
     /// Override to update caches that \c computeDataRanges() or \c dataPointExtents() read: a bound
@@ -350,7 +351,9 @@ protected:
     virtual void onDataPointsChanged(DataChange change, int previousCount);
 
     /// \brief Advances the data revision and refreshes the data queries. Call after every accepted record change.
-    void inspectionDataChanged(DataChange change = DataChange::Replaced);
+    ///
+    /// \a index is the modified record of a \c DataChange::Modified change, which the queries update in place.
+    void inspectionDataChanged(DataChange change = DataChange::Replaced, int index = -1);
     /// \brief Refreshes the data queries after record validity changed without a data change, such as an axis scale switch.
     void invalidateInspection();
     /// \brief Returns a view of the XY records that data point queries search. The default has none.

@@ -121,6 +121,8 @@ public:
     ///
     /// Replacing the data points drops the categories; appending gives the new data point -1.
     void setCategories(std::vector<int>&& categories);
+    /// \brief Sets the category of data point \a index to \a category; the others get -1 when there were no categories.
+    void setCategory(int index, int category);
     /// \brief Appends one double data point of \c columnCount() coordinates; promotes float data first.
     ///
     /// The render data grows in place when nothing else it depends on has changed.

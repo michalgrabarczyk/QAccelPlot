@@ -8,6 +8,7 @@
 #include <array>
 #include <cmath>
 #include <numeric>
+#include <utility>
 
 namespace QAccelPlot::Internal {
 namespace {
@@ -57,6 +58,22 @@ bool InspectionIndex::build(std::vector<Point>&& points, const bool logX, const 
 std::size_t InspectionIndex::storageBytes() const
 {
     return sizeof(*this) + points_.capacity() * sizeof(Point) + (xOrder_.capacity() + yOrder_.capacity()) * sizeof(int) + nodes_.capacity() * sizeof(Node);
+}
+
+bool InspectionIndex::movePoint(const int index, const double x, const double y)
+{
+    const auto found = std::find_if(points_.cbegin(), points_.cend(), [index](const Point& point) { return point.index == index; });
+    if (found == points_.cend()) {
+        return false;
+    }
+    const auto position = static_cast<int>(found - points_.cbegin());
+    reorder(InspectionAxis::X, xOrder_, position, x);
+    reorder(InspectionAxis::Y, yOrder_, position, y);
+    auto& point = points_[static_cast<std::size_t>(position)];
+    point.x = x;
+    point.y = y;
+    refreshNodes(position);
+    return true;
 }
 
 InspectionHit InspectionIndex::nearestAlong(const InspectionMetric& metric, const InspectionAxis axis, const double pixel, const double radius) const
@@ -196,6 +213,16 @@ void InspectionIndex::collect(const InspectionBounds& bounds, int offset, const 
     }
 }
 
+void InspectionIndex::include(Node& node, const Point& point)
+{
+    node.bounds.xMin = std::min(node.bounds.xMin, point.x);
+    node.bounds.xMax = std::max(node.bounds.xMax, point.x);
+    node.bounds.yMin = std::min(node.bounds.yMin, point.y);
+    node.bounds.yMax = std::max(node.bounds.yMax, point.y);
+    node.maxIndex = std::max(node.maxIndex, point.index);
+    node.summary.add(point.y, point.index);
+}
+
 void InspectionIndex::buildNodes(const std::atomic_bool& cancelled)
 {
     struct Task {
@@ -232,13 +259,7 @@ int InspectionIndex::createNode(const int first, const int last, const std::atom
         if ((i - first) % 4096 == 0 && cancelled.load()) {
             return -1;
         }
-        const auto& point = points_[static_cast<std::size_t>(i)];
-        node.bounds.xMin = std::min(node.bounds.xMin, point.x);
-        node.bounds.xMax = std::max(node.bounds.xMax, point.x);
-        node.bounds.yMin = std::min(node.bounds.yMin, point.y);
-        node.bounds.yMax = std::max(node.bounds.yMax, point.y);
-        node.maxIndex = std::max(node.maxIndex, point.index);
-        node.summary.add(point.y, point.index);
+        include(node, points_[static_cast<std::size_t>(i)]);
     }
     const auto index = static_cast<int>(nodes_.size());
     nodes_.push_back(node);
@@ -252,6 +273,56 @@ int InspectionIndex::createNode(const int first, const int last, const std::atom
         });
     }
     return index;
+}
+
+void InspectionIndex::reorder(const InspectionAxis axis, std::vector<int>& order, const int position, const double value)
+{
+    const auto index = points_[static_cast<std::size_t>(position)].index;
+    const auto before = [this, axis](const int entry, const std::pair<double, int>& target) {
+        const auto coordinate = key(axis, entry);
+        return coordinate < target.first || (coordinate == target.first && points_[static_cast<std::size_t>(entry)].index < target.second);
+    };
+    const auto from = std::lower_bound(order.begin(), order.end(), std::pair{key(axis, position), index}, before);
+    Q_ASSERT(from != order.end() && *from == position);
+    const auto to = std::lower_bound(order.begin(), order.end(), std::pair{value, index}, before);
+    if (to > from) {
+        std::rotate(from, std::next(from), to);
+    } else {
+        std::rotate(to, from, std::next(from));
+    }
+}
+
+void InspectionIndex::refreshNodes(const int position)
+{
+    auto path = std::array<int, 32>{};
+    auto depth = 0;
+    for (auto current = 0; current >= 0;) {
+        path[static_cast<std::size_t>(depth++)] = current;
+        const auto& node = nodes_[static_cast<std::size_t>(current)];
+        if (node.left < 0) {
+            current = -1;
+        } else {
+            current = position < nodes_[static_cast<std::size_t>(node.left)].last ? node.left : node.right;
+        }
+    }
+    while (depth > 0) {
+        auto& node = nodes_[static_cast<std::size_t>(path[static_cast<std::size_t>(--depth)])];
+        if (node.left < 0) {
+            const auto& initial = points_[static_cast<std::size_t>(node.first)];
+            node.bounds = {initial.x, initial.x, initial.y, initial.y};
+            node.summary = {};
+            for (auto i = node.first; i < node.last; ++i) {
+                include(node, points_[static_cast<std::size_t>(i)]);
+            }
+            continue;
+        }
+        const auto& left = nodes_[static_cast<std::size_t>(node.left)];
+        const auto& right = nodes_[static_cast<std::size_t>(node.right)];
+        node.bounds = {std::min(left.bounds.xMin, right.bounds.xMin), std::max(left.bounds.xMax, right.bounds.xMax),
+            std::min(left.bounds.yMin, right.bounds.yMin), std::max(left.bounds.yMax, right.bounds.yMax)};
+        node.summary = left.summary;
+        node.summary.merge(right.summary);
+    }
 }
 
 void InspectionIndex::sortOrder(const InspectionAxis axis, std::vector<int>& order) const

@@ -56,6 +56,10 @@ private slots:
     void floatDataIsApplied();
     void postedDataIsAppliedFromWorkerThread();
     void clearDataRemovesBars();
+    void replaceDataChangesOneBar();
+    void replaceDataUpdatesTheRangesLikeSetData();
+    void replaceDataSetsTheCategory();
+    void replaceDataRejectsBadIndicesAndRangedBars();
     void barAtReturnsPositionValueAndCategory();
     void mismatchedCategoriesAreRejected();
     void rangesIncludeBarWidthOffsetAndBaseline();
@@ -222,6 +226,131 @@ void BarSeriesDataTest::clearDataRemovesBars()
     QCOMPARE(bars.count(), 0);
     QCOMPARE(countSpy.count(), 1);
     QCOMPARE(xAxis.dataMin(), 9.6);
+}
+
+void BarSeriesDataTest::replaceDataChangesOneBar()
+{
+    auto xAxis = Axis{};
+    auto yAxis = Axis{};
+    auto bars = BarSeries{};
+    bars.setXAxis(&xAxis);
+    bars.setYAxis(&yAxis);
+    bars.setData(QVariantList{3.0, 5.0, 4.0});
+    auto countSpy = QSignalSpy{&bars, &BarSeries::countChanged};
+    auto revisionSpy = QSignalSpy{&bars, &BarSeries::dataRevisionChanged};
+
+    bars.replaceData(1, 1.0, 7.0);
+    QCOMPARE(countSpy.count(), 0);
+    QCOMPARE(revisionSpy.count(), 1);
+    QCOMPARE(bars.barAt(1).value(QStringLiteral("value")).toDouble(), 7.0);
+    QCOMPARE(bars.barAt(0).value(QStringLiteral("value")).toDouble(), 3.0);
+    QCOMPARE(yAxis.dataMax(), 7.0);
+
+    // The replaced bar reached the top of the range, so the range shrinks again.
+    bars.replaceData(1, 1.0, 2.0);
+    QCOMPARE(yAxis.dataMax(), 4.0);
+
+    bars.replaceData(2, 5.0, 4.0);
+    QCOMPARE(bars.barAt(2).value(QStringLiteral("position")).toDouble(), 5.0);
+    QCOMPARE(xAxis.dataMin(), -0.4);
+    QCOMPARE(xAxis.dataMax(), 5.4);
+}
+
+void BarSeriesDataTest::replaceDataUpdatesTheRangesLikeSetData()
+{
+    const auto compareWithSetData = [](BarSeries& replaced, const QVariantList& data) {
+        auto xAxis = Axis{};
+        auto yAxis = Axis{};
+        xAxis.setLogScale(replaced.xAxis()->logScale());
+        yAxis.setLogScale(replaced.yAxis()->logScale());
+        auto expected = BarSeries{};
+        expected.setOrientation(replaced.orientation());
+        expected.setBarWidth(replaced.barWidth());
+        expected.setBarOffset(replaced.barOffset());
+        expected.setBaselineValue(replaced.baselineValue());
+        expected.setXAxis(&xAxis);
+        expected.setYAxis(&yAxis);
+        expected.setData(data);
+        QCOMPARE(replaced.xDataRange().has_value(), expected.xDataRange().has_value());
+        QCOMPARE(replaced.yDataRange().has_value(), expected.yDataRange().has_value());
+        if (expected.xDataRange()) {
+            QCOMPARE(replaced.xDataRange()->min, expected.xDataRange()->min);
+            QCOMPARE(replaced.xDataRange()->max, expected.xDataRange()->max);
+        }
+        if (expected.yDataRange()) {
+            QCOMPARE(replaced.yDataRange()->min, expected.yDataRange()->min);
+            QCOMPARE(replaced.yDataRange()->max, expected.yDataRange()->max);
+        }
+    };
+
+    auto xAxis = Axis{};
+    auto yAxis = Axis{};
+    xAxis.setLogScale(true);
+    auto bars = BarSeries{};
+    bars.setOrientation(Qt::Horizontal);
+    bars.setBarOffset(0.25);
+    bars.setBaselineValue(1.0);
+    bars.setXAxis(&xAxis);
+    bars.setYAxis(&yAxis);
+    bars.setData(QVariantList{bar(1.0, 10.0), bar(2.0, 20.0), bar(3.0, 30.0)});
+    QVERIFY(bars.xDataRange());
+
+    // Widens the value axis, then moves the last bar inward and gives the first a non-positive value.
+    bars.replaceData(2, 3.0, 300.0);
+    compareWithSetData(bars, {bar(1.0, 10.0), bar(2.0, 20.0), bar(3.0, 300.0)});
+    bars.replaceData(2, 2.5, 30.0);
+    compareWithSetData(bars, {bar(1.0, 10.0), bar(2.0, 20.0), bar(2.5, 30.0)});
+    bars.replaceData(0, 0.0, -5.0);
+    compareWithSetData(bars, {bar(0.0, -5.0), bar(2.0, 20.0), bar(2.5, 30.0)});
+    bars.replaceData(1, kNaN, 20.0);
+    compareWithSetData(bars, {bar(0.0, -5.0), bar(kNaN, 20.0), bar(2.5, 30.0)});
+    bars.replaceData(1, -4.0, kInf);
+    compareWithSetData(bars, {bar(0.0, -5.0), bar(-4.0, kInf), bar(2.5, 30.0)});
+}
+
+void BarSeriesDataTest::replaceDataSetsTheCategory()
+{
+    auto bars = BarSeries{};
+    bars.setCategories({new Category{5, QStringLiteral("Loss"), {}, &bars}});
+    bars.setData(QVariantList{1.0, 2.0, 3.0});
+    QVERIFY(!bars.barAt(0).contains(QStringLiteral("category")));
+
+    // The first category gives every other bar none.
+    bars.replaceData(1, 1.0, 4.0, 2);
+    QCOMPARE(bars.barAt(0).value(QStringLiteral("category")).toInt(), -1);
+    QCOMPARE(bars.barAt(1).value(QStringLiteral("category")).toInt(), 2);
+    QCOMPARE(bars.barAt(1).value(QStringLiteral("value")).toDouble(), 4.0);
+
+    bars.replaceData(1, 1.0, 5.0);
+    QCOMPARE(bars.barAt(1).value(QStringLiteral("category")).toInt(), 2);
+
+    bars.replaceData(2, 2.0, 3.0, QStringLiteral("Loss"));
+    QCOMPARE(bars.barAt(2).value(QStringLiteral("category")).toInt(), 5);
+    QCOMPARE(bars.barAt(2).value(QStringLiteral("categoryName")).toString(), QStringLiteral("Loss"));
+
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("BarSeries ignores the category of data point 2: no category is named \"Profit\""));
+    bars.replaceData(2, 2.0, 3.0, QStringLiteral("Profit"));
+    QCOMPARE(bars.barAt(2).value(QStringLiteral("category")).toInt(), -1);
+}
+
+void BarSeriesDataTest::replaceDataRejectsBadIndicesAndRangedBars()
+{
+    auto bars = BarSeries{};
+    bars.setData(QVariantList{1.0, 2.0});
+    auto revisionSpy = QSignalSpy{&bars, &BarSeries::dataRevisionChanged};
+
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("BarSeries .* index 2 is out of range for 2 bars"));
+    bars.replaceData(2, 2.0, 3.0);
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("BarSeries .* index -1 is out of range for 2 bars"));
+    bars.replaceData(-1, 2.0, 3.0, 1);
+    QCOMPARE(revisionSpy.count(), 0);
+
+    bars.setRangedData(std::vector<double>{0.0, 1.0, 4.0}, 1);
+    revisionSpy.clear();
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("BarSeries::replaceData\\(\\) replaces \\(position, value\\) bars, not ranged bars"));
+    bars.replaceData(0, 0.5, 2.0);
+    QCOMPARE(revisionSpy.count(), 0);
+    QCOMPARE(bars.barAt(0).value(QStringLiteral("value")).toDouble(), 4.0);
 }
 
 void BarSeriesDataTest::barAtReturnsPositionValueAndCategory()

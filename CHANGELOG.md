@@ -8,9 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
-- `replaceData()` on `LineCurve`, `BandSeries`, and `ErrorBarSeries` replaces
-  one data point in place, for example to update the latest sample of a live
-  feed.
+- `replaceData()` on `LineCurve`, `BandSeries`, `ErrorBarSeries`, and
+  `BarSeries` replaces one data point in place, for example to update the
+  latest sample of a live feed.
 - Accepting the event passed to `Axis.doubleClicked` skips the axis rescale,
   as `PlotView.mouseDoubleClicked` does for the plot.
 - Assigning `undefined` to a property with a computed or automatic default,

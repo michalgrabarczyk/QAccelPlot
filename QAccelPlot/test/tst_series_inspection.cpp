@@ -53,10 +53,10 @@ std::vector<double> randomPoints(const int count, const unsigned seed)
     return data;
 }
 
-// Compares every query of a point cloud against a linear scan of its records.
-void compareAgainstScan(PointCloud& cloud, const std::vector<double>& data, const int count)
+// Compares every query of a series against a linear scan of its records.
+void compareAgainstScan(PlotSeries& series, const std::vector<double>& data, const int count)
 {
-    auto* inspection = cloud.inspection();
+    auto* inspection = series.inspection();
     auto generator = std::mt19937{7};
     auto distribution = std::uniform_real_distribution<double>{0, 1};
     for (auto query = 0; query < 60; ++query) {
@@ -115,6 +115,8 @@ private slots:
     void zeroRadiusMapping();
     void appendedRecords();
     void replacedRecords();
+    void replacedRecordsInIndex();
+    void replacedRecordsInBlocks();
     void orderedAlongY();
     void queriesAcrossTheOrder();
     void nativeRecords();
@@ -529,6 +531,79 @@ void TestSeriesInspection::replacedRecords()
     QCOMPARE(inspection->nearestByX(pixelX(3.9)).index, 3);
     QCOMPARE(inspection->nearestByX(pixelX(7.9)).index, 2);
     QCOMPARE(inspection->summarizeRange(-kInfinity, kInfinity).maximum, 5.0);
+}
+
+void TestSeriesInspection::replacedRecordsInIndex()
+{
+    auto curve = LineCurve{};
+    auto x = Axis{};
+    auto y = Axis{};
+    bind(curve, x, y, {QPointF{-100, -100}, QPointF{100, 100}}, {800, 200});
+    const auto count = 30000;
+    auto data = randomPoints(count, 45);
+    curve.setData(std::vector<double>(data), count);
+    auto* inspection = curve.inspection();
+    QCOMPARE(inspection->nearest({400, 100}, 20).status, InspectionStatus::Preparing);
+    QTRY_COMPARE(inspection->status(), InspectionStatus::Ready);
+
+    // A replaced data point moves within the ready index, which stays ready.
+    const auto moved = 1234;
+    const auto slot = static_cast<std::size_t>(moved) * 2;
+    const auto old = QPointF{x.coordToPixel(data[slot], 800), y.coordToPixel(data[slot + 1], 200)};
+    QCOMPARE(inspection->nearest(old, 0).index, moved);
+    curve.replaceData(moved, 99.5, -99.5);
+    data[slot] = 99.5;
+    data[slot + 1] = -99.5;
+    QCOMPARE(inspection->status(), InspectionStatus::Ready);
+    QVERIFY(inspection->nearest(old, 0).index != moved);
+    QCOMPARE(inspection->nearest({x.coordToPixel(99.5, 800), y.coordToPixel(-99.5, 200)}, 0).index, moved);
+    QVERIFY(inspection->indices(99.4, 99.6, -99.6, -99.4).indices.contains(moved));
+    for (auto i = 0; i < 200; ++i) {
+        const auto index = (i * 7919) % count;
+        const auto value = -90.0 + i * 0.9;
+        curve.replaceData(index, value, -value);
+        data[static_cast<std::size_t>(index) * 2] = value;
+        data[static_cast<std::size_t>(index) * 2 + 1] = -value;
+    }
+    QCOMPARE(inspection->status(), InspectionStatus::Ready);
+    compareAgainstScan(curve, data, count);
+
+    // A data point that turns invalid leaves the index, which is rebuilt.
+    curve.replaceData(moved, kNaN, 0);
+    QCOMPARE(inspection->nearest({x.coordToPixel(99.5, 800), y.coordToPixel(-99.5, 200)}, 0).status, InspectionStatus::Preparing);
+    QTRY_COMPARE(inspection->status(), InspectionStatus::Ready);
+    QVERIFY(inspection->nearest({x.coordToPixel(99.5, 800), y.coordToPixel(-99.5, 200)}, 0).index != moved);
+}
+
+void TestSeriesInspection::replacedRecordsInBlocks()
+{
+    auto curve = LineCurve{};
+    auto x = Axis{};
+    auto y = Axis{};
+    const auto count = 100000;
+    bind(curve, x, y, {QPointF{0, -20}, QPointF{double{count}, 20}}, {1000, 200});
+    auto data = std::vector<double>(static_cast<std::size_t>(count) * 2);
+    for (auto i = 0; i < count; ++i) {
+        data[static_cast<std::size_t>(i) * 2] = i;
+        data[static_cast<std::size_t>(i) * 2 + 1] = std::sin(i * 0.01);
+    }
+    curve.setData(std::move(data), count);
+    auto* inspection = curve.inspection();
+    QVERIFY(inspection->summarizeRange(-kInfinity, kInfinity).maximum <= 1.0);
+
+    // A replacement that keeps the X order is searched in place with updated block statistics.
+    curve.replaceData(50000, 50000, 10);
+    QCOMPARE(inspection->status(), InspectionStatus::Ready);
+    const auto summary = inspection->summarizeRange(-kInfinity, kInfinity);
+    QCOMPARE(summary.maximum, 10.0);
+    QCOMPARE(summary.maximumIndex, 50000);
+    QCOMPARE(inspection->nearestByX(x.coordToPixel(50000, 1000)).y, 10.0);
+
+    // A replacement that breaks the X order falls back to an index for queries along X.
+    curve.replaceData(50000, 70000.5, 10);
+    QCOMPARE(inspection->nearestByX(x.coordToPixel(70000.5, 1000)).status, InspectionStatus::Preparing);
+    QTRY_COMPARE(inspection->status(), InspectionStatus::Ready);
+    QCOMPARE(inspection->nearestByX(x.coordToPixel(70000.5, 1000)).index, 50000);
 }
 
 void TestSeriesInspection::orderedAlongY()

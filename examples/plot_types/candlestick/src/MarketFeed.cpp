@@ -26,6 +26,12 @@ constexpr auto kVolatility = 0.0015;
 constexpr auto kUpCategory = 0;
 constexpr auto kDownCategory = 1;
 
+// The volume bar category of a candle from its open and close.
+int volumeCategory(const double open, const double close)
+{
+    return close >= open ? kUpCategory : kDownCategory;
+}
+
 } // namespace
 
 MarketFeed::MarketFeed(QObject* parent)
@@ -141,7 +147,9 @@ void MarketFeed::tick()
     // Only the last candle changed: replace it in place instead of uploading every candle again.
     const auto index = static_cast<int>(candles_.size()) - 1;
     candleSeries_->replaceData(index, index, last.open, last.high, last.low, last.close);
-    uploadVolume();
+    if (volumeSeries_) {
+        volumeSeries_->replaceData(index, index, last.volume, volumeCategory(last.open, last.close));
+    }
     emit lastCandleChanged();
 }
 
@@ -161,13 +169,13 @@ void MarketFeed::uploadVolume()
     if (!volumeSeries_) {
         return;
     }
-    // BarSeries has no in-place update, so the bars are sent again; one double pair per candle.
+    // One double pair per candle.
     auto bars = std::vector<double>(candles_.size() * 2);
     auto categories = std::vector<int>(candles_.size());
     for (auto i = std::size_t{0}; i < candles_.size(); ++i) {
         bars[i * 2] = static_cast<double>(i);
         bars[i * 2 + 1] = candles_[i].volume;
-        categories[i] = candles_[i].close >= candles_[i].open ? kUpCategory : kDownCategory;
+        categories[i] = volumeCategory(candles_[i].open, candles_[i].close);
     }
     volumeSeries_->setData(std::move(bars), std::move(categories), static_cast<int>(candles_.size()));
 }

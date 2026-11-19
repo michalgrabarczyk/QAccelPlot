@@ -87,6 +87,15 @@ void InspectionCache::invalidate()
     timer_.stop();
 }
 
+void InspectionCache::modified(const InspectionSource& source, const int index)
+{
+    // A record that turns valid or invalid changes the indexed set, which only a rebuild handles.
+    if (index_ && source.valid(index) && index_->movePoint(index, source.x(index), source.y(index))) {
+        return;
+    }
+    invalidate();
+}
+
 void InspectionCache::request()
 {
     requested_ = true;

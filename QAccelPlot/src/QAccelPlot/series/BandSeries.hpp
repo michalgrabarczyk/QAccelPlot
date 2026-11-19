@@ -121,7 +121,9 @@ protected:
     void onAxisScaleChanged() override;
     /// \brief Re-tests the hover position when the viewport moves under the cursor.
     void onAxisRangeChanged() override;
-    /// \brief Refreshes the X order, the hover state, and the count after the data points changed.
+    /// \brief Updates the X order; an appended or modified data point checks only its neighbors.
+    void onDataPointsStored(const DataUpdate& update) override;
+    /// \brief Refreshes the hover state after the data points changed.
     void onDataPointsChanged(DataChange change, int previousCount) override;
 
 private:
@@ -147,7 +149,8 @@ private:
     // Returns value \a component (0 = x, 1 = low, 2 = high) of data point \a index.
     double value(int index, int component) const;
     bool dataPointValid(int index) const;
-    void updateXAscending();
+    // Returns how many of data points index and index + 1 break the X order while data point index has X x.
+    int xOrderBreaksAround(int index, double x) const;
     // Returns the band at x as drawn from the first dataPointCount data points.
     std::optional<Span> spanAt(qreal x, int dataPointCount) const;
     bool edgesVisible() const;
@@ -166,7 +169,8 @@ private:
     std::optional<QPointF> hoverPosition_;
     // Render revision of the data points last uploaded to the GPU.
     std::uint64_t uploadedRevision_{0};
-    bool xAscending_{true};
+    // Data points whose X is NaN or below the previous X; X ascends when there are none.
+    int xOrderBreaks_{0};
     QMetaObject::Connection edgeStyleConnection_;
     BandEdgeRenderer lowerEdgeRenderer_{BandEdgeMaterial::Edge::Lower};
     BandEdgeRenderer upperEdgeRenderer_{BandEdgeMaterial::Edge::Upper};
