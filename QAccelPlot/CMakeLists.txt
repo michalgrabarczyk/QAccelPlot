@@ -197,6 +197,7 @@ if(QACCELPLOT_INSTALL)
     install(FILES
         "${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/internal/GlowStyle.hpp"
         "${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/internal/ItemFade.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/internal/ResettableValue.hpp"
         DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/QAccelPlot/internal"
     )
     install(FILES

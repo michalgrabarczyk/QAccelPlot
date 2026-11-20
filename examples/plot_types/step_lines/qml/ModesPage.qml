@@ -113,7 +113,6 @@ Item {
                             effects: QAccelPlot.GradientFill {
                                 enabled: fillCheck.checked
                                 direction: Qt.Vertical
-                                baseline: QAccelPlot.GradientFillBaseline.AxisMinimum
                                 opacity: 0.35
                                 gradient: Gradient {
                                     GradientStop { position: 0; color: root.colorPalette.seriesPrimary }

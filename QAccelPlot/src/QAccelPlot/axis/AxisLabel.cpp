@@ -3,7 +3,6 @@
 // SPDX-License-Identifier: MIT
 //
 #include "QAccelPlot/axis/AxisLabel.hpp"
-#include "QAccelPlot/MathUtils.hpp"
 
 #include <cmath>
 
@@ -36,7 +35,7 @@ void AxisLabel::setAlignment(const Axis::LabelAlignment alignment)
 
 qreal AxisLabel::rotation() const
 {
-    return std::isfinite(rotation_) ? rotation_ : defaultRotation_;
+    return rotation_.value();
 }
 
 void AxisLabel::setRotation(const qreal degrees)
@@ -45,35 +44,21 @@ void AxisLabel::setRotation(const qreal degrees)
         resetRotation();
         return;
     }
-    if (std::isfinite(rotation_) && nearlyEqual(rotation_, degrees)) {
-        return;
-    }
-    const auto previousRotation = rotation();
-    rotation_ = degrees;
-    if (!nearlyEqual(previousRotation, degrees)) {
+    if (rotation_.set(degrees)) {
         emit rotationChanged();
     }
 }
 
 void AxisLabel::resetRotation()
 {
-    if (!std::isfinite(rotation_)) {
-        return;
-    }
-    const auto previousRotation = rotation_;
-    rotation_ = std::numeric_limits<qreal>::quiet_NaN();
-    if (!nearlyEqual(previousRotation, defaultRotation_)) {
+    if (rotation_.reset()) {
         emit rotationChanged();
     }
 }
 
 void AxisLabel::setDefaultRotation(const qreal degrees)
 {
-    if (nearlyEqual(defaultRotation_, degrees)) {
-        return;
-    }
-    defaultRotation_ = degrees;
-    if (!std::isfinite(rotation_)) {
+    if (rotation_.setFallback(degrees)) {
         emit rotationChanged();
     }
 }

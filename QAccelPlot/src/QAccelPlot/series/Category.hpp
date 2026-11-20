@@ -39,8 +39,10 @@ class Category : public QObject {
     Q_PROPERTY(int value READ value WRITE setValue NOTIFY valueChanged)
     /// \brief Name for the legend, \c categoryName, and QML data. Default: empty.
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
-    /// \brief Fill color. Default: an invalid color, which uses the series \c color.
-    Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
+    /// \brief Fill color. Unset by default: each series that lists the category uses its own \c color.
+    ///
+    /// Reads an invalid color while unset; assign \c undefined to unset it.
+    Q_PROPERTY(QColor color READ color WRITE setColor RESET resetColor NOTIFY colorChanged)
 
 public:
     /// \brief Constructs a category with value 0, no name, and no color, owned by \a parent.
@@ -58,10 +60,12 @@ public:
     /// \brief Sets the name to \a name.
     void setName(const QString& name);
 
-    /// \brief Returns the fill color.
+    /// \brief Returns the fill color, or an invalid color when the series \c color applies.
     QColor color() const;
     /// \brief Sets the fill color to \a color. An invalid color uses the series \c color.
     void setColor(const QColor& color);
+    /// \brief Unsets the fill color, so the series \c color applies again.
+    void resetColor();
 
 signals:
     /// \brief Emitted when the value property changes.

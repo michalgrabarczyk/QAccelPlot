@@ -67,7 +67,7 @@ QAccelPlot.BandSeries {
 | Property | Default | Notes |
 | --- | --- | --- |
 | `edges.width` | `0` | No edge lines at 0. |
-| `edges.color` | invalid | Uses the band's `color` at full opacity. |
+| `edges.color` | the band's `color` at full opacity | Assign `undefined` to return to the default. |
 | `edges.lineStyle` | `SolidLine` | `DashLine` and `NoLine` also work. |
 
 ## Feed data from C++

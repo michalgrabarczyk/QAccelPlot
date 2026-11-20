@@ -5,6 +5,7 @@
 #pragma once
 
 #include "QAccelPlot/formatters/TickLabelFormatter.hpp"
+#include "QAccelPlot/internal/ResettableValue.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 
 #include <QColor>
@@ -26,8 +27,8 @@ class AxisTicker : public QObject {
     QML_ANONYMOUS
     /// \brief Color of major tick marks. Default: \c Colors.dark.tick.
     Q_PROPERTY(QColor tickColor READ tickColor WRITE setTickColor NOTIFY tickColorChanged)
-    /// \brief Optional color of tick labels. When invalid, the tickColor is used.
-    Q_PROPERTY(QColor tickLabelColor READ tickLabelColor WRITE setTickLabelColor NOTIFY tickLabelColorChanged)
+    /// \brief Color of tick labels. Default: \c tickColor. Assign \c undefined to return to it.
+    Q_PROPERTY(QColor tickLabelColor READ tickLabelColor WRITE setTickLabelColor RESET resetTickLabelColor NOTIFY tickLabelColorChanged)
     /// \brief Target number of major tick marks, capped at 500. Actual count is adjusted for "nice" values. Default: 5.
     Q_PROPERTY(int tickCount READ tickCount WRITE setTickCount NOTIFY tickCountChanged)
     /// \brief Number of sub-tick intervals between adjacent major ticks, capped at 100. Default: 10.
@@ -59,8 +60,10 @@ class AxisTicker : public QObject {
     Q_PROPERTY(qreal tickLabelRotation READ tickLabelRotation WRITE setTickLabelRotation NOTIFY tickLabelRotationChanged)
     /// \brief Font used to render tick labels. Default: application default font.
     Q_PROPERTY(QFont tickLabelFont READ tickLabelFont WRITE setTickLabelFont NOTIFY tickLabelFontChanged)
-    /// \brief Optional custom formatter for tick labels. When \c nullptr the default NumericTickLabelFormatter is used.
-    Q_PROPERTY(TickLabelFormatter* tickLabelFormatter READ tickLabelFormatter WRITE setTickLabelFormatter NOTIFY tickLabelFormatterChanged)
+    /// \brief Formatter that turns tick values into label text. Default: a \c NumericTickLabelFormatter owned by
+    /// the ticker. Assign \c undefined to return to it.
+    Q_PROPERTY(TickLabelFormatter* tickLabelFormatter READ tickLabelFormatter WRITE setTickLabelFormatter RESET resetTickLabelFormatter NOTIFY
+            tickLabelFormatterChanged)
 
 public:
     /// \brief Constructs an AxisTicker with the given \a parent.
@@ -71,10 +74,12 @@ public:
     /// \brief Sets the major tick color to \a c.
     void setTickColor(const QColor& c);
 
-    /// \brief Returns the tick-label color, or an invalid color when it follows tickColor.
+    /// \brief Returns the tick-label color in effect.
     QColor tickLabelColor() const;
-    /// \brief Sets the tick-label color to \a c. An invalid color restores the tickColor fallback.
+    /// \brief Sets the tick-label color to \a c. An invalid color restores the \c tickColor default.
     void setTickLabelColor(const QColor& c);
+    /// \brief Makes the tick-label color follow \c tickColor again.
+    void resetTickLabelColor();
 
     /// \brief Returns the target number of major ticks.
     int tickCount() const;
@@ -146,10 +151,12 @@ public:
     /// \brief Sets the tick label font to \a f.
     void setTickLabelFont(const QFont& f);
 
-    /// \brief Returns the custom tick label formatter, or \c nullptr if using the default.
+    /// \brief Returns the tick label formatter in effect: the custom one, or the default.
     TickLabelFormatter* tickLabelFormatter() const;
-    /// \brief Sets the tick label formatter to \a formatter.
+    /// \brief Sets the tick label formatter to \a formatter. \c nullptr restores the default.
     void setTickLabelFormatter(TickLabelFormatter* formatter);
+    /// \brief Restores the default tick label formatter.
+    void resetTickLabelFormatter();
 
 signals:
     /// \brief Emitted when the tickColor property changes.
@@ -191,7 +198,7 @@ signals:
 
 private:
     QColor tickColor_{ColorPalette::dark().tick};
-    QColor tickLabelColor_;
+    Internal::ResettableValue<QColor> tickLabelColor_{tickColor_};
     int tickCount_{5};
     int subtickCount_{10};
     qreal tickLengthIn_{8.0};

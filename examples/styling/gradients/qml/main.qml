@@ -175,20 +175,15 @@ Window {
                     effects: [
                         QAccelPlot.GradientFill {
                             direction: window.directionIndex === 0 ? Qt.Vertical : Qt.Horizontal
-                            baseline: window.baselineIndex === 0 ? QAccelPlot.GradientFillBaseline.AxisMinimum : QAccelPlot.GradientFillBaseline.Value
-                            baselineValue: 0
-                            valueMinSource: QAccelPlot.GradientValueSource.Fixed
+                            baselineValue: window.baselineIndex === 0 ? undefined : 0
                             valueMin: window.directionIndex === 0 ? -4 : -6
-                            valueMaxSource: QAccelPlot.GradientValueSource.Fixed
                             valueMax: window.directionIndex === 0 ? window.solarVerticalMaximum : 6
                             opacity: window.gradientOpacity
                             colormap: activeColormap
                         },
                         QAccelPlot.GradientStroke {
                             direction: window.directionIndex === 0 ? Qt.Vertical : Qt.Horizontal
-                            valueMinSource: QAccelPlot.GradientValueSource.Fixed
                             valueMin: window.directionIndex === 0 ? -4 : -6
-                            valueMaxSource: QAccelPlot.GradientValueSource.Fixed
                             valueMax: window.directionIndex === 0 ? window.solarVerticalMaximum : 6
                             colormap: activeColormap
                         }
@@ -233,9 +228,7 @@ Window {
                     effects: [
                         QAccelPlot.GradientStroke {
                             direction: window.directionIndex === 0 ? Qt.Vertical : Qt.Horizontal
-                            valueMinSource: QAccelPlot.GradientValueSource.Fixed
                             valueMin: window.directionIndex === 0 ? 20 : 0
-                            valueMaxSource: QAccelPlot.GradientValueSource.Fixed
                             valueMax: window.directionIndex === 0 ? window.batteryVerticalMaximum : 100
                             colormap: activeColormap
                         }

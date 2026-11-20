@@ -131,6 +131,17 @@ QAccelPlot/
 - Declare Qt properties with the full
   `Q_PROPERTY(Type name READ getter WRITE setter NOTIFY signal)` pattern.
 - Register QML elements with `QML_NAMED_ELEMENT(ClassName)` in the class body.
+- Give a property whose default is computed or automatic a `RESET` function,
+  so assigning `undefined` restores the default:
+  - When the object knows the value in effect, the getter returns it and the
+    change signal fires when it changes, as for `AxisLabel.rotation`. Use
+    `Internal::ResettableValue` for the storage.
+  - When it differs per consumer (a shared `Colormap`, an effect or
+    transition used by several series) or reading it would force a data scan,
+    the getter returns NaN, an invalid color, or `null` while unset. Document
+    that readback.
+  - Setters keep accepting NaN (not ±Inf), an invalid color, or `null` as a
+    reset. Document only `undefined`.
 - Inside `namespace QAccelPlot`, write library types unqualified, including in
   `Q_PROPERTY`, `Q_INVOKABLE`, and signal signatures (`Axis*`,
   `InspectionNS::Status`); moc and QML resolve them. Don't name a class
@@ -244,7 +255,7 @@ GitHub Release has been created.
   thread). For worker threads, use `postData()` which queues the handoff.
 - **Data ranges**: Data setters do not scan for the data range. A series
   computes it when something reads it (`rescaleToData()`, an axis with
-  `autoRescale`, `dataMin`/`dataMax`, a `DataRange` gradient). A series must
+  `autoRescale`, `dataMin`/`dataMax`, a gradient with an unset bound). A series must
   call `invalidateDataRanges()` after every change that affects its extents.
   Data passed with `PlotSeries::DataBounds` is never scanned, so the bounds
   must cover the data.

@@ -30,6 +30,9 @@ namespace {
 constexpr auto kLogicalDpi = 96.0;
 constexpr auto kMinQuality = -1;
 constexpr auto kMaxQuality = 100;
+constexpr auto kDefaultQuality = -1;
+constexpr auto kAutomaticScale = 0.0;
+constexpr auto kAutomaticDpi = 0.0;
 
 bool isValidFactor(const qreal value)
 {
@@ -181,6 +184,11 @@ void PlotExporter::setScale(const qreal scale)
     emit scaleChanged();
 }
 
+void PlotExporter::resetScale()
+{
+    setScale(kAutomaticScale);
+}
+
 int PlotExporter::quality() const
 {
     return quality_;
@@ -199,6 +207,11 @@ void PlotExporter::setQuality(const int quality)
     emit qualityChanged();
 }
 
+void PlotExporter::resetQuality()
+{
+    setQuality(kDefaultQuality);
+}
+
 qreal PlotExporter::dpi() const
 {
     return dpi_;
@@ -215,6 +228,11 @@ void PlotExporter::setDpi(const qreal dpi)
     }
     dpi_ = dpi;
     emit dpiChanged();
+}
+
+void PlotExporter::resetDpi()
+{
+    setDpi(kAutomaticDpi);
 }
 
 bool PlotExporter::transparentBackground() const

@@ -11,7 +11,8 @@ SPDX-License-Identifier: MIT
 
 The `Axis.label` group holds the axis title. `label.text`, `label.font`, and
 `label.color` style it, the placement properties move it, and `label.delegate`
-replaces it with any QML item.
+replaces it with any QML item. `label.color` follows the axis `baselineColor`
+until it is set; assign `undefined` to make it follow again.
 
 ## Alignment, rotation, and padding
 

@@ -72,6 +72,7 @@ Axis::Axis(QQuickItem* parent, Side side)
     , label_(new AxisLabel(this))
     , ticker_(new AxisTicker(this))
 {
+    label_->setDefaultColor(baselineColor_);
     setAcceptHoverEvents(hoverEnabled());
     setAcceptedMouseButtons(Qt::LeftButton);
     connect(ticker_, &AxisTicker::tickColorChanged, this, [this]() { update(); });
@@ -247,6 +248,7 @@ void Axis::setBaselineColor(const QColor& c)
         return;
     }
     baselineColor_ = c;
+    label_->setDefaultColor(c);
     emit baselineColorChanged();
     update();
 }
@@ -788,8 +790,7 @@ void Axis::paintLabel(QPainter* painter, const QRectF& r, const qreal axisX, con
 
     painter->save();
     painter->setFont(font);
-    const auto labelColor = label_->color().isValid() ? label_->color() : baselineColor_;
-    painter->setPen(hovered_ ? hoverColor_ : labelColor);
+    painter->setPen(hovered_ ? hoverColor_ : label_->color());
     painter->translate(Internal::axisLabelCenter(params));
     painter->rotate(params.rotation);
     const auto textRect = QRectF(QPointF{-textSize.width() / 2.0, -textSize.height() / 2.0}, textSize);

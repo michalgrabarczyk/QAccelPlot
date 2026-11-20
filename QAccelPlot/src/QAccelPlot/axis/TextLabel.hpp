@@ -4,6 +4,8 @@
 //
 #pragma once
 
+#include "QAccelPlot/internal/ResettableValue.hpp"
+
 #include <QColor>
 #include <QFont>
 #include <QObject>
@@ -22,8 +24,9 @@ class TextLabel : public QObject {
     Q_PROPERTY(QString text READ text WRITE setText NOTIFY textChanged)
     /// \brief Title font. Default: application default font.
     Q_PROPERTY(QFont font READ font WRITE setFont NOTIFY fontChanged)
-    /// \brief Title color. Default: \c Colors.dark.axisLine on a ColorBar; on an Axis, an invalid color that follows \c baselineColor.
-    Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
+    /// \brief Title color. Default: \c Colors.dark.axisLine on a ColorBar, the axis \c baselineColor on an Axis.
+    /// Assign \c undefined to return to it.
+    Q_PROPERTY(QColor color READ color WRITE setColor RESET resetColor NOTIFY colorChanged)
     /// \brief Gap in pixels between the title and the axis or color strip. Default: 30 on an Axis, 6 on a ColorBar.
     Q_PROPERTY(qreal padding READ padding WRITE setPadding NOTIFY paddingChanged)
 
@@ -41,10 +44,14 @@ public:
     /// \brief Sets the title font to \a font.
     void setFont(const QFont& font);
 
-    /// \brief Returns the title color.
+    /// \brief Returns the title color in effect.
     QColor color() const;
-    /// \brief Sets the title color to \a color.
+    /// \brief Sets the title color to \a color. An invalid color restores the default.
     void setColor(const QColor& color);
+    /// \brief Restores the default title color.
+    void resetColor();
+    /// \brief Sets the color used while none is set to \a color. Called by the owning Axis or ColorBar.
+    void setDefaultColor(const QColor& color);
 
     /// \brief Returns the gap between the title and the axis or color strip in pixels.
     qreal padding() const;
@@ -64,7 +71,7 @@ signals:
 private:
     QString text_;
     QFont font_;
-    QColor color_;
+    Internal::ResettableValue<QColor> color_;
     qreal padding_;
 };
 

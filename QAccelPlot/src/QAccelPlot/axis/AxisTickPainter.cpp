@@ -314,7 +314,7 @@ void AxisTickPainter::paintTick(const PaintContext& ctx, const AxisTick& tick, c
 
     const auto linePen = ctx.painter->pen();
     auto labelPen = linePen;
-    labelPen.setColor(params.hovered ? params.hoverColor : (ticker.tickLabelColor().isValid() ? ticker.tickLabelColor() : ticker.tickColor()));
+    labelPen.setColor(params.hovered ? params.hoverColor : ticker.tickLabelColor());
     ctx.painter->setPen(labelPen);
 
     const auto metrics = QFontMetricsF{ctx.painter->font(), ctx.painter->device()};

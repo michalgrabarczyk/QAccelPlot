@@ -63,4 +63,9 @@ void Category::setColor(const QColor& color)
     emit colorChanged();
 }
 
+void Category::resetColor()
+{
+    setColor(QColor{});
+}
+
 } // namespace QAccelPlot

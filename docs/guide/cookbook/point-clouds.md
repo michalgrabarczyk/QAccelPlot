@@ -76,7 +76,8 @@ QAccelPlot.PointCloud {
 ```
 
 `min` and `max` bound the value range. An unset bound is resolved from the
-data, so series sharing one colormap can resolve different ranges.
+data, so series sharing one colormap can resolve different ranges; it reads `NaN`,
+and assigning `undefined` unsets it again.
 `setRange(min, max)` sets both with one update. Set `logScale: true`
 when the values span decades; values at or below zero are then drawn with
 `color`.

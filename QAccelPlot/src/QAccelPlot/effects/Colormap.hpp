@@ -44,10 +44,16 @@ class Colormap : public QObject, public QQmlParserStatus {
     /// \brief Whether the ramp runs from its last color to its first. Applies to \c preset and
     /// \c stops alike. Default: \c false.
     Q_PROPERTY(bool reversed READ reversed WRITE setReversed NOTIFY colormapChanged)
-    /// \brief Value at ramp position 0. Unset (NaN) resolves it from the data. Default: unset.
-    Q_PROPERTY(qreal min READ min WRITE setMin NOTIFY colormapChanged)
-    /// \brief Value at ramp position 1. Unset (NaN) resolves it from the data. Default: unset.
-    Q_PROPERTY(qreal max READ max WRITE setMax NOTIFY colormapChanged)
+    /// \brief Value at ramp position 0. Unset by default: each series resolves it from its data.
+    ///
+    /// Reads NaN while unset; assign \c undefined to unset it. \c ColormappedSeries::dataValueMin
+    /// holds the value a series resolved.
+    Q_PROPERTY(qreal min READ min WRITE setMin RESET resetMin NOTIFY colormapChanged)
+    /// \brief Value at ramp position 1. Unset by default: each series resolves it from its data.
+    ///
+    /// Reads NaN while unset; assign \c undefined to unset it. \c ColormappedSeries::dataValueMax
+    /// holds the value a series resolved.
+    Q_PROPERTY(qreal max READ max WRITE setMax RESET resetMax NOTIFY colormapChanged)
     /// \brief Whether values are placed on the ramp in log10 instead of linearly. Default: \c false.
     ///
     /// Values at or below zero are unmapped. A \c ColorBar showing the colormap gets decade ticks.
@@ -88,11 +94,15 @@ public:
     qreal min() const;
     /// \brief Sets the fixed lower bound to \a value. NaN resolves it from the data.
     void setMin(qreal value);
+    /// \brief Unsets the lower bound, so it is resolved from the data again.
+    void resetMin();
 
     /// \brief Returns the fixed upper bound, or NaN when it is resolved from the data.
     qreal max() const;
     /// \brief Sets the fixed upper bound to \a value. NaN resolves it from the data.
     void setMax(qreal value);
+    /// \brief Unsets the upper bound, so it is resolved from the data again.
+    void resetMax();
 
     /// \brief Sets both bounds to \a min and \a max with a single \c colormapChanged(). NaN unsets a bound.
     Q_INVOKABLE void setRange(qreal min, qreal max);

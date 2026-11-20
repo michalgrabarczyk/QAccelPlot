@@ -32,20 +32,32 @@ void AxisTicker::setTickColor(const QColor& c)
     }
     tickColor_ = c;
     emit tickColorChanged();
+    if (tickLabelColor_.setFallback(c)) {
+        emit tickLabelColorChanged();
+    }
 }
 
 QColor AxisTicker::tickLabelColor() const
 {
-    return tickLabelColor_;
+    return tickLabelColor_.value();
 }
 
 void AxisTicker::setTickLabelColor(const QColor& c)
 {
-    if (tickLabelColor_ == c) {
+    if (!c.isValid()) {
+        resetTickLabelColor();
         return;
     }
-    tickLabelColor_ = c;
-    emit tickLabelColorChanged();
+    if (tickLabelColor_.set(c)) {
+        emit tickLabelColorChanged();
+    }
+}
+
+void AxisTicker::resetTickLabelColor()
+{
+    if (tickLabelColor_.reset()) {
+        emit tickLabelColorChanged();
+    }
 }
 
 int AxisTicker::tickCount() const
@@ -282,6 +294,11 @@ void AxisTicker::setTickLabelFormatter(TickLabelFormatter* formatter)
         });
     }
     emit tickLabelFormatterChanged();
+}
+
+void AxisTicker::resetTickLabelFormatter()
+{
+    setTickLabelFormatter(nullptr);
 }
 
 } // namespace QAccelPlot

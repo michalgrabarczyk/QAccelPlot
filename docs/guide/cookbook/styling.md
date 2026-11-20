@@ -156,11 +156,8 @@ QAccelPlot.LineCurve {
     effects: [
         QAccelPlot.GradientFill {
             direction: Qt.Vertical
-            baseline: QAccelPlot.GradientFillBaseline.Value
             baselineValue: 0
-            valueMinSource: QAccelPlot.GradientValueSource.Fixed
             valueMin: -4
-            valueMaxSource: QAccelPlot.GradientValueSource.Fixed
             valueMax: 8
             opacity: 0.65
             colormap: QAccelPlot.Colormap { preset: QAccelPlot.Colormap.Viridis }
@@ -185,8 +182,10 @@ QAccelPlot.GradientStroke {
 }
 ```
 
-Fixed gradient bounds keep colors stable while the viewport changes. Axis- or
-data-derived bounds make colors follow the current range.
+`valueMin` and `valueMax` place the ramp. Set them to keep colors stable while
+the data changes; leave them unset, or assign `undefined`, to span each curve's
+data range. `GradientFill.baselineValue` sets the Y value the fill starts from;
+unset, the fill starts at the smallest visible Y value.
 
 ## Glow and fading trails
 

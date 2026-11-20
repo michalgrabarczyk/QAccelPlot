@@ -5,42 +5,11 @@
 #pragma once
 
 #include <QColor>
-#include <QtQml/qqmlregistration.h>
 
 #include <optional>
 #include <vector>
 
 namespace QAccelPlot {
-
-/// \brief Namespace exposing the \c GradientFillBaseline enum to QML.
-namespace GradientFillBaselineNS {
-Q_NAMESPACE
-QML_NAMED_ELEMENT(GradientFillBaseline)
-
-/// \brief Determines where the baseline of a GradientFill area starts.
-enum class Mode {
-    AxisMinimum, ///< \brief Baseline follows the minimum visible value of the axis.
-    Value,       ///< \brief Baseline is a fixed data-space value set via \c GradientFill::baselineValue.
-};
-Q_ENUM_NS(Mode)
-} // namespace GradientFillBaselineNS
-
-using GradientFillBaseline = GradientFillBaselineNS::Mode;
-
-/// \brief Namespace exposing the \c GradientValueSource enum to QML.
-namespace GradientValueSourceNS {
-Q_NAMESPACE
-QML_NAMED_ELEMENT(GradientValueSource)
-
-/// \brief Determines how the gradient normalisation range is resolved.
-enum class Source {
-    DataRange, ///< \brief Range is the curve's own data extent; the axis data range when the curve has no valid sample.
-    Fixed,     ///< \brief Range is set explicitly via \c valueMin / \c valueMax.
-};
-Q_ENUM_NS(Source)
-} // namespace GradientValueSourceNS
-
-using GradientValueSource = GradientValueSourceNS::Source;
 
 /// \brief A single color stop within a gradient definition.
 struct GradientStopData {
@@ -98,9 +67,9 @@ struct GradientFillPayload {
     std::optional<qreal> gradientValueMin;
     /// \brief Fixed max for gradient normalisation; \c std::nullopt = derived from data range.
     std::optional<qreal> gradientValueMax;
-    GradientFillBaseline baseline{GradientFillBaseline::AxisMinimum}; ///< \brief Baseline mode.
-    qreal baselineValue{0.0};                                         ///< \brief Fixed baseline data value when mode is \c Value.
-    float opacity{1.0f};                                              ///< \brief Overall opacity of the fill in [0, 1].
+    /// \brief Fixed baseline data value; \c std::nullopt = the smallest visible value of the Y axis.
+    std::optional<qreal> baselineValue;
+    float opacity{1.0f}; ///< \brief Overall opacity of the fill in [0, 1].
 };
 
 } // namespace QAccelPlot

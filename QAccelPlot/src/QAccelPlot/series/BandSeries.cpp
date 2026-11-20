@@ -107,6 +107,13 @@ QSGGeometryNode* createFillNode()
     return node;
 }
 
+/// Returns the edge line color of a band filled with \a bandColor: the same color at full opacity.
+QColor defaultEdgeColor(QColor bandColor)
+{
+    bandColor.setAlpha(255);
+    return bandColor;
+}
+
 } // namespace
 
 BandSeries::BandSeries(QQuickItem* parent)
@@ -120,6 +127,7 @@ BandSeries::BandSeries(QQuickItem* parent)
     supportHover();
     setAcceptedMouseButtons(Qt::NoButton);
     setLegendSymbol(LegendSymbol::Fill);
+    edges_->setDefaultColor(defaultEdgeColor(color_));
     connect(edges_, &BandEdges::widthChanged, this, &QQuickItem::update);
     connect(edges_, &BandEdges::colorChanged, this, &QQuickItem::update);
     connect(edges_, &BandEdges::lineStyleChanged, this, &BandSeries::onEdgeLineStyleChanged);
@@ -138,6 +146,7 @@ void BandSeries::setColor(const QColor& color)
         return;
     }
     color_ = color;
+    edges_->setDefaultColor(defaultEdgeColor(color));
     emit colorChanged();
     update();
 }
@@ -415,16 +424,6 @@ bool BandSeries::edgesVisible() const
     return edges_->width() > 0.0 && style && style->showLine();
 }
 
-QColor BandSeries::edgeColor() const
-{
-    if (edges_->color().isValid()) {
-        return edges_->color();
-    }
-    auto color = color_;
-    color.setAlpha(255);
-    return color;
-}
-
 void BandSeries::refreshHovered()
 {
     setHovered(hoverPosition_ && contains(*hoverPosition_));
@@ -491,8 +490,8 @@ QSGGeometryNode* BandSeries::paintEdge(QSGGeometryNode* oldNode, const BandEdgeR
     auto points = dataPoints().view();
     points.count = count;
     const auto* style = edges_->lineStyle();
-    const auto uniforms = LineStroke::Uniforms{edgeColor(), edges_->width(), view.domainMin, view.domainMax, view.viewportSize, logScaleX(), logScaleY(), count,
-        antialiasing(), 1.0, style ? style->dashParameters() : DashParameters{}};
+    const auto uniforms = LineStroke::Uniforms{edges_->color(), edges_->width(), view.domainMin, view.domainMax, view.viewportSize, logScaleX(), logScaleY(),
+        count, antialiasing(), 1.0, style ? style->dashParameters() : DashParameters{}};
     return renderer.paint(oldNode, BandEdgeRenderParams{dataTexture, points, uniforms, xAxis(), yAxis(), dataChanged, view.reservedCount});
 }
 

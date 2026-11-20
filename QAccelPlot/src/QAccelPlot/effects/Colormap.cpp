@@ -24,12 +24,6 @@ namespace {
 constexpr auto kNaN = std::numeric_limits<qreal>::quiet_NaN();
 constexpr auto kStopTrackerName = "_qaccelplot_stopTracker";
 
-bool sameBound(const qreal current, const qreal value)
-{
-    // Both NaN means unset either way, and NaN never compares equal to itself.
-    return nearlyEqual(current, value) || (std::isnan(current) && std::isnan(value));
-}
-
 // 32 control points sampled at even spacing from the matplotlib ramps of the same name. Linear
 // interpolation between them stays within about one CIELAB unit of the originals.
 using RampSamples = std::vector<const char*>;
@@ -179,6 +173,11 @@ void Colormap::setMin(const qreal value)
     setRange(value, max_);
 }
 
+void Colormap::resetMin()
+{
+    setMin(kNaN);
+}
+
 qreal Colormap::max() const
 {
     return max_;
@@ -189,9 +188,14 @@ void Colormap::setMax(const qreal value)
     setRange(min_, value);
 }
 
+void Colormap::resetMax()
+{
+    setMax(kNaN);
+}
+
 void Colormap::setRange(const qreal min, const qreal max)
 {
-    if (sameBound(min_, min) && sameBound(max_, max)) {
+    if (nearlyEqualOrBothNaN(min_, min) && nearlyEqualOrBothNaN(max_, max)) {
         return;
     }
     min_ = min;

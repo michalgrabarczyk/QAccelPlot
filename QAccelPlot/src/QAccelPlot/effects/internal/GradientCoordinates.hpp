@@ -7,8 +7,16 @@
 #include "QAccelPlot/effects/GradientColorTypes.hpp"
 
 #include <algorithm>
+#include <cmath>
+#include <optional>
 
 namespace QAccelPlot::Internal {
+
+/// \brief Returns \a value, or \c std::nullopt when it is NaN, the unset state of an effect property.
+inline std::optional<qreal> valueIfSet(const qreal value)
+{
+    return std::isnan(value) ? std::nullopt : std::optional<qreal>{value};
+}
 
 /// \brief Returns an unbounded palette coordinate for a data-space \a value.
 ///
@@ -25,8 +33,7 @@ inline float unboundedGradientCoordinate(const Qt::Orientation direction, const 
 
 /// \brief Fills each unset gradient value bound of \a payload from [\a dataMin, \a dataMax].
 ///
-/// Bounds resolve independently, so a \c Fixed bound is kept when the other
-/// bound uses \c DataRange.
+/// Bounds resolve independently, so a set bound is kept when the other bound is unset.
 template <typename Payload> void resolveGradientValueRange(Payload& payload, const qreal dataMin, const qreal dataMax)
 {
     if (!payload.gradientValueMin.has_value()) {

@@ -146,6 +146,23 @@ In both modes:
   animating from `NaN`.
 - **Hover** never reports a hit on an invalid data point or across a break.
 
+## Automatic values
+
+Some properties have a default that is computed instead of fixed, such as an
+axis title rotation that depends on the side. Assigning `undefined`, or a
+binding that evaluates to `undefined`, returns such a property to its default:
+
+```qml
+QAccelPlot.Axis {
+    label.rotation: autoRotation.checked ? undefined : 45
+}
+```
+
+Reading the property gives the value in effect, and its change signal fires when
+that value changes. Where the value depends on the series using the object, such
+as a `Colormap` shared by several series, reading gives `NaN`, an invalid color,
+or `null` while the property is unset; each property documents which.
+
 ## Composition and overlays
 
 Ordinary QML items can be placed above the grid and series. `DataAnchor` maps

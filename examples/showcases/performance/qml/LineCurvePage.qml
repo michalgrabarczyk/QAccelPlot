@@ -65,9 +65,7 @@ QAccelPlot.Plot {
             QAccelPlot.GradientStroke {
                 id: gradientStroke
                 direction: Qt.Vertical
-                valueMinSource: QAccelPlot.GradientValueSource.Fixed
                 valueMin: -8
-                valueMaxSource: QAccelPlot.GradientValueSource.Fixed
                 valueMax: 8
                 colormap: QAccelPlot.Colormap {
                     preset: QAccelPlot.Colormap.Plasma
@@ -77,11 +75,8 @@ QAccelPlot.Plot {
             QAccelPlot.GradientFill {
                 id: gradientFill
                 direction: Qt.Vertical
-                baseline: QAccelPlot.GradientFillBaseline.Value
                 baselineValue: 0
-                valueMinSource: QAccelPlot.GradientValueSource.Fixed
                 valueMin: -8
-                valueMaxSource: QAccelPlot.GradientValueSource.Fixed
                 valueMax: 8
                 opacity: 0.4
                 colormap: QAccelPlot.Colormap {

@@ -90,7 +90,7 @@ void assembleFillVertices(QSGGeometry* geometry, const FillSamples& samples, Axi
     const GradientFillPayload& gradientFillPayload)
 {
     auto* vertices = static_cast<GradientFillVertex*>(geometry->vertexData());
-    const auto baselineData = (gradientFillPayload.baseline == GradientFillBaseline::AxisMinimum) ? yAxis->viewportMin() : gradientFillPayload.baselineValue;
+    const auto baselineData = gradientFillPayload.baselineValue.value_or(yAxis->viewportMin());
     const auto baselinePixel = static_cast<float>(yAxis->coordToPixel(baselineData, height));
 
     auto written = int{0};

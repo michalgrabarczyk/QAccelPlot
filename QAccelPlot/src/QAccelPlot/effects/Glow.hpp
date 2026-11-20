@@ -32,7 +32,9 @@ class Glow : public SeriesEffect {
     Q_OBJECT
     QML_NAMED_ELEMENT(Glow)
 
-    /// \brief Color of the halo. Default: an invalid color, which uses the series color.
+    /// \brief Color of the halo. Unset by default: each series uses its own color.
+    ///
+    /// Reads an invalid color while unset; assign \c undefined to unset it.
     Q_PROPERTY(QColor color READ color WRITE setColor RESET resetColor NOTIFY colorChanged)
     /// \brief Width of the halo in pixels, clamped to at least 0. Default: 8.
     Q_PROPERTY(qreal radius READ radius WRITE setRadius NOTIFY radiusChanged)

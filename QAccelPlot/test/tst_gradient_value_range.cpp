@@ -43,13 +43,40 @@ QObject* createGradient(QObject* parent)
     return gradient;
 }
 
-template <typename Effect> void configureRangeSources(Effect& effect, const GradientValueSource minSource, const GradientValueSource maxSource)
+enum class Bound { Min, Max };
+
+// Sets the bound named by fixed to kFixedValue and leaves the other unset.
+template <typename Effect> void configureFixedBound(Effect& effect, const Bound fixed)
 {
     effect.setGradient(createGradient(&effect));
-    effect.setValueMinSource(minSource);
+    if (fixed == Bound::Min) {
+        effect.setValueMin(kFixedValue);
+    } else {
+        effect.setValueMax(kFixedValue);
+    }
+}
+
+template <typename Effect> void verifyBoundsReset()
+{
+    auto effect = Effect{};
+    effect.setGradient(createGradient(&effect));
+    QVERIFY(std::isnan(effect.valueMin()));
+    QVERIFY(std::isnan(effect.valueMax()));
+    QVERIFY(!effect.payload().gradientValueMin.has_value());
+
+    auto minSpy = QSignalSpy{&effect, &Effect::valueMinChanged};
     effect.setValueMin(kFixedValue);
-    effect.setValueMaxSource(maxSource);
+    QCOMPARE(effect.payload().gradientValueMin, std::optional<qreal>{kFixedValue});
+    effect.resetValueMin();
+    QVERIFY(std::isnan(effect.valueMin()));
+    QVERIFY(!effect.payload().gradientValueMin.has_value());
+    effect.setValueMin(std::numeric_limits<qreal>::quiet_NaN());
+    QCOMPARE(minSpy.count(), 2);
+
     effect.setValueMax(kFixedValue);
+    effect.setValueMax(std::numeric_limits<qreal>::quiet_NaN());
+    QVERIFY(std::isnan(effect.valueMax()));
+    QVERIFY(!effect.payload().gradientValueMax.has_value());
 }
 
 } // namespace
@@ -62,12 +89,15 @@ private slots:
     void strokeDataRangeMinFixedMax_keepsFixedMax();
     void fillFixedMinDataRangeMax_keepsFixedMin();
     void fillDataRangeMinFixedMax_keepsFixedMax();
+    void strokeBoundsAreUnsetByDefaultAndReset();
+    void fillBoundsAreUnsetByDefaultAndReset();
+    void fillBaselineIsUnsetByDefaultAndReset();
 };
 
 void TestGradientValueRange::strokeFixedMinDataRangeMax_keepsFixedMin()
 {
     auto stroke = GradientStroke{};
-    configureRangeSources(stroke, GradientValueSource::Fixed, GradientValueSource::DataRange);
+    configureFixedBound(stroke, Bound::Min);
 
     auto payload = stroke.payload();
     QVERIFY(payload.isValid());
@@ -80,7 +110,7 @@ void TestGradientValueRange::strokeFixedMinDataRangeMax_keepsFixedMin()
 void TestGradientValueRange::strokeDataRangeMinFixedMax_keepsFixedMax()
 {
     auto stroke = GradientStroke{};
-    configureRangeSources(stroke, GradientValueSource::DataRange, GradientValueSource::Fixed);
+    configureFixedBound(stroke, Bound::Max);
 
     auto payload = stroke.payload();
     QVERIFY(payload.isValid());
@@ -93,7 +123,7 @@ void TestGradientValueRange::strokeDataRangeMinFixedMax_keepsFixedMax()
 void TestGradientValueRange::fillFixedMinDataRangeMax_keepsFixedMin()
 {
     auto fill = GradientFill{};
-    configureRangeSources(fill, GradientValueSource::Fixed, GradientValueSource::DataRange);
+    configureFixedBound(fill, Bound::Min);
 
     auto payload = fill.payload();
     QVERIFY(payload.isValid());
@@ -106,7 +136,7 @@ void TestGradientValueRange::fillFixedMinDataRangeMax_keepsFixedMin()
 void TestGradientValueRange::fillDataRangeMinFixedMax_keepsFixedMax()
 {
     auto fill = GradientFill{};
-    configureRangeSources(fill, GradientValueSource::DataRange, GradientValueSource::Fixed);
+    configureFixedBound(fill, Bound::Max);
 
     auto payload = fill.payload();
     QVERIFY(payload.isValid());
@@ -114,6 +144,32 @@ void TestGradientValueRange::fillDataRangeMinFixedMax_keepsFixedMax()
 
     QCOMPARE(payload.gradientValueMin, std::optional<qreal>{kDataMin});
     QCOMPARE(payload.gradientValueMax, std::optional<qreal>{kFixedValue});
+}
+
+void TestGradientValueRange::strokeBoundsAreUnsetByDefaultAndReset()
+{
+    verifyBoundsReset<GradientStroke>();
+}
+
+void TestGradientValueRange::fillBoundsAreUnsetByDefaultAndReset()
+{
+    verifyBoundsReset<GradientFill>();
+}
+
+void TestGradientValueRange::fillBaselineIsUnsetByDefaultAndReset()
+{
+    auto fill = GradientFill{};
+    QVERIFY(std::isnan(fill.baselineValue()));
+    QVERIFY(!fill.payload().baselineValue.has_value());
+
+    auto spy = QSignalSpy{&fill, &GradientFill::baselineValueChanged};
+    fill.setBaselineValue(0.0);
+    QCOMPARE(fill.payload().baselineValue, std::optional<qreal>{0.0});
+    fill.resetBaselineValue();
+    QVERIFY(std::isnan(fill.baselineValue()));
+    QVERIFY(!fill.payload().baselineValue.has_value());
+    fill.resetBaselineValue();
+    QCOMPARE(spy.count(), 2);
 }
 
 QTEST_GUILESS_MAIN(TestGradientValueRange)

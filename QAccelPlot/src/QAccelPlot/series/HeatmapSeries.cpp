@@ -107,42 +107,62 @@ int HeatmapSeries::count() const
 
 qreal HeatmapSeries::xMin() const
 {
-    return edges_.xMin;
+    return resolvedExtent().xMin;
 }
 
 void HeatmapSeries::setXMin(const qreal value)
 {
-    setBound(edges_.xMin, value, &HeatmapSeries::xMinChanged);
+    setBound(&Extent::xMin, value, &HeatmapSeries::xMinChanged);
+}
+
+void HeatmapSeries::resetXMin()
+{
+    setXMin(kNaN);
 }
 
 qreal HeatmapSeries::xMax() const
 {
-    return edges_.xMax;
+    return resolvedExtent().xMax;
 }
 
 void HeatmapSeries::setXMax(const qreal value)
 {
-    setBound(edges_.xMax, value, &HeatmapSeries::xMaxChanged);
+    setBound(&Extent::xMax, value, &HeatmapSeries::xMaxChanged);
+}
+
+void HeatmapSeries::resetXMax()
+{
+    setXMax(kNaN);
 }
 
 qreal HeatmapSeries::yMin() const
 {
-    return edges_.yMin;
+    return resolvedExtent().yMin;
 }
 
 void HeatmapSeries::setYMin(const qreal value)
 {
-    setBound(edges_.yMin, value, &HeatmapSeries::yMinChanged);
+    setBound(&Extent::yMin, value, &HeatmapSeries::yMinChanged);
+}
+
+void HeatmapSeries::resetYMin()
+{
+    setYMin(kNaN);
 }
 
 qreal HeatmapSeries::yMax() const
 {
-    return edges_.yMax;
+    return resolvedExtent().yMax;
 }
 
 void HeatmapSeries::setYMax(const qreal value)
 {
-    setBound(edges_.yMax, value, &HeatmapSeries::yMaxChanged);
+    setBound(&Extent::yMax, value, &HeatmapSeries::yMaxChanged);
+}
+
+void HeatmapSeries::resetYMax()
+{
+    setYMax(kNaN);
 }
 
 HeatmapSeries::Spacing HeatmapSeries::xSpacing() const
@@ -429,9 +449,15 @@ void HeatmapSeries::applyShape(const int columns)
     inspectionDataChanged();
     if (columns_ != previousColumns) {
         emit columnsChanged();
+        if (std::isnan(edges_.xMax)) {
+            emit xMaxChanged();
+        }
     }
     if (rows_ != previousRows) {
         emit rowsChanged();
+        if (std::isnan(edges_.yMax)) {
+            emit yMaxChanged();
+        }
     }
     if (cellCount() != previousCount) {
         emit countChanged();
@@ -439,16 +465,20 @@ void HeatmapSeries::applyShape(const int columns)
     update();
 }
 
-void HeatmapSeries::setBound(qreal& bound, const qreal value, void (HeatmapSeries::*changed)())
+void HeatmapSeries::setBound(qreal Extent::* edge, const qreal value, void (HeatmapSeries::*changed)())
 {
+    auto& bound = edges_.*edge;
     if ((std::isnan(bound) && std::isnan(value)) || bound == value) {
         return;
     }
+    const auto previous = resolvedExtent().*edge;
     bound = value;
     invalidateDataRanges();
     // The cell centers the records report moved.
     inspectionDataChanged();
-    emit(this->*changed)();
+    if (resolvedExtent().*edge != previous) {
+        emit(this->*changed)();
+    }
     update();
 }
 

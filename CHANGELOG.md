@@ -13,11 +13,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   feed.
 - Accepting the event passed to `Axis.doubleClicked` skips the axis rescale,
   as `PlotView.mouseDoubleClicked` does for the plot.
+- Assigning `undefined` to a property with a computed or automatic default,
+  such as `Colormap.min` or `ticker.tickLabelColor`, restores that default.
 
 ### Changed
 
 - `Axis::doubleClicked` takes a `PlotMouseEvent*`. String-based
   `SIGNAL(doubleClicked())` connections must be updated.
+- `HeatmapSeries` edges, `ticker.tickLabelColor`, `Axis.label.color`, and
+  `BandSeries.edges.color` read their value in effect while unset, not NaN or
+  an invalid color. Writing NaN or an invalid color still restores the default.
+- `GradientFill` and `GradientStroke` drop `valueMinSource`, `valueMaxSource`,
+  and `GradientValueSource`; `GradientFill` drops `baseline` and
+  `GradientFillBaseline`. A set `valueMin`, `valueMax`, or `baselineValue` is
+  fixed, and an unset one follows the data range or the axis minimum. Delete the
+  `valueMinSource`, `valueMaxSource`, and `baseline` lines; for
+  `GradientFillBaseline.AxisMinimum`, leave `baselineValue` unset.
 
 ## [0.6.0] — 2026-11-16
 

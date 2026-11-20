@@ -49,18 +49,21 @@ class PlotExporter : public QObject {
     Q_PROPERTY(PlotView* plot READ plot WRITE setPlot NOTIFY plotChanged)
     /// \brief Image pixels per logical pixel; 0 uses the window's device pixel ratio. Default: 0.
     ///
-    /// At a device pixel ratio other than 1, Qt 6.3 and later cannot render every image size, so
-    /// a side can be a pixel shorter or longer than the plot's size times the scale.
-    Q_PROPERTY(qreal scale READ scale WRITE setScale NOTIFY scaleChanged)
+    /// Assign \c undefined to return to 0. At a device pixel ratio other than 1, Qt 6.3 and later
+    /// cannot render every image size, so a side can be a pixel shorter or longer than the plot's
+    /// size times the scale.
+    Q_PROPERTY(qreal scale READ scale WRITE setScale RESET resetScale NOTIFY scaleChanged)
     /// \brief Encoder quality from 0 to 100 passed to \c QImageWriter; -1 uses the format's default. Default: -1.
     ///
-    /// Lossy formats (JPEG, WebP) trade file size for artifacts. PNG stays lossless and only
-    /// trades file size for encoding time. Other formats ignore it.
-    Q_PROPERTY(int quality READ quality WRITE setQuality NOTIFY qualityChanged)
+    /// Assign \c undefined to return to -1. Lossy formats (JPEG, WebP) trade file size for
+    /// artifacts. PNG stays lossless and only trades file size for encoding time. Other formats
+    /// ignore it.
+    Q_PROPERTY(int quality READ quality WRITE setQuality RESET resetQuality NOTIFY qualityChanged)
     /// \brief Resolution stored in saved files, in dots per inch; 0 stores 96 times the effective scale. Default: 0.
     ///
-    /// The default makes documents place the image at its on-screen size.
-    Q_PROPERTY(qreal dpi READ dpi WRITE setDpi NOTIFY dpiChanged)
+    /// Assign \c undefined to return to 0. The default makes documents place the image at its
+    /// on-screen size.
+    Q_PROPERTY(qreal dpi READ dpi WRITE setDpi RESET resetDpi NOTIFY dpiChanged)
     /// \brief Leaves out the plot's \c axesAreaColor and \c plotAreaColor backgrounds. Default: false.
     ///
     /// Grid, series, axes, and child items such as the legend are drawn as usual. Formats without
@@ -89,14 +92,20 @@ public:
     qreal scale() const;
     /// \brief Sets the image pixels per logical pixel; negative and nonfinite values are ignored with a warning.
     void setScale(qreal scale);
+    /// \brief Sets the scale to 0, the window's device pixel ratio.
+    void resetScale();
     /// \brief Returns the encoder quality.
     int quality() const;
     /// \brief Sets the encoder quality; values outside -1 to 100 are ignored with a warning.
     void setQuality(int quality);
+    /// \brief Sets the encoder quality to -1, the format's default.
+    void resetQuality();
     /// \brief Returns the resolution stored in saved files; 0 means 96 times the effective scale.
     qreal dpi() const;
     /// \brief Sets the stored resolution; negative and nonfinite values are ignored with a warning.
     void setDpi(qreal dpi);
+    /// \brief Sets the stored resolution to 0, 96 times the effective scale.
+    void resetDpi();
     /// \brief Returns whether the image leaves out the plot's backgrounds.
     bool transparentBackground() const;
     /// \brief Sets whether the image leaves out the plot's backgrounds.

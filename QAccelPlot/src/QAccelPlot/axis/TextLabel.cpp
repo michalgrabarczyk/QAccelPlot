@@ -44,16 +44,32 @@ void TextLabel::setFont(const QFont& font)
 
 QColor TextLabel::color() const
 {
-    return color_;
+    return color_.value();
 }
 
 void TextLabel::setColor(const QColor& color)
 {
-    if (color_ == color) {
+    if (!color.isValid()) {
+        resetColor();
         return;
     }
-    color_ = color;
-    emit colorChanged();
+    if (color_.set(color)) {
+        emit colorChanged();
+    }
+}
+
+void TextLabel::resetColor()
+{
+    if (color_.reset()) {
+        emit colorChanged();
+    }
+}
+
+void TextLabel::setDefaultColor(const QColor& color)
+{
+    if (color_.setFallback(color)) {
+        emit colorChanged();
+    }
 }
 
 qreal TextLabel::padding() const

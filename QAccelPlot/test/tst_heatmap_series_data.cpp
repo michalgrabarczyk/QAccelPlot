@@ -86,8 +86,8 @@ void HeatmapSeriesDataTest::defaultsRenderWithOwnColormap()
     auto heatmap = HeatmapSeries{};
     QCOMPARE(heatmap.columns(), 0);
     QCOMPARE(heatmap.rows(), 0);
-    QVERIFY(std::isnan(heatmap.xMin()));
-    QVERIFY(std::isnan(heatmap.yMax()));
+    QCOMPARE(heatmap.xMin(), 0.0);
+    QCOMPARE(heatmap.yMax(), 0.0);
     QVERIFY(heatmap.colormap());
     QCOMPARE(heatmap.colormap()->parent(), &heatmap);
     QCOMPARE(heatmap.colormap()->preset(), Colormap::Preset::Viridis);

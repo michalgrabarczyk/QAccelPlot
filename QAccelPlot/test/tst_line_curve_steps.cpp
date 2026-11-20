@@ -117,7 +117,6 @@ constexpr auto kFillScene = R"(
         hoverRadius: 0
         stepMode: StepMode.After
         effects: GradientFill {
-            baseline: GradientFillBaseline.Value
             baselineValue: 0
             opacity: 1
             gradient: Gradient {
@@ -352,7 +351,6 @@ void LineCurveStepsTest::fillFollowsSteps()
     fill.stops = {{0, Qt::red}, {1, Qt::blue}};
     fill.gradientValueMin = 0;
     fill.gradientValueMax = 10;
-    fill.baseline = GradientFillBaseline::Value;
     fill.baselineValue = 0;
     // A lone data point before the gap still fills its step up to the X of the invalid one.
     const auto nan = std::numeric_limits<float>::quiet_NaN();
