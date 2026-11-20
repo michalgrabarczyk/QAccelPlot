@@ -25,7 +25,6 @@
 #include <array>
 #include <cmath>
 #include <initializer_list>
-#include <limits>
 #include <utility>
 
 namespace QAccelPlot {
@@ -37,7 +36,6 @@ constexpr auto kStride = 4;
 constexpr auto kLowColumn = 2;
 constexpr auto kHighColumn = 3;
 constexpr auto kVertexBytesPerErrorBar = ErrorBarMaterial::kVerticesPerErrorBar * 4;
-constexpr auto kInf = std::numeric_limits<double>::infinity();
 
 // The bounds lie on the Y axis of vertical error bars and on the X axis of horizontal ones.
 std::vector<DataPointStore::Dimension> errorBarColumns(const Qt::Orientation orientation)
@@ -322,11 +320,11 @@ int ErrorBarSeries::errorBarIndexAt(const QPointF& position) const
         return -1;
     }
     ensureSpatialGrid();
-    // Error bars within reach have their position within this many pixels of the cursor.
-    const auto reach = hoverRadius_ + 0.5 * std::max(lineWidth_, capLength_) + 1.0;
+    // An error bar's line and caps reach past its position by half their width.
+    const auto overhang = 0.5 * std::max(lineWidth_, capLength_);
     const auto drawnCount = std::min(dataPoints().drawnView().count, renderCapacity_);
-    return hitIndex_->nearest(
-        {position, reach, hoverRadius_, drawnCount}, *xAxis(), *yAxis(), size(), [this, &position](const int index) { return pixelDistance(index, position); });
+    return hitIndex_->nearest({position, hoverRadius_, overhang, drawnCount}, *xAxis(), *yAxis(), size(),
+        [this, &position](const int index) { return pixelDistance(index, position); });
 }
 
 bool ErrorBarSeries::contains(const QPointF& point) const
@@ -546,16 +544,14 @@ void ErrorBarSeries::ensureSpatialGrid() const
     if (hitIndex_->valid()) {
         return;
     }
-    // Only the position is indexed. Error bars often span much of the value axis, which would push
-    // them past the grid's per-item cell limit into its linear scan; the pixel test checks the rest.
     const auto horizontal = isHorizontal();
     const auto drawn = dataPoints().drawnView();
-    hitIndex_->build(drawn.count, [&](const int index) -> std::optional<std::array<double, 4>> {
+    hitIndex_->build(drawn.count, horizontal ? Qt::Vertical : Qt::Horizontal, [&](const int index) -> std::optional<std::pair<double, double>> {
         const auto bar = dataBar(drawn, index);
         if (!bar) {
             return std::nullopt;
         }
-        return horizontal ? std::array<double, 4>{-kInf, bar->position, kInf, bar->position} : std::array<double, 4>{bar->position, -kInf, bar->position, kInf};
+        return std::pair{bar->position, bar->position};
     });
 }
 

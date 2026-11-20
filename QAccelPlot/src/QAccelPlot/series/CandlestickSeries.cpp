@@ -377,12 +377,11 @@ int CandlestickSeries::candleIndexAt(const QPointF& position) const
         return -1;
     }
     ensureSpatialGrid();
-    // Candles within reach span x data within this many pixels of the cursor; the hit rectangles
-    // hold the candle width in data units, so only the pixel minimums widen the box.
-    const auto reach = hoverRadius_ + 0.5 * std::max(lineWidth_, minimumWidth_) + 1.0;
+    // The spans hold the candle width in data units, so only the pixel minimums reach past them.
+    const auto overhang = 0.5 * std::max(lineWidth_, minimumWidth_);
     const auto drawnCount = std::min(dataPoints().drawnView().count, renderCapacity_);
-    return hitIndex_->nearest(
-        {position, reach, hoverRadius_, drawnCount}, *xAxis(), *yAxis(), size(), [this, &position](const int index) { return pixelDistance(index, position); });
+    return hitIndex_->nearest({position, hoverRadius_, overhang, drawnCount}, *xAxis(), *yAxis(), size(),
+        [this, &position](const int index) { return pixelDistance(index, position); });
 }
 
 bool CandlestickSeries::contains(const QPointF& point) const
@@ -714,17 +713,14 @@ void CandlestickSeries::ensureSpatialGrid() const
     if (hitIndex_->valid()) {
         return;
     }
-    // Only x is indexed. Candles often span much of the y axis, which would push them past the
-    // grid's per-item cell limit into its linear scan; the pixel test checks the rest.
     const auto drawn = dataPoints().drawnView();
     const auto logX = logScaleX();
     const auto halfWidth = halfCandleWidth();
-    hitIndex_->build(drawn.count, [&](const int index) -> std::optional<std::array<double, 4>> {
+    hitIndex_->build(drawn.count, Qt::Horizontal, [&](const int index) -> std::optional<std::pair<double, double>> {
         if (!candleDrawn(drawn, index, logX)) {
             return std::nullopt;
         }
-        const auto [left, right] = candleSpan(drawn.value(index, 0), halfWidth, logX);
-        return std::array<double, 4>{left, -kInf, right, kInf};
+        return candleSpan(drawn.value(index, 0), halfWidth, logX);
     });
 }
 

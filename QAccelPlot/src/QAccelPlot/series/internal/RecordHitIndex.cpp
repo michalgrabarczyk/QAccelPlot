@@ -21,23 +21,14 @@ bool RecordHitIndex::valid() const
 int RecordHitIndex::nearest(const Query& query, const Axis& xAxis, const Axis& yAxis, const QSizeF& size, const Distance& distance) const
 {
     const auto& position = query.position;
-    const auto x1 = xAxis.pixelToCoord(position.x() - query.reach, size.width());
-    const auto x2 = xAxis.pixelToCoord(position.x() + query.reach, size.width());
-    const auto y1 = yAxis.pixelToCoord(position.y() - query.reach, size.height());
-    const auto y2 = yAxis.pixelToCoord(position.y() + query.reach, size.height());
-
-    auto nearest = -1;
-    auto nearestDistance = query.radius;
-    // Accepts no candidate, so that the grid offers each one in the box to find the nearest.
-    grid_.queryTopmost(std::min(x1, x2), std::min(y1, y2), std::max(x1, x2), std::max(y1, y2), [&](const int index) {
-        const auto candidate = index < query.drawnCount ? distance(index) : std::nullopt;
-        if (candidate && *candidate <= query.radius && (nearest < 0 || *candidate < nearestDistance || (*candidate == nearestDistance && index > nearest))) {
-            nearest = index;
-            nearestDistance = *candidate;
-        }
-        return false;
-    });
-    return nearest;
+    // One pixel more keeps rounding in pixelToCoord() from dropping a record at the edge; the pixel distance test is exact.
+    const auto reach = query.radius + query.overhang + 1.0;
+    const auto x1 = xAxis.pixelToCoord(position.x() - reach, size.width());
+    const auto x2 = xAxis.pixelToCoord(position.x() + reach, size.width());
+    const auto y1 = yAxis.pixelToCoord(position.y() - reach, size.height());
+    const auto y2 = yAxis.pixelToCoord(position.y() + reach, size.height());
+    return grid_.queryNearest(std::min(x1, x2), std::min(y1, y2), std::max(x1, x2), std::max(y1, y2), query.radius,
+        [&](const int index) -> std::optional<double> { return index < query.drawnCount ? distance(index) : std::nullopt; });
 }
 
 } // namespace QAccelPlot::Internal

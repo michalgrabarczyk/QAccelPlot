@@ -5,6 +5,7 @@
 #pragma once
 
 #include <functional>
+#include <optional>
 #include <vector>
 
 namespace QAccelPlot {
@@ -31,6 +32,12 @@ public:
     ///
     /// Lets callers apply a precise hit test, e.g. in pixel space, to the few candidates near a point.
     int queryTopmost(double minX, double minY, double maxX, double maxY, const std::function<bool(int)>& accept) const;
+    /// \brief Returns the rectangle overlapping the box that \a distance finds nearest, or -1.
+    ///
+    /// Calls \a distance once for each rectangle overlapping the box. It returns the distance to
+    /// rectangle \a index, such as in pixels, or nullopt to skip it. Rectangles farther than
+    /// \a maxDistance are skipped; of equally near ones, the highest index wins.
+    int queryNearest(double minX, double minY, double maxX, double maxY, double maxDistance, const std::function<std::optional<double>(int)>& distance) const;
 
     /// \brief Returns what \c queryTopmost() returns on a grid built from the same rectangles, without building one.
     ///

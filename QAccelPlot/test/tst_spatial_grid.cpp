@@ -8,8 +8,12 @@
 
 #include <algorithm>
 #include <array>
+#include <cmath>
+#include <cstddef>
 #include <functional>
 #include <limits>
+#include <numeric>
+#include <optional>
 #include <random>
 #include <vector>
 
@@ -44,6 +48,9 @@ private slots:
 
     // Box queries
     void queryTopmost_returnsHighestAcceptedOverlap();
+    void queryNearest_measuresEachRectangleOnce();
+    void queryNearest_returnsNearestWithinMaxDistance();
+    void queryNearest_matchesAScan();
 
     // Scans without a grid
     void scanTopmost_matchesQueryTopmost();
@@ -310,6 +317,116 @@ void TestSpatialGrid::queryTopmost_returnsHighestAcceptedOverlap()
     QCOMPARE(grid.queryTopmost(0.9, 0.5, 1.2, 0.5, rejectLarge), 0);
     QCOMPARE(grid.queryTopmost(1.1, 0.5, 1.2, 0.5, rejectLarge), -1);
     QCOMPARE(grid.queryTopmost(200.0, 200.0, 300.0, 300.0, acceptAll), -1);
+}
+
+void TestSpatialGrid::queryNearest_measuresEachRectangleOnce()
+{
+    // A 10 x 10 lattice of unit squares, so the grid has 10 x 10 cells about 9 units wide.
+    auto data = std::vector<double>{};
+    for (auto i = 0; i < 100; ++i) {
+        const auto x = (i % 10) * 10.0;
+        const auto y = (i / 10) * 10.0;
+        data.insert(data.end(), {x, y, x + 1.0, y + 1.0});
+    }
+    // Covers several cells, spans every row, is too large for the cells, and is invalid.
+    std::copy_n(std::array<double, 4>{0.0, 0.0, 35.0, 35.0}.begin(), 4, data.begin());
+    std::copy_n(std::array<double, 4>{40.0, -kInf, 41.0, kInf}.begin(), 4, data.begin() + 4);
+    std::copy_n(std::array<double, 4>{0.0, 0.0, 91.0, 91.0}.begin(), 4, data.begin() + 8);
+    data[12] = kNaN;
+    auto grid = QAccelPlot::SpatialGrid{};
+    grid.build(data.data(), 100);
+
+    auto measured = std::vector<int>(100, 0);
+    const auto count = [&measured](const int index) -> std::optional<double> {
+        ++measured[static_cast<std::size_t>(index)];
+        return std::nullopt;
+    };
+    QCOMPARE(grid.queryNearest(-1000.0, -1000.0, 1000.0, 1000.0, 1.0, count), -1);
+    for (auto i = 0; i < 100; ++i) {
+        QCOMPARE(measured[static_cast<std::size_t>(i)], i == 3 ? 0 : 1);
+    }
+
+    // A box inside the multi-cell rectangle measures it once, along with the other rectangles it overlaps.
+    std::fill(measured.begin(), measured.end(), 0);
+    grid.queryNearest(12.0, 12.0, 30.0, 30.0, 1.0, count);
+    QCOMPARE(measured[0], 1);
+    QCOMPARE(measured[2], 1);
+    QCOMPARE(measured[22], 1);
+    QCOMPARE(measured[33], 1);
+    QCOMPARE(std::accumulate(measured.cbegin(), measured.cend(), 0), 6);
+}
+
+void TestSpatialGrid::queryNearest_returnsNearestWithinMaxDistance()
+{
+    const auto data = std::vector<double>{
+        0.0, 0.0, 1.0, 1.0, // index 0
+        0.5, 0.5, 2.0, 2.0, // index 1
+        0.2, 0.2, 0.8, 0.8, // index 2
+        5.0, 5.0, 6.0, 6.0, // index 3
+    };
+    auto grid = QAccelPlot::SpatialGrid{};
+    grid.build(data.data(), 4);
+    const auto distances = std::array<double, 4>{2.0, 1.0, 1.0, 0.0};
+    const auto distance = [&distances](const int index) -> std::optional<double> { return distances[static_cast<std::size_t>(index)]; };
+    const auto skip2 = [&distances](const int index) -> std::optional<double> {
+        return index == 2 ? std::nullopt : std::optional<double>{distances[static_cast<std::size_t>(index)]};
+    };
+
+    // Index 3 is nearest but outside the box; of the equally near 1 and 2, the higher index wins.
+    QCOMPARE(grid.queryNearest(0.0, 0.0, 1.0, 1.0, 3.0, distance), 2);
+    QCOMPARE(grid.queryNearest(0.0, 0.0, 1.0, 1.0, 3.0, skip2), 1);
+    QCOMPARE(grid.queryNearest(0.0, 0.0, 1.0, 1.0, 1.0, distance), 2);
+    QCOMPARE(grid.queryNearest(0.0, 0.0, 1.0, 1.0, 0.5, distance), -1);
+    QCOMPARE(grid.queryNearest(10.0, 10.0, 11.0, 11.0, 3.0, distance), -1);
+    QCOMPARE(grid.queryNearest(kNaN, 0.0, 1.0, 1.0, 3.0, distance), -1);
+}
+
+void TestSpatialGrid::queryNearest_matchesAScan()
+{
+    constexpr auto itemCount = 3000;
+    auto engine = std::mt19937{11u};
+    auto position = std::uniform_real_distribution<double>{0.0, 100.0};
+    auto size = std::uniform_real_distribution<double>{0.0, 8.0};
+    auto data = std::vector<double>{};
+    for (auto i = 0; i < itemCount; ++i) {
+        const auto x = position(engine);
+        const auto y = position(engine);
+        data.insert(data.end(), {x, y, x - size(engine), y + size(engine)});
+    }
+    std::copy_n(std::array<double, 4>{10.0, 10.0, 90.0, 90.0}.begin(), 4, data.begin() + 4 * 100);
+    std::copy_n(std::array<double, 4>{40.0, -kInf, 41.0, kInf}.begin(), 4, data.begin() + 4 * 200);
+    data[4 * 2990 + 2] = kNaN;
+    auto grid = QAccelPlot::SpatialGrid{};
+    grid.build(data.data(), itemCount);
+    // Few distinct distances, so ties are common; every 13th rectangle is skipped.
+    const auto distance = [](const int index) -> std::optional<double> {
+        return index % 13 == 0 ? std::nullopt : std::optional<double>{static_cast<double>((index * 7919) % 31)};
+    };
+    constexpr auto maxDistance = 20.0;
+
+    auto hits = 0;
+    for (auto query = 0; query < 2000; ++query) {
+        const auto minX = position(engine) * 1.2 - 10.0;
+        const auto minY = position(engine) * 1.2 - 10.0;
+        const auto maxX = minX + size(engine);
+        const auto maxY = minY + size(engine);
+        auto expected = -1;
+        auto expectedDistance = maxDistance;
+        for (auto i = 0; i < itemCount; ++i) {
+            const auto* item = data.data() + static_cast<std::ptrdiff_t>(i) * 4;
+            const auto valid = !std::isnan(item[0]) && !std::isnan(item[1]) && !std::isnan(item[2]) && !std::isnan(item[3]);
+            const auto overlaps = std::min(item[0], item[2]) <= maxX && std::max(item[0], item[2]) >= minX && std::min(item[1], item[3]) <= maxY
+                && std::max(item[1], item[3]) >= minY;
+            const auto candidate = valid && overlaps ? distance(i) : std::nullopt;
+            if (candidate && *candidate <= maxDistance && (expected < 0 || *candidate <= expectedDistance)) {
+                expected = i;
+                expectedDistance = *candidate;
+            }
+        }
+        QCOMPARE(grid.queryNearest(minX, minY, maxX, maxY, maxDistance, distance), expected);
+        hits += expected >= 0 ? 1 : 0;
+    }
+    QVERIFY(hits > 500);
 }
 
 void TestSpatialGrid::scanTopmost_matchesQueryTopmost()
