@@ -254,12 +254,12 @@ void ErrorBarSeries::replaceData(const int index, const qreal x, const qreal y, 
 
 void ErrorBarSeries::setData(const QList<qreal>& xs, const QList<qreal>& ys, const QList<qreal>& lows, const QList<qreal>& highs)
 {
-    applyInterleavedData(Internal::interleave(xs, ys, lows, highs));
+    applyInterleavedData(Internal::interleave({xs, ys, lows, highs}));
 }
 
 void ErrorBarSeries::setData(const std::vector<double>& xs, const std::vector<double>& ys, const std::vector<double>& lows, const std::vector<double>& highs)
 {
-    applyInterleavedData(Internal::interleave(xs, ys, lows, highs));
+    applyInterleavedData(Internal::interleave({xs, ys, lows, highs}));
 }
 
 void ErrorBarSeries::appendErrorData(const qreal x, const qreal y, const qreal error)

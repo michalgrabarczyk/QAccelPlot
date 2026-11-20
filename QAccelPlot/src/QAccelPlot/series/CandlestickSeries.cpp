@@ -340,13 +340,13 @@ void CandlestickSeries::replaceData(const int index, const qreal x, const qreal 
 void CandlestickSeries::setData(
     const QList<qreal>& xs, const QList<qreal>& opens, const QList<qreal>& highs, const QList<qreal>& lows, const QList<qreal>& closes)
 {
-    applyInterleavedData(Internal::interleave(xs, opens, highs, lows, closes));
+    applyInterleavedData(Internal::interleave({xs, opens, highs, lows, closes}));
 }
 
 void CandlestickSeries::setData(const std::vector<double>& xs, const std::vector<double>& opens, const std::vector<double>& highs,
     const std::vector<double>& lows, const std::vector<double>& closes)
 {
-    applyInterleavedData(Internal::interleave(xs, opens, highs, lows, closes));
+    applyInterleavedData(Internal::interleave({xs, opens, highs, lows, closes}));
 }
 
 void CandlestickSeries::clearData()
