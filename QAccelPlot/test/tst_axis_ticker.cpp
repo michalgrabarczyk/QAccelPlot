@@ -36,7 +36,7 @@ void TestAxisTicker::defaults()
     QCOMPARE(ticker.tickLengthOut(), 8.0);
     QCOMPARE(ticker.tickLength(), 16.0);
     QCOMPARE(ticker.subtickLength(), 8.0);
-    QVERIFY(!ticker.tickLabelColor().isValid());
+    QCOMPARE(ticker.tickLabelColor(), ticker.tickColor());
     QVERIFY(qobject_cast<QAccelPlot::NumericTickLabelFormatter*>(ticker.tickLabelFormatter()) != nullptr);
 }
 
@@ -141,7 +141,7 @@ void TestAxisTicker::invalidTickLabelColor_restoresFallback()
     QCOMPARE(ticker.tickLabelColor(), QColor(Qt::red));
 
     ticker.setTickLabelColor(QColor{});
-    QVERIFY(!ticker.tickLabelColor().isValid());
+    QCOMPARE(ticker.tickLabelColor(), ticker.tickColor());
     QCOMPARE(spy.count(), 2);
 }
 

@@ -157,7 +157,6 @@ Window {
                 lineWidth: 3
                 effects: QAccelPlot.GradientFill {
                     direction: Qt.Vertical
-                    baseline: QAccelPlot.GradientFillBaseline.Value
                     baselineValue: 0
                     opacity: 0.4
                     gradient: Gradient {

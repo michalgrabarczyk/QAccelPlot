@@ -41,6 +41,12 @@ inline constexpr double kNearlyEqualEpsilon = QACCELPLOT_NEARLY_EQUAL_EPSILON;
     return diff <= std::max(absoluteEpsilon, scale * relativeEpsilon);
 }
 
+// Returns true if a and b are nearly equal or both NaN, for values where NaN means unset.
+[[nodiscard]] inline bool nearlyEqualOrBothNaN(double a, double b) noexcept
+{
+    return nearlyEqual(a, b) || (std::isnan(a) && std::isnan(b));
+}
+
 // Returns true when float coordinates stored relative to origin lose precision in the
 // viewport [viewportMin, viewportMax]. Series upload double data to the GPU as floats
 // relative to a render origin; far from it, the float spacing becomes visible. At 64

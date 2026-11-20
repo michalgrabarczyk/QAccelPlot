@@ -4,6 +4,7 @@
 //
 #pragma once
 
+#include "QAccelPlot/internal/ResettableValue.hpp"
 #include "QAccelPlot/linestyles/LineStyle.hpp"
 
 #include <QColor>
@@ -30,8 +31,8 @@ class BandEdges : public QObject {
 
     /// \brief Edge line width in pixels, clamped to at least 0. Default: 0, no edge lines.
     Q_PROPERTY(qreal width READ width WRITE setWidth NOTIFY widthChanged)
-    /// \brief Edge line color. Default: an invalid color, which draws the band's \c color at full opacity.
-    Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
+    /// \brief Edge line color. Default: the band's \c color at full opacity. Assign \c undefined to return to it.
+    Q_PROPERTY(QColor color READ color WRITE setColor RESET resetColor NOTIFY colorChanged)
     /// \brief Edge line style (SolidLine, DashLine, or NoLine). Default: SolidLine.
     Q_PROPERTY(LineStyle* lineStyle READ lineStyle WRITE setLineStyle NOTIFY lineStyleChanged)
 
@@ -44,10 +45,14 @@ public:
     /// \brief Sets the edge line width to \a width pixels. Negative values are clamped to 0.
     void setWidth(qreal width);
 
-    /// \brief Returns the edge line color.
+    /// \brief Returns the edge line color in effect.
     QColor color() const;
-    /// \brief Sets the edge line color to \a color.
+    /// \brief Sets the edge line color to \a color. An invalid color restores the default.
     void setColor(const QColor& color);
+    /// \brief Restores the default edge line color.
+    void resetColor();
+    /// \brief Sets the color used while none is set to \a color. Called by the owning BandSeries.
+    void setDefaultColor(const QColor& color);
 
     /// \brief Returns the edge line style, or \c nullptr after the assigned style is destroyed.
     LineStyle* lineStyle() const;
@@ -66,7 +71,7 @@ private:
     void onLineStyleDestroyed();
 
     qreal width_{0.0};
-    QColor color_;
+    Internal::ResettableValue<QColor> color_;
     QPointer<LineStyle> lineStyle_;
 };
 

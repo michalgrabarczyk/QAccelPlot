@@ -90,14 +90,14 @@ class HeatmapSeries : public ColormappedSeries {
     Q_PROPERTY(int columns READ columns WRITE setColumns NOTIFY columnsChanged)
     /// \brief Read-only: number of complete rows of \c columns values.
     Q_PROPERTY(int rows READ rows NOTIFY rowsChanged)
-    /// \brief Left edge of column 0 in data coordinates. Unset (NaN) means 0. Default: unset.
-    Q_PROPERTY(qreal xMin READ xMin WRITE setXMin NOTIFY xMinChanged)
-    /// \brief Right edge of the last column in data coordinates. Unset (NaN) means \c columns. Default: unset.
-    Q_PROPERTY(qreal xMax READ xMax WRITE setXMax NOTIFY xMaxChanged)
-    /// \brief Bottom edge of row 0 in data coordinates. Unset (NaN) means 0. Default: unset.
-    Q_PROPERTY(qreal yMin READ yMin WRITE setYMin NOTIFY yMinChanged)
-    /// \brief Top edge of the last row in data coordinates. Unset (NaN) means \c rows. Default: unset.
-    Q_PROPERTY(qreal yMax READ yMax WRITE setYMax NOTIFY yMaxChanged)
+    /// \brief Left edge of column 0 in data coordinates. Default: 0. Assign \c undefined to return to it.
+    Q_PROPERTY(qreal xMin READ xMin WRITE setXMin RESET resetXMin NOTIFY xMinChanged)
+    /// \brief Right edge of the last column in data coordinates. Default: \c columns. Assign \c undefined to return to it.
+    Q_PROPERTY(qreal xMax READ xMax WRITE setXMax RESET resetXMax NOTIFY xMaxChanged)
+    /// \brief Bottom edge of row 0 in data coordinates. Default: 0. Assign \c undefined to return to it.
+    Q_PROPERTY(qreal yMin READ yMin WRITE setYMin RESET resetYMin NOTIFY yMinChanged)
+    /// \brief Top edge of the last row in data coordinates. Default: \c rows. Assign \c undefined to return to it.
+    Q_PROPERTY(qreal yMax READ yMax WRITE setYMax RESET resetYMax NOTIFY yMaxChanged)
     /// \brief How the columns are spaced between \c xMin and \c xMax. Default: \c Linear.
     Q_PROPERTY(Spacing xSpacing READ xSpacing WRITE setXSpacing NOTIFY xSpacingChanged)
     /// \brief How the rows are spaced between \c yMin and \c yMax. Default: \c Linear.
@@ -124,25 +124,33 @@ public:
     /// \brief Returns the number of cells, \c columns × \c rows.
     int count() const override;
 
-    /// \brief Returns the left grid edge, or NaN when unset.
+    /// \brief Returns the left grid edge in effect.
     qreal xMin() const;
-    /// \brief Sets the left grid edge to \a value. NaN unsets it.
+    /// \brief Sets the left grid edge to \a value. NaN restores the default.
     void setXMin(qreal value);
+    /// \brief Restores the default left grid edge, 0.
+    void resetXMin();
 
-    /// \brief Returns the right grid edge, or NaN when unset.
+    /// \brief Returns the right grid edge in effect.
     qreal xMax() const;
-    /// \brief Sets the right grid edge to \a value. NaN unsets it.
+    /// \brief Sets the right grid edge to \a value. NaN restores the default.
     void setXMax(qreal value);
+    /// \brief Restores the default right grid edge, \c columns.
+    void resetXMax();
 
-    /// \brief Returns the bottom grid edge, or NaN when unset.
+    /// \brief Returns the bottom grid edge in effect.
     qreal yMin() const;
-    /// \brief Sets the bottom grid edge to \a value. NaN unsets it.
+    /// \brief Sets the bottom grid edge to \a value. NaN restores the default.
     void setYMin(qreal value);
+    /// \brief Restores the default bottom grid edge, 0.
+    void resetYMin();
 
-    /// \brief Returns the top grid edge, or NaN when unset.
+    /// \brief Returns the top grid edge in effect.
     qreal yMax() const;
-    /// \brief Sets the top grid edge to \a value. NaN unsets it.
+    /// \brief Sets the top grid edge to \a value. NaN restores the default.
     void setYMax(qreal value);
+    /// \brief Restores the default top grid edge, \c rows.
+    void resetYMax();
 
     /// \brief Returns how the columns are spaced.
     Spacing xSpacing() const;
@@ -236,7 +244,7 @@ private:
     void storeValues(std::vector<float>&& values, int columns);
     /// \brief Sets the shape to \a columns per row and finishes the change of the cells.
     void applyShape(int columns);
-    void setBound(qreal& bound, qreal value, void (HeatmapSeries::*changed)());
+    void setBound(qreal Extent::* edge, qreal value, void (HeatmapSeries::*changed)());
     void setSpacing(Spacing& current, Spacing spacing, void (HeatmapSeries::*changed)());
     /// \brief Returns the cell at series-local \a position as (row, column), or \c std::nullopt outside the grid.
     std::optional<std::pair<int, int>> cellAt(const QPointF& position) const;

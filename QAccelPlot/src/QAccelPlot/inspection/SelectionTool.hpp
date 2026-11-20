@@ -32,10 +32,10 @@ class SelectionTool : public QObject {
     QML_NAMED_ELEMENT(SelectionTool)
     /// \brief Plot receiving the selection gestures.
     Q_PROPERTY(PlotView* plot READ plot WRITE setPlot NOTIFY plotChanged)
-    /// \brief Axis the X limits refer to; unset uses the plot's primary X axis.
-    Q_PROPERTY(Axis* xAxis READ xAxis WRITE setXAxis NOTIFY xAxisChanged)
-    /// \brief Axis the Y limits refer to; unset uses the plot's primary Y axis.
-    Q_PROPERTY(Axis* yAxis READ yAxis WRITE setYAxis NOTIFY yAxisChanged)
+    /// \brief Axis the X limits refer to. Default: the plot's primary X axis. Assign \c undefined to return to it.
+    Q_PROPERTY(Axis* xAxis READ xAxis WRITE setXAxis RESET resetXAxis NOTIFY xAxisChanged)
+    /// \brief Axis the Y limits refer to. Default: the plot's primary Y axis. Assign \c undefined to return to it.
+    Q_PROPERTY(Axis* yAxis READ yAxis WRITE setYAxis RESET resetYAxis NOTIFY yAxisChanged)
     /// \brief Enables gestures; disabling cancels a gesture in progress and keeps the selection. Default: true.
     Q_PROPERTY(bool enabled READ enabled WRITE setEnabled NOTIFY enabledChanged)
     /// \brief Region a gesture selects: a box, an X range, or a Y range. Default: Box.
@@ -95,10 +95,14 @@ public:
     Axis* xAxis() const;
     /// \brief Sets the X axis and clears the selection; null uses the plot's primary X axis.
     void setXAxis(Axis* axis);
+    /// \brief Makes the X limits refer to the plot's primary X axis again.
+    void resetXAxis();
     /// \brief Returns the axis the Y limits refer to.
     Axis* yAxis() const;
     /// \brief Sets the Y axis and clears the selection; null uses the plot's primary Y axis.
     void setYAxis(Axis* axis);
+    /// \brief Makes the Y limits refer to the plot's primary Y axis again.
+    void resetYAxis();
     /// \brief Returns whether gestures are enabled.
     bool enabled() const;
     /// \brief Enables or disables gestures.

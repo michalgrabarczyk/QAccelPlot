@@ -451,6 +451,23 @@ In both modes:
   animating from `NaN`.
 - **Hover** never reports a hit on an invalid data point or across a break.
 
+## Automatic values
+
+Some properties have a default that is computed instead of fixed, such as an
+axis title rotation that depends on the side. Assigning `undefined`, or a
+binding that evaluates to `undefined`, returns such a property to its default:
+
+```qml
+QAccelPlot.Axis {
+    label.rotation: autoRotation.checked ? undefined : 45
+}
+```
+
+Reading the property gives the value in effect, and its change signal fires when
+that value changes. Where the value depends on the series using the object, such
+as a `Colormap` shared by several series, reading gives `NaN`, an invalid color,
+or `null` while the property is unset; each property documents which.
+
 ## Composition and overlays
 
 Ordinary QML items can be placed above the grid and series. `DataAnchor` maps
@@ -544,7 +561,7 @@ records the first time something reads the range:
 | [`rescaleToData()`][rescale-to-data], `rescaleAllAxes()`, a double-click | Once per call |
 | An axis with [`autoRescale`][auto-rescale] | On every data update |
 | [`dataMin`][data-min] / [`dataMax`][data-max], or a binding to them | On every data update that is followed by a read |
-| A `LineCurve` gradient with a `DataRange` bound | On every data update of that curve |
+| A `LineCurve` gradient with an unset `valueMin` or `valueMax` | On every data update of that curve |
 
 [`appendData()`][append-data] widens a computed range without a rescan.
 `replaceData()` does too, unless the replaced data point moves away from an edge
@@ -1371,11 +1388,8 @@ QAccelPlot.LineCurve {
     effects: [
         QAccelPlot.GradientFill {
             direction: Qt.Vertical
-            baseline: QAccelPlot.GradientFillBaseline.Value
             baselineValue: 0
-            valueMinSource: QAccelPlot.GradientValueSource.Fixed
             valueMin: -4
-            valueMaxSource: QAccelPlot.GradientValueSource.Fixed
             valueMax: 8
             opacity: 0.65
             colormap: QAccelPlot.Colormap { preset: QAccelPlot.Colormap.Viridis }
@@ -1400,8 +1414,10 @@ QAccelPlot.GradientStroke {
 }
 ```
 
-Fixed gradient bounds keep colors stable while the viewport changes. Axis- or
-data-derived bounds make colors follow the current range.
+`valueMin` and `valueMax` place the ramp. Set them to keep colors stable while
+the data changes; leave them unset, or assign `undefined`, to span each curve's
+data range. `GradientFill.baselineValue` sets the Y value the fill starts from;
+unset, the fill starts at the smallest visible Y value.
 
 ## Glow and fading trails
 
@@ -2008,7 +2024,8 @@ QAccelPlot.PointCloud {
 ```
 
 `min` and `max` bound the value range. An unset bound is resolved from the
-data, so series sharing one colormap can resolve different ranges.
+data, so series sharing one colormap can resolve different ranges; it reads `NaN`,
+and assigning `undefined` unsets it again.
 `setRange(min, max)` sets both with one update. Set `logScale: true`
 when the values span decades; values at or below zero are then drawn with
 `color`.
@@ -2179,8 +2196,9 @@ QAccelPlot.Plot {
 - Values are stored row by row, `columns` per row. Row 0 is at `yMin` and
   column 0 at `xMin`.
 - `xMin`, `xMax`, `yMin`, and `yMax` are the outer edges of the grid, so a
-  cell is `(xMax - xMin) / columns` wide. An unset edge places the grid in
-  index space: column `c` spans `[c, c + 1]`. A reversed extent flips the grid.
+  cell is `(xMax - xMin) / columns` wide. They default to index space, 0 to
+  `columns` and 0 to `rows`, so column `c` spans `[c, c + 1]`; assign
+  `undefined` to return an edge to it. A reversed extent flips the grid.
 - The grid edges are the series' data range, so `rescaleToData()` fits the
   whole grid.
 - `setValues()` sets `columns`. Do not bind `columns` while using it: when
@@ -2782,7 +2800,7 @@ QAccelPlot.BandSeries {
 | Property | Default | Notes |
 | --- | --- | --- |
 | `edges.width` | `0` | No edge lines at 0. |
-| `edges.color` | invalid | Uses the band's `color` at full opacity. |
+| `edges.color` | the band's `color` at full opacity | Assign `undefined` to return to the default. |
 | `edges.lineStyle` | `SolidLine` | `DashLine` and `NoLine` also work. |
 
 ## Feed data from C++

@@ -5,6 +5,7 @@
 #include "QAccelPlot/effects/GradientStroke.hpp"
 
 #include "QAccelPlot/MathUtils.hpp"
+#include "QAccelPlot/effects/internal/GradientCoordinates.hpp"
 #include "QAccelPlot/effects/internal/GradientStops.hpp"
 
 #include <QMetaMethod>
@@ -12,8 +13,15 @@
 #include <QVariant>
 
 #include <algorithm>
+#include <limits>
 
 namespace QAccelPlot {
+
+namespace {
+
+constexpr auto kNaN = std::numeric_limits<qreal>::quiet_NaN();
+
+} // namespace
 
 GradientStroke::GradientStroke(QObject* parent)
     : SeriesEffect(parent)
@@ -77,22 +85,6 @@ void GradientStroke::setColormap(Colormap* colormap)
     emit effectChanged();
 }
 
-GradientValueSource GradientStroke::valueMinSource() const
-{
-    return valueMinSource_;
-}
-
-void GradientStroke::setValueMinSource(GradientValueSource source)
-{
-    if (valueMinSource_ == source) {
-        return;
-    }
-
-    valueMinSource_ = source;
-    emit valueMinSourceChanged();
-    emit effectChanged();
-}
-
 qreal GradientStroke::valueMin() const
 {
     return valueMin_;
@@ -100,7 +92,7 @@ qreal GradientStroke::valueMin() const
 
 void GradientStroke::setValueMin(const qreal value)
 {
-    if (nearlyEqual(valueMin_, value)) {
+    if (nearlyEqualOrBothNaN(valueMin_, value)) {
         return;
     }
     valueMin_ = value;
@@ -108,20 +100,9 @@ void GradientStroke::setValueMin(const qreal value)
     emit effectChanged();
 }
 
-GradientValueSource GradientStroke::valueMaxSource() const
+void GradientStroke::resetValueMin()
 {
-    return valueMaxSource_;
-}
-
-void GradientStroke::setValueMaxSource(GradientValueSource source)
-{
-    if (valueMaxSource_ == source) {
-        return;
-    }
-
-    valueMaxSource_ = source;
-    emit valueMaxSourceChanged();
-    emit effectChanged();
+    setValueMin(kNaN);
 }
 
 qreal GradientStroke::valueMax() const
@@ -131,12 +112,17 @@ qreal GradientStroke::valueMax() const
 
 void GradientStroke::setValueMax(const qreal value)
 {
-    if (nearlyEqual(valueMax_, value)) {
+    if (nearlyEqualOrBothNaN(valueMax_, value)) {
         return;
     }
     valueMax_ = value;
     emit valueMaxChanged();
     emit effectChanged();
+}
+
+void GradientStroke::resetValueMax()
+{
+    setValueMax(kNaN);
 }
 
 const GradientColorPayload& GradientStroke::payload() const
@@ -169,8 +155,8 @@ GradientColorPayload GradientStroke::readPayload() const
         return payload;
     }
 
-    payload.gradientValueMin = (valueMinSource_ == GradientValueSource::Fixed) ? std::optional<qreal>{valueMin_} : std::nullopt;
-    payload.gradientValueMax = (valueMaxSource_ == GradientValueSource::Fixed) ? std::optional<qreal>{valueMax_} : std::nullopt;
+    payload.gradientValueMin = Internal::valueIfSet(valueMin_);
+    payload.gradientValueMax = Internal::valueIfSet(valueMax_);
 
     return payload;
 }

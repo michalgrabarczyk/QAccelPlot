@@ -5,6 +5,7 @@
 #include "QAccelPlot/effects/GradientFill.hpp"
 
 #include "QAccelPlot/MathUtils.hpp"
+#include "QAccelPlot/effects/internal/GradientCoordinates.hpp"
 #include "QAccelPlot/effects/internal/GradientStops.hpp"
 
 #include <QMetaMethod>
@@ -12,8 +13,15 @@
 #include <QVariant>
 
 #include <algorithm>
+#include <limits>
 
 namespace QAccelPlot {
+
+namespace {
+
+constexpr auto kNaN = std::numeric_limits<qreal>::quiet_NaN();
+
+} // namespace
 
 GradientFill::GradientFill(QObject* parent)
     : SeriesEffect(parent)
@@ -77,22 +85,6 @@ void GradientFill::setColormap(Colormap* colormap)
     emit effectChanged();
 }
 
-GradientValueSource GradientFill::valueMinSource() const
-{
-    return valueMinSource_;
-}
-
-void GradientFill::setValueMinSource(GradientValueSource source)
-{
-    if (valueMinSource_ == source) {
-        return;
-    }
-
-    valueMinSource_ = source;
-    emit valueMinSourceChanged();
-    emit effectChanged();
-}
-
 qreal GradientFill::valueMin() const
 {
     return valueMin_;
@@ -100,7 +92,7 @@ qreal GradientFill::valueMin() const
 
 void GradientFill::setValueMin(const qreal value)
 {
-    if (nearlyEqual(valueMin_, value)) {
+    if (nearlyEqualOrBothNaN(valueMin_, value)) {
         return;
     }
 
@@ -109,20 +101,9 @@ void GradientFill::setValueMin(const qreal value)
     emit effectChanged();
 }
 
-GradientValueSource GradientFill::valueMaxSource() const
+void GradientFill::resetValueMin()
 {
-    return valueMaxSource_;
-}
-
-void GradientFill::setValueMaxSource(GradientValueSource source)
-{
-    if (valueMaxSource_ == source) {
-        return;
-    }
-
-    valueMaxSource_ = source;
-    emit valueMaxSourceChanged();
-    emit effectChanged();
+    setValueMin(kNaN);
 }
 
 qreal GradientFill::valueMax() const
@@ -132,7 +113,7 @@ qreal GradientFill::valueMax() const
 
 void GradientFill::setValueMax(const qreal value)
 {
-    if (nearlyEqual(valueMax_, value)) {
+    if (nearlyEqualOrBothNaN(valueMax_, value)) {
         return;
     }
 
@@ -141,20 +122,9 @@ void GradientFill::setValueMax(const qreal value)
     emit effectChanged();
 }
 
-GradientFillBaseline GradientFill::baseline() const
+void GradientFill::resetValueMax()
 {
-    return baseline_;
-}
-
-void GradientFill::setBaseline(GradientFillBaseline baseline)
-{
-    if (baseline_ == baseline) {
-        return;
-    }
-
-    baseline_ = baseline;
-    emit baselineChanged();
-    emit effectChanged();
+    setValueMax(kNaN);
 }
 
 qreal GradientFill::baselineValue() const
@@ -164,13 +134,18 @@ qreal GradientFill::baselineValue() const
 
 void GradientFill::setBaselineValue(const qreal value)
 {
-    if (nearlyEqual(baselineValue_, value)) {
+    if (nearlyEqualOrBothNaN(baselineValue_, value)) {
         return;
     }
 
     baselineValue_ = value;
     emit baselineValueChanged();
     emit effectChanged();
+}
+
+void GradientFill::resetBaselineValue()
+{
+    setBaselineValue(kNaN);
 }
 
 qreal GradientFill::opacity() const
@@ -210,10 +185,9 @@ GradientFillPayload GradientFill::readPayload() const
     auto payload = GradientFillPayload{};
     payload.enabled = enabled();
     payload.direction = direction_;
-    payload.gradientValueMin = (valueMinSource_ == GradientValueSource::Fixed) ? std::optional<qreal>{valueMin_} : std::nullopt;
-    payload.gradientValueMax = (valueMaxSource_ == GradientValueSource::Fixed) ? std::optional<qreal>{valueMax_} : std::nullopt;
-    payload.baseline = baseline_;
-    payload.baselineValue = baselineValue_;
+    payload.gradientValueMin = Internal::valueIfSet(valueMin_);
+    payload.gradientValueMax = Internal::valueIfSet(valueMax_);
+    payload.baselineValue = Internal::valueIfSet(baselineValue_);
     payload.opacity = static_cast<float>(opacity_);
 
     if (!payload.enabled) {

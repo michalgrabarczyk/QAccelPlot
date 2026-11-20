@@ -35,8 +35,8 @@ QAccelPlot.Plot {
         id: spectrumColormap
 
         // A fixed value range spares the heatmaps a scan of every value per update.
-        min: plot.settings.autoColorRange ? NaN : 0
-        max: plot.settings.autoColorRange ? NaN : 1
+        min: plot.settings.autoColorRange ? undefined : 0
+        max: plot.settings.autoColorRange ? undefined : 1
         preset: QAccelPlot.Colormap.Inferno
     }
 

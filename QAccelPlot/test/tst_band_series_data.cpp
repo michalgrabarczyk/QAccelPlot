@@ -414,7 +414,7 @@ void BandSeriesDataTest::edgeSettingsClampAndNotify()
     auto band = BandSeries{};
     auto* edges = band.edges();
     QCOMPARE(edges->width(), 0.0);
-    QVERIFY(!edges->color().isValid());
+    QCOMPARE(edges->color().alpha(), 255);
     QVERIFY(edges->lineStyle());
 
     auto widthSpy = QSignalSpy{edges, &BandEdges::widthChanged};

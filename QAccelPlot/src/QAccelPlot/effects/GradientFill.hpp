@@ -13,6 +13,8 @@
 #include <QVector>
 #include <QtQml/qqmlregistration.h>
 
+#include <limits>
+
 namespace QAccelPlot {
 
 /// \brief A LineCurve effect that fills the area under the curve with a color gradient.
@@ -35,18 +37,21 @@ class GradientFill : public SeriesEffect {
     /// Only the ramp is used. \c Colormap::min, \c Colormap::max, and \c Colormap::logScale are ignored;
     /// \c valueMin and \c valueMax place the ramp instead.
     Q_PROPERTY(Colormap* colormap READ colormap WRITE setColormap NOTIFY colormapChanged)
-    /// \brief How the gradient normalization minimum is determined; see \c GradientValueSource.
-    Q_PROPERTY(GradientValueSource valueMinSource READ valueMinSource WRITE setValueMinSource NOTIFY valueMinSourceChanged)
-    /// \brief Data-space value that maps to gradient position 0.0. Only used when valueMinSource is Fixed.
-    Q_PROPERTY(qreal valueMin READ valueMin WRITE setValueMin NOTIFY valueMinChanged)
-    /// \brief How the gradient normalization maximum is determined; see \c GradientValueSource.
-    Q_PROPERTY(GradientValueSource valueMaxSource READ valueMaxSource WRITE setValueMaxSource NOTIFY valueMaxSourceChanged)
-    /// \brief Data-space value that maps to gradient position 1.0. Only used when valueMaxSource is Fixed.
-    Q_PROPERTY(qreal valueMax READ valueMax WRITE setValueMax NOTIFY valueMaxChanged)
-    /// \brief Where the filled area's baseline starts (axis minimum or a fixed value).
-    Q_PROPERTY(GradientFillBaseline baseline READ baseline WRITE setBaseline NOTIFY baselineChanged)
-    /// \brief Fixed baseline data value used when \c baseline is \c GradientFillBaseline.Value.
-    Q_PROPERTY(qreal baselineValue READ baselineValue WRITE setBaselineValue NOTIFY baselineValueChanged)
+    /// \brief Data value at gradient position 0. Unset by default: the smallest value of each series
+    /// along \c direction, or of its axis data range when the series has no valid data point.
+    ///
+    /// Reads NaN while unset; assign \c undefined to unset it.
+    Q_PROPERTY(qreal valueMin READ valueMin WRITE setValueMin RESET resetValueMin NOTIFY valueMinChanged)
+    /// \brief Data value at gradient position 1. Unset by default: the largest value of each series
+    /// along \c direction, or of its axis data range when the series has no valid data point.
+    ///
+    /// Reads NaN while unset; assign \c undefined to unset it.
+    Q_PROPERTY(qreal valueMax READ valueMax WRITE setValueMax RESET resetValueMax NOTIFY valueMaxChanged)
+    /// \brief Y data value the filled area starts from. Unset by default: the smallest visible value
+    /// of each series' Y axis, so the fill follows panning and zooming.
+    ///
+    /// Reads NaN while unset; assign \c undefined to unset it.
+    Q_PROPERTY(qreal baselineValue READ baselineValue WRITE setBaselineValue RESET resetBaselineValue NOTIFY baselineValueChanged)
     /// \brief Overall opacity of the fill area in [0, 1]. Default: 0.35.
     ///
     /// Applies to the fill only. The curve's \c opacity and the \c opacity of its parent
@@ -72,35 +77,26 @@ public:
     /// \brief Sets the colormap to \a colormap. Pass \c nullptr to take the stops from \c gradient.
     void setColormap(Colormap* colormap);
 
-    /// \brief Returns how the gradient normalization minimum is determined.
-    GradientValueSource valueMinSource() const;
-    /// \brief Sets the gradient normalization minimum source to \a source.
-    void setValueMinSource(GradientValueSource source);
-
-    /// \brief Returns the minimum data value for gradient normalization.
+    /// \brief Returns the data value at gradient position 0, or NaN when each series' data range applies.
     qreal valueMin() const;
-    /// \brief Sets the minimum data value for gradient normalization to \a value.
+    /// \brief Sets the data value at gradient position 0 to \a value. NaN unsets it.
     void setValueMin(qreal value);
+    /// \brief Unsets the value at gradient position 0, so each series' data range applies again.
+    void resetValueMin();
 
-    /// \brief Returns how the gradient normalization maximum is determined.
-    GradientValueSource valueMaxSource() const;
-    /// \brief Sets the gradient normalization maximum source to \a source.
-    void setValueMaxSource(GradientValueSource source);
-
-    /// \brief Returns the maximum data value for gradient normalization.
+    /// \brief Returns the data value at gradient position 1, or NaN when each series' data range applies.
     qreal valueMax() const;
-    /// \brief Sets the maximum data value for gradient normalization to \a value.
+    /// \brief Sets the data value at gradient position 1 to \a value. NaN unsets it.
     void setValueMax(qreal value);
+    /// \brief Unsets the value at gradient position 1, so each series' data range applies again.
+    void resetValueMax();
 
-    /// \brief Returns the baseline mode.
-    GradientFillBaseline baseline() const;
-    /// \brief Sets the baseline mode to \a baseline.
-    void setBaseline(GradientFillBaseline baseline);
-
-    /// \brief Returns the fixed baseline data value.
+    /// \brief Returns the baseline data value, or NaN when the fill starts at the smallest visible Y value.
     qreal baselineValue() const;
-    /// \brief Sets the fixed baseline data value to \a value.
+    /// \brief Sets the baseline data value to \a value. NaN unsets it.
     void setBaselineValue(qreal value);
+    /// \brief Unsets the baseline, so the fill starts at the smallest visible Y value again.
+    void resetBaselineValue();
 
     /// \brief Returns the fill opacity.
     qreal opacity() const;
@@ -123,16 +119,10 @@ signals:
     void gradientChanged();
     /// \brief Emitted when the colormap property changes.
     void colormapChanged();
-    /// \brief Emitted when the valueMinSource property changes.
-    void valueMinSourceChanged();
     /// \brief Emitted when the valueMin property changes.
     void valueMinChanged();
-    /// \brief Emitted when the valueMaxSource property changes.
-    void valueMaxSourceChanged();
     /// \brief Emitted when the valueMax property changes.
     void valueMaxChanged();
-    /// \brief Emitted when the baseline property changes.
-    void baselineChanged();
     /// \brief Emitted when the baselineValue property changes.
     void baselineValueChanged();
     /// \brief Emitted when the opacity property changes.
@@ -152,12 +142,9 @@ private:
     QVector<QMetaObject::Connection> gradientConnections_;
     Colormap* colormap_{nullptr};
     QVector<QMetaObject::Connection> colormapConnections_;
-    GradientValueSource valueMinSource_{GradientValueSource::DataRange};
-    qreal valueMin_{0.0};
-    GradientValueSource valueMaxSource_{GradientValueSource::DataRange};
-    qreal valueMax_{0.0};
-    GradientFillBaseline baseline_{GradientFillBaseline::AxisMinimum};
-    qreal baselineValue_{0.0};
+    qreal valueMin_{std::numeric_limits<qreal>::quiet_NaN()};
+    qreal valueMax_{std::numeric_limits<qreal>::quiet_NaN()};
+    qreal baselineValue_{std::numeric_limits<qreal>::quiet_NaN()};
     qreal opacity_{0.35};
     GradientFillPayload payload_;
 };

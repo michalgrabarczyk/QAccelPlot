@@ -51,7 +51,7 @@ records the first time something reads the range:
 | [`rescaleToData()`][rescale-to-data], `rescaleAllAxes()`, a double-click | Once per call |
 | An axis with [`autoRescale`][auto-rescale] | On every data update |
 | [`dataMin`][data-min] / [`dataMax`][data-max], or a binding to them | On every data update that is followed by a read |
-| A `LineCurve` gradient with a `DataRange` bound | On every data update of that curve |
+| A `LineCurve` gradient with an unset `valueMin` or `valueMax` | On every data update of that curve |
 
 [`appendData()`][append-data] widens a computed range without a rescan.
 `replaceData()` does too, unless the replaced data point moves away from an edge

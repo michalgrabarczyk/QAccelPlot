@@ -61,9 +61,7 @@ PlotView {
             },
             GradientFill {
                 direction: Qt.Vertical
-                valueMinSource: GradientValueSource.Fixed
                 valueMin: 0
-                valueMaxSource: GradientValueSource.Fixed
                 valueMax: 10
                 opacity: 1
                 gradient: Gradient {

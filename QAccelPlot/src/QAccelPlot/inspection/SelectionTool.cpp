@@ -63,10 +63,18 @@ void SelectionTool::setXAxis(Axis* axis)
     if (xAxis_ == axis) {
         return;
     }
+    const auto* previous = xAxis();
     clear();
     xAxis_ = axis;
     reconnect();
-    emit xAxisChanged();
+    if (xAxis() != previous) {
+        emit xAxisChanged();
+    }
+}
+
+void SelectionTool::resetXAxis()
+{
+    setXAxis(nullptr);
 }
 
 Axis* SelectionTool::yAxis() const
@@ -79,10 +87,18 @@ void SelectionTool::setYAxis(Axis* axis)
     if (yAxis_ == axis) {
         return;
     }
+    const auto* previous = yAxis();
     clear();
     yAxis_ = axis;
     reconnect();
-    emit yAxisChanged();
+    if (yAxis() != previous) {
+        emit yAxisChanged();
+    }
+}
+
+void SelectionTool::resetYAxis()
+{
+    setYAxis(nullptr);
 }
 
 bool SelectionTool::enabled() const

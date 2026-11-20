@@ -36,8 +36,9 @@ QAccelPlot.Plot {
 - Values are stored row by row, `columns` per row. Row 0 is at `yMin` and
   column 0 at `xMin`.
 - `xMin`, `xMax`, `yMin`, and `yMax` are the outer edges of the grid, so a
-  cell is `(xMax - xMin) / columns` wide. An unset edge places the grid in
-  index space: column `c` spans `[c, c + 1]`. A reversed extent flips the grid.
+  cell is `(xMax - xMin) / columns` wide. They default to index space, 0 to
+  `columns` and 0 to `rows`, so column `c` spans `[c, c + 1]`; assign
+  `undefined` to return an edge to it. A reversed extent flips the grid.
 - The grid edges are the series' data range, so `rescaleToData()` fits the
   whole grid.
 - `setValues()` sets `columns`. Do not bind `columns` while using it: when
