@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2026-11-19 17:28:49</td>
+      <td>2026-11-20 07:28:49</td>
     </tr>
   </table>
 </div>
@@ -52,9 +52,9 @@
     </tr>
     <tr>
       <th scope="row">Branches:</th>
-      <td>219</td>
+      <td>218</td>
       <td>332</td>
-      <td class="coverage-low">66.0%</td>
+      <td class="coverage-low">65.7%</td>
     </tr>
   </table>
 </div>
@@ -72,7 +72,7 @@
     </tr>
     <tr><td><a href="#l128">QAccelPlot::(anonymous namespace)::appendRunOutline(QAccelPlot::CurveDataView const&amp;, int, QAccelPlot::DataPointRun const&amp;, std::vector&lt;int, std::allocator&lt;int&gt; &gt; const&amp;, QAccelPlot::StepModeNS::Mode, bool, bool, std::vector&lt;QPointF, std::allocator&lt;QPointF&gt; &gt;&amp;) (line 128)</a></td><td>called 12 times</td><td>91.0%</td></tr>
     <tr><td><a href="#l132">QAccelPlot::(anonymous namespace)::appendRunOutline(QAccelPlot::CurveDataView const&amp;, int, QAccelPlot::DataPointRun const&amp;, std::vector&lt;int, std::allocator&lt;int&gt; &gt; const&amp;, QAccelPlot::StepModeNS::Mode, bool, bool, std::vector&lt;QPointF, std::allocator&lt;QPointF&gt; &gt;&amp;)::{lambda(int, int)#1}::operator()(int, int) const (line 132)</a></td><td>called 30016 times</td><td>100.0%</td></tr>
-    <tr><td><a href="#l89">QAccelPlot::(anonymous namespace)::assembleFillVertices(QSGGeometry*, QAccelPlot::FillSamples const&amp;, QAccelPlot::Axis*, QAccelPlot::Axis*, double, double, QAccelPlot::GradientFillPayload const&amp;) (line 89)</a></td><td>called 16 times</td><td>97.0%</td></tr>
+    <tr><td><a href="#l89">QAccelPlot::(anonymous namespace)::assembleFillVertices(QSGGeometry*, QAccelPlot::FillSamples const&amp;, QAccelPlot::Axis*, QAccelPlot::Axis*, double, double, QAccelPlot::GradientFillPayload const&amp;) (line 89)</a></td><td>called 16 times</td><td>93.0%</td></tr>
     <tr><td><a href="#l53">QAccelPlot::(anonymous namespace)::createFillNode(int) (line 53)</a></td><td>called 92 times</td><td>65.0%</td></tr>
     <tr><td><a href="#l48">QAccelPlot::(anonymous namespace)::createLineMaterial(bool, bool) (line 48)</a></td><td>called 96 times</td><td>59.0%</td></tr>
     <tr><td><a href="#l190">QAccelPlot::(anonymous namespace)::createLineRootNode(int, bool, bool) (line 190)</a></td><td>called 92 times</td><td>83.0%</td></tr>
@@ -851,15 +851,15 @@
       <td class="lineno"><a id="l93" href="#l93">93</a></td>
       <td class="linebranch">
         <details class="linebranchDetails">
-          <summary class="linebranchSummary">2/2</summary>
+          <summary class="linebranchSummary">1/2</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 0 taken 13 times.</div>
-            <div class="takenBranch">&check; Branch 1 taken 3 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 16 times.</div>
+            <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
           </div>
         </details>
       </td>
-      <td class="linecount coveredLine">16</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">baselineData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">gradientFillPayload</span><span class="p">.</span><span class="n">baseline</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">GradientFillBaseline</span><span class="o">::</span><span class="n">AxisMinimum</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">yAxis</span><span class="o">-&gt;</span><span class="n">viewportMin</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">gradientFillPayload</span><span class="p">.</span><span class="n">baselineValue</span><span class="p">;</span></td>
+      <td class="linecount partialCoveredLine">16</td>
+      <td class="src partialCoveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">baselineData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gradientFillPayload</span><span class="p">.</span><span class="n">baselineValue</span><span class="p">.</span><span class="n">value_or</span><span class="p">(</span><span class="n">yAxis</span><span class="o">-&gt;</span><span class="n">viewportMin</span><span class="p">());</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l94" href="#l94">94</a></td>
