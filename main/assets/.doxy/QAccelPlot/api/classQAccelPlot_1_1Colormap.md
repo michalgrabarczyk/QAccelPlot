@@ -72,8 +72,8 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 | property bool | [**logScale**](classQAccelPlot_1_1Colormap.md#property-logscale-12)  <br>_Whether values are placed on the ramp in log10 instead of linearly. Default:_ `false` _._ |
-| property qreal | [**max**](classQAccelPlot_1_1Colormap.md#property-max-12)  <br>_Value at ramp position 1. Unset (NaN) resolves it from the data. Default: unset._  |
-| property qreal | [**min**](classQAccelPlot_1_1Colormap.md#property-min-12)  <br>_Value at ramp position 0. Unset (NaN) resolves it from the data. Default: unset._  |
+| property qreal | [**max**](classQAccelPlot_1_1Colormap.md#property-max-12)  <br>_Value at ramp position 1. Unset by default: each series resolves it from its data._  |
+| property qreal | [**min**](classQAccelPlot_1_1Colormap.md#property-min-12)  <br>_Value at ramp position 0. Unset by default: each series resolves it from its data._  |
 | property [**Preset**](classQAccelPlot_1_1Colormap.md#enum-preset) | [**preset**](classQAccelPlot_1_1Colormap.md#property-preset-12)  <br>_Built-in color ramp. Ignored when_ `stops` _is non-empty. Default:_`Viridis` _._ |
 | property bool | [**reversed**](classQAccelPlot_1_1Colormap.md#property-reversed-12)  <br>_Whether the ramp runs from its last color to its first. Applies to_ `preset` _and_`stops` _alike. Default:_`false` _._ |
 | property QQmlListProperty&lt; QObject &gt; | [**stops**](classQAccelPlot_1_1Colormap.md#property-stops-12)  <br>_Custom ramp as a list of objects with_ `position` _and_`color` _, such as_`GradientStop` _. Overrides_`preset` _when non-empty. Stops are read again once the component is complete. The ramp follows changes to a stop that notifies them, to a_`GradientStop` _inside a_`Gradient` _, and to a_`GradientStop` _declared in this list._ |
@@ -99,6 +99,8 @@ flowchart TB
 |  qreal | [**max**](#function-max-22) () const<br>_Returns the fixed upper bound, or NaN when it is resolved from the data._  |
 |  qreal | [**min**](#function-min-22) () const<br>_Returns the fixed lower bound, or NaN when it is resolved from the data._  |
 |  [**Preset**](classQAccelPlot_1_1Colormap.md#enum-preset) | [**preset**](#function-preset-22) () const<br>_Returns the built-in ramp._  |
+|  void | [**resetMax**](#function-resetmax) () <br>_Unsets the upper bound, so it is resolved from the data again._  |
+|  void | [**resetMin**](#function-resetmin) () <br>_Unsets the lower bound, so it is resolved from the data again._  |
 |  const std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; & | [**resolvedStops**](#function-resolvedstops) () const<br>_Returns the resolved ramp stops, in position order and covering [0, 1]._  |
 |  bool | [**reversed**](#function-reversed-22) () const<br>_Returns whether the ramp is reversed._  |
 |  void | [**setLogScale**](#function-setlogscale) (bool on) <br>_Sets log-scale placement to_ _on_ _._ |
@@ -213,13 +215,17 @@ Values at or below zero are unmapped. A `ColorBar` showing the colormap gets dec
 
 ### property max {#property-max-12}
 
-_Value at ramp position 1. Unset (NaN) resolves it from the data. Default: unset._ 
+_Value at ramp position 1. Unset by default: each series resolves it from its data._ 
 ```C++
 qreal QAccelPlot::Colormap::max;
 ```
 
 
 
+Reads NaN while unset; assign `undefined` to unset it. `ColormappedSeries::dataValueMax` holds the value a series resolved. 
+
+
+        
 
 <hr>
 
@@ -228,13 +234,17 @@ qreal QAccelPlot::Colormap::max;
 
 ### property min {#property-min-12}
 
-_Value at ramp position 0. Unset (NaN) resolves it from the data. Default: unset._ 
+_Value at ramp position 0. Unset by default: each series resolves it from its data._ 
 ```C++
 qreal QAccelPlot::Colormap::min;
 ```
 
 
 
+Reads NaN while unset; assign `undefined` to unset it. `ColormappedSeries::dataValueMin` holds the value a series resolved. 
+
+
+        
 
 <hr>
 
@@ -372,6 +382,36 @@ qreal QAccelPlot::Colormap::min () const
 _Returns the built-in ramp._ 
 ```C++
 Preset QAccelPlot::Colormap::preset () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function resetMax {#function-resetmax}
+
+_Unsets the upper bound, so it is resolved from the data again._ 
+```C++
+void QAccelPlot::Colormap::resetMax () 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function resetMin {#function-resetmin}
+
+_Unsets the lower bound, so it is resolved from the data again._ 
+```C++
+void QAccelPlot::Colormap::resetMin () 
 ```
 
 

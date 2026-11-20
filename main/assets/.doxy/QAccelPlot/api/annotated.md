@@ -62,14 +62,12 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **class** [**Glow**](classQAccelPlot_1_1Glow.md) _A soft halo around the lines and markers of a series._     
     * **struct** [**GradientColorPayload**](structQAccelPlot_1_1GradientColorPayload.md) _Render-thread snapshot of gradient stroke (line-color) parameters._     
     * **class** [**GradientFill**](classQAccelPlot_1_1GradientFill.md) _A_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _effect that fills the area under the curve with a color gradient._    
-    * **namespace** [**GradientFillBaselineNS**](namespaceQAccelPlot_1_1GradientFillBaselineNS.md) _Namespace exposing the_ `GradientFillBaseline` _enum to QML._    
     * **class** [**GradientFillMaterial**](classQAccelPlot_1_1GradientFillMaterial.md) _Scene-graph material that evaluates fill gradients per fragment._     
     * **struct** [**GradientFillPayload**](structQAccelPlot_1_1GradientFillPayload.md) _Render-thread snapshot of gradient fill (area-under-curve) parameters._     
     * **class** [**GradientLineMaterial**](classQAccelPlot_1_1GradientLineMaterial.md) _Line material variant that samples a one-dimensional gradient texture._     
     * **struct** [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) _A single color stop within a gradient definition._     
     * **class** [**GradientStroke**](classQAccelPlot_1_1GradientStroke.md) _A_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _effect that replaces the solid line color with a color gradient._    
     * **class** [**GradientTexture**](classQAccelPlot_1_1GradientTexture.md) _Cached one-dimensional texture used by gradient materials._     
-    * **namespace** [**GradientValueSourceNS**](namespaceQAccelPlot_1_1GradientValueSourceNS.md) _Namespace exposing the_ `GradientValueSource` _enum to QML._    
     * **class** [**Grid**](classQAccelPlot_1_1Grid.md) _Configuration object that controls the appearance of the plot grid._     
     * **class** [**GridNode**](classQAccelPlot_1_1GridNode.md) _Internal QSGNode responsible for rendering the plot grid into the scene graph._     
     * **class** [**GrowTransition**](classQAccelPlot_1_1GrowTransition.md) _A transition that grows item values from a baseline._     
@@ -123,6 +121,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
         * **struct** [**RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md) _Mirrors the std140 uniform block of rect.vert._     
         * **class** [**RectVertexCache**](classQAccelPlot_1_1Internal_1_1RectVertexCache.md) _Vertices of a series that draws each rectangle as a quad positioned from a data texture._     
         * **class** [**RectangleZoomOverlay**](classQAccelPlot_1_1Internal_1_1RectangleZoomOverlay.md)     
+        * **class** [**ResettableValue**](classQAccelPlot_1_1Internal_1_1ResettableValue.md) _A property value that is either set explicitly or follows a default._     
         * **class** [**ScopedPaintedItemTextures**](classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures.md) _Rasterizes the painted items under a root item at a capture scale until destroyed._     
         * **class** [**SelectionRectangle**](classQAccelPlot_1_1Internal_1_1SelectionRectangle.md) _Draws the gesture or the selected region of a_ [_**SelectionTool**_](classQAccelPlot_1_1SelectionTool.md) _, clipped to the plot area._    
         * **class** [**SeriesEffectList**](classQAccelPlot_1_1Internal_1_1SeriesEffectList.md) _The_ `effects` _list of one series._    

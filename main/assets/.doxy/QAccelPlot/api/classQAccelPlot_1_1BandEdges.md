@@ -64,7 +64,7 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-| property QColor | [**color**](classQAccelPlot_1_1BandEdges.md#property-color-12)  <br>_Edge line color. Default: an invalid color, which draws the band's_ `color` _at full opacity._ |
+| property QColor | [**color**](classQAccelPlot_1_1BandEdges.md#property-color-12)  <br>_Edge line color. Default: the band's_ `color` _at full opacity. Assign_`undefined` _to return to it._ |
 | property [**LineStyle**](classQAccelPlot_1_1LineStyle.md) \* | [**lineStyle**](classQAccelPlot_1_1BandEdges.md#property-linestyle-12)  <br>_Edge line style (_ [_**SolidLine**_](classQAccelPlot_1_1SolidLine.md) _,_[_**DashLine**_](classQAccelPlot_1_1DashLine.md) _, or_[_**NoLine**_](classQAccelPlot_1_1NoLine.md) _). Default:_[_**SolidLine**_](classQAccelPlot_1_1SolidLine.md) _._ |
 | property QML\_ANONYMOUSqreal | [**width**](classQAccelPlot_1_1BandEdges.md#property-width-12)  <br>_Edge line width in pixels, clamped to at least 0. Default: 0, no edge lines._  |
 
@@ -87,9 +87,11 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 |   | [**BandEdges**](#function-bandedges) (QObject \* parent=nullptr) <br>_Constructs a_ [_**BandEdges**_](classQAccelPlot_1_1BandEdges.md) _owned by__parent_ _._ |
-|  QColor | [**color**](#function-color-22) () const<br>_Returns the edge line color._  |
+|  QColor | [**color**](#function-color-22) () const<br>_Returns the edge line color in effect._  |
 |  [**LineStyle**](classQAccelPlot_1_1LineStyle.md) \* | [**lineStyle**](#function-linestyle-22) () const<br>_Returns the edge line style, or_ `nullptr` _after the assigned style is destroyed._ |
-|  void | [**setColor**](#function-setcolor) (const QColor & color) <br>_Sets the edge line color to_ _color_ _._ |
+|  void | [**resetColor**](#function-resetcolor) () <br>_Restores the default edge line color._  |
+|  void | [**setColor**](#function-setcolor) (const QColor & color) <br>_Sets the edge line color to_ _color_ _. An invalid color restores the default._ |
+|  void | [**setDefaultColor**](#function-setdefaultcolor) (const QColor & color) <br>_Sets the color used while none is set to_ _color_ _. Called by the owning_[_**BandSeries**_](classQAccelPlot_1_1BandSeries.md) _._ |
 |  void | [**setLineStyle**](#function-setlinestyle) ([**LineStyle**](classQAccelPlot_1_1LineStyle.md) \* style) <br>_Sets the edge line style to_ _style_ _. The style is not owned._ |
 |  void | [**setWidth**](#function-setwidth) (qreal width) <br>_Sets the edge line width to_ _width_ _pixels. Negative values are clamped to 0._ |
 |  qreal | [**width**](#function-width-22) () const<br>_Returns the edge line width in pixels._  |
@@ -142,7 +144,7 @@ Accessible via the `edges` CONSTANT grouped property of `BandSeries`, for exampl
 
 ### property color {#property-color-12}
 
-_Edge line color. Default: an invalid color, which draws the band's_ `color` _at full opacity._
+_Edge line color. Default: the band's_ `color` _at full opacity. Assign_`undefined` _to return to it._
 ```C++
 QColor QAccelPlot::BandEdges::color;
 ```
@@ -253,7 +255,7 @@ explicit QAccelPlot::BandEdges::BandEdges (
 
 ### function color {#function-color-22}
 
-_Returns the edge line color._ 
+_Returns the edge line color in effect._ 
 ```C++
 QColor QAccelPlot::BandEdges::color () const
 ```
@@ -281,11 +283,43 @@ LineStyle * QAccelPlot::BandEdges::lineStyle () const
 
 
 
+### function resetColor {#function-resetcolor}
+
+_Restores the default edge line color._ 
+```C++
+void QAccelPlot::BandEdges::resetColor () 
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function setColor {#function-setcolor}
 
-_Sets the edge line color to_ _color_ _._
+_Sets the edge line color to_ _color_ _. An invalid color restores the default._
 ```C++
 void QAccelPlot::BandEdges::setColor (
+    const QColor & color
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setDefaultColor {#function-setdefaultcolor}
+
+_Sets the color used while none is set to_ _color_ _. Called by the owning_[_**BandSeries**_](classQAccelPlot_1_1BandSeries.md) _._
+```C++
+void QAccelPlot::BandEdges::setDefaultColor (
     const QColor & color
 ) 
 ```

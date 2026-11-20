@@ -14,6 +14,7 @@
 //
 #pragma once
 
+#include "QAccelPlot/internal/ResettableValue.hpp"
 #include "QAccelPlot/linestyles/LineStyle.hpp"
 
 #include <QColor>
@@ -33,7 +34,7 @@ class BandEdges : public QObject {
     QML_ANONYMOUS
 
     Q_PROPERTY(qreal width READ width WRITE setWidth NOTIFY widthChanged)
-    Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
+    Q_PROPERTY(QColor color READ color WRITE setColor RESET resetColor NOTIFY colorChanged)
     Q_PROPERTY(LineStyle* lineStyle READ lineStyle WRITE setLineStyle NOTIFY lineStyleChanged)
 
 public:
@@ -44,6 +45,8 @@ public:
 
     QColor color() const;
     void setColor(const QColor& color);
+    void resetColor();
+    void setDefaultColor(const QColor& color);
 
     LineStyle* lineStyle() const;
     void setLineStyle(LineStyle* style);
@@ -57,7 +60,7 @@ private:
     void onLineStyleDestroyed();
 
     qreal width_{0.0};
-    QColor color_;
+    Internal::ResettableValue<QColor> color_;
     QPointer<LineStyle> lineStyle_;
 };
 

@@ -1641,8 +1641,9 @@ its value through a <a href="../../api/classQAccelPlot_1_1Colormap/"><code>Color
 <li>Values are stored row by row, <code>columns</code> per row. Row 0 is at <code>yMin</code> and
   column 0 at <code>xMin</code>.</li>
 <li><code>xMin</code>, <code>xMax</code>, <code>yMin</code>, and <code>yMax</code> are the outer edges of the grid, so a
-  cell is <code>(xMax - xMin) / columns</code> wide. An unset edge places the grid in
-  index space: column <code>c</code> spans <code>[c, c + 1]</code>. A reversed extent flips the grid.</li>
+  cell is <code>(xMax - xMin) / columns</code> wide. They default to index space, 0 to
+  <code>columns</code> and 0 to <code>rows</code>, so column <code>c</code> spans <code>[c, c + 1]</code>; assign
+  <code>undefined</code> to return an edge to it. A reversed extent flips the grid.</li>
 <li>The grid edges are the series' data range, so <code>rescaleToData()</code> fits the
   whole grid.</li>
 <li><code>setValues()</code> sets <code>columns</code>. Do not bind <code>columns</code> while using it: when

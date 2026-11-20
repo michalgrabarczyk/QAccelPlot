@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1Internal_1_1ResettableValue" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::ResettableValue</compoundname>
+    <includes local="no">ResettableValue.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1ResettableValue_1a73b1dbaf64bf338448f43f1220ff11da" prot="private" static="no" mutable="no">
+        <type>std::optional&lt; T &gt;</type>
+        <definition>std::optional&lt;T&gt; QAccelPlot::Internal::ResettableValue&lt; T &gt;::explicit_</definition>
+        <argsstring></argsstring>
+        <name>explicit_</name>
+        <qualifiedname>QAccelPlot::Internal::ResettableValue::explicit_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/ResettableValue.hpp" line="81" column="19" bodyfile="QAccelPlot/src/QAccelPlot/internal/ResettableValue.hpp" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1ResettableValue_1a9e28a49423cafd352f9b4eb0c6468c2d" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T QAccelPlot::Internal::ResettableValue&lt; T &gt;::fallback_</definition>
+        <argsstring></argsstring>
+        <name>fallback_</name>
+        <qualifiedname>QAccelPlot::Internal::ResettableValue::fallback_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/ResettableValue.hpp" line="82" column="7" bodyfile="QAccelPlot/src/QAccelPlot/internal/ResettableValue.hpp" bodystart="82" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1ResettableValue_1a209c1a34b68d401b278b3dc95de2c27b" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::Internal::ResettableValue&lt; T &gt;::ResettableValue</definition>
+        <argsstring>(T fallback=T{})</argsstring>
+        <name>ResettableValue</name>
+        <qualifiedname>QAccelPlot::Internal::ResettableValue::ResettableValue</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>fallback</declname>
+          <defval>T{}</defval>
+        </param>
+        <briefdescription>
+<para>Constructs an unset value that follows <emphasis>fallback</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/ResettableValue.hpp" line="22" column="14" bodyfile="QAccelPlot/src/QAccelPlot/internal/ResettableValue.hpp" bodystart="22" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1ResettableValue_1a00ce876d6c2c5d363b6f533d83c3b8a4" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const T &amp;</type>
+        <definition>const T &amp; QAccelPlot::Internal::ResettableValue&lt; T &gt;::value</definition>
+        <argsstring>() const</argsstring>
+        <name>value</name>
+        <qualifiedname>QAccelPlot::Internal::ResettableValue::value</qualifiedname>
+        <briefdescription>
+<para>Returns the explicit value when set, otherwise the default. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/ResettableValue.hpp" line="28" column="14" bodyfile="QAccelPlot/src/QAccelPlot/internal/ResettableValue.hpp" bodystart="28" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1ResettableValue_1a7834d5e69a8ace984db8ffd6511e7a87" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::ResettableValue&lt; T &gt;::isSet</definition>
+        <argsstring>() const</argsstring>
+        <name>isSet</name>
+        <qualifiedname>QAccelPlot::Internal::ResettableValue::isSet</qualifiedname>
+        <briefdescription>
+<para>Returns whether a value is set explicitly. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/ResettableValue.hpp" line="34" column="11" bodyfile="QAccelPlot/src/QAccelPlot/internal/ResettableValue.hpp" bodystart="34" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1ResettableValue_1a49b6149c4f53a3e48a5ef8128c4129d8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::ResettableValue&lt; T &gt;::set</definition>
+        <argsstring>(const T &amp;value)</argsstring>
+        <name>set</name>
+        <qualifiedname>QAccelPlot::Internal::ResettableValue::set</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Sets the value to <emphasis>value</emphasis>; returns whether the value in effect changed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/ResettableValue.hpp" line="40" column="10" bodyfile="QAccelPlot/src/QAccelPlot/internal/ResettableValue.hpp" bodystart="40" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1ResettableValue_1a8b16ad191cf027e5dd01f76275ebc0ba" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::ResettableValue&lt; T &gt;::reset</definition>
+        <argsstring>()</argsstring>
+        <name>reset</name>
+        <qualifiedname>QAccelPlot::Internal::ResettableValue::reset</qualifiedname>
+        <briefdescription>
+<para>Unsets the value, so it follows the default again; returns whether the value in effect changed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/ResettableValue.hpp" line="51" column="10" bodyfile="QAccelPlot/src/QAccelPlot/internal/ResettableValue.hpp" bodystart="51" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1ResettableValue_1aac025ddfd532157700017fed751f9c98" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::ResettableValue&lt; T &gt;::setFallback</definition>
+        <argsstring>(const T &amp;fallback)</argsstring>
+        <name>setFallback</name>
+        <qualifiedname>QAccelPlot::Internal::ResettableValue::setFallback</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>fallback</declname>
+        </param>
+        <briefdescription>
+<para>Sets the default to <emphasis>fallback</emphasis>; returns whether the value in effect changed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/ResettableValue.hpp" line="62" column="10" bodyfile="QAccelPlot/src/QAccelPlot/internal/ResettableValue.hpp" bodystart="62" bodyend="69"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1ResettableValue_1a0a549425d4a3536009da4d07e91fddf1" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool QAccelPlot::Internal::ResettableValue&lt; T &gt;::equal</definition>
+        <argsstring>(const T &amp;left, const T &amp;right)</argsstring>
+        <name>equal</name>
+        <qualifiedname>QAccelPlot::Internal::ResettableValue::equal</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>left</declname>
+        </param>
+        <param>
+          <type>const T &amp;</type>
+          <declname>right</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/ResettableValue.hpp" line="72" column="17" bodyfile="QAccelPlot/src/QAccelPlot/internal/ResettableValue.hpp" bodystart="72" bodyend="79"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A property value that is either set explicitly or follows a default. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Backs a QML property with a <computeroutput>RESET</computeroutput> function: <computeroutput><ref refid="classQAccelPlot_1_1Internal_1_1ResettableValue_1a00ce876d6c2c5d363b6f533d83c3b8a4" kindref="member">value()</ref></computeroutput> is the value in effect, and each mutator returns whether it changed, so the owner knows when to emit the change signal. </para>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/internal/ResettableValue.hpp" line="19" column="12" bodyfile="QAccelPlot/src/QAccelPlot/internal/ResettableValue.hpp" bodystart="19" bodyend="83"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1Internal_1_1ResettableValue_1a0a549425d4a3536009da4d07e91fddf1" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::ResettableValue</scope><name>equal</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1ResettableValue_1a73b1dbaf64bf338448f43f1220ff11da" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::ResettableValue</scope><name>explicit_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1ResettableValue_1a9e28a49423cafd352f9b4eb0c6468c2d" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::ResettableValue</scope><name>fallback_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1ResettableValue_1a7834d5e69a8ace984db8ffd6511e7a87" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ResettableValue</scope><name>isSet</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1ResettableValue_1a8b16ad191cf027e5dd01f76275ebc0ba" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ResettableValue</scope><name>reset</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1ResettableValue_1a209c1a34b68d401b278b3dc95de2c27b" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ResettableValue</scope><name>ResettableValue</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1ResettableValue_1a49b6149c4f53a3e48a5ef8128c4129d8" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ResettableValue</scope><name>set</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1ResettableValue_1aac025ddfd532157700017fed751f9c98" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ResettableValue</scope><name>setFallback</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1ResettableValue_1a00ce876d6c2c5d363b6f533d83c3b8a4" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ResettableValue</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

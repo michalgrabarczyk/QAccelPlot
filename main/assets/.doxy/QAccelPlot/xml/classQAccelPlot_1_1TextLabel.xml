@@ -21,7 +21,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="22" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="22" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="24" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="24" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1TextLabel_1a834b04ff20fcd2780af4aaf05a9d0f17" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>QFont</type>
@@ -38,7 +38,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="24" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="24" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="26" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="26" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1TextLabel_1a8aa743c1cda93be9ccdd03a4e2b7e067" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>QColor</type>
@@ -49,13 +49,13 @@
         <read>color</read>
         <write>setColor</write>
         <briefdescription>
-<para>Title color. Default: <computeroutput>Colors.dark.axisLine</computeroutput> on a <ref refid="classQAccelPlot_1_1ColorBar" kindref="compound">ColorBar</ref>; on an <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref>, an invalid color that follows <computeroutput>baselineColor</computeroutput>. </para>
+<para>Title color. Default: <computeroutput>Colors.dark.axisLine</computeroutput> on a <ref refid="classQAccelPlot_1_1ColorBar" kindref="compound">ColorBar</ref>, the axis <computeroutput>baselineColor</computeroutput> on an <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref>. Assign <computeroutput>undefined</computeroutput> to return to it. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="26" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="26" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="29" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="29" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="classQAccelPlot_1_1TextLabel_1a131eb4ee32f7f92c8bb7dc4aba680e3d" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>qreal</type>
@@ -72,7 +72,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="28" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="28" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="31" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="31" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-attrib">
@@ -88,7 +88,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="65" column="13" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="65" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="72" column="13" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="72" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1TextLabel_1ae8f1d510744ad330be7bd5df139ab123" prot="private" static="no" mutable="no">
         <type>QFont</type>
@@ -102,11 +102,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="66" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="66" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="73" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="73" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classQAccelPlot_1_1TextLabel_1ad05ed8df910482f321b4a77cbb4c7524" prot="private" static="no" mutable="no">
-        <type>QColor</type>
-        <definition>QColor QAccelPlot::TextLabel::color_</definition>
+      <memberdef kind="variable" id="classQAccelPlot_1_1TextLabel_1af19cf6f115cbaa8261ceb4213aaf0f79" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1Internal_1_1ResettableValue" kindref="compound">Internal::ResettableValue</ref>&lt; QColor &gt;</type>
+        <definition>Internal::ResettableValue&lt;QColor&gt; QAccelPlot::TextLabel::color_</definition>
         <argsstring></argsstring>
         <name>color_</name>
         <qualifiedname>QAccelPlot::TextLabel::color_</qualifiedname>
@@ -116,7 +116,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="67" column="12" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="67" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="74" column="31" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="74" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1TextLabel_1a4b0288a966a3277767cabf56740c37cd" prot="private" static="no" mutable="no">
         <type>qreal</type>
@@ -130,7 +130,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="68" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="68" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="75" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="75" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -162,7 +162,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="32" column="14"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="35" column="14"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1a6a0b5361366e1adfd54b144547e809d6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QString</type>
@@ -177,7 +177,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="35" column="13"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="38" column="13"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1aa4e03c2533875c520e43be3fc189ca02" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -196,7 +196,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="37" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="40" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1ac3c5ec3d56bf5a6a6faff8a7dd4a0362" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QFont</type>
@@ -211,7 +211,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="40" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="43" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1a88008a2c41f97c2550b0239c7e3d744f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -230,7 +230,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="42" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="45" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1a5049800abe40bd73d70a8c3439c4f7ab" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QColor</type>
@@ -239,13 +239,13 @@
         <name>color</name>
         <qualifiedname>QAccelPlot::TextLabel::color</qualifiedname>
         <briefdescription>
-<para>Returns the title color. </para>
+<para>Returns the title color in effect. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="45" column="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="48" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1ae6dfc3fc08063f86f7bd794393987f06" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -258,13 +258,47 @@
           <declname>color</declname>
         </param>
         <briefdescription>
-<para>Sets the title color to <emphasis>color</emphasis>. </para>
+<para>Sets the title color to <emphasis>color</emphasis>. An invalid color restores the default. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="47" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="50" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1ac53573c1957aebce75e90fd55df9cbf4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::TextLabel::resetColor</definition>
+        <argsstring>()</argsstring>
+        <name>resetColor</name>
+        <qualifiedname>QAccelPlot::TextLabel::resetColor</qualifiedname>
+        <briefdescription>
+<para>Restores the default title color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="52" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1a5226556d7fd17beddd59ac7989bef196" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::TextLabel::setDefaultColor</definition>
+        <argsstring>(const QColor &amp;color)</argsstring>
+        <name>setDefaultColor</name>
+        <qualifiedname>QAccelPlot::TextLabel::setDefaultColor</qualifiedname>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>color</declname>
+        </param>
+        <briefdescription>
+<para>Sets the color used while none is set to <emphasis>color</emphasis>. Called by the owning <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> or <ref refid="classQAccelPlot_1_1ColorBar" kindref="compound">ColorBar</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="54" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1a84c143c4c41e1c253cb76869d8df2a59" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -279,7 +313,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="50" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="57" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TextLabel_1aca6e700adbd19d73478c7e0296206204" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -298,7 +332,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="52" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="59" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="signal">
@@ -315,7 +349,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="56" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="63" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1TextLabel_1abe8083ba51680ea33693d057b7070268" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -330,7 +364,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="58" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="65" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1TextLabel_1a87e0025dbc876c48e2805b4bd321610f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -345,7 +379,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="60" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="67" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1TextLabel_1accfee0e23bf6118a9cd2aa032a826c7f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -360,7 +394,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="62" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="69" column="10"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -399,11 +433,11 @@
         <label>QObject</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="18" column="1" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="18" bodyend="69"/>
+    <location file="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" line="20" column="1" bodyfile="QAccelPlot/src/QAccelPlot/axis/TextLabel.hpp" bodystart="20" bodyend="76"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1TextLabel_1a8aa743c1cda93be9ccdd03a4e2b7e067" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>color</name></member>
       <member refid="classQAccelPlot_1_1TextLabel_1a5049800abe40bd73d70a8c3439c4f7ab" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>color</name></member>
-      <member refid="classQAccelPlot_1_1TextLabel_1ad05ed8df910482f321b4a77cbb4c7524" prot="private" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>color_</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1af19cf6f115cbaa8261ceb4213aaf0f79" prot="private" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>color_</name></member>
       <member refid="classQAccelPlot_1_1TextLabel_1a87e0025dbc876c48e2805b4bd321610f" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>colorChanged</name></member>
       <member refid="classQAccelPlot_1_1TextLabel_1a834b04ff20fcd2780af4aaf05a9d0f17" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>font</name></member>
       <member refid="classQAccelPlot_1_1TextLabel_1ac3c5ec3d56bf5a6a6faff8a7dd4a0362" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>font</name></member>
@@ -413,7 +447,9 @@
       <member refid="classQAccelPlot_1_1TextLabel_1a84c143c4c41e1c253cb76869d8df2a59" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>padding</name></member>
       <member refid="classQAccelPlot_1_1TextLabel_1a4b0288a966a3277767cabf56740c37cd" prot="private" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>padding_</name></member>
       <member refid="classQAccelPlot_1_1TextLabel_1accfee0e23bf6118a9cd2aa032a826c7f" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>paddingChanged</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1ac53573c1957aebce75e90fd55df9cbf4" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>resetColor</name></member>
       <member refid="classQAccelPlot_1_1TextLabel_1ae6dfc3fc08063f86f7bd794393987f06" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>setColor</name></member>
+      <member refid="classQAccelPlot_1_1TextLabel_1a5226556d7fd17beddd59ac7989bef196" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>setDefaultColor</name></member>
       <member refid="classQAccelPlot_1_1TextLabel_1a88008a2c41f97c2550b0239c7e3d744f" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>setFont</name></member>
       <member refid="classQAccelPlot_1_1TextLabel_1aca6e700adbd19d73478c7e0296206204" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>setPadding</name></member>
       <member refid="classQAccelPlot_1_1TextLabel_1aa4e03c2533875c520e43be3fc189ca02" prot="public" virt="non-virtual"><scope>QAccelPlot::TextLabel</scope><name>setText</name></member>

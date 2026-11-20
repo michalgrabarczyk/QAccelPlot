@@ -98,7 +98,7 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-| property qreal | [**baseline**](classQAccelPlot_1_1GrowTransition.md#property-baseline-12)  <br>_Value the items grow from, in data units._  |
+| property qreal | [**baseline**](classQAccelPlot_1_1GrowTransition.md#property-baseline-12)  <br>_Value the items grow from, in data units. Unset by default:_ `BarSeries::baselineValue` _for bars, 0 for other series._ |
 
 
 
@@ -301,14 +301,14 @@ With `stagger`, the items grow one after another in a wave.
 
 ### property baseline {#property-baseline-12}
 
-_Value the items grow from, in data units._ 
+_Value the items grow from, in data units. Unset by default:_ `BarSeries::baselineValue` _for bars, 0 for other series._
 ```C++
 qreal QAccelPlot::GrowTransition::baseline;
 ```
 
 
 
-Unset by default, after a reset, or when NaN: `BarSeries::baselineValue` for bars, 0 for other series. A default the value axis cannot place, infinite or at or below 0 on a log axis, is replaced by the nearest viewport edge. 
+Reads NaN while unset; assign `undefined` to unset it. A default the value axis cannot place, infinite or at or below 0 on a log axis, is replaced by the nearest viewport edge. 
 
 
         

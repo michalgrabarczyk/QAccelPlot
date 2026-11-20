@@ -1854,17 +1854,14 @@ Hover still detects a <code>Pixel</code> marker within 3 px.</p>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="k">effects:</span> <span class="p">[</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>        <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">GradientFill</span> <span class="p">{</span>
 <a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>            <span class="k">direction:</span> <span class="nx">Qt</span><span class="p">.</span><span class="nx">Vertical</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>            <span class="k">baseline:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">GradientFillBaseline</span><span class="p">.</span><span class="nx">Value</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>            <span class="k">baselineValue:</span> <span class="mi">0</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>            <span class="k">valueMinSource:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">GradientValueSource</span><span class="p">.</span><span class="nx">Fixed</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>            <span class="k">valueMin:</span> <span class="o">-</span><span class="mi">4</span>
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>            <span class="k">valueMaxSource:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">GradientValueSource</span><span class="p">.</span><span class="nx">Fixed</span>
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>            <span class="k">valueMax:</span> <span class="mi">8</span>
-<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>            <span class="k">opacity:</span> <span class="mf">0.65</span>
-<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>            <span class="k">colormap:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Colormap</span> <span class="p">{</span> <span class="k">preset:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Colormap</span><span class="p">.</span><span class="nx">Viridis</span> <span class="p">}</span>
-<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>        <span class="p">}</span>
-<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>    <span class="p">]</span>
-<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="p">}</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>            <span class="k">baselineValue:</span> <span class="mi">0</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>            <span class="k">valueMin:</span> <span class="o">-</span><span class="mi">4</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>            <span class="k">valueMax:</span> <span class="mi">8</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>            <span class="k">opacity:</span> <span class="mf">0.65</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>            <span class="k">colormap:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Colormap</span> <span class="p">{</span> <span class="k">preset:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Colormap</span><span class="p">.</span><span class="nx">Viridis</span> <span class="p">}</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>        <span class="p">}</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    <span class="p">]</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="p">}</span>
 </code></pre></div>
 <p>Both effects take their color stops from one of two properties:</p>
 <ul>
@@ -1880,8 +1877,10 @@ Hover still detects a <code>Pixel</code> marker within 3 px.</p>
 <a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="p">}</span>
 <a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="p">}</span>
 </code></pre></div>
-<p>Fixed gradient bounds keep colors stable while the viewport changes. Axis- or
-data-derived bounds make colors follow the current range.</p>
+<p><code>valueMin</code> and <code>valueMax</code> place the ramp. Set them to keep colors stable while
+the data changes; leave them unset, or assign <code>undefined</code>, to span each curve's
+data range. <code>GradientFill.baselineValue</code> sets the Y value the fill starts from;
+unset, the fill starts at the smallest visible Y value.</p>
 <h2 id="glow-and-fading-trails">Glow and fading trails<a class="headerlink" href="#glow-and-fading-trails" title="Permanent link">&para;</a></h2>
 <p><code>Glow</code> draws a soft halo around a series, in the same pass and without a blur.
 <code>FadeTrail</code> fades the oldest items, by index, like the trace of an

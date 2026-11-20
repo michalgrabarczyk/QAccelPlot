@@ -20,6 +20,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **class** [**QAccelPlot::Internal::OpacityTimeline**](classQAccelPlot_1_1Internal_1_1OpacityTimeline.md) _The opacity of an item over the time since it started, built from opacity animations._ 
 * **class** [**QAccelPlot::Internal::OverlayChildren**](classQAccelPlot_1_1Internal_1_1OverlayChildren.md) _Objects declared inside an inspection tool in QML._ 
 * **class** [**QAccelPlot::Internal::RectVertexCache**](classQAccelPlot_1_1Internal_1_1RectVertexCache.md) _Vertices of a series that draws each rectangle as a quad positioned from a data texture._ 
+* **class** [**QAccelPlot::Internal::ResettableValue**](classQAccelPlot_1_1Internal_1_1ResettableValue.md) _A property value that is either set explicitly or follows a default._ 
 * **class** [**QAccelPlot::Internal::ScopedPaintedItemTextures**](classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures.md) _Rasterizes the painted items under a root item at a capture scale until destroyed._ 
 * **class** [**QAccelPlot::Internal::SourceInspection**](classQAccelPlot_1_1Internal_1_1SourceInspection.md) _Inspection queries that read a series' own buffer whose records are ordered along one axis._ 
 * **class** [**QAccelPlot::LineCurveLineRenderer**](classQAccelPlot_1_1LineCurveLineRenderer.md) _Internal renderer responsible for building and updating QSGNode line geometry for a_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _._

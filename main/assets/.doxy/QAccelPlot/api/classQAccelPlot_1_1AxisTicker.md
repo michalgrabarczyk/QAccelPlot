@@ -72,9 +72,9 @@ flowchart TB
 | property qreal | [**subtickWidth**](classQAccelPlot_1_1AxisTicker.md#property-subtickwidth-12)  <br>_Width in pixels of sub-tick mark lines. Default: 1._  |
 | property QML\_ANONYMOUSQColor | [**tickColor**](classQAccelPlot_1_1AxisTicker.md#property-tickcolor-12)  <br>_Color of major tick marks. Default:_ `Colors.dark.tick` _._ |
 | property int | [**tickCount**](classQAccelPlot_1_1AxisTicker.md#property-tickcount-12)  <br>_Target number of major tick marks, capped at 500. Actual count is adjusted for "nice" values. Default: 5._  |
-| property QColor | [**tickLabelColor**](classQAccelPlot_1_1AxisTicker.md#property-ticklabelcolor-12)  <br>_Optional color of tick labels. When invalid, the tickColor is used._  |
+| property QColor | [**tickLabelColor**](classQAccelPlot_1_1AxisTicker.md#property-ticklabelcolor-12)  <br>_Color of tick labels. Default:_ `tickColor` _. Assign_`undefined` _to return to it._ |
 | property QFont | [**tickLabelFont**](classQAccelPlot_1_1AxisTicker.md#property-ticklabelfont-12)  <br>_Font used to render tick labels. Default: application default font._  |
-| property [**TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md) \* | [**tickLabelFormatter**](classQAccelPlot_1_1AxisTicker.md#property-ticklabelformatter-12)  <br>_Optional custom formatter for tick labels. When_ `nullptr` _the default_[_**NumericTickLabelFormatter**_](classQAccelPlot_1_1NumericTickLabelFormatter.md) _is used._ |
+| property [**TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md) \* | [**tickLabelFormatter**](classQAccelPlot_1_1AxisTicker.md#property-ticklabelformatter-12)  <br>_Formatter that turns tick values into label text. Default: a_ `NumericTickLabelFormatter` _owned by the ticker. Assign_`undefined` _to return to it._ |
 | property qreal | [**tickLabelPadding**](classQAccelPlot_1_1AxisTicker.md#property-ticklabelpadding-12)  <br>_Spacing in pixels between a tick mark and its label. Default: 5._  |
 | property qreal | [**tickLabelRotation**](classQAccelPlot_1_1AxisTicker.md#property-ticklabelrotation-12)  <br>_Clockwise rotation in degrees of each tick label. Default: 0._  |
 | property qreal | [**tickLength**](classQAccelPlot_1_1AxisTicker.md#property-ticklength-12)  <br>_Convenience setter for both_ `tickLengthIn` _and_`tickLengthOut` _simultaneously._ |
@@ -116,6 +116,8 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 |   | [**AxisTicker**](#function-axisticker) (QObject \* parent=nullptr) <br>_Constructs an_ [_**AxisTicker**_](classQAccelPlot_1_1AxisTicker.md) _with the given__parent_ _._ |
+|  void | [**resetTickLabelColor**](#function-resetticklabelcolor) () <br>_Makes the tick-label color follow_ `tickColor` _again._ |
+|  void | [**resetTickLabelFormatter**](#function-resetticklabelformatter) () <br>_Restores the default tick label formatter._  |
 |  void | [**setSubtickColor**](#function-setsubtickcolor) (const QColor & c) <br>_Sets the sub-tick color to_ _c_ _._ |
 |  void | [**setSubtickCount**](#function-setsubtickcount) (int count) <br>_Sets the sub-tick interval count to_ _count_ _._ |
 |  void | [**setSubtickLength**](#function-setsubticklength) (qreal length) <br>_Sets both_ `subtickLengthIn` _and_`subtickLengthOut` _to__length_ _._ |
@@ -124,9 +126,9 @@ flowchart TB
 |  void | [**setSubtickWidth**](#function-setsubtickwidth) (qreal width) <br>_Sets the sub-tick line width to_ _width_ _._ |
 |  void | [**setTickColor**](#function-settickcolor) (const QColor & c) <br>_Sets the major tick color to_ _c_ _._ |
 |  void | [**setTickCount**](#function-settickcount) (int count) <br>_Sets the target major tick count to_ _count_ _._ |
-|  void | [**setTickLabelColor**](#function-setticklabelcolor) (const QColor & c) <br>_Sets the tick-label color to_ _c_ _. An invalid color restores the tickColor fallback._ |
+|  void | [**setTickLabelColor**](#function-setticklabelcolor) (const QColor & c) <br>_Sets the tick-label color to_ _c_ _. An invalid color restores the_`tickColor` _default._ |
 |  void | [**setTickLabelFont**](#function-setticklabelfont) (const QFont & f) <br>_Sets the tick label font to_ _f_ _._ |
-|  void | [**setTickLabelFormatter**](#function-setticklabelformatter) ([**TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md) \* formatter) <br>_Sets the tick label formatter to_ _formatter_ _._ |
+|  void | [**setTickLabelFormatter**](#function-setticklabelformatter) ([**TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md) \* formatter) <br>_Sets the tick label formatter to_ _formatter_ _._`nullptr` _restores the default._ |
 |  void | [**setTickLabelPadding**](#function-setticklabelpadding) (qreal padding) <br>_Sets the tick label padding to_ _padding_ _._ |
 |  void | [**setTickLabelRotation**](#function-setticklabelrotation) (qreal rotation) <br>_Sets the tick label rotation to_ _rotation_ _degrees._ |
 |  void | [**setTickLength**](#function-setticklength) (qreal length) <br>_Sets both_ `tickLengthIn` _and_`tickLengthOut` _to__length_ _._ |
@@ -141,9 +143,9 @@ flowchart TB
 |  qreal | [**subtickWidth**](#function-subtickwidth-22) () const<br>_Returns the sub-tick line width._  |
 |  QColor | [**tickColor**](#function-tickcolor-22) () const<br>_Returns the major tick color._  |
 |  int | [**tickCount**](#function-tickcount-22) () const<br>_Returns the target number of major ticks._  |
-|  QColor | [**tickLabelColor**](#function-ticklabelcolor-22) () const<br>_Returns the tick-label color, or an invalid color when it follows tickColor._  |
+|  QColor | [**tickLabelColor**](#function-ticklabelcolor-22) () const<br>_Returns the tick-label color in effect._  |
 |  QFont | [**tickLabelFont**](#function-ticklabelfont-22) () const<br>_Returns the tick label font._  |
-|  [**TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md) \* | [**tickLabelFormatter**](#function-ticklabelformatter-22) () const<br>_Returns the custom tick label formatter, or_ `nullptr` _if using the default._ |
+|  [**TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md) \* | [**tickLabelFormatter**](#function-ticklabelformatter-22) () const<br>_Returns the tick label formatter in effect: the custom one, or the default._  |
 |  qreal | [**tickLabelPadding**](#function-ticklabelpadding-22) () const<br>_Returns the tick label padding._  |
 |  qreal | [**tickLabelRotation**](#function-ticklabelrotation-22) () const<br>_Returns the tick label rotation in degrees._  |
 |  qreal | [**tickLength**](#function-ticklength-22) () const<br>_Returns the shared inward+outward tick length (reads_ `tickLengthIn` _)._ |
@@ -319,7 +321,7 @@ int QAccelPlot::AxisTicker::tickCount;
 
 ### property tickLabelColor {#property-ticklabelcolor-12}
 
-_Optional color of tick labels. When invalid, the tickColor is used._ 
+_Color of tick labels. Default:_ `tickColor` _. Assign_`undefined` _to return to it._
 ```C++
 QColor QAccelPlot::AxisTicker::tickLabelColor;
 ```
@@ -349,7 +351,7 @@ QFont QAccelPlot::AxisTicker::tickLabelFont;
 
 ### property tickLabelFormatter {#property-ticklabelformatter-12}
 
-_Optional custom formatter for tick labels. When_ `nullptr` _the default_[_**NumericTickLabelFormatter**_](classQAccelPlot_1_1NumericTickLabelFormatter.md) _is used._
+_Formatter that turns tick values into label text. Default: a_ `NumericTickLabelFormatter` _owned by the ticker. Assign_`undefined` _to return to it._
 ```C++
 TickLabelFormatter* QAccelPlot::AxisTicker::tickLabelFormatter;
 ```
@@ -747,6 +749,36 @@ explicit QAccelPlot::AxisTicker::AxisTicker (
 
 
 
+### function resetTickLabelColor {#function-resetticklabelcolor}
+
+_Makes the tick-label color follow_ `tickColor` _again._
+```C++
+void QAccelPlot::AxisTicker::resetTickLabelColor () 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function resetTickLabelFormatter {#function-resetticklabelformatter}
+
+_Restores the default tick label formatter._ 
+```C++
+void QAccelPlot::AxisTicker::resetTickLabelFormatter () 
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function setSubtickColor {#function-setsubtickcolor}
 
 _Sets the sub-tick color to_ _c_ _._
@@ -885,7 +917,7 @@ void QAccelPlot::AxisTicker::setTickCount (
 
 ### function setTickLabelColor {#function-setticklabelcolor}
 
-_Sets the tick-label color to_ _c_ _. An invalid color restores the tickColor fallback._
+_Sets the tick-label color to_ _c_ _. An invalid color restores the_`tickColor` _default._
 ```C++
 void QAccelPlot::AxisTicker::setTickLabelColor (
     const QColor & c
@@ -919,7 +951,7 @@ void QAccelPlot::AxisTicker::setTickLabelFont (
 
 ### function setTickLabelFormatter {#function-setticklabelformatter}
 
-_Sets the tick label formatter to_ _formatter_ _._
+_Sets the tick label formatter to_ _formatter_ _._`nullptr` _restores the default._
 ```C++
 void QAccelPlot::AxisTicker::setTickLabelFormatter (
     TickLabelFormatter * formatter
@@ -1158,7 +1190,7 @@ int QAccelPlot::AxisTicker::tickCount () const
 
 ### function tickLabelColor {#function-ticklabelcolor-22}
 
-_Returns the tick-label color, or an invalid color when it follows tickColor._ 
+_Returns the tick-label color in effect._ 
 ```C++
 QColor QAccelPlot::AxisTicker::tickLabelColor () const
 ```
@@ -1188,7 +1220,7 @@ QFont QAccelPlot::AxisTicker::tickLabelFont () const
 
 ### function tickLabelFormatter {#function-ticklabelformatter-22}
 
-_Returns the custom tick label formatter, or_ `nullptr` _if using the default._
+_Returns the tick label formatter in effect: the custom one, or the default._ 
 ```C++
 TickLabelFormatter * QAccelPlot::AxisTicker::tickLabelFormatter () const
 ```

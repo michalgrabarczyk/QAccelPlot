@@ -33,7 +33,7 @@ class Category : public QObject {
     
     Q_PROPERTY(int value READ value WRITE setValue NOTIFY valueChanged)
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
-    Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
+    Q_PROPERTY(QColor color READ color WRITE setColor RESET resetColor NOTIFY colorChanged)
 
 public:
     explicit Category(QObject* parent = nullptr);
@@ -47,6 +47,7 @@ public:
 
     QColor color() const;
     void setColor(const QColor& color);
+    void resetColor();
 
 signals:
     void valueChanged();

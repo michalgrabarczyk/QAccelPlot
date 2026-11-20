@@ -80,7 +80,7 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-| property QColor | [**color**](classQAccelPlot_1_1Glow.md#property-color-12)  <br>_Color of the halo. Default: an invalid color, which uses the series color._  |
+| property QColor | [**color**](classQAccelPlot_1_1Glow.md#property-color-12)  <br>_Color of the halo. Unset by default: each series uses its own color._  |
 | property qreal | [**intensity**](classQAccelPlot_1_1Glow.md#property-intensity-12)  <br>_Opacity of the halo next to the shape, clamped to [0, 1]. Default: 0.5._  |
 | property qreal | [**radius**](classQAccelPlot_1_1Glow.md#property-radius-12)  <br>_Width of the halo in pixels, clamped to at least 0. Default: 8._  |
 
@@ -233,13 +233,17 @@ The halo fades out over `radius` pixels outside the drawn shape. It is drawn in 
 
 ### property color {#property-color-12}
 
-_Color of the halo. Default: an invalid color, which uses the series color._ 
+_Color of the halo. Unset by default: each series uses its own color._ 
 ```C++
 QColor QAccelPlot::Glow::color;
 ```
 
 
 
+Reads an invalid color while unset; assign `undefined` to unset it. 
+
+
+        
 
 <hr>
 

@@ -155,8 +155,7 @@
     <member refid="classQAccelPlot_1_1AxisLabel_1a46759c980d66065a8e8cbf3b5a967c9d" kind="property"><name>offset</name></member>
     <member refid="classQAccelPlot_1_1AxisLabel_1aa64cea6ede6785e958994065b05ad0da" kind="property"><name>delegate</name></member>
     <member refid="classQAccelPlot_1_1AxisLabel_1ad7082fc536f988e6692900c9ebe9ac23" kind="variable"><name>alignment_</name></member>
-    <member refid="classQAccelPlot_1_1AxisLabel_1a60f458e65017230019e9dfa7a84e5468" kind="variable"><name>rotation_</name></member>
-    <member refid="classQAccelPlot_1_1AxisLabel_1ad6501e778faeb59d9bcc2421406a3c70" kind="variable"><name>defaultRotation_</name></member>
+    <member refid="classQAccelPlot_1_1AxisLabel_1ac7398adf3927354859f11b094a5defb3" kind="variable"><name>rotation_</name></member>
     <member refid="classQAccelPlot_1_1AxisLabel_1a0358cd035bed209185ac2ab0fd18aab9" kind="variable"><name>offset_</name></member>
     <member refid="classQAccelPlot_1_1AxisLabel_1a91491e33a69cb17556116d50dc874242" kind="variable"><name>delegate_</name></member>
     <member refid="classQAccelPlot_1_1AxisLabel_1ad0cc9761bfae498bb793c7d6eccfe39c" kind="function"><name>AxisLabel</name></member>
@@ -218,7 +217,7 @@
     <member refid="classQAccelPlot_1_1AxisTicker_1ab1495ebb808a3b5ebcb25d6b7da05f48" kind="property"><name>tickLabelFont</name></member>
     <member refid="classQAccelPlot_1_1AxisTicker_1afe2ff06fa990024b3b2626503a86dc71" kind="property"><name>tickLabelFormatter</name></member>
     <member refid="classQAccelPlot_1_1AxisTicker_1ab861e43c778df79a9c81fa5ed22c87ec" kind="variable"><name>tickColor_</name></member>
-    <member refid="classQAccelPlot_1_1AxisTicker_1af8828c1cdc1a7baf3e292253172921ac" kind="variable"><name>tickLabelColor_</name></member>
+    <member refid="classQAccelPlot_1_1AxisTicker_1a4fcc18db7a370778b9b734dbcc6ebec1" kind="variable"><name>tickLabelColor_</name></member>
     <member refid="classQAccelPlot_1_1AxisTicker_1add667820768eff824762f4e5458e07f6" kind="variable"><name>tickCount_</name></member>
     <member refid="classQAccelPlot_1_1AxisTicker_1a447eefef39e513c48db4181dd4ebed31" kind="variable"><name>subtickCount_</name></member>
     <member refid="classQAccelPlot_1_1AxisTicker_1ab5bba2058e96a4c769947f7f9dc59a86" kind="variable"><name>tickLengthIn_</name></member>
@@ -239,6 +238,7 @@
     <member refid="classQAccelPlot_1_1AxisTicker_1a7af48aa1f6344dc29c1e5dd87112785a" kind="function"><name>setTickColor</name></member>
     <member refid="classQAccelPlot_1_1AxisTicker_1aba0d424d2cfd795667fc842c0e0940b7" kind="function"><name>tickLabelColor</name></member>
     <member refid="classQAccelPlot_1_1AxisTicker_1aa921421638a47e32779e080afbf379d5" kind="function"><name>setTickLabelColor</name></member>
+    <member refid="classQAccelPlot_1_1AxisTicker_1acd1e69f4b4bc92f07425bb576cf34fc6" kind="function"><name>resetTickLabelColor</name></member>
     <member refid="classQAccelPlot_1_1AxisTicker_1a90f43021503b5b9c33abfe3f576ad562" kind="function"><name>tickCount</name></member>
     <member refid="classQAccelPlot_1_1AxisTicker_1a5ff0bf6708efc812e931640990b9b84e" kind="function"><name>setTickCount</name></member>
     <member refid="classQAccelPlot_1_1AxisTicker_1acedd5c50fa300f30509b93b79a44da04" kind="function"><name>subtickCount</name></member>
@@ -269,6 +269,7 @@
     <member refid="classQAccelPlot_1_1AxisTicker_1a0988479a747b416487d8a34ba6a1e0e9" kind="function"><name>setTickLabelFont</name></member>
     <member refid="classQAccelPlot_1_1AxisTicker_1a5fa91bc9be6e08611528a77010fb7604" kind="function"><name>tickLabelFormatter</name></member>
     <member refid="classQAccelPlot_1_1AxisTicker_1aed9bf2c929734c9ba46d841849a89b49" kind="function"><name>setTickLabelFormatter</name></member>
+    <member refid="classQAccelPlot_1_1AxisTicker_1a3c70c4499974f6e0c5070c2e5e124393" kind="function"><name>resetTickLabelFormatter</name></member>
     <member refid="classQAccelPlot_1_1AxisTicker_1aa23943d47ffa7c6118e3601ba7a8d55d" kind="signal"><name>tickColorChanged</name></member>
     <member refid="classQAccelPlot_1_1AxisTicker_1afd5d3644310258b427f6b7202f9cfe08" kind="signal"><name>tickLabelColorChanged</name></member>
     <member refid="classQAccelPlot_1_1AxisTicker_1ac97ee7144a72bc33259ea931e3ca5482" kind="signal"><name>tickCountChanged</name></member>
@@ -347,13 +348,15 @@
     <member refid="classQAccelPlot_1_1BandEdges_1a0865a3dd7af4197af445406a4285c69a" kind="property"><name>color</name></member>
     <member refid="classQAccelPlot_1_1BandEdges_1ae1295c9c8bd0b5e976d97cef7a9edfa4" kind="property"><name>lineStyle</name></member>
     <member refid="classQAccelPlot_1_1BandEdges_1ae55b352cdc7b3903283a51fe62bba6df" kind="variable"><name>width_</name></member>
-    <member refid="classQAccelPlot_1_1BandEdges_1ada7892caa26fe57526b67cc9c1b9bf98" kind="variable"><name>color_</name></member>
+    <member refid="classQAccelPlot_1_1BandEdges_1afffee30c2b96dd73423f6b6c6f9740a2" kind="variable"><name>color_</name></member>
     <member refid="classQAccelPlot_1_1BandEdges_1aa860355db2703c928ca7ac623525756f" kind="variable"><name>lineStyle_</name></member>
     <member refid="classQAccelPlot_1_1BandEdges_1a96bf1b7aee58c4cf4523ca15922fb265" kind="function"><name>BandEdges</name></member>
     <member refid="classQAccelPlot_1_1BandEdges_1af777399ce97458eef4893dc242ffae10" kind="function"><name>width</name></member>
     <member refid="classQAccelPlot_1_1BandEdges_1a148cb1321457852f5fa292c9cd8d3d9f" kind="function"><name>setWidth</name></member>
     <member refid="classQAccelPlot_1_1BandEdges_1ac7e70e594e36869a17160bf972fcd026" kind="function"><name>color</name></member>
     <member refid="classQAccelPlot_1_1BandEdges_1a8a292287605e2ccfeaf28d54cf707402" kind="function"><name>setColor</name></member>
+    <member refid="classQAccelPlot_1_1BandEdges_1aa3d04ab30c23c436d4f9bddfffd345e3" kind="function"><name>resetColor</name></member>
+    <member refid="classQAccelPlot_1_1BandEdges_1af98aba2f497445b16f1eab8ff27bf09d" kind="function"><name>setDefaultColor</name></member>
     <member refid="classQAccelPlot_1_1BandEdges_1a3ed2b447eb0beda0c6b2425cd8787b33" kind="function"><name>lineStyle</name></member>
     <member refid="classQAccelPlot_1_1BandEdges_1a490ba119368e42297bf2ebdb4f1f5d2f" kind="function"><name>setLineStyle</name></member>
     <member refid="classQAccelPlot_1_1BandEdges_1abbdf3b90485fa8211367226eb7bfb626" kind="signal"><name>widthChanged</name></member>
@@ -410,7 +413,6 @@
     <member refid="classQAccelPlot_1_1BandSeries_1ae9e33e2f1dbbab8e88612c7bcee6f725" kind="function"><name>updateXAscending</name></member>
     <member refid="classQAccelPlot_1_1BandSeries_1a695ff6c69bdcaca2317c8e05c8ea29ef" kind="function"><name>spanAt</name></member>
     <member refid="classQAccelPlot_1_1BandSeries_1aca01896bb218e6d9fb343d8c663ad02d" kind="function"><name>edgesVisible</name></member>
-    <member refid="classQAccelPlot_1_1BandSeries_1aadcf29035cd7ddd7bb3d65ea334d7275" kind="function"><name>edgeColor</name></member>
     <member refid="classQAccelPlot_1_1BandSeries_1aa080b4b3822be01b8414e58a54e8a1c0" kind="function"><name>refreshHovered</name></member>
     <member refid="classQAccelPlot_1_1BandSeries_1a14444e0fd914f8d9f8f88c73600bea05" kind="function"><name>onEdgeLineStyleChanged</name></member>
     <member refid="classQAccelPlot_1_1BandSeries_1a7cfe200400550705cb2c15a103e88d9f" kind="function"><name>renderView</name></member>
@@ -630,6 +632,7 @@
     <member refid="classQAccelPlot_1_1Category_1a6ead95851717798d432d7b26f4489533" kind="function"><name>setName</name></member>
     <member refid="classQAccelPlot_1_1Category_1ab23f2fc1b3259de523b8c8bacef21535" kind="function"><name>color</name></member>
     <member refid="classQAccelPlot_1_1Category_1a09109d8f212b9c3f878ef58df953f4ee" kind="function"><name>setColor</name></member>
+    <member refid="classQAccelPlot_1_1Category_1a9cc0489c600a7cda0ff6fe31c92aba51" kind="function"><name>resetColor</name></member>
     <member refid="classQAccelPlot_1_1Category_1a5a09039d768e38c456142817ef1a5350" kind="signal"><name>valueChanged</name></member>
     <member refid="classQAccelPlot_1_1Category_1a272bdf9ea40c4b631b6a5061a24f5d40" kind="signal"><name>nameChanged</name></member>
     <member refid="classQAccelPlot_1_1Category_1a67dbd18a0fce0c61f44d2679ecdc13e7" kind="signal"><name>colorChanged</name></member>
@@ -793,8 +796,10 @@
     <member refid="classQAccelPlot_1_1Colormap_1ab0adf49c864c6c5ef75cf461103d9418" kind="function"><name>setReversed</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1a3c086f67be351339faeaeb894bfa5b03" kind="function"><name>min</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1a702b39ccd52aec3bb8401322bb1b1a63" kind="function"><name>setMin</name></member>
+    <member refid="classQAccelPlot_1_1Colormap_1a6b5938373b919cc819b725dc2023d96d" kind="function"><name>resetMin</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1aea67b4ee565f06e135b66baa5b24e362" kind="function"><name>max</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1ae53b320946a7e35ce557f83ac41ee5a6" kind="function"><name>setMax</name></member>
+    <member refid="classQAccelPlot_1_1Colormap_1a9ae8530ace39b8c9c3bd917715490ec0" kind="function"><name>resetMax</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1a447e9e6f49975b27dbef202df100f4fe" kind="function"><name>setRange</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1abab08f950fca92f0896e665710f97a6c" kind="function"><name>logScale</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1a5a8a85ce07dc9797d6910e54c3f97206" kind="function"><name>setLogScale</name></member>
@@ -1460,11 +1465,8 @@
     <member refid="classQAccelPlot_1_1GradientFill_1a60475906fec29c9373783e5f29791ced" kind="property"><name>direction</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1aaace799b23f8de73c8954faa612a8d40" kind="property"><name>gradient</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1aa4d2eeb538a5adf96c9bfedd19a70aee" kind="property"><name>colormap</name></member>
-    <member refid="classQAccelPlot_1_1GradientFill_1ad0115ca122c447f489235488d71301fc" kind="property"><name>valueMinSource</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a9d4163427eb37917917af035dbcd185d" kind="property"><name>valueMin</name></member>
-    <member refid="classQAccelPlot_1_1GradientFill_1a6888272b43420d0bb0429d4e0a9c8042" kind="property"><name>valueMaxSource</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a29cb03dfb0a9038a7d0faa44c47d5dab" kind="property"><name>valueMax</name></member>
-    <member refid="classQAccelPlot_1_1GradientFill_1a840193ef0918c48f810189931cdfe072" kind="property"><name>baseline</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a0630ee03843284ef4ff40feb0a835b11" kind="property"><name>baselineValue</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a70dfbc7fb3e0278fa1ef799ceb5092f4" kind="property"><name>opacity</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a523ce0ca53a98f4784f35e593faa733f" kind="variable"><name>direction_</name></member>
@@ -1472,11 +1474,8 @@
     <member refid="classQAccelPlot_1_1GradientFill_1a1c5e371839b72c7963a5a48bbac72835" kind="variable"><name>gradientConnections_</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1aab2c01bb3f76e4fe9f309876bccff167" kind="variable"><name>colormap_</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a6b7431e624734a737682c66ecb3c23f9" kind="variable"><name>colormapConnections_</name></member>
-    <member refid="classQAccelPlot_1_1GradientFill_1a837bf54e97843a89af2ad0049d0e3020" kind="variable"><name>valueMinSource_</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1ae3e8c1b1bd9c335eb30491b325fce019" kind="variable"><name>valueMin_</name></member>
-    <member refid="classQAccelPlot_1_1GradientFill_1a6261c0222fd32b5a3a8fe96869996443" kind="variable"><name>valueMaxSource_</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a1333078d01b713dc5879b289eb97b871" kind="variable"><name>valueMax_</name></member>
-    <member refid="classQAccelPlot_1_1GradientFill_1a2c7108ece48dbb7342bc0d83c56bab11" kind="variable"><name>baseline_</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a8b8522b272ffaeab05a38683bbfea95f" kind="variable"><name>baselineValue_</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1aaf46f3ea6570e6c58b7bb80a4f12f61a" kind="variable"><name>opacity_</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a6388607e6255ece8d0d7a14fb4e8b14a" kind="variable"><name>payload_</name></member>
@@ -1487,18 +1486,15 @@
     <member refid="classQAccelPlot_1_1GradientFill_1a8be30081de750e3dbff081a924162f20" kind="function"><name>setGradient</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a0145a9c147ff1c9e3c72219f74300c00" kind="function"><name>colormap</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a80861b51ead8134f57b0466904010f24" kind="function"><name>setColormap</name></member>
-    <member refid="classQAccelPlot_1_1GradientFill_1abbbf380e783238c164815cfef79f2fe0" kind="function"><name>valueMinSource</name></member>
-    <member refid="classQAccelPlot_1_1GradientFill_1a02856f75296436a3bf3858a3067e1e19" kind="function"><name>setValueMinSource</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a5fedc29ee69d958684afd04bdc9c9f9d" kind="function"><name>valueMin</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a40fc9d1bb1f1cf50c6e3a7bf04569092" kind="function"><name>setValueMin</name></member>
-    <member refid="classQAccelPlot_1_1GradientFill_1a69fe794d8922245a9ae6e13e9fb585c3" kind="function"><name>valueMaxSource</name></member>
-    <member refid="classQAccelPlot_1_1GradientFill_1ad7f58b6b4a36b7136c25a3c952118bf8" kind="function"><name>setValueMaxSource</name></member>
+    <member refid="classQAccelPlot_1_1GradientFill_1a9672446904c4f1f0a6adfe544f2bc2dd" kind="function"><name>resetValueMin</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a8969f54d6c87501b9e718b9fbd1ab858" kind="function"><name>valueMax</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a4b3f1c66b06afd942025e3c406253bb6" kind="function"><name>setValueMax</name></member>
-    <member refid="classQAccelPlot_1_1GradientFill_1ae8d116ab40cf22607457e7d16f56be05" kind="function"><name>baseline</name></member>
-    <member refid="classQAccelPlot_1_1GradientFill_1a6eadaf6f66e8e977eb56c177cb8b449e" kind="function"><name>setBaseline</name></member>
+    <member refid="classQAccelPlot_1_1GradientFill_1a4cfffca4f3857702567aa87d7ebb69a7" kind="function"><name>resetValueMax</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a655e249f338d04f4a79e48730baeb66f" kind="function"><name>baselineValue</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a04cb4035c703fb23b544609ce5a1d9b0" kind="function"><name>setBaselineValue</name></member>
+    <member refid="classQAccelPlot_1_1GradientFill_1ab591c42b5b46c72ee6d8b4708a6baa09" kind="function"><name>resetBaselineValue</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a26b7b164edc77f3ebc5a18097e64afd3" kind="function"><name>opacity</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1ae5d5f4caaff9ec7751523ab83e6cc5bb" kind="function"><name>setOpacity</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a136a08bcea909032c7e635b4a88e77fc" kind="function"><name>payload</name></member>
@@ -1506,11 +1502,8 @@
     <member refid="classQAccelPlot_1_1GradientFill_1af82b411512117911e2219826767e1148" kind="signal"><name>directionChanged</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a36c54758981c2a3f263ef48aba58a078" kind="signal"><name>gradientChanged</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a78d84722a1dd9efc06ced1bf087d7cfa" kind="signal"><name>colormapChanged</name></member>
-    <member refid="classQAccelPlot_1_1GradientFill_1a693bbe01d82eb08b7ee9d6bda2c37ab3" kind="signal"><name>valueMinSourceChanged</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a98e6deff805946bb3aa2c8f20cf1b728" kind="signal"><name>valueMinChanged</name></member>
-    <member refid="classQAccelPlot_1_1GradientFill_1ad5adb3f061f053a5e41bf42a3710bad0" kind="signal"><name>valueMaxSourceChanged</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1af22b9d37b45883227c0ccd6c05bfb493" kind="signal"><name>valueMaxChanged</name></member>
-    <member refid="classQAccelPlot_1_1GradientFill_1aef643de3faf0970b533948fa06aa2172" kind="signal"><name>baselineChanged</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1ab6e6d4f3150f6e667ce90916b86cd21c" kind="signal"><name>baselineValueChanged</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1afb0ecb83c685d1b12cf181d478952cdb" kind="signal"><name>opacityChanged</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a9ce1f59b85fe378ebc40488c2a684064" kind="function"><name>readPayload</name></member>
@@ -1535,8 +1528,7 @@
     <member refid="structQAccelPlot_1_1GradientFillPayload_1af1f4707adf69d6087a957a07375a16f9" kind="variable"><name>stops</name></member>
     <member refid="structQAccelPlot_1_1GradientFillPayload_1a946a212211cf5e7a935e2e19bc803f64" kind="variable"><name>gradientValueMin</name></member>
     <member refid="structQAccelPlot_1_1GradientFillPayload_1a5a346dd249dba61c588bf54d93173f32" kind="variable"><name>gradientValueMax</name></member>
-    <member refid="structQAccelPlot_1_1GradientFillPayload_1a13f3e98b07f1b5a64eac2c71d6652b04" kind="variable"><name>baseline</name></member>
-    <member refid="structQAccelPlot_1_1GradientFillPayload_1abff4b625ea4a086f6a4329ec9961440d" kind="variable"><name>baselineValue</name></member>
+    <member refid="structQAccelPlot_1_1GradientFillPayload_1aa4c4664f5226853e8be1ced73b7e3e34" kind="variable"><name>baselineValue</name></member>
     <member refid="structQAccelPlot_1_1GradientFillPayload_1a62da7a418aaaf917230c85611e177000" kind="variable"><name>opacity</name></member>
     <member refid="structQAccelPlot_1_1GradientFillPayload_1a7d6f7ca15e728540201733bcc334c53e" kind="function"><name>isValid</name></member>
   </compound>
@@ -1560,18 +1552,14 @@
     <member refid="classQAccelPlot_1_1GradientStroke_1a34c09e23d4102066f5ee1dfec2f7cd47" kind="property"><name>direction</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1ad31ffbe5cec85650d57c924606350ab0" kind="property"><name>gradient</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1afe46fa17036d57f37790859aabfb8759" kind="property"><name>colormap</name></member>
-    <member refid="classQAccelPlot_1_1GradientStroke_1a0f8d64c6989edab2bf576650c30e5199" kind="property"><name>valueMinSource</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1a32bc819a62e575bcbcd52971d1c6943b" kind="property"><name>valueMin</name></member>
-    <member refid="classQAccelPlot_1_1GradientStroke_1a46684e5d0439b0213f6e068e46a41933" kind="property"><name>valueMaxSource</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1a69aeb2317e753351355187d31a7cbc42" kind="property"><name>valueMax</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1a20e58007ed4f6cd42faf7a1995d2aa85" kind="variable"><name>direction_</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1a1c51db53bb5db2df3eac2e03dd2b7ef3" kind="variable"><name>gradient_</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1ad59c1b2e9e5d97079eef65e5e2cf24f2" kind="variable"><name>gradientConnections_</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1acdde0f82f5d8857be8bd1eef87a0fddb" kind="variable"><name>colormap_</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1a3832e49c2c0ae16816a84499f1a3b0b0" kind="variable"><name>colormapConnections_</name></member>
-    <member refid="classQAccelPlot_1_1GradientStroke_1ac109c1e91b54d73fb8b239c31bf93896" kind="variable"><name>valueMinSource_</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1a8ac78956cb3730a5e4aa04ecf482e207" kind="variable"><name>valueMin_</name></member>
-    <member refid="classQAccelPlot_1_1GradientStroke_1ab8b215eea3d4e7cbec0e3b69885ce36a" kind="variable"><name>valueMaxSource_</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1a1783b2776c48fb4fae19213420e50f48" kind="variable"><name>valueMax_</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1abc8b3933b6481d0ddc56eb4358283438" kind="variable"><name>payload_</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1aa29355fe8b5b136c5db2d0fc744c710f" kind="function"><name>GradientStroke</name></member>
@@ -1581,22 +1569,18 @@
     <member refid="classQAccelPlot_1_1GradientStroke_1a9bc5a7aa3ed32b2f0a52e20b7ca5c5ae" kind="function"><name>setGradient</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1abf9e51c6cf62a3bd220ced6ddb36ad5d" kind="function"><name>colormap</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1ac6220b6307ef2b62b1068db933f1017f" kind="function"><name>setColormap</name></member>
-    <member refid="classQAccelPlot_1_1GradientStroke_1a4e1ae0124567f610e9f2f378e821b39c" kind="function"><name>valueMinSource</name></member>
-    <member refid="classQAccelPlot_1_1GradientStroke_1a3e2ba1f989786376165ba6a16be86330" kind="function"><name>setValueMinSource</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1a5b55efdce8eaf83214f78b62911af1f7" kind="function"><name>valueMin</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1af04c9fd5b71b1a7110e1cbd4d0286028" kind="function"><name>setValueMin</name></member>
-    <member refid="classQAccelPlot_1_1GradientStroke_1afa45fc7082b07a51d10c0839608e1235" kind="function"><name>valueMaxSource</name></member>
-    <member refid="classQAccelPlot_1_1GradientStroke_1a40d3e8aa8be581aa75cbc3a50b7db6f3" kind="function"><name>setValueMaxSource</name></member>
+    <member refid="classQAccelPlot_1_1GradientStroke_1ad61418df538410fa79424388cbba3e13" kind="function"><name>resetValueMin</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1aa707f95dcf878a3068b58cbeec71f108" kind="function"><name>valueMax</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1acb9e96e9bbc0bb9b96d6ff9375b14d5e" kind="function"><name>setValueMax</name></member>
+    <member refid="classQAccelPlot_1_1GradientStroke_1aaebcae64beba17e9a5f1201c9f28ad91" kind="function"><name>resetValueMax</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1a1de4a851580f5218cee501fb4270807c" kind="function"><name>payload</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1acc1824c52ded07b2b684c4d1a1d3983b" kind="function"><name>refresh</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1a1ad6ee3ef33d81185aeed6a1c1a425fe" kind="signal"><name>directionChanged</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1a110402e070406c086458e465af320bbe" kind="signal"><name>gradientChanged</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1ace60f0af12eafeccd93f82120b79539a" kind="signal"><name>colormapChanged</name></member>
-    <member refid="classQAccelPlot_1_1GradientStroke_1aaee14ba3213d8af96115b28461b19ebf" kind="signal"><name>valueMinSourceChanged</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1a343e095bdd935f186fa70e7c65354f45" kind="signal"><name>valueMinChanged</name></member>
-    <member refid="classQAccelPlot_1_1GradientStroke_1aa202aa0dc2d71c02b92094e7423450c3" kind="signal"><name>valueMaxSourceChanged</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1af3d2aa6c23eb55e03dbc6fba56bb2b63" kind="signal"><name>valueMaxChanged</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1af1300b958c249ceaa16187c5333ba907" kind="function"><name>readPayload</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1a604959d56ba28b6eb11a9d85c1d4d1b5" kind="function"><name>updatePayload</name></member>
@@ -1756,12 +1740,16 @@
     <member refid="classQAccelPlot_1_1HeatmapSeries_1aa1e736feac32a09fc49610cf938c54cb" kind="function"><name>count</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a6fd1f620a3093f83c3ebc6ef8a8b294c" kind="function"><name>xMin</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a2dbe78822e5ee9b3307f2ca1cc90dd30" kind="function"><name>setXMin</name></member>
+    <member refid="classQAccelPlot_1_1HeatmapSeries_1afe9ae7e6aa6d5bb153d144ac31991b5d" kind="function"><name>resetXMin</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1aa7ff49e12346ead3fd45c5062371a003" kind="function"><name>xMax</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a3a5d80f134693418883696ea39825846" kind="function"><name>setXMax</name></member>
+    <member refid="classQAccelPlot_1_1HeatmapSeries_1aebcb7efadcc979ff5e11ed5d13a2d26c" kind="function"><name>resetXMax</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a544e9f36eb4dbfcd390919b7b3debb67" kind="function"><name>yMin</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1ad1c1729bf8abda954e0a2357e3a18a5a" kind="function"><name>setYMin</name></member>
+    <member refid="classQAccelPlot_1_1HeatmapSeries_1abb402d85a41c9bf0216608b913d0a5de" kind="function"><name>resetYMin</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1acf66b0859aa645d48426789a70d2152a" kind="function"><name>yMax</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1ac7dc7a641275b7cbf10162922059b0f0" kind="function"><name>setYMax</name></member>
+    <member refid="classQAccelPlot_1_1HeatmapSeries_1aa5a2e30dc2f29a4ed82b0b63b5b7fb35" kind="function"><name>resetYMax</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a6843c5147ef4bab15b32b27dbbbdb51b" kind="function"><name>xSpacing</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1ac8a66f02b5672ec125bcbbe72cb8e8a2" kind="function"><name>setXSpacing</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1abe22f67a8215a1ec3801e9a15d013a70" kind="function"><name>ySpacing</name></member>
@@ -1796,7 +1784,7 @@
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a1a5c5273cd3bd8e0bf2e6ea53d7676d8" kind="function"><name>validateShape</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1abb0a99f31ec4c0c716cd22bd6b3b63f2" kind="function"><name>storeValues</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1ab723973d62db058b184666120e15fa5d" kind="function"><name>applyShape</name></member>
-    <member refid="classQAccelPlot_1_1HeatmapSeries_1aa2489db89d5d80bf1d17cc522a31a86e" kind="function"><name>setBound</name></member>
+    <member refid="classQAccelPlot_1_1HeatmapSeries_1a3f5b4773e1935b013e03a8c0fc8afe76" kind="function"><name>setBound</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1adfa6d81fe85e847c91f3f6016a64a2a7" kind="function"><name>setSpacing</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1a5efe488b647d08ebe3f19ebc2f049bcd" kind="function"><name>cellAt</name></member>
     <member refid="classQAccelPlot_1_1HeatmapSeries_1aa2cdaaa22e541bbd429d0b94a7424b5a" kind="function"><name>cellCenter</name></member>
@@ -2575,10 +2563,13 @@
     <member refid="classQAccelPlot_1_1PlotExporter_1a3a21ead236c04c1355a779905c40b5b8" kind="function"><name>setPlot</name></member>
     <member refid="classQAccelPlot_1_1PlotExporter_1aae08452370a9cc2b26c92a8f857a1975" kind="function"><name>scale</name></member>
     <member refid="classQAccelPlot_1_1PlotExporter_1a9ae27457135c3df8ec4775ae831c2405" kind="function"><name>setScale</name></member>
+    <member refid="classQAccelPlot_1_1PlotExporter_1a8a4e2e9484ed1efe8d12e34bc446f2f3" kind="function"><name>resetScale</name></member>
     <member refid="classQAccelPlot_1_1PlotExporter_1a9669b1e8b7a9437a5e1996b5c1a4bb58" kind="function"><name>quality</name></member>
     <member refid="classQAccelPlot_1_1PlotExporter_1a8a8ca35120aee5cb0056c495965bab34" kind="function"><name>setQuality</name></member>
+    <member refid="classQAccelPlot_1_1PlotExporter_1aa68c22e1c2b5a7578baeafff8e882dc3" kind="function"><name>resetQuality</name></member>
     <member refid="classQAccelPlot_1_1PlotExporter_1a9b35661a3fdafe5b606c93e8ccb9df01" kind="function"><name>dpi</name></member>
     <member refid="classQAccelPlot_1_1PlotExporter_1a409331242f93061801a9ec4b9c161cdd" kind="function"><name>setDpi</name></member>
+    <member refid="classQAccelPlot_1_1PlotExporter_1a58b348e4723e80fa7dba239e6e229e1e" kind="function"><name>resetDpi</name></member>
     <member refid="classQAccelPlot_1_1PlotExporter_1a061939222ccd8821ad634350b8e557d4" kind="function"><name>transparentBackground</name></member>
     <member refid="classQAccelPlot_1_1PlotExporter_1a8c659db2c0e364b0ab9b4d443bb96643" kind="function"><name>setTransparentBackground</name></member>
     <member refid="classQAccelPlot_1_1PlotExporter_1a959e012955949b372baef30f2869b3fa" kind="function"><name>busy</name></member>
@@ -3423,6 +3414,17 @@
     <member refid="structQAccelPlot_1_1BandSeries_1_1RenderView_1ad77388f0085c1d8744f3cf5528384f32" kind="variable"><name>drawnCount</name></member>
     <member refid="structQAccelPlot_1_1BandSeries_1_1RenderView_1acbcfd3cc55239b486aec7949cfa2a698" kind="variable"><name>reservedCount</name></member>
   </compound>
+  <compound refid="classQAccelPlot_1_1Internal_1_1ResettableValue" kind="class"><name>QAccelPlot::Internal::ResettableValue</name>
+    <member refid="classQAccelPlot_1_1Internal_1_1ResettableValue_1a73b1dbaf64bf338448f43f1220ff11da" kind="variable"><name>explicit_</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1ResettableValue_1a9e28a49423cafd352f9b4eb0c6468c2d" kind="variable"><name>fallback_</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1ResettableValue_1a209c1a34b68d401b278b3dc95de2c27b" kind="function"><name>ResettableValue</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1ResettableValue_1a00ce876d6c2c5d363b6f533d83c3b8a4" kind="function"><name>value</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1ResettableValue_1a7834d5e69a8ace984db8ffd6511e7a87" kind="function"><name>isSet</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1ResettableValue_1a49b6149c4f53a3e48a5ef8128c4129d8" kind="function"><name>set</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1ResettableValue_1a8b16ad191cf027e5dd01f76275ebc0ba" kind="function"><name>reset</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1ResettableValue_1aac025ddfd532157700017fed751f9c98" kind="function"><name>setFallback</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1ResettableValue_1a0a549425d4a3536009da4d07e91fddf1" kind="function"><name>equal</name></member>
+  </compound>
   <compound refid="structQAccelPlot_1_1Internal_1_1OpacityTimeline_1_1Resolved" kind="struct"><name>QAccelPlot::Internal::OpacityTimeline::Resolved</name>
     <member refid="structQAccelPlot_1_1Internal_1_1OpacityTimeline_1_1Resolved_1a089b8c7492cd2e1607277189a4cb2cf0" kind="variable"><name>start</name></member>
     <member refid="structQAccelPlot_1_1Internal_1_1OpacityTimeline_1_1Resolved_1a1d0b5d5525fc42131308d7a011ac9b22" kind="variable"><name>duration</name></member>
@@ -3515,8 +3517,10 @@
     <member refid="classQAccelPlot_1_1SelectionTool_1afc19c71aa0f32c933f122180d0224c97" kind="function"><name>setPlot</name></member>
     <member refid="classQAccelPlot_1_1SelectionTool_1a77dfd27eae51f99ccebb1c84da3f8073" kind="function"><name>xAxis</name></member>
     <member refid="classQAccelPlot_1_1SelectionTool_1a28f8e946a4918806e20f8c3c77cb1b14" kind="function"><name>setXAxis</name></member>
+    <member refid="classQAccelPlot_1_1SelectionTool_1a05d6a0610a2bd74e23cd439ad011b447" kind="function"><name>resetXAxis</name></member>
     <member refid="classQAccelPlot_1_1SelectionTool_1a82686d8fa57a7ea198de40dfaaaea895" kind="function"><name>yAxis</name></member>
     <member refid="classQAccelPlot_1_1SelectionTool_1ab113f1337c795e0da3e659321f8a0408" kind="function"><name>setYAxis</name></member>
+    <member refid="classQAccelPlot_1_1SelectionTool_1aa22c3b8ae353cf2c1261b0bc3b789628" kind="function"><name>resetYAxis</name></member>
     <member refid="classQAccelPlot_1_1SelectionTool_1a07a752780bbc6b3aa14270de9a8aa832" kind="function"><name>enabled</name></member>
     <member refid="classQAccelPlot_1_1SelectionTool_1ae5ad9c004730614d4e9483c5b617830f" kind="function"><name>setEnabled</name></member>
     <member refid="classQAccelPlot_1_1SelectionTool_1ac045d253ad149bc5a0093fd574289c20" kind="function"><name>mode</name></member>
@@ -3740,7 +3744,7 @@
     <member refid="classQAccelPlot_1_1TextLabel_1a131eb4ee32f7f92c8bb7dc4aba680e3d" kind="property"><name>padding</name></member>
     <member refid="classQAccelPlot_1_1TextLabel_1ae5ce15205ec267e393decf443d828416" kind="variable"><name>text_</name></member>
     <member refid="classQAccelPlot_1_1TextLabel_1ae8f1d510744ad330be7bd5df139ab123" kind="variable"><name>font_</name></member>
-    <member refid="classQAccelPlot_1_1TextLabel_1ad05ed8df910482f321b4a77cbb4c7524" kind="variable"><name>color_</name></member>
+    <member refid="classQAccelPlot_1_1TextLabel_1af19cf6f115cbaa8261ceb4213aaf0f79" kind="variable"><name>color_</name></member>
     <member refid="classQAccelPlot_1_1TextLabel_1a4b0288a966a3277767cabf56740c37cd" kind="variable"><name>padding_</name></member>
     <member refid="classQAccelPlot_1_1TextLabel_1a015af2ca9bb81ed57c28efdb2ae65eb3" kind="function"><name>TextLabel</name></member>
     <member refid="classQAccelPlot_1_1TextLabel_1a6a0b5361366e1adfd54b144547e809d6" kind="function"><name>text</name></member>
@@ -3749,6 +3753,8 @@
     <member refid="classQAccelPlot_1_1TextLabel_1a88008a2c41f97c2550b0239c7e3d744f" kind="function"><name>setFont</name></member>
     <member refid="classQAccelPlot_1_1TextLabel_1a5049800abe40bd73d70a8c3439c4f7ab" kind="function"><name>color</name></member>
     <member refid="classQAccelPlot_1_1TextLabel_1ae6dfc3fc08063f86f7bd794393987f06" kind="function"><name>setColor</name></member>
+    <member refid="classQAccelPlot_1_1TextLabel_1ac53573c1957aebce75e90fd55df9cbf4" kind="function"><name>resetColor</name></member>
+    <member refid="classQAccelPlot_1_1TextLabel_1a5226556d7fd17beddd59ac7989bef196" kind="function"><name>setDefaultColor</name></member>
     <member refid="classQAccelPlot_1_1TextLabel_1a84c143c4c41e1c253cb76869d8df2a59" kind="function"><name>padding</name></member>
     <member refid="classQAccelPlot_1_1TextLabel_1aca6e700adbd19d73478c7e0296206204" kind="function"><name>setPadding</name></member>
     <member refid="classQAccelPlot_1_1TextLabel_1a966e1b6ae8d29f1e6b950ad1c0998e00" kind="signal"><name>textChanged</name></member>
@@ -3914,8 +3920,6 @@
     <member refid="structQAccelPlot_1_1DataPointStore_1_1Viewport_1aacf9a8799a9acd9f11f8d97db22b7eb9" kind="variable"><name>max</name></member>
   </compound>
   <compound refid="namespaceQAccelPlot" kind="namespace"><name>QAccelPlot</name>
-    <member refid="GradientColorTypes_8hpp_1a0d3a2d1db761ad418de27d7646258f35" kind="typedef"><name>GradientFillBaseline</name></member>
-    <member refid="GradientColorTypes_8hpp_1a178ffbeec5dc5daf51d1ceef2dc90776" kind="typedef"><name>GradientValueSource</name></member>
     <member refid="InspectionResult_8hpp_1a6488b8f3f1c05e199ceea1adf4967b66" kind="typedef"><name>InspectionStatus</name></member>
     <member refid="LineCurveGaps_8hpp_1a97419fc87218478d43a1d2f797cbd040" kind="typedef"><name>NanGapMode</name></member>
     <member refid="MarkerShape_8hpp_1a33273bd8a383495b8b5263e1b00fcd8a" kind="typedef"><name>MarkerShape</name></member>
@@ -3923,20 +3927,11 @@
     <member refid="LineStyle_8hpp_1a44595e259edb178d9a8c42317ab2cff7" kind="variable"><name>kMaxDashPatternSize</name></member>
     <member refid="MathUtils_8hpp_1a5d7d51876775f2a846a29ae3032b7f1e" kind="variable"><name>kNearlyEqualEpsilon</name></member>
     <member refid="MathUtils_8hpp_1a9b86bb1e432c9efd9b8e5af40a5f0ca3" kind="function"><name>nearlyEqual</name></member>
+    <member refid="MathUtils_8hpp_1af94fa70ebb0261923f07fdee72216734" kind="function"><name>nearlyEqualOrBothNaN</name></member>
     <member refid="MathUtils_8hpp_1ac7d165e0f8ddf211fb2c68747273729f" kind="function"><name>renderOriginTooFar</name></member>
     <member refid="MathUtils_8hpp_1a5904761cbbca38652885b7d0369c7285" kind="function"><name>renderOriginForViewport</name></member>
     <member refid="MathUtils_8hpp_1a68c9b795539efc827a6a56ee9abc8045" kind="function"><name>isValidCoordinate</name></member>
     <member refid="CurveRendererParams_8hpp_1a3259b2558bbbb60bb5e2994cba4d0b12" kind="function"><name>isEmptyChunk</name></member>
-  </compound>
-  <compound refid="namespaceQAccelPlot_1_1GradientFillBaselineNS" kind="namespace"><name>QAccelPlot::GradientFillBaselineNS</name>
-    <member refid="namespaceQAccelPlot_1_1GradientFillBaselineNS_1aa8f6062e4bc8ee393ed7593de895b3be" kind="enum"><name>Mode</name></member>
-    <member refid="namespaceQAccelPlot_1_1GradientFillBaselineNS_1aa8f6062e4bc8ee393ed7593de895b3bea7ff1a6bf92259c19c9ac8e87fd1181bf" kind="enumvalue"><name>AxisMinimum</name></member>
-    <member refid="namespaceQAccelPlot_1_1GradientFillBaselineNS_1aa8f6062e4bc8ee393ed7593de895b3bea689202409e48743b914713f96d93947c" kind="enumvalue"><name>Value</name></member>
-  </compound>
-  <compound refid="namespaceQAccelPlot_1_1GradientValueSourceNS" kind="namespace"><name>QAccelPlot::GradientValueSourceNS</name>
-    <member refid="namespaceQAccelPlot_1_1GradientValueSourceNS_1a4f4cae6c359f1f803450a1140a54b721" kind="enum"><name>Source</name></member>
-    <member refid="namespaceQAccelPlot_1_1GradientValueSourceNS_1a4f4cae6c359f1f803450a1140a54b721ae9fb04d50834f3ec1f30b610896f7e38" kind="enumvalue"><name>DataRange</name></member>
-    <member refid="namespaceQAccelPlot_1_1GradientValueSourceNS_1a4f4cae6c359f1f803450a1140a54b721a4457d440870ad6d42bab9082d9bf9b61" kind="enumvalue"><name>Fixed</name></member>
   </compound>
   <compound refid="namespaceQAccelPlot_1_1InspectionNS" kind="namespace"><name>QAccelPlot::InspectionNS</name>
     <member refid="namespaceQAccelPlot_1_1InspectionNS_1af88a65809f202f2780f8465c0eb7c2d1" kind="enum"><name>Status</name></member>
@@ -3971,6 +3966,7 @@
     <member refid="RangeGesture_8hpp_1a390751056142cf5002a19cd6b5dd9741" kind="function"><name>pannedRange</name></member>
     <member refid="RangeGesture_8hpp_1a4a90cd70f2514e64a984dae98d06a599" kind="function"><name>zoomedRange</name></member>
     <member refid="RangeGesture_8hpp_1aa1295e38cb274d582f872c75a35b71ae" kind="function"><name>wheelZoomFactor</name></member>
+    <member refid="GradientCoordinates_8hpp_1a907205ac8db2acffaec9c03653ef6528" kind="function"><name>valueIfSet</name></member>
     <member refid="GradientCoordinates_8hpp_1a3b3bc1ac97af93601982a97032c2e7c8" kind="function"><name>unboundedGradientCoordinate</name></member>
     <member refid="GradientCoordinates_8hpp_1a6a40c20d9671161eb1b0636d4deafd3d" kind="function"><name>resolveGradientValueRange</name></member>
     <member refid="GradientStops_8hpp_1aadc01434de65429e54993a942b277f2e" kind="function"><name>readGradientStopList</name></member>
@@ -4163,6 +4159,8 @@
   <compound refid="PointerTracker_8hpp" kind="file"><name>PointerTracker.hpp</name>
   </compound>
   <compound refid="RectangleZoomOverlay_8hpp" kind="file"><name>RectangleZoomOverlay.hpp</name>
+  </compound>
+  <compound refid="ResettableValue_8hpp" kind="file"><name>ResettableValue.hpp</name>
   </compound>
   <compound refid="LegendEntry_8hpp" kind="file"><name>LegendEntry.hpp</name>
   </compound>

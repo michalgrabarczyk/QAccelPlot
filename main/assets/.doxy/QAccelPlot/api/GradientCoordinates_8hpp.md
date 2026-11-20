@@ -19,6 +19,8 @@
 
 * `#include "QAccelPlot/effects/GradientColorTypes.hpp"`
 * `#include <algorithm>`
+* `#include <cmath>`
+* `#include <optional>`
 
 
 

@@ -1530,32 +1530,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#property-valuemaxsource-12" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        property valueMaxSource
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#property-valuemin-12" class="md-nav__link">
     <span class="md-ellipsis">
       
         property valueMin
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#property-valueminsource-12" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        property valueMinSource
       
     </span>
   </a>
@@ -1624,32 +1602,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#signal-valuemaxsourcechanged" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        signal valueMaxSourceChanged
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#signal-valueminchanged" class="md-nav__link">
     <span class="md-ellipsis">
       
         signal valueMinChanged
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#signal-valueminsourcechanged" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        signal valueMinSourceChanged
       
     </span>
   </a>
@@ -1740,6 +1696,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#function-resetvaluemax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function resetValueMax
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-resetvaluemin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function resetValueMin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-setcolormap" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1784,32 +1762,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#function-setvaluemaxsource" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        function setValueMaxSource
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#function-setvaluemin" class="md-nav__link">
     <span class="md-ellipsis">
       
         function setValueMin
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#function-setvalueminsource" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        function setValueMinSource
       
     </span>
   </a>
@@ -1828,32 +1784,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#function-valuemaxsource-22" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        function valueMaxSource
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#function-valuemin-22" class="md-nav__link">
     <span class="md-ellipsis">
       
         function valueMin
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#function-valueminsource-22" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        function valueMinSource
       
     </span>
   </a>
@@ -1923,19 +1857,11 @@
 </tr>
 <tr>
 <td style="text-align: right;">property qreal</td>
-<td style="text-align: left;"><a href="./#property-valuemax-12"><strong>valueMax</strong></a>  <br><em>Data-space value that maps to gradient position 1.0. Only used when valueMaxSource is Fixed.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">property <a href="../namespaceQAccelPlot_1_1GradientValueSourceNS/#enum-source"><strong>GradientValueSource</strong></a></td>
-<td style="text-align: left;"><a href="./#property-valuemaxsource-12"><strong>valueMaxSource</strong></a>  <br><em>How the gradient normalization maximum is determined; see</em> <code>GradientValueSource</code> <em>.</em></td>
+<td style="text-align: left;"><a href="./#property-valuemax-12"><strong>valueMax</strong></a>  <br><em>Data value at gradient position 1. Unset by default: the largest value of each series along</em> <code>direction</code> <em>, or of its axis data range when the series has no valid data point.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property qreal</td>
-<td style="text-align: left;"><a href="./#property-valuemin-12"><strong>valueMin</strong></a>  <br><em>Data-space value that maps to gradient position 0.0. Only used when valueMinSource is Fixed.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">property <a href="../namespaceQAccelPlot_1_1GradientValueSourceNS/#enum-source"><strong>GradientValueSource</strong></a></td>
-<td style="text-align: left;"><a href="./#property-valueminsource-12"><strong>valueMinSource</strong></a>  <br><em>How the gradient normalization minimum is determined; see</em> <code>GradientValueSource</code> <em>.</em></td>
+<td style="text-align: left;"><a href="./#property-valuemin-12"><strong>valueMin</strong></a>  <br><em>Data value at gradient position 0. Unset by default: the smallest value of each series along</em> <code>direction</code> <em>, or of its axis data range when the series has no valid data point.</em></td>
 </tr>
 </tbody>
 </table>
@@ -1982,15 +1908,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">signal void</td>
-<td style="text-align: left;"><a href="./#signal-valuemaxsourcechanged"><strong>valueMaxSourceChanged</strong></a>  <br><em>Emitted when the valueMaxSource property changes.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">signal void</td>
 <td style="text-align: left;"><a href="./#signal-valueminchanged"><strong>valueMinChanged</strong></a>  <br><em>Emitted when the valueMin property changes.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">signal void</td>
-<td style="text-align: left;"><a href="./#signal-valueminsourcechanged"><strong>valueMinSourceChanged</strong></a>  <br><em>Emitted when the valueMinSource property changes.</em></td>
 </tr>
 </tbody>
 </table>
@@ -2049,6 +1967,14 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-resetvaluemax"><strong>resetValueMax</strong></a> () <br><em>Unsets the value at gradient position 1, so each series' data range applies again.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-resetvaluemin"><strong>resetValueMin</strong></a> () <br><em>Unsets the value at gradient position 0, so each series' data range applies again.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="#function-setcolormap"><strong>setColormap</strong></a> (<a href="../classQAccelPlot_1_1Colormap/"><strong>Colormap</strong></a> * colormap) <br><em>Sets the colormap to</em> <em>colormap</em> <em>. Pass</em><code>nullptr</code> <em>to take the stops from</em><code>gradient</code> <em>.</em></td>
 </tr>
 <tr>
@@ -2061,35 +1987,19 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setvaluemax"><strong>setValueMax</strong></a> (qreal value) <br><em>Sets the maximum data value for gradient normalization to</em> <em>value</em> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-setvaluemax"><strong>setValueMax</strong></a> (qreal value) <br><em>Sets the data value at gradient position 1 to</em> <em>value</em> <em>. NaN unsets it.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setvaluemaxsource"><strong>setValueMaxSource</strong></a> (<a href="../namespaceQAccelPlot_1_1GradientValueSourceNS/#enum-source"><strong>GradientValueSource</strong></a> source) <br><em>Sets the gradient normalization maximum source to</em> <em>source</em> <em>.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setvaluemin"><strong>setValueMin</strong></a> (qreal value) <br><em>Sets the minimum data value for gradient normalization to</em> <em>value</em> <em>.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setvalueminsource"><strong>setValueMinSource</strong></a> (<a href="../namespaceQAccelPlot_1_1GradientValueSourceNS/#enum-source"><strong>GradientValueSource</strong></a> source) <br><em>Sets the gradient normalization minimum source to</em> <em>source</em> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-setvaluemin"><strong>setValueMin</strong></a> (qreal value) <br><em>Sets the data value at gradient position 0 to</em> <em>value</em> <em>. NaN unsets it.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">qreal</td>
-<td style="text-align: left;"><a href="#function-valuemax-22"><strong>valueMax</strong></a> () const<br><em>Returns the maximum data value for gradient normalization.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;"><a href="../namespaceQAccelPlot_1_1GradientValueSourceNS/#enum-source"><strong>GradientValueSource</strong></a></td>
-<td style="text-align: left;"><a href="#function-valuemaxsource-22"><strong>valueMaxSource</strong></a> () const<br><em>Returns how the gradient normalization maximum is determined.</em></td>
+<td style="text-align: left;"><a href="#function-valuemax-22"><strong>valueMax</strong></a> () const<br><em>Returns the data value at gradient position 1, or NaN when each series' data range applies.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">qreal</td>
-<td style="text-align: left;"><a href="#function-valuemin-22"><strong>valueMin</strong></a> () const<br><em>Returns the minimum data value for gradient normalization.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;"><a href="../namespaceQAccelPlot_1_1GradientValueSourceNS/#enum-source"><strong>GradientValueSource</strong></a></td>
-<td style="text-align: left;"><a href="#function-valueminsource-22"><strong>valueMinSource</strong></a> () const<br><em>Returns how the gradient normalization minimum is determined.</em></td>
+<td style="text-align: left;"><a href="#function-valuemin-22"><strong>valueMin</strong></a> () const<br><em>Returns the data value at gradient position 0, or NaN when each series' data range applies.</em></td>
 </tr>
 </tbody>
 </table>
@@ -2145,188 +2055,150 @@
 <hr>
 
 <h3 id="property-valuemax-12">property valueMax<a class="headerlink" href="#property-valuemax-12" title="Permanent link">&para;</a></h3>
-<p><em>Data-space value that maps to gradient position 1.0. Only used when valueMaxSource is Fixed.</em> 
+<p><em>Data value at gradient position 1. Unset by default: the largest value of each series along</em> <code>direction</code> <em>, or of its axis data range when the series has no valid data point.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">valueMax</span><span class="p">;</span>
 </code></pre></div></p>
-<hr>
-
-<h3 id="property-valuemaxsource-12">property valueMaxSource<a class="headerlink" href="#property-valuemaxsource-12" title="Permanent link">&para;</a></h3>
-<p><em>How the gradient normalization maximum is determined; see</em> <code>GradientValueSource</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">GradientValueSource</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">valueMaxSource</span><span class="p">;</span>
-</code></pre></div></p>
+<p>Reads NaN while unset; assign <code>undefined</code> to unset it. </p>
 <hr>
 
 <h3 id="property-valuemin-12">property valueMin<a class="headerlink" href="#property-valuemin-12" title="Permanent link">&para;</a></h3>
-<p><em>Data-space value that maps to gradient position 0.0. Only used when valueMinSource is Fixed.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">valueMin</span><span class="p">;</span>
+<p><em>Data value at gradient position 0. Unset by default: the smallest value of each series along</em> <code>direction</code> <em>, or of its axis data range when the series has no valid data point.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">valueMin</span><span class="p">;</span>
 </code></pre></div></p>
-<hr>
-
-<h3 id="property-valueminsource-12">property valueMinSource<a class="headerlink" href="#property-valueminsource-12" title="Permanent link">&para;</a></h3>
-<p><em>How the gradient normalization minimum is determined; see</em> <code>GradientValueSource</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">GradientValueSource</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">valueMinSource</span><span class="p">;</span>
-</code></pre></div></p>
+<p>Reads NaN while unset; assign <code>undefined</code> to unset it. </p>
 <hr>
 <h2 id="public-signals-documentation">Public Signals Documentation<a class="headerlink" href="#public-signals-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="signal-colormapchanged">signal colormapChanged<a class="headerlink" href="#signal-colormapchanged" title="Permanent link">&para;</a></h3>
 <p><em>Emitted when the colormap property changes.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">colormapChanged</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">colormapChanged</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="signal-directionchanged">signal directionChanged<a class="headerlink" href="#signal-directionchanged" title="Permanent link">&para;</a></h3>
 <p><em>Emitted when the direction property changes.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">directionChanged</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">directionChanged</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="signal-gradientchanged">signal gradientChanged<a class="headerlink" href="#signal-gradientchanged" title="Permanent link">&para;</a></h3>
 <p><em>Emitted when the gradient property changes.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">gradientChanged</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">gradientChanged</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="signal-valuemaxchanged">signal valueMaxChanged<a class="headerlink" href="#signal-valuemaxchanged" title="Permanent link">&para;</a></h3>
 <p><em>Emitted when the valueMax property changes.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">valueMaxChanged</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="signal-valuemaxsourcechanged">signal valueMaxSourceChanged<a class="headerlink" href="#signal-valuemaxsourcechanged" title="Permanent link">&para;</a></h3>
-<p><em>Emitted when the valueMaxSource property changes.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">valueMaxSourceChanged</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">valueMaxChanged</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="signal-valueminchanged">signal valueMinChanged<a class="headerlink" href="#signal-valueminchanged" title="Permanent link">&para;</a></h3>
 <p><em>Emitted when the valueMin property changes.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">valueMinChanged</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="signal-valueminsourcechanged">signal valueMinSourceChanged<a class="headerlink" href="#signal-valueminsourcechanged" title="Permanent link">&para;</a></h3>
-<p><em>Emitted when the valueMinSource property changes.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">valueMinSourceChanged</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">valueMinChanged</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-gradientstroke">function GradientStroke<a class="headerlink" href="#function-gradientstroke" title="Permanent link">&para;</a></h3>
 <p><em>Constructs a</em> <a href="./"><em><strong>GradientStroke</strong></em></a> <em>with the given__parent</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">explicit</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">GradientStroke</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="n">QObject</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">parent</span><span class="o">=</span><span class="nb">nullptr</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">explicit</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">GradientStroke</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="n">QObject</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">parent</span><span class="o">=</span><span class="nb">nullptr</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-colormap-22">function colormap<a class="headerlink" href="#function-colormap-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the colormap supplying color stops, or</em> <code>nullptr</code> <em>when</em><code>gradient</code> <em>supplies them.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">Colormap</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">colormap</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">Colormap</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">colormap</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-direction-22">function direction<a class="headerlink" href="#function-direction-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the gradient direction.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">Qt</span><span class="o">::</span><span class="n">Orientation</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">direction</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">Qt</span><span class="o">::</span><span class="n">Orientation</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">direction</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-gradient-22">function gradient<a class="headerlink" href="#function-gradient-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the Qt Gradient object supplying color stops.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">QObject</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">gradient</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">QObject</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">gradient</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-payload">function payload<a class="headerlink" href="#function-payload" title="Permanent link">&para;</a></h3>
 <p><em>Returns a snapshot of all stroke parameters, updated on the GUI thread when the effect changes.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">const</span><span class="w"> </span><span class="n">GradientColorPayload</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">payload</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">const</span><span class="w"> </span><span class="n">GradientColorPayload</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">payload</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <p>Does not read the QML gradient, so <code>updatePaintNode()</code> can call it on the render thread. </p>
 <hr>
 
 <h3 id="function-refresh">function refresh<a class="headerlink" href="#function-refresh" title="Permanent link">&para;</a></h3>
 <p><em>Re-reads the</em> <code>gradient</code> <em>stops, which can change without a notification, and emits</em><code>effectChanged()</code> <em>if they differ from the snapshot.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">refresh</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">refresh</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1SeriesEffect/#function-refresh"><em>QAccelPlot::SeriesEffect::refresh</em></a></p>
 <hr>
 
+<h3 id="function-resetvaluemax">function resetValueMax<a class="headerlink" href="#function-resetvaluemax" title="Permanent link">&para;</a></h3>
+<p><em>Unsets the value at gradient position 1, so each series' data range applies again.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">resetValueMax</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-resetvaluemin">function resetValueMin<a class="headerlink" href="#function-resetvaluemin" title="Permanent link">&para;</a></h3>
+<p><em>Unsets the value at gradient position 0, so each series' data range applies again.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">resetValueMin</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="function-setcolormap">function setColormap<a class="headerlink" href="#function-setcolormap" title="Permanent link">&para;</a></h3>
 <p><em>Sets the colormap to</em> <em>colormap</em> <em>. Pass</em><code>nullptr</code> <em>to take the stops from</em><code>gradient</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">setColormap</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span><span class="n">Colormap</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">colormap</span>
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">setColormap</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="n">Colormap</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">colormap</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setdirection">function setDirection<a class="headerlink" href="#function-setdirection" title="Permanent link">&para;</a></h3>
 <p><em>Sets the gradient direction to</em> <em>direction</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">setDirection</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="n">Qt</span><span class="o">::</span><span class="n">Orientation</span><span class="w"> </span><span class="n">direction</span>
-<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">setDirection</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="n">Qt</span><span class="o">::</span><span class="n">Orientation</span><span class="w"> </span><span class="n">direction</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setgradient">function setGradient<a class="headerlink" href="#function-setgradient" title="Permanent link">&para;</a></h3>
 <p><em>Sets the Qt Gradient object to</em> <em>gradient</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">setGradient</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="n">QObject</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">gradient</span>
-<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">setGradient</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span><span class="n">QObject</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">gradient</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setvaluemax">function setValueMax<a class="headerlink" href="#function-setvaluemax" title="Permanent link">&para;</a></h3>
-<p><em>Sets the maximum data value for gradient normalization to</em> <em>value</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">setValueMax</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span>
-<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-setvaluemaxsource">function setValueMaxSource<a class="headerlink" href="#function-setvaluemaxsource" title="Permanent link">&para;</a></h3>
-<p><em>Sets the gradient normalization maximum source to</em> <em>source</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">setValueMaxSource</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">    </span><span class="n">GradientValueSource</span><span class="w"> </span><span class="n">source</span>
-<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="p">)</span><span class="w"> </span>
+<p><em>Sets the data value at gradient position 1 to</em> <em>value</em> <em>. NaN unsets it.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">setValueMax</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setvaluemin">function setValueMin<a class="headerlink" href="#function-setvaluemin" title="Permanent link">&para;</a></h3>
-<p><em>Sets the minimum data value for gradient normalization to</em> <em>value</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">setValueMin</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span>
-<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-setvalueminsource">function setValueMinSource<a class="headerlink" href="#function-setvalueminsource" title="Permanent link">&para;</a></h3>
-<p><em>Sets the gradient normalization minimum source to</em> <em>source</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">setValueMinSource</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">    </span><span class="n">GradientValueSource</span><span class="w"> </span><span class="n">source</span>
-<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="p">)</span><span class="w"> </span>
+<p><em>Sets the data value at gradient position 0 to</em> <em>value</em> <em>. NaN unsets it.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">setValueMin</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-valuemax-22">function valueMax<a class="headerlink" href="#function-valuemax-22" title="Permanent link">&para;</a></h3>
-<p><em>Returns the maximum data value for gradient normalization.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">valueMax</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-valuemaxsource-22">function valueMaxSource<a class="headerlink" href="#function-valuemaxsource-22" title="Permanent link">&para;</a></h3>
-<p><em>Returns how the gradient normalization maximum is determined.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="n">GradientValueSource</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">valueMaxSource</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<p><em>Returns the data value at gradient position 1, or NaN when each series' data range applies.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">valueMax</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-valuemin-22">function valueMin<a class="headerlink" href="#function-valuemin-22" title="Permanent link">&para;</a></h3>
-<p><em>Returns the minimum data value for gradient normalization.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">valueMin</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-valueminsource-22">function valueMinSource<a class="headerlink" href="#function-valueminsource-22" title="Permanent link">&para;</a></h3>
-<p><em>Returns how the gradient normalization minimum is determined.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="n">GradientValueSource</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">valueMinSource</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<p><em>Returns the data value at gradient position 0, or NaN when each series' data range applies.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientStroke</span><span class="o">::</span><span class="n">valueMin</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 

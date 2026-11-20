@@ -16,12 +16,11 @@
 
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/axis/TextLabel.hpp"
+#include "QAccelPlot/internal/ResettableValue.hpp"
 
 #include <QPointF>
 #include <QPointer>
 #include <QQmlComponent>
-
-#include <limits>
 
 namespace QAccelPlot {
 
@@ -58,9 +57,7 @@ signals:
 
 private:
     Axis::LabelAlignment alignment_{Axis::Center};
-    // NaN while the title follows the side's default rotation.
-    qreal rotation_{std::numeric_limits<qreal>::quiet_NaN()};
-    qreal defaultRotation_{0.0};
+    Internal::ResettableValue<qreal> rotation_{0.0};
     QPointF offset_;
     QPointer<QQmlComponent> delegate_;
 };

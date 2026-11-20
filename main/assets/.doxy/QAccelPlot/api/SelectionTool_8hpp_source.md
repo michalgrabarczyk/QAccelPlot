@@ -31,8 +31,8 @@ class SelectionTool : public QObject {
     Q_OBJECT
     QML_NAMED_ELEMENT(SelectionTool)
     Q_PROPERTY(PlotView* plot READ plot WRITE setPlot NOTIFY plotChanged)
-    Q_PROPERTY(Axis* xAxis READ xAxis WRITE setXAxis NOTIFY xAxisChanged)
-    Q_PROPERTY(Axis* yAxis READ yAxis WRITE setYAxis NOTIFY yAxisChanged)
+    Q_PROPERTY(Axis* xAxis READ xAxis WRITE setXAxis RESET resetXAxis NOTIFY xAxisChanged)
+    Q_PROPERTY(Axis* yAxis READ yAxis WRITE setYAxis RESET resetYAxis NOTIFY yAxisChanged)
     Q_PROPERTY(bool enabled READ enabled WRITE setEnabled NOTIFY enabledChanged)
     Q_PROPERTY(Mode mode READ mode WRITE setMode NOTIFY modeChanged)
     Q_PROPERTY(Qt::MouseButton button READ button WRITE setButton NOTIFY buttonChanged)
@@ -65,8 +65,10 @@ public:
     void setPlot(PlotView* plot);
     Axis* xAxis() const;
     void setXAxis(Axis* axis);
+    void resetXAxis();
     Axis* yAxis() const;
     void setYAxis(Axis* axis);
+    void resetYAxis();
     bool enabled() const;
     void setEnabled(bool enabled);
     Mode mode() const;

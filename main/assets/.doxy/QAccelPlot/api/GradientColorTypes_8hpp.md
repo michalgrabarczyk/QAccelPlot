@@ -18,7 +18,6 @@
 
 
 * `#include <QColor>`
-* `#include <QtQml/qqmlregistration.h>`
 * `#include <optional>`
 * `#include <vector>`
 
@@ -41,8 +40,6 @@
 | Type | Name |
 | ---: | :--- |
 | namespace | [**QAccelPlot**](namespaceQAccelPlot.md) <br> |
-| namespace | [**GradientFillBaselineNS**](namespaceQAccelPlot_1_1GradientFillBaselineNS.md) <br>_Namespace exposing the_ `GradientFillBaseline` _enum to QML._ |
-| namespace | [**GradientValueSourceNS**](namespaceQAccelPlot_1_1GradientValueSourceNS.md) <br>_Namespace exposing the_ `GradientValueSource` _enum to QML._ |
 
 
 ## Classes

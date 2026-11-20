@@ -1431,17 +1431,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#variable-baseline" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        variable baseline
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#variable-baselinevalue" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1584,12 +1573,8 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"><a href="../namespaceQAccelPlot_1_1GradientFillBaselineNS/#enum-mode"><strong>GradientFillBaseline</strong></a></td>
-<td style="text-align: left;"><a href="#variable-baseline"><strong>baseline</strong></a>   = <code>{GradientFillBaseline::AxisMinimum}</code><br><em>Baseline mode.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">qreal</td>
-<td style="text-align: left;"><a href="#variable-baselinevalue"><strong>baselineValue</strong></a>   = <code>{0.0}</code><br><em>Fixed baseline data value when mode is</em> <code>Value</code> <em>.</em></td>
+<td style="text-align: right;">std::optional&lt; qreal &gt;</td>
+<td style="text-align: left;"><a href="#variable-baselinevalue"><strong>baselineValue</strong></a>  <br><em>Fixed baseline data value;</em> <code>std::nullopt</code> <em>= the smallest visible value of the Y axis.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">Qt::Orientation</td>
@@ -1635,57 +1620,51 @@
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
 <p>Assembled on the main thread and consumed by the line renderer without touching the QObject hierarchy. </p>
 <h2 id="public-attributes-documentation">Public Attributes Documentation<a class="headerlink" href="#public-attributes-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="variable-baseline">variable baseline<a class="headerlink" href="#variable-baseline" title="Permanent link">&para;</a></h3>
-<p><em>Baseline mode.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">GradientFillBaseline</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFillPayload</span><span class="o">::</span><span class="n">baseline</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
 <h3 id="variable-baselinevalue">variable baselineValue<a class="headerlink" href="#variable-baselinevalue" title="Permanent link">&para;</a></h3>
-<p><em>Fixed baseline data value when mode is</em> <code>Value</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFillPayload</span><span class="o">::</span><span class="n">baselineValue</span><span class="p">;</span>
+<p><em>Fixed baseline data value;</em> <code>std::nullopt</code> <em>= the smallest visible value of the Y axis.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">qreal</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFillPayload</span><span class="o">::</span><span class="n">baselineValue</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-direction">variable direction<a class="headerlink" href="#variable-direction" title="Permanent link">&para;</a></h3>
 <p><em>Gradient direction.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">Qt</span><span class="o">::</span><span class="n">Orientation</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFillPayload</span><span class="o">::</span><span class="n">direction</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">Qt</span><span class="o">::</span><span class="n">Orientation</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFillPayload</span><span class="o">::</span><span class="n">direction</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-enabled">variable enabled<a class="headerlink" href="#variable-enabled" title="Permanent link">&para;</a></h3>
 <p><code>true</code> <em>when gradient fill is active.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFillPayload</span><span class="o">::</span><span class="n">enabled</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFillPayload</span><span class="o">::</span><span class="n">enabled</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-gradientvaluemax">variable gradientValueMax<a class="headerlink" href="#variable-gradientvaluemax" title="Permanent link">&para;</a></h3>
 <p><em>Fixed max for gradient normalisation;</em> <code>std::nullopt</code> <em>= derived from data range.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">qreal</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFillPayload</span><span class="o">::</span><span class="n">gradientValueMax</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">qreal</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFillPayload</span><span class="o">::</span><span class="n">gradientValueMax</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-gradientvaluemin">variable gradientValueMin<a class="headerlink" href="#variable-gradientvaluemin" title="Permanent link">&para;</a></h3>
 <p><em>Fixed min for gradient normalisation;</em> <code>std::nullopt</code> <em>= derived from data range.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">qreal</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFillPayload</span><span class="o">::</span><span class="n">gradientValueMin</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">qreal</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFillPayload</span><span class="o">::</span><span class="n">gradientValueMin</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-opacity">variable opacity<a class="headerlink" href="#variable-opacity" title="Permanent link">&para;</a></h3>
 <p><em>Overall opacity of the fill in [0, 1].</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFillPayload</span><span class="o">::</span><span class="n">opacity</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFillPayload</span><span class="o">::</span><span class="n">opacity</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-stops">variable stops<a class="headerlink" href="#variable-stops" title="Permanent link">&para;</a></h3>
 <p><em>Color stops in position order.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">GradientStopData</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFillPayload</span><span class="o">::</span><span class="n">stops</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">GradientStopData</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFillPayload</span><span class="o">::</span><span class="n">stops</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-isvalid">function isValid<a class="headerlink" href="#function-isvalid" title="Permanent link">&para;</a></h3>
 <p><em>Returns</em> <code>true</code> <em>if the payload has at least two stops, is enabled, and has non-zero opacity.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFillPayload</span><span class="o">::</span><span class="n">isValid</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFillPayload</span><span class="o">::</span><span class="n">isValid</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 

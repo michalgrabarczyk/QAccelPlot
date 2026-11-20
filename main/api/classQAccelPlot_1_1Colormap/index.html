@@ -1669,6 +1669,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#function-resetmax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function resetMax
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-resetmin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function resetMin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-resolvedstops" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1874,11 +1896,11 @@
 </tr>
 <tr>
 <td style="text-align: right;">property qreal</td>
-<td style="text-align: left;"><a href="./#property-max-12"><strong>max</strong></a>  <br><em>Value at ramp position 1. Unset (NaN) resolves it from the data. Default: unset.</em></td>
+<td style="text-align: left;"><a href="./#property-max-12"><strong>max</strong></a>  <br><em>Value at ramp position 1. Unset by default: each series resolves it from its data.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property qreal</td>
-<td style="text-align: left;"><a href="./#property-min-12"><strong>min</strong></a>  <br><em>Value at ramp position 0. Unset (NaN) resolves it from the data. Default: unset.</em></td>
+<td style="text-align: left;"><a href="./#property-min-12"><strong>min</strong></a>  <br><em>Value at ramp position 0. Unset by default: each series resolves it from its data.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property <a href="./#enum-preset"><strong>Preset</strong></a></td>
@@ -1937,6 +1959,14 @@
 <tr>
 <td style="text-align: right;"><a href="./#enum-preset"><strong>Preset</strong></a></td>
 <td style="text-align: left;"><a href="#function-preset-22"><strong>preset</strong></a> () const<br><em>Returns the built-in ramp.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-resetmax"><strong>resetMax</strong></a> () <br><em>Unsets the upper bound, so it is resolved from the data again.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-resetmin"><strong>resetMin</strong></a> () <br><em>Unsets the lower bound, so it is resolved from the data again.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">const std::vector&lt; <a href="../structQAccelPlot_1_1GradientStopData/"><strong>GradientStopData</strong></a> &gt; &amp;</td>
@@ -2022,15 +2052,17 @@
 <hr>
 
 <h3 id="property-max-12">property max<a class="headerlink" href="#property-max-12" title="Permanent link">&para;</a></h3>
-<p><em>Value at ramp position 1. Unset (NaN) resolves it from the data. Default: unset.</em> 
+<p><em>Value at ramp position 1. Unset by default: each series resolves it from its data.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Colormap</span><span class="o">::</span><span class="n">max</span><span class="p">;</span>
 </code></pre></div></p>
+<p>Reads NaN while unset; assign <code>undefined</code> to unset it. <code>ColormappedSeries::dataValueMax</code> holds the value a series resolved. </p>
 <hr>
 
 <h3 id="property-min-12">property min<a class="headerlink" href="#property-min-12" title="Permanent link">&para;</a></h3>
-<p><em>Value at ramp position 0. Unset (NaN) resolves it from the data. Default: unset.</em> 
+<p><em>Value at ramp position 0. Unset by default: each series resolves it from its data.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Colormap</span><span class="o">::</span><span class="n">min</span><span class="p">;</span>
 </code></pre></div></p>
+<p>Reads NaN while unset; assign <code>undefined</code> to unset it. <code>ColormappedSeries::dataValueMin</code> holds the value a series resolved. </p>
 <hr>
 
 <h3 id="property-preset-12">property preset<a class="headerlink" href="#property-preset-12" title="Permanent link">&para;</a></h3>
@@ -2089,83 +2121,95 @@
 </code></pre></div></p>
 <hr>
 
+<h3 id="function-resetmax">function resetMax<a class="headerlink" href="#function-resetmax" title="Permanent link">&para;</a></h3>
+<p><em>Unsets the upper bound, so it is resolved from the data again.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Colormap</span><span class="o">::</span><span class="n">resetMax</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-resetmin">function resetMin<a class="headerlink" href="#function-resetmin" title="Permanent link">&para;</a></h3>
+<p><em>Unsets the lower bound, so it is resolved from the data again.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Colormap</span><span class="o">::</span><span class="n">resetMin</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="function-resolvedstops">function resolvedStops<a class="headerlink" href="#function-resolvedstops" title="Permanent link">&para;</a></h3>
 <p><em>Returns the resolved ramp stops, in position order and covering [0, 1].</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">GradientStopData</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Colormap</span><span class="o">::</span><span class="n">resolvedStops</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">GradientStopData</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Colormap</span><span class="o">::</span><span class="n">resolvedStops</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <p>Custom <code>stops</code> when set, otherwise the <code>preset</code> ramp, flipped when <code>reversed</code> is set. </p>
 <hr>
 
 <h3 id="function-reversed-22">function reversed<a class="headerlink" href="#function-reversed-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns whether the ramp is reversed.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Colormap</span><span class="o">::</span><span class="n">reversed</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Colormap</span><span class="o">::</span><span class="n">reversed</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setlogscale">function setLogScale<a class="headerlink" href="#function-setlogscale" title="Permanent link">&para;</a></h3>
 <p><em>Sets log-scale placement to</em> <em>on</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Colormap</span><span class="o">::</span><span class="n">setLogScale</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">on</span>
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Colormap</span><span class="o">::</span><span class="n">setLogScale</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">on</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setmax">function setMax<a class="headerlink" href="#function-setmax" title="Permanent link">&para;</a></h3>
 <p><em>Sets the fixed upper bound to</em> <em>value</em> <em>. NaN resolves it from the data.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Colormap</span><span class="o">::</span><span class="n">setMax</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span>
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Colormap</span><span class="o">::</span><span class="n">setMax</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setmin">function setMin<a class="headerlink" href="#function-setmin" title="Permanent link">&para;</a></h3>
 <p><em>Sets the fixed lower bound to</em> <em>value</em> <em>. NaN resolves it from the data.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Colormap</span><span class="o">::</span><span class="n">setMin</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span>
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Colormap</span><span class="o">::</span><span class="n">setMin</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setpreset">function setPreset<a class="headerlink" href="#function-setpreset" title="Permanent link">&para;</a></h3>
 <p><em>Sets the built-in ramp to</em> <em>preset</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Colormap</span><span class="o">::</span><span class="n">setPreset</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="n">Preset</span><span class="w"> </span><span class="n">preset</span>
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Colormap</span><span class="o">::</span><span class="n">setPreset</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span><span class="n">Preset</span><span class="w"> </span><span class="n">preset</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setrange">function setRange<a class="headerlink" href="#function-setrange" title="Permanent link">&para;</a></h3>
 <p><em>Sets both bounds to</em> <em>min</em> <em>and__max</em> <em>with a single</em><code>colormapChanged()</code> <em>. NaN unsets a bound.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Colormap</span><span class="o">::</span><span class="n">setRange</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">min</span><span class="p">,</span>
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">max</span>
-<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Colormap</span><span class="o">::</span><span class="n">setRange</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">min</span><span class="p">,</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">max</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setreversed">function setReversed<a class="headerlink" href="#function-setreversed" title="Permanent link">&para;</a></h3>
 <p><em>Sets whether the ramp is reversed to</em> <em>reversed</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Colormap</span><span class="o">::</span><span class="n">setReversed</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">reversed</span>
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Colormap</span><span class="o">::</span><span class="n">setReversed</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">reversed</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-stops-22">function stops<a class="headerlink" href="#function-stops-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the custom ramp stops, empty when the preset supplies the ramp.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">QQmlListProperty</span><span class="o">&lt;</span><span class="w"> </span><span class="n">QObject</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Colormap</span><span class="o">::</span><span class="n">stops</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">QQmlListProperty</span><span class="o">&lt;</span><span class="w"> </span><span class="n">QObject</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Colormap</span><span class="o">::</span><span class="n">stops</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 <h2 id="protected-functions-documentation">Protected Functions Documentation<a class="headerlink" href="#protected-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-classbegin">function classBegin<a class="headerlink" href="#function-classbegin" title="Permanent link">&para;</a></h3>
 <p><em>Does nothing; part of</em> <code>QQmlParserStatus</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Colormap</span><span class="o">::</span><span class="n">classBegin</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Colormap</span><span class="o">::</span><span class="n">classBegin</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-componentcomplete">function componentComplete<a class="headerlink" href="#function-componentcomplete" title="Permanent link">&para;</a></h3>
 <p><em>Reads the stops again after their bindings are evaluated.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Colormap</span><span class="o">::</span><span class="n">componentComplete</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Colormap</span><span class="o">::</span><span class="n">componentComplete</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
 <hr>
 

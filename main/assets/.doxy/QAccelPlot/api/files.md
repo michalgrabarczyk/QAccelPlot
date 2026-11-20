@@ -74,6 +74,7 @@ Here is a list of all files with brief descriptions:
                 * **file** [**OutlinedRectangle.hpp**](OutlinedRectangle_8hpp.md)     
                 * **file** [**PointerTracker.hpp**](PointerTracker_8hpp.md)     
                 * **file** [**RectangleZoomOverlay.hpp**](RectangleZoomOverlay_8hpp.md)     
+                * **file** [**ResettableValue.hpp**](ResettableValue_8hpp.md)     
             * **dir** [**legend**](dir_5fa9a39c33e751e7d5879623bc62e73e.md)     
                 * **file** [**LegendEntry.hpp**](LegendEntry_8hpp.md)     
                 * **file** [**LegendModel.hpp**](LegendModel_8hpp.md)     

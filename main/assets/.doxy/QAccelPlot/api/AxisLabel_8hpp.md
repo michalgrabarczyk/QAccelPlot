@@ -19,10 +19,10 @@
 
 * `#include "QAccelPlot/axis/Axis.hpp"`
 * `#include "QAccelPlot/axis/TextLabel.hpp"`
+* `#include "QAccelPlot/internal/ResettableValue.hpp"`
 * `#include <QPointF>`
 * `#include <QPointer>`
 * `#include <QQmlComponent>`
-* `#include <limits>`
 
 
 

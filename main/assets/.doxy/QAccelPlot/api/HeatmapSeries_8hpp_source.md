@@ -40,10 +40,10 @@ class HeatmapSeries : public ColormappedSeries {
     
     Q_PROPERTY(int columns READ columns WRITE setColumns NOTIFY columnsChanged)
     Q_PROPERTY(int rows READ rows NOTIFY rowsChanged)
-    Q_PROPERTY(qreal xMin READ xMin WRITE setXMin NOTIFY xMinChanged)
-    Q_PROPERTY(qreal xMax READ xMax WRITE setXMax NOTIFY xMaxChanged)
-    Q_PROPERTY(qreal yMin READ yMin WRITE setYMin NOTIFY yMinChanged)
-    Q_PROPERTY(qreal yMax READ yMax WRITE setYMax NOTIFY yMaxChanged)
+    Q_PROPERTY(qreal xMin READ xMin WRITE setXMin RESET resetXMin NOTIFY xMinChanged)
+    Q_PROPERTY(qreal xMax READ xMax WRITE setXMax RESET resetXMax NOTIFY xMaxChanged)
+    Q_PROPERTY(qreal yMin READ yMin WRITE setYMin RESET resetYMin NOTIFY yMinChanged)
+    Q_PROPERTY(qreal yMax READ yMax WRITE setYMax RESET resetYMax NOTIFY yMaxChanged)
     Q_PROPERTY(Spacing xSpacing READ xSpacing WRITE setXSpacing NOTIFY xSpacingChanged)
     Q_PROPERTY(Spacing ySpacing READ ySpacing WRITE setYSpacing NOTIFY ySpacingChanged)
 
@@ -65,15 +65,19 @@ public:
 
     qreal xMin() const;
     void setXMin(qreal value);
+    void resetXMin();
 
     qreal xMax() const;
     void setXMax(qreal value);
+    void resetXMax();
 
     qreal yMin() const;
     void setYMin(qreal value);
+    void resetYMin();
 
     qreal yMax() const;
     void setYMax(qreal value);
+    void resetYMax();
 
     Spacing xSpacing() const;
     void setXSpacing(Spacing spacing);
@@ -128,7 +132,7 @@ private:
     bool validateShape(std::size_t valueCount, int columns, int rows) const;
     void storeValues(std::vector<float>&& values, int columns);
     void applyShape(int columns);
-    void setBound(qreal& bound, qreal value, void (HeatmapSeries::*changed)());
+    void setBound(qreal Extent::* edge, qreal value, void (HeatmapSeries::*changed)());
     void setSpacing(Spacing& current, Spacing spacing, void (HeatmapSeries::*changed)());
     std::optional<std::pair<int, int>> cellAt(const QPointF& position) const;
     QPointF cellCenter(int row, int column) const;

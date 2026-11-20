@@ -1773,6 +1773,39 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#function-resetdpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function resetDpi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-resetquality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function resetQuality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-resetscale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function resetScale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-save" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2067,6 +2100,18 @@
 <td style="text-align: left;"><a href="#function-quality-22"><strong>quality</strong></a> () const<br><em>Returns the encoder quality.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-resetdpi"><strong>resetDpi</strong></a> () <br><em>Sets the stored resolution to 0, 96 times the effective scale.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-resetquality"><strong>resetQuality</strong></a> () <br><em>Sets the encoder quality to -1, the format's default.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-resetscale"><strong>resetScale</strong></a> () <br><em>Sets the scale to 0, the window's device pixel ratio.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">Q_INVOKABLE bool</td>
 <td style="text-align: left;"><a href="#function-save"><strong>save</strong></a> (const QString &amp; path) <br><em>Saves the plot to</em> <em>path</em> <em>in the format its suffix names.</em></td>
 </tr>
@@ -2144,7 +2189,7 @@
 <p><em>Resolution stored in saved files, in dots per inch; 0 stores 96 times the effective scale. Default: 0.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">dpi</span><span class="p">;</span>
 </code></pre></div></p>
-<p>The default makes documents place the image at its on-screen size. </p>
+<p>Assign <code>undefined</code> to return to 0. The default makes documents place the image at its on-screen size. </p>
 <hr>
 
 <h3 id="property-plot-12">property plot<a class="headerlink" href="#property-plot-12" title="Permanent link">&para;</a></h3>
@@ -2157,14 +2202,14 @@
 <p><em>Encoder quality from 0 to 100 passed to</em> <code>QImageWriter</code> <em>; -1 uses the format's default. Default: -1.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">quality</span><span class="p">;</span>
 </code></pre></div></p>
-<p>Lossy formats (JPEG, WebP) trade file size for artifacts. PNG stays lossless and only trades file size for encoding time. Other formats ignore it. </p>
+<p>Assign <code>undefined</code> to return to -1. Lossy formats (JPEG, WebP) trade file size for artifacts. PNG stays lossless and only trades file size for encoding time. Other formats ignore it. </p>
 <hr>
 
 <h3 id="property-scale-12">property scale<a class="headerlink" href="#property-scale-12" title="Permanent link">&para;</a></h3>
 <p><em>Image pixels per logical pixel; 0 uses the window's device pixel ratio. Default: 0.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">scale</span><span class="p">;</span>
 </code></pre></div></p>
-<p>At a device pixel ratio other than 1, Qt 6.3 and later cannot render every image size, so a side can be a pixel shorter or longer than the plot's size times the scale. </p>
+<p>Assign <code>undefined</code> to return to 0. At a device pixel ratio other than 1, Qt 6.3 and later cannot render every image size, so a side can be a pixel shorter or longer than the plot's size times the scale. </p>
 <hr>
 
 <h3 id="property-transparentbackground-12">property transparentBackground<a class="headerlink" href="#property-transparentbackground-12" title="Permanent link">&para;</a></h3>
@@ -2295,76 +2340,94 @@
 </code></pre></div></p>
 <hr>
 
+<h3 id="function-resetdpi">function resetDpi<a class="headerlink" href="#function-resetdpi" title="Permanent link">&para;</a></h3>
+<p><em>Sets the stored resolution to 0, 96 times the effective scale.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">resetDpi</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-resetquality">function resetQuality<a class="headerlink" href="#function-resetquality" title="Permanent link">&para;</a></h3>
+<p><em>Sets the encoder quality to -1, the format's default.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">resetQuality</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-resetscale">function resetScale<a class="headerlink" href="#function-resetscale" title="Permanent link">&para;</a></h3>
+<p><em>Sets the scale to 0, the window's device pixel ratio.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">resetScale</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="function-save">function save<a class="headerlink" href="#function-save" title="Permanent link">&para;</a></h3>
 <p><em>Saves the plot to</em> <em>path</em> <em>in the format its suffix names.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">save</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">path</span>
-<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">save</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">path</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <p><em>path</em> may be a local file path or a <code>file:</code> URL. An existing file is replaced only when the new one is written completely. Returns false when the request fails immediately, after emitting <code>finished()</code> unless the exporter is <code>busy</code>. </p>
 <hr>
 
 <h3 id="function-scale-22">function scale<a class="headerlink" href="#function-scale-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the image pixels per logical pixel; 0 means the window's device pixel ratio.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">scale</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">scale</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setdpi">function setDpi<a class="headerlink" href="#function-setdpi" title="Permanent link">&para;</a></h3>
 <p><em>Sets the stored resolution; negative and nonfinite values are ignored with a warning.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">setDpi</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">dpi</span>
-<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">setDpi</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">dpi</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setplot">function setPlot<a class="headerlink" href="#function-setplot" title="Permanent link">&para;</a></h3>
 <p><em>Sets the plot to export; a request in progress keeps its plot.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">setPlot</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="w">    </span><span class="n">PlotView</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">plot</span>
-<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">setPlot</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="w">    </span><span class="n">PlotView</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">plot</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setquality">function setQuality<a class="headerlink" href="#function-setquality" title="Permanent link">&para;</a></h3>
 <p><em>Sets the encoder quality; values outside -1 to 100 are ignored with a warning.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">setQuality</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">quality</span>
-<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">setQuality</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">quality</span>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setscale">function setScale<a class="headerlink" href="#function-setscale" title="Permanent link">&para;</a></h3>
 <p><em>Sets the image pixels per logical pixel; negative and nonfinite values are ignored with a warning.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">setScale</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">scale</span>
-<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">setScale</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">scale</span>
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-settransparentbackground">function setTransparentBackground<a class="headerlink" href="#function-settransparentbackground" title="Permanent link">&para;</a></h3>
 <p><em>Sets whether the image leaves out the plot's backgrounds.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">setTransparentBackground</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">transparent</span>
-<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">setTransparentBackground</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">transparent</span>
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-transparentbackground-22">function transparentBackground<a class="headerlink" href="#function-transparentbackground-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns whether the image leaves out the plot's backgrounds.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">transparentBackground</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">transparentBackground</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-plotexporter">function ~PlotExporter<a class="headerlink" href="#function-plotexporter" title="Permanent link">&para;</a></h3>
 <p><em>Restores the plot's appearance if a capture is in progress.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotExporter</span><span class="o">::~</span><span class="n">PlotExporter</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotExporter</span><span class="o">::~</span><span class="n">PlotExporter</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
 <hr>
 <h2 id="public-static-functions-documentation">Public Static Functions Documentation<a class="headerlink" href="#public-static-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-supportedformats">function supportedFormats<a class="headerlink" href="#function-supportedformats" title="Permanent link">&para;</a></h3>
 <p><em>Returns the lowercase file suffixes</em> <code>save()</code> <em>accepts on this system, such as</em><code>png</code> <em>and</em><code>jpg</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="k">static</span><span class="w"> </span><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="n">QStringList</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">supportedFormats</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="k">static</span><span class="w"> </span><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="n">QStringList</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotExporter</span><span class="o">::</span><span class="n">supportedFormats</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 

@@ -48,13 +48,14 @@
         <read>color</read>
         <write>setColor</write>
         <briefdescription>
-<para>Fill color. Default: an invalid color, which uses the series <computeroutput>color</computeroutput>. </para>
+<para>Fill color. Unset by default: each series that lists the category uses its own <computeroutput>color</computeroutput>. </para>
         </briefdescription>
         <detaileddescription>
+<para>Reads an invalid color while unset; assign <computeroutput>undefined</computeroutput> to unset it. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="43" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/Category.hpp" bodystart="43" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="45" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/Category.hpp" bodystart="45" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-attrib">
@@ -71,7 +72,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="75" column="9" bodyfile="QAccelPlot/src/QAccelPlot/series/Category.hpp" bodystart="75" bodyend="75"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="79" column="9" bodyfile="QAccelPlot/src/QAccelPlot/series/Category.hpp" bodystart="79" bodyend="79"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Category_1a5098dcd3ede01e04871d5c79b7204cec" prot="private" static="no" mutable="no">
         <type>QString</type>
@@ -85,7 +86,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="76" column="13" bodyfile="QAccelPlot/src/QAccelPlot/series/Category.hpp" bodystart="76" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="80" column="13" bodyfile="QAccelPlot/src/QAccelPlot/series/Category.hpp" bodystart="80" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1Category_1a82ac2929464e14e4f86391985efa51d9" prot="private" static="no" mutable="no">
         <type>QColor</type>
@@ -99,7 +100,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="77" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/Category.hpp" bodystart="77" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="81" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/Category.hpp" bodystart="81" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -121,7 +122,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="47" column="14"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="49" column="14"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Category_1aa0a8e1b5196a6324768167c0206e47b6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -153,7 +154,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="49" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="51" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Category_1a7431b05cd9391cb3372fa07b9d57ce35" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -168,7 +169,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="52" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="54" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Category_1a7d48405b070c380d2bd3d9355b14c43b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -187,7 +188,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="54" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="56" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Category_1af8340b8c4d6ec5924ba1ba72100a4509" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QString</type>
@@ -202,7 +203,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="57" column="13"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="59" column="13"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Category_1a6ead95851717798d432d7b26f4489533" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -221,7 +222,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="59" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="61" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Category_1ab23f2fc1b3259de523b8c8bacef21535" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QColor</type>
@@ -230,13 +231,13 @@
         <name>color</name>
         <qualifiedname>QAccelPlot::Category::color</qualifiedname>
         <briefdescription>
-<para>Returns the fill color. </para>
+<para>Returns the fill color, or an invalid color when the series <computeroutput>color</computeroutput> applies. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="62" column="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="64" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1Category_1a09109d8f212b9c3f878ef58df953f4ee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -255,7 +256,22 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="64" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="66" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Category_1a9cc0489c600a7cda0ff6fe31c92aba51" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Category::resetColor</definition>
+        <argsstring>()</argsstring>
+        <name>resetColor</name>
+        <qualifiedname>QAccelPlot::Category::resetColor</qualifiedname>
+        <briefdescription>
+<para>Unsets the fill color, so the series <computeroutput>color</computeroutput> applies again. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="68" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="signal">
@@ -272,7 +288,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="68" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="72" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1Category_1a272bdf9ea40c4b631b6a5061a24f5d40" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -287,7 +303,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="70" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="74" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1Category_1a67dbd18a0fce0c61f44d2679ecdc13e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -302,7 +318,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="72" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="76" column="10"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -343,7 +359,7 @@
         <label>QObject</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="34" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/Category.hpp" bodystart="34" bodyend="78"/>
+    <location file="QAccelPlot/src/QAccelPlot/series/Category.hpp" line="34" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/Category.hpp" bodystart="34" bodyend="82"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1Category_1a706a31512d9efc476527152d697b8783" prot="public" virt="non-virtual"><scope>QAccelPlot::Category</scope><name>Category</name></member>
       <member refid="classQAccelPlot_1_1Category_1aa0a8e1b5196a6324768167c0206e47b6" prot="public" virt="non-virtual"><scope>QAccelPlot::Category</scope><name>Category</name></member>
@@ -355,6 +371,7 @@
       <member refid="classQAccelPlot_1_1Category_1af8340b8c4d6ec5924ba1ba72100a4509" prot="public" virt="non-virtual"><scope>QAccelPlot::Category</scope><name>name</name></member>
       <member refid="classQAccelPlot_1_1Category_1a5098dcd3ede01e04871d5c79b7204cec" prot="private" virt="non-virtual"><scope>QAccelPlot::Category</scope><name>name_</name></member>
       <member refid="classQAccelPlot_1_1Category_1a272bdf9ea40c4b631b6a5061a24f5d40" prot="public" virt="non-virtual"><scope>QAccelPlot::Category</scope><name>nameChanged</name></member>
+      <member refid="classQAccelPlot_1_1Category_1a9cc0489c600a7cda0ff6fe31c92aba51" prot="public" virt="non-virtual"><scope>QAccelPlot::Category</scope><name>resetColor</name></member>
       <member refid="classQAccelPlot_1_1Category_1a09109d8f212b9c3f878ef58df953f4ee" prot="public" virt="non-virtual"><scope>QAccelPlot::Category</scope><name>setColor</name></member>
       <member refid="classQAccelPlot_1_1Category_1a6ead95851717798d432d7b26f4489533" prot="public" virt="non-virtual"><scope>QAccelPlot::Category</scope><name>setName</name></member>
       <member refid="classQAccelPlot_1_1Category_1a7d48405b070c380d2bd3d9355b14c43b" prot="public" virt="non-virtual"><scope>QAccelPlot::Category</scope><name>setValue</name></member>

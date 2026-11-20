@@ -1453,28 +1453,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#typedef-gradientfillbaseline" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        typedef GradientFillBaseline
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#typedef-gradientvaluesource" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        typedef GradientValueSource
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#typedef-inspectionstatus" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1608,6 +1586,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#function-nearlyequalorbothnan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function nearlyEqualOrBothNaN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-renderoriginforviewport" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1662,14 +1651,6 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align: right;">namespace</td>
-<td style="text-align: left;"><a href="../namespaceQAccelPlot_1_1GradientFillBaselineNS/"><strong>GradientFillBaselineNS</strong></a> <br><em>Namespace exposing the</em> <code>GradientFillBaseline</code> <em>enum to QML.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">namespace</td>
-<td style="text-align: left;"><a href="../namespaceQAccelPlot_1_1GradientValueSourceNS/"><strong>GradientValueSourceNS</strong></a> <br><em>Namespace exposing the</em> <code>GradientValueSource</code> <em>enum to QML.</em></td>
-</tr>
 <tr>
 <td style="text-align: right;">namespace</td>
 <td style="text-align: left;"><a href="../namespaceQAccelPlot_1_1InspectionNS/"><strong>InspectionNS</strong></a> <br><em>Namespace exposing the inspection</em> <code>Status</code> <em>enum to QML as</em><code>Inspection</code> <em>.</em></td>
@@ -2137,14 +2118,6 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;">typedef <a href="../namespaceQAccelPlot_1_1GradientFillBaselineNS/#enum-mode"><strong>GradientFillBaselineNS::Mode</strong></a></td>
-<td style="text-align: left;"><a href="#typedef-gradientfillbaseline"><strong>GradientFillBaseline</strong></a>  <br></td>
-</tr>
-<tr>
-<td style="text-align: right;">typedef <a href="../namespaceQAccelPlot_1_1GradientValueSourceNS/#enum-source"><strong>GradientValueSourceNS::Source</strong></a></td>
-<td style="text-align: left;"><a href="#typedef-gradientvaluesource"><strong>GradientValueSource</strong></a>  <br></td>
-</tr>
-<tr>
 <td style="text-align: right;">typedef <a href="../namespaceQAccelPlot_1_1InspectionNS/#enum-status"><strong>InspectionNS::Status</strong></a></td>
 <td style="text-align: left;"><a href="#typedef-inspectionstatus"><strong>InspectionStatus</strong></a>  <br></td>
 </tr>
@@ -2203,6 +2176,10 @@
 <td style="text-align: left;"><a href="#function-nearlyequal"><strong>nearlyEqual</strong></a> (double a, double b, double relativeEpsilon=kNearlyEqualEpsilon, double absoluteEpsilon=0.0) noexcept<br></td>
 </tr>
 <tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-nearlyequalorbothnan"><strong>nearlyEqualOrBothNaN</strong></a> (double a, double b) noexcept<br></td>
+</tr>
+<tr>
 <td style="text-align: right;">double</td>
 <td style="text-align: left;"><a href="#function-renderoriginforviewport"><strong>renderOriginForViewport</strong></a> (double origin, double viewportMin, double viewportMax) noexcept<br></td>
 </tr>
@@ -2213,88 +2190,86 @@
 </tbody>
 </table>
 <h2 id="public-types-documentation">Public Types Documentation<a class="headerlink" href="#public-types-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="typedef-gradientfillbaseline">typedef GradientFillBaseline<a class="headerlink" href="#typedef-gradientfillbaseline" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">using</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFillBaseline</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">GradientFillBaselineNS</span><span class="o">::</span><span class="n">Mode</span><span class="p">;</span>
-</code></pre></div>
-<hr>
-
-<h3 id="typedef-gradientvaluesource">typedef GradientValueSource<a class="headerlink" href="#typedef-gradientvaluesource" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">using</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientValueSource</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">GradientValueSourceNS</span><span class="o">::</span><span class="n">Source</span><span class="p">;</span>
-</code></pre></div>
-<hr>
-
 <h3 id="typedef-inspectionstatus">typedef InspectionStatus<a class="headerlink" href="#typedef-inspectionstatus" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">using</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionStatus</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">InspectionNS</span><span class="o">::</span><span class="n">Status</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">using</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionStatus</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">InspectionNS</span><span class="o">::</span><span class="n">Status</span><span class="p">;</span>
 </code></pre></div>
 <hr>
 
 <h3 id="typedef-markershape">typedef MarkerShape<a class="headerlink" href="#typedef-markershape" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">using</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">MarkerShape</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">MarkerShapeNS</span><span class="o">::</span><span class="n">Shape</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">using</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">MarkerShape</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">MarkerShapeNS</span><span class="o">::</span><span class="n">Shape</span><span class="p">;</span>
 </code></pre></div>
 <hr>
 
 <h3 id="typedef-nangapmode">typedef NanGapMode<a class="headerlink" href="#typedef-nangapmode" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">using</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">NanGapMode</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">NanGapModeNS</span><span class="o">::</span><span class="n">Mode</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">using</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">NanGapMode</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">NanGapModeNS</span><span class="o">::</span><span class="n">Mode</span><span class="p">;</span>
 </code></pre></div>
 <hr>
 
 <h3 id="typedef-stepmode">typedef StepMode<a class="headerlink" href="#typedef-stepmode" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">using</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">StepMode</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">StepModeNS</span><span class="o">::</span><span class="n">Mode</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">using</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">StepMode</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">StepModeNS</span><span class="o">::</span><span class="n">Mode</span><span class="p">;</span>
 </code></pre></div>
 <hr>
 <h2 id="public-attributes-documentation">Public Attributes Documentation<a class="headerlink" href="#public-attributes-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="variable-kmaxdashpatternsize">variable kMaxDashPatternSize<a class="headerlink" href="#variable-kmaxdashpatternsize" title="Permanent link">&para;</a></h3>
 <p><em>Largest dash pattern the renderer can carry to the shader.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">kMaxDashPatternSize</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">kMaxDashPatternSize</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-knearlyequalepsilon">variable kNearlyEqualEpsilon<a class="headerlink" href="#variable-knearlyequalepsilon" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">double</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">kNearlyEqualEpsilon</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">double</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">kNearlyEqualEpsilon</span><span class="p">;</span>
 </code></pre></div>
 <hr>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-isemptychunk">function isEmptyChunk<a class="headerlink" href="#function-isemptychunk" title="Permanent link">&para;</a></h3>
 <p><em>Returns</em> <code>true</code> <em>when__chunk</em> <em>contains no valid data point and can be skipped by hit tests.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">isEmptyChunk</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">CurveChunk</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">chunk</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">isEmptyChunk</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">CurveChunk</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">chunk</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-isvalidcoordinate">function isValidCoordinate<a class="headerlink" href="#function-isvalidcoordinate" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">isValidCoordinate</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">value</span><span class="p">,</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">logScale</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">isValidCoordinate</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">value</span><span class="p">,</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">logScale</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
 </code></pre></div>
 <hr>
 
 <h3 id="function-nearlyequal">function nearlyEqual<a class="headerlink" href="#function-nearlyequal" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">nearlyEqual</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">,</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">b</span><span class="p">,</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">relativeEpsilon</span><span class="o">=</span><span class="n">kNearlyEqualEpsilon</span><span class="p">,</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">absoluteEpsilon</span><span class="o">=</span><span class="mf">0.0</span>
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">nearlyEqual</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">,</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">b</span><span class="p">,</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">relativeEpsilon</span><span class="o">=</span><span class="n">kNearlyEqualEpsilon</span><span class="p">,</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">absoluteEpsilon</span><span class="o">=</span><span class="mf">0.0</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
+</code></pre></div>
+<hr>
+
+<h3 id="function-nearlyequalorbothnan">function nearlyEqualOrBothNaN<a class="headerlink" href="#function-nearlyequalorbothnan" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">nearlyEqualOrBothNaN</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">,</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">b</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
 </code></pre></div>
 <hr>
 
 <h3 id="function-renderoriginforviewport">function renderOriginForViewport<a class="headerlink" href="#function-renderoriginforviewport" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">renderOriginForViewport</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">origin</span><span class="p">,</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">viewportMin</span><span class="p">,</span>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">viewportMax</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">renderOriginForViewport</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">origin</span><span class="p">,</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">viewportMin</span><span class="p">,</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">viewportMax</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
 </code></pre></div>
 <hr>
 
 <h3 id="function-renderorigintoofar">function renderOriginTooFar<a class="headerlink" href="#function-renderorigintoofar" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">renderOriginTooFar</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">origin</span><span class="p">,</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">viewportMin</span><span class="p">,</span>
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">viewportMax</span>
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">renderOriginTooFar</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">origin</span><span class="p">,</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">viewportMin</span><span class="p">,</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">viewportMax</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
 </code></pre></div>
 <hr>
 

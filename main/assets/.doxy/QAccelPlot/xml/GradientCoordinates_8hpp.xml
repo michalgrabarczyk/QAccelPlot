@@ -4,15 +4,27 @@
     <compoundname>GradientCoordinates.hpp</compoundname>
     <includes refid="GradientColorTypes_8hpp" local="yes">QAccelPlot/effects/GradientColorTypes.hpp</includes>
     <includes local="no">algorithm</includes>
+    <includes local="no">cmath</includes>
+    <includes local="no">optional</includes>
     <incdepgraph>
       <node id="1">
         <label>QAccelPlot/src/QAccelPlot/effects/internal/GradientCoordinates.hpp</label>
         <link refid="GradientCoordinates_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
       </node>
       <node id="2">
         <label>algorithm</label>
+      </node>
+      <node id="3">
+        <label>cmath</label>
+      </node>
+      <node id="4">
+        <label>optional</label>
       </node>
     </incdepgraph>
     <innernamespace refid="namespaceQAccelPlot">QAccelPlot</innernamespace>
@@ -31,28 +43,35 @@
 <codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/effects/GradientColorTypes.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight></codeline>
 <codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;algorithm&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight></codeline>
-<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot::Internal<sp/>{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cmath&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;optional&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="12"><highlight class="normal"></highlight></codeline>
-<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>unboundedGradientCoordinate(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Qt::Orientation<sp/>direction,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>qreal<sp/>value,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>qreal<sp/>minimum,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>qreal<sp/>maximum)</highlight></codeline>
-<codeline lineno="19"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>minimumRange<sp/>=<sp/>qreal{1e-12};</highlight></codeline>
-<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>range<sp/>=<sp/>std::max(maximum<sp/>-<sp/>minimum,<sp/>minimumRange);</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>normalized<sp/>=<sp/>(value<sp/>-<sp/>minimum)<sp/>/<sp/>range;</highlight></codeline>
-<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">float</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(direction<sp/>==<sp/>Qt::Vertical<sp/>?<sp/>1.0<sp/>-<sp/>normalized<sp/>:<sp/>normalized);</highlight></codeline>
-<codeline lineno="24"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="25"><highlight class="normal"></highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Payload&gt;<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>resolveGradientValueRange(Payload&amp;<sp/>payload,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>qreal<sp/>dataMin,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>qreal<sp/>dataMax)</highlight></codeline>
-<codeline lineno="31"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!payload.gradientValueMin.has_value())<sp/>{</highlight></codeline>
-<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>payload.gradientValueMin<sp/>=<sp/>dataMin;</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!payload.gradientValueMax.has_value())<sp/>{</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>payload.gradientValueMax<sp/>=<sp/>dataMax;</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="38"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"></highlight></codeline>
-<codeline lineno="40"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot::Internal</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot::Internal<sp/>{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>std::optional&lt;qreal&gt;<sp/>valueIfSet(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>qreal<sp/>value)</highlight></codeline>
+<codeline lineno="17"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::isnan(value)<sp/>?<sp/>std::nullopt<sp/>:<sp/>std::optional&lt;qreal&gt;{value};</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>unboundedGradientCoordinate(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Qt::Orientation<sp/>direction,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>qreal<sp/>value,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>qreal<sp/>minimum,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>qreal<sp/>maximum)</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>minimumRange<sp/>=<sp/>qreal{1e-12};</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>range<sp/>=<sp/>std::max(maximum<sp/>-<sp/>minimum,<sp/>minimumRange);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>normalized<sp/>=<sp/>(value<sp/>-<sp/>minimum)<sp/>/<sp/>range;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">float</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(direction<sp/>==<sp/>Qt::Vertical<sp/>?<sp/>1.0<sp/>-<sp/>normalized<sp/>:<sp/>normalized);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Payload&gt;<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>resolveGradientValueRange(Payload&amp;<sp/>payload,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>qreal<sp/>dataMin,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>qreal<sp/>dataMax)</highlight></codeline>
+<codeline lineno="38"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!payload.gradientValueMin.has_value())<sp/>{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>payload.gradientValueMin<sp/>=<sp/>dataMin;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!payload.gradientValueMax.has_value())<sp/>{</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>payload.gradientValueMax<sp/>=<sp/>dataMax;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot::Internal</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="QAccelPlot/src/QAccelPlot/effects/internal/GradientCoordinates.hpp"/>
   </compounddef>

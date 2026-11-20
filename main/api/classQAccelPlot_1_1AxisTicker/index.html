@@ -1883,6 +1883,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#function-resetticklabelcolor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function resetTickLabelColor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-resetticklabelformatter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function resetTickLabelFormatter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-setsubtickcolor" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2335,7 +2357,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">property QColor</td>
-<td style="text-align: left;"><a href="./#property-ticklabelcolor-12"><strong>tickLabelColor</strong></a>  <br><em>Optional color of tick labels. When invalid, the tickColor is used.</em></td>
+<td style="text-align: left;"><a href="./#property-ticklabelcolor-12"><strong>tickLabelColor</strong></a>  <br><em>Color of tick labels. Default:</em> <code>tickColor</code> <em>. Assign</em><code>undefined</code> <em>to return to it.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property QFont</td>
@@ -2343,7 +2365,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">property <a href="../classQAccelPlot_1_1TickLabelFormatter/"><strong>TickLabelFormatter</strong></a> *</td>
-<td style="text-align: left;"><a href="./#property-ticklabelformatter-12"><strong>tickLabelFormatter</strong></a>  <br><em>Optional custom formatter for tick labels. When</em> <code>nullptr</code> <em>the default</em><a href="../classQAccelPlot_1_1NumericTickLabelFormatter/"><em><strong>NumericTickLabelFormatter</strong></em></a> <em>is used.</em></td>
+<td style="text-align: left;"><a href="./#property-ticklabelformatter-12"><strong>tickLabelFormatter</strong></a>  <br><em>Formatter that turns tick values into label text. Default: a</em> <code>NumericTickLabelFormatter</code> <em>owned by the ticker. Assign</em><code>undefined</code> <em>to return to it.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property qreal</td>
@@ -2469,6 +2491,14 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-resetticklabelcolor"><strong>resetTickLabelColor</strong></a> () <br><em>Makes the tick-label color follow</em> <code>tickColor</code> <em>again.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-resetticklabelformatter"><strong>resetTickLabelFormatter</strong></a> () <br><em>Restores the default tick label formatter.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="#function-setsubtickcolor"><strong>setSubtickColor</strong></a> (const QColor &amp; c) <br><em>Sets the sub-tick color to</em> <em>c</em> <em>.</em></td>
 </tr>
 <tr>
@@ -2501,7 +2531,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setticklabelcolor"><strong>setTickLabelColor</strong></a> (const QColor &amp; c) <br><em>Sets the tick-label color to</em> <em>c</em> <em>. An invalid color restores the tickColor fallback.</em></td>
+<td style="text-align: left;"><a href="#function-setticklabelcolor"><strong>setTickLabelColor</strong></a> (const QColor &amp; c) <br><em>Sets the tick-label color to</em> <em>c</em> <em>. An invalid color restores the</em><code>tickColor</code> <em>default.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -2509,7 +2539,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setticklabelformatter"><strong>setTickLabelFormatter</strong></a> (<a href="../classQAccelPlot_1_1TickLabelFormatter/"><strong>TickLabelFormatter</strong></a> * formatter) <br><em>Sets the tick label formatter to</em> <em>formatter</em> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-setticklabelformatter"><strong>setTickLabelFormatter</strong></a> (<a href="../classQAccelPlot_1_1TickLabelFormatter/"><strong>TickLabelFormatter</strong></a> * formatter) <br><em>Sets the tick label formatter to</em> <em>formatter</em> <em>.</em><code>nullptr</code> <em>restores the default.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -2569,7 +2599,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">QColor</td>
-<td style="text-align: left;"><a href="#function-ticklabelcolor-22"><strong>tickLabelColor</strong></a> () const<br><em>Returns the tick-label color, or an invalid color when it follows tickColor.</em></td>
+<td style="text-align: left;"><a href="#function-ticklabelcolor-22"><strong>tickLabelColor</strong></a> () const<br><em>Returns the tick-label color in effect.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">QFont</td>
@@ -2577,7 +2607,7 @@
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classQAccelPlot_1_1TickLabelFormatter/"><strong>TickLabelFormatter</strong></a> *</td>
-<td style="text-align: left;"><a href="#function-ticklabelformatter-22"><strong>tickLabelFormatter</strong></a> () const<br><em>Returns the custom tick label formatter, or</em> <code>nullptr</code> <em>if using the default.</em></td>
+<td style="text-align: left;"><a href="#function-ticklabelformatter-22"><strong>tickLabelFormatter</strong></a> () const<br><em>Returns the tick label formatter in effect: the custom one, or the default.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">qreal</td>
@@ -2658,7 +2688,7 @@
 <hr>
 
 <h3 id="property-ticklabelcolor-12">property tickLabelColor<a class="headerlink" href="#property-ticklabelcolor-12" title="Permanent link">&para;</a></h3>
-<p><em>Optional color of tick labels. When invalid, the tickColor is used.</em> 
+<p><em>Color of tick labels. Default:</em> <code>tickColor</code> <em>. Assign</em><code>undefined</code> <em>to return to it.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">tickLabelColor</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
@@ -2670,7 +2700,7 @@
 <hr>
 
 <h3 id="property-ticklabelformatter-12">property tickLabelFormatter<a class="headerlink" href="#property-ticklabelformatter-12" title="Permanent link">&para;</a></h3>
-<p><em>Optional custom formatter for tick labels. When</em> <code>nullptr</code> <em>the default</em><a href="../classQAccelPlot_1_1NumericTickLabelFormatter/"><em><strong>NumericTickLabelFormatter</strong></em></a> <em>is used.</em>
+<p><em>Formatter that turns tick values into label text. Default: a</em> <code>NumericTickLabelFormatter</code> <em>owned by the ticker. Assign</em><code>undefined</code> <em>to return to it.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">TickLabelFormatter</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">tickLabelFormatter</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
@@ -2828,241 +2858,253 @@
 </code></pre></div></p>
 <hr>
 
+<h3 id="function-resetticklabelcolor">function resetTickLabelColor<a class="headerlink" href="#function-resetticklabelcolor" title="Permanent link">&para;</a></h3>
+<p><em>Makes the tick-label color follow</em> <code>tickColor</code> <em>again.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">resetTickLabelColor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-resetticklabelformatter">function resetTickLabelFormatter<a class="headerlink" href="#function-resetticklabelformatter" title="Permanent link">&para;</a></h3>
+<p><em>Restores the default tick label formatter.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">resetTickLabelFormatter</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="function-setsubtickcolor">function setSubtickColor<a class="headerlink" href="#function-setsubtickcolor" title="Permanent link">&para;</a></h3>
 <p><em>Sets the sub-tick color to</em> <em>c</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setSubtickColor</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">c</span>
-<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setSubtickColor</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">c</span>
+<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setsubtickcount">function setSubtickCount<a class="headerlink" href="#function-setsubtickcount" title="Permanent link">&para;</a></h3>
 <p><em>Sets the sub-tick interval count to</em> <em>count</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setSubtickCount</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
-<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setSubtickCount</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setsubticklength">function setSubtickLength<a class="headerlink" href="#function-setsubticklength" title="Permanent link">&para;</a></h3>
 <p><em>Sets both</em> <code>subtickLengthIn</code> <em>and</em><code>subtickLengthOut</code> <em>to__length</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setSubtickLength</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">length</span>
-<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-setsubticklengthin">function setSubtickLengthIn<a class="headerlink" href="#function-setsubticklengthin" title="Permanent link">&para;</a></h3>
-<p><em>Sets the inward sub-tick length to</em> <em>length</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setSubtickLengthIn</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">length</span>
-<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-setsubticklengthout">function setSubtickLengthOut<a class="headerlink" href="#function-setsubticklengthout" title="Permanent link">&para;</a></h3>
-<p><em>Sets the outward sub-tick length to</em> <em>length</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setSubtickLengthOut</span><span class="w"> </span><span class="p">(</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setSubtickLength</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">length</span>
 <a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
+<h3 id="function-setsubticklengthin">function setSubtickLengthIn<a class="headerlink" href="#function-setsubticklengthin" title="Permanent link">&para;</a></h3>
+<p><em>Sets the inward sub-tick length to</em> <em>length</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setSubtickLengthIn</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">length</span>
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setsubticklengthout">function setSubtickLengthOut<a class="headerlink" href="#function-setsubticklengthout" title="Permanent link">&para;</a></h3>
+<p><em>Sets the outward sub-tick length to</em> <em>length</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setSubtickLengthOut</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">length</span>
+<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="function-setsubtickwidth">function setSubtickWidth<a class="headerlink" href="#function-setsubtickwidth" title="Permanent link">&para;</a></h3>
 <p><em>Sets the sub-tick line width to</em> <em>width</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setSubtickWidth</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">width</span>
-<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setSubtickWidth</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">width</span>
+<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-settickcolor">function setTickColor<a class="headerlink" href="#function-settickcolor" title="Permanent link">&para;</a></h3>
 <p><em>Sets the major tick color to</em> <em>c</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setTickColor</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">c</span>
-<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-settickcount">function setTickCount<a class="headerlink" href="#function-settickcount" title="Permanent link">&para;</a></h3>
-<p><em>Sets the target major tick count to</em> <em>count</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setTickCount</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
-<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-setticklabelcolor">function setTickLabelColor<a class="headerlink" href="#function-setticklabelcolor" title="Permanent link">&para;</a></h3>
-<p><em>Sets the tick-label color to</em> <em>c</em> <em>. An invalid color restores the tickColor fallback.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setTickLabelColor</span><span class="w"> </span><span class="p">(</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setTickColor</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">c</span>
 <a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
-<h3 id="function-setticklabelfont">function setTickLabelFont<a class="headerlink" href="#function-setticklabelfont" title="Permanent link">&para;</a></h3>
-<p><em>Sets the tick label font to</em> <em>f</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setTickLabelFont</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QFont</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">f</span>
+<h3 id="function-settickcount">function setTickCount<a class="headerlink" href="#function-settickcount" title="Permanent link">&para;</a></h3>
+<p><em>Sets the target major tick count to</em> <em>count</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setTickCount</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
 <a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
-<h3 id="function-setticklabelformatter">function setTickLabelFormatter<a class="headerlink" href="#function-setticklabelformatter" title="Permanent link">&para;</a></h3>
-<p><em>Sets the tick label formatter to</em> <em>formatter</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setTickLabelFormatter</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a><span class="w">    </span><span class="n">TickLabelFormatter</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">formatter</span>
+<h3 id="function-setticklabelcolor">function setTickLabelColor<a class="headerlink" href="#function-setticklabelcolor" title="Permanent link">&para;</a></h3>
+<p><em>Sets the tick-label color to</em> <em>c</em> <em>. An invalid color restores the</em><code>tickColor</code> <em>default.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setTickLabelColor</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">c</span>
 <a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setticklabelfont">function setTickLabelFont<a class="headerlink" href="#function-setticklabelfont" title="Permanent link">&para;</a></h3>
+<p><em>Sets the tick label font to</em> <em>f</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setTickLabelFont</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QFont</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">f</span>
+<a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setticklabelformatter">function setTickLabelFormatter<a class="headerlink" href="#function-setticklabelformatter" title="Permanent link">&para;</a></h3>
+<p><em>Sets the tick label formatter to</em> <em>formatter</em> <em>.</em><code>nullptr</code> <em>restores the default.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setTickLabelFormatter</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a><span class="w">    </span><span class="n">TickLabelFormatter</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">formatter</span>
+<a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setticklabelpadding">function setTickLabelPadding<a class="headerlink" href="#function-setticklabelpadding" title="Permanent link">&para;</a></h3>
 <p><em>Sets the tick label padding to</em> <em>padding</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setTickLabelPadding</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">padding</span>
-<a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setTickLabelPadding</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">padding</span>
+<a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setticklabelrotation">function setTickLabelRotation<a class="headerlink" href="#function-setticklabelrotation" title="Permanent link">&para;</a></h3>
 <p><em>Sets the tick label rotation to</em> <em>rotation</em> <em>degrees.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setTickLabelRotation</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">rotation</span>
-<a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setTickLabelRotation</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">rotation</span>
+<a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setticklength">function setTickLength<a class="headerlink" href="#function-setticklength" title="Permanent link">&para;</a></h3>
 <p><em>Sets both</em> <code>tickLengthIn</code> <em>and</em><code>tickLengthOut</code> <em>to__length</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setTickLength</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">length</span>
-<a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-setticklengthin">function setTickLengthIn<a class="headerlink" href="#function-setticklengthin" title="Permanent link">&para;</a></h3>
-<p><em>Sets the inward major tick length to</em> <em>length</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setTickLengthIn</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">length</span>
-<a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-setticklengthout">function setTickLengthOut<a class="headerlink" href="#function-setticklengthout" title="Permanent link">&para;</a></h3>
-<p><em>Sets the outward major tick length to</em> <em>length</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setTickLengthOut</span><span class="w"> </span><span class="p">(</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setTickLength</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">length</span>
 <a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
+<h3 id="function-setticklengthin">function setTickLengthIn<a class="headerlink" href="#function-setticklengthin" title="Permanent link">&para;</a></h3>
+<p><em>Sets the inward major tick length to</em> <em>length</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setTickLengthIn</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">length</span>
+<a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setticklengthout">function setTickLengthOut<a class="headerlink" href="#function-setticklengthout" title="Permanent link">&para;</a></h3>
+<p><em>Sets the outward major tick length to</em> <em>length</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setTickLengthOut</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">length</span>
+<a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="function-settickwidth">function setTickWidth<a class="headerlink" href="#function-settickwidth" title="Permanent link">&para;</a></h3>
 <p><em>Sets the major tick line width to</em> <em>width</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setTickWidth</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">width</span>
-<a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">setTickWidth</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">width</span>
+<a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-subtickcolor-22">function subtickColor<a class="headerlink" href="#function-subtickcolor-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the sub-tick color.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">subtickColor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">subtickColor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-subtickcount-22">function subtickCount<a class="headerlink" href="#function-subtickcount-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the sub-tick interval count.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">subtickCount</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">subtickCount</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-subticklength-22">function subtickLength<a class="headerlink" href="#function-subticklength-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the shared inward+outward sub-tick length (reads</em> <code>subtickLengthIn</code> <em>).</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">subtickLength</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">subtickLength</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-subticklengthin-22">function subtickLengthIn<a class="headerlink" href="#function-subticklengthin-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the inward sub-tick length.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">subtickLengthIn</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">subtickLengthIn</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-subticklengthout-22">function subtickLengthOut<a class="headerlink" href="#function-subticklengthout-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the outward sub-tick length.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">subtickLengthOut</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">subtickLengthOut</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-subtickwidth-22">function subtickWidth<a class="headerlink" href="#function-subtickwidth-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the sub-tick line width.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">subtickWidth</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">subtickWidth</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-tickcolor-22">function tickColor<a class="headerlink" href="#function-tickcolor-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the major tick color.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">tickColor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">tickColor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-tickcount-22">function tickCount<a class="headerlink" href="#function-tickcount-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the target number of major ticks.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">tickCount</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">tickCount</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-ticklabelcolor-22">function tickLabelColor<a class="headerlink" href="#function-ticklabelcolor-22" title="Permanent link">&para;</a></h3>
-<p><em>Returns the tick-label color, or an invalid color when it follows tickColor.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">tickLabelColor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<p><em>Returns the tick-label color in effect.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">tickLabelColor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-ticklabelfont-22">function tickLabelFont<a class="headerlink" href="#function-ticklabelfont-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the tick label font.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="n">QFont</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">tickLabelFont</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a><span class="n">QFont</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">tickLabelFont</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-ticklabelformatter-22">function tickLabelFormatter<a class="headerlink" href="#function-ticklabelformatter-22" title="Permanent link">&para;</a></h3>
-<p><em>Returns the custom tick label formatter, or</em> <code>nullptr</code> <em>if using the default.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a><span class="n">TickLabelFormatter</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">tickLabelFormatter</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<p><em>Returns the tick label formatter in effect: the custom one, or the default.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="n">TickLabelFormatter</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">tickLabelFormatter</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-ticklabelpadding-22">function tickLabelPadding<a class="headerlink" href="#function-ticklabelpadding-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the tick label padding.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">tickLabelPadding</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">tickLabelPadding</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-ticklabelrotation-22">function tickLabelRotation<a class="headerlink" href="#function-ticklabelrotation-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the tick label rotation in degrees.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">tickLabelRotation</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">tickLabelRotation</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-ticklength-22">function tickLength<a class="headerlink" href="#function-ticklength-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the shared inward+outward tick length (reads</em> <code>tickLengthIn</code> <em>).</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">tickLength</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">tickLength</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-ticklengthin-22">function tickLengthIn<a class="headerlink" href="#function-ticklengthin-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the inward major tick length.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">tickLengthIn</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">tickLengthIn</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-ticklengthout-22">function tickLengthOut<a class="headerlink" href="#function-ticklengthout-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the outward major tick length.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">tickLengthOut</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-70-1" name="__codelineno-70-1" href="#__codelineno-70-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">tickLengthOut</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-tickwidth-22">function tickWidth<a class="headerlink" href="#function-tickwidth-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the major tick line width.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">tickWidth</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-71-1" name="__codelineno-71-1" href="#__codelineno-71-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTicker</span><span class="o">::</span><span class="n">tickWidth</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 

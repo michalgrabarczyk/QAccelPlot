@@ -64,7 +64,7 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-| property QColor | [**color**](classQAccelPlot_1_1Category.md#property-color-12)  <br>_Fill color. Default: an invalid color, which uses the series_ `color` _._ |
+| property QColor | [**color**](classQAccelPlot_1_1Category.md#property-color-12)  <br>_Fill color. Unset by default: each series that lists the category uses its own_ `color` _._ |
 | property QString | [**name**](classQAccelPlot_1_1Category.md#property-name-12)  <br>_Name for the legend,_ `categoryName` _, and QML data. Default: empty._ |
 | property int | [**value**](classQAccelPlot_1_1Category.md#property-value-12)  <br>_Value that data points carry as their_ `category` _. Default: 0._ |
 
@@ -88,8 +88,9 @@ flowchart TB
 | ---: | :--- |
 |   | [**Category**](#function-category-12) (QObject \* parent=nullptr) <br>_Constructs a category with value 0, no name, and no color, owned by_ _parent_ _._ |
 |   | [**Category**](#function-category-22) (int value, QString name, const QColor & color, QObject \* parent=nullptr) <br>_Constructs a category with_ _value_ _,__name_ _, and__color_ _, owned by__parent_ _._ |
-|  QColor | [**color**](#function-color-22) () const<br>_Returns the fill color._  |
+|  QColor | [**color**](#function-color-22) () const<br>_Returns the fill color, or an invalid color when the series_ `color` _applies._ |
 |  QString | [**name**](#function-name-22) () const<br>_Returns the name._  |
+|  void | [**resetColor**](#function-resetcolor) () <br>_Unsets the fill color, so the series_ `color` _applies again._ |
 |  void | [**setColor**](#function-setcolor) (const QColor & color) <br>_Sets the fill color to_ _color_ _. An invalid color uses the series_`color` _._ |
 |  void | [**setName**](#function-setname) (const QString & name) <br>_Sets the name to_ _name_ _._ |
 |  void | [**setValue**](#function-setvalue) (int value) <br>_Sets the value data points carry to_ _value_ _._ |
@@ -155,13 +156,17 @@ QAccelPlot.RectangleSeries {
 
 ### property color {#property-color-12}
 
-_Fill color. Default: an invalid color, which uses the series_ `color` _._
+_Fill color. Unset by default: each series that lists the category uses its own_ `color` _._
 ```C++
 QColor QAccelPlot::Category::color;
 ```
 
 
 
+Reads an invalid color while unset; assign `undefined` to unset it. 
+
+
+        
 
 <hr>
 
@@ -286,7 +291,7 @@ QAccelPlot::Category::Category (
 
 ### function color {#function-color-22}
 
-_Returns the fill color._ 
+_Returns the fill color, or an invalid color when the series_ `color` _applies._
 ```C++
 QColor QAccelPlot::Category::color () const
 ```
@@ -304,6 +309,21 @@ QColor QAccelPlot::Category::color () const
 _Returns the name._ 
 ```C++
 QString QAccelPlot::Category::name () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function resetColor {#function-resetcolor}
+
+_Unsets the fill color, so the series_ `color` _applies again._
+```C++
+void QAccelPlot::Category::resetColor () 
 ```
 
 

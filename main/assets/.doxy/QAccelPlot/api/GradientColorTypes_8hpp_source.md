@@ -15,40 +15,11 @@
 #pragma once
 
 #include <QColor>
-#include <QtQml/qqmlregistration.h>
 
 #include <optional>
 #include <vector>
 
 namespace QAccelPlot {
-
-namespace GradientFillBaselineNS {
-Q_NAMESPACE
-QML_NAMED_ELEMENT(GradientFillBaseline)
-
-
-enum class Mode {
-    AxisMinimum, 
-    Value,       
-};
-Q_ENUM_NS(Mode)
-} // namespace GradientFillBaselineNS
-
-using GradientFillBaseline = GradientFillBaselineNS::Mode;
-
-namespace GradientValueSourceNS {
-Q_NAMESPACE
-QML_NAMED_ELEMENT(GradientValueSource)
-
-
-enum class Source {
-    DataRange, 
-    Fixed,     
-};
-Q_ENUM_NS(Source)
-} // namespace GradientValueSourceNS
-
-using GradientValueSource = GradientValueSourceNS::Source;
 
 struct GradientStopData {
     float position{0.0f};          
@@ -89,9 +60,8 @@ struct GradientFillPayload {
     std::vector<GradientStopData> stops;       
     std::optional<qreal> gradientValueMin;
     std::optional<qreal> gradientValueMax;
-    GradientFillBaseline baseline{GradientFillBaseline::AxisMinimum}; 
-    qreal baselineValue{0.0};                                         
-    float opacity{1.0f};                                              
+    std::optional<qreal> baselineValue;
+    float opacity{1.0f}; 
 };
 
 } // namespace QAccelPlot

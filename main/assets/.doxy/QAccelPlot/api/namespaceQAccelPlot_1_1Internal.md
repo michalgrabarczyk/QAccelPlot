@@ -76,6 +76,7 @@
 | struct | [**RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md) <br>_Mirrors the std140 uniform block of rect.vert._  |
 | class | [**RectVertexCache**](classQAccelPlot_1_1Internal_1_1RectVertexCache.md) <br>_Vertices of a series that draws each rectangle as a quad positioned from a data texture._  |
 | class | [**RectangleZoomOverlay**](classQAccelPlot_1_1Internal_1_1RectangleZoomOverlay.md) <br> |
+| class | [**ResettableValue**](classQAccelPlot_1_1Internal_1_1ResettableValue.md) &lt;typename T&gt;<br>_A property value that is either set explicitly or follows a default._  |
 | class | [**ScopedPaintedItemTextures**](classQAccelPlot_1_1Internal_1_1ScopedPaintedItemTextures.md) <br>_Rasterizes the painted items under a root item at a capture scale until destroyed._  |
 | class | [**SelectionRectangle**](classQAccelPlot_1_1Internal_1_1SelectionRectangle.md) <br>_Draws the gesture or the selected region of a_ [_**SelectionTool**_](classQAccelPlot_1_1SelectionTool.md) _, clipped to the plot area._ |
 | class | [**SeriesEffectList**](classQAccelPlot_1_1Internal_1_1SeriesEffectList.md) <br>_The_ `effects` _list of one series._ |
@@ -167,6 +168,7 @@
 |  bool | [**supportsCustomShaderRendering**](#function-supportscustomshaderrendering) (const QQuickWindow \* window) <br>_Returns_ `true` _when__window_ _renders through a hardware scene graph backend that runs custom shaders._ |
 |  float | [**unboundedGradientCoordinate**](#function-unboundedgradientcoordinate) (const Qt::Orientation direction, const qreal value, const qreal minimum, const qreal maximum) <br>_Returns an unbounded palette coordinate for a data-space_ _value_ _._ |
 |  void | [**uploadDataTexture**](#function-uploaddatatexture) (std::unique\_ptr&lt; QSGTexture &gt; & texture, QQuickWindow \* window, const QImage & image) <br>_Uploads an image to the live-data texture using the configured Qt API path._  |
+|  std::optional&lt; qreal &gt; | [**valueIfSet**](#function-valueifset) (const qreal value) <br>_Returns_ _value_ _, or_`std::nullopt` _when it is NaN, the unset state of an effect property._ |
 |  qreal | [**wheelZoomFactor**](#function-wheelzoomfactor) (qreal zoomScaleFactor, bool zoomingIn, qreal steps=1.0) <br>_Returns the extent multiplier for mouse-wheel zoom with a_ _zoomScaleFactor_ _in (0, 1)._ |
 |  std::pair&lt; qreal, qreal &gt; | [**widenedSpan**](#function-widenedspan) (qreal a, qreal b, qreal minimumSize) <br>_Returns the pixel span between edges_ _a_ _and__b_ _, widened around its center to at least__minimumSize_ _._ |
 |  QString | [**writeImageFile**](#function-writeimagefile) (const QImage & image, const QString & path, const QByteArray & format, int quality) <br>_Writes_ _image_ _to__path_ _in__format_ _and returns an error message, or an empty string on success._ |
@@ -975,7 +977,7 @@ void QAccelPlot::Internal::resolveGradientValueRange (
 
 
 
-Bounds resolve independently, so a `Fixed` bound is kept when the other bound uses `DataRange`. 
+Bounds resolve independently, so a set bound is kept when the other bound is unset. 
 
 
         
@@ -1114,6 +1116,23 @@ void QAccelPlot::Internal::uploadDataTexture (
     std::unique_ptr< QSGTexture > & texture,
     QQuickWindow * window,
     const QImage & image
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function valueIfSet {#function-valueifset}
+
+_Returns_ _value_ _, or_`std::nullopt` _when it is NaN, the unset state of an effect property._
+```C++
+inline std::optional< qreal > QAccelPlot::Internal::valueIfSet (
+    const qreal value
 ) 
 ```
 

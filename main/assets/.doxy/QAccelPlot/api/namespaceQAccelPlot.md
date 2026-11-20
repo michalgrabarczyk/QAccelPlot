@@ -36,8 +36,6 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**GradientFillBaselineNS**](namespaceQAccelPlot_1_1GradientFillBaselineNS.md) <br>_Namespace exposing the_ `GradientFillBaseline` _enum to QML._ |
-| namespace | [**GradientValueSourceNS**](namespaceQAccelPlot_1_1GradientValueSourceNS.md) <br>_Namespace exposing the_ `GradientValueSource` _enum to QML._ |
 | namespace | [**InspectionNS**](namespaceQAccelPlot_1_1InspectionNS.md) <br>_Namespace exposing the inspection_ `Status` _enum to QML as_`Inspection` _._ |
 | namespace | [**Internal**](namespaceQAccelPlot_1_1Internal.md) <br> |
 | namespace | [**LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md) <br>_Stateless helpers implementing the invalid-data-point contract shared by_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _subsystems._ |
@@ -161,8 +159,6 @@
 
 | Type | Name |
 | ---: | :--- |
-| typedef [**GradientFillBaselineNS::Mode**](namespaceQAccelPlot_1_1GradientFillBaselineNS.md#enum-mode) | [**GradientFillBaseline**](#typedef-gradientfillbaseline)  <br> |
-| typedef [**GradientValueSourceNS::Source**](namespaceQAccelPlot_1_1GradientValueSourceNS.md#enum-source) | [**GradientValueSource**](#typedef-gradientvaluesource)  <br> |
 | typedef [**InspectionNS::Status**](namespaceQAccelPlot_1_1InspectionNS.md#enum-status) | [**InspectionStatus**](#typedef-inspectionstatus)  <br> |
 | typedef [**MarkerShapeNS::Shape**](namespaceQAccelPlot_1_1MarkerShapeNS.md#enum-shape) | [**MarkerShape**](#typedef-markershape)  <br> |
 | typedef [**NanGapModeNS::Mode**](namespaceQAccelPlot_1_1NanGapModeNS.md#enum-mode) | [**NanGapMode**](#typedef-nangapmode)  <br> |
@@ -200,6 +196,7 @@
 |  bool | [**isEmptyChunk**](#function-isemptychunk) (const [**CurveChunk**](structQAccelPlot_1_1CurveChunk.md) & chunk) <br>_Returns_ `true` _when__chunk_ _contains no valid data point and can be skipped by hit tests._ |
 |  bool | [**isValidCoordinate**](#function-isvalidcoordinate) (double value, bool logScale) noexcept<br> |
 |  bool | [**nearlyEqual**](#function-nearlyequal) (double a, double b, double relativeEpsilon=kNearlyEqualEpsilon, double absoluteEpsilon=0.0) noexcept<br> |
+|  bool | [**nearlyEqualOrBothNaN**](#function-nearlyequalorbothnan) (double a, double b) noexcept<br> |
 |  double | [**renderOriginForViewport**](#function-renderoriginforviewport) (double origin, double viewportMin, double viewportMax) noexcept<br> |
 |  bool | [**renderOriginTooFar**](#function-renderorigintoofar) (double origin, double viewportMin, double viewportMax) noexcept<br> |
 
@@ -232,34 +229,6 @@
 
 ## Public Types Documentation
 
-
-
-
-
-### typedef GradientFillBaseline {#typedef-gradientfillbaseline}
-
-```C++
-using QAccelPlot::GradientFillBaseline =  GradientFillBaselineNS::Mode;
-```
-
-
-
-
-<hr>
-
-
-
-
-### typedef GradientValueSource {#typedef-gradientvaluesource}
-
-```C++
-using QAccelPlot::GradientValueSource =  GradientValueSourceNS::Source;
-```
-
-
-
-
-<hr>
 
 
 
@@ -395,6 +364,23 @@ inline bool QAccelPlot::nearlyEqual (
     double b,
     double relativeEpsilon=kNearlyEqualEpsilon,
     double absoluteEpsilon=0.0
+) noexcept
+```
+
+
+
+
+<hr>
+
+
+
+
+### function nearlyEqualOrBothNaN {#function-nearlyequalorbothnan}
+
+```C++
+inline bool QAccelPlot::nearlyEqualOrBothNaN (
+    double a,
+    double b
 ) noexcept
 ```
 

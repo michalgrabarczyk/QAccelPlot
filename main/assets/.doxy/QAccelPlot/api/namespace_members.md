@@ -42,8 +42,6 @@
 
 ## g
 
-* **GradientFillBaseline** ([**QAccelPlot**](namespaceQAccelPlot.md))
-* **GradientValueSource** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **glowUniforms** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **grabSizeFor** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **growBaseline** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
@@ -88,8 +86,8 @@
 ## m
 
 * **MarkerShape** ([**QAccelPlot**](namespaceQAccelPlot.md))
-* **Mode** ([**QAccelPlot::GradientFillBaselineNS**](namespaceQAccelPlot_1_1GradientFillBaselineNS.md), [**QAccelPlot::NanGapModeNS**](namespaceQAccelPlot_1_1NanGapModeNS.md), [**QAccelPlot::StepModeNS**](namespaceQAccelPlot_1_1StepModeNS.md))
 * **maxTextureSize** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **Mode** ([**QAccelPlot::NanGapModeNS**](namespaceQAccelPlot_1_1NanGapModeNS.md), [**QAccelPlot::StepModeNS**](namespaceQAccelPlot_1_1StepModeNS.md))
 
 
 ## n
@@ -99,6 +97,7 @@
 * **nearestAlong** ([**QAccelPlot::Internal::InspectionScan**](namespaceQAccelPlot_1_1Internal_1_1InspectionScan.md))
 * **neighbors** ([**QAccelPlot::Internal::InspectionScan**](namespaceQAccelPlot_1_1Internal_1_1InspectionScan.md))
 * **nearlyEqual** ([**QAccelPlot**](namespaceQAccelPlot.md))
+* **nearlyEqualOrBothNaN** ([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
 ## p
@@ -124,7 +123,6 @@
 
 ## s
 
-* **Source** ([**QAccelPlot::GradientValueSourceNS**](namespaceQAccelPlot_1_1GradientValueSourceNS.md))
 * **Status** ([**QAccelPlot::InspectionNS**](namespaceQAccelPlot_1_1InspectionNS.md))
 * **summarize** ([**QAccelPlot::Internal::InspectionScan**](namespaceQAccelPlot_1_1Internal_1_1InspectionScan.md))
 * **setImageResolution** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
@@ -149,6 +147,7 @@
 
 ## v
 
+* **valueIfSet** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **vertexAttributes** ([**QAccelPlot::LineStroke**](namespaceQAccelPlot_1_1LineStroke.md))
 * **verticesPerPathPoint** ([**QAccelPlot::LineStroke**](namespaceQAccelPlot_1_1LineStroke.md))
 

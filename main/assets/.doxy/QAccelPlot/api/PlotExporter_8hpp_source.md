@@ -31,9 +31,9 @@ class PlotExporter : public QObject {
     Q_OBJECT
     QML_NAMED_ELEMENT(PlotExporter)
     Q_PROPERTY(PlotView* plot READ plot WRITE setPlot NOTIFY plotChanged)
-    Q_PROPERTY(qreal scale READ scale WRITE setScale NOTIFY scaleChanged)
-    Q_PROPERTY(int quality READ quality WRITE setQuality NOTIFY qualityChanged)
-    Q_PROPERTY(qreal dpi READ dpi WRITE setDpi NOTIFY dpiChanged)
+    Q_PROPERTY(qreal scale READ scale WRITE setScale RESET resetScale NOTIFY scaleChanged)
+    Q_PROPERTY(int quality READ quality WRITE setQuality RESET resetQuality NOTIFY qualityChanged)
+    Q_PROPERTY(qreal dpi READ dpi WRITE setDpi RESET resetDpi NOTIFY dpiChanged)
     Q_PROPERTY(bool transparentBackground READ transparentBackground WRITE setTransparentBackground NOTIFY transparentBackgroundChanged)
     Q_PROPERTY(bool busy READ busy NOTIFY busyChanged)
 
@@ -50,10 +50,13 @@ public:
     void setPlot(PlotView* plot);
     qreal scale() const;
     void setScale(qreal scale);
+    void resetScale();
     int quality() const;
     void setQuality(int quality);
+    void resetQuality();
     qreal dpi() const;
     void setDpi(qreal dpi);
+    void resetDpi();
     bool transparentBackground() const;
     void setTransparentBackground(bool transparent);
     bool busy() const;

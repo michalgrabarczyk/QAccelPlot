@@ -17,6 +17,7 @@
 
 
 
+* `#include "QAccelPlot/internal/ResettableValue.hpp"`
 * `#include <QColor>`
 * `#include <QFont>`
 * `#include <QObject>`

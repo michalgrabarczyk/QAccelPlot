@@ -1509,7 +1509,8 @@ SPDX-License-Identifier: MIT
 <h1 id="axis-labels">Axis labels<a class="headerlink" href="#axis-labels" title="Permanent link">&para;</a></h1>
 <p>The <code>Axis.label</code> group holds the axis title. <code>label.text</code>, <code>label.font</code>, and
 <code>label.color</code> style it, the placement properties move it, and <code>label.delegate</code>
-replaces it with any QML item.</p>
+replaces it with any QML item. <code>label.color</code> follows the axis <code>baselineColor</code>
+until it is set; assign <code>undefined</code> to make it follow again.</p>
 <h2 id="alignment-rotation-and-padding">Alignment, rotation, and padding<a class="headerlink" href="#alignment-rotation-and-padding" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">yAxis:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Axis</span> <span class="p">{</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">label.text:</span> <span class="s2">"Amplitude (mV)"</span>

@@ -371,6 +371,8 @@
 ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * [**Region**](structQAccelPlot_1_1SelectionTool_1_1Region.md)
 * [**RenderView**](structQAccelPlot_1_1BandSeries_1_1RenderView.md)
+* [**ResettableValue**](classQAccelPlot_1_1Internal_1_1ResettableValue.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * [**Resolved**](structQAccelPlot_1_1Internal_1_1OpacityTimeline_1_1Resolved.md)
 * [**Row**](structQAccelPlot_1_1LegendModel_1_1Row.md)
 * [**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md)

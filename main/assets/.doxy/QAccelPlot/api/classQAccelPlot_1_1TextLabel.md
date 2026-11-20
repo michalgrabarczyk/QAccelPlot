@@ -69,7 +69,7 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-| property QColor | [**color**](classQAccelPlot_1_1TextLabel.md#property-color-12)  <br>_Title color. Default:_ `Colors.dark.axisLine` _on a_[_**ColorBar**_](classQAccelPlot_1_1ColorBar.md) _; on an_[_**Axis**_](classQAccelPlot_1_1Axis.md) _, an invalid color that follows_`baselineColor` _._ |
+| property QColor | [**color**](classQAccelPlot_1_1TextLabel.md#property-color-12)  <br>_Title color. Default:_ `Colors.dark.axisLine` _on a_[_**ColorBar**_](classQAccelPlot_1_1ColorBar.md) _, the axis_`baselineColor` _on an_[_**Axis**_](classQAccelPlot_1_1Axis.md) _. Assign_`undefined` _to return to it._ |
 | property QFont | [**font**](classQAccelPlot_1_1TextLabel.md#property-font-12)  <br>_Title font. Default: application default font._  |
 | property qreal | [**padding**](classQAccelPlot_1_1TextLabel.md#property-padding-12)  <br>_Gap in pixels between the title and the axis or color strip. Default: 30 on an_ [_**Axis**_](classQAccelPlot_1_1Axis.md) _, 6 on a_[_**ColorBar**_](classQAccelPlot_1_1ColorBar.md) _._ |
 | property QML\_ANONYMOUSQString | [**text**](classQAccelPlot_1_1TextLabel.md#property-text-12)  <br>_Title text. Default: empty, which draws no title._  |
@@ -94,10 +94,12 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 |   | [**TextLabel**](#function-textlabel) (const QColor & color={}, qreal padding=0.0, QObject \* parent=nullptr) <br>_Constructs a label with the default_ _color_ _and__padding_ _, owned by__parent_ _._ |
-|  QColor | [**color**](#function-color-22) () const<br>_Returns the title color._  |
+|  QColor | [**color**](#function-color-22) () const<br>_Returns the title color in effect._  |
 |  QFont | [**font**](#function-font-22) () const<br>_Returns the title font._  |
 |  qreal | [**padding**](#function-padding-22) () const<br>_Returns the gap between the title and the axis or color strip in pixels._  |
-|  void | [**setColor**](#function-setcolor) (const QColor & color) <br>_Sets the title color to_ _color_ _._ |
+|  void | [**resetColor**](#function-resetcolor) () <br>_Restores the default title color._  |
+|  void | [**setColor**](#function-setcolor) (const QColor & color) <br>_Sets the title color to_ _color_ _. An invalid color restores the default._ |
+|  void | [**setDefaultColor**](#function-setdefaultcolor) (const QColor & color) <br>_Sets the color used while none is set to_ _color_ _. Called by the owning_[_**Axis**_](classQAccelPlot_1_1Axis.md) _or_[_**ColorBar**_](classQAccelPlot_1_1ColorBar.md) _._ |
 |  void | [**setFont**](#function-setfont) (const QFont & font) <br>_Sets the title font to_ _font_ _._ |
 |  void | [**setPadding**](#function-setpadding) (qreal padding) <br>_Sets the gap between the title and the axis or color strip to_ _padding_ _pixels._ |
 |  void | [**setText**](#function-settext) (const QString & text) <br>_Sets the title text to_ _text_ _._ |
@@ -148,7 +150,7 @@ flowchart TB
 
 ### property color {#property-color-12}
 
-_Title color. Default:_ `Colors.dark.axisLine` _on a_[_**ColorBar**_](classQAccelPlot_1_1ColorBar.md) _; on an_[_**Axis**_](classQAccelPlot_1_1Axis.md) _, an invalid color that follows_`baselineColor` _._
+_Title color. Default:_ `Colors.dark.axisLine` _on a_[_**ColorBar**_](classQAccelPlot_1_1ColorBar.md) _, the axis_`baselineColor` _on an_[_**Axis**_](classQAccelPlot_1_1Axis.md) _. Assign_`undefined` _to return to it._
 ```C++
 QColor QAccelPlot::TextLabel::color;
 ```
@@ -291,7 +293,7 @@ explicit QAccelPlot::TextLabel::TextLabel (
 
 ### function color {#function-color-22}
 
-_Returns the title color._ 
+_Returns the title color in effect._ 
 ```C++
 QColor QAccelPlot::TextLabel::color () const
 ```
@@ -334,11 +336,43 @@ qreal QAccelPlot::TextLabel::padding () const
 
 
 
+### function resetColor {#function-resetcolor}
+
+_Restores the default title color._ 
+```C++
+void QAccelPlot::TextLabel::resetColor () 
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function setColor {#function-setcolor}
 
-_Sets the title color to_ _color_ _._
+_Sets the title color to_ _color_ _. An invalid color restores the default._
 ```C++
 void QAccelPlot::TextLabel::setColor (
+    const QColor & color
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setDefaultColor {#function-setdefaultcolor}
+
+_Sets the color used while none is set to_ _color_ _. Called by the owning_[_**Axis**_](classQAccelPlot_1_1Axis.md) _or_[_**ColorBar**_](classQAccelPlot_1_1ColorBar.md) _._
+```C++
+void QAccelPlot::TextLabel::setDefaultColor (
     const QColor & color
 ) 
 ```

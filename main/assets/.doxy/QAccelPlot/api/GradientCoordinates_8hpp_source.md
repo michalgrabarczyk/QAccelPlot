@@ -17,8 +17,15 @@
 #include "QAccelPlot/effects/GradientColorTypes.hpp"
 
 #include <algorithm>
+#include <cmath>
+#include <optional>
 
 namespace QAccelPlot::Internal {
+
+inline std::optional<qreal> valueIfSet(const qreal value)
+{
+    return std::isnan(value) ? std::nullopt : std::optional<qreal>{value};
+}
 
 inline float unboundedGradientCoordinate(const Qt::Orientation direction, const qreal value, const qreal minimum, const qreal maximum)
 {

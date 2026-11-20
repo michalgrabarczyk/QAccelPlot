@@ -1586,10 +1586,32 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#function-resetcolor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function resetColor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-setcolor" class="md-nav__link">
     <span class="md-ellipsis">
       
         function setColor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setdefaultcolor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setDefaultColor
       
     </span>
   </a>
@@ -1676,7 +1698,7 @@
 <tbody>
 <tr>
 <td style="text-align: right;">property QColor</td>
-<td style="text-align: left;"><a href="./#property-color-12"><strong>color</strong></a>  <br><em>Edge line color. Default: an invalid color, which draws the band's</em> <code>color</code> <em>at full opacity.</em></td>
+<td style="text-align: left;"><a href="./#property-color-12"><strong>color</strong></a>  <br><em>Edge line color. Default: the band's</em> <code>color</code> <em>at full opacity. Assign</em><code>undefined</code> <em>to return to it.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property <a href="../classQAccelPlot_1_1LineStyle/"><strong>LineStyle</strong></a> *</td>
@@ -1726,7 +1748,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">QColor</td>
-<td style="text-align: left;"><a href="#function-color-22"><strong>color</strong></a> () const<br><em>Returns the edge line color.</em></td>
+<td style="text-align: left;"><a href="#function-color-22"><strong>color</strong></a> () const<br><em>Returns the edge line color in effect.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classQAccelPlot_1_1LineStyle/"><strong>LineStyle</strong></a> *</td>
@@ -1734,7 +1756,15 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setcolor"><strong>setColor</strong></a> (const QColor &amp; color) <br><em>Sets the edge line color to</em> <em>color</em> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-resetcolor"><strong>resetColor</strong></a> () <br><em>Restores the default edge line color.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setcolor"><strong>setColor</strong></a> (const QColor &amp; color) <br><em>Sets the edge line color to</em> <em>color</em> <em>. An invalid color restores the default.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setdefaultcolor"><strong>setDefaultColor</strong></a> (const QColor &amp; color) <br><em>Sets the color used while none is set to</em> <em>color</em> <em>. Called by the owning</em><a href="../classQAccelPlot_1_1BandSeries/"><em><strong>BandSeries</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -1755,7 +1785,7 @@
 <p><strong>See also:</strong> <a href="../classQAccelPlot_1_1BandSeries/"><strong>BandSeries</strong></a> </p>
 <h2 id="public-properties-documentation">Public Properties Documentation<a class="headerlink" href="#public-properties-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="property-color-12">property color<a class="headerlink" href="#property-color-12" title="Permanent link">&para;</a></h3>
-<p><em>Edge line color. Default: an invalid color, which draws the band's</em> <code>color</code> <em>at full opacity.</em>
+<p><em>Edge line color. Default: the band's</em> <code>color</code> <em>at full opacity. Assign</em><code>undefined</code> <em>to return to it.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandEdges</span><span class="o">::</span><span class="n">color</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
@@ -1799,7 +1829,7 @@
 <hr>
 
 <h3 id="function-color-22">function color<a class="headerlink" href="#function-color-22" title="Permanent link">&para;</a></h3>
-<p><em>Returns the edge line color.</em> 
+<p><em>Returns the edge line color in effect.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandEdges</span><span class="o">::</span><span class="n">color</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
@@ -1810,33 +1840,47 @@
 </code></pre></div></p>
 <hr>
 
+<h3 id="function-resetcolor">function resetColor<a class="headerlink" href="#function-resetcolor" title="Permanent link">&para;</a></h3>
+<p><em>Restores the default edge line color.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandEdges</span><span class="o">::</span><span class="n">resetColor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="function-setcolor">function setColor<a class="headerlink" href="#function-setcolor" title="Permanent link">&para;</a></h3>
-<p><em>Sets the edge line color to</em> <em>color</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandEdges</span><span class="o">::</span><span class="n">setColor</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">color</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="p">)</span><span class="w"> </span>
+<p><em>Sets the edge line color to</em> <em>color</em> <em>. An invalid color restores the default.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandEdges</span><span class="o">::</span><span class="n">setColor</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">color</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setdefaultcolor">function setDefaultColor<a class="headerlink" href="#function-setdefaultcolor" title="Permanent link">&para;</a></h3>
+<p><em>Sets the color used while none is set to</em> <em>color</em> <em>. Called by the owning</em><a href="../classQAccelPlot_1_1BandSeries/"><em><strong>BandSeries</strong></em></a> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandEdges</span><span class="o">::</span><span class="n">setDefaultColor</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">color</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setlinestyle">function setLineStyle<a class="headerlink" href="#function-setlinestyle" title="Permanent link">&para;</a></h3>
 <p><em>Sets the edge line style to</em> <em>style</em> <em>. The style is not owned.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandEdges</span><span class="o">::</span><span class="n">setLineStyle</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="n">LineStyle</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">style</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandEdges</span><span class="o">::</span><span class="n">setLineStyle</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="n">LineStyle</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">style</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setwidth">function setWidth<a class="headerlink" href="#function-setwidth" title="Permanent link">&para;</a></h3>
 <p><em>Sets the edge line width to</em> <em>width</em> <em>pixels. Negative values are clamped to 0.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandEdges</span><span class="o">::</span><span class="n">setWidth</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">width</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandEdges</span><span class="o">::</span><span class="n">setWidth</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">width</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-width-22">function width<a class="headerlink" href="#function-width-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the edge line width in pixels.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandEdges</span><span class="o">::</span><span class="n">width</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandEdges</span><span class="o">::</span><span class="n">width</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 

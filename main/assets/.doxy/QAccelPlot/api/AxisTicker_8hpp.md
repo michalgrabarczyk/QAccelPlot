@@ -18,6 +18,7 @@
 
 
 * `#include "QAccelPlot/formatters/TickLabelFormatter.hpp"`
+* `#include "QAccelPlot/internal/ResettableValue.hpp"`
 * `#include "QAccelPlot/theme/ColorPalette.hpp"`
 * `#include <QColor>`
 * `#include <QFont>`

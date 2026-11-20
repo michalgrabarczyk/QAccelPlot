@@ -479,6 +479,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#automatic-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatic values
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#composition-and-overlays" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1583,6 +1594,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#automatic-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatic values
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#composition-and-overlays" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1811,6 +1833,18 @@ and non-positive log-axis values.</p>
   animating from <code>NaN</code>.</li>
 <li><strong>Hover</strong> never reports a hit on an invalid data point or across a break.</li>
 </ul>
+<h2 id="automatic-values">Automatic values<a class="headerlink" href="#automatic-values" title="Permanent link">&para;</a></h2>
+<p>Some properties have a default that is computed instead of fixed, such as an
+axis title rotation that depends on the side. Assigning <code>undefined</code>, or a
+binding that evaluates to <code>undefined</code>, returns such a property to its default:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Axis</span> <span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="k">label.rotation:</span> <span class="nx">autoRotation</span><span class="p">.</span><span class="nx">checked</span> <span class="o">?</span> <span class="k">undefined :</span> <span class="mi">45</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="p">}</span>
+</code></pre></div>
+<p>Reading the property gives the value in effect, and its change signal fires when
+that value changes. Where the value depends on the series using the object, such
+as a <code>Colormap</code> shared by several series, reading gives <code>NaN</code>, an invalid color,
+or <code>null</code> while the property is unset; each property documents which.</p>
 <h2 id="composition-and-overlays">Composition and overlays<a class="headerlink" href="#composition-and-overlays" title="Permanent link">&para;</a></h2>
 <p>Ordinary QML items can be placed above the grid and series. <code>DataAnchor</code> maps
 one or two data coordinates to a QML item's geometry, so labels, event lines,

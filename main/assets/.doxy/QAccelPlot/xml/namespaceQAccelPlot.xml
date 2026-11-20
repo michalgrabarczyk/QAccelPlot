@@ -107,8 +107,6 @@
     <innerclass refid="classQAccelPlot_1_1MorphTransition" prot="public">QAccelPlot::MorphTransition</innerclass>
     <innerclass refid="classQAccelPlot_1_1TransitionRunner" prot="public">QAccelPlot::TransitionRunner</innerclass>
     <innernamespace refid="namespaceQAccelPlot_1_1Internal">QAccelPlot::Internal</innernamespace>
-    <innernamespace refid="namespaceQAccelPlot_1_1GradientFillBaselineNS">QAccelPlot::GradientFillBaselineNS</innernamespace>
-    <innernamespace refid="namespaceQAccelPlot_1_1GradientValueSourceNS">QAccelPlot::GradientValueSourceNS</innernamespace>
     <innernamespace refid="namespaceQAccelPlot_1_1InspectionNS">QAccelPlot::InspectionNS</innernamespace>
     <innernamespace refid="namespaceQAccelPlot_1_1LineStroke">QAccelPlot::LineStroke</innernamespace>
     <innernamespace refid="namespaceQAccelPlot_1_1LineCurveGapFilter">QAccelPlot::LineCurveGapFilter</innernamespace>
@@ -116,34 +114,6 @@
     <innernamespace refid="namespaceQAccelPlot_1_1MarkerShapeNS">QAccelPlot::MarkerShapeNS</innernamespace>
     <innernamespace refid="namespaceQAccelPlot_1_1StepModeNS">QAccelPlot::StepModeNS</innernamespace>
     <sectiondef kind="typedef">
-      <memberdef kind="typedef" id="GradientColorTypes_8hpp_1a0d3a2d1db761ad418de27d7646258f35" prot="public" static="no">
-        <type><ref refid="namespaceQAccelPlot_1_1GradientFillBaselineNS_1aa8f6062e4bc8ee393ed7593de895b3be" kindref="member">GradientFillBaselineNS::Mode</ref></type>
-        <definition>using QAccelPlot::GradientFillBaseline =  GradientFillBaselineNS::Mode</definition>
-        <argsstring></argsstring>
-        <name>GradientFillBaseline</name>
-        <qualifiedname>QAccelPlot::GradientFillBaseline</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientColorTypes.hpp" line="28" column="1" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientColorTypes.hpp" bodystart="28" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="typedef" id="GradientColorTypes_8hpp_1a178ffbeec5dc5daf51d1ceef2dc90776" prot="public" static="no">
-        <type><ref refid="namespaceQAccelPlot_1_1GradientValueSourceNS_1a4f4cae6c359f1f803450a1140a54b721" kindref="member">GradientValueSourceNS::Source</ref></type>
-        <definition>using QAccelPlot::GradientValueSource =  GradientValueSourceNS::Source</definition>
-        <argsstring></argsstring>
-        <name>GradientValueSource</name>
-        <qualifiedname>QAccelPlot::GradientValueSource</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientColorTypes.hpp" line="43" column="1" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientColorTypes.hpp" bodystart="43" bodyend="-1"/>
-      </memberdef>
       <memberdef kind="typedef" id="InspectionResult_8hpp_1a6488b8f3f1c05e199ceea1adf4967b66" prot="public" static="no">
         <type><ref refid="namespaceQAccelPlot_1_1InspectionNS_1af88a65809f202f2780f8465c0eb7c2d1" kindref="member">InspectionNS::Status</ref></type>
         <definition>using QAccelPlot::InspectionStatus =  InspectionNS::Status</definition>
@@ -267,6 +237,28 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/MathUtils.hpp" line="29" column="14" bodyfile="QAccelPlot/src/QAccelPlot/MathUtils.hpp" bodystart="29" bodyend="42"/>
       </memberdef>
+      <memberdef kind="function" id="MathUtils_8hpp_1af94fa70ebb0261923f07fdee72216734" prot="public" static="no" nodiscard="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::nearlyEqualOrBothNaN</definition>
+        <argsstring>(double a, double b) noexcept</argsstring>
+        <name>nearlyEqualOrBothNaN</name>
+        <qualifiedname>QAccelPlot::nearlyEqualOrBothNaN</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/MathUtils.hpp" line="45" column="14" bodyfile="QAccelPlot/src/QAccelPlot/MathUtils.hpp" bodystart="45" bodyend="48"/>
+      </memberdef>
       <memberdef kind="function" id="MathUtils_8hpp_1ac7d165e0f8ddf211fb2c68747273729f" prot="public" static="no" nodiscard="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type>bool</type>
         <definition>bool QAccelPlot::renderOriginTooFar</definition>
@@ -291,7 +283,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/MathUtils.hpp" line="48" column="14" bodyfile="QAccelPlot/src/QAccelPlot/MathUtils.hpp" bodystart="48" bodyend="57"/>
+        <location file="QAccelPlot/src/QAccelPlot/MathUtils.hpp" line="54" column="14" bodyfile="QAccelPlot/src/QAccelPlot/MathUtils.hpp" bodystart="54" bodyend="63"/>
       </memberdef>
       <memberdef kind="function" id="MathUtils_8hpp_1a5904761cbbca38652885b7d0369c7285" prot="public" static="no" nodiscard="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type>double</type>
@@ -317,7 +309,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/MathUtils.hpp" line="60" column="16" bodyfile="QAccelPlot/src/QAccelPlot/MathUtils.hpp" bodystart="60" bodyend="63"/>
+        <location file="QAccelPlot/src/QAccelPlot/MathUtils.hpp" line="66" column="16" bodyfile="QAccelPlot/src/QAccelPlot/MathUtils.hpp" bodystart="66" bodyend="69"/>
       </memberdef>
       <memberdef kind="function" id="MathUtils_8hpp_1a68c9b795539efc827a6a56ee9abc8045" prot="public" static="no" nodiscard="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type>bool</type>
@@ -339,7 +331,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/MathUtils.hpp" line="74" column="14" bodyfile="QAccelPlot/src/QAccelPlot/MathUtils.hpp" bodystart="74" bodyend="77"/>
+        <location file="QAccelPlot/src/QAccelPlot/MathUtils.hpp" line="80" column="14" bodyfile="QAccelPlot/src/QAccelPlot/MathUtils.hpp" bodystart="80" bodyend="83"/>
       </memberdef>
       <memberdef kind="function" id="CurveRendererParams_8hpp_1a3259b2558bbbb60bb5e2994cba4d0b12" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>

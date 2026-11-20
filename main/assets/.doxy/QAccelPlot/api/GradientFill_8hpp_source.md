@@ -23,6 +23,8 @@
 #include <QVector>
 #include <QtQml/qqmlregistration.h>
 
+#include <limits>
+
 namespace QAccelPlot {
 
 class GradientFill : public SeriesEffect {
@@ -33,12 +35,9 @@ class GradientFill : public SeriesEffect {
     Q_PROPERTY(Qt::Orientation direction READ direction WRITE setDirection NOTIFY directionChanged)
     Q_PROPERTY(QObject* gradient READ gradient WRITE setGradient NOTIFY gradientChanged)
     Q_PROPERTY(Colormap* colormap READ colormap WRITE setColormap NOTIFY colormapChanged)
-    Q_PROPERTY(GradientValueSource valueMinSource READ valueMinSource WRITE setValueMinSource NOTIFY valueMinSourceChanged)
-    Q_PROPERTY(qreal valueMin READ valueMin WRITE setValueMin NOTIFY valueMinChanged)
-    Q_PROPERTY(GradientValueSource valueMaxSource READ valueMaxSource WRITE setValueMaxSource NOTIFY valueMaxSourceChanged)
-    Q_PROPERTY(qreal valueMax READ valueMax WRITE setValueMax NOTIFY valueMaxChanged)
-    Q_PROPERTY(GradientFillBaseline baseline READ baseline WRITE setBaseline NOTIFY baselineChanged)
-    Q_PROPERTY(qreal baselineValue READ baselineValue WRITE setBaselineValue NOTIFY baselineValueChanged)
+    Q_PROPERTY(qreal valueMin READ valueMin WRITE setValueMin RESET resetValueMin NOTIFY valueMinChanged)
+    Q_PROPERTY(qreal valueMax READ valueMax WRITE setValueMax RESET resetValueMax NOTIFY valueMaxChanged)
+    Q_PROPERTY(qreal baselineValue READ baselineValue WRITE setBaselineValue RESET resetBaselineValue NOTIFY baselineValueChanged)
     Q_PROPERTY(qreal opacity READ opacity WRITE setOpacity NOTIFY opacityChanged)
 
 public:
@@ -53,23 +52,17 @@ public:
     Colormap* colormap() const;
     void setColormap(Colormap* colormap);
 
-    GradientValueSource valueMinSource() const;
-    void setValueMinSource(GradientValueSource source);
-
     qreal valueMin() const;
     void setValueMin(qreal value);
-
-    GradientValueSource valueMaxSource() const;
-    void setValueMaxSource(GradientValueSource source);
+    void resetValueMin();
 
     qreal valueMax() const;
     void setValueMax(qreal value);
-
-    GradientFillBaseline baseline() const;
-    void setBaseline(GradientFillBaseline baseline);
+    void resetValueMax();
 
     qreal baselineValue() const;
     void setBaselineValue(qreal value);
+    void resetBaselineValue();
 
     qreal opacity() const;
     void setOpacity(qreal value);
@@ -82,11 +75,8 @@ signals:
     void directionChanged();
     void gradientChanged();
     void colormapChanged();
-    void valueMinSourceChanged();
     void valueMinChanged();
-    void valueMaxSourceChanged();
     void valueMaxChanged();
-    void baselineChanged();
     void baselineValueChanged();
     void opacityChanged();
 
@@ -104,12 +94,9 @@ private:
     QVector<QMetaObject::Connection> gradientConnections_;
     Colormap* colormap_{nullptr};
     QVector<QMetaObject::Connection> colormapConnections_;
-    GradientValueSource valueMinSource_{GradientValueSource::DataRange};
-    qreal valueMin_{0.0};
-    GradientValueSource valueMaxSource_{GradientValueSource::DataRange};
-    qreal valueMax_{0.0};
-    GradientFillBaseline baseline_{GradientFillBaseline::AxisMinimum};
-    qreal baselineValue_{0.0};
+    qreal valueMin_{std::numeric_limits<qreal>::quiet_NaN()};
+    qreal valueMax_{std::numeric_limits<qreal>::quiet_NaN()};
+    qreal baselineValue_{std::numeric_limits<qreal>::quiet_NaN()};
     qreal opacity_{0.35};
     GradientFillPayload payload_;
 };

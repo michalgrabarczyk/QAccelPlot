@@ -24,6 +24,7 @@
 * `#include <QObject>`
 * `#include <QVector>`
 * `#include <QtQml/qqmlregistration.h>`
+* `#include <limits>`
 
 
 

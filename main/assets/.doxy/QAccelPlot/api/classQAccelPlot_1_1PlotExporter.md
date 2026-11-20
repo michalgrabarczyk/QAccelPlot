@@ -105,6 +105,9 @@ flowchart TB
 |  [**PlotExporter**](classQAccelPlot_1_1PlotExporter.md#function-plotexporter-13) & | [**operator=**](#function-operator_1) ([**PlotExporter**](classQAccelPlot_1_1PlotExporter.md#function-plotexporter-13) &&) = delete<br> |
 |  [**PlotView**](classQAccelPlot_1_1PlotView.md) \* | [**plot**](#function-plot-22) () const<br>_Returns the plot to export._  |
 |  int | [**quality**](#function-quality-22) () const<br>_Returns the encoder quality._  |
+|  void | [**resetDpi**](#function-resetdpi) () <br>_Sets the stored resolution to 0, 96 times the effective scale._  |
+|  void | [**resetQuality**](#function-resetquality) () <br>_Sets the encoder quality to -1, the format's default._  |
+|  void | [**resetScale**](#function-resetscale) () <br>_Sets the scale to 0, the window's device pixel ratio._  |
 |  Q\_INVOKABLE bool | [**save**](#function-save) (const QString & path) <br>_Saves the plot to_ _path_ _in the format its suffix names._ |
 |  qreal | [**scale**](#function-scale-22) () const<br>_Returns the image pixels per logical pixel; 0 means the window's device pixel ratio._  |
 |  void | [**setDpi**](#function-setdpi) (qreal dpi) <br>_Sets the stored resolution; negative and nonfinite values are ignored with a warning._  |
@@ -211,7 +214,7 @@ qreal QAccelPlot::PlotExporter::dpi;
 
 
 
-The default makes documents place the image at its on-screen size. 
+Assign `undefined` to return to 0. The default makes documents place the image at its on-screen size. 
 
 
         
@@ -245,7 +248,7 @@ int QAccelPlot::PlotExporter::quality;
 
 
 
-Lossy formats (JPEG, WebP) trade file size for artifacts. PNG stays lossless and only trades file size for encoding time. Other formats ignore it. 
+Assign `undefined` to return to -1. Lossy formats (JPEG, WebP) trade file size for artifacts. PNG stays lossless and only trades file size for encoding time. Other formats ignore it. 
 
 
         
@@ -264,7 +267,7 @@ qreal QAccelPlot::PlotExporter::scale;
 
 
 
-At a device pixel ratio other than 1, Qt 6.3 and later cannot render every image size, so a side can be a pixel shorter or longer than the plot's size times the scale. 
+Assign `undefined` to return to 0. At a device pixel ratio other than 1, Qt 6.3 and later cannot render every image size, so a side can be a pixel shorter or longer than the plot's size times the scale. 
 
 
         
@@ -582,6 +585,51 @@ PlotView * QAccelPlot::PlotExporter::plot () const
 _Returns the encoder quality._ 
 ```C++
 int QAccelPlot::PlotExporter::quality () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function resetDpi {#function-resetdpi}
+
+_Sets the stored resolution to 0, 96 times the effective scale._ 
+```C++
+void QAccelPlot::PlotExporter::resetDpi () 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function resetQuality {#function-resetquality}
+
+_Sets the encoder quality to -1, the format's default._ 
+```C++
+void QAccelPlot::PlotExporter::resetQuality () 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function resetScale {#function-resetscale}
+
+_Sets the scale to 0, the window's device pixel ratio._ 
+```C++
+void QAccelPlot::PlotExporter::resetScale () 
 ```
 
 

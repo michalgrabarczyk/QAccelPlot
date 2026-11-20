@@ -15,6 +15,7 @@
 #pragma once
 
 #include "QAccelPlot/formatters/TickLabelFormatter.hpp"
+#include "QAccelPlot/internal/ResettableValue.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 
 #include <QColor>
@@ -29,7 +30,7 @@ class AxisTicker : public QObject {
     Q_OBJECT
     QML_ANONYMOUS
     Q_PROPERTY(QColor tickColor READ tickColor WRITE setTickColor NOTIFY tickColorChanged)
-    Q_PROPERTY(QColor tickLabelColor READ tickLabelColor WRITE setTickLabelColor NOTIFY tickLabelColorChanged)
+    Q_PROPERTY(QColor tickLabelColor READ tickLabelColor WRITE setTickLabelColor RESET resetTickLabelColor NOTIFY tickLabelColorChanged)
     Q_PROPERTY(int tickCount READ tickCount WRITE setTickCount NOTIFY tickCountChanged)
     Q_PROPERTY(int subtickCount READ subtickCount WRITE setSubtickCount NOTIFY subtickCountChanged)
     Q_PROPERTY(qreal tickLength READ tickLength WRITE setTickLength NOTIFY tickLengthChanged)
@@ -44,7 +45,8 @@ class AxisTicker : public QObject {
     Q_PROPERTY(qreal tickLabelPadding READ tickLabelPadding WRITE setTickLabelPadding NOTIFY tickLabelPaddingChanged)
     Q_PROPERTY(qreal tickLabelRotation READ tickLabelRotation WRITE setTickLabelRotation NOTIFY tickLabelRotationChanged)
     Q_PROPERTY(QFont tickLabelFont READ tickLabelFont WRITE setTickLabelFont NOTIFY tickLabelFontChanged)
-    Q_PROPERTY(TickLabelFormatter* tickLabelFormatter READ tickLabelFormatter WRITE setTickLabelFormatter NOTIFY tickLabelFormatterChanged)
+    Q_PROPERTY(TickLabelFormatter* tickLabelFormatter READ tickLabelFormatter WRITE setTickLabelFormatter RESET resetTickLabelFormatter NOTIFY
+            tickLabelFormatterChanged)
 
 public:
     explicit AxisTicker(QObject* parent = nullptr);
@@ -54,6 +56,7 @@ public:
 
     QColor tickLabelColor() const;
     void setTickLabelColor(const QColor& c);
+    void resetTickLabelColor();
 
     int tickCount() const;
     void setTickCount(int count);
@@ -99,6 +102,7 @@ public:
 
     TickLabelFormatter* tickLabelFormatter() const;
     void setTickLabelFormatter(TickLabelFormatter* formatter);
+    void resetTickLabelFormatter();
 
 signals:
     void tickColorChanged();
@@ -122,7 +126,7 @@ signals:
 
 private:
     QColor tickColor_{ColorPalette::dark().tick};
-    QColor tickLabelColor_;
+    Internal::ResettableValue<QColor> tickLabelColor_{tickColor_};
     int tickCount_{5};
     int subtickCount_{10};
     qreal tickLengthIn_{8.0};

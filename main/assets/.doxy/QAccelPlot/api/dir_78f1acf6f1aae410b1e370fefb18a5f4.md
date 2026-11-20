@@ -35,6 +35,7 @@
 | file | [**OutlinedRectangle.hpp**](OutlinedRectangle_8hpp.md) <br> |
 | file | [**PointerTracker.hpp**](PointerTracker_8hpp.md) <br> |
 | file | [**RectangleZoomOverlay.hpp**](RectangleZoomOverlay_8hpp.md) <br> |
+| file | [**ResettableValue.hpp**](ResettableValue_8hpp.md) <br> |
 
 
 

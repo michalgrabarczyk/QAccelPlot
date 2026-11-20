@@ -2043,6 +2043,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#function-resetxaxis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function resetXAxis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-resetyaxis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function resetYAxis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-select" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2365,7 +2387,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">property <a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> *</td>
-<td style="text-align: left;"><a href="./#property-xaxis-12"><strong>xAxis</strong></a>  <br><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>the X limits refer to; unset uses the plot's primary X axis.</em></td>
+<td style="text-align: left;"><a href="./#property-xaxis-12"><strong>xAxis</strong></a>  <br><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>the X limits refer to. Default: the plot's primary X axis. Assign</em><code>undefined</code> <em>to return to it.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property qreal</td>
@@ -2377,7 +2399,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">property <a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> *</td>
-<td style="text-align: left;"><a href="./#property-yaxis-12"><strong>yAxis</strong></a>  <br><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>the Y limits refer to; unset uses the plot's primary Y axis.</em></td>
+<td style="text-align: left;"><a href="./#property-yaxis-12"><strong>yAxis</strong></a>  <br><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>the Y limits refer to. Default: the plot's primary Y axis. Assign</em><code>undefined</code> <em>to return to it.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property qreal</td>
@@ -2520,6 +2542,14 @@
 <tr>
 <td style="text-align: right;"><a href="../classQAccelPlot_1_1PlotView/"><strong>PlotView</strong></a> *</td>
 <td style="text-align: left;"><a href="#function-plot-22"><strong>plot</strong></a> () const<br><em>Returns the attached plot.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-resetxaxis"><strong>resetXAxis</strong></a> () <br><em>Makes the X limits refer to the plot's primary X axis again.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-resetyaxis"><strong>resetYAxis</strong></a> () <br><em>Makes the Y limits refer to the plot's primary Y axis again.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">Q_INVOKABLE bool</td>
@@ -2694,7 +2724,7 @@
 <hr>
 
 <h3 id="property-xaxis-12">property xAxis<a class="headerlink" href="#property-xaxis-12" title="Permanent link">&para;</a></h3>
-<p><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>the X limits refer to; unset uses the plot's primary X axis.</em>
+<p><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>the X limits refer to. Default: the plot's primary X axis. Assign</em><code>undefined</code> <em>to return to it.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">Axis</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">xAxis</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
@@ -2712,7 +2742,7 @@
 <hr>
 
 <h3 id="property-yaxis-12">property yAxis<a class="headerlink" href="#property-yaxis-12" title="Permanent link">&para;</a></h3>
-<p><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>the Y limits refer to; unset uses the plot's primary Y axis.</em>
+<p><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>the Y limits refer to. Default: the plot's primary Y axis. Assign</em><code>undefined</code> <em>to return to it.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">Axis</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">yAxis</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
@@ -2904,142 +2934,154 @@
 </code></pre></div></p>
 <hr>
 
+<h3 id="function-resetxaxis">function resetXAxis<a class="headerlink" href="#function-resetxaxis" title="Permanent link">&para;</a></h3>
+<p><em>Makes the X limits refer to the plot's primary X axis again.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">resetXAxis</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-resetyaxis">function resetYAxis<a class="headerlink" href="#function-resetyaxis" title="Permanent link">&para;</a></h3>
+<p><em>Makes the Y limits refer to the plot's primary Y axis again.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">resetYAxis</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="function-select">function select<a class="headerlink" href="#function-select" title="Permanent link">&para;</a></h3>
 <p><em>Selects the region with the given limits; returns false when a limit is NaN.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">select</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">xMin</span><span class="p">,</span>
-<a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">xMax</span><span class="p">,</span>
-<a id="__codelineno-48-4" name="__codelineno-48-4" href="#__codelineno-48-4"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">yMin</span><span class="p">,</span>
-<a id="__codelineno-48-5" name="__codelineno-48-5" href="#__codelineno-48-5"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">yMax</span>
-<a id="__codelineno-48-6" name="__codelineno-48-6" href="#__codelineno-48-6"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">select</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">xMin</span><span class="p">,</span>
+<a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">xMax</span><span class="p">,</span>
+<a id="__codelineno-50-4" name="__codelineno-50-4" href="#__codelineno-50-4"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">yMin</span><span class="p">,</span>
+<a id="__codelineno-50-5" name="__codelineno-50-5" href="#__codelineno-50-5"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">yMax</span>
+<a id="__codelineno-50-6" name="__codelineno-50-6" href="#__codelineno-50-6"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-selecting-22">function selecting<a class="headerlink" href="#function-selecting-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns true while a gesture is in progress.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">selecting</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">selecting</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-selectionrect-22">function selectionRect<a class="headerlink" href="#function-selectionrect-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the gesture or selected region in the plot's coordinates, in logical pixels.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="n">QRectF</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">selectionRect</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="n">QRectF</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">selectionRect</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setbutton">function setButton<a class="headerlink" href="#function-setbutton" title="Permanent link">&para;</a></h3>
 <p><em>Sets the mouse button that starts a gesture.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setButton</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a><span class="w">    </span><span class="n">Qt</span><span class="o">::</span><span class="n">MouseButton</span><span class="w"> </span><span class="n">button</span>
-<a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setButton</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a><span class="w">    </span><span class="n">Qt</span><span class="o">::</span><span class="n">MouseButton</span><span class="w"> </span><span class="n">button</span>
+<a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setenabled">function setEnabled<a class="headerlink" href="#function-setenabled" title="Permanent link">&para;</a></h3>
 <p><em>Enables or disables gestures.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setEnabled</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">enabled</span>
-<a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setEnabled</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">enabled</span>
+<a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setfillcolor">function setFillColor<a class="headerlink" href="#function-setfillcolor" title="Permanent link">&para;</a></h3>
 <p><em>Sets the rectangle's fill color.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setFillColor</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">color</span>
-<a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setFillColor</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">color</span>
+<a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setminimumsize">function setMinimumSize<a class="headerlink" href="#function-setminimumsize" title="Permanent link">&para;</a></h3>
 <p><em>Sets the smallest selecting gesture, clamping negative values to zero and ignoring nonfinite values.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setMinimumSize</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">size</span>
-<a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setMinimumSize</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">size</span>
+<a id="__codelineno-56-3" name="__codelineno-56-3" href="#__codelineno-56-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setmode">function setMode<a class="headerlink" href="#function-setmode" title="Permanent link">&para;</a></h3>
 <p><em>Sets the region a gesture selects and cancels a gesture in progress.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setMode</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a><span class="w">    </span><span class="n">Mode</span><span class="w"> </span><span class="n">mode</span>
-<a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setMode</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a><span class="w">    </span><span class="n">Mode</span><span class="w"> </span><span class="n">mode</span>
+<a id="__codelineno-57-3" name="__codelineno-57-3" href="#__codelineno-57-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setmodifiers">function setModifiers<a class="headerlink" href="#function-setmodifiers" title="Permanent link">&para;</a></h3>
 <p><em>Sets the exact keyboard modifiers required at press time.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setModifiers</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a><span class="w">    </span><span class="n">Qt</span><span class="o">::</span><span class="n">KeyboardModifiers</span><span class="w"> </span><span class="n">modifiers</span>
-<a id="__codelineno-56-3" name="__codelineno-56-3" href="#__codelineno-56-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setModifiers</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a><span class="w">    </span><span class="n">Qt</span><span class="o">::</span><span class="n">KeyboardModifiers</span><span class="w"> </span><span class="n">modifiers</span>
+<a id="__codelineno-58-3" name="__codelineno-58-3" href="#__codelineno-58-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setplot">function setPlot<a class="headerlink" href="#function-setplot" title="Permanent link">&para;</a></h3>
 <p><em>Attaches to</em> <em>plot</em> <em>and clears the selection.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setPlot</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a><span class="w">    </span><span class="n">PlotView</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">plot</span>
-<a id="__codelineno-57-3" name="__codelineno-57-3" href="#__codelineno-57-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setPlot</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a><span class="w">    </span><span class="n">PlotView</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">plot</span>
+<a id="__codelineno-59-3" name="__codelineno-59-3" href="#__codelineno-59-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setvisible">function setVisible<a class="headerlink" href="#function-setvisible" title="Permanent link">&para;</a></h3>
 <p><em>Shows or hides the tool's drawing without affecting gestures or the selection.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setVisible</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">visible</span>
-<a id="__codelineno-58-3" name="__codelineno-58-3" href="#__codelineno-58-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setVisible</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">visible</span>
+<a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setxaxis">function setXAxis<a class="headerlink" href="#function-setxaxis" title="Permanent link">&para;</a></h3>
 <p><em>Sets the X axis and clears the selection; null uses the plot's primary X axis.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setXAxis</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a><span class="w">    </span><span class="n">Axis</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">axis</span>
-<a id="__codelineno-59-3" name="__codelineno-59-3" href="#__codelineno-59-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setXAxis</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a><span class="w">    </span><span class="n">Axis</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">axis</span>
+<a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setyaxis">function setYAxis<a class="headerlink" href="#function-setyaxis" title="Permanent link">&para;</a></h3>
 <p><em>Sets the Y axis and clears the selection; null uses the plot's primary Y axis.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setYAxis</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a><span class="w">    </span><span class="n">Axis</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">axis</span>
-<a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setYAxis</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a><span class="w">    </span><span class="n">Axis</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">axis</span>
+<a id="__codelineno-62-3" name="__codelineno-62-3" href="#__codelineno-62-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-xaxis-22">function xAxis<a class="headerlink" href="#function-xaxis-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the axis the X limits refer to.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="n">Axis</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">xAxis</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a><span class="n">Axis</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">xAxis</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-xmax-22">function xMax<a class="headerlink" href="#function-xmax-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the upper X limit of the selection.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">xMax</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">xMax</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-xmin-22">function xMin<a class="headerlink" href="#function-xmin-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the lower X limit of the selection.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">xMin</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">xMin</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-yaxis-22">function yAxis<a class="headerlink" href="#function-yaxis-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the axis the Y limits refer to.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a><span class="n">Axis</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">yAxis</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a><span class="n">Axis</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">yAxis</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-ymax-22">function yMax<a class="headerlink" href="#function-ymax-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the upper Y limit of the selection.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">yMax</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">yMax</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-ymin-22">function yMin<a class="headerlink" href="#function-ymin-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the lower Y limit of the selection.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">yMin</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">yMin</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 

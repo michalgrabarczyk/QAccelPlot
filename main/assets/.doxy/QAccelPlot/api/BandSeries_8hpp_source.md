@@ -106,7 +106,6 @@ private:
     // Returns the band at x as drawn from the first dataPointCount data points.
     std::optional<Span> spanAt(qreal x, int dataPointCount) const;
     bool edgesVisible() const;
-    QColor edgeColor() const;
     // Re-tests the last hover position after the data or the axes moved under the cursor.
     void refreshHovered();
     // Follows edits of the current edge line style, such as a new dash pattern.

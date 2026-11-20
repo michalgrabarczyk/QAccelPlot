@@ -1597,6 +1597,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#function-resetcolor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function resetColor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-setcolor" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1687,7 +1698,7 @@
 <tbody>
 <tr>
 <td style="text-align: right;">property QColor</td>
-<td style="text-align: left;"><a href="./#property-color-12"><strong>color</strong></a>  <br><em>Fill color. Default: an invalid color, which uses the series</em> <code>color</code> <em>.</em></td>
+<td style="text-align: left;"><a href="./#property-color-12"><strong>color</strong></a>  <br><em>Fill color. Unset by default: each series that lists the category uses its own</em> <code>color</code> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property QString</td>
@@ -1741,11 +1752,15 @@
 </tr>
 <tr>
 <td style="text-align: right;">QColor</td>
-<td style="text-align: left;"><a href="#function-color-22"><strong>color</strong></a> () const<br><em>Returns the fill color.</em></td>
+<td style="text-align: left;"><a href="#function-color-22"><strong>color</strong></a> () const<br><em>Returns the fill color, or an invalid color when the series</em> <code>color</code> <em>applies.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">QString</td>
 <td style="text-align: left;"><a href="#function-name-22"><strong>name</strong></a> () const<br><em>Returns the name.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-resetcolor"><strong>resetColor</strong></a> () <br><em>Unsets the fill color, so the series</em> <code>color</code> <em>applies again.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -1777,9 +1792,10 @@
 <p><strong>See also:</strong> <a href="../classQAccelPlot_1_1BarSeries/#property-categories-12"><strong>BarSeries::categories</strong></a>, <a href="../classQAccelPlot_1_1RectangleSeries/#property-categories-12"><strong>RectangleSeries::categories</strong></a> </p>
 <h2 id="public-properties-documentation">Public Properties Documentation<a class="headerlink" href="#public-properties-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="property-color-12">property color<a class="headerlink" href="#property-color-12" title="Permanent link">&para;</a></h3>
-<p><em>Fill color. Default: an invalid color, which uses the series</em> <code>color</code> <em>.</em>
+<p><em>Fill color. Unset by default: each series that lists the category uses its own</em> <code>color</code> <em>.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Category</span><span class="o">::</span><span class="n">color</span><span class="p">;</span>
 </code></pre></div></p>
+<p>Reads an invalid color while unset; assign <code>undefined</code> to unset it. </p>
 <hr>
 
 <h3 id="property-name-12">property name<a class="headerlink" href="#property-name-12" title="Permanent link">&para;</a></h3>
@@ -1832,7 +1848,7 @@
 <hr>
 
 <h3 id="function-color-22">function color<a class="headerlink" href="#function-color-22" title="Permanent link">&para;</a></h3>
-<p><em>Returns the fill color.</em> 
+<p><em>Returns the fill color, or an invalid color when the series</em> <code>color</code> <em>applies.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Category</span><span class="o">::</span><span class="n">color</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
@@ -1843,33 +1859,39 @@
 </code></pre></div></p>
 <hr>
 
+<h3 id="function-resetcolor">function resetColor<a class="headerlink" href="#function-resetcolor" title="Permanent link">&para;</a></h3>
+<p><em>Unsets the fill color, so the series</em> <code>color</code> <em>applies again.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Category</span><span class="o">::</span><span class="n">resetColor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="function-setcolor">function setColor<a class="headerlink" href="#function-setcolor" title="Permanent link">&para;</a></h3>
 <p><em>Sets the fill color to</em> <em>color</em> <em>. An invalid color uses the series</em><code>color</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Category</span><span class="o">::</span><span class="n">setColor</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">color</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Category</span><span class="o">::</span><span class="n">setColor</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">color</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setname">function setName<a class="headerlink" href="#function-setname" title="Permanent link">&para;</a></h3>
 <p><em>Sets the name to</em> <em>name</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Category</span><span class="o">::</span><span class="n">setName</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">name</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Category</span><span class="o">::</span><span class="n">setName</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">name</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setvalue">function setValue<a class="headerlink" href="#function-setvalue" title="Permanent link">&para;</a></h3>
 <p><em>Sets the value data points carry to</em> <em>value</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Category</span><span class="o">::</span><span class="n">setValue</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">value</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Category</span><span class="o">::</span><span class="n">setValue</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">value</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-value-22">function value<a class="headerlink" href="#function-value-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the value data points carry.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Category</span><span class="o">::</span><span class="n">value</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Category</span><span class="o">::</span><span class="n">value</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 

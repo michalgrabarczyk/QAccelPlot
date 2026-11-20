@@ -110,11 +110,11 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | ---: | :--- |
 | property int | [**columns**](classQAccelPlot_1_1HeatmapSeries.md#property-columns-12)  <br>_Number of cells per row. Changing it keeps the values and recomputes_ `rows` _. Default: 0._ |
 | property int | [**rows**](classQAccelPlot_1_1HeatmapSeries.md#property-rows-12)  <br>_Read-only: number of complete rows of_ `columns` _values._ |
-| property qreal | [**xMax**](classQAccelPlot_1_1HeatmapSeries.md#property-xmax-12)  <br>_Right edge of the last column in data coordinates. Unset (NaN) means_ `columns` _. Default: unset._ |
-| property qreal | [**xMin**](classQAccelPlot_1_1HeatmapSeries.md#property-xmin-12)  <br>_Left edge of column 0 in data coordinates. Unset (NaN) means 0. Default: unset._  |
+| property qreal | [**xMax**](classQAccelPlot_1_1HeatmapSeries.md#property-xmax-12)  <br>_Right edge of the last column in data coordinates. Default:_ `columns` _. Assign_`undefined` _to return to it._ |
+| property qreal | [**xMin**](classQAccelPlot_1_1HeatmapSeries.md#property-xmin-12)  <br>_Left edge of column 0 in data coordinates. Default: 0. Assign_ `undefined` _to return to it._ |
 | property [**Spacing**](classQAccelPlot_1_1HeatmapSeries.md#enum-spacing) | [**xSpacing**](classQAccelPlot_1_1HeatmapSeries.md#property-xspacing-12)  <br>_How the columns are spaced between_ `xMin` _and_`xMax` _. Default:_`Linear` _._ |
-| property qreal | [**yMax**](classQAccelPlot_1_1HeatmapSeries.md#property-ymax-12)  <br>_Top edge of the last row in data coordinates. Unset (NaN) means_ `rows` _. Default: unset._ |
-| property qreal | [**yMin**](classQAccelPlot_1_1HeatmapSeries.md#property-ymin-12)  <br>_Bottom edge of row 0 in data coordinates. Unset (NaN) means 0. Default: unset._  |
+| property qreal | [**yMax**](classQAccelPlot_1_1HeatmapSeries.md#property-ymax-12)  <br>_Top edge of the last row in data coordinates. Default:_ `rows` _. Assign_`undefined` _to return to it._ |
+| property qreal | [**yMin**](classQAccelPlot_1_1HeatmapSeries.md#property-ymin-12)  <br>_Bottom edge of row 0 in data coordinates. Default: 0. Assign_ `undefined` _to return to it._ |
 | property [**Spacing**](classQAccelPlot_1_1HeatmapSeries.md#enum-spacing) | [**ySpacing**](classQAccelPlot_1_1HeatmapSeries.md#property-yspacing-12)  <br>_How the rows are spaced between_ `yMin` _and_`yMax` _. Default:_`Linear` _._ |
 
 
@@ -213,22 +213,26 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  int | [**columns**](#function-columns-22) () const<br>_Returns the number of cells per row._  |
 | virtual int | [**count**](#function-count) () override const<br>_Returns the number of cells,_ `columns` _×_`rows` _._ |
 |  void | [**postValues**](#function-postvalues) (std::vector&lt; float &gt; && values, int columns, int rows) <br>_Thread-safe: queues_ `setValues` _(__values_ _,__columns_ _,__rows_ _) to the item's thread._ |
+|  void | [**resetXMax**](#function-resetxmax) () <br>_Restores the default right grid edge,_ `columns` _._ |
+|  void | [**resetXMin**](#function-resetxmin) () <br>_Restores the default left grid edge, 0._  |
+|  void | [**resetYMax**](#function-resetymax) () <br>_Restores the default top grid edge,_ `rows` _._ |
+|  void | [**resetYMin**](#function-resetymin) () <br>_Restores the default bottom grid edge, 0._  |
 |  int | [**rows**](#function-rows-22) () const<br>_Returns the number of complete rows._  |
 |  void | [**setColumns**](#function-setcolumns) (int columns) <br>_Sets the number of cells per row to_ _columns_ _. Negative values are clamped to 0._ |
 |  Q\_INVOKABLE void | [**setValues**](#function-setvalues-12) (const QList&lt; qreal &gt; & values, int columns) <br>_Replaces the grid with_ _values_ _, row by row,__columns_ _per row._ |
 |  void | [**setValues**](#function-setvalues-22) (std::vector&lt; float &gt; && values, int columns, int rows) <br>_Replaces the grid with_ _columns_ _by__rows_ _values moved from__values_ _, row by row._ |
-|  void | [**setXMax**](#function-setxmax) (qreal value) <br>_Sets the right grid edge to_ _value_ _. NaN unsets it._ |
-|  void | [**setXMin**](#function-setxmin) (qreal value) <br>_Sets the left grid edge to_ _value_ _. NaN unsets it._ |
+|  void | [**setXMax**](#function-setxmax) (qreal value) <br>_Sets the right grid edge to_ _value_ _. NaN restores the default._ |
+|  void | [**setXMin**](#function-setxmin) (qreal value) <br>_Sets the left grid edge to_ _value_ _. NaN restores the default._ |
 |  void | [**setXSpacing**](#function-setxspacing) ([**Spacing**](classQAccelPlot_1_1HeatmapSeries.md#enum-spacing) spacing) <br>_Sets how the columns are spaced to_ _spacing_ _._ |
-|  void | [**setYMax**](#function-setymax) (qreal value) <br>_Sets the top grid edge to_ _value_ _. NaN unsets it._ |
-|  void | [**setYMin**](#function-setymin) (qreal value) <br>_Sets the bottom grid edge to_ _value_ _. NaN unsets it._ |
+|  void | [**setYMax**](#function-setymax) (qreal value) <br>_Sets the top grid edge to_ _value_ _. NaN restores the default._ |
+|  void | [**setYMin**](#function-setymin) (qreal value) <br>_Sets the bottom grid edge to_ _value_ _. NaN restores the default._ |
 |  void | [**setYSpacing**](#function-setyspacing) ([**Spacing**](classQAccelPlot_1_1HeatmapSeries.md#enum-spacing) spacing) <br>_Sets how the rows are spaced to_ _spacing_ _._ |
 |  Q\_INVOKABLE qreal | [**valueAt**](#function-valueat) (int row, int column) const<br>_Returns the value of the cell at_ _row_ _and__column_ _, or NaN when it is outside the grid._ |
-|  qreal | [**xMax**](#function-xmax-22) () const<br>_Returns the right grid edge, or NaN when unset._  |
-|  qreal | [**xMin**](#function-xmin-22) () const<br>_Returns the left grid edge, or NaN when unset._  |
+|  qreal | [**xMax**](#function-xmax-22) () const<br>_Returns the right grid edge in effect._  |
+|  qreal | [**xMin**](#function-xmin-22) () const<br>_Returns the left grid edge in effect._  |
 |  [**Spacing**](classQAccelPlot_1_1HeatmapSeries.md#enum-spacing) | [**xSpacing**](#function-xspacing-22) () const<br>_Returns how the columns are spaced._  |
-|  qreal | [**yMax**](#function-ymax-22) () const<br>_Returns the top grid edge, or NaN when unset._  |
-|  qreal | [**yMin**](#function-ymin-22) () const<br>_Returns the bottom grid edge, or NaN when unset._  |
+|  qreal | [**yMax**](#function-ymax-22) () const<br>_Returns the top grid edge in effect._  |
+|  qreal | [**yMin**](#function-ymin-22) () const<br>_Returns the bottom grid edge in effect._  |
 |  [**Spacing**](classQAccelPlot_1_1HeatmapSeries.md#enum-spacing) | [**ySpacing**](#function-yspacing-22) () const<br>_Returns how the rows are spaced._  |
 
 
@@ -582,7 +586,7 @@ int QAccelPlot::HeatmapSeries::rows;
 
 ### property xMax {#property-xmax-12}
 
-_Right edge of the last column in data coordinates. Unset (NaN) means_ `columns` _. Default: unset._
+_Right edge of the last column in data coordinates. Default:_ `columns` _. Assign_`undefined` _to return to it._
 ```C++
 qreal QAccelPlot::HeatmapSeries::xMax;
 ```
@@ -597,7 +601,7 @@ qreal QAccelPlot::HeatmapSeries::xMax;
 
 ### property xMin {#property-xmin-12}
 
-_Left edge of column 0 in data coordinates. Unset (NaN) means 0. Default: unset._ 
+_Left edge of column 0 in data coordinates. Default: 0. Assign_ `undefined` _to return to it._
 ```C++
 qreal QAccelPlot::HeatmapSeries::xMin;
 ```
@@ -627,7 +631,7 @@ Spacing QAccelPlot::HeatmapSeries::xSpacing;
 
 ### property yMax {#property-ymax-12}
 
-_Top edge of the last row in data coordinates. Unset (NaN) means_ `rows` _. Default: unset._
+_Top edge of the last row in data coordinates. Default:_ `rows` _. Assign_`undefined` _to return to it._
 ```C++
 qreal QAccelPlot::HeatmapSeries::yMax;
 ```
@@ -642,7 +646,7 @@ qreal QAccelPlot::HeatmapSeries::yMax;
 
 ### property yMin {#property-ymin-12}
 
-_Bottom edge of row 0 in data coordinates. Unset (NaN) means 0. Default: unset._ 
+_Bottom edge of row 0 in data coordinates. Default: 0. Assign_ `undefined` _to return to it._
 ```C++
 qreal QAccelPlot::HeatmapSeries::yMin;
 ```
@@ -879,6 +883,66 @@ void QAccelPlot::HeatmapSeries::postValues (
 
 
 
+### function resetXMax {#function-resetxmax}
+
+_Restores the default right grid edge,_ `columns` _._
+```C++
+void QAccelPlot::HeatmapSeries::resetXMax () 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function resetXMin {#function-resetxmin}
+
+_Restores the default left grid edge, 0._ 
+```C++
+void QAccelPlot::HeatmapSeries::resetXMin () 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function resetYMax {#function-resetymax}
+
+_Restores the default top grid edge,_ `rows` _._
+```C++
+void QAccelPlot::HeatmapSeries::resetYMax () 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function resetYMin {#function-resetymin}
+
+_Restores the default bottom grid edge, 0._ 
+```C++
+void QAccelPlot::HeatmapSeries::resetYMin () 
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function rows {#function-rows-22}
 
 _Returns the number of complete rows._ 
@@ -954,7 +1018,7 @@ void QAccelPlot::HeatmapSeries::setValues (
 
 ### function setXMax {#function-setxmax}
 
-_Sets the right grid edge to_ _value_ _. NaN unsets it._
+_Sets the right grid edge to_ _value_ _. NaN restores the default._
 ```C++
 void QAccelPlot::HeatmapSeries::setXMax (
     qreal value
@@ -971,7 +1035,7 @@ void QAccelPlot::HeatmapSeries::setXMax (
 
 ### function setXMin {#function-setxmin}
 
-_Sets the left grid edge to_ _value_ _. NaN unsets it._
+_Sets the left grid edge to_ _value_ _. NaN restores the default._
 ```C++
 void QAccelPlot::HeatmapSeries::setXMin (
     qreal value
@@ -1005,7 +1069,7 @@ void QAccelPlot::HeatmapSeries::setXSpacing (
 
 ### function setYMax {#function-setymax}
 
-_Sets the top grid edge to_ _value_ _. NaN unsets it._
+_Sets the top grid edge to_ _value_ _. NaN restores the default._
 ```C++
 void QAccelPlot::HeatmapSeries::setYMax (
     qreal value
@@ -1022,7 +1086,7 @@ void QAccelPlot::HeatmapSeries::setYMax (
 
 ### function setYMin {#function-setymin}
 
-_Sets the bottom grid edge to_ _value_ _. NaN unsets it._
+_Sets the bottom grid edge to_ _value_ _. NaN restores the default._
 ```C++
 void QAccelPlot::HeatmapSeries::setYMin (
     qreal value
@@ -1074,7 +1138,7 @@ Q_INVOKABLE qreal QAccelPlot::HeatmapSeries::valueAt (
 
 ### function xMax {#function-xmax-22}
 
-_Returns the right grid edge, or NaN when unset._ 
+_Returns the right grid edge in effect._ 
 ```C++
 qreal QAccelPlot::HeatmapSeries::xMax () const
 ```
@@ -1089,7 +1153,7 @@ qreal QAccelPlot::HeatmapSeries::xMax () const
 
 ### function xMin {#function-xmin-22}
 
-_Returns the left grid edge, or NaN when unset._ 
+_Returns the left grid edge in effect._ 
 ```C++
 qreal QAccelPlot::HeatmapSeries::xMin () const
 ```
@@ -1119,7 +1183,7 @@ Spacing QAccelPlot::HeatmapSeries::xSpacing () const
 
 ### function yMax {#function-ymax-22}
 
-_Returns the top grid edge, or NaN when unset._ 
+_Returns the top grid edge in effect._ 
 ```C++
 qreal QAccelPlot::HeatmapSeries::yMax () const
 ```
@@ -1134,7 +1198,7 @@ qreal QAccelPlot::HeatmapSeries::yMax () const
 
 ### function yMin {#function-ymin-22}
 
-_Returns the bottom grid edge, or NaN when unset._ 
+_Returns the bottom grid edge in effect._ 
 ```C++
 qreal QAccelPlot::HeatmapSeries::yMin () const
 ```

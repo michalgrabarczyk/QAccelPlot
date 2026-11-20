@@ -1807,7 +1807,7 @@
 <tbody>
 <tr>
 <td style="text-align: right;">property QColor</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#property-color-12"><strong>color</strong></a>  <br><em>Title color. Default:</em> <code>Colors.dark.axisLine</code> <em>on a</em><a href="../classQAccelPlot_1_1ColorBar/"><em><strong>ColorBar</strong></em></a> <em>; on an</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>, an invalid color that follows</em><code>baselineColor</code> <em>.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#property-color-12"><strong>color</strong></a>  <br><em>Title color. Default:</em> <code>Colors.dark.axisLine</code> <em>on a</em><a href="../classQAccelPlot_1_1ColorBar/"><em><strong>ColorBar</strong></em></a> <em>, the axis</em><code>baselineColor</code> <em>on an</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>. Assign</em><code>undefined</code> <em>to return to it.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property QFont</td>
@@ -1949,7 +1949,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">QColor</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#function-color-22"><strong>color</strong></a> () const<br><em>Returns the title color.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#function-color-22"><strong>color</strong></a> () const<br><em>Returns the title color in effect.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">QFont</td>
@@ -1961,7 +1961,15 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#function-setcolor"><strong>setColor</strong></a> (const QColor &amp; color) <br><em>Sets the title color to</em> <em>color</em> <em>.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#function-resetcolor"><strong>resetColor</strong></a> () <br><em>Restores the default title color.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#function-setcolor"><strong>setColor</strong></a> (const QColor &amp; color) <br><em>Sets the title color to</em> <em>color</em> <em>. An invalid color restores the default.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TextLabel/#function-setdefaultcolor"><strong>setDefaultColor</strong></a> (const QColor &amp; color) <br><em>Sets the color used while none is set to</em> <em>color</em> <em>. Called by the owning</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>or</em><a href="../classQAccelPlot_1_1ColorBar/"><em><strong>ColorBar</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>

@@ -83,10 +83,8 @@ flowchart TB
 | property [**Colormap**](classQAccelPlot_1_1Colormap.md) \* | [**colormap**](classQAccelPlot_1_1GradientStroke.md#property-colormap-12)  <br>[_**Colormap**_](classQAccelPlot_1_1Colormap.md) _supplying the color stops. Overrides_`gradient` _when set._ |
 | property Qt::Orientation | [**direction**](classQAccelPlot_1_1GradientStroke.md#property-direction-12)  <br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _along which the gradient color varies:_`Qt.Horizontal` _for X values,_`Qt.Vertical` _for Y values. Default:_`Qt.Horizontal` _._ |
 | property QObject \* | [**gradient**](classQAccelPlot_1_1GradientStroke.md#property-gradient-12)  <br>_A Qt_ `Gradient` _(or compatible) object supplying the color stops._ |
-| property qreal | [**valueMax**](classQAccelPlot_1_1GradientStroke.md#property-valuemax-12)  <br>_Data-space value that maps to gradient position 1.0. Only used when valueMaxSource is Fixed._  |
-| property [**GradientValueSource**](namespaceQAccelPlot_1_1GradientValueSourceNS.md#enum-source) | [**valueMaxSource**](classQAccelPlot_1_1GradientStroke.md#property-valuemaxsource-12)  <br>_How the gradient normalization maximum is determined; see_ `GradientValueSource` _._ |
-| property qreal | [**valueMin**](classQAccelPlot_1_1GradientStroke.md#property-valuemin-12)  <br>_Data-space value that maps to gradient position 0.0. Only used when valueMinSource is Fixed._  |
-| property [**GradientValueSource**](namespaceQAccelPlot_1_1GradientValueSourceNS.md#enum-source) | [**valueMinSource**](classQAccelPlot_1_1GradientStroke.md#property-valueminsource-12)  <br>_How the gradient normalization minimum is determined; see_ `GradientValueSource` _._ |
+| property qreal | [**valueMax**](classQAccelPlot_1_1GradientStroke.md#property-valuemax-12)  <br>_Data value at gradient position 1. Unset by default: the largest value of each series along_ `direction` _, or of its axis data range when the series has no valid data point._ |
+| property qreal | [**valueMin**](classQAccelPlot_1_1GradientStroke.md#property-valuemin-12)  <br>_Data value at gradient position 0. Unset by default: the smallest value of each series along_ `direction` _, or of its axis data range when the series has no valid data point._ |
 
 
 ## Public Properties inherited from QAccelPlot::SeriesEffect
@@ -110,9 +108,7 @@ See [QAccelPlot::SeriesEffect](classQAccelPlot_1_1SeriesEffect.md)
 | signal void | [**directionChanged**](classQAccelPlot_1_1GradientStroke.md#signal-directionchanged)  <br>_Emitted when the direction property changes._  |
 | signal void | [**gradientChanged**](classQAccelPlot_1_1GradientStroke.md#signal-gradientchanged)  <br>_Emitted when the gradient property changes._  |
 | signal void | [**valueMaxChanged**](classQAccelPlot_1_1GradientStroke.md#signal-valuemaxchanged)  <br>_Emitted when the valueMax property changes._  |
-| signal void | [**valueMaxSourceChanged**](classQAccelPlot_1_1GradientStroke.md#signal-valuemaxsourcechanged)  <br>_Emitted when the valueMaxSource property changes._  |
 | signal void | [**valueMinChanged**](classQAccelPlot_1_1GradientStroke.md#signal-valueminchanged)  <br>_Emitted when the valueMin property changes._  |
-| signal void | [**valueMinSourceChanged**](classQAccelPlot_1_1GradientStroke.md#signal-valueminsourcechanged)  <br>_Emitted when the valueMinSource property changes._  |
 
 
 ## Public Signals inherited from QAccelPlot::SeriesEffect
@@ -139,17 +135,15 @@ See [QAccelPlot::SeriesEffect](classQAccelPlot_1_1SeriesEffect.md)
 |  QObject \* | [**gradient**](#function-gradient-22) () const<br>_Returns the Qt Gradient object supplying color stops._  |
 |  const [**GradientColorPayload**](structQAccelPlot_1_1GradientColorPayload.md) & | [**payload**](#function-payload) () const<br>_Returns a snapshot of all stroke parameters, updated on the GUI thread when the effect changes._  |
 | virtual void | [**refresh**](#function-refresh) () override<br>_Re-reads the_ `gradient` _stops, which can change without a notification, and emits_`effectChanged()` _if they differ from the snapshot._ |
+|  void | [**resetValueMax**](#function-resetvaluemax) () <br>_Unsets the value at gradient position 1, so each series' data range applies again._  |
+|  void | [**resetValueMin**](#function-resetvaluemin) () <br>_Unsets the value at gradient position 0, so each series' data range applies again._  |
 |  void | [**setColormap**](#function-setcolormap) ([**Colormap**](classQAccelPlot_1_1Colormap.md) \* colormap) <br>_Sets the colormap to_ _colormap_ _. Pass_`nullptr` _to take the stops from_`gradient` _._ |
 |  void | [**setDirection**](#function-setdirection) (Qt::Orientation direction) <br>_Sets the gradient direction to_ _direction_ _._ |
 |  void | [**setGradient**](#function-setgradient) (QObject \* gradient) <br>_Sets the Qt Gradient object to_ _gradient_ _._ |
-|  void | [**setValueMax**](#function-setvaluemax) (qreal value) <br>_Sets the maximum data value for gradient normalization to_ _value_ _._ |
-|  void | [**setValueMaxSource**](#function-setvaluemaxsource) ([**GradientValueSource**](namespaceQAccelPlot_1_1GradientValueSourceNS.md#enum-source) source) <br>_Sets the gradient normalization maximum source to_ _source_ _._ |
-|  void | [**setValueMin**](#function-setvaluemin) (qreal value) <br>_Sets the minimum data value for gradient normalization to_ _value_ _._ |
-|  void | [**setValueMinSource**](#function-setvalueminsource) ([**GradientValueSource**](namespaceQAccelPlot_1_1GradientValueSourceNS.md#enum-source) source) <br>_Sets the gradient normalization minimum source to_ _source_ _._ |
-|  qreal | [**valueMax**](#function-valuemax-22) () const<br>_Returns the maximum data value for gradient normalization._  |
-|  [**GradientValueSource**](namespaceQAccelPlot_1_1GradientValueSourceNS.md#enum-source) | [**valueMaxSource**](#function-valuemaxsource-22) () const<br>_Returns how the gradient normalization maximum is determined._  |
-|  qreal | [**valueMin**](#function-valuemin-22) () const<br>_Returns the minimum data value for gradient normalization._  |
-|  [**GradientValueSource**](namespaceQAccelPlot_1_1GradientValueSourceNS.md#enum-source) | [**valueMinSource**](#function-valueminsource-22) () const<br>_Returns how the gradient normalization minimum is determined._  |
+|  void | [**setValueMax**](#function-setvaluemax) (qreal value) <br>_Sets the data value at gradient position 1 to_ _value_ _. NaN unsets it._ |
+|  void | [**setValueMin**](#function-setvaluemin) (qreal value) <br>_Sets the data value at gradient position 0 to_ _value_ _. NaN unsets it._ |
+|  qreal | [**valueMax**](#function-valuemax-22) () const<br>_Returns the data value at gradient position 1, or NaN when each series' data range applies._  |
+|  qreal | [**valueMin**](#function-valuemin-22) () const<br>_Returns the data value at gradient position 0, or NaN when each series' data range applies._  |
 
 
 ## Public Functions inherited from QAccelPlot::SeriesEffect
@@ -286,28 +280,17 @@ QObject* QAccelPlot::GradientStroke::gradient;
 
 ### property valueMax {#property-valuemax-12}
 
-_Data-space value that maps to gradient position 1.0. Only used when valueMaxSource is Fixed._ 
+_Data value at gradient position 1. Unset by default: the largest value of each series along_ `direction` _, or of its axis data range when the series has no valid data point._
 ```C++
 qreal QAccelPlot::GradientStroke::valueMax;
 ```
 
 
 
-
-<hr>
-
+Reads NaN while unset; assign `undefined` to unset it. 
 
 
-
-### property valueMaxSource {#property-valuemaxsource-12}
-
-_How the gradient normalization maximum is determined; see_ `GradientValueSource` _._
-```C++
-GradientValueSource QAccelPlot::GradientStroke::valueMaxSource;
-```
-
-
-
+        
 
 <hr>
 
@@ -316,28 +299,17 @@ GradientValueSource QAccelPlot::GradientStroke::valueMaxSource;
 
 ### property valueMin {#property-valuemin-12}
 
-_Data-space value that maps to gradient position 0.0. Only used when valueMinSource is Fixed._ 
+_Data value at gradient position 0. Unset by default: the smallest value of each series along_ `direction` _, or of its axis data range when the series has no valid data point._
 ```C++
 qreal QAccelPlot::GradientStroke::valueMin;
 ```
 
 
 
-
-<hr>
-
+Reads NaN while unset; assign `undefined` to unset it. 
 
 
-
-### property valueMinSource {#property-valueminsource-12}
-
-_How the gradient normalization minimum is determined; see_ `GradientValueSource` _._
-```C++
-GradientValueSource QAccelPlot::GradientStroke::valueMinSource;
-```
-
-
-
+        
 
 <hr>
 ## Public Signals Documentation
@@ -406,41 +378,11 @@ void QAccelPlot::GradientStroke::valueMaxChanged;
 
 
 
-### signal valueMaxSourceChanged {#signal-valuemaxsourcechanged}
-
-_Emitted when the valueMaxSource property changes._ 
-```C++
-void QAccelPlot::GradientStroke::valueMaxSourceChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
 ### signal valueMinChanged {#signal-valueminchanged}
 
 _Emitted when the valueMin property changes._ 
 ```C++
 void QAccelPlot::GradientStroke::valueMinChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
-### signal valueMinSourceChanged {#signal-valueminsourcechanged}
-
-_Emitted when the valueMinSource property changes._ 
-```C++
-void QAccelPlot::GradientStroke::valueMinSourceChanged;
 ```
 
 
@@ -551,6 +493,36 @@ Implements [*QAccelPlot::SeriesEffect::refresh*](classQAccelPlot_1_1SeriesEffect
 
 
 
+### function resetValueMax {#function-resetvaluemax}
+
+_Unsets the value at gradient position 1, so each series' data range applies again._ 
+```C++
+void QAccelPlot::GradientStroke::resetValueMax () 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function resetValueMin {#function-resetvaluemin}
+
+_Unsets the value at gradient position 0, so each series' data range applies again._ 
+```C++
+void QAccelPlot::GradientStroke::resetValueMin () 
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function setColormap {#function-setcolormap}
 
 _Sets the colormap to_ _colormap_ _. Pass_`nullptr` _to take the stops from_`gradient` _._
@@ -604,7 +576,7 @@ void QAccelPlot::GradientStroke::setGradient (
 
 ### function setValueMax {#function-setvaluemax}
 
-_Sets the maximum data value for gradient normalization to_ _value_ _._
+_Sets the data value at gradient position 1 to_ _value_ _. NaN unsets it._
 ```C++
 void QAccelPlot::GradientStroke::setValueMax (
     qreal value
@@ -619,26 +591,9 @@ void QAccelPlot::GradientStroke::setValueMax (
 
 
 
-### function setValueMaxSource {#function-setvaluemaxsource}
-
-_Sets the gradient normalization maximum source to_ _source_ _._
-```C++
-void QAccelPlot::GradientStroke::setValueMaxSource (
-    GradientValueSource source
-) 
-```
-
-
-
-
-<hr>
-
-
-
-
 ### function setValueMin {#function-setvaluemin}
 
-_Sets the minimum data value for gradient normalization to_ _value_ _._
+_Sets the data value at gradient position 0 to_ _value_ _. NaN unsets it._
 ```C++
 void QAccelPlot::GradientStroke::setValueMin (
     qreal value
@@ -653,26 +608,9 @@ void QAccelPlot::GradientStroke::setValueMin (
 
 
 
-### function setValueMinSource {#function-setvalueminsource}
-
-_Sets the gradient normalization minimum source to_ _source_ _._
-```C++
-void QAccelPlot::GradientStroke::setValueMinSource (
-    GradientValueSource source
-) 
-```
-
-
-
-
-<hr>
-
-
-
-
 ### function valueMax {#function-valuemax-22}
 
-_Returns the maximum data value for gradient normalization._ 
+_Returns the data value at gradient position 1, or NaN when each series' data range applies._ 
 ```C++
 qreal QAccelPlot::GradientStroke::valueMax () const
 ```
@@ -685,41 +623,11 @@ qreal QAccelPlot::GradientStroke::valueMax () const
 
 
 
-### function valueMaxSource {#function-valuemaxsource-22}
-
-_Returns how the gradient normalization maximum is determined._ 
-```C++
-GradientValueSource QAccelPlot::GradientStroke::valueMaxSource () const
-```
-
-
-
-
-<hr>
-
-
-
-
 ### function valueMin {#function-valuemin-22}
 
-_Returns the minimum data value for gradient normalization._ 
+_Returns the data value at gradient position 0, or NaN when each series' data range applies._ 
 ```C++
 qreal QAccelPlot::GradientStroke::valueMin () const
-```
-
-
-
-
-<hr>
-
-
-
-
-### function valueMinSource {#function-valueminsource-22}
-
-_Returns how the gradient normalization minimum is determined._ 
-```C++
-GradientValueSource QAccelPlot::GradientStroke::valueMinSource () const
 ```
 
 

@@ -84,6 +84,7 @@
 * **nearestAlong** ([**QAccelPlot::Internal::InspectionScan**](namespaceQAccelPlot_1_1Internal_1_1InspectionScan.md))
 * **neighbors** ([**QAccelPlot::Internal::InspectionScan**](namespaceQAccelPlot_1_1Internal_1_1InspectionScan.md))
 * **nearlyEqual** ([**QAccelPlot**](namespaceQAccelPlot.md))
+* **nearlyEqualOrBothNaN** ([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
 ## p
@@ -125,6 +126,7 @@
 
 ## v
 
+* **valueIfSet** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **vertexAttributes** ([**QAccelPlot::LineStroke**](namespaceQAccelPlot_1_1LineStroke.md))
 * **verticesPerPathPoint** ([**QAccelPlot::LineStroke**](namespaceQAccelPlot_1_1LineStroke.md))
 

@@ -5,8 +5,6 @@ Here is a list of all namespaces with brief descriptions:
 
 
 * **namespace** [**QAccelPlot**](namespaceQAccelPlot.md)     
-    * **namespace** [**GradientFillBaselineNS**](namespaceQAccelPlot_1_1GradientFillBaselineNS.md) _Namespace exposing the_ `GradientFillBaseline` _enum to QML._    
-    * **namespace** [**GradientValueSourceNS**](namespaceQAccelPlot_1_1GradientValueSourceNS.md) _Namespace exposing the_ `GradientValueSource` _enum to QML._    
     * **namespace** [**InspectionNS**](namespaceQAccelPlot_1_1InspectionNS.md) _Namespace exposing the inspection_ `Status` _enum to QML as_`Inspection` _._    
     * **namespace** [**Internal**](namespaceQAccelPlot_1_1Internal.md)     
         * **namespace** [**InspectionScan**](namespaceQAccelPlot_1_1Internal_1_1InspectionScan.md) _Inspection queries that scan every record; used for small series that are not ordered along the queried axis._     

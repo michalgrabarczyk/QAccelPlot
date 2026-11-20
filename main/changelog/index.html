@@ -2164,11 +2164,22 @@
   feed.</li>
 <li>Accepting the event passed to <code>Axis.doubleClicked</code> skips the axis rescale,
   as <code>PlotView.mouseDoubleClicked</code> does for the plot.</li>
+<li>Assigning <code>undefined</code> to a property with a computed or automatic default,
+  such as <code>Colormap.min</code> or <code>ticker.tickLabelColor</code>, restores that default.</li>
 </ul>
 <h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>Axis::doubleClicked</code> takes a <code>PlotMouseEvent*</code>. String-based
   <code>SIGNAL(doubleClicked())</code> connections must be updated.</li>
+<li><code>HeatmapSeries</code> edges, <code>ticker.tickLabelColor</code>, <code>Axis.label.color</code>, and
+  <code>BandSeries.edges.color</code> read their value in effect while unset, not NaN or
+  an invalid color. Writing NaN or an invalid color still restores the default.</li>
+<li><code>GradientFill</code> and <code>GradientStroke</code> drop <code>valueMinSource</code>, <code>valueMaxSource</code>,
+  and <code>GradientValueSource</code>; <code>GradientFill</code> drops <code>baseline</code> and
+  <code>GradientFillBaseline</code>. A set <code>valueMin</code>, <code>valueMax</code>, or <code>baselineValue</code> is
+  fixed, and an unset one follows the data range or the axis minimum. Delete the
+  <code>valueMinSource</code>, <code>valueMaxSource</code>, and <code>baseline</code> lines; for
+  <code>GradientFillBaseline.AxisMinimum</code>, leave <code>baselineValue</code> unset.</li>
 </ul>
 <h2 id="060-2026-11-16">[0.6.0] — 2026-11-16<a class="headerlink" href="#060-2026-11-16" title="Permanent link">&para;</a></h2>
 <h3 id="added_1">Added<a class="headerlink" href="#added_1" title="Permanent link">&para;</a></h3>

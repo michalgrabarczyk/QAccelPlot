@@ -34,8 +34,8 @@ class Colormap : public QObject, public QQmlParserStatus {
     Q_PROPERTY(Preset preset READ preset WRITE setPreset NOTIFY colormapChanged)
     Q_PROPERTY(QQmlListProperty<QObject> stops READ stops NOTIFY colormapChanged)
     Q_PROPERTY(bool reversed READ reversed WRITE setReversed NOTIFY colormapChanged)
-    Q_PROPERTY(qreal min READ min WRITE setMin NOTIFY colormapChanged)
-    Q_PROPERTY(qreal max READ max WRITE setMax NOTIFY colormapChanged)
+    Q_PROPERTY(qreal min READ min WRITE setMin RESET resetMin NOTIFY colormapChanged)
+    Q_PROPERTY(qreal max READ max WRITE setMax RESET resetMax NOTIFY colormapChanged)
     Q_PROPERTY(bool logScale READ logScale WRITE setLogScale NOTIFY colormapChanged)
 
 public:
@@ -62,9 +62,11 @@ public:
 
     qreal min() const;
     void setMin(qreal value);
+    void resetMin();
 
     qreal max() const;
     void setMax(qreal value);
+    void resetMax();
 
     Q_INVOKABLE void setRange(qreal min, qreal max);
 

@@ -14,6 +14,8 @@
 //
 #pragma once
 
+#include "QAccelPlot/internal/ResettableValue.hpp"
+
 #include <QColor>
 #include <QFont>
 #include <QObject>
@@ -27,7 +29,7 @@ class TextLabel : public QObject {
     QML_ANONYMOUS
     Q_PROPERTY(QString text READ text WRITE setText NOTIFY textChanged)
     Q_PROPERTY(QFont font READ font WRITE setFont NOTIFY fontChanged)
-    Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
+    Q_PROPERTY(QColor color READ color WRITE setColor RESET resetColor NOTIFY colorChanged)
     Q_PROPERTY(qreal padding READ padding WRITE setPadding NOTIFY paddingChanged)
 
 public:
@@ -41,6 +43,8 @@ public:
 
     QColor color() const;
     void setColor(const QColor& color);
+    void resetColor();
+    void setDefaultColor(const QColor& color);
 
     qreal padding() const;
     void setPadding(qreal padding);
@@ -54,7 +58,7 @@ signals:
 private:
     QString text_;
     QFont font_;
-    QColor color_;
+    Internal::ResettableValue<QColor> color_;
     qreal padding_;
 };
 

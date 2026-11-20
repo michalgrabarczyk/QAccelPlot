@@ -71,7 +71,7 @@
         <read>xAxis</read>
         <write>setXAxis</write>
         <briefdescription>
-<para><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> the X limits refer to; unset uses the plot&apos;s primary X axis. </para>
+<para><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> the X limits refer to. Default: the plot&apos;s primary X axis. Assign <computeroutput>undefined</computeroutput> to return to it. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -88,7 +88,7 @@
         <read>yAxis</read>
         <write>setYAxis</write>
         <briefdescription>
-<para><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> the Y limits refer to; unset uses the plot&apos;s primary Y axis. </para>
+<para><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> the Y limits refer to. Default: the plot&apos;s primary Y axis. Assign <computeroutput>undefined</computeroutput> to return to it. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -375,7 +375,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="211" column="14" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="211" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="215" column="14" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="215" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1ad40a471038124a3e4d35736c69bbd93f" prot="private" static="no" mutable="no">
         <type>QPointer&lt; <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> &gt;</type>
@@ -389,7 +389,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="212" column="14" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="212" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="216" column="14" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="216" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1a89fc2147e7d3821d7710eb32b4429228" prot="private" static="no" mutable="no">
         <type>QPointer&lt; <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> &gt;</type>
@@ -403,7 +403,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="213" column="14" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="213" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="217" column="14" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="217" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1ae1d474730d102b2461f56cb8981cc046" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -418,7 +418,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="214" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="214" bodyend="214"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="218" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="218" bodyend="218"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1a9a4a9b2931c3d40861d091805813b1e1" prot="private" static="no" mutable="no">
         <type><ref refid="classQAccelPlot_1_1SelectionTool_1a2dda320d5bf84b04d53e4db8494db210" kindref="member">Mode</ref></type>
@@ -433,7 +433,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="215" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="215" bodyend="215"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="219" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="219" bodyend="219"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1a0cf3c75d9f35a3b75ca36e6d94719b41" prot="private" static="no" mutable="no">
         <type>Qt::MouseButton</type>
@@ -448,7 +448,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="216" column="21" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="216" bodyend="216"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="220" column="21" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="220" bodyend="220"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1ad9eb9343a70a1787cb095b594f7bf36e" prot="private" static="no" mutable="no">
         <type>Qt::KeyboardModifiers</type>
@@ -463,7 +463,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="217" column="27" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="217" bodyend="217"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="221" column="27" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="221" bodyend="221"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1add6ebc8920d08d7b4e9459b2d1cc68b3" prot="private" static="no" mutable="no">
         <type>qreal</type>
@@ -478,7 +478,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="218" column="11" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="218" bodyend="218"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="222" column="11" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="222" bodyend="222"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1aef368f0c6b48aea6f3074a2540f059f3" prot="private" static="no" mutable="no">
         <type>QColor</type>
@@ -493,7 +493,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="219" column="12" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="219" bodyend="219"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="223" column="12" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="223" bodyend="223"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1a987eb23110e400340765c861e9ca6898" prot="private" static="no" mutable="no">
         <type><ref refid="classQAccelPlot_1_1Border" kindref="compound">Border</ref> *</type>
@@ -508,7 +508,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="220" column="12" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="220" bodyend="220"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="224" column="12" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="224" bodyend="224"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1af11081b8e66ef76a72717edfb3f36f6f" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -523,7 +523,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="221" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="221" bodyend="221"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="225" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="225" bodyend="225"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1a02c29b663509a6b5ddda29def63e2c06" prot="private" static="no" mutable="no">
         <type><ref refid="classQAccelPlot_1_1PlotDragRect" kindref="compound">PlotDragRect</ref></type>
@@ -537,7 +537,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="222" column="18" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="222" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="226" column="18" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="226" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1ac278407ceaae4f08e4f71e734928e9b3" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -552,7 +552,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="223" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="223" bodyend="223"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="227" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="227" bodyend="227"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1afe8e6730cf0d3339a5fafff1dc79db8e" prot="private" static="no" mutable="no">
         <type>Region</type>
@@ -566,7 +566,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="224" column="12" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="224" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="228" column="12" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="228" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1a0b32d00935b2e05dcefede06dde36dce" prot="private" static="no" mutable="no">
         <type>quint64</type>
@@ -581,7 +581,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="225" column="13" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="225" bodyend="225"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="229" column="13" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="229" bodyend="229"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1ad6b343d989482400e3f9f17ad4ec57c2" prot="private" static="no" mutable="no">
         <type><ref refid="classQAccelPlot_1_1InspectionRowModel" kindref="compound">InspectionRowModel</ref> *</type>
@@ -595,7 +595,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="226" column="24" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="226" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="230" column="24" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="230" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1aad9c01b673b7d0216b5813ddd6a0c245" prot="private" static="no" mutable="no">
         <type>QList&lt; QMetaObject::Connection &gt;</type>
@@ -609,7 +609,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="227" column="11" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="227" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="231" column="11" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="231" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1ab60abbc5c3755e3899a8066e725ccfb0" prot="private" static="no" mutable="no">
         <type><ref refid="classQAccelPlot_1_1Internal_1_1SelectionRectangle" kindref="compound">Internal::SelectionRectangle</ref> *</type>
@@ -623,7 +623,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="229" column="34" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="229" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="233" column="34" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="233" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -715,6 +715,21 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="97" column="10"/>
       </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a05d6a0610a2bd74e23cd439ad011b447" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::resetXAxis</definition>
+        <argsstring>()</argsstring>
+        <name>resetXAxis</name>
+        <qualifiedname>QAccelPlot::SelectionTool::resetXAxis</qualifiedname>
+        <briefdescription>
+<para>Makes the X limits refer to the plot&apos;s primary X axis again. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="99" column="10"/>
+      </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a82686d8fa57a7ea198de40dfaaaea895" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
         <definition>Axis * QAccelPlot::SelectionTool::yAxis</definition>
@@ -728,7 +743,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="99" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="101" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1ab113f1337c795e0da3e659321f8a0408" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -747,7 +762,22 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="101" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="103" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1aa22c3b8ae353cf2c1261b0bc3b789628" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::resetYAxis</definition>
+        <argsstring>()</argsstring>
+        <name>resetYAxis</name>
+        <qualifiedname>QAccelPlot::SelectionTool::resetYAxis</qualifiedname>
+        <briefdescription>
+<para>Makes the Y limits refer to the plot&apos;s primary Y axis again. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="105" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a07a752780bbc6b3aa14270de9a8aa832" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -762,7 +792,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="103" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="107" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1ae5ad9c004730614d4e9483c5b617830f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -781,7 +811,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="105" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="109" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1ac045d253ad149bc5a0093fd574289c20" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classQAccelPlot_1_1SelectionTool_1a2dda320d5bf84b04d53e4db8494db210" kindref="member">Mode</ref></type>
@@ -796,7 +826,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="107" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="111" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1afa44124a282a30d5c1611bbfdaa01692" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -815,7 +845,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="109" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="113" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a5e465db7449aab54c2b53aec9e3128c9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Qt::MouseButton</type>
@@ -830,7 +860,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="111" column="21"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="115" column="21"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1ac9ad9ad747495df362927304081f9cee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -849,7 +879,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="113" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="117" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a4265e345615078d305bdb626baa4a40f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Qt::KeyboardModifiers</type>
@@ -864,7 +894,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="115" column="27"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="119" column="27"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1af125c2737ad6f40e673b1d9f544d6232" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -883,7 +913,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="117" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="121" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a1f2ca3022d26b8fca3aebec958a1eb6e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -898,7 +928,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="119" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="123" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1ac34edcabbc3d600a08db159eb7a2c3db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -917,7 +947,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="121" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="125" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a82f52c4fcced2e385a4b28b87d034620" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QColor</type>
@@ -932,7 +962,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="123" column="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="127" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a1c7920926c2465388b1af6622171d420" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -951,7 +981,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="125" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="129" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1af26a24e70645b341d8f74493bafdc927" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classQAccelPlot_1_1Border" kindref="compound">Border</ref> *</type>
@@ -966,7 +996,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="127" column="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="131" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a141de48160620f97a16cbed9737931e5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -981,7 +1011,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="129" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="133" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a8a501a769991ff1ba414d67c8c2a5bb5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1000,7 +1030,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="131" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="135" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a093a9de5e67e56fdac22d667cc803d71" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -1015,7 +1045,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="133" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="137" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1adb4eb5ca47a763ef84018db864fed5ca" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -1030,7 +1060,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="135" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="139" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1aa04878137cda4afdad95a7368dccc45f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QRectF</type>
@@ -1045,7 +1075,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="137" column="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="141" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a408a13332806a1f9d9feff7df476a3bc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -1060,7 +1090,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="139" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="143" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1aefff4ad27089dfd8623dad3cf8bfcb8f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -1075,7 +1105,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="141" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="145" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1acbce441a073ce5cf5b97bd579fb1aa83" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -1090,7 +1120,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="143" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="147" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1affd315317c2cddaf81626717429583b2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -1105,7 +1135,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="145" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="149" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1ab63cf648a53671b4e9f589d9bc933c36" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classQAccelPlot_1_1InspectionRowModel" kindref="compound">InspectionRowModel</ref> *</type>
@@ -1120,7 +1150,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="147" column="24"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="151" column="24"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a3aa2a6e56d46ccb8477f2b6efcac3f72" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE bool</type>
@@ -1151,7 +1181,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="150" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="154" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1abd00f8d9bbf7c08099f3293f36771526" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE <ref refid="structQAccelPlot_1_1InspectionPage" kindref="compound">InspectionPage</ref></type>
@@ -1181,7 +1211,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="154" column="32"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="158" column="32"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a0bc4ff93e10ea2926c25ed2b6179945a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE void</type>
@@ -1196,7 +1226,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="156" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="160" column="22"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="signal">
@@ -1213,7 +1243,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="160" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="164" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1SelectionTool_1ad8e6b506d7004ecf37aac7ed7b3749b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1228,7 +1258,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="162" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="166" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1SelectionTool_1a5f719b79093a704075e6777edce14082" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1243,7 +1273,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="164" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="168" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1SelectionTool_1aff3b8988f5bf54c4e39c02b854d55d8d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1258,7 +1288,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="166" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="170" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1SelectionTool_1a2c89e39a28d9143aa6f48728b8d534bd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1273,7 +1303,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="168" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="172" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1SelectionTool_1abc56b7a76800775cd1088b912c5d14e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1288,7 +1318,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="170" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="174" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1SelectionTool_1a668ffc7e330ede5641788259103cc205" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1303,7 +1333,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="172" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="176" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1SelectionTool_1a73ae9aee2225967fa032bfd5c834b744" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1318,7 +1348,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="174" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="178" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1SelectionTool_1ac860e3ec00721ef56d21b0adfb29d6c2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1333,7 +1363,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="176" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="180" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1SelectionTool_1a5c6cae9544bc156b8bf16a251173f566" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1348,7 +1378,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="178" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="182" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1SelectionTool_1a245d06920ebc5186c546cc3b3a75ce31" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1363,7 +1393,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="180" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="184" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1SelectionTool_1ae27245ece20e779f73a2eeb77d67c0c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1378,7 +1408,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="182" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="186" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1SelectionTool_1a61c84554acd31fce5c1f9f3a5abf4989" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1393,7 +1423,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="184" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="188" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1SelectionTool_1aaa743cac154a81f2ea4a80e1729bb32f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1408,7 +1438,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="186" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="190" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
@@ -1424,7 +1454,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="196" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="200" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a13f1b9d232d615cb6de7b58a23ecb8aa" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1442,7 +1472,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="197" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="201" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1ac261aabe118f6b1a6f117def7f77b784" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1456,7 +1486,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="199" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="203" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1ad929cdb25c3a78258df83585b7554523" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1474,7 +1504,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="200" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="204" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a6a6aa63fb0704d100c856b1d9c37f049" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1492,7 +1522,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="201" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="205" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1aa7aa5319a55cf24f0b326dc297deb21c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1510,7 +1540,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="202" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="206" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1adac56b9ed68c65f5b22f128fdf21ade2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1524,7 +1554,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="203" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="207" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1ad06cc72e6981d2e6462a0f6eaca1635f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1542,7 +1572,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="204" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="208" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a22e349b58eebae302db2c399fca4fb81" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1556,7 +1586,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="205" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="209" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a4a00094d76e606bfc2798a8d3490fd36" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -1574,7 +1604,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="206" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="210" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1afd84561d88e51e898cc515f00393bd03" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QRectF</type>
@@ -1588,7 +1618,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="207" column="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="211" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1adea9fa78b0b416f17385402ebecca9ca" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QRectF</type>
@@ -1602,7 +1632,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="208" column="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="212" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a7e7c1f15a9e002b76719a0d1d1bdd227" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Region</type>
@@ -1620,7 +1650,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="209" column="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="213" column="12"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -1654,7 +1684,7 @@
         <label>QObject</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="30" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="30" bodyend="230"/>
+    <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="30" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="30" bodyend="234"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1SelectionTool_1ad7eb70b3b5e8bf9437597036a087e0f5" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>border</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1af26a24e70645b341d8f74493bafdc927" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>border</name></member>
@@ -1714,6 +1744,8 @@
       <member refid="classQAccelPlot_1_1SelectionTool_1adea9fa78b0b416f17385402ebecca9ca" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>regionRect</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1aa7aa5319a55cf24f0b326dc297deb21c" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>release</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1ac261aabe118f6b1a6f117def7f77b784" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>resetAxes</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a05d6a0610a2bd74e23cd439ad011b447" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>resetXAxis</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1aa22c3b8ae353cf2c1261b0bc3b789628" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>resetYAxis</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1a0b32d00935b2e05dcefede06dde36dce" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>rowsGeneration_</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1a3aa2a6e56d46ccb8477f2b6efcac3f72" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>select</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1a5359c37b5aa7ca1b9ba8250a52f1bb54" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>selecting</name></member>

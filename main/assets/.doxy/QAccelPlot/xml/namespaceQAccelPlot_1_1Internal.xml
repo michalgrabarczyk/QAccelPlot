@@ -24,6 +24,7 @@
     <innerclass refid="classQAccelPlot_1_1Internal_1_1OutlinedRectangle" prot="public">QAccelPlot::Internal::OutlinedRectangle</innerclass>
     <innerclass refid="classQAccelPlot_1_1Internal_1_1PointerTracker" prot="public">QAccelPlot::Internal::PointerTracker</innerclass>
     <innerclass refid="classQAccelPlot_1_1Internal_1_1RectangleZoomOverlay" prot="public">QAccelPlot::Internal::RectangleZoomOverlay</innerclass>
+    <innerclass refid="classQAccelPlot_1_1Internal_1_1ResettableValue" prot="public">QAccelPlot::Internal::ResettableValue</innerclass>
     <innerclass refid="structQAccelPlot_1_1Internal_1_1DataTextureUploadTotals" prot="public">QAccelPlot::Internal::DataTextureUploadTotals</innerclass>
     <innerclass refid="structQAccelPlot_1_1Internal_1_1GlowUniforms" prot="public">QAccelPlot::Internal::GlowUniforms</innerclass>
     <innerclass refid="structQAccelPlot_1_1Internal_1_1ItemFadeGroupUniforms" prot="public">QAccelPlot::Internal::ItemFadeGroupUniforms</innerclass>
@@ -366,6 +367,25 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" line="40" column="8" declfile="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" declline="40" declcolumn="8"/>
       </memberdef>
+      <memberdef kind="function" id="GradientCoordinates_8hpp_1a907205ac8db2acffaec9c03653ef6528" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::optional&lt; qreal &gt;</type>
+        <definition>std::optional&lt; qreal &gt; QAccelPlot::Internal::valueIfSet</definition>
+        <argsstring>(const qreal value)</argsstring>
+        <name>valueIfSet</name>
+        <qualifiedname>QAccelPlot::Internal::valueIfSet</qualifiedname>
+        <param>
+          <type>const qreal</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Returns <emphasis>value</emphasis>, or <computeroutput>std::nullopt</computeroutput> when it is NaN, the unset state of an effect property. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/internal/GradientCoordinates.hpp" line="16" column="22" bodyfile="QAccelPlot/src/QAccelPlot/effects/internal/GradientCoordinates.hpp" bodystart="16" bodyend="19"/>
+      </memberdef>
       <memberdef kind="function" id="GradientCoordinates_8hpp_1a3b3bc1ac97af93601982a97032c2e7c8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>float</type>
         <definition>float QAccelPlot::Internal::unboundedGradientCoordinate</definition>
@@ -396,7 +416,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/internal/GradientCoordinates.hpp" line="18" column="14" bodyfile="QAccelPlot/src/QAccelPlot/effects/internal/GradientCoordinates.hpp" bodystart="18" bodyend="24"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/internal/GradientCoordinates.hpp" line="26" column="14" bodyfile="QAccelPlot/src/QAccelPlot/effects/internal/GradientCoordinates.hpp" bodystart="26" bodyend="32"/>
       </memberdef>
       <memberdef kind="function" id="GradientCoordinates_8hpp_1a6a40c20d9671161eb1b0636d4deafd3d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -425,11 +445,11 @@
 <para>Fills each unset gradient value bound of <emphasis>payload</emphasis> from [<emphasis>dataMin</emphasis>, <emphasis>dataMax</emphasis>]. </para>
         </briefdescription>
         <detaileddescription>
-<para>Bounds resolve independently, so a <computeroutput>Fixed</computeroutput> bound is kept when the other bound uses <computeroutput>DataRange</computeroutput>. </para>
+<para>Bounds resolve independently, so a set bound is kept when the other bound is unset. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/internal/GradientCoordinates.hpp" line="30" column="18" bodyfile="QAccelPlot/src/QAccelPlot/effects/internal/GradientCoordinates.hpp" bodystart="30" bodyend="38"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/internal/GradientCoordinates.hpp" line="37" column="18" bodyfile="QAccelPlot/src/QAccelPlot/effects/internal/GradientCoordinates.hpp" bodystart="37" bodyend="45"/>
       </memberdef>
       <memberdef kind="function" id="GradientStops_8hpp_1aadc01434de65429e54993a942b277f2e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; <ref refid="structQAccelPlot_1_1GradientStopData" kindref="compound">GradientStopData</ref> &gt;</type>

@@ -82,10 +82,10 @@ flowchart TB
 | property bool | [**selecting**](classQAccelPlot_1_1SelectionTool.md#property-selecting-12)  <br>_True while a gesture is in progress._  |
 | property QRectF | [**selectionRect**](classQAccelPlot_1_1SelectionTool.md#property-selectionrect-12)  <br>_Gesture or selected region in the plot's coordinates, in logical pixels; empty without either._  |
 | property bool | [**visible**](classQAccelPlot_1_1SelectionTool.md#property-visible)  <br>_Draws the gesture and the selected region with_ `fillColor` _and_`border` _. Default: true._ |
-| property [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**xAxis**](classQAccelPlot_1_1SelectionTool.md#property-xaxis-12)  <br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _the X limits refer to; unset uses the plot's primary X axis._ |
+| property [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**xAxis**](classQAccelPlot_1_1SelectionTool.md#property-xaxis-12)  <br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _the X limits refer to. Default: the plot's primary X axis. Assign_`undefined` _to return to it._ |
 | property qreal | [**xMax**](classQAccelPlot_1_1SelectionTool.md#property-xmax-12)  <br>_Upper X limit of the selection; Infinity when unbounded, NaN without a selection._  |
 | property qreal | [**xMin**](classQAccelPlot_1_1SelectionTool.md#property-xmin-12)  <br>_Lower X limit of the selection; -Infinity when unbounded, NaN without a selection._  |
-| property [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**yAxis**](classQAccelPlot_1_1SelectionTool.md#property-yaxis-12)  <br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _the Y limits refer to; unset uses the plot's primary Y axis._ |
+| property [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**yAxis**](classQAccelPlot_1_1SelectionTool.md#property-yaxis-12)  <br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _the Y limits refer to. Default: the plot's primary Y axis. Assign_`undefined` _to return to it._ |
 | property qreal | [**yMax**](classQAccelPlot_1_1SelectionTool.md#property-ymax-12)  <br>_Upper Y limit of the selection; Infinity when unbounded, NaN without a selection._  |
 | property qreal | [**yMin**](classQAccelPlot_1_1SelectionTool.md#property-ymin-12)  <br>_Lower Y limit of the selection; -Infinity when unbounded, NaN without a selection._  |
 
@@ -132,6 +132,8 @@ flowchart TB
 |  [**InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md) \* | [**model**](#function-model-22) () const<br>_Returns the model of per-series region statistics._  |
 |  Qt::KeyboardModifiers | [**modifiers**](#function-modifiers-22) () const<br>_Returns the required keyboard modifiers._  |
 |  [**PlotView**](classQAccelPlot_1_1PlotView.md) \* | [**plot**](#function-plot-22) () const<br>_Returns the attached plot._  |
+|  void | [**resetXAxis**](#function-resetxaxis) () <br>_Makes the X limits refer to the plot's primary X axis again._  |
+|  void | [**resetYAxis**](#function-resetyaxis) () <br>_Makes the Y limits refer to the plot's primary Y axis again._  |
 |  Q\_INVOKABLE bool | [**select**](#function-select) (qreal xMin, qreal xMax, qreal yMin, qreal yMax) <br>_Selects the region with the given limits; returns false when a limit is NaN._  |
 |  bool | [**selecting**](#function-selecting-22) () const<br>_Returns true while a gesture is in progress._  |
 |  QRectF | [**selectionRect**](#function-selectionrect-22) () const<br>_Returns the gesture or selected region in the plot's coordinates, in logical pixels._  |
@@ -424,7 +426,7 @@ Gestures and the selection work either way. Set it to false to draw `selectionRe
 
 ### property xAxis {#property-xaxis-12}
 
-[_**Axis**_](classQAccelPlot_1_1Axis.md) _the X limits refer to; unset uses the plot's primary X axis._
+[_**Axis**_](classQAccelPlot_1_1Axis.md) _the X limits refer to. Default: the plot's primary X axis. Assign_`undefined` _to return to it._
 ```C++
 Axis* QAccelPlot::SelectionTool::xAxis;
 ```
@@ -469,7 +471,7 @@ qreal QAccelPlot::SelectionTool::xMin;
 
 ### property yAxis {#property-yaxis-12}
 
-[_**Axis**_](classQAccelPlot_1_1Axis.md) _the Y limits refer to; unset uses the plot's primary Y axis._
+[_**Axis**_](classQAccelPlot_1_1Axis.md) _the Y limits refer to. Default: the plot's primary Y axis. Assign_`undefined` _to return to it._
 ```C++
 Axis* QAccelPlot::SelectionTool::yAxis;
 ```
@@ -936,6 +938,36 @@ Qt::KeyboardModifiers QAccelPlot::SelectionTool::modifiers () const
 _Returns the attached plot._ 
 ```C++
 PlotView * QAccelPlot::SelectionTool::plot () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function resetXAxis {#function-resetxaxis}
+
+_Makes the X limits refer to the plot's primary X axis again._ 
+```C++
+void QAccelPlot::SelectionTool::resetXAxis () 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function resetYAxis {#function-resetyaxis}
+
+_Makes the Y limits refer to the plot's primary Y axis again._ 
+```C++
+void QAccelPlot::SelectionTool::resetYAxis () 
 ```
 
 

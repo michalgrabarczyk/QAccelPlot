@@ -1619,10 +1619,32 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#function-resetcolor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function resetColor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-setcolor" class="md-nav__link">
     <span class="md-ellipsis">
       
         function setColor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setdefaultcolor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setDefaultColor
       
     </span>
   </a>
@@ -1725,7 +1747,7 @@
 <tbody>
 <tr>
 <td style="text-align: right;">property QColor</td>
-<td style="text-align: left;"><a href="./#property-color-12"><strong>color</strong></a>  <br><em>Title color. Default:</em> <code>Colors.dark.axisLine</code> <em>on a</em><a href="../classQAccelPlot_1_1ColorBar/"><em><strong>ColorBar</strong></em></a> <em>; on an</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>, an invalid color that follows</em><code>baselineColor</code> <em>.</em></td>
+<td style="text-align: left;"><a href="./#property-color-12"><strong>color</strong></a>  <br><em>Title color. Default:</em> <code>Colors.dark.axisLine</code> <em>on a</em><a href="../classQAccelPlot_1_1ColorBar/"><em><strong>ColorBar</strong></em></a> <em>, the axis</em><code>baselineColor</code> <em>on an</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>. Assign</em><code>undefined</code> <em>to return to it.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property QFont</td>
@@ -1783,7 +1805,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">QColor</td>
-<td style="text-align: left;"><a href="#function-color-22"><strong>color</strong></a> () const<br><em>Returns the title color.</em></td>
+<td style="text-align: left;"><a href="#function-color-22"><strong>color</strong></a> () const<br><em>Returns the title color in effect.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">QFont</td>
@@ -1795,7 +1817,15 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setcolor"><strong>setColor</strong></a> (const QColor &amp; color) <br><em>Sets the title color to</em> <em>color</em> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-resetcolor"><strong>resetColor</strong></a> () <br><em>Restores the default title color.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setcolor"><strong>setColor</strong></a> (const QColor &amp; color) <br><em>Sets the title color to</em> <em>color</em> <em>. An invalid color restores the default.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setdefaultcolor"><strong>setDefaultColor</strong></a> (const QColor &amp; color) <br><em>Sets the color used while none is set to</em> <em>color</em> <em>. Called by the owning</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>or</em><a href="../classQAccelPlot_1_1ColorBar/"><em><strong>ColorBar</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -1819,7 +1849,7 @@
 <p><strong>See also:</strong> <a href="../classQAccelPlot_1_1AxisLabel/"><strong>AxisLabel</strong></a> </p>
 <h2 id="public-properties-documentation">Public Properties Documentation<a class="headerlink" href="#public-properties-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="property-color-12">property color<a class="headerlink" href="#property-color-12" title="Permanent link">&para;</a></h3>
-<p><em>Title color. Default:</em> <code>Colors.dark.axisLine</code> <em>on a</em><a href="../classQAccelPlot_1_1ColorBar/"><em><strong>ColorBar</strong></em></a> <em>; on an</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>, an invalid color that follows</em><code>baselineColor</code> <em>.</em>
+<p><em>Title color. Default:</em> <code>Colors.dark.axisLine</code> <em>on a</em><a href="../classQAccelPlot_1_1ColorBar/"><em><strong>ColorBar</strong></em></a> <em>, the axis</em><code>baselineColor</code> <em>on an</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>. Assign</em><code>undefined</code> <em>to return to it.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TextLabel</span><span class="o">::</span><span class="n">color</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
@@ -1877,7 +1907,7 @@
 <hr>
 
 <h3 id="function-color-22">function color<a class="headerlink" href="#function-color-22" title="Permanent link">&para;</a></h3>
-<p><em>Returns the title color.</em> 
+<p><em>Returns the title color in effect.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TextLabel</span><span class="o">::</span><span class="n">color</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
@@ -1894,41 +1924,55 @@
 </code></pre></div></p>
 <hr>
 
+<h3 id="function-resetcolor">function resetColor<a class="headerlink" href="#function-resetcolor" title="Permanent link">&para;</a></h3>
+<p><em>Restores the default title color.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TextLabel</span><span class="o">::</span><span class="n">resetColor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="function-setcolor">function setColor<a class="headerlink" href="#function-setcolor" title="Permanent link">&para;</a></h3>
-<p><em>Sets the title color to</em> <em>color</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TextLabel</span><span class="o">::</span><span class="n">setColor</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">color</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="p">)</span><span class="w"> </span>
+<p><em>Sets the title color to</em> <em>color</em> <em>. An invalid color restores the default.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TextLabel</span><span class="o">::</span><span class="n">setColor</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">color</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setdefaultcolor">function setDefaultColor<a class="headerlink" href="#function-setdefaultcolor" title="Permanent link">&para;</a></h3>
+<p><em>Sets the color used while none is set to</em> <em>color</em> <em>. Called by the owning</em><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>or</em><a href="../classQAccelPlot_1_1ColorBar/"><em><strong>ColorBar</strong></em></a> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TextLabel</span><span class="o">::</span><span class="n">setDefaultColor</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">color</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setfont">function setFont<a class="headerlink" href="#function-setfont" title="Permanent link">&para;</a></h3>
 <p><em>Sets the title font to</em> <em>font</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TextLabel</span><span class="o">::</span><span class="n">setFont</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QFont</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">font</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TextLabel</span><span class="o">::</span><span class="n">setFont</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QFont</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">font</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setpadding">function setPadding<a class="headerlink" href="#function-setpadding" title="Permanent link">&para;</a></h3>
 <p><em>Sets the gap between the title and the axis or color strip to</em> <em>padding</em> <em>pixels.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TextLabel</span><span class="o">::</span><span class="n">setPadding</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">padding</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TextLabel</span><span class="o">::</span><span class="n">setPadding</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">padding</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-settext">function setText<a class="headerlink" href="#function-settext" title="Permanent link">&para;</a></h3>
 <p><em>Sets the title text to</em> <em>text</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TextLabel</span><span class="o">::</span><span class="n">setText</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">text</span>
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TextLabel</span><span class="o">::</span><span class="n">setText</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">text</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-text-22">function text<a class="headerlink" href="#function-text-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the title text.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">QString</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TextLabel</span><span class="o">::</span><span class="n">text</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">QString</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">TextLabel</span><span class="o">::</span><span class="n">text</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
